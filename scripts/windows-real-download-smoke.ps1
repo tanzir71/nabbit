@@ -1,6 +1,8 @@
 param(
   [string]$Exe = ".\src-tauri\target\release\nabbit.exe",
   [string]$TestUrl = "https://www.youtube.com/watch?v=e6rhUvwB5Y8",
+  [string]$PlaylistUrl = "https://www.youtube.com/playlist?list=PLwqi5Us_JxzhaWr8DzMOoPrhr5Rf-XXal",
+  [string]$PlaylistVideoUrl = "https://www.youtube.com/watch?v=XKgR03OK68w&list=PLwqi5Us_JxzhaWr8DzMOoPrhr5Rf-XXal",
   [string]$Section = "*00:00:00-00:00:03"
 )
 
@@ -186,12 +188,12 @@ function Invoke-AcceptanceCommand([string]$RequestName, [string]$DoneName, [stri
   return $raw
 }
 
-function Start-Download([string]$Quality) {
+function Start-Download([string]$Url, [string]$Quality, [string]$PlaylistMode = "video", [string]$PlaylistRange = $null) {
   $payload = @{
-    url = $TestUrl
+    url = $Url
     quality = $Quality
-    playlistMode = "video"
-    playlistRange = $null
+    playlistMode = $PlaylistMode
+    playlistRange = $PlaylistRange
   } | ConvertTo-Json -Compress
   Invoke-AcceptanceCommand "download-start.json" "download-start.done" $payload 45000 | ConvertFrom-Json
 }
@@ -279,17 +281,41 @@ try {
   Set-AppSetting "maxConcurrentDownloads" "1"
   Set-AppSetting "engineAutoUpdate" "false"
 
-  $videoJob = Start-Download "1080p"
+  $videoJob = Start-Download $TestUrl "1080p"
   $videoElapsed = Wait-DownloadCompleted $videoJob.id 180000
   $videoOutput = Invoke-SqliteScalar "SELECT output_path FROM downloads WHERE id = ?1" @($videoJob.id)
   $videoSize = Assert-Media $videoOutput "video" $FfmpegPath
   Add-Result "real 1080p mp4 app download" "completed in ${videoElapsed}ms; ffmpeg saw 1080p video+audio; $videoSize bytes at $videoOutput"
 
-  $audioJob = Start-Download "audio_mp3"
+  $audioJob = Start-Download $TestUrl "audio_mp3"
   $audioElapsed = Wait-DownloadCompleted $audioJob.id 180000
   $audioOutput = Invoke-SqliteScalar "SELECT output_path FROM downloads WHERE id = ?1" @($audioJob.id)
   $audioSize = Assert-Media $audioOutput "audio" $FfmpegPath
   Add-Result "real mp3 app download" "completed in ${audioElapsed}ms; ffmpeg saw MP3 audio; $audioSize bytes at $audioOutput"
+
+  $playlistMetadata = Invoke-AcceptanceCommand "probe-url.txt" "probe-url.done" $PlaylistUrl 60000 | ConvertFrom-Json
+  if (-not $playlistMetadata.isPlaylist -or $playlistMetadata.playlistCount -lt 2) {
+    throw "Playlist probe did not detect a multi-item playlist."
+  }
+
+  Set-AppSetting "filenameTemplate" "nabbit-playlist-video-%(id)s.%(ext)s"
+  $beforeVideoOnly = @(Get-ChildItem -LiteralPath $OutputDir -Filter "nabbit-playlist-video-*.*" -File -ErrorAction SilentlyContinue).Count
+  $videoOnlyJob = Start-Download $PlaylistVideoUrl "480p" "video"
+  Wait-DownloadCompleted $videoOnlyJob.id 180000 | Out-Null
+  $afterVideoOnly = @(Get-ChildItem -LiteralPath $OutputDir -Filter "nabbit-playlist-video-*.*" -File -ErrorAction SilentlyContinue).Count
+  if (($afterVideoOnly - $beforeVideoOnly) -ne 1) {
+    throw "Video-only playlist mode created $($afterVideoOnly - $beforeVideoOnly) files instead of 1."
+  }
+
+  Set-AppSetting "filenameTemplate" "nabbit-playlist-range-%(playlist_index)s-%(id)s.%(ext)s"
+  $beforePlaylist = @(Get-ChildItem -LiteralPath $OutputDir -Filter "nabbit-playlist-range-*.*" -File -ErrorAction SilentlyContinue).Count
+  $playlistJob = Start-Download $PlaylistUrl "480p" "playlist" "1-2"
+  Wait-DownloadCompleted $playlistJob.id 240000 | Out-Null
+  $afterPlaylist = @(Get-ChildItem -LiteralPath $OutputDir -Filter "nabbit-playlist-range-*.*" -File -ErrorAction SilentlyContinue).Count
+  if (($afterPlaylist - $beforePlaylist) -ne 2) {
+    throw "Playlist range mode created $($afterPlaylist - $beforePlaylist) files instead of 2."
+  }
+  Add-Result "playlist detection and modes" "probe detected '$($playlistMetadata.title)' with $($playlistMetadata.playlistCount) items; video-only created 1 file; playlist range 1-2 created 2 files"
 
   $Results | Format-Table -AutoSize
 } finally {

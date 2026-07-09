@@ -292,7 +292,7 @@ When a URL is staged, show a compact card with:
 - [x] Copying a YouTube URL anywhere stages a Download card without starting a download.
 - [x] One click on Download produces a correctly-merged MP4 (≥1080p uses ffmpeg merge) in the output folder.
 - [x] Audio-only MP3 extraction works.
-- [ ] Playlist detected; "this video only" and "whole playlist (with range)" both work.
+- [x] Playlist detected; "this video only" and "whole playlist (with range)" both work.
 - [x] Progress %, speed, ETA update live; Cancel and Retry work; concurrency limit respected.
 - [x] History persists across app restart.
 - [x] Engine self-update runs in background without freezing UI.

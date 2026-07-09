@@ -61,7 +61,7 @@ For opt-in real yt-dlp/ffmpeg media verification, run:
 .\scripts\windows-real-download-smoke.ps1
 ```
 
-That script sets `NABBIT_ACCEPTANCE_DOWNLOAD_SECTION` so the running app downloads only a short section while still exercising the real 1080p MP4 merge and MP3 extraction paths.
+That script sets `NABBIT_ACCEPTANCE_DOWNLOAD_SECTION` so the running app downloads only a short section while still exercising the real 1080p MP4 merge, MP3 extraction, playlist detection, video-only, and playlist range paths.
 
 ## Release Builds
 

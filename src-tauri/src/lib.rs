@@ -162,6 +162,8 @@ fn spawn_acceptance_automation(state: AppState) {
             let download_retry_done = command_dir.join("download-retry.done");
             let download_list_request = command_dir.join("download-list");
             let download_list_done = command_dir.join("download-list.done");
+            let probe_url_request = command_dir.join("probe-url.txt");
+            let probe_url_done = command_dir.join("probe-url.done");
 
             while !shutdown.load(Ordering::Relaxed) {
                 if clear_request.exists() {
@@ -222,6 +224,12 @@ fn spawn_acceptance_automation(state: AppState) {
                     write_acceptance_done(&download_list_done, result);
                 }
 
+                if probe_url_request.exists() {
+                    let result = acceptance_probe_url(&state, &probe_url_request);
+                    let _ = fs::remove_file(&probe_url_request);
+                    write_acceptance_done(&probe_url_done, result);
+                }
+
                 thread::sleep(Duration::from_millis(100));
             }
         });
@@ -236,6 +244,16 @@ fn acceptance_start_download(state: &AppState, path: &Path) -> std::result::Resu
         .enqueue(request)
         .map_err(|error| error.to_string())?;
     serde_json::to_string(&job).map_err(|error| error.to_string())
+}
+
+fn acceptance_probe_url(state: &AppState, path: &Path) -> std::result::Result<String, String> {
+    let url = fs::read_to_string(path).map_err(|error| error.to_string())?;
+    let metadata = download::probe::probe(&state.app_data_dir, url.trim())
+        .map_err(|error| error.to_string())?;
+    let _ = state
+        .db
+        .set_setting_value("staged_url", &metadata.normalized_url);
+    serde_json::to_string(&metadata).map_err(|error| error.to_string())
 }
 
 fn write_acceptance_done(path: &Path, result: std::result::Result<String, String>) {
