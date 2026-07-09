@@ -9,6 +9,7 @@ Run on each available OS before release.
 - Downloader sidecar verification passed with a Creative Commons YouTube test video (`https://www.youtube.com/watch?v=e6rhUvwB5Y8`): direct yt-dlp probe returned a 250-second, CC-licensed, 2160p-capable source; direct 3-second 1080p MP4 section produced AAC audio and a 3,179,722-byte output; direct 3-second MP3 extraction produced an MP3 output.
 - Direct progress-template verification passed: yt-dlp emitted `nabbit:100.0%|...` and Rust parser tests cover prefixed and bare machine progress lines.
 - Unit coverage now includes source-app exclusions, Windows OS clipboard exclusion format, sensitive heuristics, huge clipboard skip, corrupt DB recovery, playlist range args, fallback format args, final MP3 output path detection, and corrupt engine probe failure.
+- Windows release updater signing passed with `.\scripts\build-release.ps1 -Target x86_64-pc-windows-msvc -Bundles "msi,nsis"`; MSI/NSIS bundles and matching `.sig` files were produced under `src-tauri/target/x86_64-pc-windows-msvc/release/bundle/`.
 - Full GUI acceptance below is not complete until each checkbox is manually exercised in the installed app.
 
 ## Clipboard

@@ -51,6 +51,7 @@ pub fn run() {
         .plugin(tauri_plugin_updater::Builder::new().build())
         .invoke_handler(tauri::generate_handler![
             commands::app::app_health,
+            commands::app::check_app_update,
             commands::settings::get_settings,
             commands::settings::save_settings,
             commands::settings::acknowledge_first_run,

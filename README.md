@@ -47,6 +47,32 @@ cargo test --manifest-path src-tauri/Cargo.toml
 
 Manual coverage lives in [tests/manual-e2e.md](tests/manual-e2e.md).
 
+## Release Builds
+
+Normal local builds keep updater artifacts off so they do not require private signing material. Release builds use `src-tauri/tauri.release.conf.json`, which enables signed updater artifacts and points the updater at the GitHub Releases `latest.json` endpoint. Update that endpoint if the production repository is not `tanzir/nabbit`.
+
+The updater public key is committed in the release config. Keep the private key out of Git and expose it only through one of these environment variables:
+
+```bash
+TAURI_SIGNING_PRIVATE_KEY
+TAURI_SIGNING_PRIVATE_KEY_PATH
+TAURI_SIGNING_PRIVATE_KEY_PASSWORD
+```
+
+On this machine, a local development updater key was generated at `~/.tauri/nabbit-updater.key`. To build signed updater artifacts locally:
+
+```powershell
+.\scripts\build-release.ps1 -Target x86_64-pc-windows-msvc
+```
+
+For Unix runners:
+
+```bash
+./scripts/build-release.sh x86_64-unknown-linux-gnu
+```
+
+The GitHub release workflow builds Windows, macOS Intel, macOS Apple Silicon, and Linux artifacts through `tauri-apps/tauri-action`. Configure repository secrets `TAURI_SIGNING_PRIVATE_KEY` and optionally `TAURI_SIGNING_PRIVATE_KEY_PASSWORD` before publishing. Apple/Windows code-signing certificates are still required for a production-trusted release.
+
 ## Screenshots
 
 Screenshots/GIF placeholder: add the popover, clipboard search, and active download queue captures before release packaging.

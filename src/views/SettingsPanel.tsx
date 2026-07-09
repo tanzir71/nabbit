@@ -1,12 +1,13 @@
-import { ExternalLink, Trash2, X } from "lucide-react";
-import type { ReactNode } from "react";
+import { ExternalLink, RefreshCcw, Trash2, X } from "lucide-react";
+import { useState, type ReactNode } from "react";
 import { Button } from "../components/Button";
 import { Field } from "../components/Field";
 import { IconButton } from "../components/IconButton";
 import { Segmented } from "../components/Segmented";
 import { Toggle } from "../components/Toggle";
+import { api } from "../lib/ipc";
 import { useAppStore } from "../store/useAppStore";
-import type { AppSettings, Quality } from "../lib/types";
+import type { AppSettings, AppUpdateStatus, Quality } from "../lib/types";
 
 const qualities: Array<{ label: string; value: Quality }> = [
   { label: "Best", value: "best" },
@@ -21,6 +22,8 @@ export function SettingsPanel({ onClose }: { onClose: () => void }) {
   const engine = useAppStore((state) => state.engine);
   const saveSettings = useAppStore((state) => state.saveSettings);
   const clearHistory = useAppStore((state) => state.clearHistory);
+  const [checkingUpdate, setCheckingUpdate] = useState(false);
+  const [updateStatus, setUpdateStatus] = useState<AppUpdateStatus | null>(null);
 
   if (!settings) return null;
 
@@ -188,6 +191,32 @@ export function SettingsPanel({ onClose }: { onClose: () => void }) {
             <p className="text-slate-500">yt-dlp: {engine?.ytdlpVersion ?? "not found"}</p>
             <p className="break-all text-slate-500">ffmpeg: {engine?.ffmpegPath ?? "not found"}</p>
             <p className="text-slate-500">Licenses: Tauri, React, yt-dlp, ffmpeg and bundled dependencies.</p>
+            <Button
+              className="mt-3"
+              size="sm"
+              variant="secondary"
+              disabled={checkingUpdate}
+              onClick={async () => {
+                setCheckingUpdate(true);
+                try {
+                  setUpdateStatus(await api.checkAppUpdate());
+                } finally {
+                  setCheckingUpdate(false);
+                }
+              }}
+            >
+              <RefreshCcw size={14} />
+              {checkingUpdate ? "Checking..." : "Check for updates"}
+            </Button>
+            {updateStatus ? (
+              <p className="mt-2 text-slate-500">
+                {updateStatus.error
+                  ? updateStatus.error
+                  : updateStatus.available
+                    ? `Update ${updateStatus.version ?? ""} available.`
+                    : "Nabbit is up to date."}
+              </p>
+            ) : null}
           </div>
         </Section>
       </div>

@@ -9,6 +9,7 @@
     "preview": "vite preview",
     "tauri": "tauri",
     "tauri:dev": "tauri dev",
+    "tauri:build:release": "tauri build --config src-tauri/tauri.release.conf.json",
     "typecheck": "tsc -b",
     "lint": "eslint .",
     "format": "prettier --write .",

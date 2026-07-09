@@ -1,5 +1,6 @@
 param(
-  [string]$Target = "x86_64-pc-windows-msvc"
+  [string]$Target = "x86_64-pc-windows-msvc",
+  [switch]$Force
 )
 
 $ErrorActionPreference = "Stop"
@@ -9,6 +10,10 @@ New-Item -ItemType Directory -Force -Path $Bin | Out-Null
 
 function Fetch($Url, $Name) {
   $Path = Join-Path $Bin $Name
+  if ((Test-Path -LiteralPath $Path) -and -not $Force) {
+    Write-Host "Using existing $Name"
+    return
+  }
   Write-Host "Downloading $Name"
   Invoke-WebRequest -Uri $Url -OutFile $Path
 }

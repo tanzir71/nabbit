@@ -107,3 +107,13 @@ export interface EngineStatus {
   lastUpdateCheck?: string | null;
   missing: string[];
 }
+
+export interface AppUpdateStatus {
+  available: boolean;
+  currentVersion?: string | null;
+  version?: string | null;
+  date?: string | null;
+  body?: string | null;
+  url?: string | null;
+  error?: string | null;
+}

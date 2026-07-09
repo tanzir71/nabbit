@@ -1,0 +1,84 @@
+name: Release
+
+on:
+  workflow_dispatch:
+  push:
+    tags:
+      - "v*"
+
+permissions:
+  contents: write
+
+jobs:
+  publish:
+    strategy:
+      fail-fast: false
+      matrix:
+        include:
+          - platform: windows-latest
+            target: x86_64-pc-windows-msvc
+            args: --target x86_64-pc-windows-msvc
+          - platform: macos-latest
+            target: aarch64-apple-darwin
+            args: --target aarch64-apple-darwin
+          - platform: macos-13
+            target: x86_64-apple-darwin
+            args: --target x86_64-apple-darwin
+          - platform: ubuntu-22.04
+            target: x86_64-unknown-linux-gnu
+            args: --target x86_64-unknown-linux-gnu
+
+    runs-on: ${{ matrix.platform }}
+
+    steps:
+      - uses: actions/checkout@v4
+
+      - name: Install Linux system dependencies
+        if: startsWith(matrix.platform, 'ubuntu')
+        run: |
+          sudo apt-get update
+          sudo apt-get install -y libwebkit2gtk-4.1-dev libayatana-appindicator3-dev librsvg2-dev patchelf xdg-utils ffmpeg
+
+      - name: Install macOS ffmpeg
+        if: startsWith(matrix.platform, 'macos')
+        run: brew install ffmpeg
+
+      - name: Install Windows ffmpeg
+        if: startsWith(matrix.platform, 'windows')
+        run: choco install ffmpeg -y
+
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 22
+          cache: npm
+
+      - uses: dtolnay/rust-toolchain@stable
+
+      - name: Add macOS Rust target
+        if: startsWith(matrix.platform, 'macos')
+        run: rustup target add ${{ matrix.target }}
+
+      - run: npm ci
+
+      - name: Fetch Windows sidecars
+        if: startsWith(matrix.platform, 'windows')
+        run: .\scripts\fetch-binaries.ps1 -Target ${{ matrix.target }}
+
+      - name: Fetch Unix sidecars
+        if: ${{ !startsWith(matrix.platform, 'windows') }}
+        run: |
+          chmod +x ./scripts/fetch-binaries.sh
+          ./scripts/fetch-binaries.sh "${{ matrix.target }}"
+
+      - uses: tauri-apps/tauri-action@v1
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+          TAURI_SIGNING_PRIVATE_KEY: ${{ secrets.TAURI_SIGNING_PRIVATE_KEY }}
+          TAURI_SIGNING_PRIVATE_KEY_PASSWORD: ${{ secrets.TAURI_SIGNING_PRIVATE_KEY_PASSWORD }}
+        with:
+          tagName: v__VERSION__
+          releaseName: Nabbit v__VERSION__
+          releaseBody: See the assets to download and install this version.
+          releaseDraft: true
+          prerelease: false
+          args: --config src-tauri/tauri.release.conf.json ${{ matrix.args }}

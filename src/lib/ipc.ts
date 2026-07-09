@@ -2,6 +2,7 @@ import { invoke } from "@tauri-apps/api/core";
 import { listen } from "@tauri-apps/api/event";
 import type {
   AppSettings,
+  AppUpdateStatus,
   ClipboardEntry,
   DownloadJob,
   DownloadMetadata,
@@ -48,6 +49,11 @@ async function call<T>(command: string, args?: Record<string, unknown>, fallback
 }
 
 export const api = {
+  checkAppUpdate: () =>
+    call<AppUpdateStatus>("check_app_update", undefined, () => ({
+      available: false,
+      error: "Desktop updater is available only in the packaged app.",
+    })),
   getSettings: () => call<AppSettings>("get_settings", undefined, () => browserSettings),
   saveSettings: (settings: AppSettings) =>
     call<AppSettings>("save_settings", { settings }, () => {
