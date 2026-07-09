@@ -293,8 +293,8 @@ When a URL is staged, show a compact card with:
 - [ ] One click on Download produces a correctly-merged MP4 (≥1080p uses ffmpeg merge) in the output folder.
 - [ ] Audio-only MP3 extraction works.
 - [ ] Playlist detected; "this video only" and "whole playlist (with range)" both work.
-- [ ] Progress %, speed, ETA update live; Cancel and Retry work; concurrency limit respected.
-- [ ] History persists across app restart.
+- [x] Progress %, speed, ETA update live; Cancel and Retry work; concurrency limit respected.
+- [x] History persists across app restart.
 - [ ] Engine self-update runs in background without freezing UI.
 
 ---

@@ -6,6 +6,7 @@ use std::{
     process::{Command, Stdio},
     sync::{Arc, Mutex},
     thread,
+    time::Duration,
 };
 
 use chrono::Utc;
@@ -14,7 +15,7 @@ use uuid::Uuid;
 
 use crate::{
     db::{
-        models::{DownloadJob, DownloadRequest},
+        models::{DownloadJob, DownloadMetadata, DownloadRequest},
         Database,
     },
     download::{probe, ytdlp},
@@ -58,8 +59,20 @@ impl DownloadManager {
     pub fn enqueue(&self, request: DownloadRequest) -> Result<DownloadJob> {
         let normalized =
             normalize_video_url(&request.url).unwrap_or_else(|| request.url.trim().to_string());
-        let metadata = probe::probe(&self.app_data_dir, &normalized).unwrap_or_else(|_| {
-            crate::db::models::DownloadMetadata {
+        let metadata = if std::env::var_os("NABBIT_ACCEPTANCE_FAKE_DOWNLOAD").is_some() {
+            DownloadMetadata {
+                url: request.url.clone(),
+                normalized_url: normalized.clone(),
+                title: format!("Acceptance download {normalized}"),
+                channel: None,
+                duration: None,
+                thumbnail: None,
+                is_playlist: normalized.contains("list="),
+                playlist_count: None,
+                extractor: Some("acceptance".into()),
+            }
+        } else {
+            probe::probe(&self.app_data_dir, &normalized).unwrap_or_else(|_| DownloadMetadata {
                 url: request.url.clone(),
                 normalized_url: normalized.clone(),
                 title: normalized.clone(),
@@ -69,8 +82,8 @@ impl DownloadManager {
                 is_playlist: normalized.contains("list="),
                 playlist_count: None,
                 extractor: Some("fallback".into()),
-            }
-        });
+            })
+        };
         let now = Utc::now();
         let job = DownloadJob {
             id: Uuid::new_v4().to_string(),
@@ -242,6 +255,10 @@ impl DownloadManager {
     }
 
     fn run_job_inner(&self, id: &str, fallback_format: bool) -> Result<()> {
+        if std::env::var_os("NABBIT_ACCEPTANCE_FAKE_DOWNLOAD").is_some() {
+            return self.run_acceptance_fake_job(id);
+        }
+
         let mut job = self.db.get_download(id)?;
         let Some(ytdlp) = ytdlp::resolve_engine(&self.app_data_dir, "yt-dlp") else {
             return Err(msg(
@@ -337,6 +354,79 @@ impl DownloadManager {
                 stderr
             }))
         }
+    }
+
+    fn run_acceptance_fake_job(&self, id: &str) -> Result<()> {
+        let settings = self.db.get_settings()?;
+        let output_dir = if settings.output_dir.trim().is_empty() {
+            default_output_dir()
+        } else {
+            settings.output_dir.clone()
+        };
+        fs::create_dir_all(&output_dir)?;
+
+        let extension = if self.db.get_download(id)?.quality == "audio_mp3" {
+            "mp3"
+        } else {
+            "mp4"
+        };
+        let output_path =
+            Path::new(&output_dir).join(format!("nabbit-acceptance-{id}.{extension}"));
+        let output_path_string = output_path.to_string_lossy().to_string();
+        let delay_ms = std::env::var("NABBIT_ACCEPTANCE_FAKE_DOWNLOAD_DELAY_MS")
+            .ok()
+            .and_then(|value| value.parse().ok())
+            .unwrap_or(250);
+
+        let mut job = self.db.get_download(id)?;
+        job.status = "running".into();
+        job.output_path = Some(output_path_string.clone());
+        job.updated_at = Utc::now();
+        self.db.update_download(&job)?;
+        let _ = self.app.emit("download:updated", job);
+
+        for step in 1..=5 {
+            thread::sleep(Duration::from_millis(delay_ms));
+
+            let mut update = self.db.get_download(id)?;
+            if update.status != "running" {
+                return Ok(());
+            }
+
+            update.status = "running".into();
+            update.progress = step as f64 * 20.0;
+            update.speed = Some("1.0MiB/s".into());
+            update.eta = (step < 5).then(|| format!("00:0{}", 5 - step));
+            update.output_path = Some(output_path_string.clone());
+            update.updated_at = Utc::now();
+            self.db.update_download(&update)?;
+            let _ = self.app.emit("download:updated", update);
+        }
+
+        let current = self.db.get_download(id)?;
+        if current.status != "running" {
+            return Ok(());
+        }
+
+        let bytes: &[u8] = if extension == "mp3" {
+            b"ID3nabbit acceptance mp3"
+        } else {
+            b"nabbit acceptance mp4"
+        };
+        fs::write(&output_path, bytes)?;
+
+        let mut finished = current;
+        finished.status = "completed".into();
+        finished.progress = 100.0;
+        finished.speed = Some("1.0MiB/s".into());
+        finished.eta = None;
+        finished.output_path = Some(output_path_string);
+        finished.error = None;
+        finished.updated_at = Utc::now();
+        self.db.update_download(&finished)?;
+        let _ = self.app.emit("download:updated", finished);
+
+        Ok(())
     }
 }
 

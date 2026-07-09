@@ -8,7 +8,7 @@ mod util;
 
 use std::{
     fs,
-    path::PathBuf,
+    path::{Path, PathBuf},
     sync::{
         atomic::{AtomicBool, Ordering},
         Arc,
@@ -114,7 +114,7 @@ pub fn run() {
                 shutdown.clone(),
             );
             retention::spawn_retention_gc(db.clone(), shutdown.clone());
-            spawn_acceptance_automation(db.clone(), shutdown);
+            spawn_acceptance_automation(state.clone());
             let settings = db.get_settings()?;
             apply_runtime_settings(app.handle(), &state, &settings);
             commands::download::spawn_engine_update(state.clone());
@@ -141,34 +141,109 @@ pub fn run() {
         });
 }
 
-fn spawn_acceptance_automation(db: Database, shutdown: Arc<AtomicBool>) {
+fn spawn_acceptance_automation(state: AppState) {
     let Some(command_dir) = std::env::var_os("NABBIT_ACCEPTANCE_COMMAND_DIR").map(PathBuf::from)
     else {
         return;
     };
 
+    let shutdown = state.shutdown.clone();
     let _ = thread::Builder::new()
         .name("nabbit-acceptance-automation".into())
         .spawn(move || {
             let _ = fs::create_dir_all(&command_dir);
             let clear_request = command_dir.join("clear-history");
             let clear_done = command_dir.join("clear-history.done");
+            let download_start_request = command_dir.join("download-start.json");
+            let download_start_done = command_dir.join("download-start.done");
+            let download_cancel_request = command_dir.join("download-cancel.txt");
+            let download_cancel_done = command_dir.join("download-cancel.done");
+            let download_retry_request = command_dir.join("download-retry.txt");
+            let download_retry_done = command_dir.join("download-retry.done");
+            let download_list_request = command_dir.join("download-list");
+            let download_list_done = command_dir.join("download-list.done");
 
             while !shutdown.load(Ordering::Relaxed) {
                 if clear_request.exists() {
-                    let result = db.clear_clipboard_history();
+                    let result = state
+                        .db
+                        .clear_clipboard_history()
+                        .map(|()| "ok".to_string())
+                        .map_err(|error| error.to_string());
                     let _ = fs::remove_file(&clear_request);
+                    write_acceptance_done(&clear_done, result);
+                }
 
-                    let message = match result {
-                        Ok(()) => "ok".to_string(),
-                        Err(error) => format!("error: {error}"),
-                    };
-                    let _ = fs::write(&clear_done, message);
+                if download_start_request.exists() {
+                    let result = acceptance_start_download(&state, &download_start_request);
+                    let _ = fs::remove_file(&download_start_request);
+                    write_acceptance_done(&download_start_done, result);
+                }
+
+                if download_cancel_request.exists() {
+                    let result = fs::read_to_string(&download_cancel_request)
+                        .map_err(|error| error.to_string())
+                        .and_then(|id| {
+                            state
+                                .downloads
+                                .cancel(id.trim())
+                                .map(|()| "ok".to_string())
+                                .map_err(|error| error.to_string())
+                        });
+                    let _ = fs::remove_file(&download_cancel_request);
+                    write_acceptance_done(&download_cancel_done, result);
+                }
+
+                if download_retry_request.exists() {
+                    let result = fs::read_to_string(&download_retry_request)
+                        .map_err(|error| error.to_string())
+                        .and_then(|id| {
+                            state
+                                .downloads
+                                .retry(id.trim())
+                                .map_err(|error| error.to_string())
+                        })
+                        .and_then(|job| {
+                            serde_json::to_string(&job).map_err(|error| error.to_string())
+                        });
+                    let _ = fs::remove_file(&download_retry_request);
+                    write_acceptance_done(&download_retry_done, result);
+                }
+
+                if download_list_request.exists() {
+                    let result = state
+                        .db
+                        .list_downloads()
+                        .map_err(|error| error.to_string())
+                        .and_then(|jobs| {
+                            serde_json::to_string(&jobs).map_err(|error| error.to_string())
+                        });
+                    let _ = fs::remove_file(&download_list_request);
+                    write_acceptance_done(&download_list_done, result);
                 }
 
                 thread::sleep(Duration::from_millis(100));
             }
         });
+}
+
+fn acceptance_start_download(state: &AppState, path: &Path) -> std::result::Result<String, String> {
+    let raw = fs::read_to_string(path).map_err(|error| error.to_string())?;
+    let request: db::models::DownloadRequest =
+        serde_json::from_str(&raw).map_err(|error| error.to_string())?;
+    let job = state
+        .downloads
+        .enqueue(request)
+        .map_err(|error| error.to_string())?;
+    serde_json::to_string(&job).map_err(|error| error.to_string())
+}
+
+fn write_acceptance_done(path: &Path, result: std::result::Result<String, String>) {
+    let message = match result {
+        Ok(value) => value,
+        Err(error) => format!("error: {error}"),
+    };
+    let _ = fs::write(path, message);
 }
 
 pub fn show_popover(app: &AppHandle<Wry>) -> Result<()> {

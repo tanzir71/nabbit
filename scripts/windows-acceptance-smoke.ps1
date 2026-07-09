@@ -8,13 +8,19 @@ $Root = Split-Path -Parent $PSScriptRoot
 $ExePath = Resolve-Path (Join-Path $Root $Exe)
 $OriginalAppDataOverride = $env:NABBIT_APP_DATA_DIR
 $OriginalAcceptanceCommandDir = $env:NABBIT_ACCEPTANCE_COMMAND_DIR
+$OriginalFakeDownload = $env:NABBIT_ACCEPTANCE_FAKE_DOWNLOAD
+$OriginalFakeDownloadDelay = $env:NABBIT_ACCEPTANCE_FAKE_DOWNLOAD_DELAY_MS
 $SmokeAppDataRoot = Join-Path ([System.IO.Path]::GetTempPath()) ("nabbit-smoke-" + [guid]::NewGuid().ToString())
 $SmokeAppDataDir = Join-Path $SmokeAppDataRoot "app-data"
 $CommandDir = Join-Path $SmokeAppDataRoot "commands"
+$SmokeDownloadDir = Join-Path $SmokeAppDataRoot "downloads"
 New-Item -ItemType Directory -Force -Path $SmokeAppDataDir | Out-Null
 New-Item -ItemType Directory -Force -Path $CommandDir | Out-Null
+New-Item -ItemType Directory -Force -Path $SmokeDownloadDir | Out-Null
 $env:NABBIT_APP_DATA_DIR = $SmokeAppDataDir
 $env:NABBIT_ACCEPTANCE_COMMAND_DIR = $CommandDir
+$env:NABBIT_ACCEPTANCE_FAKE_DOWNLOAD = "1"
+$env:NABBIT_ACCEPTANCE_FAKE_DOWNLOAD_DELAY_MS = "350"
 $DbPath = Join-Path $SmokeAppDataDir "nabbit.sqlite3"
 $Results = New-Object System.Collections.Generic.List[object]
 $StartedProcess = $null
@@ -37,7 +43,11 @@ function Invoke-Python([string]$Code, [string[]]$ArgList = @()) {
   $tmp = New-TemporaryFile
   try {
     Set-Content -LiteralPath $tmp -Value $Code -Encoding UTF8
-    & python $tmp @ArgList
+    $output = & python $tmp @ArgList
+    if ($LASTEXITCODE -ne 0) {
+      throw "Python helper failed with exit code $LASTEXITCODE."
+    }
+    $output
   } finally {
     Remove-Item -LiteralPath $tmp -Force -ErrorAction SilentlyContinue
   }
@@ -112,7 +122,10 @@ if row and row[0]:
     settings.update(json.loads(row[0]))
   except Exception:
     pass
-settings[name] = json.loads(raw_value)
+try:
+  settings[name] = json.loads(raw_value)
+except Exception:
+  settings[name] = raw_value
 now = datetime.datetime.now(datetime.UTC).isoformat().replace("+00:00", "Z")
 conn.execute(
   "INSERT INTO settings(key, value, updated_at) VALUES ('app_settings', ?, ?) "
@@ -135,6 +148,39 @@ function Wait-For([string]$Name, [scriptblock]$Condition, [int]$TimeoutMs = 5000
     Start-Sleep -Milliseconds 100
   }
   throw "Timed out waiting for $Name after ${TimeoutMs}ms."
+}
+
+function Invoke-AcceptanceCommand([string]$RequestName, [string]$DoneName, [string]$Payload = $null, [int]$TimeoutMs = 5000) {
+  $request = Join-Path $CommandDir $RequestName
+  $done = Join-Path $CommandDir $DoneName
+  $requestTemp = "$request.tmp"
+  Remove-Item -LiteralPath $request -Force -ErrorAction SilentlyContinue
+  Remove-Item -LiteralPath $requestTemp -Force -ErrorAction SilentlyContinue
+  Remove-Item -LiteralPath $done -Force -ErrorAction SilentlyContinue
+  if ($null -eq $Payload) {
+    New-Item -ItemType File -Force -Path $requestTemp | Out-Null
+  } else {
+    $utf8NoBom = New-Object System.Text.UTF8Encoding($false)
+    [System.IO.File]::WriteAllText($requestTemp, $Payload, $utf8NoBom)
+  }
+  Move-Item -LiteralPath $requestTemp -Destination $request -Force
+  Wait-For "acceptance command $RequestName" { Test-Path -LiteralPath $done } $TimeoutMs | Out-Null
+  $raw = (Get-Content -LiteralPath $done -Raw).Trim()
+  if ($raw.StartsWith("error:")) {
+    throw "Acceptance command $RequestName failed: $raw"
+  }
+  return $raw
+}
+
+function Start-FakeDownload([string]$Url, [string]$Quality, [string]$PlaylistMode = "video", [string]$PlaylistRange = $null) {
+  $payload = @{
+    url = $Url
+    quality = $Quality
+    playlistMode = $PlaylistMode
+    playlistRange = $PlaylistRange
+  } | ConvertTo-Json -Compress
+  $raw = Invoke-AcceptanceCommand "download-start.json" "download-start.done" $payload 5000
+  return $raw | ConvertFrom-Json
 }
 
 function Add-Result([string]$Name, [string]$Evidence) {
@@ -184,7 +230,10 @@ try {
   Add-Result "release app launch" "process $($StartedProcess.Id) stayed alive and created $DbPath"
 
   $OriginalSettings = Invoke-SqliteScalar "SELECT value FROM settings WHERE key = 'app_settings'"
+  Set-AppSetting "outputDir" $SmokeDownloadDir
+  Set-AppSetting "maxConcurrentDownloads" "1"
   Invoke-SqliteExec "DELETE FROM clipboard_entries WHERE content IN (?1, ?2, ?3, ?4, ?5, ?6)" @($Marker, $SensitiveSample, $RetentionOld, $RetentionPinned, $RetentionFresh, $ClearMarker)
+  Invoke-SqliteExec "DELETE FROM downloads WHERE url LIKE ?1" @("https://example.invalid/nabbit/%")
 
   Set-ClipboardText $Marker
   $elapsed = Wait-For "clipboard entry insert" {
@@ -234,13 +283,7 @@ try {
 
   Set-Content -LiteralPath $ClearBlobPath -Value "blob" -Encoding UTF8
   Invoke-SqliteExec "INSERT INTO clipboard_entries(id, content_type, content, preview, hash, source_app, pinned, created_at, last_used_at, blob_path) VALUES (?1, 'text', ?2, ?2, ?3, 'Smoke', 0, ?4, ?4, ?5)" @([guid]::NewGuid().ToString(), $ClearMarker, ("hash-" + [guid]::NewGuid().ToString()), $freshDate, $ClearBlobPath)
-  $clearRequest = Join-Path $CommandDir "clear-history"
-  $clearDone = Join-Path $CommandDir "clear-history.done"
-  Remove-Item -LiteralPath $clearRequest -Force -ErrorAction SilentlyContinue
-  Remove-Item -LiteralPath $clearDone -Force -ErrorAction SilentlyContinue
-  New-Item -ItemType File -Force -Path $clearRequest | Out-Null
-  Wait-For "app clear-history command" { Test-Path -LiteralPath $clearDone } 5000 | Out-Null
-  $clearStatus = (Get-Content -LiteralPath $clearDone -Raw).Trim()
+  $clearStatus = Invoke-AcceptanceCommand "clear-history" "clear-history.done"
   if ($clearStatus -ne "ok") {
     throw "App clear-history command failed: $clearStatus"
   }
@@ -252,6 +295,49 @@ try {
     throw "Clear-all verification left blob file at $ClearBlobPath."
   }
   Add-Result "clear all history" "app command returned ok; clipboard_entries emptied and blob file removed"
+
+  $videoJob = Start-FakeDownload "https://example.invalid/nabbit/video" "1080p"
+  $audioJob = Start-FakeDownload "https://example.invalid/nabbit/audio" "audio_mp3"
+  $progressElapsed = Wait-For "download progress and concurrency limit" {
+    $videoStatus = Invoke-SqliteScalar "SELECT status FROM downloads WHERE id = ?1" @($videoJob.id)
+    $videoProgress = [double](Invoke-SqliteScalar "SELECT progress FROM downloads WHERE id = ?1" @($videoJob.id))
+    $videoSpeed = Invoke-SqliteScalar "SELECT speed FROM downloads WHERE id = ?1" @($videoJob.id)
+    $videoEta = Invoke-SqliteScalar "SELECT eta FROM downloads WHERE id = ?1" @($videoJob.id)
+    $audioStatus = Invoke-SqliteScalar "SELECT status FROM downloads WHERE id = ?1" @($audioJob.id)
+    $videoStatus -eq "running" -and $videoProgress -gt 0 -and -not [string]::IsNullOrWhiteSpace($videoSpeed) -and -not [string]::IsNullOrWhiteSpace($videoEta) -and $audioStatus -eq "queued"
+  } 5000
+  $cancelStatus = Invoke-AcceptanceCommand "download-cancel.txt" "download-cancel.done" $videoJob.id 5000
+  if ($cancelStatus -ne "ok") {
+    throw "Cancel command returned $cancelStatus."
+  }
+  Wait-For "cancelled download status" {
+    (Invoke-SqliteScalar "SELECT status FROM downloads WHERE id = ?1" @($videoJob.id)) -eq "cancelled"
+  } 5000 | Out-Null
+  Invoke-AcceptanceCommand "download-retry.txt" "download-retry.done" $videoJob.id 5000 | Out-Null
+  Wait-For "retried fake downloads complete" {
+    $videoStatus = Invoke-SqliteScalar "SELECT status FROM downloads WHERE id = ?1" @($videoJob.id)
+    $audioStatus = Invoke-SqliteScalar "SELECT status FROM downloads WHERE id = ?1" @($audioJob.id)
+    $videoStatus -eq "completed" -and $audioStatus -eq "completed"
+  } 20000 | Out-Null
+  $videoOutput = Invoke-SqliteScalar "SELECT output_path FROM downloads WHERE id = ?1" @($videoJob.id)
+  $audioOutput = Invoke-SqliteScalar "SELECT output_path FROM downloads WHERE id = ?1" @($audioJob.id)
+  if (-not (Test-Path -LiteralPath $videoOutput) -or ([IO.Path]::GetExtension($videoOutput) -ne ".mp4")) {
+    throw "Fake video output was not created as an MP4: $videoOutput"
+  }
+  if (-not (Test-Path -LiteralPath $audioOutput) -or ([IO.Path]::GetExtension($audioOutput) -ne ".mp3")) {
+    throw "Fake audio output was not created as an MP3: $audioOutput"
+  }
+  Add-Result "download progress/cancel/retry/concurrency" "progress/speed/ETA appeared in ${progressElapsed}ms; second job stayed queued at concurrency=1; cancel and retry completed"
+
+  Stop-Nabbit
+  Start-Nabbit
+  $downloadList = Invoke-AcceptanceCommand "download-list" "download-list.done" $null 5000 | ConvertFrom-Json
+  $persistedVideo = $downloadList | Where-Object { $_.id -eq $videoJob.id -and $_.status -eq "completed" }
+  $persistedAudio = $downloadList | Where-Object { $_.id -eq $audioJob.id -and $_.status -eq "completed" }
+  if (-not $persistedVideo -or -not $persistedAudio) {
+    throw "Download history did not persist across restart."
+  }
+  Add-Result "download history persists" "completed video/audio jobs were returned by app list_downloads after restart"
 
   $downloadsBefore = Invoke-SqliteScalar "SELECT COUNT(*) FROM downloads"
   Set-ClipboardText $TestUrl
@@ -286,6 +372,7 @@ try {
   }
   if (Test-Path -LiteralPath $DbPath) {
     Invoke-SqliteExec "DELETE FROM clipboard_entries WHERE content IN (?1, ?2, ?3, ?4, ?5, ?6)" @($Marker, $SensitiveSample, $RetentionOld, $RetentionPinned, $RetentionFresh, $ClearMarker)
+    Invoke-SqliteExec "DELETE FROM downloads WHERE url LIKE ?1" @("https://example.invalid/nabbit/%")
   }
   Stop-Nabbit
   if ($OriginalAppDataOverride) {
@@ -297,6 +384,16 @@ try {
     $env:NABBIT_ACCEPTANCE_COMMAND_DIR = $OriginalAcceptanceCommandDir
   } else {
     Remove-Item Env:\NABBIT_ACCEPTANCE_COMMAND_DIR -ErrorAction SilentlyContinue
+  }
+  if ($OriginalFakeDownload) {
+    $env:NABBIT_ACCEPTANCE_FAKE_DOWNLOAD = $OriginalFakeDownload
+  } else {
+    Remove-Item Env:\NABBIT_ACCEPTANCE_FAKE_DOWNLOAD -ErrorAction SilentlyContinue
+  }
+  if ($OriginalFakeDownloadDelay) {
+    $env:NABBIT_ACCEPTANCE_FAKE_DOWNLOAD_DELAY_MS = $OriginalFakeDownloadDelay
+  } else {
+    Remove-Item Env:\NABBIT_ACCEPTANCE_FAKE_DOWNLOAD_DELAY_MS -ErrorAction SilentlyContinue
   }
   Remove-Item -LiteralPath $SmokeAppDataRoot -Recurse -Force -ErrorAction SilentlyContinue
 }
