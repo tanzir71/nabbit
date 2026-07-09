@@ -145,7 +145,7 @@ pub fn build_download_args(
         "--newline".into(),
         "--no-warnings".into(),
         "--progress-template".into(),
-        "download:%(progress._percent_str)s|%(progress._speed_str)s|%(progress._eta_str)s|%(info.filename)s".into(),
+        "download:nabbit:%(progress._percent_str)s|%(progress._speed_str)s|%(progress._eta_str)s|%(info.filename)s".into(),
     ];
 
     let quality = request.quality.as_str();
@@ -203,7 +203,10 @@ pub fn build_download_args(
 }
 
 pub fn parse_progress_line(line: &str) -> Option<ProgressLine> {
-    let payload = line.strip_prefix("download:")?;
+    let payload = line
+        .strip_prefix("nabbit:")
+        .or_else(|| line.strip_prefix("download:"))
+        .or_else(|| line.contains('|').then_some(line))?;
     let mut parts = payload.split('|');
     let progress = parts
         .next()
@@ -253,10 +256,18 @@ mod tests {
 
     #[test]
     fn parses_machine_progress() {
-        let parsed = parse_progress_line("download: 42.5%|1.4MiB/s|00:10|C:\\Video.mp4").unwrap();
+        let parsed = parse_progress_line("nabbit: 42.5%|1.4MiB/s|00:10|C:\\Video.mp4").unwrap();
         assert_eq!(parsed.progress, Some(42.5));
         assert_eq!(parsed.speed.as_deref(), Some("1.4MiB/s"));
         assert_eq!(parsed.eta.as_deref(), Some("00:10"));
+    }
+
+    #[test]
+    fn parses_bare_machine_progress_from_yt_dlp_type_prefix() {
+        let parsed = parse_progress_line(" 100.0%|698.75KiB/s|NA|C:\\Video.mp4").unwrap();
+        assert_eq!(parsed.progress, Some(100.0));
+        assert_eq!(parsed.speed.as_deref(), Some("698.75KiB/s"));
+        assert_eq!(parsed.eta, None);
     }
 
     #[test]
@@ -271,5 +282,35 @@ mod tests {
         assert!(args.contains(&"-x".to_string()));
         assert!(args.contains(&"mp3".to_string()));
         assert!(args.contains(&"--no-playlist".to_string()));
+    }
+
+    #[test]
+    fn builds_playlist_range_args() {
+        let request = DownloadRequest {
+            url: "https://www.youtube.com/playlist?list=PLabc".into(),
+            quality: "1080p".into(),
+            playlist_mode: "playlist".into(),
+            playlist_range: Some("1-3,7".into()),
+        };
+        let args = build_download_args(&request, "", "%(title)s.%(ext)s", None, false);
+
+        assert!(args.contains(&"--yes-playlist".to_string()));
+        assert!(args.contains(&"--playlist-items".to_string()));
+        assert!(args.contains(&"1-3,7".to_string()));
+        assert!(!args.contains(&"--no-playlist".to_string()));
+    }
+
+    #[test]
+    fn fallback_format_uses_progressive_best_when_merge_fails() {
+        let request = DownloadRequest {
+            url: "https://youtu.be/x".into(),
+            quality: "1080p".into(),
+            playlist_mode: "video".into(),
+            playlist_range: None,
+        };
+        let args = build_download_args(&request, "", "%(title)s.%(ext)s", None, true);
+
+        let format_index = args.iter().position(|arg| arg == "-f").unwrap() + 1;
+        assert_eq!(args[format_index], "best[height<=1080]/best");
     }
 }

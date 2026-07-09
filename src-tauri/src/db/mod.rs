@@ -29,18 +29,27 @@ impl Database {
         let conn = match Connection::open(&db_path) {
             Ok(conn) => conn,
             Err(error) => {
-                let backup =
-                    app_data_dir.join(format!("nabbit.corrupt.{}.sqlite3", Utc::now().timestamp()));
-                let _ = fs::rename(&db_path, backup);
+                backup_corrupt_db(app_data_dir, &db_path);
                 eprintln!("Recovered from corrupt DB open error: {error}");
                 Connection::open(&db_path)?
             }
         };
         let db = Self {
             conn: Arc::new(Mutex::new(conn)),
-            db_path,
+            db_path: db_path.clone(),
         };
-        db.migrate()?;
+        if let Err(error) = db.migrate() {
+            drop(db);
+            backup_corrupt_db(app_data_dir, &db_path);
+            eprintln!("Recovered from corrupt DB migration error: {error}");
+            let recovered = Self {
+                conn: Arc::new(Mutex::new(Connection::open(&db_path)?)),
+                db_path,
+            };
+            recovered.migrate()?;
+            recovered.seed_exclusions()?;
+            return Ok(recovered);
+        }
         db.seed_exclusions()?;
         Ok(db)
     }
@@ -488,6 +497,14 @@ impl Database {
     }
 }
 
+fn backup_corrupt_db(app_data_dir: &Path, db_path: &Path) {
+    if db_path.exists() {
+        let backup =
+            app_data_dir.join(format!("nabbit.corrupt.{}.sqlite3", Utc::now().timestamp()));
+        let _ = fs::rename(db_path, backup);
+    }
+}
+
 fn normalize_settings(mut settings: AppSettings) -> AppSettings {
     if ![30, 60, 90].contains(&settings.retention_days) {
         settings.retention_days = 30;
@@ -586,6 +603,54 @@ mod tests {
         }
         assert_eq!(db.run_retention_gc_for_days(30).unwrap(), 0);
         assert_eq!(db.list_clipboard_entries(None).unwrap().len(), 1);
+    }
+
+    #[test]
+    fn source_app_exclusions_skip_entries() {
+        let dir = tempfile_dir();
+        let db = Database::open(&dir).expect("db opens");
+        let entry = db
+            .add_clipboard_text("very secret", Some("Bitwarden.exe".into()))
+            .unwrap();
+        assert!(entry.is_none());
+        assert_eq!(db.list_clipboard_entries(None).unwrap().len(), 0);
+    }
+
+    #[test]
+    fn sensitive_heuristics_skip_when_enabled() {
+        let dir = tempfile_dir();
+        let db = Database::open(&dir).expect("db opens");
+        let mut settings = db.get_settings().unwrap();
+        settings.sensitive_heuristics = true;
+        db.save_settings(&settings).unwrap();
+        let entry = db.add_clipboard_text("4242 4242 4242 4242", None).unwrap();
+        assert!(entry.is_none());
+    }
+
+    #[test]
+    fn very_large_clipboard_payloads_are_skipped() {
+        let dir = tempfile_dir();
+        let db = Database::open(&dir).expect("db opens");
+        let content = "x".repeat(2_000_001);
+
+        let entry = db.add_clipboard_text(&content, None).unwrap();
+
+        assert!(entry.is_none());
+        assert_eq!(db.list_clipboard_entries(None).unwrap().len(), 0);
+    }
+
+    #[test]
+    fn open_recovers_from_corrupt_database_file() {
+        let dir = tempfile_dir();
+        fs::write(dir.join("nabbit.sqlite3"), b"not sqlite").unwrap();
+        let db = Database::open(&dir).expect("db recovers");
+        db.migrate().unwrap();
+        assert!(db.path().exists());
+        assert!(fs::read_dir(&dir).unwrap().any(|entry| entry
+            .unwrap()
+            .file_name()
+            .to_string_lossy()
+            .starts_with("nabbit.corrupt.")));
     }
 
     fn tempfile_dir() -> PathBuf {

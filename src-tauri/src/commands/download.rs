@@ -37,6 +37,16 @@ pub fn cancel_download(state: tauri::State<'_, AppState>, id: String) -> Result<
 }
 
 #[tauri::command]
+pub fn pause_download(state: tauri::State<'_, AppState>, id: String) -> Result<()> {
+    state.downloads.pause(&id)
+}
+
+#[tauri::command]
+pub fn resume_download(state: tauri::State<'_, AppState>, id: String) -> Result<DownloadJob> {
+    state.downloads.resume(&id)
+}
+
+#[tauri::command]
 pub fn retry_download(state: tauri::State<'_, AppState>, id: String) -> Result<DownloadJob> {
     state.downloads.retry(&id)
 }
@@ -71,6 +81,7 @@ pub fn get_engine_status(state: tauri::State<'_, AppState>) -> Result<EngineStat
 #[tauri::command]
 pub fn repair_engine(state: tauri::State<'_, AppState>) -> Result<EngineStatus> {
     fetch_ytdlp(&state.app_data_dir)?;
+    let _ = install_ffmpeg_from_path(&state.app_data_dir);
     Ok(engine_status(&state))
 }
 
@@ -93,11 +104,15 @@ pub fn engine_status(state: &AppState) -> EngineStatus {
     let ytdlp = ytdlp::resolve_engine(&state.app_data_dir, "yt-dlp");
     let ffmpeg = ytdlp::resolve_engine(&state.app_data_dir, "ffmpeg");
     let version = ytdlp::ytdlp_version(&state.app_data_dir);
+    let ffmpeg_works = ffmpeg
+        .as_deref()
+        .map(|path| engine_probe_succeeds(path, "-version"))
+        .unwrap_or(false);
     let mut missing = Vec::new();
-    if ytdlp.is_none() {
+    if ytdlp.is_none() || version.is_none() {
         missing.push("yt-dlp".into());
     }
-    if ffmpeg.is_none() {
+    if ffmpeg.is_none() || !ffmpeg_works {
         missing.push("ffmpeg".into());
     }
     EngineStatus {
@@ -111,6 +126,14 @@ pub fn engine_status(state: &AppState) -> EngineStatus {
             .flatten(),
         missing,
     }
+}
+
+fn engine_probe_succeeds(path: &Path, arg: &str) -> bool {
+    Command::new(path)
+        .arg(arg)
+        .output()
+        .map(|output| output.status.success())
+        .unwrap_or(false)
 }
 
 pub fn spawn_engine_update(state: AppState) {
@@ -187,4 +210,54 @@ fn fetch_ytdlp(app_data_dir: &Path) -> Result<()> {
         fs::set_permissions(&target, permissions)?;
     }
     Ok(())
+}
+
+fn install_ffmpeg_from_path(app_data_dir: &Path) -> Result<()> {
+    let ffmpeg = which::which(if cfg!(target_os = "windows") {
+        "ffmpeg.exe"
+    } else {
+        "ffmpeg"
+    })
+    .map_err(|error| msg(format!("ffmpeg not found on PATH: {error}")))?;
+    let engine_dir = app_data_dir.join("engine");
+    fs::create_dir_all(&engine_dir)?;
+    let target = engine_dir.join(if cfg!(target_os = "windows") {
+        "ffmpeg.exe"
+    } else {
+        "ffmpeg"
+    });
+    fs::copy(ffmpeg, &target)?;
+    #[cfg(unix)]
+    {
+        use std::os::unix::fs::PermissionsExt;
+        let mut permissions = fs::metadata(&target)?.permissions();
+        permissions.set_mode(0o755);
+        fs::set_permissions(&target, permissions)?;
+    }
+    Ok(())
+}
+
+#[cfg(test)]
+mod tests {
+    use super::engine_probe_succeeds;
+    use std::{fs, path::PathBuf};
+    use uuid::Uuid;
+
+    #[test]
+    fn engine_probe_rejects_unlaunchable_file() {
+        let path = tempfile_dir().join(if cfg!(target_os = "windows") {
+            "yt-dlp.exe"
+        } else {
+            "yt-dlp"
+        });
+        fs::write(&path, b"not an executable").unwrap();
+
+        assert!(!engine_probe_succeeds(&path, "--version"));
+    }
+
+    fn tempfile_dir() -> PathBuf {
+        let dir = std::env::temp_dir().join(format!("nabbit-engine-test-{}", Uuid::new_v4()));
+        fs::create_dir_all(&dir).unwrap();
+        dir
+    }
 }

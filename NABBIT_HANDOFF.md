@@ -425,7 +425,7 @@ When a URL is staged, show a compact card with:
 - [x] **3.2** Clipboard list UI: reverse-chron, previews, relative time, click-to-recopy, pin/delete. *Check: acceptance §8.6 rows 1 and (partial) 3.*
 - [x] **3.3** Instant fuzzy search + full keyboard nav (arrows/Enter/Delete/1–9/Cmd+F). *Check: search filters live; all keys work.*
 - [x] **3.4** Retention window 30/60/90 + GC job (launch + interval); pinned survive; "clear all". *Check: acceptance §8.6 retention + clear.*
-- [ ] **3.5** Privacy: app-exclusions list (seed password managers) + OS concealed/sensitive skip. *Check: copying from a password manager does NOT store an entry.*
+- [x] **3.5** Privacy: app-exclusions list (seed password managers) + OS concealed/sensitive skip. *Check: copying from a password manager does NOT store an entry.*
 - [x] **3.6** Images capture (setting + size cap + thumbnail) — optional if time; else backlog with note. *Check: image copy stored with preview OR documented as deferred.*
 
 **DoD P3:** clipboard manager fully meets §8.6.
@@ -434,8 +434,8 @@ When a URL is staged, show a compact card with:
 - [x] **4.1** Bundle yt-dlp + ffmpeg sidecars via `externalBin`; `scripts/fetch-binaries` for each target; verify spawn from Rust. *Check: `yt-dlp --version` runs via sidecar on the dev OS.*
 - [x] **4.2** URL sniffer in watcher → emit `url:detected`; staging logic + "link detected" notification (rate-limited); settings toggles. *Check: copying a YouTube URL stages a card, starts NO download, notifies once.*
 - [x] **4.3** Metadata probe (`yt-dlp -J`) → Download card with thumbnail/title/duration + quality selector + playlist handling. *Check: card renders correct metadata; playlist detected.*
-- [ ] **4.4** Download execution via sidecar with `--progress-template`, ffmpeg merge/extract, output dir + filename template. *Check: one-tap → merged MP4 ≥1080p; MP3 extraction works.*
-- [ ] **4.5** Queue + concurrency + pause/cancel/retry + live progress/speed/ETA; persist to DB; history survives restart. *Check: acceptance §7.5 rows for queue/history.*
+- [x] **4.4** Download execution via sidecar with `--progress-template`, ffmpeg merge/extract, output dir + filename template. *Check: one-tap → merged MP4 ≥1080p; MP3 extraction works.*
+- [x] **4.5** Queue + concurrency + pause/cancel/retry + live progress/speed/ETA; persist to DB; history survives restart. *Check: acceptance §7.5 rows for queue/history.*
 - [x] **4.6** Auto-fallback to next-best format on format error; friendly error messages. *Check: force a format error → auto-retry once then clear message.*
 - [x] **4.7** yt-dlp background self-update (throttled, non-blocking) + "update engine then retry" on engine-related failures. *Check: update routine runs without freezing UI.*
 
@@ -444,7 +444,7 @@ When a URL is staged, show a compact card with:
 ### Phase 5 — Polish, hardening, packaging
 - [x] **5.1** Global shortcuts for popover/quick-download/search; tray quick actions (paste last, clear history, downloads folder, pause auto-detect). *Check: all shortcuts + menu items work.*
 - [x] **5.2** First-run legal/privacy acknowledgment + `PRIVACY.md` + in-app About (versions, licenses). *Check: first run shows notice; About shows yt-dlp version.*
-- [ ] **5.3** Error/edge handling pass (§11) — offline, missing sidecar/repair, corrupt DB recovery, huge clipboard items, permission prompts. *Check: each edge case degrades gracefully.*
+- [x] **5.3** Error/edge handling pass (§11) — offline, missing sidecar/repair, corrupt DB recovery, huge clipboard items, permission prompts. *Check: each edge case degrades gracefully.*
 - [x] **5.4** Performance pass: idle CPU ≈ 0, memory sane, popover opens <150ms (pre-warm webview). *Check: measured and recorded in PROGRESS.md.*
 - [ ] **5.5** App auto-updater configured + signed; build/bundle for macOS (.dmg/.app), Windows (.msi/.exe), Linux (.AppImage/.deb). CI script to fetch binaries + build all targets. *Check: installers produced for available targets; app launches from installed build.*
 - [x] **5.6** README with build/run instructions and a screenshots/GIF placeholder. *Check: a fresh clone + documented steps builds the app.*

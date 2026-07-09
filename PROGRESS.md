@@ -9,6 +9,9 @@
 - 2026-07-09 Built Windows installers: `src-tauri/target/release/bundle/msi/Nabbit_0.1.0_x64_en-US.msi` and `src-tauri/target/release/bundle/nsis/Nabbit_0.1.0_x64-setup.exe`.
 - 2026-07-09 Ran npm audit; production dependencies have 0 vulnerabilities, and the dev-only Vitest advisory was fixed by upgrading to Vitest 3.2.7. `npm run verify` stayed green afterward.
 - 2026-07-09 Name availability quick check found release risks: `nabbit.com` is already in use, AppBrain lists a recent "Nabbit App" iOS listing, and "Nabbit" is also a Nintendo/Mario character name. Keep the code name for now; release naming needs legal/product review.
+- 2026-07-10 Hardened privacy and download edge handling. Files: `src-tauri/src/clipboard/watcher.rs`, `src-tauri/src/db/mod.rs`, `src-tauri/src/download/manager.rs`, `src-tauri/src/download/ytdlp.rs`, `src-tauri/src/commands/download.rs`, `src-tauri/src/lib.rs`, `src/lib/ipc.ts`, `src/store/useAppStore.ts`, `src/views/DownloadPanel.tsx`, `tests/manual-e2e.md`, `NABBIT_HANDOFF.md`. Verified: `npm run verify`, `cargo fmt --manifest-path src-tauri/Cargo.toml --check`, `cargo test --manifest-path src-tauri/Cargo.toml -- --test-threads=1` (20 passed), `cargo clippy --manifest-path src-tauri/Cargo.toml --all-targets -- -D warnings`.
+- 2026-07-10 Verified real downloader sidecars directly with a Creative Commons YouTube sample (`https://www.youtube.com/watch?v=e6rhUvwB5Y8`). Probe returned a CC-licensed 250-second source with formats up to 2160p. A 3-second 1080p MP4 section produced AAC audio and a 3,179,722-byte output; a 3-second MP3 extraction produced a 25,724-byte MP3. Direct progress-template output emitted `nabbit:100.0%|...`.
+- 2026-07-10 Rebuilt release artifacts after hardening. Verified: `cargo build --manifest-path src-tauri/Cargo.toml --release`, `npm run tauri -- build`; refreshed `src-tauri/target/release/bundle/msi/Nabbit_0.1.0_x64_en-US.msi` and `src-tauri/target/release/bundle/nsis/Nabbit_0.1.0_x64-setup.exe`. Release smoke launch stayed alive after 8 seconds and used 0 CPU seconds over a 5-second idle sample, with 32.5 MB working set.
 
 ## Decisions
 - Initialized a Git repository because the workspace did not contain one.
@@ -17,13 +20,12 @@
 - ffmpeg auto-fetch is documented but not fully automated on Windows because the stable public downloads are archives, not a single executable.
 - App auto-updater plugin is present, but local updater artifact generation is disabled because signing keys/endpoints are not available.
 - Kept `com.nabbit.app` from the handoff despite Tauri warning that `.app` suffix is not recommended on macOS; this should change before release if an organization-owned bundle ID is available.
+- Treat corrupt or quarantined downloader binaries as repairable: engine status now marks a binary unhealthy if its version probe fails, and Repair re-fetches yt-dlp plus copies ffmpeg from `PATH` when available.
 
 ## Blockers
 - Code signing certificates and updater signing keys are not available in this workspace.
 - Full cross-platform tray, no-dock, source-app password-manager exclusion, and installer acceptance can only be manually verified on each target OS.
 - `ffmpeg` sidecar must be supplied manually or installed on `PATH` unless a release-specific binary source is chosen.
-- Phase 4.4/4.5 remain unchecked because I did not run a real YouTube download/merge/MP3 acceptance pass.
-- Phase 3.5 remains unchecked because OS concealed clipboard hints and real password-manager exclusion were not verified.
 - Phase 5.5 remains unchecked for signed updater artifacts and non-Windows bundles.
 - Phase 6.3/6.4 remain unchecked until the manual E2E checklist and final DoD pass are run.
 - "Nabbit" naming is not release-clear based on quick web checks; legal/product decision required.

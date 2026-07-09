@@ -2,6 +2,15 @@
 
 Run on each available OS before release.
 
+## 2026-07-10 partial run notes
+
+- Windows release smoke launch passed earlier for `src-tauri/target/release/nabbit.exe`.
+- Real clipboard watcher storage was verified earlier by copying a unique value and confirming a row in `%APPDATA%\com.nabbit.app\nabbit.sqlite3`.
+- Downloader sidecar verification passed with a Creative Commons YouTube test video (`https://www.youtube.com/watch?v=e6rhUvwB5Y8`): direct yt-dlp probe returned a 250-second, CC-licensed, 2160p-capable source; direct 3-second 1080p MP4 section produced AAC audio and a 3,179,722-byte output; direct 3-second MP3 extraction produced an MP3 output.
+- Direct progress-template verification passed: yt-dlp emitted `nabbit:100.0%|...` and Rust parser tests cover prefixed and bare machine progress lines.
+- Unit coverage now includes source-app exclusions, Windows OS clipboard exclusion format, sensitive heuristics, huge clipboard skip, corrupt DB recovery, playlist range args, fallback format args, final MP3 output path detection, and corrupt engine probe failure.
+- Full GUI acceptance below is not complete until each checkbox is manually exercised in the installed app.
+
 ## Clipboard
 
 - Copy plain text. Confirm it appears in the Clipboard tab within about one second.

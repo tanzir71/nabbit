@@ -1,7 +1,8 @@
 use std::{
     collections::{HashMap, VecDeque},
+    fs,
     io::{BufRead, BufReader},
-    path::PathBuf,
+    path::{Path, PathBuf},
     process::{Command, Stdio},
     sync::{Arc, Mutex},
     thread,
@@ -121,6 +122,37 @@ impl DownloadManager {
     }
 
     pub fn cancel(&self, id: &str) -> Result<()> {
+        self.stop_job(id, "cancelled", Some("Cancelled"))
+    }
+
+    pub fn pause(&self, id: &str) -> Result<()> {
+        self.stop_job(id, "paused", None)
+    }
+
+    pub fn resume(&self, id: &str) -> Result<DownloadJob> {
+        let mut job = self.db.get_download(id)?;
+        if job.status != "paused" && job.status != "interrupted" {
+            return Ok(job);
+        }
+        job.status = "queued".into();
+        job.error = None;
+        job.updated_at = Utc::now();
+        self.db.update_download(&job)?;
+        {
+            let mut inner = self
+                .inner
+                .lock()
+                .map_err(|_| msg("download manager lock poisoned"))?;
+            if !inner.queue.contains(&job.id) {
+                inner.queue.push_back(job.id.clone());
+            }
+        }
+        let _ = self.app.emit("download:updated", job.clone());
+        self.pump();
+        Ok(job)
+    }
+
+    fn stop_job(&self, id: &str, status: &str, error: Option<&str>) -> Result<()> {
         {
             let mut inner = self
                 .inner
@@ -133,8 +165,8 @@ impl DownloadManager {
         }
         let mut job = self.db.get_download(id)?;
         if job.status != "completed" {
-            job.status = "cancelled".into();
-            job.error = Some("Cancelled".into());
+            job.status = status.into();
+            job.error = error.map(ToOwned::to_owned);
             job.updated_at = Utc::now();
             self.db.update_download(&job)?;
             let _ = self.app.emit("download:updated", job);
@@ -179,7 +211,17 @@ impl DownloadManager {
     fn run_job(&self, id: String, fallback_format: bool) {
         let result = self.run_job_inner(&id, fallback_format);
         if let Err(error) = result {
-            if !fallback_format && error.to_string().to_lowercase().contains("format") {
+            if let Ok(job) = self.db.get_download(&id) {
+                if matches!(job.status.as_str(), "paused" | "cancelled") {
+                    if let Ok(mut inner) = self.inner.lock() {
+                        inner.active = inner.active.saturating_sub(1);
+                        inner.children.remove(&id);
+                    }
+                    self.pump();
+                    return;
+                }
+            }
+            if !fallback_format && should_fallback_download_error(&error.to_string()) {
                 self.run_job(id.clone(), true);
                 return;
             }
@@ -276,6 +318,11 @@ impl DownloadManager {
             finished.status = "completed".into();
             finished.progress = 100.0;
             finished.error = None;
+            if let Some(path) =
+                find_final_output_path(&output_dir, &finished.url, &finished.quality)
+            {
+                finished.output_path = Some(path.to_string_lossy().to_string());
+            }
             self.db.update_download(&finished)?;
             let _ = self.app.emit("download:updated", finished.clone());
             if settings.reveal_after_download {
@@ -303,6 +350,134 @@ fn kill_pid(pid: u32) {
     let _ = Command::new("taskkill")
         .args(["/PID", &pid.to_string(), "/T", "/F"])
         .output();
+}
+
+fn find_final_output_path(output_dir: &str, url: &str, quality: &str) -> Option<PathBuf> {
+    let dir = Path::new(output_dir);
+    let id = video_id_from_url(url);
+    let preferred_exts: &[&str] = match quality {
+        "audio_mp3" => &["mp3"],
+        "audio_m4a" => &["m4a", "mp4"],
+        _ => &["mp4", "mkv", "webm"],
+    };
+    let mut candidates = Vec::new();
+    collect_candidate_files(dir, id.as_deref(), preferred_exts, &mut candidates);
+    candidates
+        .into_iter()
+        .max_by_key(|(_, modified)| *modified)
+        .map(|(path, _)| path)
+}
+
+fn collect_candidate_files(
+    dir: &Path,
+    id: Option<&str>,
+    preferred_exts: &[&str],
+    candidates: &mut Vec<(PathBuf, std::time::SystemTime)>,
+) {
+    let Ok(entries) = fs::read_dir(dir) else {
+        return;
+    };
+    for entry in entries.flatten() {
+        let path = entry.path();
+        if path.is_dir() {
+            collect_candidate_files(&path, id, preferred_exts, candidates);
+            continue;
+        }
+        let Some(ext) = path.extension().and_then(|value| value.to_str()) else {
+            continue;
+        };
+        if !preferred_exts
+            .iter()
+            .any(|candidate| ext.eq_ignore_ascii_case(candidate))
+        {
+            continue;
+        }
+        let name = path
+            .file_name()
+            .and_then(|value| value.to_str())
+            .unwrap_or_default();
+        if let Some(id) = id {
+            if !name.contains(id) {
+                continue;
+            }
+        }
+        let modified = entry
+            .metadata()
+            .and_then(|metadata| metadata.modified())
+            .unwrap_or(std::time::SystemTime::UNIX_EPOCH);
+        candidates.push((path, modified));
+    }
+}
+
+fn video_id_from_url(value: &str) -> Option<String> {
+    let url = url::Url::parse(value).ok()?;
+    if url.host_str()?.contains("youtu.be") {
+        return url
+            .path_segments()
+            .and_then(|mut segments| segments.next().map(ToOwned::to_owned));
+    }
+    url.query_pairs()
+        .find(|(key, _)| key == "v")
+        .map(|(_, value)| value.to_string())
+}
+
+fn should_fallback_download_error(error: &str) -> bool {
+    let lower = error.to_lowercase();
+    [
+        "format",
+        "requested format",
+        "ffmpeg",
+        "merge",
+        "merging",
+        "mux",
+        "postprocessing",
+    ]
+    .iter()
+    .any(|needle| lower.contains(needle))
+}
+
+#[cfg(test)]
+mod tests {
+    use super::{find_final_output_path, should_fallback_download_error};
+    use std::{fs, path::PathBuf};
+    use uuid::Uuid;
+
+    #[test]
+    fn final_output_prefers_extracted_mp3_for_audio_jobs() {
+        let dir = tempfile_dir();
+        let mp3 = dir.join("Example [abc123].mp3");
+        let webm = dir.join("Example [abc123].webm");
+        fs::write(&webm, b"temp").unwrap();
+        fs::write(&mp3, b"final").unwrap();
+
+        let found = find_final_output_path(
+            dir.to_str().unwrap(),
+            "https://www.youtube.com/watch?v=abc123",
+            "audio_mp3",
+        )
+        .unwrap();
+
+        assert_eq!(found, mp3);
+    }
+
+    #[test]
+    fn fallback_covers_format_and_merge_failures() {
+        assert!(should_fallback_download_error(
+            "Requested format is not available"
+        ));
+        assert!(should_fallback_download_error(
+            "ffmpeg exited with code 1 while merging formats"
+        ));
+        assert!(!should_fallback_download_error(
+            "This video is private and cannot be downloaded"
+        ));
+    }
+
+    fn tempfile_dir() -> PathBuf {
+        let dir = std::env::temp_dir().join(format!("nabbit-download-test-{}", Uuid::new_v4()));
+        fs::create_dir_all(&dir).unwrap();
+        dir
+    }
 }
 
 #[cfg(not(target_os = "windows"))]

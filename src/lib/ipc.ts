@@ -141,6 +141,15 @@ export const api = {
     }),
   listDownloads: () => call<DownloadJob[]>("list_downloads", undefined, () => browserJobs),
   cancelDownload: (id: string) => call<void>("cancel_download", { id }, () => undefined),
+  pauseDownload: (id: string) => call<void>("pause_download", { id }, () => undefined),
+  resumeDownload: (id: string) =>
+    call<DownloadJob>("resume_download", { id }, () => {
+      const job = browserJobs.find((item) => item.id === id);
+      if (!job) throw new Error("Job not found");
+      job.status = "queued";
+      job.error = null;
+      return job;
+    }),
   retryDownload: (id: string) => call<DownloadJob>("retry_download", { id }, () => {
     const job = browserJobs.find((item) => item.id === id);
     if (!job) throw new Error("Job not found");

@@ -68,6 +68,8 @@ pub fn run() {
             commands::download::start_download,
             commands::download::list_downloads,
             commands::download::cancel_download,
+            commands::download::pause_download,
+            commands::download::resume_download,
             commands::download::retry_download,
             commands::download::reveal_download,
             commands::download::open_downloads_folder,

@@ -35,6 +35,8 @@ interface AppStore {
   startDownload: (request: DownloadRequest) => Promise<void>;
   refreshDownloads: () => Promise<void>;
   cancelDownload: (id: string) => Promise<void>;
+  pauseDownload: (id: string) => Promise<void>;
+  resumeDownload: (id: string) => Promise<void>;
   retryDownload: (id: string) => Promise<void>;
   repairEngine: () => Promise<void>;
 }
@@ -132,6 +134,14 @@ export const useAppStore = create<AppStore>((set, get) => ({
   },
   cancelDownload: async (id) => {
     await api.cancelDownload(id);
+    await get().refreshDownloads();
+  },
+  pauseDownload: async (id) => {
+    await api.pauseDownload(id);
+    await get().refreshDownloads();
+  },
+  resumeDownload: async (id) => {
+    await api.resumeDownload(id);
     await get().refreshDownloads();
   },
   retryDownload: async (id) => {

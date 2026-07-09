@@ -1,4 +1,4 @@
-import { AlertCircle, Download, FolderOpen, Link, RefreshCcw, RotateCcw, X } from "lucide-react";
+import { AlertCircle, Download, FolderOpen, Link, Pause, Play, RefreshCcw, RotateCcw, X } from "lucide-react";
 import { FormEvent, useEffect, useMemo, useState } from "react";
 import { Button } from "../components/Button";
 import { Field } from "../components/Field";
@@ -27,6 +27,8 @@ export function DownloadPanel() {
   const clearStagedUrl = useAppStore((state) => state.clearStagedUrl);
   const startDownload = useAppStore((state) => state.startDownload);
   const cancelDownload = useAppStore((state) => state.cancelDownload);
+  const pauseDownload = useAppStore((state) => state.pauseDownload);
+  const resumeDownload = useAppStore((state) => state.resumeDownload);
   const retryDownload = useAppStore((state) => state.retryDownload);
   const repairEngine = useAppStore((state) => state.repairEngine);
   const [input, setInput] = useState(stagedUrl);
@@ -154,6 +156,8 @@ export function DownloadPanel() {
           jobs={activeJobs}
           empty="Nothing downloading."
           onCancel={cancelDownload}
+          onPause={pauseDownload}
+          onResume={resumeDownload}
           onRetry={retryDownload}
         />
         <QueueSection
@@ -161,6 +165,8 @@ export function DownloadPanel() {
           jobs={completedJobs}
           empty="Finished downloads will appear here."
           onCancel={cancelDownload}
+          onPause={pauseDownload}
+          onResume={resumeDownload}
           onRetry={retryDownload}
         />
       </div>
@@ -173,12 +179,16 @@ function QueueSection({
   jobs,
   empty,
   onCancel,
+  onPause,
+  onResume,
   onRetry,
 }: {
   title: string;
   jobs: DownloadJob[];
   empty: string;
   onCancel: (id: string) => Promise<void>;
+  onPause: (id: string) => Promise<void>;
+  onResume: (id: string) => Promise<void>;
   onRetry: (id: string) => Promise<void>;
 }) {
   return (
@@ -205,6 +215,16 @@ function QueueSection({
             {job.status === "failed" || job.status === "cancelled" ? (
               <IconButton label="Retry" onClick={() => void onRetry(job.id)}>
                 <RotateCcw size={16} />
+              </IconButton>
+            ) : null}
+            {job.status === "paused" || job.status === "interrupted" ? (
+              <IconButton label="Resume" onClick={() => void onResume(job.id)}>
+                <Play size={16} />
+              </IconButton>
+            ) : null}
+            {job.status === "running" || job.status === "queued" ? (
+              <IconButton label="Pause" onClick={() => void onPause(job.id)}>
+                <Pause size={16} />
               </IconButton>
             ) : null}
             {job.status === "running" || job.status === "queued" ? (

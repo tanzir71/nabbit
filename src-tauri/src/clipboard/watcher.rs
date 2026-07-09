@@ -34,6 +34,10 @@ pub fn spawn_clipboard_watcher(app: AppHandle, db: Database, shutdown: Arc<Atomi
                     match board.get_text() {
                         Ok(text) if text != last_seen => {
                             last_seen = text.clone();
+                            if should_skip_os_protected_clipboard() {
+                                thread::sleep(WATCH_INTERVAL);
+                                continue;
+                            }
                             match db.add_clipboard_text(&text, current_source_app()) {
                                 Ok(Some(entry)) => {
                                     let _ = app.emit("clipboard:new", &entry);
@@ -104,4 +108,62 @@ fn current_source_app() -> Option<String> {
 #[cfg(not(target_os = "windows"))]
 fn current_source_app() -> Option<String> {
     None
+}
+
+#[cfg(target_os = "windows")]
+fn should_skip_os_protected_clipboard() -> bool {
+    use clipboard_win::{is_format_avail, raw, register_format, Clipboard};
+
+    let Ok(_clipboard) = Clipboard::new() else {
+        return false;
+    };
+
+    if register_format("ExcludeClipboardContentFromMonitorProcessing")
+        .map(|format| is_format_avail(format.get()))
+        .unwrap_or(false)
+    {
+        return true;
+    }
+
+    for name in ["CanIncludeInClipboardHistory", "CanUploadToCloudClipboard"] {
+        let Some(format) = register_format(name) else {
+            continue;
+        };
+        if !is_format_avail(format.get()) {
+            continue;
+        }
+        let mut data = Vec::new();
+        if raw::get_vec(format.get(), &mut data).is_ok() && data.len() >= 4 {
+            let value = u32::from_ne_bytes([data[0], data[1], data[2], data[3]]);
+            if value == 0 {
+                return true;
+            }
+        }
+    }
+
+    false
+}
+
+#[cfg(not(target_os = "windows"))]
+fn should_skip_os_protected_clipboard() -> bool {
+    false
+}
+
+#[cfg(all(test, target_os = "windows"))]
+mod tests {
+    use super::should_skip_os_protected_clipboard;
+
+    #[test]
+    fn detects_windows_clipboard_monitor_exclusion_format() {
+        use clipboard_win::{raw, register_format, Clipboard};
+
+        let _clipboard = Clipboard::new().expect("open clipboard");
+        raw::empty().expect("empty clipboard");
+        raw::set_string("concealed sample").expect("set clipboard text");
+        let format = register_format("ExcludeClipboardContentFromMonitorProcessing")
+            .expect("register exclusion format");
+        raw::set_without_clear(format.get(), &0u32.to_ne_bytes()).expect("set exclusion format");
+
+        assert!(should_skip_os_protected_clipboard());
+    }
 }
