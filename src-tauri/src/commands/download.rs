@@ -19,11 +19,23 @@ pub fn probe_url(state: tauri::State<'_, AppState>, url: String) -> Result<Downl
 }
 
 #[tauri::command]
+pub fn get_staged_url(state: tauri::State<'_, AppState>) -> Result<Option<String>> {
+    state.db.setting_value("staged_url")
+}
+
+#[tauri::command]
+pub fn clear_staged_url(state: tauri::State<'_, AppState>) -> Result<()> {
+    state.db.set_setting_value("staged_url", "")
+}
+
+#[tauri::command]
 pub fn start_download(
     state: tauri::State<'_, AppState>,
     request: DownloadRequest,
 ) -> Result<DownloadJob> {
-    state.downloads.enqueue(request)
+    let job = state.downloads.enqueue(request)?;
+    let _ = state.db.set_setting_value("staged_url", "");
+    Ok(job)
 }
 
 #[tauri::command]

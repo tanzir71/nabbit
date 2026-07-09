@@ -13,10 +13,11 @@
 - 2026-07-10 Verified real downloader sidecars directly with a Creative Commons YouTube sample (`https://www.youtube.com/watch?v=e6rhUvwB5Y8`). Probe returned a CC-licensed 250-second source with formats up to 2160p. A 3-second 1080p MP4 section produced AAC audio and a 3,179,722-byte output; a 3-second MP3 extraction produced a 25,724-byte MP3. Direct progress-template output emitted `nabbit:100.0%|...`.
 - 2026-07-10 Rebuilt release artifacts after hardening. Verified: `cargo build --manifest-path src-tauri/Cargo.toml --release`, `npm run tauri -- build`; refreshed `src-tauri/target/release/bundle/msi/Nabbit_0.1.0_x64_en-US.msi` and `src-tauri/target/release/bundle/nsis/Nabbit_0.1.0_x64-setup.exe`. Release smoke launch stayed alive after 8 seconds and used 0 CPU seconds over a 5-second idle sample, with 32.5 MB working set.
 - 2026-07-10 Added release updater signing workflow. Files: `src-tauri/tauri.release.conf.json`, `.github/workflows/release.yml`, `scripts/build-release.ps1`, `scripts/build-release.sh`, `scripts/fetch-binaries.ps1`, `scripts/fetch-binaries.sh`, `src-tauri/src/commands/app.rs`, `src/views/SettingsPanel.tsx`, `README.md`. Verified: generated local updater key outside the repo at `~/.tauri/nabbit-updater.key`; ran `.\scripts\build-release.ps1 -Target x86_64-pc-windows-msvc -Bundles "msi,nsis"`; produced Windows MSI/NSIS bundles plus `.sig` updater signatures under `src-tauri/target/x86_64-pc-windows-msvc/release/bundle/`.
+- 2026-07-10 Replaced the Windows clipboard polling path with `clipboard-win`'s `AddClipboardFormatListener` monitor and added persistent backend URL staging. Files: `src-tauri/Cargo.toml`, `src-tauri/src/clipboard/watcher.rs`, `src-tauri/src/commands/download.rs`, `src-tauri/src/lib.rs`, `src/lib/ipc.ts`, `src/store/useAppStore.ts`, `scripts/windows-acceptance-smoke.ps1`, `NABBIT_HANDOFF.md`. Verified: `cargo test --manifest-path src-tauri/Cargo.toml -- --test-threads=1` (21 passed, including native monitor event receipt), `cargo build --manifest-path src-tauri/Cargo.toml --release`, `.\scripts\windows-acceptance-smoke.ps1` (clipboard entry in 474ms, duplicate stayed one row, YouTube URL staged in 102ms without a download row, 0 CPU seconds over 5 seconds), `cargo clippy --manifest-path src-tauri/Cargo.toml --all-targets -- -D warnings`, `npm run verify`.
 
 ## Decisions
 - Initialized a Git repository because the workspace did not contain one.
-- Used `arboard` with a 750ms debounce-style watcher as a pragmatic cross-platform clipboard backend. This is a workaround for the native `clipboard-master` requirement; it keeps reads cheap and satisfies the one-second UX target, but Windows/Linux event-native watchers remain a hardening item.
+- Windows now uses an event-driven clipboard monitor via `clipboard-win`/`AddClipboardFormatListener`. Non-Windows builds still use the `arboard` 750ms polling fallback until macOS/Linux can be verified on their native APIs.
 - Image clipboard capture is represented in settings and documented as deferred; v1 stores text/URLs/files-as-text.
 - ffmpeg auto-fetch is documented but not fully automated on Windows because the stable public downloads are archives, not a single executable.
 - App updater artifacts are enabled only through `src-tauri/tauri.release.conf.json`; normal local builds keep updater artifacts disabled so contributors do not need private signing material.
@@ -26,7 +27,7 @@
 
 ## Blockers
 - Production code-signing certificates for macOS/Windows are not available in this workspace.
-- Full cross-platform tray, no-dock, source-app password-manager exclusion, and installer acceptance can only be manually verified on each target OS.
+- Full cross-platform tray, no-dock, real password-manager copy exclusion, and installer acceptance can only be manually verified on each target OS.
 - `ffmpeg` sidecar must be supplied manually or installed on `PATH` unless a release-specific binary source is chosen.
 - Phase 5.5 remains unchecked for production OS code-signing and unrun macOS/Linux release artifacts; Windows updater signatures now build locally.
 - Phase 6.3/6.4 remain unchecked until the manual E2E checklist and final DoD pass are run.

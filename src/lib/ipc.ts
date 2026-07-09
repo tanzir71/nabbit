@@ -127,6 +127,8 @@ export const api = {
       playlistCount: url.includes("list=") ? 12 : null,
       extractor: "browser",
     })),
+  getStagedUrl: () => call<string | null>("get_staged_url", undefined, () => null),
+  clearStagedUrl: () => call<void>("clear_staged_url", undefined, () => undefined),
   startDownload: (request: DownloadRequest) =>
     call<DownloadJob>("start_download", { request }, () => {
       const now = new Date().toISOString();

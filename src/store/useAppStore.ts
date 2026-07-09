@@ -54,14 +54,34 @@ export const useAppStore = create<AppStore>((set, get) => ({
   loadInitialData: async () => {
     set({ loading: true, error: null });
     try {
-      const [settings, clipboardEntries, downloads, engine, stats] = await Promise.all([
+      const [settings, clipboardEntries, downloads, engine, stats, stagedUrl] = await Promise.all([
         api.getSettings(),
         api.listClipboard(),
         api.listDownloads(),
         api.getEngineStatus(),
         api.getStorageStats(),
+        api.getStagedUrl(),
       ]);
-      set({ settings, clipboardEntries, downloads, engine, stats, loading: false });
+      let metadata: DownloadMetadata | null = null;
+      let normalizedStagedUrl = stagedUrl ?? "";
+      if (stagedUrl) {
+        try {
+          metadata = await api.probeUrl(stagedUrl);
+          normalizedStagedUrl = metadata.normalizedUrl;
+        } catch {
+          metadata = null;
+        }
+      }
+      set({
+        settings,
+        clipboardEntries,
+        downloads,
+        engine,
+        stats,
+        stagedUrl: normalizedStagedUrl,
+        metadata,
+        loading: false,
+      });
     } catch (error) {
       set({ error: error instanceof Error ? error.message : String(error), loading: false });
     }
@@ -120,7 +140,10 @@ export const useAppStore = create<AppStore>((set, get) => ({
       });
     }
   },
-  clearStagedUrl: () => set({ stagedUrl: "", metadata: null }),
+  clearStagedUrl: () => {
+    void api.clearStagedUrl();
+    set({ stagedUrl: "", metadata: null });
+  },
   startDownload: async (request) => {
     const job = await api.startDownload(request);
     set((state) => ({

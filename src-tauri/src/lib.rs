@@ -66,6 +66,8 @@ pub fn run() {
             commands::clipboard::delete_clipboard_entry,
             commands::clipboard::clear_clipboard_history,
             commands::download::probe_url,
+            commands::download::get_staged_url,
+            commands::download::clear_staged_url,
             commands::download::start_download,
             commands::download::list_downloads,
             commands::download::cancel_download,

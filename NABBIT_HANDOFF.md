@@ -289,7 +289,7 @@ When a URL is staged, show a compact card with:
 
 ### 7.5 YouTube downloader acceptance criteria
 
-- [ ] Copying a YouTube URL anywhere stages a Download card without starting a download.
+- [x] Copying a YouTube URL anywhere stages a Download card without starting a download.
 - [ ] One click on Download produces a correctly-merged MP4 (≥1080p uses ffmpeg merge) in the output folder.
 - [ ] Audio-only MP3 extraction works.
 - [ ] Playlist detected; "this video only" and "whole playlist (with range)" both work.
@@ -347,12 +347,12 @@ When a URL is staged, show a compact card with:
 
 ### 8.6 Clipboard acceptance criteria
 
-- [ ] Copying text creates a searchable history entry within ~1s; duplicates de-dupe.
+- [x] Copying text creates a searchable history entry within ~1s; duplicates de-dupe.
 - [ ] Retention 30/60/90 selectable; GC removes expired non-pinned items; pinned survive.
 - [ ] Fuzzy search filters instantly; click re-copies; keyboard nav works.
 - [ ] Excluded apps and OS-concealed/sensitive copies are NOT stored (verify with a password manager copy).
 - [ ] "Clear all" wipes history and blobs.
-- [ ] Idle CPU stays near zero (watcher does not busy-spin).
+- [x] Idle CPU stays near zero (watcher does not busy-spin).
 
 ---
 
