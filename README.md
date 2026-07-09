@@ -53,7 +53,7 @@ On Windows, after building `src-tauri/target/release/nabbit.exe`, run the packag
 .\scripts\windows-acceptance-smoke.ps1
 ```
 
-The smoke uses `NABBIT_APP_DATA_DIR` to point Nabbit at a disposable temporary app-data directory, so it does not touch the user's real clipboard history database.
+The smoke uses `NABBIT_APP_DATA_DIR` to point Nabbit at a disposable temporary app-data directory, so it does not touch the user's real clipboard history database. It also sets `NABBIT_ACCEPTANCE_COMMAND_DIR`, a test-only command directory that lets the running app execute acceptance checks such as clearing clipboard history.
 
 ## Release Builds
 

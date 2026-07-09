@@ -7,11 +7,14 @@ mod retention;
 mod util;
 
 use std::{
+    fs,
     path::PathBuf,
     sync::{
         atomic::{AtomicBool, Ordering},
         Arc,
     },
+    thread,
+    time::Duration,
 };
 
 use arboard::Clipboard;
@@ -110,7 +113,8 @@ pub fn run() {
                 db.clone(),
                 shutdown.clone(),
             );
-            retention::spawn_retention_gc(db.clone(), shutdown);
+            retention::spawn_retention_gc(db.clone(), shutdown.clone());
+            spawn_acceptance_automation(db.clone(), shutdown);
             let settings = db.get_settings()?;
             apply_runtime_settings(app.handle(), &state, &settings);
             commands::download::spawn_engine_update(state.clone());
@@ -133,6 +137,36 @@ pub fn run() {
                 if let Some(state) = app.try_state::<AppState>() {
                     state.shutdown.store(true, Ordering::Relaxed);
                 }
+            }
+        });
+}
+
+fn spawn_acceptance_automation(db: Database, shutdown: Arc<AtomicBool>) {
+    let Some(command_dir) = std::env::var_os("NABBIT_ACCEPTANCE_COMMAND_DIR").map(PathBuf::from)
+    else {
+        return;
+    };
+
+    let _ = thread::Builder::new()
+        .name("nabbit-acceptance-automation".into())
+        .spawn(move || {
+            let _ = fs::create_dir_all(&command_dir);
+            let clear_request = command_dir.join("clear-history");
+            let clear_done = command_dir.join("clear-history.done");
+
+            while !shutdown.load(Ordering::Relaxed) {
+                if clear_request.exists() {
+                    let result = db.clear_clipboard_history();
+                    let _ = fs::remove_file(&clear_request);
+
+                    let message = match result {
+                        Ok(()) => "ok".to_string(),
+                        Err(error) => format!("error: {error}"),
+                    };
+                    let _ = fs::write(&clear_done, message);
+                }
+
+                thread::sleep(Duration::from_millis(100));
             }
         });
 }

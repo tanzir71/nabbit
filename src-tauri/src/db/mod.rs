@@ -334,12 +334,51 @@ impl Database {
     }
 
     pub fn clear_clipboard_history(&self) -> Result<()> {
+        let blob_paths = {
+            let conn = self
+                .conn
+                .lock()
+                .map_err(|_| msg("database lock poisoned"))?;
+            let mut stmt = conn.prepare(
+                "SELECT DISTINCT blob_path FROM clipboard_entries
+                 WHERE blob_path IS NOT NULL AND TRIM(blob_path) <> ''",
+            )?;
+            let rows = stmt.query_map([], |row| row.get::<_, String>(0))?;
+            let mut blob_paths = Vec::new();
+            for row in rows {
+                blob_paths.push(row?);
+            }
+            blob_paths
+        };
+
+        for blob_path in blob_paths {
+            self.remove_clipboard_blob(&blob_path)?;
+        }
+
         let conn = self
             .conn
             .lock()
             .map_err(|_| msg("database lock poisoned"))?;
         conn.execute("DELETE FROM clipboard_entries", [])?;
         Ok(())
+    }
+
+    fn remove_clipboard_blob(&self, raw_path: &str) -> Result<()> {
+        let path = PathBuf::from(raw_path);
+        let path = if path.is_absolute() {
+            path
+        } else {
+            self.db_path
+                .parent()
+                .unwrap_or_else(|| Path::new("."))
+                .join(path)
+        };
+
+        match fs::remove_file(path) {
+            Ok(()) => Ok(()),
+            Err(error) if error.kind() == std::io::ErrorKind::NotFound => Ok(()),
+            Err(error) => Err(error.into()),
+        }
     }
 
     pub fn run_retention_gc(&self) -> Result<usize> {
@@ -637,6 +676,34 @@ mod tests {
 
         assert!(entry.is_none());
         assert_eq!(db.list_clipboard_entries(None).unwrap().len(), 0);
+    }
+
+    #[test]
+    fn clear_clipboard_history_removes_blob_files() {
+        let dir = tempfile_dir();
+        let db = Database::open(&dir).expect("db opens");
+        let blob_path = dir.join("clipboard-blob.bin");
+        fs::write(&blob_path, b"blob").unwrap();
+        let now = Utc::now().to_rfc3339();
+        {
+            let conn = db.conn.lock().unwrap();
+            conn.execute(
+                "INSERT INTO clipboard_entries(id, content_type, content, preview, hash, source_app, pinned, created_at, last_used_at, blob_path)
+                 VALUES (?1, 'image', 'blob', 'blob', ?2, 'test', 0, ?3, ?3, ?4)",
+                params![
+                    Uuid::new_v4().to_string(),
+                    format!("hash-{}", Uuid::new_v4()),
+                    now,
+                    blob_path.to_string_lossy().to_string()
+                ],
+            )
+            .unwrap();
+        }
+
+        db.clear_clipboard_history().unwrap();
+
+        assert_eq!(db.list_clipboard_entries(None).unwrap().len(), 0);
+        assert!(!blob_path.exists());
     }
 
     #[test]

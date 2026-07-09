@@ -7,10 +7,14 @@ $ErrorActionPreference = "Stop"
 $Root = Split-Path -Parent $PSScriptRoot
 $ExePath = Resolve-Path (Join-Path $Root $Exe)
 $OriginalAppDataOverride = $env:NABBIT_APP_DATA_DIR
+$OriginalAcceptanceCommandDir = $env:NABBIT_ACCEPTANCE_COMMAND_DIR
 $SmokeAppDataRoot = Join-Path ([System.IO.Path]::GetTempPath()) ("nabbit-smoke-" + [guid]::NewGuid().ToString())
 $SmokeAppDataDir = Join-Path $SmokeAppDataRoot "app-data"
+$CommandDir = Join-Path $SmokeAppDataRoot "commands"
 New-Item -ItemType Directory -Force -Path $SmokeAppDataDir | Out-Null
+New-Item -ItemType Directory -Force -Path $CommandDir | Out-Null
 $env:NABBIT_APP_DATA_DIR = $SmokeAppDataDir
+$env:NABBIT_ACCEPTANCE_COMMAND_DIR = $CommandDir
 $DbPath = Join-Path $SmokeAppDataDir "nabbit.sqlite3"
 $Results = New-Object System.Collections.Generic.List[object]
 $StartedProcess = $null
@@ -21,6 +25,7 @@ $RetentionOld = "nabbit retention old " + [guid]::NewGuid().ToString()
 $RetentionPinned = "nabbit retention pinned " + [guid]::NewGuid().ToString()
 $RetentionFresh = "nabbit retention fresh " + [guid]::NewGuid().ToString()
 $ClearMarker = "nabbit clear " + [guid]::NewGuid().ToString()
+$ClearBlobPath = Join-Path $SmokeAppDataRoot "clear-blob.bin"
 
 function Assert-Tool($Name) {
   if (-not (Get-Command $Name -ErrorAction SilentlyContinue)) {
@@ -227,13 +232,26 @@ try {
   }
   Add-Result "retention GC" "30-day launch GC deleted expired unpinned row and kept pinned/fresh rows"
 
-  Invoke-SqliteExec "INSERT INTO clipboard_entries(id, content_type, content, preview, hash, source_app, pinned, created_at, last_used_at, blob_path) VALUES (?1, 'text', ?2, ?2, ?3, 'Smoke', 0, ?4, ?4, NULL)" @([guid]::NewGuid().ToString(), $ClearMarker, ("hash-" + [guid]::NewGuid().ToString()), $freshDate)
-  Invoke-SqliteExec "DELETE FROM clipboard_entries"
+  Set-Content -LiteralPath $ClearBlobPath -Value "blob" -Encoding UTF8
+  Invoke-SqliteExec "INSERT INTO clipboard_entries(id, content_type, content, preview, hash, source_app, pinned, created_at, last_used_at, blob_path) VALUES (?1, 'text', ?2, ?2, ?3, 'Smoke', 0, ?4, ?4, ?5)" @([guid]::NewGuid().ToString(), $ClearMarker, ("hash-" + [guid]::NewGuid().ToString()), $freshDate, $ClearBlobPath)
+  $clearRequest = Join-Path $CommandDir "clear-history"
+  $clearDone = Join-Path $CommandDir "clear-history.done"
+  Remove-Item -LiteralPath $clearRequest -Force -ErrorAction SilentlyContinue
+  Remove-Item -LiteralPath $clearDone -Force -ErrorAction SilentlyContinue
+  New-Item -ItemType File -Force -Path $clearRequest | Out-Null
+  Wait-For "app clear-history command" { Test-Path -LiteralPath $clearDone } 5000 | Out-Null
+  $clearStatus = (Get-Content -LiteralPath $clearDone -Raw).Trim()
+  if ($clearStatus -ne "ok") {
+    throw "App clear-history command failed: $clearStatus"
+  }
   $remainingClipboardRows = Invoke-SqliteScalar "SELECT COUNT(*) FROM clipboard_entries"
   if ($remainingClipboardRows -ne "0") {
     throw "Clear-all verification found $remainingClipboardRows remaining rows."
   }
-  Add-Result "clear all history" "clipboard_entries table emptied"
+  if (Test-Path -LiteralPath $ClearBlobPath) {
+    throw "Clear-all verification left blob file at $ClearBlobPath."
+  }
+  Add-Result "clear all history" "app command returned ok; clipboard_entries emptied and blob file removed"
 
   $downloadsBefore = Invoke-SqliteScalar "SELECT COUNT(*) FROM downloads"
   Set-ClipboardText $TestUrl
@@ -274,6 +292,11 @@ try {
     $env:NABBIT_APP_DATA_DIR = $OriginalAppDataOverride
   } else {
     Remove-Item Env:\NABBIT_APP_DATA_DIR -ErrorAction SilentlyContinue
+  }
+  if ($OriginalAcceptanceCommandDir) {
+    $env:NABBIT_ACCEPTANCE_COMMAND_DIR = $OriginalAcceptanceCommandDir
+  } else {
+    Remove-Item Env:\NABBIT_ACCEPTANCE_COMMAND_DIR -ErrorAction SilentlyContinue
   }
   Remove-Item -LiteralPath $SmokeAppDataRoot -Recurse -Force -ErrorAction SilentlyContinue
 }
