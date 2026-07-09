@@ -454,8 +454,8 @@ When a URL is staged, show a compact card with:
 ### Phase 6 — Test suite & final verification
 - [x] **6.1** Rust unit/integration tests: URL detection/normalization, retention GC, de-dup hashing, settings, progress parsing. *Check: `cargo test` green.*
 - [x] **6.2** Frontend unit tests (Vitest): store logic, search filtering, keyboard nav, IPC wrappers (mocked). *Check: `npm test` green.*
-- [ ] **6.3** End-to-end manual test script (documented in `tests/manual-e2e.md`) covering both acceptance lists; run it and record results. *Check: all §7.5 and §8.6 boxes verified checked.*
-- [ ] **6.4** Final Definition of Done pass (§13). *Check: every box in this file checked; §13 all pass.*
+- [x] **6.3** End-to-end manual test script (documented in `tests/manual-e2e.md`) covering both acceptance lists; run it and record results. *Check: all §7.5 and §8.6 boxes verified checked.*
+- [x] **6.4** Final Definition of Done pass (§13). *Check: every box in this file checked; §13 all pass.*
 
 **DoD P6 = project done.**
 
