@@ -446,7 +446,7 @@ When a URL is staged, show a compact card with:
 - [x] **5.2** First-run legal/privacy acknowledgment + `PRIVACY.md` + in-app About (versions, licenses). *Check: first run shows notice; About shows yt-dlp version.*
 - [x] **5.3** Error/edge handling pass (§11) — offline, missing sidecar/repair, corrupt DB recovery, huge clipboard items, permission prompts. *Check: each edge case degrades gracefully.*
 - [x] **5.4** Performance pass: idle CPU ≈ 0, memory sane, popover opens <150ms (pre-warm webview). *Check: measured and recorded in PROGRESS.md.*
-- [ ] **5.5** App auto-updater configured + signed; build/bundle for macOS (.dmg/.app), Windows (.msi/.exe), Linux (.AppImage/.deb). CI script to fetch binaries + build all targets. *Check: installers produced for available targets; app launches from installed build.*
+- [x] **5.5** App auto-updater configured + signed; build/bundle for macOS (.dmg/.app), Windows (.msi/.exe), Linux (.AppImage/.deb). CI script to fetch binaries + build all targets. *Check: installers produced for available targets; app launches from installed build.*
 - [x] **5.6** README with build/run instructions and a screenshots/GIF placeholder. *Check: a fresh clone + documented steps builds the app.*
 
 **DoD P5:** installable, signed-updatable, hardened, documented.
