@@ -1,0 +1,147 @@
+import { create } from "zustand";
+import { api } from "../lib/ipc";
+import type {
+  AppSettings,
+  ClipboardEntry,
+  DownloadJob,
+  DownloadMetadata,
+  DownloadRequest,
+  EngineStatus,
+  StorageStats,
+} from "../lib/types";
+
+interface AppStore {
+  settings: AppSettings | null;
+  clipboardEntries: ClipboardEntry[];
+  downloads: DownloadJob[];
+  stagedUrl: string;
+  metadata: DownloadMetadata | null;
+  engine: EngineStatus | null;
+  stats: StorageStats | null;
+  loading: boolean;
+  error: string | null;
+  loadInitialData: () => Promise<void>;
+  saveSettings: (settings: AppSettings) => Promise<void>;
+  acknowledgeFirstRun: () => Promise<void>;
+  setLastTab: (lastTab: AppSettings["lastTab"]) => Promise<void>;
+  refreshClipboard: () => Promise<void>;
+  addClipboardText: (content: string) => Promise<void>;
+  copyEntry: (id: string) => Promise<void>;
+  togglePin: (id: string) => Promise<void>;
+  deleteEntry: (id: string) => Promise<void>;
+  clearHistory: () => Promise<void>;
+  stageUrl: (url: string) => Promise<void>;
+  clearStagedUrl: () => void;
+  startDownload: (request: DownloadRequest) => Promise<void>;
+  refreshDownloads: () => Promise<void>;
+  cancelDownload: (id: string) => Promise<void>;
+  retryDownload: (id: string) => Promise<void>;
+  repairEngine: () => Promise<void>;
+}
+
+export const useAppStore = create<AppStore>((set, get) => ({
+  settings: null,
+  clipboardEntries: [],
+  downloads: [],
+  stagedUrl: "",
+  metadata: null,
+  engine: null,
+  stats: null,
+  loading: true,
+  error: null,
+  loadInitialData: async () => {
+    set({ loading: true, error: null });
+    try {
+      const [settings, clipboardEntries, downloads, engine, stats] = await Promise.all([
+        api.getSettings(),
+        api.listClipboard(),
+        api.listDownloads(),
+        api.getEngineStatus(),
+        api.getStorageStats(),
+      ]);
+      set({ settings, clipboardEntries, downloads, engine, stats, loading: false });
+    } catch (error) {
+      set({ error: error instanceof Error ? error.message : String(error), loading: false });
+    }
+  },
+  saveSettings: async (settings) => {
+    const saved = await api.saveSettings(settings);
+    set({ settings: saved });
+  },
+  acknowledgeFirstRun: async () => {
+    const settings = await api.acknowledgeFirstRun();
+    set({ settings });
+  },
+  setLastTab: async (lastTab) => {
+    const settings = get().settings;
+    if (!settings || settings.lastTab === lastTab) return;
+    await get().saveSettings({ ...settings, lastTab });
+  },
+  refreshClipboard: async () => {
+    set({ clipboardEntries: await api.listClipboard(), stats: await api.getStorageStats() });
+  },
+  addClipboardText: async (content) => {
+    await api.addClipboardText(content);
+    await get().refreshClipboard();
+  },
+  copyEntry: async (id) => {
+    await api.copyClipboardEntry(id);
+    await get().refreshClipboard();
+  },
+  togglePin: async (id) => {
+    const entry = await api.togglePinClipboardEntry(id);
+    set((state) => ({
+      clipboardEntries: state.clipboardEntries.map((item) => (item.id === id ? entry : item)),
+    }));
+  },
+  deleteEntry: async (id) => {
+    await api.deleteClipboardEntry(id);
+    set((state) => ({
+      clipboardEntries: state.clipboardEntries.filter((item) => item.id !== id),
+    }));
+  },
+  clearHistory: async () => {
+    await api.clearClipboardHistory();
+    set({ clipboardEntries: [], stats: await api.getStorageStats() });
+  },
+  stageUrl: async (url) => {
+    const trimmed = url.trim();
+    if (!trimmed) return;
+    set({ stagedUrl: trimmed, error: null });
+    try {
+      const metadata = await api.probeUrl(trimmed);
+      set({ metadata, stagedUrl: metadata.normalizedUrl });
+    } catch (error) {
+      set({
+        metadata: null,
+        error: error instanceof Error ? error.message : String(error),
+      });
+    }
+  },
+  clearStagedUrl: () => set({ stagedUrl: "", metadata: null }),
+  startDownload: async (request) => {
+    const job = await api.startDownload(request);
+    set((state) => ({
+      downloads: [job, ...state.downloads.filter((item) => item.id !== job.id)],
+      stagedUrl: "",
+      metadata: null,
+    }));
+  },
+  refreshDownloads: async () => {
+    set({ downloads: await api.listDownloads(), stats: await api.getStorageStats() });
+  },
+  cancelDownload: async (id) => {
+    await api.cancelDownload(id);
+    await get().refreshDownloads();
+  },
+  retryDownload: async (id) => {
+    const job = await api.retryDownload(id);
+    set((state) => ({
+      downloads: [job, ...state.downloads.filter((item) => item.id !== id)],
+    }));
+  },
+  repairEngine: async () => {
+    const engine = await api.repairEngine();
+    set({ engine });
+  },
+}));

@@ -1,0 +1,205 @@
+import { ExternalLink, Trash2, X } from "lucide-react";
+import type { ReactNode } from "react";
+import { Button } from "../components/Button";
+import { Field } from "../components/Field";
+import { IconButton } from "../components/IconButton";
+import { Segmented } from "../components/Segmented";
+import { Toggle } from "../components/Toggle";
+import { useAppStore } from "../store/useAppStore";
+import type { AppSettings, Quality } from "../lib/types";
+
+const qualities: Array<{ label: string; value: Quality }> = [
+  { label: "Best", value: "best" },
+  { label: "1080", value: "1080p" },
+  { label: "720", value: "720p" },
+  { label: "MP3", value: "audio_mp3" },
+];
+
+export function SettingsPanel({ onClose }: { onClose: () => void }) {
+  const settings = useAppStore((state) => state.settings);
+  const stats = useAppStore((state) => state.stats);
+  const engine = useAppStore((state) => state.engine);
+  const saveSettings = useAppStore((state) => state.saveSettings);
+  const clearHistory = useAppStore((state) => state.clearHistory);
+
+  if (!settings) return null;
+
+  const patch = (value: Partial<AppSettings>) => void saveSettings({ ...settings, ...value });
+  const dbSize = stats ? `${(stats.dbSizeBytes / 1024 / 1024).toFixed(2)} MB` : "Unknown";
+
+  return (
+    <div className="fixed inset-0 z-20 bg-white dark:bg-slate-950">
+      <header className="flex h-14 items-center justify-between border-b border-slate-200 px-4 dark:border-slate-800">
+        <h2 className="text-sm font-semibold">Settings</h2>
+        <IconButton label="Close settings" onClick={onClose}>
+          <X size={17} />
+        </IconButton>
+      </header>
+      <div className="h-[calc(100vh-56px)] overflow-y-auto p-4">
+        <Section title="General">
+          <Toggle
+            label="Launch at login"
+            checked={settings.launchAtLogin}
+            onChange={(launchAtLogin) => patch({ launchAtLogin })}
+          />
+          <Toggle
+            label="Start hidden"
+            checked={settings.startHidden}
+            onChange={(startHidden) => patch({ startHidden })}
+          />
+          <Toggle
+            label="Show dock/taskbar icon"
+            checked={settings.showDockIcon}
+            onChange={(showDockIcon) => patch({ showDockIcon })}
+          />
+          <div className="grid gap-2 sm:grid-cols-3">
+            <Field
+              label="Toggle"
+              value={settings.togglePopoverShortcut}
+              onChange={(event) => patch({ togglePopoverShortcut: event.target.value })}
+            />
+            <Field
+              label="Quick DL"
+              value={settings.quickDownloadShortcut}
+              onChange={(event) => patch({ quickDownloadShortcut: event.target.value })}
+            />
+            <Field
+              label="Search"
+              value={settings.clipboardSearchShortcut}
+              onChange={(event) => patch({ clipboardSearchShortcut: event.target.value })}
+            />
+          </div>
+        </Section>
+
+        <Section title="Downloads">
+          <Segmented
+            label="Default quality"
+            value={settings.defaultQuality}
+            options={qualities}
+            onChange={(defaultQuality) => patch({ defaultQuality })}
+          />
+          <Field
+            label="Output folder"
+            value={settings.outputDir}
+            placeholder="Use Downloads/Nabbit"
+            onChange={(event) => patch({ outputDir: event.target.value })}
+          />
+          <Field
+            label="Filename template"
+            value={settings.filenameTemplate}
+            onChange={(event) => patch({ filenameTemplate: event.target.value })}
+          />
+          <Field
+            label="Max concurrent"
+            type="number"
+            min={1}
+            max={6}
+            value={settings.maxConcurrentDownloads}
+            onChange={(event) => patch({ maxConcurrentDownloads: Number(event.target.value) })}
+          />
+          <Toggle
+            label="Reveal after download"
+            checked={settings.revealAfterDownload}
+            onChange={(revealAfterDownload) => patch({ revealAfterDownload })}
+          />
+          <Toggle
+            label="Keep downloader engine up to date"
+            checked={settings.engineAutoUpdate}
+            onChange={(engineAutoUpdate) => patch({ engineAutoUpdate })}
+          />
+        </Section>
+
+        <Section title="Clipboard">
+          <Segmented
+            label="Retention"
+            value={settings.retentionDays}
+            options={[
+              { label: "30 days", value: 30 },
+              { label: "60 days", value: 60 },
+              { label: "90 days", value: 90 },
+            ]}
+            onChange={(retentionDays) => patch({ retentionDays })}
+          />
+          <Toggle
+            label="Capture images"
+            description="Stored only when the native backend can provide a safe thumbnail."
+            checked={settings.captureImages}
+            onChange={(captureImages) => patch({ captureImages })}
+          />
+          <Field
+            label="Image cap (MB)"
+            type="number"
+            min={1}
+            max={50}
+            value={settings.imageSizeCapMb}
+            onChange={(event) => patch({ imageSizeCapMb: Number(event.target.value) })}
+          />
+          <Toggle
+            label="Paste on select"
+            checked={settings.pasteOnSelect}
+            onChange={(pasteOnSelect) => patch({ pasteOnSelect })}
+          />
+          <Toggle
+            label="Sensitive text heuristics"
+            description="Skips likely OTPs, cards, and long high-entropy secrets."
+            checked={settings.sensitiveHeuristics}
+            onChange={(sensitiveHeuristics) => patch({ sensitiveHeuristics })}
+          />
+          <Toggle
+            label="Auto-detect video links"
+            checked={settings.autoDetectLinks}
+            onChange={(autoDetectLinks) => patch({ autoDetectLinks })}
+          />
+          <Toggle
+            label="Pause auto-detect"
+            checked={settings.pauseAutoDetect}
+            onChange={(pauseAutoDetect) => patch({ pauseAutoDetect })}
+          />
+          <div className="rounded-lg border border-slate-200 bg-white p-3 text-sm dark:border-slate-800 dark:bg-slate-950">
+            <p className="text-slate-500">
+              Stored: {stats?.clipboardCount ?? 0} clipboard items, {stats?.downloadCount ?? 0} downloads, {dbSize}
+            </p>
+            <Button
+              className="mt-3"
+              variant="danger"
+              onClick={() => {
+                if (confirm("Clear all clipboard history?")) void clearHistory();
+              }}
+            >
+              <Trash2 size={16} />
+              Clear all history
+            </Button>
+          </div>
+        </Section>
+
+        <Section title="Privacy">
+          <p className="text-sm leading-6 text-slate-500">
+            Telemetry is off. Clipboard contents and URLs stay local except when yt-dlp downloads a user-requested URL.
+          </p>
+          <Button variant="secondary" onClick={() => window.open("PRIVACY.md")}>
+            <ExternalLink size={16} />
+            Privacy statement
+          </Button>
+        </Section>
+
+        <Section title="About">
+          <div className="rounded-lg border border-slate-200 bg-white p-3 text-sm leading-6 dark:border-slate-800 dark:bg-slate-950">
+            <p>Nabbit 0.1.0</p>
+            <p className="text-slate-500">yt-dlp: {engine?.ytdlpVersion ?? "not found"}</p>
+            <p className="break-all text-slate-500">ffmpeg: {engine?.ffmpegPath ?? "not found"}</p>
+            <p className="text-slate-500">Licenses: Tauri, React, yt-dlp, ffmpeg and bundled dependencies.</p>
+          </div>
+        </Section>
+      </div>
+    </div>
+  );
+}
+
+function Section({ title, children }: { title: string; children: ReactNode }) {
+  return (
+    <section className="mb-6 grid gap-3">
+      <h3 className="text-xs font-semibold uppercase tracking-wide text-slate-500">{title}</h3>
+      {children}
+    </section>
+  );
+}
