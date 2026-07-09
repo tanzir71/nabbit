@@ -25,8 +25,18 @@ export function ClipboardList() {
   useEffect(() => {
     searchRef.current?.focus();
     const focus = () => searchRef.current?.focus();
+    const focusOnShortcut = (event: globalThis.KeyboardEvent) => {
+      if ((event.metaKey || event.ctrlKey) && event.key.toLowerCase() === "f") {
+        event.preventDefault();
+        focus();
+      }
+    };
     window.addEventListener("nabbit:focus-search", focus);
-    return () => window.removeEventListener("nabbit:focus-search", focus);
+    window.addEventListener("keydown", focusOnShortcut);
+    return () => {
+      window.removeEventListener("nabbit:focus-search", focus);
+      window.removeEventListener("keydown", focusOnShortcut);
+    };
   }, []);
 
   const handleKeyDown = (event: KeyboardEvent<HTMLDivElement>) => {

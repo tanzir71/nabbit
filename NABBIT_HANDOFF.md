@@ -349,7 +349,7 @@ When a URL is staged, show a compact card with:
 
 - [x] Copying text creates a searchable history entry within ~1s; duplicates de-dupe.
 - [x] Retention 30/60/90 selectable; GC removes expired non-pinned items; pinned survive.
-- [ ] Fuzzy search filters instantly; click re-copies; keyboard nav works.
+- [x] Fuzzy search filters instantly; click re-copies; keyboard nav works.
 - [ ] Excluded apps and OS-concealed/sensitive copies are NOT stored (verify with a password manager copy).
 - [ ] "Clear all" wipes history and blobs.
 - [x] Idle CPU stays near zero (watcher does not busy-spin).
