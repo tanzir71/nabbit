@@ -285,6 +285,12 @@ impl DownloadManager {
             ffmpeg.as_deref(),
             fallback_format,
         );
+        if let Some(section) = std::env::var_os("NABBIT_ACCEPTANCE_DOWNLOAD_SECTION") {
+            args.extend([
+                "--download-sections".into(),
+                section.to_string_lossy().to_string(),
+            ]);
+        }
         args.push(job.url.clone());
 
         job.status = "running".into();

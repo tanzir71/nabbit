@@ -55,6 +55,14 @@ On Windows, after building `src-tauri/target/release/nabbit.exe`, run the packag
 
 The smoke uses `NABBIT_APP_DATA_DIR` to point Nabbit at a disposable temporary app-data directory, so it does not touch the user's real clipboard history database. It also sets test-only acceptance env vars: `NABBIT_ACCEPTANCE_COMMAND_DIR` lets the running app execute acceptance checks such as clearing clipboard history and managing fake downloads, while `NABBIT_ACCEPTANCE_FAKE_DOWNLOAD` keeps queue/progress/cancel/retry checks deterministic without touching the network.
 
+For opt-in real yt-dlp/ffmpeg media verification, run:
+
+```powershell
+.\scripts\windows-real-download-smoke.ps1
+```
+
+That script sets `NABBIT_ACCEPTANCE_DOWNLOAD_SECTION` so the running app downloads only a short section while still exercising the real 1080p MP4 merge and MP3 extraction paths.
+
 ## Release Builds
 
 Normal local builds keep updater artifacts off so they do not require private signing material. Release builds use `src-tauri/tauri.release.conf.json`, which enables signed updater artifacts and points the updater at the GitHub Releases `latest.json` endpoint. Update that endpoint if the production repository is not `tanzir/nabbit`.
