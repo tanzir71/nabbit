@@ -164,6 +164,8 @@ fn spawn_acceptance_automation(state: AppState) {
             let download_list_done = command_dir.join("download-list.done");
             let probe_url_request = command_dir.join("probe-url.txt");
             let probe_url_done = command_dir.join("probe-url.done");
+            let clipboard_add_request = command_dir.join("clipboard-add.json");
+            let clipboard_add_done = command_dir.join("clipboard-add.done");
 
             while !shutdown.load(Ordering::Relaxed) {
                 if clear_request.exists() {
@@ -230,6 +232,12 @@ fn spawn_acceptance_automation(state: AppState) {
                     write_acceptance_done(&probe_url_done, result);
                 }
 
+                if clipboard_add_request.exists() {
+                    let result = acceptance_add_clipboard(&state, &clipboard_add_request);
+                    let _ = fs::remove_file(&clipboard_add_request);
+                    write_acceptance_done(&clipboard_add_done, result);
+                }
+
                 thread::sleep(Duration::from_millis(100));
             }
         });
@@ -254,6 +262,23 @@ fn acceptance_probe_url(state: &AppState, path: &Path) -> std::result::Result<St
         .db
         .set_setting_value("staged_url", &metadata.normalized_url);
     serde_json::to_string(&metadata).map_err(|error| error.to_string())
+}
+
+fn acceptance_add_clipboard(state: &AppState, path: &Path) -> std::result::Result<String, String> {
+    #[derive(serde::Deserialize)]
+    #[serde(rename_all = "camelCase")]
+    struct Request {
+        content: String,
+        source_app: Option<String>,
+    }
+
+    let raw = fs::read_to_string(path).map_err(|error| error.to_string())?;
+    let request: Request = serde_json::from_str(&raw).map_err(|error| error.to_string())?;
+    let entry = state
+        .db
+        .add_clipboard_text(&request.content, request.source_app)
+        .map_err(|error| error.to_string())?;
+    Ok(serde_json::json!({ "stored": entry.is_some() }).to_string())
 }
 
 fn write_acceptance_done(path: &Path, result: std::result::Result<String, String>) {

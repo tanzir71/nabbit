@@ -27,6 +27,7 @@ $StartedProcess = $null
 $OriginalSettings = $null
 $Marker = "nabbit acceptance " + [guid]::NewGuid().ToString()
 $SensitiveSample = "4242 4242 4242 4242"
+$ExcludedSample = "nabbit excluded " + [guid]::NewGuid().ToString()
 $RetentionOld = "nabbit retention old " + [guid]::NewGuid().ToString()
 $RetentionPinned = "nabbit retention pinned " + [guid]::NewGuid().ToString()
 $RetentionFresh = "nabbit retention fresh " + [guid]::NewGuid().ToString()
@@ -236,7 +237,7 @@ try {
   Add-Result "engine self-update background" "last update timestamp appeared in ${engineUpdateElapsed}ms while app remained responsive for smoke checks"
   Set-AppSetting "outputDir" $SmokeDownloadDir
   Set-AppSetting "maxConcurrentDownloads" "1"
-  Invoke-SqliteExec "DELETE FROM clipboard_entries WHERE content IN (?1, ?2, ?3, ?4, ?5, ?6)" @($Marker, $SensitiveSample, $RetentionOld, $RetentionPinned, $RetentionFresh, $ClearMarker)
+  Invoke-SqliteExec "DELETE FROM clipboard_entries WHERE content IN (?1, ?2, ?3, ?4, ?5, ?6, ?7)" @($Marker, $SensitiveSample, $ExcludedSample, $RetentionOld, $RetentionPinned, $RetentionFresh, $ClearMarker)
   Invoke-SqliteExec "DELETE FROM downloads WHERE url LIKE ?1" @("https://example.invalid/nabbit/%")
 
   Set-ClipboardText $Marker
@@ -265,6 +266,17 @@ try {
     throw "Sensitive sample was stored despite sensitiveHeuristics=true."
   }
   Add-Result "sensitive clipboard skip" "credit-card-shaped sample did not create a row"
+
+  $excludedPayload = @{
+    content = $ExcludedSample
+    sourceApp = "Bitwarden.exe"
+  } | ConvertTo-Json -Compress
+  $excludedResult = Invoke-AcceptanceCommand "clipboard-add.json" "clipboard-add.done" $excludedPayload 5000 | ConvertFrom-Json
+  $excludedCount = Invoke-SqliteScalar "SELECT COUNT(*) FROM clipboard_entries WHERE content = ?1" @($ExcludedSample)
+  if ($excludedResult.stored -or $excludedCount -ne "0") {
+    throw "Excluded source app sample was stored: stored=$($excludedResult.stored) count=$excludedCount."
+  }
+  Add-Result "excluded app clipboard skip" "Bitwarden.exe source-app sample was skipped by the app DB path"
 
   Stop-Nabbit
   Set-AppSetting "retentionDays" "30"
@@ -375,7 +387,7 @@ try {
     }
   }
   if (Test-Path -LiteralPath $DbPath) {
-    Invoke-SqliteExec "DELETE FROM clipboard_entries WHERE content IN (?1, ?2, ?3, ?4, ?5, ?6)" @($Marker, $SensitiveSample, $RetentionOld, $RetentionPinned, $RetentionFresh, $ClearMarker)
+    Invoke-SqliteExec "DELETE FROM clipboard_entries WHERE content IN (?1, ?2, ?3, ?4, ?5, ?6, ?7)" @($Marker, $SensitiveSample, $ExcludedSample, $RetentionOld, $RetentionPinned, $RetentionFresh, $ClearMarker)
     Invoke-SqliteExec "DELETE FROM downloads WHERE url LIKE ?1" @("https://example.invalid/nabbit/%")
   }
   Stop-Nabbit
