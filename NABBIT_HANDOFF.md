@@ -295,7 +295,7 @@ When a URL is staged, show a compact card with:
 - [ ] Playlist detected; "this video only" and "whole playlist (with range)" both work.
 - [x] Progress %, speed, ETA update live; Cancel and Retry work; concurrency limit respected.
 - [x] History persists across app restart.
-- [ ] Engine self-update runs in background without freezing UI.
+- [x] Engine self-update runs in background without freezing UI.
 
 ---
 
