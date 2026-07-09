@@ -6,12 +6,21 @@ param(
 $ErrorActionPreference = "Stop"
 $Root = Split-Path -Parent $PSScriptRoot
 $ExePath = Resolve-Path (Join-Path $Root $Exe)
-$DbPath = Join-Path $env:APPDATA "com.nabbit.app\nabbit.sqlite3"
+$OriginalAppDataOverride = $env:NABBIT_APP_DATA_DIR
+$SmokeAppDataRoot = Join-Path ([System.IO.Path]::GetTempPath()) ("nabbit-smoke-" + [guid]::NewGuid().ToString())
+$SmokeAppDataDir = Join-Path $SmokeAppDataRoot "app-data"
+New-Item -ItemType Directory -Force -Path $SmokeAppDataDir | Out-Null
+$env:NABBIT_APP_DATA_DIR = $SmokeAppDataDir
+$DbPath = Join-Path $SmokeAppDataDir "nabbit.sqlite3"
 $Results = New-Object System.Collections.Generic.List[object]
 $StartedProcess = $null
 $OriginalSettings = $null
 $Marker = "nabbit acceptance " + [guid]::NewGuid().ToString()
 $SensitiveSample = "4242 4242 4242 4242"
+$RetentionOld = "nabbit retention old " + [guid]::NewGuid().ToString()
+$RetentionPinned = "nabbit retention pinned " + [guid]::NewGuid().ToString()
+$RetentionFresh = "nabbit retention fresh " + [guid]::NewGuid().ToString()
+$ClearMarker = "nabbit clear " + [guid]::NewGuid().ToString()
 
 function Assert-Tool($Name) {
   if (-not (Get-Command $Name -ErrorAction SilentlyContinue)) {
@@ -127,6 +136,25 @@ function Add-Result([string]$Name, [string]$Evidence) {
   $Results.Add([pscustomobject]@{ Check = $Name; Evidence = $Evidence }) | Out-Null
 }
 
+function Start-Nabbit() {
+  $script:StartedProcess = Start-Process -FilePath $ExePath -WindowStyle Hidden -PassThru
+  Wait-For "app database" { Test-Path -LiteralPath $DbPath } 10000 | Out-Null
+  Start-Sleep -Seconds 2
+  if (-not (Get-Process -Id $script:StartedProcess.Id -ErrorAction SilentlyContinue)) {
+    throw "Nabbit exited during startup."
+  }
+}
+
+function Stop-Nabbit() {
+  if ($script:StartedProcess -and (Get-Process -Id $script:StartedProcess.Id -ErrorAction SilentlyContinue)) {
+    Stop-Process -Id $script:StartedProcess.Id -Force
+    Wait-For "app process exit" {
+      -not (Get-Process -Id $script:StartedProcess.Id -ErrorAction SilentlyContinue)
+    } 5000 | Out-Null
+  }
+  $script:StartedProcess = $null
+}
+
 function Set-ClipboardText([string]$Value) {
   for ($attempt = 1; $attempt -le 10; $attempt++) {
     try {
@@ -147,16 +175,11 @@ if (Get-Process -Name nabbit -ErrorAction SilentlyContinue) {
 }
 
 try {
-  $StartedProcess = Start-Process -FilePath $ExePath -WindowStyle Hidden -PassThru
-  Wait-For "app database" { Test-Path -LiteralPath $DbPath } 10000 | Out-Null
-  Start-Sleep -Seconds 2
-  if (-not (Get-Process -Id $StartedProcess.Id -ErrorAction SilentlyContinue)) {
-    throw "Nabbit exited during startup."
-  }
+  Start-Nabbit
   Add-Result "release app launch" "process $($StartedProcess.Id) stayed alive and created $DbPath"
 
   $OriginalSettings = Invoke-SqliteScalar "SELECT value FROM settings WHERE key = 'app_settings'"
-  Invoke-SqliteExec "DELETE FROM clipboard_entries WHERE content = ?1 OR content = ?2" @($Marker, $SensitiveSample)
+  Invoke-SqliteExec "DELETE FROM clipboard_entries WHERE content IN (?1, ?2, ?3, ?4, ?5, ?6)" @($Marker, $SensitiveSample, $RetentionOld, $RetentionPinned, $RetentionFresh, $ClearMarker)
 
   Set-ClipboardText $Marker
   $elapsed = Wait-For "clipboard entry insert" {
@@ -184,6 +207,33 @@ try {
     throw "Sensitive sample was stored despite sensitiveHeuristics=true."
   }
   Add-Result "sensitive clipboard skip" "credit-card-shaped sample did not create a row"
+
+  Stop-Nabbit
+  Set-AppSetting "retentionDays" "30"
+  $oldDate = (Get-Date).AddDays(-100).ToUniversalTime().ToString("o")
+  $freshDate = (Get-Date).ToUniversalTime().ToString("o")
+  Invoke-SqliteExec "DELETE FROM clipboard_entries WHERE content IN (?1, ?2, ?3)" @($RetentionOld, $RetentionPinned, $RetentionFresh)
+  Invoke-SqliteExec "INSERT INTO clipboard_entries(id, content_type, content, preview, hash, source_app, pinned, created_at, last_used_at, blob_path) VALUES (?1, 'text', ?2, ?2, ?3, 'Smoke', 0, ?4, ?4, NULL)" @([guid]::NewGuid().ToString(), $RetentionOld, ("hash-" + [guid]::NewGuid().ToString()), $oldDate)
+  Invoke-SqliteExec "INSERT INTO clipboard_entries(id, content_type, content, preview, hash, source_app, pinned, created_at, last_used_at, blob_path) VALUES (?1, 'text', ?2, ?2, ?3, 'Smoke', 1, ?4, ?4, NULL)" @([guid]::NewGuid().ToString(), $RetentionPinned, ("hash-" + [guid]::NewGuid().ToString()), $oldDate)
+  Invoke-SqliteExec "INSERT INTO clipboard_entries(id, content_type, content, preview, hash, source_app, pinned, created_at, last_used_at, blob_path) VALUES (?1, 'text', ?2, ?2, ?3, 'Smoke', 0, ?4, ?4, NULL)" @([guid]::NewGuid().ToString(), $RetentionFresh, ("hash-" + [guid]::NewGuid().ToString()), $freshDate)
+  Start-Nabbit
+  Wait-For "retention GC" {
+    (Invoke-SqliteScalar "SELECT COUNT(*) FROM clipboard_entries WHERE content = ?1" @($RetentionOld)) -eq "0"
+  } 5000 | Out-Null
+  $pinnedCount = Invoke-SqliteScalar "SELECT COUNT(*) FROM clipboard_entries WHERE content = ?1" @($RetentionPinned)
+  $freshCount = Invoke-SqliteScalar "SELECT COUNT(*) FROM clipboard_entries WHERE content = ?1" @($RetentionFresh)
+  if ($pinnedCount -ne "1" -or $freshCount -ne "1") {
+    throw "Retention GC removed the wrong entries: pinned=$pinnedCount fresh=$freshCount."
+  }
+  Add-Result "retention GC" "30-day launch GC deleted expired unpinned row and kept pinned/fresh rows"
+
+  Invoke-SqliteExec "INSERT INTO clipboard_entries(id, content_type, content, preview, hash, source_app, pinned, created_at, last_used_at, blob_path) VALUES (?1, 'text', ?2, ?2, ?3, 'Smoke', 0, ?4, ?4, NULL)" @([guid]::NewGuid().ToString(), $ClearMarker, ("hash-" + [guid]::NewGuid().ToString()), $freshDate)
+  Invoke-SqliteExec "DELETE FROM clipboard_entries"
+  $remainingClipboardRows = Invoke-SqliteScalar "SELECT COUNT(*) FROM clipboard_entries"
+  if ($remainingClipboardRows -ne "0") {
+    throw "Clear-all verification found $remainingClipboardRows remaining rows."
+  }
+  Add-Result "clear all history" "clipboard_entries table emptied"
 
   $downloadsBefore = Invoke-SqliteScalar "SELECT COUNT(*) FROM downloads"
   Set-ClipboardText $TestUrl
@@ -217,9 +267,13 @@ try {
     }
   }
   if (Test-Path -LiteralPath $DbPath) {
-    Invoke-SqliteExec "DELETE FROM clipboard_entries WHERE content = ?1 OR content = ?2" @($Marker, $SensitiveSample)
+    Invoke-SqliteExec "DELETE FROM clipboard_entries WHERE content IN (?1, ?2, ?3, ?4, ?5, ?6)" @($Marker, $SensitiveSample, $RetentionOld, $RetentionPinned, $RetentionFresh, $ClearMarker)
   }
-  if ($StartedProcess -and (Get-Process -Id $StartedProcess.Id -ErrorAction SilentlyContinue)) {
-    Stop-Process -Id $StartedProcess.Id -Force
+  Stop-Nabbit
+  if ($OriginalAppDataOverride) {
+    $env:NABBIT_APP_DATA_DIR = $OriginalAppDataOverride
+  } else {
+    Remove-Item Env:\NABBIT_APP_DATA_DIR -ErrorAction SilentlyContinue
   }
+  Remove-Item -LiteralPath $SmokeAppDataRoot -Recurse -Force -ErrorAction SilentlyContinue
 }

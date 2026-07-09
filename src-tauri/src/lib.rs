@@ -84,10 +84,13 @@ pub fn run() {
             #[cfg(target_os = "macos")]
             app.set_activation_policy(tauri::ActivationPolicy::Accessory);
 
-            let app_data_dir = app
-                .path()
-                .app_data_dir()
-                .unwrap_or_else(|_| std::env::temp_dir().join("Nabbit"));
+            let app_data_dir = std::env::var_os("NABBIT_APP_DATA_DIR")
+                .map(PathBuf::from)
+                .unwrap_or_else(|| {
+                    app.path()
+                        .app_data_dir()
+                        .unwrap_or_else(|_| std::env::temp_dir().join("Nabbit"))
+                });
             let db = Database::open(&app_data_dir)?;
             db.mark_interrupted_downloads()?;
             let downloads =

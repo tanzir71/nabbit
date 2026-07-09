@@ -53,6 +53,8 @@ On Windows, after building `src-tauri/target/release/nabbit.exe`, run the packag
 .\scripts\windows-acceptance-smoke.ps1
 ```
 
+The smoke uses `NABBIT_APP_DATA_DIR` to point Nabbit at a disposable temporary app-data directory, so it does not touch the user's real clipboard history database.
+
 ## Release Builds
 
 Normal local builds keep updater artifacts off so they do not require private signing material. Release builds use `src-tauri/tauri.release.conf.json`, which enables signed updater artifacts and points the updater at the GitHub Releases `latest.json` endpoint. Update that endpoint if the production repository is not `tanzir/nabbit`.

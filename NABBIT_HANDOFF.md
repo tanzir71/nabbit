@@ -348,7 +348,7 @@ When a URL is staged, show a compact card with:
 ### 8.6 Clipboard acceptance criteria
 
 - [x] Copying text creates a searchable history entry within ~1s; duplicates de-dupe.
-- [ ] Retention 30/60/90 selectable; GC removes expired non-pinned items; pinned survive.
+- [x] Retention 30/60/90 selectable; GC removes expired non-pinned items; pinned survive.
 - [ ] Fuzzy search filters instantly; click re-copies; keyboard nav works.
 - [ ] Excluded apps and OS-concealed/sensitive copies are NOT stored (verify with a password manager copy).
 - [ ] "Clear all" wipes history and blobs.
