@@ -12,6 +12,31 @@ Nabbit is a tiny Tauri tray utility for two daily jobs:
 
 The public demo is canned browser state. It never reads the clipboard, contacts YouTube, launches yt-dlp/ffmpeg, or writes files.
 
+It lives in the system tray, starts hidden, and opens as a small popover on a shortcut or tray click. Nothing leaves your machine except the downloads you explicitly trigger; see [PRIVACY.md](PRIVACY.md).
+
+## Architecture
+
+```
+        clipboard changes                     you press the shortcut
+              │                                        │
+              ▼                                        ▼
+┌───────────────────────── Nabbit (Tauri v2) ─────────────────────────┐
+│                                                                      │
+│  Rust backend (src-tauri/)              Web UI popover (src/)        │
+│  ├─ clipboard watcher ──► local SQLite  ├─ searchable history list   │
+│  │   history + retention (30/60/90 d)   ├─ staged YouTube queue      │
+│  ├─ YouTube link detector (stages,      │   with progress/cancel/    │
+│  │   never auto-downloads)              │   retry                    │
+│  └─ download engine: spawns yt-dlp +    └─ settings (hotkeys,        │
+│      ffmpeg sidecar binaries                retention, formats)      │
+│         │                                                             │
+│         ▼                                                             │
+│  ~ app-data dir: history DB · settings   (override: NABBIT_APP_DATA_DIR) │
+└──────────────────────────────────────────────────────────────────────┘
+```
+
+Two deliberate design points: downloads happen **only after one explicit click** (the watcher just stages links), and yt-dlp/ffmpeg run as separate sidecar executables — so the media engine can be updated without rebuilding Nabbit.
+
 ## Requirements
 
 - Node.js 20+
