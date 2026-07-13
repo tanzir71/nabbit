@@ -14,7 +14,8 @@
     "lint": "eslint .",
     "format": "prettier --write .",
     "test": "vitest",
-    "verify": "npm run typecheck && npm run lint && npm test -- --run && npm run build"
+    "verify": "npm run typecheck && npm run lint && npm test -- --run && npm run build",
+    "verify:site": "node scripts/verify-site.mjs"
   },
   "dependencies": {
     "@tauri-apps/api": "^2.6.0",

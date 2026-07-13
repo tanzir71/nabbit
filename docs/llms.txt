@@ -1,0 +1,30 @@
+# Nabbit
+
+Nabbit is a Windows-first Tauri tray utility combining searchable local clipboard history with explicit-click yt-dlp/ffmpeg downloads.
+
+Website: https://nabbit-local.vercel.app/
+Simulation: https://nabbit-local.vercel.app/demo/
+Repository: https://github.com/tanzir71/nabbit
+Privacy: https://github.com/tanzir71/nabbit/blob/master/PRIVACY.md
+
+The public demo is deterministic HTML. It does not read the clipboard, contact YouTube, launch sidecars, or write files.
+
+## Build
+
+npm install
+npm run verify
+cargo test --manifest-path src-tauri/Cargo.toml
+cargo clippy --manifest-path src-tauri/Cargo.toml --all-targets -- -D warnings
+
+On Windows, fetch yt-dlp with scripts/fetch-binaries.ps1 and supply ffmpeg in src-tauri/binaries or on PATH. Run npm run tauri:dev.
+
+## Privacy and behavior
+
+- Clipboard history stays in local SQLite under OS app data.
+- Supported links are staged only; downloads never start from clipboard observation.
+- A user chooses format/range and clicks Download before yt-dlp/ffmpeg run.
+- No analytics or cloud clipboard sync are included.
+- Retention options are 30, 60, or 90 days; pinned entries survive cleanup.
+- Password-manager exclusions and optional sensitive-text heuristics reduce accidental storage.
+
+Nabbit is a working codename and is not release-clear. Use download features only for content you have rights to obtain and follow each site's terms.

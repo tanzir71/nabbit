@@ -5,6 +5,13 @@ Nabbit is a tiny Tauri tray utility for two daily jobs:
 - Stage YouTube links from the clipboard and download them with yt-dlp after one explicit click.
 - Keep a local, searchable clipboard history with 30/60/90-day retention.
 
+## Website & demo
+
+- 🌐 Landing page: https://nabbit-local.vercel.app/
+- ▶️ Simulated tray demo: https://nabbit-local.vercel.app/demo/
+
+The public demo is canned browser state. It never reads the clipboard, contacts YouTube, launches yt-dlp/ffmpeg, or writes files.
+
 ## Requirements
 
 - Node.js 20+
