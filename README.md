@@ -7,8 +7,8 @@ Nabbit is a tiny Tauri tray utility for two daily jobs:
 
 ## Website & demo
 
-- 🌐 Landing page: https://nabbit-local.vercel.app/
-- ▶️ Simulated tray demo: https://nabbit-local.vercel.app/demo/
+- Landing page: https://nabbit-local.vercel.app/
+- Simulated tray demo: https://nabbit-local.vercel.app/demo/
 
 The public demo is canned browser state. It never reads the clipboard, contacts YouTube, launches yt-dlp/ffmpeg, or writes files.
 
@@ -107,7 +107,7 @@ TAURI_SIGNING_PRIVATE_KEY_PATH
 TAURI_SIGNING_PRIVATE_KEY_PASSWORD
 ```
 
-On this machine, a local development updater key was generated at `~/.tauri/nabbit-updater.key`. To build signed updater artifacts locally:
+To build signed updater artifacts locally (with the signing key variables above set):
 
 ```powershell
 .\scripts\build-release.ps1 -Target x86_64-pc-windows-msvc
@@ -120,7 +120,3 @@ For Unix runners:
 ```
 
 The GitHub release workflow builds Windows, macOS Intel, macOS Apple Silicon, and Linux artifacts through `tauri-apps/tauri-action`. Configure repository secrets `TAURI_SIGNING_PRIVATE_KEY` and optionally `TAURI_SIGNING_PRIVATE_KEY_PASSWORD` before publishing. Apple/Windows code-signing certificates are still required for a production-trusted release.
-
-## Screenshots
-
-Screenshots/GIF placeholder: add the popover, clipboard search, and active download queue captures before release packaging.
