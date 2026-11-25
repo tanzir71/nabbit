@@ -1,46 +1,68 @@
-import type { CSSProperties } from "react";
+import { useRef, type CSSProperties, type KeyboardEvent, type ReactNode } from "react";
 import { cn } from "../lib/cn";
-
+import { Tab } from "./Tab";
 interface Segment<T extends string | number> {
   label: string;
   value: T;
+  icon?: ReactNode;
+  disabled?: boolean;
 }
-
 interface SegmentedProps<T extends string | number> {
   value: T;
-  options: Segment<T>[];
+  options: readonly Segment<T>[];
   onChange: (value: T) => void;
   label: string;
+  disabled?: boolean;
+  className?: string;
 }
-
 export function Segmented<T extends string | number>({
   value,
   options,
   onChange,
   label,
+  disabled,
+  className,
 }: SegmentedProps<T>) {
+  const buttons = useRef<Array<HTMLButtonElement | null>>([]);
+  const enabled = options
+    .map((option, index) => ({ option, index }))
+    .filter(({ option }) => !disabled && !option.disabled);
+  function navigate(event: KeyboardEvent<HTMLButtonElement>, index: number) {
+    if (!enabled.length || !["ArrowLeft", "ArrowRight", "Home", "End"].includes(event.key)) return;
+    event.preventDefault();
+    const current = enabled.findIndex((entry) => entry.index === index);
+    const target =
+      event.key === "Home"
+        ? 0
+        : event.key === "End"
+          ? enabled.length - 1
+          : (current + (event.key === "ArrowRight" ? 1 : -1) + enabled.length) % enabled.length;
+    const next = enabled[target];
+    onChange(next.option.value);
+    buttons.current[next.index]?.focus();
+  }
+  if (!options.length) return null;
   return (
     <div
       role="group"
       aria-label={label}
-      className="grid grid-cols-[repeat(var(--count),minmax(0,1fr))] gap-1 rounded-lg bg-sunken p-1"
+      className={cn("n-segmented", className)}
       style={{ "--count": options.length } as CSSProperties}
     >
-      {options.map((option) => (
-        <button
+      {options.map((option, index) => (
+        <Tab
           key={option.value}
-          type="button"
+          ref={(node) => {
+            buttons.current[index] = node;
+          }}
+          selected={value === option.value}
+          disabled={disabled || option.disabled}
+          onKeyDown={(event) => navigate(event, index)}
           onClick={() => onChange(option.value)}
-          className={cn(
-            "min-h-8 rounded-md px-2 text-xs font-medium transition focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-action-primary",
-            value === option.value
-              ? "bg-surface text-primary shadow-sm"
-              : "text-secondary hover:text-primary",
-          )}
-          aria-pressed={value === option.value}
         >
+          {option.icon}
           {option.label}
-        </button>
+        </Tab>
       ))}
     </div>
   );

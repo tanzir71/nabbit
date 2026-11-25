@@ -1,0 +1,123 @@
+:root[data-component-preview] body {
+  overflow: auto;
+}
+.component-preview {
+  padding: 24px;
+}
+.preview-toolbar {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 24px;
+  margin-bottom: 24px;
+}
+.preview-toolbar p,
+.preview-toolbar output {
+  font: 400 12px/16px var(--font-sans);
+  color: var(--text-secondary);
+}
+.preview-toolbar .n-segmented {
+  width: 200px;
+}
+.preview-boards {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: flex-start;
+  gap: 24px;
+}
+#core-foundations {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  gap: 40px;
+  padding: 32px;
+  width: 624px;
+  height: 766px;
+  flex-shrink: 0;
+  border-radius: 16px;
+  background: var(--bg-canvas);
+}
+.foundation-set {
+  padding: 16px;
+  flex-shrink: 0;
+}
+.foundation-row {
+  display: flex;
+  align-items: flex-start;
+  gap: 12px;
+}
+.foundation-buttons {
+  display: grid;
+  gap: 12px;
+  height: 108px;
+  width: 560px;
+}
+.foundation-icons {
+  height: 64px;
+}
+.foundation-presets {
+  display: grid;
+  gap: 12px;
+  height: 104px;
+}
+.foundation-switches {
+  height: 52px;
+}
+.foundation-badges {
+  height: 52px;
+}
+.foundation-tabs {
+  height: 62px;
+}
+.preview-right {
+  display: flex;
+  flex-direction: column;
+  gap: 24px;
+  width: 696px;
+}
+#note-foundations {
+  display: flex;
+  align-items: flex-start;
+  gap: 20px;
+  padding: 28px;
+  width: 696px;
+  min-height: 210px;
+  border-radius: 16px;
+  background: var(--bg-canvas);
+}
+.preview-panel {
+  display: grid;
+  gap: 20px;
+  padding: 28px;
+  border: 1px solid var(--border-subtle);
+  border-radius: 16px;
+  background: var(--bg-surface);
+}
+.preview-inputs {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 16px;
+}
+.preview-disabled {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 12px;
+}
+.preview-progress {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+}
+.preview-progress label {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+.preview-progress input {
+  width: 140px;
+}
+.preview-note-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 200px);
+  gap: 20px;
+}

@@ -1,5 +1,95 @@
 # M2 evidence — foundations in progress
 
+## V1.3 — shared controls and component preview
+
+Rebuilt the existing `Button`, `IconButton`, `Toggle`, `Segmented` and `Field`;
+added `PresetChip`, `Kbd`, `Badge`, `Tab`, `NoteCard`, `ProgressRing` and `Select`.
+The shared stylesheet uses the existing colour/font tokens. Buttons are 32/28px,
+icon buttons 32/28px with Ghost/Subtle/Island variants, presets 30px, switches
+34×20, keys/badges 20px and tabs 30px. Monospace fields use 12/16 Medium. Popover
+and card shadows now match the foundation values. The tray reuses `Segmented`
+for navigation, reserving primary-button styling for actions.
+
+Controls use native buttons, inputs, checkboxes and selects. Non-submit buttons
+default to `type="button"`; disabled controls suppress actions; icon buttons have
+titles, accessible labels and pressed state where applicable. Segmented controls
+retain the existing labelled-group/pressed-button API, adding arrow/Home/End
+navigation that wraps and skips disabled choices. Fields/selects associate labels,
+descriptions and errors through unique IDs. Note cards accept the six Tack colour
+keys; note/checklist/bookmark variants match `12:511`, with task rendering as a
+checklist plus status. Checklist changes carry item IDs and do not open the card.
+The dynamic progress ring clamps values and keeps its inner radius at 70%.
+
+Open `/components.html` on `npm run dev`, or use the opt-in production preview:
+`npm run build:components` then `npm run preview -- --host 127.0.0.1` and open
+`/components.html`. The preview is a separate fixture entry with local state and
+no IPC. The default build excludes its HTML, fixture code and spike entry.
+Production island/settings/sticky entries and bundle budgets remain V1.4.
+
+The core fixture preserves Figma `5:408`'s 624×766 layout and rounded variant
+widths; reusable controls otherwise size to content. The note board preserves
+`12:511`'s three 200px cards and 138/154/116px heights. A further panel exercises
+inputs, selects, invalid/disabled/read-only states, progress and all six note
+colours. `17:195` supplies the select geometry. Thirteen original SVG exports,
+their intrinsic dimensions and hashes are recorded in `src/assets/components/`.
+Images remain unmodified; alpha masks recolour monochrome icons in dark mode,
+and a token-driven SVG filter recolours the original two-tone switch exports.
+No glyph paths were extracted or redrawn, and no dependency was added.
+
+Verification:
+
+- `npm run verify`: 30 frontend/script tests, type check, lint, font/token checks
+  and default production build. Eight new interaction tests cover form submission,
+  disabled actions, accessible switch/field/select behavior, keyboard navigation,
+  checklist action isolation and valid progress values.
+- Rust formatting, default/spike-feature Clippy with warnings denied, 36 Rust
+  tests and the native feature/custom-protocol build pass.
+- `v13-component-checks.json`: four light/dark × 1×/1.5× contexts, actual bundled
+  glyph faces, source asset integrity and every rendered asset's intrinsic size,
+  note geometry, colours, native keyboard/select/checkbox/range interaction,
+  disabled-action suppression, focus outlines, tray navigation and appearance
+  changes. The preview attempts no IPC and schedules zero idle JS callbacks in
+  the observed interval. External requests and runtime errors are empty.
+- `v13-pixel-checks.json`: raster samples verify both switch fills, primary-button
+  colour and always-dark island-chip colours against generated CSS tokens in all
+  four contexts, with at most one RGB level of rounding tolerance.
+- `v13-island-preview-checks.json`: five regression contexts, including reduced
+  motion, preserve original assets/geometry and zero idle JS scheduling.
+- `v13-native-theme.json` / `v13-native-smoke.json`: actual hidden Windows
+  WebView2 captures in light/dark; native query/events, override/reload and SQLite
+  persistence pass, other settings are preserved and no download starts. Focus,
+  Windows preferences, autostart and shortcuts remain unchanged. Fresh fixture
+  profiles and restored process environment keep the smoke isolated. The smoke
+  records its executable hash; output-prefix support preserves earlier evidence.
+- `v13-default-build.json` proves the default build contains only the normal app
+  entry. Site verification remains green at 31,884 bytes excluding fonts.
+- All 46 V1.3 PNGs are at most 83,625 bytes. Visual review compared core and note
+  boards with Figma `5:408` / `12:511`, plus focus, input, colour and compatibility
+  captures at both scales. Full tray/settings composition remains later work.
+  No M1 performance-gate result is changed or newly claimed.
+
+Reproduce with the existing isolated Playwright installation:
+
+```powershell
+npm run verify
+npm run verify:site
+npm run build:components
+node scripts/verify-components.mjs
+python scripts/verify-component-pixels.py
+npm run build:spike
+node scripts/verify-island-spike.mjs --output-prefix v13-island --output-dir progress/v2/M2
+cargo fmt --manifest-path src-tauri/Cargo.toml --check
+cargo clippy --manifest-path src-tauri/Cargo.toml --all-targets -- -D warnings
+cargo clippy --manifest-path src-tauri/Cargo.toml --all-targets --features island-spike -- -D warnings
+cargo test --manifest-path src-tauri/Cargo.toml -- --test-threads=1
+cargo build --manifest-path src-tauri/Cargo.toml --features island-spike,custom-protocol
+.\scripts\windows-theme-smoke.ps1 -OutputPrefix v13
+```
+
+`v13-validation.json` replays the recorded assertions, PNG budgets/dimensions and
+source/executable hashes. As with V1.2, finish frontend builds before embedding
+native assets; do not mutate `dist/` while the native build runs.
+
 ## V1.2 — bundled fonts
 
 The app and island now load upright Geist and Geist Mono from the official

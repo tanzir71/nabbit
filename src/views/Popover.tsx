@@ -1,6 +1,6 @@
 import { Download, History, Settings, X } from "lucide-react";
 import { useMemo, useState } from "react";
-import { Button } from "../components/Button";
+import { Segmented } from "../components/Segmented";
 import { IconButton } from "../components/IconButton";
 import { useAppStore } from "../store/useAppStore";
 import { ClipboardList } from "./ClipboardList";
@@ -17,8 +17,16 @@ export function Popover() {
   const activeTab = settings?.lastTab ?? "download";
   const tabs = useMemo(
     () => [
-      { id: "download" as const, label: "Download", icon: Download },
-      { id: "clipboard" as const, label: "Clipboard", icon: History },
+      {
+        value: "download" as const,
+        label: "Download",
+        icon: <Download size={16} strokeWidth={1.75} />,
+      },
+      {
+        value: "clipboard" as const,
+        label: "Clipboard",
+        icon: <History size={16} strokeWidth={1.75} />,
+      },
     ],
     [],
   );
@@ -56,21 +64,13 @@ export function Popover() {
         </div>
       </header>
 
-      <div className="grid h-12 shrink-0 grid-cols-2 gap-1 border-b border-subtle p-1.5">
-        {tabs.map((tab) => {
-          const Icon = tab.icon;
-          return (
-            <Button
-              key={tab.id}
-              variant={activeTab === tab.id ? "primary" : "ghost"}
-              onClick={() => void setLastTab(tab.id)}
-              className="h-9"
-            >
-              <Icon size={16} />
-              {tab.label}
-            </Button>
-          );
-        })}
+      <div className="h-12 shrink-0 border-b border-subtle p-1.5">
+        <Segmented
+          label="Navigation"
+          value={activeTab}
+          options={tabs}
+          onChange={(value) => void setLastTab(value)}
+        />
       </div>
 
       {error ? (

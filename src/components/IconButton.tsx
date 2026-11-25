@@ -5,19 +5,34 @@ interface IconButtonProps extends ButtonHTMLAttributes<HTMLButtonElement> {
   label: string;
   children: ReactNode;
   active?: boolean;
+  size?: 28 | 32;
+  variant?: "ghost" | "subtle" | "island";
 }
 
-export function IconButton({ label, children, className, active, ...props }: IconButtonProps) {
+export function IconButton({
+  label,
+  children,
+  className,
+  active,
+  size = 32,
+  variant = "ghost",
+  type = "button",
+  ...props
+}: IconButtonProps) {
   return (
     <button
+      {...props}
+      type={type}
       aria-label={label}
+      aria-pressed={active ?? props["aria-pressed"]}
       title={label}
       className={cn(
-        "inline-flex size-8 shrink-0 items-center justify-center rounded-md text-secondary transition hover:bg-sunken hover:text-primary focus:outline-none focus:ring-2 focus:ring-action-primary",
-        active && "bg-raised text-primary",
+        "n-icon-button",
+        `n-icon-button--${variant}`,
+        size === 28 && "n-icon-button--small",
+        active && "is-active",
         className,
       )}
-      {...props}
     >
       {children}
     </button>

@@ -1,0 +1,328 @@
+{
+  "task": "V1.3",
+  "frontendTests": 30,
+  "newInteractionTests": 8,
+  "rustTests": 36,
+  "componentContexts": 4,
+  "islandPreviewContexts": 5,
+  "nativeThemeContexts": 2,
+  "assetExports": 13,
+  "sourceReview": [
+    "native HTML form and keyboard semantics",
+    "unique IDs and labelled errors/descriptions",
+    "native selects and disabled actions",
+    "segmented keyboard navigation skips disabled choices",
+    "checklist identity and card action separation",
+    "no dependency, polling, or preview IPC",
+    "original asset geometry and token-based recolouring",
+    "default build excludes preview fixtures"
+  ],
+  "normalizedSourceSha256": {
+    "src/components/Badge.tsx": "418493c40ab95390cff1b170455772e4d490c657dbe365f06a7a991175c991d7",
+    "src/components/Button.tsx": "3154694b00447825cba6166410b619941348350b8b3fa393c011743a8651c823",
+    "src/components/Components.test.tsx": "38f323256cf2f6164be1fb43029d3c81b6551ee20af34c355ba4eef248a6d335",
+    "src/components/DesignIcon.tsx": "4917de3e8961cb0b59b58ef750fa71581e049b6d623e6aa8e7c8e4b81fb64565",
+    "src/components/Field.tsx": "5981a13719e47cc88c6ad79ed48b8424c3567beb8417a24631c9fbbf9d7f4100",
+    "src/components/IconButton.tsx": "425d0318d89bd497b4dd735651bb71f62a2ac12295395dc07dda2e5c9ed8ca84",
+    "src/components/Kbd.tsx": "227fd6fa2b9792b056ab419fd3eb87d3061bb00dabd85574b5e7d9649057d8b7",
+    "src/components/NoteCard.tsx": "49eee950d61e3a99675f44a41cbe8cdcb503500551a14fe4c753d1907d0b8a54",
+    "src/components/PresetChip.tsx": "954ba1d981f0cbc47fec27b46376b3c1fc2b3926a8e061654297ccf8542f0675",
+    "src/components/ProgressRing.tsx": "c623f835fd5a41ac62b534921a4a00782f73142c075da51e7dd8e75ce047ea97",
+    "src/components/Segmented.tsx": "820751b2ac2b2d560d3eb0592bfc60c5813f42a12778071fa3e48d5477f1f65c",
+    "src/components/Select.tsx": "f7738ee806e6c0fbb278f7d6243cbc901ca75eb74632dc8209e7b4be013baf09",
+    "src/components/Tab.tsx": "04d88dba39a0873ef6217983e282165ecf6ed004ced10e5dbd4cd5e044ba14a5",
+    "src/components/Toggle.tsx": "8a4adb08208b6817bdf991f34a852336539130766230be8fc70fb1ab5f2e4cc7",
+    "src/preview/ComponentsPreview.tsx": "c62e75e54c10f448f9d846f0b6973289ad89992bab1ddccfbecb4d98e67a9778",
+    "src/preview/main.tsx": "587f3d66e4f9142875c1094fe2cdcbf3f49802b7077396be1c7f31f1e7a6be16",
+    "src/preview/preview.css": "6e37d7cdc5c4f29f9ddd9af70b47abe1c2a3534b2518bd62a84d56c89b2b8104",
+    "src/styles/components.css": "5013c3859b090ed778b9b54a7950d74fb96759826f3ecaed71ffb01fa9436c9d",
+    "src/views/Popover.tsx": "6d3595b2bf522d3193725ed48fdb7f7de7612324855c72e01b92ed4785f12e55",
+    "vite.config.ts": "f75fdbb669b84832a65f49103708e3435dd6827c738a562bb8467ba7b390f842",
+    "scripts/verify-components.mjs": "5fc1c533d6771ac82cc97cc42117d6fe3b1bacab91034978148ff1453fee9675",
+    "scripts/verify-component-pixels.py": "b07b4a407295f6a109229d1dbe2f3ccdee158ac7f121d5f08fd6e8523f1b2302",
+    "scripts/build-components.mjs": "7922fc8564956b80a2dc1e08718b3a68b066103fd0b9822a0cbcac9798b62ba4",
+    "scripts/verify-native-theme.mjs": "49f7b59f1938ec58e1c2448d1720a01997bb02da6357b3964138d2c97ae0d94d",
+    "scripts/windows-theme-smoke.ps1": "9687b8131a0fa871e66121c22796ef619102a3a9f11f6720594822c32c3b79ef"
+  },
+  "executableSha256": "142bb5c5d70e2227e7d09b43c26853c3ff0fe6ba70fa05681b3e2a35d1d8c356",
+  "pngs": [
+    {
+      "name": "v13-colours-dark@1.5x.png",
+      "width": 1044,
+      "height": 663,
+      "bytes": 52014
+    },
+    {
+      "name": "v13-colours-dark@1x.png",
+      "width": 696,
+      "height": 442,
+      "bytes": 30977
+    },
+    {
+      "name": "v13-colours-light@1.5x.png",
+      "width": 1044,
+      "height": 663,
+      "bytes": 51696
+    },
+    {
+      "name": "v13-colours-light@1x.png",
+      "width": 696,
+      "height": 442,
+      "bytes": 31076
+    },
+    {
+      "name": "v13-core-dark@1.5x.png",
+      "width": 936,
+      "height": 1149,
+      "bytes": 55483
+    },
+    {
+      "name": "v13-core-dark@1x.png",
+      "width": 624,
+      "height": 766,
+      "bytes": 32671
+    },
+    {
+      "name": "v13-core-light@1.5x.png",
+      "width": 936,
+      "height": 1149,
+      "bytes": 54302
+    },
+    {
+      "name": "v13-core-light@1x.png",
+      "width": 624,
+      "height": 766,
+      "bytes": 31546
+    },
+    {
+      "name": "v13-focus-dark@1.5x.png",
+      "width": 936,
+      "height": 1149,
+      "bytes": 55793
+    },
+    {
+      "name": "v13-focus-dark@1x.png",
+      "width": 624,
+      "height": 766,
+      "bytes": 32832
+    },
+    {
+      "name": "v13-focus-light@1.5x.png",
+      "width": 936,
+      "height": 1149,
+      "bytes": 54461
+    },
+    {
+      "name": "v13-focus-light@1x.png",
+      "width": 624,
+      "height": 766,
+      "bytes": 31732
+    },
+    {
+      "name": "v13-island-dark@1.5x-expanded.png",
+      "width": 1080,
+      "height": 690,
+      "bytes": 79161
+    },
+    {
+      "name": "v13-island-dark@1.5x-idle.png",
+      "width": 1080,
+      "height": 690,
+      "bytes": 4941
+    },
+    {
+      "name": "v13-island-dark@1.5x-live.png",
+      "width": 1080,
+      "height": 690,
+      "bytes": 12188
+    },
+    {
+      "name": "v13-island-dark@1.5x-peek.png",
+      "width": 1080,
+      "height": 690,
+      "bytes": 18581
+    },
+    {
+      "name": "v13-island-dark@1x-expanded.png",
+      "width": 720,
+      "height": 460,
+      "bytes": 45325
+    },
+    {
+      "name": "v13-island-dark@1x-idle.png",
+      "width": 720,
+      "height": 460,
+      "bytes": 2801
+    },
+    {
+      "name": "v13-island-dark@1x-live.png",
+      "width": 720,
+      "height": 460,
+      "bytes": 7142
+    },
+    {
+      "name": "v13-island-dark@1x-peek.png",
+      "width": 720,
+      "height": 460,
+      "bytes": 11469
+    },
+    {
+      "name": "v13-island-light@1.5x-expanded.png",
+      "width": 1080,
+      "height": 690,
+      "bytes": 83625
+    },
+    {
+      "name": "v13-island-light@1.5x-idle.png",
+      "width": 1080,
+      "height": 690,
+      "bytes": 7405
+    },
+    {
+      "name": "v13-island-light@1.5x-live.png",
+      "width": 1080,
+      "height": 690,
+      "bytes": 14966
+    },
+    {
+      "name": "v13-island-light@1.5x-peek.png",
+      "width": 1080,
+      "height": 690,
+      "bytes": 22428
+    },
+    {
+      "name": "v13-island-light@1x-expanded.png",
+      "width": 720,
+      "height": 460,
+      "bytes": 47791
+    },
+    {
+      "name": "v13-island-light@1x-idle.png",
+      "width": 720,
+      "height": 460,
+      "bytes": 4253
+    },
+    {
+      "name": "v13-island-light@1x-live.png",
+      "width": 720,
+      "height": 460,
+      "bytes": 8647
+    },
+    {
+      "name": "v13-island-light@1x-peek.png",
+      "width": 720,
+      "height": 460,
+      "bytes": 13782
+    },
+    {
+      "name": "v13-native-settings-dark.png",
+      "width": 460,
+      "height": 680,
+      "bytes": 31333
+    },
+    {
+      "name": "v13-native-settings-light.png",
+      "width": 460,
+      "height": 680,
+      "bytes": 31001
+    },
+    {
+      "name": "v13-notes-dark@1.5x.png",
+      "width": 1044,
+      "height": 315,
+      "bytes": 43423
+    },
+    {
+      "name": "v13-notes-dark@1x.png",
+      "width": 696,
+      "height": 210,
+      "bytes": 25795
+    },
+    {
+      "name": "v13-notes-light@1.5x.png",
+      "width": 1044,
+      "height": 315,
+      "bytes": 43049
+    },
+    {
+      "name": "v13-notes-light@1x.png",
+      "width": 696,
+      "height": 210,
+      "bytes": 25425
+    },
+    {
+      "name": "v13-settings-dark@1.5x.png",
+      "width": 690,
+      "height": 1020,
+      "bytes": 63740
+    },
+    {
+      "name": "v13-settings-dark@1x.png",
+      "width": 460,
+      "height": 680,
+      "bytes": 36258
+    },
+    {
+      "name": "v13-settings-light@1.5x.png",
+      "width": 690,
+      "height": 1020,
+      "bytes": 63841
+    },
+    {
+      "name": "v13-settings-light@1x.png",
+      "width": 460,
+      "height": 680,
+      "bytes": 35089
+    },
+    {
+      "name": "v13-states-dark@1.5x.png",
+      "width": 1044,
+      "height": 810,
+      "bytes": 69612
+    },
+    {
+      "name": "v13-states-dark@1x.png",
+      "width": 696,
+      "height": 540,
+      "bytes": 41293
+    },
+    {
+      "name": "v13-states-light@1.5x.png",
+      "width": 1044,
+      "height": 810,
+      "bytes": 69247
+    },
+    {
+      "name": "v13-states-light@1x.png",
+      "width": 696,
+      "height": 540,
+      "bytes": 40883
+    },
+    {
+      "name": "v13-tray-dark@1.5x.png",
+      "width": 690,
+      "height": 1020,
+      "bytes": 35560
+    },
+    {
+      "name": "v13-tray-dark@1x.png",
+      "width": 460,
+      "height": 680,
+      "bytes": 22044
+    },
+    {
+      "name": "v13-tray-light@1.5x.png",
+      "width": 690,
+      "height": 1020,
+      "bytes": 35484
+    },
+    {
+      "name": "v13-tray-light@1x.png",
+      "width": 460,
+      "height": 680,
+      "bytes": 21604
+    }
+  ],
+  "maxPngBytes": 83625,
+  "noNewPerformanceGateClaim": true
+}

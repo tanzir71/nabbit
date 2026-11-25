@@ -9,7 +9,8 @@ const require = createRequire(import.meta.url);
 const { chromium } = require(
   require.resolve("playwright", { paths: [root, resolve(root, ".tools/site-qa")] }),
 );
-const [endpoint] = process.argv.slice(2);
+const [endpoint, prefix = "v11"] = process.argv.slice(2);
+assert(/^[a-z0-9-]+$/.test(prefix), "Invalid output prefix");
 let browser;
 try {
   for (let i = 0; i < 100; i++) {
@@ -74,11 +75,11 @@ try {
     await choose(value);
     await expectTheme(value.toLowerCase());
     await page.screenshot({
-      path: resolve(folder, `v11-native-settings-${value.toLowerCase()}.png`),
+      path: resolve(folder, `${prefix}-native-settings-${value.toLowerCase()}.png`),
       animations: "disabled",
     });
     assert(
-      (await stat(resolve(folder, `v11-native-settings-${value.toLowerCase()}.png`))).size <=
+      (await stat(resolve(folder, `${prefix}-native-settings-${value.toLowerCase()}.png`))).size <=
         300 * 1024,
     );
   }
@@ -100,7 +101,7 @@ try {
     assert.deepEqual(saved[key], initial.settings[key], `Theme save changed ${key}`);
   assert.deepEqual(errors, []);
   await writeFile(
-    resolve(folder, "v11-native-theme.json"),
+    resolve(folder, `${prefix}-native-theme.json`),
     JSON.stringify(
       {
         surface: "actual Windows WebView2",

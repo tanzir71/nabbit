@@ -32,7 +32,8 @@ export default {
         "note-accent": group("note-accent"),
       },
       boxShadow: {
-        popover: "0 18px 60px rgb(15 23 42 / 0.18)",
+        popover: "0 16px 48px -8px rgb(0 0 0 / 0.14), 0 1px 2px rgb(0 0 0 / 0.06)",
+        card: "0 1px 2px rgb(0 0 0 / 0.05)",
       },
     },
   },

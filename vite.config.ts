@@ -13,9 +13,11 @@ export default defineConfig({
   build: {
     rollupOptions: {
       input:
-        process.env.NABBIT_ISLAND_SPIKE === "1"
-          ? { main: resolve("index.html"), spike: resolve("spikes/island/index.html") }
-          : resolve("index.html"),
+        process.env.NABBIT_COMPONENT_PREVIEW === "1"
+          ? { main: resolve("index.html"), components: resolve("components.html") }
+          : process.env.NABBIT_ISLAND_SPIKE === "1"
+            ? { main: resolve("index.html"), spike: resolve("spikes/island/index.html") }
+            : resolve("index.html"),
     },
   },
   server: {

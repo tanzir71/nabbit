@@ -1,0 +1,489 @@
+/* Figma Foundations 5:408, 12:511. Native controls retain keyboard/form behavior. */
+.n-button,
+.n-icon-button,
+.n-tab,
+.n-preset,
+.n-switch,
+.n-note-open {
+  display: inline-flex;
+  flex-shrink: 0;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  border: 0;
+  text-decoration: none;
+  user-select: none;
+  transition:
+    background-color 120ms,
+    color 120ms,
+    opacity 120ms;
+}
+.n-button:focus-visible,
+.n-icon-button:focus-visible,
+.n-tab:focus-visible,
+.n-preset:focus-visible,
+.n-switch:focus-visible,
+.n-note-open:focus-visible,
+.n-input:focus-visible,
+.n-check-control input:focus-visible + .n-check-box {
+  outline: 2px solid var(--action-primary);
+  outline-offset: 2px;
+}
+.n-icon-button--island:focus-visible,
+.n-preset--island:focus-visible {
+  outline-color: var(--island-fg);
+}
+.n-button:disabled,
+.n-icon-button:disabled,
+.n-tab:disabled,
+.n-preset:disabled,
+.n-switch:disabled,
+.n-input:disabled {
+  cursor: not-allowed;
+  opacity: 0.45;
+}
+.n-button {
+  height: 32px;
+  padding: 0 12px;
+  gap: 6px;
+  border-radius: 8px;
+  font: 500 13px/18px var(--font-sans);
+  white-space: nowrap;
+}
+.n-button--sm {
+  height: 28px;
+  padding: 0 10px;
+  border-radius: 7px;
+}
+.n-button--icon {
+  width: 32px;
+  padding: 0;
+}
+.n-button--primary {
+  background: var(--action-primary);
+  color: var(--action-on-primary);
+}
+.n-button--secondary {
+  background: var(--bg-surface);
+  color: var(--text-primary);
+  border: 1px solid var(--border-strong);
+}
+.n-button--ghost {
+  background: transparent;
+  color: var(--text-primary);
+}
+.n-button--danger {
+  background: var(--danger-soft);
+  color: var(--danger-base);
+}
+.n-button--primary:enabled:hover,
+.n-button--danger:enabled:hover {
+  opacity: 0.88;
+}
+.n-button--secondary:enabled:hover,
+.n-button--ghost:enabled:hover {
+  background: var(--bg-raised);
+}
+.n-button > svg,
+.n-tab > svg {
+  width: 16px;
+  height: 16px;
+  stroke-width: 1.75;
+}
+.n-icon-button {
+  width: 32px;
+  height: 32px;
+  border-radius: 8px;
+  background: transparent;
+  color: var(--text-secondary);
+}
+.n-icon-button > svg {
+  width: 18px;
+  height: 18px;
+  stroke-width: 1.75;
+}
+.n-icon-button--small {
+  width: 28px;
+  height: 28px;
+}
+.n-icon-button--small > svg {
+  width: 16px;
+  height: 16px;
+}
+.n-icon-button--subtle,
+.n-icon-button.is-active {
+  background: var(--bg-raised);
+}
+.n-icon-button.is-active {
+  color: var(--text-primary);
+}
+.n-icon-button--island {
+  background: var(--island-raised);
+  color: var(--island-muted);
+  border-radius: 50%;
+}
+.n-icon-button:not(.n-icon-button--island):enabled:hover {
+  background: var(--bg-sunken);
+  color: var(--text-primary);
+}
+.n-icon-button--island:enabled:hover {
+  color: var(--island-fg);
+}
+.n-preset {
+  gap: 6px;
+  height: 30px;
+  padding: 0 12px;
+  border-radius: 15px;
+  font: 500 13px/18px var(--font-sans);
+  white-space: nowrap;
+}
+.n-preset--light {
+  background: var(--bg-surface);
+  color: var(--text-primary);
+  border: 1px solid var(--border-subtle);
+}
+.n-preset--light.is-selected {
+  background: var(--action-primary);
+  color: var(--action-on-primary);
+  border: 0;
+}
+.n-preset--island {
+  background: var(--island-raised);
+  color: var(--island-fg);
+}
+.n-preset--island.is-selected {
+  background: var(--island-fg);
+  color: var(--island-bg);
+}
+.n-preset-meta {
+  font: 500 12px/16px var(--font-mono);
+}
+.n-preset--light:not(.is-selected) .n-preset-meta {
+  color: var(--text-tertiary);
+}
+.n-preset--island:not(.is-selected) .n-preset-meta {
+  color: var(--island-muted);
+}
+.n-preset.is-selected .n-preset-meta {
+  opacity: 0.7;
+}
+.n-preset:enabled:hover {
+  box-shadow: inset 0 0 0 1px var(--border-strong);
+}
+.n-toggle {
+  position: relative;
+  display: inline-flex;
+  align-items: center;
+}
+.n-toggle--row {
+  display: flex;
+  justify-content: space-between;
+  gap: 16px;
+  width: 100%;
+}
+.n-toggle-label {
+  display: grid;
+  gap: 2px;
+  font: 400 13px/18px var(--font-sans);
+}
+.n-switch {
+  width: 34px;
+  height: 20px;
+  border-radius: 10px;
+  padding: 0;
+  background: transparent;
+}
+.n-switch img {
+  display: block;
+  max-width: none;
+}
+[data-theme="dark"] .n-switch img {
+  filter: var(--switch-filter);
+}
+.n-filter-defs {
+  position: absolute;
+  pointer-events: none;
+}
+.n-kbd {
+  display: inline-flex;
+  align-items: center;
+  height: 20px;
+  padding: 0 6px;
+  border: 1px solid var(--border-subtle);
+  border-radius: 5px;
+  background: var(--bg-raised);
+  color: var(--text-secondary);
+  font: 500 11px/16px var(--font-mono);
+  white-space: nowrap;
+}
+.n-badge {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  height: 20px;
+  padding: 0 8px;
+  border-radius: 10px;
+  font: 500 11px/14px var(--font-sans);
+  letter-spacing: 0.2px;
+  white-space: nowrap;
+}
+.n-badge--neutral {
+  background: var(--bg-raised);
+  color: var(--text-secondary);
+}
+.n-badge--signal {
+  background: var(--signal-soft);
+  color: var(--signal-strong);
+}
+.n-badge--danger {
+  background: var(--danger-soft);
+  color: var(--danger-base);
+}
+.n-badge--warning {
+  background: var(--warning-soft);
+  color: var(--warning-base);
+}
+.n-tab {
+  gap: 6px;
+  height: 30px;
+  min-width: 0;
+  padding: 0 10px;
+  border-radius: 8px;
+  background: transparent;
+  color: var(--text-secondary);
+  font: 400 13px/18px var(--font-sans);
+  white-space: nowrap;
+}
+.n-tab.is-selected {
+  background: var(--bg-surface);
+  color: var(--text-primary);
+  font-weight: 500;
+  box-shadow: 0 1px 2px rgb(0 0 0 / 0.05);
+}
+.n-tab:enabled:hover {
+  color: var(--text-primary);
+}
+.n-segmented {
+  display: grid;
+  grid-template-columns: repeat(var(--count), minmax(0, 1fr));
+  gap: 4px;
+  padding: 3px;
+  border-radius: 10px;
+  background: var(--bg-sunken);
+}
+.n-field {
+  display: grid;
+  gap: 6px;
+  min-width: 0;
+}
+.n-field-label {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 12px;
+  color: var(--text-secondary);
+  font: 400 12px/16px var(--font-sans);
+}
+.n-input {
+  width: 100%;
+  min-width: 0;
+  height: 32px;
+  padding: 0 10px;
+  border: 1px solid var(--border-strong);
+  border-radius: 8px;
+  background: var(--bg-surface);
+  color: var(--text-primary);
+  font: 400 13px/18px var(--font-sans);
+}
+.n-input::placeholder {
+  color: var(--text-tertiary);
+  opacity: 1;
+}
+.n-input.font-mono {
+  font-size: 12px;
+  line-height: 16px;
+  font-weight: 500;
+}
+.n-input[aria-invalid="true"] {
+  border-color: var(--danger-base);
+}
+.n-input:read-only:not(select) {
+  background: var(--bg-raised);
+}
+.n-help {
+  font: 400 12px/16px var(--font-sans);
+  color: var(--text-secondary);
+}
+.n-field-error {
+  font: 400 12px/16px var(--font-sans);
+  color: var(--danger-base);
+}
+.n-select-wrap {
+  position: relative;
+  min-width: 0;
+}
+.n-select {
+  appearance: none;
+  padding-right: 30px;
+  cursor: pointer;
+}
+.n-select-arrow {
+  position: absolute;
+  display: flex;
+  right: 8px;
+  top: 9px;
+  color: var(--text-tertiary);
+  pointer-events: none;
+}
+.n-asset {
+  display: inline-block;
+  vertical-align: middle;
+  flex-shrink: 0;
+  line-height: 0;
+}
+.n-asset img {
+  display: block;
+  max-width: none;
+}
+[data-theme="dark"] .n-asset {
+  background-color: currentColor;
+  mask-image: var(--asset);
+  mask-size: contain;
+  mask-repeat: no-repeat;
+}
+[data-theme="dark"] .n-asset img {
+  opacity: 0;
+}
+.n-progress-ring,
+.n-progress-ring svg {
+  display: inline-block;
+  flex-shrink: 0;
+  vertical-align: middle;
+}
+.n-note-card {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  gap: 8px;
+  width: 200px;
+  padding: 14px;
+  border: 1px solid var(--border-subtle);
+  border-radius: 14px;
+  background: var(--note-default);
+  color: var(--text-primary);
+  overflow-wrap: anywhere;
+}
+.n-note-card[data-color="blue"] {
+  background: var(--note-blue);
+}
+.n-note-card[data-color="purple"] {
+  background: var(--note-purple);
+}
+.n-note-card[data-color="green"] {
+  background: var(--note-green);
+}
+.n-note-card[data-color="pink"] {
+  background: var(--note-pink);
+}
+.n-note-card[data-color="gray"] {
+  background: var(--note-gray);
+}
+.n-note-title {
+  width: 100%;
+  font: 600 14px/20px var(--font-sans);
+  letter-spacing: -0.1px;
+}
+.n-note-open {
+  display: block;
+  max-width: 100%;
+  padding: 0;
+  background: transparent;
+  color: inherit;
+  text-align: left;
+  font: inherit;
+  letter-spacing: inherit;
+  border-radius: 4px;
+  user-select: text;
+}
+.n-note-body {
+  font: 400 13px/18px var(--font-sans);
+  color: var(--text-secondary);
+  white-space: pre-wrap;
+}
+.n-note-url {
+  height: 32px;
+  overflow: hidden;
+  font: 500 12px/16px var(--font-mono);
+  color: var(--text-secondary);
+}
+.n-note-meta {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  max-width: 100%;
+}
+.n-note-label {
+  padding: 2px 7px;
+  border-radius: 8px;
+  background: var(--bg-sunken);
+  font: 500 11px/14px var(--font-sans);
+  letter-spacing: 0.2px;
+  color: var(--text-secondary);
+}
+.n-note-reference {
+  font: 500 12px/16px var(--font-mono);
+  color: var(--text-tertiary);
+  white-space: nowrap;
+}
+.n-check-row {
+  display: flex;
+  align-items: flex-start;
+  gap: 8px;
+  width: 100%;
+  font: 400 13px/18px var(--font-sans);
+  cursor: pointer;
+}
+.n-check-row.is-checked {
+  color: var(--text-tertiary);
+}
+.n-check-row.is-checked > span:last-child {
+  text-decoration: line-through;
+}
+.n-check-control {
+  position: relative;
+  width: 14px;
+  height: 14px;
+  flex-shrink: 0;
+}
+.n-check-control input {
+  position: absolute;
+  inset: 0;
+  width: 14px;
+  height: 14px;
+  opacity: 0;
+  cursor: inherit;
+}
+.n-check-box {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 14px;
+  height: 14px;
+  border: 1.5px solid var(--border-strong);
+  border-radius: 4px;
+  color: var(--action-on-primary);
+  pointer-events: none;
+}
+.is-checked .n-check-box {
+  border-color: var(--action-primary);
+  background: var(--action-primary);
+}
+@media (prefers-reduced-motion: reduce) {
+  .n-button,
+  .n-icon-button,
+  .n-tab,
+  .n-preset,
+  .n-switch {
+    transition: none;
+  }
+}
