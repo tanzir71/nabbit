@@ -1,0 +1,43 @@
+{
+  "date": "2026-11-26",
+  "head": "d0793cea35340fa9ba8bd65cf1ed68a339244270",
+  "commits": 17,
+  "gitleaksVersion": "8.30.1",
+  "archiveSha256": "d29144deff3a68aa93ced33dddf84b7fdc26070add4aa0f4513094c8332afc4e",
+  "scannerFindings": [
+    {
+      "rule": "stripe-access-token",
+      "file": "src-tauri/src/clipboard/sensitive.rs",
+      "line": 76,
+      "commit": "ff2fc3ec4fcf8a46866fc27aec5d88d832e33b91",
+      "fingerprint": "ff2fc3ec4fcf8a46866fc27aec5d88d832e33b91:src-tauri/src/clipboard/sensitive.rs:stripe-access-token:76",
+      "classification": "synthetic-unit-test-fixture; historical fingerprint only ignored"
+    }
+  ],
+  "supplementaryHistoryMatches": [
+    {
+      "pattern": "signing-key-assignment",
+      "commit": "36234cf73fbdc304077488f6512a911e40c64a2d",
+      "file": "scripts/build-release.sh",
+      "line": 12,
+      "classification": "shell-variable-file-path; no key material"
+    },
+    {
+      "pattern": "long-base64",
+      "commit": "36234cf73fbdc304077488f6512a911e40c64a2d",
+      "file": "src-tauri/tauri.release.conf.json",
+      "line": 7,
+      "classification": "public-updater-verification-key"
+    }
+  ],
+  "historyBlobs": 176,
+  "largestHistoryBlob": {
+    "oid": "6edfcfb96073c56225e3efdf392c489084230892",
+    "bytes": 211384,
+    "path": "package-lock.json"
+  },
+  "historyBlobsAbove5MiB": [],
+  "historyScanAfterReview": "passed; zero unresolved findings",
+  "stagedChangeScan": "passed; zero findings",
+  "productionDependencyAdvisories": 0
+}
