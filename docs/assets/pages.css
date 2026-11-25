@@ -1,0 +1,171 @@
+/* Publishing state for the existing landing. The full v2 design follows in Phase L. */
+:focus-visible {
+  outline: 3px solid #fbbf24;
+  outline-offset: 4px;
+}
+
+.release-note {
+  color: var(--dim);
+  font-size: 12px;
+  margin: -12px 0 24px;
+}
+
+.tray .download {
+  display: block;
+  text-align: center;
+}
+
+.support .actions {
+  justify-content: center;
+}
+
+#progress {
+  background: #f3f3f1;
+  color: #17171a;
+  border-top: 0;
+  padding: 104px 0;
+}
+
+#progress .wrap {
+  width: min(calc(100% - 40px), 1120px);
+}
+
+#progress .eyebrow {
+  color: #66666d;
+  font: 500 11px/14px var(--sans);
+  letter-spacing: 0.2px;
+}
+
+#progress h2 {
+  max-width: 760px;
+  margin: 16px 0;
+  font-size: 40px;
+  line-height: 46px;
+  letter-spacing: -0.8px;
+  font-weight: 600;
+}
+
+#progress .lead {
+  max-width: 640px;
+  margin: 0 0 16px;
+  color: #66666d;
+  font-size: 18px;
+  line-height: 28px;
+}
+
+.milestones {
+  margin: 0;
+  padding: 0;
+  list-style: none;
+  background: #fff;
+  border: 1px solid #e5e4e0;
+  border-radius: 16px;
+  overflow: hidden;
+}
+
+.milestones li {
+  display: flex;
+  align-items: center;
+  gap: 14px;
+  padding: 12px 20px;
+  font-size: 13px;
+  line-height: 18px;
+}
+
+.milestones li + li {
+  border-top: 1px solid #e5e4e0;
+  padding-top: 11px;
+}
+
+.milestones img {
+  flex-shrink: 0;
+}
+
+.milestones code {
+  flex: 0 0 36px;
+  color: #66666d;
+  font: 500 12px/16px var(--mono);
+}
+
+.milestone-name {
+  flex: 1;
+  min-width: 0;
+  color: #66666d;
+}
+
+[data-status="in-progress"] .milestone-name {
+  color: #17171a;
+}
+
+.milestone-status {
+  flex-shrink: 0;
+  padding: 3px 8px;
+  border-radius: 10px;
+  background: #f7f7f5;
+  color: #66666d;
+  font-size: 11px;
+  line-height: 14px;
+  font-weight: 500;
+  letter-spacing: 0.2px;
+}
+
+[data-status="in-progress"] .milestone-status {
+  background: #fff4e0;
+  color: #a86200;
+}
+
+[data-status="done"] .milestone-status {
+  background: #eef8d3;
+  color: #4a6e0b;
+}
+
+#progress .progress-note {
+  margin: 16px 0 0;
+  color: #66666d;
+  font-size: 12px;
+  line-height: 16px;
+}
+
+#progress :focus-visible {
+  outline-color: #17171a;
+}
+
+@media (max-width: 600px) {
+  #progress {
+    padding: 64px 0;
+  }
+
+  #progress h2 {
+    font-size: 28px;
+    line-height: 34px;
+  }
+
+  .milestones li {
+    gap: 8px;
+    padding: 12px;
+  }
+
+  .milestones code {
+    flex-basis: 28px;
+  }
+}
+
+@media (max-width: 560px) {
+  .top nav a[data-download-cta] {
+    display: inline-flex;
+  }
+
+  .top nav {
+    gap: 10px;
+  }
+
+  .top .wrap {
+    gap: 12px;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  html {
+    scroll-behavior: auto;
+  }
+}

@@ -7,8 +7,8 @@ Nabbit is a tiny Tauri tray utility for two daily jobs:
 
 ## Website & demo
 
-- Landing page: https://nabbit-local.vercel.app/
-- Simulated tray demo: https://nabbit-local.vercel.app/demo/
+- Landing page: https://tanzir71.github.io/nabbit/
+- Simulated tray demo: https://tanzir71.github.io/nabbit/demo/
 
 The public demo is canned browser state. It never reads the clipboard, contacts YouTube, launches yt-dlp/ffmpeg, or writes files.
 
