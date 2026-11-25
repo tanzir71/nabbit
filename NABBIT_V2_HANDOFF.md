@@ -724,7 +724,7 @@ Commit after every task (§0.1). Lines marked **MILESTONE** are tasks of their o
 
 ### Phase P — Public repository and Pages (first)
 - [x] P.1 Pre-publication audit (§10b.1): gitleaks + grep over full history, `LICENSE` present, no large binaries. Add `Claude outputs/` to `.gitignore` (local copies of design research; never commit or publish them) and commit `NABBIT_V2_HANDOFF.md` itself in this task. Findings block P.2.
-- [ ] P.2 Make the repository public with `gh repo edit … --visibility public --accept-visibility-change-consequences`.
+- [x] P.2 Make the repository public with `gh repo edit … --visibility public --accept-visibility-change-consequences`.
 - [ ] P.3 Enable GitHub Pages from `master` `/docs` (no Actions source, no Pages workflow).
 - [ ] P.4 Re-point the existing landing to `https://tanzir71.github.io/nabbit/` (canonical, OG, `llms.txt`, README), relative asset URLs, `docs/404.html`, initial "Built in the open" list with M0 in progress, and the pre-release CTA rule from §10b.2 (no "Download" button while no release exists); `npm run verify:site`.
 - [ ] **MILESTONE M0 — Public repository and Pages** (push, then confirm the site serves `content="M0"`).
