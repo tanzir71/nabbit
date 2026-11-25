@@ -24,7 +24,14 @@ default/spike Clippy, the site budget (31,884 bytes excluding fonts), 27-commit
 secret scan, PNG budgets and the unchanged release executable hash. Original
 performance failures were not rerun or replaced for publication.
 
-Publication/deployment verification will be appended after the milestone push.
+Published milestone source: `6d6dd29a7fc1ebd34b188543321032a95fc73c29` on `main`.
+Built-in [Pages run 45706006844](https://github.com/tanzir71/nabbit/actions/runs/45706006844)
+succeeded for that commit. The unauthenticated live page returns HTTP 200 with
+metadata M1, M1 Done and M2 In progress; HTML/CSS match the published source after
+line-ending normalization. Nested missing URLs serve the custom 404/recovery
+link. GitHub exposes all 101 PNGs in this folder (maximum 172,193 bytes).
+`deployment.json` records the checks. No repository CI run was added: only the
+permitted dynamic Pages deployment ran for the milestone.
 
 ## V0.1
 
