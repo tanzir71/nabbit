@@ -68,16 +68,19 @@ export function SettingsPanel({ onClose }: { onClose: () => void }) {
           <div className="grid gap-2 sm:grid-cols-3">
             <Field
               label="Toggle"
+              className="font-mono"
               value={settings.togglePopoverShortcut}
               onChange={(event) => patch({ togglePopoverShortcut: event.target.value })}
             />
             <Field
               label="Quick DL"
+              className="font-mono"
               value={settings.quickDownloadShortcut}
               onChange={(event) => patch({ quickDownloadShortcut: event.target.value })}
             />
             <Field
               label="Search"
+              className="font-mono"
               value={settings.clipboardSearchShortcut}
               onChange={(event) => patch({ clipboardSearchShortcut: event.target.value })}
             />
@@ -93,17 +96,20 @@ export function SettingsPanel({ onClose }: { onClose: () => void }) {
           />
           <Field
             label="Output folder"
+            className="font-mono"
             value={settings.outputDir}
             placeholder="Use Downloads/Nabbit"
             onChange={(event) => patch({ outputDir: event.target.value })}
           />
           <Field
             label="Filename template"
+            className="font-mono"
             value={settings.filenameTemplate}
             onChange={(event) => patch({ filenameTemplate: event.target.value })}
           />
           <Field
             label="Max concurrent"
+            className="font-mono"
             type="number"
             min={1}
             max={6}
@@ -141,6 +147,7 @@ export function SettingsPanel({ onClose }: { onClose: () => void }) {
           />
           <Field
             label="Image cap (MB)"
+            className="font-mono"
             type="number"
             min={1}
             max={50}
@@ -201,9 +208,12 @@ export function SettingsPanel({ onClose }: { onClose: () => void }) {
           <div className="rounded-lg border border-subtle bg-surface p-3 text-sm leading-6">
             <p>Nabbit 0.1.0</p>
             <p className="text-secondary">yt-dlp: {engine?.ytdlpVersion ?? "not found"}</p>
-            <p className="break-all text-secondary">ffmpeg: {engine?.ffmpegPath ?? "not found"}</p>
+            <p className="break-all font-mono text-secondary">
+              ffmpeg: {engine?.ffmpegPath ?? "not found"}
+            </p>
             <p className="text-secondary">
-              Licenses: Tauri, React, yt-dlp, ffmpeg and bundled dependencies.
+              Licenses: Tauri, React, yt-dlp, ffmpeg and bundled dependencies. Geist and Geist Mono:
+              SIL Open Font License 1.1.
             </p>
             <Button
               className="mt-3"

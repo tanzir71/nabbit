@@ -255,8 +255,10 @@ function QueueSection({
             />
           </div>
           <p className="truncate text-xs text-secondary">
-            {Math.round(job.progress)}% {job.speed ? `- ${job.speed}` : ""}{" "}
-            {job.eta ? `- ETA ${job.eta}` : ""}
+            <span className="font-mono font-medium">
+              {Math.round(job.progress)}% {job.speed ? `- ${job.speed}` : ""}{" "}
+              {job.eta ? `- ETA ${job.eta}` : ""}
+            </span>
             {job.error ? ` - ${job.error}` : ""}
           </p>
         </article>

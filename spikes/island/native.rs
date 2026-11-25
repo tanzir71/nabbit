@@ -10,6 +10,8 @@ use tauri::{
 mod native_capture;
 #[path = "native_files.rs"]
 mod native_files;
+#[path = "native_fonts.rs"]
+mod native_fonts;
 #[path = "native_graphics.rs"]
 mod native_graphics;
 #[path = "native_hybrid.rs"]

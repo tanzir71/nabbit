@@ -1,5 +1,81 @@
 # M2 evidence — foundations in progress
 
+## V1.2 — bundled fonts
+
+The app and island now load upright Geist and Geist Mono from the official
+[Geist 1.9.2 release](https://github.com/vercel/geist-font/releases/tag/v1.9.2).
+The two unmodified WOFF2 files total 140,700 bytes. The native compact renderer
+embeds the matching TTFs (340,256 bytes), creates an isolated in-memory DirectWrite
+collection on first live use, and requires Geist Regular / Geist Mono Medium with
+no simulated weights. It never installs fonts or contacts the Windows font service.
+The native-to-web handoff waits for both bundled faces before acknowledging paint.
+
+`src/assets/fonts/manifest.json` pins the archive and each original file by SHA-256.
+`npm run verify:fonts`, included in `verify`, rejects changed/missing assets or
+license bytes. Folder attributes preserve the original OFL line endings on Windows;
+Tauri includes the OFL in installer resources, and About identifies the font license.
+The font metadata report confirms upright 100–900 weight axes and matching glyph
+coverage in TTF/WOFF2. No font package or runtime dependency was added.
+
+Shared font stacks replace Inter. Tailwind `font-sans` / `font-mono`, code/key
+elements, existing settings paths/shortcuts and changing download progress use
+the bundled families. Nine `type-*` styles expose the exact Foundations `12:373`
+size, line height, weight and tracking. Component reconstruction remains V1.3;
+the landing and its Latin subset remain Phase L.
+
+Verification:
+
+- `npm run verify`: 22 frontend/script tests, type check, lint, font/token checks
+  and default production build; the default build still omits the spike entry.
+- Rust: formatting, default and spike-feature Clippy with warnings denied,
+  36 tests and the native feature/custom-protocol build.
+- `v12-font-checks.json`: light/dark × 1×/1.5×, all nine type styles, fixed-width
+  changing digits and actual custom-font glyphs via `CSS.getPlatformFontsForNode`.
+  Both font requests stay inside the app bundle; external requests and page errors
+  are empty. Twelve PNGs cover type ramp, tray and settings.
+- `v12-font-metadata.json`: inspected upstream family names, weight axes, upright
+  angle and glyph coverage, using fontTools 4.63.0 for this one-time inspection.
+  fontTools is not an app/build dependency.
+- `v12-island-preview-checks.json`: five contexts including reduced motion,
+  original SVG dimensions, fixed host geometry and zero idle JS scheduling;
+  sixteen PNGs cover the four original morph states.
+- `v12-native-checks.json` and `v12-webview-*.json`: four actual Windows contexts,
+  lazy private fonts, cached live surface, unchanged foreground focus, input and
+  fullscreen rules, stable idle draw/commit counters, larger-view handoffs and
+  destruction, zero retained WebView2 children, native file-drop path resolution
+  at 1.5× and zero downloads. Twenty own-HWND/page PNGs cover compact and larger
+  surfaces, including transparent fullscreen. No desktop capture or real cursor,
+  Windows preference, display scaling, autostart or shortcut changes.
+- Visual comparison used Figma type ramp `12:373` and compact live `7:17`.
+  Review caught a pre-existing native CDP screenshot crop at synthetic 1.5× zoom.
+  An explicit CSS-sized clip still failed the new PNG-dimension assertion; the
+  helper now includes the full host before page zoom. A fresh four-context run
+  passes with full 720×460 / 1080×690 captures. Earlier M1 evidence is unchanged.
+- All 48 V1.2 PNGs are at most 85,528 bytes. `v12-validation.json` replays report
+  assertions, executable/font hashes, PNG dimensions and budgets. Site verification
+  remains green (31,884 bytes excluding fonts). The M1 performance limitations
+  are unchanged; this font task does not claim a new CPU/memory/frame gate pass.
+
+Reproduce with the isolated Playwright 1.65.1 installation described for M1:
+
+```powershell
+npm run verify
+npm run verify:site
+node scripts/verify-fonts.mjs
+npm run build:spike
+node scripts/verify-island-spike.mjs --output-prefix v12-island --output-dir progress/v2/M2
+cargo fmt --manifest-path src-tauri/Cargo.toml --check
+cargo clippy --manifest-path src-tauri/Cargo.toml --all-targets -- -D warnings
+cargo clippy --manifest-path src-tauri/Cargo.toml --all-targets --features island-spike -- -D warnings
+cargo test --manifest-path src-tauri/Cargo.toml -- --test-threads=1
+cargo build --manifest-path src-tauri/Cargo.toml --features island-spike,custom-protocol
+.\scripts\windows-native-island-smoke.ps1 -OutputPrefix v12 -OutputDir progress/v2/M2
+```
+
+Run frontend builds before the native build; do not overwrite `dist/` during
+native asset embedding. The native smoke uses fresh fixture profiles, stops only
+its own process, and restores process environment variables afterward.
+
 ## V1.1 — colour tokens and appearance
 
 `src/styles/tokens.mjs` is the single source for all 36 light/dark colour pairs.

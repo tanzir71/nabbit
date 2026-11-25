@@ -31,6 +31,7 @@ pub struct Renderer {
     visibility: IDCompositionEffectGroup,
     live_opacity: IDCompositionEffectGroup,
     live_surface: Option<IDCompositionSurface>,
+    fonts: Option<super::native_fonts::Fonts>,
     fade: Fade,
     fade_began: Instant,
     scale: f32,
@@ -171,6 +172,7 @@ impl Renderer {
                 visibility,
                 live_opacity,
                 live_surface: None,
+                fonts: None,
                 fade: Fade::new(0.0, Surface::Idle, false, false),
                 fade_began: Instant::now(),
                 scale,
@@ -355,24 +357,14 @@ impl Renderer {
             svg_dc.DrawSvgDocument(&svg);
             dc.SetTransform(&translation(x, y));
             dc.SetTextAntialiasMode(D2D1_TEXT_ANTIALIAS_MODE_GRAYSCALE);
-            let write: IDWriteFactory = DWriteCreateFactory(DWRITE_FACTORY_TYPE_SHARED)?;
-            let mut collection = None;
-            write.GetSystemFontCollection(&mut collection, false)?;
-            let collection = collection.expect("successful font collection query");
-            let choose = |families: &[windows::core::PCWSTR]| -> Result<windows::core::PCWSTR> {
-                for &family in families {
-                    let mut index = 0;
-                    let mut exists = windows::core::BOOL(0);
-                    collection.FindFamilyName(family, &mut index, &mut exists)?;
-                    if exists.as_bool() {
-                        return Ok(family);
-                    }
-                }
-                Ok(*families.last().expect("nonempty font fallback list"))
-            };
+            if self.fonts.is_none() {
+                self.fonts = Some(super::native_fonts::Fonts::new()?);
+            }
+            let fonts = self.fonts.as_ref().expect("initialized bundled fonts");
+            let write = &fonts.factory;
             let body = write.CreateTextFormat(
-                choose(&[w!("Geist"), w!("Segoe UI Variable"), w!("Segoe UI")])?,
-                None,
+                w!("Geist"),
+                fonts.collection(),
                 DWRITE_FONT_WEIGHT_NORMAL,
                 DWRITE_FONT_STYLE_NORMAL,
                 DWRITE_FONT_STRETCH_NORMAL,
@@ -411,8 +403,8 @@ impl Renderer {
                 D2D1_DRAW_TEXT_OPTIONS_CLIP,
             );
             let mono = write.CreateTextFormat(
-                choose(&[w!("Geist Mono"), w!("Cascadia Code"), w!("Consolas")])?,
-                None,
+                w!("Geist Mono"),
+                fonts.collection(),
                 DWRITE_FONT_WEIGHT_MEDIUM,
                 DWRITE_FONT_STYLE_NORMAL,
                 DWRITE_FONT_STRETCH_NORMAL,
@@ -453,6 +445,9 @@ impl Renderer {
             let stat = self.device.GetFrameStatistics()?;
             Ok((stat.lastFrameTime, stat.timeFrequency))
         }
+    }
+    pub fn bundled_fonts_loaded(&self) -> bool {
+        self.fonts.is_some()
     }
     pub fn capture(
         &self,

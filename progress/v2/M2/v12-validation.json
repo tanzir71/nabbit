@@ -1,0 +1,325 @@
+{
+  "task": "V1.2",
+  "fontVersion": "1.9.2",
+  "archiveSha256": "15f066d58dcb99fb10014a49913009fdaf41e464cfb8851a44b44e593c95d3d8",
+  "executableSha256": "b0f3ad6e92136f39082544d5d6a82a991a251955503cc9d18a10842d17e7f236",
+  "browserFontContexts": 4,
+  "nativeContexts": 4,
+  "islandPreviewContexts": 5,
+  "frontendTests": 22,
+  "rustTests": 36,
+  "verified": [
+    "font hashes and metadata",
+    "actual custom browser glyph faces and type metrics",
+    "native lazy private collection with exact unsimulated weights",
+    "native input/fullscreen/focus and idle counters",
+    "larger webview handoffs and complete scaled screenshots",
+    "WebView2 child teardown",
+    "native path resolution",
+    "zero downloads",
+    "default and feature Clippy with warnings denied",
+    "Rust formatting",
+    "app/site builds and checks"
+  ],
+  "pngs": [
+    {
+      "name": "v12-island-dark@1.5x-expanded.png",
+      "bytes": 79161,
+      "width": 1080,
+      "height": 690
+    },
+    {
+      "name": "v12-island-dark@1.5x-idle.png",
+      "bytes": 4941,
+      "width": 1080,
+      "height": 690
+    },
+    {
+      "name": "v12-island-dark@1.5x-live.png",
+      "bytes": 12188,
+      "width": 1080,
+      "height": 690
+    },
+    {
+      "name": "v12-island-dark@1.5x-peek.png",
+      "bytes": 18581,
+      "width": 1080,
+      "height": 690
+    },
+    {
+      "name": "v12-island-dark@1x-expanded.png",
+      "bytes": 45325,
+      "width": 720,
+      "height": 460
+    },
+    {
+      "name": "v12-island-dark@1x-idle.png",
+      "bytes": 2801,
+      "width": 720,
+      "height": 460
+    },
+    {
+      "name": "v12-island-dark@1x-live.png",
+      "bytes": 7142,
+      "width": 720,
+      "height": 460
+    },
+    {
+      "name": "v12-island-dark@1x-peek.png",
+      "bytes": 11469,
+      "width": 720,
+      "height": 460
+    },
+    {
+      "name": "v12-island-light@1.5x-expanded.png",
+      "bytes": 83625,
+      "width": 1080,
+      "height": 690
+    },
+    {
+      "name": "v12-island-light@1.5x-idle.png",
+      "bytes": 7405,
+      "width": 1080,
+      "height": 690
+    },
+    {
+      "name": "v12-island-light@1.5x-live.png",
+      "bytes": 14966,
+      "width": 1080,
+      "height": 690
+    },
+    {
+      "name": "v12-island-light@1.5x-peek.png",
+      "bytes": 22428,
+      "width": 1080,
+      "height": 690
+    },
+    {
+      "name": "v12-island-light@1x-expanded.png",
+      "bytes": 47791,
+      "width": 720,
+      "height": 460
+    },
+    {
+      "name": "v12-island-light@1x-idle.png",
+      "bytes": 4253,
+      "width": 720,
+      "height": 460
+    },
+    {
+      "name": "v12-island-light@1x-live.png",
+      "bytes": 8647,
+      "width": 720,
+      "height": 460
+    },
+    {
+      "name": "v12-island-light@1x-peek.png",
+      "bytes": 13782,
+      "width": 720,
+      "height": 460
+    },
+    {
+      "name": "v12-native-dark@1.5x-fullscreen.png",
+      "bytes": 2969,
+      "width": 1080,
+      "height": 690
+    },
+    {
+      "name": "v12-native-dark@1.5x-idle.png",
+      "bytes": 5811,
+      "width": 1080,
+      "height": 690
+    },
+    {
+      "name": "v12-native-dark@1.5x-live.png",
+      "bytes": 12815,
+      "width": 1080,
+      "height": 690
+    },
+    {
+      "name": "v12-native-dark@1x-fullscreen.png",
+      "bytes": 1364,
+      "width": 720,
+      "height": 460
+    },
+    {
+      "name": "v12-native-dark@1x-idle.png",
+      "bytes": 3083,
+      "width": 720,
+      "height": 460
+    },
+    {
+      "name": "v12-native-dark@1x-live.png",
+      "bytes": 7329,
+      "width": 720,
+      "height": 460
+    },
+    {
+      "name": "v12-native-light@1.5x-fullscreen.png",
+      "bytes": 2969,
+      "width": 1080,
+      "height": 690
+    },
+    {
+      "name": "v12-native-light@1.5x-idle.png",
+      "bytes": 5811,
+      "width": 1080,
+      "height": 690
+    },
+    {
+      "name": "v12-native-light@1.5x-live.png",
+      "bytes": 12815,
+      "width": 1080,
+      "height": 690
+    },
+    {
+      "name": "v12-native-light@1x-fullscreen.png",
+      "bytes": 1364,
+      "width": 720,
+      "height": 460
+    },
+    {
+      "name": "v12-native-light@1x-idle.png",
+      "bytes": 3083,
+      "width": 720,
+      "height": 460
+    },
+    {
+      "name": "v12-native-light@1x-live.png",
+      "bytes": 7329,
+      "width": 720,
+      "height": 460
+    },
+    {
+      "name": "v12-settings-dark@1.5x.png",
+      "bytes": 57068,
+      "width": 690,
+      "height": 1020
+    },
+    {
+      "name": "v12-settings-dark@1x.png",
+      "bytes": 33277,
+      "width": 460,
+      "height": 680
+    },
+    {
+      "name": "v12-settings-light@1.5x.png",
+      "bytes": 57069,
+      "width": 690,
+      "height": 1020
+    },
+    {
+      "name": "v12-settings-light@1x.png",
+      "bytes": 32413,
+      "width": 460,
+      "height": 680
+    },
+    {
+      "name": "v12-tray-dark@1.5x.png",
+      "bytes": 35017,
+      "width": 690,
+      "height": 1020
+    },
+    {
+      "name": "v12-tray-dark@1x.png",
+      "bytes": 21783,
+      "width": 460,
+      "height": 680
+    },
+    {
+      "name": "v12-tray-light@1.5x.png",
+      "bytes": 34811,
+      "width": 690,
+      "height": 1020
+    },
+    {
+      "name": "v12-tray-light@1x.png",
+      "bytes": 21391,
+      "width": 460,
+      "height": 680
+    },
+    {
+      "name": "v12-type-dark@1.5x.png",
+      "bytes": 77029,
+      "width": 938,
+      "height": 585
+    },
+    {
+      "name": "v12-type-dark@1x.png",
+      "bytes": 47832,
+      "width": 625,
+      "height": 390
+    },
+    {
+      "name": "v12-type-light@1.5x.png",
+      "bytes": 77024,
+      "width": 938,
+      "height": 585
+    },
+    {
+      "name": "v12-type-light@1x.png",
+      "bytes": 47537,
+      "width": 625,
+      "height": 390
+    },
+    {
+      "name": "v12-webview-dark@1.5x-expanded.png",
+      "bytes": 85528,
+      "width": 1080,
+      "height": 690
+    },
+    {
+      "name": "v12-webview-dark@1.5x-peek.png",
+      "bytes": 23397,
+      "width": 1080,
+      "height": 690
+    },
+    {
+      "name": "v12-webview-dark@1x-expanded.png",
+      "bytes": 48240,
+      "width": 720,
+      "height": 460
+    },
+    {
+      "name": "v12-webview-dark@1x-peek.png",
+      "bytes": 13745,
+      "width": 720,
+      "height": 460
+    },
+    {
+      "name": "v12-webview-light@1.5x-expanded.png",
+      "bytes": 85528,
+      "width": 1080,
+      "height": 690
+    },
+    {
+      "name": "v12-webview-light@1.5x-peek.png",
+      "bytes": 23397,
+      "width": 1080,
+      "height": 690
+    },
+    {
+      "name": "v12-webview-light@1x-expanded.png",
+      "bytes": 48240,
+      "width": 720,
+      "height": 460
+    },
+    {
+      "name": "v12-webview-light@1x-peek.png",
+      "bytes": 13745,
+      "width": 720,
+      "height": 460
+    }
+  ],
+  "maxPngBytes": 85528,
+  "captureCorrection": {
+    "initial": "Default CDP capture cropped synthetic 1.5x to 720x460",
+    "assertionAttempt": "CSS-sized explicit clip still returned 720x460 and failed",
+    "resolved": "Full pre-zoom host clips return 720x460 / 1080x690; fresh four-context native run passed",
+    "priorM1ArtifactsUnchanged": true
+  },
+  "noNewPerformanceGateClaim": true,
+  "nativeFileDropReport": "v12-native-file-drop.json",
+  "stagedAndCheckoutFontBytesVerified": true,
+  "stagedSecretScan": "gitleaks 8.30.1: no leaks"
+}

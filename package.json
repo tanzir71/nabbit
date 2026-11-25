@@ -17,8 +17,9 @@
     "test": "vitest",
     "tokens": "node scripts/generate-tokens.mjs",
     "verify:tokens": "node scripts/generate-tokens.mjs --check",
-    "verify": "npm run verify:tokens && npm run typecheck && npm run lint && npm test -- --run && npm run build",
-    "verify:site": "node scripts/verify-site.mjs"
+    "verify": "npm run verify:fonts && npm run verify:tokens && npm run typecheck && npm run lint && npm test -- --run && npm run build",
+    "verify:site": "node scripts/verify-site.mjs",
+    "verify:fonts": "node scripts/verify-font-assets.mjs"
   },
   "dependencies": {
     "@tauri-apps/api": "^2.12.5",

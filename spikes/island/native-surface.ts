@@ -43,7 +43,12 @@ export function connectNativeSurface(
       });
   }
   async function subscribe() {
-    await ready;
+    // Keep the native pill visible until the larger view has its bundled faces.
+    await Promise.all([
+      ready,
+      document.fonts.load('400 12px "Geist"'),
+      document.fonts.load('500 12px "Geist Mono"'),
+    ]);
     if (closed) return;
     const off = await listen<Instruction>(
       "nabbit://spike-surface",

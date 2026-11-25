@@ -42,6 +42,7 @@ struct GraphicsInfo {
     commits: u64,
     surface_draws: u64,
     warp: bool,
+    bundled_fonts_loaded: bool,
     composition_clock: Option<(i64, i64)>,
 }
 struct State {
@@ -168,6 +169,7 @@ impl Hybrid {
             commits: graphics.commits,
             surface_draws: graphics.surface_draws,
             warp: graphics.warp,
+            bundled_fonts_loaded: graphics.bundled_fonts_loaded(),
             composition_clock: graphics.frame_clock().ok(),
         };
         GRAPHICS.with(|value| *value.borrow_mut() = Some(graphics));
@@ -380,6 +382,7 @@ impl Hybrid {
                 commits: renderer.commits,
                 surface_draws: renderer.surface_draws,
                 warp: renderer.warp,
+                bundled_fonts_loaded: renderer.bundled_fonts_loaded(),
                 composition_clock: renderer.frame_clock().ok(),
             };
             Ok(())

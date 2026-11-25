@@ -10,7 +10,7 @@ const require = createRequire(import.meta.url);
 const { chromium } = require(
   require.resolve("playwright", { paths: [root, resolve(root, ".tools/site-qa")] }),
 );
-const [endpoint, fixture] = process.argv.slice(2);
+const [endpoint, fixture, prefix = "v04", output = "progress/v2/M1"] = process.argv.slice(2);
 const browser = await chromium.connectOverCDP(endpoint);
 try {
   const page = browser
@@ -71,7 +71,7 @@ try {
   );
   assert.deepEqual(errors, []);
   await writeFile(
-    resolve(root, "progress/v2/M1/v04-native-file-drop.json"),
+    resolve(root, `${output}/${prefix}-native-file-drop.json`),
     JSON.stringify(
       {
         scale: await page.evaluate(() => globalThis.devicePixelRatio),

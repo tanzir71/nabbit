@@ -1,8 +1,10 @@
-param([string]$Exe = "src-tauri/target/debug/nabbit.exe",[switch]$ReducedMotion)
+param([string]$Exe = "src-tauri/target/debug/nabbit.exe",[switch]$ReducedMotion,[string]$OutputPrefix="v04",[string]$OutputDir="progress/v2/M1")
 $ErrorActionPreference = "Stop"
+if($OutputPrefix -notmatch "^[a-z0-9-]+$"){throw "Invalid output prefix"}
 $root = Split-Path -Parent $PSScriptRoot
 $exePath = (Resolve-Path -LiteralPath (Join-Path $root $Exe)).Path
 if (Get-Process -Name nabbit -ErrorAction SilentlyContinue) { throw "Leave the existing Nabbit process untouched." }
+New-Item -ItemType Directory -Path (Join-Path $root $OutputDir) -Force | Out-Null
 $trialRoot = Join-Path $root (".tools/native-island-" + [guid]::NewGuid().ToString())
 New-Item -ItemType Directory -Path $trialRoot -Force | Out-Null
 $names = @("NABBIT_APP_DATA_DIR", "NABBIT_ISLAND_SPIKE", "NABBIT_ISLAND_RENDERER", "NABBIT_ACCEPTANCE_CURSOR", "NABBIT_ACCEPTANCE_NATIVE_CONTROL", "NABBIT_ACCEPTANCE_NATIVE_SCALE", "NABBIT_ACCEPTANCE_REDUCED_MOTION", "WEBVIEW2_ADDITIONAL_BROWSER_ARGUMENTS", "WEBVIEW2_USER_DATA_FOLDER")
@@ -44,10 +46,10 @@ function Command([string]$state="",[string]$capture="",[Nullable[bool]]$prepareT
   throw "Native command did not finish. See $trialRoot"
 }
 function Capture-Native([string]$state,[string]$theme,[string]$scale) {
-  $stem="v04-native-$theme@$($scale)x-$state"
-  if($ReducedMotion){$stem="v04-native-reduced-$theme@$($scale)x-$state"}
+  $stem="$OutputPrefix-native-$theme@$($scale)x-$state"
+  if($ReducedMotion){$stem="$OutputPrefix-native-reduced-$theme@$($scale)x-$state"}
   $result=Command -capture $stem
-  & python (Join-Path $root "scripts/encode-native-capture.py") (Join-Path $env:NABBIT_ACCEPTANCE_NATIVE_CONTROL "$stem.bgra") $result.capture.width $result.capture.height $state $theme $scale (Join-Path $root "progress/v2/M1/$stem.png")
+  & python (Join-Path $root "scripts/encode-native-capture.py") (Join-Path $env:NABBIT_ACCEPTANCE_NATIVE_CONTROL "$stem.bgra") $result.capture.width $result.capture.height $state $theme $scale (Join-Path $root "$OutputDir/$stem.png")
   if($LASTEXITCODE -ne 0){throw "Own-window screenshot verification failed"}
 }
 function Wait-State([scriptblock]$condition) {for($attempt=0;$attempt -lt 80;$attempt++){$value=Command;if(& $condition $value){return $value};Start-Sleep -Milliseconds 100};throw ("Native state timeout: "+($value|ConvertTo-Json -Depth 6))}
@@ -80,6 +82,7 @@ try {
     foreach($flag in @(0x08000000,0x00200000,0x00080000,0x80,0x8)){Assert-True (($flags -band $flag) -eq $flag) "Missing native window flag"}
     Assert-True (-not $initial.hybrid.webAllocated) "Idle allocated an island WebView2"
     Assert-True (-not $initial.hybrid.trayAllocated) "Native spike prewarmed the unused tray WebView2"
+    Assert-True (-not $initial.hybrid.graphics.bundledFontsLoaded) "Idle eagerly allocated fonts"
     foreach($theme in @("light","dark")) {
       $null=Command "idle";Start-Sleep -Milliseconds 400
       Capture-Native "idle" $theme $scale
@@ -87,6 +90,7 @@ try {
       if($ReducedMotion){Assert-True ($live.hybrid.reducedMotion -and $live.hybrid.geometry.width -eq 320) "Reduced motion must change geometry immediately"}
       Start-Sleep -Milliseconds 450;$live=Command
       Assert-True ($live.hybrid.geometry.width -eq 320 -and -not $live.hybrid.webAllocated) "Compact state must remain native"
+      Assert-True $live.hybrid.graphics.bundledFontsLoaded "Native compact did not load bundled Geist faces"
       Capture-Native "live" $theme $scale
       Cursor 360 15;$inside=Wait-State {param($r)$r.interaction.decision.interactive};Assert-True (([NativeIslandProbe]::GetWindowLongPtr($handle,-20).ToInt64() -band 0x20) -eq 0) "Native pill did not accept input"
       Cursor 100 250;$outside=Wait-State {param($r)-not $r.interaction.decision.interactive};Assert-True (([NativeIslandProbe]::GetWindowLongPtr($handle,-20).ToInt64() -band 0x20) -ne 0) "Native margins did not pass clicks through"
@@ -97,7 +101,7 @@ try {
       $null=Command "idle";Start-Sleep -Milliseconds 400;$before=Command;Start-Sleep -Milliseconds 1100;$after=Command
       Assert-True ($before.hybrid.graphics.commits -eq $after.hybrid.graphics.commits -and $before.hybrid.graphics.surfaceDraws -eq $after.hybrid.graphics.surfaceDraws) "Idle scheduled renderer updates"
       $null=Command "peek";$null=Wait-State {param($r)$r.hybrid.owner -eq "webview" -and $r.hybrid.webAllocated}
-      Push-Location $root;try{& node scripts/verify-native-handoff.mjs $endpoint $theme $scale;if($LASTEXITCODE -ne 0){throw "Web handoff verification failed"}}finally{Pop-Location}
+      Push-Location $root;try{& node scripts/verify-native-handoff.mjs $endpoint $theme $scale $OutputPrefix $OutputDir;if($LASTEXITCODE -ne 0){throw "Web handoff verification failed"}}finally{Pop-Location}
       $closed=Wait-State {param($r)$r.hybrid.owner -eq "native" -and -not $r.hybrid.webAllocated}
       for($attempt=0;$attempt -lt 50;$attempt++) {if([NativeIslandProbe]::Find($appProcess.Id,"Nabbit Island Spike") -eq [IntPtr]::Zero){break};Start-Sleep -Milliseconds 100}
       Assert-True ([NativeIslandProbe]::Find($appProcess.Id,"Nabbit Island Spike") -eq [IntPtr]::Zero) "Collapsed state retained the island webview"
@@ -107,8 +111,8 @@ try {
       $drop=Wait-State {param($r)$r.hybrid.desired -eq "drop" -and $r.hybrid.owner -eq "webview"}
       if($scale -eq "1.5" -and $theme -eq "dark") {
         $fixture=Join-Path $profile "drop-fixture.png"
-        Copy-Item -LiteralPath (Join-Path $root "progress/v2/M1/v04-native-dark@1.5x-idle.png") -Destination $fixture
-        Push-Location $root;try{& node scripts/verify-native-hybrid-drop.mjs $endpoint $fixture;if($LASTEXITCODE -ne 0){throw "Hybrid native file drop failed"}}finally{Pop-Location}
+        Copy-Item -LiteralPath (Join-Path $root "$OutputDir/$OutputPrefix-native-dark@1.5x-idle.png") -Destination $fixture
+        Push-Location $root;try{& node scripts/verify-native-hybrid-drop.mjs $endpoint $fixture $OutputPrefix $OutputDir;if($LASTEXITCODE -ne 0){throw "Hybrid native file drop failed"}}finally{Pop-Location}
       }
       Cursor 80 300 $false
       $cancelled=Wait-State {param($r)$r.hybrid.desired -eq "idle" -and -not $r.hybrid.webAllocated}
@@ -132,8 +136,8 @@ try {
     & python -c 'import sqlite3,sys; c=sqlite3.connect(sys.argv[1]); assert c.execute("SELECT COUNT(*) FROM downloads").fetchone()[0]==0' (Join-Path $env:NABBIT_APP_DATA_DIR "nabbit.sqlite3")
     if($LASTEXITCODE -ne 0){throw "Island interaction started a download"}
   }
-  $reportName=if($ReducedMotion){"v04-native-reduced-checks.json"}else{"v04-native-checks.json"}
-  Write-JsonFile (Join-Path $root "progress/v2/M1/$reportName") @{reports=$reports;postWebviewTeardown=$teardown;executableSha256=(Get-FileHash -LiteralPath $exePath -Algorithm SHA256).Hash.ToLowerInvariant();capture="Windows.Graphics.Capture CreateForWindow; own HWND only; premultiplied BGRA encoded as transparent PNG";lazyTrayFactory=$true;noDownloadsStarted=$true;realCursorUntouched=$true;displaySettingsUntouched=$true}
+  $reportName=if($ReducedMotion){"$OutputPrefix-native-reduced-checks.json"}else{"$OutputPrefix-native-checks.json"}
+  Write-JsonFile (Join-Path $root "$OutputDir/$reportName") @{reports=$reports;postWebviewTeardown=$teardown;executableSha256=(Get-FileHash -LiteralPath $exePath -Algorithm SHA256).Hash.ToLowerInvariant();capture="Windows.Graphics.Capture CreateForWindow; own HWND only; premultiplied BGRA encoded as transparent PNG";lazyTrayFactory=$true;noDownloadsStarted=$true;realCursorUntouched=$true;displaySettingsUntouched=$true}
   Write-Output "Passed native compact rendering, input/fullscreen policy, idle counters, and lazy WebView2 handoffs in $($reports.Count) contexts."
 } finally {
   if($appProcess -and -not $appProcess.HasExited){Stop-Process -Id $appProcess.Id -Force;$appProcess.WaitForExit()}
