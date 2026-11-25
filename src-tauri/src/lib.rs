@@ -6,6 +6,10 @@ mod error;
 mod retention;
 mod util;
 
+#[cfg(all(windows, feature = "island-spike"))]
+#[path = "../../spikes/island/native.rs"]
+mod island_spike;
+
 use std::{
     fs,
     path::{Path, PathBuf},
@@ -108,6 +112,8 @@ pub fn run() {
             app.manage(state.clone());
 
             setup_tray(app.handle())?;
+            #[cfg(all(windows, feature = "island-spike"))]
+            island_spike::open_if_enabled(app.handle())?;
             clipboard::watcher::spawn_clipboard_watcher(
                 app.handle().clone(),
                 db.clone(),
@@ -116,7 +122,19 @@ pub fn run() {
             retention::spawn_retention_gc(db.clone(), shutdown.clone());
             spawn_acceptance_automation(state.clone());
             let settings = db.get_settings()?;
-            apply_runtime_settings(app.handle(), &state, &settings);
+            let configure_os_integration = {
+                #[cfg(all(windows, feature = "island-spike"))]
+                {
+                    !island_spike::session_requested()
+                }
+                #[cfg(not(all(windows, feature = "island-spike")))]
+                {
+                    true
+                }
+            };
+            if configure_os_integration {
+                apply_runtime_settings(app.handle(), &state, &settings);
+            }
             commands::download::spawn_engine_update(state.clone());
             if !settings.start_hidden {
                 let _ = show_popover(app.handle());

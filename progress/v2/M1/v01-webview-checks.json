@@ -1,0 +1,73 @@
+{
+  "surface": "Tauri WebView2",
+  "hostLogicalSize": [
+    720,
+    460
+  ],
+  "reports": [
+    {
+      "name": "native",
+      "states": [
+        {
+          "state": "idle",
+          "width": 112,
+          "height": 26,
+          "radius": 13,
+          "host": [
+            720,
+            460,
+            720,
+            460
+          ]
+        },
+        {
+          "state": "live",
+          "width": 320,
+          "height": 32,
+          "radius": 16,
+          "host": [
+            720,
+            460,
+            720,
+            460
+          ]
+        },
+        {
+          "state": "peek",
+          "width": 400,
+          "height": 74,
+          "radius": 24,
+          "host": [
+            720,
+            460,
+            720,
+            460
+          ]
+        },
+        {
+          "state": "expanded",
+          "width": 680,
+          "height": 297,
+          "radius": 28,
+          "host": [
+            720,
+            460,
+            720,
+            460
+          ]
+        }
+      ],
+      "motion": {
+        "reducedMotion": false,
+        "cssWidthTransition": true,
+        "midpointWidth": 278.140625
+      },
+      "idleScheduling": {
+        "interval": 0,
+        "timeout": 0,
+        "frame": 0
+      },
+      "runtimeErrors": []
+    }
+  ]
+}

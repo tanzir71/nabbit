@@ -1,0 +1,23 @@
+// Original Figma exports; preserve their intrinsic dimensions at each callsite.
+export const assets = {
+  liveRing: new URL("./assets/liveRing.svg", import.meta.url).href,
+  peekPause: new URL("./assets/peekPause.svg", import.meta.url).href,
+  peekX: new URL("./assets/peekX.svg", import.meta.url).href,
+  download: new URL("./assets/download.svg", import.meta.url).href,
+  stickyNote: new URL("./assets/stickyNote.svg", import.meta.url).href,
+  clipboardList: new URL("./assets/clipboardList.svg", import.meta.url).href,
+  folder: new URL("./assets/folder.svg", import.meta.url).href,
+  audioLines: new URL("./assets/audioLines.svg", import.meta.url).href,
+  timer: new URL("./assets/timer.svg", import.meta.url).href,
+  search: new URL("./assets/search.svg", import.meta.url).href,
+  panelTop: new URL("./assets/panelTop.svg", import.meta.url).href,
+  settings: new URL("./assets/settings.svg", import.meta.url).href,
+  scissors: new URL("./assets/scissors.svg", import.meta.url).href,
+  captions: new URL("./assets/captions.svg", import.meta.url).href,
+  ellipsis: new URL("./assets/ellipsis.svg", import.meta.url).href,
+  download1: new URL("./assets/download1.svg", import.meta.url).href,
+  progressRing: new URL("./assets/progressRing.svg", import.meta.url).href,
+  pause: new URL("./assets/pause.svg", import.meta.url).href,
+  progressRing1: new URL("./assets/progressRing1.svg", import.meta.url).href,
+  ellipsis1: new URL("./assets/ellipsis1.svg", import.meta.url).href,
+};
