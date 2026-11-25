@@ -1,4 +1,5 @@
 import { useState } from "react";
+import { BrandMark } from "../components/BrandMark";
 import { Badge } from "../components/Badge";
 import { Button } from "../components/Button";
 import { DesignIcon } from "../components/DesignIcon";
@@ -13,6 +14,8 @@ import { Select } from "../components/Select";
 import { Tab } from "../components/Tab";
 import { Toggle } from "../components/Toggle";
 const colours: NoteColor[] = ["default", "blue", "purple", "green", "pink", "gray"];
+const tray16 = new URL("../assets/brand/tray-16.svg", import.meta.url).href;
+const tray24 = new URL("../assets/brand/tray-24.svg", import.meta.url).href;
 const initialItems: ChecklistItem[] = [
   { id: "dpi", text: "Verify island at 150% DPI", checked: true },
   { id: "demo", text: "Record demo GIF", checked: false },
@@ -57,6 +60,15 @@ export function ComponentsPreview() {
         <output role="status">{actions} preview actions</output>
       </header>
       <div className="preview-boards">
+        <section id="brand-foundations" aria-label="Logo and mark" data-figma-node="12:478">
+          <BrandMark size={16} />
+          <BrandMark size={24} />
+          <BrandMark size={32} />
+          <BrandMark size={64} />
+          <BrandMark size={128} />
+          <img src={tray16} width={16} height={16} alt="" className="preview-tray-glyph" />
+          <img src={tray24} width={24} height={24} alt="" className="preview-tray-glyph" />
+        </section>
         <section id="core-foundations" aria-label="Core components" data-figma-node="5:408">
           <div className="foundation-set foundation-buttons">
             {(

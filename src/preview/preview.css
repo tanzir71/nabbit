@@ -25,6 +25,22 @@
   align-items: flex-start;
   gap: 24px;
 }
+#brand-foundations {
+  display: flex;
+  align-items: center;
+  gap: 24px;
+  padding: 28px;
+  border: 1px dashed var(--border-subtle);
+  border-radius: 16px;
+  background: var(--bg-surface);
+}
+#brand-foundations img {
+  display: block;
+  max-width: none;
+}
+[data-theme="dark"] .preview-tray-glyph {
+  filter: brightness(0) invert(1);
+}
 #core-foundations {
   display: flex;
   flex-direction: column;

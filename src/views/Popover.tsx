@@ -2,6 +2,7 @@ import { Download, History, Settings, X } from "lucide-react";
 import { lazy, Suspense, useMemo, useState } from "react";
 import { Segmented } from "../components/Segmented";
 import { IconButton } from "../components/IconButton";
+import { BrandMark } from "../components/BrandMark";
 import { useAppStore } from "../store/useAppStore";
 import { ClipboardList } from "./ClipboardList";
 import { DownloadPanel } from "./DownloadPanel";
@@ -45,9 +46,7 @@ export function Popover() {
     <section className="mx-auto flex min-h-screen w-full max-w-[460px] flex-col overflow-hidden border-x border-subtle bg-surface shadow-popover">
       <header className="flex h-14 shrink-0 items-center justify-between border-b border-subtle px-4">
         <div className="flex min-w-0 items-center gap-2">
-          <div className="grid size-8 place-items-center rounded-md bg-action-primary text-sm font-bold text-action-on-primary">
-            N
-          </div>
+          <BrandMark />
           <div className="min-w-0">
             <h1 className="truncate text-sm font-semibold">Nabbit</h1>
             <p className="truncate text-xs text-secondary">Nab it. Keep it.</p>

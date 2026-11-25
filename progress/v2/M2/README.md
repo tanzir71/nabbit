@@ -1,5 +1,13 @@
 # M2 evidence — foundations in progress
 
+## V1.5 — capsule mark and icons
+
+[Implementation, automated evidence and reproduction](V1.5.md). Original Figma
+tiles now supply app icons, the tray header and favicons. Windows tray glyphs
+follow the independent taskbar theme through native notifications without
+polling. The `v15-*` reports and 28 PNGs cover four browser theme/scale contexts,
+seven embedded icon frames, Win32 decoding and an isolated packaged-app smoke.
+
 ## V1.4 — production entries and island bundle boundary
 
 The default Vite build now emits `index.html`, `island.html`, `settings.html` and

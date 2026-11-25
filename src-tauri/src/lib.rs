@@ -4,6 +4,9 @@ mod db;
 mod download;
 mod error;
 mod retention;
+#[cfg(windows)]
+mod taskbar_theme;
+mod tray_icon;
 mod util;
 
 #[cfg(all(windows, feature = "island-spike"))]
@@ -36,7 +39,6 @@ use db::{models::AppSettings, Database};
 use download::manager::DownloadManager;
 use error::Result;
 use tauri::{
-    image::Image,
     menu::{Menu, MenuItem},
     tray::{MouseButton, MouseButtonState, TrayIconBuilder, TrayIconEvent},
     AppHandle, Emitter, Manager, PhysicalPosition, Wry,
@@ -197,6 +199,10 @@ pub fn run() {
                 let _ = (api, code);
                 if let Some(state) = app.try_state::<AppState>() {
                     state.shutdown.store(true, Ordering::Relaxed);
+                }
+                #[cfg(windows)]
+                if let Some(watcher) = app.try_state::<taskbar_theme::Watcher>() {
+                    watcher.stop();
                 }
             }
         });
@@ -490,7 +496,11 @@ fn setup_tray(app: &AppHandle<Wry>) -> Result<()> {
 
     TrayIconBuilder::with_id("main-tray")
         .tooltip("Nabbit")
-        .icon(tray_image())
+        .icon(tray_icon::image(
+            tray_icon::initial_theme(),
+            tray_icon::physical_size(),
+        )?)
+        .icon_as_template(cfg!(target_os = "macos"))
         .menu(&menu)
         .show_menu_on_left_click(false)
         .on_tray_icon_event(|tray, event| {
@@ -552,28 +562,28 @@ fn setup_tray(app: &AppHandle<Wry>) -> Result<()> {
             }
         })
         .build(app)?;
-    Ok(())
-}
-
-fn tray_image() -> Image<'static> {
-    let size = 32usize;
-    let mut rgba = vec![0u8; size * size * 4];
-    for y in 0..size {
-        for x in 0..size {
-            let dx = x as f32 - 16.0;
-            let dy = y as f32 - 16.0;
-            let dist = (dx * dx + dy * dy).sqrt();
-            let in_ring = (9.0..=13.0).contains(&dist);
-            let in_pin = (14..=18).contains(&x) && (7..=24).contains(&y);
-            let in_hook = y > 20 && (10..=19).contains(&x);
-            if in_ring || in_pin || in_hook {
-                let index = (y * size + x) * 4;
-                rgba[index] = 20;
-                rgba[index + 1] = 24;
-                rgba[index + 2] = 38;
-                rgba[index + 3] = 255;
+    #[cfg(windows)]
+    {
+        let handle = app.clone();
+        match taskbar_theme::Watcher::start(move |theme| {
+            let app = handle.clone();
+            // Never wait for the UI from the worker: shutdown joins this thread.
+            let _ = handle.run_on_main_thread(move || {
+                if let Some(tray) = app.tray_by_id("main-tray") {
+                    match tray_icon::image(theme, tray_icon::physical_size())
+                        .and_then(|image| tray.set_icon(Some(image)))
+                    {
+                        Ok(()) => {}
+                        Err(error) => eprintln!("Could not update taskbar glyph: {error}"),
+                    }
+                }
+            });
+        }) {
+            Ok(watcher) => {
+                app.manage(watcher);
             }
+            Err(error) => eprintln!("Taskbar theme notifications unavailable: {error}"),
         }
     }
-    Image::new_owned(rgba, size as u32, size as u32)
+    Ok(())
 }
