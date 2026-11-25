@@ -7,6 +7,7 @@ const root = fileURLToPath(new URL("../", import.meta.url));
 for (const args of [
   ["node_modules/typescript/bin/tsc", "-b"],
   ["node_modules/vite/bin/vite.js", "build"],
+  ["scripts/verify-entry-bundles.mjs"],
 ]) {
   const result = spawnSync(process.execPath, args, {
     cwd: root,

@@ -1,0 +1,549 @@
+{
+  "budgetBytes": 120000,
+  "budgetDefinition": "Sum of independently gzipped initial JS chunks, including shared chunks and HTML module preloads; 120 KB = 120,000 bytes",
+  "entries": {
+    "index.html": {
+      "file": "assets/main-B1CWXSF6.js",
+      "initial": [
+        "assets/Segmented-u5qdRRdW.js",
+        "assets/client-CGIE4nOf.js",
+        "assets/main-B1CWXSF6.js",
+        "assets/useTheme-fWzmh3d_.js",
+        "assets/x-CZnvUhwV.js"
+      ],
+      "deferred": [
+        "assets/SettingsPanel-Ch0Tnz6d.js",
+        "assets/Toggle-C-zmFJ35.js"
+      ],
+      "all": [
+        "assets/Segmented-u5qdRRdW.js",
+        "assets/SettingsPanel-Ch0Tnz6d.js",
+        "assets/Toggle-C-zmFJ35.js",
+        "assets/client-CGIE4nOf.js",
+        "assets/main-B1CWXSF6.js",
+        "assets/useTheme-fWzmh3d_.js",
+        "assets/x-CZnvUhwV.js"
+      ],
+      "initialGzipBytes": 73005,
+      "allReachableGzipBytes": 77490,
+      "initialModules": [
+        "index.html",
+        "node_modules/@tauri-apps/api/core.js",
+        "node_modules/@tauri-apps/api/dpi.js",
+        "node_modules/@tauri-apps/api/event.js",
+        "node_modules/@tauri-apps/api/external/tslib/tslib.es6.js",
+        "node_modules/@tauri-apps/api/image.js",
+        "node_modules/@tauri-apps/api/window.js",
+        "node_modules/fuse.js/dist/fuse.mjs",
+        "node_modules/lucide-react/dist/esm/Icon.js",
+        "node_modules/lucide-react/dist/esm/createLucideIcon.js",
+        "node_modules/lucide-react/dist/esm/defaultAttributes.js",
+        "node_modules/lucide-react/dist/esm/icons/circle-alert.js",
+        "node_modules/lucide-react/dist/esm/icons/copy.js",
+        "node_modules/lucide-react/dist/esm/icons/download.js",
+        "node_modules/lucide-react/dist/esm/icons/folder-open.js",
+        "node_modules/lucide-react/dist/esm/icons/history.js",
+        "node_modules/lucide-react/dist/esm/icons/link.js",
+        "node_modules/lucide-react/dist/esm/icons/pause.js",
+        "node_modules/lucide-react/dist/esm/icons/pin-off.js",
+        "node_modules/lucide-react/dist/esm/icons/pin.js",
+        "node_modules/lucide-react/dist/esm/icons/play.js",
+        "node_modules/lucide-react/dist/esm/icons/refresh-ccw.js",
+        "node_modules/lucide-react/dist/esm/icons/rotate-ccw.js",
+        "node_modules/lucide-react/dist/esm/icons/search.js",
+        "node_modules/lucide-react/dist/esm/icons/settings.js",
+        "node_modules/lucide-react/dist/esm/icons/shield-check.js",
+        "node_modules/lucide-react/dist/esm/icons/trash-2.js",
+        "node_modules/lucide-react/dist/esm/icons/x.js",
+        "node_modules/lucide-react/dist/esm/shared/src/utils.js",
+        "node_modules/react-dom/cjs/react-dom.production.min.js",
+        "node_modules/react-dom/client.js",
+        "node_modules/react-dom/index.js",
+        "node_modules/react/cjs/react-jsx-runtime.production.min.js",
+        "node_modules/react/cjs/react.production.min.js",
+        "node_modules/react/index.js",
+        "node_modules/react/jsx-runtime.js",
+        "node_modules/scheduler/cjs/scheduler.production.min.js",
+        "node_modules/scheduler/index.js",
+        "node_modules/use-sync-external-store/cjs/use-sync-external-store-shim.production.js",
+        "node_modules/use-sync-external-store/cjs/use-sync-external-store-shim/with-selector.production.js",
+        "node_modules/use-sync-external-store/shim/index.js",
+        "node_modules/use-sync-external-store/shim/with-selector.js",
+        "node_modules/zustand/esm/index.mjs",
+        "node_modules/zustand/esm/vanilla.mjs",
+        "src/App.tsx",
+        "src/components/Button.tsx",
+        "src/components/Field.tsx",
+        "src/components/IconButton.tsx",
+        "src/components/Segmented.tsx",
+        "src/components/Tab.tsx",
+        "src/lib/cn.ts",
+        "src/lib/ipc.ts",
+        "src/lib/search.ts",
+        "src/lib/theme.ts",
+        "src/lib/useTheme.ts",
+        "src/main.tsx",
+        "src/store/useAppStore.ts",
+        "src/views/ClipboardList.tsx",
+        "src/views/DownloadPanel.tsx",
+        "src/views/FirstRunNotice.tsx",
+        "src/views/Popover.tsx",
+        "virtual:commonjsHelpers.js",
+        "virtual:node_modules/react-dom/cjs/react-dom.production.min.js?commonjs-exports",
+        "virtual:node_modules/react-dom/client.js?commonjs-es-import",
+        "virtual:node_modules/react-dom/client.js?commonjs-exports",
+        "virtual:node_modules/react-dom/index.js?commonjs-module",
+        "virtual:node_modules/react/cjs/react-jsx-runtime.production.min.js?commonjs-exports",
+        "virtual:node_modules/react/cjs/react.production.min.js?commonjs-exports",
+        "virtual:node_modules/react/index.js?commonjs-es-import",
+        "virtual:node_modules/react/index.js?commonjs-module",
+        "virtual:node_modules/react/jsx-runtime.js?commonjs-es-import",
+        "virtual:node_modules/react/jsx-runtime.js?commonjs-module",
+        "virtual:node_modules/scheduler/cjs/scheduler.production.min.js?commonjs-exports",
+        "virtual:node_modules/scheduler/index.js?commonjs-module",
+        "virtual:node_modules/use-sync-external-store/cjs/use-sync-external-store-shim.production.js?commonjs-exports",
+        "virtual:node_modules/use-sync-external-store/cjs/use-sync-external-store-shim/with-selector.production.js?commonjs-exports",
+        "virtual:node_modules/use-sync-external-store/shim/index.js?commonjs-module",
+        "virtual:node_modules/use-sync-external-store/shim/with-selector.js?commonjs-es-import",
+        "virtual:node_modules/use-sync-external-store/shim/with-selector.js?commonjs-module",
+        "virtual:vite/modulepreload-polyfill.js",
+        "virtual:vite/preload-helper.js"
+      ]
+    },
+    "island.html": {
+      "file": "assets/island-Db7N2b7W.js",
+      "initial": [
+        "assets/client-CGIE4nOf.js",
+        "assets/island-Db7N2b7W.js"
+      ],
+      "deferred": [],
+      "all": [
+        "assets/client-CGIE4nOf.js",
+        "assets/island-Db7N2b7W.js"
+      ],
+      "initialGzipBytes": 46346,
+      "allReachableGzipBytes": 46346,
+      "initialModules": [
+        "island.html",
+        "node_modules/react-dom/cjs/react-dom.production.min.js",
+        "node_modules/react-dom/client.js",
+        "node_modules/react-dom/index.js",
+        "node_modules/react/cjs/react-jsx-runtime.production.min.js",
+        "node_modules/react/cjs/react.production.min.js",
+        "node_modules/react/index.js",
+        "node_modules/react/jsx-runtime.js",
+        "node_modules/scheduler/cjs/scheduler.production.min.js",
+        "node_modules/scheduler/index.js",
+        "src/surfaces/island/island.css",
+        "src/surfaces/island/main.tsx",
+        "virtual:commonjsHelpers.js",
+        "virtual:node_modules/react-dom/cjs/react-dom.production.min.js?commonjs-exports",
+        "virtual:node_modules/react-dom/client.js?commonjs-es-import",
+        "virtual:node_modules/react-dom/client.js?commonjs-exports",
+        "virtual:node_modules/react-dom/index.js?commonjs-module",
+        "virtual:node_modules/react/cjs/react-jsx-runtime.production.min.js?commonjs-exports",
+        "virtual:node_modules/react/cjs/react.production.min.js?commonjs-exports",
+        "virtual:node_modules/react/index.js?commonjs-es-import",
+        "virtual:node_modules/react/index.js?commonjs-module",
+        "virtual:node_modules/react/jsx-runtime.js?commonjs-es-import",
+        "virtual:node_modules/react/jsx-runtime.js?commonjs-module",
+        "virtual:node_modules/scheduler/cjs/scheduler.production.min.js?commonjs-exports",
+        "virtual:node_modules/scheduler/index.js?commonjs-module",
+        "virtual:vite/modulepreload-polyfill.js"
+      ]
+    },
+    "settings.html": {
+      "file": "assets/settings-Ba671dJ4.js",
+      "initial": [
+        "assets/Segmented-u5qdRRdW.js",
+        "assets/SettingsPanel-Ch0Tnz6d.js",
+        "assets/Toggle-C-zmFJ35.js",
+        "assets/client-CGIE4nOf.js",
+        "assets/settings-Ba671dJ4.js",
+        "assets/useTheme-fWzmh3d_.js",
+        "assets/x-CZnvUhwV.js"
+      ],
+      "deferred": [],
+      "all": [
+        "assets/Segmented-u5qdRRdW.js",
+        "assets/SettingsPanel-Ch0Tnz6d.js",
+        "assets/Toggle-C-zmFJ35.js",
+        "assets/client-CGIE4nOf.js",
+        "assets/settings-Ba671dJ4.js",
+        "assets/useTheme-fWzmh3d_.js",
+        "assets/x-CZnvUhwV.js"
+      ],
+      "initialGzipBytes": 61570,
+      "allReachableGzipBytes": 61570,
+      "initialModules": [
+        "node_modules/@tauri-apps/api/core.js",
+        "node_modules/@tauri-apps/api/dpi.js",
+        "node_modules/@tauri-apps/api/event.js",
+        "node_modules/@tauri-apps/api/external/tslib/tslib.es6.js",
+        "node_modules/@tauri-apps/api/image.js",
+        "node_modules/@tauri-apps/api/window.js",
+        "node_modules/lucide-react/dist/esm/Icon.js",
+        "node_modules/lucide-react/dist/esm/createLucideIcon.js",
+        "node_modules/lucide-react/dist/esm/defaultAttributes.js",
+        "node_modules/lucide-react/dist/esm/icons/external-link.js",
+        "node_modules/lucide-react/dist/esm/icons/refresh-ccw.js",
+        "node_modules/lucide-react/dist/esm/icons/trash-2.js",
+        "node_modules/lucide-react/dist/esm/icons/x.js",
+        "node_modules/lucide-react/dist/esm/shared/src/utils.js",
+        "node_modules/react-dom/cjs/react-dom.production.min.js",
+        "node_modules/react-dom/client.js",
+        "node_modules/react-dom/index.js",
+        "node_modules/react/cjs/react-jsx-runtime.production.min.js",
+        "node_modules/react/cjs/react.production.min.js",
+        "node_modules/react/index.js",
+        "node_modules/react/jsx-runtime.js",
+        "node_modules/scheduler/cjs/scheduler.production.min.js",
+        "node_modules/scheduler/index.js",
+        "node_modules/use-sync-external-store/cjs/use-sync-external-store-shim.production.js",
+        "node_modules/use-sync-external-store/cjs/use-sync-external-store-shim/with-selector.production.js",
+        "node_modules/use-sync-external-store/shim/index.js",
+        "node_modules/use-sync-external-store/shim/with-selector.js",
+        "node_modules/zustand/esm/index.mjs",
+        "node_modules/zustand/esm/vanilla.mjs",
+        "settings.html",
+        "src/assets/components/assets.ts",
+        "src/components/Button.tsx",
+        "src/components/Field.tsx",
+        "src/components/IconButton.tsx",
+        "src/components/Segmented.tsx",
+        "src/components/Tab.tsx",
+        "src/components/Toggle.tsx",
+        "src/lib/cn.ts",
+        "src/lib/ipc.ts",
+        "src/lib/theme.ts",
+        "src/lib/useTheme.ts",
+        "src/store/useAppStore.ts",
+        "src/surfaces/settings/SettingsApp.tsx",
+        "src/surfaces/settings/main.tsx",
+        "src/views/SettingsPanel.tsx",
+        "virtual:commonjsHelpers.js",
+        "virtual:node_modules/react-dom/cjs/react-dom.production.min.js?commonjs-exports",
+        "virtual:node_modules/react-dom/client.js?commonjs-es-import",
+        "virtual:node_modules/react-dom/client.js?commonjs-exports",
+        "virtual:node_modules/react-dom/index.js?commonjs-module",
+        "virtual:node_modules/react/cjs/react-jsx-runtime.production.min.js?commonjs-exports",
+        "virtual:node_modules/react/cjs/react.production.min.js?commonjs-exports",
+        "virtual:node_modules/react/index.js?commonjs-es-import",
+        "virtual:node_modules/react/index.js?commonjs-module",
+        "virtual:node_modules/react/jsx-runtime.js?commonjs-es-import",
+        "virtual:node_modules/react/jsx-runtime.js?commonjs-module",
+        "virtual:node_modules/scheduler/cjs/scheduler.production.min.js?commonjs-exports",
+        "virtual:node_modules/scheduler/index.js?commonjs-module",
+        "virtual:node_modules/use-sync-external-store/cjs/use-sync-external-store-shim.production.js?commonjs-exports",
+        "virtual:node_modules/use-sync-external-store/cjs/use-sync-external-store-shim/with-selector.production.js?commonjs-exports",
+        "virtual:node_modules/use-sync-external-store/shim/index.js?commonjs-module",
+        "virtual:node_modules/use-sync-external-store/shim/with-selector.js?commonjs-es-import",
+        "virtual:node_modules/use-sync-external-store/shim/with-selector.js?commonjs-module",
+        "virtual:vite/modulepreload-polyfill.js"
+      ]
+    },
+    "sticky.html": {
+      "file": "assets/sticky-CZ6xGMHA.js",
+      "initial": [
+        "assets/client-CGIE4nOf.js",
+        "assets/sticky-CZ6xGMHA.js",
+        "assets/useTheme-fWzmh3d_.js"
+      ],
+      "deferred": [],
+      "all": [
+        "assets/client-CGIE4nOf.js",
+        "assets/sticky-CZ6xGMHA.js",
+        "assets/useTheme-fWzmh3d_.js"
+      ],
+      "initialGzipBytes": 50964,
+      "allReachableGzipBytes": 50964,
+      "initialModules": [
+        "node_modules/@tauri-apps/api/core.js",
+        "node_modules/@tauri-apps/api/dpi.js",
+        "node_modules/@tauri-apps/api/event.js",
+        "node_modules/@tauri-apps/api/external/tslib/tslib.es6.js",
+        "node_modules/@tauri-apps/api/image.js",
+        "node_modules/@tauri-apps/api/window.js",
+        "node_modules/react-dom/cjs/react-dom.production.min.js",
+        "node_modules/react-dom/client.js",
+        "node_modules/react-dom/index.js",
+        "node_modules/react/cjs/react-jsx-runtime.production.min.js",
+        "node_modules/react/cjs/react.production.min.js",
+        "node_modules/react/index.js",
+        "node_modules/react/jsx-runtime.js",
+        "node_modules/scheduler/cjs/scheduler.production.min.js",
+        "node_modules/scheduler/index.js",
+        "src/lib/theme.ts",
+        "src/lib/useTheme.ts",
+        "src/surfaces/sticky/StickyApp.tsx",
+        "src/surfaces/sticky/main.tsx",
+        "src/surfaces/sticky/sticky.css",
+        "sticky.html",
+        "virtual:commonjsHelpers.js",
+        "virtual:node_modules/react-dom/cjs/react-dom.production.min.js?commonjs-exports",
+        "virtual:node_modules/react-dom/client.js?commonjs-es-import",
+        "virtual:node_modules/react-dom/client.js?commonjs-exports",
+        "virtual:node_modules/react-dom/index.js?commonjs-module",
+        "virtual:node_modules/react/cjs/react-jsx-runtime.production.min.js?commonjs-exports",
+        "virtual:node_modules/react/cjs/react.production.min.js?commonjs-exports",
+        "virtual:node_modules/react/index.js?commonjs-es-import",
+        "virtual:node_modules/react/index.js?commonjs-module",
+        "virtual:node_modules/react/jsx-runtime.js?commonjs-es-import",
+        "virtual:node_modules/react/jsx-runtime.js?commonjs-module",
+        "virtual:node_modules/scheduler/cjs/scheduler.production.min.js?commonjs-exports",
+        "virtual:node_modules/scheduler/index.js?commonjs-module",
+        "virtual:vite/modulepreload-polyfill.js"
+      ]
+    }
+  },
+  "chunks": {
+    "assets/components-mgD_H6a9.js": {
+      "imports": [
+        "assets/client-CGIE4nOf.js",
+        "assets/Segmented-u5qdRRdW.js",
+        "assets/Toggle-C-zmFJ35.js"
+      ],
+      "dynamicImports": [],
+      "modules": [
+        "src/components/Badge.tsx",
+        "src/components/DesignIcon.tsx",
+        "src/components/Kbd.tsx",
+        "src/components/NoteCard.tsx",
+        "src/components/PresetChip.tsx",
+        "src/components/ProgressRing.tsx",
+        "src/components/Select.tsx",
+        "src/preview/ComponentsPreview.tsx",
+        "src/preview/preview.css",
+        "src/preview/main.tsx",
+        "components.html"
+      ],
+      "sha256": "ecd6d6c4d417071e5ecdd9028d1a72d3521b1f22aaf0ddc58b163b4d7ca202dd",
+      "bytes": 10115,
+      "gzipBytes": 3528
+    },
+    "assets/main-B1CWXSF6.js": {
+      "imports": [
+        "assets/client-CGIE4nOf.js",
+        "assets/x-CZnvUhwV.js",
+        "assets/Segmented-u5qdRRdW.js",
+        "assets/useTheme-fWzmh3d_.js"
+      ],
+      "dynamicImports": [
+        "assets/SettingsPanel-Ch0Tnz6d.js",
+        "assets/x-CZnvUhwV.js"
+      ],
+      "modules": [
+        "node_modules/lucide-react/dist/esm/icons/circle-alert.js",
+        "node_modules/lucide-react/dist/esm/icons/copy.js",
+        "node_modules/lucide-react/dist/esm/icons/download.js",
+        "node_modules/lucide-react/dist/esm/icons/folder-open.js",
+        "node_modules/lucide-react/dist/esm/icons/history.js",
+        "node_modules/lucide-react/dist/esm/icons/link.js",
+        "node_modules/lucide-react/dist/esm/icons/pause.js",
+        "node_modules/lucide-react/dist/esm/icons/pin-off.js",
+        "node_modules/lucide-react/dist/esm/icons/pin.js",
+        "node_modules/lucide-react/dist/esm/icons/play.js",
+        "node_modules/lucide-react/dist/esm/icons/rotate-ccw.js",
+        "node_modules/lucide-react/dist/esm/icons/search.js",
+        "node_modules/lucide-react/dist/esm/icons/settings.js",
+        "node_modules/lucide-react/dist/esm/icons/shield-check.js",
+        "src/views/FirstRunNotice.tsx",
+        "virtual:vite/preload-helper.js",
+        "node_modules/fuse.js/dist/fuse.mjs",
+        "src/lib/search.ts",
+        "src/views/ClipboardList.tsx",
+        "src/views/DownloadPanel.tsx",
+        "src/views/Popover.tsx",
+        "src/App.tsx",
+        "src/main.tsx",
+        "index.html"
+      ],
+      "sha256": "1b76aea71204b0a34a30a9d45b7a2836d47e4501d9d4ea99ab4ad6b502dc7662",
+      "bytes": 48173,
+      "gzipBytes": 16464
+    },
+    "assets/island-Db7N2b7W.js": {
+      "imports": [
+        "assets/client-CGIE4nOf.js"
+      ],
+      "dynamicImports": [],
+      "modules": [
+        "src/surfaces/island/island.css",
+        "src/surfaces/island/main.tsx",
+        "island.html"
+      ],
+      "sha256": "c7323311ca759b6ca4d2dfc9803830d2136f5e2691e9718ca70a40ed78e61933",
+      "bytes": 279,
+      "gzipBytes": 212
+    },
+    "assets/settings-Ba671dJ4.js": {
+      "imports": [
+        "assets/client-CGIE4nOf.js",
+        "assets/useTheme-fWzmh3d_.js",
+        "assets/Segmented-u5qdRRdW.js",
+        "assets/x-CZnvUhwV.js",
+        "assets/SettingsPanel-Ch0Tnz6d.js",
+        "assets/Toggle-C-zmFJ35.js"
+      ],
+      "dynamicImports": [],
+      "modules": [
+        "src/surfaces/settings/SettingsApp.tsx",
+        "src/surfaces/settings/main.tsx",
+        "settings.html"
+      ],
+      "sha256": "2d8fdb6f1cc9b17a8ba0d1ab4973c417e63b47ee86a15008df71007144656989",
+      "bytes": 933,
+      "gzipBytes": 544
+    },
+    "assets/x-CZnvUhwV.js": {
+      "imports": [
+        "assets/client-CGIE4nOf.js",
+        "assets/useTheme-fWzmh3d_.js"
+      ],
+      "dynamicImports": [],
+      "modules": [
+        "src/lib/ipc.ts",
+        "node_modules/zustand/esm/vanilla.mjs",
+        "virtual:node_modules/use-sync-external-store/shim/with-selector.js?commonjs-module",
+        "virtual:node_modules/use-sync-external-store/cjs/use-sync-external-store-shim/with-selector.production.js?commonjs-exports",
+        "virtual:node_modules/use-sync-external-store/shim/index.js?commonjs-module",
+        "virtual:node_modules/use-sync-external-store/cjs/use-sync-external-store-shim.production.js?commonjs-exports",
+        "node_modules/use-sync-external-store/cjs/use-sync-external-store-shim.production.js",
+        "node_modules/use-sync-external-store/shim/index.js",
+        "node_modules/use-sync-external-store/cjs/use-sync-external-store-shim/with-selector.production.js",
+        "node_modules/use-sync-external-store/shim/with-selector.js",
+        "virtual:node_modules/use-sync-external-store/shim/with-selector.js?commonjs-es-import",
+        "node_modules/zustand/esm/index.mjs",
+        "src/store/useAppStore.ts",
+        "node_modules/lucide-react/dist/esm/shared/src/utils.js",
+        "node_modules/lucide-react/dist/esm/defaultAttributes.js",
+        "node_modules/lucide-react/dist/esm/Icon.js",
+        "node_modules/lucide-react/dist/esm/createLucideIcon.js",
+        "node_modules/lucide-react/dist/esm/icons/refresh-ccw.js",
+        "node_modules/lucide-react/dist/esm/icons/trash-2.js",
+        "node_modules/lucide-react/dist/esm/icons/x.js"
+      ],
+      "sha256": "7fb15178ed912627ff44d40926c6fe5731caa7e711f8abcd5bb6d8b171eafe0d",
+      "bytes": 13329,
+      "gzipBytes": 4870
+    },
+    "assets/Segmented-u5qdRRdW.js": {
+      "imports": [
+        "assets/client-CGIE4nOf.js"
+      ],
+      "dynamicImports": [],
+      "modules": [
+        "src/lib/cn.ts",
+        "src/components/Button.tsx",
+        "src/components/Field.tsx",
+        "src/components/IconButton.tsx",
+        "src/components/Tab.tsx",
+        "src/components/Segmented.tsx"
+      ],
+      "sha256": "8132cd429a1cc7a7d39e77929ac3c0f82c49a3edd00b1c50b1bd9c8e05b07786",
+      "bytes": 2231,
+      "gzipBytes": 1045
+    },
+    "assets/sticky-CZ6xGMHA.js": {
+      "imports": [
+        "assets/client-CGIE4nOf.js",
+        "assets/useTheme-fWzmh3d_.js"
+      ],
+      "dynamicImports": [],
+      "modules": [
+        "src/surfaces/sticky/StickyApp.tsx",
+        "src/surfaces/sticky/sticky.css",
+        "src/surfaces/sticky/main.tsx",
+        "sticky.html"
+      ],
+      "sha256": "94a8b31b46d5867bf95afd06cad6b7a44d9b01fa0724c3b68c87e64aa737ddb9",
+      "bytes": 505,
+      "gzipBytes": 338
+    },
+    "assets/useTheme-fWzmh3d_.js": {
+      "imports": [
+        "assets/client-CGIE4nOf.js"
+      ],
+      "dynamicImports": [],
+      "modules": [
+        "node_modules/@tauri-apps/api/external/tslib/tslib.es6.js",
+        "node_modules/@tauri-apps/api/core.js",
+        "node_modules/@tauri-apps/api/event.js",
+        "src/lib/theme.ts",
+        "node_modules/@tauri-apps/api/dpi.js",
+        "node_modules/@tauri-apps/api/image.js",
+        "node_modules/@tauri-apps/api/window.js",
+        "src/lib/useTheme.ts"
+      ],
+      "sha256": "28d146050f78d9f361c19b3d30818ea4db6b1e58c1ceeb1b4970e2874602383e",
+      "bytes": 16689,
+      "gzipBytes": 4492
+    },
+    "assets/client-CGIE4nOf.js": {
+      "imports": [],
+      "dynamicImports": [],
+      "modules": [
+        "virtual:vite/modulepreload-polyfill.js",
+        "virtual:commonjsHelpers.js",
+        "virtual:node_modules/react/jsx-runtime.js?commonjs-module",
+        "virtual:node_modules/react/cjs/react-jsx-runtime.production.min.js?commonjs-exports",
+        "virtual:node_modules/react/index.js?commonjs-module",
+        "virtual:node_modules/react/cjs/react.production.min.js?commonjs-exports",
+        "node_modules/react/cjs/react.production.min.js",
+        "node_modules/react/index.js",
+        "node_modules/react/cjs/react-jsx-runtime.production.min.js",
+        "node_modules/react/jsx-runtime.js",
+        "virtual:node_modules/react/jsx-runtime.js?commonjs-es-import",
+        "virtual:node_modules/react/index.js?commonjs-es-import",
+        "virtual:node_modules/react-dom/client.js?commonjs-exports",
+        "virtual:node_modules/react-dom/index.js?commonjs-module",
+        "virtual:node_modules/react-dom/cjs/react-dom.production.min.js?commonjs-exports",
+        "virtual:node_modules/scheduler/index.js?commonjs-module",
+        "virtual:node_modules/scheduler/cjs/scheduler.production.min.js?commonjs-exports",
+        "node_modules/scheduler/cjs/scheduler.production.min.js",
+        "node_modules/scheduler/index.js",
+        "node_modules/react-dom/cjs/react-dom.production.min.js",
+        "node_modules/react-dom/index.js",
+        "node_modules/react-dom/client.js",
+        "virtual:node_modules/react-dom/client.js?commonjs-es-import"
+      ],
+      "sha256": "d64cdd2765aa9b5e6a3206c752576da61f411f70b035b1aa6a5e2a403a039549",
+      "bytes": 143692,
+      "gzipBytes": 46134
+    },
+    "assets/SettingsPanel-Ch0Tnz6d.js": {
+      "imports": [
+        "assets/client-CGIE4nOf.js",
+        "assets/Segmented-u5qdRRdW.js",
+        "assets/Toggle-C-zmFJ35.js",
+        "assets/x-CZnvUhwV.js",
+        "assets/useTheme-fWzmh3d_.js"
+      ],
+      "dynamicImports": [],
+      "modules": [
+        "node_modules/lucide-react/dist/esm/icons/external-link.js",
+        "src/views/SettingsPanel.tsx"
+      ],
+      "sha256": "1245b3ac983d70c30d692fd0a684f35b3b4178b0e9a9f1cfc1e29513e7526690",
+      "bytes": 6149,
+      "gzipBytes": 2334
+    },
+    "assets/Toggle-C-zmFJ35.js": {
+      "imports": [
+        "assets/client-CGIE4nOf.js",
+        "assets/Segmented-u5qdRRdW.js"
+      ],
+      "dynamicImports": [],
+      "modules": [
+        "src/assets/components/assets.ts",
+        "src/components/Toggle.tsx"
+      ],
+      "sha256": "55d73855b2abe288f68aadd531e45bbe335f6734bf41dd618c4dec84fa575b3c",
+      "bytes": 14218,
+      "gzipBytes": 2151
+    }
+  },
+  "experimentalEntries": [
+    "components.html"
+  ]
+}

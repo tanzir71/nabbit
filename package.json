@@ -5,7 +5,7 @@
   "type": "module",
   "scripts": {
     "dev": "vite --host 127.0.0.1 --port 1420",
-    "build": "npm run tokens && tsc -b && vite build",
+    "build": "npm run tokens && tsc -b && vite build && npm run verify:bundles",
     "build:spike": "node scripts/build-island-spike.mjs",
     "preview": "vite preview",
     "tauri": "tauri",
@@ -20,7 +20,8 @@
     "verify": "npm run verify:fonts && npm run verify:tokens && npm run typecheck && npm run lint && npm test -- --run && npm run build",
     "verify:site": "node scripts/verify-site.mjs",
     "verify:fonts": "node scripts/verify-font-assets.mjs",
-    "build:components": "node scripts/build-components.mjs"
+    "build:components": "node scripts/build-components.mjs",
+    "verify:bundles": "node scripts/verify-entry-bundles.mjs"
   },
   "dependencies": {
     "@tauri-apps/api": "^2.12.5",

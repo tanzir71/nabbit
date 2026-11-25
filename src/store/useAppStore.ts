@@ -21,6 +21,7 @@ interface AppStore {
   loading: boolean;
   error: string | null;
   loadInitialData: () => Promise<void>;
+  loadSettingsData: () => Promise<void>;
   saveSettings: (settings: AppSettings) => Promise<void>;
   acknowledgeFirstRun: () => Promise<void>;
   setLastTab: (lastTab: AppSettings["lastTab"]) => Promise<void>;
@@ -41,6 +42,8 @@ interface AppStore {
   repairEngine: () => Promise<void>;
 }
 
+let settingsLoad: Promise<void> | null = null;
+
 export const useAppStore = create<AppStore>((set, get) => ({
   settings: null,
   clipboardEntries: [],
@@ -51,6 +54,27 @@ export const useAppStore = create<AppStore>((set, get) => ({
   stats: null,
   loading: true,
   error: null,
+  loadSettingsData: () => {
+    if (settingsLoad) return settingsLoad;
+    set({ loading: true, error: null });
+    const pending = Promise.resolve().then(async () => {
+      try {
+        const [settings, engine, stats] = await Promise.all([
+          api.getSettings(),
+          api.getEngineStatus(),
+          api.getStorageStats(),
+        ]);
+        set({ settings, engine, stats, loading: false });
+      } catch (error) {
+        set({ error: error instanceof Error ? error.message : String(error), loading: false });
+      }
+    });
+    settingsLoad = pending;
+    void pending.finally(() => {
+      settingsLoad = null;
+    });
+    return pending;
+  },
   loadInitialData: async () => {
     set({ loading: true, error: null });
     try {

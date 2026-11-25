@@ -740,7 +740,7 @@ Commit after every task (§0.1). Lines marked **MILESTONE** are tasks of their o
 - [x] V1.1 Tokens (§4.1) as CSS variables + Tailwind mapping, light/dark, `[data-theme]` driven by the Windows theme with an override; also emit `docs/assets/tokens.css` for the site.
 - [x] V1.2 Bundle Geist + Geist Mono; remove Inter from the font stack.
 - [x] V1.3 Rebuild/extend core components (§4.5) on a components preview page; compare against Foundations `5:408`.
-- [ ] V1.4 Multi-entry Vite build (`index`, `island`, `settings`, `sticky`); island bundle budget ≤ 120 KB gzipped JS (record it).
+- [x] V1.4 Multi-entry Vite build (`index`, `island`, `settings`, `sticky`); island bundle budget ≤ 120 KB gzipped JS (record it).
 - [ ] V1.5 New mark and icons (`12:478`): app icons, monochrome tray glyph for light/dark taskbars, site favicon.
 - [ ] V1.6 Playwright screenshot harness: Vite preview with mocked IPC, scale 1 and 1.5, light and dark, writing to `progress/v2/M<n>/`.
 - [ ] **MILESTONE M2 — Design foundations.**

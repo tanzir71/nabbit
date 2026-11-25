@@ -1,5 +1,114 @@
 # M2 evidence — foundations in progress
 
+## V1.4 — production entries and island bundle boundary
+
+The default Vite build now emits `index.html`, `island.html`, `settings.html` and
+`sticky.html`. Component-preview and spike entries remain opt-in and are additive
+to those four production entries. No dependency or native window lifecycle was
+added in this task.
+
+- `index.html` keeps the existing tray app. Its settings panel now loads only
+  when opened, through a React lazy boundary.
+- `island.html` is an always-dark, transparent foundation host with the Figma
+  `7:2` idle shape (112×26/r13, 6px top offset in a 720×460 host). It imports only
+  React/DOM and foundation CSS, starts no services and schedules no idle work.
+  Native compact remains the chosen renderer; the activity bus, lazy module
+  bodies and complete larger views arrive in V2 and the following module tasks.
+- `settings.html` mounts the existing controls independently. A coalesced startup
+  reads settings, engine status and storage counts, without reading clipboard
+  contents, download history, staged URLs or metadata. It supports loading/error/
+  retry and saved appearance. Close hides the current native host under its
+  existing permission, or returns to the tray entry in a browser.
+- `sticky.html` provides a themed unbound-note state, fits a 280px viewport, and
+  reads the shared appearance cache on open/reload. It does not invent a note,
+  editor or save. Note binding/editing/persistence remains V4; full native settings
+  and cross-window integration remain V6. The current sticky frame uses the
+  foundation font/colour/radius values, not the completed `14:531` widget.
+
+`verify:bundles` runs after normal, component and spike builds. Final Rollup module
+attribution is kept in ignored `node_modules/.tmp/`, outside the shipped assets.
+The verifier checks each emitted JS hash, then counts the unique static import
+closure plus HTML script/module-preload roots. Each file is gzipped separately;
+**120 KB means 120,000 bytes**. Missing chunks, stale metadata, budget overflow or
+initial imports of settings, clipboard-list/virtualisation, editor, global app
+store, spike or preview code fail the build. A future lightweight island store is
+allowed. Inline island JS must move into an analysed module. Deferred/all-reachable
+files and sizes are reported separately.
+
+Default-build initial JS, including shared chunks and preloads:
+
+| Entry    |        Gzipped bytes |
+| -------- | -------------------: |
+| Tray     |               72,793 |
+| Island   | **46,346 / 120,000** |
+| Settings |               61,126 |
+| Sticky   |               50,949 |
+
+The current island has no deferred module body yet, so its all-reachable size is
+also 46,346 bytes. These numbers describe the foundation entries, not completed
+island modules or a new CPU/memory/frame performance gate. Future builds continue
+to enforce the boundary. `v14-entry-bundles.json` records the complete chunk and
+module attribution. Component/spike builds also pass at 46,346 / 46,350 initial
+island gzip bytes; their snapshots are `v14-component-build.json` and
+`v14-spike-build.json`.
+
+Verification:
+
+- `npm run verify`: 36 frontend/script tests, type check, lint, font/token integrity,
+  four-entry build and bundle gate. Four new budget tests cover cycles/shared
+  chunk deduplication, preloads, missing files, exact limits, virtual proxy paths
+  and forbidden UI. Two settings-startup tests cover concurrent mounts, minimal
+  reads, failed requests and retry.
+- Rust formatting, default/spike-feature Clippy with warnings denied, 36 Rust
+  tests and native feature/custom-protocol build pass. Site verification remains
+  green at 31,884 bytes excluding fonts.
+- `v14-entry-checks.json`: light/dark × 1×/1.5×, all four entry pages. Cold network
+  JS requests exactly match the measured initial closures; tray settings requests
+  its deferred chunk only on opening. Standalone settings controls, appearance
+  override/reload, new-entry appearance cache, browser close, 280px sticky layout,
+  bundled glyph faces, fixed always-dark island geometry, zero island IPC and zero
+  observed idle callbacks pass. No external requests or runtime errors occur.
+- `v14-spike-preview-checks.json`: five legacy-spike regression contexts preserve
+  original assets, geometry and zero idle JS scheduling.
+- `v14-native-entry-checks.json` / `v14-native-smoke.json`: the isolated Windows
+  executable serves all four HTML entries over its packaged protocol. Appearance
+  saves survive reload and entry navigation, the island ignores a saved light
+  preference, other settings remain unchanged, and no download or focus/Windows
+  preference/autostart/shortcut change occurs. Six own-page captures use the
+  existing test-owned main webview; they do not prove lifecycle/placement/Mica or
+  permissions for new native window labels, which remain later tasks.
+- Visual review found stale light pixels in a native dark capture after the
+  earlier close/hide check. The capture helper now finishes transitions, lets
+  painting settle and verifies close only after all captures. A fresh run passes;
+  `v14-capture-checks.json` checks actual browser/native theme pixels and browser
+  island transparency, so a matching DOM attribute alone cannot approve a stale
+  image. No production rendering change was needed for this correction.
+- All 38 V1.4 PNGs are at most 83,625 bytes. Idle geometry was compared with Figma
+  `7:2`; settings retains the accepted existing panel and the sticky remains an
+  explicitly unbound foundation state. Earlier milestone/task evidence is unchanged.
+
+Reproduce with the existing isolated Playwright installation:
+
+```powershell
+npm run verify
+node scripts/verify-entry-bundles.mjs --report progress/v2/M2/v14-entry-bundles.json
+node scripts/verify-entries.mjs
+npm run build:components
+npm run build:spike
+node scripts/verify-island-spike.mjs --output-prefix v14-spike --output-dir progress/v2/M2
+cargo fmt --manifest-path src-tauri/Cargo.toml --check
+cargo clippy --manifest-path src-tauri/Cargo.toml --all-targets -- -D warnings
+cargo clippy --manifest-path src-tauri/Cargo.toml --all-targets --features island-spike -- -D warnings
+cargo test --manifest-path src-tauri/Cargo.toml -- --test-threads=1
+cargo build --manifest-path src-tauri/Cargo.toml --features island-spike,custom-protocol
+.\scripts\windows-theme-smoke.ps1 -OutputPrefix v14 -Verifier verify-native-entries.mjs
+python scripts/verify-entry-captures.py
+npm run build
+```
+
+Finish frontend builds before native asset embedding. `v14-validation.json`
+replays recorded assertions, chunk/executable/source hashes and PNG budgets.
+
 ## V1.3 — shared controls and component preview
 
 Rebuilt the existing `Button`, `IconButton`, `Toggle`, `Segmented` and `Field`;

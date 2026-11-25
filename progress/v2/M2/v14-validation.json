@@ -1,0 +1,296 @@
+{
+  "task": "V1.4",
+  "frontendTests": 36,
+  "rustTests": 36,
+  "newBudgetTests": 4,
+  "newSettingsBootstrapTests": 2,
+  "productionEntries": [
+    "index.html",
+    "island.html",
+    "settings.html",
+    "sticky.html"
+  ],
+  "compression": {
+    "implementation": "node:zlib.gzipSync",
+    "node": "v24.22.2",
+    "zlib": "1.3.2.1-motley-285e94b"
+  },
+  "islandInitialGzipBytes": 46346,
+  "islandBudgetBytes": 120000,
+  "allSharedAndPreloadedJsCounted": true,
+  "browserContexts": 4,
+  "legacySpikeContexts": 5,
+  "packagedEntryRoutes": 4,
+  "sourceReview": [
+    "separate HTML/JS entry graphs",
+    "future island store allowed; global app store forbidden initially",
+    "settings bootstrap avoids clipboard/history/probe reads",
+    "shared promise and retry cleanup",
+    "tray settings lazy boundary",
+    "theme hook cleanup and unbound sticky state",
+    "native close/hide check after capture and compositor settling"
+  ],
+  "normalizedSourceSha256": {
+    "src/surfaces/island/island.css": "1d08a816146300c87c9342f58b32321b8c4c8771b53c7b0e071216f7bdb85888",
+    "src/surfaces/island/main.tsx": "47b4210e6a95b51f960007cf6007d828b1053d937fe5219c0dfcd55f11045b8f",
+    "src/surfaces/settings/main.tsx": "61f32414c9a6a70a6ff58e2d5adf97f6866e95edb6084981ce3347d7d8c9b6b2",
+    "src/surfaces/settings/SettingsApp.tsx": "a2876e19b972ec3fe2284f730ce530663e8770b91f9d9010d959746b98ada7af",
+    "src/surfaces/sticky/main.tsx": "1de8f74b57d25691a789f328c3aa0603ff80f7b827da50da8f26e95b5b737125",
+    "src/surfaces/sticky/sticky.css": "cf8a0967347cbd9d5cde0e9258e066c476244d29b331512ff60bd2170648a11b",
+    "src/surfaces/sticky/StickyApp.tsx": "36b545cad687b5c3cdcccc60a75c50f85cf456bf739770d0f26544c97426b7a7",
+    "index.html": "01c17a51db6fb696527aeb982867e177a711c2961b0f8412c7dcf9b3bf07364e",
+    "island.html": "022fd2c82ee76da75407c1f9eb51d667a23cd2462356699411de8a98367882fe",
+    "settings.html": "40af13af692ada2e38c25188bfbc15e12106e3b12602e48d0dddaafb3588ce4e",
+    "sticky.html": "d803cd53b1978ff3a98385ab243196879e97a2c64a4eb59b15553caff5a3dec3",
+    "src/main.tsx": "5211fcfae9a3a8e22088111e15d63468799b717b2b51833d16b509db9a8b111e",
+    "src/views/Popover.tsx": "547384ebd496a26311101578d20cbf2cf630e1f52d477c9c9ac17e242f847170",
+    "src/store/useAppStore.ts": "356a763bde35fc8a5f4cae507c528f2416bc9eea89870c0b7039a5e92b1a2868",
+    "vite.config.ts": "a0ba2424a69a6fba26cd31e8c4b87a54ec687940375d566f9e9685f0c45de237",
+    "scripts/entry-bundles.mjs": "b74561cc9923dc6b1d0b849cffadf7c0ffc1ff73d6386459e0becea25bcf1a43",
+    "scripts/entry-bundles.test.js": "6d0b27d1411c1e94a140761942199472edf5027446a4708af0bb62632ce037d0",
+    "scripts/verify-entry-bundles.mjs": "0c76c37ba19e66539165121d5aaced4dd25fef649ba499bbb7ec473103a3e5f5",
+    "scripts/verify-entries.mjs": "233f55372a9c80c56a6071455a334ab0fdaad164aecfa950203def22075b16eb",
+    "scripts/verify-native-entries.mjs": "79365190829e311b8e7ec0f03a20a1574d490abd69f297c55ec7898fd9cb04f8",
+    "scripts/verify-entry-captures.py": "fd52918f7b50b9628362bd6329d23379a8b12684a4f6e225abb7891eb1cdf9ac",
+    "scripts/windows-theme-smoke.ps1": "27e38f44dd68f0d4d9e9e8a7c1c4f0af4693307d88869dcd5b47a14db58ad3ad",
+    "src/store/settingsBootstrap.test.ts": "9116e30182af061d37174b3515000add8cf7bb6582c6707afa0d5a09a4043dc9"
+  },
+  "executableSha256": "94ee6dd77cd469c247d3357762df817dc868731f03a2c6fe7a1d788c20d85829",
+  "pngs": [
+    {
+      "name": "v14-island-dark@1.5x.png",
+      "width": 1080,
+      "height": 690,
+      "bytes": 7763
+    },
+    {
+      "name": "v14-island-dark@1x.png",
+      "width": 720,
+      "height": 460,
+      "bytes": 4258
+    },
+    {
+      "name": "v14-island-light@1.5x.png",
+      "width": 1080,
+      "height": 690,
+      "bytes": 7763
+    },
+    {
+      "name": "v14-island-light@1x.png",
+      "width": 720,
+      "height": 460,
+      "bytes": 4258
+    },
+    {
+      "name": "v14-native-island.png",
+      "width": 720,
+      "height": 460,
+      "bytes": 2679
+    },
+    {
+      "name": "v14-native-settings-dark.png",
+      "width": 460,
+      "height": 680,
+      "bytes": 30798
+    },
+    {
+      "name": "v14-native-settings-light.png",
+      "width": 460,
+      "height": 680,
+      "bytes": 30248
+    },
+    {
+      "name": "v14-native-sticky-dark.png",
+      "width": 280,
+      "height": 208,
+      "bytes": 6171
+    },
+    {
+      "name": "v14-native-sticky-light.png",
+      "width": 280,
+      "height": 208,
+      "bytes": 5924
+    },
+    {
+      "name": "v14-native-tray.png",
+      "width": 460,
+      "height": 680,
+      "bytes": 21145
+    },
+    {
+      "name": "v14-settings-dark@1.5x.png",
+      "width": 690,
+      "height": 1020,
+      "bytes": 63740
+    },
+    {
+      "name": "v14-settings-dark@1x.png",
+      "width": 460,
+      "height": 680,
+      "bytes": 36259
+    },
+    {
+      "name": "v14-settings-light@1.5x.png",
+      "width": 690,
+      "height": 1020,
+      "bytes": 63841
+    },
+    {
+      "name": "v14-settings-light@1x.png",
+      "width": 460,
+      "height": 680,
+      "bytes": 35027
+    },
+    {
+      "name": "v14-spike-dark@1.5x-expanded.png",
+      "width": 1080,
+      "height": 690,
+      "bytes": 79161
+    },
+    {
+      "name": "v14-spike-dark@1.5x-idle.png",
+      "width": 1080,
+      "height": 690,
+      "bytes": 4941
+    },
+    {
+      "name": "v14-spike-dark@1.5x-live.png",
+      "width": 1080,
+      "height": 690,
+      "bytes": 12188
+    },
+    {
+      "name": "v14-spike-dark@1.5x-peek.png",
+      "width": 1080,
+      "height": 690,
+      "bytes": 18581
+    },
+    {
+      "name": "v14-spike-dark@1x-expanded.png",
+      "width": 720,
+      "height": 460,
+      "bytes": 45325
+    },
+    {
+      "name": "v14-spike-dark@1x-idle.png",
+      "width": 720,
+      "height": 460,
+      "bytes": 2801
+    },
+    {
+      "name": "v14-spike-dark@1x-live.png",
+      "width": 720,
+      "height": 460,
+      "bytes": 7142
+    },
+    {
+      "name": "v14-spike-dark@1x-peek.png",
+      "width": 720,
+      "height": 460,
+      "bytes": 11469
+    },
+    {
+      "name": "v14-spike-light@1.5x-expanded.png",
+      "width": 1080,
+      "height": 690,
+      "bytes": 83625
+    },
+    {
+      "name": "v14-spike-light@1.5x-idle.png",
+      "width": 1080,
+      "height": 690,
+      "bytes": 7405
+    },
+    {
+      "name": "v14-spike-light@1.5x-live.png",
+      "width": 1080,
+      "height": 690,
+      "bytes": 14966
+    },
+    {
+      "name": "v14-spike-light@1.5x-peek.png",
+      "width": 1080,
+      "height": 690,
+      "bytes": 22428
+    },
+    {
+      "name": "v14-spike-light@1x-expanded.png",
+      "width": 720,
+      "height": 460,
+      "bytes": 47791
+    },
+    {
+      "name": "v14-spike-light@1x-idle.png",
+      "width": 720,
+      "height": 460,
+      "bytes": 4253
+    },
+    {
+      "name": "v14-spike-light@1x-live.png",
+      "width": 720,
+      "height": 460,
+      "bytes": 8647
+    },
+    {
+      "name": "v14-spike-light@1x-peek.png",
+      "width": 720,
+      "height": 460,
+      "bytes": 13782
+    },
+    {
+      "name": "v14-sticky-dark@1.5x.png",
+      "width": 420,
+      "height": 312,
+      "bytes": 9201
+    },
+    {
+      "name": "v14-sticky-dark@1x.png",
+      "width": 280,
+      "height": 208,
+      "bytes": 6008
+    },
+    {
+      "name": "v14-sticky-light@1.5x.png",
+      "width": 420,
+      "height": 312,
+      "bytes": 9182
+    },
+    {
+      "name": "v14-sticky-light@1x.png",
+      "width": 280,
+      "height": 208,
+      "bytes": 5705
+    },
+    {
+      "name": "v14-tray-dark@1.5x.png",
+      "width": 690,
+      "height": 1020,
+      "bytes": 35560
+    },
+    {
+      "name": "v14-tray-dark@1x.png",
+      "width": 460,
+      "height": 680,
+      "bytes": 22044
+    },
+    {
+      "name": "v14-tray-light@1.5x.png",
+      "width": 690,
+      "height": 1020,
+      "bytes": 35484
+    },
+    {
+      "name": "v14-tray-light@1x.png",
+      "width": 460,
+      "height": 680,
+      "bytes": 21604
+    }
+  ],
+  "maxPngBytes": 83625,
+  "deferredFeatures": [
+    "V2 native island lifecycle/activity bus/full interface",
+    "V4 note binding/editor/sticky persistence",
+    "V6 native settings window and cross-window integration"
+  ],
+  "noNewPerformanceGateClaim": true
+}

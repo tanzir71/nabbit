@@ -5,6 +5,7 @@ import "./styles/index.css";
 import { initializeTheme } from "./lib/theme";
 
 initializeTheme();
+document.documentElement.dataset.surface = "tray";
 
 ReactDOM.createRoot(document.getElementById("root") as HTMLElement).render(
   <React.StrictMode>

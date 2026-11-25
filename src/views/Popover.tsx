@@ -1,11 +1,13 @@
 import { Download, History, Settings, X } from "lucide-react";
-import { useMemo, useState } from "react";
+import { lazy, Suspense, useMemo, useState } from "react";
 import { Segmented } from "../components/Segmented";
 import { IconButton } from "../components/IconButton";
 import { useAppStore } from "../store/useAppStore";
 import { ClipboardList } from "./ClipboardList";
 import { DownloadPanel } from "./DownloadPanel";
-import { SettingsPanel } from "./SettingsPanel";
+const SettingsPanel = lazy(() =>
+  import("./SettingsPanel").then((module) => ({ default: module.SettingsPanel })),
+);
 
 export function Popover() {
   const settings = useAppStore((state) => state.settings);
@@ -83,7 +85,17 @@ export function Popover() {
         {activeTab === "download" ? <DownloadPanel /> : <ClipboardList />}
       </div>
 
-      {showSettings ? <SettingsPanel onClose={() => setShowSettings(false)} /> : null}
+      {showSettings ? (
+        <Suspense
+          fallback={
+            <p role="status" className="p-4 text-sm text-secondary">
+              Opening settings...
+            </p>
+          }
+        >
+          <SettingsPanel onClose={() => setShowSettings(false)} />
+        </Suspense>
+      ) : null}
     </section>
   );
 }

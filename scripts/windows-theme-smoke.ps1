@@ -1,4 +1,4 @@
-param([string]$Exe="src-tauri/target/debug/nabbit.exe",[string]$OutputPrefix="v11")
+param([string]$Exe="src-tauri/target/debug/nabbit.exe",[string]$OutputPrefix="v11",[ValidateSet("verify-native-theme.mjs","verify-native-entries.mjs")][string]$Verifier="verify-native-theme.mjs")
 $ErrorActionPreference="Stop"
 if($OutputPrefix -notmatch "^[a-z0-9-]+$"){throw "Invalid output prefix"}
 $root=Split-Path -Parent $PSScriptRoot
@@ -28,7 +28,7 @@ try {
   $foreground=[ThemeFocusProbe]::GetForegroundWindow()
   $appProcess=Start-Process -FilePath $exePath -WorkingDirectory $root -WindowStyle Hidden -RedirectStandardError (Join-Path $trialRoot "stderr.log") -PassThru
   Push-Location $root
-  try {& node scripts/verify-native-theme.mjs "http://127.0.0.1:$port" $OutputPrefix;if($LASTEXITCODE -ne 0){throw "Native theme verification failed. Logs: $trialRoot"}}finally{Pop-Location}
+  try {& node (Join-Path "scripts" $Verifier) "http://127.0.0.1:$port" $OutputPrefix;if($LASTEXITCODE -ne 0){throw "Native window verification failed. Logs: $trialRoot"}}finally{Pop-Location}
   if([ThemeFocusProbe]::GetForegroundWindow() -ne $foreground){throw "Theme smoke changed foreground focus"}
   Stop-Process -Id $appProcess.Id -Force;$appProcess.WaitForExit();$appProcess=$null
   & python -c 'import sqlite3,json,sys; c=sqlite3.connect(sys.argv[1]); s=json.loads(c.execute("SELECT value FROM settings WHERE key=?",("app_settings",)).fetchone()[0]); assert s["theme"]=="dark"; assert c.execute("SELECT COUNT(*) FROM downloads").fetchone()[0]==0' (Join-Path $env:NABBIT_APP_DATA_DIR "nabbit.sqlite3")

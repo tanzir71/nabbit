@@ -1,0 +1,18 @@
+html[data-surface="sticky"] body {
+  min-width: 220px;
+}
+.sticky-surface {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+  min-width: 220px;
+  min-height: 100vh;
+  padding: 16px;
+  border: 1px solid var(--border-subtle);
+  border-radius: 12px;
+  background: var(--note-default);
+  color: var(--text-primary);
+  box-shadow:
+    0 16px 48px -8px rgb(0 0 0 / 0.14),
+    0 1px 2px rgb(0 0 0 / 0.06);
+}
