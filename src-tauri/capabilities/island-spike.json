@@ -1,0 +1,7 @@
+{
+  "$schema": "../gen/schemas/desktop-schema.json",
+  "identifier": "island-spike",
+  "description": "Event subscription only for the opt-in local island spike.",
+  "windows": ["island-spike"],
+  "permissions": ["core:event:allow-listen", "core:event:allow-unlisten"]
+}

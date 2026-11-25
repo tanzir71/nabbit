@@ -10,6 +10,11 @@ mod util;
 #[path = "../../spikes/island/native.rs"]
 mod island_spike;
 
+#[cfg(any(test, all(windows, feature = "island-spike")))]
+#[cfg_attr(not(all(windows, feature = "island-spike")), allow(dead_code))]
+#[path = "../../spikes/island/interaction.rs"]
+mod island_interaction;
+
 use std::{
     fs,
     path::{Path, PathBuf},
@@ -86,6 +91,12 @@ pub fn run() {
             commands::download::get_engine_status,
             commands::download::repair_engine,
             commands::download::quick_download_staged,
+            #[cfg(all(windows, feature = "island-spike"))]
+            island_spike::island_set_hitrect,
+            #[cfg(all(windows, feature = "island-spike"))]
+            island_spike::island_spike_set_drag,
+            #[cfg(all(windows, feature = "island-spike"))]
+            island_spike::island_spike_snapshot,
         ])
         .setup(|app| {
             #[cfg(target_os = "macos")]
@@ -113,7 +124,7 @@ pub fn run() {
 
             setup_tray(app.handle())?;
             #[cfg(all(windows, feature = "island-spike"))]
-            island_spike::open_if_enabled(app.handle())?;
+            island_spike::open_if_enabled(app.handle(), shutdown.clone())?;
             clipboard::watcher::spawn_clipboard_watcher(
                 app.handle().clone(),
                 db.clone(),

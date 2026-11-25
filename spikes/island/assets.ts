@@ -1,5 +1,14 @@
 // Original Figma exports; preserve their intrinsic dimensions at each callsite.
 export const assets = {
+  dropShelfArrowDownToLine: new URL("./assets/dropShelfArrowDownToLine.svg", import.meta.url).href,
+  dropShelfInbox: new URL("./assets/dropShelfInbox.svg", import.meta.url).href,
+  dropShelfStickyNote: new URL("./assets/dropShelfStickyNote.svg", import.meta.url).href,
+  dropNoteArrowDownToLine: new URL("./assets/dropNoteArrowDownToLine.svg", import.meta.url).href,
+  dropNoteInbox: new URL("./assets/dropNoteInbox.svg", import.meta.url).href,
+  dropNoteStickyNote: new URL("./assets/dropNoteStickyNote.svg", import.meta.url).href,
+  dropArrowDownToLine: new URL("./assets/dropArrowDownToLine.svg", import.meta.url).href,
+  dropInbox: new URL("./assets/dropInbox.svg", import.meta.url).href,
+  dropStickyNote: new URL("./assets/dropStickyNote.svg", import.meta.url).href,
   liveRing: new URL("./assets/liveRing.svg", import.meta.url).href,
   peekPause: new URL("./assets/peekPause.svg", import.meta.url).href,
   peekX: new URL("./assets/peekX.svg", import.meta.url).href,

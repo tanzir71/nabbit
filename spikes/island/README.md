@@ -1,4 +1,4 @@
-# Island spike — V0.1
+# Island spike — V0.1–V0.2
 
 This throwaway surface tests a WebView2 island inside Nabbit. It is compiled only
 with Cargo feature `island-spike` on Windows and opens only when
@@ -17,6 +17,7 @@ Position/size are set at creation; every morph happens inside that fixed host.
 | Live | 320×32 | 16 | 260 ms spring, stiffness 380 / damping 32 |
 | Peek | 400×74 | 24 | 320 ms spring, stiffness 300 / damping 28 |
 | Expanded | 680×297 | 28 | 380 ms spring, stiffness 260 / damping 30 |
+| Drop target | 640×150 | 24 | 320 ms peek spring |
 
 `scripts/generate-island-motion.mjs` samples the analytic damped springs into
 `motion.css` at spike build time. Animation uses CSS `linear()`, with no animation
@@ -40,7 +41,9 @@ npm install --prefix .tools/site-qa --no-audit --no-fund --ignore-scripts playwr
 npm run build:spike
 cargo build --manifest-path src-tauri/Cargo.toml --features island-spike,custom-protocol
 .\scripts\windows-island-spike-smoke.ps1
+.\scripts\windows-island-spike-smoke.ps1 -Interaction
 node scripts/verify-island-spike.mjs
+node scripts/verify-island-interaction.mjs
 ```
 
 The smoke creates its own SQLite and WebView2 data directories, disables engine
@@ -61,7 +64,45 @@ HTML entry. `npm run build:spike` is needed again for another spike build.
 
 For a local developer controller, preview the spike entry with
 `?preview=1&controls=1`. Native acceptance controls it through the explicitly
-exposed `window.nabbitIslandSpike.setState(...)` seam; the whole native host is
-click-through in V0.1. Adaptive hit rectangles, drag entry and fullscreen hiding
-are V0.2. Release CPU/memory/frame measurements and the go/no-go decision remain
-V0.3/V0.4; this spike does not claim those gates have passed.
+exposed `window.nabbitIslandSpike.setState(...)` seam. Release CPU/memory/frame
+measurements and the go/no-go decision remain V0.3/V0.4; this spike does not
+claim those gates have passed.
+
+## V0.2 interaction
+
+A ResizeObserver reports the current CSS pill rectangle plus 8 logical pixels
+through `island_set_hitrect`. Rust converts physical cursor coordinates using
+the host origin/DPI and changes `WS_EX_TRANSPARENT` only when necessary. The
+cursor worker samples every 25 ms within 120 logical pixels of the current
+target, otherwise every 500 ms. A foreground WinEvent hook wakes it immediately;
+geometry updates reuse the cached cursor instead of increasing sampling. No
+frontend polling runs while collapsed.
+
+A held button moving from outside into the work area's top 48 logical pixels
+opens the three-zone drop target. Leaving the band and target cancels it. URL,
+file and text payloads reorder the best matching zone first, using Figma
+`8:120`, `8:144` and `8:168` and nine original SVG exports. Drops only produce
+review-candidate receipts; they never read file contents or start jobs.
+
+[Tauri's Windows native handler replaces HTML5 drag handling](https://v2.tauri.app/reference/config/#dragdropenabled).
+The spike disables that replacement and resolves dropped DOM File objects via
+[WebView2 AdditionalObjects / ICoreWebView2File](https://learn.microsoft.com/en-us/microsoft-edge/webview2/reference/win32/icorewebview2file).
+Rust sends the resolved paths in the standard native drop event consumed by
+`onDragDropEvent`; URL/text payloads retain HTML5 DataTransfer handling. The two
+optional Rust dependencies already exist in Tauri's lockfile and compile only
+with the Windows spike feature.
+
+Fullscreen suppression considers QUNS busy/D3D/presentation states and matching
+foreground/monitor rectangles, excluding the shell, this process and another
+monitor. It makes the surface transparent and click-through while the native
+host remains shown and composited. Restoring visibility preserves the prior
+shape. Typed visibility events carry monotonic revisions to reject stale events.
+
+`-Interaction` seeds `NABBIT_ACCEPTANCE_CURSOR` with a JSON file of logical local
+cursor coordinates, button state and foreground/monitor fixtures. This provider
+never falls back to the real cursor. The acceptance-only snapshot command
+requires that provider and forces a sample only when explicitly requested by
+the external harness. The smoke checks 16 scenarios against actual HWND styles,
+host visibility/bounds, WebView2 state, adaptive sample counters and a real
+disposable file-path round trip. Browser tests use synthetic DataTransfer events
+at light/dark and 1×/1.5×. All test storage remains under ignored `.tools/`.

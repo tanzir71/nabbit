@@ -367,6 +367,70 @@ kbd {
   outline: 2px solid var(--signal);
   outline-offset: 3px;
 }
+
+.spike-frame[data-hidden="true"] {
+  opacity: 0;
+  pointer-events: none;
+}
+.spike-pill[data-state="drop"] {
+  width: 640px;
+  height: 150px;
+  border-radius: 24px;
+}
+.drop-content {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  width: 640px;
+  height: 150px;
+  padding: 12px 14px 14px;
+}
+.drop-header {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  height: 18px;
+}
+.drop-header strong,
+.drop-zone strong {
+  font-size: 13px;
+  font-weight: 500;
+  line-height: 18px;
+}
+.drop-zones {
+  display: flex;
+  gap: 10px;
+  width: 100%;
+}
+.drop-zone {
+  display: flex;
+  flex: 1;
+  min-width: 0;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 6px;
+  height: 96px;
+  border: 1.5px dashed var(--island-track);
+  border-radius: 16px;
+  color: var(--island-muted);
+}
+.drop-zone.over {
+  border-style: solid;
+  border-color: var(--signal);
+  background: var(--island-raised);
+  color: #f5f5f3;
+}
+.spike-receipt {
+  position: absolute;
+  top: 350px;
+  left: 20px;
+  max-width: 680px;
+  padding: 8px 12px;
+  border-radius: 8px;
+  background: var(--island-raised);
+  color: #f5f5f3;
+}
 @media (prefers-reduced-motion: reduce) {
   .spike-pill,
   .spike-pill[data-motion] {

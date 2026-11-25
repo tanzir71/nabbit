@@ -33,5 +33,37 @@ Reproduction and fixture isolation details are in `spikes/island/README.md`.
 The native test keeps OS autostart/hotkey settings untouched and never moves the
 real cursor. The prototype uses the system font fallback pending V1.2.
 
-V0.2–V0.4 and M1 remain pending. The 300 ms idle scheduling check is not a CPU
+## V0.2
+
+- `v02-native-window.json`: 16 injected cursor/foreground scenarios against the
+  actual WebView2 host. `WS_EX_TRANSPARENT` flips for inside/outside/edge points
+  and the drag target; the HWND stays shown and its 720×460 bounds stay fixed,
+  including notification-state and borderless fullscreen suppression.
+- `v02-native-*.json`: current padded hit rectangles, typed presentation events,
+  foreground-hook installation and adaptive sampling. Far-away cursor reads
+  are at most 2 Hz (plus event wakeups); nearby reads use the 25 ms schedule.
+  Fullscreen restoration keeps the expanded state. Other-monitor, shell and
+  own-process fixtures remain visible.
+- Final sampling observed 2 cursor reads in 1,110 ms far away and 37 in 1,112 ms
+  nearby. `v02-alpha-check.json` confirms all fullscreen pixels have alpha 0;
+  drag/resume captures retain transparent margins and an opaque pill.
+- `v02-native-drops.json`: synthetic native HTML5 URL/text drops and a disk-backed
+  disposable file resolve to the expected review zones. The file path traverses
+  WebView2 AdditionalObjects → Rust → standard `onDragDropEvent`. A virtual
+  browser file without a disk path is rejected without a runtime error. No
+  download or file operation is started.
+- `v02-preview-checks.json`: four configurations (light/dark × 1×/1.5×), each
+  checking the three payloads, reordered zones, Figma 640×150/r24 geometry,
+  original 20px icons, solid selected/dashed inactive borders, padded ResizeObserver
+  reports, unsupported data, fullscreen restoration and stale-event rejection.
+- 15 new PNGs: 12 preview drop targets and native drag/fullscreen/resume states.
+  Visually compared against Figma drop variants `8:120`, `8:144`, `8:168`;
+  payload-driven ordering follows the handoff. The island stays dark in both
+  themes. Geist bundling remains V1.2.
+- Regression checks: 12 frontend tests, 28 Rust tests, app/site verification,
+  formatting, and default/spike-feature Clippy with warnings denied. React
+  effect/listener cleanup and event-driven updates were reviewed. Native and
+  browser reports contain no runtime errors.
+
+V0.3–V0.4 and M1 remain pending. The 300 ms idle scheduling check is not a CPU
 measurement; the required release idle/memory/frame gate has not been run yet.

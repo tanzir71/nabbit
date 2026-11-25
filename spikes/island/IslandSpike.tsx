@@ -1,14 +1,32 @@
-import { useEffect, useState } from "react";
+import { useEffect, useRef, useState, type DragEvent } from "react";
 import { flushSync } from "react-dom";
 import { Button } from "../../src/components/Button";
 import { IconButton } from "../../src/components/IconButton";
 import { assets } from "./assets";
+import { connectInteraction, type HitRect, type NativeReport, type Presentation } from "./bridge";
+import {
+  classify,
+  readDrag,
+  routeDrop,
+  zoneOrder,
+  type Payload,
+  type PayloadKind,
+  type DropZone,
+  type Receipt,
+} from "./drop";
 
 const states = ["idle", "live", "peek", "expanded"] as const;
 type SpikeState = (typeof states)[number];
 declare global {
   interface Window {
-    nabbitIslandSpike?: { setState: (state: SpikeState) => void; ready: true };
+    nabbitIslandSpike?: {
+      setState: (state: SpikeState) => void;
+      receiveInteraction: (value: Presentation) => void;
+      nativeSnapshot: (refresh?: boolean) => Promise<NativeReport>;
+      hitrect: () => HitRect | null;
+      receivedFiles: () => string[];
+      ready: true;
+    };
   }
 }
 
@@ -126,11 +144,40 @@ function Expanded() {
 }
 
 export function IslandSpike() {
+  const pill = useRef<HTMLDivElement>(null);
+  const bridge = useRef<ReturnType<typeof connectInteraction> | null>(null);
+  const [interaction, setInteraction] = useState<Presentation>({
+    hidden: false,
+    dragging: false,
+    revision: -1,
+  });
+  const [payloadKind, setPayloadKind] = useState<PayloadKind>("link");
+  const [over, setOver] = useState<DropZone | undefined>();
+  const [receipt, setReceipt] = useState<Receipt | null>(null);
   const [surface, setSurface] = useState<{ state: SpikeState; motion: string }>({
     state: "idle",
     motion: "live",
   });
   useEffect(() => {
+    const receiveInteraction = (value: Presentation) =>
+      setInteraction((previous) => {
+        if (
+          value.revision < previous.revision ||
+          (value.revision === previous.revision &&
+            value.hidden === previous.hidden &&
+            value.dragging === previous.dragging)
+        )
+          return previous;
+        return value;
+      });
+    const incoming = (payload: Payload, zone?: DropZone) => {
+      setReceipt(routeDrop(payload, zone));
+      bridge.current?.setDrag(false);
+    };
+    const current = connectInteraction(pill.current!, receiveInteraction, incoming, (payload) =>
+      setPayloadKind(classify(payload, true)),
+    );
+    bridge.current = current;
     const setState = (next: SpikeState) => {
       if (!states.includes(next)) throw new Error(`Invalid spike state: ${String(next)}`);
       flushSync(() =>
@@ -140,17 +187,94 @@ export function IslandSpike() {
         })),
       );
     };
-    window.nabbitIslandSpike = { ready: true, setState };
+    window.nabbitIslandSpike = {
+      ready: true,
+      setState,
+      receiveInteraction,
+      nativeSnapshot: current.snapshot,
+      hitrect: current.rect,
+      receivedFiles: current.receivedFiles,
+    };
     return () => {
+      current.close();
+      bridge.current = null;
       delete window.nabbitIslandSpike;
     };
   }, []);
+  const dropZone = (target: EventTarget) =>
+    target instanceof Element
+      ? (target.closest<HTMLElement>("[data-drop-zone]")?.dataset.dropZone as DropZone | undefined)
+      : undefined;
+  const drag = (event: DragEvent) => {
+    event.preventDefault();
+    setReceipt(null);
+    const kind = classify(readDrag(event.dataTransfer), true);
+    setPayloadKind(kind);
+    setOver(dropZone(event.target));
+    bridge.current?.setDrag(true);
+    // Preview has no backend. Native visibility remains solely Rust-driven.
+    if (!("__TAURI_INTERNALS__" in window))
+      setInteraction((previous) => ({ ...previous, dragging: true }));
+  };
+  const leave = (event: DragEvent) => {
+    if (event.clientX >= 32 && event.clientX <= 688 && event.clientY >= 0 && event.clientY <= 164)
+      return;
+    bridge.current?.setDrag(false);
+    if (!("__TAURI_INTERNALS__" in window))
+      setInteraction((previous) => ({ ...previous, dragging: false }));
+  };
+  const drop = (event: DragEvent) => {
+    event.preventDefault();
+    if (bridge.current?.files(event.dataTransfer, event.clientX, event.clientY)) return;
+    setReceipt(routeDrop(readDrag(event.dataTransfer), dropZone(event.target)));
+    bridge.current?.setDrag(false);
+    if (!("__TAURI_INTERNALS__" in window))
+      setInteraction((previous) => ({ ...previous, dragging: false }));
+  };
+  const state = interaction.dragging ? "drop" : surface.state;
+  const selectedZone = over ?? zoneOrder(payloadKind)[0];
+  const dropIcons = {
+    download: {
+      download: assets.dropArrowDownToLine,
+      shelf: assets.dropInbox,
+      note: assets.dropStickyNote,
+    },
+    shelf: {
+      download: assets.dropShelfArrowDownToLine,
+      shelf: assets.dropShelfInbox,
+      note: assets.dropShelfStickyNote,
+    },
+    note: {
+      download: assets.dropNoteArrowDownToLine,
+      shelf: assets.dropNoteInbox,
+      note: assets.dropNoteStickyNote,
+    },
+  };
+  const zones = {
+    download: { label: "Download", hint: "Links and playlists" },
+    shelf: { label: "Add to shelf", hint: "Hold files for later" },
+    note: { label: "New note", hint: "Text, links, images" },
+  };
   return (
-    <main className="spike-frame" aria-label="Island geometry and motion spike">
-      <div className="spike-pill" data-state={surface.state} data-motion={surface.motion}>
+    <main
+      className="spike-frame"
+      data-hidden={interaction.hidden}
+      aria-hidden={interaction.hidden}
+      aria-label="Island geometry and motion spike"
+      onDragEnter={drag}
+      onDragOver={drag}
+      onDragLeave={leave}
+      onDrop={drop}
+    >
+      <div
+        ref={pill}
+        className="spike-pill"
+        data-state={state}
+        data-motion={interaction.dragging ? "peek" : surface.motion}
+      >
         <div
-          className={`spike-layer live-content ${surface.state === "live" ? "active" : ""}`}
-          aria-hidden={surface.state !== "live"}
+          className={`spike-layer live-content ${state === "live" ? "active" : ""}`}
+          aria-hidden={state !== "live"}
         >
           <Icon asset={assets.liveRing} />
           <span className="live-title muted" title={title}>
@@ -159,8 +283,8 @@ export function IslandSpike() {
           <span className="mono">38%</span>
         </div>
         <div
-          className={`spike-layer peek-content ${surface.state === "peek" ? "active" : ""}`}
-          aria-hidden={surface.state !== "peek"}
+          className={`spike-layer peek-content ${state === "peek" ? "active" : ""}`}
+          aria-hidden={state !== "peek"}
         >
           <div className="peek-header">
             <div className="thumbnail peek-thumbnail" />
@@ -183,12 +307,47 @@ export function IslandSpike() {
           </div>
         </div>
         <div
-          className={`spike-layer ${surface.state === "expanded" ? "active" : ""}`}
-          aria-hidden={surface.state !== "expanded"}
+          className={`spike-layer ${state === "expanded" ? "active" : ""}`}
+          aria-hidden={state !== "expanded"}
         >
           <Expanded />
         </div>
+        <div
+          className={`spike-layer drop-content ${state === "drop" ? "active" : ""}`}
+          aria-hidden={state !== "drop"}
+        >
+          <div className="drop-header">
+            <strong>Drop to nab</strong>
+            <span className="muted">
+              {payloadKind === "link"
+                ? "1 link"
+                : payloadKind === "files"
+                  ? "Files"
+                  : payloadKind === "text"
+                    ? "Text"
+                    : "Links, files or text"}
+            </span>
+          </div>
+          <div className="drop-zones">
+            {zoneOrder(payloadKind).map((zone) => (
+              <div
+                key={zone}
+                data-drop-zone={zone}
+                className={`drop-zone ${(over ?? zoneOrder(payloadKind)[0]) === zone ? "over" : ""}`}
+              >
+                <Icon asset={dropIcons[selectedZone][zone]} />
+                <strong>{zones[zone].label}</strong>
+                <span className="muted">{zones[zone].hint}</span>
+              </div>
+            ))}
+          </div>
+        </div>
       </div>
+      {receipt && (
+        <p className="spike-receipt" role="status">
+          {receipt.message} · {receipt.kind} · {receipt.zone}
+        </p>
+      )}
       {query.has("controls") && (
         <nav className="spike-controls" aria-label="Spike state controls">
           {states.map((state) => (
