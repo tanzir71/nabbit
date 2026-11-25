@@ -1,0 +1,1320 @@
+{
+  "surface": "Unsigned release Tauri WebView2",
+  "version": {
+    "protocolVersion": "1.3",
+    "product": "Edg/158.0.4370.33",
+    "revision": "@56b8f691820060b6e15f702165117f203442943f",
+    "userAgent": "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/158.0.0.0 Safari/537.36 Edg/158.0.0.0",
+    "jsVersion": "15.8.13.3"
+  },
+  "environment": {
+    "host": [
+      720,
+      460
+    ],
+    "scaling": 1,
+    "visibility": "visible",
+    "hidden": "false",
+    "reducedMotion": false,
+    "native": true
+  },
+  "refreshHz": 60.00024000096,
+  "traceDataLoss": false,
+  "traceEventCount": 221296,
+  "method": "Target renderer/layer-tree BeginFrame, DrawFrame and explicit DroppedFrame sequence IDs from CDP tracing; all 12 directed morphs, three rounds. Partial drops count. One refresh around the user-timing marks includes the start/final draw. Draw gaps are descriptive, not inferred drops. Missing mappings/frames fail collection.",
+  "sources": [
+    "https://chromedevtools.github.io/devtools-protocol/tot/Tracing/",
+    "https://github.com/ChromeDevTools/devtools-frontend/blob/main/front_end/models/trace/handlers/FramesHandler.ts"
+  ],
+  "results": [
+    {
+      "id": "nabbit:motion:1:idle:live",
+      "round": 1,
+      "from": "idle",
+      "to": "live",
+      "observedTransition": {
+        "elapsedMs": 273.3999999985099,
+        "size": [
+          320,
+          32
+        ],
+        "host": [
+          720,
+          460
+        ]
+      },
+      "rendererPid": 17900,
+      "layerTreeId": 1,
+      "traceStartUs": 44215343025,
+      "traceEndUs": 44215615953,
+      "tracedDurationMs": 272.928,
+      "accountingWindowUs": [
+        44215326358.4,
+        44215632619.6
+      ],
+      "frameBudgetMs": 16.666600000000003,
+      "begunFrames": 18,
+      "drawnFrames": 10,
+      "droppedFrames": 7,
+      "partialFrames": 1,
+      "droppedFrameSequenceIds": [
+        288,
+        291,
+        292,
+        293,
+        298,
+        299,
+        300
+      ],
+      "maxDrawGapMs": 63.917,
+      "withinTwoDroppedFrames": false
+    },
+    {
+      "id": "nabbit:motion:1:idle:peek",
+      "round": 1,
+      "from": "idle",
+      "to": "peek",
+      "observedTransition": {
+        "elapsedMs": 352.3999999985099,
+        "size": [
+          400,
+          74
+        ],
+        "host": [
+          720,
+          460
+        ]
+      },
+      "rendererPid": 17900,
+      "layerTreeId": 1,
+      "traceStartUs": 44216399770,
+      "traceEndUs": 44216751768,
+      "tracedDurationMs": 351.998,
+      "accountingWindowUs": [
+        44216383103.4,
+        44216768434.6
+      ],
+      "frameBudgetMs": 16.666600000000003,
+      "begunFrames": 23,
+      "drawnFrames": 7,
+      "droppedFrames": 14,
+      "partialFrames": 0,
+      "droppedFrameSequenceIds": [
+        355,
+        356,
+        357,
+        358,
+        359,
+        360,
+        361,
+        362,
+        363,
+        364,
+        365,
+        366,
+        367,
+        368
+      ],
+      "maxDrawGapMs": 256.668,
+      "withinTwoDroppedFrames": false
+    },
+    {
+      "id": "nabbit:motion:1:idle:expanded",
+      "round": 1,
+      "from": "idle",
+      "to": "expanded",
+      "observedTransition": {
+        "elapsedMs": 430.40000000596046,
+        "size": [
+          680,
+          297
+        ],
+        "host": [
+          720,
+          460
+        ]
+      },
+      "rendererPid": 17900,
+      "layerTreeId": 1,
+      "traceStartUs": 44217526341,
+      "traceEndUs": 44217956489,
+      "tracedDurationMs": 430.148,
+      "accountingWindowUs": [
+        44217509674.4,
+        44217973155.6
+      ],
+      "frameBudgetMs": 16.666600000000003,
+      "begunFrames": 28,
+      "drawnFrames": 11,
+      "droppedFrames": 14,
+      "partialFrames": 1,
+      "droppedFrameSequenceIds": [
+        418,
+        425,
+        426,
+        427,
+        428,
+        429,
+        430,
+        431,
+        432,
+        436,
+        437,
+        438,
+        439,
+        440
+      ],
+      "maxDrawGapMs": 151.95,
+      "withinTwoDroppedFrames": false
+    },
+    {
+      "id": "nabbit:motion:1:live:idle",
+      "round": 1,
+      "from": "live",
+      "to": "idle",
+      "observedTransition": {
+        "elapsedMs": 296.1000000014901,
+        "size": [
+          112,
+          26
+        ],
+        "host": [
+          720,
+          460
+        ]
+      },
+      "rendererPid": 17900,
+      "layerTreeId": 1,
+      "traceStartUs": 44218734491,
+      "traceEndUs": 44219030114,
+      "tracedDurationMs": 295.623,
+      "accountingWindowUs": [
+        44218717824.4,
+        44219046780.6
+      ],
+      "frameBudgetMs": 16.666600000000003,
+      "begunFrames": 20,
+      "drawnFrames": 19,
+      "droppedFrames": 0,
+      "partialFrames": 0,
+      "droppedFrameSequenceIds": [],
+      "maxDrawGapMs": 19.588,
+      "withinTwoDroppedFrames": true
+    },
+    {
+      "id": "nabbit:motion:1:live:peek",
+      "round": 1,
+      "from": "live",
+      "to": "peek",
+      "observedTransition": {
+        "elapsedMs": 327.90000000596046,
+        "size": [
+          400,
+          74
+        ],
+        "host": [
+          720,
+          460
+        ]
+      },
+      "rendererPid": 17900,
+      "layerTreeId": 1,
+      "traceStartUs": 44219803858,
+      "traceEndUs": 44220131338,
+      "tracedDurationMs": 327.48,
+      "accountingWindowUs": [
+        44219787191.4,
+        44220148004.6
+      ],
+      "frameBudgetMs": 16.666600000000003,
+      "begunFrames": 22,
+      "drawnFrames": 21,
+      "droppedFrames": 0,
+      "partialFrames": 0,
+      "droppedFrameSequenceIds": [],
+      "maxDrawGapMs": 17.8,
+      "withinTwoDroppedFrames": true
+    },
+    {
+      "id": "nabbit:motion:1:live:expanded",
+      "round": 1,
+      "from": "live",
+      "to": "expanded",
+      "observedTransition": {
+        "elapsedMs": 585.7000000029802,
+        "size": [
+          680,
+          297
+        ],
+        "host": [
+          720,
+          460
+        ]
+      },
+      "rendererPid": 17900,
+      "layerTreeId": 1,
+      "traceStartUs": 44220904375,
+      "traceEndUs": 44221489666,
+      "tracedDurationMs": 585.291,
+      "accountingWindowUs": [
+        44220887708.4,
+        44221506332.6
+      ],
+      "frameBudgetMs": 16.666600000000003,
+      "begunFrames": 37,
+      "drawnFrames": 15,
+      "droppedFrames": 20,
+      "partialFrames": 0,
+      "droppedFrameSequenceIds": [
+        631,
+        632,
+        633,
+        636,
+        637,
+        638,
+        639,
+        640,
+        641,
+        642,
+        643,
+        644,
+        645,
+        646,
+        647,
+        648,
+        649,
+        650,
+        651,
+        652
+      ],
+      "maxDrawGapMs": 312.515,
+      "withinTwoDroppedFrames": false
+    },
+    {
+      "id": "nabbit:motion:1:peek:idle",
+      "round": 1,
+      "from": "peek",
+      "to": "idle",
+      "observedTransition": {
+        "elapsedMs": 288.80000000447035,
+        "size": [
+          112,
+          26
+        ],
+        "host": [
+          720,
+          460
+        ]
+      },
+      "rendererPid": 17900,
+      "layerTreeId": 1,
+      "traceStartUs": 44222278343,
+      "traceEndUs": 44222566944,
+      "tracedDurationMs": 288.601,
+      "accountingWindowUs": [
+        44222261676.4,
+        44222583610.6
+      ],
+      "frameBudgetMs": 16.666600000000003,
+      "begunFrames": 20,
+      "drawnFrames": 19,
+      "droppedFrames": 0,
+      "partialFrames": 0,
+      "droppedFrameSequenceIds": [],
+      "maxDrawGapMs": 18.931,
+      "withinTwoDroppedFrames": true
+    },
+    {
+      "id": "nabbit:motion:1:peek:live",
+      "round": 1,
+      "from": "peek",
+      "to": "live",
+      "observedTransition": {
+        "elapsedMs": 298,
+        "size": [
+          320,
+          32
+        ],
+        "host": [
+          720,
+          460
+        ]
+      },
+      "rendererPid": 17900,
+      "layerTreeId": 1,
+      "traceStartUs": 44223337041,
+      "traceEndUs": 44223634732,
+      "tracedDurationMs": 297.691,
+      "accountingWindowUs": [
+        44223320374.4,
+        44223651398.6
+      ],
+      "frameBudgetMs": 16.666600000000003,
+      "begunFrames": 20,
+      "drawnFrames": 19,
+      "droppedFrames": 0,
+      "partialFrames": 0,
+      "droppedFrameSequenceIds": [],
+      "maxDrawGapMs": 18.616,
+      "withinTwoDroppedFrames": true
+    },
+    {
+      "id": "nabbit:motion:1:peek:expanded",
+      "round": 1,
+      "from": "peek",
+      "to": "expanded",
+      "observedTransition": {
+        "elapsedMs": 388.20000000298023,
+        "size": [
+          680,
+          297
+        ],
+        "host": [
+          720,
+          460
+        ]
+      },
+      "rendererPid": 17900,
+      "layerTreeId": 1,
+      "traceStartUs": 44224398989,
+      "traceEndUs": 44224786805,
+      "tracedDurationMs": 387.816,
+      "accountingWindowUs": [
+        44224382322.4,
+        44224803471.6
+      ],
+      "frameBudgetMs": 16.666600000000003,
+      "begunFrames": 26,
+      "drawnFrames": 25,
+      "droppedFrames": 0,
+      "partialFrames": 0,
+      "droppedFrameSequenceIds": [],
+      "maxDrawGapMs": 17.167,
+      "withinTwoDroppedFrames": true
+    },
+    {
+      "id": "nabbit:motion:1:expanded:idle",
+      "round": 1,
+      "from": "expanded",
+      "to": "idle",
+      "observedTransition": {
+        "elapsedMs": 288.6000000014901,
+        "size": [
+          112,
+          26
+        ],
+        "host": [
+          720,
+          460
+        ]
+      },
+      "rendererPid": 17900,
+      "layerTreeId": 1,
+      "traceStartUs": 44225565342,
+      "traceEndUs": 44225853566,
+      "tracedDurationMs": 288.224,
+      "accountingWindowUs": [
+        44225548675.4,
+        44225870232.6
+      ],
+      "frameBudgetMs": 16.666600000000003,
+      "begunFrames": 20,
+      "drawnFrames": 19,
+      "droppedFrames": 0,
+      "partialFrames": 0,
+      "droppedFrameSequenceIds": [],
+      "maxDrawGapMs": 19.069,
+      "withinTwoDroppedFrames": true
+    },
+    {
+      "id": "nabbit:motion:1:expanded:live",
+      "round": 1,
+      "from": "expanded",
+      "to": "live",
+      "observedTransition": {
+        "elapsedMs": 335.3999999985099,
+        "size": [
+          320,
+          32
+        ],
+        "host": [
+          720,
+          460
+        ]
+      },
+      "rendererPid": 17900,
+      "layerTreeId": 1,
+      "traceStartUs": 44226636263,
+      "traceEndUs": 44226971375,
+      "tracedDurationMs": 335.112,
+      "accountingWindowUs": [
+        44226619596.4,
+        44226988041.6
+      ],
+      "frameBudgetMs": 16.666600000000003,
+      "begunFrames": 23,
+      "drawnFrames": 20,
+      "droppedFrames": 0,
+      "partialFrames": 0,
+      "droppedFrameSequenceIds": [],
+      "maxDrawGapMs": 19.084,
+      "withinTwoDroppedFrames": true
+    },
+    {
+      "id": "nabbit:motion:1:expanded:peek",
+      "round": 1,
+      "from": "expanded",
+      "to": "peek",
+      "observedTransition": {
+        "elapsedMs": 292.8999999985099,
+        "size": [
+          400,
+          74
+        ],
+        "host": [
+          720,
+          460
+        ]
+      },
+      "rendererPid": 17900,
+      "layerTreeId": 1,
+      "traceStartUs": 44227747037,
+      "traceEndUs": 44228039438,
+      "tracedDurationMs": 292.401,
+      "accountingWindowUs": [
+        44227730370.4,
+        44228056104.6
+      ],
+      "frameBudgetMs": 16.666600000000003,
+      "begunFrames": 20,
+      "drawnFrames": 19,
+      "droppedFrames": 0,
+      "partialFrames": 0,
+      "droppedFrameSequenceIds": [],
+      "maxDrawGapMs": 20.086,
+      "withinTwoDroppedFrames": true
+    },
+    {
+      "id": "nabbit:motion:2:idle:live",
+      "round": 2,
+      "from": "idle",
+      "to": "live",
+      "observedTransition": {
+        "elapsedMs": 266.8999999985099,
+        "size": [
+          320,
+          32
+        ],
+        "host": [
+          720,
+          460
+        ]
+      },
+      "rendererPid": 17900,
+      "layerTreeId": 1,
+      "traceStartUs": 44228823586,
+      "traceEndUs": 44229090173,
+      "tracedDurationMs": 266.587,
+      "accountingWindowUs": [
+        44228806919.4,
+        44229106839.6
+      ],
+      "frameBudgetMs": 16.666600000000003,
+      "begunFrames": 18,
+      "drawnFrames": 16,
+      "droppedFrames": 0,
+      "partialFrames": 0,
+      "droppedFrameSequenceIds": [],
+      "maxDrawGapMs": 18.149,
+      "withinTwoDroppedFrames": true
+    },
+    {
+      "id": "nabbit:motion:2:idle:peek",
+      "round": 2,
+      "from": "idle",
+      "to": "peek",
+      "observedTransition": {
+        "elapsedMs": 330.20000000298023,
+        "size": [
+          400,
+          74
+        ],
+        "host": [
+          720,
+          460
+        ]
+      },
+      "rendererPid": 17900,
+      "layerTreeId": 1,
+      "traceStartUs": 44229861298,
+      "traceEndUs": 44230191325,
+      "tracedDurationMs": 330.027,
+      "accountingWindowUs": [
+        44229844631.4,
+        44230207991.6
+      ],
+      "frameBudgetMs": 16.666600000000003,
+      "begunFrames": 22,
+      "drawnFrames": 20,
+      "droppedFrames": 0,
+      "partialFrames": 0,
+      "droppedFrameSequenceIds": [],
+      "maxDrawGapMs": 17.462,
+      "withinTwoDroppedFrames": true
+    },
+    {
+      "id": "nabbit:motion:2:idle:expanded",
+      "round": 2,
+      "from": "idle",
+      "to": "expanded",
+      "observedTransition": {
+        "elapsedMs": 381.40000000596046,
+        "size": [
+          680,
+          297
+        ],
+        "host": [
+          720,
+          460
+        ]
+      },
+      "rendererPid": 17900,
+      "layerTreeId": 1,
+      "traceStartUs": 44230961290,
+      "traceEndUs": 44231342467,
+      "tracedDurationMs": 381.177,
+      "accountingWindowUs": [
+        44230944623.4,
+        44231359133.6
+      ],
+      "frameBudgetMs": 16.666600000000003,
+      "begunFrames": 25,
+      "drawnFrames": 23,
+      "droppedFrames": 0,
+      "partialFrames": 0,
+      "droppedFrameSequenceIds": [],
+      "maxDrawGapMs": 17.825,
+      "withinTwoDroppedFrames": true
+    },
+    {
+      "id": "nabbit:motion:2:live:idle",
+      "round": 2,
+      "from": "live",
+      "to": "idle",
+      "observedTransition": {
+        "elapsedMs": 287.79999999701977,
+        "size": [
+          112,
+          26
+        ],
+        "host": [
+          720,
+          460
+        ]
+      },
+      "rendererPid": 17900,
+      "layerTreeId": 1,
+      "traceStartUs": 44232123091,
+      "traceEndUs": 44232410425,
+      "tracedDurationMs": 287.334,
+      "accountingWindowUs": [
+        44232106424.4,
+        44232427091.6
+      ],
+      "frameBudgetMs": 16.666600000000003,
+      "begunFrames": 20,
+      "drawnFrames": 19,
+      "droppedFrames": 0,
+      "partialFrames": 0,
+      "droppedFrameSequenceIds": [],
+      "maxDrawGapMs": 19.696,
+      "withinTwoDroppedFrames": true
+    },
+    {
+      "id": "nabbit:motion:2:live:peek",
+      "round": 2,
+      "from": "live",
+      "to": "peek",
+      "observedTransition": {
+        "elapsedMs": 332.1000000014901,
+        "size": [
+          400,
+          74
+        ],
+        "host": [
+          720,
+          460
+        ]
+      },
+      "rendererPid": 17900,
+      "layerTreeId": 1,
+      "traceStartUs": 44233179715,
+      "traceEndUs": 44233511503,
+      "tracedDurationMs": 331.788,
+      "accountingWindowUs": [
+        44233163048.4,
+        44233528169.6
+      ],
+      "frameBudgetMs": 16.666600000000003,
+      "begunFrames": 22,
+      "drawnFrames": 21,
+      "droppedFrames": 0,
+      "partialFrames": 0,
+      "droppedFrameSequenceIds": [],
+      "maxDrawGapMs": 18.07,
+      "withinTwoDroppedFrames": true
+    },
+    {
+      "id": "nabbit:motion:2:live:expanded",
+      "round": 2,
+      "from": "live",
+      "to": "expanded",
+      "observedTransition": {
+        "elapsedMs": 387.1000000014901,
+        "size": [
+          680,
+          297
+        ],
+        "host": [
+          720,
+          460
+        ]
+      },
+      "rendererPid": 17900,
+      "layerTreeId": 1,
+      "traceStartUs": 44234292429,
+      "traceEndUs": 44234679297,
+      "tracedDurationMs": 386.868,
+      "accountingWindowUs": [
+        44234275762.4,
+        44234695963.6
+      ],
+      "frameBudgetMs": 16.666600000000003,
+      "begunFrames": 26,
+      "drawnFrames": 25,
+      "droppedFrames": 0,
+      "partialFrames": 0,
+      "droppedFrameSequenceIds": [],
+      "maxDrawGapMs": 16.955,
+      "withinTwoDroppedFrames": true
+    },
+    {
+      "id": "nabbit:motion:2:peek:idle",
+      "round": 2,
+      "from": "peek",
+      "to": "idle",
+      "observedTransition": {
+        "elapsedMs": 297.40000000596046,
+        "size": [
+          112,
+          26
+        ],
+        "host": [
+          720,
+          460
+        ]
+      },
+      "rendererPid": 17900,
+      "layerTreeId": 1,
+      "traceStartUs": 44235449878,
+      "traceEndUs": 44235747015,
+      "tracedDurationMs": 297.137,
+      "accountingWindowUs": [
+        44235433211.4,
+        44235763681.6
+      ],
+      "frameBudgetMs": 16.666600000000003,
+      "begunFrames": 20,
+      "drawnFrames": 19,
+      "droppedFrames": 0,
+      "partialFrames": 0,
+      "droppedFrameSequenceIds": [],
+      "maxDrawGapMs": 18.501,
+      "withinTwoDroppedFrames": true
+    },
+    {
+      "id": "nabbit:motion:2:peek:live",
+      "round": 2,
+      "from": "peek",
+      "to": "live",
+      "observedTransition": {
+        "elapsedMs": 302.5,
+        "size": [
+          320,
+          32
+        ],
+        "host": [
+          720,
+          460
+        ]
+      },
+      "rendererPid": 17900,
+      "layerTreeId": 1,
+      "traceStartUs": 44236512473,
+      "traceEndUs": 44236814777,
+      "tracedDurationMs": 302.304,
+      "accountingWindowUs": [
+        44236495806.4,
+        44236831443.6
+      ],
+      "frameBudgetMs": 16.666600000000003,
+      "begunFrames": 21,
+      "drawnFrames": 19,
+      "droppedFrames": 0,
+      "partialFrames": 0,
+      "droppedFrameSequenceIds": [],
+      "maxDrawGapMs": 18.415,
+      "withinTwoDroppedFrames": true
+    },
+    {
+      "id": "nabbit:motion:2:peek:expanded",
+      "round": 2,
+      "from": "peek",
+      "to": "expanded",
+      "observedTransition": {
+        "elapsedMs": 383.1000000014901,
+        "size": [
+          680,
+          297
+        ],
+        "host": [
+          720,
+          460
+        ]
+      },
+      "rendererPid": 17900,
+      "layerTreeId": 1,
+      "traceStartUs": 44237583052,
+      "traceEndUs": 44237965944,
+      "tracedDurationMs": 382.892,
+      "accountingWindowUs": [
+        44237566385.4,
+        44237982610.6
+      ],
+      "frameBudgetMs": 16.666600000000003,
+      "begunFrames": 25,
+      "drawnFrames": 24,
+      "droppedFrames": 0,
+      "partialFrames": 0,
+      "droppedFrameSequenceIds": [],
+      "maxDrawGapMs": 17.83,
+      "withinTwoDroppedFrames": true
+    },
+    {
+      "id": "nabbit:motion:2:expanded:idle",
+      "round": 2,
+      "from": "expanded",
+      "to": "idle",
+      "observedTransition": {
+        "elapsedMs": 290,
+        "size": [
+          112,
+          26
+        ],
+        "host": [
+          720,
+          460
+        ]
+      },
+      "rendererPid": 17900,
+      "layerTreeId": 1,
+      "traceStartUs": 44238744025,
+      "traceEndUs": 44239033701,
+      "tracedDurationMs": 289.676,
+      "accountingWindowUs": [
+        44238727358.4,
+        44239050367.6
+      ],
+      "frameBudgetMs": 16.666600000000003,
+      "begunFrames": 20,
+      "drawnFrames": 19,
+      "droppedFrames": 0,
+      "partialFrames": 0,
+      "droppedFrameSequenceIds": [],
+      "maxDrawGapMs": 18.432,
+      "withinTwoDroppedFrames": true
+    },
+    {
+      "id": "nabbit:motion:2:expanded:live",
+      "round": 2,
+      "from": "expanded",
+      "to": "live",
+      "observedTransition": {
+        "elapsedMs": 289.69999999552965,
+        "size": [
+          320,
+          32
+        ],
+        "host": [
+          720,
+          460
+        ]
+      },
+      "rendererPid": 17900,
+      "layerTreeId": 1,
+      "traceStartUs": 44239812117,
+      "traceEndUs": 44240101527,
+      "tracedDurationMs": 289.41,
+      "accountingWindowUs": [
+        44239795450.4,
+        44240118193.6
+      ],
+      "frameBudgetMs": 16.666600000000003,
+      "begunFrames": 20,
+      "drawnFrames": 19,
+      "droppedFrames": 0,
+      "partialFrames": 0,
+      "droppedFrameSequenceIds": [],
+      "maxDrawGapMs": 18.39,
+      "withinTwoDroppedFrames": true
+    },
+    {
+      "id": "nabbit:motion:2:expanded:peek",
+      "round": 2,
+      "from": "expanded",
+      "to": "peek",
+      "observedTransition": {
+        "elapsedMs": 287,
+        "size": [
+          400,
+          74
+        ],
+        "host": [
+          720,
+          460
+        ]
+      },
+      "rendererPid": 17900,
+      "layerTreeId": 1,
+      "traceStartUs": 44240865715,
+      "traceEndUs": 44241152526,
+      "tracedDurationMs": 286.811,
+      "accountingWindowUs": [
+        44240849048.4,
+        44241169192.6
+      ],
+      "frameBudgetMs": 16.666600000000003,
+      "begunFrames": 20,
+      "drawnFrames": 19,
+      "droppedFrames": 0,
+      "partialFrames": 0,
+      "droppedFrameSequenceIds": [],
+      "maxDrawGapMs": 18.531,
+      "withinTwoDroppedFrames": true
+    },
+    {
+      "id": "nabbit:motion:3:idle:live",
+      "round": 3,
+      "from": "idle",
+      "to": "live",
+      "observedTransition": {
+        "elapsedMs": 264.5,
+        "size": [
+          320,
+          32
+        ],
+        "host": [
+          720,
+          460
+        ]
+      },
+      "rendererPid": 17900,
+      "layerTreeId": 1,
+      "traceStartUs": 44241922792,
+      "traceEndUs": 44242187016,
+      "tracedDurationMs": 264.224,
+      "accountingWindowUs": [
+        44241906125.4,
+        44242203682.6
+      ],
+      "frameBudgetMs": 16.666600000000003,
+      "begunFrames": 18,
+      "drawnFrames": 16,
+      "droppedFrames": 0,
+      "partialFrames": 0,
+      "droppedFrameSequenceIds": [],
+      "maxDrawGapMs": 17.633,
+      "withinTwoDroppedFrames": true
+    },
+    {
+      "id": "nabbit:motion:3:idle:peek",
+      "round": 3,
+      "from": "idle",
+      "to": "peek",
+      "observedTransition": {
+        "elapsedMs": 322.79999999701977,
+        "size": [
+          400,
+          74
+        ],
+        "host": [
+          720,
+          460
+        ]
+      },
+      "rendererPid": 17900,
+      "layerTreeId": 1,
+      "traceStartUs": 44242948751,
+      "traceEndUs": 44243271331,
+      "tracedDurationMs": 322.58,
+      "accountingWindowUs": [
+        44242932084.4,
+        44243287997.6
+      ],
+      "frameBudgetMs": 16.666600000000003,
+      "begunFrames": 22,
+      "drawnFrames": 20,
+      "droppedFrames": 0,
+      "partialFrames": 0,
+      "droppedFrameSequenceIds": [],
+      "maxDrawGapMs": 17.722,
+      "withinTwoDroppedFrames": true
+    },
+    {
+      "id": "nabbit:motion:3:idle:expanded",
+      "round": 3,
+      "from": "idle",
+      "to": "expanded",
+      "observedTransition": {
+        "elapsedMs": 402.5,
+        "size": [
+          680,
+          297
+        ],
+        "host": [
+          720,
+          460
+        ]
+      },
+      "rendererPid": 17900,
+      "layerTreeId": 1,
+      "traceStartUs": 44244053808,
+      "traceEndUs": 44244455930,
+      "tracedDurationMs": 402.122,
+      "accountingWindowUs": [
+        44244037141.4,
+        44244472596.6
+      ],
+      "frameBudgetMs": 16.666600000000003,
+      "begunFrames": 27,
+      "drawnFrames": 23,
+      "droppedFrames": 2,
+      "partialFrames": 1,
+      "droppedFrameSequenceIds": [
+        2006,
+        2008
+      ],
+      "maxDrawGapMs": 16.832,
+      "withinTwoDroppedFrames": true
+    },
+    {
+      "id": "nabbit:motion:3:live:idle",
+      "round": 3,
+      "from": "live",
+      "to": "idle",
+      "observedTransition": {
+        "elapsedMs": 292.1000000014901,
+        "size": [
+          112,
+          26
+        ],
+        "host": [
+          720,
+          460
+        ]
+      },
+      "rendererPid": 17900,
+      "layerTreeId": 1,
+      "traceStartUs": 44245215054,
+      "traceEndUs": 44245506956,
+      "tracedDurationMs": 291.902,
+      "accountingWindowUs": [
+        44245198387.4,
+        44245523622.6
+      ],
+      "frameBudgetMs": 16.666600000000003,
+      "begunFrames": 20,
+      "drawnFrames": 19,
+      "droppedFrames": 0,
+      "partialFrames": 0,
+      "droppedFrameSequenceIds": [],
+      "maxDrawGapMs": 18.257,
+      "withinTwoDroppedFrames": true
+    },
+    {
+      "id": "nabbit:motion:3:live:peek",
+      "round": 3,
+      "from": "live",
+      "to": "peek",
+      "observedTransition": {
+        "elapsedMs": 332.29999999701977,
+        "size": [
+          400,
+          74
+        ],
+        "host": [
+          720,
+          460
+        ]
+      },
+      "rendererPid": 17900,
+      "layerTreeId": 1,
+      "traceStartUs": 44246276063,
+      "traceEndUs": 44246608053,
+      "tracedDurationMs": 331.99,
+      "accountingWindowUs": [
+        44246259396.4,
+        44246624719.6
+      ],
+      "frameBudgetMs": 16.666600000000003,
+      "begunFrames": 22,
+      "drawnFrames": 21,
+      "droppedFrames": 0,
+      "partialFrames": 0,
+      "droppedFrameSequenceIds": [],
+      "maxDrawGapMs": 17.648,
+      "withinTwoDroppedFrames": true
+    },
+    {
+      "id": "nabbit:motion:3:live:expanded",
+      "round": 3,
+      "from": "live",
+      "to": "expanded",
+      "observedTransition": {
+        "elapsedMs": 381.70000000298023,
+        "size": [
+          680,
+          297
+        ],
+        "host": [
+          720,
+          460
+        ]
+      },
+      "rendererPid": 17900,
+      "layerTreeId": 1,
+      "traceStartUs": 44247377771,
+      "traceEndUs": 44247759274,
+      "tracedDurationMs": 381.503,
+      "accountingWindowUs": [
+        44247361104.4,
+        44247775940.6
+      ],
+      "frameBudgetMs": 16.666600000000003,
+      "begunFrames": 25,
+      "drawnFrames": 24,
+      "droppedFrames": 0,
+      "partialFrames": 0,
+      "droppedFrameSequenceIds": [],
+      "maxDrawGapMs": 17.62,
+      "withinTwoDroppedFrames": true
+    },
+    {
+      "id": "nabbit:motion:3:peek:idle",
+      "round": 3,
+      "from": "peek",
+      "to": "idle",
+      "observedTransition": {
+        "elapsedMs": 295.1000000014901,
+        "size": [
+          112,
+          26
+        ],
+        "host": [
+          720,
+          460
+        ]
+      },
+      "rendererPid": 17900,
+      "layerTreeId": 1,
+      "traceStartUs": 44248532261,
+      "traceEndUs": 44248827070,
+      "tracedDurationMs": 294.809,
+      "accountingWindowUs": [
+        44248515594.4,
+        44248843736.6
+      ],
+      "frameBudgetMs": 16.666600000000003,
+      "begunFrames": 20,
+      "drawnFrames": 19,
+      "droppedFrames": 0,
+      "partialFrames": 0,
+      "droppedFrameSequenceIds": [],
+      "maxDrawGapMs": 18.609,
+      "withinTwoDroppedFrames": true
+    },
+    {
+      "id": "nabbit:motion:3:peek:live",
+      "round": 3,
+      "from": "peek",
+      "to": "live",
+      "observedTransition": {
+        "elapsedMs": 291.29999999701977,
+        "size": [
+          320,
+          32
+        ],
+        "host": [
+          720,
+          460
+        ]
+      },
+      "rendererPid": 17900,
+      "layerTreeId": 1,
+      "traceStartUs": 44249587127,
+      "traceEndUs": 44249878205,
+      "tracedDurationMs": 291.078,
+      "accountingWindowUs": [
+        44249570460.4,
+        44249894871.6
+      ],
+      "frameBudgetMs": 16.666600000000003,
+      "begunFrames": 20,
+      "drawnFrames": 19,
+      "droppedFrames": 0,
+      "partialFrames": 0,
+      "droppedFrameSequenceIds": [],
+      "maxDrawGapMs": 18.648,
+      "withinTwoDroppedFrames": true
+    },
+    {
+      "id": "nabbit:motion:3:peek:expanded",
+      "round": 3,
+      "from": "peek",
+      "to": "expanded",
+      "observedTransition": {
+        "elapsedMs": 382,
+        "size": [
+          680,
+          297
+        ],
+        "host": [
+          720,
+          460
+        ]
+      },
+      "rendererPid": 17900,
+      "layerTreeId": 1,
+      "traceStartUs": 44250647444,
+      "traceEndUs": 44251029205,
+      "tracedDurationMs": 381.761,
+      "accountingWindowUs": [
+        44250630777.4,
+        44251045871.6
+      ],
+      "frameBudgetMs": 16.666600000000003,
+      "begunFrames": 25,
+      "drawnFrames": 24,
+      "droppedFrames": 0,
+      "partialFrames": 0,
+      "droppedFrameSequenceIds": [],
+      "maxDrawGapMs": 18.136,
+      "withinTwoDroppedFrames": true
+    },
+    {
+      "id": "nabbit:motion:3:expanded:idle",
+      "round": 3,
+      "from": "expanded",
+      "to": "idle",
+      "observedTransition": {
+        "elapsedMs": 298.6000000014901,
+        "size": [
+          112,
+          26
+        ],
+        "host": [
+          720,
+          460
+        ]
+      },
+      "rendererPid": 17900,
+      "layerTreeId": 1,
+      "traceStartUs": 44251799085,
+      "traceEndUs": 44252097283,
+      "tracedDurationMs": 298.198,
+      "accountingWindowUs": [
+        44251782418.4,
+        44252113949.6
+      ],
+      "frameBudgetMs": 16.666600000000003,
+      "begunFrames": 20,
+      "drawnFrames": 19,
+      "droppedFrames": 0,
+      "partialFrames": 0,
+      "droppedFrameSequenceIds": [],
+      "maxDrawGapMs": 18.139,
+      "withinTwoDroppedFrames": true
+    },
+    {
+      "id": "nabbit:motion:3:expanded:live",
+      "round": 3,
+      "from": "expanded",
+      "to": "live",
+      "observedTransition": {
+        "elapsedMs": 291.6000000014901,
+        "size": [
+          320,
+          32
+        ],
+        "host": [
+          720,
+          460
+        ]
+      },
+      "rendererPid": 17900,
+      "layerTreeId": 1,
+      "traceStartUs": 44252856915,
+      "traceEndUs": 44253148348,
+      "tracedDurationMs": 291.433,
+      "accountingWindowUs": [
+        44252840248.4,
+        44253165014.6
+      ],
+      "frameBudgetMs": 16.666600000000003,
+      "begunFrames": 20,
+      "drawnFrames": 19,
+      "droppedFrames": 0,
+      "partialFrames": 0,
+      "droppedFrameSequenceIds": [],
+      "maxDrawGapMs": 18.503,
+      "withinTwoDroppedFrames": true
+    },
+    {
+      "id": "nabbit:motion:3:expanded:peek",
+      "round": 3,
+      "from": "expanded",
+      "to": "peek",
+      "observedTransition": {
+        "elapsedMs": 296.80000000447035,
+        "size": [
+          400,
+          74
+        ],
+        "host": [
+          720,
+          460
+        ]
+      },
+      "rendererPid": 17900,
+      "layerTreeId": 1,
+      "traceStartUs": 44253919322,
+      "traceEndUs": 44254215890,
+      "tracedDurationMs": 296.568,
+      "accountingWindowUs": [
+        44253902655.4,
+        44254232556.6
+      ],
+      "frameBudgetMs": 16.666600000000003,
+      "begunFrames": 20,
+      "drawnFrames": 19,
+      "droppedFrames": 0,
+      "partialFrames": 0,
+      "droppedFrameSequenceIds": [],
+      "maxDrawGapMs": 19.86,
+      "withinTwoDroppedFrames": true
+    }
+  ],
+  "maxDroppedFrames": 20,
+  "gateDecision": "Pending V0.4",
+  "runtimeErrors": []
+}

@@ -65,5 +65,63 @@ real cursor. The prototype uses the system font fallback pending V1.2.
   effect/listener cleanup and event-driven updates were reviewed. Native and
   browser reports contain no runtime errors.
 
-V0.3–V0.4 and M1 remain pending. The 300 ms idle scheduling check is not a CPU
-measurement; the required release idle/memory/frame gate has not been run yet.
+## V0.3 release measurements
+
+The unsigned release executable was built from application commit `30fa8a4` with
+`island-spike,custom-protocol`. `v03-performance.json` records its SHA-256 and
+raw process-family samples. Both idle trials used fresh isolated profiles,
+20 seconds of settling and at least 60 seconds of sampling, with CDP/tracing off.
+
+| Measurement | Flag-zero baseline | Shown collapsed island |
+|---|---:|---:|
+| Sample duration | 60.118 s | 60.326 s |
+| CPU seconds, app + WebView2 descendants | 0.140625 | 0.1875 |
+| CPU, percentage of one core | 0.233914% | 0.310813% |
+| CPU, normalized over 12 logical processors | 0.019493% | 0.025901% |
+| Mean total working set, decimal MB | 367.742 | 457.511 |
+| Peak total working set, decimal MB | 371.741 | 461.365 |
+| Observed processes | 8 | 9 |
+
+The island adds **89.769 MB mean / 89.625 MB peak** (85.611/85.473 MiB), exceeding
+the 60 MB allowance. CPU values are retained unrounded; the collector also
+records the stricter one-core, one-decimal result (0.2% baseline / 0.3% island).
+Working sets sum resident pages across the process family, including shared
+pages counted in multiple processes. Snapshot/query overhead gives observed
+intervals around 1.25 seconds; native CPU counters cover the full sample.
+
+Machine: **Windows 11 Home 10.0.26300**, DWM refresh **60.00024 Hz**, **96 DPI / 100%**
+scaling, WebView2 **Edg/158.0.4370.33**. Display settings and other applications
+were left unchanged. Both accepted process trees stayed stable. The collector
+also retains query-only CPU handles for children that exit; an automated helper
+test retrieved 0.34375 final CPU seconds after its process exited.
+
+`v03-frame-timings.json` contains **36 native morphs**: all 12 directed transitions
+among idle/live/peek/expanded, three rounds. A separate fresh release launch
+enabled CDP tracing. No screenshot capture, JS profiler or animation flags ran
+during collection. Explicit Chromium compositor dropped-frame sequence IDs are
+scoped to the island renderer/layer tree, with partial drops included.
+
+| Round | Maximum drops in one morph | Total drops over 12 morphs |
+|---|---:|---:|
+| 1, first use of the shapes | 20 | 55 |
+| 2 | 0 | 0 |
+| 3 | 2 | 2 |
+
+The worst morph was round 1 live→expanded (20 drops, 585.290 ms observed), which
+exceeds the ≤2-frame limit. Later smooth rounds are retained alongside that
+failure. The target host stayed 720×460, motion preference was normal, no trace
+data was lost and no runtime errors occurred. `v03-compositor-trace.json` keeps
+the frame events/marks and deduplicated target layer mappings needed to replay
+all 36 results exactly; the complete trace remains in ignored `.tools/`.
+
+The frame analyser's six synthetic tests cover duplicate/partial drops,
+renderer/layer/window isolation, missing data, refresh accounting, failed limits
+and invalid markers. The published trace was replayed against every recorded
+result after compaction, without changing any frame count. Regression checks
+passed: `npm run verify` (18 tests), site verification, Rust formatting,
+default/spike Clippy with warnings denied, and 28 Rust tests. Reproduction:
+`spikes/island/README.md`.
+
+**V0.4 and M1 remain pending.** V0.3 completes measurement, not the gate. The
+memory and first-use frame results exceed the handoff limits; the required
+native collapsed/compact fallback belongs to V0.4.

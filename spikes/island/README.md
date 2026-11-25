@@ -1,4 +1,4 @@
-# Island spike — V0.1–V0.2
+# Island spike — V0.1–V0.3
 
 This throwaway surface tests a WebView2 island inside Nabbit. It is compiled only
 with Cargo feature `island-spike` on Windows and opens only when
@@ -64,9 +64,8 @@ HTML entry. `npm run build:spike` is needed again for another spike build.
 
 For a local developer controller, preview the spike entry with
 `?preview=1&controls=1`. Native acceptance controls it through the explicitly
-exposed `window.nabbitIslandSpike.setState(...)` seam. Release CPU/memory/frame
-measurements and the go/no-go decision remain V0.3/V0.4; this spike does not
-claim those gates have passed.
+exposed `window.nabbitIslandSpike.setState(...)` seam. Release measurements use
+the separate V0.3 procedure below. The go/no-go decision remains V0.4.
 
 ## V0.2 interaction
 
@@ -106,3 +105,50 @@ the external harness. The smoke checks 16 scenarios against actual HWND styles,
 host visibility/bounds, WebView2 state, adaptive sample counters and a real
 disposable file-path round trip. Browser tests use synthetic DataTransfer events
 at light/dark and 1×/1.5×. All test storage remains under ignored `.tools/`.
+
+## V0.3 release measurements
+
+```powershell
+npm run build:spike
+cargo build --manifest-path src-tauri/Cargo.toml --release --features island-spike,custom-protocol
+.\scripts\windows-island-performance.ps1
+```
+
+This builds an unsigned executable without bundling, signing or installing.
+The script runs same-binary baseline (`NABBIT_ISLAND_SPIKE=0`) and collapsed
+island (`=1`) trials with fresh disposable SQLite/WebView2 profiles. Each gets
+20 seconds of settling followed by at least 60 seconds of idle sampling.
+CDP and tracing are disabled throughout those CPU/memory samples.
+
+Process discovery follows the app's descendants, rather than every WebView2 on
+the machine. Read-only native CPU-query handles remain open for observed
+processes until the sample ends, so a WebView2 child that exits still contributes
+its final CPU time. The report retains per-query snapshots (a 1-second wait plus
+process-query time), process births and
+departures, CPU seconds, unrounded one-core percentage, one-decimal percentage,
+and the machine-normalized percentage. Working set is summed across the app and
+all observed live descendants; shared pages can be counted in several processes.
+Baseline/island mean and peak values and their differences are recorded in bytes.
+
+A separate isolated release launch enables loopback CDP for motion collection.
+`measure-island-frames.mjs` records all 12 directed transitions among the four
+shapes, three times, with no OS focus change or animation flags. User-timing
+marks bracket actual CSS width transitions; Chromium's compositor
+BeginFrame/DrawFrame/DroppedFrame sequence IDs are scoped to the island's renderer
+and layer tree. Partial drops count. One refresh around the marks includes the
+refresh containing the initial mutation and the final draw. Missing markers,
+mapping, drawn frames or lost trace data fail collection instead of yielding a
+zero-drop result. Draw gaps are descriptive and do not manufacture drops during
+intentional animation delays. The analyser has six synthetic trace tests.
+
+Machine metadata comes from local Windows queries, including the existing DWM
+refresh ratio and island DPI/scaling. No display settings are changed; other
+applications remain uncontrolled. `v03-performance.json`, `v03-frame-timings.json`
+and the filtered `v03-compositor-trace.json` retain the evidence. The full trace,
+profiles and trial logs stay under ignored `.tools/`. Threshold failures are
+retained for the V0.4 decision; successful data collection alone does not pass
+the gate.
+
+API references: [DWM timing](https://learn.microsoft.com/en-us/windows/win32/api/dwmapi/nf-dwmapi-dwmgetcompositiontiminginfo),
+[CDP tracing](https://chromedevtools.github.io/devtools-protocol/tot/Tracing/),
+[Chromium frame accounting](https://github.com/ChromeDevTools/devtools-frontend/blob/main/front_end/models/trace/handlers/FramesHandler.ts).
