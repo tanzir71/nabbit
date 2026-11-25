@@ -372,6 +372,9 @@ kbd {
   opacity: 0;
   pointer-events: none;
 }
+html[data-native-waiting="true"] .spike-frame {
+  opacity: 0;
+}
 .spike-pill[data-state="drop"] {
   width: 640px;
   height: 150px;

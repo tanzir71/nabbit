@@ -733,7 +733,7 @@ Commit after every task (§0.1). Lines marked **MILESTONE** are tasks of their o
 - [x] V0.1 Create `spikes/island/` (throwaway Tauri window inside the app behind a dev flag): 720×460 transparent window, `focusable(false)`, `no_redirection_bitmap(true)`, CSS-morphing pill (idle → live → peek → expanded) using `linear()` springs.
 - [x] V0.2 Hit-rect click-through with the adaptive cursor watcher; drag-enter while click-through; fullscreen hide.
 - [x] V0.3 Measure with an automated script and record in `PROGRESS.md`: idle CPU over 60 s, total working set (app + WebView2 children), dropped frames per morph via CDP frame timing, plus this machine's Windows version, refresh rate and scaling. Measure only what this machine has; never change display settings.
-- [ ] V0.4 **Gate:** go if idle CPU = 0.0%, each morph drops ≤ 2 frames at this machine's refresh rate, and the island adds ≤ 60 MB working set; otherwise record the failure and implement only the collapsed/compact pill natively (Win32 layered window + DirectComposition) while keeping peek/expanded in the webview. Record the decision.
+- [x] V0.4 **Gate:** go if idle CPU = 0.0%, each morph drops ≤ 2 frames at this machine's refresh rate, and the island adds ≤ 60 MB working set; otherwise record the failure and implement only the collapsed/compact pill natively (Win32 layered window + DirectComposition) while keeping peek/expanded in the webview. Record the decision.
 - [ ] **MILESTONE M1 — Island spike and measurements.**
 
 ### Phase V1 — Foundations

@@ -103,8 +103,9 @@ export function connectInteraction(
   const observer = new ResizeObserver(measure);
   observer.observe(element);
   measure();
-  void subscribe();
+  const ready = subscribe();
   return {
+    ready,
     rect: () => lastRect,
     receivedFiles: () => receivedFiles,
     setDrag,
@@ -119,7 +120,7 @@ export function connectInteraction(
       };
       try {
         host.chrome.webview.postMessageWithAdditionalObjects(
-          JSON.stringify({ nabbit_file_drop: true, x, y }),
+          JSON.stringify({ nabbit_file_drop: true, x, y, scale: devicePixelRatio }),
           Array.from(data.files),
         );
       } catch {

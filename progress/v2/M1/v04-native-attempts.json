@@ -1,0 +1,15 @@
+{
+  "attempts": [
+    {
+      "attempt": 1,
+      "complete": false,
+      "baselineEvidence": "v04-native-attempt1-baseline.json",
+      "baselineCpuPercent": 0.0,
+      "islandSampleCollected": false,
+      "failure": "Startup validation rejected an empty NABBIT_ACCEPTANCE_NATIVE_SCALE. PowerShell/.NET converted the collector null argument to an empty environment value.",
+      "correction": "Delete absent optional overrides using the PowerShell environment provider. Restore originally absent variables by deletion as well. No executable change.",
+      "includedInPairedComparison": false
+    }
+  ],
+  "acceptedPairedComparison": "v04-native-performance.json"
+}

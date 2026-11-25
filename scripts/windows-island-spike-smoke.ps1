@@ -5,7 +5,7 @@ $exePath = (Resolve-Path -LiteralPath (Join-Path $root $Exe)).Path
 if (Get-Process -Name nabbit -ErrorAction SilentlyContinue) { throw "An existing Nabbit process is running; do not interfere with it." }
 $trialRoot = Join-Path $root (".tools/island-v01-" + [guid]::NewGuid().ToString())
 New-Item -ItemType Directory -Path $trialRoot -Force | Out-Null
-$environmentNames = @("NABBIT_APP_DATA_DIR", "NABBIT_ISLAND_SPIKE", "NABBIT_ACCEPTANCE_CURSOR", "WEBVIEW2_ADDITIONAL_BROWSER_ARGUMENTS", "WEBVIEW2_USER_DATA_FOLDER")
+$environmentNames = @("NABBIT_APP_DATA_DIR", "NABBIT_ISLAND_SPIKE", "NABBIT_ISLAND_RENDERER", "NABBIT_ACCEPTANCE_CURSOR", "WEBVIEW2_ADDITIONAL_BROWSER_ARGUMENTS", "WEBVIEW2_USER_DATA_FOLDER")
 $originalEnvironment = @{}
 foreach ($name in $environmentNames) { $originalEnvironment[$name] = [Environment]::GetEnvironmentVariable($name, "Process") }
 
@@ -46,6 +46,7 @@ public static class IslandSpikeProbe {
 
 $appProcess = $null
 try {
+  $env:NABBIT_ISLAND_RENDERER = "webview"
   $env:NABBIT_APP_DATA_DIR = Join-Path $trialRoot "app-data"
   $env:NABBIT_ACCEPTANCE_CURSOR = Join-Path $trialRoot "cursor.json"
   function Write-InputFixture([double]$x, [double]$y, [bool]$leftDown = $false, [int]$notification = 5, [bool]$onMonitor = $true, [bool]$borderless = $false, [bool]$own = $false, [bool]$desktop = $false) {
@@ -159,5 +160,8 @@ try {
   Write-Output "Passed native window flags, baseline opt-in gate, 720x460 client and stable HWND bounds."
 } finally {
   if ($appProcess -and -not $appProcess.HasExited) { Stop-Process -Id $appProcess.Id -Force; $appProcess.WaitForExit() }
-  foreach ($name in $environmentNames) { [Environment]::SetEnvironmentVariable($name, $originalEnvironment[$name], "Process") }
+  foreach ($name in $environmentNames) {
+    if($null -eq $originalEnvironment[$name]) {Remove-Item -LiteralPath ("Env:"+$name) -ErrorAction SilentlyContinue}
+    else {[Environment]::SetEnvironmentVariable($name, $originalEnvironment[$name], "Process")}
+  }
 }

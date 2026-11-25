@@ -15,6 +15,9 @@ const { chromium } = require(
 const output = resolve(root, "progress/v2/M1");
 await mkdir(output, { recursive: true });
 const native = process.argv[2] === "--cdp";
+const prefixIndex = process.argv.indexOf("--output-prefix");
+const prefix = prefixIndex < 0 ? "v01" : process.argv[prefixIndex + 1];
+assert(/^[a-z0-9-]+$/.test(prefix), "Use a filename-safe output prefix");
 let server;
 let browser;
 const reports = [];
@@ -77,7 +80,7 @@ async function verify(page, name, capture = true) {
       );
     }
     if (capture) {
-      const filename = `v01-${name}-${state}.png`;
+      const filename = `${prefix}-${name}-${state}.png`;
       await page.screenshot({
         path: resolve(output, filename),
         omitBackground: native,
@@ -261,7 +264,7 @@ try {
     await reduced.close();
   }
   await writeFile(
-    resolve(output, `v01-${native ? "webview" : "preview"}-checks.json`),
+    resolve(output, `${prefix}-${native ? "webview" : "preview"}-checks.json`),
     JSON.stringify(
       { surface: native ? "Tauri WebView2" : "Vite preview", hostLogicalSize: [720, 460], reports },
       null,

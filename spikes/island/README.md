@@ -1,14 +1,19 @@
-# Island spike — V0.1–V0.3
+# Island spike — V0.1–V0.4
 
-This throwaway surface tests a WebView2 island inside Nabbit. It is compiled only
+This throwaway surface tests an island inside Nabbit. It is compiled only
 with Cargo feature `island-spike` on Windows and opens only when
 `NABBIT_ISLAND_SPIKE=1`. Unset the variable for normal app startup; value `0` is
 the same-binary baseline with no island. Both explicit spike sessions skip OS
 autostart and global-shortcut changes so automated launches stay isolated.
 
-The native host is a single 720×460 logical transparent window, top-centred on
+V0.3 exceeded the memory and first-use frame limits. V0.4 therefore defaults to
+the native compact fallback: `NABBIT_ISLAND_RENDERER=native` (also the default
+when unset). `webview` explicitly restores the original V0.1–V0.3 renderer;
+the historical smoke and measurement commands select that mode themselves.
+
+Each host is a fixed 720×460 logical transparent window, top-centred on
 the primary work area. It is frameless, non-resizable, topmost, excluded from
-the taskbar, non-focusable and created with `no_redirection_bitmap(true)`.
+the taskbar, non-focusable and has no redirection bitmap.
 Position/size are set at creation; every morph happens inside that fixed host.
 
 | Shape | Size | Radius | Enter motion |
@@ -152,3 +157,61 @@ the gate.
 API references: [DWM timing](https://learn.microsoft.com/en-us/windows/win32/api/dwmapi/nf-dwmapi-dwmgetcompositiontiminginfo),
 [CDP tracing](https://chromedevtools.github.io/devtools-protocol/tot/Tracing/),
 [Chromium frame accounting](https://github.com/ChromeDevTools/devtools-frontend/blob/main/front_end/models/trace/handlers/FramesHandler.ts).
+
+## V0.4 native compact fallback
+
+```powershell
+npm run build:spike
+cargo build --manifest-path src-tauri/Cargo.toml --release --features island-spike,custom-protocol
+.\scripts\windows-native-island-smoke.ps1 -Exe src-tauri/target/release/nabbit.exe
+.\scripts\windows-native-island-smoke.ps1 -Exe src-tauri/target/release/nabbit.exe -ReducedMotion
+.\scripts\windows-island-performance.ps1 -Renderer native
+node scripts/verify-island-spike.mjs --output-prefix v04-preview
+```
+
+Idle/live use a custom Win32 layered, non-activating HWND with a DirectComposition
+target. The class has no `CS_OWNDC`; the host stays shown, fixed in size and
+transparent outside the pill. Cached Direct2D surfaces hold the fill and original
+18px Figma SVG/text. DirectComposition animates rounded clips, offsets and content
+opacity; the worker only updates input/fullscreen policy, never renders frames.
+The pure motion model samples the same spring/collapse curve as CSS and continues
+from the current geometry/opacity when interrupted. Reduced motion changes
+geometry immediately and crossfades content over 120 ms.
+
+Peek, expanded and drag targets use the existing React/WebView2 surface, created
+only on demand. Typed generation-numbered instructions hand ownership over after
+paint, reject stale acknowledgements and destroy the webview on return to compact.
+WebView2 creation runs outside event callbacks to avoid the documented Windows
+deadlock. Closing the last webview leaves the native host/tray alive. In these
+explicit experimental sessions only, the existing tray UI is also created on
+demand; the normal v0.1 startup still prewarms it. Both native performance trials
+use that same tray policy. No JavaScript runs in the native compact surface.
+
+The smoke uses injected cursor/foreground fixtures, without moving the real
+cursor or changing display settings. Scale 1 and 1.5 are acceptance-only geometry
+and WebView2 zoom overrides, not changes to Windows scaling. It verifies styles,
+fixed bounds, original native pixels, input margins, transparent fullscreen,
+stable idle draw counters, lazy webview handoff/destruction, drag cancellation,
+unchanged focus and the hidden tray factory. SQLite must contain zero downloads.
+The reduced-motion run uses a fixture override, leaving OS preferences untouched.
+
+Native screenshots use Windows.Graphics.Capture `CreateForWindow` for the exact
+owned HWND, with cursor capture disabled. They never capture a monitor/desktop,
+use a picker, change capture settings or request permission. Raw premultiplied
+BGRA is encoded as transparent PNG and checked for palette, dimensions, live
+icon/text, transparent margins and zero-alpha fullscreen. Capture and its control
+worker exist only when both acceptance fixture variables are supplied; they are
+disabled during performance sampling. Larger-view PNGs come from their own CDP
+page; preview PNGs come from isolated headless Vite contexts.
+
+`v04-native-performance.json` retains the unsigned release CPU/memory comparison.
+It does not relabel native animation as CDP frame data: V0.3's failed WebView2
+compositor trace stays unchanged, and the gate remains a no-go for that renderer.
+This is a throwaway spike; production monitors, surface/state bus and download
+activities remain for V2.
+
+API references: [DirectComposition device creation](https://learn.microsoft.com/en-us/windows/win32/api/dcomp/nf-dcomp-dcompositioncreatedevice3),
+[surface drawing](https://learn.microsoft.com/en-us/windows/win32/api/dcomp/nf-dcomp-idcompositionsurface-begindraw),
+[visual order](https://learn.microsoft.com/en-us/windows/win32/api/dcomp/nf-dcomp-idcompositionvisual-addvisual),
+[window capture](https://learn.microsoft.com/en-us/windows/win32/api/windows.graphics.capture.interop/nf-windows-graphics-capture-interop-igraphicscaptureiteminterop-createforwindow),
+[Tauri Windows creation constraint](https://docs.rs/tauri/2.12.7/tauri/webview/struct.WebviewWindowBuilder.html).

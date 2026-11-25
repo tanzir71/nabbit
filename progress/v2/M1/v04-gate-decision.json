@@ -1,0 +1,65 @@
+{
+  "decision": "NO-GO for the all-WebView2 spike; native collapsed/compact fallback selected",
+  "evidence": [
+    "v03-performance.json",
+    "v03-frame-timings.json",
+    "v03-compositor-trace.json"
+  ],
+  "criteria": {
+    "idleCpu": {
+      "requiredOneCorePercentOneDecimal": 0.0,
+      "observedOneCorePercent": 0.3108126468343178,
+      "observedOneDecimal": 0.3,
+      "passed": false
+    },
+    "morphs": {
+      "maximumDroppedFrames": 2,
+      "observedMaximum": 20,
+      "morphCount": 36,
+      "refreshHz": 60.00024000096,
+      "passed": false
+    },
+    "workingSet": {
+      "maximumAddedBytes": 60000000,
+      "observedMeanAddedBytes": 89769178.17469388,
+      "observedPeakAddedBytes": 89624576,
+      "passed": false
+    }
+  },
+  "implementation": {
+    "native": [
+      "idle 112x26/r13",
+      "live 320x32/r16"
+    ],
+    "nativeTechnology": "custom Win32 layered HWND + DirectComposition clips/effects/animations + cached Direct2D SVG/DirectWrite content",
+    "webview": [
+      "peek 400x74/r24",
+      "expanded 680x297/r28",
+      "drag target 640x150/r24"
+    ],
+    "host": "fixed 720x460 logical; non-activating, topmost, transparent margins; shown during fullscreen",
+    "allocation": "WebView2 created for larger views and destroyed on return to compact; no compact JavaScript or render timer",
+    "normalAppStartup": "Unchanged. Lazy tray allocation applies only to explicit native spike/baseline sessions.",
+    "nativeEvidence": [
+      "v04-native-checks.json",
+      "v04-native-reduced-checks.json",
+      "v04-native-file-drop.json",
+      "v04-native-performance.json"
+    ],
+    "nativeFrameAccounting": "DirectComposition property animation is not Chromium/CDP. No native dropped-frame count is inferred or claimed. Original failed WebView2 traces are retained unchanged."
+  },
+  "nativeValidation": {
+    "performanceEvidence": "v04-native-performance.json",
+    "executableSha256": "c38492f15052e9ef1f62254924431e9692167b4f193f4087bf5999285d53a0d8",
+    "oneCoreCpuPercent": 0.05174359532141134,
+    "oneCoreCpuPercentOneDecimal": 0.1,
+    "machineCpuPercent": 0.004311966276784278,
+    "strictOneCoreIdleTargetMet": false,
+    "meanAddedWorkingSetBytes": 11796116.879432622,
+    "peakAddedWorkingSetBytes": 11972608.0,
+    "workingSetBudgetMet": true,
+    "webviewChildrenDuringIdle": 0,
+    "frameCountClaimed": false,
+    "conclusion": "The required fallback branch is implemented and functionally verified. The native sample is not a claim that every original performance threshold now passes; retain its 0.1% strict one-core rounded result."
+  }
+}

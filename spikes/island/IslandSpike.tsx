@@ -4,6 +4,7 @@ import { Button } from "../../src/components/Button";
 import { IconButton } from "../../src/components/IconButton";
 import { assets } from "./assets";
 import { connectInteraction, type HitRect, type NativeReport, type Presentation } from "./bridge";
+import { connectNativeSurface, type SurfaceState } from "./native-surface";
 import {
   classify,
   readDrag,
@@ -154,8 +155,8 @@ export function IslandSpike() {
   const [payloadKind, setPayloadKind] = useState<PayloadKind>("link");
   const [over, setOver] = useState<DropZone | undefined>();
   const [receipt, setReceipt] = useState<Receipt | null>(null);
-  const [surface, setSurface] = useState<{ state: SpikeState; motion: string }>({
-    state: "idle",
+  const [surface, setSurface] = useState<{ state: SurfaceState; motion: string }>({
+    state: window.__NABBIT_NATIVE_START__ ?? "idle",
     motion: "live",
   });
   useEffect(() => {
@@ -178,14 +179,20 @@ export function IslandSpike() {
       setPayloadKind(classify(payload, true)),
     );
     bridge.current = current;
-    const setState = (next: SpikeState) => {
-      if (!states.includes(next)) throw new Error(`Invalid spike state: ${String(next)}`);
+    const renderState = (next: SurfaceState) => {
+      const rank = { idle: 0, live: 1, peek: 2, expanded: 3, drop: 2 };
       flushSync(() =>
         setSurface((previous) => ({
           state: next,
-          motion: states.indexOf(next) < states.indexOf(previous.state) ? "collapse" : next,
+          motion: rank[next] < rank[previous.state] ? "collapse" : next === "drop" ? "peek" : next,
         })),
       );
+    };
+    const native = connectNativeSurface(pill.current!, current.ready, renderState);
+    const setState = (next: SpikeState) => {
+      if (!states.includes(next)) throw new Error(`Invalid spike state: ${String(next)}`);
+      if (window.__NABBIT_NATIVE_COMPACT__) void native.setState(next);
+      else renderState(next);
     };
     window.nabbitIslandSpike = {
       ready: true,
@@ -197,6 +204,7 @@ export function IslandSpike() {
     };
     return () => {
       current.close();
+      native.close();
       bridge.current = null;
       delete window.nabbitIslandSpike;
     };
@@ -231,7 +239,7 @@ export function IslandSpike() {
     if (!("__TAURI_INTERNALS__" in window))
       setInteraction((previous) => ({ ...previous, dragging: false }));
   };
-  const state = interaction.dragging ? "drop" : surface.state;
+  const state = !window.__NABBIT_NATIVE_COMPACT__ && interaction.dragging ? "drop" : surface.state;
   const selectedZone = over ?? zoneOrder(payloadKind)[0];
   const dropIcons = {
     download: {

@@ -12,6 +12,7 @@ struct Message {
     nabbit_file_drop: bool,
     x: f64,
     y: f64,
+    scale: f64,
 }
 
 pub fn install(window: &WebviewWindow) -> tauri::Result<()> {
@@ -32,6 +33,8 @@ pub fn install(window: &WebviewWindow) -> tauri::Result<()> {
                     if !message.nabbit_file_drop
                         || !message.x.is_finite()
                         || !message.y.is_finite()
+                        || !message.scale.is_finite()
+                        || !(0.75..=4.0).contains(&message.scale)
                         || !(0.0..=720.0).contains(&message.x)
                         || !(0.0..=460.0).contains(&message.y)
                     {
@@ -60,14 +63,13 @@ pub fn install(window: &WebviewWindow) -> tauri::Result<()> {
                             paths.push(path);
                         }
                     }
-                    let scale = target.scale_factor().unwrap_or(1.0);
                     // Empty paths also finish the drag and show the unsupported receipt.
                     // onDragDropEvent consumes the standard native file-drop shape.
                     let _ = target.emit(
                         "tauri://drag-drop",
                         serde_json::json!({
                             "paths": paths,
-                            "position": { "x": message.x * scale, "y": message.y * scale }
+                            "position": { "x": message.x * message.scale, "y": message.y * message.scale }
                         }),
                     );
                     Ok(())

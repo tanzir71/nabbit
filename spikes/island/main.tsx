@@ -5,4 +5,5 @@ import "./spike.css";
 
 if (new URLSearchParams(location.search).has("preview"))
   document.documentElement.dataset.preview = "";
+if (window.__NABBIT_NATIVE_COMPACT__) document.documentElement.dataset.nativeWaiting = "true";
 createRoot(document.getElementById("spike-root")!).render(<IslandSpike />);

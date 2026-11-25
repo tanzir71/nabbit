@@ -6,11 +6,48 @@ use tauri::{
     webview::Color, AppHandle, LogicalSize, Manager, PhysicalPosition, State, WebviewUrl,
     WebviewWindow, WebviewWindowBuilder,
 };
+#[path = "native_capture.rs"]
+mod native_capture;
 #[path = "native_files.rs"]
 mod native_files;
+#[path = "native_graphics.rs"]
+mod native_graphics;
+#[path = "native_hybrid.rs"]
+pub mod native_hybrid;
 #[path = "watcher.rs"]
 mod watcher;
+use crate::island_native_model::{Instruction, Owner, Surface};
 use watcher::{Controller, Presentation, Report};
+
+#[tauri::command]
+pub fn island_spike_surface(
+    window: WebviewWindow,
+    state: Surface,
+    hybrid: State<'_, Arc<native_hybrid::Hybrid>>,
+) -> Result<(), String> {
+    permitted(&window)?;
+    hybrid.request(state);
+    Ok(())
+}
+#[tauri::command]
+pub fn island_spike_ready(
+    window: WebviewWindow,
+    hybrid: State<'_, Arc<native_hybrid::Hybrid>>,
+) -> Result<Instruction, String> {
+    permitted(&window)?;
+    Ok(hybrid.instruction())
+}
+#[tauri::command]
+pub fn island_spike_handoff(
+    window: WebviewWindow,
+    generation: u64,
+    owner: Owner,
+    hybrid: State<'_, Arc<native_hybrid::Hybrid>>,
+) -> Result<(), String> {
+    permitted(&window)?;
+    hybrid.acknowledge(generation, owner);
+    Ok(())
+}
 
 fn permitted(window: &WebviewWindow) -> Result<(), String> {
     if window.label() == "island-spike"
@@ -75,6 +112,10 @@ pub fn session_requested() -> bool {
     )
 }
 
+pub fn native_session() -> bool {
+    session_requested() && std::env::var("NABBIT_ISLAND_RENDERER").as_deref() != Ok("webview")
+}
+
 pub fn open_if_enabled(app: &AppHandle, shutdown: Arc<AtomicBool>) -> tauri::Result<()> {
     if std::env::var_os("NABBIT_ISLAND_SPIKE").as_deref() != Some(std::ffi::OsStr::new("1")) {
         return Ok(());
@@ -82,6 +123,10 @@ pub fn open_if_enabled(app: &AppHandle, shutdown: Arc<AtomicBool>) -> tauri::Res
 
     let controller = Arc::new(Controller::new());
     app.manage(controller.clone());
+    if std::env::var("NABBIT_ISLAND_RENDERER").as_deref() != Ok("webview") {
+        return native_hybrid::Hybrid::open(app, controller, shutdown)
+            .map_err(|e| tauri::Error::Anyhow(anyhow::anyhow!(e)));
+    }
     let window = WebviewWindowBuilder::new(
         app,
         "island-spike",

@@ -122,6 +122,92 @@ passed: `npm run verify` (18 tests), site verification, Rust formatting,
 default/spike Clippy with warnings denied, and 28 Rust tests. Reproduction:
 `spikes/island/README.md`.
 
-**V0.4 and M1 remain pending.** V0.3 completes measurement, not the gate. The
-memory and first-use frame results exceed the handoff limits; the required
-native collapsed/compact fallback belongs to V0.4.
+V0.3's failed measurements are retained unchanged. V0.4 takes the required
+no-go/fallback branch below; the M1 publication remains pending.
+
+## V0.4 gate and native compact fallback
+
+**No-go for the all-WebView2 renderer.** `v04-gate-decision.json` evaluates the
+original CPU (0.3% of one core at one decimal), memory (+89.769 MB mean) and
+first-use morph (20 drops) against all three limits. None passes. Idle/live now
+use a custom Win32 layered HWND and DirectComposition; peek, expanded and drag
+targets retain the existing WebView2 interface. No production V2 state bus,
+monitor system or downloader feature is included in this spike.
+
+The fixed 720×460 native host never resizes or hides for animation/fullscreen.
+Cached Direct2D surfaces render the original 18px Figma progress SVG and text;
+antialiased rounded clips, offsets and opacity animate on the compositor.
+Interrupted geometry/fades continue from their current value. Larger views are
+created outside Windows event callbacks, acknowledge typed generation-numbered
+instructions after paint and are destroyed on return to compact. Native idle
+has no JavaScript or render timer. The existing tray is lazy only in these
+explicit native spike/baseline sessions; normal v0.1 startup is unchanged.
+
+`v04-native-checks.json` verifies four light/dark × 1×/1.5× contexts against the
+unsigned release executable. `v04-native-reduced-checks.json` adds two contexts
+with a native reduced-motion fixture: geometry changes immediately, with the
+120 ms content crossfade covered by the pure motion tests. Checks include actual
+styles, fixed physical bounds, input margins, transparent fullscreen with the
+HWND still shown, unchanged idle commit/draw counters, repeated larger-view
+handoffs/destruction, drag entry/cancellation, unchanged foreground focus and
+the hidden tray factory. SQLite contains zero downloads. The 1.5× disk-backed
+DOM File round-trip preserves the explicit note zone through native path
+resolution (`v04-native-file-drop.json`); it remains a review candidate.
+The reduced-motion report also verifies zero WebView2 child processes after an
+instrumented larger-view/tray open/close cycle. Its teardown working-set snapshot
+includes screenshot instrumentation and is not the idle benchmark below.
+
+The 42 new PNGs are split into 18 native (including fullscreen/reduced motion),
+8 WebView2 and 16 Vite preview captures, all at most 68,312 bytes. Native capture
+uses Windows.Graphics.Capture `CreateForWindow` for Nabbit's exact HWND, with
+cursor capture disabled. Raw BGRA is encoded to transparent PNG and verified for
+geometry, palette, antialiased corners, SVG/text, transparent margins and
+zero-alpha fullscreen. No desktop/monitor capture, picker, focus change or
+capture-setting change is involved. Web PNGs capture only their own page. The
+preview also checks reduced motion, original asset dimensions, fixed host,
+zero runtime errors and zero idle JS scheduling. Compared against Figma `7:2`,
+`7:17`, `8:61` and `9:78`; system font fallbacks remain until V1.2 bundles Geist.
+
+### Native release measurements
+
+`v04-native-performance.json` uses the same unsigned release executable as both
+native smoke reports (SHA-256 `c38492f15052e9ef1f62254924431e9692167b4f193f4087bf5999285d53a0d8`).
+It was built from this task's working tree based on `9aff055`; the report
+explicitly records that the source tree was dirty. Both trials use fresh data,
+the same lazy tray policy, 20 seconds of settling and over 60 seconds of sampling.
+Capture, the native acceptance control worker, CDP and tracing are disabled.
+
+| Measurement | No-island baseline | Native collapsed island |
+|---|---:|---:|
+| Sample duration | 60.334 s | 60.394 s |
+| CPU seconds, full process family | 0.015625 | 0.031250 |
+| CPU, percentage of one core | 0.025898% | 0.051744% |
+| CPU, one core rounded to one decimal | 0.0% | **0.1%** |
+| CPU, normalized over 12 processors | 0.002158% | 0.004312% |
+| Mean working set, decimal MB | 27.483 | 39.280 |
+| Peak working set, decimal MB | 27.537 | 39.510 |
+| Stable process count (app + console host) | 2 | 2 |
+| WebView2 processes | 0 | 0 |
+
+Added working set is **11.796 MB mean / 11.973 MB peak**, within the 60 MB budget.
+The strict one-core 0.0% idle target is **not met** in this native sample; both
+raw and rounded values are retained. The machine-normalized value rounds to
+0.0%, but is not substituted for that stricter result. Windows, refresh and DPI
+remain Windows 11 Home 10.0.26300 / 60.00024 Hz / 96 DPI (100%). Other applications
+and display settings were untouched. Native DirectComposition animation is not
+CDP animation: no native dropped-frame count or complete performance pass is
+claimed, and the original failed WebView2 trace is unchanged.
+
+The first collector attempt completed only its baseline, then correctly failed
+native startup validation because PowerShell/.NET left an empty scale override.
+The collector now deletes absent overrides with the environment provider and
+restores absent variables by deletion. `v04-native-attempts.json` and
+`v04-native-attempt1-baseline.json` retain that incomplete attempt separately;
+the accepted comparison is a fresh, complete pair, with no executable change.
+
+Validation: 18 frontend/script tests, 35 Rust tests, app/site verification,
+formatting, default and spike-feature Clippy with warnings denied, release build,
+four native plus two reduced-motion contexts, five preview contexts and source
+review of React listener/observer cleanup, stale acknowledgements and idle work.
+Reproduction and API references: `spikes/island/README.md`. V0.4 completes the
+required fallback branch; M1 is the next separate task and has not been pushed.

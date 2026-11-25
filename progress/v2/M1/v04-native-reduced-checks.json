@@ -1,0 +1,391 @@
+{
+  "executableSha256": "c38492f15052e9ef1f62254924431e9692167b4f193f4087bf5999285d53a0d8",
+  "realCursorUntouched": true,
+  "capture": "Windows.Graphics.Capture CreateForWindow; own HWND only; premultiplied BGRA encoded as transparent PNG",
+  "postWebviewTeardown": [
+    {
+      "processes": [
+        {
+          "name": "nabbit.exe",
+          "workingSetBytes": 57884672,
+          "id": 32760
+        },
+        {
+          "name": "conhost.exe",
+          "workingSetBytes": 10412032,
+          "id": 1092
+        }
+      ],
+      "scale": 1.0,
+      "workingSetBytes": 68296704,
+      "webviewChildren": 0
+    }
+  ],
+  "reports": [
+    {
+      "idleCountersStable": true,
+      "nativeBounds": {
+        "Left": 600,
+        "Top": 0,
+        "Right": 1320,
+        "Bottom": 460
+      },
+      "live": {
+        "desired": "live",
+        "generation": 1,
+        "geometry": {
+          "height": 32.0,
+          "radius": 16.0,
+          "width": 320.0
+        },
+        "graphics": {
+          "commits": 2,
+          "compositionClock": [
+            489416677991,
+            10000000
+          ],
+          "surfaceDraws": 2,
+          "warp": false
+        },
+        "hostShown": true,
+        "lastError": null,
+        "nativeState": "live",
+        "nativeVisible": true,
+        "owner": "native",
+        "reducedMotion": true,
+        "renderer": "Win32 layered + DirectComposition",
+        "scale": 1.0,
+        "trayAllocated": false,
+        "webAllocated": false
+      },
+      "restored": {
+        "desired": "idle",
+        "generation": 5,
+        "geometry": {
+          "height": 26.0,
+          "radius": 13.0,
+          "width": 112.0
+        },
+        "graphics": {
+          "commits": 8,
+          "compositionClock": [
+            489608182815,
+            10000000
+          ],
+          "surfaceDraws": 2,
+          "warp": false
+        },
+        "hostShown": true,
+        "lastError": null,
+        "nativeState": "idle",
+        "nativeVisible": true,
+        "owner": "native",
+        "reducedMotion": true,
+        "renderer": "Win32 layered + DirectComposition",
+        "scale": 1.0,
+        "trayAllocated": false,
+        "webAllocated": false
+      },
+      "initial": {
+        "desired": "idle",
+        "generation": 0,
+        "geometry": {
+          "height": 26.0,
+          "radius": 13.0,
+          "width": 112.0
+        },
+        "graphics": {
+          "commits": 1,
+          "compositionClock": [
+            489404344357,
+            10000000
+          ],
+          "surfaceDraws": 1,
+          "warp": false
+        },
+        "hostShown": true,
+        "lastError": null,
+        "nativeState": "idle",
+        "nativeVisible": true,
+        "owner": "native",
+        "reducedMotion": true,
+        "renderer": "Win32 layered + DirectComposition",
+        "scale": 1.0,
+        "trayAllocated": false,
+        "webAllocated": false
+      },
+      "scale": 1.0,
+      "theme": "light",
+      "noFocusChange": true,
+      "hidden": {
+        "desired": "live",
+        "generation": 1,
+        "geometry": {
+          "height": 32.0,
+          "radius": 16.0,
+          "width": 320.0
+        },
+        "graphics": {
+          "commits": 3,
+          "compositionClock": [
+            489416677991,
+            10000000
+          ],
+          "surfaceDraws": 2,
+          "warp": false
+        },
+        "hostShown": true,
+        "lastError": null,
+        "nativeState": "live",
+        "nativeVisible": false,
+        "owner": "native",
+        "reducedMotion": true,
+        "renderer": "Win32 layered + DirectComposition",
+        "scale": 1.0,
+        "trayAllocated": false,
+        "webAllocated": false
+      },
+      "cancelled": {
+        "desired": "idle",
+        "generation": 7,
+        "geometry": {
+          "height": 26.0,
+          "radius": 13.0,
+          "width": 112.0
+        },
+        "graphics": {
+          "commits": 11,
+          "compositionClock": [
+            489629183547,
+            10000000
+          ],
+          "surfaceDraws": 2,
+          "warp": false
+        },
+        "hostShown": true,
+        "lastError": null,
+        "nativeState": "idle",
+        "nativeVisible": true,
+        "owner": "native",
+        "reducedMotion": true,
+        "renderer": "Win32 layered + DirectComposition",
+        "scale": 1.0,
+        "trayAllocated": false,
+        "webAllocated": false
+      },
+      "exStyle": "0x82800A8",
+      "drop": {
+        "desired": "drop",
+        "generation": 6,
+        "geometry": {
+          "height": 26.0,
+          "radius": 13.0,
+          "width": 112.0
+        },
+        "graphics": {
+          "commits": 9,
+          "compositionClock": [
+            489608182815,
+            10000000
+          ],
+          "surfaceDraws": 2,
+          "warp": false
+        },
+        "hostShown": true,
+        "lastError": null,
+        "nativeState": "idle",
+        "nativeVisible": false,
+        "owner": "webview",
+        "reducedMotion": true,
+        "renderer": "Win32 layered + DirectComposition",
+        "scale": 1.0,
+        "trayAllocated": false,
+        "webAllocated": true
+      }
+    },
+    {
+      "idleCountersStable": true,
+      "nativeBounds": {
+        "Left": 600,
+        "Top": 0,
+        "Right": 1320,
+        "Bottom": 460
+      },
+      "live": {
+        "desired": "live",
+        "generation": 8,
+        "geometry": {
+          "height": 32.0,
+          "radius": 16.0,
+          "width": 320.0
+        },
+        "graphics": {
+          "commits": 12,
+          "compositionClock": [
+            489643017132,
+            10000000
+          ],
+          "surfaceDraws": 2,
+          "warp": false
+        },
+        "hostShown": true,
+        "lastError": null,
+        "nativeState": "live",
+        "nativeVisible": true,
+        "owner": "native",
+        "reducedMotion": true,
+        "renderer": "Win32 layered + DirectComposition",
+        "scale": 1.0,
+        "trayAllocated": false,
+        "webAllocated": false
+      },
+      "restored": {
+        "desired": "idle",
+        "generation": 12,
+        "geometry": {
+          "height": 26.0,
+          "radius": 13.0,
+          "width": 112.0
+        },
+        "graphics": {
+          "commits": 18,
+          "compositionClock": [
+            489754020253,
+            10000000
+          ],
+          "surfaceDraws": 2,
+          "warp": false
+        },
+        "hostShown": true,
+        "lastError": null,
+        "nativeState": "idle",
+        "nativeVisible": true,
+        "owner": "native",
+        "reducedMotion": true,
+        "renderer": "Win32 layered + DirectComposition",
+        "scale": 1.0,
+        "trayAllocated": false,
+        "webAllocated": false
+      },
+      "initial": {
+        "desired": "idle",
+        "generation": 0,
+        "geometry": {
+          "height": 26.0,
+          "radius": 13.0,
+          "width": 112.0
+        },
+        "graphics": {
+          "commits": 1,
+          "compositionClock": [
+            489404344357,
+            10000000
+          ],
+          "surfaceDraws": 1,
+          "warp": false
+        },
+        "hostShown": true,
+        "lastError": null,
+        "nativeState": "idle",
+        "nativeVisible": true,
+        "owner": "native",
+        "reducedMotion": true,
+        "renderer": "Win32 layered + DirectComposition",
+        "scale": 1.0,
+        "trayAllocated": false,
+        "webAllocated": false
+      },
+      "scale": 1.0,
+      "theme": "dark",
+      "noFocusChange": true,
+      "hidden": {
+        "desired": "live",
+        "generation": 8,
+        "geometry": {
+          "height": 32.0,
+          "radius": 16.0,
+          "width": 320.0
+        },
+        "graphics": {
+          "commits": 13,
+          "compositionClock": [
+            489643017132,
+            10000000
+          ],
+          "surfaceDraws": 2,
+          "warp": false
+        },
+        "hostShown": true,
+        "lastError": null,
+        "nativeState": "live",
+        "nativeVisible": false,
+        "owner": "native",
+        "reducedMotion": true,
+        "renderer": "Win32 layered + DirectComposition",
+        "scale": 1.0,
+        "trayAllocated": false,
+        "webAllocated": false
+      },
+      "cancelled": {
+        "desired": "idle",
+        "generation": 14,
+        "geometry": {
+          "height": 26.0,
+          "radius": 13.0,
+          "width": 112.0
+        },
+        "graphics": {
+          "commits": 21,
+          "compositionClock": [
+            489777354187,
+            10000000
+          ],
+          "surfaceDraws": 2,
+          "warp": false
+        },
+        "hostShown": true,
+        "lastError": null,
+        "nativeState": "idle",
+        "nativeVisible": true,
+        "owner": "native",
+        "reducedMotion": true,
+        "renderer": "Win32 layered + DirectComposition",
+        "scale": 1.0,
+        "trayAllocated": false,
+        "webAllocated": false
+      },
+      "exStyle": "0x82800A8",
+      "drop": {
+        "desired": "drop",
+        "generation": 13,
+        "geometry": {
+          "height": 26.0,
+          "radius": 13.0,
+          "width": 112.0
+        },
+        "graphics": {
+          "commits": 19,
+          "compositionClock": [
+            489754020253,
+            10000000
+          ],
+          "surfaceDraws": 2,
+          "warp": false
+        },
+        "hostShown": true,
+        "lastError": null,
+        "nativeState": "idle",
+        "nativeVisible": false,
+        "owner": "webview",
+        "reducedMotion": true,
+        "renderer": "Win32 layered + DirectComposition",
+        "scale": 1.0,
+        "trayAllocated": false,
+        "webAllocated": true
+      }
+    }
+  ],
+  "noDownloadsStarted": true,
+  "lazyTrayFactory": true,
+  "displaySettingsUntouched": true
+}

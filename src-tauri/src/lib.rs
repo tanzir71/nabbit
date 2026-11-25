@@ -15,6 +15,11 @@ mod island_spike;
 #[path = "../../spikes/island/interaction.rs"]
 mod island_interaction;
 
+#[cfg(any(test, all(windows, feature = "island-spike")))]
+#[cfg_attr(not(all(windows, feature = "island-spike")), allow(dead_code))]
+#[path = "../../spikes/island/native_model.rs"]
+mod island_native_model;
+
 use std::{
     fs,
     path::{Path, PathBuf},
@@ -49,6 +54,19 @@ pub struct AppState {
 
 #[cfg_attr(mobile, tauri::mobile_entry_point)]
 pub fn run() {
+    let context = tauri::generate_context!();
+    #[cfg(all(windows, feature = "island-spike"))]
+    let context = {
+        let mut context = context;
+        if island_spike::native_session() {
+            for window in &mut context.config_mut().app.windows {
+                if window.label == "main" {
+                    window.create = false;
+                }
+            }
+        }
+        context
+    };
     tauri::Builder::default()
         .plugin(tauri_plugin_single_instance::init(|app, _args, _cwd| {
             let _ = show_popover(app);
@@ -97,6 +115,12 @@ pub fn run() {
             island_spike::island_spike_set_drag,
             #[cfg(all(windows, feature = "island-spike"))]
             island_spike::island_spike_snapshot,
+            #[cfg(all(windows, feature = "island-spike"))]
+            island_spike::island_spike_surface,
+            #[cfg(all(windows, feature = "island-spike"))]
+            island_spike::island_spike_ready,
+            #[cfg(all(windows, feature = "island-spike"))]
+            island_spike::island_spike_handoff,
         ])
         .setup(|app| {
             #[cfg(target_os = "macos")]
@@ -159,10 +183,18 @@ pub fn run() {
                 let _ = window.hide();
             }
         })
-        .build(tauri::generate_context!())
+        .build(context)
         .expect("error while building Nabbit")
         .run(|app, event| {
-            if matches!(event, tauri::RunEvent::ExitRequested { .. }) {
+            if let tauri::RunEvent::ExitRequested { api, code, .. } = event {
+                #[cfg(all(windows, feature = "island-spike"))]
+                if island_spike::native_session() && code.is_none() {
+                    // Closing the last larger webview must leave the native pill/tray alive.
+                    api.prevent_exit();
+                    return;
+                }
+                #[cfg(not(all(windows, feature = "island-spike")))]
+                let _ = (api, code);
                 if let Some(state) = app.try_state::<AppState>() {
                     state.shutdown.store(true, Ordering::Relaxed);
                 }
@@ -319,12 +351,52 @@ fn write_acceptance_done(path: &Path, result: std::result::Result<String, String
 }
 
 pub fn show_popover(app: &AppHandle<Wry>) -> Result<()> {
-    if let Some(window) = app.get_webview_window("main") {
-        let _ = window.set_position(PhysicalPosition::new(100, 100));
-        window.show()?;
-        window.set_focus()?;
+    #[cfg(all(windows, feature = "island-spike"))]
+    if island_spike::native_session() && app.get_webview_window("main").is_none() {
+        let app = app.clone();
+        // WebView2 creation must run outside tray/IPC event callbacks on Windows.
+        std::thread::Builder::new()
+            .name("nabbit-lazy-tray".into())
+            .spawn(move || {
+                if let Ok(window) = ensure_popover(&app) {
+                    let _ = reveal_popover(&window);
+                }
+            })?;
+        return Ok(());
     }
+    let window = ensure_popover(app)?;
+    reveal_popover(&window)
+}
+
+fn reveal_popover(window: &tauri::WebviewWindow) -> Result<()> {
+    let _ = window.set_position(PhysicalPosition::new(100, 100));
+    window.show()?;
+    window.set_focus()?;
     Ok(())
+}
+
+fn ensure_popover(app: &AppHandle<Wry>) -> Result<tauri::WebviewWindow> {
+    if let Some(window) = app.get_webview_window("main") {
+        return Ok(window);
+    }
+    let config = app
+        .config()
+        .app
+        .windows
+        .iter()
+        .find(|window| window.label == "main")
+        .ok_or_else(|| crate::error::msg("Main window configuration is missing"))?;
+    Ok(tauri::WebviewWindowBuilder::from_config(app, config)?.build()?)
+}
+
+fn toggle_popover(app: &AppHandle<Wry>) -> Result<()> {
+    if let Some(window) = app.get_webview_window("main") {
+        if window.is_visible()? {
+            window.hide()?;
+            return Ok(());
+        }
+    }
+    show_popover(app)
 }
 
 pub fn apply_runtime_settings(app: &AppHandle<Wry>, state: &AppState, settings: &AppSettings) {
@@ -335,13 +407,7 @@ pub fn apply_runtime_settings(app: &AppHandle<Wry>, state: &AppState, settings: 
             settings.toggle_popover_shortcut.as_str(),
             |app, _shortcut, event| {
                 if event.state == ShortcutState::Pressed {
-                    if let Some(window) = app.get_webview_window("main") {
-                        if window.is_visible().unwrap_or(false) {
-                            let _ = window.hide();
-                        } else {
-                            let _ = show_popover(app);
-                        }
-                    }
+                    let _ = toggle_popover(app);
                 }
             },
         );
@@ -435,13 +501,7 @@ fn setup_tray(app: &AppHandle<Wry>) -> Result<()> {
             } = event
             {
                 let app = tray.app_handle();
-                if let Some(window) = app.get_webview_window("main") {
-                    if window.is_visible().unwrap_or(false) {
-                        let _ = window.hide();
-                    } else {
-                        let _ = show_popover(app);
-                    }
-                }
+                let _ = toggle_popover(app);
             }
         })
         .on_menu_event(|app, event| {

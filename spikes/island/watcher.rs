@@ -65,6 +65,30 @@ pub struct Presentation {
     pub revision: u64,
 }
 
+pub trait Target: Send + Sync + 'static {
+    fn hwnd(&self) -> tauri::Result<isize>;
+    fn ignore(&self, ignore: bool) -> Result<(), String>;
+    fn present(&self, value: Presentation);
+    fn native_hitrect(&self) -> Option<Rect> {
+        None
+    }
+    fn shutdown(&self) {}
+}
+struct WebTarget(WebviewWindow);
+impl Target for WebTarget {
+    fn hwnd(&self) -> tauri::Result<isize> {
+        Ok(self.0.hwnd()?.0 as isize)
+    }
+    fn ignore(&self, ignore: bool) -> Result<(), String> {
+        self.0
+            .set_ignore_cursor_events(ignore)
+            .map_err(|e| e.to_string())
+    }
+    fn present(&self, value: Presentation) {
+        let _ = self.0.emit("nabbit://spike-interaction", value);
+    }
+}
+
 #[derive(Clone, Debug, Serialize)]
 #[serde(rename_all = "camelCase")]
 pub struct Report {
@@ -321,7 +345,15 @@ pub fn spawn(
     controller: Arc<Controller>,
     shutdown: Arc<AtomicBool>,
 ) -> tauri::Result<()> {
-    let hwnd = window.hwnd()?.0 as isize;
+    spawn_target(Arc::new(WebTarget(window)), controller, shutdown)
+}
+
+pub fn spawn_target(
+    target: Arc<dyn Target>,
+    controller: Arc<Controller>,
+    shutdown: Arc<AtomicBool>,
+) -> tauri::Result<()> {
+    let hwnd = target.hwnd()?;
     foreground_hook(controller.clone(), shutdown.clone());
     thread::Builder::new()
         .name("island-adaptive-cursor".into())
@@ -354,6 +386,9 @@ pub fn spawn(
                 }
                 let (decision, hitrect) = {
                     let mut model = lock(&controller.model);
+                    if let Some(rect) = target.native_hitrect() {
+                        model.hitrect = Some(rect);
+                    }
                     (model.step(provider.input()), model.hitrect)
                 };
                 let mut report = lock(&controller.report);
@@ -375,11 +410,11 @@ pub fn spawn(
                 let presentation = report.presentation;
                 drop(report);
                 let ignore = !decision.interactive;
-                if ignore != applied_ignore && window.set_ignore_cursor_events(ignore).is_ok() {
+                if ignore != applied_ignore && target.ignore(ignore).is_ok() {
                     applied_ignore = ignore;
                 }
                 if emit {
-                    let _ = window.emit("nabbit://spike-interaction", presentation);
+                    target.present(presentation);
                 }
                 let next_cursor = last_cursor + Duration::from_millis(decision.poll_ms);
                 controller.signal.wait(
@@ -395,6 +430,7 @@ pub fn spawn(
                     PostThreadMessageW(thread_id, WM_QUIT, 0, 0);
                 }
             }
+            target.shutdown();
         })
         .map_err(tauri::Error::Io)?;
     Ok(())
