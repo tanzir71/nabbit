@@ -35,11 +35,13 @@
 
 - 2026-11-26 M0 Prepared the first public milestone push from `main`: landing M0 Done with its screenshot link, M1 In progress, and `nabbit-milestone=M0`. The existing P.1–P.4 commits stay separate. The milestone checkbox remains unchecked until the push and live Pages verification succeed; deployment evidence will be recorded afterward without amending pushed history.
 
+- 2026-11-26 M0 Published `5f4c4b8` directly to `origin/main` by fast-forward, preserving all P.1–P.4 commits and `[skip ci]` on the pushed head. Pages run `45678210103` succeeded for that exact commit; the unauthenticated landing returned HTTP 200 with `content="M0"`, M0 Done, M1 In progress, and the Screenshots link. The served HTML and CSS match the milestone source after line-ending normalization. A nested missing URL served the custom 404 and root recovery link. GitHub exposes all 48 archived/current PNGs in `progress/v2/M0/`; largest is 172,193 bytes. No repository CI run was added (the two CI runs still predate v2); only the permitted built-in Pages run appeared for the milestone. Verified before push: `npm run verify` (5 frontend tests and build), `npm run verify:site` (31,793 bytes excluding fonts), `cargo fmt --manifest-path src-tauri/Cargo.toml --check`, `cargo clippy --manifest-path src-tauri/Cargo.toml --all-targets -- -D warnings`, `cargo test --manifest-path src-tauri/Cargo.toml -- --test-threads=1` (22 passed), all-history/staged Gitleaks scans, and 8 browser configurations with 24 new milestone PNGs, visually inspected. Evidence: `progress/v2/M0/deployment.json` and `m0-site-checks.json`. Checked M0 only after push/deploy verification; this append-only bookkeeping commit retains `[skip ci]` and is pushed as the final step of M0.
+
 ## v2 Milestones
 
 | Milestone | Date | Commit | What is new and how to try it | Screenshots | Pages deployment |
 |---|---|---|---|---|---|
-| M0 — Public repository and Pages | 2026-11-26 | `ab5b5af` (verified implementation; milestone push pending) | Public repository, Pages landing, pre-release CTAs and milestone list. Open `https://tanzir71.github.io/nabbit/#progress`; for the existing desktop tray, `npm run tauri:dev` then Ctrl+Shift+V. | `progress/v2/M0/` | Pending push and live `content="M0"` verification. |
+| M0 — Public repository and Pages | 2026-11-26 | `5f4c4b8` | Public repository, Pages landing, pre-release CTAs and milestone list. Open `https://tanzir71.github.io/nabbit/#progress`; for the existing desktop tray, `npm run tauri:dev` then Ctrl+Shift+V. | `progress/v2/M0/` | Verified HTTP 200, `content="M0"`, source HTML/CSS match, and custom nested 404. Built-in Pages run `45678210103` succeeded. |
 
 ## Decisions
 - v2: Milestone checkboxes and deployment results can only be recorded after their commit is pushed and Pages is verified. Use an append-only `[skip ci]` verification commit within the same milestone push procedure for that bookkeeping; never amend or force-push a published milestone.

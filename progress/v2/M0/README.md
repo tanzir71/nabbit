@@ -4,8 +4,16 @@
 
 The `m0-*` captures show the publication state: M0 Done with its Screenshots link,
 M1 In progress, and milestone metadata `M0`. They use the same automated browser
-matrix and checks as P.4 below. The milestone push and live deployment result
-will be recorded here after verification.
+matrix and checks as P.4 below. All 8 contexts passed with 24 PNGs, each below
+300 KiB; the checked site transfer is 31,793 bytes excluding fonts.
+
+Published source: `5f4c4b8abe31681d102040c2d41a76c8c1cfad2f` on `main`.
+Built-in [Pages run 45678210103](https://github.com/tanzir71/nabbit/actions/runs/45678210103)
+succeeded. The live page returned HTTP 200 and the M0 marker; its HTML and CSS
+match the source after line-ending normalization. A nested missing URL served
+the custom 404 with the correct recovery link. GitHub serves all 48 PNGs from
+the P.4 and M0 capture sets (maximum 172,193 bytes). `deployment.json` records
+the verification; no repository CI run was added by the push.
 
 ## P.4 — Pages publishing state
 

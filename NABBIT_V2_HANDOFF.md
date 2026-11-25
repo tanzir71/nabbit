@@ -727,7 +727,7 @@ Commit after every task (§0.1). Lines marked **MILESTONE** are tasks of their o
 - [x] P.2 Make the repository public with `gh repo edit … --visibility public --accept-visibility-change-consequences`.
 - [x] P.3 Enable GitHub Pages from `master` `/docs` (no Actions source, no Pages workflow).
 - [x] P.4 Re-point the existing landing to `https://tanzir71.github.io/nabbit/` (canonical, OG, `llms.txt`, README), relative asset URLs, `docs/404.html`, initial "Built in the open" list with M0 in progress, and the pre-release CTA rule from §10b.2 (no "Download" button while no release exists); `npm run verify:site`.
-- [ ] **MILESTONE M0 — Public repository and Pages** (push, then confirm the site serves `content="M0"`).
+- [x] **MILESTONE M0 — Public repository and Pages** (push, then confirm the site serves `content="M0"`).
 
 ### Phase V0 — Spike and gate
 - [ ] V0.1 Create `spikes/island/` (throwaway Tauri window inside the app behind a dev flag): 720×460 transparent window, `focusable(false)`, `no_redirection_bitmap(true)`, CSS-morphing pill (idle → live → peek → expanded) using `linear()` springs.

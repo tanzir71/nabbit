@@ -1,0 +1,37 @@
+{
+  "milestone": "M0",
+  "date": "2026-11-26",
+  "sourceCommit": "5f4c4b8abe31681d102040c2d41a76c8c1cfad2f",
+  "branch": "main",
+  "pagesUrl": "https://tanzir71.github.io/nabbit/",
+  "pagesSource": { "branch": "main", "path": "/docs", "buildType": "legacy" },
+  "pagesRun": {
+    "id": 45678210103,
+    "name": "pages build and deployment",
+    "event": "dynamic",
+    "status": "completed",
+    "conclusion": "success"
+  },
+  "verification": {
+    "htmlStatus": 200,
+    "milestoneMeta": "M0",
+    "milestoneState": "done",
+    "nextMilestoneState": "in-progress",
+    "htmlMatchesSourceAfterLineEndingNormalization": true,
+    "stylesheetMatchesSourceAfterLineEndingNormalization": true,
+    "nestedMissingUrlStatus": 404,
+    "nestedMissingUrlServesCustomRecoveryPage": true,
+    "recoveryUrl": "https://tanzir71.github.io/nabbit/",
+    "repositoryCiRunsBeforePush": 2,
+    "repositoryCiRunsAfterPush": 2,
+    "repositoryCiRunsForSourceCommit": 0,
+    "publicScreenshotPngCount": 48,
+    "largestScreenshotBytes": 172193,
+    "newMilestoneScreenshotCount": 24,
+    "browserConfigurationsPassed": 8,
+    "siteTransferBytesExcludingFonts": 31793,
+    "frontendTestsPassed": 5,
+    "rustTestsPassed": 22,
+    "formatClippyBuildAndSecretScansPassed": true
+  }
+}
