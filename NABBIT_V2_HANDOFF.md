@@ -737,7 +737,7 @@ Commit after every task (§0.1). Lines marked **MILESTONE** are tasks of their o
 - [x] **MILESTONE M1 — Island spike and measurements.**
 
 ### Phase V1 — Foundations
-- [ ] V1.1 Tokens (§4.1) as CSS variables + Tailwind mapping, light/dark, `[data-theme]` driven by the Windows theme with an override; also emit `docs/assets/tokens.css` for the site.
+- [x] V1.1 Tokens (§4.1) as CSS variables + Tailwind mapping, light/dark, `[data-theme]` driven by the Windows theme with an override; also emit `docs/assets/tokens.css` for the site.
 - [ ] V1.2 Bundle Geist + Geist Mono; remove Inter from the font stack.
 - [ ] V1.3 Rebuild/extend core components (§4.5) on a components preview page; compare against Foundations `5:408`.
 - [ ] V1.4 Multi-entry Vite build (`index`, `island`, `settings`, `sticky`); island bundle budget ≤ 120 KB gzipped JS (record it).

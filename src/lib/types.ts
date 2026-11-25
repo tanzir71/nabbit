@@ -63,6 +63,7 @@ export interface DownloadJob {
 }
 
 export interface AppSettings {
+  theme: import("./theme").ThemePreference;
   retentionDays: 30 | 60 | 90;
   captureImages: boolean;
   imageSizeCapMb: number;

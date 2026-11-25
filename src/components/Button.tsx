@@ -17,13 +17,11 @@ export function Button({
   return (
     <button
       className={cn(
-        "inline-flex shrink-0 items-center justify-center gap-2 rounded-md font-medium transition focus:outline-none focus:ring-2 focus:ring-accent-500 focus:ring-offset-2 disabled:pointer-events-none disabled:opacity-50 dark:focus:ring-offset-slate-950",
-        variant === "primary" && "bg-accent-600 text-white hover:bg-accent-700",
-        variant === "secondary" &&
-          "border border-slate-200 bg-white text-slate-800 hover:bg-slate-100 dark:border-slate-800 dark:bg-slate-900 dark:text-slate-100 dark:hover:bg-slate-800",
-        variant === "ghost" &&
-          "text-slate-600 hover:bg-slate-100 hover:text-slate-950 dark:text-slate-300 dark:hover:bg-slate-900 dark:hover:text-white",
-        variant === "danger" && "bg-rose-600 text-white hover:bg-rose-700",
+        "inline-flex shrink-0 items-center justify-center gap-2 rounded-md font-medium transition focus:outline-none focus:ring-2 focus:ring-action-primary focus:ring-offset-2 focus:ring-offset-surface disabled:pointer-events-none disabled:opacity-50",
+        variant === "primary" && "bg-action-primary text-action-on-primary hover:opacity-90",
+        variant === "secondary" && "border border-subtle bg-surface text-primary hover:bg-sunken",
+        variant === "ghost" && "text-secondary hover:bg-sunken hover:text-primary",
+        variant === "danger" && "bg-danger-soft text-danger-base hover:opacity-90",
         size === "sm" && "h-8 px-2.5 text-xs",
         size === "md" && "h-9 px-3 text-sm",
         size === "icon" && "size-8",

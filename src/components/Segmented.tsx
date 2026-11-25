@@ -21,8 +21,9 @@ export function Segmented<T extends string | number>({
 }: SegmentedProps<T>) {
   return (
     <div
+      role="group"
       aria-label={label}
-      className="grid grid-cols-[repeat(var(--count),minmax(0,1fr))] gap-1 rounded-lg bg-slate-100 p-1 dark:bg-slate-900"
+      className="grid grid-cols-[repeat(var(--count),minmax(0,1fr))] gap-1 rounded-lg bg-sunken p-1"
       style={{ "--count": options.length } as CSSProperties}
     >
       {options.map((option) => (
@@ -31,11 +32,12 @@ export function Segmented<T extends string | number>({
           type="button"
           onClick={() => onChange(option.value)}
           className={cn(
-            "min-h-8 rounded-md px-2 text-xs font-medium transition",
+            "min-h-8 rounded-md px-2 text-xs font-medium transition focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-action-primary",
             value === option.value
-              ? "bg-white text-slate-950 shadow-sm dark:bg-slate-800 dark:text-white"
-              : "text-slate-500 hover:text-slate-950 dark:hover:text-white",
+              ? "bg-surface text-primary shadow-sm"
+              : "text-secondary hover:text-primary",
           )}
+          aria-pressed={value === option.value}
         >
           {option.label}
         </button>

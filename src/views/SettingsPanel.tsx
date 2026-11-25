@@ -31,8 +31,8 @@ export function SettingsPanel({ onClose }: { onClose: () => void }) {
   const dbSize = stats ? `${(stats.dbSizeBytes / 1024 / 1024).toFixed(2)} MB` : "Unknown";
 
   return (
-    <div className="fixed inset-0 z-20 bg-white dark:bg-slate-950">
-      <header className="flex h-14 items-center justify-between border-b border-slate-200 px-4 dark:border-slate-800">
+    <div className="fixed inset-0 z-20 bg-surface">
+      <header className="flex h-14 items-center justify-between border-b border-subtle px-4">
         <h2 className="text-sm font-semibold">Settings</h2>
         <IconButton label="Close settings" onClick={onClose}>
           <X size={17} />
@@ -40,6 +40,16 @@ export function SettingsPanel({ onClose }: { onClose: () => void }) {
       </header>
       <div className="h-[calc(100vh-56px)] overflow-y-auto p-4">
         <Section title="General">
+          <Segmented
+            label="Appearance"
+            value={settings.theme}
+            options={[
+              { label: "System", value: "system" },
+              { label: "Light", value: "light" },
+              { label: "Dark", value: "dark" },
+            ]}
+            onChange={(theme) => patch({ theme })}
+          />
           <Toggle
             label="Launch at login"
             checked={settings.launchAtLogin}
@@ -158,9 +168,10 @@ export function SettingsPanel({ onClose }: { onClose: () => void }) {
             checked={settings.pauseAutoDetect}
             onChange={(pauseAutoDetect) => patch({ pauseAutoDetect })}
           />
-          <div className="rounded-lg border border-slate-200 bg-white p-3 text-sm dark:border-slate-800 dark:bg-slate-950">
-            <p className="text-slate-500">
-              Stored: {stats?.clipboardCount ?? 0} clipboard items, {stats?.downloadCount ?? 0} downloads, {dbSize}
+          <div className="rounded-lg border border-subtle bg-surface p-3 text-sm">
+            <p className="text-secondary">
+              Stored: {stats?.clipboardCount ?? 0} clipboard items, {stats?.downloadCount ?? 0}{" "}
+              downloads, {dbSize}
             </p>
             <Button
               className="mt-3"
@@ -176,8 +187,9 @@ export function SettingsPanel({ onClose }: { onClose: () => void }) {
         </Section>
 
         <Section title="Privacy">
-          <p className="text-sm leading-6 text-slate-500">
-            Telemetry is off. Clipboard contents and URLs stay local except when yt-dlp downloads a user-requested URL.
+          <p className="text-sm leading-6 text-secondary">
+            Telemetry is off. Clipboard contents and URLs stay local except when yt-dlp downloads a
+            user-requested URL.
           </p>
           <Button variant="secondary" onClick={() => window.open("PRIVACY.md")}>
             <ExternalLink size={16} />
@@ -186,11 +198,13 @@ export function SettingsPanel({ onClose }: { onClose: () => void }) {
         </Section>
 
         <Section title="About">
-          <div className="rounded-lg border border-slate-200 bg-white p-3 text-sm leading-6 dark:border-slate-800 dark:bg-slate-950">
+          <div className="rounded-lg border border-subtle bg-surface p-3 text-sm leading-6">
             <p>Nabbit 0.1.0</p>
-            <p className="text-slate-500">yt-dlp: {engine?.ytdlpVersion ?? "not found"}</p>
-            <p className="break-all text-slate-500">ffmpeg: {engine?.ffmpegPath ?? "not found"}</p>
-            <p className="text-slate-500">Licenses: Tauri, React, yt-dlp, ffmpeg and bundled dependencies.</p>
+            <p className="text-secondary">yt-dlp: {engine?.ytdlpVersion ?? "not found"}</p>
+            <p className="break-all text-secondary">ffmpeg: {engine?.ffmpegPath ?? "not found"}</p>
+            <p className="text-secondary">
+              Licenses: Tauri, React, yt-dlp, ffmpeg and bundled dependencies.
+            </p>
             <Button
               className="mt-3"
               size="sm"
@@ -209,7 +223,7 @@ export function SettingsPanel({ onClose }: { onClose: () => void }) {
               {checkingUpdate ? "Checking..." : "Check for updates"}
             </Button>
             {updateStatus ? (
-              <p className="mt-2 text-slate-500">
+              <p className="mt-2 text-secondary">
                 {updateStatus.error
                   ? updateStatus.error
                   : updateStatus.available
@@ -227,7 +241,7 @@ export function SettingsPanel({ onClose }: { onClose: () => void }) {
 function Section({ title, children }: { title: string; children: ReactNode }) {
   return (
     <section className="mb-6 grid gap-3">
-      <h3 className="text-xs font-semibold uppercase tracking-wide text-slate-500">{title}</h3>
+      <h3 className="text-xs font-semibold uppercase tracking-wide text-secondary">{title}</h3>
       {children}
     </section>
   );

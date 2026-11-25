@@ -1,5 +1,6 @@
 import { invoke } from "@tauri-apps/api/core";
 import { listen } from "@tauri-apps/api/event";
+import { cachedThemePreference } from "./theme";
 import type {
   AppSettings,
   AppUpdateStatus,
@@ -14,6 +15,7 @@ import type {
 const hasTauri = () => typeof window !== "undefined" && "__TAURI_INTERNALS__" in window;
 
 const mockSettings: AppSettings = {
+  theme: "system",
   retentionDays: 30,
   captureImages: true,
   imageSizeCapMb: 10,
@@ -38,7 +40,7 @@ const mockSettings: AppSettings = {
   lastTab: "download",
 };
 
-let browserSettings = { ...mockSettings };
+let browserSettings = { ...mockSettings, theme: cachedThemePreference() };
 let browserEntries: ClipboardEntry[] = [];
 let browserJobs: DownloadJob[] = [];
 
@@ -62,7 +64,7 @@ export const api = {
     }),
   acknowledgeFirstRun: () =>
     call<AppSettings>("acknowledge_first_run", undefined, () => {
-      browserSettings.firstRunAcknowledged = true;
+      browserSettings = { ...browserSettings, firstRunAcknowledged: true };
       return browserSettings;
     }),
   getStorageStats: () =>

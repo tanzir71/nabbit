@@ -645,6 +645,38 @@ mod tests {
     }
 
     #[test]
+    fn theme_defaults_preserve_legacy_settings_and_override_survives_reopen() {
+        use super::models::ThemePreference;
+        let dir = tempfile_dir();
+        let db = Database::open(&dir).expect("db opens");
+        let mut settings = AppSettings {
+            retention_days: 90,
+            output_dir: "preserved-output".into(),
+            ..AppSettings::default()
+        };
+        let mut legacy = serde_json::to_value(&settings).unwrap();
+        legacy.as_object_mut().unwrap().remove("theme");
+        {
+            let conn = db.conn.lock().unwrap();
+            conn.execute("INSERT OR REPLACE INTO settings(key,value,updated_at) VALUES('app_settings',?1,?2)",params![legacy.to_string(),Utc::now().to_rfc3339()]).unwrap();
+        }
+        let loaded = db.get_settings().unwrap();
+        assert_eq!(loaded.theme, ThemePreference::System);
+        assert_eq!(loaded.retention_days, 90);
+        assert_eq!(loaded.output_dir, "preserved-output");
+        settings.theme = ThemePreference::Dark;
+        db.save_settings(&settings).unwrap();
+        drop(db);
+        let reopened = Database::open(&dir).unwrap().get_settings().unwrap();
+        assert_eq!(reopened.theme, ThemePreference::Dark);
+        assert_eq!(reopened.output_dir, "preserved-output");
+        legacy["theme"] = serde_json::json!("future-theme");
+        let unknown: AppSettings = serde_json::from_value(legacy).unwrap();
+        assert_eq!(unknown.theme, ThemePreference::System);
+        assert_eq!(unknown.retention_days, 90);
+    }
+
+    #[test]
     fn source_app_exclusions_skip_entries() {
         let dir = tempfile_dir();
         let db = Database::open(&dir).expect("db opens");

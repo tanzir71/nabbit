@@ -3,6 +3,7 @@ import { spawnSync } from "node:child_process";
 import process from "node:process";
 import { fileURLToPath, URL } from "node:url";
 import { generateIslandMotion } from "./generate-island-motion.mjs";
+import "./generate-tokens.mjs";
 
 const root = fileURLToPath(new URL("../", import.meta.url));
 await generateIslandMotion();

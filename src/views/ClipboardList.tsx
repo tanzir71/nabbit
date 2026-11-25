@@ -76,15 +76,15 @@ export function ClipboardList() {
 
   return (
     <div className="flex h-full flex-col overflow-hidden" onKeyDown={handleKeyDown}>
-      <div className="shrink-0 border-b border-slate-200 p-4 dark:border-slate-800">
+      <div className="shrink-0 border-b border-subtle p-4">
         <label className="relative block">
-          <Search className="pointer-events-none absolute left-3 top-2.5 text-slate-400" size={16} />
+          <Search className="pointer-events-none absolute left-3 top-2.5 text-tertiary" size={16} />
           <input
             ref={searchRef}
             value={query}
             onChange={(event) => setQuery(event.target.value)}
             placeholder="Search clipboard"
-            className="h-10 w-full rounded-lg border border-slate-200 bg-white pl-9 pr-3 text-sm outline-none transition focus:border-accent-500 focus:ring-2 focus:ring-accent-100 dark:border-slate-800 dark:bg-slate-950 dark:focus:ring-accent-950"
+            className="h-10 w-full rounded-lg border border-subtle bg-surface pl-9 pr-3 text-sm outline-none transition focus:border-strong focus:ring-2 focus:ring-action-primary/20"
           />
         </label>
       </div>
@@ -93,7 +93,7 @@ export function ClipboardList() {
           <div className="grid h-full place-items-center p-8 text-center">
             <div>
               <p className="font-medium">History stays on this device.</p>
-              <p className="mt-1 text-sm text-slate-500">
+              <p className="mt-1 text-sm text-secondary">
                 Copied text and links appear here after the desktop watcher sees them.
               </p>
             </div>
@@ -143,21 +143,21 @@ function ClipboardRow({
     <article
       className={`group grid cursor-default grid-cols-[1fr_auto] gap-2 rounded-lg border p-3 transition ${
         active
-          ? "border-accent-200 bg-accent-50 dark:border-accent-900 dark:bg-accent-950/40"
-          : "border-transparent hover:border-slate-200 hover:bg-slate-50 dark:hover:border-slate-800 dark:hover:bg-slate-900"
+          ? "border-strong bg-raised"
+          : "border-transparent hover:border-subtle hover:bg-raised"
       }`}
       onClick={onCopy}
     >
       <div className="min-w-0">
-        <div className="mb-1 flex items-center gap-2 text-xs text-slate-500">
-          <span className="rounded bg-slate-100 px-1.5 py-0.5 uppercase dark:bg-slate-800">
-            {entry.contentType}
-          </span>
+        <div className="mb-1 flex items-center gap-2 text-xs text-secondary">
+          <span className="rounded bg-sunken px-1.5 py-0.5 uppercase">{entry.contentType}</span>
           {entry.sourceApp ? <span className="truncate">{entry.sourceApp}</span> : null}
           <span>{formatRelativeTime(entry.lastUsedAt)}</span>
-          {entry.pinned ? <Pin size={12} className="text-accent-600" /> : null}
+          {entry.pinned ? <Pin size={12} className="text-primary" /> : null}
         </div>
-        <p className="line-clamp-2 whitespace-pre-wrap break-words text-sm leading-5">{entry.preview}</p>
+        <p className="line-clamp-2 whitespace-pre-wrap break-words text-sm leading-5">
+          {entry.preview}
+        </p>
       </div>
       <div className="flex items-start gap-0.5 opacity-100 sm:opacity-0 sm:transition sm:group-hover:opacity-100">
         {isVideoUrl ? (

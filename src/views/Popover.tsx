@@ -26,34 +26,37 @@ export function Popover() {
   if (loading || !settings) {
     return (
       <section className="grid min-h-screen place-items-center p-6">
-        <div className="text-sm text-slate-500">Opening Nabbit...</div>
+        <div className="text-sm text-secondary">Opening Nabbit...</div>
       </section>
     );
   }
 
   return (
-    <section className="mx-auto flex min-h-screen w-full max-w-[460px] flex-col overflow-hidden border-x border-slate-200 bg-white shadow-popover dark:border-slate-800 dark:bg-slate-950">
-      <header className="flex h-14 shrink-0 items-center justify-between border-b border-slate-200 px-4 dark:border-slate-800">
+    <section className="mx-auto flex min-h-screen w-full max-w-[460px] flex-col overflow-hidden border-x border-subtle bg-surface shadow-popover">
+      <header className="flex h-14 shrink-0 items-center justify-between border-b border-subtle px-4">
         <div className="flex min-w-0 items-center gap-2">
-          <div className="grid size-8 place-items-center rounded-md bg-slate-950 text-sm font-bold text-white dark:bg-white dark:text-slate-950">
+          <div className="grid size-8 place-items-center rounded-md bg-action-primary text-sm font-bold text-action-on-primary">
             N
           </div>
           <div className="min-w-0">
             <h1 className="truncate text-sm font-semibold">Nabbit</h1>
-            <p className="truncate text-xs text-slate-500">Nab it. Keep it.</p>
+            <p className="truncate text-xs text-secondary">Nab it. Keep it.</p>
           </div>
         </div>
         <div className="flex items-center gap-1">
           <IconButton label="Settings" onClick={() => setShowSettings(true)}>
             <Settings size={17} />
           </IconButton>
-          <IconButton label="Hide" onClick={() => void import("../lib/ipc").then(({ api }) => api.hideMainWindow())}>
+          <IconButton
+            label="Hide"
+            onClick={() => void import("../lib/ipc").then(({ api }) => api.hideMainWindow())}
+          >
             <X size={17} />
           </IconButton>
         </div>
       </header>
 
-      <div className="grid h-12 shrink-0 grid-cols-2 gap-1 border-b border-slate-200 p-1.5 dark:border-slate-800">
+      <div className="grid h-12 shrink-0 grid-cols-2 gap-1 border-b border-subtle p-1.5">
         {tabs.map((tab) => {
           const Icon = tab.icon;
           return (
@@ -71,7 +74,7 @@ export function Popover() {
       </div>
 
       {error ? (
-        <div className="border-b border-amber-200 bg-amber-50 px-4 py-2 text-xs text-amber-900 dark:border-amber-900/60 dark:bg-amber-950/40 dark:text-amber-100">
+        <div className="border-b border-warning-base/30 bg-warning-soft px-4 py-2 text-xs text-warning-base">
           {error}
         </div>
       ) : null}

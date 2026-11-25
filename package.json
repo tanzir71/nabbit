@@ -5,7 +5,7 @@
   "type": "module",
   "scripts": {
     "dev": "vite --host 127.0.0.1 --port 1420",
-    "build": "tsc -b && vite build",
+    "build": "npm run tokens && tsc -b && vite build",
     "build:spike": "node scripts/build-island-spike.mjs",
     "preview": "vite preview",
     "tauri": "tauri",
@@ -15,7 +15,9 @@
     "lint": "eslint .",
     "format": "prettier --write .",
     "test": "vitest",
-    "verify": "npm run typecheck && npm run lint && npm test -- --run && npm run build",
+    "tokens": "node scripts/generate-tokens.mjs",
+    "verify:tokens": "node scripts/generate-tokens.mjs --check",
+    "verify": "npm run verify:tokens && npm run typecheck && npm run lint && npm test -- --run && npm run build",
     "verify:site": "node scripts/verify-site.mjs"
   },
   "dependencies": {

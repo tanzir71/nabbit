@@ -12,7 +12,8 @@ const require = createRequire(import.meta.url);
 const { chromium } = require(
   require.resolve("playwright", { paths: [root, resolve(root, ".tools/site-qa")] }),
 );
-const output = resolve(root, "progress/v2/M1");
+const outputIndex = process.argv.indexOf("--output-dir");
+const output = resolve(root, outputIndex < 0 ? "progress/v2/M1" : process.argv[outputIndex + 1]);
 await mkdir(output, { recursive: true });
 const native = process.argv[2] === "--cdp";
 const prefixIndex = process.argv.indexOf("--output-prefix");

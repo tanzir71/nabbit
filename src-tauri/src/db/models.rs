@@ -77,9 +77,21 @@ pub struct EngineStatus {
     pub missing: Vec<String>,
 }
 
+#[derive(Debug, Clone, Copy, Default, Serialize, Deserialize, PartialEq, Eq)]
+#[serde(rename_all = "lowercase")]
+pub enum ThemePreference {
+    Light,
+    Dark,
+    #[default]
+    #[serde(other)]
+    System,
+}
+
 #[derive(Debug, Clone, Serialize, Deserialize)]
 #[serde(rename_all = "camelCase")]
 pub struct AppSettings {
+    #[serde(default)]
+    pub theme: ThemePreference,
     pub retention_days: i64,
     pub capture_images: bool,
     pub image_size_cap_mb: i64,
@@ -107,6 +119,7 @@ pub struct AppSettings {
 impl Default for AppSettings {
     fn default() -> Self {
         Self {
+            theme: ThemePreference::System,
             retention_days: 30,
             capture_images: true,
             image_size_cap_mb: 10,

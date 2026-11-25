@@ -22,7 +22,13 @@ pub fn save_settings(
     if previous.retention_days != saved.retention_days {
         let _ = state.db.run_retention_gc();
     }
-    crate::apply_runtime_settings(&app, &state, &saved);
+    if previous.launch_at_login != saved.launch_at_login
+        || previous.toggle_popover_shortcut != saved.toggle_popover_shortcut
+        || previous.quick_download_shortcut != saved.quick_download_shortcut
+        || previous.clipboard_search_shortcut != saved.clipboard_search_shortcut
+    {
+        crate::apply_runtime_settings(&app, &state, &saved);
+    }
     Ok(saved)
 }
 
