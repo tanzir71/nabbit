@@ -1,5 +1,31 @@
 # M1 evidence — island spike
 
+## M1 — Island spike and measurements
+
+Application source: `04e40f3` on `main`, preserving the separate V0.1–V0.4 commits.
+This milestone publishes the opt-in spike, measured **no-go** for all-WebView2,
+and the required native idle/live fallback with WebView2 peek/expanded/drop.
+It does not claim a production island or that all performance limits pass:
+native idle CPU rounds to 0.1% of one core, and native compositor drops have not
+been counted. The full evidence and limitations remain below.
+
+The `m1-*` site captures show M1 Done with its screenshot link, M2 In progress
+and milestone metadata M1, using desktop/mobile × light/dark × 1×/1.5× contexts.
+The application captures and original V0.3 failed traces are retained separately.
+Reproduction commands are in `spikes/island/README.md`; site capture:
+`node scripts/capture-site.mjs progress/v2/M1 m1`.
+
+All eight site contexts passed with 24 PNGs (largest 172,193 bytes), visually
+compared with Figma Progress `29:965`. Original 16px icons, row geometry, badges,
+keyboard navigation, overflow, base-path routing and zero external resource or
+runtime errors passed. The full landing redesign/fonts remain Phase V1/L.
+`m1-verification.json` records 18 frontend and 35 Rust tests, formatting,
+default/spike Clippy, the site budget (31,884 bytes excluding fonts), 27-commit
+secret scan, PNG budgets and the unchanged release executable hash. Original
+performance failures were not rerun or replaced for publication.
+
+Publication/deployment verification will be appended after the milestone push.
+
 ## V0.1
 
 - SDK alignment: Tauri Rust 2.12.7, JavaScript API 2.12.5, CLI 2.12.6. The 2.12

@@ -1,0 +1,36 @@
+{
+  "milestone": "M1",
+  "verifiedAtUtc": "2026-11-25T21:36:46.461751+00:00",
+  "applicationCommit": "04e40f3d76a9f7e237c5867caabd3c01ad1154e9",
+  "frontendTestsPassed": 18,
+  "rustTestsPassed": 35,
+  "commandsPassed": [
+    "npm run verify",
+    "npm run verify:site",
+    "cargo fmt --manifest-path src-tauri/Cargo.toml --check",
+    "cargo clippy --manifest-path src-tauri/Cargo.toml --all-targets -- -D warnings",
+    "cargo test --manifest-path src-tauri/Cargo.toml -- --test-threads=1",
+    "cargo clippy --manifest-path src-tauri/Cargo.toml --all-targets --features island-spike,custom-protocol -- -D warnings"
+  ],
+  "historySecretScan": {
+    "commitsScanned": 27,
+    "leaks": 0
+  },
+  "browserContexts": 8,
+  "milestonePngCount": 24,
+  "allPngCount": 101,
+  "largestPngBytes": 172193,
+  "siteTransferBytesExcludingFonts": 31884,
+  "releaseExecutableSha256": "c38492f15052e9ef1f62254924431e9692167b4f193f4087bf5999285d53a0d8",
+  "gateDecision": "No-go for all-WebView2; required native compact fallback implemented.",
+  "nativeStrictOneCoreIdleTargetMet": false,
+  "nativeFrameCountClaimed": false,
+  "performanceReportsReusedWithoutRemeasuring": true,
+  "originalFailedEvidenceUnchanged": true,
+  "repositoryCiRunsBeforePush": 2,
+  "pagesSource": {
+    "branch": "main",
+    "path": "/docs",
+    "buildType": "legacy"
+  }
+}
