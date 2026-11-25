@@ -93,6 +93,12 @@
   color: #66666d;
 }
 
+.milestones a {
+  flex-shrink: 0;
+  color: #66666d;
+  font-size: 12px;
+}
+
 [data-status="in-progress"] .milestone-name {
   color: #17171a;
 }

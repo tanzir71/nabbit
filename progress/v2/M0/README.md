@@ -1,5 +1,12 @@
 # M0 evidence
 
+## M0 — Public repository and Pages
+
+The `m0-*` captures show the publication state: M0 Done with its Screenshots link,
+M1 In progress, and milestone metadata `M0`. They use the same automated browser
+matrix and checks as P.4 below. The milestone push and live deployment result
+will be recorded here after verification.
+
 ## P.4 — Pages publishing state
 
 The existing v0.1 landing now points to `https://tanzir71.github.io/nabbit/`.
