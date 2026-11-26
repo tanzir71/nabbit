@@ -1,0 +1,13 @@
+Selected diagnostic lines only; full raw log SHA-256 is recorded in the index.
+            throw new Error(`${scenario.name} (${theme}@${scale}x): ${error.message}`, {
+Error: sheet-trim (light@1x): Five strict repeats must match
++ actual - expected
++ '733b29c8c9862ad9e3997194960a12a1024d6f84c6a696420f65c08d2db9bc5c'
+- '0e5cbb670c73bfbba1caf28ac9cef04d8accfb388e0595aeddbb9fdefd2b966d'
+  [cause]: AssertionError [ERR_ASSERTION]: Five strict repeats must match
+  + actual - expected
+  + '733b29c8c9862ad9e3997194960a12a1024d6f84c6a696420f65c08d2db9bc5c'
+  - '0e5cbb670c73bfbba1caf28ac9cef04d8accfb388e0595aeddbb9fdefd2b966d'
+    code: 'ERR_ASSERTION',
+    actual: '733b29c8c9862ad9e3997194960a12a1024d6f84c6a696420f65c08d2db9bc5c',
+    expected: '0e5cbb670c73bfbba1caf28ac9cef04d8accfb388e0595aeddbb9fdefd2b966d',

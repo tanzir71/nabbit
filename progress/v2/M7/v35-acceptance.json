@@ -1,0 +1,215 @@
+{
+  "task": "V3.5 Options, Trim and Playlist sheets",
+  "recordedAtUtc": "2026-11-26T16:55:34.635781+00:00",
+  "baseCommit": "dc6f918c9f9206db7961299dc10cf6382898523d",
+  "branch": "main",
+  "checks": {
+    "npmVerify": {
+      "command": "npm run verify",
+      "exitCode": 0,
+      "file": "v35-npmVerify.txt",
+      "rawSha256": "0ebd0421f289eaa26d5a79c5b733646e4fd6c95503548be0e4080f6902396060",
+      "savedSha256": "5ad8cbabc209e926ae7a249056009fb12c8feff2e6b80739abc62a5fc7fb879a"
+    },
+    "rustFmt": {
+      "command": "cargo fmt --check",
+      "exitCode": 0,
+      "file": "v35-rustFmt.txt",
+      "rawSha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "savedSha256": "01ba4719c80b6fe911b091a7c05124b64eeece964e09c058ef8f9805daca546b"
+    },
+    "rustClippy": {
+      "command": "cargo clippy --all-targets -- -D warnings",
+      "exitCode": 0,
+      "file": "v35-rustClippy.txt",
+      "rawSha256": "d1ee87113c83fa55649b5225c95a1e0959ee8e1632017abae1410727988d3afc",
+      "savedSha256": "f24e90a16dd8457a6bdbba8a8ad2112aeb28ecabe12cccc52cd8f2a7a6f3d715"
+    },
+    "rustSpikeClippy": {
+      "command": "cargo clippy --all-targets --features island-spike -- -D warnings",
+      "exitCode": 0,
+      "file": "v35-rustSpikeClippy.txt",
+      "rawSha256": "9b51366cf0f244e23d49560f81bf6fa2d171aa4c129ce7119d5f0a28d434da12",
+      "savedSha256": "f3f4590658af61f114904bef0dbe06143c734f11143421046e7e7e403d7cc4d8"
+    },
+    "rustTests": {
+      "command": "cargo test -- --test-threads=1",
+      "exitCode": 0,
+      "file": "v35-rustTests.txt",
+      "rawSha256": "4e9b4a39f79d027d6bfcbab38b4f70107dbba2f4d584412fdc89a3f3d64667e7",
+      "savedSha256": "e90de99be184e1f4e2ad66f2b975a5c348f4eefaaf90b4947c98512d768e2690"
+    },
+    "sheetCaptures": {
+      "command": "node scripts/verify-download-sheets.mjs v35-complete",
+      "exitCode": 0,
+      "file": "v35-sheetCaptures.txt",
+      "rawSha256": "5ce60069dede08ed238a019dd8a4d8f2cf40d5c7528ae99f740e024ef47580bf",
+      "savedSha256": "398afe09c29b2a88b6b2a7fbfd718c07a00da3343f879aa077ed838b241f3890"
+    },
+    "nabCaptures": {
+      "command": "node scripts/verify-nab-views.mjs v35-nab-complete M7",
+      "exitCode": 0,
+      "file": "v35-nabCaptures.txt",
+      "rawSha256": "6198f427c7bf2e34d78d951128dd5f064023a86a84eb7e46ab145c0350945d62",
+      "savedSha256": "4055b5eaf535d3920551443e15d5c793b4362d93f6e4877c2006a81658c96293"
+    },
+    "pinnedHelp": {
+      "command": "yt-dlp --ignore-config --flat-playlist --playlist-end 1000 --help",
+      "exitCode": 0,
+      "file": "v35-pinnedHelp.txt",
+      "rawSha256": "63e32c446540416b61ef22758ace6f38f1ecf339abd33244280858c00a99dbef",
+      "savedSha256": "f9bcab668272f76f77a71cf81cc2dfddae7e240d4381e970a72376da99b8be10"
+    }
+  },
+  "frontendTests": 149,
+  "newSheetUiTests": 21,
+  "rustTests": {
+    "passed": 143,
+    "ignored": 2,
+    "newTests": 7
+  },
+  "screenshots": {
+    "reports": [
+      "v35-complete-screenshots.json",
+      "v35-nab-complete-screenshots.json"
+    ],
+    "independentAudit": "v35-png-audit.json",
+    "finalCount": 32,
+    "sheetCount": 16,
+    "nabRegressionCount": 16,
+    "repeatIdentical": true,
+    "largestBytes": 169766,
+    "strictBudgetBytes": 300000,
+    "allRetainedCount": 120,
+    "allRetainedLargestBytes": 169766,
+    "themes": [
+      "light",
+      "dark"
+    ],
+    "scales": [
+      1,
+      1.5
+    ],
+    "islandAlwaysDark": true,
+    "buildManifestSha256": "49ac6092a0434a744f79dc6b3b485dcad5fc93357fe7042bfa0142a768974e99"
+  },
+  "design": {
+    "contextsAndScreenshots": [
+      "17:137",
+      "17:270",
+      "18:160"
+    ],
+    "sheetCssPixels": [
+      460,
+      680
+    ],
+    "originalSvgExports": 11,
+    "assets": "v35-assets.json",
+    "fonts": "Actual Geist/Geist Mono glyph audits and heading 600/14px/20px.",
+    "mapping": "Shared Button/IconButton/PresetChip/Toggle/Select/Field composed; native inputs with original radio/check assets. Data-derived handles use actual duration; gradient placeholders remain fallback imagery."
+  },
+  "accessibility": {
+    "sheetDefaultAxeScans": 16,
+    "sheetViolations": 0,
+    "sheetIncomplete": 0,
+    "nabDefaultAxeScans": 16,
+    "nabViolations": 0,
+    "nabGradientIncompleteContexts": 4,
+    "retainedContrastProof": "../M6/v34-badge-contrast.json",
+    "scope": "Default-rule scoped scans, real browser focus wrap and range keyboard checks; no whole-app conformance claim."
+  },
+  "islandInitialGzipBytes": 90409,
+  "islandBudgetBytes": 120000,
+  "entries": 4,
+  "pinnedParser": {
+    "version": "2026.11.23",
+    "sha256": "622ed48023cac1daa52a3bf3a6ac38f03514de214b5f0fa069389fd0f6d17e5c",
+    "typedParserRecognizesBound": true,
+    "evidence": "v35-pinned-parser.json",
+    "note": "The hidden playlist-end option is absent from help; a valid bound reaches the no-URL check and a malformed integer is rejected by its typed parser.",
+    "profileOrMediaOrNetworkUsed": false
+  },
+  "captureDiagnosis": {
+    "evidence": "v35-capture-diagnosis.json",
+    "caretPolicy": "initial for sheet captures only, after asserting non-text focus; default hide is unchanged",
+    "extraStrictComparisons": 80,
+    "normalizationOrTolerance": false
+  },
+  "behavior": [
+    "Explicit on-demand shared 460x680 native sheet window reuses index entry and never bootstraps clipboard history.",
+    "All six formats, probed quality/size/FPS, subtitle modes/languages, chapter/SponsorBlock modes, thumbnail/metadata, folder/template, browser and speed limit are wired to the validated builder.",
+    "Site remembering is transactional; browser selection remains in memory only. Existing custom values and app filename defaults are reflected in controls.",
+    "A failed metadata probe retains an honest single-link options/browser chooser with the problem shown; missing trim/playlist data is not fabricated.",
+    "Trim handles snap within one second; fractional fields, multiple chapter unions, reset and precise cuts work without filling gaps or leaking title keys.",
+    "Source preview opens only on explicit click.",
+    "Flat playlist probes are bounded to 1000 entries and existing owned process/output limits; truncated/unavailable/unknown data is explicit.",
+    "Range/sparse/all/none selection creates one independent persisted job per video; a failed batch rolls back jobs and preset.",
+    "All actionable jobs remain listed beyond 200; only completed/cancelled history is capped at 200.",
+    "Modal keyboard/focus/cleanup and duplicate/submitted guards are tested. Subscribe-before-snapshot and intent-scoped close preserve newer reviews."
+  ],
+  "limits": [
+    "Native sheet construction/configuration compiles, but no real native sheet click, real shortcut, browser profile/sign-in, media transfer, installer, signing, Tack account or display change is exercised.",
+    "V3.6 complete error mapping and V3.7 fake/native/media acceptance remain unchecked.",
+    "Known V0/V2.7 native frame/focus/performance limitations are retained.",
+    "Only the first 1000 flat-playlist entries are loaded; the UI explicitly reports truncation.",
+    "Earlier repeat captures showed low-bit RGB differences at rounded edges; rejected renderer-flag trials and the caret-style diagnostic are retained. Accepted captures keep initial caret styles with verified non-text focus, unchanged strict byte comparisons and no image normalization."
+  ],
+  "publication": {
+    "commitDirectlyTo": "main",
+    "pushThisPass": false,
+    "pullRequest": false,
+    "nextTask": "V3.6 Error mapping",
+    "milestoneM7Checked": false
+  },
+  "sourceHashNormalization": "CRLF to LF only",
+  "sourceSha256LfNormalized": {
+    "scripts/screenshots/harness.mjs": "4e694b155398fb9f6fa619da752fab28d2d56fa14236a0b05b8fb08c3278806f",
+    "scripts/verify-download-sheets.mjs": "f66e55353e63a699a6f3eda48ffbf73061f6f442044d4a316a1c3bb7b27bddae",
+    "scripts/verify-nab-views.mjs": "49ec6420fe6b9faeabe3603d416fdaa425ff62f4efc2f5b3615a9e13df25caac",
+    "src-tauri/capabilities/download-sheet.json": "09814fedf7e23fd7dfa8734a42ee4887e7e4635e56ce771ecc83eaf316edc8c9",
+    "src-tauri/gen/schemas/capabilities.json": "cfb7d3c7dfd7c5385e3b5eb85e6aabde19918fea89c2ddcff89f408afeb5c90f",
+    "src-tauri/src/capture.rs": "efab8a411d785295c46efe8ea926169a2b69cd5ac1abf9ffcf515a292c20031c",
+    "src-tauri/src/db/download_presets.rs": "8918fb3dd000b67b86969b047d19c83e2a17c52b9a1f3c199aa2fd40b2906c66",
+    "src-tauri/src/db/download_presets_tests.rs": "2e810adb23201fd4904ce7180f0a3251d2c14626b7fcfc72f1f4792551f349fe",
+    "src-tauri/src/db/mod.rs": "8a5a8038fad1596179807460aad9c462ba46cf70c275accae06e7085a53e4da4",
+    "src-tauri/src/db/models.rs": "4d118f98ce31d1573ccb764acebcdf4374bdd4b3e815d5dbf63119151e69384f",
+    "src-tauri/src/download/format_sizes.rs": "87e73796688a0dd711e09b2536b2789345416d548b25e59bc375101c0825e42b",
+    "src-tauri/src/download/manager.rs": "906234c422c7fc2f942a61dbda383c2811442f58e70f1354d23f4245c74efbad",
+    "src-tauri/src/download/media.rs": "d3bb789e816b50457a70a87bccfd6507996db001e11116ac4803e821b5a5b17f",
+    "src-tauri/src/download/mod.rs": "b02a1d8a6caeb76857c9cbe45b744e6d1e38afc8d3deee713cf03ea3c0a6d3ef",
+    "src-tauri/src/download/sheets.rs": "00703a6476976775bb023d1efb69157950cbc12c0711a3a115f3131834f22166",
+    "src-tauri/src/download/ytdlp.rs": "12291f5109b1b7a1c1c89e2ac98a63cf6c319003b252206cf1538f696d44dec4",
+    "src-tauri/src/lib.rs": "e9799af87424a13ef0f86ecd143c7145ad749432f6de7d6121dc2c36b665f971",
+    "src/assets/download-sheets/2ed91.svg": "be529463b308fe9894fc94a19c820323ce3fd6365980038c5b0ed1086c3a7a5d",
+    "src/assets/download-sheets/338a5.svg": "143ac5f2d002c42e46f3b229c6eb2b9afc0ebc43af39d45a835bcabc600ac790",
+    "src/assets/download-sheets/3d2ea.svg": "217dab25dffccf251e8b2862b5cbaec1250e68c26e44afe1aef4ce858c523eb3",
+    "src/assets/download-sheets/46f95.svg": "5323983c4cbed2099f68b44eb8e72de0bed4c6f9ab2d2748e0d583e953e6e469",
+    "src/assets/download-sheets/5d1a3.svg": "77e68feff16f23989ffd55be5b0a80cd44d2e0fbf0a755e7b7a8a65a2e8d75c4",
+    "src/assets/download-sheets/a9396.svg": "59f485204028e2fb48294a0b3d11aee23c71584527f92aac986fcf68cb5c8f66",
+    "src/assets/download-sheets/aa883.svg": "42c63d8879826f80602e8b87cc3450d405261084da3b7a18b6f46cb5e7af29fc",
+    "src/assets/download-sheets/ad273.svg": "f3bdf753dd98d2bda3bcf63801190b43c06bb3537bc69a880b5861a197a2b766",
+    "src/assets/download-sheets/d2028.svg": "245c63d7fdff99e43fd33f4ea1bb053c6e88e64a8168f741e58440817323664c",
+    "src/assets/download-sheets/ef790.svg": "faf899f72353c8b8e311e11b934846de05a300e965aa23411f080b49df83c550",
+    "src/assets/download-sheets/fd956.svg": "22da135d83c0f1452dd4cad67b3469c92955ba5677f6355ae175a37199b09982",
+    "src/features/downloads/DownloadReview.tsx": "b46a3c36ca7f0c4c754e12f9ef07c524fcb53371f307716c1fc8906b1b446cc3",
+    "src/features/downloads/DownloadSheetApp.tsx": "229de6e4a43cb0913e14198abf526442b94232e1a6827f14fae6a4728c34871a",
+    "src/features/downloads/OptionsSheet.tsx": "1f94f775ffd4feb6c7565e5c85473fe629807aca0f2e0e429f9133532c1448d8",
+    "src/features/downloads/PlaylistSheet.tsx": "3def507d8c4c95f6a54d2f61fc8f570b0e080ada5e1661735b8d06f3e3df7aa7",
+    "src/features/downloads/SheetCommon.tsx": "23cb84e168520d1c61a8f6e2b488c87434691fde7b01f50ad989a5a58e7513c4",
+    "src/features/downloads/SheetIcon.tsx": "0c043bd5d5676e960db6420bf49af96a0d299f142c0f341971ae1c010eea32c0",
+    "src/features/downloads/TrimSheet.tsx": "f154a6017f2705d68d0457c60559efac977cb1226fac02d3152eaf84fddd60ea",
+    "src/features/downloads/downloadSheets.test.tsx": "a237a0ed462efa2e3452625aa0990b29c5de2411f20df07458f309531734223f",
+    "src/features/downloads/downloads.test.tsx": "345f72e5d308a0438db80cd7acc04a8e7f319b1a8eeabd60c9f88d03061d5cf2",
+    "src/features/downloads/previewSheet.tsx": "a28e1241c992a9657e19314a982368decb72b2e8c0ef9bdb40d3e8b9f36b5c94",
+    "src/features/downloads/sheetModel.ts": "201cce4e3557bdd2ecde9e725b3151dcdc2a426ad8e8348d6aa330c71d6df214",
+    "src/features/downloads/sheets.css": "16f85d8fc0c253838775e54e04c2e5737c8d0c0634c815d57802b660bf55da65",
+    "src/lib/ipc.ts": "d07ca5cfe43ae4477525d3f3368ba9a96312acaef8c926ff55d11c653ccc7cef",
+    "src/lib/types.ts": "295fb45b4b0443cc50403da5342ce932eaed3f098c12c3b4da0e45007e3b7c22",
+    "src/main.tsx": "6a2ca66b6488d41929b76bf97eb5c941a38c8a66f0a8fc3995632da494994c32"
+  },
+  "documentSha256LfNormalized": {
+    "NABBIT_V2_HANDOFF.md": "dc80fd4be167920afd8b602065fb49ceb45d2c359c91a5d8cc16bf6143935420",
+    "PROGRESS.md": "164d66aaafa615c04e6be4855b33e0ca312276e65e0e63d6e829969b6d76ac9f",
+    "progress/v2/M7/README.md": "5622b7b6cf09dec5a0bae4d2988545621f9b6a44d17d490d7854e158e165edaa"
+  }
+}

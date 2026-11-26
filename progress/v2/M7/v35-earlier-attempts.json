@@ -1,0 +1,136 @@
+{
+  "authoritativeChecks": "v35-checks.json",
+  "note": "Superseded failures and diagnostics are distinct from final accepted checks. Selected transcripts exclude verbose DOM/inline SVG dumps.",
+  "attempts": [
+    {
+      "rawLog": "v35-typecheck.log",
+      "rawSha256": "91f4fa5e7e905b600694a4c18aca49caf88467ff6d79a25408559467f04ef9b0",
+      "outcome": "failed",
+      "resolutionOrScope": "ES2020 target rejects replaceAll; use supported replacement.",
+      "selectedTranscript": "v35-earlier-typecheck.txt",
+      "savedSha256": "e9b5d1dced45d846e0741f4390ab26f479773cdcdbe9c95c123406c66b93ee73",
+      "fullLineCount": 5,
+      "selectedLineCount": 1
+    },
+    {
+      "rawLog": "v35-lint.log",
+      "rawSha256": "88577d89a87ee552549ab66bf048a9fef49f6f4db2ece3c7dabac5b17fba9614",
+      "outcome": "failed",
+      "resolutionOrScope": "Fast Refresh lint requires component-only export boundary; separate preview module.",
+      "selectedTranscript": "v35-earlier-lint.txt",
+      "savedSha256": "fcee711cbe352f5e2c5f087fba0b5fea48e66991d49258a05e291331dc0f7d52",
+      "fullLineCount": 10,
+      "selectedLineCount": 2
+    },
+    {
+      "rawLog": "v35-ui-tests.log",
+      "rawSha256": "c9e531f18bf66b592fee5ac4954a6a8b55ef47df5a4f6453b9b739a934b6195e",
+      "outcome": "failed",
+      "resolutionOrScope": "Add missing matchMedia fixture seam.",
+      "selectedTranscript": "v35-earlier-ui-tests.txt",
+      "savedSha256": "3acf35ec58f991a92b79c6b09c4c9e68810ef52148135957c29dc8e2cfd6da85",
+      "fullLineCount": 490,
+      "selectedLineCount": 100
+    },
+    {
+      "rawLog": "v35-ui-tests2.log",
+      "rawSha256": "cef50d89fad85c52fbd3e037b0873265342e61cf74f7e245be0c1dbb1c582cca",
+      "outcome": "failed",
+      "resolutionOrScope": "Strip chapter titles from strict start/end payload, retaining strict assertions.",
+      "selectedTranscript": "v35-earlier-ui-tests2.txt",
+      "savedSha256": "55b3a7414f6c7588cc5aae9e3741d778b7963a7fa08c6fef66cc7a263b768de5",
+      "fullLineCount": 359,
+      "selectedLineCount": 11
+    },
+    {
+      "rawLog": "v35-verify.log",
+      "rawSha256": "5993ab5639b2e911f882437bff3f9b4e6e38fa4f20c80c3567c6f6c953478139",
+      "outcome": "failed",
+      "resolutionOrScope": "Use a declared script global for structuredClone.",
+      "selectedTranscript": "v35-earlier-verify.txt",
+      "savedSha256": "f91f80978db7053e7678361a69a61300924369fdf8f8dda58a3131968b744314",
+      "fullLineCount": 34,
+      "selectedLineCount": 6
+    },
+    {
+      "rawLog": "v35-sheets-first.log",
+      "rawSha256": "5ce60069dede08ed238a019dd8a4d8f2cf40d5c7528ae99f740e024ef47580bf",
+      "outcome": "passed-superseded",
+      "resolutionOrScope": "Initial sixteen captures; scoped accessibility incompletes corrected later.",
+      "selectedTranscript": "v35-earlier-sheets-first.txt",
+      "savedSha256": "2dc57e9147e5ae3baa4a3609249bbdffc8d5b7685f3a7cb284564de4576dc9f9",
+      "fullLineCount": 1,
+      "selectedLineCount": 1
+    },
+    {
+      "rawLog": "v35-sheets-final.log",
+      "rawSha256": "2b7a9668a13d96ae2a23011adcf026fc3e81d9a29cddaf8d753f15fbca081355",
+      "outcome": "failed",
+      "resolutionOrScope": "Exact repeat PNG hash mismatch, unchanged strict comparison.",
+      "selectedTranscript": "v35-earlier-sheets-final.txt",
+      "savedSha256": "d8fd25dd36b400df7491e0af614968f775fed763505f75d5ccb0117b229a26d4",
+      "fullLineCount": 30,
+      "selectedLineCount": 12
+    },
+    {
+      "rawLog": "v35-sheets-ready.log",
+      "rawSha256": "2b7a9668a13d96ae2a23011adcf026fc3e81d9a29cddaf8d753f15fbca081355",
+      "outcome": "failed",
+      "resolutionOrScope": "Exact repeat PNG hash mismatch, unchanged strict comparison.",
+      "selectedTranscript": "v35-earlier-sheets-ready.txt",
+      "savedSha256": "d8fd25dd36b400df7491e0af614968f775fed763505f75d5ccb0117b229a26d4",
+      "fullLineCount": 30,
+      "selectedLineCount": 12
+    },
+    {
+      "rawLog": "v35-debug-fresh.log",
+      "rawSha256": "9e7c29d0a15434f5c409805fa4d8960a0e1306de685f3dc275e099530aa54995",
+      "outcome": "failed",
+      "resolutionOrScope": "Diagnostic paired hashes and low-bit edge difference retained separately.",
+      "selectedTranscript": "v35-earlier-debug-fresh.txt",
+      "savedSha256": "488474dbf3a70437021f19082db71e6bd2dc9ae23e147474de94afc000cc9b51",
+      "fullLineCount": 30,
+      "selectedLineCount": 12
+    },
+    {
+      "rawLog": "v35-software-probe.log",
+      "rawSha256": "dd8e36170080faf6483a6f84ab13ca5e47a2d24df65dbb06c045eea3bab3c59b",
+      "outcome": "failed-rejected",
+      "resolutionOrScope": "Software rendering did not satisfy five-repeat check; flag not adopted.",
+      "selectedTranscript": "v35-earlier-software-probe.txt",
+      "savedSha256": "e2b43d52cc5bfe1927716e501eed6520a4ae18fd97d512d4c67c6236d732c19b",
+      "fullLineCount": 30,
+      "selectedLineCount": 12
+    },
+    {
+      "rawLog": "v35-deterministic-probe.log",
+      "rawSha256": "413fe481cd139e1d99788ec88424349e9a8ff98866b41380def9d33f657a15e5",
+      "outcome": "failed-rejected",
+      "resolutionOrScope": "Deterministic mode did not satisfy interaction assertion; flag not adopted.",
+      "selectedTranscript": "v35-earlier-deterministic-probe.txt",
+      "savedSha256": "8851b50f6db27f951bf729203e4c3b9cae77b23b031b4983c82381437d310b22",
+      "fullLineCount": 27,
+      "selectedLineCount": 5
+    },
+    {
+      "rawLog": "v35-caret-probe.log",
+      "rawSha256": "d4fa0dcd37259c9e5267acea10613a8dc0f662d4929e732111cde069de28e235",
+      "outcome": "passed-diagnostic",
+      "resolutionOrScope": "Four isolated contexts, five exact comparisons each.",
+      "selectedTranscript": "v35-earlier-caret-probe.txt",
+      "savedSha256": "35074d375ee10c2141ed372ff7a3921fe075a449b3ebbf3e1afc63e18cf3d27b",
+      "fullLineCount": 1,
+      "selectedLineCount": 1
+    },
+    {
+      "rawLog": "v35-caret-all.log",
+      "rawSha256": "5ce60069dede08ed238a019dd8a4d8f2cf40d5c7528ae99f740e024ef47580bf",
+      "outcome": "passed-diagnostic",
+      "resolutionOrScope": "All sixteen contexts, five exact comparisons each.",
+      "selectedTranscript": "v35-earlier-caret-all.txt",
+      "savedSha256": "2dc57e9147e5ae3baa4a3609249bbdffc8d5b7685f3a7cb284564de4576dc9f9",
+      "fullLineCount": 1,
+      "selectedLineCount": 1
+    }
+  ]
+}

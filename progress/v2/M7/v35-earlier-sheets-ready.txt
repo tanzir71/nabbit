@@ -1,0 +1,13 @@
+Selected diagnostic lines only; full raw log SHA-256 is recorded in the index.
+            throw new Error(`${scenario.name} (${theme}@${scale}x): ${error.message}`, {
+Error: sheet-trim (light@1x): Unstable capture: sheet-trim/light/1
++ actual - expected
++ '844b60fdcde3db383da9c3d361f28e2e2a3eb200a56763ffd6ec56861b2f0f9f'
+- '89c5c19f946556b733fe78f0159d85f574bbbb12a99320837536626d77018283'
+  [cause]: AssertionError [ERR_ASSERTION]: Unstable capture: sheet-trim/light/1
+  + actual - expected
+  + '844b60fdcde3db383da9c3d361f28e2e2a3eb200a56763ffd6ec56861b2f0f9f'
+  - '89c5c19f946556b733fe78f0159d85f574bbbb12a99320837536626d77018283'
+    code: 'ERR_ASSERTION',
+    actual: '844b60fdcde3db383da9c3d361f28e2e2a3eb200a56763ffd6ec56861b2f0f9f',
+    expected: '89c5c19f946556b733fe78f0159d85f574bbbb12a99320837536626d77018283',

@@ -107,6 +107,7 @@ impl DownloadManager {
                 playlist_count: None,
                 extractor: Some("acceptance".into()),
                 qualities: vec![],
+                details: None,
             }
         } else if let Some(metadata) = captured {
             metadata
@@ -122,31 +123,10 @@ impl DownloadManager {
                 playlist_count: None,
                 extractor: Some("fallback".into()),
                 qualities: vec![],
+                details: None,
             })
         };
-        let now = Utc::now();
-        let job = DownloadJob {
-            id: Uuid::new_v4().to_string(),
-            url: metadata.normalized_url,
-            title: metadata.title,
-            thumbnail: metadata.thumbnail,
-            status: "queued".into(),
-            progress: 0.0,
-            speed: None,
-            eta: None,
-            output_path: None,
-            error: None,
-            quality: options.legacy_quality(),
-            playlist_mode: match options.playlist_mode {
-                super::options::PlaylistMode::Video => "video",
-                super::options::PlaylistMode::Playlist => "playlist",
-            }
-            .into(),
-            playlist_range: options.playlist_items.clone(),
-            options: Some(options),
-            created_at: now,
-            updated_at: now,
-        };
+        let job = job_from_metadata(metadata, options);
         self.db
             .insert_download_and_preset(&job, request.remember_for_site)?;
         {
@@ -161,6 +141,45 @@ impl DownloadManager {
         }
         self.pump();
         Ok(job)
+    }
+
+    pub fn enqueue_playlist(
+        &self,
+        request: DownloadRequest,
+        indices: Vec<u32>,
+    ) -> Result<Vec<DownloadJob>> {
+        let settings = self.db.get_settings()?;
+        let normalized = crate::capture::web_url(&request.url)?;
+        let metadata = self
+            .app
+            .try_state::<crate::AppState>()
+            .and_then(|s| s.capture.current())
+            .filter(|m| m.normalized_url == normalized && m.details.is_some())
+            .map(Ok)
+            .unwrap_or_else(|| probe::probe(&self.app_data_dir, &normalized))?;
+        let mut options = request.options.clone().unwrap_or_default();
+        options.playlist_mode = super::options::PlaylistMode::Video;
+        options.playlist_items = None;
+        if !options.sections.is_empty() {
+            return Err(msg("Trim one video at a time."));
+        }
+        let options = options.with_defaults(&settings.output_dir, &settings.filename_template)?;
+        let jobs = playlist_jobs(&metadata, &indices, &options)?;
+        let mut inner = self
+            .inner
+            .lock()
+            .map_err(|_| msg("download manager lock poisoned"))?;
+        self.db
+            .insert_download_batch(&jobs, request.remember_for_site, &normalized)?;
+        for job in &jobs {
+            if let Some(browser) = request.cookies_from_browser {
+                inner.browsers.insert(job.id.clone(), browser);
+            }
+            inner.queue.push_back(job.id.clone());
+        }
+        drop(inner);
+        self.pump();
+        Ok(jobs)
     }
 
     pub fn retry(&self, id: &str) -> Result<DownloadJob> {
@@ -677,4 +696,87 @@ fn kill_pid(pid: u32) {
     let _ = Command::new("kill")
         .args(["-TERM", &pid.to_string()])
         .output();
+}
+
+fn job_from_metadata(metadata: DownloadMetadata, options: DownloadOptions) -> DownloadJob {
+    let now = Utc::now();
+    DownloadJob {
+        id: Uuid::new_v4().to_string(),
+        url: metadata.normalized_url,
+        title: metadata.title,
+        thumbnail: metadata.thumbnail,
+        status: "queued".into(),
+        progress: 0.0,
+        speed: None,
+        eta: None,
+        output_path: None,
+        error: None,
+        quality: options.legacy_quality(),
+        playlist_mode: match options.playlist_mode {
+            super::options::PlaylistMode::Video => "video",
+            super::options::PlaylistMode::Playlist => "playlist",
+        }
+        .into(),
+        playlist_range: options.playlist_items.clone(),
+        options: Some(options),
+        created_at: now,
+        updated_at: now,
+    }
+}
+
+fn playlist_jobs(
+    metadata: &DownloadMetadata,
+    indices: &[u32],
+    options: &DownloadOptions,
+) -> Result<Vec<DownloadJob>> {
+    let jobs: Vec<_> = super::media::selected(metadata, indices)?
+        .into_iter()
+        .map(|entry| {
+            let url = entry.url.expect("selected entries have validated URLs");
+            job_from_metadata(
+                DownloadMetadata {
+                    url: url.clone(),
+                    normalized_url: url,
+                    title: entry.title,
+                    channel: metadata.channel.clone(),
+                    duration: entry.duration,
+                    thumbnail: entry.thumbnail,
+                    is_playlist: false,
+                    playlist_count: None,
+                    extractor: metadata.extractor.clone(),
+                    qualities: entry.qualities,
+                    details: None,
+                },
+                options.clone(),
+            )
+        })
+        .collect();
+    Ok(jobs)
+}
+
+#[cfg(test)]
+mod playlist_tests {
+    use super::*;
+    #[test]
+    fn selected_videos_get_distinct_jobs_with_individual_urls_and_snapshots() {
+        let source = "https://www.youtube.com/playlist?list=fixture";
+        let metadata=super::super::ytdlp::metadata_from_value(&serde_json::json!({"_type":"playlist","title":"Fixture","entries":[{"id":"one","title":"First"},{"id":"two","title":"Second"},{"id":"three","title":"Third"}]}),source).unwrap();
+        let options = DownloadOptions {
+            format: super::super::options::Format::Opus,
+            height: None,
+            speed_limit: Some("2M".into()),
+            ..Default::default()
+        };
+        let jobs = playlist_jobs(&metadata, &[3, 1, 1], &options).unwrap();
+        assert_eq!(jobs.len(), 2);
+        assert_ne!(jobs[0].id, jobs[1].id);
+        assert_eq!(jobs[0].title, "First");
+        assert!(jobs[0].url.ends_with("v=one"));
+        assert!(jobs[1].url.ends_with("v=three"));
+        assert!(jobs.iter().all(|j| j.options.as_ref() == Some(&options)
+            && j.playlist_mode == "video"
+            && j.playlist_range.is_none()
+            && j.status == "queued"));
+        assert!(playlist_jobs(&metadata, &[4], &options).is_err());
+    }
 }

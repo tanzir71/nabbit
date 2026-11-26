@@ -78,6 +78,7 @@ pub fn run() {
         context
     };
     tauri::Builder::default()
+        .manage(download::sheets::Service::default())
         .plugin(tauri_plugin_single_instance::init(|app, args, _cwd| {
             // The plugin's deep-link integration already delivered configured scheme arguments.
             if !args.iter().any(|arg| arg.starts_with("nabbit:")) {
@@ -94,6 +95,12 @@ pub fn run() {
         ))
         .plugin(tauri_plugin_updater::Builder::new().build())
         .invoke_handler(tauri::generate_handler![
+            download::sheets::open_download_sheet,
+            download::sheets::get_download_sheet,
+            download::sheets::download_sheet_ready,
+            download::sheets::close_download_sheet,
+            download::sheets::start_playlist_download,
+            download::sheets::preview_download_source,
             commands::app::app_health,
             commands::app::check_app_update,
             commands::settings::get_settings,
@@ -251,6 +258,15 @@ pub fn run() {
             Ok(())
         })
         .on_window_event(|window, event| {
+            if window.label() == "download-sheet" && matches!(event, tauri::WindowEvent::Destroyed)
+            {
+                if let Some(service) = window.app_handle().try_state::<download::sheets::Service>()
+                {
+                    if let Ok(mut intent) = service.0.lock() {
+                        *intent = None;
+                    }
+                }
+            }
             #[cfg(windows)]
             if matches!(event, tauri::WindowEvent::Destroyed) {
                 if let Some(manager) = window.app_handle().try_state::<Arc<island::Manager>>() {

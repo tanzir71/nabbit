@@ -1,0 +1,53 @@
+{
+  "problem": "Intermittent exact-hash Trim differences under Playwright caret hide, despite unchanged geometry/text.",
+  "pixelEvidence": "v35-raster-difference.json",
+  "changedPixels": 38,
+  "maximumChannelDelta": 2,
+  "temporaryPairStatus": "The original temporary PNG pair was overwritten by later probes. Its exact hashes and derived pixel observation survive; later temporary files are not offered as that original pair.",
+  "localImplementationEvidence": {
+    "file": "node_modules/playwright-core/lib/coreBundle.js",
+    "hook": "Screenshot caret hiding injects and restores element inline caret-color styles.",
+    "sha256": "874451b4e7acf90cda4330be42db2259c9e5036c22150f18016f04768434234c"
+  },
+  "acceptedPolicy": "Sheet-only caret initial, with active element outside input/textarea/contenteditable. No text caret is visible. Default harness caret hide remains unchanged.",
+  "strictComparisons": {
+    "isolatedContexts": 4,
+    "allSheetContexts": 16,
+    "comparisonsPerContext": 5,
+    "allSheetComparisonCount": 80,
+    "passed": true
+  },
+  "experiments": [
+    {
+      "source": "v35-caret-harness.mjs",
+      "retainedAs": "v35-caret-harness.mjs.txt",
+      "sha256": "9086894b36fe8514f3a7dd708a7cf858e84612fbd43aa31d345e9830af975ec7",
+      "bytes": 12718
+    },
+    {
+      "source": "v35-caret-all.mjs",
+      "retainedAs": "v35-caret-all.mjs.txt",
+      "sha256": "b4ed3f98feec725a12ea7c185123e42933bf907d2b61f156414080dee6a2d5f8",
+      "bytes": 9098
+    },
+    {
+      "source": "v35-caret-probe.mjs",
+      "retainedAs": "v35-caret-probe.mjs.txt",
+      "sha256": "991e5c31396f5f5b8b9075eff899389cd0e7450c54ca733cc6a46b17fa52a9ac",
+      "bytes": 9131
+    }
+  ],
+  "reports": [
+    "v35-caret-probe-screenshots.json",
+    "v35-caret-all-screenshots.json"
+  ],
+  "rejectedTrials": [
+    "disable-gpu: repeat failure",
+    "deterministic-mode: interaction failure"
+  ],
+  "flagsAdopted": [],
+  "pixelTolerance": 0,
+  "imageNormalization": false,
+  "assertionsOrTimeoutsWeakened": false,
+  "earlierAttempts": "v35-earlier-attempts.json"
+}

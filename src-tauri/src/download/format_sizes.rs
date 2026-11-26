@@ -8,6 +8,8 @@ use std::collections::BTreeMap;
 pub struct QualityEstimate {
     pub height: u16,
     pub estimated_bytes: Option<u64>,
+    #[serde(default, skip_serializing_if = "Option::is_none")]
+    pub fps: Option<u16>,
 }
 fn bytes(value: &Value, duration: Option<f64>) -> Option<u64> {
     value
@@ -78,6 +80,23 @@ pub fn from_probe(value: &Value) -> Vec<QualityEstimate> {
         .map(|(height, estimated_bytes)| QualityEstimate {
             height,
             estimated_bytes,
+            fps: formats
+                .iter()
+                .filter(|f| {
+                    f.get("height").and_then(Value::as_u64) == Some(height as u64)
+                        && f.get("has_drm").and_then(Value::as_bool) != Some(true)
+                        && !matches!(
+                            f.get("vcodec").and_then(Value::as_str),
+                            Some("none" | "images")
+                        )
+                })
+                .filter_map(|f| {
+                    f.get("fps")
+                        .and_then(Value::as_f64)
+                        .filter(|n| n.is_finite() && *n > 0.0 && *n <= 480.0)
+                        .map(|n| n.round() as u16)
+                })
+                .max(),
         })
         .collect()
 }
@@ -85,6 +104,13 @@ pub fn from_probe(value: &Value) -> Vec<QualityEstimate> {
 #[cfg(test)]
 mod tests {
     use super::*;
+    #[test]
+    fn frame_rates_come_from_matching_non_drm_video_formats() {
+        let data = serde_json::json!({"formats":[{"height":1080,"vcodec":"av1","acodec":"aac","fps":59.94,"filesize":42},{"height":1080,"vcodec":"av1","has_drm":true,"fps":120},{"height":90,"vcodec":"images","fps":300}]});
+        let quality = from_probe(&data);
+        assert_eq!(quality.len(), 1);
+        assert_eq!(quality[0].fps, Some(60));
+    }
     #[test]
     fn exact_approximate_and_bitrate_sizes_include_audio_and_keep_unknowns() {
         let value = serde_json::json!({"duration":8,"formats":[
@@ -102,19 +128,23 @@ mod tests {
             vec![
                 QualityEstimate {
                     height: 1080,
-                    estimated_bytes: Some(1200)
+                    estimated_bytes: Some(1200),
+                    fps: None,
                 },
                 QualityEstimate {
                     height: 720,
-                    estimated_bytes: Some(700)
+                    estimated_bytes: Some(700),
+                    fps: None,
                 },
                 QualityEstimate {
                     height: 480,
-                    estimated_bytes: Some(1200)
+                    estimated_bytes: Some(1200),
+                    fps: None,
                 },
                 QualityEstimate {
                     height: 240,
-                    estimated_bytes: None
+                    estimated_bytes: None,
+                    fps: None,
                 }
             ]
         );

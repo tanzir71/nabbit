@@ -1,0 +1,12 @@
+Selected diagnostic lines only; full raw log SHA-256 is recorded in the index.
+ ❯ src/features/downloads/downloadSheets.test.tsx (16 tests | 1 failed) 2632ms
+   ✓ download sheet workflows > guards repeated click/Ctrl+Enter while the queue command is pending 76ms
+     → expected "startDownload" to be called with arguments: [ ObjectContaining{…} ]
+Received:
+⎯⎯⎯⎯⎯⎯⎯ Failed Tests 1 ⎯⎯⎯⎯⎯⎯⎯
+ FAIL  src/features/downloads/downloadSheets.test.tsx > download sheet workflows > keeps custom options while navigating into trim, unions chapter ranges and passes precise cuts
+AssertionError: expected "startDownload" to be called with arguments: [ ObjectContaining{…} ]
+Received:
+ ❯ runWithExpensiveErrorDiagnosticsDisabled node_modules/@testing-library/dom/dist/config.js:47:12
+ Test Files  1 failed (1)
+      Tests  1 failed | 15 passed (16)

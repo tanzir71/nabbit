@@ -35,11 +35,22 @@ impl Database {
         Ok(preset)
     }
     pub fn insert_download_and_preset(&self, job: &DownloadJob, remember: bool) -> Result<()> {
+        self.insert_download_batch(std::slice::from_ref(job), remember, &job.url)
+    }
+    pub fn insert_download_batch(
+        &self,
+        jobs: &[DownloadJob],
+        remember: bool,
+        site_url: &str,
+    ) -> Result<()> {
+        let job = jobs
+            .first()
+            .ok_or_else(|| msg("Choose at least one video."))?;
         let options = job.options.as_ref().map(|o| o.normalized()).transpose()?;
-        let options_json = options.as_ref().map(serde_json::to_string).transpose()?;
+
         let preset = if remember {
             Some((
-                presets::site_key(&job.url)?,
+                presets::site_key(site_url)?,
                 serde_json::to_string(
                     &presets::from_options(
                         options
@@ -57,7 +68,17 @@ impl Database {
             .lock()
             .map_err(|_| msg("database lock poisoned"))?;
         let tx = conn.transaction()?;
-        tx.execute("INSERT INTO downloads(id,url,title,thumbnail,status,progress,speed,eta,output_path,error,quality,playlist_mode,playlist_range,created_at,updated_at,options_json) VALUES(?1,?2,?3,?4,?5,?6,?7,?8,?9,?10,?11,?12,?13,?14,?15,?16)",params![job.id,job.url,job.title,job.thumbnail,job.status,job.progress,job.speed,job.eta,job.output_path,job.error,job.quality,job.playlist_mode,job.playlist_range,job.created_at.to_rfc3339(),job.updated_at.to_rfc3339(),options_json])?;
+        for job in jobs {
+            let options_json = job
+                .options
+                .as_ref()
+                .map(|o| o.normalized())
+                .transpose()?
+                .as_ref()
+                .map(serde_json::to_string)
+                .transpose()?;
+            tx.execute("INSERT INTO downloads(id,url,title,thumbnail,status,progress,speed,eta,output_path,error,quality,playlist_mode,playlist_range,created_at,updated_at,options_json) VALUES(?1,?2,?3,?4,?5,?6,?7,?8,?9,?10,?11,?12,?13,?14,?15,?16)",params![job.id,job.url,job.title,job.thumbnail,job.status,job.progress,job.speed,job.eta,job.output_path,job.error,job.quality,job.playlist_mode,job.playlist_range,job.created_at.to_rfc3339(),job.updated_at.to_rfc3339(),options_json])?;
+        }
         if let Some((site, value)) = preset {
             tx.execute("INSERT INTO download_presets(site,options_json,updated_at) VALUES(?1,?2,?3) ON CONFLICT(site) DO UPDATE SET options_json=excluded.options_json,updated_at=excluded.updated_at",params![site,value,Utc::now().to_rfc3339()])?;
         }

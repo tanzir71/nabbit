@@ -1,0 +1,6 @@
+Selected diagnostic lines only; full raw log SHA-256 is recorded in the index.
+            throw new Error(`${scenario.name} (${theme}@${scale}x): ${error.message}`, {
+Error: sheet-trim (light@1x): Modal Shift+Tab wraps to primary
+  [cause]: AssertionError [ERR_ASSERTION]: Modal Shift+Tab wraps to primary
+    code: 'ERR_ASSERTION',
+    expected: true,

@@ -1,0 +1,58 @@
+{
+  "npmVerify": {
+    "command": "npm run verify",
+    "exitCode": 0,
+    "file": "v35-npmVerify.txt",
+    "rawSha256": "0ebd0421f289eaa26d5a79c5b733646e4fd6c95503548be0e4080f6902396060",
+    "savedSha256": "5ad8cbabc209e926ae7a249056009fb12c8feff2e6b80739abc62a5fc7fb879a"
+  },
+  "rustFmt": {
+    "command": "cargo fmt --check",
+    "exitCode": 0,
+    "file": "v35-rustFmt.txt",
+    "rawSha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+    "savedSha256": "01ba4719c80b6fe911b091a7c05124b64eeece964e09c058ef8f9805daca546b"
+  },
+  "rustClippy": {
+    "command": "cargo clippy --all-targets -- -D warnings",
+    "exitCode": 0,
+    "file": "v35-rustClippy.txt",
+    "rawSha256": "d1ee87113c83fa55649b5225c95a1e0959ee8e1632017abae1410727988d3afc",
+    "savedSha256": "f24e90a16dd8457a6bdbba8a8ad2112aeb28ecabe12cccc52cd8f2a7a6f3d715"
+  },
+  "rustSpikeClippy": {
+    "command": "cargo clippy --all-targets --features island-spike -- -D warnings",
+    "exitCode": 0,
+    "file": "v35-rustSpikeClippy.txt",
+    "rawSha256": "9b51366cf0f244e23d49560f81bf6fa2d171aa4c129ce7119d5f0a28d434da12",
+    "savedSha256": "f3f4590658af61f114904bef0dbe06143c734f11143421046e7e7e403d7cc4d8"
+  },
+  "rustTests": {
+    "command": "cargo test -- --test-threads=1",
+    "exitCode": 0,
+    "file": "v35-rustTests.txt",
+    "rawSha256": "4e9b4a39f79d027d6bfcbab38b4f70107dbba2f4d584412fdc89a3f3d64667e7",
+    "savedSha256": "e90de99be184e1f4e2ad66f2b975a5c348f4eefaaf90b4947c98512d768e2690"
+  },
+  "sheetCaptures": {
+    "command": "node scripts/verify-download-sheets.mjs v35-complete",
+    "exitCode": 0,
+    "file": "v35-sheetCaptures.txt",
+    "rawSha256": "5ce60069dede08ed238a019dd8a4d8f2cf40d5c7528ae99f740e024ef47580bf",
+    "savedSha256": "398afe09c29b2a88b6b2a7fbfd718c07a00da3343f879aa077ed838b241f3890"
+  },
+  "nabCaptures": {
+    "command": "node scripts/verify-nab-views.mjs v35-nab-complete M7",
+    "exitCode": 0,
+    "file": "v35-nabCaptures.txt",
+    "rawSha256": "6198f427c7bf2e34d78d951128dd5f064023a86a84eb7e46ab145c0350945d62",
+    "savedSha256": "4055b5eaf535d3920551443e15d5c793b4362d93f6e4877c2006a81658c96293"
+  },
+  "pinnedHelp": {
+    "command": "yt-dlp --ignore-config --flat-playlist --playlist-end 1000 --help",
+    "exitCode": 0,
+    "file": "v35-pinnedHelp.txt",
+    "rawSha256": "63e32c446540416b61ef22758ace6f38f1ecf339abd33244280858c00a99dbef",
+    "savedSha256": "f9bcab668272f76f77a71cf81cc2dfddae7e240d4381e970a72376da99b8be10"
+  }
+}

@@ -24,6 +24,14 @@ export async function captureSuite(root, options, cases = scenarios) {
     "Scenario names must be unique",
   );
   for (const scenario of selected) {
+    assert(
+      !scenario.caret || ["initial", "hide"].includes(scenario.caret),
+      "Unsupported caret capture policy",
+    );
+    assert(
+      !scenario.query || scenario.query === "?download-sheet",
+      "Only the local download sheet route is supported",
+    );
     assert(/^[a-z][a-z0-9-]{0,63}$/.test(scenario.name), "Invalid scenario name");
     assert(
       /^[a-z][a-z0-9-]*\.html$/.test(scenario.entry),
@@ -128,7 +136,7 @@ export async function captureSuite(root, options, cases = scenarios) {
               await popup.close();
             });
             await page.clock.setFixedTime(new Date(captureTime));
-            const response = await page.goto(`${base}/${scenario.entry}`, {
+            const response = await page.goto(`${base}/${scenario.entry}${scenario.query ?? ""}`, {
               waitUntil: "networkidle",
             });
             assert(response?.ok());
@@ -158,6 +166,7 @@ export async function captureSuite(root, options, cases = scenarios) {
               !fixture.calls.some(({ command }) =>
                 [
                   "start_download",
+                  "start_playlist_download",
                   "start_download_with_preset",
                   "quick_download_staged",
                   "resume_download",
@@ -207,6 +216,16 @@ export async function captureSuite(root, options, cases = scenarios) {
             if (scenario.surface === "tray" || scenario.surface === "settings")
               assert(fixture.calls.some(({ command }) => command === "get_settings"));
             const target = scenario.selector ? page.locator(scenario.selector) : page;
+            if (scenario.caret === "initial")
+              assert(
+                await page.evaluate(
+                  () =>
+                    !globalThis.document.activeElement?.matches(
+                      "input,textarea,[contenteditable=true]",
+                    ),
+                ),
+                "Initial caret captures require focus outside text controls",
+              );
             const box = scenario.selector
               ? await target.boundingBox()
               : { x: 0, y: 0, ...scenario.viewport };
@@ -214,7 +233,7 @@ export async function captureSuite(root, options, cases = scenarios) {
             const screenshotOptions = {
               type: "png",
               animations: "disabled",
-              caret: "hide",
+              caret: scenario.caret ?? "hide",
               scale: "device",
               omitBackground: scenario.transparent ?? false,
             };
@@ -248,6 +267,7 @@ export async function captureSuite(root, options, cases = scenarios) {
               ...info,
               sha256: hash(bytes),
               repeatMatches: options.repeatCheck ?? false,
+              caret: scenario.caret ?? "hide",
               font,
               fixtureSha256: hash(JSON.stringify(seed)),
               assertions,

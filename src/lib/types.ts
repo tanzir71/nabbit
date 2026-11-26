@@ -28,7 +28,39 @@ export interface DownloadMetadata {
   isPlaylist: boolean;
   playlistCount?: number | null;
   extractor?: string | null;
-  qualities?: Array<{ height: number; estimatedBytes: number | null }>;
+  qualities?: Array<{ height: number; estimatedBytes: number | null; fps?: number | null }>;
+  details?: DownloadDetails | null;
+}
+
+export interface DownloadChapter {
+  title: string;
+  startMs: number;
+  endMs: number;
+}
+export interface PlaylistEntry {
+  index: number;
+  url: string | null;
+  title: string;
+  duration: number | null;
+  thumbnail: string | null;
+  qualities: Array<{ height: number; estimatedBytes: number | null; fps?: number | null }>;
+}
+export interface DownloadDetails {
+  chapters: DownloadChapter[];
+  thumbnails: string[];
+  entries: PlaylistEntry[];
+  truncated: boolean;
+}
+export interface DownloadSheetDraft {
+  kind: "options" | "trim" | "playlist";
+  url: string;
+  options: DownloadOptions;
+  remember: boolean;
+}
+export interface DownloadSheetIntent {
+  id: string;
+  draft: DownloadSheetDraft;
+  metadata: DownloadMetadata | null;
 }
 
 export type DownloadStatus =

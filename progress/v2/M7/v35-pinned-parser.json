@@ -1,0 +1,34 @@
+{
+  "binarySha256": "622ed48023cac1daa52a3bf3a6ac38f03514de214b5f0fa069389fd0f6d17e5c",
+  "noUrlsOrProfilesOrNetwork": true,
+  "cases": [
+    {
+      "case": "valid-bounded-playlist",
+      "arguments": [
+        "--ignore-config",
+        "--flat-playlist",
+        "--playlist-end",
+        "1000",
+        "--skip-download"
+      ],
+      "exitCode": 2,
+      "stdout": "",
+      "stderr": "\r\nUsage: yt-dlp-x86_64-pc-windows-msvc.exe [OPTIONS] URL [URL...]\r\n\r\nyt-dlp-x86_64-pc-windows-msvc.exe: error: You must provide at least one URL.\r\nType yt-dlp --help to see a list of all options.\r\n",
+      "expectedResult": true
+    },
+    {
+      "case": "invalid-bound",
+      "arguments": [
+        "--ignore-config",
+        "--flat-playlist",
+        "--playlist-end",
+        "invalid",
+        "--skip-download"
+      ],
+      "exitCode": 2,
+      "stdout": "",
+      "stderr": "\r\nUsage: yt-dlp-x86_64-pc-windows-msvc.exe [OPTIONS] URL [URL...]\r\n\r\nyt-dlp-x86_64-pc-windows-msvc.exe: error: option --playlist-end: invalid integer value: 'invalid'\r\n",
+      "expectedResult": true
+    }
+  ]
+}

@@ -80,6 +80,7 @@ fn placeholder(url: String) -> DownloadMetadata {
         playlist_count: None,
         extractor: Some("capture".into()),
         qualities: vec![],
+        details: None,
     }
 }
 

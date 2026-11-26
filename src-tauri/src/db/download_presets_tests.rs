@@ -70,6 +70,85 @@ fn defaults_and_reading_saving_presets_never_enqueue_downloads() {
     drop(db);
     cleanup(dir);
 }
+
+#[test]
+fn playlist_batch_is_atomic_remembers_source_site_and_preserves_per_item_retry_options() {
+    let dir = directory();
+    let db = Database::open(&dir).unwrap();
+    let source = "https://example.invalid/playlist";
+    db.remember_download_preset(source, &DownloadOptions::default())
+        .unwrap();
+    let options = DownloadOptions {
+        format: Format::M4a,
+        height: None,
+        speed_limit: Some("2M".into()),
+        ..Default::default()
+    };
+    let first = job("batch-a", Some(options.clone()));
+    let mut second = job("batch-a", Some(options.clone()));
+    assert!(db
+        .insert_download_batch(&[first.clone(), second.clone()], true, source)
+        .is_err());
+    assert!(db.list_downloads().unwrap().is_empty());
+    assert_eq!(
+        db.download_preset(source, "1080p").unwrap().options.format,
+        Format::Mp4
+    );
+    second.id = "batch-b".into();
+    second.url = "https://example.invalid/second".into();
+    db.insert_download_batch(&[first.clone(), second.clone()], true, source)
+        .unwrap();
+    assert_eq!(db.list_downloads().unwrap().len(), 2);
+    assert_eq!(
+        db.download_preset(source, "1080p").unwrap().options.format,
+        Format::M4a
+    );
+    let mut failed = db.get_download(&first.id).unwrap();
+    failed.status = "failed".into();
+    failed.error = Some("fixture failure".into());
+    db.update_download(&failed).unwrap();
+    assert_eq!(db.get_download(&second.id).unwrap().status, "queued");
+    drop(db);
+    let db = Database::open(&dir).unwrap();
+    let mut retry = db.get_download(&first.id).unwrap();
+    assert_eq!(retry.options.as_ref(), Some(&options));
+    retry.status = "queued".into();
+    retry.error = None;
+    db.update_download(&retry).unwrap();
+    assert_eq!(db.get_download(&first.id).unwrap().options, Some(options));
+    drop(db);
+    cleanup(dir);
+}
+
+#[test]
+fn large_playlist_queue_keeps_every_actionable_item_and_caps_only_finished_history() {
+    let dir = directory();
+    let db = Database::open(&dir).unwrap();
+    let mut jobs: Vec<_> = (0..205)
+        .map(|i| job(&format!("active-{i}"), Some(DownloadOptions::default())))
+        .collect();
+    jobs[0].status = "failed".into();
+    jobs[1].status = "paused".into();
+    jobs[2].status = "interrupted".into();
+    jobs.extend((0..205).map(|i| {
+        let mut j = job(&format!("done-{i}"), Some(DownloadOptions::default()));
+        j.status = "completed".into();
+        j
+    }));
+    db.insert_download_batch(&jobs, false, "https://example.invalid/playlist")
+        .unwrap();
+    let visible = db.list_downloads().unwrap();
+    assert_eq!(visible.len(), 405);
+    assert_eq!(
+        visible.iter().filter(|j| j.status == "completed").count(),
+        200
+    );
+    for i in 0..205 {
+        assert!(visible.iter().any(|j| j.id == format!("active-{i}")));
+    }
+    drop(db);
+    cleanup(dir);
+}
 #[test]
 fn per_site_preset_survives_restart_and_youtube_aliases_share_it() {
     let dir = directory();

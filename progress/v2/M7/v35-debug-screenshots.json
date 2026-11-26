@@ -1,0 +1,566 @@
+{
+  "milestone": "M7",
+  "prefix": "v35-debug",
+  "suite": "all",
+  "browser": "159.0.8154.6",
+  "playwright": "1.65.1",
+  "platform": "win32",
+  "node": "v24.22.2",
+  "captureTime": "2026-11-26T09:00:00.000Z",
+  "buildManifestSha256": "f2d15d064937287b66eec1d7104800539d602a34df3fa3a24bbf28891c2c10d7",
+  "screenshotScale": "device",
+  "pngBudgetBytes": 307200,
+  "isolatedContexts": true,
+  "mockedIpc": true,
+  "osPreferencesChanged": false,
+  "captures": [
+    {
+      "file": "v35-debug-sheet-trim-light@1x.png",
+      "scenario": "sheet-trim",
+      "entry": "index.html",
+      "figmaNode": "17:270",
+      "theme": "light",
+      "resolvedTheme": "light",
+      "scale": 1,
+      "viewport": {
+        "width": 460,
+        "height": 680
+      },
+      "clip": {
+        "x": 0,
+        "y": 0,
+        "width": 460,
+        "height": 680
+      },
+      "width": 460,
+      "height": 680,
+      "bytes": 78398,
+      "sha256": "0e5cbb670c73bfbba1caf28ac9cef04d8accfb388e0595aeddbb9fdefd2b966d",
+      "repeatMatches": true,
+      "font": [
+        {
+          "familyName": "Geist",
+          "postScriptName": "Geist",
+          "isCustomFont": true,
+          "glyphCount": 17
+        }
+      ],
+      "fixtureSha256": "927b0c5e4b2be60114141c03e2fbd98c6376d473d8c98c50916e7eb5d5cd3dba",
+      "assertions": {
+        "geometry": {
+          "x": 0,
+          "y": 0,
+          "width": 460,
+          "height": 680
+        },
+        "mono": [
+          {
+            "familyName": "Geist Mono",
+            "postScriptName": "GeistMono",
+            "isCustomFont": true,
+            "glyphCount": 7
+          }
+        ],
+        "typography": {
+          "weight": "600",
+          "size": "14px",
+          "lineHeight": "20px"
+        },
+        "assets": [
+          {
+            "file": "download-sheets/d2028.svg",
+            "naturalWidth": 18,
+            "naturalHeight": 18,
+            "width": 18,
+            "height": 18,
+            "src": "data:image/svg+xml,%3csvg%20preserveAspectRatio='none'%20overflow='visible'%20style='display:%20block;'%20width='18'%20height='18'%20viewBox='0%200%2018%2018'%20fill='none'%20xmlns='http://www.w3.org/2000/svg'%3e%3cg%20id='Icon'%3e%3cpath%20id='Vector'%20d='M13.5%204.5L4.5%2013.5'%20stroke-width='1.3125'%20stroke-linecap='round'%20stroke-linejoin='round'%20stroke='%2366666D'/%3e%3cpath%20id='Vector_2'%20d='M4.5%204.5L13.5%2013.5'%20stroke-width='1.3125'%20stroke-linecap='round'%20stroke-linejoin='round'%20stroke='%2366666D'/%3e%3c/g%3e%3c/svg%3e"
+          },
+          {
+            "file": "download-sheets/a9396.svg",
+            "naturalWidth": 18,
+            "naturalHeight": 18,
+            "width": 18,
+            "height": 18,
+            "src": "data:image/svg+xml,%3csvg%20preserveAspectRatio='none'%20overflow='visible'%20style='display:%20block;'%20width='18'%20height='18'%20viewBox='0%200%2018%2018'%20fill='none'%20xmlns='http://www.w3.org/2000/svg'%3e%3cg%20id='icon/play'%3e%3cpath%20id='Vector'%20d='M4.5%202.25L15%209L4.5%2015.75V2.25Z'%20stroke-width='1.3125'%20stroke-linecap='round'%20stroke-linejoin='round'%20stroke='%23F5F5F3'/%3e%3c/g%3e%3c/svg%3e"
+          },
+          {
+            "file": "toggle-off.svg",
+            "naturalWidth": 34,
+            "naturalHeight": 20,
+            "width": 34,
+            "height": 20,
+            "src": "data:image/svg+xml,%3csvg%20preserveAspectRatio='none'%20overflow='visible'%20style='display:%20block;'%20width='34'%20height='20'%20viewBox='0%200%2034%2020'%20fill='none'%20xmlns='http://www.w3.org/2000/svg'%3e%3cg%20id='Toggle'%3e%3crect%20width='34'%20height='20'%20rx='10'%20fill='%23CFCEC9'/%3e%3ccircle%20id='Knob'%20cx='10'%20cy='10'%20r='8'%20fill='white'/%3e%3c/g%3e%3c/svg%3e"
+          },
+          {
+            "file": "download-sheets/2ed91.svg",
+            "naturalWidth": 16,
+            "naturalHeight": 16,
+            "width": 16,
+            "height": 16,
+            "src": "data:image/svg+xml,%3csvg%20preserveAspectRatio='none'%20overflow='visible'%20style='display:%20block;'%20width='16'%20height='16'%20viewBox='0%200%2016%2016'%20fill='none'%20xmlns='http://www.w3.org/2000/svg'%3e%3cg%20id='Icon'%3e%3cpath%20id='Vector'%20d='M6%204C6%205.10457%205.10457%206%204%206C2.89543%206%202%205.10457%202%204C2%202.89543%202.89543%202%204%202C5.10457%202%206%202.89543%206%204Z'%20stroke-width='1.16667'%20stroke-linecap='round'%20stroke-linejoin='round'%20stroke='white'/%3e%3cpath%20id='Vector_2'%20d='M5.41333%205.41333L8%208'%20stroke-width='1.16667'%20stroke-linecap='round'%20stroke-linejoin='round'%20stroke='white'/%3e%3cpath%20id='Vector_3'%20d='M13.3333%202.66667L5.41333%2010.5867'%20stroke-width='1.16667'%20stroke-linecap='round'%20stroke-linejoin='round'%20stroke='white'/%3e%3cpath%20id='Vector_4'%20d='M6%2012C6%2013.1046%205.10457%2014%204%2014C2.89543%2014%202%2013.1046%202%2012C2%2010.8954%202.89543%2010%204%2010C5.10457%2010%206%2010.8954%206%2012Z'%20stroke-width='1.16667'%20stroke-linecap='round'%20stroke-linejoin='round'%20stroke='white'/%3e%3cpath%20id='Vector_5'%20d='M9.86667%209.86667L13.3333%2013.3333'%20stroke-width='1.16667'%20stroke-linecap='round'%20stroke-linejoin='round'%20stroke='white'/%3e%3c/g%3e%3c/svg%3e"
+          }
+        ],
+        "accessibility": {
+          "violations": [],
+          "incomplete": []
+        },
+        "explicitStarts": 0,
+        "behavior": "Real browser range keyboard snapping and modal focus wrap"
+      },
+      "ipc": [
+        {
+          "command": "plugin:event|listen",
+          "args": {
+            "event": "tauri://theme-changed",
+            "target": {
+              "kind": "Window",
+              "label": "download-sheet"
+            },
+            "handler": 1
+          }
+        },
+        {
+          "command": "plugin:event|listen",
+          "args": {
+            "event": "download:sheet",
+            "target": {
+              "kind": "Any"
+            },
+            "handler": 3
+          }
+        },
+        {
+          "command": "get_download_sheet",
+          "args": {}
+        },
+        {
+          "command": "get_settings",
+          "args": {}
+        },
+        {
+          "command": "plugin:window|theme",
+          "args": {
+            "label": "download-sheet"
+          }
+        },
+        {
+          "command": "download_sheet_ready",
+          "args": {}
+        }
+      ],
+      "unsupported": [],
+      "runtimeAndNetworkProblems": []
+    },
+    {
+      "file": "v35-debug-sheet-trim-light@1.5x.png",
+      "scenario": "sheet-trim",
+      "entry": "index.html",
+      "figmaNode": "17:270",
+      "theme": "light",
+      "resolvedTheme": "light",
+      "scale": 1.5,
+      "viewport": {
+        "width": 460,
+        "height": 680
+      },
+      "clip": {
+        "x": 0,
+        "y": 0,
+        "width": 460,
+        "height": 680
+      },
+      "width": 690,
+      "height": 1020,
+      "bytes": 169141,
+      "sha256": "98e6c72012230603ff261f51fa8c9c61b79ccd589921537302d5f6d4d9a4aa7d",
+      "repeatMatches": true,
+      "font": [
+        {
+          "familyName": "Geist",
+          "postScriptName": "Geist",
+          "isCustomFont": true,
+          "glyphCount": 17
+        }
+      ],
+      "fixtureSha256": "927b0c5e4b2be60114141c03e2fbd98c6376d473d8c98c50916e7eb5d5cd3dba",
+      "assertions": {
+        "geometry": {
+          "x": 0,
+          "y": 0,
+          "width": 460,
+          "height": 680
+        },
+        "mono": [
+          {
+            "familyName": "Geist Mono",
+            "postScriptName": "GeistMono",
+            "isCustomFont": true,
+            "glyphCount": 7
+          }
+        ],
+        "typography": {
+          "weight": "600",
+          "size": "14px",
+          "lineHeight": "20px"
+        },
+        "assets": [
+          {
+            "file": "download-sheets/d2028.svg",
+            "naturalWidth": 18,
+            "naturalHeight": 18,
+            "width": 18,
+            "height": 18,
+            "src": "data:image/svg+xml,%3csvg%20preserveAspectRatio='none'%20overflow='visible'%20style='display:%20block;'%20width='18'%20height='18'%20viewBox='0%200%2018%2018'%20fill='none'%20xmlns='http://www.w3.org/2000/svg'%3e%3cg%20id='Icon'%3e%3cpath%20id='Vector'%20d='M13.5%204.5L4.5%2013.5'%20stroke-width='1.3125'%20stroke-linecap='round'%20stroke-linejoin='round'%20stroke='%2366666D'/%3e%3cpath%20id='Vector_2'%20d='M4.5%204.5L13.5%2013.5'%20stroke-width='1.3125'%20stroke-linecap='round'%20stroke-linejoin='round'%20stroke='%2366666D'/%3e%3c/g%3e%3c/svg%3e"
+          },
+          {
+            "file": "download-sheets/a9396.svg",
+            "naturalWidth": 18,
+            "naturalHeight": 18,
+            "width": 18,
+            "height": 18,
+            "src": "data:image/svg+xml,%3csvg%20preserveAspectRatio='none'%20overflow='visible'%20style='display:%20block;'%20width='18'%20height='18'%20viewBox='0%200%2018%2018'%20fill='none'%20xmlns='http://www.w3.org/2000/svg'%3e%3cg%20id='icon/play'%3e%3cpath%20id='Vector'%20d='M4.5%202.25L15%209L4.5%2015.75V2.25Z'%20stroke-width='1.3125'%20stroke-linecap='round'%20stroke-linejoin='round'%20stroke='%23F5F5F3'/%3e%3c/g%3e%3c/svg%3e"
+          },
+          {
+            "file": "toggle-off.svg",
+            "naturalWidth": 34,
+            "naturalHeight": 20,
+            "width": 34,
+            "height": 20,
+            "src": "data:image/svg+xml,%3csvg%20preserveAspectRatio='none'%20overflow='visible'%20style='display:%20block;'%20width='34'%20height='20'%20viewBox='0%200%2034%2020'%20fill='none'%20xmlns='http://www.w3.org/2000/svg'%3e%3cg%20id='Toggle'%3e%3crect%20width='34'%20height='20'%20rx='10'%20fill='%23CFCEC9'/%3e%3ccircle%20id='Knob'%20cx='10'%20cy='10'%20r='8'%20fill='white'/%3e%3c/g%3e%3c/svg%3e"
+          },
+          {
+            "file": "download-sheets/2ed91.svg",
+            "naturalWidth": 16,
+            "naturalHeight": 16,
+            "width": 16,
+            "height": 16,
+            "src": "data:image/svg+xml,%3csvg%20preserveAspectRatio='none'%20overflow='visible'%20style='display:%20block;'%20width='16'%20height='16'%20viewBox='0%200%2016%2016'%20fill='none'%20xmlns='http://www.w3.org/2000/svg'%3e%3cg%20id='Icon'%3e%3cpath%20id='Vector'%20d='M6%204C6%205.10457%205.10457%206%204%206C2.89543%206%202%205.10457%202%204C2%202.89543%202.89543%202%204%202C5.10457%202%206%202.89543%206%204Z'%20stroke-width='1.16667'%20stroke-linecap='round'%20stroke-linejoin='round'%20stroke='white'/%3e%3cpath%20id='Vector_2'%20d='M5.41333%205.41333L8%208'%20stroke-width='1.16667'%20stroke-linecap='round'%20stroke-linejoin='round'%20stroke='white'/%3e%3cpath%20id='Vector_3'%20d='M13.3333%202.66667L5.41333%2010.5867'%20stroke-width='1.16667'%20stroke-linecap='round'%20stroke-linejoin='round'%20stroke='white'/%3e%3cpath%20id='Vector_4'%20d='M6%2012C6%2013.1046%205.10457%2014%204%2014C2.89543%2014%202%2013.1046%202%2012C2%2010.8954%202.89543%2010%204%2010C5.10457%2010%206%2010.8954%206%2012Z'%20stroke-width='1.16667'%20stroke-linecap='round'%20stroke-linejoin='round'%20stroke='white'/%3e%3cpath%20id='Vector_5'%20d='M9.86667%209.86667L13.3333%2013.3333'%20stroke-width='1.16667'%20stroke-linecap='round'%20stroke-linejoin='round'%20stroke='white'/%3e%3c/g%3e%3c/svg%3e"
+          }
+        ],
+        "accessibility": {
+          "violations": [],
+          "incomplete": []
+        },
+        "explicitStarts": 0,
+        "behavior": "Real browser range keyboard snapping and modal focus wrap"
+      },
+      "ipc": [
+        {
+          "command": "plugin:event|listen",
+          "args": {
+            "event": "tauri://theme-changed",
+            "target": {
+              "kind": "Window",
+              "label": "download-sheet"
+            },
+            "handler": 1
+          }
+        },
+        {
+          "command": "plugin:event|listen",
+          "args": {
+            "event": "download:sheet",
+            "target": {
+              "kind": "Any"
+            },
+            "handler": 3
+          }
+        },
+        {
+          "command": "get_download_sheet",
+          "args": {}
+        },
+        {
+          "command": "get_settings",
+          "args": {}
+        },
+        {
+          "command": "plugin:window|theme",
+          "args": {
+            "label": "download-sheet"
+          }
+        },
+        {
+          "command": "download_sheet_ready",
+          "args": {}
+        }
+      ],
+      "unsupported": [],
+      "runtimeAndNetworkProblems": []
+    },
+    {
+      "file": "v35-debug-sheet-trim-dark@1x.png",
+      "scenario": "sheet-trim",
+      "entry": "index.html",
+      "figmaNode": "17:270",
+      "theme": "dark",
+      "resolvedTheme": "dark",
+      "scale": 1,
+      "viewport": {
+        "width": 460,
+        "height": 680
+      },
+      "clip": {
+        "x": 0,
+        "y": 0,
+        "width": 460,
+        "height": 680
+      },
+      "width": 460,
+      "height": 680,
+      "bytes": 78931,
+      "sha256": "f0458022e59ef93e2291ea378d9fcd9e84f1165c67bc061b27493cf064cd2e2b",
+      "repeatMatches": true,
+      "font": [
+        {
+          "familyName": "Geist",
+          "postScriptName": "Geist",
+          "isCustomFont": true,
+          "glyphCount": 17
+        }
+      ],
+      "fixtureSha256": "a3eeab98e38c681a2e45e8a8034e215697dbb4f5e36b1caa1904588e3ddde8b7",
+      "assertions": {
+        "geometry": {
+          "x": 0,
+          "y": 0,
+          "width": 460,
+          "height": 680
+        },
+        "mono": [
+          {
+            "familyName": "Geist Mono",
+            "postScriptName": "GeistMono",
+            "isCustomFont": true,
+            "glyphCount": 7
+          }
+        ],
+        "typography": {
+          "weight": "600",
+          "size": "14px",
+          "lineHeight": "20px"
+        },
+        "assets": [
+          {
+            "file": "download-sheets/d2028.svg",
+            "naturalWidth": 18,
+            "naturalHeight": 18,
+            "width": 18,
+            "height": 18,
+            "src": "data:image/svg+xml,%3csvg%20preserveAspectRatio='none'%20overflow='visible'%20style='display:%20block;'%20width='18'%20height='18'%20viewBox='0%200%2018%2018'%20fill='none'%20xmlns='http://www.w3.org/2000/svg'%3e%3cg%20id='Icon'%3e%3cpath%20id='Vector'%20d='M13.5%204.5L4.5%2013.5'%20stroke-width='1.3125'%20stroke-linecap='round'%20stroke-linejoin='round'%20stroke='%2366666D'/%3e%3cpath%20id='Vector_2'%20d='M4.5%204.5L13.5%2013.5'%20stroke-width='1.3125'%20stroke-linecap='round'%20stroke-linejoin='round'%20stroke='%2366666D'/%3e%3c/g%3e%3c/svg%3e"
+          },
+          {
+            "file": "download-sheets/a9396.svg",
+            "naturalWidth": 18,
+            "naturalHeight": 18,
+            "width": 18,
+            "height": 18,
+            "src": "data:image/svg+xml,%3csvg%20preserveAspectRatio='none'%20overflow='visible'%20style='display:%20block;'%20width='18'%20height='18'%20viewBox='0%200%2018%2018'%20fill='none'%20xmlns='http://www.w3.org/2000/svg'%3e%3cg%20id='icon/play'%3e%3cpath%20id='Vector'%20d='M4.5%202.25L15%209L4.5%2015.75V2.25Z'%20stroke-width='1.3125'%20stroke-linecap='round'%20stroke-linejoin='round'%20stroke='%23F5F5F3'/%3e%3c/g%3e%3c/svg%3e"
+          },
+          {
+            "file": "toggle-off.svg",
+            "naturalWidth": 34,
+            "naturalHeight": 20,
+            "width": 34,
+            "height": 20,
+            "src": "data:image/svg+xml,%3csvg%20preserveAspectRatio='none'%20overflow='visible'%20style='display:%20block;'%20width='34'%20height='20'%20viewBox='0%200%2034%2020'%20fill='none'%20xmlns='http://www.w3.org/2000/svg'%3e%3cg%20id='Toggle'%3e%3crect%20width='34'%20height='20'%20rx='10'%20fill='%23CFCEC9'/%3e%3ccircle%20id='Knob'%20cx='10'%20cy='10'%20r='8'%20fill='white'/%3e%3c/g%3e%3c/svg%3e"
+          },
+          {
+            "file": "download-sheets/2ed91.svg",
+            "naturalWidth": 16,
+            "naturalHeight": 16,
+            "width": 16,
+            "height": 16,
+            "src": "data:image/svg+xml,%3csvg%20preserveAspectRatio='none'%20overflow='visible'%20style='display:%20block;'%20width='16'%20height='16'%20viewBox='0%200%2016%2016'%20fill='none'%20xmlns='http://www.w3.org/2000/svg'%3e%3cg%20id='Icon'%3e%3cpath%20id='Vector'%20d='M6%204C6%205.10457%205.10457%206%204%206C2.89543%206%202%205.10457%202%204C2%202.89543%202.89543%202%204%202C5.10457%202%206%202.89543%206%204Z'%20stroke-width='1.16667'%20stroke-linecap='round'%20stroke-linejoin='round'%20stroke='white'/%3e%3cpath%20id='Vector_2'%20d='M5.41333%205.41333L8%208'%20stroke-width='1.16667'%20stroke-linecap='round'%20stroke-linejoin='round'%20stroke='white'/%3e%3cpath%20id='Vector_3'%20d='M13.3333%202.66667L5.41333%2010.5867'%20stroke-width='1.16667'%20stroke-linecap='round'%20stroke-linejoin='round'%20stroke='white'/%3e%3cpath%20id='Vector_4'%20d='M6%2012C6%2013.1046%205.10457%2014%204%2014C2.89543%2014%202%2013.1046%202%2012C2%2010.8954%202.89543%2010%204%2010C5.10457%2010%206%2010.8954%206%2012Z'%20stroke-width='1.16667'%20stroke-linecap='round'%20stroke-linejoin='round'%20stroke='white'/%3e%3cpath%20id='Vector_5'%20d='M9.86667%209.86667L13.3333%2013.3333'%20stroke-width='1.16667'%20stroke-linecap='round'%20stroke-linejoin='round'%20stroke='white'/%3e%3c/g%3e%3c/svg%3e"
+          }
+        ],
+        "accessibility": {
+          "violations": [],
+          "incomplete": []
+        },
+        "explicitStarts": 0,
+        "behavior": "Real browser range keyboard snapping and modal focus wrap"
+      },
+      "ipc": [
+        {
+          "command": "plugin:event|listen",
+          "args": {
+            "event": "tauri://theme-changed",
+            "target": {
+              "kind": "Window",
+              "label": "download-sheet"
+            },
+            "handler": 1
+          }
+        },
+        {
+          "command": "plugin:event|listen",
+          "args": {
+            "event": "download:sheet",
+            "target": {
+              "kind": "Any"
+            },
+            "handler": 3
+          }
+        },
+        {
+          "command": "get_download_sheet",
+          "args": {}
+        },
+        {
+          "command": "get_settings",
+          "args": {}
+        },
+        {
+          "command": "plugin:window|theme",
+          "args": {
+            "label": "download-sheet"
+          }
+        },
+        {
+          "command": "download_sheet_ready",
+          "args": {}
+        }
+      ],
+      "unsupported": [],
+      "runtimeAndNetworkProblems": []
+    },
+    {
+      "file": "v35-debug-sheet-trim-dark@1.5x.png",
+      "scenario": "sheet-trim",
+      "entry": "index.html",
+      "figmaNode": "17:270",
+      "theme": "dark",
+      "resolvedTheme": "dark",
+      "scale": 1.5,
+      "viewport": {
+        "width": 460,
+        "height": 680
+      },
+      "clip": {
+        "x": 0,
+        "y": 0,
+        "width": 460,
+        "height": 680
+      },
+      "width": 690,
+      "height": 1020,
+      "bytes": 169766,
+      "sha256": "b76bcb047664f72e511e1cb173c302b9d99443695f0c711ddd2f19201a29346d",
+      "repeatMatches": true,
+      "font": [
+        {
+          "familyName": "Geist",
+          "postScriptName": "Geist",
+          "isCustomFont": true,
+          "glyphCount": 17
+        }
+      ],
+      "fixtureSha256": "a3eeab98e38c681a2e45e8a8034e215697dbb4f5e36b1caa1904588e3ddde8b7",
+      "assertions": {
+        "geometry": {
+          "x": 0,
+          "y": 0,
+          "width": 460,
+          "height": 680
+        },
+        "mono": [
+          {
+            "familyName": "Geist Mono",
+            "postScriptName": "GeistMono",
+            "isCustomFont": true,
+            "glyphCount": 7
+          }
+        ],
+        "typography": {
+          "weight": "600",
+          "size": "14px",
+          "lineHeight": "20px"
+        },
+        "assets": [
+          {
+            "file": "download-sheets/d2028.svg",
+            "naturalWidth": 18,
+            "naturalHeight": 18,
+            "width": 18,
+            "height": 18,
+            "src": "data:image/svg+xml,%3csvg%20preserveAspectRatio='none'%20overflow='visible'%20style='display:%20block;'%20width='18'%20height='18'%20viewBox='0%200%2018%2018'%20fill='none'%20xmlns='http://www.w3.org/2000/svg'%3e%3cg%20id='Icon'%3e%3cpath%20id='Vector'%20d='M13.5%204.5L4.5%2013.5'%20stroke-width='1.3125'%20stroke-linecap='round'%20stroke-linejoin='round'%20stroke='%2366666D'/%3e%3cpath%20id='Vector_2'%20d='M4.5%204.5L13.5%2013.5'%20stroke-width='1.3125'%20stroke-linecap='round'%20stroke-linejoin='round'%20stroke='%2366666D'/%3e%3c/g%3e%3c/svg%3e"
+          },
+          {
+            "file": "download-sheets/a9396.svg",
+            "naturalWidth": 18,
+            "naturalHeight": 18,
+            "width": 18,
+            "height": 18,
+            "src": "data:image/svg+xml,%3csvg%20preserveAspectRatio='none'%20overflow='visible'%20style='display:%20block;'%20width='18'%20height='18'%20viewBox='0%200%2018%2018'%20fill='none'%20xmlns='http://www.w3.org/2000/svg'%3e%3cg%20id='icon/play'%3e%3cpath%20id='Vector'%20d='M4.5%202.25L15%209L4.5%2015.75V2.25Z'%20stroke-width='1.3125'%20stroke-linecap='round'%20stroke-linejoin='round'%20stroke='%23F5F5F3'/%3e%3c/g%3e%3c/svg%3e"
+          },
+          {
+            "file": "toggle-off.svg",
+            "naturalWidth": 34,
+            "naturalHeight": 20,
+            "width": 34,
+            "height": 20,
+            "src": "data:image/svg+xml,%3csvg%20preserveAspectRatio='none'%20overflow='visible'%20style='display:%20block;'%20width='34'%20height='20'%20viewBox='0%200%2034%2020'%20fill='none'%20xmlns='http://www.w3.org/2000/svg'%3e%3cg%20id='Toggle'%3e%3crect%20width='34'%20height='20'%20rx='10'%20fill='%23CFCEC9'/%3e%3ccircle%20id='Knob'%20cx='10'%20cy='10'%20r='8'%20fill='white'/%3e%3c/g%3e%3c/svg%3e"
+          },
+          {
+            "file": "download-sheets/2ed91.svg",
+            "naturalWidth": 16,
+            "naturalHeight": 16,
+            "width": 16,
+            "height": 16,
+            "src": "data:image/svg+xml,%3csvg%20preserveAspectRatio='none'%20overflow='visible'%20style='display:%20block;'%20width='16'%20height='16'%20viewBox='0%200%2016%2016'%20fill='none'%20xmlns='http://www.w3.org/2000/svg'%3e%3cg%20id='Icon'%3e%3cpath%20id='Vector'%20d='M6%204C6%205.10457%205.10457%206%204%206C2.89543%206%202%205.10457%202%204C2%202.89543%202.89543%202%204%202C5.10457%202%206%202.89543%206%204Z'%20stroke-width='1.16667'%20stroke-linecap='round'%20stroke-linejoin='round'%20stroke='white'/%3e%3cpath%20id='Vector_2'%20d='M5.41333%205.41333L8%208'%20stroke-width='1.16667'%20stroke-linecap='round'%20stroke-linejoin='round'%20stroke='white'/%3e%3cpath%20id='Vector_3'%20d='M13.3333%202.66667L5.41333%2010.5867'%20stroke-width='1.16667'%20stroke-linecap='round'%20stroke-linejoin='round'%20stroke='white'/%3e%3cpath%20id='Vector_4'%20d='M6%2012C6%2013.1046%205.10457%2014%204%2014C2.89543%2014%202%2013.1046%202%2012C2%2010.8954%202.89543%2010%204%2010C5.10457%2010%206%2010.8954%206%2012Z'%20stroke-width='1.16667'%20stroke-linecap='round'%20stroke-linejoin='round'%20stroke='white'/%3e%3cpath%20id='Vector_5'%20d='M9.86667%209.86667L13.3333%2013.3333'%20stroke-width='1.16667'%20stroke-linecap='round'%20stroke-linejoin='round'%20stroke='white'/%3e%3c/g%3e%3c/svg%3e"
+          }
+        ],
+        "accessibility": {
+          "violations": [],
+          "incomplete": []
+        },
+        "explicitStarts": 0,
+        "behavior": "Real browser range keyboard snapping and modal focus wrap"
+      },
+      "ipc": [
+        {
+          "command": "plugin:event|listen",
+          "args": {
+            "event": "tauri://theme-changed",
+            "target": {
+              "kind": "Window",
+              "label": "download-sheet"
+            },
+            "handler": 1
+          }
+        },
+        {
+          "command": "plugin:event|listen",
+          "args": {
+            "event": "download:sheet",
+            "target": {
+              "kind": "Any"
+            },
+            "handler": 3
+          }
+        },
+        {
+          "command": "get_download_sheet",
+          "args": {}
+        },
+        {
+          "command": "get_settings",
+          "args": {}
+        },
+        {
+          "command": "plugin:window|theme",
+          "args": {
+            "label": "download-sheet"
+          }
+        },
+        {
+          "command": "download_sheet_ready",
+          "args": {}
+        }
+      ],
+      "unsupported": [],
+      "runtimeAndNetworkProblems": []
+    }
+  ]
+}

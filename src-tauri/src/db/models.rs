@@ -52,6 +52,8 @@ pub struct DownloadMetadata {
     pub extractor: Option<String>,
     #[serde(default)]
     pub qualities: Vec<crate::download::format_sizes::QualityEstimate>,
+    #[serde(default)]
+    pub details: Option<crate::download::media::Details>,
 }
 
 #[derive(Debug, Clone, Serialize, Deserialize)]

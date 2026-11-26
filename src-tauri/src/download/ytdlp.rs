@@ -87,6 +87,8 @@ pub fn probe_metadata(app_data_dir: &Path, url: &str) -> Result<DownloadMetadata
             "--no-warnings",
             "--skip-download",
             "--flat-playlist",
+            "--playlist-end",
+            "1000",
             "--socket-timeout",
             "5",
             "--retries",
@@ -111,6 +113,11 @@ pub fn probe_metadata(app_data_dir: &Path, url: &str) -> Result<DownloadMetadata
     }
 
     let value: Value = serde_json::from_str(&output.stdout)?;
+    metadata_from_value(&value, &normalized)
+}
+
+pub fn metadata_from_value(value: &Value, url: &str) -> Result<DownloadMetadata> {
+    let normalized = crate::capture::web_url(url)?;
     let is_playlist = value.get("_type").and_then(Value::as_str) == Some("playlist")
         || value.get("entries").and_then(Value::as_array).is_some()
         || normalized.contains("list=");
@@ -124,9 +131,10 @@ pub fn probe_metadata(app_data_dir: &Path, url: &str) -> Result<DownloadMetadata
                 .map(|items| items.len() as i64)
         });
 
+    let details = super::media::from_probe(value, &normalized);
     Ok(DownloadMetadata {
         url: url.to_string(),
-        normalized_url: normalized,
+        normalized_url: normalized.clone(),
         title: value
             .get("title")
             .and_then(Value::as_str)
@@ -137,14 +145,16 @@ pub fn probe_metadata(app_data_dir: &Path, url: &str) -> Result<DownloadMetadata
             .or_else(|| value.get("uploader"))
             .and_then(Value::as_str)
             .map(ToOwned::to_owned),
-        duration: value.get("duration").and_then(Value::as_f64),
-        thumbnail: value
-            .get("thumbnail")
-            .and_then(Value::as_str)
-            .map(ToOwned::to_owned),
+        duration: value
+            .get("duration")
+            .and_then(Value::as_f64)
+            .filter(|n| n.is_finite() && *n > 0.0),
+        thumbnail: super::media::image(value.get("thumbnail"))
+            .or_else(|| details.thumbnails.first().cloned()),
         is_playlist,
         playlist_count,
-        qualities: super::format_sizes::from_probe(&value),
+        qualities: super::format_sizes::from_probe(value),
+        details: Some(details),
         extractor: value
             .get("extractor")
             .and_then(Value::as_str)
@@ -227,6 +237,7 @@ fn fallback_metadata(url: &str, reason: &str) -> DownloadMetadata {
         playlist_count: None,
         extractor: Some("fallback".into()),
         qualities: vec![],
+        details: None,
     }
 }
 

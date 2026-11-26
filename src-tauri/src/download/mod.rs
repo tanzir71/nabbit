@@ -1,7 +1,9 @@
 pub mod engine;
 pub mod format_sizes;
 pub mod manager;
+pub mod media;
 pub mod options;
 pub mod presets;
 pub mod probe;
+pub mod sheets;
 pub mod ytdlp;

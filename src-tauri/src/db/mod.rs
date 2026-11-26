@@ -562,7 +562,10 @@ impl Database {
             .map_err(|_| msg("database lock poisoned"))?;
         let mut stmt = conn.prepare(
             "SELECT id, url, title, thumbnail, status, progress, speed, eta, output_path, error, quality, playlist_mode, playlist_range, created_at, updated_at, options_json
-             FROM downloads ORDER BY updated_at DESC LIMIT 200",
+             FROM downloads
+             WHERE status NOT IN ('completed', 'cancelled')
+                OR id IN (SELECT id FROM downloads WHERE status IN ('completed', 'cancelled') ORDER BY updated_at DESC LIMIT 200)
+             ORDER BY updated_at DESC",
         )?;
         let rows = stmt
             .query_map([], row_to_download_job)?

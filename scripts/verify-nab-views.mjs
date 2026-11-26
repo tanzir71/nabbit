@@ -284,7 +284,12 @@ const cases = ["tray", "paused", "empty", "island"].map((kind) => {
 });
 const report = await captureSuite(
   root,
-  { milestone: "M6", prefix: process.argv[2] ?? "v34-nab", suite: "all", repeatCheck: true },
+  {
+    milestone: process.argv[3] ?? "M6",
+    prefix: process.argv[2] ?? "v34-nab",
+    suite: "all",
+    repeatCheck: true,
+  },
   cases,
 );
 globalThis.console.log(`Verified ${report.captures.length} Nab view captures.`);

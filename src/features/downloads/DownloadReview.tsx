@@ -6,7 +6,7 @@ import { Kbd } from "../../components/Kbd";
 import { IslandAsset } from "../../surfaces/island/IslandAsset";
 import { api } from "../../lib/ipc";
 import { defaultDownloadPresets, defaultDownloadOptions } from "../../lib/downloadPresets";
-import type { DownloadFormat } from "../../lib/types";
+import type { DownloadOptions, DownloadSheetDraft } from "../../lib/types";
 import { duration } from "../../lib/islandPresentation";
 import { useAppStore } from "../../store/useAppStore";
 import { DownloadIcon } from "./DownloadIcon";
@@ -24,7 +24,6 @@ export function DownloadReview({
   onMemoryChange?: (memory: string) => void;
 }) {
   const metadata = useAppStore((s) => s.metadata),
-    stagedUrl = useAppStore((s) => s.stagedUrl),
     settings = useAppStore((s) => s.settings);
   const stage = useAppStore((s) => s.stageUrl),
     start = useAppStore((s) => s.startDownload);
@@ -38,15 +37,7 @@ export function DownloadReview({
   const [input, setInput] = useState(""),
     [error, setError] = useState(""),
     [busy, setBusy] = useState(false);
-  const [panel, setPanel] = useState<"trim" | "options" | null>(null),
-    [remember, setRemember] = useState(false);
-  const [startTime, setStartTime] = useState("0:00"),
-    [endTime, setEndTime] = useState("");
   const busyRef = useRef(false);
-  useEffect(() => {
-    setPanel(null);
-    setRemember(false);
-  }, [stagedUrl]);
   const report = (reason: unknown) =>
     setError(reason instanceof Error ? reason.message : String(reason));
   const review = async (url: string) => {
@@ -59,22 +50,45 @@ export function DownloadReview({
       report(reason);
     }
   };
+  const sheet = async (
+    kind: DownloadSheetDraft["kind"],
+    options: DownloadOptions = preset.options,
+  ) => {
+    if (!metadata || !ready) return;
+    try {
+      await api.openDownloadSheet({
+        kind,
+        url: metadata.normalizedUrl,
+        options,
+        remember: false,
+      });
+    } catch (reason) {
+      report(reason);
+    }
+  };
   const download = async () => {
     if (!metadata || !ready || busyRef.current) return;
     busyRef.current = true;
     setBusy(true);
     setError("");
     try {
-      const firstOnly =
+      if (
         metadata.isPlaylist &&
-        preset.options.playlistMode !== "playlist" &&
-        !new URL(metadata.normalizedUrl).searchParams.get("v");
+        (preset.options.playlistMode === "playlist" ||
+          !new URL(metadata.normalizedUrl).searchParams.get("v"))
+      ) {
+        await sheet("playlist", {
+          ...preset.options,
+          playlistMode: "playlist",
+          playlistItems:
+            preset.options.playlistMode === "playlist" ? preset.options.playlistItems : "1",
+        });
+        return;
+      }
       await start({
         url: metadata.normalizedUrl,
-        options: firstOnly
-          ? { ...preset.options, playlistMode: "playlist", playlistItems: "1" }
-          : preset.options,
-        rememberForSite: remember,
+        options: preset.options,
+        rememberForSite: false,
       });
     } catch (reason) {
       report(reason);
@@ -234,8 +248,9 @@ export function DownloadReview({
               size="sm"
               variant="ghost"
               className="nab-option-button"
-              onClick={() => setPanel(panel === "trim" ? null : "trim")}
-              aria-expanded={panel === "trim"}
+              onClick={() => void sheet("trim")}
+              disabled={!ready || metadata.isPlaylist}
+              aria-haspopup="dialog"
             >
               {icon("trim")}
               {island ? `Trim · ${options.sections.length ? "selection" : "full"}` : "Trim"}
@@ -260,8 +275,8 @@ export function DownloadReview({
                 size="sm"
                 variant="ghost"
                 className="nab-option-button"
-                onClick={() => setPanel(panel === "options" ? null : "options")}
-                aria-expanded={panel === "options"}
+                onClick={() => void sheet("options")}
+                aria-haspopup="dialog"
               >
                 <IslandAsset group="9:78" name="iconEllipsis" />
                 More
@@ -285,103 +300,6 @@ export function DownloadReview({
               {island && <Kbd>Enter</Kbd>}
             </Button>
           </div>
-          {panel && (
-            <fieldset className="nab-inline-options">
-              <legend>{panel === "trim" ? "Trim selection" : "Download options"}</legend>
-              {panel === "trim" ? (
-                <>
-                  <label>
-                    Start
-                    <input
-                      value={startTime}
-                      onChange={(e) => setStartTime(e.target.value)}
-                      placeholder="0:00"
-                    />
-                  </label>
-                  <label>
-                    End
-                    <input
-                      value={endTime}
-                      onChange={(e) => setEndTime(e.target.value)}
-                      placeholder="mm:ss"
-                    />
-                  </label>
-                  <Button
-                    size="sm"
-                    onClick={() => {
-                      void Promise.all([
-                        api.parseDownloadTimecode(startTime),
-                        api.parseDownloadTimecode(endTime),
-                      ])
-                        .then(([startMs, endMs]) => {
-                          if (endMs <= startMs) throw new Error("End must be after start");
-                          edit({ ...options, sections: [{ startMs, endMs }] });
-                          setPanel(null);
-                        })
-                        .catch(report);
-                    }}
-                  >
-                    Apply trim
-                  </Button>
-                  <Button
-                    size="sm"
-                    variant="ghost"
-                    onClick={() => {
-                      edit({ ...options, sections: [] });
-                      setPanel(null);
-                    }}
-                  >
-                    Full video
-                  </Button>
-                </>
-              ) : (
-                <>
-                  <label>
-                    Format
-                    <select
-                      value={options.format}
-                      onChange={(e) =>
-                        edit({ ...options, format: e.target.value as DownloadFormat })
-                      }
-                    >
-                      {["mp4", "mkv", "webm", "mp3", "m4a", "opus"].map((f) => (
-                        <option key={f} value={f}>
-                          {f.toUpperCase()}
-                        </option>
-                      ))}
-                    </select>
-                  </label>
-                  <label>
-                    Quality
-                    <select
-                      value={options.height ?? "best"}
-                      onChange={(e) =>
-                        edit({
-                          ...options,
-                          height: e.target.value === "best" ? null : Number(e.target.value),
-                        })
-                      }
-                    >
-                      {[2160, 1440, 1080, 720, 480].map((h) => (
-                        <option key={h} value={h}>
-                          {h}p
-                        </option>
-                      ))}
-                      <option value="best">Best available</option>
-                    </select>
-                  </label>
-                  <label className="nab-remember">
-                    <input
-                      type="checkbox"
-                      checked={remember}
-                      onChange={(e) => setRemember(e.target.checked)}
-                    />
-                    Remember for {siteLabel(metadata.normalizedUrl)}
-                  </label>
-                </>
-              )}
-            </fieldset>
-          )}
         </div>
       )}
       {(error || presetError) && (
@@ -406,7 +324,7 @@ export function DownloadReview({
                 meta={meta}
                 disabled={!ready}
                 onClick={() => {
-                  if (p.id === "custom") setPanel("options");
+                  if (p.id === "custom") void sheet("options");
                   else choose(p);
                 }}
               >

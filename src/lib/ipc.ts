@@ -17,6 +17,8 @@ import type {
   DownloadRequest,
   DownloadPreset,
   DownloadOptions,
+  DownloadSheetDraft,
+  DownloadSheetIntent,
   EngineStatus,
   StorageStats,
   IslandPreferences,
@@ -61,6 +63,7 @@ const mockSettings: AppSettings = {
 let browserSettings = { ...mockSettings, theme: cachedThemePreference() };
 let browserEntries: ClipboardEntry[] = [];
 let browserJobs: DownloadJob[] = [];
+let browserSheet: DownloadSheetIntent | null = null;
 
 async function call<T>(
   command: string,
@@ -102,6 +105,36 @@ function previewDownload(request: DownloadRequest): DownloadJob {
 }
 
 export const api = {
+  openDownloadSheet: (draft: DownloadSheetDraft) =>
+    call<void>("open_download_sheet", { draft }, () => {
+      browserSheet = { id: crypto.randomUUID(), draft, metadata: null };
+      void import("../features/downloads/previewSheet").then((m) => m.mountPreviewSheet());
+    }),
+  getDownloadSheet: () =>
+    call<DownloadSheetIntent | null>("get_download_sheet", undefined, () => browserSheet),
+  downloadSheetReady: () => call<void>("download_sheet_ready", undefined, () => undefined),
+  closeDownloadSheet: (id?: string) =>
+    call<void>("close_download_sheet", { id }, () => {
+      if (id && browserSheet?.id !== id) return;
+      browserSheet = null;
+      window.dispatchEvent(new Event("nabbit:close-download-sheet"));
+    }),
+  previewDownloadSource: (url: string, startMs: number) =>
+    call<void>("preview_download_source", { url, startMs }, () => {
+      previewSite(url);
+      window.open(url, "_blank", "noopener,noreferrer");
+    }),
+  startPlaylistDownload: (request: DownloadRequest, indices: number[]) =>
+    call<DownloadJob[]>("start_playlist_download", { request, indices }, () => {
+      if (!indices.length) throw new Error("Choose at least one playlist video.");
+      return [...new Set(indices)].map((index) =>
+        previewDownload({
+          ...request,
+          url: `${request.url}#item=${index}`,
+          options: { ...request.options, playlistMode: "video", playlistItems: null },
+        }),
+      );
+    }),
   getIslandSnapshot: () =>
     call<IslandSnapshot>("get_island_snapshot", undefined, () => ({
       supported: false,

@@ -52,6 +52,7 @@ beforeEach(async () => {
     error: null,
     loading: false,
   });
+  vi.spyOn(api, "openDownloadSheet").mockResolvedValue(undefined);
   vi.spyOn(api, "resolveDownloadPreset").mockResolvedValue(defaultDownloadPresets()[0]);
   vi.spyOn(api, "listDownloads").mockImplementation(async () => structuredClone(jobs));
   vi.spyOn(api, "getCapturedLink").mockResolvedValue(metadata);
@@ -184,7 +185,7 @@ describe("Nab review and persistent queue", () => {
     fireEvent.keyDown(document, { key: "Enter", ctrlKey: true });
     expect(api.startDownload).not.toHaveBeenCalled();
   });
-  it("preserves the existing playlist range control and defaults a bare playlist to its first item", async () => {
+  it("opens playlist review with the selected range and never creates a multi-video job from the tray", async () => {
     const playlist = {
       ...metadata,
       url: "https://www.youtube.com/playlist?list=fixture",
@@ -193,33 +194,28 @@ describe("Nab review and persistent queue", () => {
       playlistCount: 12,
     };
     useAppStore.getState().acceptCapturedLink(playlist);
-    const view = render(<DownloadReview />);
-    await waitFor(() => expect(screen.getByRole("button", { name: "Download" })).toBeEnabled());
-    expect(api.startDownload).not.toHaveBeenCalled();
-    fireEvent.click(screen.getByRole("button", { name: "Download" }));
-    await waitFor(() =>
-      expect(api.startDownload).toHaveBeenCalledWith(
-        expect.objectContaining({
-          options: expect.objectContaining({ playlistMode: "playlist", playlistItems: "1" }),
-        }),
-      ),
-    );
-    view.unmount();
-    act(() => useAppStore.getState().acceptCapturedLink(playlist));
     render(<DownloadReview />);
     await waitFor(() => expect(screen.getByRole("button", { name: "Download" })).toBeEnabled());
+    fireEvent.click(screen.getByRole("button", { name: "Download" }));
+    await waitFor(() =>
+      expect(api.openDownloadSheet).toHaveBeenCalledWith(
+        expect.objectContaining({ kind: "playlist", url: playlist.url }),
+      ),
+    );
     fireEvent.change(screen.getByRole("combobox", { name: "Download" }), {
       target: { value: "playlist" },
     });
     fireEvent.change(screen.getByLabelText("Playlist items"), { target: { value: "1-5" } });
     fireEvent.click(screen.getByRole("button", { name: "Download" }));
     await waitFor(() =>
-      expect(api.startDownload).toHaveBeenLastCalledWith(
+      expect(api.openDownloadSheet).toHaveBeenLastCalledWith(
         expect.objectContaining({
-          options: expect.objectContaining({ playlistMode: "playlist", playlistItems: "1-5" }),
+          kind: "playlist",
+          options: expect.objectContaining({ playlistItems: "1-5" }),
         }),
       ),
     );
+    expect(api.startDownload).not.toHaveBeenCalled();
   });
   it("restores a per-link island draft across panel teardown and uses site defaults for a different link", async () => {
     let memory = "";
@@ -253,27 +249,20 @@ describe("Nab review and persistent queue", () => {
     );
     restored.unmount();
   });
-  it("keeps subtitles and validated trim choices in the request without starting on edit", async () => {
+  it("carries the current subtitle/preset choices into the trim sheet without starting", async () => {
     render(<DownloadReview />);
     await waitFor(() => expect(screen.getByRole("button", { name: "Download" })).toBeEnabled());
     fireEvent.click(screen.getByRole("button", { name: "Subtitles" }));
     fireEvent.click(screen.getByRole("button", { name: "Trim" }));
-    fireEvent.change(screen.getByLabelText("Start"), { target: { value: "0:02.5" } });
-    fireEvent.change(screen.getByLabelText("End"), { target: { value: "0:05" } });
-    fireEvent.click(screen.getByRole("button", { name: "Apply trim" }));
-    await waitFor(() => expect(screen.queryByRole("button", { name: "Apply trim" })).toBeNull());
-    expect(api.startDownload).not.toHaveBeenCalled();
-    fireEvent.click(screen.getByRole("button", { name: "Download" }));
     await waitFor(() =>
-      expect(api.startDownload).toHaveBeenCalledWith(
+      expect(api.openDownloadSheet).toHaveBeenCalledWith(
         expect.objectContaining({
-          options: expect.objectContaining({
-            subtitles: { languages: ["en"], embed: true },
-            sections: [{ startMs: 2500, endMs: 5000 }],
-          }),
+          kind: "trim",
+          options: expect.objectContaining({ subtitles: { languages: ["en"], embed: true } }),
         }),
       ),
     );
+    expect(api.startDownload).not.toHaveBeenCalled();
   });
   it("stages a synthetic URL drop through capture and creates no job", async () => {
     const capture = vi.spyOn(api, "captureUrl").mockResolvedValue({
