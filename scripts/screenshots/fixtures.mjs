@@ -1,6 +1,13 @@
 export const captureTime = "2026-11-26T09:00:00.000Z";
 
 const settings = {
+  island: {
+    enabled: true,
+    shape: "island",
+    size: "standard",
+    monitorMode: "followMouse",
+    monitorId: null,
+  },
   theme: "system",
   retentionDays: 30,
   captureImages: true,

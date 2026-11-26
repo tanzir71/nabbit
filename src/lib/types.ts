@@ -1,12 +1,5 @@
 export type Quality =
-  | "best"
-  | "2160p"
-  | "1440p"
-  | "1080p"
-  | "720p"
-  | "480p"
-  | "audio_mp3"
-  | "audio_m4a";
+  "best" | "2160p" | "1440p" | "1080p" | "720p" | "480p" | "audio_mp3" | "audio_m4a";
 
 export type ClipboardContentType = "text" | "url" | "image" | "file";
 
@@ -36,13 +29,7 @@ export interface DownloadMetadata {
 }
 
 export type DownloadStatus =
-  | "queued"
-  | "running"
-  | "paused"
-  | "completed"
-  | "failed"
-  | "cancelled"
-  | "interrupted";
+  "queued" | "running" | "paused" | "completed" | "failed" | "cancelled" | "interrupted";
 
 export interface DownloadJob {
   id: string;
@@ -63,6 +50,7 @@ export interface DownloadJob {
 }
 
 export interface AppSettings {
+  island: IslandPreferences;
   theme: import("./theme").ThemePreference;
   retentionDays: 30 | 60 | 90;
   captureImages: boolean;
@@ -86,6 +74,19 @@ export interface AppSettings {
   engineAutoUpdate: boolean;
   firstRunAcknowledged: boolean;
   lastTab: "download" | "clipboard";
+}
+
+export interface IslandPreferences {
+  enabled: boolean;
+  shape: "island" | "notch";
+  size: "small" | "standard" | "large";
+  monitorMode: "primary" | "followMouse" | "all" | "specific";
+  monitorId: string | null;
+}
+export interface IslandSnapshot {
+  supported: boolean;
+  desktop: { monitors: Array<{ id: string; name: string; primary: boolean; scaleFactor: number }> };
+  lastError: string | null;
 }
 
 export interface StorageStats {

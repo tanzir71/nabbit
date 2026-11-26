@@ -1,13 +1,12 @@
 //! Throwaway V0 WebView2 spike. Compiled only by the `island-spike` feature on Windows.
 
+use crate::island::capture as native_capture;
 use crate::island_interaction::Rect;
 use std::sync::{atomic::AtomicBool, Arc};
 use tauri::{
     webview::Color, AppHandle, LogicalSize, Manager, PhysicalPosition, State, WebviewUrl,
     WebviewWindow, WebviewWindowBuilder,
 };
-#[path = "native_capture.rs"]
-mod native_capture;
 #[path = "native_files.rs"]
 mod native_files;
 #[path = "native_fonts.rs"]

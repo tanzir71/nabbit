@@ -3,6 +3,7 @@ mod commands;
 mod db;
 mod download;
 mod error;
+mod island;
 mod retention;
 #[cfg(windows)]
 mod taskbar_theme;
@@ -57,10 +58,13 @@ pub struct AppState {
 #[cfg_attr(mobile, tauri::mobile_entry_point)]
 pub fn run() {
     let context = tauri::generate_context!();
-    #[cfg(all(windows, feature = "island-spike"))]
+    #[cfg(windows)]
     let context = {
         let mut context = context;
-        if island_spike::native_session() {
+        let lazy = island::production_session();
+        #[cfg(feature = "island-spike")]
+        let lazy = lazy || island_spike::native_session();
+        if lazy {
             for window in &mut context.config_mut().app.windows {
                 if window.label == "main" {
                     window.create = false;
@@ -85,6 +89,8 @@ pub fn run() {
             commands::app::app_health,
             commands::app::check_app_update,
             commands::settings::get_settings,
+            commands::settings::get_island_snapshot,
+            commands::settings::save_island_preferences,
             commands::settings::save_settings,
             commands::settings::acknowledge_first_run,
             commands::settings::get_storage_stats,
@@ -159,6 +165,11 @@ pub fn run() {
             retention::spawn_retention_gc(db.clone(), shutdown.clone());
             spawn_acceptance_automation(state.clone());
             let settings = db.get_settings()?;
+            #[cfg(windows)]
+            if island::production_session() {
+                island::start(app.handle(), settings.island.clone())
+                    .map_err(std::io::Error::other)?;
+            }
             let configure_os_integration = {
                 #[cfg(all(windows, feature = "island-spike"))]
                 {
@@ -169,7 +180,7 @@ pub fn run() {
                     true
                 }
             };
-            if configure_os_integration {
+            if configure_os_integration && !island::acceptance_session() {
                 apply_runtime_settings(app.handle(), &state, &settings);
             }
             commands::download::spawn_engine_update(state.clone());
@@ -189,6 +200,11 @@ pub fn run() {
         .expect("error while building Nabbit")
         .run(|app, event| {
             if let tauri::RunEvent::ExitRequested { api, code, .. } = event {
+                #[cfg(windows)]
+                if island::production_session() && code.is_none() {
+                    api.prevent_exit();
+                    return;
+                }
                 #[cfg(all(windows, feature = "island-spike"))]
                 if island_spike::native_session() && code.is_none() {
                     // Closing the last larger webview must leave the native pill/tray alive.
@@ -199,6 +215,10 @@ pub fn run() {
                 let _ = (api, code);
                 if let Some(state) = app.try_state::<AppState>() {
                     state.shutdown.store(true, Ordering::Relaxed);
+                }
+                #[cfg(windows)]
+                if let Some(manager) = app.try_state::<Arc<island::Manager>>() {
+                    manager.stop();
                 }
                 #[cfg(windows)]
                 if let Some(watcher) = app.try_state::<taskbar_theme::Watcher>() {
@@ -357,8 +377,8 @@ fn write_acceptance_done(path: &Path, result: std::result::Result<String, String
 }
 
 pub fn show_popover(app: &AppHandle<Wry>) -> Result<()> {
-    #[cfg(all(windows, feature = "island-spike"))]
-    if island_spike::native_session() && app.get_webview_window("main").is_none() {
+    #[cfg(windows)]
+    if app.get_webview_window("main").is_none() {
         let app = app.clone();
         // WebView2 creation must run outside tray/IPC event callbacks on Windows.
         std::thread::Builder::new()

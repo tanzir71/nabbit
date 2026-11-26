@@ -752,7 +752,7 @@ Commit after every task (§0.1). Lines marked **MILESTONE** are tasks of their o
 - [x] **MILESTONE M3 — New landing page** (push, confirm the deploy).
 
 ### Phase V2 — Island shell
-- [ ] V2.1 Island window lifecycle, placement, monitor modes, shape (island/notch), size setting.
+- [x] V2.1 Island window lifecycle, placement, monitor modes, shape (island/notch), size setting.
 - [ ] V2.2 Hit-rect protocol + cursor watcher (from V0), drag band.
 - [ ] V2.3 Fullscreen/maximised detection → hidden/faded states.
 - [ ] V2.4 `ActivityEvent` bus + priority queue + `islandStore` reducer with unit tests for every transition in §6.3.

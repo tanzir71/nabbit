@@ -1,0 +1,103 @@
+{
+  "snapshot": {
+    "desktop": {
+      "cursor": {
+        "x": -100,
+        "y": 0
+      },
+      "monitors": [
+        {
+          "bounds": {
+            "height": 1080,
+            "width": 1920,
+            "x": -1920,
+            "y": -200
+          },
+          "id": "left",
+          "name": "Fixture left",
+          "primary": false,
+          "scaleFactor": 1,
+          "workArea": {
+            "height": 1032,
+            "width": 1920,
+            "x": -1920,
+            "y": -200
+          }
+        },
+        {
+          "bounds": {
+            "height": 1080,
+            "width": 1920,
+            "x": 0,
+            "y": 0
+          },
+          "id": "primary",
+          "name": "Fixture primary",
+          "primary": true,
+          "scaleFactor": 1.5,
+          "workArea": {
+            "height": 1032,
+            "width": 1920,
+            "x": 0,
+            "y": 0
+          }
+        }
+      ],
+      "topTaskbar": null
+    },
+    "hosts": [
+      {
+        "commits": 1,
+        "hwnd": 22024138,
+        "placement": {
+          "bounds": {
+            "height": 414,
+            "width": 648,
+            "x": -1284,
+            "y": -200
+          },
+          "dpiScale": 1,
+          "label": "island-left",
+          "monitorId": "left",
+          "renderScale": 0.9,
+          "shape": "notch",
+          "sizeScale": 0.9
+        },
+        "warp": false
+      },
+      {
+        "commits": 1,
+        "hwnd": 3216350,
+        "placement": {
+          "bounds": {
+            "height": 621,
+            "width": 972,
+            "x": 474,
+            "y": 0
+          },
+          "dpiScale": 1.5,
+          "label": "island-primary",
+          "monitorId": "primary",
+          "renderScale": 1.35,
+          "shape": "notch",
+          "sizeScale": 0.9
+        },
+        "warp": false
+      }
+    ],
+    "lastError": null,
+    "preferences": {
+      "enabled": true,
+      "monitorId": "left",
+      "monitorMode": "all",
+      "shape": "notch",
+      "size": "small"
+    },
+    "reconciliations": 61,
+    "renderer": "native",
+    "supported": true,
+    "webviews": 1
+  },
+  "runtimeErrors": [],
+  "hiddenTrayDOM": true
+}

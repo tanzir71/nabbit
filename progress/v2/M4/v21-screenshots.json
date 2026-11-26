@@ -1,0 +1,2706 @@
+{
+  "milestone": "M4",
+  "prefix": "v21",
+  "suite": "surfaces",
+  "browser": "159.0.8154.6",
+  "playwright": "1.65.1",
+  "platform": "win32",
+  "node": "v24.22.2",
+  "captureTime": "2026-11-26T09:00:00.000Z",
+  "buildManifestSha256": "7e77b99a1c42c557b62381cfdc17b4f66ac6b04af2b90f886fbf16d8ae627d26",
+  "screenshotScale": "device",
+  "pngBudgetBytes": 307200,
+  "isolatedContexts": true,
+  "mockedIpc": true,
+  "osPreferencesChanged": false,
+  "captures": [
+    {
+      "file": "v21-island-settings-460-default-light@1x.png",
+      "scenario": "island-settings-460-default",
+      "entry": "settings.html",
+      "figmaNode": "22:146",
+      "theme": "light",
+      "resolvedTheme": "light",
+      "scale": 1,
+      "viewport": {
+        "width": 460,
+        "height": 900
+      },
+      "clip": {
+        "x": 16,
+        "y": 446,
+        "width": 428,
+        "height": 323
+      },
+      "width": 428,
+      "height": 323,
+      "bytes": 19822,
+      "sha256": "878e4e14123e995cf44837918a975639799ae5c9873625ff28b93a8b75e43eef",
+      "repeatMatches": false,
+      "font": [
+        {
+          "familyName": "Geist",
+          "postScriptName": "Geist",
+          "isCustomFont": true,
+          "glyphCount": 15
+        }
+      ],
+      "fixtureSha256": "4cc012d276ff44792809a0ce59769eb1387e8951f2be072ff291937021479686",
+      "ipc": [
+        {
+          "command": "plugin:event|listen",
+          "args": {
+            "event": "tauri://theme-changed",
+            "target": {
+              "kind": "Window",
+              "label": "settings"
+            },
+            "handler": 1
+          }
+        },
+        {
+          "command": "get_settings",
+          "args": {}
+        },
+        {
+          "command": "get_engine_status",
+          "args": {}
+        },
+        {
+          "command": "get_storage_stats",
+          "args": {}
+        },
+        {
+          "command": "plugin:window|theme",
+          "args": {
+            "label": "settings"
+          }
+        },
+        {
+          "command": "plugin:event|listen",
+          "args": {
+            "event": "nabbit://island-config",
+            "target": {
+              "kind": "Any"
+            },
+            "handler": 3
+          }
+        },
+        {
+          "command": "get_island_snapshot",
+          "args": {}
+        }
+      ],
+      "unsupported": [],
+      "runtimeAndNetworkProblems": []
+    },
+    {
+      "file": "v21-island-settings-460-specific-light@1x.png",
+      "scenario": "island-settings-460-specific",
+      "entry": "settings.html",
+      "figmaNode": "22:146",
+      "theme": "light",
+      "resolvedTheme": "light",
+      "scale": 1,
+      "viewport": {
+        "width": 460,
+        "height": 900
+      },
+      "clip": {
+        "x": 16,
+        "y": 446,
+        "width": 428,
+        "height": 380
+      },
+      "width": 428,
+      "height": 380,
+      "bytes": 23373,
+      "sha256": "0c357f3b23742e91858f131e77f2aa771c174d0ca7b49def45b4403a54c4ef69",
+      "repeatMatches": false,
+      "font": [
+        {
+          "familyName": "Geist",
+          "postScriptName": "Geist",
+          "isCustomFont": true,
+          "glyphCount": 15
+        }
+      ],
+      "fixtureSha256": "4cc012d276ff44792809a0ce59769eb1387e8951f2be072ff291937021479686",
+      "ipc": [
+        {
+          "command": "plugin:event|listen",
+          "args": {
+            "event": "tauri://theme-changed",
+            "target": {
+              "kind": "Window",
+              "label": "settings"
+            },
+            "handler": 1
+          }
+        },
+        {
+          "command": "get_settings",
+          "args": {}
+        },
+        {
+          "command": "get_engine_status",
+          "args": {}
+        },
+        {
+          "command": "get_storage_stats",
+          "args": {}
+        },
+        {
+          "command": "plugin:window|theme",
+          "args": {
+            "label": "settings"
+          }
+        },
+        {
+          "command": "plugin:event|listen",
+          "args": {
+            "event": "nabbit://island-config",
+            "target": {
+              "kind": "Any"
+            },
+            "handler": 3
+          }
+        },
+        {
+          "command": "get_island_snapshot",
+          "args": {}
+        },
+        {
+          "command": "save_island_preferences",
+          "args": {
+            "preferences": {
+              "enabled": true,
+              "shape": "notch",
+              "size": "standard",
+              "monitorMode": "followMouse",
+              "monitorId": null
+            }
+          }
+        },
+        {
+          "command": "save_island_preferences",
+          "args": {
+            "preferences": {
+              "enabled": true,
+              "shape": "notch",
+              "size": "large",
+              "monitorMode": "followMouse",
+              "monitorId": null
+            }
+          }
+        },
+        {
+          "command": "save_island_preferences",
+          "args": {
+            "preferences": {
+              "enabled": true,
+              "shape": "notch",
+              "size": "large",
+              "monitorMode": "specific",
+              "monitorId": null
+            }
+          }
+        },
+        {
+          "command": "save_island_preferences",
+          "args": {
+            "preferences": {
+              "enabled": true,
+              "shape": "notch",
+              "size": "large",
+              "monitorMode": "specific",
+              "monitorId": "primary"
+            }
+          }
+        }
+      ],
+      "unsupported": [],
+      "runtimeAndNetworkProblems": []
+    },
+    {
+      "file": "v21-island-settings-460-disconnected-light@1x.png",
+      "scenario": "island-settings-460-disconnected",
+      "entry": "settings.html",
+      "figmaNode": "22:146",
+      "theme": "light",
+      "resolvedTheme": "light",
+      "scale": 1,
+      "viewport": {
+        "width": 460,
+        "height": 900
+      },
+      "clip": {
+        "x": 16,
+        "y": 446,
+        "width": 428,
+        "height": 404
+      },
+      "width": 428,
+      "height": 404,
+      "bytes": 26820,
+      "sha256": "543ce9f4dc80ae8655ad9dffc6caa7a3987aa7c19f3daa12b74cbfcae43de019",
+      "repeatMatches": false,
+      "font": [
+        {
+          "familyName": "Geist",
+          "postScriptName": "Geist",
+          "isCustomFont": true,
+          "glyphCount": 15
+        }
+      ],
+      "fixtureSha256": "4cc012d276ff44792809a0ce59769eb1387e8951f2be072ff291937021479686",
+      "ipc": [
+        {
+          "command": "plugin:event|listen",
+          "args": {
+            "event": "tauri://theme-changed",
+            "target": {
+              "kind": "Window",
+              "label": "settings"
+            },
+            "handler": 1
+          }
+        },
+        {
+          "command": "get_settings",
+          "args": {}
+        },
+        {
+          "command": "get_engine_status",
+          "args": {}
+        },
+        {
+          "command": "get_storage_stats",
+          "args": {}
+        },
+        {
+          "command": "plugin:window|theme",
+          "args": {
+            "label": "settings"
+          }
+        },
+        {
+          "command": "plugin:event|listen",
+          "args": {
+            "event": "nabbit://island-config",
+            "target": {
+              "kind": "Any"
+            },
+            "handler": 3
+          }
+        },
+        {
+          "command": "get_island_snapshot",
+          "args": {}
+        },
+        {
+          "command": "save_island_preferences",
+          "args": {
+            "preferences": {
+              "enabled": true,
+              "shape": "notch",
+              "size": "standard",
+              "monitorMode": "followMouse",
+              "monitorId": null
+            }
+          }
+        },
+        {
+          "command": "save_island_preferences",
+          "args": {
+            "preferences": {
+              "enabled": true,
+              "shape": "notch",
+              "size": "large",
+              "monitorMode": "followMouse",
+              "monitorId": null
+            }
+          }
+        },
+        {
+          "command": "save_island_preferences",
+          "args": {
+            "preferences": {
+              "enabled": true,
+              "shape": "notch",
+              "size": "large",
+              "monitorMode": "specific",
+              "monitorId": null
+            }
+          }
+        },
+        {
+          "command": "save_island_preferences",
+          "args": {
+            "preferences": {
+              "enabled": true,
+              "shape": "notch",
+              "size": "large",
+              "monitorMode": "specific",
+              "monitorId": "primary"
+            }
+          }
+        }
+      ],
+      "unsupported": [],
+      "runtimeAndNetworkProblems": []
+    },
+    {
+      "file": "v21-island-settings-800-default-light@1x.png",
+      "scenario": "island-settings-800-default",
+      "entry": "settings.html",
+      "figmaNode": "22:146",
+      "theme": "light",
+      "resolvedTheme": "light",
+      "scale": 1,
+      "viewport": {
+        "width": 800,
+        "height": 900
+      },
+      "clip": {
+        "x": 16,
+        "y": 322,
+        "width": 768,
+        "height": 247
+      },
+      "width": 768,
+      "height": 247,
+      "bytes": 20144,
+      "sha256": "5533eca13c3d5bace5e2e717cd4ef8c70d5d0eb0cf92140dff574d2b72ce575a",
+      "repeatMatches": false,
+      "font": [
+        {
+          "familyName": "Geist",
+          "postScriptName": "Geist",
+          "isCustomFont": true,
+          "glyphCount": 15
+        }
+      ],
+      "fixtureSha256": "4cc012d276ff44792809a0ce59769eb1387e8951f2be072ff291937021479686",
+      "ipc": [
+        {
+          "command": "plugin:event|listen",
+          "args": {
+            "event": "tauri://theme-changed",
+            "target": {
+              "kind": "Window",
+              "label": "settings"
+            },
+            "handler": 1
+          }
+        },
+        {
+          "command": "get_settings",
+          "args": {}
+        },
+        {
+          "command": "get_engine_status",
+          "args": {}
+        },
+        {
+          "command": "get_storage_stats",
+          "args": {}
+        },
+        {
+          "command": "plugin:window|theme",
+          "args": {
+            "label": "settings"
+          }
+        },
+        {
+          "command": "plugin:event|listen",
+          "args": {
+            "event": "nabbit://island-config",
+            "target": {
+              "kind": "Any"
+            },
+            "handler": 3
+          }
+        },
+        {
+          "command": "get_island_snapshot",
+          "args": {}
+        }
+      ],
+      "unsupported": [],
+      "runtimeAndNetworkProblems": []
+    },
+    {
+      "file": "v21-island-settings-800-specific-light@1x.png",
+      "scenario": "island-settings-800-specific",
+      "entry": "settings.html",
+      "figmaNode": "22:146",
+      "theme": "light",
+      "resolvedTheme": "light",
+      "scale": 1,
+      "viewport": {
+        "width": 800,
+        "height": 900
+      },
+      "clip": {
+        "x": 16,
+        "y": 322,
+        "width": 768,
+        "height": 304
+      },
+      "width": 768,
+      "height": 304,
+      "bytes": 23854,
+      "sha256": "d97202d85e4a5b0b85e801b88db72e7d0ed14d2ba1d432422151e32d541a40a3",
+      "repeatMatches": false,
+      "font": [
+        {
+          "familyName": "Geist",
+          "postScriptName": "Geist",
+          "isCustomFont": true,
+          "glyphCount": 15
+        }
+      ],
+      "fixtureSha256": "4cc012d276ff44792809a0ce59769eb1387e8951f2be072ff291937021479686",
+      "ipc": [
+        {
+          "command": "plugin:event|listen",
+          "args": {
+            "event": "tauri://theme-changed",
+            "target": {
+              "kind": "Window",
+              "label": "settings"
+            },
+            "handler": 1
+          }
+        },
+        {
+          "command": "get_settings",
+          "args": {}
+        },
+        {
+          "command": "get_engine_status",
+          "args": {}
+        },
+        {
+          "command": "get_storage_stats",
+          "args": {}
+        },
+        {
+          "command": "plugin:window|theme",
+          "args": {
+            "label": "settings"
+          }
+        },
+        {
+          "command": "plugin:event|listen",
+          "args": {
+            "event": "nabbit://island-config",
+            "target": {
+              "kind": "Any"
+            },
+            "handler": 3
+          }
+        },
+        {
+          "command": "get_island_snapshot",
+          "args": {}
+        },
+        {
+          "command": "save_island_preferences",
+          "args": {
+            "preferences": {
+              "enabled": true,
+              "shape": "notch",
+              "size": "standard",
+              "monitorMode": "followMouse",
+              "monitorId": null
+            }
+          }
+        },
+        {
+          "command": "save_island_preferences",
+          "args": {
+            "preferences": {
+              "enabled": true,
+              "shape": "notch",
+              "size": "large",
+              "monitorMode": "followMouse",
+              "monitorId": null
+            }
+          }
+        },
+        {
+          "command": "save_island_preferences",
+          "args": {
+            "preferences": {
+              "enabled": true,
+              "shape": "notch",
+              "size": "large",
+              "monitorMode": "specific",
+              "monitorId": null
+            }
+          }
+        },
+        {
+          "command": "save_island_preferences",
+          "args": {
+            "preferences": {
+              "enabled": true,
+              "shape": "notch",
+              "size": "large",
+              "monitorMode": "specific",
+              "monitorId": "primary"
+            }
+          }
+        }
+      ],
+      "unsupported": [],
+      "runtimeAndNetworkProblems": []
+    },
+    {
+      "file": "v21-island-settings-800-disconnected-light@1x.png",
+      "scenario": "island-settings-800-disconnected",
+      "entry": "settings.html",
+      "figmaNode": "22:146",
+      "theme": "light",
+      "resolvedTheme": "light",
+      "scale": 1,
+      "viewport": {
+        "width": 800,
+        "height": 900
+      },
+      "clip": {
+        "x": 16,
+        "y": 322,
+        "width": 768,
+        "height": 328
+      },
+      "width": 768,
+      "height": 328,
+      "bytes": 27359,
+      "sha256": "7c0cefb8c3eb3eb890e2572cb92a90cf80e2192b2b18cb4219e494c4c20a7beb",
+      "repeatMatches": false,
+      "font": [
+        {
+          "familyName": "Geist",
+          "postScriptName": "Geist",
+          "isCustomFont": true,
+          "glyphCount": 15
+        }
+      ],
+      "fixtureSha256": "4cc012d276ff44792809a0ce59769eb1387e8951f2be072ff291937021479686",
+      "ipc": [
+        {
+          "command": "plugin:event|listen",
+          "args": {
+            "event": "tauri://theme-changed",
+            "target": {
+              "kind": "Window",
+              "label": "settings"
+            },
+            "handler": 1
+          }
+        },
+        {
+          "command": "get_settings",
+          "args": {}
+        },
+        {
+          "command": "get_engine_status",
+          "args": {}
+        },
+        {
+          "command": "get_storage_stats",
+          "args": {}
+        },
+        {
+          "command": "plugin:window|theme",
+          "args": {
+            "label": "settings"
+          }
+        },
+        {
+          "command": "plugin:event|listen",
+          "args": {
+            "event": "nabbit://island-config",
+            "target": {
+              "kind": "Any"
+            },
+            "handler": 3
+          }
+        },
+        {
+          "command": "get_island_snapshot",
+          "args": {}
+        },
+        {
+          "command": "save_island_preferences",
+          "args": {
+            "preferences": {
+              "enabled": true,
+              "shape": "notch",
+              "size": "standard",
+              "monitorMode": "followMouse",
+              "monitorId": null
+            }
+          }
+        },
+        {
+          "command": "save_island_preferences",
+          "args": {
+            "preferences": {
+              "enabled": true,
+              "shape": "notch",
+              "size": "large",
+              "monitorMode": "followMouse",
+              "monitorId": null
+            }
+          }
+        },
+        {
+          "command": "save_island_preferences",
+          "args": {
+            "preferences": {
+              "enabled": true,
+              "shape": "notch",
+              "size": "large",
+              "monitorMode": "specific",
+              "monitorId": null
+            }
+          }
+        },
+        {
+          "command": "save_island_preferences",
+          "args": {
+            "preferences": {
+              "enabled": true,
+              "shape": "notch",
+              "size": "large",
+              "monitorMode": "specific",
+              "monitorId": "primary"
+            }
+          }
+        }
+      ],
+      "unsupported": [],
+      "runtimeAndNetworkProblems": []
+    },
+    {
+      "file": "v21-island-settings-460-default-light@1.5x.png",
+      "scenario": "island-settings-460-default",
+      "entry": "settings.html",
+      "figmaNode": "22:146",
+      "theme": "light",
+      "resolvedTheme": "light",
+      "scale": 1.5,
+      "viewport": {
+        "width": 460,
+        "height": 900
+      },
+      "clip": {
+        "x": 16,
+        "y": 446,
+        "width": 428,
+        "height": 323
+      },
+      "width": 642,
+      "height": 485,
+      "bytes": 36834,
+      "sha256": "49a3872ecd9efc2d7be6e630c06e88d5ab6ac9235bd0362757545a119be32627",
+      "repeatMatches": false,
+      "font": [
+        {
+          "familyName": "Geist",
+          "postScriptName": "Geist",
+          "isCustomFont": true,
+          "glyphCount": 15
+        }
+      ],
+      "fixtureSha256": "4cc012d276ff44792809a0ce59769eb1387e8951f2be072ff291937021479686",
+      "ipc": [
+        {
+          "command": "plugin:event|listen",
+          "args": {
+            "event": "tauri://theme-changed",
+            "target": {
+              "kind": "Window",
+              "label": "settings"
+            },
+            "handler": 1
+          }
+        },
+        {
+          "command": "get_settings",
+          "args": {}
+        },
+        {
+          "command": "get_engine_status",
+          "args": {}
+        },
+        {
+          "command": "get_storage_stats",
+          "args": {}
+        },
+        {
+          "command": "plugin:window|theme",
+          "args": {
+            "label": "settings"
+          }
+        },
+        {
+          "command": "plugin:event|listen",
+          "args": {
+            "event": "nabbit://island-config",
+            "target": {
+              "kind": "Any"
+            },
+            "handler": 3
+          }
+        },
+        {
+          "command": "get_island_snapshot",
+          "args": {}
+        }
+      ],
+      "unsupported": [],
+      "runtimeAndNetworkProblems": []
+    },
+    {
+      "file": "v21-island-settings-460-specific-light@1.5x.png",
+      "scenario": "island-settings-460-specific",
+      "entry": "settings.html",
+      "figmaNode": "22:146",
+      "theme": "light",
+      "resolvedTheme": "light",
+      "scale": 1.5,
+      "viewport": {
+        "width": 460,
+        "height": 900
+      },
+      "clip": {
+        "x": 16,
+        "y": 446,
+        "width": 428,
+        "height": 380
+      },
+      "width": 642,
+      "height": 570,
+      "bytes": 44524,
+      "sha256": "f454c76544ea32e542254b6953231b95b1916460c2fd9ad93ae3d9ad85037502",
+      "repeatMatches": false,
+      "font": [
+        {
+          "familyName": "Geist",
+          "postScriptName": "Geist",
+          "isCustomFont": true,
+          "glyphCount": 15
+        }
+      ],
+      "fixtureSha256": "4cc012d276ff44792809a0ce59769eb1387e8951f2be072ff291937021479686",
+      "ipc": [
+        {
+          "command": "plugin:event|listen",
+          "args": {
+            "event": "tauri://theme-changed",
+            "target": {
+              "kind": "Window",
+              "label": "settings"
+            },
+            "handler": 1
+          }
+        },
+        {
+          "command": "get_settings",
+          "args": {}
+        },
+        {
+          "command": "get_engine_status",
+          "args": {}
+        },
+        {
+          "command": "get_storage_stats",
+          "args": {}
+        },
+        {
+          "command": "plugin:window|theme",
+          "args": {
+            "label": "settings"
+          }
+        },
+        {
+          "command": "plugin:event|listen",
+          "args": {
+            "event": "nabbit://island-config",
+            "target": {
+              "kind": "Any"
+            },
+            "handler": 3
+          }
+        },
+        {
+          "command": "get_island_snapshot",
+          "args": {}
+        },
+        {
+          "command": "save_island_preferences",
+          "args": {
+            "preferences": {
+              "enabled": true,
+              "shape": "notch",
+              "size": "standard",
+              "monitorMode": "followMouse",
+              "monitorId": null
+            }
+          }
+        },
+        {
+          "command": "save_island_preferences",
+          "args": {
+            "preferences": {
+              "enabled": true,
+              "shape": "notch",
+              "size": "large",
+              "monitorMode": "followMouse",
+              "monitorId": null
+            }
+          }
+        },
+        {
+          "command": "save_island_preferences",
+          "args": {
+            "preferences": {
+              "enabled": true,
+              "shape": "notch",
+              "size": "large",
+              "monitorMode": "specific",
+              "monitorId": null
+            }
+          }
+        },
+        {
+          "command": "save_island_preferences",
+          "args": {
+            "preferences": {
+              "enabled": true,
+              "shape": "notch",
+              "size": "large",
+              "monitorMode": "specific",
+              "monitorId": "primary"
+            }
+          }
+        }
+      ],
+      "unsupported": [],
+      "runtimeAndNetworkProblems": []
+    },
+    {
+      "file": "v21-island-settings-460-disconnected-light@1.5x.png",
+      "scenario": "island-settings-460-disconnected",
+      "entry": "settings.html",
+      "figmaNode": "22:146",
+      "theme": "light",
+      "resolvedTheme": "light",
+      "scale": 1.5,
+      "viewport": {
+        "width": 460,
+        "height": 900
+      },
+      "clip": {
+        "x": 16,
+        "y": 446,
+        "width": 428,
+        "height": 404
+      },
+      "width": 642,
+      "height": 606,
+      "bytes": 50116,
+      "sha256": "c9f1a61433c176436b827a764612a443827d5175a4ff3f567722f04a33dc9371",
+      "repeatMatches": false,
+      "font": [
+        {
+          "familyName": "Geist",
+          "postScriptName": "Geist",
+          "isCustomFont": true,
+          "glyphCount": 15
+        }
+      ],
+      "fixtureSha256": "4cc012d276ff44792809a0ce59769eb1387e8951f2be072ff291937021479686",
+      "ipc": [
+        {
+          "command": "plugin:event|listen",
+          "args": {
+            "event": "tauri://theme-changed",
+            "target": {
+              "kind": "Window",
+              "label": "settings"
+            },
+            "handler": 1
+          }
+        },
+        {
+          "command": "get_settings",
+          "args": {}
+        },
+        {
+          "command": "get_engine_status",
+          "args": {}
+        },
+        {
+          "command": "get_storage_stats",
+          "args": {}
+        },
+        {
+          "command": "plugin:window|theme",
+          "args": {
+            "label": "settings"
+          }
+        },
+        {
+          "command": "plugin:event|listen",
+          "args": {
+            "event": "nabbit://island-config",
+            "target": {
+              "kind": "Any"
+            },
+            "handler": 3
+          }
+        },
+        {
+          "command": "get_island_snapshot",
+          "args": {}
+        },
+        {
+          "command": "save_island_preferences",
+          "args": {
+            "preferences": {
+              "enabled": true,
+              "shape": "notch",
+              "size": "standard",
+              "monitorMode": "followMouse",
+              "monitorId": null
+            }
+          }
+        },
+        {
+          "command": "save_island_preferences",
+          "args": {
+            "preferences": {
+              "enabled": true,
+              "shape": "notch",
+              "size": "large",
+              "monitorMode": "followMouse",
+              "monitorId": null
+            }
+          }
+        },
+        {
+          "command": "save_island_preferences",
+          "args": {
+            "preferences": {
+              "enabled": true,
+              "shape": "notch",
+              "size": "large",
+              "monitorMode": "specific",
+              "monitorId": null
+            }
+          }
+        },
+        {
+          "command": "save_island_preferences",
+          "args": {
+            "preferences": {
+              "enabled": true,
+              "shape": "notch",
+              "size": "large",
+              "monitorMode": "specific",
+              "monitorId": "primary"
+            }
+          }
+        }
+      ],
+      "unsupported": [],
+      "runtimeAndNetworkProblems": []
+    },
+    {
+      "file": "v21-island-settings-800-default-light@1.5x.png",
+      "scenario": "island-settings-800-default",
+      "entry": "settings.html",
+      "figmaNode": "22:146",
+      "theme": "light",
+      "resolvedTheme": "light",
+      "scale": 1.5,
+      "viewport": {
+        "width": 800,
+        "height": 900
+      },
+      "clip": {
+        "x": 16,
+        "y": 322,
+        "width": 768,
+        "height": 247
+      },
+      "width": 1152,
+      "height": 371,
+      "bytes": 38221,
+      "sha256": "061e8841ba49959bc05cf306ebb1efe42dc67b8a501e6159ba74274a78f1f07e",
+      "repeatMatches": false,
+      "font": [
+        {
+          "familyName": "Geist",
+          "postScriptName": "Geist",
+          "isCustomFont": true,
+          "glyphCount": 15
+        }
+      ],
+      "fixtureSha256": "4cc012d276ff44792809a0ce59769eb1387e8951f2be072ff291937021479686",
+      "ipc": [
+        {
+          "command": "plugin:event|listen",
+          "args": {
+            "event": "tauri://theme-changed",
+            "target": {
+              "kind": "Window",
+              "label": "settings"
+            },
+            "handler": 1
+          }
+        },
+        {
+          "command": "get_settings",
+          "args": {}
+        },
+        {
+          "command": "get_engine_status",
+          "args": {}
+        },
+        {
+          "command": "get_storage_stats",
+          "args": {}
+        },
+        {
+          "command": "plugin:window|theme",
+          "args": {
+            "label": "settings"
+          }
+        },
+        {
+          "command": "plugin:event|listen",
+          "args": {
+            "event": "nabbit://island-config",
+            "target": {
+              "kind": "Any"
+            },
+            "handler": 3
+          }
+        },
+        {
+          "command": "get_island_snapshot",
+          "args": {}
+        }
+      ],
+      "unsupported": [],
+      "runtimeAndNetworkProblems": []
+    },
+    {
+      "file": "v21-island-settings-800-specific-light@1.5x.png",
+      "scenario": "island-settings-800-specific",
+      "entry": "settings.html",
+      "figmaNode": "22:146",
+      "theme": "light",
+      "resolvedTheme": "light",
+      "scale": 1.5,
+      "viewport": {
+        "width": 800,
+        "height": 900
+      },
+      "clip": {
+        "x": 16,
+        "y": 322,
+        "width": 768,
+        "height": 304
+      },
+      "width": 1152,
+      "height": 456,
+      "bytes": 46192,
+      "sha256": "8cae7a0474b6ce573f6c6317f086c143378b82b1a2d39fecd63eb36363d31741",
+      "repeatMatches": false,
+      "font": [
+        {
+          "familyName": "Geist",
+          "postScriptName": "Geist",
+          "isCustomFont": true,
+          "glyphCount": 15
+        }
+      ],
+      "fixtureSha256": "4cc012d276ff44792809a0ce59769eb1387e8951f2be072ff291937021479686",
+      "ipc": [
+        {
+          "command": "plugin:event|listen",
+          "args": {
+            "event": "tauri://theme-changed",
+            "target": {
+              "kind": "Window",
+              "label": "settings"
+            },
+            "handler": 1
+          }
+        },
+        {
+          "command": "get_settings",
+          "args": {}
+        },
+        {
+          "command": "get_engine_status",
+          "args": {}
+        },
+        {
+          "command": "get_storage_stats",
+          "args": {}
+        },
+        {
+          "command": "plugin:window|theme",
+          "args": {
+            "label": "settings"
+          }
+        },
+        {
+          "command": "plugin:event|listen",
+          "args": {
+            "event": "nabbit://island-config",
+            "target": {
+              "kind": "Any"
+            },
+            "handler": 3
+          }
+        },
+        {
+          "command": "get_island_snapshot",
+          "args": {}
+        },
+        {
+          "command": "save_island_preferences",
+          "args": {
+            "preferences": {
+              "enabled": true,
+              "shape": "notch",
+              "size": "standard",
+              "monitorMode": "followMouse",
+              "monitorId": null
+            }
+          }
+        },
+        {
+          "command": "save_island_preferences",
+          "args": {
+            "preferences": {
+              "enabled": true,
+              "shape": "notch",
+              "size": "large",
+              "monitorMode": "followMouse",
+              "monitorId": null
+            }
+          }
+        },
+        {
+          "command": "save_island_preferences",
+          "args": {
+            "preferences": {
+              "enabled": true,
+              "shape": "notch",
+              "size": "large",
+              "monitorMode": "specific",
+              "monitorId": null
+            }
+          }
+        },
+        {
+          "command": "save_island_preferences",
+          "args": {
+            "preferences": {
+              "enabled": true,
+              "shape": "notch",
+              "size": "large",
+              "monitorMode": "specific",
+              "monitorId": "primary"
+            }
+          }
+        }
+      ],
+      "unsupported": [],
+      "runtimeAndNetworkProblems": []
+    },
+    {
+      "file": "v21-island-settings-800-disconnected-light@1.5x.png",
+      "scenario": "island-settings-800-disconnected",
+      "entry": "settings.html",
+      "figmaNode": "22:146",
+      "theme": "light",
+      "resolvedTheme": "light",
+      "scale": 1.5,
+      "viewport": {
+        "width": 800,
+        "height": 900
+      },
+      "clip": {
+        "x": 16,
+        "y": 322,
+        "width": 768,
+        "height": 328
+      },
+      "width": 1152,
+      "height": 492,
+      "bytes": 52078,
+      "sha256": "ee7db26cf89588f5dfd2f1fddb385441110eee505290b56d7bc16ec97d29bb4b",
+      "repeatMatches": false,
+      "font": [
+        {
+          "familyName": "Geist",
+          "postScriptName": "Geist",
+          "isCustomFont": true,
+          "glyphCount": 15
+        }
+      ],
+      "fixtureSha256": "4cc012d276ff44792809a0ce59769eb1387e8951f2be072ff291937021479686",
+      "ipc": [
+        {
+          "command": "plugin:event|listen",
+          "args": {
+            "event": "tauri://theme-changed",
+            "target": {
+              "kind": "Window",
+              "label": "settings"
+            },
+            "handler": 1
+          }
+        },
+        {
+          "command": "get_settings",
+          "args": {}
+        },
+        {
+          "command": "get_engine_status",
+          "args": {}
+        },
+        {
+          "command": "get_storage_stats",
+          "args": {}
+        },
+        {
+          "command": "plugin:window|theme",
+          "args": {
+            "label": "settings"
+          }
+        },
+        {
+          "command": "plugin:event|listen",
+          "args": {
+            "event": "nabbit://island-config",
+            "target": {
+              "kind": "Any"
+            },
+            "handler": 3
+          }
+        },
+        {
+          "command": "get_island_snapshot",
+          "args": {}
+        },
+        {
+          "command": "save_island_preferences",
+          "args": {
+            "preferences": {
+              "enabled": true,
+              "shape": "notch",
+              "size": "standard",
+              "monitorMode": "followMouse",
+              "monitorId": null
+            }
+          }
+        },
+        {
+          "command": "save_island_preferences",
+          "args": {
+            "preferences": {
+              "enabled": true,
+              "shape": "notch",
+              "size": "large",
+              "monitorMode": "followMouse",
+              "monitorId": null
+            }
+          }
+        },
+        {
+          "command": "save_island_preferences",
+          "args": {
+            "preferences": {
+              "enabled": true,
+              "shape": "notch",
+              "size": "large",
+              "monitorMode": "specific",
+              "monitorId": null
+            }
+          }
+        },
+        {
+          "command": "save_island_preferences",
+          "args": {
+            "preferences": {
+              "enabled": true,
+              "shape": "notch",
+              "size": "large",
+              "monitorMode": "specific",
+              "monitorId": "primary"
+            }
+          }
+        }
+      ],
+      "unsupported": [],
+      "runtimeAndNetworkProblems": []
+    },
+    {
+      "file": "v21-island-settings-460-default-dark@1x.png",
+      "scenario": "island-settings-460-default",
+      "entry": "settings.html",
+      "figmaNode": "22:146",
+      "theme": "dark",
+      "resolvedTheme": "dark",
+      "scale": 1,
+      "viewport": {
+        "width": 460,
+        "height": 900
+      },
+      "clip": {
+        "x": 16,
+        "y": 446,
+        "width": 428,
+        "height": 323
+      },
+      "width": 428,
+      "height": 323,
+      "bytes": 20178,
+      "sha256": "22ca41abd71db60235d1b3295920b55c142f637d30645c7d25c7e25448d7d510",
+      "repeatMatches": false,
+      "font": [
+        {
+          "familyName": "Geist",
+          "postScriptName": "Geist",
+          "isCustomFont": true,
+          "glyphCount": 15
+        }
+      ],
+      "fixtureSha256": "4cc012d276ff44792809a0ce59769eb1387e8951f2be072ff291937021479686",
+      "ipc": [
+        {
+          "command": "plugin:event|listen",
+          "args": {
+            "event": "tauri://theme-changed",
+            "target": {
+              "kind": "Window",
+              "label": "settings"
+            },
+            "handler": 1
+          }
+        },
+        {
+          "command": "get_settings",
+          "args": {}
+        },
+        {
+          "command": "get_engine_status",
+          "args": {}
+        },
+        {
+          "command": "get_storage_stats",
+          "args": {}
+        },
+        {
+          "command": "plugin:window|theme",
+          "args": {
+            "label": "settings"
+          }
+        },
+        {
+          "command": "plugin:event|listen",
+          "args": {
+            "event": "nabbit://island-config",
+            "target": {
+              "kind": "Any"
+            },
+            "handler": 3
+          }
+        },
+        {
+          "command": "get_island_snapshot",
+          "args": {}
+        }
+      ],
+      "unsupported": [],
+      "runtimeAndNetworkProblems": []
+    },
+    {
+      "file": "v21-island-settings-460-specific-dark@1x.png",
+      "scenario": "island-settings-460-specific",
+      "entry": "settings.html",
+      "figmaNode": "22:146",
+      "theme": "dark",
+      "resolvedTheme": "dark",
+      "scale": 1,
+      "viewport": {
+        "width": 460,
+        "height": 900
+      },
+      "clip": {
+        "x": 16,
+        "y": 446,
+        "width": 428,
+        "height": 380
+      },
+      "width": 428,
+      "height": 380,
+      "bytes": 24139,
+      "sha256": "899250e2424d4055584eee570db470981a78c0ca9fff958bdf1636e8fc00436b",
+      "repeatMatches": false,
+      "font": [
+        {
+          "familyName": "Geist",
+          "postScriptName": "Geist",
+          "isCustomFont": true,
+          "glyphCount": 15
+        }
+      ],
+      "fixtureSha256": "4cc012d276ff44792809a0ce59769eb1387e8951f2be072ff291937021479686",
+      "ipc": [
+        {
+          "command": "plugin:event|listen",
+          "args": {
+            "event": "tauri://theme-changed",
+            "target": {
+              "kind": "Window",
+              "label": "settings"
+            },
+            "handler": 1
+          }
+        },
+        {
+          "command": "get_settings",
+          "args": {}
+        },
+        {
+          "command": "get_engine_status",
+          "args": {}
+        },
+        {
+          "command": "get_storage_stats",
+          "args": {}
+        },
+        {
+          "command": "plugin:window|theme",
+          "args": {
+            "label": "settings"
+          }
+        },
+        {
+          "command": "plugin:event|listen",
+          "args": {
+            "event": "nabbit://island-config",
+            "target": {
+              "kind": "Any"
+            },
+            "handler": 3
+          }
+        },
+        {
+          "command": "get_island_snapshot",
+          "args": {}
+        },
+        {
+          "command": "save_island_preferences",
+          "args": {
+            "preferences": {
+              "enabled": true,
+              "shape": "notch",
+              "size": "standard",
+              "monitorMode": "followMouse",
+              "monitorId": null
+            }
+          }
+        },
+        {
+          "command": "save_island_preferences",
+          "args": {
+            "preferences": {
+              "enabled": true,
+              "shape": "notch",
+              "size": "large",
+              "monitorMode": "followMouse",
+              "monitorId": null
+            }
+          }
+        },
+        {
+          "command": "save_island_preferences",
+          "args": {
+            "preferences": {
+              "enabled": true,
+              "shape": "notch",
+              "size": "large",
+              "monitorMode": "specific",
+              "monitorId": null
+            }
+          }
+        },
+        {
+          "command": "save_island_preferences",
+          "args": {
+            "preferences": {
+              "enabled": true,
+              "shape": "notch",
+              "size": "large",
+              "monitorMode": "specific",
+              "monitorId": "primary"
+            }
+          }
+        }
+      ],
+      "unsupported": [],
+      "runtimeAndNetworkProblems": []
+    },
+    {
+      "file": "v21-island-settings-460-disconnected-dark@1x.png",
+      "scenario": "island-settings-460-disconnected",
+      "entry": "settings.html",
+      "figmaNode": "22:146",
+      "theme": "dark",
+      "resolvedTheme": "dark",
+      "scale": 1,
+      "viewport": {
+        "width": 460,
+        "height": 900
+      },
+      "clip": {
+        "x": 16,
+        "y": 446,
+        "width": 428,
+        "height": 404
+      },
+      "width": 428,
+      "height": 404,
+      "bytes": 27616,
+      "sha256": "8ad6c24dc16aec1fc6e073df312824b396771eadaaaa7f8bd010c9fcd96b4529",
+      "repeatMatches": false,
+      "font": [
+        {
+          "familyName": "Geist",
+          "postScriptName": "Geist",
+          "isCustomFont": true,
+          "glyphCount": 15
+        }
+      ],
+      "fixtureSha256": "4cc012d276ff44792809a0ce59769eb1387e8951f2be072ff291937021479686",
+      "ipc": [
+        {
+          "command": "plugin:event|listen",
+          "args": {
+            "event": "tauri://theme-changed",
+            "target": {
+              "kind": "Window",
+              "label": "settings"
+            },
+            "handler": 1
+          }
+        },
+        {
+          "command": "get_settings",
+          "args": {}
+        },
+        {
+          "command": "get_engine_status",
+          "args": {}
+        },
+        {
+          "command": "get_storage_stats",
+          "args": {}
+        },
+        {
+          "command": "plugin:window|theme",
+          "args": {
+            "label": "settings"
+          }
+        },
+        {
+          "command": "plugin:event|listen",
+          "args": {
+            "event": "nabbit://island-config",
+            "target": {
+              "kind": "Any"
+            },
+            "handler": 3
+          }
+        },
+        {
+          "command": "get_island_snapshot",
+          "args": {}
+        },
+        {
+          "command": "save_island_preferences",
+          "args": {
+            "preferences": {
+              "enabled": true,
+              "shape": "notch",
+              "size": "standard",
+              "monitorMode": "followMouse",
+              "monitorId": null
+            }
+          }
+        },
+        {
+          "command": "save_island_preferences",
+          "args": {
+            "preferences": {
+              "enabled": true,
+              "shape": "notch",
+              "size": "large",
+              "monitorMode": "followMouse",
+              "monitorId": null
+            }
+          }
+        },
+        {
+          "command": "save_island_preferences",
+          "args": {
+            "preferences": {
+              "enabled": true,
+              "shape": "notch",
+              "size": "large",
+              "monitorMode": "specific",
+              "monitorId": null
+            }
+          }
+        },
+        {
+          "command": "save_island_preferences",
+          "args": {
+            "preferences": {
+              "enabled": true,
+              "shape": "notch",
+              "size": "large",
+              "monitorMode": "specific",
+              "monitorId": "primary"
+            }
+          }
+        }
+      ],
+      "unsupported": [],
+      "runtimeAndNetworkProblems": []
+    },
+    {
+      "file": "v21-island-settings-800-default-dark@1x.png",
+      "scenario": "island-settings-800-default",
+      "entry": "settings.html",
+      "figmaNode": "22:146",
+      "theme": "dark",
+      "resolvedTheme": "dark",
+      "scale": 1,
+      "viewport": {
+        "width": 800,
+        "height": 900
+      },
+      "clip": {
+        "x": 16,
+        "y": 322,
+        "width": 768,
+        "height": 247
+      },
+      "width": 768,
+      "height": 247,
+      "bytes": 20659,
+      "sha256": "d70c2766190fe09c3c696c0aa8149c35769997ef30da4d8f7ca0e631fcc79ae7",
+      "repeatMatches": false,
+      "font": [
+        {
+          "familyName": "Geist",
+          "postScriptName": "Geist",
+          "isCustomFont": true,
+          "glyphCount": 15
+        }
+      ],
+      "fixtureSha256": "4cc012d276ff44792809a0ce59769eb1387e8951f2be072ff291937021479686",
+      "ipc": [
+        {
+          "command": "plugin:event|listen",
+          "args": {
+            "event": "tauri://theme-changed",
+            "target": {
+              "kind": "Window",
+              "label": "settings"
+            },
+            "handler": 1
+          }
+        },
+        {
+          "command": "get_settings",
+          "args": {}
+        },
+        {
+          "command": "get_engine_status",
+          "args": {}
+        },
+        {
+          "command": "get_storage_stats",
+          "args": {}
+        },
+        {
+          "command": "plugin:window|theme",
+          "args": {
+            "label": "settings"
+          }
+        },
+        {
+          "command": "plugin:event|listen",
+          "args": {
+            "event": "nabbit://island-config",
+            "target": {
+              "kind": "Any"
+            },
+            "handler": 3
+          }
+        },
+        {
+          "command": "get_island_snapshot",
+          "args": {}
+        }
+      ],
+      "unsupported": [],
+      "runtimeAndNetworkProblems": []
+    },
+    {
+      "file": "v21-island-settings-800-specific-dark@1x.png",
+      "scenario": "island-settings-800-specific",
+      "entry": "settings.html",
+      "figmaNode": "22:146",
+      "theme": "dark",
+      "resolvedTheme": "dark",
+      "scale": 1,
+      "viewport": {
+        "width": 800,
+        "height": 900
+      },
+      "clip": {
+        "x": 16,
+        "y": 322,
+        "width": 768,
+        "height": 304
+      },
+      "width": 768,
+      "height": 304,
+      "bytes": 24578,
+      "sha256": "74aadcefccb848fa33c9cb7f0843856e69afca56f14bdd616f037eaaccd02296",
+      "repeatMatches": false,
+      "font": [
+        {
+          "familyName": "Geist",
+          "postScriptName": "Geist",
+          "isCustomFont": true,
+          "glyphCount": 15
+        }
+      ],
+      "fixtureSha256": "4cc012d276ff44792809a0ce59769eb1387e8951f2be072ff291937021479686",
+      "ipc": [
+        {
+          "command": "plugin:event|listen",
+          "args": {
+            "event": "tauri://theme-changed",
+            "target": {
+              "kind": "Window",
+              "label": "settings"
+            },
+            "handler": 1
+          }
+        },
+        {
+          "command": "get_settings",
+          "args": {}
+        },
+        {
+          "command": "get_engine_status",
+          "args": {}
+        },
+        {
+          "command": "get_storage_stats",
+          "args": {}
+        },
+        {
+          "command": "plugin:window|theme",
+          "args": {
+            "label": "settings"
+          }
+        },
+        {
+          "command": "plugin:event|listen",
+          "args": {
+            "event": "nabbit://island-config",
+            "target": {
+              "kind": "Any"
+            },
+            "handler": 3
+          }
+        },
+        {
+          "command": "get_island_snapshot",
+          "args": {}
+        },
+        {
+          "command": "save_island_preferences",
+          "args": {
+            "preferences": {
+              "enabled": true,
+              "shape": "notch",
+              "size": "standard",
+              "monitorMode": "followMouse",
+              "monitorId": null
+            }
+          }
+        },
+        {
+          "command": "save_island_preferences",
+          "args": {
+            "preferences": {
+              "enabled": true,
+              "shape": "notch",
+              "size": "large",
+              "monitorMode": "followMouse",
+              "monitorId": null
+            }
+          }
+        },
+        {
+          "command": "save_island_preferences",
+          "args": {
+            "preferences": {
+              "enabled": true,
+              "shape": "notch",
+              "size": "large",
+              "monitorMode": "specific",
+              "monitorId": null
+            }
+          }
+        },
+        {
+          "command": "save_island_preferences",
+          "args": {
+            "preferences": {
+              "enabled": true,
+              "shape": "notch",
+              "size": "large",
+              "monitorMode": "specific",
+              "monitorId": "primary"
+            }
+          }
+        }
+      ],
+      "unsupported": [],
+      "runtimeAndNetworkProblems": []
+    },
+    {
+      "file": "v21-island-settings-800-disconnected-dark@1x.png",
+      "scenario": "island-settings-800-disconnected",
+      "entry": "settings.html",
+      "figmaNode": "22:146",
+      "theme": "dark",
+      "resolvedTheme": "dark",
+      "scale": 1,
+      "viewport": {
+        "width": 800,
+        "height": 900
+      },
+      "clip": {
+        "x": 16,
+        "y": 322,
+        "width": 768,
+        "height": 328
+      },
+      "width": 768,
+      "height": 328,
+      "bytes": 28135,
+      "sha256": "a14748bae90a5d0a7e9ab120063c31f513cf6677acecbdac32dc64f42dc17ed8",
+      "repeatMatches": false,
+      "font": [
+        {
+          "familyName": "Geist",
+          "postScriptName": "Geist",
+          "isCustomFont": true,
+          "glyphCount": 15
+        }
+      ],
+      "fixtureSha256": "4cc012d276ff44792809a0ce59769eb1387e8951f2be072ff291937021479686",
+      "ipc": [
+        {
+          "command": "plugin:event|listen",
+          "args": {
+            "event": "tauri://theme-changed",
+            "target": {
+              "kind": "Window",
+              "label": "settings"
+            },
+            "handler": 1
+          }
+        },
+        {
+          "command": "get_settings",
+          "args": {}
+        },
+        {
+          "command": "get_engine_status",
+          "args": {}
+        },
+        {
+          "command": "get_storage_stats",
+          "args": {}
+        },
+        {
+          "command": "plugin:window|theme",
+          "args": {
+            "label": "settings"
+          }
+        },
+        {
+          "command": "plugin:event|listen",
+          "args": {
+            "event": "nabbit://island-config",
+            "target": {
+              "kind": "Any"
+            },
+            "handler": 3
+          }
+        },
+        {
+          "command": "get_island_snapshot",
+          "args": {}
+        },
+        {
+          "command": "save_island_preferences",
+          "args": {
+            "preferences": {
+              "enabled": true,
+              "shape": "notch",
+              "size": "standard",
+              "monitorMode": "followMouse",
+              "monitorId": null
+            }
+          }
+        },
+        {
+          "command": "save_island_preferences",
+          "args": {
+            "preferences": {
+              "enabled": true,
+              "shape": "notch",
+              "size": "large",
+              "monitorMode": "followMouse",
+              "monitorId": null
+            }
+          }
+        },
+        {
+          "command": "save_island_preferences",
+          "args": {
+            "preferences": {
+              "enabled": true,
+              "shape": "notch",
+              "size": "large",
+              "monitorMode": "specific",
+              "monitorId": null
+            }
+          }
+        },
+        {
+          "command": "save_island_preferences",
+          "args": {
+            "preferences": {
+              "enabled": true,
+              "shape": "notch",
+              "size": "large",
+              "monitorMode": "specific",
+              "monitorId": "primary"
+            }
+          }
+        }
+      ],
+      "unsupported": [],
+      "runtimeAndNetworkProblems": []
+    },
+    {
+      "file": "v21-island-settings-460-default-dark@1.5x.png",
+      "scenario": "island-settings-460-default",
+      "entry": "settings.html",
+      "figmaNode": "22:146",
+      "theme": "dark",
+      "resolvedTheme": "dark",
+      "scale": 1.5,
+      "viewport": {
+        "width": 460,
+        "height": 900
+      },
+      "clip": {
+        "x": 16,
+        "y": 446,
+        "width": 428,
+        "height": 323
+      },
+      "width": 642,
+      "height": 485,
+      "bytes": 36874,
+      "sha256": "b162911d68d11aea9fb0220e6480f265148e24c7711e04354b8f407049210312",
+      "repeatMatches": false,
+      "font": [
+        {
+          "familyName": "Geist",
+          "postScriptName": "Geist",
+          "isCustomFont": true,
+          "glyphCount": 15
+        }
+      ],
+      "fixtureSha256": "4cc012d276ff44792809a0ce59769eb1387e8951f2be072ff291937021479686",
+      "ipc": [
+        {
+          "command": "plugin:event|listen",
+          "args": {
+            "event": "tauri://theme-changed",
+            "target": {
+              "kind": "Window",
+              "label": "settings"
+            },
+            "handler": 1
+          }
+        },
+        {
+          "command": "get_settings",
+          "args": {}
+        },
+        {
+          "command": "get_engine_status",
+          "args": {}
+        },
+        {
+          "command": "get_storage_stats",
+          "args": {}
+        },
+        {
+          "command": "plugin:window|theme",
+          "args": {
+            "label": "settings"
+          }
+        },
+        {
+          "command": "plugin:event|listen",
+          "args": {
+            "event": "nabbit://island-config",
+            "target": {
+              "kind": "Any"
+            },
+            "handler": 3
+          }
+        },
+        {
+          "command": "get_island_snapshot",
+          "args": {}
+        }
+      ],
+      "unsupported": [],
+      "runtimeAndNetworkProblems": []
+    },
+    {
+      "file": "v21-island-settings-460-specific-dark@1.5x.png",
+      "scenario": "island-settings-460-specific",
+      "entry": "settings.html",
+      "figmaNode": "22:146",
+      "theme": "dark",
+      "resolvedTheme": "dark",
+      "scale": 1.5,
+      "viewport": {
+        "width": 460,
+        "height": 900
+      },
+      "clip": {
+        "x": 16,
+        "y": 446,
+        "width": 428,
+        "height": 380
+      },
+      "width": 642,
+      "height": 570,
+      "bytes": 44378,
+      "sha256": "dbd24522e836e225ea1935576ac2168a697895546dd6eae47601af15a831a1ea",
+      "repeatMatches": false,
+      "font": [
+        {
+          "familyName": "Geist",
+          "postScriptName": "Geist",
+          "isCustomFont": true,
+          "glyphCount": 15
+        }
+      ],
+      "fixtureSha256": "4cc012d276ff44792809a0ce59769eb1387e8951f2be072ff291937021479686",
+      "ipc": [
+        {
+          "command": "plugin:event|listen",
+          "args": {
+            "event": "tauri://theme-changed",
+            "target": {
+              "kind": "Window",
+              "label": "settings"
+            },
+            "handler": 1
+          }
+        },
+        {
+          "command": "get_settings",
+          "args": {}
+        },
+        {
+          "command": "get_engine_status",
+          "args": {}
+        },
+        {
+          "command": "get_storage_stats",
+          "args": {}
+        },
+        {
+          "command": "plugin:window|theme",
+          "args": {
+            "label": "settings"
+          }
+        },
+        {
+          "command": "plugin:event|listen",
+          "args": {
+            "event": "nabbit://island-config",
+            "target": {
+              "kind": "Any"
+            },
+            "handler": 3
+          }
+        },
+        {
+          "command": "get_island_snapshot",
+          "args": {}
+        },
+        {
+          "command": "save_island_preferences",
+          "args": {
+            "preferences": {
+              "enabled": true,
+              "shape": "notch",
+              "size": "standard",
+              "monitorMode": "followMouse",
+              "monitorId": null
+            }
+          }
+        },
+        {
+          "command": "save_island_preferences",
+          "args": {
+            "preferences": {
+              "enabled": true,
+              "shape": "notch",
+              "size": "large",
+              "monitorMode": "followMouse",
+              "monitorId": null
+            }
+          }
+        },
+        {
+          "command": "save_island_preferences",
+          "args": {
+            "preferences": {
+              "enabled": true,
+              "shape": "notch",
+              "size": "large",
+              "monitorMode": "specific",
+              "monitorId": null
+            }
+          }
+        },
+        {
+          "command": "save_island_preferences",
+          "args": {
+            "preferences": {
+              "enabled": true,
+              "shape": "notch",
+              "size": "large",
+              "monitorMode": "specific",
+              "monitorId": "primary"
+            }
+          }
+        }
+      ],
+      "unsupported": [],
+      "runtimeAndNetworkProblems": []
+    },
+    {
+      "file": "v21-island-settings-460-disconnected-dark@1.5x.png",
+      "scenario": "island-settings-460-disconnected",
+      "entry": "settings.html",
+      "figmaNode": "22:146",
+      "theme": "dark",
+      "resolvedTheme": "dark",
+      "scale": 1.5,
+      "viewport": {
+        "width": 460,
+        "height": 900
+      },
+      "clip": {
+        "x": 16,
+        "y": 446,
+        "width": 428,
+        "height": 404
+      },
+      "width": 642,
+      "height": 606,
+      "bytes": 49964,
+      "sha256": "4fa6194a45d21ff080e55a33798fbd20eab8e26048070a5b4facabdcbd220656",
+      "repeatMatches": false,
+      "font": [
+        {
+          "familyName": "Geist",
+          "postScriptName": "Geist",
+          "isCustomFont": true,
+          "glyphCount": 15
+        }
+      ],
+      "fixtureSha256": "4cc012d276ff44792809a0ce59769eb1387e8951f2be072ff291937021479686",
+      "ipc": [
+        {
+          "command": "plugin:event|listen",
+          "args": {
+            "event": "tauri://theme-changed",
+            "target": {
+              "kind": "Window",
+              "label": "settings"
+            },
+            "handler": 1
+          }
+        },
+        {
+          "command": "get_settings",
+          "args": {}
+        },
+        {
+          "command": "get_engine_status",
+          "args": {}
+        },
+        {
+          "command": "get_storage_stats",
+          "args": {}
+        },
+        {
+          "command": "plugin:window|theme",
+          "args": {
+            "label": "settings"
+          }
+        },
+        {
+          "command": "plugin:event|listen",
+          "args": {
+            "event": "nabbit://island-config",
+            "target": {
+              "kind": "Any"
+            },
+            "handler": 3
+          }
+        },
+        {
+          "command": "get_island_snapshot",
+          "args": {}
+        },
+        {
+          "command": "save_island_preferences",
+          "args": {
+            "preferences": {
+              "enabled": true,
+              "shape": "notch",
+              "size": "standard",
+              "monitorMode": "followMouse",
+              "monitorId": null
+            }
+          }
+        },
+        {
+          "command": "save_island_preferences",
+          "args": {
+            "preferences": {
+              "enabled": true,
+              "shape": "notch",
+              "size": "large",
+              "monitorMode": "followMouse",
+              "monitorId": null
+            }
+          }
+        },
+        {
+          "command": "save_island_preferences",
+          "args": {
+            "preferences": {
+              "enabled": true,
+              "shape": "notch",
+              "size": "large",
+              "monitorMode": "specific",
+              "monitorId": null
+            }
+          }
+        },
+        {
+          "command": "save_island_preferences",
+          "args": {
+            "preferences": {
+              "enabled": true,
+              "shape": "notch",
+              "size": "large",
+              "monitorMode": "specific",
+              "monitorId": "primary"
+            }
+          }
+        }
+      ],
+      "unsupported": [],
+      "runtimeAndNetworkProblems": []
+    },
+    {
+      "file": "v21-island-settings-800-default-dark@1.5x.png",
+      "scenario": "island-settings-800-default",
+      "entry": "settings.html",
+      "figmaNode": "22:146",
+      "theme": "dark",
+      "resolvedTheme": "dark",
+      "scale": 1.5,
+      "viewport": {
+        "width": 800,
+        "height": 900
+      },
+      "clip": {
+        "x": 16,
+        "y": 322,
+        "width": 768,
+        "height": 247
+      },
+      "width": 1152,
+      "height": 371,
+      "bytes": 38013,
+      "sha256": "8230ad09038ca4cee2162626e2d870aab893db46f02c0357a825251730b7d098",
+      "repeatMatches": false,
+      "font": [
+        {
+          "familyName": "Geist",
+          "postScriptName": "Geist",
+          "isCustomFont": true,
+          "glyphCount": 15
+        }
+      ],
+      "fixtureSha256": "4cc012d276ff44792809a0ce59769eb1387e8951f2be072ff291937021479686",
+      "ipc": [
+        {
+          "command": "plugin:event|listen",
+          "args": {
+            "event": "tauri://theme-changed",
+            "target": {
+              "kind": "Window",
+              "label": "settings"
+            },
+            "handler": 1
+          }
+        },
+        {
+          "command": "get_settings",
+          "args": {}
+        },
+        {
+          "command": "get_engine_status",
+          "args": {}
+        },
+        {
+          "command": "get_storage_stats",
+          "args": {}
+        },
+        {
+          "command": "plugin:window|theme",
+          "args": {
+            "label": "settings"
+          }
+        },
+        {
+          "command": "plugin:event|listen",
+          "args": {
+            "event": "nabbit://island-config",
+            "target": {
+              "kind": "Any"
+            },
+            "handler": 3
+          }
+        },
+        {
+          "command": "get_island_snapshot",
+          "args": {}
+        }
+      ],
+      "unsupported": [],
+      "runtimeAndNetworkProblems": []
+    },
+    {
+      "file": "v21-island-settings-800-specific-dark@1.5x.png",
+      "scenario": "island-settings-800-specific",
+      "entry": "settings.html",
+      "figmaNode": "22:146",
+      "theme": "dark",
+      "resolvedTheme": "dark",
+      "scale": 1.5,
+      "viewport": {
+        "width": 800,
+        "height": 900
+      },
+      "clip": {
+        "x": 16,
+        "y": 322,
+        "width": 768,
+        "height": 304
+      },
+      "width": 1152,
+      "height": 456,
+      "bytes": 45847,
+      "sha256": "2a8e728b49b0b70abb1fb697f3a61afdec9d5f6563b252c6191dbc1a14da6a41",
+      "repeatMatches": false,
+      "font": [
+        {
+          "familyName": "Geist",
+          "postScriptName": "Geist",
+          "isCustomFont": true,
+          "glyphCount": 15
+        }
+      ],
+      "fixtureSha256": "4cc012d276ff44792809a0ce59769eb1387e8951f2be072ff291937021479686",
+      "ipc": [
+        {
+          "command": "plugin:event|listen",
+          "args": {
+            "event": "tauri://theme-changed",
+            "target": {
+              "kind": "Window",
+              "label": "settings"
+            },
+            "handler": 1
+          }
+        },
+        {
+          "command": "get_settings",
+          "args": {}
+        },
+        {
+          "command": "get_engine_status",
+          "args": {}
+        },
+        {
+          "command": "get_storage_stats",
+          "args": {}
+        },
+        {
+          "command": "plugin:window|theme",
+          "args": {
+            "label": "settings"
+          }
+        },
+        {
+          "command": "plugin:event|listen",
+          "args": {
+            "event": "nabbit://island-config",
+            "target": {
+              "kind": "Any"
+            },
+            "handler": 3
+          }
+        },
+        {
+          "command": "get_island_snapshot",
+          "args": {}
+        },
+        {
+          "command": "save_island_preferences",
+          "args": {
+            "preferences": {
+              "enabled": true,
+              "shape": "notch",
+              "size": "standard",
+              "monitorMode": "followMouse",
+              "monitorId": null
+            }
+          }
+        },
+        {
+          "command": "save_island_preferences",
+          "args": {
+            "preferences": {
+              "enabled": true,
+              "shape": "notch",
+              "size": "large",
+              "monitorMode": "followMouse",
+              "monitorId": null
+            }
+          }
+        },
+        {
+          "command": "save_island_preferences",
+          "args": {
+            "preferences": {
+              "enabled": true,
+              "shape": "notch",
+              "size": "large",
+              "monitorMode": "specific",
+              "monitorId": null
+            }
+          }
+        },
+        {
+          "command": "save_island_preferences",
+          "args": {
+            "preferences": {
+              "enabled": true,
+              "shape": "notch",
+              "size": "large",
+              "monitorMode": "specific",
+              "monitorId": "primary"
+            }
+          }
+        }
+      ],
+      "unsupported": [],
+      "runtimeAndNetworkProblems": []
+    },
+    {
+      "file": "v21-island-settings-800-disconnected-dark@1.5x.png",
+      "scenario": "island-settings-800-disconnected",
+      "entry": "settings.html",
+      "figmaNode": "22:146",
+      "theme": "dark",
+      "resolvedTheme": "dark",
+      "scale": 1.5,
+      "viewport": {
+        "width": 800,
+        "height": 900
+      },
+      "clip": {
+        "x": 16,
+        "y": 322,
+        "width": 768,
+        "height": 328
+      },
+      "width": 1152,
+      "height": 492,
+      "bytes": 51717,
+      "sha256": "93ed521e200b3399f4dfabfbfdaa5cadf6276691f04cd5156bb0b0608e797246",
+      "repeatMatches": false,
+      "font": [
+        {
+          "familyName": "Geist",
+          "postScriptName": "Geist",
+          "isCustomFont": true,
+          "glyphCount": 15
+        }
+      ],
+      "fixtureSha256": "4cc012d276ff44792809a0ce59769eb1387e8951f2be072ff291937021479686",
+      "ipc": [
+        {
+          "command": "plugin:event|listen",
+          "args": {
+            "event": "tauri://theme-changed",
+            "target": {
+              "kind": "Window",
+              "label": "settings"
+            },
+            "handler": 1
+          }
+        },
+        {
+          "command": "get_settings",
+          "args": {}
+        },
+        {
+          "command": "get_engine_status",
+          "args": {}
+        },
+        {
+          "command": "get_storage_stats",
+          "args": {}
+        },
+        {
+          "command": "plugin:window|theme",
+          "args": {
+            "label": "settings"
+          }
+        },
+        {
+          "command": "plugin:event|listen",
+          "args": {
+            "event": "nabbit://island-config",
+            "target": {
+              "kind": "Any"
+            },
+            "handler": 3
+          }
+        },
+        {
+          "command": "get_island_snapshot",
+          "args": {}
+        },
+        {
+          "command": "save_island_preferences",
+          "args": {
+            "preferences": {
+              "enabled": true,
+              "shape": "notch",
+              "size": "standard",
+              "monitorMode": "followMouse",
+              "monitorId": null
+            }
+          }
+        },
+        {
+          "command": "save_island_preferences",
+          "args": {
+            "preferences": {
+              "enabled": true,
+              "shape": "notch",
+              "size": "large",
+              "monitorMode": "followMouse",
+              "monitorId": null
+            }
+          }
+        },
+        {
+          "command": "save_island_preferences",
+          "args": {
+            "preferences": {
+              "enabled": true,
+              "shape": "notch",
+              "size": "large",
+              "monitorMode": "specific",
+              "monitorId": null
+            }
+          }
+        },
+        {
+          "command": "save_island_preferences",
+          "args": {
+            "preferences": {
+              "enabled": true,
+              "shape": "notch",
+              "size": "large",
+              "monitorMode": "specific",
+              "monitorId": "primary"
+            }
+          }
+        }
+      ],
+      "unsupported": [],
+      "runtimeAndNetworkProblems": []
+    }
+  ]
+}

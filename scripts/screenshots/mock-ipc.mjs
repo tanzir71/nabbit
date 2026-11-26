@@ -29,6 +29,19 @@ export function installMockIpc(seed) {
     switch (command) {
       case "get_settings":
         return clone(state.settings);
+      case "get_island_snapshot":
+        return clone(
+          seed.responses?.get_island_snapshot ?? {
+            supported: true,
+            desktop: {
+              monitors: [{ id: "primary", name: "Fixture display", primary: true, scaleFactor: 1 }],
+            },
+            lastError: null,
+          },
+        );
+      case "save_island_preferences":
+        state.settings.island = clone(args.preferences);
+        return clone(state.settings);
       case "save_settings":
         state.settings = clone(args.settings);
         return clone(state.settings);

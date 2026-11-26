@@ -12,6 +12,17 @@ pub fn get_settings(state: tauri::State<'_, AppState>) -> Result<AppSettings> {
 }
 
 #[tauri::command]
+pub fn save_island_preferences(
+    app: AppHandle,
+    state: tauri::State<'_, AppState>,
+    preferences: crate::island::model::Preferences,
+) -> Result<AppSettings> {
+    let mut settings = state.db.get_settings()?;
+    settings.island = preferences;
+    save_settings(app, state, settings)
+}
+
+#[tauri::command]
 pub fn save_settings(
     app: AppHandle,
     state: tauri::State<'_, AppState>,
@@ -22,14 +33,31 @@ pub fn save_settings(
     if previous.retention_days != saved.retention_days {
         let _ = state.db.run_retention_gc();
     }
-    if previous.launch_at_login != saved.launch_at_login
+    #[cfg(windows)]
+    if previous.island != saved.island {
+        if let Some(manager) = app.try_state::<std::sync::Arc<crate::island::Manager>>() {
+            manager.configure(saved.island.clone());
+        }
+    }
+    if (previous.launch_at_login != saved.launch_at_login
         || previous.toggle_popover_shortcut != saved.toggle_popover_shortcut
         || previous.quick_download_shortcut != saved.quick_download_shortcut
-        || previous.clipboard_search_shortcut != saved.clipboard_search_shortcut
+        || previous.clipboard_search_shortcut != saved.clipboard_search_shortcut)
+        && !crate::island::acceptance_session()
     {
         crate::apply_runtime_settings(&app, &state, &saved);
     }
     Ok(saved)
+}
+
+#[tauri::command]
+pub fn get_island_snapshot(app: AppHandle) -> serde_json::Value {
+    #[cfg(windows)]
+    if let Some(manager) = app.try_state::<std::sync::Arc<crate::island::Manager>>() {
+        return serde_json::to_value(manager.snapshot()).unwrap_or_default();
+    }
+    let _ = app;
+    serde_json::json!({"supported":false,"desktop":{"monitors":[]},"hosts":[],"lastError":null})
 }
 
 #[tauri::command]

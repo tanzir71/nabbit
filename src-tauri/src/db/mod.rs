@@ -545,6 +545,11 @@ fn backup_corrupt_db(app_data_dir: &Path, db_path: &Path) {
 }
 
 fn normalize_settings(mut settings: AppSettings) -> AppSettings {
+    settings.island.monitor_id = settings
+        .island
+        .monitor_id
+        .map(|id| id.trim().chars().take(128).collect::<String>())
+        .filter(|id| !id.is_empty());
     if ![30, 60, 90].contains(&settings.retention_days) {
         settings.retention_days = 30;
     }
@@ -673,6 +678,47 @@ mod tests {
         legacy["theme"] = serde_json::json!("future-theme");
         let unknown: AppSettings = serde_json::from_value(legacy).unwrap();
         assert_eq!(unknown.theme, ThemePreference::System);
+        assert_eq!(unknown.retention_days, 90);
+    }
+
+    #[test]
+    fn island_preferences_extend_legacy_settings_and_survive_reopen() {
+        use crate::island::model::{MonitorMode, Preferences, Shape, Size};
+        let dir = tempfile_dir();
+        let db = Database::open(&dir).unwrap();
+        let original = AppSettings {
+            output_dir: "preserved-island-output".into(),
+            retention_days: 90,
+            ..AppSettings::default()
+        };
+        let mut legacy = serde_json::to_value(&original).unwrap();
+        legacy.as_object_mut().unwrap().remove("island");
+        db.set_setting_value("app_settings", &legacy.to_string())
+            .unwrap();
+        let mut settings = db.get_settings().unwrap();
+        assert_eq!(settings.island, Preferences::default());
+        assert_eq!(settings.output_dir, original.output_dir);
+        settings.island = Preferences {
+            enabled: false,
+            shape: Shape::Notch,
+            size: Size::Large,
+            monitor_mode: MonitorMode::Specific,
+            monitor_id: Some("  unplugged-display  ".into()),
+        };
+        let saved = db.save_settings(&settings).unwrap();
+        drop(db);
+        let reopened = Database::open(&dir).unwrap().get_settings().unwrap();
+        assert_eq!(reopened.island, saved.island);
+        assert_eq!(
+            reopened.island.monitor_id.as_deref(),
+            Some("unplugged-display")
+        );
+        assert_eq!(reopened.retention_days, 90);
+        assert_eq!(reopened.output_dir, original.output_dir);
+        legacy["island"] =
+            serde_json::json!({"shape":"future","size":"future","monitorMode":"future"});
+        let unknown: AppSettings = serde_json::from_value(legacy).unwrap();
+        assert_eq!(unknown.island, Preferences::default());
         assert_eq!(unknown.retention_days, 90);
     }
 

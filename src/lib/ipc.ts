@@ -10,11 +10,20 @@ import type {
   DownloadRequest,
   EngineStatus,
   StorageStats,
+  IslandPreferences,
+  IslandSnapshot,
 } from "./types";
 
 const hasTauri = () => typeof window !== "undefined" && "__TAURI_INTERNALS__" in window;
 
 const mockSettings: AppSettings = {
+  island: {
+    enabled: true,
+    shape: "island",
+    size: "standard",
+    monitorMode: "followMouse",
+    monitorId: null,
+  },
   theme: "system",
   retentionDays: 30,
   captureImages: true,
@@ -44,13 +53,28 @@ let browserSettings = { ...mockSettings, theme: cachedThemePreference() };
 let browserEntries: ClipboardEntry[] = [];
 let browserJobs: DownloadJob[] = [];
 
-async function call<T>(command: string, args?: Record<string, unknown>, fallback?: () => T): Promise<T> {
+async function call<T>(
+  command: string,
+  args?: Record<string, unknown>,
+  fallback?: () => T,
+): Promise<T> {
   if (hasTauri()) return invoke<T>(command, args);
   if (fallback) return fallback();
   throw new Error(`Tauri command unavailable in browser: ${command}`);
 }
 
 export const api = {
+  getIslandSnapshot: () =>
+    call<IslandSnapshot>("get_island_snapshot", undefined, () => ({
+      supported: false,
+      desktop: { monitors: [] },
+      lastError: null,
+    })),
+  saveIslandPreferences: (preferences: IslandPreferences) =>
+    call<AppSettings>("save_island_preferences", { preferences }, () => {
+      browserSettings = { ...browserSettings, island: { ...preferences } };
+      return browserSettings;
+    }),
   checkAppUpdate: () =>
     call<AppUpdateStatus>("check_app_update", undefined, () => ({
       available: false,
@@ -160,18 +184,21 @@ export const api = {
       job.error = null;
       return job;
     }),
-  retryDownload: (id: string) => call<DownloadJob>("retry_download", { id }, () => {
-    const job = browserJobs.find((item) => item.id === id);
-    if (!job) throw new Error("Job not found");
-    job.status = "queued";
-    job.error = null;
-    return job;
-  }),
+  retryDownload: (id: string) =>
+    call<DownloadJob>("retry_download", { id }, () => {
+      const job = browserJobs.find((item) => item.id === id);
+      if (!job) throw new Error("Job not found");
+      job.status = "queued";
+      job.error = null;
+      return job;
+    }),
   revealDownload: (id: string) => call<void>("reveal_download", { id }, () => undefined),
   openDownloadsFolder: () => call<void>("open_downloads_folder", undefined, () => undefined),
   repairEngine: () => call<EngineStatus>("repair_engine", undefined, () => ({ missing: [] })),
-  getEngineStatus: () => call<EngineStatus>("get_engine_status", undefined, () => ({ missing: [] })),
-  quickDownloadStaged: () => call<DownloadJob | null>("quick_download_staged", undefined, () => null),
+  getEngineStatus: () =>
+    call<EngineStatus>("get_engine_status", undefined, () => ({ missing: [] })),
+  quickDownloadStaged: () =>
+    call<DownloadJob | null>("quick_download_staged", undefined, () => null),
   showMainWindow: () => call<void>("show_main_window", undefined, () => undefined),
   hideMainWindow: () => call<void>("hide_main_window", undefined, () => undefined),
   onEvent: async <T>(event: string, handler: (payload: T) => void) => {

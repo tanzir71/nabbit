@@ -91,6 +91,8 @@ pub enum ThemePreference {
 #[serde(rename_all = "camelCase")]
 pub struct AppSettings {
     #[serde(default)]
+    pub island: crate::island::model::Preferences,
+    #[serde(default)]
     pub theme: ThemePreference,
     pub retention_days: i64,
     pub capture_images: bool,
@@ -119,6 +121,7 @@ pub struct AppSettings {
 impl Default for AppSettings {
     fn default() -> Self {
         Self {
+            island: crate::island::model::Preferences::default(),
             theme: ThemePreference::System,
             retention_days: 30,
             capture_images: true,

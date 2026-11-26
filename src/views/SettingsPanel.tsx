@@ -8,6 +8,7 @@ import { Toggle } from "../components/Toggle";
 import { api } from "../lib/ipc";
 import { useAppStore } from "../store/useAppStore";
 import type { AppSettings, AppUpdateStatus, Quality } from "../lib/types";
+import { IslandSettings } from "./IslandSettings";
 
 const qualities: Array<{ label: string; value: Quality }> = [
   { label: "Best", value: "best" },
@@ -86,6 +87,8 @@ export function SettingsPanel({ onClose }: { onClose: () => void }) {
             />
           </div>
         </Section>
+
+        <IslandSettings value={settings.island} />
 
         <Section title="Downloads">
           <Segmented
