@@ -1,0 +1,65 @@
+{
+  "applicationCommit": "c94857b",
+  "foundationTasks": [
+    "V1.1",
+    "V1.2",
+    "V1.3",
+    "V1.4",
+    "V1.5",
+    "V1.6"
+  ],
+  "frontendTests": 43,
+  "rustTests": 39,
+  "formatAndClippyDefaultAndFeaturePass": true,
+  "sourceFontPinsVerified": 5,
+  "sourceBrandPinsVerified": 7,
+  "appSiteTokenBytesMatch": true,
+  "defaultEntries": [
+    "index.html",
+    "island.html",
+    "settings.html",
+    "sticky.html"
+  ],
+  "islandInitialGzipBytes": 46346,
+  "islandBudgetBytes": 120000,
+  "replayedHarnessCaptureHashes": 28,
+  "taskEvidence": [
+    {
+      "file": "v11-token-validation.json",
+      "sha256": "d89ab9500fe8be208c09d9d4da7b3f84d72c67f54ad864058e7a2ba845b25909"
+    },
+    {
+      "file": "v12-validation.json",
+      "sha256": "df3c5d8426c1b3e0cc26ccd18e05820f5595a01ac91a72c4231e463c4e6e8784"
+    },
+    {
+      "file": "v13-validation.json",
+      "sha256": "c58f37b0133164ff60bb26f3bbba63d3aa70f8ce73384961616d6e8e87552813"
+    },
+    {
+      "file": "v14-validation.json",
+      "sha256": "140443b5b1e7036a9339169e8cc32f57c81346977d0e3d74175c142a844e6cfc"
+    },
+    {
+      "file": "v15-capture-validation.json",
+      "sha256": "d68eae5aa081c8e9467eb4a49d28b7f006f7a589b3b81c93b3282d7f6bc97900"
+    },
+    {
+      "file": "v16-validation.json",
+      "sha256": "a487e37551ca2409c6b4fee42a6d439527ad57fbc5506d2c460d2435db78d199"
+    },
+    {
+      "file": "v16-build-validation.json",
+      "sha256": "de3bb1cba54ba23089e8ed1e170032a54215bd06f863bc1fb251cbe2dbb0e7ad"
+    },
+    {
+      "file": "v16-screenshots.json",
+      "sha256": "775698948071031a153d3b1ba923eeb48f8850f624794d8f2ad3d04bb55fba2b"
+    }
+  ],
+  "nativeWindowLifecycleRemainsForLaterPhases": true,
+  "m1PerformanceLimitsUnchanged": true,
+  "landingMilestoneMetadata": "M2",
+  "landingM2DoneWithScreenshotLink": true,
+  "landingM3InProgress": true
+}

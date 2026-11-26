@@ -1,4 +1,39 @@
-# M2 evidence — foundations in progress
+# M2 evidence — design foundations
+
+## M2 — Design foundations
+
+Application source: `c94857b` on `main`, retaining one commit for each V1.1–V1.6
+task. This milestone publishes semantic light/dark tokens and a saved System/
+Light/Dark choice, bundled Geist/Geist Mono, shared controls and preview, four
+frontend entries with an enforced 120,000-byte island JS budget, original Figma
+capsule icons/taskbar-aware glyphs and a reusable mocked screenshot harness.
+
+For the existing tray, run `npm run tauri:dev`, press Ctrl+Shift+V and open
+Settings to inspect Appearance. Run the automated capture command with a fresh
+prefix: `npm run screenshots -- --milestone M2 --prefix <unique-name> --repeat-check`.
+The [harness guide](../../../scripts/screenshots/README.md) covers setup and suites.
+The independent settings/sticky/island entries are foundations; production native
+window lifecycle, bound notes and full island/module interfaces remain later
+tasks. The recorded M1 performance limits are unchanged.
+
+`m2-readiness.json` audits the six checked tasks, source font/icon hashes, matching
+app/site tokens, existing capture hashes and fresh verification outputs. Current
+checks pass: 43 frontend/script tests, 39 Rust tests, formatting, default and
+spike-feature Clippy with warnings denied, source-asset integrity, typecheck/lint,
+the default four-entry build and site verification. Initial island JS remains
+**46,346 / 120,000 gzip bytes**; the normal build excludes preview/harness code.
+
+The `m2-*` site captures show M2 Done with its screenshot link, M3 In progress
+and milestone metadata M2, in desktop/mobile × light/dark × 1×/1.5× contexts.
+All eight contexts pass with 24 PNGs, largest 172,193 bytes. The complete M2
+folder retains **242 PNGs**, all below 300 KiB; per-task application/native captures
+remain intact. The progress rows were visually reviewed; the landing redesign
+and site font work remain Phase L. Reproduce site capture with
+`node scripts/capture-site.mjs progress/v2/M2 <unused-prefix>`.
+
+Publication uses a `[skip ci]` milestone commit and fast-forward push. Only
+GitHub's built-in Pages deployment may run; deployment verification is recorded
+in the milestone table and accompanying publication evidence after the push.
 
 ## V1.6 — shared screenshot harness
 

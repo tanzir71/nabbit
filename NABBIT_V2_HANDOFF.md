@@ -743,7 +743,7 @@ Commit after every task (§0.1). Lines marked **MILESTONE** are tasks of their o
 - [x] V1.4 Multi-entry Vite build (`index`, `island`, `settings`, `sticky`); island bundle budget ≤ 120 KB gzipped JS (record it).
 - [x] V1.5 New mark and icons (`12:478`): app icons, monochrome tray glyph for light/dark taskbars, site favicon.
 - [x] V1.6 Playwright screenshot harness: Vite preview with mocked IPC, scale 1 and 1.5, light and dark, writing to `progress/v2/M<n>/`.
-- [ ] **MILESTONE M2 — Design foundations.**
+- [x] **MILESTONE M2 — Design foundations.**
 
 ### Phase L — Landing page
 - [ ] L.1 Build the new `docs/index.html` from `27:220` / `31:933` (§10b.2): all sections, tokens, self-hosted fonts, HTML/CSS island replicas, composite visuals (including the Files section `49:1132`), bookmarklet button, pre-release CTA rule (§10b.2).
