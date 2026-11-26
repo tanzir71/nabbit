@@ -127,6 +127,9 @@ pub struct Interaction {
     dragging: bool,
 }
 impl Interaction {
+    pub fn arm_drag(&mut self) {
+        self.armed = true;
+    }
     pub fn with_hitrect(rect: Rect) -> Self {
         Self {
             hitrect: Some(rect),

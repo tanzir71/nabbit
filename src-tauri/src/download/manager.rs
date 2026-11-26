@@ -43,6 +43,10 @@ struct ChildHandle {
 }
 
 impl DownloadManager {
+    fn emit_updated(&self, job: &DownloadJob) {
+        let _ = self.app.emit("download:updated", job.clone());
+        crate::island::activity_bus::download(&self.app, job);
+    }
     pub fn new(db: Database, app: AppHandle, app_data_dir: PathBuf) -> Self {
         Self {
             inner: Arc::new(Mutex::new(Inner {
@@ -160,7 +164,7 @@ impl DownloadManager {
                 inner.queue.push_back(job.id.clone());
             }
         }
-        let _ = self.app.emit("download:updated", job.clone());
+        self.emit_updated(&job);
         self.pump();
         Ok(job)
     }
@@ -182,7 +186,7 @@ impl DownloadManager {
             job.error = error.map(ToOwned::to_owned);
             job.updated_at = Utc::now();
             self.db.update_download(&job)?;
-            let _ = self.app.emit("download:updated", job);
+            self.emit_updated(&job);
         }
         Ok(())
     }
@@ -243,7 +247,7 @@ impl DownloadManager {
                 job.error = Some(error.to_string());
                 job.updated_at = Utc::now();
                 let _ = self.db.update_download(&job);
-                let _ = self.app.emit("download:updated", job);
+                self.emit_updated(&job);
             }
         }
 
@@ -296,7 +300,7 @@ impl DownloadManager {
         job.status = "running".into();
         job.updated_at = Utc::now();
         self.db.update_download(&job)?;
-        let _ = self.app.emit("download:updated", job.clone());
+        self.emit_updated(&job);
 
         let mut child = Command::new(ytdlp)
             .args(&args)
@@ -329,7 +333,7 @@ impl DownloadManager {
                 update.status = "running".into();
                 update.updated_at = Utc::now();
                 self.db.update_download(&update)?;
-                let _ = self.app.emit("download:updated", update);
+                self.emit_updated(&update);
             }
         }
 
@@ -347,7 +351,7 @@ impl DownloadManager {
                 finished.output_path = Some(path.to_string_lossy().to_string());
             }
             self.db.update_download(&finished)?;
-            let _ = self.app.emit("download:updated", finished.clone());
+            self.emit_updated(&finished);
             if settings.reveal_after_download {
                 let _ = reveal_path(finished.output_path.as_deref().unwrap_or(&output_dir));
             }
@@ -389,7 +393,7 @@ impl DownloadManager {
         job.output_path = Some(output_path_string.clone());
         job.updated_at = Utc::now();
         self.db.update_download(&job)?;
-        let _ = self.app.emit("download:updated", job);
+        self.emit_updated(&job);
 
         for step in 1..=5 {
             thread::sleep(Duration::from_millis(delay_ms));
@@ -406,7 +410,7 @@ impl DownloadManager {
             update.output_path = Some(output_path_string.clone());
             update.updated_at = Utc::now();
             self.db.update_download(&update)?;
-            let _ = self.app.emit("download:updated", update);
+            self.emit_updated(&update);
         }
 
         let current = self.db.get_download(id)?;
@@ -430,7 +434,7 @@ impl DownloadManager {
         finished.error = None;
         finished.updated_at = Utc::now();
         self.db.update_download(&finished)?;
-        let _ = self.app.emit("download:updated", finished);
+        self.emit_updated(&finished);
 
         Ok(())
     }

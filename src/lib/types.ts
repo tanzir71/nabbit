@@ -50,6 +50,7 @@ export interface DownloadJob {
 }
 
 export interface AppSettings {
+  islandActivity?: import("./activity").ActivityPreferences;
   island: IslandPreferences;
   theme: import("./theme").ThemePreference;
   retentionDays: 30 | 60 | 90;

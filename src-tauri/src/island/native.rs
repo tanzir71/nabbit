@@ -58,6 +58,8 @@ pub struct Host {
 #[derive(Clone, Serialize)]
 #[serde(rename_all = "camelCase")]
 pub struct Snapshot {
+    pub activity: super::activity::Snapshot,
+    pub activity_scheduler: super::activity_bus::SchedulerStats,
     pub visibility: Vec<super::visibility::Report>,
     pub foreground: Foreground,
     pub input: Vec<input::Report>,
@@ -72,6 +74,8 @@ pub struct Snapshot {
     pub last_error: Option<String>,
 }
 struct State {
+    visibility_revision: u64,
+    scene_visibility: HashMap<String, super::visibility::Report>,
     visibility: HashMap<String, Visibility>,
     applied_visibility: HashMap<String, u64>,
     foreground: Foreground,
@@ -159,6 +163,8 @@ pub fn start(app: &AppHandle, preferences: Preferences) -> Result<(), String> {
             stopped: AtomicBool::new(false),
             hook: AtomicIsize::new(0),
             state: Mutex::new(State {
+                visibility_revision: 0,
+                scene_visibility: HashMap::new(),
                 visibility: HashMap::new(),
                 applied_visibility: HashMap::new(),
                 foreground: Foreground::default(),
@@ -231,14 +237,11 @@ impl Manager {
         let mut hosts: Vec<_> = state.hosts.values().cloned().collect();
         hosts.sort_by(|a, b| a.placement.label.cmp(&b.placement.label));
         Snapshot {
+            activity: self.app.state::<Arc<super::activity_bus::Bus>>().snapshot(),
+            activity_scheduler: self.app.state::<Arc<super::activity_bus::Bus>>().stats(),
             visibility: hosts
                 .iter()
-                .filter_map(|host| {
-                    state
-                        .visibility
-                        .get(&host.placement.label)
-                        .map(|value| value.report(&host.placement.label))
-                })
+                .filter_map(|host| state.scene_visibility.get(&host.placement.label).cloned())
                 .collect(),
             foreground: state.foreground.clone(),
             input: hosts
@@ -282,6 +285,38 @@ impl Manager {
         };
         let desktop = fixture.unwrap_or_else(real_desktop);
         let desired = placements(&desktop, &preferences);
+        let activity = self.app.state::<Arc<super::activity_bus::Bus>>();
+        let facts = {
+            let state = lock(&self.state);
+            desired
+                .iter()
+                .filter_map(|p| {
+                    desktop
+                        .monitors
+                        .iter()
+                        .find(|m| m.id == p.monitor_id)
+                        .map(|m| {
+                            let base = state.gate_override.unwrap_or_else(|| {
+                                super::visibility::classify(&state.foreground, m.bounds).0
+                            });
+                            let mode = state
+                                .visibility
+                                .get(&p.label)
+                                .filter(|v| v.base == base)
+                                .map(|v| v.mode)
+                                .unwrap_or(base);
+                            super::activity::Monitor {
+                                label: p.label.clone(),
+                                monitor: p.monitor_id.clone(),
+                                base,
+                                mode,
+                            }
+                        })
+                })
+                .collect()
+        };
+        activity.monitors(facts);
+        let views = activity.snapshot().views;
         let previous = lock(&self.state).hosts.clone();
         // Track ownership after every successful operation, including partial errors.
         // A failed device update can be retried by the next system/config event.
@@ -309,6 +344,11 @@ impl Manager {
                         .unwrap_or_default()
                 });
                 drop(state);
+                let mode = views
+                    .iter()
+                    .find(|v| v.label == placement.label)
+                    .map(|v| v.gate)
+                    .unwrap_or(mode);
                 create_host(&placement, mode.opacity())?
             };
             lock(&self.state)
@@ -327,6 +367,9 @@ impl Manager {
                 .retain(|label, _| placements.iter().any(|p| &p.label == label));
             state
                 .visibility
+                .retain(|label, _| placements.iter().any(|p| &p.label == label));
+            state
+                .scene_visibility
                 .retain(|label, _| placements.iter().any(|p| &p.label == label));
             state
                 .applied_visibility
@@ -355,6 +398,20 @@ impl Manager {
                         }
                         visibility
                     });
+                let mut report = state.visibility[&placement.label].report(&placement.label);
+                report.mode = views
+                    .iter()
+                    .find(|v| v.label == placement.label)
+                    .map(|v| v.gate)
+                    .unwrap_or(report.mode);
+                report.opacity = report.mode.opacity();
+                if !state.scene_visibility.contains_key(&placement.label) {
+                    state.visibility_revision += 1;
+                    report.revision = state.visibility_revision;
+                    state
+                        .scene_visibility
+                        .insert(placement.label.clone(), report);
+                }
                 let value = state
                     .inputs
                     .entry(placement.label.clone())
@@ -497,10 +554,12 @@ impl Manager {
             .collect();
         let mut delay = 500;
         let mut changed = false;
+        let mut facts = vec![];
+        let mut domain = vec![];
         let foreground = state.foreground.clone();
         let gate_override = state.gate_override;
         let now = self.started.elapsed().as_millis() as u64;
-        for placement in placements {
+        for placement in &placements {
             let monitor = state
                 .desktop
                 .monitors
@@ -509,7 +568,7 @@ impl Manager {
                 .map(|m| m.bounds);
             let point = sample
                 .filter(|s| s.valid())
-                .map(|s| input::logical(&placement, s));
+                .map(|s| input::logical(placement, s));
             let band = point.is_some_and(input::in_band);
             let inside = point.is_some_and(|p| {
                 state
@@ -518,24 +577,111 @@ impl Manager {
                     .and_then(|i| i.model.hitrect)
                     .is_some_and(|r| r.contains(p))
             });
-            let visibility_changed = if let Some(monitor) = monitor {
-                state
+            if let Some(monitor) = monitor {
+                let previous = state
                     .visibility
-                    .entry(placement.label.clone())
-                    .or_default()
-                    .step(&foreground, monitor, band, inside, now, gate_override)
-            } else {
-                false
-            };
+                    .get(&placement.label)
+                    .map(|v| v.base)
+                    .unwrap_or_default();
+                let visibility = state.visibility.entry(placement.label.clone()).or_default();
+                visibility.step(&foreground, monitor, band, inside, now, gate_override);
+                for (before, after, fullscreen) in [
+                    (
+                        previous == Gate::Hidden,
+                        visibility.base == Gate::Hidden,
+                        true,
+                    ),
+                    (
+                        previous == Gate::Faded,
+                        visibility.base == Gate::Faded,
+                        false,
+                    ),
+                ] {
+                    if before != after {
+                        domain.push(if fullscreen {
+                            super::activity::ActivityEvent::Fullscreen {
+                                monitor: placement.monitor_id.clone(),
+                                active: after,
+                            }
+                        } else {
+                            super::activity::ActivityEvent::Maximized {
+                                monitor: placement.monitor_id.clone(),
+                                active: after,
+                            }
+                        });
+                    }
+                }
+                facts.push(super::activity::Monitor {
+                    label: placement.label.clone(),
+                    monitor: placement.monitor_id.clone(),
+                    base: visibility.base,
+                    mode: visibility.mode,
+                });
+            }
+        }
+        let activity = self.app.state::<Arc<super::activity_bus::Bus>>();
+        let (activity_snapshot, activity_messages) = activity.native_update(facts, domain);
+        let views = activity_snapshot.views;
+        for placement in placements {
             let mode = state
                 .visibility
                 .get(&placement.label)
                 .map(|v| v.mode)
                 .unwrap_or_default();
-            let hover_pending = band && mode == Gate::Faded;
+            let mode = views
+                .iter()
+                .find(|view| view.label == placement.label)
+                .map(|view| view.gate)
+                .unwrap_or(mode);
+            let fullscreen = state.visibility[&placement.label].base == Gate::Hidden;
+            let input_gate = state
+                .inputs
+                .get_mut(&placement.label)
+                .map(|value| {
+                    value.gate_for_sample(
+                        &placement,
+                        sample,
+                        if fullscreen { Gate::Hidden } else { mode },
+                    )
+                })
+                .unwrap_or(mode);
+            let mode = if fullscreen { mode } else { input_gate };
+            // A global hide/focus transition cancels hover and explicit wake
+            // just as fullscreen does; do not restore a stale awake session.
+            if mode == Gate::Hidden {
+                state
+                    .visibility
+                    .get_mut(&placement.label)
+                    .unwrap()
+                    .release();
+            }
+            let mut report = state.visibility[&placement.label].report(&placement.label);
+            report.mode = mode;
+            report.opacity = mode.opacity();
+            let old = state.scene_visibility.get(&placement.label);
+            let visibility_changed = old.is_none_or(|old| {
+                (old.mode, old.base, old.reason) != (report.mode, report.base, report.reason)
+            });
+            let old_revision = old.map(|old| old.revision).unwrap_or(0);
+            if visibility_changed {
+                state.visibility_revision += 1;
+            }
+            report.revision = if visibility_changed {
+                state.visibility_revision
+            } else {
+                old_revision
+            };
+            state
+                .scene_visibility
+                .insert(placement.label.clone(), report);
+            let hover_pending = sample
+                .filter(|s| s.valid())
+                .is_some_and(|s| input::in_band(input::logical(&placement, s)))
+                && mode == Gate::Faded;
+            let unapplied = !state.applied_visibility.contains_key(&placement.label);
             if let Some(value) = state.inputs.get_mut(&placement.label) {
-                value.gate = mode;
-                value.dirty |= visibility_changed;
+                value.gate = input_gate;
+                value.dirty |= visibility_changed || unapplied;
                 value.step(&placement, sample);
                 // The wake band spans the host, including areas farther than
                 // 120px from the pill. Sample intent at the near rate there.
@@ -547,6 +693,7 @@ impl Manager {
             }
         }
         drop(state);
+        activity.native_publish(activity_messages);
         if changed && !self.input_pending.swap(true, Ordering::Relaxed) {
             unsafe {
                 PostMessageW(self.control as HWND, INPUT_REFRESH, 0, 0);
@@ -558,6 +705,9 @@ impl Manager {
         let fixture = lock(&self.state).foreground_fixture.clone();
         let foreground = fixture.unwrap_or_else(super::foreground::read);
         lock(&self.state).foreground = foreground;
+    }
+    pub fn activity_changed(&self) {
+        self.watcher.wake();
     }
     pub fn wake_island(&self, label: &str) -> Result<(), String> {
         let mut state = lock(&self.state);
@@ -581,7 +731,7 @@ impl Manager {
         let mut events = vec![];
         let mut visibility_events = vec![];
         for (label, hwnd) in handles {
-            if let Some(report) = state.visibility.get(&label).map(|v| v.report(&label)) {
+            if let Some(report) = state.scene_visibility.get(&label).cloned() {
                 if state.applied_visibility.get(&label) != Some(&report.revision) {
                     let result = GRAPHICS.with(|graphics| {
                         let mut graphics = graphics.borrow_mut();
@@ -646,6 +796,15 @@ impl Manager {
         for (report, drag_changed) in events {
             let _ = self.app.emit("nabbit://island-interaction", &report);
             if drag_changed {
+                super::activity_bus::publish_to(
+                    &self.app,
+                    if report.decision.dragging {
+                        super::activity::ActivityEvent::DragEnter { kinds: vec![] }
+                    } else {
+                        super::activity::ActivityEvent::DragLeave
+                    },
+                    Some(report.label.clone()),
+                );
                 let _ = self.app.emit(
                     if report.decision.dragging {
                         "island:drag-enter"
@@ -697,6 +856,7 @@ impl Manager {
                             let response_path = response_path.clone();
                             let _ = app.run_on_main_thread(move || {
                                 if let Some(manager) = weak.upgrade() {
+                                    if let Some(events)=request.activity{for event in events{super::activity_bus::publish(&manager.app,event);}}
                                     if let Some(gate)=request.gate{lock(&manager.state).gate_override=Some(gate);manager.watcher.wake();}
                                     if request.live_foreground.unwrap_or(false){let mut state=lock(&manager.state);state.foreground_fixture=None;state.gate_override=None;drop(state);manager.watcher.system_changed();}
                                     if let Some(foreground)=request.foreground{let mut state=lock(&manager.state);state.foreground_fixture=Some(foreground.clone());state.foreground=foreground;state.gate_override=None;drop(state);manager.watcher.system_changed();}
@@ -765,6 +925,7 @@ impl Manager {
 }
 #[derive(Deserialize)]
 struct Request {
+    activity: Option<Vec<super::activity::ActivityEvent>>,
     #[serde(rename = "liveForeground")]
     live_foreground: Option<bool>,
     id: String,
@@ -982,6 +1143,15 @@ unsafe extern "system" fn control_proc(hwnd: HWND, message: u32, w: WPARAM, l: L
     {
         if let Some(manager) = current() {
             manager.refresh()
+        }
+    }
+    if matches!(message, WM_TIMECHANGE | WM_POWERBROADCAST) {
+        if let Some(manager) = current() {
+            manager
+                .app
+                .state::<Arc<super::activity_bus::Bus>>()
+                .refresh();
+            manager.watcher.system_changed();
         }
     }
     DefWindowProcW(hwnd, message, w, l)

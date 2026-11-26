@@ -91,6 +91,8 @@ pub enum ThemePreference {
 #[serde(rename_all = "camelCase")]
 pub struct AppSettings {
     #[serde(default)]
+    pub island_activity: crate::island::activity::Preferences,
+    #[serde(default)]
     pub island: crate::island::model::Preferences,
     #[serde(default)]
     pub theme: ThemePreference,
@@ -121,6 +123,7 @@ pub struct AppSettings {
 impl Default for AppSettings {
     fn default() -> Self {
         Self {
+            island_activity: crate::island::activity::Preferences::default(),
             island: crate::island::model::Preferences::default(),
             theme: ThemePreference::System,
             retention_days: 30,

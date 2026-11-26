@@ -1,0 +1,294 @@
+{
+  "milestone": "M4",
+  "prefix": "v24",
+  "suite": "surfaces",
+  "browser": "159.0.8154.6",
+  "playwright": "1.65.1",
+  "platform": "win32",
+  "node": "v24.22.2",
+  "captureTime": "2026-11-26T09:00:00.000Z",
+  "buildManifestSha256": "fa1d5587d733fe9ac46ec425b9f60431ce332426e61630f8e6238dd32b064350",
+  "screenshotScale": "device",
+  "pngBudgetBytes": 307200,
+  "isolatedContexts": true,
+  "mockedIpc": true,
+  "osPreferencesChanged": false,
+  "captures": [
+    {
+      "file": "v24-island-idle-light@1x.png",
+      "scenario": "island-idle",
+      "entry": "island.html",
+      "figmaNode": "7:2",
+      "theme": "light",
+      "resolvedTheme": "dark",
+      "scale": 1,
+      "viewport": {
+        "width": 720,
+        "height": 460
+      },
+      "clip": {
+        "x": 0,
+        "y": 0,
+        "width": 720,
+        "height": 460
+      },
+      "width": 720,
+      "height": 460,
+      "bytes": 4258,
+      "sha256": "8197c7b6a755d4597cdf7ec5a9d52ff043a95bedd358af0ce1d495869828e9bf",
+      "repeatMatches": true,
+      "font": null,
+      "fixtureSha256": "4cc012d276ff44792809a0ce59769eb1387e8951f2be072ff291937021479686",
+      "ipc": [
+        {
+          "command": "plugin:event|listen",
+          "args": {
+            "event": "nabbit://island-visibility",
+            "target": {
+              "kind": "Any"
+            },
+            "handler": 1
+          }
+        },
+        {
+          "command": "plugin:event|listen",
+          "args": {
+            "event": "nabbit://island",
+            "target": {
+              "kind": "Any"
+            },
+            "handler": 3
+          }
+        },
+        {
+          "command": "island_set_hitrect",
+          "args": {
+            "rect": {
+              "x": 296,
+              "y": -2,
+              "w": 128,
+              "h": 42
+            }
+          }
+        },
+        {
+          "command": "get_island_snapshot",
+          "args": {}
+        },
+        {
+          "command": "get_activity_snapshot",
+          "args": {}
+        }
+      ],
+      "unsupported": [],
+      "runtimeAndNetworkProblems": []
+    },
+    {
+      "file": "v24-island-idle-light@1.5x.png",
+      "scenario": "island-idle",
+      "entry": "island.html",
+      "figmaNode": "7:2",
+      "theme": "light",
+      "resolvedTheme": "dark",
+      "scale": 1.5,
+      "viewport": {
+        "width": 720,
+        "height": 460
+      },
+      "clip": {
+        "x": 0,
+        "y": 0,
+        "width": 720,
+        "height": 460
+      },
+      "width": 1080,
+      "height": 690,
+      "bytes": 7763,
+      "sha256": "3b66ddb5647289b8f824870abb9afa078c9d88f35e47b990fac44ed0295e562a",
+      "repeatMatches": true,
+      "font": null,
+      "fixtureSha256": "4cc012d276ff44792809a0ce59769eb1387e8951f2be072ff291937021479686",
+      "ipc": [
+        {
+          "command": "plugin:event|listen",
+          "args": {
+            "event": "nabbit://island-visibility",
+            "target": {
+              "kind": "Any"
+            },
+            "handler": 1
+          }
+        },
+        {
+          "command": "plugin:event|listen",
+          "args": {
+            "event": "nabbit://island",
+            "target": {
+              "kind": "Any"
+            },
+            "handler": 3
+          }
+        },
+        {
+          "command": "island_set_hitrect",
+          "args": {
+            "rect": {
+              "x": 296,
+              "y": -2,
+              "w": 128,
+              "h": 42
+            }
+          }
+        },
+        {
+          "command": "get_island_snapshot",
+          "args": {}
+        },
+        {
+          "command": "get_activity_snapshot",
+          "args": {}
+        }
+      ],
+      "unsupported": [],
+      "runtimeAndNetworkProblems": []
+    },
+    {
+      "file": "v24-island-idle-dark@1x.png",
+      "scenario": "island-idle",
+      "entry": "island.html",
+      "figmaNode": "7:2",
+      "theme": "dark",
+      "resolvedTheme": "dark",
+      "scale": 1,
+      "viewport": {
+        "width": 720,
+        "height": 460
+      },
+      "clip": {
+        "x": 0,
+        "y": 0,
+        "width": 720,
+        "height": 460
+      },
+      "width": 720,
+      "height": 460,
+      "bytes": 4258,
+      "sha256": "8197c7b6a755d4597cdf7ec5a9d52ff043a95bedd358af0ce1d495869828e9bf",
+      "repeatMatches": true,
+      "font": null,
+      "fixtureSha256": "4cc012d276ff44792809a0ce59769eb1387e8951f2be072ff291937021479686",
+      "ipc": [
+        {
+          "command": "plugin:event|listen",
+          "args": {
+            "event": "nabbit://island-visibility",
+            "target": {
+              "kind": "Any"
+            },
+            "handler": 1
+          }
+        },
+        {
+          "command": "plugin:event|listen",
+          "args": {
+            "event": "nabbit://island",
+            "target": {
+              "kind": "Any"
+            },
+            "handler": 3
+          }
+        },
+        {
+          "command": "island_set_hitrect",
+          "args": {
+            "rect": {
+              "x": 296,
+              "y": -2,
+              "w": 128,
+              "h": 42
+            }
+          }
+        },
+        {
+          "command": "get_island_snapshot",
+          "args": {}
+        },
+        {
+          "command": "get_activity_snapshot",
+          "args": {}
+        }
+      ],
+      "unsupported": [],
+      "runtimeAndNetworkProblems": []
+    },
+    {
+      "file": "v24-island-idle-dark@1.5x.png",
+      "scenario": "island-idle",
+      "entry": "island.html",
+      "figmaNode": "7:2",
+      "theme": "dark",
+      "resolvedTheme": "dark",
+      "scale": 1.5,
+      "viewport": {
+        "width": 720,
+        "height": 460
+      },
+      "clip": {
+        "x": 0,
+        "y": 0,
+        "width": 720,
+        "height": 460
+      },
+      "width": 1080,
+      "height": 690,
+      "bytes": 7763,
+      "sha256": "3b66ddb5647289b8f824870abb9afa078c9d88f35e47b990fac44ed0295e562a",
+      "repeatMatches": true,
+      "font": null,
+      "fixtureSha256": "4cc012d276ff44792809a0ce59769eb1387e8951f2be072ff291937021479686",
+      "ipc": [
+        {
+          "command": "plugin:event|listen",
+          "args": {
+            "event": "nabbit://island-visibility",
+            "target": {
+              "kind": "Any"
+            },
+            "handler": 1
+          }
+        },
+        {
+          "command": "plugin:event|listen",
+          "args": {
+            "event": "nabbit://island",
+            "target": {
+              "kind": "Any"
+            },
+            "handler": 3
+          }
+        },
+        {
+          "command": "island_set_hitrect",
+          "args": {
+            "rect": {
+              "x": 296,
+              "y": -2,
+              "w": 128,
+              "h": 42
+            }
+          }
+        },
+        {
+          "command": "get_island_snapshot",
+          "args": {}
+        },
+        {
+          "command": "get_activity_snapshot",
+          "args": {}
+        }
+      ],
+      "unsupported": [],
+      "runtimeAndNetworkProblems": []
+    }
+  ]
+}

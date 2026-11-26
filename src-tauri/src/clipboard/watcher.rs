@@ -49,6 +49,10 @@ fn spawn_platform_clipboard_watcher(app: AppHandle, db: Database, shutdown: Arc<
             while !shutdown.load(Ordering::Relaxed) {
                 match monitor.recv() {
                     Ok(true) => {
+                        crate::island::activity_bus::publish(
+                            &app,
+                            crate::island::activity::ActivityEvent::ClipboardChanged,
+                        );
                         if clipboard.is_none() {
                             clipboard = Clipboard::new().ok();
                         }
@@ -95,6 +99,10 @@ fn run_polling_watcher(app: AppHandle, db: Database, shutdown: Arc<AtomicBool>) 
         if let Some(board) = clipboard.as_mut() {
             match board.get_text() {
                 Ok(text) if text != last_seen => {
+                    crate::island::activity_bus::publish(
+                        &app,
+                        crate::island::activity::ActivityEvent::ClipboardChanged,
+                    );
                     last_seen = text.clone();
                     handle_clipboard_text(&app, &db, &text, &mut last_url_emit);
                 }
@@ -142,6 +150,15 @@ fn handle_clipboard_text(
                                 playlist_count: None,
                                 extractor: Some("clipboard".into()),
                             };
+                            crate::island::activity_bus::publish(
+                                app,
+                                crate::island::activity::ActivityEvent::LinkDetected {
+                                    url: metadata.normalized_url.clone(),
+                                    title: Some(metadata.title.clone()),
+                                    duration: None,
+                                    site: "youtube".into(),
+                                },
+                            );
                             let _ = app.emit("url:detected", metadata);
                         }
                     }

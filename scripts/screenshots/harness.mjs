@@ -162,6 +162,7 @@ export async function captureSuite(root, options, cases = scenarios) {
                     "island_clear_hitrect",
                     "island_set_drag",
                     "get_island_snapshot",
+                    "get_activity_snapshot",
                     "plugin:event|listen",
                     "plugin:event|unlisten",
                   ].includes(command),

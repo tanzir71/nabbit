@@ -94,3 +94,7 @@ pub fn production_session() -> bool {
     cfg!(windows)
         && (std::env::var_os("NABBIT_ACCEPTANCE_COMMAND_DIR").is_none() || acceptance_session())
 }
+pub mod activity;
+pub mod activity_bus;
+#[cfg(test)]
+mod activity_tests;

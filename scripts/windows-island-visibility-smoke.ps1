@@ -1,4 +1,4 @@
-param([string]$Exe='src-tauri/target/release/nabbit.exe',[string]$Prefix='v23')
+param([string]$Exe='src-tauri/target/release/nabbit.exe',[string]$Prefix='v23',[switch]$Activity)
 $ErrorActionPreference='Stop'
 if($Prefix -notmatch '^[a-z0-9-]+$'){throw 'Invalid evidence prefix'}
 $root=Split-Path -Parent $PSScriptRoot;$exePath=(Resolve-Path -LiteralPath (Join-Path $root $Exe)).Path
@@ -93,6 +93,7 @@ try{
   $before=$snapshot.inputWatcher.systemSamples;$null=Command @{liveForeground=$true};$snapshot=Command;Assert ($snapshot.inputWatcher.systemSamples -gt $before -and $snapshot.foreground.windowId -ne 42) 'Live Win32 foreground provider did not run';Check $snapshot;$reports+=@{case='read-only-live-provider';snapshot=$snapshot}
   $null=Command @{foreground=(ForegroundFixture $primary.bounds);prepareInput=$true;prepareTray=$true}
   Push-Location $root;try{& node scripts/verify-island-visibility-native.mjs $endpoint $env:NABBIT_ACCEPTANCE_CURSOR $env:NABBIT_ACCEPTANCE_COMMAND_DIR $folder $Prefix;Assert ($LASTEXITCODE -eq 0) 'Actual WebView2 visibility bridge failed'}finally{Pop-Location}
+  if($Activity){Push-Location $root;try{& node scripts/verify-island-activity-native.mjs $endpoint $env:NABBIT_ACCEPTANCE_CURSOR $env:NABBIT_ACCEPTANCE_COMMAND_DIR $folder $Prefix $appProcess.Id;Assert ($LASTEXITCODE -eq 0) 'Actual activity bus and reducer failed'}finally{Pop-Location}}
   $snapshot=Command;Check $snapshot;$webHandle=[IslandVisibilityProbe]::Find($appProcess.Id,'Nabbit island input probe')
   Assert ($webHandle -ne [IntPtr]::Zero -and [IslandVisibilityProbe]::IsWindowVisible($webHandle)) 'WebView2 was hidden or destroyed'
   Assert (([IslandVisibilityProbe]::Flags($webHandle,-20).ToInt64() -band 0x08000020) -eq 0x08000020) 'Hidden WebView2 must be nonactivating and click-through'

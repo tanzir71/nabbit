@@ -53,6 +53,42 @@ export function installMockIpc(seed) {
             lastError: null,
           },
         );
+      case "get_activity_snapshot":
+        return clone(
+          seed.responses?.get_activity_snapshot ?? {
+            revision: 0,
+            views: [
+              {
+                label: seed.label,
+                gate: "visible",
+                primary: null,
+                bubble: null,
+                queue: [],
+                fullscreen: false,
+                userHidden: false,
+                focusMode: false,
+              },
+            ],
+            preferences: {
+              order: [
+                "privacy",
+                "timerEnding",
+                "download",
+                "tool",
+                "link",
+                "result",
+                "media",
+                "timer",
+                "power",
+              ],
+              disabled: [],
+              showAlertsOverFullscreen: false,
+              focusMode: false,
+              hiddenUntilMs: null,
+            },
+            syncState: "localOnly",
+          },
+        );
       case "save_island_preferences":
         state.settings.island = clone(args.preferences);
         return clone(state.settings);

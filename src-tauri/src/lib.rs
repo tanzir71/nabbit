@@ -93,6 +93,8 @@ pub fn run() {
             island::island_clear_hitrect,
             island::island_set_drag,
             island::island_wake,
+            island::activity_bus::get_activity_snapshot,
+            island::activity_bus::island_activity_action,
             commands::settings::save_island_preferences,
             commands::settings::save_settings,
             commands::settings::acknowledge_first_run,
@@ -146,6 +148,11 @@ pub fn run() {
                 });
             let db = Database::open(&app_data_dir)?;
             db.mark_interrupted_downloads()?;
+            let activity_settings = db.get_settings()?.island_activity;
+            app.manage(island::activity_bus::Bus::start(
+                app.handle().clone(),
+                activity_settings,
+            ));
             let downloads =
                 DownloadManager::new(db.clone(), app.handle().clone(), app_data_dir.clone());
             let shutdown = Arc::new(AtomicBool::new(false));
@@ -160,11 +167,13 @@ pub fn run() {
             setup_tray(app.handle())?;
             #[cfg(all(windows, feature = "island-spike"))]
             island_spike::open_if_enabled(app.handle(), shutdown.clone())?;
-            clipboard::watcher::spawn_clipboard_watcher(
-                app.handle().clone(),
-                db.clone(),
-                shutdown.clone(),
-            );
+            if !island::acceptance_session() {
+                clipboard::watcher::spawn_clipboard_watcher(
+                    app.handle().clone(),
+                    db.clone(),
+                    shutdown.clone(),
+                );
+            }
             retention::spawn_retention_gc(db.clone(), shutdown.clone());
             spawn_acceptance_automation(state.clone());
             let settings = db.get_settings()?;
@@ -224,6 +233,9 @@ pub fn run() {
                 let _ = (api, code);
                 if let Some(state) = app.try_state::<AppState>() {
                     state.shutdown.store(true, Ordering::Relaxed);
+                }
+                if let Some(bus) = app.try_state::<Arc<island::activity_bus::Bus>>() {
+                    bus.stop();
                 }
                 #[cfg(windows)]
                 if let Some(manager) = app.try_state::<Arc<island::Manager>>() {

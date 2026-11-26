@@ -30,6 +30,14 @@ pub fn save_settings(
 ) -> Result<AppSettings> {
     let previous = state.db.get_settings()?;
     let saved = state.db.save_settings(&settings)?;
+    if previous.island_activity != saved.island_activity {
+        crate::island::activity_bus::publish(
+            &app,
+            crate::island::activity::ActivityEvent::PreferencesChanged {
+                preferences: saved.island_activity.clone(),
+            },
+        );
+    }
     if previous.retention_days != saved.retention_days {
         let _ = state.db.run_retention_gc();
     }

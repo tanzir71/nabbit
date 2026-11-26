@@ -545,6 +545,7 @@ fn backup_corrupt_db(app_data_dir: &Path, db_path: &Path) {
 }
 
 fn normalize_settings(mut settings: AppSettings) -> AppSettings {
+    settings.island_activity = settings.island_activity.normalized();
     settings.island.monitor_id = settings
         .island
         .monitor_id
@@ -679,6 +680,34 @@ mod tests {
         let unknown: AppSettings = serde_json::from_value(legacy).unwrap();
         assert_eq!(unknown.theme, ThemePreference::System);
         assert_eq!(unknown.retention_days, 90);
+    }
+    #[test]
+    fn activity_policy_extends_legacy_settings_normalizes_and_survives_reopen() {
+        use crate::island::activity::{Kind, ORDER};
+        let dir = tempfile_dir();
+        let db = Database::open(&dir).unwrap();
+        let mut settings = AppSettings {
+            retention_days: 90,
+            output_dir: "preserved".into(),
+            ..AppSettings::default()
+        };
+        let mut legacy = serde_json::to_value(&settings).unwrap();
+        legacy.as_object_mut().unwrap().remove("islandActivity");
+        let loaded: AppSettings = serde_json::from_value(legacy).unwrap();
+        assert_eq!(loaded.island_activity.order, ORDER);
+        assert_eq!(loaded.retention_days, 90);
+        settings.island_activity.order = vec![Kind::Power, Kind::Privacy, Kind::Power];
+        settings.island_activity.disabled = vec![Kind::Media, Kind::Media];
+        settings.island_activity.show_alerts_over_fullscreen = true;
+        settings.island_activity.hidden_until_ms = Some(1_900_000_000_000);
+        let saved = db.save_settings(&settings).unwrap();
+        assert_eq!(saved.island_activity.order.len(), ORDER.len());
+        assert_eq!(saved.island_activity.disabled, vec![Kind::Media]);
+        drop(db);
+        let reopened = Database::open(&dir).unwrap().get_settings().unwrap();
+        assert_eq!(reopened.island_activity, saved.island_activity);
+        assert_eq!(reopened.output_dir, "preserved");
+        assert_eq!(reopened.retention_days, 90);
     }
 
     #[test]

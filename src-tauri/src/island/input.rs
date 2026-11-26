@@ -43,6 +43,7 @@ pub struct Report {
     pub source: &'static str,
 }
 pub struct HostInput {
+    gated_drag_armed: bool,
     pub model: Interaction,
     pub decision: Decision,
     pub applied: Decision,
@@ -54,6 +55,7 @@ pub struct HostInput {
 impl HostInput {
     pub fn new(placement: &Placement) -> Self {
         Self {
+            gated_drag_armed: false,
             model: Interaction::with_hitrect(native_rect(placement)),
             decision: Decision::default(),
             applied: Decision::default(),
@@ -84,6 +86,35 @@ impl HostInput {
                 ..Decision::default()
             }
         };
+    }
+    pub fn gate_for_sample(
+        &mut self,
+        placement: &Placement,
+        sample: Option<Sample>,
+        gate: Gate,
+    ) -> Gate {
+        let Some(sample) = sample.filter(|s| s.valid()) else {
+            self.gated_drag_armed = false;
+            return gate;
+        };
+        if gate == Gate::Hidden {
+            self.gated_drag_armed = false;
+            return gate;
+        }
+        let band = in_band(logical(placement, sample));
+        if !sample.left_down && !self.model.ole_drag {
+            self.gated_drag_armed = false;
+        } else if sample.left_down && !band {
+            self.gated_drag_armed = true;
+        }
+        let dragging = self.model.ole_drag
+            || sample.left_down && ((band && self.gated_drag_armed) || self.decision.dragging);
+        if gate == Gate::Faded && dragging {
+            self.model.arm_drag();
+            Gate::Visible
+        } else {
+            gate
+        }
     }
     pub fn report(&self, label: &str) -> Report {
         Report {
@@ -230,5 +261,33 @@ mod tests {
         step(&mut input, 80.0, 300.0, false);
         assert!(!input.decision.dragging && !input.decision.interactive);
         assert_eq!(input.model.hitrect, Some(native_rect(&p)));
+    }
+    #[test]
+    fn faded_held_drag_wakes_only_after_band_entry_and_hidden_always_cancels() {
+        let p = placement();
+        let mut input = HostInput::new(&p);
+        let step = |input: &mut HostInput, x: f64, y: f64, down: bool, gate: Gate| {
+            let sample = Some(Sample {
+                x: -1800.0 + x * 1.725,
+                y: 60.0 + y * 1.725,
+                left_down: down,
+            });
+            input.gate = input.gate_for_sample(&p, sample, gate);
+            input.step(&p, sample);
+        };
+        step(&mut input, 80.0, 10.0, true, Gate::Faded);
+        assert_eq!(input.gate, Gate::Faded);
+        assert!(!input.decision.dragging);
+        step(&mut input, 80.0, 300.0, true, Gate::Faded);
+        step(&mut input, 80.0, 10.0, true, Gate::Faded);
+        assert_eq!(input.gate, Gate::Visible);
+        assert!(input.decision.dragging && input.decision.interactive);
+        step(&mut input, 80.0, 120.0, true, Gate::Faded);
+        assert!(input.decision.dragging);
+        step(&mut input, 80.0, 10.0, true, Gate::Hidden);
+        assert!(input.decision.hidden);
+        assert!(!input.decision.dragging && !input.decision.interactive);
+        step(&mut input, 80.0, 10.0, true, Gate::Faded);
+        assert_eq!(input.gate, Gate::Faded);
     }
 }
