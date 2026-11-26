@@ -108,7 +108,7 @@ pub fn normalize_video_url(content: &str) -> Option<String> {
 }
 
 pub fn extract_first_url(content: &str) -> Option<String> {
-    let regex = Regex::new(r#"https?://[^\s<>"']+"#).ok()?;
+    let regex = Regex::new(r#"(?i)https?://[^\s<>"']+"#).ok()?;
     regex
         .find(content)
         .map(|value| {

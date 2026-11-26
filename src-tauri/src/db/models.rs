@@ -183,7 +183,7 @@ impl Default for AppSettings {
             show_dock_icon: false,
             toggle_popover_shortcut: "CmdOrCtrl+Shift+V".into(),
             island_shortcut: default_island_shortcut(),
-            quick_download_shortcut: "CmdOrCtrl+Shift+D".into(),
+            quick_download_shortcut: "Ctrl+Alt+D".into(),
             clipboard_search_shortcut: "CmdOrCtrl+Shift+C".into(),
             default_quality: "1080p".into(),
             output_dir: String::new(),

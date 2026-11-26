@@ -1,0 +1,17 @@
+Compiling nabbit v0.1.0 (D:\claude-upgrade-26\nabbit\src-tauri)
+error: field assignment outside of initializer for an instance created with Default::default()
+   --> src\db\mod.rs:938:13
+    |
+938 |             settings.quick_download_shortcut = shortcut.into();
+    |             ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+    |
+note: consider initializing the variable with `db::models::AppSettings { quick_download_shortcut: shortcut.into(), ..Default::default() }` and removing relevant reassignments
+   --> src\db\mod.rs:937:13
+    |
+937 |             let mut settings = AppSettings::default();
+    |             ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+    = help: for further information visit https://rust-lang.github.io/rust-clippy/rust-1.97.0/index.html#field_reassign_with_default
+    = note: `-D clippy::field-reassign-with-default` implied by `-D warnings`
+    = help: to override `-D warnings` add `#[allow(clippy::field_reassign_with_default)]`
+
+error: could not compile `nabbit` (lib test) due to 1 previous error

@@ -1,3 +1,4 @@
+mod capture;
 mod clipboard;
 mod commands;
 mod db;
@@ -45,10 +46,12 @@ use tauri::{
     AppHandle, Emitter, Manager, PhysicalPosition, Wry,
 };
 use tauri_plugin_autostart::ManagerExt as AutoStartExt;
+use tauri_plugin_deep_link::DeepLinkExt;
 use tauri_plugin_global_shortcut::{GlobalShortcutExt, ShortcutState};
 
 #[derive(Clone)]
 pub struct AppState {
+    pub capture: Arc<capture::Service>,
     pub db: Database,
     pub downloads: DownloadManager,
     pub engine: Arc<download::engine::Service>,
@@ -75,9 +78,13 @@ pub fn run() {
         context
     };
     tauri::Builder::default()
-        .plugin(tauri_plugin_single_instance::init(|app, _args, _cwd| {
-            let _ = show_popover(app);
+        .plugin(tauri_plugin_single_instance::init(|app, args, _cwd| {
+            // The plugin's deep-link integration already delivered configured scheme arguments.
+            if !args.iter().any(|arg| arg.starts_with("nabbit:")) {
+                let _ = show_popover(app);
+            }
         }))
+        .plugin(tauri_plugin_deep_link::init())
         .plugin(tauri_plugin_shell::init())
         .plugin(tauri_plugin_clipboard_manager::init())
         .plugin(tauri_plugin_global_shortcut::Builder::new().build())
@@ -124,6 +131,8 @@ pub fn run() {
             commands::clipboard::delete_clipboard_entry,
             commands::clipboard::clear_clipboard_history,
             commands::download::probe_url,
+            commands::download::capture_url,
+            commands::download::get_captured_link,
             commands::download::get_staged_url,
             commands::download::clear_staged_url,
             commands::download::start_download,
@@ -178,6 +187,7 @@ pub fn run() {
                 DownloadManager::new(db.clone(), app.handle().clone(), app_data_dir.clone());
             let shutdown = Arc::new(AtomicBool::new(false));
             let state = AppState {
+                capture: capture::Service::new(db.clone()),
                 db: db.clone(),
                 downloads,
                 engine: download::engine::Service::new(db.clone(), app_data_dir.clone()),
@@ -218,6 +228,20 @@ pub fn run() {
                 apply_runtime_settings(app.handle(), &state, &settings);
             }
             state.engine.start(app.handle().clone());
+            state
+                .capture
+                .start(app.handle().clone(), state.app_data_dir.clone());
+            let capture_app = app.handle().clone();
+            app.deep_link().on_open_url(move |event| {
+                for url in event.urls() {
+                    let _ = capture::open_deep_link(&capture_app, url.as_str());
+                }
+            });
+            if let Some(urls) = app.deep_link().get_current()? {
+                for url in urls {
+                    let _ = capture::open_deep_link(app.handle(), url.as_str());
+                }
+            }
             if !settings.start_hidden {
                 let _ = show_popover(app.handle());
             }
@@ -256,6 +280,7 @@ pub fn run() {
                 if let Some(state) = app.try_state::<AppState>() {
                     state.shutdown.store(true, Ordering::Relaxed);
                     state.engine.stop();
+                    state.capture.stop();
                 }
                 if let Some(bus) = app.try_state::<Arc<island::activity_bus::Bus>>() {
                     bus.stop();
@@ -555,11 +580,7 @@ pub fn apply_runtime_settings(app: &AppHandle<Wry>, state: &AppState, settings: 
             settings.quick_download_shortcut.as_str(),
             |app, _shortcut, event| {
                 if event.state == ShortcutState::Pressed {
-                    if let Some(state) = app.try_state::<AppState>() {
-                        if let Ok(Some(url)) = state.db.setting_value("staged_url") {
-                            let _ = state.downloads.enqueue_remembered(url);
-                        }
-                    }
+                    capture::hotkey(app);
                 }
             },
         );

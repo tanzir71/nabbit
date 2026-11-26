@@ -40,6 +40,29 @@ fn note(id: &str) -> ActivityEvent {
 fn view(e: &Engine) -> View {
     e.snapshot().views[0].clone()
 }
+#[test]
+fn link_metadata_preserves_age_and_cannot_revive_dismissed_or_replaced_links() {
+    let mut e = engine(Gate::Visible);
+    let link = |url: &str| ActivityEvent::LinkDetected {
+        url: url.into(),
+        title: None,
+        duration: None,
+        site: "example.com".into(),
+    };
+    send(&mut e, link("https://example.com/one"), 0);
+    e.enrich_link("https://example.com/one", "Title", Some(768))
+        .unwrap();
+    assert_eq!(e.next_wait_ms(at(7000)), Some(1000));
+    send(&mut e, link("https://example.com/two"), 7000);
+    assert!(e
+        .enrich_link("https://example.com/one", "Old", None)
+        .is_none());
+    send(&mut e, ActivityEvent::Dismissed { id: "link".into() }, 7100);
+    assert!(e
+        .enrich_link("https://example.com/two", "New", None)
+        .is_none());
+    assert!(view(&e).primary.is_none());
+}
 fn categories(view: &View) -> Vec<Kind> {
     view.primary
         .iter()

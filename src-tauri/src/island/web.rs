@@ -44,6 +44,39 @@ pub(super) fn reduced_motion() -> bool {
             && std::env::var("NABBIT_ACCEPTANCE_REDUCED_MOTION").as_deref() == Ok("1")
 }
 impl Manager {
+    pub fn open_capture_review(&self) -> Result<bool, String> {
+        let snapshot = self
+            .app
+            .state::<Arc<crate::island::activity_bus::Bus>>()
+            .snapshot();
+        let mut state = lock(&self.state);
+        let monitor = state
+            .desktop
+            .monitors
+            .iter()
+            .find(|m| m.bounds.contains(state.desktop.cursor));
+        let mut hosts: Vec<_> = state.hosts.values().collect();
+        hosts.sort_by_key(|h| h.placement.label.as_str());
+        let label = hosts
+            .iter()
+            .filter(|h| {
+                snapshot.views.iter().any(|v| {
+                    v.label == h.placement.label && v.gate != Gate::Hidden && !v.fullscreen
+                })
+            })
+            .min_by_key(|h| !monitor.is_some_and(|m| m.id == h.placement.monitor_id))
+            .map(|h| h.placement.label.clone());
+        let Some(label) = label else { return Ok(false) };
+        let surface = state.surfaces.entry(label).or_default();
+        surface.focus_tab = Some("nab".into());
+        surface.pending = Some(Mode::Expanded);
+        for input in state.inputs.values_mut() {
+            input.dirty = true;
+        }
+        drop(state);
+        self.watcher.wake();
+        Ok(true)
+    }
     pub(super) fn position_surface(&self, placement: &Placement) -> Result<(), String> {
         if let Some(window) = self.app.get_webview_window(&placement.label) {
             self.place_web(&window, placement)?;

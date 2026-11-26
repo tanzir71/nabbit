@@ -299,7 +299,6 @@ pub fn get_island_drop(
 pub fn island_review_url(
     app: tauri::AppHandle,
     window: tauri::WebviewWindow,
-    state: tauri::State<'_, crate::AppState>,
     url: String,
 ) -> Result<(), String> {
     #[cfg(windows)]
@@ -308,24 +307,9 @@ pub fn island_review_url(
     }
     #[cfg(not(windows))]
     let _ = window;
-    let parsed = url::Url::parse(url.trim()).map_err(|_| "Enter a valid web link")?;
-    if !matches!(parsed.scheme(), "http" | "https") || parsed.host_str().is_none() {
-        return Err("Enter an http or https link".into());
-    }
-    state
-        .db
-        .set_setting_value("staged_url", parsed.as_str())
-        .map_err(|e| e.to_string())?;
-    activity_bus::publish(
-        &app,
-        activity::ActivityEvent::LinkDetected {
-            url: parsed.to_string(),
-            title: None,
-            duration: None,
-            site: parsed.host_str().unwrap_or_default().into(),
-        },
-    );
-    Ok(())
+    crate::capture::review(&app, &url)
+        .map(|_| ())
+        .map_err(|e| e.to_string())
 }
 
 #[cfg(windows)]

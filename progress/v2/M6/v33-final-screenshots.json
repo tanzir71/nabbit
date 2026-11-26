@@ -1,0 +1,4762 @@
+{
+  "milestone": "M6",
+  "prefix": "v33-final",
+  "suite": "all",
+  "browser": "159.0.8154.6",
+  "playwright": "1.65.1",
+  "platform": "win32",
+  "node": "v24.22.2",
+  "captureTime": "2026-11-26T09:00:00.000Z",
+  "buildManifestSha256": "94b4658c98f230dc0abdc37144e684136524d2c0cbc294dd032a58812ce990a1",
+  "screenshotScale": "device",
+  "pngBudgetBytes": 307200,
+  "isolatedContexts": true,
+  "mockedIpc": true,
+  "osPreferencesChanged": false,
+  "captures": [
+    {
+      "file": "v33-final-capture-pending-light@1x.png",
+      "scenario": "capture-pending",
+      "entry": "island.html",
+      "figmaNode": "7:4",
+      "theme": "light",
+      "resolvedTheme": "dark",
+      "scale": 1,
+      "viewport": {
+        "width": 720,
+        "height": 460
+      },
+      "clip": {
+        "x": 192,
+        "y": 6,
+        "width": 336,
+        "height": 32
+      },
+      "width": 336,
+      "height": 32,
+      "bytes": 3744,
+      "sha256": "34b72be49a5bce7d1b65f2f0714aabb670a23cfce744717f4fb67785b99384a0",
+      "repeatMatches": true,
+      "font": null,
+      "fixtureSha256": "556f7df21db5db8c9b9397f57aa267e7abd6f3c65737f4df62302799b37c5b83",
+      "assertions": {
+        "passive": true,
+        "assets": [
+          {
+            "slot": "compact/iconLink",
+            "natural": [
+              16,
+              16
+            ],
+            "rendered": [
+              16,
+              16
+            ],
+            "local": true
+          },
+          {
+            "slot": "compact/iconDownload",
+            "natural": [
+              13,
+              13
+            ],
+            "rendered": [
+              13,
+              13
+            ],
+            "local": true
+          }
+        ]
+      },
+      "ipc": [
+        {
+          "command": "plugin:event|listen",
+          "args": {
+            "event": "nabbit://island-visibility",
+            "target": {
+              "kind": "Any"
+            },
+            "handler": 1
+          }
+        },
+        {
+          "command": "plugin:event|listen",
+          "args": {
+            "event": "nabbit://island",
+            "target": {
+              "kind": "Any"
+            },
+            "handler": 3
+          }
+        },
+        {
+          "command": "plugin:event|listen",
+          "args": {
+            "event": "nabbit://island-surface",
+            "target": {
+              "kind": "Any"
+            },
+            "handler": 5
+          }
+        },
+        {
+          "command": "plugin:event|listen",
+          "args": {
+            "event": "tauri://drag-enter",
+            "target": {
+              "kind": "WebviewWindow",
+              "label": "island"
+            },
+            "handler": 7
+          }
+        },
+        {
+          "command": "get_island_snapshot",
+          "args": {}
+        },
+        {
+          "command": "get_activity_snapshot",
+          "args": {}
+        },
+        {
+          "command": "get_island_surface",
+          "args": {}
+        },
+        {
+          "command": "plugin:event|listen",
+          "args": {
+            "event": "tauri://drag-over",
+            "target": {
+              "kind": "WebviewWindow",
+              "label": "island"
+            },
+            "handler": 9
+          }
+        },
+        {
+          "command": "plugin:event|listen",
+          "args": {
+            "event": "tauri://drag-drop",
+            "target": {
+              "kind": "WebviewWindow",
+              "label": "island"
+            },
+            "handler": 11
+          }
+        },
+        {
+          "command": "plugin:event|listen",
+          "args": {
+            "event": "tauri://drag-leave",
+            "target": {
+              "kind": "WebviewWindow",
+              "label": "island"
+            },
+            "handler": 13
+          }
+        },
+        {
+          "command": "island_set_hitrect",
+          "args": {
+            "rect": {
+              "x": 184,
+              "y": -2,
+              "w": 352,
+              "h": 48
+            }
+          }
+        },
+        {
+          "command": "island_surface_ack",
+          "args": {
+            "generation": 1
+          }
+        }
+      ],
+      "unsupported": [],
+      "runtimeAndNetworkProblems": []
+    },
+    {
+      "file": "v33-final-capture-compact-light@1x.png",
+      "scenario": "capture-compact",
+      "entry": "island.html",
+      "figmaNode": "7:4",
+      "theme": "light",
+      "resolvedTheme": "dark",
+      "scale": 1,
+      "viewport": {
+        "width": 720,
+        "height": 460
+      },
+      "clip": {
+        "x": 192,
+        "y": 6,
+        "width": 336,
+        "height": 32
+      },
+      "width": 336,
+      "height": 32,
+      "bytes": 4818,
+      "sha256": "1642751f5fa0a5c0fdbe1f99820c2e643aa6c5de1126b34e05434001a0dc1df5",
+      "repeatMatches": true,
+      "font": null,
+      "fixtureSha256": "27ddcc0b64b927b34d7c2dcb947c909d0a1091478d33e6530b810b529b6378c9",
+      "assertions": {
+        "passive": true,
+        "assets": [
+          {
+            "slot": "compact/iconLink",
+            "natural": [
+              16,
+              16
+            ],
+            "rendered": [
+              16,
+              16
+            ],
+            "local": true
+          },
+          {
+            "slot": "compact/iconDownload",
+            "natural": [
+              13,
+              13
+            ],
+            "rendered": [
+              13,
+              13
+            ],
+            "local": true
+          }
+        ]
+      },
+      "ipc": [
+        {
+          "command": "plugin:event|listen",
+          "args": {
+            "event": "nabbit://island-visibility",
+            "target": {
+              "kind": "Any"
+            },
+            "handler": 1
+          }
+        },
+        {
+          "command": "plugin:event|listen",
+          "args": {
+            "event": "nabbit://island",
+            "target": {
+              "kind": "Any"
+            },
+            "handler": 3
+          }
+        },
+        {
+          "command": "plugin:event|listen",
+          "args": {
+            "event": "nabbit://island-surface",
+            "target": {
+              "kind": "Any"
+            },
+            "handler": 5
+          }
+        },
+        {
+          "command": "plugin:event|listen",
+          "args": {
+            "event": "tauri://drag-enter",
+            "target": {
+              "kind": "WebviewWindow",
+              "label": "island"
+            },
+            "handler": 7
+          }
+        },
+        {
+          "command": "get_island_snapshot",
+          "args": {}
+        },
+        {
+          "command": "get_activity_snapshot",
+          "args": {}
+        },
+        {
+          "command": "get_island_surface",
+          "args": {}
+        },
+        {
+          "command": "plugin:event|listen",
+          "args": {
+            "event": "tauri://drag-over",
+            "target": {
+              "kind": "WebviewWindow",
+              "label": "island"
+            },
+            "handler": 9
+          }
+        },
+        {
+          "command": "plugin:event|listen",
+          "args": {
+            "event": "tauri://drag-drop",
+            "target": {
+              "kind": "WebviewWindow",
+              "label": "island"
+            },
+            "handler": 11
+          }
+        },
+        {
+          "command": "plugin:event|listen",
+          "args": {
+            "event": "tauri://drag-leave",
+            "target": {
+              "kind": "WebviewWindow",
+              "label": "island"
+            },
+            "handler": 13
+          }
+        },
+        {
+          "command": "island_set_hitrect",
+          "args": {
+            "rect": {
+              "x": 184,
+              "y": -2,
+              "w": 352,
+              "h": 48
+            }
+          }
+        },
+        {
+          "command": "island_surface_ack",
+          "args": {
+            "generation": 1
+          }
+        }
+      ],
+      "unsupported": [],
+      "runtimeAndNetworkProblems": []
+    },
+    {
+      "file": "v33-final-capture-peek-light@1x.png",
+      "scenario": "capture-peek",
+      "entry": "island.html",
+      "figmaNode": "8:38",
+      "theme": "light",
+      "resolvedTheme": "dark",
+      "scale": 1,
+      "viewport": {
+        "width": 720,
+        "height": 460
+      },
+      "clip": {
+        "x": 160,
+        "y": 6,
+        "width": 400,
+        "height": 100
+      },
+      "width": 400,
+      "height": 100,
+      "bytes": 14315,
+      "sha256": "ac698bba781f709985df4807f100aee369f0cc4c0ca57e9a54e22898dd7624d3",
+      "repeatMatches": true,
+      "font": null,
+      "fixtureSha256": "34f7f629b7fbde89a5b7e5c919824ac2e8192bc07a881de013696ff1fbdc81b1",
+      "assertions": {
+        "passive": true,
+        "assets": [
+          {
+            "slot": "peek/iconDownload",
+            "natural": [
+              14,
+              14
+            ],
+            "rendered": [
+              14,
+              14
+            ],
+            "local": true
+          }
+        ]
+      },
+      "ipc": [
+        {
+          "command": "plugin:event|listen",
+          "args": {
+            "event": "nabbit://island-visibility",
+            "target": {
+              "kind": "Any"
+            },
+            "handler": 1
+          }
+        },
+        {
+          "command": "plugin:event|listen",
+          "args": {
+            "event": "nabbit://island",
+            "target": {
+              "kind": "Any"
+            },
+            "handler": 3
+          }
+        },
+        {
+          "command": "plugin:event|listen",
+          "args": {
+            "event": "nabbit://island-surface",
+            "target": {
+              "kind": "Any"
+            },
+            "handler": 5
+          }
+        },
+        {
+          "command": "plugin:event|listen",
+          "args": {
+            "event": "tauri://drag-enter",
+            "target": {
+              "kind": "WebviewWindow",
+              "label": "island"
+            },
+            "handler": 7
+          }
+        },
+        {
+          "command": "get_island_snapshot",
+          "args": {}
+        },
+        {
+          "command": "get_activity_snapshot",
+          "args": {}
+        },
+        {
+          "command": "get_island_surface",
+          "args": {}
+        },
+        {
+          "command": "plugin:event|listen",
+          "args": {
+            "event": "tauri://drag-over",
+            "target": {
+              "kind": "WebviewWindow",
+              "label": "island"
+            },
+            "handler": 9
+          }
+        },
+        {
+          "command": "plugin:event|listen",
+          "args": {
+            "event": "tauri://drag-drop",
+            "target": {
+              "kind": "WebviewWindow",
+              "label": "island"
+            },
+            "handler": 11
+          }
+        },
+        {
+          "command": "plugin:event|listen",
+          "args": {
+            "event": "tauri://drag-leave",
+            "target": {
+              "kind": "WebviewWindow",
+              "label": "island"
+            },
+            "handler": 13
+          }
+        },
+        {
+          "command": "island_set_hitrect",
+          "args": {
+            "rect": {
+              "x": 152,
+              "y": -2,
+              "w": 416,
+              "h": 48
+            }
+          }
+        },
+        {
+          "command": "island_set_hitrect",
+          "args": {
+            "rect": {
+              "x": 152,
+              "y": -2,
+              "w": 416,
+              "h": 116
+            }
+          }
+        },
+        {
+          "command": "island_surface_ack",
+          "args": {
+            "generation": 1
+          }
+        }
+      ],
+      "unsupported": [],
+      "runtimeAndNetworkProblems": []
+    },
+    {
+      "file": "v33-final-capture-drop-light@1x.png",
+      "scenario": "capture-drop",
+      "entry": "island.html",
+      "figmaNode": "8:192",
+      "theme": "light",
+      "resolvedTheme": "dark",
+      "scale": 1,
+      "viewport": {
+        "width": 720,
+        "height": 460
+      },
+      "clip": {
+        "x": 40,
+        "y": 6,
+        "width": 640,
+        "height": 150
+      },
+      "width": 640,
+      "height": 150,
+      "bytes": 16774,
+      "sha256": "3c2be434f18385e6144b207efce65de8e26670eb1be6260d1e7d830f14aec2d2",
+      "repeatMatches": true,
+      "font": null,
+      "fixtureSha256": "957b869643884c0db47082e82df5365cb2acc8d90dbdcd96249efb3c13296b21",
+      "assertions": {
+        "passive": true,
+        "assets": [
+          {
+            "slot": "drop/iconArrowDownToLine",
+            "natural": [
+              20,
+              20
+            ],
+            "rendered": [
+              20,
+              20
+            ],
+            "local": true
+          },
+          {
+            "slot": "drop/iconInbox",
+            "natural": [
+              20,
+              20
+            ],
+            "rendered": [
+              20,
+              20
+            ],
+            "local": true
+          },
+          {
+            "slot": "drop/iconStickyNote",
+            "natural": [
+              20,
+              20
+            ],
+            "rendered": [
+              20,
+              20
+            ],
+            "local": true
+          }
+        ]
+      },
+      "ipc": [
+        {
+          "command": "plugin:event|listen",
+          "args": {
+            "event": "nabbit://island-visibility",
+            "target": {
+              "kind": "Any"
+            },
+            "handler": 1
+          }
+        },
+        {
+          "command": "plugin:event|listen",
+          "args": {
+            "event": "nabbit://island",
+            "target": {
+              "kind": "Any"
+            },
+            "handler": 3
+          }
+        },
+        {
+          "command": "plugin:event|listen",
+          "args": {
+            "event": "nabbit://island-surface",
+            "target": {
+              "kind": "Any"
+            },
+            "handler": 5
+          }
+        },
+        {
+          "command": "plugin:event|listen",
+          "args": {
+            "event": "tauri://drag-enter",
+            "target": {
+              "kind": "WebviewWindow",
+              "label": "island"
+            },
+            "handler": 7
+          }
+        },
+        {
+          "command": "get_island_snapshot",
+          "args": {}
+        },
+        {
+          "command": "get_activity_snapshot",
+          "args": {}
+        },
+        {
+          "command": "get_island_surface",
+          "args": {}
+        },
+        {
+          "command": "plugin:event|listen",
+          "args": {
+            "event": "tauri://drag-over",
+            "target": {
+              "kind": "WebviewWindow",
+              "label": "island"
+            },
+            "handler": 9
+          }
+        },
+        {
+          "command": "plugin:event|listen",
+          "args": {
+            "event": "tauri://drag-drop",
+            "target": {
+              "kind": "WebviewWindow",
+              "label": "island"
+            },
+            "handler": 11
+          }
+        },
+        {
+          "command": "plugin:event|listen",
+          "args": {
+            "event": "tauri://drag-leave",
+            "target": {
+              "kind": "WebviewWindow",
+              "label": "island"
+            },
+            "handler": 13
+          }
+        },
+        {
+          "command": "island_set_hitrect",
+          "args": {
+            "rect": {
+              "x": 32,
+              "y": -2,
+              "w": 656,
+              "h": 42
+            }
+          }
+        },
+        {
+          "command": "island_set_hitrect",
+          "args": {
+            "rect": {
+              "x": 32,
+              "y": -2,
+              "w": 656,
+              "h": 166
+            }
+          }
+        },
+        {
+          "command": "island_surface_ack",
+          "args": {
+            "generation": 1
+          }
+        }
+      ],
+      "unsupported": [],
+      "runtimeAndNetworkProblems": []
+    },
+    {
+      "file": "v33-final-capture-drag-review-light@1x.png",
+      "scenario": "capture-drag-review",
+      "entry": "island.html",
+      "figmaNode": "8:192",
+      "theme": "light",
+      "resolvedTheme": "dark",
+      "scale": 1,
+      "viewport": {
+        "width": 720,
+        "height": 460
+      },
+      "clip": {
+        "x": 20,
+        "y": 6,
+        "width": 680,
+        "height": 212
+      },
+      "width": 680,
+      "height": 212,
+      "bytes": 27317,
+      "sha256": "2ba4385403d32fcb7fe087efdedc2c50d068a39b22ebc7da4ccb5bb13f9076e1",
+      "repeatMatches": true,
+      "font": null,
+      "fixtureSha256": "957b869643884c0db47082e82df5365cb2acc8d90dbdcd96249efb3c13296b21",
+      "assertions": {
+        "passive": true,
+        "assets": [
+          {
+            "slot": "9:78/iconDownload",
+            "natural": [
+              15,
+              15
+            ],
+            "rendered": [
+              15,
+              15
+            ],
+            "local": true
+          },
+          {
+            "slot": "9:78/iconStickyNote",
+            "natural": [
+              15,
+              15
+            ],
+            "rendered": [
+              15,
+              15
+            ],
+            "local": true
+          },
+          {
+            "slot": "9:78/iconClipboardList",
+            "natural": [
+              15,
+              15
+            ],
+            "rendered": [
+              15,
+              15
+            ],
+            "local": true
+          },
+          {
+            "slot": "9:78/iconFolder",
+            "natural": [
+              15,
+              15
+            ],
+            "rendered": [
+              15,
+              15
+            ],
+            "local": true
+          },
+          {
+            "slot": "9:78/iconAudioLines",
+            "natural": [
+              15,
+              15
+            ],
+            "rendered": [
+              15,
+              15
+            ],
+            "local": true
+          },
+          {
+            "slot": "9:78/iconTimer",
+            "natural": [
+              15,
+              15
+            ],
+            "rendered": [
+              15,
+              15
+            ],
+            "local": true
+          },
+          {
+            "slot": "9:78/iconSearch",
+            "natural": [
+              16,
+              16
+            ],
+            "rendered": [
+              16,
+              16
+            ],
+            "local": true
+          },
+          {
+            "slot": "9:78/iconPanelTop",
+            "natural": [
+              16,
+              16
+            ],
+            "rendered": [
+              16,
+              16
+            ],
+            "local": true
+          },
+          {
+            "slot": "9:78/iconSettings",
+            "natural": [
+              16,
+              16
+            ],
+            "rendered": [
+              16,
+              16
+            ],
+            "local": true
+          },
+          {
+            "slot": "9:78/iconDownload1",
+            "natural": [
+              15,
+              15
+            ],
+            "rendered": [
+              15,
+              15
+            ],
+            "local": true
+          },
+          {
+            "slot": "drop/iconArrowDownToLine",
+            "natural": [
+              20,
+              20
+            ],
+            "rendered": [
+              20,
+              20
+            ],
+            "local": true
+          },
+          {
+            "slot": "drop/iconInbox",
+            "natural": [
+              20,
+              20
+            ],
+            "rendered": [
+              20,
+              20
+            ],
+            "local": true
+          },
+          {
+            "slot": "drop/iconStickyNote",
+            "natural": [
+              20,
+              20
+            ],
+            "rendered": [
+              20,
+              20
+            ],
+            "local": true
+          }
+        ]
+      },
+      "ipc": [
+        {
+          "command": "plugin:event|listen",
+          "args": {
+            "event": "nabbit://island-visibility",
+            "target": {
+              "kind": "Any"
+            },
+            "handler": 1
+          }
+        },
+        {
+          "command": "plugin:event|listen",
+          "args": {
+            "event": "nabbit://island",
+            "target": {
+              "kind": "Any"
+            },
+            "handler": 3
+          }
+        },
+        {
+          "command": "plugin:event|listen",
+          "args": {
+            "event": "nabbit://island-surface",
+            "target": {
+              "kind": "Any"
+            },
+            "handler": 5
+          }
+        },
+        {
+          "command": "plugin:event|listen",
+          "args": {
+            "event": "tauri://drag-enter",
+            "target": {
+              "kind": "WebviewWindow",
+              "label": "island"
+            },
+            "handler": 7
+          }
+        },
+        {
+          "command": "get_island_snapshot",
+          "args": {}
+        },
+        {
+          "command": "get_activity_snapshot",
+          "args": {}
+        },
+        {
+          "command": "get_island_surface",
+          "args": {}
+        },
+        {
+          "command": "plugin:event|listen",
+          "args": {
+            "event": "tauri://drag-over",
+            "target": {
+              "kind": "WebviewWindow",
+              "label": "island"
+            },
+            "handler": 9
+          }
+        },
+        {
+          "command": "plugin:event|listen",
+          "args": {
+            "event": "tauri://drag-drop",
+            "target": {
+              "kind": "WebviewWindow",
+              "label": "island"
+            },
+            "handler": 11
+          }
+        },
+        {
+          "command": "plugin:event|listen",
+          "args": {
+            "event": "tauri://drag-leave",
+            "target": {
+              "kind": "WebviewWindow",
+              "label": "island"
+            },
+            "handler": 13
+          }
+        },
+        {
+          "command": "island_set_hitrect",
+          "args": {
+            "rect": {
+              "x": 32,
+              "y": -2,
+              "w": 656,
+              "h": 42
+            }
+          }
+        },
+        {
+          "command": "island_set_hitrect",
+          "args": {
+            "rect": {
+              "x": 32,
+              "y": -2,
+              "w": 656,
+              "h": 166
+            }
+          }
+        },
+        {
+          "command": "island_surface_ack",
+          "args": {
+            "generation": 1
+          }
+        },
+        {
+          "command": "island_review_url",
+          "args": {
+            "url": "https://example.invalid/video"
+          }
+        },
+        {
+          "command": "get_activity_snapshot",
+          "args": {}
+        },
+        {
+          "command": "island_surface_request",
+          "args": {
+            "state": "expanded"
+          }
+        },
+        {
+          "command": "get_activity_snapshot",
+          "args": {}
+        },
+        {
+          "command": "island_set_hitrect",
+          "args": {
+            "rect": {
+              "x": 12,
+              "y": -2,
+              "w": 696,
+              "h": 72
+            }
+          }
+        },
+        {
+          "command": "island_set_hitrect",
+          "args": {
+            "rect": {
+              "x": 12,
+              "y": -2,
+              "w": 696,
+              "h": 228
+            }
+          }
+        }
+      ],
+      "unsupported": [],
+      "runtimeAndNetworkProblems": []
+    },
+    {
+      "file": "v33-final-capture-tray-push-light@1x.png",
+      "scenario": "capture-tray-push",
+      "entry": "index.html",
+      "figmaNode": "17:5",
+      "theme": "light",
+      "resolvedTheme": "light",
+      "scale": 1,
+      "viewport": {
+        "width": 460,
+        "height": 680
+      },
+      "clip": {
+        "x": 0,
+        "y": 0,
+        "width": 460,
+        "height": 680
+      },
+      "width": 460,
+      "height": 680,
+      "bytes": 38512,
+      "sha256": "800c4c7a5176f14a2381661da0a27394f272ae46b7af80e21316ecd8a77a2368",
+      "repeatMatches": true,
+      "font": [
+        {
+          "familyName": "Geist",
+          "postScriptName": "Geist",
+          "isCustomFont": true,
+          "glyphCount": 6
+        }
+      ],
+      "fixtureSha256": "e77d7a78fe024cdcf3bc367064b0a1b112c0846325a615e795a0aa2fd2b2a235",
+      "assertions": {
+        "pushedMetadata": true,
+        "extraProbe": false,
+        "jobs": 2
+      },
+      "ipc": [
+        {
+          "command": "plugin:event|listen",
+          "args": {
+            "event": "nabbit://open-settings",
+            "target": {
+              "kind": "Any"
+            },
+            "handler": 1
+          }
+        },
+        {
+          "command": "plugin:event|listen",
+          "args": {
+            "event": "engine:health",
+            "target": {
+              "kind": "Any"
+            },
+            "handler": 3
+          }
+        },
+        {
+          "command": "plugin:event|listen",
+          "args": {
+            "event": "tauri://theme-changed",
+            "target": {
+              "kind": "Window",
+              "label": "main"
+            },
+            "handler": 5
+          }
+        },
+        {
+          "command": "get_settings",
+          "args": {}
+        },
+        {
+          "command": "list_clipboard_entries",
+          "args": {
+            "query": ""
+          }
+        },
+        {
+          "command": "list_downloads",
+          "args": {}
+        },
+        {
+          "command": "get_engine_status",
+          "args": {}
+        },
+        {
+          "command": "get_storage_stats",
+          "args": {}
+        },
+        {
+          "command": "get_captured_link",
+          "args": {}
+        },
+        {
+          "command": "plugin:event|listen",
+          "args": {
+            "event": "clipboard:new",
+            "target": {
+              "kind": "Any"
+            },
+            "handler": 7
+          }
+        },
+        {
+          "command": "plugin:event|listen",
+          "args": {
+            "event": "url:detected",
+            "target": {
+              "kind": "Any"
+            },
+            "handler": 9
+          }
+        },
+        {
+          "command": "plugin:event|listen",
+          "args": {
+            "event": "capture:review",
+            "target": {
+              "kind": "Any"
+            },
+            "handler": 11
+          }
+        },
+        {
+          "command": "plugin:event|listen",
+          "args": {
+            "event": "capture:error",
+            "target": {
+              "kind": "Any"
+            },
+            "handler": 13
+          }
+        },
+        {
+          "command": "plugin:event|listen",
+          "args": {
+            "event": "download:updated",
+            "target": {
+              "kind": "Any"
+            },
+            "handler": 15
+          }
+        },
+        {
+          "command": "plugin:event|listen",
+          "args": {
+            "event": "shortcut:clipboard-search",
+            "target": {
+              "kind": "Any"
+            },
+            "handler": 17
+          }
+        },
+        {
+          "command": "consume_island_settings_intent",
+          "args": {}
+        },
+        {
+          "command": "plugin:window|theme",
+          "args": {
+            "label": "main"
+          }
+        }
+      ],
+      "unsupported": [],
+      "runtimeAndNetworkProblems": []
+    },
+    {
+      "file": "v33-final-capture-pending-light@1.5x.png",
+      "scenario": "capture-pending",
+      "entry": "island.html",
+      "figmaNode": "7:4",
+      "theme": "light",
+      "resolvedTheme": "dark",
+      "scale": 1.5,
+      "viewport": {
+        "width": 720,
+        "height": 460
+      },
+      "clip": {
+        "x": 192,
+        "y": 6,
+        "width": 336,
+        "height": 32
+      },
+      "width": 504,
+      "height": 48,
+      "bytes": 6739,
+      "sha256": "f7e2ab517e6906c2ae683723af7df32f024f5e3a2ae4579195333891bd1c2b97",
+      "repeatMatches": true,
+      "font": null,
+      "fixtureSha256": "556f7df21db5db8c9b9397f57aa267e7abd6f3c65737f4df62302799b37c5b83",
+      "assertions": {
+        "passive": true,
+        "assets": [
+          {
+            "slot": "compact/iconLink",
+            "natural": [
+              16,
+              16
+            ],
+            "rendered": [
+              16,
+              16
+            ],
+            "local": true
+          },
+          {
+            "slot": "compact/iconDownload",
+            "natural": [
+              13,
+              13
+            ],
+            "rendered": [
+              13,
+              13
+            ],
+            "local": true
+          }
+        ]
+      },
+      "ipc": [
+        {
+          "command": "plugin:event|listen",
+          "args": {
+            "event": "nabbit://island-visibility",
+            "target": {
+              "kind": "Any"
+            },
+            "handler": 1
+          }
+        },
+        {
+          "command": "plugin:event|listen",
+          "args": {
+            "event": "nabbit://island",
+            "target": {
+              "kind": "Any"
+            },
+            "handler": 3
+          }
+        },
+        {
+          "command": "plugin:event|listen",
+          "args": {
+            "event": "nabbit://island-surface",
+            "target": {
+              "kind": "Any"
+            },
+            "handler": 5
+          }
+        },
+        {
+          "command": "plugin:event|listen",
+          "args": {
+            "event": "tauri://drag-enter",
+            "target": {
+              "kind": "WebviewWindow",
+              "label": "island"
+            },
+            "handler": 7
+          }
+        },
+        {
+          "command": "get_island_snapshot",
+          "args": {}
+        },
+        {
+          "command": "get_activity_snapshot",
+          "args": {}
+        },
+        {
+          "command": "get_island_surface",
+          "args": {}
+        },
+        {
+          "command": "plugin:event|listen",
+          "args": {
+            "event": "tauri://drag-over",
+            "target": {
+              "kind": "WebviewWindow",
+              "label": "island"
+            },
+            "handler": 9
+          }
+        },
+        {
+          "command": "plugin:event|listen",
+          "args": {
+            "event": "tauri://drag-drop",
+            "target": {
+              "kind": "WebviewWindow",
+              "label": "island"
+            },
+            "handler": 11
+          }
+        },
+        {
+          "command": "plugin:event|listen",
+          "args": {
+            "event": "tauri://drag-leave",
+            "target": {
+              "kind": "WebviewWindow",
+              "label": "island"
+            },
+            "handler": 13
+          }
+        },
+        {
+          "command": "island_set_hitrect",
+          "args": {
+            "rect": {
+              "x": 184,
+              "y": -2,
+              "w": 352,
+              "h": 48
+            }
+          }
+        },
+        {
+          "command": "island_surface_ack",
+          "args": {
+            "generation": 1
+          }
+        }
+      ],
+      "unsupported": [],
+      "runtimeAndNetworkProblems": []
+    },
+    {
+      "file": "v33-final-capture-compact-light@1.5x.png",
+      "scenario": "capture-compact",
+      "entry": "island.html",
+      "figmaNode": "7:4",
+      "theme": "light",
+      "resolvedTheme": "dark",
+      "scale": 1.5,
+      "viewport": {
+        "width": 720,
+        "height": 460
+      },
+      "clip": {
+        "x": 192,
+        "y": 6,
+        "width": 336,
+        "height": 32
+      },
+      "width": 504,
+      "height": 48,
+      "bytes": 7983,
+      "sha256": "6c2a939aba7220cf0ff3e18134dfec832fcb001a6dad28348131bac3d01c7b02",
+      "repeatMatches": true,
+      "font": null,
+      "fixtureSha256": "27ddcc0b64b927b34d7c2dcb947c909d0a1091478d33e6530b810b529b6378c9",
+      "assertions": {
+        "passive": true,
+        "assets": [
+          {
+            "slot": "compact/iconLink",
+            "natural": [
+              16,
+              16
+            ],
+            "rendered": [
+              16,
+              16
+            ],
+            "local": true
+          },
+          {
+            "slot": "compact/iconDownload",
+            "natural": [
+              13,
+              13
+            ],
+            "rendered": [
+              13,
+              13
+            ],
+            "local": true
+          }
+        ]
+      },
+      "ipc": [
+        {
+          "command": "plugin:event|listen",
+          "args": {
+            "event": "nabbit://island-visibility",
+            "target": {
+              "kind": "Any"
+            },
+            "handler": 1
+          }
+        },
+        {
+          "command": "plugin:event|listen",
+          "args": {
+            "event": "nabbit://island",
+            "target": {
+              "kind": "Any"
+            },
+            "handler": 3
+          }
+        },
+        {
+          "command": "plugin:event|listen",
+          "args": {
+            "event": "nabbit://island-surface",
+            "target": {
+              "kind": "Any"
+            },
+            "handler": 5
+          }
+        },
+        {
+          "command": "plugin:event|listen",
+          "args": {
+            "event": "tauri://drag-enter",
+            "target": {
+              "kind": "WebviewWindow",
+              "label": "island"
+            },
+            "handler": 7
+          }
+        },
+        {
+          "command": "get_island_snapshot",
+          "args": {}
+        },
+        {
+          "command": "get_activity_snapshot",
+          "args": {}
+        },
+        {
+          "command": "get_island_surface",
+          "args": {}
+        },
+        {
+          "command": "plugin:event|listen",
+          "args": {
+            "event": "tauri://drag-over",
+            "target": {
+              "kind": "WebviewWindow",
+              "label": "island"
+            },
+            "handler": 9
+          }
+        },
+        {
+          "command": "plugin:event|listen",
+          "args": {
+            "event": "tauri://drag-drop",
+            "target": {
+              "kind": "WebviewWindow",
+              "label": "island"
+            },
+            "handler": 11
+          }
+        },
+        {
+          "command": "plugin:event|listen",
+          "args": {
+            "event": "tauri://drag-leave",
+            "target": {
+              "kind": "WebviewWindow",
+              "label": "island"
+            },
+            "handler": 13
+          }
+        },
+        {
+          "command": "island_set_hitrect",
+          "args": {
+            "rect": {
+              "x": 184,
+              "y": -2,
+              "w": 352,
+              "h": 48
+            }
+          }
+        },
+        {
+          "command": "island_surface_ack",
+          "args": {
+            "generation": 1
+          }
+        }
+      ],
+      "unsupported": [],
+      "runtimeAndNetworkProblems": []
+    },
+    {
+      "file": "v33-final-capture-peek-light@1.5x.png",
+      "scenario": "capture-peek",
+      "entry": "island.html",
+      "figmaNode": "8:38",
+      "theme": "light",
+      "resolvedTheme": "dark",
+      "scale": 1.5,
+      "viewport": {
+        "width": 720,
+        "height": 460
+      },
+      "clip": {
+        "x": 160,
+        "y": 6,
+        "width": 400,
+        "height": 100
+      },
+      "width": 600,
+      "height": 150,
+      "bytes": 23258,
+      "sha256": "539b5d300e055bdd0e92c84810753ede5e1b769fdec816acdfea4a81ad56e7a3",
+      "repeatMatches": true,
+      "font": null,
+      "fixtureSha256": "34f7f629b7fbde89a5b7e5c919824ac2e8192bc07a881de013696ff1fbdc81b1",
+      "assertions": {
+        "passive": true,
+        "assets": [
+          {
+            "slot": "peek/iconDownload",
+            "natural": [
+              14,
+              14
+            ],
+            "rendered": [
+              14,
+              14
+            ],
+            "local": true
+          }
+        ]
+      },
+      "ipc": [
+        {
+          "command": "plugin:event|listen",
+          "args": {
+            "event": "nabbit://island-visibility",
+            "target": {
+              "kind": "Any"
+            },
+            "handler": 1
+          }
+        },
+        {
+          "command": "plugin:event|listen",
+          "args": {
+            "event": "nabbit://island",
+            "target": {
+              "kind": "Any"
+            },
+            "handler": 3
+          }
+        },
+        {
+          "command": "plugin:event|listen",
+          "args": {
+            "event": "nabbit://island-surface",
+            "target": {
+              "kind": "Any"
+            },
+            "handler": 5
+          }
+        },
+        {
+          "command": "plugin:event|listen",
+          "args": {
+            "event": "tauri://drag-enter",
+            "target": {
+              "kind": "WebviewWindow",
+              "label": "island"
+            },
+            "handler": 7
+          }
+        },
+        {
+          "command": "get_island_snapshot",
+          "args": {}
+        },
+        {
+          "command": "get_activity_snapshot",
+          "args": {}
+        },
+        {
+          "command": "get_island_surface",
+          "args": {}
+        },
+        {
+          "command": "plugin:event|listen",
+          "args": {
+            "event": "tauri://drag-over",
+            "target": {
+              "kind": "WebviewWindow",
+              "label": "island"
+            },
+            "handler": 9
+          }
+        },
+        {
+          "command": "plugin:event|listen",
+          "args": {
+            "event": "tauri://drag-drop",
+            "target": {
+              "kind": "WebviewWindow",
+              "label": "island"
+            },
+            "handler": 11
+          }
+        },
+        {
+          "command": "plugin:event|listen",
+          "args": {
+            "event": "tauri://drag-leave",
+            "target": {
+              "kind": "WebviewWindow",
+              "label": "island"
+            },
+            "handler": 13
+          }
+        },
+        {
+          "command": "island_set_hitrect",
+          "args": {
+            "rect": {
+              "x": 152,
+              "y": -2,
+              "w": 416,
+              "h": 48
+            }
+          }
+        },
+        {
+          "command": "island_set_hitrect",
+          "args": {
+            "rect": {
+              "x": 152,
+              "y": -2,
+              "w": 416,
+              "h": 116
+            }
+          }
+        },
+        {
+          "command": "island_surface_ack",
+          "args": {
+            "generation": 1
+          }
+        }
+      ],
+      "unsupported": [],
+      "runtimeAndNetworkProblems": []
+    },
+    {
+      "file": "v33-final-capture-drop-light@1.5x.png",
+      "scenario": "capture-drop",
+      "entry": "island.html",
+      "figmaNode": "8:192",
+      "theme": "light",
+      "resolvedTheme": "dark",
+      "scale": 1.5,
+      "viewport": {
+        "width": 720,
+        "height": 460
+      },
+      "clip": {
+        "x": 40,
+        "y": 6,
+        "width": 640,
+        "height": 150
+      },
+      "width": 960,
+      "height": 225,
+      "bytes": 28753,
+      "sha256": "28514872030dfc79f9f64df3eaf1aef4659dc6f816c1dd18cb0d1bd8baa2df89",
+      "repeatMatches": true,
+      "font": null,
+      "fixtureSha256": "957b869643884c0db47082e82df5365cb2acc8d90dbdcd96249efb3c13296b21",
+      "assertions": {
+        "passive": true,
+        "assets": [
+          {
+            "slot": "drop/iconArrowDownToLine",
+            "natural": [
+              20,
+              20
+            ],
+            "rendered": [
+              20,
+              20
+            ],
+            "local": true
+          },
+          {
+            "slot": "drop/iconInbox",
+            "natural": [
+              20,
+              20
+            ],
+            "rendered": [
+              20,
+              20
+            ],
+            "local": true
+          },
+          {
+            "slot": "drop/iconStickyNote",
+            "natural": [
+              20,
+              20
+            ],
+            "rendered": [
+              20,
+              20
+            ],
+            "local": true
+          }
+        ]
+      },
+      "ipc": [
+        {
+          "command": "plugin:event|listen",
+          "args": {
+            "event": "nabbit://island-visibility",
+            "target": {
+              "kind": "Any"
+            },
+            "handler": 1
+          }
+        },
+        {
+          "command": "plugin:event|listen",
+          "args": {
+            "event": "nabbit://island",
+            "target": {
+              "kind": "Any"
+            },
+            "handler": 3
+          }
+        },
+        {
+          "command": "plugin:event|listen",
+          "args": {
+            "event": "nabbit://island-surface",
+            "target": {
+              "kind": "Any"
+            },
+            "handler": 5
+          }
+        },
+        {
+          "command": "plugin:event|listen",
+          "args": {
+            "event": "tauri://drag-enter",
+            "target": {
+              "kind": "WebviewWindow",
+              "label": "island"
+            },
+            "handler": 7
+          }
+        },
+        {
+          "command": "get_island_snapshot",
+          "args": {}
+        },
+        {
+          "command": "get_activity_snapshot",
+          "args": {}
+        },
+        {
+          "command": "get_island_surface",
+          "args": {}
+        },
+        {
+          "command": "plugin:event|listen",
+          "args": {
+            "event": "tauri://drag-over",
+            "target": {
+              "kind": "WebviewWindow",
+              "label": "island"
+            },
+            "handler": 9
+          }
+        },
+        {
+          "command": "plugin:event|listen",
+          "args": {
+            "event": "tauri://drag-drop",
+            "target": {
+              "kind": "WebviewWindow",
+              "label": "island"
+            },
+            "handler": 11
+          }
+        },
+        {
+          "command": "plugin:event|listen",
+          "args": {
+            "event": "tauri://drag-leave",
+            "target": {
+              "kind": "WebviewWindow",
+              "label": "island"
+            },
+            "handler": 13
+          }
+        },
+        {
+          "command": "island_set_hitrect",
+          "args": {
+            "rect": {
+              "x": 32,
+              "y": -2,
+              "w": 656,
+              "h": 42
+            }
+          }
+        },
+        {
+          "command": "island_set_hitrect",
+          "args": {
+            "rect": {
+              "x": 32,
+              "y": -2,
+              "w": 656,
+              "h": 166
+            }
+          }
+        },
+        {
+          "command": "island_surface_ack",
+          "args": {
+            "generation": 1
+          }
+        }
+      ],
+      "unsupported": [],
+      "runtimeAndNetworkProblems": []
+    },
+    {
+      "file": "v33-final-capture-drag-review-light@1.5x.png",
+      "scenario": "capture-drag-review",
+      "entry": "island.html",
+      "figmaNode": "8:192",
+      "theme": "light",
+      "resolvedTheme": "dark",
+      "scale": 1.5,
+      "viewport": {
+        "width": 720,
+        "height": 460
+      },
+      "clip": {
+        "x": 20,
+        "y": 6,
+        "width": 680,
+        "height": 212
+      },
+      "width": 1020,
+      "height": 318,
+      "bytes": 50250,
+      "sha256": "7b460b661ba6e32447cf75218184dee65ef3a9a2e9a5c8985b6e1b42bcb6266d",
+      "repeatMatches": true,
+      "font": null,
+      "fixtureSha256": "957b869643884c0db47082e82df5365cb2acc8d90dbdcd96249efb3c13296b21",
+      "assertions": {
+        "passive": true,
+        "assets": [
+          {
+            "slot": "9:78/iconDownload",
+            "natural": [
+              15,
+              15
+            ],
+            "rendered": [
+              15,
+              15
+            ],
+            "local": true
+          },
+          {
+            "slot": "9:78/iconStickyNote",
+            "natural": [
+              15,
+              15
+            ],
+            "rendered": [
+              15,
+              15
+            ],
+            "local": true
+          },
+          {
+            "slot": "9:78/iconClipboardList",
+            "natural": [
+              15,
+              15
+            ],
+            "rendered": [
+              15,
+              15
+            ],
+            "local": true
+          },
+          {
+            "slot": "9:78/iconFolder",
+            "natural": [
+              15,
+              15
+            ],
+            "rendered": [
+              15,
+              15
+            ],
+            "local": true
+          },
+          {
+            "slot": "9:78/iconAudioLines",
+            "natural": [
+              15,
+              15
+            ],
+            "rendered": [
+              15,
+              15
+            ],
+            "local": true
+          },
+          {
+            "slot": "9:78/iconTimer",
+            "natural": [
+              15,
+              15
+            ],
+            "rendered": [
+              15,
+              15
+            ],
+            "local": true
+          },
+          {
+            "slot": "9:78/iconSearch",
+            "natural": [
+              16,
+              16
+            ],
+            "rendered": [
+              16,
+              16
+            ],
+            "local": true
+          },
+          {
+            "slot": "9:78/iconPanelTop",
+            "natural": [
+              16,
+              16
+            ],
+            "rendered": [
+              16,
+              16
+            ],
+            "local": true
+          },
+          {
+            "slot": "9:78/iconSettings",
+            "natural": [
+              16,
+              16
+            ],
+            "rendered": [
+              16,
+              16
+            ],
+            "local": true
+          },
+          {
+            "slot": "9:78/iconDownload1",
+            "natural": [
+              15,
+              15
+            ],
+            "rendered": [
+              15,
+              15
+            ],
+            "local": true
+          },
+          {
+            "slot": "drop/iconArrowDownToLine",
+            "natural": [
+              20,
+              20
+            ],
+            "rendered": [
+              20,
+              20
+            ],
+            "local": true
+          },
+          {
+            "slot": "drop/iconInbox",
+            "natural": [
+              20,
+              20
+            ],
+            "rendered": [
+              20,
+              20
+            ],
+            "local": true
+          },
+          {
+            "slot": "drop/iconStickyNote",
+            "natural": [
+              20,
+              20
+            ],
+            "rendered": [
+              20,
+              20
+            ],
+            "local": true
+          }
+        ]
+      },
+      "ipc": [
+        {
+          "command": "plugin:event|listen",
+          "args": {
+            "event": "nabbit://island-visibility",
+            "target": {
+              "kind": "Any"
+            },
+            "handler": 1
+          }
+        },
+        {
+          "command": "plugin:event|listen",
+          "args": {
+            "event": "nabbit://island",
+            "target": {
+              "kind": "Any"
+            },
+            "handler": 3
+          }
+        },
+        {
+          "command": "plugin:event|listen",
+          "args": {
+            "event": "nabbit://island-surface",
+            "target": {
+              "kind": "Any"
+            },
+            "handler": 5
+          }
+        },
+        {
+          "command": "plugin:event|listen",
+          "args": {
+            "event": "tauri://drag-enter",
+            "target": {
+              "kind": "WebviewWindow",
+              "label": "island"
+            },
+            "handler": 7
+          }
+        },
+        {
+          "command": "get_island_snapshot",
+          "args": {}
+        },
+        {
+          "command": "get_activity_snapshot",
+          "args": {}
+        },
+        {
+          "command": "get_island_surface",
+          "args": {}
+        },
+        {
+          "command": "plugin:event|listen",
+          "args": {
+            "event": "tauri://drag-over",
+            "target": {
+              "kind": "WebviewWindow",
+              "label": "island"
+            },
+            "handler": 9
+          }
+        },
+        {
+          "command": "plugin:event|listen",
+          "args": {
+            "event": "tauri://drag-drop",
+            "target": {
+              "kind": "WebviewWindow",
+              "label": "island"
+            },
+            "handler": 11
+          }
+        },
+        {
+          "command": "plugin:event|listen",
+          "args": {
+            "event": "tauri://drag-leave",
+            "target": {
+              "kind": "WebviewWindow",
+              "label": "island"
+            },
+            "handler": 13
+          }
+        },
+        {
+          "command": "island_set_hitrect",
+          "args": {
+            "rect": {
+              "x": 32,
+              "y": -2,
+              "w": 656,
+              "h": 42
+            }
+          }
+        },
+        {
+          "command": "island_set_hitrect",
+          "args": {
+            "rect": {
+              "x": 32,
+              "y": -2,
+              "w": 656,
+              "h": 166
+            }
+          }
+        },
+        {
+          "command": "island_surface_ack",
+          "args": {
+            "generation": 1
+          }
+        },
+        {
+          "command": "island_review_url",
+          "args": {
+            "url": "https://example.invalid/video"
+          }
+        },
+        {
+          "command": "get_activity_snapshot",
+          "args": {}
+        },
+        {
+          "command": "island_surface_request",
+          "args": {
+            "state": "expanded"
+          }
+        },
+        {
+          "command": "get_activity_snapshot",
+          "args": {}
+        },
+        {
+          "command": "island_set_hitrect",
+          "args": {
+            "rect": {
+              "x": 12,
+              "y": -2,
+              "w": 696,
+              "h": 72
+            }
+          }
+        },
+        {
+          "command": "island_set_hitrect",
+          "args": {
+            "rect": {
+              "x": 12,
+              "y": -2,
+              "w": 696,
+              "h": 228
+            }
+          }
+        }
+      ],
+      "unsupported": [],
+      "runtimeAndNetworkProblems": []
+    },
+    {
+      "file": "v33-final-capture-tray-push-light@1.5x.png",
+      "scenario": "capture-tray-push",
+      "entry": "index.html",
+      "figmaNode": "17:5",
+      "theme": "light",
+      "resolvedTheme": "light",
+      "scale": 1.5,
+      "viewport": {
+        "width": 460,
+        "height": 680
+      },
+      "clip": {
+        "x": 0,
+        "y": 0,
+        "width": 460,
+        "height": 680
+      },
+      "width": 690,
+      "height": 1020,
+      "bytes": 65520,
+      "sha256": "9357c3cf5ff161a2e84044ca88bc13b4ac9af62aa2b480564710aaac9d0531a5",
+      "repeatMatches": true,
+      "font": [
+        {
+          "familyName": "Geist",
+          "postScriptName": "Geist",
+          "isCustomFont": true,
+          "glyphCount": 6
+        }
+      ],
+      "fixtureSha256": "e77d7a78fe024cdcf3bc367064b0a1b112c0846325a615e795a0aa2fd2b2a235",
+      "assertions": {
+        "pushedMetadata": true,
+        "extraProbe": false,
+        "jobs": 2
+      },
+      "ipc": [
+        {
+          "command": "plugin:event|listen",
+          "args": {
+            "event": "nabbit://open-settings",
+            "target": {
+              "kind": "Any"
+            },
+            "handler": 1
+          }
+        },
+        {
+          "command": "plugin:event|listen",
+          "args": {
+            "event": "engine:health",
+            "target": {
+              "kind": "Any"
+            },
+            "handler": 3
+          }
+        },
+        {
+          "command": "plugin:event|listen",
+          "args": {
+            "event": "tauri://theme-changed",
+            "target": {
+              "kind": "Window",
+              "label": "main"
+            },
+            "handler": 5
+          }
+        },
+        {
+          "command": "get_settings",
+          "args": {}
+        },
+        {
+          "command": "list_clipboard_entries",
+          "args": {
+            "query": ""
+          }
+        },
+        {
+          "command": "list_downloads",
+          "args": {}
+        },
+        {
+          "command": "get_engine_status",
+          "args": {}
+        },
+        {
+          "command": "get_storage_stats",
+          "args": {}
+        },
+        {
+          "command": "get_captured_link",
+          "args": {}
+        },
+        {
+          "command": "plugin:event|listen",
+          "args": {
+            "event": "clipboard:new",
+            "target": {
+              "kind": "Any"
+            },
+            "handler": 7
+          }
+        },
+        {
+          "command": "plugin:event|listen",
+          "args": {
+            "event": "url:detected",
+            "target": {
+              "kind": "Any"
+            },
+            "handler": 9
+          }
+        },
+        {
+          "command": "plugin:event|listen",
+          "args": {
+            "event": "capture:review",
+            "target": {
+              "kind": "Any"
+            },
+            "handler": 11
+          }
+        },
+        {
+          "command": "plugin:event|listen",
+          "args": {
+            "event": "capture:error",
+            "target": {
+              "kind": "Any"
+            },
+            "handler": 13
+          }
+        },
+        {
+          "command": "plugin:event|listen",
+          "args": {
+            "event": "download:updated",
+            "target": {
+              "kind": "Any"
+            },
+            "handler": 15
+          }
+        },
+        {
+          "command": "plugin:event|listen",
+          "args": {
+            "event": "shortcut:clipboard-search",
+            "target": {
+              "kind": "Any"
+            },
+            "handler": 17
+          }
+        },
+        {
+          "command": "consume_island_settings_intent",
+          "args": {}
+        },
+        {
+          "command": "plugin:window|theme",
+          "args": {
+            "label": "main"
+          }
+        }
+      ],
+      "unsupported": [],
+      "runtimeAndNetworkProblems": []
+    },
+    {
+      "file": "v33-final-capture-pending-dark@1x.png",
+      "scenario": "capture-pending",
+      "entry": "island.html",
+      "figmaNode": "7:4",
+      "theme": "dark",
+      "resolvedTheme": "dark",
+      "scale": 1,
+      "viewport": {
+        "width": 720,
+        "height": 460
+      },
+      "clip": {
+        "x": 192,
+        "y": 6,
+        "width": 336,
+        "height": 32
+      },
+      "width": 336,
+      "height": 32,
+      "bytes": 3744,
+      "sha256": "34b72be49a5bce7d1b65f2f0714aabb670a23cfce744717f4fb67785b99384a0",
+      "repeatMatches": true,
+      "font": null,
+      "fixtureSha256": "d8995b8f78f97eff80bd5668d904c8db4e64c60ad6e4f7f71276150efe0f1601",
+      "assertions": {
+        "passive": true,
+        "assets": [
+          {
+            "slot": "compact/iconLink",
+            "natural": [
+              16,
+              16
+            ],
+            "rendered": [
+              16,
+              16
+            ],
+            "local": true
+          },
+          {
+            "slot": "compact/iconDownload",
+            "natural": [
+              13,
+              13
+            ],
+            "rendered": [
+              13,
+              13
+            ],
+            "local": true
+          }
+        ]
+      },
+      "ipc": [
+        {
+          "command": "plugin:event|listen",
+          "args": {
+            "event": "nabbit://island-visibility",
+            "target": {
+              "kind": "Any"
+            },
+            "handler": 1
+          }
+        },
+        {
+          "command": "plugin:event|listen",
+          "args": {
+            "event": "nabbit://island",
+            "target": {
+              "kind": "Any"
+            },
+            "handler": 3
+          }
+        },
+        {
+          "command": "plugin:event|listen",
+          "args": {
+            "event": "nabbit://island-surface",
+            "target": {
+              "kind": "Any"
+            },
+            "handler": 5
+          }
+        },
+        {
+          "command": "plugin:event|listen",
+          "args": {
+            "event": "tauri://drag-enter",
+            "target": {
+              "kind": "WebviewWindow",
+              "label": "island"
+            },
+            "handler": 7
+          }
+        },
+        {
+          "command": "get_island_snapshot",
+          "args": {}
+        },
+        {
+          "command": "get_activity_snapshot",
+          "args": {}
+        },
+        {
+          "command": "get_island_surface",
+          "args": {}
+        },
+        {
+          "command": "plugin:event|listen",
+          "args": {
+            "event": "tauri://drag-over",
+            "target": {
+              "kind": "WebviewWindow",
+              "label": "island"
+            },
+            "handler": 9
+          }
+        },
+        {
+          "command": "plugin:event|listen",
+          "args": {
+            "event": "tauri://drag-drop",
+            "target": {
+              "kind": "WebviewWindow",
+              "label": "island"
+            },
+            "handler": 11
+          }
+        },
+        {
+          "command": "plugin:event|listen",
+          "args": {
+            "event": "tauri://drag-leave",
+            "target": {
+              "kind": "WebviewWindow",
+              "label": "island"
+            },
+            "handler": 13
+          }
+        },
+        {
+          "command": "island_set_hitrect",
+          "args": {
+            "rect": {
+              "x": 184,
+              "y": -2,
+              "w": 352,
+              "h": 48
+            }
+          }
+        },
+        {
+          "command": "island_surface_ack",
+          "args": {
+            "generation": 1
+          }
+        }
+      ],
+      "unsupported": [],
+      "runtimeAndNetworkProblems": []
+    },
+    {
+      "file": "v33-final-capture-compact-dark@1x.png",
+      "scenario": "capture-compact",
+      "entry": "island.html",
+      "figmaNode": "7:4",
+      "theme": "dark",
+      "resolvedTheme": "dark",
+      "scale": 1,
+      "viewport": {
+        "width": 720,
+        "height": 460
+      },
+      "clip": {
+        "x": 192,
+        "y": 6,
+        "width": 336,
+        "height": 32
+      },
+      "width": 336,
+      "height": 32,
+      "bytes": 4818,
+      "sha256": "1642751f5fa0a5c0fdbe1f99820c2e643aa6c5de1126b34e05434001a0dc1df5",
+      "repeatMatches": true,
+      "font": null,
+      "fixtureSha256": "a502dc22a40b73363db8ed788af3e293491089949b9c9181ad57e75242da156d",
+      "assertions": {
+        "passive": true,
+        "assets": [
+          {
+            "slot": "compact/iconLink",
+            "natural": [
+              16,
+              16
+            ],
+            "rendered": [
+              16,
+              16
+            ],
+            "local": true
+          },
+          {
+            "slot": "compact/iconDownload",
+            "natural": [
+              13,
+              13
+            ],
+            "rendered": [
+              13,
+              13
+            ],
+            "local": true
+          }
+        ]
+      },
+      "ipc": [
+        {
+          "command": "plugin:event|listen",
+          "args": {
+            "event": "nabbit://island-visibility",
+            "target": {
+              "kind": "Any"
+            },
+            "handler": 1
+          }
+        },
+        {
+          "command": "plugin:event|listen",
+          "args": {
+            "event": "nabbit://island",
+            "target": {
+              "kind": "Any"
+            },
+            "handler": 3
+          }
+        },
+        {
+          "command": "plugin:event|listen",
+          "args": {
+            "event": "nabbit://island-surface",
+            "target": {
+              "kind": "Any"
+            },
+            "handler": 5
+          }
+        },
+        {
+          "command": "plugin:event|listen",
+          "args": {
+            "event": "tauri://drag-enter",
+            "target": {
+              "kind": "WebviewWindow",
+              "label": "island"
+            },
+            "handler": 7
+          }
+        },
+        {
+          "command": "get_island_snapshot",
+          "args": {}
+        },
+        {
+          "command": "get_activity_snapshot",
+          "args": {}
+        },
+        {
+          "command": "get_island_surface",
+          "args": {}
+        },
+        {
+          "command": "plugin:event|listen",
+          "args": {
+            "event": "tauri://drag-over",
+            "target": {
+              "kind": "WebviewWindow",
+              "label": "island"
+            },
+            "handler": 9
+          }
+        },
+        {
+          "command": "plugin:event|listen",
+          "args": {
+            "event": "tauri://drag-drop",
+            "target": {
+              "kind": "WebviewWindow",
+              "label": "island"
+            },
+            "handler": 11
+          }
+        },
+        {
+          "command": "plugin:event|listen",
+          "args": {
+            "event": "tauri://drag-leave",
+            "target": {
+              "kind": "WebviewWindow",
+              "label": "island"
+            },
+            "handler": 13
+          }
+        },
+        {
+          "command": "island_set_hitrect",
+          "args": {
+            "rect": {
+              "x": 184,
+              "y": -2,
+              "w": 352,
+              "h": 48
+            }
+          }
+        },
+        {
+          "command": "island_surface_ack",
+          "args": {
+            "generation": 1
+          }
+        }
+      ],
+      "unsupported": [],
+      "runtimeAndNetworkProblems": []
+    },
+    {
+      "file": "v33-final-capture-peek-dark@1x.png",
+      "scenario": "capture-peek",
+      "entry": "island.html",
+      "figmaNode": "8:38",
+      "theme": "dark",
+      "resolvedTheme": "dark",
+      "scale": 1,
+      "viewport": {
+        "width": 720,
+        "height": 460
+      },
+      "clip": {
+        "x": 160,
+        "y": 6,
+        "width": 400,
+        "height": 100
+      },
+      "width": 400,
+      "height": 100,
+      "bytes": 14315,
+      "sha256": "ac698bba781f709985df4807f100aee369f0cc4c0ca57e9a54e22898dd7624d3",
+      "repeatMatches": true,
+      "font": null,
+      "fixtureSha256": "364d579f25e7e0a58e8e2e61742338fc399375b7b2b308a658b13cc3b54255bc",
+      "assertions": {
+        "passive": true,
+        "assets": [
+          {
+            "slot": "peek/iconDownload",
+            "natural": [
+              14,
+              14
+            ],
+            "rendered": [
+              14,
+              14
+            ],
+            "local": true
+          }
+        ]
+      },
+      "ipc": [
+        {
+          "command": "plugin:event|listen",
+          "args": {
+            "event": "nabbit://island-visibility",
+            "target": {
+              "kind": "Any"
+            },
+            "handler": 1
+          }
+        },
+        {
+          "command": "plugin:event|listen",
+          "args": {
+            "event": "nabbit://island",
+            "target": {
+              "kind": "Any"
+            },
+            "handler": 3
+          }
+        },
+        {
+          "command": "plugin:event|listen",
+          "args": {
+            "event": "nabbit://island-surface",
+            "target": {
+              "kind": "Any"
+            },
+            "handler": 5
+          }
+        },
+        {
+          "command": "plugin:event|listen",
+          "args": {
+            "event": "tauri://drag-enter",
+            "target": {
+              "kind": "WebviewWindow",
+              "label": "island"
+            },
+            "handler": 7
+          }
+        },
+        {
+          "command": "get_island_snapshot",
+          "args": {}
+        },
+        {
+          "command": "get_activity_snapshot",
+          "args": {}
+        },
+        {
+          "command": "get_island_surface",
+          "args": {}
+        },
+        {
+          "command": "plugin:event|listen",
+          "args": {
+            "event": "tauri://drag-over",
+            "target": {
+              "kind": "WebviewWindow",
+              "label": "island"
+            },
+            "handler": 9
+          }
+        },
+        {
+          "command": "plugin:event|listen",
+          "args": {
+            "event": "tauri://drag-drop",
+            "target": {
+              "kind": "WebviewWindow",
+              "label": "island"
+            },
+            "handler": 11
+          }
+        },
+        {
+          "command": "plugin:event|listen",
+          "args": {
+            "event": "tauri://drag-leave",
+            "target": {
+              "kind": "WebviewWindow",
+              "label": "island"
+            },
+            "handler": 13
+          }
+        },
+        {
+          "command": "island_set_hitrect",
+          "args": {
+            "rect": {
+              "x": 152,
+              "y": -2,
+              "w": 416,
+              "h": 48
+            }
+          }
+        },
+        {
+          "command": "island_set_hitrect",
+          "args": {
+            "rect": {
+              "x": 152,
+              "y": -2,
+              "w": 416,
+              "h": 116
+            }
+          }
+        },
+        {
+          "command": "island_surface_ack",
+          "args": {
+            "generation": 1
+          }
+        }
+      ],
+      "unsupported": [],
+      "runtimeAndNetworkProblems": []
+    },
+    {
+      "file": "v33-final-capture-drop-dark@1x.png",
+      "scenario": "capture-drop",
+      "entry": "island.html",
+      "figmaNode": "8:192",
+      "theme": "dark",
+      "resolvedTheme": "dark",
+      "scale": 1,
+      "viewport": {
+        "width": 720,
+        "height": 460
+      },
+      "clip": {
+        "x": 40,
+        "y": 6,
+        "width": 640,
+        "height": 150
+      },
+      "width": 640,
+      "height": 150,
+      "bytes": 16774,
+      "sha256": "3c2be434f18385e6144b207efce65de8e26670eb1be6260d1e7d830f14aec2d2",
+      "repeatMatches": true,
+      "font": null,
+      "fixtureSha256": "22ae045c8f2d1f91f7097943bbe4ab7295105f2c3d91ab13459e4756f424dc6b",
+      "assertions": {
+        "passive": true,
+        "assets": [
+          {
+            "slot": "drop/iconArrowDownToLine",
+            "natural": [
+              20,
+              20
+            ],
+            "rendered": [
+              20,
+              20
+            ],
+            "local": true
+          },
+          {
+            "slot": "drop/iconInbox",
+            "natural": [
+              20,
+              20
+            ],
+            "rendered": [
+              20,
+              20
+            ],
+            "local": true
+          },
+          {
+            "slot": "drop/iconStickyNote",
+            "natural": [
+              20,
+              20
+            ],
+            "rendered": [
+              20,
+              20
+            ],
+            "local": true
+          }
+        ]
+      },
+      "ipc": [
+        {
+          "command": "plugin:event|listen",
+          "args": {
+            "event": "nabbit://island-visibility",
+            "target": {
+              "kind": "Any"
+            },
+            "handler": 1
+          }
+        },
+        {
+          "command": "plugin:event|listen",
+          "args": {
+            "event": "nabbit://island",
+            "target": {
+              "kind": "Any"
+            },
+            "handler": 3
+          }
+        },
+        {
+          "command": "plugin:event|listen",
+          "args": {
+            "event": "nabbit://island-surface",
+            "target": {
+              "kind": "Any"
+            },
+            "handler": 5
+          }
+        },
+        {
+          "command": "plugin:event|listen",
+          "args": {
+            "event": "tauri://drag-enter",
+            "target": {
+              "kind": "WebviewWindow",
+              "label": "island"
+            },
+            "handler": 7
+          }
+        },
+        {
+          "command": "get_island_snapshot",
+          "args": {}
+        },
+        {
+          "command": "get_activity_snapshot",
+          "args": {}
+        },
+        {
+          "command": "get_island_surface",
+          "args": {}
+        },
+        {
+          "command": "plugin:event|listen",
+          "args": {
+            "event": "tauri://drag-over",
+            "target": {
+              "kind": "WebviewWindow",
+              "label": "island"
+            },
+            "handler": 9
+          }
+        },
+        {
+          "command": "plugin:event|listen",
+          "args": {
+            "event": "tauri://drag-drop",
+            "target": {
+              "kind": "WebviewWindow",
+              "label": "island"
+            },
+            "handler": 11
+          }
+        },
+        {
+          "command": "plugin:event|listen",
+          "args": {
+            "event": "tauri://drag-leave",
+            "target": {
+              "kind": "WebviewWindow",
+              "label": "island"
+            },
+            "handler": 13
+          }
+        },
+        {
+          "command": "island_set_hitrect",
+          "args": {
+            "rect": {
+              "x": 32,
+              "y": -2,
+              "w": 656,
+              "h": 42
+            }
+          }
+        },
+        {
+          "command": "island_set_hitrect",
+          "args": {
+            "rect": {
+              "x": 32,
+              "y": -2,
+              "w": 656,
+              "h": 166
+            }
+          }
+        },
+        {
+          "command": "island_surface_ack",
+          "args": {
+            "generation": 1
+          }
+        }
+      ],
+      "unsupported": [],
+      "runtimeAndNetworkProblems": []
+    },
+    {
+      "file": "v33-final-capture-drag-review-dark@1x.png",
+      "scenario": "capture-drag-review",
+      "entry": "island.html",
+      "figmaNode": "8:192",
+      "theme": "dark",
+      "resolvedTheme": "dark",
+      "scale": 1,
+      "viewport": {
+        "width": 720,
+        "height": 460
+      },
+      "clip": {
+        "x": 20,
+        "y": 6,
+        "width": 680,
+        "height": 212
+      },
+      "width": 680,
+      "height": 212,
+      "bytes": 27317,
+      "sha256": "2ba4385403d32fcb7fe087efdedc2c50d068a39b22ebc7da4ccb5bb13f9076e1",
+      "repeatMatches": true,
+      "font": null,
+      "fixtureSha256": "22ae045c8f2d1f91f7097943bbe4ab7295105f2c3d91ab13459e4756f424dc6b",
+      "assertions": {
+        "passive": true,
+        "assets": [
+          {
+            "slot": "9:78/iconDownload",
+            "natural": [
+              15,
+              15
+            ],
+            "rendered": [
+              15,
+              15
+            ],
+            "local": true
+          },
+          {
+            "slot": "9:78/iconStickyNote",
+            "natural": [
+              15,
+              15
+            ],
+            "rendered": [
+              15,
+              15
+            ],
+            "local": true
+          },
+          {
+            "slot": "9:78/iconClipboardList",
+            "natural": [
+              15,
+              15
+            ],
+            "rendered": [
+              15,
+              15
+            ],
+            "local": true
+          },
+          {
+            "slot": "9:78/iconFolder",
+            "natural": [
+              15,
+              15
+            ],
+            "rendered": [
+              15,
+              15
+            ],
+            "local": true
+          },
+          {
+            "slot": "9:78/iconAudioLines",
+            "natural": [
+              15,
+              15
+            ],
+            "rendered": [
+              15,
+              15
+            ],
+            "local": true
+          },
+          {
+            "slot": "9:78/iconTimer",
+            "natural": [
+              15,
+              15
+            ],
+            "rendered": [
+              15,
+              15
+            ],
+            "local": true
+          },
+          {
+            "slot": "9:78/iconSearch",
+            "natural": [
+              16,
+              16
+            ],
+            "rendered": [
+              16,
+              16
+            ],
+            "local": true
+          },
+          {
+            "slot": "9:78/iconPanelTop",
+            "natural": [
+              16,
+              16
+            ],
+            "rendered": [
+              16,
+              16
+            ],
+            "local": true
+          },
+          {
+            "slot": "9:78/iconSettings",
+            "natural": [
+              16,
+              16
+            ],
+            "rendered": [
+              16,
+              16
+            ],
+            "local": true
+          },
+          {
+            "slot": "9:78/iconDownload1",
+            "natural": [
+              15,
+              15
+            ],
+            "rendered": [
+              15,
+              15
+            ],
+            "local": true
+          },
+          {
+            "slot": "drop/iconArrowDownToLine",
+            "natural": [
+              20,
+              20
+            ],
+            "rendered": [
+              20,
+              20
+            ],
+            "local": true
+          },
+          {
+            "slot": "drop/iconInbox",
+            "natural": [
+              20,
+              20
+            ],
+            "rendered": [
+              20,
+              20
+            ],
+            "local": true
+          },
+          {
+            "slot": "drop/iconStickyNote",
+            "natural": [
+              20,
+              20
+            ],
+            "rendered": [
+              20,
+              20
+            ],
+            "local": true
+          }
+        ]
+      },
+      "ipc": [
+        {
+          "command": "plugin:event|listen",
+          "args": {
+            "event": "nabbit://island-visibility",
+            "target": {
+              "kind": "Any"
+            },
+            "handler": 1
+          }
+        },
+        {
+          "command": "plugin:event|listen",
+          "args": {
+            "event": "nabbit://island",
+            "target": {
+              "kind": "Any"
+            },
+            "handler": 3
+          }
+        },
+        {
+          "command": "plugin:event|listen",
+          "args": {
+            "event": "nabbit://island-surface",
+            "target": {
+              "kind": "Any"
+            },
+            "handler": 5
+          }
+        },
+        {
+          "command": "plugin:event|listen",
+          "args": {
+            "event": "tauri://drag-enter",
+            "target": {
+              "kind": "WebviewWindow",
+              "label": "island"
+            },
+            "handler": 7
+          }
+        },
+        {
+          "command": "get_island_snapshot",
+          "args": {}
+        },
+        {
+          "command": "get_activity_snapshot",
+          "args": {}
+        },
+        {
+          "command": "get_island_surface",
+          "args": {}
+        },
+        {
+          "command": "plugin:event|listen",
+          "args": {
+            "event": "tauri://drag-over",
+            "target": {
+              "kind": "WebviewWindow",
+              "label": "island"
+            },
+            "handler": 9
+          }
+        },
+        {
+          "command": "plugin:event|listen",
+          "args": {
+            "event": "tauri://drag-drop",
+            "target": {
+              "kind": "WebviewWindow",
+              "label": "island"
+            },
+            "handler": 11
+          }
+        },
+        {
+          "command": "plugin:event|listen",
+          "args": {
+            "event": "tauri://drag-leave",
+            "target": {
+              "kind": "WebviewWindow",
+              "label": "island"
+            },
+            "handler": 13
+          }
+        },
+        {
+          "command": "island_set_hitrect",
+          "args": {
+            "rect": {
+              "x": 32,
+              "y": -2,
+              "w": 656,
+              "h": 42
+            }
+          }
+        },
+        {
+          "command": "island_set_hitrect",
+          "args": {
+            "rect": {
+              "x": 32,
+              "y": -2,
+              "w": 656,
+              "h": 166
+            }
+          }
+        },
+        {
+          "command": "island_surface_ack",
+          "args": {
+            "generation": 1
+          }
+        },
+        {
+          "command": "island_review_url",
+          "args": {
+            "url": "https://example.invalid/video"
+          }
+        },
+        {
+          "command": "get_activity_snapshot",
+          "args": {}
+        },
+        {
+          "command": "island_surface_request",
+          "args": {
+            "state": "expanded"
+          }
+        },
+        {
+          "command": "get_activity_snapshot",
+          "args": {}
+        },
+        {
+          "command": "island_set_hitrect",
+          "args": {
+            "rect": {
+              "x": 12,
+              "y": -2,
+              "w": 696,
+              "h": 72
+            }
+          }
+        },
+        {
+          "command": "island_set_hitrect",
+          "args": {
+            "rect": {
+              "x": 12,
+              "y": -2,
+              "w": 696,
+              "h": 228
+            }
+          }
+        }
+      ],
+      "unsupported": [],
+      "runtimeAndNetworkProblems": []
+    },
+    {
+      "file": "v33-final-capture-tray-push-dark@1x.png",
+      "scenario": "capture-tray-push",
+      "entry": "index.html",
+      "figmaNode": "17:5",
+      "theme": "dark",
+      "resolvedTheme": "dark",
+      "scale": 1,
+      "viewport": {
+        "width": 460,
+        "height": 680
+      },
+      "clip": {
+        "x": 0,
+        "y": 0,
+        "width": 460,
+        "height": 680
+      },
+      "width": 460,
+      "height": 680,
+      "bytes": 39408,
+      "sha256": "5df04007e8495b79ca33373f35e5e9563c129846ec1ac8e46e273dcf6611d407",
+      "repeatMatches": true,
+      "font": [
+        {
+          "familyName": "Geist",
+          "postScriptName": "Geist",
+          "isCustomFont": true,
+          "glyphCount": 6
+        }
+      ],
+      "fixtureSha256": "48ecf90e065819fffc7a65b1891d375c99dc1591e5454510d8476267535f453b",
+      "assertions": {
+        "pushedMetadata": true,
+        "extraProbe": false,
+        "jobs": 2
+      },
+      "ipc": [
+        {
+          "command": "plugin:event|listen",
+          "args": {
+            "event": "nabbit://open-settings",
+            "target": {
+              "kind": "Any"
+            },
+            "handler": 1
+          }
+        },
+        {
+          "command": "plugin:event|listen",
+          "args": {
+            "event": "engine:health",
+            "target": {
+              "kind": "Any"
+            },
+            "handler": 3
+          }
+        },
+        {
+          "command": "plugin:event|listen",
+          "args": {
+            "event": "tauri://theme-changed",
+            "target": {
+              "kind": "Window",
+              "label": "main"
+            },
+            "handler": 5
+          }
+        },
+        {
+          "command": "get_settings",
+          "args": {}
+        },
+        {
+          "command": "list_clipboard_entries",
+          "args": {
+            "query": ""
+          }
+        },
+        {
+          "command": "list_downloads",
+          "args": {}
+        },
+        {
+          "command": "get_engine_status",
+          "args": {}
+        },
+        {
+          "command": "get_storage_stats",
+          "args": {}
+        },
+        {
+          "command": "get_captured_link",
+          "args": {}
+        },
+        {
+          "command": "plugin:event|listen",
+          "args": {
+            "event": "clipboard:new",
+            "target": {
+              "kind": "Any"
+            },
+            "handler": 7
+          }
+        },
+        {
+          "command": "plugin:event|listen",
+          "args": {
+            "event": "url:detected",
+            "target": {
+              "kind": "Any"
+            },
+            "handler": 9
+          }
+        },
+        {
+          "command": "plugin:event|listen",
+          "args": {
+            "event": "capture:review",
+            "target": {
+              "kind": "Any"
+            },
+            "handler": 11
+          }
+        },
+        {
+          "command": "plugin:event|listen",
+          "args": {
+            "event": "capture:error",
+            "target": {
+              "kind": "Any"
+            },
+            "handler": 13
+          }
+        },
+        {
+          "command": "plugin:event|listen",
+          "args": {
+            "event": "download:updated",
+            "target": {
+              "kind": "Any"
+            },
+            "handler": 15
+          }
+        },
+        {
+          "command": "plugin:event|listen",
+          "args": {
+            "event": "shortcut:clipboard-search",
+            "target": {
+              "kind": "Any"
+            },
+            "handler": 17
+          }
+        },
+        {
+          "command": "consume_island_settings_intent",
+          "args": {}
+        },
+        {
+          "command": "plugin:window|theme",
+          "args": {
+            "label": "main"
+          }
+        }
+      ],
+      "unsupported": [],
+      "runtimeAndNetworkProblems": []
+    },
+    {
+      "file": "v33-final-capture-pending-dark@1.5x.png",
+      "scenario": "capture-pending",
+      "entry": "island.html",
+      "figmaNode": "7:4",
+      "theme": "dark",
+      "resolvedTheme": "dark",
+      "scale": 1.5,
+      "viewport": {
+        "width": 720,
+        "height": 460
+      },
+      "clip": {
+        "x": 192,
+        "y": 6,
+        "width": 336,
+        "height": 32
+      },
+      "width": 504,
+      "height": 48,
+      "bytes": 6739,
+      "sha256": "f7e2ab517e6906c2ae683723af7df32f024f5e3a2ae4579195333891bd1c2b97",
+      "repeatMatches": true,
+      "font": null,
+      "fixtureSha256": "d8995b8f78f97eff80bd5668d904c8db4e64c60ad6e4f7f71276150efe0f1601",
+      "assertions": {
+        "passive": true,
+        "assets": [
+          {
+            "slot": "compact/iconLink",
+            "natural": [
+              16,
+              16
+            ],
+            "rendered": [
+              16,
+              16
+            ],
+            "local": true
+          },
+          {
+            "slot": "compact/iconDownload",
+            "natural": [
+              13,
+              13
+            ],
+            "rendered": [
+              13,
+              13
+            ],
+            "local": true
+          }
+        ]
+      },
+      "ipc": [
+        {
+          "command": "plugin:event|listen",
+          "args": {
+            "event": "nabbit://island-visibility",
+            "target": {
+              "kind": "Any"
+            },
+            "handler": 1
+          }
+        },
+        {
+          "command": "plugin:event|listen",
+          "args": {
+            "event": "nabbit://island",
+            "target": {
+              "kind": "Any"
+            },
+            "handler": 3
+          }
+        },
+        {
+          "command": "plugin:event|listen",
+          "args": {
+            "event": "nabbit://island-surface",
+            "target": {
+              "kind": "Any"
+            },
+            "handler": 5
+          }
+        },
+        {
+          "command": "plugin:event|listen",
+          "args": {
+            "event": "tauri://drag-enter",
+            "target": {
+              "kind": "WebviewWindow",
+              "label": "island"
+            },
+            "handler": 7
+          }
+        },
+        {
+          "command": "get_island_snapshot",
+          "args": {}
+        },
+        {
+          "command": "get_activity_snapshot",
+          "args": {}
+        },
+        {
+          "command": "get_island_surface",
+          "args": {}
+        },
+        {
+          "command": "plugin:event|listen",
+          "args": {
+            "event": "tauri://drag-over",
+            "target": {
+              "kind": "WebviewWindow",
+              "label": "island"
+            },
+            "handler": 9
+          }
+        },
+        {
+          "command": "plugin:event|listen",
+          "args": {
+            "event": "tauri://drag-drop",
+            "target": {
+              "kind": "WebviewWindow",
+              "label": "island"
+            },
+            "handler": 11
+          }
+        },
+        {
+          "command": "plugin:event|listen",
+          "args": {
+            "event": "tauri://drag-leave",
+            "target": {
+              "kind": "WebviewWindow",
+              "label": "island"
+            },
+            "handler": 13
+          }
+        },
+        {
+          "command": "island_set_hitrect",
+          "args": {
+            "rect": {
+              "x": 184,
+              "y": -2,
+              "w": 352,
+              "h": 48
+            }
+          }
+        },
+        {
+          "command": "island_surface_ack",
+          "args": {
+            "generation": 1
+          }
+        }
+      ],
+      "unsupported": [],
+      "runtimeAndNetworkProblems": []
+    },
+    {
+      "file": "v33-final-capture-compact-dark@1.5x.png",
+      "scenario": "capture-compact",
+      "entry": "island.html",
+      "figmaNode": "7:4",
+      "theme": "dark",
+      "resolvedTheme": "dark",
+      "scale": 1.5,
+      "viewport": {
+        "width": 720,
+        "height": 460
+      },
+      "clip": {
+        "x": 192,
+        "y": 6,
+        "width": 336,
+        "height": 32
+      },
+      "width": 504,
+      "height": 48,
+      "bytes": 7983,
+      "sha256": "6c2a939aba7220cf0ff3e18134dfec832fcb001a6dad28348131bac3d01c7b02",
+      "repeatMatches": true,
+      "font": null,
+      "fixtureSha256": "a502dc22a40b73363db8ed788af3e293491089949b9c9181ad57e75242da156d",
+      "assertions": {
+        "passive": true,
+        "assets": [
+          {
+            "slot": "compact/iconLink",
+            "natural": [
+              16,
+              16
+            ],
+            "rendered": [
+              16,
+              16
+            ],
+            "local": true
+          },
+          {
+            "slot": "compact/iconDownload",
+            "natural": [
+              13,
+              13
+            ],
+            "rendered": [
+              13,
+              13
+            ],
+            "local": true
+          }
+        ]
+      },
+      "ipc": [
+        {
+          "command": "plugin:event|listen",
+          "args": {
+            "event": "nabbit://island-visibility",
+            "target": {
+              "kind": "Any"
+            },
+            "handler": 1
+          }
+        },
+        {
+          "command": "plugin:event|listen",
+          "args": {
+            "event": "nabbit://island",
+            "target": {
+              "kind": "Any"
+            },
+            "handler": 3
+          }
+        },
+        {
+          "command": "plugin:event|listen",
+          "args": {
+            "event": "nabbit://island-surface",
+            "target": {
+              "kind": "Any"
+            },
+            "handler": 5
+          }
+        },
+        {
+          "command": "plugin:event|listen",
+          "args": {
+            "event": "tauri://drag-enter",
+            "target": {
+              "kind": "WebviewWindow",
+              "label": "island"
+            },
+            "handler": 7
+          }
+        },
+        {
+          "command": "get_island_snapshot",
+          "args": {}
+        },
+        {
+          "command": "get_activity_snapshot",
+          "args": {}
+        },
+        {
+          "command": "get_island_surface",
+          "args": {}
+        },
+        {
+          "command": "plugin:event|listen",
+          "args": {
+            "event": "tauri://drag-over",
+            "target": {
+              "kind": "WebviewWindow",
+              "label": "island"
+            },
+            "handler": 9
+          }
+        },
+        {
+          "command": "plugin:event|listen",
+          "args": {
+            "event": "tauri://drag-drop",
+            "target": {
+              "kind": "WebviewWindow",
+              "label": "island"
+            },
+            "handler": 11
+          }
+        },
+        {
+          "command": "plugin:event|listen",
+          "args": {
+            "event": "tauri://drag-leave",
+            "target": {
+              "kind": "WebviewWindow",
+              "label": "island"
+            },
+            "handler": 13
+          }
+        },
+        {
+          "command": "island_set_hitrect",
+          "args": {
+            "rect": {
+              "x": 184,
+              "y": -2,
+              "w": 352,
+              "h": 48
+            }
+          }
+        },
+        {
+          "command": "island_surface_ack",
+          "args": {
+            "generation": 1
+          }
+        }
+      ],
+      "unsupported": [],
+      "runtimeAndNetworkProblems": []
+    },
+    {
+      "file": "v33-final-capture-peek-dark@1.5x.png",
+      "scenario": "capture-peek",
+      "entry": "island.html",
+      "figmaNode": "8:38",
+      "theme": "dark",
+      "resolvedTheme": "dark",
+      "scale": 1.5,
+      "viewport": {
+        "width": 720,
+        "height": 460
+      },
+      "clip": {
+        "x": 160,
+        "y": 6,
+        "width": 400,
+        "height": 100
+      },
+      "width": 600,
+      "height": 150,
+      "bytes": 23258,
+      "sha256": "539b5d300e055bdd0e92c84810753ede5e1b769fdec816acdfea4a81ad56e7a3",
+      "repeatMatches": true,
+      "font": null,
+      "fixtureSha256": "364d579f25e7e0a58e8e2e61742338fc399375b7b2b308a658b13cc3b54255bc",
+      "assertions": {
+        "passive": true,
+        "assets": [
+          {
+            "slot": "peek/iconDownload",
+            "natural": [
+              14,
+              14
+            ],
+            "rendered": [
+              14,
+              14
+            ],
+            "local": true
+          }
+        ]
+      },
+      "ipc": [
+        {
+          "command": "plugin:event|listen",
+          "args": {
+            "event": "nabbit://island-visibility",
+            "target": {
+              "kind": "Any"
+            },
+            "handler": 1
+          }
+        },
+        {
+          "command": "plugin:event|listen",
+          "args": {
+            "event": "nabbit://island",
+            "target": {
+              "kind": "Any"
+            },
+            "handler": 3
+          }
+        },
+        {
+          "command": "plugin:event|listen",
+          "args": {
+            "event": "nabbit://island-surface",
+            "target": {
+              "kind": "Any"
+            },
+            "handler": 5
+          }
+        },
+        {
+          "command": "plugin:event|listen",
+          "args": {
+            "event": "tauri://drag-enter",
+            "target": {
+              "kind": "WebviewWindow",
+              "label": "island"
+            },
+            "handler": 7
+          }
+        },
+        {
+          "command": "get_island_snapshot",
+          "args": {}
+        },
+        {
+          "command": "get_activity_snapshot",
+          "args": {}
+        },
+        {
+          "command": "get_island_surface",
+          "args": {}
+        },
+        {
+          "command": "plugin:event|listen",
+          "args": {
+            "event": "tauri://drag-over",
+            "target": {
+              "kind": "WebviewWindow",
+              "label": "island"
+            },
+            "handler": 9
+          }
+        },
+        {
+          "command": "plugin:event|listen",
+          "args": {
+            "event": "tauri://drag-drop",
+            "target": {
+              "kind": "WebviewWindow",
+              "label": "island"
+            },
+            "handler": 11
+          }
+        },
+        {
+          "command": "plugin:event|listen",
+          "args": {
+            "event": "tauri://drag-leave",
+            "target": {
+              "kind": "WebviewWindow",
+              "label": "island"
+            },
+            "handler": 13
+          }
+        },
+        {
+          "command": "island_set_hitrect",
+          "args": {
+            "rect": {
+              "x": 152,
+              "y": -2,
+              "w": 416,
+              "h": 48
+            }
+          }
+        },
+        {
+          "command": "island_set_hitrect",
+          "args": {
+            "rect": {
+              "x": 152,
+              "y": -2,
+              "w": 416,
+              "h": 116
+            }
+          }
+        },
+        {
+          "command": "island_surface_ack",
+          "args": {
+            "generation": 1
+          }
+        }
+      ],
+      "unsupported": [],
+      "runtimeAndNetworkProblems": []
+    },
+    {
+      "file": "v33-final-capture-drop-dark@1.5x.png",
+      "scenario": "capture-drop",
+      "entry": "island.html",
+      "figmaNode": "8:192",
+      "theme": "dark",
+      "resolvedTheme": "dark",
+      "scale": 1.5,
+      "viewport": {
+        "width": 720,
+        "height": 460
+      },
+      "clip": {
+        "x": 40,
+        "y": 6,
+        "width": 640,
+        "height": 150
+      },
+      "width": 960,
+      "height": 225,
+      "bytes": 28753,
+      "sha256": "28514872030dfc79f9f64df3eaf1aef4659dc6f816c1dd18cb0d1bd8baa2df89",
+      "repeatMatches": true,
+      "font": null,
+      "fixtureSha256": "22ae045c8f2d1f91f7097943bbe4ab7295105f2c3d91ab13459e4756f424dc6b",
+      "assertions": {
+        "passive": true,
+        "assets": [
+          {
+            "slot": "drop/iconArrowDownToLine",
+            "natural": [
+              20,
+              20
+            ],
+            "rendered": [
+              20,
+              20
+            ],
+            "local": true
+          },
+          {
+            "slot": "drop/iconInbox",
+            "natural": [
+              20,
+              20
+            ],
+            "rendered": [
+              20,
+              20
+            ],
+            "local": true
+          },
+          {
+            "slot": "drop/iconStickyNote",
+            "natural": [
+              20,
+              20
+            ],
+            "rendered": [
+              20,
+              20
+            ],
+            "local": true
+          }
+        ]
+      },
+      "ipc": [
+        {
+          "command": "plugin:event|listen",
+          "args": {
+            "event": "nabbit://island-visibility",
+            "target": {
+              "kind": "Any"
+            },
+            "handler": 1
+          }
+        },
+        {
+          "command": "plugin:event|listen",
+          "args": {
+            "event": "nabbit://island",
+            "target": {
+              "kind": "Any"
+            },
+            "handler": 3
+          }
+        },
+        {
+          "command": "plugin:event|listen",
+          "args": {
+            "event": "nabbit://island-surface",
+            "target": {
+              "kind": "Any"
+            },
+            "handler": 5
+          }
+        },
+        {
+          "command": "plugin:event|listen",
+          "args": {
+            "event": "tauri://drag-enter",
+            "target": {
+              "kind": "WebviewWindow",
+              "label": "island"
+            },
+            "handler": 7
+          }
+        },
+        {
+          "command": "get_island_snapshot",
+          "args": {}
+        },
+        {
+          "command": "get_activity_snapshot",
+          "args": {}
+        },
+        {
+          "command": "get_island_surface",
+          "args": {}
+        },
+        {
+          "command": "plugin:event|listen",
+          "args": {
+            "event": "tauri://drag-over",
+            "target": {
+              "kind": "WebviewWindow",
+              "label": "island"
+            },
+            "handler": 9
+          }
+        },
+        {
+          "command": "plugin:event|listen",
+          "args": {
+            "event": "tauri://drag-drop",
+            "target": {
+              "kind": "WebviewWindow",
+              "label": "island"
+            },
+            "handler": 11
+          }
+        },
+        {
+          "command": "plugin:event|listen",
+          "args": {
+            "event": "tauri://drag-leave",
+            "target": {
+              "kind": "WebviewWindow",
+              "label": "island"
+            },
+            "handler": 13
+          }
+        },
+        {
+          "command": "island_set_hitrect",
+          "args": {
+            "rect": {
+              "x": 32,
+              "y": -2,
+              "w": 656,
+              "h": 42
+            }
+          }
+        },
+        {
+          "command": "island_set_hitrect",
+          "args": {
+            "rect": {
+              "x": 32,
+              "y": -2,
+              "w": 656,
+              "h": 166
+            }
+          }
+        },
+        {
+          "command": "island_surface_ack",
+          "args": {
+            "generation": 1
+          }
+        }
+      ],
+      "unsupported": [],
+      "runtimeAndNetworkProblems": []
+    },
+    {
+      "file": "v33-final-capture-drag-review-dark@1.5x.png",
+      "scenario": "capture-drag-review",
+      "entry": "island.html",
+      "figmaNode": "8:192",
+      "theme": "dark",
+      "resolvedTheme": "dark",
+      "scale": 1.5,
+      "viewport": {
+        "width": 720,
+        "height": 460
+      },
+      "clip": {
+        "x": 20,
+        "y": 6,
+        "width": 680,
+        "height": 212
+      },
+      "width": 1020,
+      "height": 318,
+      "bytes": 50250,
+      "sha256": "7b460b661ba6e32447cf75218184dee65ef3a9a2e9a5c8985b6e1b42bcb6266d",
+      "repeatMatches": true,
+      "font": null,
+      "fixtureSha256": "22ae045c8f2d1f91f7097943bbe4ab7295105f2c3d91ab13459e4756f424dc6b",
+      "assertions": {
+        "passive": true,
+        "assets": [
+          {
+            "slot": "9:78/iconDownload",
+            "natural": [
+              15,
+              15
+            ],
+            "rendered": [
+              15,
+              15
+            ],
+            "local": true
+          },
+          {
+            "slot": "9:78/iconStickyNote",
+            "natural": [
+              15,
+              15
+            ],
+            "rendered": [
+              15,
+              15
+            ],
+            "local": true
+          },
+          {
+            "slot": "9:78/iconClipboardList",
+            "natural": [
+              15,
+              15
+            ],
+            "rendered": [
+              15,
+              15
+            ],
+            "local": true
+          },
+          {
+            "slot": "9:78/iconFolder",
+            "natural": [
+              15,
+              15
+            ],
+            "rendered": [
+              15,
+              15
+            ],
+            "local": true
+          },
+          {
+            "slot": "9:78/iconAudioLines",
+            "natural": [
+              15,
+              15
+            ],
+            "rendered": [
+              15,
+              15
+            ],
+            "local": true
+          },
+          {
+            "slot": "9:78/iconTimer",
+            "natural": [
+              15,
+              15
+            ],
+            "rendered": [
+              15,
+              15
+            ],
+            "local": true
+          },
+          {
+            "slot": "9:78/iconSearch",
+            "natural": [
+              16,
+              16
+            ],
+            "rendered": [
+              16,
+              16
+            ],
+            "local": true
+          },
+          {
+            "slot": "9:78/iconPanelTop",
+            "natural": [
+              16,
+              16
+            ],
+            "rendered": [
+              16,
+              16
+            ],
+            "local": true
+          },
+          {
+            "slot": "9:78/iconSettings",
+            "natural": [
+              16,
+              16
+            ],
+            "rendered": [
+              16,
+              16
+            ],
+            "local": true
+          },
+          {
+            "slot": "9:78/iconDownload1",
+            "natural": [
+              15,
+              15
+            ],
+            "rendered": [
+              15,
+              15
+            ],
+            "local": true
+          },
+          {
+            "slot": "drop/iconArrowDownToLine",
+            "natural": [
+              20,
+              20
+            ],
+            "rendered": [
+              20,
+              20
+            ],
+            "local": true
+          },
+          {
+            "slot": "drop/iconInbox",
+            "natural": [
+              20,
+              20
+            ],
+            "rendered": [
+              20,
+              20
+            ],
+            "local": true
+          },
+          {
+            "slot": "drop/iconStickyNote",
+            "natural": [
+              20,
+              20
+            ],
+            "rendered": [
+              20,
+              20
+            ],
+            "local": true
+          }
+        ]
+      },
+      "ipc": [
+        {
+          "command": "plugin:event|listen",
+          "args": {
+            "event": "nabbit://island-visibility",
+            "target": {
+              "kind": "Any"
+            },
+            "handler": 1
+          }
+        },
+        {
+          "command": "plugin:event|listen",
+          "args": {
+            "event": "nabbit://island",
+            "target": {
+              "kind": "Any"
+            },
+            "handler": 3
+          }
+        },
+        {
+          "command": "plugin:event|listen",
+          "args": {
+            "event": "nabbit://island-surface",
+            "target": {
+              "kind": "Any"
+            },
+            "handler": 5
+          }
+        },
+        {
+          "command": "plugin:event|listen",
+          "args": {
+            "event": "tauri://drag-enter",
+            "target": {
+              "kind": "WebviewWindow",
+              "label": "island"
+            },
+            "handler": 7
+          }
+        },
+        {
+          "command": "get_island_snapshot",
+          "args": {}
+        },
+        {
+          "command": "get_activity_snapshot",
+          "args": {}
+        },
+        {
+          "command": "get_island_surface",
+          "args": {}
+        },
+        {
+          "command": "plugin:event|listen",
+          "args": {
+            "event": "tauri://drag-over",
+            "target": {
+              "kind": "WebviewWindow",
+              "label": "island"
+            },
+            "handler": 9
+          }
+        },
+        {
+          "command": "plugin:event|listen",
+          "args": {
+            "event": "tauri://drag-drop",
+            "target": {
+              "kind": "WebviewWindow",
+              "label": "island"
+            },
+            "handler": 11
+          }
+        },
+        {
+          "command": "plugin:event|listen",
+          "args": {
+            "event": "tauri://drag-leave",
+            "target": {
+              "kind": "WebviewWindow",
+              "label": "island"
+            },
+            "handler": 13
+          }
+        },
+        {
+          "command": "island_set_hitrect",
+          "args": {
+            "rect": {
+              "x": 32,
+              "y": -2,
+              "w": 656,
+              "h": 42
+            }
+          }
+        },
+        {
+          "command": "island_set_hitrect",
+          "args": {
+            "rect": {
+              "x": 32,
+              "y": -2,
+              "w": 656,
+              "h": 166
+            }
+          }
+        },
+        {
+          "command": "island_surface_ack",
+          "args": {
+            "generation": 1
+          }
+        },
+        {
+          "command": "island_review_url",
+          "args": {
+            "url": "https://example.invalid/video"
+          }
+        },
+        {
+          "command": "get_activity_snapshot",
+          "args": {}
+        },
+        {
+          "command": "island_surface_request",
+          "args": {
+            "state": "expanded"
+          }
+        },
+        {
+          "command": "get_activity_snapshot",
+          "args": {}
+        },
+        {
+          "command": "island_set_hitrect",
+          "args": {
+            "rect": {
+              "x": 12,
+              "y": -2,
+              "w": 696,
+              "h": 72
+            }
+          }
+        },
+        {
+          "command": "island_set_hitrect",
+          "args": {
+            "rect": {
+              "x": 12,
+              "y": -2,
+              "w": 696,
+              "h": 228
+            }
+          }
+        }
+      ],
+      "unsupported": [],
+      "runtimeAndNetworkProblems": []
+    },
+    {
+      "file": "v33-final-capture-tray-push-dark@1.5x.png",
+      "scenario": "capture-tray-push",
+      "entry": "index.html",
+      "figmaNode": "17:5",
+      "theme": "dark",
+      "resolvedTheme": "dark",
+      "scale": 1.5,
+      "viewport": {
+        "width": 460,
+        "height": 680
+      },
+      "clip": {
+        "x": 0,
+        "y": 0,
+        "width": 460,
+        "height": 680
+      },
+      "width": 690,
+      "height": 1020,
+      "bytes": 65973,
+      "sha256": "a3949eca8c2ba3841241520fcd624ff8e34d24029aab12ac7344e4db98415c54",
+      "repeatMatches": true,
+      "font": [
+        {
+          "familyName": "Geist",
+          "postScriptName": "Geist",
+          "isCustomFont": true,
+          "glyphCount": 6
+        }
+      ],
+      "fixtureSha256": "48ecf90e065819fffc7a65b1891d375c99dc1591e5454510d8476267535f453b",
+      "assertions": {
+        "pushedMetadata": true,
+        "extraProbe": false,
+        "jobs": 2
+      },
+      "ipc": [
+        {
+          "command": "plugin:event|listen",
+          "args": {
+            "event": "nabbit://open-settings",
+            "target": {
+              "kind": "Any"
+            },
+            "handler": 1
+          }
+        },
+        {
+          "command": "plugin:event|listen",
+          "args": {
+            "event": "engine:health",
+            "target": {
+              "kind": "Any"
+            },
+            "handler": 3
+          }
+        },
+        {
+          "command": "plugin:event|listen",
+          "args": {
+            "event": "tauri://theme-changed",
+            "target": {
+              "kind": "Window",
+              "label": "main"
+            },
+            "handler": 5
+          }
+        },
+        {
+          "command": "get_settings",
+          "args": {}
+        },
+        {
+          "command": "list_clipboard_entries",
+          "args": {
+            "query": ""
+          }
+        },
+        {
+          "command": "list_downloads",
+          "args": {}
+        },
+        {
+          "command": "get_engine_status",
+          "args": {}
+        },
+        {
+          "command": "get_storage_stats",
+          "args": {}
+        },
+        {
+          "command": "get_captured_link",
+          "args": {}
+        },
+        {
+          "command": "plugin:event|listen",
+          "args": {
+            "event": "clipboard:new",
+            "target": {
+              "kind": "Any"
+            },
+            "handler": 7
+          }
+        },
+        {
+          "command": "plugin:event|listen",
+          "args": {
+            "event": "url:detected",
+            "target": {
+              "kind": "Any"
+            },
+            "handler": 9
+          }
+        },
+        {
+          "command": "plugin:event|listen",
+          "args": {
+            "event": "capture:review",
+            "target": {
+              "kind": "Any"
+            },
+            "handler": 11
+          }
+        },
+        {
+          "command": "plugin:event|listen",
+          "args": {
+            "event": "capture:error",
+            "target": {
+              "kind": "Any"
+            },
+            "handler": 13
+          }
+        },
+        {
+          "command": "plugin:event|listen",
+          "args": {
+            "event": "download:updated",
+            "target": {
+              "kind": "Any"
+            },
+            "handler": 15
+          }
+        },
+        {
+          "command": "plugin:event|listen",
+          "args": {
+            "event": "shortcut:clipboard-search",
+            "target": {
+              "kind": "Any"
+            },
+            "handler": 17
+          }
+        },
+        {
+          "command": "consume_island_settings_intent",
+          "args": {}
+        },
+        {
+          "command": "plugin:window|theme",
+          "args": {
+            "label": "main"
+          }
+        }
+      ],
+      "unsupported": [],
+      "runtimeAndNetworkProblems": []
+    }
+  ]
+}

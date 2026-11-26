@@ -9,12 +9,19 @@ use crate::{
 };
 
 #[tauri::command]
-pub fn probe_url(state: tauri::State<'_, AppState>, url: String) -> Result<DownloadMetadata> {
-    let metadata = probe::probe(&state.app_data_dir, &url)?;
-    let _ = state
-        .db
-        .set_setting_value("staged_url", &metadata.normalized_url);
-    Ok(metadata)
+pub async fn probe_url(state: tauri::State<'_, AppState>, url: String) -> Result<DownloadMetadata> {
+    let dir = state.app_data_dir.clone();
+    tauri::async_runtime::spawn_blocking(move || probe::probe(&dir, &url))
+        .await
+        .map_err(|e| msg(e.to_string()))?
+}
+#[tauri::command]
+pub fn capture_url(app: tauri::AppHandle, url: String) -> Result<DownloadMetadata> {
+    crate::capture::review(&app, &url)
+}
+#[tauri::command]
+pub fn get_captured_link(state: tauri::State<'_, AppState>) -> Option<DownloadMetadata> {
+    state.capture.current()
 }
 
 #[tauri::command]
@@ -24,7 +31,7 @@ pub fn get_staged_url(state: tauri::State<'_, AppState>) -> Result<Option<String
 
 #[tauri::command]
 pub fn clear_staged_url(state: tauri::State<'_, AppState>) -> Result<()> {
-    state.db.set_setting_value("staged_url", "")
+    state.capture.clear()
 }
 
 #[tauri::command]
@@ -33,7 +40,7 @@ pub fn start_download(
     request: DownloadRequest,
 ) -> Result<DownloadJob> {
     let job = state.downloads.enqueue(request)?;
-    let _ = state.db.set_setting_value("staged_url", "");
+    let _ = state.capture.clear_if_current(&job.url);
     Ok(job)
 }
 
@@ -152,6 +159,6 @@ pub fn start_download_with_preset(
     url: String,
 ) -> Result<DownloadJob> {
     let job = state.downloads.enqueue_remembered(url)?;
-    let _ = state.db.set_setting_value("staged_url", "");
+    let _ = state.capture.clear_if_current(&job.url);
     Ok(job)
 }

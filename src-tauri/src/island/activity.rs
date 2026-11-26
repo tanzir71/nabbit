@@ -703,6 +703,31 @@ impl Engine {
         self.expose(now);
         self.message(event, target)
     }
+    pub fn enrich_link(
+        &mut self,
+        url: &str,
+        title: &str,
+        duration: Option<u32>,
+    ) -> Option<Message> {
+        let entry = self.entries.get_mut("link")?;
+        let ActivityEvent::LinkDetected {
+            url: current,
+            title: old_title,
+            duration: old_duration,
+            ..
+        } = &mut entry.item.event
+        else {
+            return None;
+        };
+        if current != url {
+            return None;
+        }
+        *old_title = Some(title.into());
+        *old_duration = duration;
+        let event = entry.item.event.clone();
+        // Preserve creation time, bubble status and dismissal. Enrichment is not a new capture.
+        Some(self.message(event, None))
+    }
     fn message(&mut self, event: ActivityEvent, target: Option<String>) -> Message {
         self.revision += 1;
         Message {

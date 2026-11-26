@@ -139,10 +139,26 @@ fn draw(item: &Item, width: f32) -> Vec<Draw> {
             text(label, 36.0, width - 86.0, false, false, true),
             text(percentage(*percent), right - 32.0, 32.0, true, false, false),
         ],
-        Event::LinkDetected { duration, .. } => {
+        Event::LinkDetected {
+            duration,
+            title,
+            site,
+            ..
+        } => {
             let mut result = vec![
                 icon("iconLink", 10.0),
-                text("Video link copied", 34.0, 108.0, false, true, false),
+                text(
+                    if title.is_some() {
+                        "Video link copied"
+                    } else {
+                        site
+                    },
+                    34.0,
+                    108.0,
+                    false,
+                    true,
+                    false,
+                ),
                 button("Nab it", right - 69.0, 69.0, true),
             ];
             if let Some(seconds) = duration {

@@ -56,3 +56,32 @@ Verification is recorded in `v32-acceptance.json` and the `v32-*` logs:
 - Initial island JavaScript is **89,643 / 120,000 gzip bytes**. This backend/API pass changes no TSX/CSS view, so it adds no screenshots. V3.1's 16 captures remain intact; Nab and options-sheet visuals are V3.4/V3.5.
 
 Earlier compile/borrow, argument-order, transport-expectation and Clippy failures are retained separately from the accepted checks. Log trailing whitespace is normalized for Git; original log hashes are recorded. Source fingerprints use LF normalization only. SponsorBlock's opt-in network behavior and cookie-file/preset boundaries are reflected in the privacy statement. No performance gate, milestone, PR, tag, release or workflow state is reclassified by this task.
+
+
+## V3.3 — Capture paths
+
+Clipboard, drag, browser deep links and tray paste now enter the same validated Rust review service. Accepted clipboard links show their host immediately; one sleeping Rust worker coalesces pending requests and fills title/duration asynchronously. Metadata runs in an owned process tree with a 15-second deadline, 8 MiB stdout limit and 64 KiB stderr limit, explicit Deno configuration and an argument terminator. No passive intake enqueues a job. Excluded apps, Windows protection flags and enabled sensitive filtering run before automatic capture; pausing/disabling detection retains clipboard storage without staging. The privacy statement now discloses these metadata requests.
+
+`nabbit://nab?url=<encoded>` accepts exactly one HTTP/HTTPS URL, decodes it once, normalizes YouTube variants and rejects credentials, malformed escapes, non-web schemes, unexpected paths/parameters and command-like input. The deep-link plugin is statically configured in the bundle and its single-instance integration forwards links to the existing process. Startup and running events use the same review path. A visible island opens Nab review without keyboard activation; tray review is the fallback. No runtime protocol registration or installer was run.
+
+**Ctrl+Alt+D is the explicit download action:** it reads the current clipboard rather than an older staged URL, validates it and enqueues with the remembered preset for that site. The old shipped shortcut default migrates once; customized and disabled bindings survive. This follows §7.1 and Figma 17:5, resolving §7.8's conflicting statement that every capture path opens review only. Hotkey tests inject the clipboard reader and enqueue callback; they never press real keys, access a browser profile or download media.
+
+Generation checks discard old/coalesced/cancelled probe results. Enrichment keeps the link pill's original age, bubble state and dismissal, and cannot resurrect a replaced/dismissed pill. A newer capture also survives completion of an older download enqueue. The tray reads the captured metadata cache and consumes pushed updates without another probe. A review restored after restart is queued for the same worker without recreating its old pill. Listener cleanup handles delayed registration during unmount. Windows clipboard protection tests now use injected flags rather than modifying the system clipboard.
+
+Accepted evidence is `v33-acceptance.json`, its six `v33-*` check logs, `v33-entry-bundles.json`, `v33-final-screenshots.json` and `v33-png-audit.json`:
+
+- `npm run verify` passes **111 frontend/script tests**, typecheck, lint, icon/font/token checks and the production build. Initial island JavaScript is **89,668 / 120,000 gzip bytes**.
+- Rust formatting, default and island-spike all-target Clippy with warnings denied, and **134 serial Rust tests** pass; two existing engine/network tests remain opt-in.
+- Fixture tests cover strict deep links, valid URL variants, passive staging with zero jobs, current-clipboard hotkey/preset resolution, shortcut migration, privacy gates, paused/disabled detection, stale/coalesced probes, clearing and preserved activity age/dismissal.
+- **24 repeat-identical final PNGs** cover pending host, ready pill, Peek, Download-first drop target, synthetic URI-list drop into Nab review, and pushed tray metadata, in light/dark at 1×/1.5×. Independent Pillow decoding, dimensions, hashes and a strict 300,000-byte budget pass; largest **65,973 bytes**. The island stays dark. Original static asset slots retain natural dimensions and local files; no unexpected IPC, network, errors or download starts occur in these captures.
+
+Figma 17:5, 7:4 and 8:119 were fetched with screenshots. Compact is **336×32**, Peek **400×100**; host/title/duration are dynamic. The initial ellipsis class split remaining space with the spacer and shortened the fixed label, so the final capture uses a shrinking label with an independent spacer. The earlier 24-image capture remains as superseded evidence, alongside the initial fixture-count failure, compile/lint/Clippy errors and the sensitive-filter fixture setup failure. The final screenshot report is authoritative.
+
+OS protocol installation/launch and real shortcut presses were not exercised; the compiled plugin/configuration, pure handler seams and mocked browser interaction are the automated evidence. Existing V0/V2.7 frame/focus/performance limitations are unchanged. Legacy tray and expanded Nab styling is deliberately left for V3.4; direct Nab preset actions and full download acceptance remain V3.4/V3.7. No PR, tag, release, workflow change/dispatch or milestone push is part of this task.
+
+Reproduce with a fresh screenshot prefix after `npm run verify`:
+
+```powershell
+node scripts/verify-capture-paths.mjs v33-local
+cargo test --manifest-path src-tauri/Cargo.toml -- --test-threads=1
+```

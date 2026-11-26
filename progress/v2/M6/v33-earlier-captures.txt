@@ -1,0 +1,27 @@
+file:///D:/claude-upgrade-26/nabbit/scripts/screenshots/harness.mjs:249
+            throw new Error(`${scenario.name} (${theme}@${scale}x): ${error.message}`, {
+                  ^
+
+Error: capture-drag-review (light@1x): Expected values to be strictly equal:
+
+2 !== 1
+
+    at captureSuite (file:///D:/claude-upgrade-26/nabbit/scripts/screenshots/harness.mjs:249:19)
+    at async file:///D:/claude-upgrade-26/nabbit/scripts/verify-capture-paths.mjs:171:16 {
+  [cause]: AssertionError [ERR_ASSERTION]: Expected values to be strictly equal:
+
+  2 !== 1
+
+      at Object.ready (file:///D:/claude-upgrade-26/nabbit/scripts/verify-capture-paths.mjs:105:16)
+      at async captureSuite (file:///D:/claude-upgrade-26/nabbit/scripts/screenshots/harness.mjs:135:33)
+      at async file:///D:/claude-upgrade-26/nabbit/scripts/verify-capture-paths.mjs:171:16 {
+    generatedMessage: true,
+    code: 'ERR_ASSERTION',
+    actual: 2,
+    expected: 1,
+    operator: 'strictEqual',
+    diff: 'simple'
+  }
+}
+
+Node.js v24.22.2

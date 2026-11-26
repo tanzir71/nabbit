@@ -669,6 +669,12 @@ body,
   font: 500 13px/18px var(--font-sans);
   white-space: nowrap;
 }
+.island-link-label {
+  min-width: 0;
+  flex: 0 1 auto;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
 .is-split[data-kind="link"] .island-compact > .island-mono {
   display: none;
 }

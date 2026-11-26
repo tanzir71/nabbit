@@ -129,6 +129,36 @@ impl Database {
         if !columns.iter().any(|c| c == "options_json") {
             conn.execute("ALTER TABLE downloads ADD COLUMN options_json TEXT", [])?;
         }
+        // Upgrade the shipped v1 default once; retain customized/disabled shortcuts.
+        let migrated: bool = conn.query_row(
+            "SELECT EXISTS(SELECT 1 FROM settings WHERE key = 'capture_shortcut_v2')",
+            [],
+            |row| row.get(0),
+        )?;
+        if !migrated {
+            let raw: Option<String> = conn
+                .query_row(
+                    "SELECT value FROM settings WHERE key = 'app_settings'",
+                    [],
+                    |row| row.get(0),
+                )
+                .optional()?;
+            if let Some(raw) = raw {
+                if let Ok(mut settings) = serde_json::from_str::<serde_json::Value>(&raw) {
+                    if settings["quickDownloadShortcut"] == "CmdOrCtrl+Shift+D" {
+                        settings["quickDownloadShortcut"] = "Ctrl+Alt+D".into();
+                        conn.execute(
+                            "UPDATE settings SET value = ?1 WHERE key = 'app_settings'",
+                            [serde_json::to_string(&settings)?],
+                        )?;
+                    }
+                }
+            }
+            conn.execute(
+                "INSERT INTO settings(key,value,updated_at) VALUES('capture_shortcut_v2','1',?1)",
+                [Utc::now().to_rfc3339()],
+            )?;
+        }
         Ok(())
     }
 
@@ -898,6 +928,45 @@ mod tests {
         let settings = Database::open(&dir).unwrap().get_settings().unwrap();
         assert_eq!(settings.island_shortcut, "Ctrl+Alt+F9");
         assert_eq!(settings.quick_download_shortcut, "Ctrl+Alt+F7");
+    }
+    #[test]
+    fn capture_shortcut_migrates_the_old_default_once_and_retains_custom_or_disabled_keys() {
+        for shortcut in ["CmdOrCtrl+Shift+D", "Ctrl+Alt+F7", ""] {
+            let dir = tempfile_dir();
+            let db = Database::open(&dir).unwrap();
+            let settings = AppSettings {
+                quick_download_shortcut: shortcut.into(),
+                ..Default::default()
+            };
+            db.save_settings(&settings).unwrap();
+            db.conn
+                .lock()
+                .unwrap()
+                .execute("DELETE FROM settings WHERE key = 'capture_shortcut_v2'", [])
+                .unwrap();
+            drop(db);
+            let db = Database::open(&dir).unwrap();
+            let mut settings = db.get_settings().unwrap();
+            assert_eq!(
+                settings.quick_download_shortcut,
+                if shortcut == "CmdOrCtrl+Shift+D" {
+                    "Ctrl+Alt+D"
+                } else {
+                    shortcut
+                }
+            );
+            settings.quick_download_shortcut = "CmdOrCtrl+Shift+D".into();
+            db.save_settings(&settings).unwrap();
+            drop(db);
+            assert_eq!(
+                Database::open(&dir)
+                    .unwrap()
+                    .get_settings()
+                    .unwrap()
+                    .quick_download_shortcut,
+                "CmdOrCtrl+Shift+D"
+            );
+        }
     }
     #[test]
     fn keyboard_pin_slots_are_stable_unique_and_survive_reopen() {

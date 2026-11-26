@@ -22,7 +22,7 @@ use tauri::{AppHandle, Emitter};
 
 #[path = "engine_process.rs"]
 mod process;
-pub use process::{run_bounded, ProbeOutput};
+pub use process::{run_bounded, run_bounded_with_output_limit, ProbeOutput};
 
 pub const SAMPLE: &str = "https://www.youtube.com/watch?v=e6rhUvwB5Y8";
 pub const HEALTH_JOB: &str = "engine-health";

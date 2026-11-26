@@ -1,0 +1,205 @@
+{
+  "task": "V3.3 capture paths",
+  "baseCommit": "6fa4ab970ee03b91bde5912a293957f6ad86c59a",
+  "branch": "main",
+  "checks": {
+    "npmVerify": {
+      "command": "npm run verify",
+      "exitCode": 0,
+      "file": "v33-npmVerify.txt",
+      "rawSha256": "e9df2299ffb961ec9589f2bf358cc4e587f6d42952e9079178b42709734320b1",
+      "savedSha256": "b45ad9b8c169612c240e521057e9fa4c43015c35bc760b450522a671d4808ec9"
+    },
+    "rustFmt": {
+      "command": "cargo fmt --check",
+      "exitCode": 0,
+      "file": "v33-rustFmt.txt",
+      "rawSha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "savedSha256": "c5668ee3be079d01aab4afe8f1271af60fe825cc74bc7d58af0840951544c42f"
+    },
+    "rustClippy": {
+      "command": "cargo clippy --all-targets -- -D warnings",
+      "exitCode": 0,
+      "file": "v33-rustClippy.txt",
+      "rawSha256": "551de484156e5e2091908b1d327d9497959037c0a8b7d335612dd1a5f380828c",
+      "savedSha256": "790cbf37d715cb6f72b1da94a5137aeff3cfa03acf8f04d4088ce39be0791bb0"
+    },
+    "rustSpikeClippy": {
+      "command": "cargo clippy --all-targets --features island-spike -- -D warnings",
+      "exitCode": 0,
+      "file": "v33-rustSpikeClippy.txt",
+      "rawSha256": "9c326d4d7a449e4986839587d675460aead5bd466cf612b3a2bba0156ebbd5c9",
+      "savedSha256": "00d22e53169af7c668450e6f1e83964fff5ae8068bb363a83265150ccd963338"
+    },
+    "rustTests": {
+      "command": "cargo test -- --test-threads=1",
+      "exitCode": 0,
+      "file": "v33-rustTests.txt",
+      "rawSha256": "7fb9070dbf127958ae032a0b1bc0a9ed344f55d870433ccc5c8a43519cbfc3d2",
+      "savedSha256": "502ce9351bc7cb5cc77ae3cf33dd585f77a6d569177aa2dd1294b537335e36cc"
+    },
+    "captures": {
+      "command": "node scripts/verify-capture-paths.mjs v33-final",
+      "exitCode": 0,
+      "file": "v33-captures.txt",
+      "rawSha256": "c2fbc7b1c51edba95702f14e4e180b976c26355d8d64201943a741447e05785a",
+      "savedSha256": "c2fbc7b1c51edba95702f14e4e180b976c26355d8d64201943a741447e05785a"
+    }
+  },
+  "frontendTests": 111,
+  "rustTests": {
+    "passed": 134,
+    "ignored": 2
+  },
+  "screenshots": {
+    "report": "v33-final-screenshots.json",
+    "independentAudit": "v33-png-audit.json",
+    "count": 24,
+    "repeatIdentical": true,
+    "largestBytes": 65973,
+    "strictBudgetBytes": 300000,
+    "themes": [
+      "light",
+      "dark"
+    ],
+    "deviceScaleFactors": [
+      1,
+      1.5
+    ]
+  },
+  "islandInitialGzipBytes": 89668,
+  "sourceSha256LfNormalized": {
+    "scripts/screenshots/harness.mjs": "2fb62f7d00b0123aa3a4db3bed6d2847766d8f5d2ce2205d57dd0bd20dd09bce",
+    "scripts/screenshots/mock-ipc.mjs": "4c6969a4e408cfc2c594ae5a82d0f5bf21f055a40fd04fad0df796d80d2295cc",
+    "scripts/verify-capture-paths.mjs": "d03eeb49803023b51d1bfcfc800d30d1ff2a3d9a2cd26328bc568d6e5756aaa8",
+    "src-tauri/Cargo.lock": "ec8ca54eaa8dc53bf149d63cf58ecad7f83c99d1cf2cad05099dd072f549a273",
+    "src-tauri/Cargo.toml": "6177edd6c946083d98d21eaa668aacb15690f0605e54b6e555caf0c664609e5c",
+    "src-tauri/gen/schemas/acl-manifests.json": "27d0d65d6557249d036b108cb8ebc253b33795529a912fb24e24ac5a18601492",
+    "src-tauri/gen/schemas/desktop-schema.json": "e3422f1de0b52f8a83912e1ff618b399fd94e76e2f34776c898a2cff9e937672",
+    "src-tauri/gen/schemas/windows-schema.json": "e3422f1de0b52f8a83912e1ff618b399fd94e76e2f34776c898a2cff9e937672",
+    "src-tauri/src/capture.rs": "76747d9b9091f85ba45612ab31db3d4a0b21bda45adb368e57b226623594ed29",
+    "src-tauri/src/clipboard/watcher.rs": "ff0efb62fea8d1d28bb9501a02ca9a064734733e91e88912a81314363fb4b6b9",
+    "src-tauri/src/commands/download.rs": "be71edee792fd2287d38d1183b6c506aabacd031d34f0f20adfe3f02f2fc6052",
+    "src-tauri/src/db/mod.rs": "46bbb9575c3c958860a5ee27d921204a63a7d85e08257dfc869f4d50679bd160",
+    "src-tauri/src/db/models.rs": "3d48e8690a739d88f8a253b07b502bc40891a78941aaa89fa227acf3927c1996",
+    "src-tauri/src/download/engine.rs": "3c9e4f0f2567c78e984e909868c04f6d85e46fd92c30902f630e582cab46b56e",
+    "src-tauri/src/download/engine_process.rs": "c6a6b676412aff3cce88fac00aa8a1bb74f57f2d08b325488780ddbae3be6f7f",
+    "src-tauri/src/download/manager.rs": "d81d5ab2ee9283bb0368c6744a17e3e0e48c3cb91d6caf5c25350f176fad0466",
+    "src-tauri/src/download/ytdlp.rs": "32956ec89d82098eae2a5a6cac21e61f0d4c8a7a980d5a8f0d54cdcc52f61213",
+    "src-tauri/src/island/activity.rs": "b44abf6369dbb8fe43163b90102f868615ea3fdf86e70baab77d3fc063c34d57",
+    "src-tauri/src/island/activity_bus.rs": "df57c08cb52ea42cfb1a6ac31c73072ef6e86b33eed82b6480a6098d37039402",
+    "src-tauri/src/island/activity_tests.rs": "b4956b6ae3b7108e52438363197d2de7ff63dbbdea7574843ef38e773b1d86c5",
+    "src-tauri/src/island/mod.rs": "787bad4de3cd65cdd31ec79c4c5e8c4b95cb0fc3d5755ecbaae22f74ef638039",
+    "src-tauri/src/island/presentation.rs": "f3e3fea2e4b6dd8fbfa07b9d821bade8dca18f010a8ea3667b8122ba17ce6081",
+    "src-tauri/src/island/web.rs": "bbce4daa9d52fed300349714673a420eeeb5ca4e66a79ca065f29d62314821ea",
+    "src-tauri/src/lib.rs": "658bc091188c2831886ff3517d53db2bacced3ad4e3b99ba112be70806e40bea",
+    "src-tauri/src/util.rs": "9c8dbb242d856421a7b6e47e828e6464d90f92629fce4946865d12b2e2330d29",
+    "src-tauri/tauri.conf.json": "dab6a1a03b970765a3f234fba887a84c4c23ef80dbf39fbafbca1a9b57d36130",
+    "src/App.tsx": "c88ccd85fb2731760090bda935494f224d3ffac9ae89ed04924fa2dc5ecc739a",
+    "src/lib/ipc.ts": "8568d2c01f84374fa8398a064ff49e62e8b22ddce5e950893c96736b3af29fc1",
+    "src/store/capture.test.ts": "5c33271f5df28475cb9fcd671f96de5bdcd7aaf83242ba48b784e0997fae075c",
+    "src/store/useAppStore.ts": "65b8f41a4e18f8bf5ed032c4feaf89c3015492f63a9baca8646126d1686465dd",
+    "src/surfaces/island/CompactContent.tsx": "b259de8253631cab4d1e88dcc0fb6b554f8e9990c69a7230e946ddcc707b9a11",
+    "src/surfaces/island/island.css": "632c0098d28d259dd22e636d777fba25dcfb6682ede37ff81dfb5529edd1a871"
+  },
+  "earlierAttempts": [
+    {
+      "file": "v33-earlier-check.txt",
+      "rawSha256": "b947d8b9729d9755bd0168f6b1c9aa1b1aa461e5b9d98f462c01e102f514e189",
+      "savedSha256": "886ccfc50d4158b3746655f78388cfb8cc4f9351102caf7b7aaba09454a18fb1"
+    },
+    {
+      "file": "v33-earlier-rust-tests.txt",
+      "rawSha256": "844524bcecb66a1c9be74458dbb16c88d8a842ab40727dfd8fbd152c1830a98b",
+      "savedSha256": "2525cc18c11595ea55d9eff02bec5f21216b084cc21974a671d9e65ff0d95af0"
+    },
+    {
+      "file": "v33-earlier-clippy.txt",
+      "rawSha256": "1336cbb8d2b2624176565b6e158dbb695408b570963f3aaeb72e81d02bc73779",
+      "savedSha256": "f33ced364df2b91459e18d83fd97ee63a685e10c9a7e761e19291ff8544a5cee"
+    },
+    {
+      "file": "v33-earlier-clippy-accepted.txt",
+      "rawSha256": "01bb2f72eb7aa47b1867c8fcaeb72936a1cc70c76221588a34a1e480b375ce34",
+      "savedSha256": "fc7bdd39de1b83c03709c46f63d095d0896afc9e6e80f1fb9fa23de1ee7d1c46"
+    },
+    {
+      "file": "v33-earlier-rust-tests-final.txt",
+      "rawSha256": "aa08b64757b0b9fc01edcddfe6e941574a16a754cb99636715a564e001a437c6",
+      "savedSha256": "c69daf3afa6d9793adf3095b4914fbfe2280fc8c6009217336b029f7864bcb23",
+      "redaction": "Synthetic vendor-key-shaped fixture replaced in retained failure output; raw hash unchanged."
+    },
+    {
+      "file": "v33-earlier-npm-verify.txt",
+      "rawSha256": "eaad09ebc088806616ff392881960a3f0133f90c4a5da56997365b61262ba920",
+      "savedSha256": "c186fb1d5168b79565c1ad1f9c920b878ebc6d1b3f7699e9d94ba2d920c4d47b"
+    },
+    {
+      "file": "v33-earlier-npm-verify-final.txt",
+      "rawSha256": "cbc6cf2413dda3ec453c97ffd7e6933a77e654c0df6da6f48b39ed806394be8e",
+      "savedSha256": "14e81a81679d951597d5d79f4bd66dee2f34f30a4c906387ed40b24471bb0cb4"
+    },
+    {
+      "file": "v33-earlier-captures.txt",
+      "rawSha256": "1cc71957a4cdfa3b9e5b8b882909fe9341af0a59d8899ce129f182b04a6b04f3",
+      "savedSha256": "91569274f2a9fcd9856f9ee2d4375129df4e87e5345c39b54a4d684496467de8"
+    }
+  ],
+  "behavior": {
+    "passiveIntake": [
+      "clipboard",
+      "drag",
+      "deepLink",
+      "paste"
+    ],
+    "passiveIntakeEnqueues": false,
+    "metadata": "one coalescing Rust worker; 15-second owned process-tree timeout, 8 MiB stdout, 64 KiB stderr",
+    "staleResults": "generation guarded; preserve pill age, bubble and dismissal; newer captures survive an older enqueue",
+    "deepLink": "exact nabbit://nab?url= with one decoded HTTP(S) target; no additional actions",
+    "hotkey": "Ctrl+Alt+D reads current clipboard; explicit enqueue uses remembered site preset",
+    "shortcutMigration": "old shipped default upgraded once; custom, disabled and later user-chosen bindings preserved",
+    "clipboardPrivacy": "protected/excluded/sensitive gates precede capture; paused/disabled detection cannot stage",
+    "registration": "bundle config plus deep-link single-instance feature; no runtime registry registration or installer run",
+    "restart": "restored staged URL is queued for bounded enrichment without recreating a stale activity pill"
+  },
+  "coverage": [
+    "strict URL/deep-link fixtures",
+    "passive database/event seams with zero jobs",
+    "stale/coalesced/cancelled probe seams",
+    "injected hotkey clipboard/enqueue and remembered preset",
+    "clipboard intake/protection fixtures without system clipboard mutation",
+    "synthetic browser URI-list drop into review",
+    "pushed tray metadata without a duplicate probe",
+    "Figma slot, original asset dimensions, geometry and themes/scales"
+  ],
+  "limits": [
+    "OS protocol installation/launch and real global key presses were not exercised; bundle configuration, compiled plugin wiring and injected seams were verified.",
+    "Native frame/focus, V0 and V2.7 performance classifications are unchanged.",
+    "Tray/expanded Nab redesign and direct Nab preset actions remain V3.4; full media acceptance remains V3.7."
+  ],
+  "references": [
+    "https://v2.tauri.app/plugin/deep-linking/",
+    "https://v2.tauri.app/plugin/single-instance/"
+  ],
+  "review": {
+    "react": "stable store selectors, parallel bootstrap reads, late-listener cleanup, race guards; no new collapsed JavaScript polling",
+    "figma": "17:5, 7:4 and 8:119 fetched with screenshots; original existing exports reused; compact 336x32, Peek 400x100; dynamic host/title/duration allowed"
+  },
+  "earlierStagedScan": {
+    "findings": 2,
+    "kind": "synthetic vendor-key-shaped test fixture in source and retained failed assertion log; replaced by a neutral synthetic sensitive-text URL and redacted in saved log",
+    "log": "v33-earlier-staged-scan.txt",
+    "rawSha256": "2a6147a3c23cb015eeb956aacf400abb4e7d1ce0b53e730db9e08512db87a622"
+  },
+  "documentSha256LfNormalized": {
+    "NABBIT_V2_HANDOFF.md": "57b7ee896b007f528af05b8da4ff035e30471f00e4d606187d7e10f480ba50f6",
+    "PROGRESS.md": "1360a9610f77d15149f8e0c08c4e79f06e89063fd403d6de4d7955255b08e042",
+    "PRIVACY.md": "8c86f0d286ffded9a4e4bff8173f1478c931e01eb896a1f3b17577ae1dd29ff9",
+    "progress/v2/M6/README.md": "7f2c93d5b6ba471a4c07a65ac9c8387216610eb26eb6117d425a59d9f88ab1a5"
+  },
+  "stagedSecretScan": {
+    "command": "gitleaks git --pre-commit --staged --redact --no-banner",
+    "result": [],
+    "exitCode": 0
+  }
+}

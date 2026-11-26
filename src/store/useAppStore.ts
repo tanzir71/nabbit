@@ -32,6 +32,7 @@ interface AppStore {
   deleteEntry: (id: string) => Promise<void>;
   clearHistory: () => Promise<void>;
   stageUrl: (url: string) => Promise<void>;
+  acceptCapturedLink: (metadata: DownloadMetadata) => void;
   clearStagedUrl: () => void;
   startDownload: (request: DownloadRequest) => Promise<void>;
   refreshDownloads: () => Promise<void>;
@@ -43,6 +44,7 @@ interface AppStore {
 }
 
 let settingsLoad: Promise<void> | null = null;
+let captureRevision = 0;
 
 export const useAppStore = create<AppStore>((set, get) => ({
   settings: null,
@@ -76,34 +78,26 @@ export const useAppStore = create<AppStore>((set, get) => ({
     return pending;
   },
   loadInitialData: async () => {
+    const revision = captureRevision;
     set({ loading: true, error: null });
     try {
-      const [settings, clipboardEntries, downloads, engine, stats, stagedUrl] = await Promise.all([
+      const [settings, clipboardEntries, downloads, engine, stats, metadata] = await Promise.all([
         api.getSettings(),
         api.listClipboard(),
         api.listDownloads(),
         api.getEngineStatus(),
         api.getStorageStats(),
-        api.getStagedUrl(),
+        api.getCapturedLink(),
       ]);
-      let metadata: DownloadMetadata | null = null;
-      let normalizedStagedUrl = stagedUrl ?? "";
-      if (stagedUrl) {
-        try {
-          metadata = await api.probeUrl(stagedUrl);
-          normalizedStagedUrl = metadata.normalizedUrl;
-        } catch {
-          metadata = null;
-        }
-      }
       set({
         settings,
         clipboardEntries,
         downloads,
         engine,
         stats,
-        stagedUrl: normalizedStagedUrl,
-        metadata,
+        ...(revision === captureRevision
+          ? { stagedUrl: metadata?.normalizedUrl ?? "", metadata }
+          : {}),
         loading: false,
       });
     } catch (error) {
@@ -153,27 +147,36 @@ export const useAppStore = create<AppStore>((set, get) => ({
   stageUrl: async (url) => {
     const trimmed = url.trim();
     if (!trimmed) return;
-    set({ stagedUrl: trimmed, error: null });
+    const revision = ++captureRevision;
+    set({ stagedUrl: trimmed, metadata: null, error: null });
     try {
-      const metadata = await api.probeUrl(trimmed);
-      set({ metadata, stagedUrl: metadata.normalizedUrl });
+      const metadata = await api.captureUrl(trimmed);
+      if (revision === captureRevision) set({ metadata, stagedUrl: metadata.normalizedUrl });
     } catch (error) {
-      set({
-        metadata: null,
-        error: error instanceof Error ? error.message : String(error),
-      });
+      if (revision === captureRevision)
+        set({
+          metadata: null,
+          error: error instanceof Error ? error.message : String(error),
+        });
     }
   },
+  acceptCapturedLink: (metadata) => {
+    ++captureRevision;
+    set({ metadata, stagedUrl: metadata.normalizedUrl, error: null });
+  },
   clearStagedUrl: () => {
+    ++captureRevision;
     void api.clearStagedUrl();
     set({ stagedUrl: "", metadata: null });
   },
   startDownload: async (request) => {
     const job = await api.startDownload(request);
+    const current = get().stagedUrl;
+    const clear = current === job.url || current === request.url;
+    if (clear) ++captureRevision;
     set((state) => ({
       downloads: [job, ...state.downloads.filter((item) => item.id !== job.id)],
-      stagedUrl: "",
-      metadata: null,
+      ...(clear ? { stagedUrl: "", metadata: null } : {}),
     }));
   },
   refreshDownloads: async () => {

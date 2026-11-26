@@ -131,39 +131,40 @@ export function installMockIpc(seed) {
         );
       case "get_activity_snapshot":
         return clone(
-          seed.responses?.get_activity_snapshot ?? {
-            revision: 0,
-            views: [
-              {
-                label: seed.label,
-                gate: "visible",
-                primary: null,
-                bubble: null,
-                queue: [],
-                fullscreen: false,
-                userHidden: false,
-                focusMode: false,
-              },
-            ],
-            preferences: {
-              order: [
-                "privacy",
-                "timerEnding",
-                "download",
-                "tool",
-                "link",
-                "result",
-                "media",
-                "timer",
-                "power",
+          state.activity ??
+            seed.responses?.get_activity_snapshot ?? {
+              revision: 0,
+              views: [
+                {
+                  label: seed.label,
+                  gate: "visible",
+                  primary: null,
+                  bubble: null,
+                  queue: [],
+                  fullscreen: false,
+                  userHidden: false,
+                  focusMode: false,
+                },
               ],
-              disabled: [],
-              showAlertsOverFullscreen: false,
-              focusMode: false,
-              hiddenUntilMs: null,
+              preferences: {
+                order: [
+                  "privacy",
+                  "timerEnding",
+                  "download",
+                  "tool",
+                  "link",
+                  "result",
+                  "media",
+                  "timer",
+                  "power",
+                ],
+                disabled: [],
+                showAlertsOverFullscreen: false,
+                focusMode: false,
+                hiddenUntilMs: null,
+              },
+              syncState: "localOnly",
             },
-            syncState: "localOnly",
-          },
         );
       case "save_island_preferences":
         state.settings.island = clone(args.preferences);
@@ -198,6 +199,46 @@ export function installMockIpc(seed) {
       }
       case "get_staged_url":
         return state.stagedUrl;
+      case "get_captured_link":
+        return clone(state.metadata ?? seed.responses?.get_captured_link ?? null);
+      case "island_review_url":
+      case "capture_url": {
+        const url = new globalThis.URL(args.url);
+        if (!["http:", "https:"].includes(url.protocol) || url.username || url.password)
+          throw new Error("Enter an http or https link");
+        state.stagedUrl = url.href;
+        state.metadata = {
+          title: url.hostname,
+          duration: null,
+          channel: null,
+          thumbnail: null,
+          isPlaylist: false,
+          playlistCount: null,
+          extractor: "capture",
+          qualities: [],
+          ...state.metadata,
+          url: url.href,
+          normalizedUrl: url.href,
+        };
+        dispatch("url:detected", clone(state.metadata));
+        if (command === "island_review_url") {
+          const snapshot = await invoke("get_activity_snapshot");
+          snapshot.revision++;
+          const event = {
+            kind: "linkDetected",
+            url: url.href,
+            title: null,
+            duration: null,
+            site: url.hostname,
+          };
+          const item = { id: "link", category: "link", event, alert: false, bubbleOnly: false };
+          for (const view of snapshot.views) view.primary = item;
+          state.activity = snapshot;
+          dispatch("nabbit://activity", { event, snapshot });
+          dispatch("nabbit://island", { event, snapshot });
+        }
+        return clone(state.metadata);
+      }
       case "get_storage_stats":
         return {
           clipboardCount: state.clipboard.length,

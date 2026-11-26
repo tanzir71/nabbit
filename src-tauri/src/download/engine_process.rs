@@ -66,21 +66,31 @@ impl Drop for Tree {
     }
 }
 
-fn drain(mut pipe: impl Read) -> String {
+fn drain(mut pipe: impl Read, limit: usize) -> (String, bool) {
     let mut stored = Vec::new();
+    let mut overflow = false;
     let mut buffer = [0u8; 4096];
     loop {
         match pipe.read(&mut buffer) {
             Ok(0) | Err(_) => break,
             Ok(n) => {
-                let keep = n.min(65_536usize.saturating_sub(stored.len()));
+                let keep = n.min(limit.saturating_sub(stored.len()));
+                overflow |= keep < n;
                 stored.extend_from_slice(&buffer[..keep]);
             }
         }
     }
-    String::from_utf8_lossy(&stored).into_owned()
+    (String::from_utf8_lossy(&stored).into_owned(), overflow)
 }
 pub fn run_bounded(path: &Path, args: &[String], limit: Duration) -> Result<ProbeOutput> {
+    run_bounded_with_output_limit(path, args, limit, 65_536)
+}
+pub fn run_bounded_with_output_limit(
+    path: &Path,
+    args: &[String],
+    limit: Duration,
+    output_limit: usize,
+) -> Result<ProbeOutput> {
     let mut command = Command::new(path);
     command
         .args(args)
@@ -108,8 +118,8 @@ pub fn run_bounded(path: &Path, args: &[String], limit: Duration) -> Result<Prob
     };
     let stdout = child.stdout.take().expect("piped stdout");
     let stderr = child.stderr.take().expect("piped stderr");
-    let out = std::thread::spawn(move || drain(stdout));
-    let err = std::thread::spawn(move || drain(stderr));
+    let out = std::thread::spawn(move || drain(stdout, output_limit));
+    let err = std::thread::spawn(move || drain(stderr, 65_536));
     let start = Instant::now();
     let result = loop {
         match child.try_wait() {
@@ -130,10 +140,14 @@ pub fn run_bounded(path: &Path, args: &[String], limit: Duration) -> Result<Prob
     // Close the job/process group before joining pipe readers, even when the
     // parent exited successfully but a descendant still owns an output handle.
     drop(tree);
-    let stdout = out.join().unwrap_or_default();
-    let stderr = err.join().unwrap_or_default();
+    let (stdout, overflow) = out.join().unwrap_or_default();
+    let (stderr, _) = err.join().unwrap_or_default();
+    let success = result?;
+    if overflow {
+        return Err(msg("Engine probe output exceeded its limit."));
+    }
     Ok(ProbeOutput {
-        success: result?,
+        success,
         stdout,
         stderr,
     })

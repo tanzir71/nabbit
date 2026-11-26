@@ -74,7 +74,9 @@ export function CompactContent({
       return (
         <>
           {icon("iconLink")}
-          <strong>Video link copied</strong>
+          <strong className="island-link-label" title={e.title || e.site}>
+            {e.title ? "Video link copied" : e.site}
+          </strong>
           {e.duration != null && (
             <span className="island-mono island-muted">{duration(e.duration)}</span>
           )}

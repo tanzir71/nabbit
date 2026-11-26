@@ -8,12 +8,9 @@ use std::{
 };
 
 use arboard::Clipboard;
-use tauri::{AppHandle, Emitter};
+use tauri::{AppHandle, Emitter, Manager};
 
-use crate::{
-    db::{models::DownloadMetadata, Database},
-    util::normalize_video_url,
-};
+use crate::{capture::clipboard_url, db::Database};
 
 pub const WATCH_INTERVAL: Duration = Duration::from_millis(750);
 
@@ -49,6 +46,9 @@ fn spawn_platform_clipboard_watcher(app: AppHandle, db: Database, shutdown: Arc<
             while !shutdown.load(Ordering::Relaxed) {
                 match monitor.recv() {
                     Ok(true) => {
+                        if let Some(state) = app.try_state::<crate::AppState>() {
+                            state.capture.invalidate();
+                        }
                         crate::island::activity_bus::publish(
                             &app,
                             crate::island::activity::ActivityEvent::ClipboardChanged,
@@ -121,54 +121,43 @@ fn handle_clipboard_text(
     text: &str,
     last_url_emit: &mut Option<(String, Instant)>,
 ) {
+    if let Some(state) = app.try_state::<crate::AppState>() {
+        state.capture.invalidate();
+    }
     if should_skip_os_protected_clipboard() {
         return;
     }
-    match db.add_clipboard_text(text, current_source_app()) {
-        Ok(Some(entry)) => {
+    match ingest(db, text, current_source_app()) {
+        Ok(Some((entry, url))) => {
             let _ = app.emit("clipboard:new", &entry);
-            if let Ok(settings) = db.get_settings() {
-                if settings.auto_detect_links && !settings.pause_auto_detect {
-                    if let Some(url) = normalize_video_url(text) {
-                        let recently_emitted = last_url_emit
-                            .as_ref()
-                            .map(|(last, at)| {
-                                last == &url && at.elapsed() < Duration::from_secs(20)
-                            })
-                            .unwrap_or(false);
-                        if !recently_emitted {
-                            *last_url_emit = Some((url.clone(), Instant::now()));
-                            let _ = db.set_setting_value("staged_url", &url);
-                            let metadata = DownloadMetadata {
-                                url: url.clone(),
-                                normalized_url: url,
-                                title: "YouTube link detected".into(),
-                                channel: None,
-                                duration: None,
-                                thumbnail: None,
-                                is_playlist: text.contains("list="),
-                                playlist_count: None,
-                                extractor: Some("clipboard".into()),
-                                qualities: vec![],
-                            };
-                            crate::island::activity_bus::publish(
-                                app,
-                                crate::island::activity::ActivityEvent::LinkDetected {
-                                    url: metadata.normalized_url.clone(),
-                                    title: Some(metadata.title.clone()),
-                                    duration: None,
-                                    site: "youtube".into(),
-                                },
-                            );
-                            let _ = app.emit("url:detected", metadata);
-                        }
-                    }
+            if let Some(url) = url {
+                let recently_emitted = last_url_emit.as_ref().is_some_and(|(last, at)| {
+                    last == &url && at.elapsed() < Duration::from_secs(20)
+                });
+                if !recently_emitted {
+                    *last_url_emit = Some((url.clone(), Instant::now()));
+                    let _ = crate::capture::review(app, &url);
                 }
             }
         }
         Ok(None) => {}
         Err(error) => eprintln!("clipboard watcher store error: {error}"),
     }
+}
+
+fn ingest(
+    db: &Database,
+    text: &str,
+    source: Option<String>,
+) -> crate::error::Result<Option<(crate::db::models::ClipboardEntry, Option<String>)>> {
+    let Some(entry) = db.add_clipboard_text(text, source)? else {
+        return Ok(None);
+    };
+    let settings = db.get_settings()?;
+    let url = (settings.auto_detect_links && !settings.pause_auto_detect)
+        .then(|| clipboard_url(text).ok())
+        .flatten();
+    Ok(Some((entry, url)))
 }
 
 #[cfg(target_os = "windows")]
@@ -201,30 +190,26 @@ fn should_skip_os_protected_clipboard() -> bool {
         return false;
     };
 
-    if register_format("ExcludeClipboardContentFromMonitorProcessing")
-        .map(|format| is_format_avail(format.get()))
-        .unwrap_or(false)
-    {
-        return true;
-    }
-
-    for name in ["CanIncludeInClipboardHistory", "CanUploadToCloudClipboard"] {
-        let Some(format) = register_format(name) else {
-            continue;
-        };
+    let excluded = register_format("ExcludeClipboardContentFromMonitorProcessing")
+        .is_some_and(|format| is_format_avail(format.get()));
+    let permission = |name: &str| {
+        let format = register_format(name)?;
         if !is_format_avail(format.get()) {
-            continue;
+            return None;
         }
         let mut data = Vec::new();
-        if raw::get_vec(format.get(), &mut data).is_ok() && data.len() >= 4 {
-            let value = u32::from_ne_bytes([data[0], data[1], data[2], data[3]]);
-            if value == 0 {
-                return true;
-            }
-        }
-    }
-
-    false
+        raw::get_vec(format.get(), &mut data).ok()?;
+        Some(u32::from_ne_bytes(data.get(..4)?.try_into().ok()?))
+    };
+    protected(
+        excluded,
+        permission("CanIncludeInClipboardHistory"),
+        permission("CanUploadToCloudClipboard"),
+    )
+}
+#[cfg(any(windows, test))]
+fn protected(excluded: bool, history: Option<u32>, cloud: Option<u32>) -> bool {
+    excluded || history == Some(0) || cloud == Some(0)
 }
 
 #[cfg(not(target_os = "windows"))]
@@ -232,36 +217,66 @@ fn should_skip_os_protected_clipboard() -> bool {
     false
 }
 
-#[cfg(all(test, target_os = "windows"))]
+#[cfg(test)]
 mod tests {
-    use super::should_skip_os_protected_clipboard;
-
+    use super::*;
     #[test]
-    fn windows_clipboard_monitor_receives_updates() {
-        use clipboard_win::{set_clipboard_string, Monitor};
-        use std::{thread, time::Duration};
-
-        let mut monitor = Monitor::new().expect("create monitor");
-        let marker = format!("nabbit monitor {}", uuid::Uuid::new_v4());
-        thread::spawn(move || {
-            thread::sleep(Duration::from_millis(50));
-            set_clipboard_string(&marker).expect("set clipboard text");
-        });
-
-        assert!(monitor.recv().expect("receive clipboard update"));
+    fn protected_clipboard_flags_are_tested_without_reading_or_overwriting_the_os_clipboard() {
+        assert!(protected(true, None, None));
+        assert!(protected(false, Some(0), Some(1)));
+        assert!(protected(false, Some(1), Some(0)));
+        assert!(!protected(false, None, None));
+        assert!(!protected(false, Some(1), Some(1)));
     }
-
     #[test]
-    fn detects_windows_clipboard_monitor_exclusion_format() {
-        use clipboard_win::{raw, register_format, Clipboard};
-
-        let _clipboard = Clipboard::new().expect("open clipboard");
-        raw::empty().expect("empty clipboard");
-        raw::set_string("concealed sample").expect("set clipboard text");
-        let format = register_format("ExcludeClipboardContentFromMonitorProcessing")
-            .expect("register exclusion format");
-        raw::set_without_clear(format.get(), &0u32.to_ne_bytes()).expect("set exclusion format");
-
-        assert!(should_skip_os_protected_clipboard());
+    fn intake_applies_exclusions_and_sensitive_filter_before_url_capture() {
+        let dir = std::env::temp_dir().join(format!("nabbit-intake-{}", uuid::Uuid::new_v4()));
+        let db = Database::open(&dir).unwrap();
+        let settings = crate::db::models::AppSettings {
+            sensitive_heuristics: true,
+            ..Default::default()
+        };
+        db.save_settings(&settings).unwrap();
+        assert!(
+            ingest(&db, "https://youtu.be/example", Some("Bitwarden".into()))
+                .unwrap()
+                .is_none()
+        );
+        assert!(ingest(
+            &db,
+            "https://example.com/fixture1234567890alphaBETA!_",
+            None
+        )
+        .unwrap()
+        .is_none());
+        assert!(db.list_clipboard_entries(None).unwrap().is_empty());
+        let (_, url) = ingest(
+            &db,
+            "Watch https://youtu.be/example",
+            Some("Fixture browser".into()),
+        )
+        .unwrap()
+        .unwrap();
+        assert_eq!(url.unwrap(), "https://www.youtube.com/watch?v=example");
+        assert!(db.list_downloads().unwrap().is_empty());
+    }
+    #[test]
+    fn disabled_and_paused_detection_store_text_without_staging_or_enqueuing() {
+        let db = Database::open(
+            &std::env::temp_dir().join(format!("nabbit-intake-{}", uuid::Uuid::new_v4())),
+        )
+        .unwrap();
+        for paused in [true, false] {
+            let mut settings = db.get_settings().unwrap();
+            settings.auto_detect_links = paused;
+            settings.pause_auto_detect = paused;
+            db.save_settings(&settings).unwrap();
+            let (_, url) = ingest(&db, "https://youtu.be/example", None)
+                .unwrap()
+                .unwrap();
+            assert!(url.is_none());
+            assert!(db.setting_value("staged_url").unwrap().is_none());
+            assert!(db.list_downloads().unwrap().is_empty());
+        }
     }
 }

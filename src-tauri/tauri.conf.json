@@ -43,6 +43,7 @@
     "createUpdaterArtifacts": false
   },
   "plugins": {
+    "deep-link": { "desktop": { "schemes": ["nabbit"] } },
     "updater": {
       "pubkey": "",
       "endpoints": []

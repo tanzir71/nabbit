@@ -84,6 +84,16 @@ impl Bus {
         self.changed.notify_one();
         self.emit(message, true);
     }
+    pub fn enrich_link(&self, url: &str, title: &str, duration: Option<u32>) {
+        let message = self
+            .state
+            .lock()
+            .unwrap_or_else(|e| e.into_inner())
+            .enrich_link(url, title, duration);
+        if let Some(message) = message {
+            self.emit(message, true);
+        }
+    }
     pub fn monitors(&self, monitors: Vec<Monitor>) {
         let message = self
             .state

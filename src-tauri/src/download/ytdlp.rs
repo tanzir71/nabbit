@@ -1,14 +1,10 @@
-use std::{
-    path::{Path, PathBuf},
-    process::Command,
-};
+use std::path::{Path, PathBuf};
 
 use serde_json::Value;
 
 use crate::{
     db::models::{DownloadMetadata, DownloadRequest},
     error::{msg, Result},
-    util::normalize_video_url,
 };
 
 #[derive(Debug, Clone, Default)]
@@ -78,24 +74,43 @@ pub fn target_triple() -> &'static str {
 }
 
 pub fn probe_metadata(app_data_dir: &Path, url: &str) -> Result<DownloadMetadata> {
-    let normalized = normalize_video_url(url).unwrap_or_else(|| url.trim().to_string());
+    let normalized = crate::capture::web_url(url)?;
     let Some(ytdlp) = resolve_engine(app_data_dir, "yt-dlp") else {
         return Ok(fallback_metadata(&normalized, "yt-dlp sidecar missing"));
     };
 
     let runtime = super::engine::runtime_args(resolve_engine(app_data_dir, "deno").as_deref())?;
-    let output = Command::new(ytdlp)
-        .args(runtime)
-        .args(["-J", "--no-warnings", "--skip-download", "--flat-playlist"])
-        .arg(&normalized)
-        .output()?;
+    let mut args = runtime;
+    args.extend(
+        [
+            "-J",
+            "--no-warnings",
+            "--skip-download",
+            "--flat-playlist",
+            "--socket-timeout",
+            "5",
+            "--retries",
+            "0",
+            "--",
+            &normalized,
+        ]
+        .map(str::to_owned),
+    );
+    let output = super::engine::run_bounded_with_output_limit(
+        &ytdlp,
+        &args,
+        std::time::Duration::from_secs(15),
+        8 * 1024 * 1024,
+    )?;
 
-    if !output.status.success() {
-        let stderr = String::from_utf8_lossy(&output.stderr);
-        return Err(msg(format!("yt-dlp metadata failed: {}", stderr.trim())));
+    if !output.success {
+        return Err(msg(format!(
+            "yt-dlp metadata failed: {}",
+            output.stderr.trim()
+        )));
     }
 
-    let value: Value = serde_json::from_slice(&output.stdout)?;
+    let value: Value = serde_json::from_str(&output.stdout)?;
     let is_playlist = value.get("_type").and_then(Value::as_str) == Some("playlist")
         || value.get("entries").and_then(Value::as_array).is_some()
         || normalized.contains("list=");

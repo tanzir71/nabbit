@@ -1,0 +1,77 @@
+Downloading crates ...
+  Downloaded tauri-plugin-deep-link v2.4.10
+   Compiling tauri-plugin-deep-link v2.4.10
+    Checking windows-result v0.3.4
+    Checking windows-registry v0.5.3
+   Compiling nabbit v0.1.0 (D:\claude-upgrade-26\nabbit\src-tauri)
+    Checking tauri-plugin-single-instance v2.4.2
+error[E0433]: cannot find `engine_process` in `super`
+  --> src\download\ytdlp.rs:99:25
+   |
+99 |     let output = super::engine_process::run_bounded_with_output_limit(
+   |                         ^^^^^^^^^^^^^^ could not find `engine_process` in `super`
+
+error[E0277]: `?` couldn't convert the error to `NabbitError`
+   --> src\capture.rs:261:41
+    |
+261 |             || arboard::Clipboard::new()?.get_text().map_err(Into::into),
+    |                -------------------------^ the trait `From<arboard::Error>` is not implemented for `NabbitError`
+    |                |
+    |                this can't be annotated with `?` because it has type `Result<_, arboard::Error>`
+    |
+note: `NabbitError` needs to implement `From<arboard::Error>`
+   --> src\error.rs:4:1
+    |
+  4 | pub enum NabbitError {
+    | ^^^^^^^^^^^^^^^^^^^^
+    = note: the question mark operation (`?`) implicitly performs a conversion on the error value using the `From` trait
+    = help: `NabbitError` implements trait `From<T>`:
+              From<anyhow::Error>
+              From<rusqlite::Error>
+              From<serde_json::Error>
+              From<std::io::Error>
+              From<tauri::Error>
+
+error[E0277]: the trait bound `NabbitError: From<arboard::Error>` is not satisfied
+   --> src\capture.rs:261:16
+    |
+261 |             || arboard::Clipboard::new()?.get_text().map_err(Into::into),
+    |                ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^ unsatisfied trait bound
+    |
+help: the trait `From<arboard::Error>` is not implemented for `NabbitError`
+   --> src\error.rs:4:1
+    |
+  4 | pub enum NabbitError {
+    | ^^^^^^^^^^^^^^^^^^^^
+    = help: `NabbitError` implements trait `From<T>`:
+              From<anyhow::Error>
+              From<rusqlite::Error>
+              From<serde_json::Error>
+              From<std::io::Error>
+              From<tauri::Error>
+    = note: required for `arboard::Error` to implement `Into<NabbitError>`
+
+error[E0277]: the trait bound `NabbitError: From<arboard::Error>` is not satisfied
+   --> src\capture.rs:261:62
+    |
+261 |             || arboard::Clipboard::new()?.get_text().map_err(Into::into),
+    |                                                              ^^^^^^^^^^ unsatisfied trait bound
+    |
+help: the trait `From<arboard::Error>` is not implemented for `NabbitError`
+   --> src\error.rs:4:1
+    |
+  4 | pub enum NabbitError {
+    | ^^^^^^^^^^^^^^^^^^^^
+    = help: `NabbitError` implements trait `From<T>`:
+              From<anyhow::Error>
+              From<rusqlite::Error>
+              From<serde_json::Error>
+              From<std::io::Error>
+              From<tauri::Error>
+    = note: required for `arboard::Error` to implement `Into<NabbitError>`
+
+Some errors have detailed explanations: E0277, E0433.
+For more information about an error, try `rustc --explain E0277`.
+error: could not compile `nabbit` (lib) due to 4 previous errors
+warning: build failed, waiting for other jobs to finish...
+error: could not compile `nabbit` (lib test) due to 4 previous errors

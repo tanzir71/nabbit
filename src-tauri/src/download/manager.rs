@@ -23,7 +23,7 @@ use crate::{
         probe, ytdlp,
     },
     error::{msg, Result},
-    util::{default_output_dir, normalize_video_url},
+    util::default_output_dir,
 };
 
 #[derive(Clone)]
@@ -86,8 +86,7 @@ impl DownloadManager {
             )?,
         }
         .with_defaults(&settings.output_dir, &settings.filename_template)?;
-        let normalized =
-            normalize_video_url(&request.url).unwrap_or_else(|| request.url.trim().to_string());
+        let normalized = crate::capture::web_url(&request.url)?;
         super::presets::site_key(&normalized)?;
         let metadata = if std::env::var_os("NABBIT_ACCEPTANCE_FAKE_DOWNLOAD").is_some() {
             DownloadMetadata {

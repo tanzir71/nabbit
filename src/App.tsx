@@ -12,7 +12,7 @@ export default function App() {
   const loadInitialData = useAppStore((state) => state.loadInitialData);
   const refreshClipboard = useAppStore((state) => state.refreshClipboard);
   const refreshDownloads = useAppStore((state) => state.refreshDownloads);
-  const stageUrl = useAppStore((state) => state.stageUrl);
+  const acceptCapturedLink = useAppStore((state) => state.acceptCapturedLink);
   const settings = useAppStore((state) => state.settings);
   useTheme(settings?.theme);
 
@@ -22,29 +22,37 @@ export default function App() {
 
   useEffect(() => {
     const cleanups: Array<() => void> = [];
-    void api
-      .onEvent<ClipboardEntry>("clipboard:new", () => void refreshClipboard())
-      .then((cleanup) => {
-        cleanups.push(cleanup);
-      });
+    let active = true;
+    const keep = (cleanup: () => void) => {
+      if (active) cleanups.push(cleanup);
+      else cleanup();
+    };
+    void api.onEvent<ClipboardEntry>("clipboard:new", () => void refreshClipboard()).then(keep);
     void api
       .onEvent<DownloadMetadata>("url:detected", (payload) => {
-        void stageUrl(payload.normalizedUrl);
+        acceptCapturedLink(payload);
       })
-      .then((cleanup) => cleanups.push(cleanup));
+      .then(keep);
     void api
-      .onEvent<DownloadJob>("download:updated", () => void refreshDownloads())
-      .then((cleanup) => {
-        cleanups.push(cleanup);
-      });
+      .onEvent<void>("capture:review", () => {
+        void useAppStore.getState().setLastTab("download");
+      })
+      .then(keep);
+    void api
+      .onEvent<string>("capture:error", (error) => useAppStore.setState({ error }))
+      .then(keep);
+    void api.onEvent<DownloadJob>("download:updated", () => void refreshDownloads()).then(keep);
     void api
       .onEvent<void>("shortcut:clipboard-search", () => {
         window.dispatchEvent(new CustomEvent("nabbit:focus-search"));
       })
-      .then((cleanup) => cleanups.push(cleanup));
+      .then(keep);
 
-    return () => cleanups.forEach((cleanup) => cleanup());
-  }, [refreshClipboard, refreshDownloads, stageUrl]);
+    return () => {
+      active = false;
+      cleanups.forEach((cleanup) => cleanup());
+    };
+  }, [refreshClipboard, refreshDownloads, acceptCapturedLink]);
 
   return (
     <main className="min-h-screen bg-canvas text-primary antialiased">
