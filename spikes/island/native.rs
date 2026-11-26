@@ -60,7 +60,7 @@ fn permitted(window: &WebviewWindow) -> Result<(), String> {
     }
 }
 #[tauri::command]
-pub fn island_set_hitrect(
+pub fn island_spike_set_hitrect(
     window: WebviewWindow,
     rect: Rect,
     controller: State<'_, Arc<Controller>>,

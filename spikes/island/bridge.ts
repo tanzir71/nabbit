@@ -48,7 +48,7 @@ export function connectInteraction(
       return;
     lastRect = rect;
     if (native && !closed)
-      void invoke<Presentation>("island_set_hitrect", { rect }).then((value) => {
+      void invoke<Presentation>("island_spike_set_hitrect", { rect }).then((value) => {
         if (!closed) present(value);
       });
   }

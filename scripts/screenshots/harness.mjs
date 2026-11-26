@@ -152,9 +152,17 @@ export async function captureSuite(root, options, cases = scenarios) {
               !fixture.calls.some(({ command }) => command === "start_download"),
               "A capture cannot start downloads",
             );
-            if (scenario.surface === "island" || scenario.suite === "foundations")
-              assert.equal(fixture.calls.length, 0);
-            else
+            if (scenario.suite === "foundations") assert.equal(fixture.calls.length, 0);
+            else if (scenario.surface === "island") {
+              assert(fixture.calls.some(({ command }) => command === "island_set_hitrect"));
+              assert(
+                fixture.calls.every(({ command }) =>
+                  ["island_set_hitrect", "island_clear_hitrect", "island_set_drag"].includes(
+                    command,
+                  ),
+                ),
+              );
+            } else
               assert(
                 fixture.calls.some(({ command }) => command === "plugin:window|theme"),
                 "Exercise native theme IPC, not the browser fallback",

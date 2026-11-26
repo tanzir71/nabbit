@@ -17,10 +17,13 @@ pub struct Rect {
 
 impl Rect {
     pub fn contains(self, point: Point) -> bool {
-        point.x >= self.x
-            && point.x <= self.x + self.w
-            && point.y >= self.y
-            && point.y <= self.y + self.h
+        // Physical → logical conversion can put an exact edge a few ULPs
+        // outside, especially on negative-origin monitors at fractional DPI.
+        const EPSILON: f64 = 1e-9;
+        point.x >= self.x - EPSILON
+            && point.x <= self.x + self.w + EPSILON
+            && point.y >= self.y - EPSILON
+            && point.y <= self.y + self.h + EPSILON
     }
     pub fn near(self, point: Point) -> bool {
         let dx = (self.x - point.x).max(0.0).max(point.x - self.x - self.w);
@@ -94,6 +97,7 @@ pub struct Input {
     pub left_down: bool,
     pub in_band: bool,
     pub fullscreen: bool,
+    pub faded: bool,
 }
 
 #[derive(Clone, Copy, Debug, Serialize, PartialEq)]
@@ -123,13 +127,31 @@ pub struct Interaction {
     dragging: bool,
 }
 impl Interaction {
+    pub fn with_hitrect(rect: Rect) -> Self {
+        Self {
+            hitrect: Some(rect),
+            ..Self::default()
+        }
+    }
+    pub fn cancel_drag(&mut self) {
+        self.ole_drag = false;
+        self.armed = false;
+        self.dragging = false;
+    }
     pub fn step(&mut self, input: Input) -> Decision {
-        if input.fullscreen {
+        if input.fullscreen || input.faded {
             self.ole_drag = false;
             self.armed = false;
             self.dragging = false;
             return Decision {
-                hidden: true,
+                hidden: input.fullscreen,
+                poll_ms: if !input.fullscreen
+                    && self.hitrect.is_some_and(|rect| rect.near(input.cursor))
+                {
+                    25
+                } else {
+                    500
+                },
                 ..Decision::default()
             };
         }

@@ -29,6 +29,10 @@ export function installMockIpc(seed) {
     switch (command) {
       case "get_settings":
         return clone(state.settings);
+      case "island_set_hitrect":
+      case "island_clear_hitrect":
+      case "island_set_drag":
+        return null;
       case "get_island_snapshot":
         return clone(
           seed.responses?.get_island_snapshot ?? {

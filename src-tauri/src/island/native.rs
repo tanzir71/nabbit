@@ -1,5 +1,10 @@
 //! Message-driven production island hosts. All HWND/COM work stays on the UI thread.
-use super::{model::*, renderer::Renderer};
+use super::{
+    input::{self, Gate, HostInput, Sample},
+    input_watcher::Watcher,
+    model::*,
+    renderer::Renderer,
+};
 use serde::{Deserialize, Serialize};
 use sha2::{Digest, Sha256};
 use std::{
@@ -19,11 +24,18 @@ use windows_sys::{
         Foundation::*,
         Graphics::Gdi::*,
         System::LibraryLoader::GetModuleHandleW,
-        UI::{HiDpi::*, WindowsAndMessaging::*},
+        UI::{
+            Accessibility::{SetWinEventHook, UnhookWinEvent, HWINEVENTHOOK},
+            HiDpi::*,
+            WindowsAndMessaging::*,
+        },
     },
 };
 
 const REFRESH: u32 = WM_APP + 91;
+const INPUT_REFRESH: u32 = WM_APP + 92;
+static MOUSE_LEFT: AtomicBool = AtomicBool::new(false);
+static MOUSE_BAND: AtomicBool = AtomicBool::new(false);
 static CURRENT: OnceLock<Mutex<Weak<Manager>>> = OnceLock::new();
 static CONTROL: AtomicIsize = AtomicIsize::new(0);
 static MOUSE_MONITOR: AtomicIsize = AtomicIsize::new(0);
@@ -45,6 +57,8 @@ pub struct Host {
 #[derive(Clone, Serialize)]
 #[serde(rename_all = "camelCase")]
 pub struct Snapshot {
+    pub input: Vec<input::Report>,
+    pub input_watcher: super::input_watcher::Stats,
     pub supported: bool,
     pub preferences: Preferences,
     pub desktop: Desktop,
@@ -55,6 +69,7 @@ pub struct Snapshot {
     pub last_error: Option<String>,
 }
 struct State {
+    inputs: HashMap<String, HostInput>,
     preferences: Preferences,
     desktop: Desktop,
     fixture: Option<Desktop>,
@@ -63,6 +78,9 @@ struct State {
     error: Option<String>,
 }
 pub struct Manager {
+    watcher: Arc<Watcher>,
+    foreground_hook: AtomicIsize,
+    input_pending: AtomicBool,
     app: AppHandle,
     control: isize,
     pending: AtomicBool,
@@ -120,12 +138,16 @@ pub fn start(app: &AppHandle, preferences: Preferences) -> Result<(), String> {
             return Err(std::io::Error::last_os_error().to_string());
         }
         let manager = Arc::new(Manager {
+            watcher: Arc::default(),
+            foreground_hook: AtomicIsize::new(0),
+            input_pending: AtomicBool::new(false),
             app: app.clone(),
             control: control as isize,
             pending: AtomicBool::new(false),
             stopped: AtomicBool::new(false),
             hook: AtomicIsize::new(0),
             state: Mutex::new(State {
+                inputs: HashMap::new(),
                 preferences,
                 desktop: Desktop::default(),
                 fixture,
@@ -137,11 +159,28 @@ pub fn start(app: &AppHandle, preferences: Preferences) -> Result<(), String> {
         *lock(CURRENT.get_or_init(|| Mutex::new(Weak::new()))) = Arc::downgrade(&manager);
         CONTROL.store(control as isize, Ordering::Relaxed);
         app.manage(manager.clone());
+        let hook = SetWinEventHook(
+            EVENT_SYSTEM_FOREGROUND,
+            EVENT_SYSTEM_FOREGROUND,
+            std::ptr::null_mut(),
+            Some(foreground_hook),
+            0,
+            0,
+            WINEVENT_OUTOFCONTEXT,
+        );
+        if hook.is_null() {
+            manager.stop();
+            return Err(std::io::Error::last_os_error().to_string());
+        }
+        manager
+            .foreground_hook
+            .store(hook as isize, Ordering::Relaxed);
         if let Err(error) = manager.reconcile() {
             manager.stop();
             return Err(error);
         }
         manager.acceptance_worker();
+        manager.watcher.start(Arc::downgrade(&manager));
         Ok(())
     }
 }
@@ -155,6 +194,18 @@ impl Manager {
         let mut hosts: Vec<_> = state.hosts.values().cloned().collect();
         hosts.sort_by(|a, b| a.placement.label.cmp(&b.placement.label));
         Snapshot {
+            input: hosts
+                .iter()
+                .filter_map(|host| {
+                    state
+                        .inputs
+                        .get(&host.placement.label)
+                        .map(|input| input.report(&host.placement.label))
+                })
+                .collect(),
+            input_watcher: self
+                .watcher
+                .stats(self.foreground_hook.load(Ordering::Relaxed) != 0),
             supported: true,
             preferences: state.preferences.clone(),
             desktop: state.desktop.clone(),
@@ -208,13 +259,29 @@ impl Manager {
         }
         {
             let mut state = lock(&self.state);
+            let placements: Vec<_> = state
+                .hosts
+                .values()
+                .map(|host| host.placement.clone())
+                .collect();
+            state
+                .inputs
+                .retain(|label, _| placements.iter().any(|p| &p.label == label));
+            for placement in &placements {
+                let value = state
+                    .inputs
+                    .entry(placement.label.clone())
+                    .or_insert_with(|| HostInput::new(placement));
+                if !value.web {
+                    value.model.hitrect = Some(input::native_rect(placement));
+                }
+            }
             state.desktop = desktop;
             state.reconciliations += 1;
             state.error = None;
         }
-        self.update_hook(
-            preferences.enabled && preferences.monitor_mode == MonitorMode::FollowMouse,
-        )?;
+        self.update_hook(preferences.enabled)?;
+        self.watcher.wake();
         let _ = self.app.emit("nabbit://island-config", self.snapshot());
         Ok(())
     }
@@ -242,6 +309,14 @@ impl Manager {
                 return Err(std::io::Error::last_os_error().to_string());
             }
             self.hook.store(hook as isize, Ordering::Relaxed);
+            MOUSE_LEFT.store(
+                unsafe {
+                    windows_sys::Win32::UI::Input::KeyboardAndMouse::GetAsyncKeyState(
+                        windows_sys::Win32::UI::Input::KeyboardAndMouse::VK_LBUTTON as i32,
+                    )
+                } < 0,
+                Ordering::Relaxed,
+            );
         }
         Ok(())
     }
@@ -250,6 +325,13 @@ impl Manager {
             return;
         }
         CONTROL.store(0, Ordering::Relaxed);
+        self.watcher.stop();
+        let hook = self.foreground_hook.swap(0, Ordering::Relaxed);
+        if hook != 0 {
+            unsafe {
+                UnhookWinEvent(hook as HWINEVENTHOOK);
+            }
+        }
         let hook = self.hook.swap(0, Ordering::Relaxed);
         if hook != 0 {
             unsafe {
@@ -262,6 +344,135 @@ impl Manager {
         }
         unsafe {
             DestroyWindow(self.control as HWND);
+        }
+    }
+    pub fn button_down(&self) -> bool {
+        MOUSE_LEFT.load(Ordering::Relaxed)
+    }
+    pub fn has_hosts(&self) -> bool {
+        !lock(&self.state).hosts.is_empty()
+    }
+    pub fn set_hitrect(
+        &self,
+        label: &str,
+        rect: Option<crate::island_interaction::Rect>,
+    ) -> Result<(), String> {
+        let mut state = lock(&self.state);
+        let placement = state
+            .hosts
+            .get(label)
+            .ok_or("Only an active island surface can update its hit rectangle")?
+            .placement
+            .clone();
+        let value = state
+            .inputs
+            .get_mut(label)
+            .ok_or("Missing island input state")?;
+        value.web = rect.is_some();
+        value.dirty = true;
+        value.model.hitrect = Some(rect.unwrap_or_else(|| input::native_rect(&placement)));
+        if !value.web {
+            value.model.cancel_drag();
+        }
+        drop(state);
+        self.watcher.wake();
+        Ok(())
+    }
+    pub fn set_drag(&self, label: &str, active: bool) -> Result<(), String> {
+        let mut state = lock(&self.state);
+        let value = state
+            .inputs
+            .get_mut(label)
+            .ok_or("Only an active island surface can update drag state")?;
+        if active {
+            value.model.ole_drag = true;
+        } else {
+            value.model.cancel_drag();
+        }
+        drop(state);
+        self.watcher.wake();
+        Ok(())
+    }
+    pub fn sample_input(&self, sample: Option<Sample>) -> u64 {
+        if self.stopped.load(Ordering::Relaxed) {
+            return 500;
+        }
+        let mut state = lock(&self.state);
+        let placements: Vec<_> = state
+            .hosts
+            .values()
+            .map(|host| host.placement.clone())
+            .collect();
+        let mut delay = 500;
+        let mut changed = false;
+        for placement in placements {
+            if let Some(value) = state.inputs.get_mut(&placement.label) {
+                value.step(&placement, sample);
+                delay = delay.min(value.decision.poll_ms);
+                changed |= value.decision != value.applied || value.dirty;
+            }
+        }
+        drop(state);
+        if changed && !self.input_pending.swap(true, Ordering::Relaxed) {
+            unsafe {
+                PostMessageW(self.control as HWND, INPUT_REFRESH, 0, 0);
+            }
+        }
+        delay
+    }
+    fn apply_input(&self) {
+        self.input_pending.store(false, Ordering::Relaxed);
+        let mut state = lock(&self.state);
+        let handles: Vec<_> = state
+            .hosts
+            .iter()
+            .map(|(label, host)| (label.clone(), host.hwnd))
+            .collect();
+        let mut events = vec![];
+        for (label, hwnd) in handles {
+            if let Some(value) = state.inputs.get_mut(&label) {
+                if value.decision == value.applied && !value.dirty {
+                    continue;
+                }
+                if value.decision.interactive != value.applied.interactive || value.dirty {
+                    if let Err(error) = set_interactive(hwnd, value.decision.interactive) {
+                        state.error = Some(error);
+                        break;
+                    }
+                }
+                if let Some(window) = self.app.get_webview_window(&label) {
+                    // Tao's flag setter re-shows visible windows with SW_SHOW.
+                    // Keep cursor changes to styles without show/focus calls.
+                    if let Err(error) = window.hwnd().map_err(|e| e.to_string()).and_then(|hwnd| {
+                        set_interactive(hwnd.0 as isize, value.decision.interactive)
+                    }) {
+                        state.error = Some(error);
+                        break;
+                    }
+                }
+                let was_dragging = value.applied.dragging;
+                value.applied = value.decision;
+                value.dirty = false;
+                value.revision += 1;
+                events.push((
+                    value.report(&label),
+                    was_dragging != value.decision.dragging,
+                ));
+            }
+        }
+        drop(state);
+        for (report, drag_changed) in events {
+            let _ = self.app.emit("nabbit://island-interaction", &report);
+            if drag_changed {
+                let _ = self.app.emit(
+                    if report.decision.dragging {
+                        "island:drag-enter"
+                    } else {
+                        "island:drag-leave"
+                    },
+                    &report,
+                );
+            }
         }
     }
     fn acceptance_worker(self: &Arc<Self>) {
@@ -294,11 +505,17 @@ impl Manager {
                                 Some(false) => app.get_webview_window("main").map(|window| window.destroy().map_err(|e| e.to_string())).unwrap_or(Ok(())),
                                 None => Ok(()),
                             };
+                            let preparation=preparation.and_then(|()|match request.prepare_input {
+                                Some(true)=>prepare_input_window(&app),
+                                Some(false)=>app.get_webview_window("island").map(|window|window.destroy().map_err(|e|e.to_string())).unwrap_or(Ok(())),
+                                None=>Ok(()),
+                            });
                             let weak = weak.clone();
                             let path = path.clone();
                             let response_path = response_path.clone();
                             let _ = app.run_on_main_thread(move || {
                                 if let Some(manager) = weak.upgrade() {
+                                    if let Some(gate)=request.gate{for value in lock(&manager.state).inputs.values_mut(){value.gate=gate;}manager.watcher.wake();}
                                     let outcome = preparation.and_then(|()| manager.accept(request.desktop, request.preferences, request.capture, &path));
                                     let response = serde_json::json!({"id":request.id,"snapshot":manager.snapshot(),"result":outcome.as_ref().ok(),"error":outcome.err()});
                                     let _ = std::fs::write(response_path, serde_json::to_vec(&response).unwrap_or_default());
@@ -370,6 +587,9 @@ struct Request {
     #[serde(rename = "prepareTray")]
     prepare_tray: Option<bool>,
     quit: Option<bool>,
+    #[serde(rename = "prepareInput")]
+    prepare_input: Option<bool>,
+    gate: Option<Gate>,
 }
 #[derive(Deserialize)]
 struct Capture {
@@ -429,6 +649,78 @@ fn create_host(placement: &Placement) -> Result<Host, String> {
         Ok(host)
     }
 }
+
+// Acceptance-only, outside the UI thread. Production compact hosts remain native;
+// this composited surface exercises the same IPC that larger V2.5 views will use.
+fn prepare_input_window(app: &AppHandle) -> Result<(), String> {
+    if app.get_webview_window("island").is_some() {
+        return Ok(());
+    }
+    let manager = app.state::<Arc<Manager>>();
+    let placement = lock(&manager.state)
+        .hosts
+        .get("island")
+        .ok_or("Input probe requires singleton mode")?
+        .placement
+        .clone();
+    let window = tauri::WebviewWindowBuilder::new(
+        app,
+        "island",
+        tauri::WebviewUrl::App("island.html".into()),
+    )
+    .title("Nabbit island input probe")
+    .inner_size(720.0, 460.0)
+    .transparent(true)
+    .decorations(false)
+    .shadow(false)
+    .resizable(false)
+    .always_on_top(true)
+    .skip_taskbar(true)
+    .focused(false)
+    .focusable(false)
+    .no_redirection_bitmap(true)
+    .visible(false)
+    .build()
+    .map_err(|e| e.to_string())?;
+    window
+        .set_position(tauri::PhysicalPosition::new(
+            placement.bounds.x,
+            placement.bounds.y,
+        ))
+        .map_err(|e| e.to_string())?;
+    window
+        .set_size(tauri::PhysicalSize::new(
+            placement.bounds.width,
+            placement.bounds.height,
+        ))
+        .map_err(|e| e.to_string())?;
+    window
+        .set_ignore_cursor_events(true)
+        .map_err(|e| e.to_string())?;
+    let hwnd = window.hwnd().map_err(|e| e.to_string())?.0 as isize;
+    app.run_on_main_thread(move || unsafe {
+        ShowWindow(hwnd as HWND, SW_SHOWNOACTIVATE);
+    })
+    .map_err(|e| e.to_string())
+}
+
+fn set_interactive(hwnd: isize, interactive: bool) -> Result<(), String> {
+    unsafe {
+        let style = GetWindowLongPtrW(hwnd as HWND, GWL_EXSTYLE);
+        let next = (if interactive {
+            style & !(WS_EX_TRANSPARENT as isize)
+        } else {
+            style | WS_EX_TRANSPARENT as isize
+        }) | WS_EX_LAYERED as isize;
+        if style != next {
+            SetLastError(0);
+            if SetWindowLongPtrW(hwnd as HWND, GWL_EXSTYLE, next) == 0 && GetLastError() != 0 {
+                return Err(std::io::Error::last_os_error().to_string());
+            }
+        }
+    }
+    Ok(())
+}
 fn update_host(hwnd: isize, placement: &Placement) -> Result<Host, String> {
     let b = placement.bounds;
     if unsafe {
@@ -476,6 +768,12 @@ unsafe extern "system" fn host_proc(hwnd: HWND, message: u32, w: WPARAM, l: LPAR
     }
 }
 unsafe extern "system" fn control_proc(hwnd: HWND, message: u32, w: WPARAM, l: LPARAM) -> LRESULT {
+    if message == INPUT_REFRESH {
+        if let Some(manager) = current() {
+            manager.apply_input()
+        }
+        return 0;
+    }
     if message == REFRESH {
         if let Some(manager) = current() {
             if let Err(error) = manager.reconcile() {
@@ -497,19 +795,59 @@ unsafe extern "system" fn control_proc(hwnd: HWND, message: u32, w: WPARAM, l: L
     DefWindowProcW(hwnd, message, w, l)
 }
 unsafe extern "system" fn mouse_hook(code: i32, w: WPARAM, l: LPARAM) -> LRESULT {
-    if code >= 0 && w as u32 == WM_MOUSEMOVE {
+    if code >= 0 && matches!(w as u32, WM_MOUSEMOVE | WM_LBUTTONDOWN | WM_LBUTTONUP) {
         let point = (*(l as *const MSLLHOOKSTRUCT)).pt;
-        let monitor = MonitorFromPoint(point, MONITOR_DEFAULTTONEAREST) as isize;
-        if MOUSE_MONITOR.swap(monitor, Ordering::Relaxed) != monitor {
-            let control = CONTROL.load(Ordering::Relaxed);
-            if control != 0 {
-                if let Some(manager) = current() {
-                    manager.refresh()
+        if let Some(manager) = current() {
+            let sample = Sample {
+                x: f64::from(point.x),
+                y: f64::from(point.y),
+                left_down: MOUSE_LEFT.load(Ordering::Relaxed),
+            };
+            let state = lock(&manager.state);
+            let band = state
+                .hosts
+                .values()
+                .any(|host| input::in_band(input::logical(&host.placement, sample)));
+            let follow = state.preferences.monitor_mode == MonitorMode::FollowMouse;
+            drop(state);
+            if follow {
+                let monitor = MonitorFromPoint(point, MONITOR_DEFAULTTONEAREST) as isize;
+                if MOUSE_MONITOR.swap(monitor, Ordering::Relaxed) != monitor {
+                    manager.refresh();
                 }
+            }
+            let button = w as u32 != WM_MOUSEMOVE;
+            if button {
+                MOUSE_LEFT.store(w as u32 == WM_LBUTTONDOWN, Ordering::Relaxed);
+            }
+            let boundary = MOUSE_BAND.swap(band, Ordering::Relaxed) != band;
+            if button || (boundary && MOUSE_LEFT.load(Ordering::Relaxed)) {
+                // Use this exact hook sample to arm a fast drag before the next
+                // far poll. Mouse moves outside the band do not increase polling.
+                manager.sample_input(Some(Sample {
+                    left_down: MOUSE_LEFT.load(Ordering::Relaxed),
+                    ..sample
+                }));
+                manager.watcher.wake();
             }
         }
     }
     CallNextHookEx(std::ptr::null_mut(), code, w, l)
+}
+unsafe extern "system" fn foreground_hook(
+    _: HWINEVENTHOOK,
+    _: u32,
+    hwnd: HWND,
+    _: i32,
+    _: i32,
+    _: u32,
+    _: u32,
+) {
+    if let Some(manager) = current() {
+        let mut process = 0;
+        GetWindowThreadProcessId(hwnd, &mut process);
+        manager.watcher.foreground(process == std::process::id());
+    }
 }
 fn real_desktop() -> Desktop {
     unsafe extern "system" fn enumerate(

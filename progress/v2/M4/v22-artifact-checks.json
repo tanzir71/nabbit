@@ -1,0 +1,145 @@
+{
+  "checkedAt": "2026-11-26T03:26:33.121299+00:00",
+  "hashEncoding": {
+    "sourceAndReports": "UTF-8 bytes with CRLF normalized to LF",
+    "pngAndExe": "raw bytes"
+  },
+  "pngs": [
+    {
+      "file": "v22-island-idle-dark@1.5x.png",
+      "width": 1080,
+      "height": 690,
+      "bytes": 7763,
+      "sha256": "3b66ddb5647289b8f824870abb9afa078c9d88f35e47b990fac44ed0295e562a"
+    },
+    {
+      "file": "v22-island-idle-dark@1x.png",
+      "width": 720,
+      "height": 460,
+      "bytes": 4258,
+      "sha256": "8197c7b6a755d4597cdf7ec5a9d52ff043a95bedd358af0ce1d495869828e9bf"
+    },
+    {
+      "file": "v22-island-idle-light@1.5x.png",
+      "width": 1080,
+      "height": 690,
+      "bytes": 7763,
+      "sha256": "3b66ddb5647289b8f824870abb9afa078c9d88f35e47b990fac44ed0295e562a"
+    },
+    {
+      "file": "v22-island-idle-light@1x.png",
+      "width": 720,
+      "height": 460,
+      "bytes": 4258,
+      "sha256": "8197c7b6a755d4597cdf7ec5a9d52ff043a95bedd358af0ce1d495869828e9bf"
+    },
+    {
+      "file": "v22-native-island-1-5x.png",
+      "width": 1080,
+      "height": 690,
+      "bytes": 5811,
+      "sha256": "d69c1d224663b2c4be62990182fafaa77b569580a0f601d0fa8c11702efd90b0"
+    },
+    {
+      "file": "v22-native-island-1x.png",
+      "width": 720,
+      "height": 460,
+      "bytes": 3083,
+      "sha256": "de28ba1cc3676a656a2d4f846544fcf526f783a530ed52eb1f4ce8543bebc7f6"
+    },
+    {
+      "file": "v22-native-notch-1-5x.png",
+      "width": 1080,
+      "height": 690,
+      "bytes": 3388,
+      "sha256": "9c566d2d7206e8970c7f56cfd57009dc8435ed4ec4045d3470d36d5297a39f37"
+    },
+    {
+      "file": "v22-native-notch-1x.png",
+      "width": 720,
+      "height": 460,
+      "bytes": 1634,
+      "sha256": "51c0af2e8a3660d01a54ebace887d48a442df010747df4d07185f8b0918970c7"
+    }
+  ],
+  "pngCount": 8,
+  "largestPngBytes": 7763,
+  "comparisons": [
+    {
+      "current": "v22-island-idle-dark@1.5x.png",
+      "previous": "progress/v2/M2/v16-island-idle-dark@1.5x.png",
+      "pixelsIdentical": true
+    },
+    {
+      "current": "v22-island-idle-dark@1x.png",
+      "previous": "progress/v2/M2/v16-island-idle-dark@1x.png",
+      "pixelsIdentical": true
+    },
+    {
+      "current": "v22-island-idle-light@1.5x.png",
+      "previous": "progress/v2/M2/v16-island-idle-light@1.5x.png",
+      "pixelsIdentical": true
+    },
+    {
+      "current": "v22-island-idle-light@1x.png",
+      "previous": "progress/v2/M2/v16-island-idle-light@1x.png",
+      "pixelsIdentical": true
+    },
+    {
+      "current": "v22-native-island-1-5x.png",
+      "previous": "progress/v2/M4/v21-native-island-standard-light-1-5x.png",
+      "pixelsIdentical": true
+    },
+    {
+      "current": "v22-native-island-1x.png",
+      "previous": "progress/v2/M4/v21-native-island-standard-light-1x.png",
+      "pixelsIdentical": true
+    },
+    {
+      "current": "v22-native-notch-1-5x.png",
+      "previous": "progress/v2/M4/v21-native-notch-standard-light-1-5x.png",
+      "pixelsIdentical": true
+    },
+    {
+      "current": "v22-native-notch-1x.png",
+      "previous": "progress/v2/M4/v21-native-notch-standard-light-1x.png",
+      "pixelsIdentical": true
+    }
+  ],
+  "releaseSha256": "71f583f159979b991999b7284608d2e4ed67af28fed03b600e07be559d16c53b",
+  "nativeCases": 17,
+  "nabbitForegroundEvents": 0,
+  "externalForegroundChanges": 0,
+  "nearSamples": 35,
+  "farSamples": 2,
+  "sourceSha256": {
+    "src-tauri/src/island/input.rs": "50207216d78765a8a9fe0e7fabf6f93ec382bf5c4499bb4c0acb19bed1d7460d",
+    "src-tauri/src/island/input_watcher.rs": "6862fe4a313ff94d9293745d3467e4d22f81f22a554fa76327d7beb5f3ef3c59",
+    "src-tauri/src/island/mod.rs": "804ddde7dfa18e32ea6bd693dc8c07e1902c86d455897727ed875b9b16a6e92c",
+    "src-tauri/src/island/model.rs": "e8ffd40335d20ab0998ab7d028c67c53f86680cdd754ee9d17a62a563d48cb4b",
+    "src-tauri/src/island/native.rs": "494d628afd3353bb147762e5f7f1b81873263b7c230afe1f0e17e61bfd7b6966",
+    "src-tauri/src/island/renderer.rs": "a7e9fd095ac1df243aa2ea6e76182b9c289a65c8b182efbf342e80fa7b0c9328",
+    "src-tauri/src/lib.rs": "224a15ea168b743464f29e2ac11e2c58d3dbc579667511d2c6d312e3f07b04ba",
+    "src-tauri/capabilities/island.json": "3ccf2ace1b7c2b8c66d7312b4cb8c9bfcbc6ab4f7cd5acce25aebc067eddc1ca",
+    "src-tauri/gen/schemas/capabilities.json": "1079d86039479ff8dfd21c680b10437be7d11ec2deda26658cacd2a93424e150",
+    "src/lib/islandInput.ts": "2c5f5cfcabda958e0c87755b60ecff7a1a31490afd650eccdc8137be7a82a2b4",
+    "src/lib/islandInput.test.ts": "7afda597814b6cef4084104a13a99529028eeb943b06e6e940f75eb5c0bfbf0f",
+    "src/surfaces/island/IdleIsland.tsx": "052babd8885614244fd899c511b5ac97bfa3afaf6e00632473b04597ccdc19cc",
+    "src/surfaces/island/main.tsx": "28c759ad1a4462997ae9fbd03d3a0893d072751fe24c43c5f2aeca5ff2946b18",
+    "spikes/island/bridge.ts": "56916b47fcf7a46eb3b0a78a0483f108755ba6e030b9b1c0c7beeaf7b24385c4",
+    "spikes/island/interaction.rs": "516dd199389166740e109e6cc7a2b478a841c92c7faa56a19290612b550ee007",
+    "spikes/island/native.rs": "88f5c8971f8a054c310f68f6802986ce33f1ae2417e874ab2f4ff2a560afacd0",
+    "spikes/island/watcher.rs": "e2eb997b69c929fdf6a347fd6b4eb3d23ea08707775fd50d487bf0da4d844b4d",
+    "scripts/screenshots/harness.mjs": "c9c58ce290d0f68376b8f632886289043d77dca8aa7083c0e014ecb17d8a66dd",
+    "scripts/screenshots/mock-ipc.mjs": "1d19d25ba383c817cde3f60a654ca74d013bfcadd64c24213f9d5d2dcf7d53b3",
+    "scripts/windows-island-input-smoke.ps1": "dc2a7c9975a29a8925f4f436174312ff2c31ff37308ac4b30650417528d16de2",
+    "scripts/verify-island-input-native.mjs": "a0cb55e4515bf24c737759ab96c75711f51d40bce7389f677794fe3066524685",
+    "scripts/capture-island-input.mjs": "8276d9d60a6415e91842eaec460bf1de6ce1125ea3cad1e0fa8b2b78cccb7577"
+  },
+  "reportSha256": {
+    "v22-input-checks.json": "a3a78c3d0801d48f2101d61443adc81f8a9ac204349458b12d209a882b36641d",
+    "v22-web-input-checks.json": "da0af8d0bbbf4f3be08608c598a77441d78876740f6a1ad052fc12330ee1b2e0",
+    "v22-screenshots.json": "55f8fffdef69aa11451e038117d80bd2657988e261106a51cfdfd21c593ffd09",
+    "v22-entry-bundles.json": "55e33631334dbe787ab20d406010f5456cd7e1071776076336f140ce0ce4c39c"
+  }
+}

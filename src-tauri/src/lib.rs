@@ -14,7 +14,6 @@ mod util;
 #[path = "../../spikes/island/native.rs"]
 mod island_spike;
 
-#[cfg(any(test, all(windows, feature = "island-spike")))]
 #[cfg_attr(not(all(windows, feature = "island-spike")), allow(dead_code))]
 #[path = "../../spikes/island/interaction.rs"]
 mod island_interaction;
@@ -90,6 +89,9 @@ pub fn run() {
             commands::app::check_app_update,
             commands::settings::get_settings,
             commands::settings::get_island_snapshot,
+            island::island_set_hitrect,
+            island::island_clear_hitrect,
+            island::island_set_drag,
             commands::settings::save_island_preferences,
             commands::settings::save_settings,
             commands::settings::acknowledge_first_run,
@@ -118,7 +120,7 @@ pub fn run() {
             commands::download::repair_engine,
             commands::download::quick_download_staged,
             #[cfg(all(windows, feature = "island-spike"))]
-            island_spike::island_set_hitrect,
+            island_spike::island_spike_set_hitrect,
             #[cfg(all(windows, feature = "island-spike"))]
             island_spike::island_spike_set_drag,
             #[cfg(all(windows, feature = "island-spike"))]
@@ -190,6 +192,12 @@ pub fn run() {
             Ok(())
         })
         .on_window_event(|window, event| {
+            #[cfg(windows)]
+            if matches!(event, tauri::WindowEvent::Destroyed) {
+                if let Some(manager) = window.app_handle().try_state::<Arc<island::Manager>>() {
+                    let _ = manager.set_hitrect(window.label(), None);
+                }
+            }
             if matches!(event, tauri::WindowEvent::CloseRequested { .. })
                 && window.label() == "main"
             {
@@ -412,7 +420,11 @@ fn ensure_popover(app: &AppHandle<Wry>) -> Result<tauri::WebviewWindow> {
         .iter()
         .find(|window| window.label == "main")
         .ok_or_else(|| crate::error::msg("Main window configuration is missing"))?;
-    Ok(tauri::WebviewWindowBuilder::from_config(app, config)?.build()?)
+    // Construction can precede an explicit open (native idle / acceptance).
+    // Only reveal_popover requests focus after the user opens the tray.
+    Ok(tauri::WebviewWindowBuilder::from_config(app, config)?
+        .focused(false)
+        .build()?)
 }
 
 fn toggle_popover(app: &AppHandle<Wry>) -> Result<()> {

@@ -334,6 +334,7 @@ impl Provider {
     }
     fn input(&self) -> Input {
         Input {
+            faded: false,
             fullscreen: fullscreen(self.foreground),
             ..self.input
         }
