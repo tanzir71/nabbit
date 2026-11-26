@@ -37,6 +37,16 @@ export function installMockIpc(seed) {
         return clone(
           seed.responses?.get_island_snapshot ?? {
             supported: true,
+            visibility: [
+              {
+                label: seed.label,
+                mode: "visible",
+                base: "visible",
+                reason: "none",
+                opacity: 1,
+                revision: 0,
+              },
+            ],
             desktop: {
               monitors: [{ id: "primary", name: "Fixture display", primary: true, scaleFactor: 1 }],
             },

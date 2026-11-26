@@ -4,6 +4,7 @@ use super::{
     input_watcher::Watcher,
     model::*,
     renderer::Renderer,
+    visibility::{Foreground, Visibility},
 };
 use serde::{Deserialize, Serialize};
 use sha2::{Digest, Sha256};
@@ -15,7 +16,7 @@ use std::{
         atomic::{AtomicBool, AtomicIsize, Ordering},
         Arc, Mutex, OnceLock, Weak,
     },
-    time::Duration,
+    time::{Duration, Instant},
 };
 use tauri::{AppHandle, Emitter, Manager as TauriManager};
 use windows_sys::{
@@ -57,6 +58,8 @@ pub struct Host {
 #[derive(Clone, Serialize)]
 #[serde(rename_all = "camelCase")]
 pub struct Snapshot {
+    pub visibility: Vec<super::visibility::Report>,
+    pub foreground: Foreground,
     pub input: Vec<input::Report>,
     pub input_watcher: super::input_watcher::Stats,
     pub supported: bool,
@@ -69,6 +72,11 @@ pub struct Snapshot {
     pub last_error: Option<String>,
 }
 struct State {
+    visibility: HashMap<String, Visibility>,
+    applied_visibility: HashMap<String, u64>,
+    foreground: Foreground,
+    foreground_fixture: Option<Foreground>,
+    gate_override: Option<Gate>,
     inputs: HashMap<String, HostInput>,
     preferences: Preferences,
     desktop: Desktop,
@@ -78,6 +86,8 @@ struct State {
     error: Option<String>,
 }
 pub struct Manager {
+    started: Instant,
+    visibility_hooks: Mutex<Vec<isize>>,
     watcher: Arc<Watcher>,
     foreground_hook: AtomicIsize,
     input_pending: AtomicBool,
@@ -138,6 +148,8 @@ pub fn start(app: &AppHandle, preferences: Preferences) -> Result<(), String> {
             return Err(std::io::Error::last_os_error().to_string());
         }
         let manager = Arc::new(Manager {
+            started: Instant::now(),
+            visibility_hooks: Mutex::default(),
             watcher: Arc::default(),
             foreground_hook: AtomicIsize::new(0),
             input_pending: AtomicBool::new(false),
@@ -147,6 +159,11 @@ pub fn start(app: &AppHandle, preferences: Preferences) -> Result<(), String> {
             stopped: AtomicBool::new(false),
             hook: AtomicIsize::new(0),
             state: Mutex::new(State {
+                visibility: HashMap::new(),
+                applied_visibility: HashMap::new(),
+                foreground: Foreground::default(),
+                foreground_fixture: super::acceptance_session().then(Foreground::default),
+                gate_override: None,
                 inputs: HashMap::new(),
                 preferences,
                 desktop: Desktop::default(),
@@ -175,6 +192,26 @@ pub fn start(app: &AppHandle, preferences: Preferences) -> Result<(), String> {
         manager
             .foreground_hook
             .store(hook as isize, Ordering::Relaxed);
+        for (first, last) in [
+            (EVENT_OBJECT_LOCATIONCHANGE, EVENT_OBJECT_LOCATIONCHANGE),
+            (EVENT_SYSTEM_MOVESIZEEND, EVENT_SYSTEM_MOVESIZEEND),
+            (EVENT_SYSTEM_MINIMIZESTART, EVENT_SYSTEM_MINIMIZEEND),
+        ] {
+            let hook = SetWinEventHook(
+                first,
+                last,
+                std::ptr::null_mut(),
+                Some(foreground_hook),
+                0,
+                0,
+                WINEVENT_OUTOFCONTEXT,
+            );
+            if hook.is_null() {
+                manager.stop();
+                return Err(std::io::Error::last_os_error().to_string());
+            }
+            lock(&manager.visibility_hooks).push(hook as isize);
+        }
         if let Err(error) = manager.reconcile() {
             manager.stop();
             return Err(error);
@@ -194,6 +231,16 @@ impl Manager {
         let mut hosts: Vec<_> = state.hosts.values().cloned().collect();
         hosts.sort_by(|a, b| a.placement.label.cmp(&b.placement.label));
         Snapshot {
+            visibility: hosts
+                .iter()
+                .filter_map(|host| {
+                    state
+                        .visibility
+                        .get(&host.placement.label)
+                        .map(|value| value.report(&host.placement.label))
+                })
+                .collect(),
+            foreground: state.foreground.clone(),
             input: hosts
                 .iter()
                 .filter_map(|host| {
@@ -228,6 +275,7 @@ impl Manager {
             return Ok(());
         }
         self.pending.store(false, Ordering::Relaxed);
+        self.sample_system();
         let (preferences, fixture) = {
             let state = lock(&self.state);
             (state.preferences.clone(), state.fixture.clone())
@@ -251,7 +299,17 @@ impl Manager {
                     update_host(old.hwnd, &placement)?
                 }
             } else {
-                create_host(&placement)?
+                let state = lock(&self.state);
+                let mode = state.gate_override.unwrap_or_else(|| {
+                    desktop
+                        .monitors
+                        .iter()
+                        .find(|m| m.id == placement.monitor_id)
+                        .map(|m| super::visibility::classify(&state.foreground, m.bounds).0)
+                        .unwrap_or_default()
+                });
+                drop(state);
+                create_host(&placement, mode.opacity())?
             };
             lock(&self.state)
                 .hosts
@@ -267,7 +325,36 @@ impl Manager {
             state
                 .inputs
                 .retain(|label, _| placements.iter().any(|p| &p.label == label));
+            state
+                .visibility
+                .retain(|label, _| placements.iter().any(|p| &p.label == label));
+            state
+                .applied_visibility
+                .retain(|label, _| placements.iter().any(|p| &p.label == label));
+            let foreground = state.foreground.clone();
+            let gate_override = state.gate_override;
             for placement in &placements {
+                state
+                    .visibility
+                    .entry(placement.label.clone())
+                    .or_insert_with(|| {
+                        let mut visibility = Visibility::default();
+                        if let Some(monitor) = desktop
+                            .monitors
+                            .iter()
+                            .find(|m| m.id == placement.monitor_id)
+                        {
+                            visibility.step(
+                                &foreground,
+                                monitor.bounds,
+                                false,
+                                false,
+                                self.started.elapsed().as_millis() as u64,
+                                gate_override,
+                            );
+                        }
+                        visibility
+                    });
                 let value = state
                     .inputs
                     .entry(placement.label.clone())
@@ -281,7 +368,7 @@ impl Manager {
             state.error = None;
         }
         self.update_hook(preferences.enabled)?;
-        self.watcher.wake();
+        self.watcher.system_changed();
         let _ = self.app.emit("nabbit://island-config", self.snapshot());
         Ok(())
     }
@@ -326,6 +413,11 @@ impl Manager {
         }
         CONTROL.store(0, Ordering::Relaxed);
         self.watcher.stop();
+        for hook in std::mem::take(&mut *lock(&self.visibility_hooks)) {
+            unsafe {
+                UnhookWinEvent(hook as HWINEVENTHOOK);
+            }
+        }
         let hook = self.foreground_hook.swap(0, Ordering::Relaxed);
         if hook != 0 {
             unsafe {
@@ -405,9 +497,51 @@ impl Manager {
             .collect();
         let mut delay = 500;
         let mut changed = false;
+        let foreground = state.foreground.clone();
+        let gate_override = state.gate_override;
+        let now = self.started.elapsed().as_millis() as u64;
         for placement in placements {
+            let monitor = state
+                .desktop
+                .monitors
+                .iter()
+                .find(|m| m.id == placement.monitor_id)
+                .map(|m| m.bounds);
+            let point = sample
+                .filter(|s| s.valid())
+                .map(|s| input::logical(&placement, s));
+            let band = point.is_some_and(input::in_band);
+            let inside = point.is_some_and(|p| {
+                state
+                    .inputs
+                    .get(&placement.label)
+                    .and_then(|i| i.model.hitrect)
+                    .is_some_and(|r| r.contains(p))
+            });
+            let visibility_changed = if let Some(monitor) = monitor {
+                state
+                    .visibility
+                    .entry(placement.label.clone())
+                    .or_default()
+                    .step(&foreground, monitor, band, inside, now, gate_override)
+            } else {
+                false
+            };
+            let mode = state
+                .visibility
+                .get(&placement.label)
+                .map(|v| v.mode)
+                .unwrap_or_default();
+            let hover_pending = band && mode == Gate::Faded;
             if let Some(value) = state.inputs.get_mut(&placement.label) {
+                value.gate = mode;
+                value.dirty |= visibility_changed;
                 value.step(&placement, sample);
+                // The wake band spans the host, including areas farther than
+                // 120px from the pill. Sample intent at the near rate there.
+                if hover_pending {
+                    value.decision.poll_ms = 25;
+                }
                 delay = delay.min(value.decision.poll_ms);
                 changed |= value.decision != value.applied || value.dirty;
             }
@@ -420,6 +554,22 @@ impl Manager {
         }
         delay
     }
+    pub fn sample_system(&self) {
+        let fixture = lock(&self.state).foreground_fixture.clone();
+        let foreground = fixture.unwrap_or_else(super::foreground::read);
+        lock(&self.state).foreground = foreground;
+    }
+    pub fn wake_island(&self, label: &str) -> Result<(), String> {
+        let mut state = lock(&self.state);
+        state
+            .visibility
+            .get_mut(label)
+            .ok_or("Only an active island can wake")?
+            .wake();
+        drop(state);
+        self.watcher.wake();
+        Ok(())
+    }
     fn apply_input(&self) {
         self.input_pending.store(false, Ordering::Relaxed);
         let mut state = lock(&self.state);
@@ -429,7 +579,36 @@ impl Manager {
             .map(|(label, host)| (label.clone(), host.hwnd))
             .collect();
         let mut events = vec![];
+        let mut visibility_events = vec![];
         for (label, hwnd) in handles {
+            if let Some(report) = state.visibility.get(&label).map(|v| v.report(&label)) {
+                if state.applied_visibility.get(&label) != Some(&report.revision) {
+                    let result = GRAPHICS.with(|graphics| {
+                        let mut graphics = graphics.borrow_mut();
+                        let renderer = graphics
+                            .get_mut(&hwnd)
+                            .ok_or("Missing native renderer".to_string())?;
+                        renderer
+                            .set_opacity(report.opacity)
+                            .map_err(|e| e.to_string())?;
+                        Ok::<_, String>(renderer.commits)
+                    });
+                    match result {
+                        Ok(commits) => {
+                            if let Some(host) = state.hosts.get_mut(&label) {
+                                host.commits = commits;
+                            }
+                            state
+                                .applied_visibility
+                                .insert(label.clone(), report.revision);
+                            visibility_events.push(report);
+                        }
+                        Err(error) => {
+                            state.error = Some(error);
+                        }
+                    }
+                }
+            }
             if let Some(value) = state.inputs.get_mut(&label) {
                 if value.decision == value.applied && !value.dirty {
                     continue;
@@ -461,6 +640,9 @@ impl Manager {
             }
         }
         drop(state);
+        for report in visibility_events {
+            let _ = self.app.emit("nabbit://island-visibility", report);
+        }
         for (report, drag_changed) in events {
             let _ = self.app.emit("nabbit://island-interaction", &report);
             if drag_changed {
@@ -515,7 +697,10 @@ impl Manager {
                             let response_path = response_path.clone();
                             let _ = app.run_on_main_thread(move || {
                                 if let Some(manager) = weak.upgrade() {
-                                    if let Some(gate)=request.gate{for value in lock(&manager.state).inputs.values_mut(){value.gate=gate;}manager.watcher.wake();}
+                                    if let Some(gate)=request.gate{lock(&manager.state).gate_override=Some(gate);manager.watcher.wake();}
+                                    if request.live_foreground.unwrap_or(false){let mut state=lock(&manager.state);state.foreground_fixture=None;state.gate_override=None;drop(state);manager.watcher.system_changed();}
+                                    if let Some(foreground)=request.foreground{let mut state=lock(&manager.state);state.foreground_fixture=Some(foreground.clone());state.foreground=foreground;state.gate_override=None;drop(state);manager.watcher.system_changed();}
+                                    if let Some(label)=request.wake{let _=manager.wake_island(&label);}
                                     let outcome = preparation.and_then(|()| manager.accept(request.desktop, request.preferences, request.capture, &path));
                                     let response = serde_json::json!({"id":request.id,"snapshot":manager.snapshot(),"result":outcome.as_ref().ok(),"error":outcome.err()});
                                     let _ = std::fs::write(response_path, serde_json::to_vec(&response).unwrap_or_default());
@@ -580,6 +765,8 @@ impl Manager {
 }
 #[derive(Deserialize)]
 struct Request {
+    #[serde(rename = "liveForeground")]
+    live_foreground: Option<bool>,
     id: String,
     desktop: Option<Desktop>,
     preferences: Option<Preferences>,
@@ -590,6 +777,8 @@ struct Request {
     #[serde(rename = "prepareInput")]
     prepare_input: Option<bool>,
     gate: Option<Gate>,
+    foreground: Option<Foreground>,
+    wake: Option<String>,
 }
 #[derive(Deserialize)]
 struct Capture {
@@ -597,7 +786,7 @@ struct Capture {
     stem: String,
 }
 
-fn create_host(placement: &Placement) -> Result<Host, String> {
+fn create_host(placement: &Placement, opacity: f64) -> Result<Host, String> {
     unsafe {
         let title: Vec<_> = format!("Nabbit island · {}", placement.label)
             .encode_utf16()
@@ -631,7 +820,10 @@ fn create_host(placement: &Placement) -> Result<Host, String> {
             DestroyWindow(hwnd);
             return Err(std::io::Error::last_os_error().to_string());
         }
-        let renderer = match Renderer::new(handle, placement) {
+        let renderer = match Renderer::new(handle, placement).and_then(|mut renderer| {
+            renderer.set_opacity(opacity)?;
+            Ok(renderer)
+        }) {
             Ok(renderer) => renderer,
             Err(error) => {
                 DestroyWindow(hwnd);
@@ -809,6 +1001,7 @@ unsafe extern "system" fn mouse_hook(code: i32, w: WPARAM, l: LPARAM) -> LRESULT
                 .values()
                 .any(|host| input::in_band(input::logical(&host.placement, sample)));
             let follow = state.preferences.monitor_mode == MonitorMode::FollowMouse;
+            let hover_wake = state.visibility.values().any(|v| v.base == Gate::Faded);
             drop(state);
             if follow {
                 let monitor = MonitorFromPoint(point, MONITOR_DEFAULTTONEAREST) as isize;
@@ -821,7 +1014,7 @@ unsafe extern "system" fn mouse_hook(code: i32, w: WPARAM, l: LPARAM) -> LRESULT
                 MOUSE_LEFT.store(w as u32 == WM_LBUTTONDOWN, Ordering::Relaxed);
             }
             let boundary = MOUSE_BAND.swap(band, Ordering::Relaxed) != band;
-            if button || (boundary && MOUSE_LEFT.load(Ordering::Relaxed)) {
+            if button || (boundary && (MOUSE_LEFT.load(Ordering::Relaxed) || hover_wake)) {
                 // Use this exact hook sample to arm a fast drag before the next
                 // far poll. Mouse moves outside the band do not increase polling.
                 manager.sample_input(Some(Sample {
@@ -836,14 +1029,23 @@ unsafe extern "system" fn mouse_hook(code: i32, w: WPARAM, l: LPARAM) -> LRESULT
 }
 unsafe extern "system" fn foreground_hook(
     _: HWINEVENTHOOK,
-    _: u32,
+    event: u32,
     hwnd: HWND,
-    _: i32,
-    _: i32,
+    object: i32,
+    child: i32,
     _: u32,
     _: u32,
 ) {
     if let Some(manager) = current() {
+        if event != EVENT_SYSTEM_FOREGROUND {
+            if hwnd == GetForegroundWindow()
+                && object == OBJID_WINDOW
+                && child == CHILDID_SELF as i32
+            {
+                manager.watcher.system_changed();
+            }
+            return;
+        }
         let mut process = 0;
         GetWindowThreadProcessId(hwnd, &mut process);
         manager.watcher.foreground(process == std::process::id());

@@ -1,6 +1,8 @@
 #[cfg(windows)]
 #[path = "../../../spikes/island/native_capture.rs"]
 pub(crate) mod capture;
+#[cfg(windows)]
+mod foreground;
 #[cfg_attr(not(windows), allow(dead_code))]
 pub mod input;
 #[cfg(windows)]
@@ -11,6 +13,8 @@ pub mod model;
 mod native;
 #[cfg(windows)]
 mod renderer;
+#[cfg_attr(not(windows), allow(dead_code))]
+pub mod visibility;
 
 #[cfg(windows)]
 pub use native::{start, Manager};
@@ -55,6 +59,16 @@ pub fn island_set_drag(
     {
         let _ = (app, window, active);
         Err("Island input is available on Windows".into())
+    }
+}
+#[tauri::command]
+pub fn island_wake(app: tauri::AppHandle, window: tauri::WebviewWindow) -> Result<(), String> {
+    #[cfg(windows)]
+    return input_manager(&app)?.wake_island(window.label());
+    #[cfg(not(windows))]
+    {
+        let _ = (app, window);
+        Err("Island visibility is available on Windows".into())
     }
 }
 #[cfg(windows)]

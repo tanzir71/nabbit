@@ -1,5 +1,6 @@
 import { useEffect, useRef } from "react";
 import { observeIslandInput } from "../../lib/islandInput";
+import { connectIslandVisibility } from "../../lib/islandVisibility";
 
 export function IdleIsland() {
   const host = useRef<HTMLElement>(null),
@@ -7,12 +8,19 @@ export function IdleIsland() {
   useEffect(() => {
     if (!host.current || !pill.current || !("__TAURI_INTERNALS__" in window)) return;
     const input = observeIslandInput(pill.current, host.current);
+    const visibility = connectIslandVisibility(host.current);
     return () => {
+      visibility.dispose();
       void input.dispose();
     };
   }, []);
   return (
-    <main ref={host} className="island-host" aria-label="Nabbit island">
+    <main
+      ref={host}
+      className="island-host"
+      aria-label="Nabbit island"
+      style={{ opacity: "__TAURI_INTERNALS__" in window ? 0 : 1 }}
+    >
       <div ref={pill} className="island-idle" aria-hidden="true" />
     </main>
   );

@@ -754,7 +754,7 @@ Commit after every task (§0.1). Lines marked **MILESTONE** are tasks of their o
 ### Phase V2 — Island shell
 - [x] V2.1 Island window lifecycle, placement, monitor modes, shape (island/notch), size setting.
 - [x] V2.2 Hit-rect protocol + cursor watcher (from V0), drag band.
-- [ ] V2.3 Fullscreen/maximised detection → hidden/faded states.
+- [x] V2.3 Fullscreen/maximised detection → hidden/faded states.
 - [ ] V2.4 `ActivityEvent` bus + priority queue + `islandStore` reducer with unit tests for every transition in §6.3.
 - [ ] **MILESTONE M4 — Island plumbing.**
 - [ ] V2.5 Compact states (`7:103`), Peek (`8:119`), Expanded shell with tabs (`10:519`), Drop target (`8:192`), motion (§4.6).

@@ -77,6 +77,10 @@ export const scenarios = [
     figmaNode: "7:2",
     async ready(page) {
       await page.getByRole("main", { name: "Nabbit island" }).waitFor();
+      await page.waitForFunction(
+        () =>
+          globalThis.document.querySelector(".island-host").dataset.islandVisibility === "visible",
+      );
       const box = await page.locator(".island-idle").boundingBox();
       assert.deepEqual(box, { x: 304, y: 6, width: 112, height: 26 });
     },

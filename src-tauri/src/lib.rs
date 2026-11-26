@@ -92,6 +92,7 @@ pub fn run() {
             island::island_set_hitrect,
             island::island_clear_hitrect,
             island::island_set_drag,
+            island::island_wake,
             commands::settings::save_island_preferences,
             commands::settings::save_settings,
             commands::settings::acknowledge_first_run,

@@ -1,0 +1,678 @@
+{
+  "milestone": "M4",
+  "prefix": "v23",
+  "suite": "surfaces",
+  "browser": "159.0.8154.6",
+  "playwright": "1.65.1",
+  "platform": "win32",
+  "node": "v24.22.2",
+  "captureTime": "2026-11-26T09:00:00.000Z",
+  "buildManifestSha256": "c59a864c69d6b468550a10d476f0d980befd3b6e91a68e93fd74db94f97ace26",
+  "screenshotScale": "device",
+  "pngBudgetBytes": 307200,
+  "isolatedContexts": true,
+  "mockedIpc": true,
+  "osPreferencesChanged": false,
+  "captures": [
+    {
+      "file": "v23-island-visible-light@1x.png",
+      "scenario": "island-visible",
+      "entry": "island.html",
+      "figmaNode": "7:2",
+      "theme": "light",
+      "resolvedTheme": "dark",
+      "scale": 1,
+      "viewport": {
+        "width": 720,
+        "height": 460
+      },
+      "clip": {
+        "x": 0,
+        "y": 0,
+        "width": 720,
+        "height": 460
+      },
+      "width": 720,
+      "height": 460,
+      "bytes": 4258,
+      "sha256": "8197c7b6a755d4597cdf7ec5a9d52ff043a95bedd358af0ce1d495869828e9bf",
+      "repeatMatches": true,
+      "font": null,
+      "fixtureSha256": "4cc012d276ff44792809a0ce59769eb1387e8951f2be072ff291937021479686",
+      "ipc": [
+        {
+          "command": "plugin:event|listen",
+          "args": {
+            "event": "nabbit://island-visibility",
+            "target": {
+              "kind": "Any"
+            },
+            "handler": 1
+          }
+        },
+        {
+          "command": "island_set_hitrect",
+          "args": {
+            "rect": {
+              "x": 296,
+              "y": -2,
+              "w": 128,
+              "h": 42
+            }
+          }
+        },
+        {
+          "command": "get_island_snapshot",
+          "args": {}
+        }
+      ],
+      "unsupported": [],
+      "runtimeAndNetworkProblems": []
+    },
+    {
+      "file": "v23-island-faded-light@1x.png",
+      "scenario": "island-faded",
+      "entry": "island.html",
+      "figmaNode": "15:489",
+      "theme": "light",
+      "resolvedTheme": "dark",
+      "scale": 1,
+      "viewport": {
+        "width": 720,
+        "height": 460
+      },
+      "clip": {
+        "x": 0,
+        "y": 0,
+        "width": 720,
+        "height": 460
+      },
+      "width": 720,
+      "height": 460,
+      "bytes": 3556,
+      "sha256": "9704d8eaf94d24dec4c4e486dddc597dbd79bf256a7e232bf4c73efbfb6743e6",
+      "repeatMatches": true,
+      "font": null,
+      "fixtureSha256": "4cc012d276ff44792809a0ce59769eb1387e8951f2be072ff291937021479686",
+      "ipc": [
+        {
+          "command": "plugin:event|listen",
+          "args": {
+            "event": "nabbit://island-visibility",
+            "target": {
+              "kind": "Any"
+            },
+            "handler": 1
+          }
+        },
+        {
+          "command": "island_set_hitrect",
+          "args": {
+            "rect": {
+              "x": 296,
+              "y": -2,
+              "w": 128,
+              "h": 42
+            }
+          }
+        },
+        {
+          "command": "get_island_snapshot",
+          "args": {}
+        }
+      ],
+      "unsupported": [],
+      "runtimeAndNetworkProblems": []
+    },
+    {
+      "file": "v23-island-hidden-light@1x.png",
+      "scenario": "island-hidden",
+      "entry": "island.html",
+      "figmaNode": "7:2",
+      "theme": "light",
+      "resolvedTheme": "dark",
+      "scale": 1,
+      "viewport": {
+        "width": 720,
+        "height": 460
+      },
+      "clip": {
+        "x": 0,
+        "y": 0,
+        "width": 720,
+        "height": 460
+      },
+      "width": 720,
+      "height": 460,
+      "bytes": 2284,
+      "sha256": "d6f64487087adbef13c8baeefdd7b53d8fdea08146cd083db79050a6e201944d",
+      "repeatMatches": true,
+      "font": null,
+      "fixtureSha256": "4cc012d276ff44792809a0ce59769eb1387e8951f2be072ff291937021479686",
+      "ipc": [
+        {
+          "command": "plugin:event|listen",
+          "args": {
+            "event": "nabbit://island-visibility",
+            "target": {
+              "kind": "Any"
+            },
+            "handler": 1
+          }
+        },
+        {
+          "command": "island_set_hitrect",
+          "args": {
+            "rect": {
+              "x": 296,
+              "y": -2,
+              "w": 128,
+              "h": 42
+            }
+          }
+        },
+        {
+          "command": "get_island_snapshot",
+          "args": {}
+        }
+      ],
+      "unsupported": [],
+      "runtimeAndNetworkProblems": []
+    },
+    {
+      "file": "v23-island-visible-light@1.5x.png",
+      "scenario": "island-visible",
+      "entry": "island.html",
+      "figmaNode": "7:2",
+      "theme": "light",
+      "resolvedTheme": "dark",
+      "scale": 1.5,
+      "viewport": {
+        "width": 720,
+        "height": 460
+      },
+      "clip": {
+        "x": 0,
+        "y": 0,
+        "width": 720,
+        "height": 460
+      },
+      "width": 1080,
+      "height": 690,
+      "bytes": 7763,
+      "sha256": "3b66ddb5647289b8f824870abb9afa078c9d88f35e47b990fac44ed0295e562a",
+      "repeatMatches": true,
+      "font": null,
+      "fixtureSha256": "4cc012d276ff44792809a0ce59769eb1387e8951f2be072ff291937021479686",
+      "ipc": [
+        {
+          "command": "plugin:event|listen",
+          "args": {
+            "event": "nabbit://island-visibility",
+            "target": {
+              "kind": "Any"
+            },
+            "handler": 1
+          }
+        },
+        {
+          "command": "island_set_hitrect",
+          "args": {
+            "rect": {
+              "x": 296,
+              "y": -2,
+              "w": 128,
+              "h": 42
+            }
+          }
+        },
+        {
+          "command": "get_island_snapshot",
+          "args": {}
+        }
+      ],
+      "unsupported": [],
+      "runtimeAndNetworkProblems": []
+    },
+    {
+      "file": "v23-island-faded-light@1.5x.png",
+      "scenario": "island-faded",
+      "entry": "island.html",
+      "figmaNode": "15:489",
+      "theme": "light",
+      "resolvedTheme": "dark",
+      "scale": 1.5,
+      "viewport": {
+        "width": 720,
+        "height": 460
+      },
+      "clip": {
+        "x": 0,
+        "y": 0,
+        "width": 720,
+        "height": 460
+      },
+      "width": 1080,
+      "height": 690,
+      "bytes": 6522,
+      "sha256": "b845ed4ffa0a8fe3758a3744bcddd5679032b9e2cae182f042b8acee4002ba2e",
+      "repeatMatches": true,
+      "font": null,
+      "fixtureSha256": "4cc012d276ff44792809a0ce59769eb1387e8951f2be072ff291937021479686",
+      "ipc": [
+        {
+          "command": "plugin:event|listen",
+          "args": {
+            "event": "nabbit://island-visibility",
+            "target": {
+              "kind": "Any"
+            },
+            "handler": 1
+          }
+        },
+        {
+          "command": "island_set_hitrect",
+          "args": {
+            "rect": {
+              "x": 296,
+              "y": -2,
+              "w": 128,
+              "h": 42
+            }
+          }
+        },
+        {
+          "command": "get_island_snapshot",
+          "args": {}
+        }
+      ],
+      "unsupported": [],
+      "runtimeAndNetworkProblems": []
+    },
+    {
+      "file": "v23-island-hidden-light@1.5x.png",
+      "scenario": "island-hidden",
+      "entry": "island.html",
+      "figmaNode": "7:2",
+      "theme": "light",
+      "resolvedTheme": "dark",
+      "scale": 1.5,
+      "viewport": {
+        "width": 720,
+        "height": 460
+      },
+      "clip": {
+        "x": 0,
+        "y": 0,
+        "width": 720,
+        "height": 460
+      },
+      "width": 1080,
+      "height": 690,
+      "bytes": 4509,
+      "sha256": "09debb38f0dadea5ce3d22e6800edc33ed44edc9e120a554b18e459dff6afbee",
+      "repeatMatches": true,
+      "font": null,
+      "fixtureSha256": "4cc012d276ff44792809a0ce59769eb1387e8951f2be072ff291937021479686",
+      "ipc": [
+        {
+          "command": "plugin:event|listen",
+          "args": {
+            "event": "nabbit://island-visibility",
+            "target": {
+              "kind": "Any"
+            },
+            "handler": 1
+          }
+        },
+        {
+          "command": "island_set_hitrect",
+          "args": {
+            "rect": {
+              "x": 296,
+              "y": -2,
+              "w": 128,
+              "h": 42
+            }
+          }
+        },
+        {
+          "command": "get_island_snapshot",
+          "args": {}
+        }
+      ],
+      "unsupported": [],
+      "runtimeAndNetworkProblems": []
+    },
+    {
+      "file": "v23-island-visible-dark@1x.png",
+      "scenario": "island-visible",
+      "entry": "island.html",
+      "figmaNode": "7:2",
+      "theme": "dark",
+      "resolvedTheme": "dark",
+      "scale": 1,
+      "viewport": {
+        "width": 720,
+        "height": 460
+      },
+      "clip": {
+        "x": 0,
+        "y": 0,
+        "width": 720,
+        "height": 460
+      },
+      "width": 720,
+      "height": 460,
+      "bytes": 4258,
+      "sha256": "8197c7b6a755d4597cdf7ec5a9d52ff043a95bedd358af0ce1d495869828e9bf",
+      "repeatMatches": true,
+      "font": null,
+      "fixtureSha256": "4cc012d276ff44792809a0ce59769eb1387e8951f2be072ff291937021479686",
+      "ipc": [
+        {
+          "command": "plugin:event|listen",
+          "args": {
+            "event": "nabbit://island-visibility",
+            "target": {
+              "kind": "Any"
+            },
+            "handler": 1
+          }
+        },
+        {
+          "command": "island_set_hitrect",
+          "args": {
+            "rect": {
+              "x": 296,
+              "y": -2,
+              "w": 128,
+              "h": 42
+            }
+          }
+        },
+        {
+          "command": "get_island_snapshot",
+          "args": {}
+        }
+      ],
+      "unsupported": [],
+      "runtimeAndNetworkProblems": []
+    },
+    {
+      "file": "v23-island-faded-dark@1x.png",
+      "scenario": "island-faded",
+      "entry": "island.html",
+      "figmaNode": "15:489",
+      "theme": "dark",
+      "resolvedTheme": "dark",
+      "scale": 1,
+      "viewport": {
+        "width": 720,
+        "height": 460
+      },
+      "clip": {
+        "x": 0,
+        "y": 0,
+        "width": 720,
+        "height": 460
+      },
+      "width": 720,
+      "height": 460,
+      "bytes": 3556,
+      "sha256": "9704d8eaf94d24dec4c4e486dddc597dbd79bf256a7e232bf4c73efbfb6743e6",
+      "repeatMatches": true,
+      "font": null,
+      "fixtureSha256": "4cc012d276ff44792809a0ce59769eb1387e8951f2be072ff291937021479686",
+      "ipc": [
+        {
+          "command": "plugin:event|listen",
+          "args": {
+            "event": "nabbit://island-visibility",
+            "target": {
+              "kind": "Any"
+            },
+            "handler": 1
+          }
+        },
+        {
+          "command": "island_set_hitrect",
+          "args": {
+            "rect": {
+              "x": 296,
+              "y": -2,
+              "w": 128,
+              "h": 42
+            }
+          }
+        },
+        {
+          "command": "get_island_snapshot",
+          "args": {}
+        }
+      ],
+      "unsupported": [],
+      "runtimeAndNetworkProblems": []
+    },
+    {
+      "file": "v23-island-hidden-dark@1x.png",
+      "scenario": "island-hidden",
+      "entry": "island.html",
+      "figmaNode": "7:2",
+      "theme": "dark",
+      "resolvedTheme": "dark",
+      "scale": 1,
+      "viewport": {
+        "width": 720,
+        "height": 460
+      },
+      "clip": {
+        "x": 0,
+        "y": 0,
+        "width": 720,
+        "height": 460
+      },
+      "width": 720,
+      "height": 460,
+      "bytes": 2284,
+      "sha256": "d6f64487087adbef13c8baeefdd7b53d8fdea08146cd083db79050a6e201944d",
+      "repeatMatches": true,
+      "font": null,
+      "fixtureSha256": "4cc012d276ff44792809a0ce59769eb1387e8951f2be072ff291937021479686",
+      "ipc": [
+        {
+          "command": "plugin:event|listen",
+          "args": {
+            "event": "nabbit://island-visibility",
+            "target": {
+              "kind": "Any"
+            },
+            "handler": 1
+          }
+        },
+        {
+          "command": "island_set_hitrect",
+          "args": {
+            "rect": {
+              "x": 296,
+              "y": -2,
+              "w": 128,
+              "h": 42
+            }
+          }
+        },
+        {
+          "command": "get_island_snapshot",
+          "args": {}
+        }
+      ],
+      "unsupported": [],
+      "runtimeAndNetworkProblems": []
+    },
+    {
+      "file": "v23-island-visible-dark@1.5x.png",
+      "scenario": "island-visible",
+      "entry": "island.html",
+      "figmaNode": "7:2",
+      "theme": "dark",
+      "resolvedTheme": "dark",
+      "scale": 1.5,
+      "viewport": {
+        "width": 720,
+        "height": 460
+      },
+      "clip": {
+        "x": 0,
+        "y": 0,
+        "width": 720,
+        "height": 460
+      },
+      "width": 1080,
+      "height": 690,
+      "bytes": 7763,
+      "sha256": "3b66ddb5647289b8f824870abb9afa078c9d88f35e47b990fac44ed0295e562a",
+      "repeatMatches": true,
+      "font": null,
+      "fixtureSha256": "4cc012d276ff44792809a0ce59769eb1387e8951f2be072ff291937021479686",
+      "ipc": [
+        {
+          "command": "plugin:event|listen",
+          "args": {
+            "event": "nabbit://island-visibility",
+            "target": {
+              "kind": "Any"
+            },
+            "handler": 1
+          }
+        },
+        {
+          "command": "island_set_hitrect",
+          "args": {
+            "rect": {
+              "x": 296,
+              "y": -2,
+              "w": 128,
+              "h": 42
+            }
+          }
+        },
+        {
+          "command": "get_island_snapshot",
+          "args": {}
+        }
+      ],
+      "unsupported": [],
+      "runtimeAndNetworkProblems": []
+    },
+    {
+      "file": "v23-island-faded-dark@1.5x.png",
+      "scenario": "island-faded",
+      "entry": "island.html",
+      "figmaNode": "15:489",
+      "theme": "dark",
+      "resolvedTheme": "dark",
+      "scale": 1.5,
+      "viewport": {
+        "width": 720,
+        "height": 460
+      },
+      "clip": {
+        "x": 0,
+        "y": 0,
+        "width": 720,
+        "height": 460
+      },
+      "width": 1080,
+      "height": 690,
+      "bytes": 6522,
+      "sha256": "b845ed4ffa0a8fe3758a3744bcddd5679032b9e2cae182f042b8acee4002ba2e",
+      "repeatMatches": true,
+      "font": null,
+      "fixtureSha256": "4cc012d276ff44792809a0ce59769eb1387e8951f2be072ff291937021479686",
+      "ipc": [
+        {
+          "command": "plugin:event|listen",
+          "args": {
+            "event": "nabbit://island-visibility",
+            "target": {
+              "kind": "Any"
+            },
+            "handler": 1
+          }
+        },
+        {
+          "command": "island_set_hitrect",
+          "args": {
+            "rect": {
+              "x": 296,
+              "y": -2,
+              "w": 128,
+              "h": 42
+            }
+          }
+        },
+        {
+          "command": "get_island_snapshot",
+          "args": {}
+        }
+      ],
+      "unsupported": [],
+      "runtimeAndNetworkProblems": []
+    },
+    {
+      "file": "v23-island-hidden-dark@1.5x.png",
+      "scenario": "island-hidden",
+      "entry": "island.html",
+      "figmaNode": "7:2",
+      "theme": "dark",
+      "resolvedTheme": "dark",
+      "scale": 1.5,
+      "viewport": {
+        "width": 720,
+        "height": 460
+      },
+      "clip": {
+        "x": 0,
+        "y": 0,
+        "width": 720,
+        "height": 460
+      },
+      "width": 1080,
+      "height": 690,
+      "bytes": 4509,
+      "sha256": "09debb38f0dadea5ce3d22e6800edc33ed44edc9e120a554b18e459dff6afbee",
+      "repeatMatches": true,
+      "font": null,
+      "fixtureSha256": "4cc012d276ff44792809a0ce59769eb1387e8951f2be072ff291937021479686",
+      "ipc": [
+        {
+          "command": "plugin:event|listen",
+          "args": {
+            "event": "nabbit://island-visibility",
+            "target": {
+              "kind": "Any"
+            },
+            "handler": 1
+          }
+        },
+        {
+          "command": "island_set_hitrect",
+          "args": {
+            "rect": {
+              "x": 296,
+              "y": -2,
+              "w": 128,
+              "h": 42
+            }
+          }
+        },
+        {
+          "command": "get_island_snapshot",
+          "args": {}
+        }
+      ],
+      "unsupported": [],
+      "runtimeAndNetworkProblems": []
+    }
+  ]
+}

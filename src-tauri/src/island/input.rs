@@ -15,13 +15,22 @@ impl Sample {
         self.x.is_finite() && self.y.is_finite()
     }
 }
-#[derive(Clone, Copy, Default, Deserialize)]
+#[derive(Clone, Copy, Default, Debug, Deserialize, Serialize, PartialEq, Eq)]
 #[serde(rename_all = "camelCase")]
 pub enum Gate {
     #[default]
     Visible,
     Hidden,
     Faded,
+}
+impl Gate {
+    pub fn opacity(self) -> f64 {
+        match self {
+            Self::Visible => 1.0,
+            Self::Faded => 0.35,
+            Self::Hidden => 0.0,
+        }
+    }
 }
 #[derive(Clone, Serialize)]
 #[serde(rename_all = "camelCase")]

@@ -23,6 +23,8 @@ pub struct Watcher {
     samples: AtomicU64,
     events: AtomicU64,
     own_events: AtomicU64,
+    system_dirty: AtomicBool,
+    system_samples: AtomicU64,
 }
 #[derive(Clone, Serialize)]
 #[serde(rename_all = "camelCase")]
@@ -31,6 +33,7 @@ pub struct Stats {
     pub foreground_events: u64,
     pub own_foreground_events: u64,
     pub hook_installed: bool,
+    pub system_samples: u64,
 }
 impl Watcher {
     pub fn wake(&self) {
@@ -42,6 +45,10 @@ impl Watcher {
         if own {
             self.own_events.fetch_add(1, Ordering::Relaxed);
         }
+        self.system_changed()
+    }
+    pub fn system_changed(&self) {
+        self.system_dirty.store(true, Ordering::Relaxed);
         self.wake()
     }
     pub fn stats(&self, hook_installed: bool) -> Stats {
@@ -50,6 +57,7 @@ impl Watcher {
             foreground_events: self.events.load(Ordering::Relaxed),
             own_foreground_events: self.own_events.load(Ordering::Relaxed),
             hook_installed,
+            system_samples: self.system_samples.load(Ordering::Relaxed),
         }
     }
     pub fn stop(&self) {
@@ -68,12 +76,19 @@ impl Watcher {
             .spawn(move || {
                 let mut fixture_version: Option<(SystemTime, u64)> = None;
                 let mut fixture_sample: Option<Sample> = None;
+                let mut next_system = Instant::now();
                 while !watcher.stopped.load(Ordering::Relaxed) {
                     let started = Instant::now();
                     let generation = *watcher.generation.lock().unwrap_or_else(|e| e.into_inner());
                     let Some(manager) = manager.upgrade() else {
                         break;
                     };
+                    let system_dirty = watcher.system_dirty.swap(false, Ordering::Relaxed);
+                    if manager.has_hosts() && (started >= next_system || system_dirty) {
+                        manager.sample_system();
+                        watcher.system_samples.fetch_add(1, Ordering::Relaxed);
+                        next_system = started + Duration::from_millis(500);
+                    }
                     let delay = if manager.has_hosts() && !matches!(fixture, Some(None)) {
                         watcher.samples.fetch_add(1, Ordering::Relaxed);
                         let sample = match &fixture {

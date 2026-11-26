@@ -16,6 +16,8 @@ use windows::{
 use windows_numerics::Vector4;
 
 pub struct Renderer {
+    opacity: IDCompositionEffectGroup,
+    current_opacity: f64,
     device: IDCompositionDevice3,
     target: IDCompositionTarget,
     pill: IDCompositionVisual2,
@@ -67,6 +69,9 @@ impl Renderer {
             let device: IDCompositionDevice3 = desktop.cast()?;
             let target = desktop.CreateTargetForHwnd(HWND(hwnd as *mut _), true)?;
             let scene = device.CreateVisual()?;
+            let opacity = device.CreateEffectGroup()?;
+            opacity.SetOpacity2(1.0)?;
+            scene.SetEffect(&opacity)?;
             scene.SetBorderMode(DCOMPOSITION_BORDER_MODE_SOFT)?;
             let pixel = device.CreateSurface(
                 1,
@@ -118,6 +123,8 @@ impl Renderer {
             scene.AddVisual(&pill, false, None)?;
             target.SetRoot(&scene)?;
             let mut renderer = Self {
+                opacity,
+                current_opacity: 1.0,
                 device,
                 target,
                 pill,
@@ -178,6 +185,18 @@ impl Renderer {
     }
     pub fn capture(&self, hwnd: isize, path: &std::path::Path) -> Result<super::capture::Captured> {
         super::capture::capture(hwnd, &self.d3d, path)
+    }
+    pub fn set_opacity(&mut self, value: f64) -> Result<bool> {
+        if self.current_opacity == value {
+            return Ok(false);
+        }
+        unsafe {
+            self.opacity.SetOpacity2(value as f32)?;
+            self.device.Commit()?;
+        }
+        self.current_opacity = value;
+        self.commits += 1;
+        Ok(true)
     }
 }
 impl Drop for Renderer {

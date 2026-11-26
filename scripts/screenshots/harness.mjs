@@ -157,9 +157,14 @@ export async function captureSuite(root, options, cases = scenarios) {
               assert(fixture.calls.some(({ command }) => command === "island_set_hitrect"));
               assert(
                 fixture.calls.every(({ command }) =>
-                  ["island_set_hitrect", "island_clear_hitrect", "island_set_drag"].includes(
-                    command,
-                  ),
+                  [
+                    "island_set_hitrect",
+                    "island_clear_hitrect",
+                    "island_set_drag",
+                    "get_island_snapshot",
+                    "plugin:event|listen",
+                    "plugin:event|unlisten",
+                  ].includes(command),
                 ),
               );
             } else
