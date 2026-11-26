@@ -31,9 +31,13 @@ remain intact. The progress rows were visually reviewed; the landing redesign
 and site font work remain Phase L. Reproduce site capture with
 `node scripts/capture-site.mjs progress/v2/M2 <unused-prefix>`.
 
-Publication uses a `[skip ci]` milestone commit and fast-forward push. Only
-GitHub's built-in Pages deployment may run; deployment verification is recorded
-in the milestone table and accompanying publication evidence after the push.
+Published milestone: `e10e411`. Built-in Pages run `45727126266` completed
+successfully for that exact commit. Live HTTPS checks confirm M2 metadata, M2
+Done/M3 In progress, all 10 source assets, nested custom 404 and all 242 public
+PNG hashes. Repository CI IDs are unchanged. See `m2-deployment.json` and
+`m2-live-check.json` for the publication receipt and complete remote asset audit.
+The milestone and verification-receipt commits use `[skip ci]` with fast-forward
+main pushes; no PR, tag, release or repository workflow dispatch is involved.
 
 ## V1.6 — shared screenshot harness
 
