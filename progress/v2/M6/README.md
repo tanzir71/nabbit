@@ -1,6 +1,6 @@
 # M6 — Downloads core
 
-This folder contains **V3.1–V3.4: Deno and engine health, download options and per-site presets, capture paths, and the Nab/queue redesign**. Application checkpoint: `75dbcc5`. The four task commits and their original evidence remain separate. Milestone publication is pending the push and live Pages verification recorded below.
+This folder contains **V3.1–V3.4: Deno and engine health, download options and per-site presets, capture paths, and the Nab/queue redesign**. Application checkpoint: `75dbcc5`; published milestone: `0ed66ce`. The four task commits and their original evidence remain separate. Live Pages and all public evidence have been verified below.
 
 | Task | Commit | Evidence |
 |---|---|---|
@@ -149,4 +149,4 @@ node scripts/verify-milestone-status.mjs --milestone M6 --previous-ref 75dbcc5 -
 node scripts/verify-site-accessibility.mjs --milestone M6 --prefix m6-repeat
 ```
 
-Publication will use a fast-forward push to main headed by the skip-ci milestone commit. The handoff checkbox and deployment receipt follow exact live-source, public screenshot and built-in Pages verification. No PR, tag, release, repository workflow edit or dispatch is permitted.
+Milestone `0ed66ce` was fast-forward pushed to main with `[skip ci]`. Built-in Pages run **45850681102** succeeded for that exact commit, without a rebuild request. Live HTTPS verification confirms M6 metadata, M6 Done/M7 In progress, all **106 source assets**, the nested custom 404 and all **248 public PNG hashes**. Published resources total **463,001 bytes excluding fonts**; exact text comparisons allow only CRLF/LF conversion. Repository CI IDs are unchanged. See `m6-deployment.json` and `m6-live-check.json`. The handoff checkbox is recorded after this proof in an append-only skip-ci verification receipt. No PR, tag, release, repository workflow edit or dispatch occurred; only GitHub's built-in Pages deployment ran.
