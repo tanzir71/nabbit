@@ -1,21 +1,2274 @@
-<!doctype html><html lang="en"><head><link rel="icon" href="assets/favicon.ico" sizes="any"><link rel="icon" type="image/svg+xml" href="assets/favicon.svg"><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><title>Nabbit — clipboard history and explicit-click downloads</title><meta name="description" content="A local-first Windows tray utility for searchable clipboard history and explicit-click yt-dlp downloads."><meta name="robots" content="index, follow"><link rel="canonical" href="https://tanzir71.github.io/nabbit/"><meta property="og:type" content="website"><meta property="og:title" content="Nabbit — nab it, keep it"><meta property="og:description" content="Stage a permitted YouTube link, click once, and keep searchable clipboard history locally."><meta property="og:url" content="https://tanzir71.github.io/nabbit/"><meta name="twitter:card" content="summary_large_image"><meta name="nabbit-milestone" content="M2"><link rel="stylesheet" href="assets/pages.css"><style>
-:root{--bg:#0b0c0f;--raised:#14161b;--line:#23262e;--text:#e8eaf0;--dim:#9aa0ae;--accent:#fbbf24;--ink:#2b1d02;--mono:ui-monospace,"Cascadia Code",Consolas,monospace;--sans:-apple-system,"Segoe UI",sans-serif;--max:1080px}*{box-sizing:border-box}html{scroll-behavior:smooth;scroll-padding-top:72px}body{margin:0;background:var(--bg);color:var(--text);font:15px/1.65 var(--sans)}a{color:inherit}.skip{position:fixed;top:-60px;left:12px;z-index:9;background:var(--accent);color:var(--ink);padding:8px}.skip:focus{top:12px}.wrap{width:min(calc(100% - 32px),var(--max));margin:auto}.top{position:sticky;top:0;z-index:8;border-bottom:1px solid var(--line);background:#0b0c0fee}.top .wrap{min-height:62px;display:flex;align-items:center;justify-content:space-between;gap:20px}.brand{font-weight:800;text-decoration:none}.brand b{color:var(--accent)}nav{display:flex;gap:18px;align-items:center}nav a{font:12px var(--mono);color:var(--dim);text-decoration:none}nav a:hover{color:var(--accent)}.hero{padding:92px 0 70px}.hero-grid{display:grid;grid-template-columns:1.08fr .92fr;gap:54px;align-items:center}.eyebrow{color:var(--accent);font:700 11px var(--mono);letter-spacing:.14em;text-transform:uppercase}h1{margin:14px 0 20px;font-size:clamp(44px,7vw,76px);line-height:.98;letter-spacing:-.055em}h1 em{color:var(--accent);font-style:normal}h2{margin:10px 0 16px;font-size:clamp(30px,4vw,44px);line-height:1.08;letter-spacing:-.035em}.lead,.muted{color:var(--dim)}.lead{font-size:18px;max-width:650px}.actions{display:flex;flex-wrap:wrap;gap:9px;margin:28px 0}.btn{display:inline-flex;min-height:43px;align-items:center;border:1px solid var(--line);border-radius:8px;padding:0 15px;background:var(--raised);font:700 12px var(--mono);text-decoration:none}.btn.primary{background:var(--accent);border-color:var(--accent);color:var(--ink)}.stats{display:grid;grid-template-columns:repeat(4,1fr);border:1px solid var(--line);border-radius:10px;overflow:hidden}.stat{padding:15px;background:var(--raised);border-right:1px solid var(--line)}.stat:last-child{border:0}.stat strong{display:block;color:var(--accent);font:800 18px var(--mono)}.stat span{font-size:11px;color:var(--dim)}.tray{border:1px solid #343842;border-radius:16px;background:#f8fafc;color:#0f172a;box-shadow:0 30px 90px #0008;overflow:hidden}.tray-head{display:flex;align-items:center;justify-content:space-between;border-bottom:1px solid #e2e8f0;padding:14px}.tray-brand{display:flex;align-items:center;gap:10px;font-weight:800}.icon{display:grid;width:32px;height:32px;place-items:center;border-radius:8px;background:#0f172a;color:white}.tabs{display:grid;grid-template-columns:1fr 1fr;gap:5px;padding:7px;border-bottom:1px solid #e2e8f0}.tabs span{padding:8px;text-align:center;font-size:12px}.tabs .on{border-radius:7px;background:#0f172a;color:white}.stage{margin:14px;border:1px solid #e2e8f0;border-radius:10px;padding:13px}.thumb{height:112px;border-radius:8px;background:#e2e8f0;display:grid;place-items:center;color:#64748b;font:12px var(--mono)}.quality{display:flex;gap:5px;margin:12px 0}.quality span{border:1px solid #cbd5e1;border-radius:6px;padding:4px 7px;font-size:10px}.quality .on{background:#0f172a;color:white}.download{width:100%;border:0;border-radius:7px;background:#0f172a;color:white;padding:10px;font-weight:700}.section{padding:78px 0;border-top:1px solid var(--line)}.section-head{display:flex;justify-content:space-between;gap:30px;align-items:end;margin-bottom:28px}.section-head p{max-width:500px}.grid{display:grid;grid-template-columns:repeat(3,1fr);gap:12px}.card{min-width:0;border:1px solid var(--line);border-radius:10px;background:var(--raised);padding:22px}.card code{display:block;margin-top:18px;color:#64748b;font:11px var(--mono)}.flow{display:grid;grid-template-columns:repeat(4,1fr);border:1px solid var(--line);border-radius:10px;overflow:hidden}.flow .card{border:0;border-right:1px solid var(--line);border-radius:0}.flow .card:last-child{border:0}.num{color:var(--accent);font:11px var(--mono)}.setup{display:grid;grid-template-columns:1.15fr .85fr;gap:12px}.code{position:relative;margin-top:15px;border:1px solid var(--line);border-radius:8px;background:#0e1014;padding:16px;overflow:auto;white-space:pre-wrap;font:12px/1.7 var(--mono);color:#cbd5e1}.copy{position:absolute;right:8px;top:8px;border:1px solid var(--line);border-radius:5px;background:#1b1e24;color:var(--dim);padding:5px 7px;font:10px var(--mono);cursor:pointer}table{width:100%;min-width:720px;border-collapse:collapse;background:var(--raised)}th,td{padding:14px;border-bottom:1px solid var(--line);text-align:left}th{color:var(--dim);font:11px var(--mono)}.table{overflow:auto;border:1px solid var(--line);border-radius:10px}.scope{display:grid;grid-template-columns:repeat(3,1fr);gap:12px}.faq details{border:1px solid var(--line);border-radius:9px;background:var(--raised);margin:8px 0}.faq summary{cursor:pointer;padding:17px;font-weight:700}.faq details p{padding:0 17px 16px;margin:0;color:var(--dim)}.support{text-align:center;padding:84px 0;background:#0e1014}footer{border-top:1px solid var(--line);padding:24px 0;color:var(--dim);font-size:12px}.foot{display:flex;justify-content:space-between;gap:20px}@media(max-width:820px){.hero-grid,.setup{grid-template-columns:1fr}.grid{grid-template-columns:1fr 1fr}.flow{grid-template-columns:1fr 1fr}.flow .card:nth-child(2){border-right:0}.scope{grid-template-columns:1fr}}@media(max-width:560px){.top nav a:not(.demo):not([data-download-cta]){display:none}.hero{padding-top:55px}.grid,.flow{grid-template-columns:1fr}.flow .card{border-right:0;border-bottom:1px solid var(--line)}.stats{grid-template-columns:1fr 1fr}.stat:nth-child(2){border-right:0}.stat:nth-child(-n+2){border-bottom:1px solid var(--line)}.section-head,.foot{display:block}.foot nav{margin-top:12px}h1{font-size:44px}}
-</style></head><body><a class="skip" href="#main">Skip to content</a><header class="top"><div class="wrap"><a class="brand" href="#">Nabbit<b>.</b></a><nav><a href="#features">Features</a><a href="#setup">Setup</a><a class="demo" href="demo/">Live demo ↗</a><a href="https://github.com/tanzir71/nabbit">GitHub</a><a class="btn primary" data-download-cta href="#progress">Follow the build</a></nav></div></header><main id="main"><section class="hero"><div class="wrap hero-grid"><div><span class="eyebrow">FOR WINDOWS 10 AND 11 · OPEN SOURCE · BUILDING IN PUBLIC</span><h1>Copy a link. Click once. <em>It’s on your disk.</em></h1><p class="lead">A tiny tray app for explicit-click yt-dlp downloads and clipboard history that remembers more than 25 items. Your clipboard stays local. Downloads start with an explicit click.</p><div class="actions"><a class="btn primary" data-download-cta href="#progress">Follow the build</a><a class="btn" href="https://github.com/tanzir71/nabbit">View source on GitHub</a></div><p class="release-note">In development · first v2 release after milestone M12 · No account, no telemetry</p><div class="stats"><div class="stat"><strong>22</strong><span>Rust tests</span></div><div class="stat"><strong>5</strong><span>UI acceptance tests</span></div><div class="stat"><strong>30/60/90</strong><span>day retention</span></div><div class="stat"><strong>0</strong><span>analytics</span></div></div></div><div class="tray" aria-label="Nabbit tray preview"><div class="tray-head"><div class="tray-brand"><span class="icon">N</span><span>Nabbit<br><small>Nab it. Keep it.</small></span></div><span>•••</span></div><div class="tabs"><span class="on">↓ Download</span><span>◷ Clipboard</span></div><div class="stage"><div class="thumb">STAGED · NOT DOWNLOADING</div><h3>Creative Commons short film</h3><p class="muted">youtube.com · 4 min</p><div class="quality"><span>Best</span><span class="on">1080</span><span>720</span><span>MP3</span></div><span class="download">Download</span></div></div></div></section><section class="section" id="system"><div class="wrap"><div class="section-head"><div><span class="eyebrow">SYS · 01</span><h2>Nothing happens behind your back.</h2></div><p class="muted">The watcher can recognize a supported URL, but only the user can start network work.</p></div><div class="flow"><article class="card"><span class="num">01 · COPY</span><h3>Observe locally</h3><p class="muted">The native watcher records allowed clipboard text into local SQLite.</p></article><article class="card"><span class="num">02 · STAGE</span><h3>Recognize a link</h3><p class="muted">A YouTube URL is normalized and staged. No probe or download starts automatically.</p></article><article class="card"><span class="num">03 · CLICK</span><h3>Choose format</h3><p class="muted">Pick 1080p, MP3, video-only, or a playlist range and click Download.</p></article><article class="card"><span class="num">04 · SAVE</span><h3>Run sidecars</h3><p class="muted">yt-dlp and ffmpeg write to the selected folder with progress, cancel, and retry.</p></article></div></div></section><section class="section" id="setup"><div class="wrap"><div class="section-head"><div><span class="eyebrow">SYS · 02</span><h2>Build it with the engine you control.</h2></div></div><div class="setup"><article class="card"><h3>Ask your coding agent</h3><p class="muted">Start with the privacy contract and never bundle downloader binaries from an unverified source.</p><div class="code" id="agent">Read https://tanzir71.github.io/nabbit/llms.txt and https://github.com/tanzir71/nabbit. Build the Windows Tauri release, fetch yt-dlp with the provided script, supply ffmpeg, run npm verify plus Cargo tests/clippy, then run the isolated acceptance smoke. Do not touch the user’s real clipboard database.<button class="copy" data-copy="agent">COPY</button></div></article><article class="card"><h3>Manual path</h3><div class="code" id="manual">npm install
-npm run verify
-cargo test --manifest-path src-tauri/Cargo.toml
-./scripts/fetch-binaries.ps1
-npm run tauri:dev<button class="copy" data-copy="manual">COPY</button></div><code>REQ · Node 20+ · Rust 1.80+ · WebView2</code></article></div></div></section><section class="section" id="features"><div class="wrap"><div class="section-head"><div><span class="eyebrow">SYS · 03</span><h2>Two small jobs. One local tool.</h2></div></div><div class="grid"><article class="card"><h3>Explicit-click downloads</h3><p class="muted">Clipboard detection only stages. The Download button is the network boundary.</p><code>download/manager.rs</code></article><article class="card"><h3>Searchable history</h3><p class="muted">Fuzzy search, keyboard copy/delete, pinning, and configurable retention.</p><code>ClipboardList.tsx</code></article><article class="card"><h3>Sensitive-text filters</h3><p class="muted">Password-manager exclusions and optional OTP/card/high-entropy heuristics reduce accidental storage.</p><code>clipboard/sensitive.rs</code></article><article class="card"><h3>Real queue controls</h3><p class="muted">Progress, speed, ETA, pause, cancel, retry, and interrupted-job recovery.</p><code>download/manager.rs</code></article><article class="card"><h3>Replaceable sidecars</h3><p class="muted">yt-dlp and ffmpeg update independently of the desktop shell.</p><code>scripts/fetch-binaries.ps1</code></article><article class="card"><h3>Zero telemetry</h3><p class="muted">No analytics or cloud clipboard sync. URLs leave only for an explicit probe/download.</p><code>PRIVACY.md</code></article></div></div></section><section class="section"><div class="wrap"><span class="eyebrow">SYS · 04</span><h2>Pick the narrowest tool that works.</h2><div class="table"><table><thead><tr><th>Option</th><th>Clipboard history</th><th>Media download UI</th><th>Tradeoff</th></tr></thead><tbody><tr><td>Nabbit</td><td>Local, searchable, retained</td><td>Explicit-click yt-dlp</td><td>Windows-first; supply sidecars</td></tr><tr><td>4K Video Downloader+</td><td>No</td><td>Yes</td><td>Paid tiers ($15/yr–$60 one-time snapshot)</td></tr><tr><td>Ditto / CopyQ</td><td>Yes</td><td>No</td><td>Great dedicated clipboard tools</td></tr><tr><td>Raw yt-dlp</td><td>No</td><td>Terminal</td><td>Maximum control, no tray workflow</td></tr></tbody></table></div><p class="muted">Pricing snapshot: July 2026. Verify current vendor pricing and terms.</p></div></section><section class="section"><div class="wrap scope"><article class="card"><h3>Windows-first</h3><p class="muted">Cross-platform CI exists, but native tray and installer acceptance was completed on Windows.</p></article><article class="card"><h3>You supply the engine</h3><p class="muted">yt-dlp and ffmpeg must be fetched, supplied, or available on PATH.</p></article><article class="card"><h3>Rights still matter</h3><p class="muted">Use Nabbit only for content you have permission to download and follow each site’s terms.</p></article></div></section><section class="section faq"><div class="wrap"><span class="eyebrow">SYS · 05</span><h2>Before you install.</h2><details><summary>Does copying a link start a download?</summary><p>Never. It only stages the link. A user must click Download.</p></details><details><summary>Where is clipboard history stored?</summary><p>In local SQLite under the OS app-data directory, with retention you choose.</p></details><details><summary>Does this public demo use my clipboard?</summary><p>No. It is a deterministic HTML simulation and has no clipboard or network access.</p></details><details><summary>Is the Nabbit name release-clear?</summary><p>No. It is a working codename and needs product/legal review before public release.</p></details></div></section><section class="section" id="progress" aria-labelledby="progress-title"><div class="wrap"><span class="eyebrow">BUILT IN THE OPEN</span><h2 id="progress-title">v2 ships in milestones.</h2><p class="lead">Every milestone is pushed to the public repository with screenshots. This list updates with each push.</p><ol class="milestones" aria-label="Nabbit v2 milestones">
-  <li data-milestone="M0" data-status="done"><img src="assets/progress-check.svg" width="16" height="16" alt=""><code>M0</code><span class="milestone-name">Public repository and Pages</span><span class="milestone-status">Done</span><a href="https://github.com/tanzir71/nabbit/tree/main/progress/v2/M0">Screenshots</a></li>
-  <li data-milestone="M1" data-status="done"><img src="assets/progress-check.svg" width="16" height="16" alt=""><code>M1</code><span class="milestone-name">Island spike and measurements</span><span class="milestone-status">Done</span><a href="https://github.com/tanzir71/nabbit/tree/main/progress/v2/M1">Screenshots</a></li>
-  <li data-milestone="M2" data-status="done"><img src="assets/progress-check.svg" width="16" height="16" alt=""><code>M2</code><span class="milestone-name">Design foundations</span><span class="milestone-status">Done</span><a href="https://github.com/tanzir71/nabbit/tree/main/progress/v2/M2">Screenshots</a></li>
-  <li data-milestone="M3" data-status="in-progress"><img src="assets/progress-hourglass.svg" width="16" height="16" alt=""><code>M3</code><span class="milestone-name">New landing page</span><span class="milestone-status">In progress</span></li>
-  <li data-milestone="M4" data-status="planned"><img src="assets/progress-check.svg" width="16" height="16" alt=""><code>M4</code><span class="milestone-name">Island plumbing</span><span class="milestone-status">Planned</span></li>
-  <li data-milestone="M5" data-status="planned"><img src="assets/progress-check.svg" width="16" height="16" alt=""><code>M5</code><span class="milestone-name">Island interface</span><span class="milestone-status">Planned</span></li>
-  <li data-milestone="M6" data-status="planned"><img src="assets/progress-check.svg" width="16" height="16" alt=""><code>M6</code><span class="milestone-name">Downloads core</span><span class="milestone-status">Planned</span></li>
-  <li data-milestone="M7" data-status="planned"><img src="assets/progress-check.svg" width="16" height="16" alt=""><code>M7</code><span class="milestone-name">Downloads complete</span><span class="milestone-status">Planned</span></li>
-  <li data-milestone="M8" data-status="planned"><img src="assets/progress-check.svg" width="16" height="16" alt=""><code>M8</code><span class="milestone-name">Tack sync</span><span class="milestone-status">Planned</span></li>
-  <li data-milestone="M9" data-status="planned"><img src="assets/progress-check.svg" width="16" height="16" alt=""><code>M9</code><span class="milestone-name">Notes complete</span><span class="milestone-status">Planned</span></li>
-  <li data-milestone="M10" data-status="planned"><img src="assets/progress-check.svg" width="16" height="16" alt=""><code>M10</code><span class="milestone-name">Modules, file tools and pins</span><span class="milestone-status">Planned</span></li>
-  <li data-milestone="M11" data-status="planned"><img src="assets/progress-check.svg" width="16" height="16" alt=""><code>M11</code><span class="milestone-name">Modes, tray and settings</span><span class="milestone-status">Planned</span></li>
-  <li data-milestone="M12" data-status="planned"><img src="assets/progress-check.svg" width="16" height="16" alt=""><code>M12</code><span class="milestone-name">v2 complete</span><span class="milestone-status">Planned</span></li>
-</ol><p class="progress-note">Nabbit v2 is in development. Status and screenshot links update at each milestone push.</p></div></section><section class="support"><div class="wrap"><span class="eyebrow">FOLLOW THE BUILD</span><h2>See what lands next.</h2><p class="muted">Nabbit v2 is in development. Follow each milestone on GitHub.</p><div class="actions"><a class="btn primary" data-download-cta href="https://github.com/tanzir71/nabbit">Follow the build</a><a class="btn" href="https://buymeacoffee.com/tanzir">Buy me a coffee ↗</a></div></div></section></main><footer><div class="wrap foot"><span>built by <a href="https://tanziro.com">tanziro.com</a></span><nav><a href="llms.txt">llms.txt</a><a href="demo/">demo</a><a href="https://github.com/tanzir71/nabbit">GitHub</a></nav></div></footer><script>document.querySelectorAll('[data-copy]').forEach(b=>b.addEventListener('click',async()=>{const t=document.getElementById(b.dataset.copy);if(!t)return;const text=[...t.childNodes].filter(n=>n.nodeType===3).map(n=>n.textContent).join('').trim();await navigator.clipboard.writeText(text);b.textContent='COPIED';setTimeout(()=>b.textContent='COPY',1200)}));</script></body></html>
+<!doctype html>
+<html lang="en" data-theme="light">
+  <head>
+    <link rel="icon" href="assets/favicon.ico" sizes="any" />
+    <link rel="icon" type="image/svg+xml" href="assets/favicon.svg" />
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width,initial-scale=1" />
+    <title>Nabbit — clipboard history and explicit-click downloads</title>
+    <meta
+      name="description"
+      content="A local-first Windows tray utility for searchable clipboard history and explicit-click yt-dlp downloads."
+    />
+    <meta name="robots" content="index, follow" />
+    <link rel="canonical" href="https://tanzir71.github.io/nabbit/" />
+    <meta property="og:type" content="website" />
+    <meta property="og:title" content="Nabbit — nab it, keep it" />
+    <meta
+      property="og:description"
+      content="Stage a permitted YouTube link, click once, and keep searchable clipboard history locally."
+    />
+    <meta property="og:url" content="https://tanzir71.github.io/nabbit/" />
+    <meta name="twitter:card" content="summary_large_image" />
+    <meta name="nabbit-milestone" content="M2" />
+    <link
+      rel="preload"
+      href="assets/fonts/Geist-Latin.woff2"
+      as="font"
+      type="font/woff2"
+      crossorigin
+    />
+    <link rel="stylesheet" href="assets/tokens.css" />
+    <link rel="stylesheet" href="assets/site.css" />
+    <script src="assets/site.js" defer></script>
+  </head>
+  <body>
+    <a class="skip-link" href="#main">Skip to content</a>
+    <header class="site-nav" data-figma-node="27:221">
+      <div class="container nav-inner">
+        <a class="brand" href="#main" aria-label="Nabbit home"
+          ><img
+            class="icon desktop-only"
+            src="assets/design/048b9.svg"
+            width="32"
+            height="32"
+            style="width: 32px; height: 32px"
+            alt=""
+            loading="lazy"
+          /><img
+            class="icon mobile-only"
+            src="assets/design/09016.svg"
+            width="24"
+            height="24"
+            style="width: 24px; height: 24px"
+            alt=""
+            loading="lazy"
+          /><span>Nabbit</span></a
+        >
+        <details class="nav-menu" id="navigation" open>
+          <summary aria-label="Navigation menu">
+            <img
+              class="icon"
+              src="assets/design/ebf55.svg"
+              width="18"
+              height="18"
+              style="width: 18px; height: 18px"
+              alt=""
+              loading="lazy"
+            />
+          </summary>
+          <nav class="nav-links" aria-label="Primary">
+            <a href="#downloads">Features</a><a href="#files">Files</a><a href="#notes">Notes</a
+            ><a href="#privacy">Privacy</a><a href="#progress">Progress</a
+            ><a href="https://github.com/tanzir71/nabbit">GitHub</a
+            ><a class="button primary" data-download-cta href="#progress">Follow the build</a>
+          </nav>
+        </details>
+      </div>
+    </header>
+    <main id="main">
+      <section class="hero" aria-labelledby="hero-title" data-figma-node="27:246">
+        <div class="container">
+          <p class="label eyebrow">FOR WINDOWS 10 AND 11 · OPEN SOURCE · BUILDING IN PUBLIC</p>
+          <h1 id="hero-title">The top of your screen, put to work.</h1>
+          <p class="lead desktop-copy">
+            Nabbit is a small island that lives at the top of Windows. Save a video from a copied
+            link, drop a file to convert it or file it into a pinned folder, and keep notes in the
+            Tack you host. It stays out of the way until you need it.
+          </p>
+          <p class="lead mobile-copy">
+            A small island at the top of Windows: save videos in one click, convert and file what
+            you drop on it, and keep notes in your own Tack.
+          </p>
+          <div class="actions">
+            <a class="button primary large" data-download-cta href="#progress">Follow the build</a
+            ><a class="button secondary large" href="https://github.com/tanzir71/nabbit"
+              ><img
+                class="icon"
+                src="assets/design/65c81.svg"
+                width="16"
+                height="16"
+                style="width: 16px; height: 16px"
+                alt=""
+                loading="lazy"
+              />View source on GitHub</a
+            >
+          </div>
+          <p class="release-note">
+            In development · first v2 release after milestone M12 · No account, no telemetry
+          </p>
+          <div class="desktop-only hero-composite">
+            <img
+              src="assets/visuals/hero@2x.webp"
+              width="2240"
+              height="940"
+              alt="Figma design preview of the expanded Nab island above an app window, with presets, explicit save action and download queue."
+              loading="eager"
+            />
+          </div>
+          <div class="mobile-only hero-mobile-visual">
+            <div
+              class="replica-94 replica"
+              data-node-id="31:970"
+              style="
+                background-image: linear-gradient(
+                  141.61273084220676deg,
+                  rgb(158, 173, 199) 0%,
+                  rgb(199, 194, 199) 39.286%,
+                  rgb(229, 204, 184) 71.429%
+                );
+              "
+              data-name="Screen"
+              role="img"
+              aria-label="Designed island examples showing a saving video, media controls and a note saved to Tack."
+            >
+              <div class="replica-12" id="node-7_17">
+                <div class="replica-13" data-node-id="7:18" data-name="Progress ring">
+                  <img
+                    alt=""
+                    src="assets/design/53933.svg"
+                    width="18"
+                    height="18"
+                    style="width: 18px; height: 18px"
+                    loading="lazy"
+                  />
+                </div>
+                <p class="replica-14" data-node-id="7:21">
+                  Tiny tray app in Rust, full walkthrough
+                </p>
+                <p class="replica-15" data-node-id="7:22">38%</p>
+              </div>
+              <div class="replica-95" data-node-id="31:977" data-name="Island · Peek">
+                <div class="replica-96" data-node-id="I31:977;8:78" data-name="Header">
+                  <div
+                    class="replica-97"
+                    data-node-id="I31:977;8:79"
+                    style="
+                      background-image: linear-gradient(
+                        135deg,
+                        rgb(242, 140, 89) 0%,
+                        rgb(115, 51, 140) 71.429%
+                      );
+                    "
+                    data-name="Artwork"
+                  ></div>
+                  <div class="replica-98" data-node-id="I31:977;8:80" data-name="Text">
+                    <p class="replica-99" data-node-id="I31:977;8:81">Night Drive</p>
+                    <p class="replica-100" data-node-id="I31:977;8:82">Kiln · Media Player</p>
+                  </div>
+                  <div class="replica-101" data-node-id="I31:977;8:83" data-name="Icon button">
+                    <div class="replica-102" data-node-id="I31:977;8:84" data-name="icon/skip-back">
+                      <img
+                        alt=""
+                        src="assets/design/1e04f.svg"
+                        width="11.48"
+                        height="11.48"
+                        style="width: 11.48px; height: 11.48px"
+                        loading="lazy"
+                      />
+                    </div>
+                  </div>
+                  <div class="replica-103" data-node-id="I31:977;8:87" data-name="Icon button">
+                    <div class="replica-104" data-node-id="I31:977;8:88" data-name="icon/pause">
+                      <img
+                        alt=""
+                        src="assets/design/68343.svg"
+                        width="13.12"
+                        height="13.12"
+                        style="width: 13.12px; height: 13.12px"
+                        loading="lazy"
+                      />
+                    </div>
+                  </div>
+                  <div class="replica-101" data-node-id="I31:977;8:91" data-name="Icon button">
+                    <div
+                      class="replica-102"
+                      data-node-id="I31:977;8:92"
+                      data-name="icon/skip-forward"
+                    >
+                      <img
+                        alt=""
+                        src="assets/design/2d937.svg"
+                        width="11.48"
+                        height="11.48"
+                        style="width: 11.48px; height: 11.48px"
+                        loading="lazy"
+                      />
+                    </div>
+                  </div>
+                </div>
+                <div class="replica-105" data-node-id="I31:977;8:95" data-name="Timeline">
+                  <p class="replica-106" data-node-id="I31:977;8:96">1:24</p>
+                  <div class="replica-107" data-node-id="I31:977;8:97" data-name="Progress">
+                    <div
+                      class="replica-108"
+                      data-node-id="I31:977;8:98"
+                      data-name="Rectangle"
+                    ></div>
+                  </div>
+                  <p class="replica-106" data-node-id="I31:977;8:99">3:21</p>
+                </div>
+              </div>
+              <div class="replica-20" id="node-7_96">
+                <div class="replica-4" data-node-id="7:97" data-name="icon/sticky-note">
+                  <img
+                    alt=""
+                    src="assets/design/f717a.svg"
+                    width="16"
+                    height="16"
+                    style="width: 16px; height: 16px"
+                    loading="lazy"
+                  />
+                </div>
+                <p class="replica-21" data-node-id="7:100">Saved to Tack · Inbox</p>
+                <div class="replica-22" data-node-id="7:101" data-name="icon/check">
+                  <img
+                    alt=""
+                    src="assets/design/5da32.svg"
+                    width="15"
+                    height="15"
+                    style="width: 15px; height: 15px"
+                    loading="lazy"
+                  />
+                </div>
+              </div>
+            </div>
+          </div>
+          <div class="section-base"></div>
+        </div>
+      </section>
+      <section
+        class="section activities"
+        id="features"
+        aria-labelledby="activities-title"
+        data-figma-node="27:404"
+      >
+        <div class="container">
+          <div class="section-head">
+            <p class="label">LIVE ACTIVITIES</p>
+            <h2 id="activities-title">Glanceable, then out of the way.</h2>
+            <p class="lead">
+              Progress, timers, calls and saved notes appear as a small pill. Hover to peek, click
+              to open. Over maximised apps it fades and lets clicks through; over fullscreen it
+              hides.
+            </p>
+          </div>
+          <div class="live-replica">
+            <div
+              class="replica-1 replica"
+              data-node-id="27:409"
+              style="
+                background-image: linear-gradient(
+                  165.57922721569815deg,
+                  rgb(158, 173, 199) 0%,
+                  rgb(199, 194, 199) 39.286%,
+                  rgb(229, 204, 184) 71.429%
+                );
+              "
+              data-name="Pills"
+              role="img"
+              aria-label="Example island activities: a copied link, download progress, focus timer, microphone in use and a note saved to Tack."
+            >
+              <div class="replica-2" data-node-id="27:410" data-name="Pill · Copied a link">
+                <div class="replica-3" id="node-7_4">
+                  <div class="replica-4" data-node-id="7:5" data-name="icon/link">
+                    <img
+                      alt=""
+                      src="assets/design/3f55b.svg"
+                      width="16"
+                      height="16"
+                      style="width: 16px; height: 16px"
+                      loading="lazy"
+                    />
+                  </div>
+                  <p class="replica-5" data-node-id="7:8">Video link copied</p>
+                  <p class="replica-6" data-node-id="7:9">12:48</p>
+                  <div class="replica-7" data-node-id="7:10" data-name="Spacer"></div>
+                  <div class="replica-8" data-node-id="7:11" data-name="Mini button">
+                    <div class="replica-9" data-node-id="7:12" data-name="icon/download">
+                      <img
+                        alt=""
+                        src="assets/design/754dc.svg"
+                        width="13"
+                        height="13"
+                        style="width: 13px; height: 13px"
+                        loading="lazy"
+                      />
+                    </div>
+                    <p class="replica-10" data-node-id="7:16">Nab it</p>
+                  </div>
+                </div>
+                <p class="replica-11" data-node-id="27:429">Copied a link</p>
+              </div>
+              <div class="replica-2" data-node-id="27:430" data-name="Pill · Saving it">
+                <div class="replica-12" id="node-7_17">
+                  <div class="replica-13" data-node-id="7:18" data-name="Progress ring">
+                    <img
+                      alt=""
+                      src="assets/design/53933.svg"
+                      width="18"
+                      height="18"
+                      style="width: 18px; height: 18px"
+                      loading="lazy"
+                    />
+                  </div>
+                  <p class="replica-14" data-node-id="7:21">
+                    Tiny tray app in Rust, full walkthrough
+                  </p>
+                  <p class="replica-15" data-node-id="7:22">38%</p>
+                </div>
+                <p class="replica-11" data-node-id="27:437">Saving it</p>
+              </div>
+              <div class="replica-2" data-node-id="27:438" data-name="Pill · Focus running">
+                <div class="replica-16" id="node-7_32">
+                  <div class="replica-4" data-node-id="7:33" data-name="icon/timer">
+                    <img
+                      alt=""
+                      src="assets/design/73a72.svg"
+                      width="16"
+                      height="16"
+                      style="width: 16px; height: 16px"
+                      loading="lazy"
+                    />
+                  </div>
+                  <p class="replica-17" data-node-id="7:37">Focus</p>
+                  <div class="replica-7" data-node-id="7:38" data-name="Spacer"></div>
+                  <p class="replica-15" data-node-id="7:39">24:13</p>
+                </div>
+                <p class="replica-11" data-node-id="27:447">Focus running</p>
+              </div>
+              <div class="replica-2" data-node-id="27:448" data-name="Pill · Mic is on">
+                <div class="replica-18" id="node-7_40">
+                  <div class="replica-4" data-node-id="7:41" data-name="icon/mic">
+                    <img
+                      alt=""
+                      src="assets/design/c9ce9.svg"
+                      width="16"
+                      height="16"
+                      style="width: 16px; height: 16px"
+                      loading="lazy"
+                    />
+                  </div>
+                  <p class="replica-17" data-node-id="7:45">Teams</p>
+                  <div class="replica-7" data-node-id="7:46" data-name="Spacer"></div>
+                  <div class="replica-19" data-node-id="7:47" data-name="Privacy dot">
+                    <img
+                      alt=""
+                      src="assets/design/3ad41.svg"
+                      width="8"
+                      height="8"
+                      style="width: 8px; height: 8px"
+                      loading="lazy"
+                    />
+                  </div>
+                </div>
+                <p class="replica-11" data-node-id="27:460">Mic is on</p>
+              </div>
+              <div class="replica-2" data-node-id="27:461" data-name="Pill · Sent to Tack">
+                <div class="replica-20" id="node-7_96">
+                  <div class="replica-4" data-node-id="7:97" data-name="icon/sticky-note">
+                    <img
+                      alt=""
+                      src="assets/design/f717a.svg"
+                      width="16"
+                      height="16"
+                      style="width: 16px; height: 16px"
+                      loading="lazy"
+                    />
+                  </div>
+                  <p class="replica-21" data-node-id="7:100">Saved to Tack · Inbox</p>
+                  <div class="replica-22" data-node-id="7:101" data-name="icon/check">
+                    <img
+                      alt=""
+                      src="assets/design/5da32.svg"
+                      width="15"
+                      height="15"
+                      style="width: 15px; height: 15px"
+                      loading="lazy"
+                    />
+                  </div>
+                </div>
+                <p class="replica-11" data-node-id="27:469">Sent to Tack</p>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+      <section
+        class="feature feature-downloads"
+        id="downloads"
+        aria-labelledby="downloads-title"
+        data-figma-node="27:470"
+      >
+        <div class="container feature-layout">
+          <div class="feature-copy">
+            <p class="label">DOWNLOADS</p>
+            <h2 id="downloads-title">Save videos without the flag soup.</h2>
+            <p class="lead">
+              Built on yt-dlp and ffmpeg, with the hard parts turned into one tap. Nothing downloads
+              until you say so.
+            </p>
+            <ul class="bullets">
+              <li>
+                <span class="bullet-icon"
+                  ><img
+                    class="icon desktop-bullet-icon"
+                    src="assets/design/e0703.svg"
+                    width="15"
+                    height="15"
+                    style="width: 15px; height: 15px"
+                    alt=""
+                    loading="lazy" /><img
+                    class="icon mobile-bullet-icon"
+                    src="assets/design/0430d.svg"
+                    width="16"
+                    height="16"
+                    style="width: 16px; height: 16px"
+                    alt=""
+                    loading="lazy" /></span
+                ><span class="desktop-copy"
+                  >Four ways in: copy a link, drag it to the top edge, send it from the browser, or
+                  press Ctrl+Alt+D</span
+                ><span class="mobile-copy"
+                  >Copy, drag to the top edge, send from the browser, or press Ctrl+Alt+D</span
+                >
+              </li>
+              <li>
+                <span class="bullet-icon"
+                  ><img
+                    class="icon desktop-bullet-icon"
+                    src="assets/design/66215.svg"
+                    width="15"
+                    height="15"
+                    style="width: 15px; height: 15px"
+                    alt=""
+                    loading="lazy" /><img
+                    class="icon mobile-bullet-icon"
+                    src="assets/design/e1f07.svg"
+                    width="16"
+                    height="16"
+                    style="width: 16px; height: 16px"
+                    alt=""
+                    loading="lazy" /></span
+                ><span class="desktop-copy"
+                  >Presets remembered per site, with trim, chapters, subtitles and playlists one tap
+                  away</span
+                ><span class="mobile-copy"
+                  >Presets per site, trim, chapters, subtitles, playlists</span
+                >
+              </li>
+              <li>
+                <span class="bullet-icon"
+                  ><img
+                    class="icon desktop-bullet-icon"
+                    src="assets/design/42d5f.svg"
+                    width="15"
+                    height="15"
+                    style="width: 15px; height: 15px"
+                    alt=""
+                    loading="lazy" /><img
+                    class="icon mobile-bullet-icon"
+                    src="assets/design/fe887.svg"
+                    width="16"
+                    height="16"
+                    style="width: 16px; height: 16px"
+                    alt=""
+                    loading="lazy" /></span
+                ><span class="desktop-copy"
+                  >When YouTube changes, Nabbit says what to do in plain words and updates its
+                  engine</span
+                ><span class="mobile-copy">Plain-language fixes when YouTube changes</span>
+              </li>
+            </ul>
+            <a
+              class="button secondary small bookmarklet"
+              data-bookmarklet
+              href="javascript:location.href='nabbit://nab?url='+encodeURIComponent(location.href)"
+              draggable="true"
+              aria-description="Drag this bookmarklet to your bookmarks bar, or click to copy it. Use it on a video page to open Nabbit’s review."
+              ><img
+                class="icon"
+                src="assets/design/dae24.svg"
+                width="15"
+                height="15"
+                style="width: 15px; height: 15px"
+                alt=""
+                loading="lazy"
+              />Send to Nabbit</a
+            ><span class="bookmarklet-status" role="status" aria-live="polite"></span>
+          </div>
+          <div class="feature-visual desktop-only">
+            <img
+              src="assets/visuals/downloads@2x.webp"
+              width="1192"
+              height="1120"
+              alt="Figma design preview of a download peek and the tray queue, with presets, progress, completion and a plain-language sign-in error."
+              loading="lazy"
+            />
+          </div>
+          <div class="feature-visual mobile-only">
+            <div
+              class="replica-109 replica"
+              data-node-id="31:1036"
+              style="
+                background-image: linear-gradient(
+                  154.9150356688119deg,
+                  rgb(158, 173, 199) 0%,
+                  rgb(199, 194, 199) 39.286%,
+                  rgb(229, 204, 184) 71.429%
+                );
+              "
+              data-name="Visual"
+              role="img"
+              aria-label="Designed download peek with MP4 and MP3 presets and an explicit Nab it action."
+            >
+              <div class="replica-95" data-node-id="31:1037" data-name="Island · Peek">
+                <div class="replica-110" data-node-id="I31:1037;8:39" data-name="Header">
+                  <div
+                    class="replica-111"
+                    data-node-id="I31:1037;8:40"
+                    style="
+                      background-image: linear-gradient(
+                        150.64224586401deg,
+                        rgb(41, 56, 77) 0%,
+                        rgb(107, 140, 128) 71.429%
+                      );
+                    "
+                    data-name="Thumbnail"
+                  ></div>
+                  <div class="replica-98" data-node-id="I31:1037;8:41" data-name="Text">
+                    <p class="replica-112" data-node-id="I31:1037;8:42">
+                      Tiny tray app in Rust, full walkthrough
+                    </p>
+                    <p class="replica-100" data-node-id="I31:1037;8:43">Ferris Builds · 12:48</p>
+                  </div>
+                </div>
+                <div class="replica-113" data-node-id="I31:1037;8:44" data-name="Presets">
+                  <div class="replica-114" data-node-id="I31:1037;8:45" data-name="Preset chip">
+                    <p class="replica-115" data-node-id="I31:1037;8:45;8:33">MP4</p>
+                    <p class="replica-116" data-node-id="I31:1037;8:45;8:34">1080p</p>
+                  </div>
+                  <div class="replica-117" data-node-id="I31:1037;8:48" data-name="Preset chip">
+                    <p class="replica-118" data-node-id="I31:1037;8:48;8:36">MP3</p>
+                    <p class="replica-119" data-node-id="I31:1037;8:48;8:37">320</p>
+                  </div>
+                  <div class="replica-120" data-node-id="I31:1037;8:51" data-name="Preset chip">
+                    <p class="replica-121" data-node-id="I31:1037;8:51;8:36">More</p>
+                  </div>
+                  <div class="replica-122" data-node-id="I31:1037;8:54" data-name="Spacer"></div>
+                  <div class="replica-123" data-node-id="I31:1037;8:55" data-name="Nab button">
+                    <div class="replica-102" data-node-id="I31:1037;8:56" data-name="icon/download">
+                      <img
+                        alt=""
+                        src="assets/design/eb840.svg"
+                        width="11.48"
+                        height="11.48"
+                        style="width: 11.48px; height: 11.48px"
+                        loading="lazy"
+                      />
+                    </div>
+                    <p class="replica-124" data-node-id="I31:1037;8:60">Nab it</p>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+      <section
+        class="feature feature-notes"
+        id="notes"
+        aria-labelledby="notes-title"
+        data-figma-node="27:605"
+      >
+        <div class="container feature-layout">
+          <div class="feature-copy">
+            <p class="label">NOTES · TACK</p>
+            <h2 id="notes-title">Notes that sync with your own Tack.</h2>
+            <p class="lead">
+              Point Nabbit at the Tack you host yourself. Your notes stay on your server, and you
+              pick them up anywhere Tack runs.
+            </p>
+            <p class="mobile-copy">
+              Capture from the island with #labels and !now, pop notes out as stickies, keep working
+              offline.
+            </p>
+            <ul class="bullets desktop-only">
+              <li>
+                <span class="bullet-icon"
+                  ><img
+                    class="icon desktop-bullet-icon"
+                    src="assets/design/fceea.svg"
+                    width="15"
+                    height="15"
+                    style="width: 15px; height: 15px"
+                    alt=""
+                    loading="lazy" /><img
+                    class="icon mobile-bullet-icon"
+                    src="assets/design/fca7e.svg"
+                    width="18"
+                    height="18"
+                    style="width: 18px; height: 18px"
+                    alt=""
+                    loading="lazy" /></span
+                ><span>Capture from the island with #labels, !now and “tomorrow 9am”</span>
+              </li>
+              <li>
+                <span class="bullet-icon"
+                  ><img
+                    class="icon desktop-bullet-icon"
+                    src="assets/design/1d1c1.svg"
+                    width="15"
+                    height="15"
+                    style="width: 15px; height: 15px"
+                    alt=""
+                    loading="lazy" /><img
+                    class="icon mobile-bullet-icon"
+                    src="assets/design/fca7e.svg"
+                    width="18"
+                    height="18"
+                    style="width: 18px; height: 18px"
+                    alt=""
+                    loading="lazy" /></span
+                ><span>Pop any note out as a sticky, or pin a board to the desktop</span>
+              </li>
+              <li>
+                <span class="bullet-icon"
+                  ><img
+                    class="icon desktop-bullet-icon"
+                    src="assets/design/4c3d9.svg"
+                    width="15"
+                    height="15"
+                    style="width: 15px; height: 15px"
+                    alt=""
+                    loading="lazy" /><img
+                    class="icon mobile-bullet-icon"
+                    src="assets/design/14662.svg"
+                    width="13"
+                    height="13"
+                    style="width: 13px; height: 13px"
+                    alt=""
+                    loading="lazy" /></span
+                ><span
+                  >Works offline and syncs when you are back. No Tack? Keep notes on this PC
+                  only</span
+                >
+              </li>
+              <li>
+                <span class="bullet-icon"
+                  ><img
+                    class="icon desktop-bullet-icon"
+                    src="assets/design/dae24.svg"
+                    width="15"
+                    height="15"
+                    style="width: 15px; height: 15px"
+                    alt=""
+                    loading="lazy" /><img
+                    class="icon mobile-bullet-icon"
+                    src="assets/design/fca7e.svg"
+                    width="18"
+                    height="18"
+                    style="width: 18px; height: 18px"
+                    alt=""
+                    loading="lazy" /></span
+                ><span
+                  >Save any copied link to Tack, and bring your bookmarks over from Chrome, Edge and
+                  Firefox.</span
+                >
+              </li>
+            </ul>
+          </div>
+          <div class="feature-visual desktop-only">
+            <img
+              src="assets/visuals/notes@2x.webp"
+              width="1192"
+              height="1120"
+              alt="Figma design preview of Tack notes in the island and two coloured sticky notes: a launch checklist and an idea."
+              loading="lazy"
+            />
+          </div>
+          <div class="feature-visual mobile-only">
+            <div
+              class="replica-109 replica"
+              data-node-id="31:1064"
+              style="
+                background-image: linear-gradient(
+                  137.56377092009586deg,
+                  rgb(158, 173, 199) 0%,
+                  rgb(199, 194, 199) 39.286%,
+                  rgb(229, 204, 184) 71.429%
+                );
+              "
+              data-name="Visual"
+              role="img"
+              aria-label="Designed green sticky note with a launch checklist."
+            >
+              <div class="replica-125" data-node-id="14:396">
+                <div class="replica-126" data-node-id="14:397" data-name="Title bar · drag region">
+                  <div class="replica-127" data-node-id="14:398" data-name="icon/grip-vertical">
+                    <img
+                      alt=""
+                      src="assets/design/8d24f.svg"
+                      width="14"
+                      height="14"
+                      style="width: 14px; height: 14px"
+                      loading="lazy"
+                    />
+                  </div>
+                  <div class="replica-7" data-node-id="14:405" data-name="Spacer"></div>
+                  <div class="replica-128" data-node-id="14:406" data-name="IconButton">
+                    <div class="replica-4" data-node-id="I14:406;5:474" data-name="Icon">
+                      <img
+                        alt=""
+                        src="assets/design/94f27.svg"
+                        width="16"
+                        height="16"
+                        style="width: 16px; height: 16px"
+                        loading="lazy"
+                      />
+                    </div>
+                  </div>
+                  <div class="replica-129" data-node-id="14:416" data-name="IconButton">
+                    <div class="replica-4" data-node-id="I14:416;5:464" data-name="icon/ellipsis">
+                      <img
+                        alt=""
+                        src="assets/design/a878b.svg"
+                        width="16"
+                        height="16"
+                        style="width: 16px; height: 16px"
+                        loading="lazy"
+                      />
+                    </div>
+                  </div>
+                  <div class="replica-129" data-node-id="14:424" data-name="IconButton">
+                    <div class="replica-4" data-node-id="I14:424;5:464" data-name="Icon">
+                      <img
+                        alt=""
+                        src="assets/design/8d77c.svg"
+                        width="16"
+                        height="16"
+                        style="width: 16px; height: 16px"
+                        loading="lazy"
+                      />
+                    </div>
+                  </div>
+                </div>
+                <div class="replica-130" data-node-id="14:431" data-name="Content">
+                  <p class="replica-131" data-node-id="14:432">Launch checklist</p>
+                  <div class="replica-132" data-node-id="14:433" data-name="Item">
+                    <div class="replica-133" data-node-id="14:434" data-name="Checkbox">
+                      <div class="replica-134" data-node-id="14:435" data-name="icon/check">
+                        <img
+                          alt=""
+                          src="assets/design/338a5.svg"
+                          width="12"
+                          height="12"
+                          style="width: 12px; height: 12px"
+                          loading="lazy"
+                        />
+                      </div>
+                    </div>
+                    <p class="replica-135" data-node-id="14:437">Verify island at 150% DPI</p>
+                  </div>
+                  <div class="replica-132" data-node-id="14:438" data-name="Item">
+                    <div class="replica-136" data-node-id="14:439" data-name="Checkbox"></div>
+                    <p class="replica-137" data-node-id="14:440">Record demo GIF</p>
+                  </div>
+                  <div class="replica-132" data-node-id="14:441" data-name="Item">
+                    <div class="replica-136" data-node-id="14:442" data-name="Checkbox"></div>
+                    <p class="replica-137" data-node-id="14:443">Write release notes</p>
+                  </div>
+                  <div class="replica-138" data-node-id="14:444" data-name="Add item">
+                    <div class="replica-4" data-node-id="14:445" data-name="icon/plus">
+                      <img
+                        alt=""
+                        src="assets/design/315b6.svg"
+                        width="16"
+                        height="16"
+                        style="width: 16px; height: 16px"
+                        loading="lazy"
+                      />
+                    </div>
+                    <p class="replica-139" data-node-id="14:448">List item</p>
+                  </div>
+                </div>
+                <div class="replica-140" data-node-id="14:449" data-name="Footer">
+                  <div class="replica-9" data-node-id="14:450" data-name="icon/cloud">
+                    <img
+                      alt=""
+                      src="assets/design/14662.svg"
+                      width="13"
+                      height="13"
+                      style="width: 13px; height: 13px"
+                      loading="lazy"
+                    />
+                  </div>
+                  <p class="replica-141" data-node-id="14:452">Synced · tck-24</p>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+      <section
+        class="feature feature-files"
+        id="files"
+        aria-labelledby="files-title"
+        data-figma-node="49:1132"
+      >
+        <div class="container feature-layout">
+          <div class="feature-copy">
+            <p class="label">FILES</p>
+            <h2 id="files-title">File it from the top of the screen.</h2>
+            <p class="lead">
+              Pin the folders and files you reach for, then drop anything on the island to move it,
+              convert it or shrink it. Everything runs on your PC, and the original is never
+              replaced.
+            </p>
+            <ul class="bullets">
+              <li>
+                <span class="bullet-icon"
+                  ><img
+                    class="icon desktop-bullet-icon"
+                    src="assets/design/bb42e.svg"
+                    width="15"
+                    height="15"
+                    style="width: 15px; height: 15px"
+                    alt=""
+                    loading="lazy" /><img
+                    class="icon mobile-bullet-icon"
+                    src="assets/design/554d6.svg"
+                    width="16"
+                    height="16"
+                    style="width: 16px; height: 16px"
+                    alt=""
+                    loading="lazy" /></span
+                ><span class="desktop-copy"
+                  >Pins for folders and files. Hover for the newest files, drop to move, or undo if
+                  you slip.</span
+                ><span class="mobile-copy"
+                  >Pins for folders and files: hover, drop to move, undo</span
+                >
+              </li>
+              <li>
+                <span class="bullet-icon"
+                  ><img
+                    class="icon desktop-bullet-icon"
+                    src="assets/design/9d447.svg"
+                    width="15"
+                    height="15"
+                    style="width: 15px; height: 15px"
+                    alt=""
+                    loading="lazy" /><img
+                    class="icon mobile-bullet-icon"
+                    src="assets/design/bbced.svg"
+                    width="16"
+                    height="16"
+                    style="width: 16px; height: 16px"
+                    alt=""
+                    loading="lazy" /></span
+                ><span class="desktop-copy"
+                  >Fit a video under Discord’s 20 MB or email’s 25 MB, turn iPhone HEIC into JPG,
+                  trim, or make a GIF.</span
+                ><span class="mobile-copy">Fit under 20 MB, HEIC to JPG, trim, make a GIF</span>
+              </li>
+              <li>
+                <span class="bullet-icon"
+                  ><img
+                    class="icon desktop-bullet-icon"
+                    src="assets/design/c40d5.svg"
+                    width="15"
+                    height="15"
+                    style="width: 15px; height: 15px"
+                    alt=""
+                    loading="lazy"
+                    data-figma-node="49:1148" /><img
+                    class="icon mobile-bullet-icon"
+                    src="assets/design/8b95d.svg"
+                    width="16"
+                    height="16"
+                    style="width: 16px; height: 16px"
+                    alt=""
+                    loading="lazy" /></span
+                ><span class="desktop-copy"
+                  >Right-click any file and Send to Nabbit. Results land next to the
+                  originals.</span
+                ><span class="mobile-copy">Send to Nabbit from any file’s right-click menu</span>
+              </li>
+            </ul>
+          </div>
+          <div class="feature-visual desktop-only">
+            <div
+              class="replica-23 replica"
+              data-node-id="49:1150"
+              style="
+                background-image: linear-gradient(
+                  128.59736806205078deg,
+                  rgb(158, 173, 199) 0%,
+                  rgb(199, 194, 199) 39.286%,
+                  rgb(229, 204, 184) 71.429%
+                );
+              "
+              data-name="Visual"
+              role="img"
+              aria-label="Designed Files island with a shelf, eight folder and file pins, drop suggestions, and a moved-files confirmation."
+            >
+              <div class="replica-24" data-node-id="49:1266" data-name="Island · Expanded">
+                <div class="replica-25" data-node-id="I49:1266;10:250" data-name="Tab bar">
+                  <div class="replica-26" data-node-id="I49:1266;10:251" data-name="Tab · Nab">
+                    <div
+                      class="replica-27"
+                      data-node-id="I49:1266;10:252"
+                      data-name="icon/download"
+                    >
+                      <img
+                        alt=""
+                        src="assets/design/f4ec8.svg"
+                        width="11.7353"
+                        height="11.7353"
+                        style="width: 11.7353px; height: 11.7353px"
+                        loading="lazy"
+                      />
+                    </div>
+                  </div>
+                  <div class="replica-26" data-node-id="I49:1266;10:256" data-name="Tab · Notes">
+                    <div
+                      class="replica-27"
+                      data-node-id="I49:1266;10:257"
+                      data-name="icon/sticky-note"
+                    >
+                      <img
+                        alt=""
+                        src="assets/design/e73ae.svg"
+                        width="11.7353"
+                        height="11.7353"
+                        style="width: 11.7353px; height: 11.7353px"
+                        loading="lazy"
+                      />
+                    </div>
+                  </div>
+                  <div
+                    class="replica-26"
+                    data-node-id="I49:1266;10:260"
+                    data-name="Tab · Clipboard"
+                  >
+                    <div
+                      class="replica-27"
+                      data-node-id="I49:1266;10:261"
+                      data-name="icon/clipboard-list"
+                    >
+                      <img
+                        alt=""
+                        src="assets/design/20b59.svg"
+                        width="11.7353"
+                        height="11.7353"
+                        style="width: 11.7353px; height: 11.7353px"
+                        loading="lazy"
+                      />
+                    </div>
+                  </div>
+                  <div class="replica-28" data-node-id="I49:1266;10:268" data-name="Tab · Files">
+                    <div class="replica-27" data-node-id="I49:1266;10:269" data-name="icon/folder">
+                      <img
+                        alt=""
+                        src="assets/design/29260.svg"
+                        width="11.7353"
+                        height="11.7353"
+                        style="width: 11.7353px; height: 11.7353px"
+                        loading="lazy"
+                      />
+                    </div>
+                    <p class="replica-29" data-node-id="I49:1266;10:272">Files</p>
+                  </div>
+                  <div class="replica-26" data-node-id="I49:1266;10:273" data-name="Tab · Media">
+                    <div
+                      class="replica-27"
+                      data-node-id="I49:1266;10:274"
+                      data-name="icon/audio-lines"
+                    >
+                      <img
+                        alt=""
+                        src="assets/design/c5e35.svg"
+                        width="11.7353"
+                        height="11.7353"
+                        style="width: 11.7353px; height: 11.7353px"
+                        loading="lazy"
+                      />
+                    </div>
+                  </div>
+                  <div class="replica-26" data-node-id="I49:1266;10:281" data-name="Tab · Timer">
+                    <div class="replica-27" data-node-id="I49:1266;10:282" data-name="icon/timer">
+                      <img
+                        alt=""
+                        src="assets/design/9c973.svg"
+                        width="11.7353"
+                        height="11.7353"
+                        style="width: 11.7353px; height: 11.7353px"
+                        loading="lazy"
+                      />
+                    </div>
+                  </div>
+                  <div class="replica-30" data-node-id="I49:1266;10:286" data-name="Spacer"></div>
+                  <div class="replica-26" data-node-id="I49:1266;34:583" data-name="Icon button">
+                    <div class="replica-31" data-node-id="I49:1266;34:584" data-name="icon/search">
+                      <img
+                        alt=""
+                        src="assets/design/48a7f.svg"
+                        width="12.5176"
+                        height="12.5176"
+                        style="width: 12.5176px; height: 12.5176px"
+                        loading="lazy"
+                      />
+                    </div>
+                  </div>
+                  <div class="replica-26" data-node-id="I49:1266;10:287" data-name="Icon button">
+                    <div
+                      class="replica-27"
+                      data-node-id="I49:1266;10:288"
+                      data-name="icon/panel-top"
+                    >
+                      <img
+                        alt=""
+                        src="assets/design/d9381.svg"
+                        width="11.7353"
+                        height="11.7353"
+                        style="width: 11.7353px; height: 11.7353px"
+                        loading="lazy"
+                      />
+                    </div>
+                  </div>
+                  <div class="replica-26" data-node-id="I49:1266;10:291" data-name="Icon button">
+                    <div
+                      class="replica-27"
+                      data-node-id="I49:1266;10:292"
+                      data-name="icon/settings"
+                    >
+                      <img
+                        alt=""
+                        src="assets/design/4bee4.svg"
+                        width="11.7353"
+                        height="11.7353"
+                        style="width: 11.7353px; height: 11.7353px"
+                        loading="lazy"
+                      />
+                    </div>
+                  </div>
+                </div>
+                <div class="replica-32" data-node-id="I49:1266;42:788" data-name="Section · Shelf">
+                  <p class="replica-33" data-node-id="I49:1266;42:789">SHELF · 3</p>
+                  <div class="replica-30" data-node-id="I49:1266;42:790" data-name="Spacer"></div>
+                  <p class="replica-34" data-node-id="I49:1266;42:791">Files in transit</p>
+                </div>
+                <div class="replica-35" data-node-id="I49:1266;10:295" data-name="Files">
+                  <div class="replica-36" data-node-id="I49:1266;10:296" data-name="Shelf item">
+                    <div
+                      class="replica-37"
+                      data-node-id="I49:1266;10:297"
+                      style="
+                        background-image: linear-gradient(
+                          152.57434725591577deg,
+                          rgb(217, 209, 178) 0%,
+                          rgb(89, 102, 128) 71.429%
+                        );
+                      "
+                      data-name="Preview"
+                    ></div>
+                    <p class="replica-38" data-node-id="I49:1266;10:298">hero-mock@2x.png</p>
+                    <p class="replica-39" data-node-id="I49:1266;10:299">2.4 MB</p>
+                  </div>
+                  <div class="replica-36" data-node-id="I49:1266;10:300" data-name="Shelf item">
+                    <div class="replica-40" data-node-id="I49:1266;10:301" data-name="Preview">
+                      <div class="replica-41" data-node-id="I49:1266;10:302" data-name="icon/film">
+                        <img
+                          alt=""
+                          src="assets/design/84e44.svg"
+                          width="17.2118"
+                          height="17.2118"
+                          style="width: 17.2118px; height: 17.2118px"
+                          loading="lazy"
+                        />
+                      </div>
+                    </div>
+                    <p class="replica-38" data-node-id="I49:1266;10:311">demo-island.mp4</p>
+                    <p class="replica-39" data-node-id="I49:1266;10:312">18.1 MB</p>
+                  </div>
+                  <div class="replica-36" data-node-id="I49:1266;10:313" data-name="Shelf item">
+                    <div class="replica-40" data-node-id="I49:1266;10:314" data-name="Preview">
+                      <div class="replica-41" data-node-id="I49:1266;10:315" data-name="icon/file">
+                        <img
+                          alt=""
+                          src="assets/design/85806.svg"
+                          width="17.2118"
+                          height="17.2118"
+                          style="width: 17.2118px; height: 17.2118px"
+                          loading="lazy"
+                        />
+                      </div>
+                    </div>
+                    <p class="replica-38" data-node-id="I49:1266;10:318">NABBIT_V2_HANDOFF.md</p>
+                    <p class="replica-39" data-node-id="I49:1266;10:319">52 KB</p>
+                  </div>
+                  <div class="replica-42" data-node-id="I49:1266;10:320" data-name="Drop more">
+                    <div class="replica-43" data-node-id="I49:1266;10:321" data-name="icon/plus">
+                      <img
+                        alt=""
+                        src="assets/design/1df4a.svg"
+                        width="14.0824"
+                        height="14.0824"
+                        style="width: 14.0824px; height: 14.0824px"
+                        loading="lazy"
+                      />
+                    </div>
+                    <p class="replica-34" data-node-id="I49:1266;10:324">Drop files</p>
+                  </div>
+                </div>
+                <div class="replica-32" data-node-id="I49:1266;42:792" data-name="Section · Pins">
+                  <p class="replica-33" data-node-id="I49:1266;42:793">PINS · 8</p>
+                  <div class="replica-30" data-node-id="I49:1266;42:794" data-name="Spacer"></div>
+                  <p class="replica-34" data-node-id="I49:1266;42:795">
+                    Alt+1–9 opens a pin · drop files on a folder to move them
+                  </p>
+                </div>
+                <div class="replica-44" data-node-id="I49:1266;42:796" data-name="Pins grid">
+                  <div class="replica-45" data-node-id="I49:1266;42:797" data-name="Row">
+                    <div
+                      class="replica-46"
+                      data-node-id="I49:1266;42:798"
+                      data-name="Pin · Invoices"
+                    >
+                      <div
+                        class="replica-31"
+                        data-node-id="I49:1266;42:799"
+                        data-name="icon/folder"
+                      >
+                        <img
+                          alt=""
+                          src="assets/design/d8371.svg"
+                          width="12.5176"
+                          height="12.5176"
+                          style="width: 12.5176px; height: 12.5176px"
+                          loading="lazy"
+                        />
+                      </div>
+                      <div class="replica-47" data-node-id="I49:1266;42:801" data-name="Text">
+                        <p class="replica-48" data-node-id="I49:1266;42:802">Invoices</p>
+                        <p class="replica-49" data-node-id="I49:1266;42:803">D:\Docs · 24 items</p>
+                      </div>
+                      <p class="replica-39" data-node-id="I49:1266;42:804">1</p>
+                    </div>
+                    <div
+                      class="replica-50"
+                      data-node-id="I49:1266;42:805"
+                      data-name="Pin · Acme · client work"
+                    >
+                      <div
+                        class="replica-31"
+                        data-node-id="I49:1266;42:806"
+                        data-name="icon/folder"
+                      >
+                        <img
+                          alt=""
+                          src="assets/design/d8371.svg"
+                          width="12.5176"
+                          height="12.5176"
+                          style="width: 12.5176px; height: 12.5176px"
+                          loading="lazy"
+                        />
+                      </div>
+                      <div class="replica-47" data-node-id="I49:1266;42:808" data-name="Text">
+                        <p class="replica-48" data-node-id="I49:1266;42:809">Acme · client work</p>
+                        <p class="replica-49" data-node-id="I49:1266;42:810">12 items · today</p>
+                      </div>
+                      <p class="replica-39" data-node-id="I49:1266;42:811">2</p>
+                    </div>
+                    <div
+                      class="replica-50"
+                      data-node-id="I49:1266;42:812"
+                      data-name="Pin · Screenshots"
+                    >
+                      <div
+                        class="replica-31"
+                        data-node-id="I49:1266;42:813"
+                        data-name="icon/folder"
+                      >
+                        <img
+                          alt=""
+                          src="assets/design/d8371.svg"
+                          width="12.5176"
+                          height="12.5176"
+                          style="width: 12.5176px; height: 12.5176px"
+                          loading="lazy"
+                        />
+                      </div>
+                      <div class="replica-47" data-node-id="I49:1266;42:815" data-name="Text">
+                        <p class="replica-48" data-node-id="I49:1266;42:816">Screenshots</p>
+                        <p class="replica-49" data-node-id="I49:1266;42:817">Pictures · 318</p>
+                      </div>
+                      <p class="replica-39" data-node-id="I49:1266;42:818">3</p>
+                    </div>
+                    <div
+                      class="replica-50"
+                      data-node-id="I49:1266;42:819"
+                      data-name="Pin · NAS · Archive"
+                    >
+                      <div
+                        class="replica-31"
+                        data-node-id="I49:1266;42:820"
+                        data-name="icon/hard-drive"
+                      >
+                        <img
+                          alt=""
+                          src="assets/design/28e6f.svg"
+                          width="12.5176"
+                          height="12.5176"
+                          style="width: 12.5176px; height: 12.5176px"
+                          loading="lazy"
+                        />
+                      </div>
+                      <div class="replica-47" data-node-id="I49:1266;42:825" data-name="Text">
+                        <p class="replica-48" data-node-id="I49:1266;42:826">NAS · Archive</p>
+                        <p class="replica-49" data-node-id="I49:1266;42:827">\\nas\archive</p>
+                      </div>
+                      <p class="replica-39" data-node-id="I49:1266;42:828">4</p>
+                    </div>
+                  </div>
+                  <div class="replica-45" data-node-id="I49:1266;42:829" data-name="Row">
+                    <div
+                      class="replica-50"
+                      data-node-id="I49:1266;42:830"
+                      data-name="Pin · Timesheet 2026.xlsx"
+                    >
+                      <div
+                        class="replica-31"
+                        data-node-id="I49:1266;42:831"
+                        data-name="icon/file-text"
+                      >
+                        <img
+                          alt=""
+                          src="assets/design/429d6.svg"
+                          width="12.5176"
+                          height="12.5176"
+                          style="width: 12.5176px; height: 12.5176px"
+                          loading="lazy"
+                        />
+                      </div>
+                      <div class="replica-47" data-node-id="I49:1266;42:837" data-name="Text">
+                        <p class="replica-48" data-node-id="I49:1266;42:838">Timesheet 2026.xlsx</p>
+                        <p class="replica-49" data-node-id="I49:1266;42:839">
+                          Excel · edited 2 h ago
+                        </p>
+                      </div>
+                      <p class="replica-39" data-node-id="I49:1266;42:840">5</p>
+                    </div>
+                    <div
+                      class="replica-50"
+                      data-node-id="I49:1266;42:841"
+                      data-name="Pin · Contract template.docx"
+                    >
+                      <div
+                        class="replica-31"
+                        data-node-id="I49:1266;42:842"
+                        data-name="icon/file-text"
+                      >
+                        <img
+                          alt=""
+                          src="assets/design/429d6.svg"
+                          width="12.5176"
+                          height="12.5176"
+                          style="width: 12.5176px; height: 12.5176px"
+                          loading="lazy"
+                        />
+                      </div>
+                      <div class="replica-47" data-node-id="I49:1266;42:848" data-name="Text">
+                        <p class="replica-48" data-node-id="I49:1266;42:849">
+                          Contract template.docx
+                        </p>
+                        <p class="replica-49" data-node-id="I49:1266;42:850">Word</p>
+                      </div>
+                      <p class="replica-39" data-node-id="I49:1266;42:851">6</p>
+                    </div>
+                    <div
+                      class="replica-50"
+                      data-node-id="I49:1266;42:852"
+                      data-name="Pin · Brand kit.pdf"
+                    >
+                      <div
+                        class="replica-31"
+                        data-node-id="I49:1266;42:853"
+                        data-name="icon/file-image"
+                      >
+                        <img
+                          alt=""
+                          src="assets/design/89759.svg"
+                          width="12.5176"
+                          height="12.5176"
+                          style="width: 12.5176px; height: 12.5176px"
+                          loading="lazy"
+                        />
+                      </div>
+                      <div class="replica-47" data-node-id="I49:1266;42:858" data-name="Text">
+                        <p class="replica-48" data-node-id="I49:1266;42:859">Brand kit.pdf</p>
+                        <p class="replica-49" data-node-id="I49:1266;42:860">PDF · 8.4 MB</p>
+                      </div>
+                      <p class="replica-39" data-node-id="I49:1266;42:861">7</p>
+                    </div>
+                    <div
+                      class="replica-50"
+                      data-node-id="I49:1266;42:862"
+                      data-name="Pin · deploy-site.ps1"
+                    >
+                      <div class="replica-31" data-node-id="I49:1266;42:863" data-name="icon/file">
+                        <img
+                          alt=""
+                          src="assets/design/93a14.svg"
+                          width="12.5176"
+                          height="12.5176"
+                          style="width: 12.5176px; height: 12.5176px"
+                          loading="lazy"
+                        />
+                      </div>
+                      <div class="replica-47" data-node-id="I49:1266;42:866" data-name="Text">
+                        <p class="replica-48" data-node-id="I49:1266;42:867">deploy-site.ps1</p>
+                        <p class="replica-49" data-node-id="I49:1266;42:868">Script</p>
+                      </div>
+                      <p class="replica-39" data-node-id="I49:1266;42:869">8</p>
+                    </div>
+                  </div>
+                </div>
+                <div class="replica-51" data-node-id="I49:1266;10:325" data-name="Footer">
+                  <p class="replica-34" data-node-id="I49:1266;10:326">
+                    Shelf holds files for now. Pins stay. Drag any item out into another app.
+                  </p>
+                  <div class="replica-30" data-node-id="I49:1266;10:327" data-name="Spacer"></div>
+                  <div class="replica-52" data-node-id="I49:1266;10:328" data-name="Island button">
+                    <div class="replica-53" data-node-id="I49:1266;10:329" data-name="icon/copy">
+                      <img
+                        alt=""
+                        src="assets/design/debd3.svg"
+                        width="10.9529"
+                        height="10.9529"
+                        style="width: 10.9529px; height: 10.9529px"
+                        loading="lazy"
+                      />
+                    </div>
+                    <p class="replica-54" data-node-id="I49:1266;10:332">Copy paths</p>
+                  </div>
+                  <div class="replica-52" data-node-id="I49:1266;10:333" data-name="Island button">
+                    <div class="replica-53" data-node-id="I49:1266;10:334" data-name="icon/trash-2">
+                      <img
+                        alt=""
+                        src="assets/design/b626c.svg"
+                        width="10.9529"
+                        height="10.9529"
+                        style="width: 10.9529px; height: 10.9529px"
+                        loading="lazy"
+                      />
+                    </div>
+                    <p class="replica-54" data-node-id="I49:1266;10:340">Clear</p>
+                  </div>
+                </div>
+              </div>
+              <div class="replica-55" data-node-id="49:1512" data-name="Island · Drop target">
+                <div class="replica-56" data-node-id="I49:1512;43:693" data-name="Header">
+                  <p class="replica-57" data-node-id="I49:1512;43:694">Drop to file</p>
+                  <p class="replica-58" data-node-id="I49:1512;43:695">2 photos · HEIC</p>
+                </div>
+                <div class="replica-59" data-node-id="I49:1512;43:696" data-name="Zones">
+                  <div class="replica-60" data-node-id="I49:1512;43:697" data-name="Download">
+                    <div class="replica-61" data-node-id="I49:1512;43:698" data-name="icon/image">
+                      <img
+                        alt=""
+                        src="assets/design/e5858.svg"
+                        width="13.4565"
+                        height="13.4565"
+                        style="width: 13.4565px; height: 13.4565px"
+                        loading="lazy"
+                      />
+                    </div>
+                    <p class="replica-62" data-node-id="I49:1512;43:699">To JPG</p>
+                    <p class="replica-63" data-node-id="I49:1512;43:700">Keeps location data</p>
+                  </div>
+                  <div class="replica-64" data-node-id="I49:1512;43:701" data-name="Add to shelf">
+                    <div class="replica-61" data-node-id="I49:1512;43:702" data-name="icon/inbox">
+                      <img
+                        alt=""
+                        src="assets/design/45982.svg"
+                        width="13.4565"
+                        height="13.4565"
+                        style="width: 13.4565px; height: 13.4565px"
+                        loading="lazy"
+                      />
+                    </div>
+                    <p class="replica-65" data-node-id="I49:1512;43:703">Add to shelf</p>
+                    <p class="replica-63" data-node-id="I49:1512;43:704">Hold files for later</p>
+                  </div>
+                  <div class="replica-64" data-node-id="I49:1512;43:705" data-name="New note">
+                    <div
+                      class="replica-61"
+                      data-node-id="I49:1512;43:706"
+                      data-name="icon/folder-input"
+                    >
+                      <img
+                        alt=""
+                        src="assets/design/a48a4.svg"
+                        width="13.4565"
+                        height="13.4565"
+                        style="width: 13.4565px; height: 13.4565px"
+                        loading="lazy"
+                      />
+                    </div>
+                    <p class="replica-65" data-node-id="I49:1512;43:707">Move to…</p>
+                    <p class="replica-63" data-node-id="I49:1512;43:708">Pick any folder</p>
+                  </div>
+                </div>
+                <div class="replica-66" data-node-id="I49:1512;43:722" data-name="Pin targets">
+                  <div class="replica-67" data-node-id="I49:1512;43:723" data-name="Label">
+                    <p class="replica-68" data-node-id="I49:1512;43:724">DROP ON A PIN</p>
+                    <div class="replica-69" data-node-id="I49:1512;43:725" data-name="Spacer"></div>
+                    <p class="replica-63" data-node-id="I49:1512;43:726">
+                      Same drive moves · other drive copies · Shift moves · Ctrl copies
+                    </p>
+                  </div>
+                  <div class="replica-67" data-node-id="I49:1512;43:727" data-name="Targets">
+                    <div
+                      class="replica-70"
+                      data-node-id="I49:1512;43:728"
+                      data-name="Target · Invoices"
+                    >
+                      <div class="replica-71" data-node-id="I49:1512;43:729" data-name="Top">
+                        <div
+                          class="replica-72"
+                          data-node-id="I49:1512;43:730"
+                          data-name="icon/folder"
+                        >
+                          <img
+                            alt=""
+                            src="assets/design/2ee9d.svg"
+                            width="10.7652"
+                            height="10.7652"
+                            style="width: 10.7652px; height: 10.7652px"
+                            loading="lazy"
+                          />
+                        </div>
+                        <p class="replica-73" data-node-id="I49:1512;43:732">Invoices</p>
+                      </div>
+                      <p class="replica-63" data-node-id="I49:1512;43:733">Move</p>
+                    </div>
+                    <div
+                      class="replica-74"
+                      data-node-id="I49:1512;43:734"
+                      data-name="Target · Photos 2026"
+                    >
+                      <div class="replica-71" data-node-id="I49:1512;43:735" data-name="Top">
+                        <div
+                          class="replica-72"
+                          data-node-id="I49:1512;43:736"
+                          data-name="icon/folder"
+                        >
+                          <img
+                            alt=""
+                            src="assets/design/2ee9d.svg"
+                            width="10.7652"
+                            height="10.7652"
+                            style="width: 10.7652px; height: 10.7652px"
+                            loading="lazy"
+                          />
+                        </div>
+                        <p class="replica-73" data-node-id="I49:1512;43:738">Photos 2026</p>
+                      </div>
+                      <p class="replica-75" data-node-id="I49:1512;43:739">Move here</p>
+                    </div>
+                    <div
+                      class="replica-70"
+                      data-node-id="I49:1512;43:740"
+                      data-name="Target · Acme · client work"
+                    >
+                      <div class="replica-71" data-node-id="I49:1512;43:741" data-name="Top">
+                        <div
+                          class="replica-72"
+                          data-node-id="I49:1512;43:742"
+                          data-name="icon/folder"
+                        >
+                          <img
+                            alt=""
+                            src="assets/design/2ee9d.svg"
+                            width="10.7652"
+                            height="10.7652"
+                            style="width: 10.7652px; height: 10.7652px"
+                            loading="lazy"
+                          />
+                        </div>
+                        <p class="replica-73" data-node-id="I49:1512;43:744">Acme · client work</p>
+                      </div>
+                      <p class="replica-63" data-node-id="I49:1512;43:745">Move</p>
+                    </div>
+                    <div
+                      class="replica-70"
+                      data-node-id="I49:1512;43:746"
+                      data-name="Target · NAS · Archive"
+                    >
+                      <div class="replica-71" data-node-id="I49:1512;43:747" data-name="Top">
+                        <div
+                          class="replica-72"
+                          data-node-id="I49:1512;43:748"
+                          data-name="icon/hard-drive"
+                        >
+                          <img
+                            alt=""
+                            src="assets/design/e0ed1.svg"
+                            width="10.7652"
+                            height="10.7652"
+                            style="width: 10.7652px; height: 10.7652px"
+                            loading="lazy"
+                          />
+                        </div>
+                        <p class="replica-73" data-node-id="I49:1512;43:753">NAS · Archive</p>
+                      </div>
+                      <p class="replica-63" data-node-id="I49:1512;43:754">Copy · other drive</p>
+                    </div>
+                  </div>
+                </div>
+              </div>
+              <div class="replica-76" data-node-id="33:518">
+                <div class="replica-4" data-node-id="33:519" data-name="icon/folder-input">
+                  <img
+                    alt=""
+                    src="assets/design/17950.svg"
+                    width="16"
+                    height="16"
+                    style="width: 16px; height: 16px"
+                    loading="lazy"
+                  />
+                </div>
+                <p class="replica-5" data-node-id="33:523">Moved to Invoices</p>
+                <p class="replica-6" data-node-id="33:524">3 files</p>
+                <div class="replica-7" data-node-id="33:525" data-name="Spacer"></div>
+                <div class="replica-77" data-node-id="33:526" data-name="Mini button">
+                  <p class="replica-78" data-node-id="33:527">Undo</p>
+                </div>
+              </div>
+            </div>
+          </div>
+          <div class="feature-visual mobile-only">
+            <div
+              class="replica-109 replica"
+              data-node-id="49:1622"
+              style="
+                background-image: linear-gradient(
+                  147.35608546944317deg,
+                  rgb(158, 173, 199) 0%,
+                  rgb(199, 194, 199) 39.286%,
+                  rgb(229, 204, 184) 71.429%
+                );
+              "
+              data-name="Visual"
+              role="img"
+              aria-label="Designed Files island with shelf, folder pins and file actions."
+            >
+              <div class="replica-142" data-node-id="49:1665" data-name="Island · Drop target">
+                <div class="replica-143" data-node-id="I49:1665;43:693" data-name="Header">
+                  <p class="replica-144" data-node-id="I49:1665;43:694">Drop to file</p>
+                  <p class="replica-145" data-node-id="I49:1665;43:695">2 photos · HEIC</p>
+                </div>
+                <div class="replica-146" data-node-id="I49:1665;43:696" data-name="Zones">
+                  <div class="replica-147" data-node-id="I49:1665;43:697" data-name="Download">
+                    <div class="replica-148" data-node-id="I49:1665;43:698" data-name="icon/image">
+                      <img
+                        alt=""
+                        src="assets/design/9c7c6.svg"
+                        width="10.1875"
+                        height="10.1875"
+                        style="width: 10.1875px; height: 10.1875px"
+                        loading="lazy"
+                      />
+                    </div>
+                    <p class="replica-149" data-node-id="I49:1665;43:699">To JPG</p>
+                    <p class="replica-150" data-node-id="I49:1665;43:700">Keeps location data</p>
+                  </div>
+                  <div class="replica-151" data-node-id="I49:1665;43:701" data-name="Add to shelf">
+                    <div class="replica-148" data-node-id="I49:1665;43:702" data-name="icon/inbox">
+                      <img
+                        alt=""
+                        src="assets/design/b36e8.svg"
+                        width="10.1875"
+                        height="10.1875"
+                        style="width: 10.1875px; height: 10.1875px"
+                        loading="lazy"
+                      />
+                    </div>
+                    <p class="replica-152" data-node-id="I49:1665;43:703">Add to shelf</p>
+                    <p class="replica-150" data-node-id="I49:1665;43:704">Hold files for later</p>
+                  </div>
+                  <div class="replica-151" data-node-id="I49:1665;43:705" data-name="New note">
+                    <div
+                      class="replica-148"
+                      data-node-id="I49:1665;43:706"
+                      data-name="icon/folder-input"
+                    >
+                      <img
+                        alt=""
+                        src="assets/design/3b2ee.svg"
+                        width="10.1875"
+                        height="10.1875"
+                        style="width: 10.1875px; height: 10.1875px"
+                        loading="lazy"
+                      />
+                    </div>
+                    <p class="replica-152" data-node-id="I49:1665;43:707">Move to…</p>
+                    <p class="replica-150" data-node-id="I49:1665;43:708">Pick any folder</p>
+                  </div>
+                </div>
+                <div class="replica-153" data-node-id="I49:1665;43:722" data-name="Pin targets">
+                  <div class="replica-154" data-node-id="I49:1665;43:723" data-name="Label">
+                    <p class="replica-155" data-node-id="I49:1665;43:724">DROP ON A PIN</p>
+                    <div
+                      class="replica-156"
+                      data-node-id="I49:1665;43:725"
+                      data-name="Spacer"
+                    ></div>
+                    <p class="replica-150" data-node-id="I49:1665;43:726">
+                      Same drive moves · other drive copies · Shift moves · Ctrl copies
+                    </p>
+                  </div>
+                  <div class="replica-154" data-node-id="I49:1665;43:727" data-name="Targets">
+                    <div
+                      class="replica-157"
+                      data-node-id="I49:1665;43:728"
+                      data-name="Target · Invoices"
+                    >
+                      <div class="replica-158" data-node-id="I49:1665;43:729" data-name="Top">
+                        <div
+                          class="replica-159"
+                          data-node-id="I49:1665;43:730"
+                          data-name="icon/folder"
+                        >
+                          <img
+                            alt=""
+                            src="assets/design/44256.svg"
+                            width="8.15"
+                            height="8.15"
+                            style="width: 8.15px; height: 8.15px"
+                            loading="lazy"
+                          />
+                        </div>
+                        <p class="replica-160" data-node-id="I49:1665;43:732">Invoices</p>
+                      </div>
+                      <p class="replica-150" data-node-id="I49:1665;43:733">Move</p>
+                    </div>
+                    <div
+                      class="replica-161"
+                      data-node-id="I49:1665;43:734"
+                      data-name="Target · Photos 2026"
+                    >
+                      <div class="replica-158" data-node-id="I49:1665;43:735" data-name="Top">
+                        <div
+                          class="replica-159"
+                          data-node-id="I49:1665;43:736"
+                          data-name="icon/folder"
+                        >
+                          <img
+                            alt=""
+                            src="assets/design/44256.svg"
+                            width="8.15"
+                            height="8.15"
+                            style="width: 8.15px; height: 8.15px"
+                            loading="lazy"
+                          />
+                        </div>
+                        <p class="replica-160" data-node-id="I49:1665;43:738">Photos 2026</p>
+                      </div>
+                      <p class="replica-162" data-node-id="I49:1665;43:739">Move here</p>
+                    </div>
+                    <div
+                      class="replica-157"
+                      data-node-id="I49:1665;43:740"
+                      data-name="Target · Acme · client work"
+                    >
+                      <div class="replica-158" data-node-id="I49:1665;43:741" data-name="Top">
+                        <div
+                          class="replica-159"
+                          data-node-id="I49:1665;43:742"
+                          data-name="icon/folder"
+                        >
+                          <img
+                            alt=""
+                            src="assets/design/44256.svg"
+                            width="8.15"
+                            height="8.15"
+                            style="width: 8.15px; height: 8.15px"
+                            loading="lazy"
+                          />
+                        </div>
+                        <p class="replica-160" data-node-id="I49:1665;43:744">Acme · client work</p>
+                      </div>
+                      <p class="replica-150" data-node-id="I49:1665;43:745">Move</p>
+                    </div>
+                    <div
+                      class="replica-157"
+                      data-node-id="I49:1665;43:746"
+                      data-name="Target · NAS · Archive"
+                    >
+                      <div class="replica-158" data-node-id="I49:1665;43:747" data-name="Top">
+                        <div
+                          class="replica-159"
+                          data-node-id="I49:1665;43:748"
+                          data-name="icon/hard-drive"
+                        >
+                          <img
+                            alt=""
+                            src="assets/design/602e5.svg"
+                            width="8.15"
+                            height="8.15"
+                            style="width: 8.15px; height: 8.15px"
+                            loading="lazy"
+                          />
+                        </div>
+                        <p class="replica-160" data-node-id="I49:1665;43:753">NAS · Archive</p>
+                      </div>
+                      <p class="replica-150" data-node-id="I49:1665;43:754">Copy · other drive</p>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+      <section
+        class="section tools"
+        id="tools"
+        aria-labelledby="tools-title"
+        data-figma-node="29:858"
+      >
+        <div class="container">
+          <div class="section-head">
+            <p class="label">AND THE REST</p>
+            <h2 id="tools-title">Small tools, one place.</h2>
+          </div>
+          <div class="tool-grid">
+            <article class="tool-card">
+              <img
+                class="icon desktop-tool-icon"
+                src="assets/design/39f16.svg"
+                width="20"
+                height="20"
+                style="width: 20px; height: 20px"
+                alt=""
+                loading="lazy"
+              /><img
+                class="icon mobile-tool-icon"
+                src="assets/design/34501.svg"
+                width="18"
+                height="18"
+                style="width: 18px; height: 18px"
+                alt=""
+                loading="lazy"
+              />
+              <h3>Clipboard history</h3>
+              <p class="desktop-copy">
+                Search everything you copied for 30, 60 or 90 days. Passwords and card numbers are
+                skipped.
+              </p>
+              <p class="mobile-copy">30, 60 or 90 days; skips passwords</p>
+            </article>
+            <article class="tool-card">
+              <img
+                class="icon desktop-tool-icon"
+                src="assets/design/c9964.svg"
+                width="20"
+                height="20"
+                style="width: 20px; height: 20px"
+                alt=""
+                loading="lazy"
+              /><img
+                class="icon mobile-tool-icon"
+                src="assets/design/0e6f7.svg"
+                width="18"
+                height="18"
+                style="width: 18px; height: 18px"
+                alt=""
+                loading="lazy"
+              />
+              <h3>Selected text, anywhere</h3>
+              <p class="desktop-copy">
+                Select text in any app and press Ctrl+Alt+S to change case, tidy lines or save it to
+                Tack.
+              </p>
+              <p class="mobile-copy">Ctrl+Alt+S to change case, tidy or save to Tack</p>
+            </article>
+            <article class="tool-card">
+              <img
+                class="icon desktop-tool-icon"
+                src="assets/design/b4994.svg"
+                width="20"
+                height="20"
+                style="width: 20px; height: 20px"
+                alt=""
+                loading="lazy"
+              /><img
+                class="icon mobile-tool-icon"
+                src="assets/design/c641e.svg"
+                width="18"
+                height="18"
+                style="width: 18px; height: 18px"
+                alt=""
+                loading="lazy"
+              />
+              <h3>Now playing</h3>
+              <p class="desktop-copy">
+                Controls for any app that talks to Windows media, from music to browser tabs.
+              </p>
+              <p class="mobile-copy">Any app with Windows media controls</p>
+            </article>
+            <article class="tool-card">
+              <img
+                class="icon desktop-tool-icon"
+                src="assets/design/6a688.svg"
+                width="20"
+                height="20"
+                style="width: 20px; height: 20px"
+                alt=""
+                loading="lazy"
+              /><img
+                class="icon mobile-tool-icon"
+                src="assets/design/f3886.svg"
+                width="18"
+                height="18"
+                style="width: 18px; height: 18px"
+                alt=""
+                loading="lazy"
+              />
+              <h3>Focus timer</h3>
+              <p class="desktop-copy">
+                Pomodoro-style rounds as a live pill, optionally linked to a Tack card.
+              </p>
+              <p class="mobile-copy">Rounds as a live pill</p>
+            </article>
+            <article class="tool-card">
+              <img
+                class="icon desktop-tool-icon"
+                src="assets/design/1091c.svg"
+                width="20"
+                height="20"
+                style="width: 20px; height: 20px"
+                alt=""
+                loading="lazy"
+              /><img
+                class="icon mobile-tool-icon"
+                src="assets/design/d9b5f.svg"
+                width="18"
+                height="18"
+                style="width: 18px; height: 18px"
+                alt=""
+                loading="lazy"
+              />
+              <h3>Mic and camera dot</h3>
+              <p class="desktop-copy">
+                See which app is listening or watching, the moment it starts.
+              </p>
+              <p class="mobile-copy">See who is listening or watching</p>
+            </article>
+            <article class="tool-card">
+              <img
+                class="icon desktop-tool-icon"
+                src="assets/design/deae5.svg"
+                width="20"
+                height="20"
+                style="width: 20px; height: 20px"
+                alt=""
+                loading="lazy"
+              /><img
+                class="icon mobile-tool-icon"
+                src="assets/design/fca7e.svg"
+                width="18"
+                height="18"
+                style="width: 18px; height: 18px"
+                alt=""
+                loading="lazy"
+              />
+              <h3>Every browser’s bookmarks</h3>
+              <p class="desktop-copy">
+                Import Chrome, Edge and Firefox bookmarks into Tack. Folders become labels.
+              </p>
+              <p class="mobile-copy">Chrome, Edge and Firefox into Tack</p>
+            </article>
+          </div>
+        </div>
+      </section>
+      <section
+        class="section modes"
+        id="modes"
+        aria-labelledby="modes-title"
+        data-figma-node="29:909"
+      >
+        <div class="container">
+          <div class="section-head">
+            <p class="label">YOUR SETUP</p>
+            <h2 id="modes-title">Island, tray or widgets.</h2>
+            <p class="lead">Same tools, three places to keep them. Switch any time in Settings.</p>
+          </div>
+          <div class="mode-replica">
+            <div
+              class="replica-79 replica"
+              data-node-id="29:914"
+              data-name="Modes"
+              role="img"
+              aria-label="Three setups: island and tray, tray only, or desktop widgets."
+            >
+              <div class="replica-80" data-node-id="29:915" data-name="Mode · Island + tray">
+                <div
+                  class="replica-81"
+                  data-node-id="29:916"
+                  style="
+                    background-image: linear-gradient(
+                      145.40771114872564deg,
+                      rgb(158, 173, 199) 0%,
+                      rgb(229, 204, 184) 71.429%
+                    );
+                  "
+                  data-name="Thumbnail"
+                >
+                  <div class="replica-82" data-node-id="29:917" data-name="Rectangle"></div>
+                  <div class="replica-83" data-node-id="29:918" data-name="Rectangle"></div>
+                  <div class="replica-84" data-node-id="29:919" data-name="Ellipse">
+                    <img
+                      alt=""
+                      src="assets/design/fa55e.svg"
+                      width="10"
+                      height="10"
+                      style="width: 10px; height: 10px"
+                      loading="lazy"
+                    />
+                  </div>
+                  <div class="replica-85" data-node-id="29:920" data-name="Rectangle"></div>
+                </div>
+                <p class="replica-86" data-node-id="29:921">Island + tray</p>
+                <p class="replica-87" data-node-id="29:922">
+                  A live pill at the top and the full window in the tray. The default.
+                </p>
+              </div>
+              <div class="replica-80" data-node-id="29:923" data-name="Mode · Tray only">
+                <div
+                  class="replica-81"
+                  data-node-id="29:924"
+                  style="
+                    background-image: linear-gradient(
+                      145.40771363513846deg,
+                      rgb(158, 173, 199) 0%,
+                      rgb(229, 204, 184) 71.429%
+                    );
+                  "
+                  data-name="Thumbnail"
+                >
+                  <div class="replica-82" data-node-id="29:925" data-name="Rectangle"></div>
+                  <div class="replica-88" data-node-id="29:926" data-name="Rectangle"></div>
+                  <div class="replica-89" data-node-id="29:927" data-name="Rectangle"></div>
+                </div>
+                <p class="replica-86" data-node-id="29:928">Tray only</p>
+                <p class="replica-87" data-node-id="29:929">
+                  No overlay. Progress on the tray icon and in Windows notifications.
+                </p>
+              </div>
+              <div class="replica-80" data-node-id="29:930" data-name="Mode · Widgets">
+                <div
+                  class="replica-81"
+                  data-node-id="29:931"
+                  style="
+                    background-image: linear-gradient(
+                      145.40771363513846deg,
+                      rgb(158, 173, 199) 0%,
+                      rgb(229, 204, 184) 71.429%
+                    );
+                  "
+                  data-name="Thumbnail"
+                >
+                  <div class="replica-82" data-node-id="29:932" data-name="Rectangle"></div>
+                  <div class="replica-90" data-node-id="29:933" data-name="Rectangle"></div>
+                  <div class="replica-91" data-node-id="29:934" data-name="Rectangle"></div>
+                  <div class="replica-92" data-node-id="29:935" data-name="Rectangle"></div>
+                  <div class="replica-93" data-node-id="29:936" data-name="Rectangle"></div>
+                </div>
+                <p class="replica-86" data-node-id="29:937">Widgets</p>
+                <p class="replica-87" data-node-id="29:938">
+                  Sticky notes and a pinned board on your desktop, synced with Tack.
+                </p>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+      <section
+        class="privacy"
+        id="privacy"
+        aria-labelledby="privacy-title"
+        data-figma-node="29:939"
+      >
+        <div class="container">
+          <div class="section-head">
+            <p class="label">PRIVACY</p>
+            <h2 id="privacy-title">Private by default.</h2>
+          </div>
+          <div class="tool-grid">
+            <article class="tool-card">
+              <img
+                class="icon desktop-tool-icon"
+                src="assets/design/84b13.svg"
+                width="20"
+                height="20"
+                style="width: 20px; height: 20px"
+                alt=""
+                loading="lazy"
+              /><img
+                class="icon mobile-tool-icon"
+                src="assets/design/cbd19.svg"
+                width="18"
+                height="18"
+                style="width: 18px; height: 18px"
+                alt=""
+                loading="lazy"
+              />
+              <h3>
+                <span class="desktop-copy">No account, no telemetry</span
+                ><span class="mobile-copy">No account, no telemetry</span>
+              </h3>
+              <p>Nabbit never phones home. Updates come from GitHub Releases and are signed.</p>
+            </article>
+            <article class="tool-card">
+              <img
+                class="icon desktop-tool-icon"
+                src="assets/design/2e9e1.svg"
+                width="20"
+                height="20"
+                style="width: 20px; height: 20px"
+                alt=""
+                loading="lazy"
+              /><img
+                class="icon mobile-tool-icon"
+                src="assets/design/8cce7.svg"
+                width="18"
+                height="18"
+                style="width: 18px; height: 18px"
+                alt=""
+                loading="lazy"
+              />
+              <h3>
+                <span class="desktop-copy">Nothing happens behind your back</span
+                ><span class="mobile-copy">Nothing downloads until you click</span>
+              </h3>
+              <p>Links are staged, never downloaded on their own. One click, every time.</p>
+            </article>
+            <article class="tool-card">
+              <img
+                class="icon desktop-tool-icon"
+                src="assets/design/7e121.svg"
+                width="20"
+                height="20"
+                style="width: 20px; height: 20px"
+                alt=""
+                loading="lazy"
+              /><img
+                class="icon mobile-tool-icon"
+                src="assets/design/83e93.svg"
+                width="18"
+                height="18"
+                style="width: 18px; height: 18px"
+                alt=""
+                loading="lazy"
+              />
+              <h3>
+                <span class="desktop-copy">Your notes, your server</span
+                ><span class="mobile-copy">Notes sync only with your Tack</span>
+              </h3>
+              <p>Notes sync only with the Tack you host. Without it, they stay on this PC.</p>
+            </article>
+          </div>
+          <p class="legal-copy">
+            <span class="desktop-copy"
+              >Download only content you own or have permission to save. Nabbit does not download
+              DRM-protected media and is not affiliated with YouTube.</span
+            ><span class="mobile-copy"
+              >Download only content you own or have permission to save. No DRM-protected media. Not
+              affiliated with YouTube.</span
+            >
+          </p>
+        </div>
+      </section>
+      <section
+        class="progress"
+        id="progress"
+        aria-labelledby="progress-title"
+        data-figma-node="29:965"
+      >
+        <div class="container">
+          <div class="section-head">
+            <p class="label">BUILT IN THE OPEN</p>
+            <h2 id="progress-title">v2 ships in milestones.</h2>
+            <p class="lead">
+              Every milestone is pushed to the public repository with screenshots. This list updates
+              with each push.
+            </p>
+          </div>
+          <div class="milestone-table">
+            <ol class="milestones milestone-first">
+              <li data-milestone="M0" data-status="done">
+                <img src="assets/design/cc740.svg" width="16" height="16" alt="" /><code>M0</code
+                ><span class="milestone-name">Public repository and Pages</span
+                ><span class="milestone-status">Done</span
+                ><a href="https://github.com/tanzir71/nabbit/tree/main/progress/v2/M0"
+                  >Screenshots</a
+                >
+              </li>
+              <li data-milestone="M1" data-status="done">
+                <img src="assets/design/cc740.svg" width="16" height="16" alt="" /><code>M1</code
+                ><span class="milestone-name">Island spike and measurements</span
+                ><span class="milestone-status">Done</span
+                ><a href="https://github.com/tanzir71/nabbit/tree/main/progress/v2/M1"
+                  >Screenshots</a
+                >
+              </li>
+              <li data-milestone="M2" data-status="done">
+                <img src="assets/design/cc740.svg" width="16" height="16" alt="" /><code>M2</code
+                ><span class="milestone-name">Design foundations</span
+                ><span class="milestone-status">Done</span
+                ><a href="https://github.com/tanzir71/nabbit/tree/main/progress/v2/M2"
+                  >Screenshots</a
+                >
+              </li>
+              <li data-milestone="M3" data-status="in-progress">
+                <img src="assets/design/8eaeb.svg" width="16" height="16" alt="" /><code>M3</code
+                ><span class="milestone-name">New landing page</span
+                ><span class="milestone-status">In progress</span>
+              </li>
+            </ol>
+            <details class="progress-more" id="all-milestones" open>
+              <summary>All 13 milestones</summary>
+              <ol class="milestones" start="4">
+                <li data-milestone="M4" data-status="planned">
+                  <img src="assets/design/cc740.svg" width="16" height="16" alt="" /><code>M4</code
+                  ><span class="milestone-name">Island plumbing</span
+                  ><span class="milestone-status">Planned</span>
+                </li>
+                <li data-milestone="M5" data-status="planned">
+                  <img src="assets/design/cc740.svg" width="16" height="16" alt="" /><code>M5</code
+                  ><span class="milestone-name">Island interface</span
+                  ><span class="milestone-status">Planned</span>
+                </li>
+                <li data-milestone="M6" data-status="planned">
+                  <img src="assets/design/cc740.svg" width="16" height="16" alt="" /><code>M6</code
+                  ><span class="milestone-name">Downloads core</span
+                  ><span class="milestone-status">Planned</span>
+                </li>
+                <li data-milestone="M7" data-status="planned">
+                  <img src="assets/design/cc740.svg" width="16" height="16" alt="" /><code>M7</code
+                  ><span class="milestone-name">Downloads complete</span
+                  ><span class="milestone-status">Planned</span>
+                </li>
+                <li data-milestone="M8" data-status="planned">
+                  <img src="assets/design/cc740.svg" width="16" height="16" alt="" /><code>M8</code
+                  ><span class="milestone-name">Tack sync</span
+                  ><span class="milestone-status">Planned</span>
+                </li>
+                <li data-milestone="M9" data-status="planned">
+                  <img src="assets/design/cc740.svg" width="16" height="16" alt="" /><code>M9</code
+                  ><span class="milestone-name">Notes complete</span
+                  ><span class="milestone-status">Planned</span>
+                </li>
+                <li data-milestone="M10" data-status="planned">
+                  <img src="assets/design/cc740.svg" width="16" height="16" alt="" /><code>M10</code
+                  ><span class="milestone-name">Modules, file tools and pins</span
+                  ><span class="milestone-status">Planned</span>
+                </li>
+                <li data-milestone="M11" data-status="planned">
+                  <img src="assets/design/cc740.svg" width="16" height="16" alt="" /><code>M11</code
+                  ><span class="milestone-name">Modes, tray and settings</span
+                  ><span class="milestone-status">Planned</span>
+                </li>
+                <li data-milestone="M12" data-status="planned">
+                  <img src="assets/design/cc740.svg" width="16" height="16" alt="" /><code>M12</code
+                  ><span class="milestone-name">v2 complete</span
+                  ><span class="milestone-status">Planned</span>
+                </li>
+              </ol>
+            </details>
+          </div>
+          <p class="caption">
+            Nabbit v2 is in development. Status and screenshot links update at each milestone push.
+          </p>
+        </div>
+      </section>
+    </main>
+    <footer>
+      <section class="final-cta" aria-labelledby="final-title" data-figma-node="29:1072">
+        <div class="container">
+          <div class="cta-mark">
+            <img
+              class="icon"
+              src="assets/design/dd5bd.svg"
+              width="64"
+              height="64"
+              style="width: 64px; height: 64px"
+              alt=""
+              loading="lazy"
+            />
+          </div>
+          <h2 id="final-title">Put the top of your screen to work.</h2>
+          <p class="lead">
+            Free and open source, for Windows 10 and 11 (x64 and ARM64). Watch each milestone land
+            on GitHub.
+          </p>
+          <div class="actions">
+            <a
+              class="button primary large"
+              data-download-cta
+              href="https://github.com/tanzir71/nabbit"
+              >Follow the build</a
+            ><a class="button secondary large" href="https://github.com/tanzir71/nabbit"
+              ><img
+                class="icon"
+                src="assets/design/65c81.svg"
+                width="16"
+                height="16"
+                style="width: 16px; height: 16px"
+                alt=""
+                loading="lazy"
+              />View source on GitHub</a
+            >
+          </div>
+        </div>
+      </section>
+      <div class="footer-bottom" data-figma-node="29:1097">
+        <div class="container footer-inner">
+          <a class="footer-brand" href="https://github.com/tanzir71/nabbit/blob/main/LICENSE"
+            ><img
+              class="icon"
+              src="assets/design/09016.svg"
+              width="24"
+              height="24"
+              style="width: 24px; height: 24px"
+              alt=""
+              loading="lazy"
+            /><span>Nabbit · MIT licence</span></a
+          >
+          <nav class="footer-links" aria-label="Footer">
+            <a href="https://github.com/tanzir71/nabbit">GitHub</a
+            ><a href="https://github.com/tanzir71/nabbit/releases">Releases</a
+            ><a href="https://github.com/tanzir71/nabbit/blob/main/PRIVACY.md">Privacy</a
+            ><a href="llms.txt">llms.txt</a><a href="demo/">Simulated tray demo</a
+            ><a class="desktop-only" href="https://tanziro.com">Made by tanziro.com</a>
+          </nav>
+          <p class="footer-mobile-copy">Nabbit · MIT licence</p>
+        </div>
+      </div>
+    </footer>
+  </body>
+</html>

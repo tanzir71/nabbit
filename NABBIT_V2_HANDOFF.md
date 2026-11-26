@@ -746,7 +746,7 @@ Commit after every task (§0.1). Lines marked **MILESTONE** are tasks of their o
 - [x] **MILESTONE M2 — Design foundations.**
 
 ### Phase L — Landing page
-- [ ] L.1 Build the new `docs/index.html` from `27:220` / `31:933` (§10b.2): all sections, tokens, self-hosted fonts, HTML/CSS island replicas, composite visuals (including the Files section `49:1132`), bookmarklet button, pre-release CTA rule (§10b.2).
+- [x] L.1 Build the new `docs/index.html` from `27:220` / `31:933` (§10b.2): all sections, tokens, self-hosted fonts, HTML/CSS island replicas, composite visuals (including the Files section `49:1132`), bookmarklet button, pre-release CTA rule (§10b.2).
 - [ ] L.2 Meta, OG image via `docs/og.html`, favicon, `404.html`, updated `llms.txt`.
 - [ ] L.3 Automated checks §10b.5.
 - [ ] **MILESTONE M3 — New landing page** (push, confirm the deploy).

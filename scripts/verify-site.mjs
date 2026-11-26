@@ -63,11 +63,7 @@ const landing = documents.get("index.html");
 assert.equal(landing.querySelector('link[rel="canonical"]')?.getAttribute("href"), base.href);
 assert.equal(landing.querySelector('meta[property="og:url"]')?.getAttribute("content"), base.href);
 assert(landing.querySelector('meta[property="og:title"]'));
-assert(
-  landing
-    .querySelector('[data-copy="agent"]')
-    ?.parentElement.textContent.includes(`${base.href}llms.txt`),
-);
+assert.equal(landing.querySelector('footer a[href="llms.txt"]')?.textContent.trim(), "llms.txt");
 assert(
   landing.querySelector('footer a[href="demo/"]'),
   "Keep the simulated tray linked from the footer",
