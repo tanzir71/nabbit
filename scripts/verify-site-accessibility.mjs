@@ -11,9 +11,15 @@ import { reviewContrast } from "./contrast-review.mjs";
 
 const root = fileURLToPath(new URL("../", import.meta.url));
 const require = createRequire(import.meta.url);
-const { values } = parseArgs({ options: { prefix: { type: "string", default: "l3" } } });
+const { values } = parseArgs({
+  options: {
+    prefix: { type: "string", default: "l3" },
+    milestone: { type: "string", default: "M3" },
+  },
+});
 assert(/^[a-z][a-z0-9-]{0,50}$/.test(values.prefix));
-const output = resolve(root, "progress/v2/M3");
+assert(/^M(?:[0-9]|1[0-2])$/.test(values.milestone));
+const output = resolve(root, "progress/v2", values.milestone);
 await mkdir(output, { recursive: true });
 const reportPath = resolve(output, `${values.prefix}-accessibility.json`);
 try {

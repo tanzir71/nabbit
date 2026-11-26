@@ -1,0 +1,875 @@
+{
+  "recordedAtUtc": "2026-11-26T05:08:52.553585+00:00",
+  "applicationCommit": "9f9f6004d93efe05e159338058ba0b3e344aff08",
+  "milestone": "M4",
+  "tasks": [
+    "V2.1",
+    "V2.2",
+    "V2.3",
+    "V2.4"
+  ],
+  "taskEvidence": [
+    {
+      "task": "v21",
+      "commit": "236734b3ed01bc8be36c3fb0c4726f0c9efe5ac0",
+      "sources": 23,
+      "reports": 3,
+      "pngs": 48,
+      "sourceAndReportPinsMatchTaskCommit": true
+    },
+    {
+      "task": "v22",
+      "commit": "3b0c38070cb1a551f3df3b3072b4b264e12c2dc4",
+      "sources": 22,
+      "reports": 4,
+      "pngs": 8,
+      "sourceAndReportPinsMatchTaskCommit": true
+    },
+    {
+      "task": "v23",
+      "commit": "ac955b17fbd0da59b1848fb1cb0f9a9f8d28fbdd",
+      "sources": 22,
+      "reports": 4,
+      "pngs": 24,
+      "sourceAndReportPinsMatchTaskCommit": true
+    },
+    {
+      "task": "v24",
+      "commit": "9f9f6004d93efe05e159338058ba0b3e344aff08",
+      "sources": 32,
+      "reports": 5,
+      "pngs": 18,
+      "sourceAndReportPinsMatchTaskCommit": true
+    }
+  ],
+  "allCurrentApplicationSourcePinsMatchV24": true,
+  "releaseSha256": "e23975ab2893318e1f158fd13f28a68e1e5489bc52dc0e2cf6403e5ac0a03660",
+  "frontendTests": 79,
+  "rustTests": 66,
+  "initialIslandGzipBytes": 53540,
+  "initialIslandBudgetBytes": 120000,
+  "requiredChecks": [
+    "npm run verify",
+    "cargo fmt --check",
+    "cargo clippy --all-targets -- -D warnings",
+    "cargo test -- --test-threads=1",
+    "npm run verify:site",
+    "npm run site:og -- --check"
+  ],
+  "allRequiredChecksPassed": true,
+  "historySecretScanClean": true,
+  "statusBrowserContexts": 8,
+  "axeContexts": 8,
+  "axeScans": 24,
+  "axeViolations": 0,
+  "m4DoneWithScreenshots": true,
+  "m5InProgress": true,
+  "sourceHttpAssets": 108,
+  "transferBytesExcludingFonts": 490986,
+  "budgetBytesExcludingFonts": 500000,
+  "pngs": 114,
+  "largestPngBytes": 131263,
+  "screenshots": [
+    {
+      "file": "m4-menu-focus-390-dark@1.5x.png",
+      "bytes": 47599,
+      "width": 585,
+      "height": 825,
+      "sha256": "069a549342fc86363ccdcf3adf30a58524891a3ab3ac03e0a7ac46341d9d2177"
+    },
+    {
+      "file": "m4-menu-focus-390-dark@1x.png",
+      "bytes": 27841,
+      "width": 390,
+      "height": 550,
+      "sha256": "926d6b11cb0a911545e0b9e405622d46497565248ae155bee6f25f01299014b6"
+    },
+    {
+      "file": "m4-menu-focus-390-light@1.5x.png",
+      "bytes": 47599,
+      "width": 585,
+      "height": 825,
+      "sha256": "069a549342fc86363ccdcf3adf30a58524891a3ab3ac03e0a7ac46341d9d2177"
+    },
+    {
+      "file": "m4-menu-focus-390-light@1x.png",
+      "bytes": 27841,
+      "width": 390,
+      "height": 550,
+      "sha256": "926d6b11cb0a911545e0b9e405622d46497565248ae155bee6f25f01299014b6"
+    },
+    {
+      "file": "m4-nav-focus-1440-dark@1.5x.png",
+      "bytes": 46803,
+      "width": 2160,
+      "height": 510,
+      "sha256": "275e2ea40c5cd247456ea1f681bfd9790bd43f80bd52f952b2084b64c759cf64"
+    },
+    {
+      "file": "m4-nav-focus-1440-dark@1x.png",
+      "bytes": 30111,
+      "width": 1440,
+      "height": 340,
+      "sha256": "bdf3ed9401cd4c4a792423fa3ba6822a542ef9b94e7e0fb7fe715cbe6d960bed"
+    },
+    {
+      "file": "m4-nav-focus-1440-light@1.5x.png",
+      "bytes": 46803,
+      "width": 2160,
+      "height": 510,
+      "sha256": "275e2ea40c5cd247456ea1f681bfd9790bd43f80bd52f952b2084b64c759cf64"
+    },
+    {
+      "file": "m4-nav-focus-1440-light@1x.png",
+      "bytes": 30111,
+      "width": 1440,
+      "height": 340,
+      "sha256": "4d63b7d4ae9ffaebebd7b1b0dc8981041e5e3d56a263819da28b0e6758ff08f1"
+    },
+    {
+      "file": "m4-status-1440-dark@1.5x.png",
+      "bytes": 131263,
+      "width": 2160,
+      "height": 1485,
+      "sha256": "1579ba63a377cacc092b4474eb8e9cfe17257f4e7a4e835fcaf97ec5b2ee1b7a"
+    },
+    {
+      "file": "m4-status-1440-dark@1x.png",
+      "bytes": 76745,
+      "width": 1440,
+      "height": 990,
+      "sha256": "ae3ee53257f78a6716eb9a8e608ce6189feea31842f157fcff4f26c250eac038"
+    },
+    {
+      "file": "m4-status-1440-light@1.5x.png",
+      "bytes": 131263,
+      "width": 2160,
+      "height": 1485,
+      "sha256": "1579ba63a377cacc092b4474eb8e9cfe17257f4e7a4e835fcaf97ec5b2ee1b7a"
+    },
+    {
+      "file": "m4-status-1440-light@1x.png",
+      "bytes": 76745,
+      "width": 1440,
+      "height": 990,
+      "sha256": "ae3ee53257f78a6716eb9a8e608ce6189feea31842f157fcff4f26c250eac038"
+    },
+    {
+      "file": "m4-status-390-dark@1.5x.png",
+      "bytes": 88436,
+      "width": 585,
+      "height": 1313,
+      "sha256": "4537d3a5d01496ab542ae08c0372ff2a1a235ec08bcfdf0af5b2bfcfdadcbcf0"
+    },
+    {
+      "file": "m4-status-390-dark@1x.png",
+      "bytes": 52820,
+      "width": 390,
+      "height": 875,
+      "sha256": "d9a473cc6fc4a317d6677b8f9968d44adfb9dd70a14f65ccff3d0037adc64605"
+    },
+    {
+      "file": "m4-status-390-light@1.5x.png",
+      "bytes": 88436,
+      "width": 585,
+      "height": 1313,
+      "sha256": "4537d3a5d01496ab542ae08c0372ff2a1a235ec08bcfdf0af5b2bfcfdadcbcf0"
+    },
+    {
+      "file": "m4-status-390-light@1x.png",
+      "bytes": 52820,
+      "width": 390,
+      "height": 875,
+      "sha256": "d9a473cc6fc4a317d6677b8f9968d44adfb9dd70a14f65ccff3d0037adc64605"
+    },
+    {
+      "file": "v21-island-settings-460-default-dark@1.5x.png",
+      "bytes": 36874,
+      "width": 642,
+      "height": 485,
+      "sha256": "b162911d68d11aea9fb0220e6480f265148e24c7711e04354b8f407049210312"
+    },
+    {
+      "file": "v21-island-settings-460-default-dark@1x.png",
+      "bytes": 20178,
+      "width": 428,
+      "height": 323,
+      "sha256": "22ca41abd71db60235d1b3295920b55c142f637d30645c7d25c7e25448d7d510"
+    },
+    {
+      "file": "v21-island-settings-460-default-light@1.5x.png",
+      "bytes": 36834,
+      "width": 642,
+      "height": 485,
+      "sha256": "49a3872ecd9efc2d7be6e630c06e88d5ab6ac9235bd0362757545a119be32627"
+    },
+    {
+      "file": "v21-island-settings-460-default-light@1x.png",
+      "bytes": 19822,
+      "width": 428,
+      "height": 323,
+      "sha256": "878e4e14123e995cf44837918a975639799ae5c9873625ff28b93a8b75e43eef"
+    },
+    {
+      "file": "v21-island-settings-460-disconnected-dark@1.5x.png",
+      "bytes": 49964,
+      "width": 642,
+      "height": 606,
+      "sha256": "4fa6194a45d21ff080e55a33798fbd20eab8e26048070a5b4facabdcbd220656"
+    },
+    {
+      "file": "v21-island-settings-460-disconnected-dark@1x.png",
+      "bytes": 27616,
+      "width": 428,
+      "height": 404,
+      "sha256": "8ad6c24dc16aec1fc6e073df312824b396771eadaaaa7f8bd010c9fcd96b4529"
+    },
+    {
+      "file": "v21-island-settings-460-disconnected-light@1.5x.png",
+      "bytes": 50116,
+      "width": 642,
+      "height": 606,
+      "sha256": "c9f1a61433c176436b827a764612a443827d5175a4ff3f567722f04a33dc9371"
+    },
+    {
+      "file": "v21-island-settings-460-disconnected-light@1x.png",
+      "bytes": 26820,
+      "width": 428,
+      "height": 404,
+      "sha256": "543ce9f4dc80ae8655ad9dffc6caa7a3987aa7c19f3daa12b74cbfcae43de019"
+    },
+    {
+      "file": "v21-island-settings-460-specific-dark@1.5x.png",
+      "bytes": 44378,
+      "width": 642,
+      "height": 570,
+      "sha256": "dbd24522e836e225ea1935576ac2168a697895546dd6eae47601af15a831a1ea"
+    },
+    {
+      "file": "v21-island-settings-460-specific-dark@1x.png",
+      "bytes": 24139,
+      "width": 428,
+      "height": 380,
+      "sha256": "899250e2424d4055584eee570db470981a78c0ca9fff958bdf1636e8fc00436b"
+    },
+    {
+      "file": "v21-island-settings-460-specific-light@1.5x.png",
+      "bytes": 44524,
+      "width": 642,
+      "height": 570,
+      "sha256": "f454c76544ea32e542254b6953231b95b1916460c2fd9ad93ae3d9ad85037502"
+    },
+    {
+      "file": "v21-island-settings-460-specific-light@1x.png",
+      "bytes": 23373,
+      "width": 428,
+      "height": 380,
+      "sha256": "0c357f3b23742e91858f131e77f2aa771c174d0ca7b49def45b4403a54c4ef69"
+    },
+    {
+      "file": "v21-island-settings-800-default-dark@1.5x.png",
+      "bytes": 38013,
+      "width": 1152,
+      "height": 371,
+      "sha256": "8230ad09038ca4cee2162626e2d870aab893db46f02c0357a825251730b7d098"
+    },
+    {
+      "file": "v21-island-settings-800-default-dark@1x.png",
+      "bytes": 20659,
+      "width": 768,
+      "height": 247,
+      "sha256": "d70c2766190fe09c3c696c0aa8149c35769997ef30da4d8f7ca0e631fcc79ae7"
+    },
+    {
+      "file": "v21-island-settings-800-default-light@1.5x.png",
+      "bytes": 38221,
+      "width": 1152,
+      "height": 371,
+      "sha256": "061e8841ba49959bc05cf306ebb1efe42dc67b8a501e6159ba74274a78f1f07e"
+    },
+    {
+      "file": "v21-island-settings-800-default-light@1x.png",
+      "bytes": 20144,
+      "width": 768,
+      "height": 247,
+      "sha256": "5533eca13c3d5bace5e2e717cd4ef8c70d5d0eb0cf92140dff574d2b72ce575a"
+    },
+    {
+      "file": "v21-island-settings-800-disconnected-dark@1.5x.png",
+      "bytes": 51717,
+      "width": 1152,
+      "height": 492,
+      "sha256": "93ed521e200b3399f4dfabfbfdaa5cadf6276691f04cd5156bb0b0608e797246"
+    },
+    {
+      "file": "v21-island-settings-800-disconnected-dark@1x.png",
+      "bytes": 28135,
+      "width": 768,
+      "height": 328,
+      "sha256": "a14748bae90a5d0a7e9ab120063c31f513cf6677acecbdac32dc64f42dc17ed8"
+    },
+    {
+      "file": "v21-island-settings-800-disconnected-light@1.5x.png",
+      "bytes": 52078,
+      "width": 1152,
+      "height": 492,
+      "sha256": "ee7db26cf89588f5dfd2f1fddb385441110eee505290b56d7bc16ec97d29bb4b"
+    },
+    {
+      "file": "v21-island-settings-800-disconnected-light@1x.png",
+      "bytes": 27359,
+      "width": 768,
+      "height": 328,
+      "sha256": "7c0cefb8c3eb3eb890e2572cb92a90cf80e2192b2b18cb4219e494c4c20a7beb"
+    },
+    {
+      "file": "v21-island-settings-800-specific-dark@1.5x.png",
+      "bytes": 45847,
+      "width": 1152,
+      "height": 456,
+      "sha256": "2a8e728b49b0b70abb1fb697f3a61afdec9d5f6563b252c6191dbc1a14da6a41"
+    },
+    {
+      "file": "v21-island-settings-800-specific-dark@1x.png",
+      "bytes": 24578,
+      "width": 768,
+      "height": 304,
+      "sha256": "74aadcefccb848fa33c9cb7f0843856e69afca56f14bdd616f037eaaccd02296"
+    },
+    {
+      "file": "v21-island-settings-800-specific-light@1.5x.png",
+      "bytes": 46192,
+      "width": 1152,
+      "height": 456,
+      "sha256": "8cae7a0474b6ce573f6c6317f086c143378b82b1a2d39fecd63eb36363d31741"
+    },
+    {
+      "file": "v21-island-settings-800-specific-light@1x.png",
+      "bytes": 23854,
+      "width": 768,
+      "height": 304,
+      "sha256": "d97202d85e4a5b0b85e801b88db72e7d0ed14d2ba1d432422151e32d541a40a3"
+    },
+    {
+      "file": "v21-native-island-large-dark-1-5x.png",
+      "bytes": 7246,
+      "width": 1242,
+      "height": 794,
+      "sha256": "645b7fb62e7bd69ded21171d5d6884f55c795122c79d869e3dd7a01eeb1cea56"
+    },
+    {
+      "file": "v21-native-island-large-dark-1x.png",
+      "bytes": 3848,
+      "width": 828,
+      "height": 529,
+      "sha256": "610ab31dffd582e06568af67987bb19a58b05a964e6c6d676621b51b359639b1"
+    },
+    {
+      "file": "v21-native-island-large-light-1-5x.png",
+      "bytes": 7246,
+      "width": 1242,
+      "height": 794,
+      "sha256": "645b7fb62e7bd69ded21171d5d6884f55c795122c79d869e3dd7a01eeb1cea56"
+    },
+    {
+      "file": "v21-native-island-large-light-1x.png",
+      "bytes": 3848,
+      "width": 828,
+      "height": 529,
+      "sha256": "610ab31dffd582e06568af67987bb19a58b05a964e6c6d676621b51b359639b1"
+    },
+    {
+      "file": "v21-native-island-small-dark-1-5x.png",
+      "bytes": 4934,
+      "width": 972,
+      "height": 621,
+      "sha256": "692df2964469e775d8e3465ee58dce3ac14ba63d94f70542f04fc02e8c9f1bf1"
+    },
+    {
+      "file": "v21-native-island-small-dark-1x.png",
+      "bytes": 2695,
+      "width": 648,
+      "height": 414,
+      "sha256": "43899bc3755ba8f8f3323c658c39897ae587ab1bfca924065f6bb69606c3f17b"
+    },
+    {
+      "file": "v21-native-island-small-light-1-5x.png",
+      "bytes": 4934,
+      "width": 972,
+      "height": 621,
+      "sha256": "692df2964469e775d8e3465ee58dce3ac14ba63d94f70542f04fc02e8c9f1bf1"
+    },
+    {
+      "file": "v21-native-island-small-light-1x.png",
+      "bytes": 2695,
+      "width": 648,
+      "height": 414,
+      "sha256": "43899bc3755ba8f8f3323c658c39897ae587ab1bfca924065f6bb69606c3f17b"
+    },
+    {
+      "file": "v21-native-island-standard-dark-1-5x.png",
+      "bytes": 5811,
+      "width": 1080,
+      "height": 690,
+      "sha256": "d69c1d224663b2c4be62990182fafaa77b569580a0f601d0fa8c11702efd90b0"
+    },
+    {
+      "file": "v21-native-island-standard-dark-1x.png",
+      "bytes": 3083,
+      "width": 720,
+      "height": 460,
+      "sha256": "de28ba1cc3676a656a2d4f846544fcf526f783a530ed52eb1f4ce8543bebc7f6"
+    },
+    {
+      "file": "v21-native-island-standard-light-1-5x.png",
+      "bytes": 5811,
+      "width": 1080,
+      "height": 690,
+      "sha256": "d69c1d224663b2c4be62990182fafaa77b569580a0f601d0fa8c11702efd90b0"
+    },
+    {
+      "file": "v21-native-island-standard-light-1x.png",
+      "bytes": 3083,
+      "width": 720,
+      "height": 460,
+      "sha256": "de28ba1cc3676a656a2d4f846544fcf526f783a530ed52eb1f4ce8543bebc7f6"
+    },
+    {
+      "file": "v21-native-notch-large-dark-1-5x.png",
+      "bytes": 4440,
+      "width": 1242,
+      "height": 794,
+      "sha256": "19fbb0e45f8fde8aa2be8bd51202cfa5ac783023bbeafade8f7de2526ebdb117"
+    },
+    {
+      "file": "v21-native-notch-large-dark-1x.png",
+      "bytes": 2110,
+      "width": 828,
+      "height": 529,
+      "sha256": "b639c6bd2470b45f63d460be2a88a25b5494e1a815b7d91ca0ff103bb58ac313"
+    },
+    {
+      "file": "v21-native-notch-large-light-1-5x.png",
+      "bytes": 4440,
+      "width": 1242,
+      "height": 794,
+      "sha256": "19fbb0e45f8fde8aa2be8bd51202cfa5ac783023bbeafade8f7de2526ebdb117"
+    },
+    {
+      "file": "v21-native-notch-large-light-1x.png",
+      "bytes": 2110,
+      "width": 828,
+      "height": 529,
+      "sha256": "b639c6bd2470b45f63d460be2a88a25b5494e1a815b7d91ca0ff103bb58ac313"
+    },
+    {
+      "file": "v21-native-notch-small-dark-1-5x.png",
+      "bytes": 2812,
+      "width": 972,
+      "height": 621,
+      "sha256": "2a72f8824d97b2ec60083ffe9ba847317587d4c1a555165425c05667b3e212c9"
+    },
+    {
+      "file": "v21-native-notch-small-dark-1x.png",
+      "bytes": 1408,
+      "width": 648,
+      "height": 414,
+      "sha256": "4c835948f43bf0fbb2caaaa678f8013deec2c2f35d7a3323eb46b2daa3869aed"
+    },
+    {
+      "file": "v21-native-notch-small-light-1-5x.png",
+      "bytes": 2812,
+      "width": 972,
+      "height": 621,
+      "sha256": "2a72f8824d97b2ec60083ffe9ba847317587d4c1a555165425c05667b3e212c9"
+    },
+    {
+      "file": "v21-native-notch-small-light-1x.png",
+      "bytes": 1408,
+      "width": 648,
+      "height": 414,
+      "sha256": "4c835948f43bf0fbb2caaaa678f8013deec2c2f35d7a3323eb46b2daa3869aed"
+    },
+    {
+      "file": "v21-native-notch-standard-dark-1-5x.png",
+      "bytes": 3388,
+      "width": 1080,
+      "height": 690,
+      "sha256": "9c566d2d7206e8970c7f56cfd57009dc8435ed4ec4045d3470d36d5297a39f37"
+    },
+    {
+      "file": "v21-native-notch-standard-dark-1x.png",
+      "bytes": 1634,
+      "width": 720,
+      "height": 460,
+      "sha256": "51c0af2e8a3660d01a54ebace887d48a442df010747df4d07185f8b0918970c7"
+    },
+    {
+      "file": "v21-native-notch-standard-light-1-5x.png",
+      "bytes": 3388,
+      "width": 1080,
+      "height": 690,
+      "sha256": "9c566d2d7206e8970c7f56cfd57009dc8435ed4ec4045d3470d36d5297a39f37"
+    },
+    {
+      "file": "v21-native-notch-standard-light-1x.png",
+      "bytes": 1634,
+      "width": 720,
+      "height": 460,
+      "sha256": "51c0af2e8a3660d01a54ebace887d48a442df010747df4d07185f8b0918970c7"
+    },
+    {
+      "file": "v22-island-idle-dark@1.5x.png",
+      "bytes": 7763,
+      "width": 1080,
+      "height": 690,
+      "sha256": "3b66ddb5647289b8f824870abb9afa078c9d88f35e47b990fac44ed0295e562a"
+    },
+    {
+      "file": "v22-island-idle-dark@1x.png",
+      "bytes": 4258,
+      "width": 720,
+      "height": 460,
+      "sha256": "8197c7b6a755d4597cdf7ec5a9d52ff043a95bedd358af0ce1d495869828e9bf"
+    },
+    {
+      "file": "v22-island-idle-light@1.5x.png",
+      "bytes": 7763,
+      "width": 1080,
+      "height": 690,
+      "sha256": "3b66ddb5647289b8f824870abb9afa078c9d88f35e47b990fac44ed0295e562a"
+    },
+    {
+      "file": "v22-island-idle-light@1x.png",
+      "bytes": 4258,
+      "width": 720,
+      "height": 460,
+      "sha256": "8197c7b6a755d4597cdf7ec5a9d52ff043a95bedd358af0ce1d495869828e9bf"
+    },
+    {
+      "file": "v22-native-island-1-5x.png",
+      "bytes": 5811,
+      "width": 1080,
+      "height": 690,
+      "sha256": "d69c1d224663b2c4be62990182fafaa77b569580a0f601d0fa8c11702efd90b0"
+    },
+    {
+      "file": "v22-native-island-1x.png",
+      "bytes": 3083,
+      "width": 720,
+      "height": 460,
+      "sha256": "de28ba1cc3676a656a2d4f846544fcf526f783a530ed52eb1f4ce8543bebc7f6"
+    },
+    {
+      "file": "v22-native-notch-1-5x.png",
+      "bytes": 3388,
+      "width": 1080,
+      "height": 690,
+      "sha256": "9c566d2d7206e8970c7f56cfd57009dc8435ed4ec4045d3470d36d5297a39f37"
+    },
+    {
+      "file": "v22-native-notch-1x.png",
+      "bytes": 1634,
+      "width": 720,
+      "height": 460,
+      "sha256": "51c0af2e8a3660d01a54ebace887d48a442df010747df4d07185f8b0918970c7"
+    },
+    {
+      "file": "v23-island-faded-dark@1.5x.png",
+      "bytes": 6522,
+      "width": 1080,
+      "height": 690,
+      "sha256": "b845ed4ffa0a8fe3758a3744bcddd5679032b9e2cae182f042b8acee4002ba2e"
+    },
+    {
+      "file": "v23-island-faded-dark@1x.png",
+      "bytes": 3556,
+      "width": 720,
+      "height": 460,
+      "sha256": "9704d8eaf94d24dec4c4e486dddc597dbd79bf256a7e232bf4c73efbfb6743e6"
+    },
+    {
+      "file": "v23-island-faded-light@1.5x.png",
+      "bytes": 6522,
+      "width": 1080,
+      "height": 690,
+      "sha256": "b845ed4ffa0a8fe3758a3744bcddd5679032b9e2cae182f042b8acee4002ba2e"
+    },
+    {
+      "file": "v23-island-faded-light@1x.png",
+      "bytes": 3556,
+      "width": 720,
+      "height": 460,
+      "sha256": "9704d8eaf94d24dec4c4e486dddc597dbd79bf256a7e232bf4c73efbfb6743e6"
+    },
+    {
+      "file": "v23-island-hidden-dark@1.5x.png",
+      "bytes": 4509,
+      "width": 1080,
+      "height": 690,
+      "sha256": "09debb38f0dadea5ce3d22e6800edc33ed44edc9e120a554b18e459dff6afbee"
+    },
+    {
+      "file": "v23-island-hidden-dark@1x.png",
+      "bytes": 2284,
+      "width": 720,
+      "height": 460,
+      "sha256": "d6f64487087adbef13c8baeefdd7b53d8fdea08146cd083db79050a6e201944d"
+    },
+    {
+      "file": "v23-island-hidden-light@1.5x.png",
+      "bytes": 4509,
+      "width": 1080,
+      "height": 690,
+      "sha256": "09debb38f0dadea5ce3d22e6800edc33ed44edc9e120a554b18e459dff6afbee"
+    },
+    {
+      "file": "v23-island-hidden-light@1x.png",
+      "bytes": 2284,
+      "width": 720,
+      "height": 460,
+      "sha256": "d6f64487087adbef13c8baeefdd7b53d8fdea08146cd083db79050a6e201944d"
+    },
+    {
+      "file": "v23-island-visible-dark@1.5x.png",
+      "bytes": 7763,
+      "width": 1080,
+      "height": 690,
+      "sha256": "3b66ddb5647289b8f824870abb9afa078c9d88f35e47b990fac44ed0295e562a"
+    },
+    {
+      "file": "v23-island-visible-dark@1x.png",
+      "bytes": 4258,
+      "width": 720,
+      "height": 460,
+      "sha256": "8197c7b6a755d4597cdf7ec5a9d52ff043a95bedd358af0ce1d495869828e9bf"
+    },
+    {
+      "file": "v23-island-visible-light@1.5x.png",
+      "bytes": 7763,
+      "width": 1080,
+      "height": 690,
+      "sha256": "3b66ddb5647289b8f824870abb9afa078c9d88f35e47b990fac44ed0295e562a"
+    },
+    {
+      "file": "v23-island-visible-light@1x.png",
+      "bytes": 4258,
+      "width": 720,
+      "height": 460,
+      "sha256": "8197c7b6a755d4597cdf7ec5a9d52ff043a95bedd358af0ce1d495869828e9bf"
+    },
+    {
+      "file": "v23-native-island-faded-1-5x.png",
+      "bytes": 4819,
+      "width": 1080,
+      "height": 690,
+      "sha256": "a1070448c82d38e615edc9f854de0811104672de9f1d7ad42abbaaab833eae4e"
+    },
+    {
+      "file": "v23-native-island-faded-1x.png",
+      "bytes": 2514,
+      "width": 720,
+      "height": 460,
+      "sha256": "85a2dac83ff0d00378836ca87320b262113f82cc561ec2c66cb7a1420aa5805c"
+    },
+    {
+      "file": "v23-native-island-hidden-1-5x.png",
+      "bytes": 2969,
+      "width": 1080,
+      "height": 690,
+      "sha256": "d830c4412e4ce4627a81643acd31979cd7536d7ace0d968a637445a63dec71ba"
+    },
+    {
+      "file": "v23-native-island-hidden-1x.png",
+      "bytes": 1364,
+      "width": 720,
+      "height": 460,
+      "sha256": "7a6ae78fb30410b4c69980cd9562ed6e2cdef8571dbb84e063d45e946b87d7fc"
+    },
+    {
+      "file": "v23-native-island-visible-1-5x.png",
+      "bytes": 5811,
+      "width": 1080,
+      "height": 690,
+      "sha256": "d69c1d224663b2c4be62990182fafaa77b569580a0f601d0fa8c11702efd90b0"
+    },
+    {
+      "file": "v23-native-island-visible-1x.png",
+      "bytes": 3083,
+      "width": 720,
+      "height": 460,
+      "sha256": "de28ba1cc3676a656a2d4f846544fcf526f783a530ed52eb1f4ce8543bebc7f6"
+    },
+    {
+      "file": "v23-native-notch-faded-1-5x.png",
+      "bytes": 3372,
+      "width": 1080,
+      "height": 690,
+      "sha256": "19ebb0fb40264c5b8ddd2bce1356624af7b674e6e70a786db2a650e7221eb7d1"
+    },
+    {
+      "file": "v23-native-notch-faded-1x.png",
+      "bytes": 1615,
+      "width": 720,
+      "height": 460,
+      "sha256": "d02c6c622c523fdfd03902012b8768d5c4b63a20b357519b19dc7d9ba879d2ef"
+    },
+    {
+      "file": "v23-native-notch-hidden-1-5x.png",
+      "bytes": 2969,
+      "width": 1080,
+      "height": 690,
+      "sha256": "d830c4412e4ce4627a81643acd31979cd7536d7ace0d968a637445a63dec71ba"
+    },
+    {
+      "file": "v23-native-notch-hidden-1x.png",
+      "bytes": 1364,
+      "width": 720,
+      "height": 460,
+      "sha256": "7a6ae78fb30410b4c69980cd9562ed6e2cdef8571dbb84e063d45e946b87d7fc"
+    },
+    {
+      "file": "v23-native-notch-visible-1-5x.png",
+      "bytes": 3388,
+      "width": 1080,
+      "height": 690,
+      "sha256": "9c566d2d7206e8970c7f56cfd57009dc8435ed4ec4045d3470d36d5297a39f37"
+    },
+    {
+      "file": "v23-native-notch-visible-1x.png",
+      "bytes": 1634,
+      "width": 720,
+      "height": 460,
+      "sha256": "51c0af2e8a3660d01a54ebace887d48a442df010747df4d07185f8b0918970c7"
+    },
+    {
+      "file": "v24-island-idle-dark@1.5x.png",
+      "bytes": 7763,
+      "width": 1080,
+      "height": 690,
+      "sha256": "3b66ddb5647289b8f824870abb9afa078c9d88f35e47b990fac44ed0295e562a"
+    },
+    {
+      "file": "v24-island-idle-dark@1x.png",
+      "bytes": 4258,
+      "width": 720,
+      "height": 460,
+      "sha256": "8197c7b6a755d4597cdf7ec5a9d52ff043a95bedd358af0ce1d495869828e9bf"
+    },
+    {
+      "file": "v24-island-idle-light@1.5x.png",
+      "bytes": 7763,
+      "width": 1080,
+      "height": 690,
+      "sha256": "3b66ddb5647289b8f824870abb9afa078c9d88f35e47b990fac44ed0295e562a"
+    },
+    {
+      "file": "v24-island-idle-light@1x.png",
+      "bytes": 4258,
+      "width": 720,
+      "height": 460,
+      "sha256": "8197c7b6a755d4597cdf7ec5a9d52ff043a95bedd358af0ce1d495869828e9bf"
+    },
+    {
+      "file": "v24-native-island-faded-1-5x.png",
+      "bytes": 4819,
+      "width": 1080,
+      "height": 690,
+      "sha256": "a1070448c82d38e615edc9f854de0811104672de9f1d7ad42abbaaab833eae4e"
+    },
+    {
+      "file": "v24-native-island-faded-1x.png",
+      "bytes": 2514,
+      "width": 720,
+      "height": 460,
+      "sha256": "85a2dac83ff0d00378836ca87320b262113f82cc561ec2c66cb7a1420aa5805c"
+    },
+    {
+      "file": "v24-native-island-hidden-1-5x.png",
+      "bytes": 2969,
+      "width": 1080,
+      "height": 690,
+      "sha256": "d830c4412e4ce4627a81643acd31979cd7536d7ace0d968a637445a63dec71ba"
+    },
+    {
+      "file": "v24-native-island-hidden-1x.png",
+      "bytes": 1364,
+      "width": 720,
+      "height": 460,
+      "sha256": "7a6ae78fb30410b4c69980cd9562ed6e2cdef8571dbb84e063d45e946b87d7fc"
+    },
+    {
+      "file": "v24-native-island-visible-1-5x.png",
+      "bytes": 5811,
+      "width": 1080,
+      "height": 690,
+      "sha256": "d69c1d224663b2c4be62990182fafaa77b569580a0f601d0fa8c11702efd90b0"
+    },
+    {
+      "file": "v24-native-island-visible-1x.png",
+      "bytes": 3083,
+      "width": 720,
+      "height": 460,
+      "sha256": "de28ba1cc3676a656a2d4f846544fcf526f783a530ed52eb1f4ce8543bebc7f6"
+    },
+    {
+      "file": "v24-native-notch-faded-1-5x.png",
+      "bytes": 3372,
+      "width": 1080,
+      "height": 690,
+      "sha256": "19ebb0fb40264c5b8ddd2bce1356624af7b674e6e70a786db2a650e7221eb7d1"
+    },
+    {
+      "file": "v24-native-notch-faded-1x.png",
+      "bytes": 1615,
+      "width": 720,
+      "height": 460,
+      "sha256": "d02c6c622c523fdfd03902012b8768d5c4b63a20b357519b19dc7d9ba879d2ef"
+    },
+    {
+      "file": "v24-native-notch-hidden-1-5x.png",
+      "bytes": 2969,
+      "width": 1080,
+      "height": 690,
+      "sha256": "d830c4412e4ce4627a81643acd31979cd7536d7ace0d968a637445a63dec71ba"
+    },
+    {
+      "file": "v24-native-notch-hidden-1x.png",
+      "bytes": 1364,
+      "width": 720,
+      "height": 460,
+      "sha256": "7a6ae78fb30410b4c69980cd9562ed6e2cdef8571dbb84e063d45e946b87d7fc"
+    },
+    {
+      "file": "v24-native-notch-visible-1-5x.png",
+      "bytes": 3388,
+      "width": 1080,
+      "height": 690,
+      "sha256": "9c566d2d7206e8970c7f56cfd57009dc8435ed4ec4045d3470d36d5297a39f37"
+    },
+    {
+      "file": "v24-native-notch-visible-1x.png",
+      "bytes": 1634,
+      "width": 720,
+      "height": 460,
+      "sha256": "51c0af2e8a3660d01a54ebace887d48a442df010747df4d07185f8b0918970c7"
+    },
+    {
+      "file": "v24-native-permitted-alert-shell.png",
+      "bytes": 3083,
+      "width": 720,
+      "height": 460,
+      "sha256": "de28ba1cc3676a656a2d4f846544fcf526f783a530ed52eb1f4ce8543bebc7f6"
+    },
+    {
+      "file": "v24-native-user-hidden.png",
+      "bytes": 1364,
+      "width": 720,
+      "height": 460,
+      "sha256": "7a6ae78fb30410b4c69980cd9562ed6e2cdef8571dbb84e063d45e946b87d7fc"
+    }
+  ],
+  "screenshotsVisuallyReviewed": true,
+  "earlierCpuLimitationUnchanged": true,
+  "milestoneCheckboxPendingPushAndLiveVerification": true
+}
