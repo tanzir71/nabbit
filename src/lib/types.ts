@@ -1,3 +1,5 @@
+import type { ErrorKind } from "./activity";
+
 export type Quality =
   "best" | "2160p" | "1440p" | "1080p" | "720p" | "480p" | "audio_mp3" | "audio_m4a";
 
@@ -105,6 +107,16 @@ export interface DownloadRequest {
 }
 
 export interface EngineStatus {
+  denoPath?: string | null;
+  denoVersion?: string | null;
+  ffmpegVersion?: string | null;
+  checkedAt?: string | null;
+  updatedAt?: string | null;
+  channel?: "stable" | "nightly";
+  extraction?: { result: string; checkedAt?: string | null; detail?: string | null };
+  failure?: ErrorKind | null;
+  updateError?: string | null;
+  busy?: boolean;
   ytdlpPath?: string | null;
   ffmpegPath?: string | null;
   ytdlpVersion?: string | null;

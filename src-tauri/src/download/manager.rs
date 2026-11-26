@@ -289,6 +289,9 @@ impl DownloadManager {
             ffmpeg.as_deref(),
             fallback_format,
         );
+        args.extend(super::engine::runtime_args(
+            ytdlp::resolve_engine(&self.app_data_dir, "deno").as_deref(),
+        )?);
         if let Some(section) = std::env::var_os("NABBIT_ACCEPTANCE_DOWNLOAD_SECTION") {
             args.extend([
                 "--download-sections".into(),

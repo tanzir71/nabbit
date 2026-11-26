@@ -8,6 +8,7 @@ import { Toggle } from "../components/Toggle";
 import { api } from "../lib/ipc";
 import { useAppStore } from "../store/useAppStore";
 import type { AppSettings, AppUpdateStatus, Quality } from "../lib/types";
+import { EngineHealthCard } from "./EngineHealthCard";
 import { IslandSettings } from "./IslandSettings";
 import { IslandShortcutField } from "./IslandShortcutField";
 
@@ -206,8 +207,9 @@ export function SettingsPanel({ onClose }: { onClose: () => void }) {
 
         <Section title="Privacy">
           <p className="text-sm leading-6 text-secondary">
-            Telemetry is off. Clipboard contents and URLs stay local except when yt-dlp downloads a
-            user-requested URL.
+            Telemetry is off. Your clipboard stays local. Daily engine checks contact GitHub and
+            test a fixed Creative Commons YouTube sample without downloading media. Your links are
+            probed or downloaded only after your action.
           </p>
           <Button variant="secondary" onClick={() => window.open("PRIVACY.md")}>
             <ExternalLink size={16} />
@@ -215,6 +217,7 @@ export function SettingsPanel({ onClose }: { onClose: () => void }) {
           </Button>
         </Section>
 
+        <EngineHealthCard />
         <Section title="About">
           <div className="rounded-lg border border-subtle bg-surface p-3 text-sm leading-6">
             <p>Nabbit 0.1.0</p>
@@ -223,8 +226,8 @@ export function SettingsPanel({ onClose }: { onClose: () => void }) {
               ffmpeg: {engine?.ffmpegPath ?? "not found"}
             </p>
             <p className="text-secondary">
-              Licenses: Tauri, React, yt-dlp, ffmpeg and bundled dependencies. Geist and Geist Mono:
-              SIL Open Font License 1.1.
+              Licenses: Tauri, React, yt-dlp, Deno, ffmpeg and bundled dependencies. Geist and Geist
+              Mono: SIL Open Font License 1.1.
             </p>
             <Button
               className="mt-3"

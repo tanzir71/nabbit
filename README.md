@@ -42,7 +42,7 @@ Two deliberate design points: downloads happen **only after one explicit click**
 - Node.js 20+
 - Rust 1.80+
 - Platform requirements for Tauri v2
-- `yt-dlp` and `ffmpeg` sidecars in `src-tauri/binaries`, or available on `PATH`
+- `yt-dlp`, `ffmpeg` and `deno` sidecars in `src-tauri/binaries`, or available on `PATH`
 
 ## Setup
 
@@ -58,7 +58,9 @@ On Windows, fetch the downloader engine:
 .\scripts\fetch-binaries.ps1 -Target x86_64-pc-windows-msvc
 ```
 
-The script downloads yt-dlp automatically. ffmpeg providers publish archives rather than a single stable executable, so extract `ffmpeg.exe` from the downloaded archive into `src-tauri/binaries/ffmpeg-x86_64-pc-windows-msvc.exe`, or install ffmpeg on `PATH`.
+The script provisions all three Windows sidecars from `scripts/engine-pins.json`, verifies SHA-256 before replacing files and selects native x64/ARM64 assets. Both setup wrappers use `scripts/fetch-engines.mjs`; the shell wrapper also supports Linux and macOS targets. macOS keeps the existing ffmpeg-on-PATH/custom-sidecar requirement. Release binaries stay gitignored.
+
+Settings shows **Download engine** health, Check now, Stable/Nightly and Repair. Rust checks all three versions and runs a bounded 3-second simulated extraction of the fixed Creative Commons sample daily. It pushes cached results to the card and a single island Error state; no collapsed JavaScript polling or automatic media downloads. Offline/time-out samples are skipped. Updates verify upstream asset digests, probe staged replacements, atomically swap each binary and re-probe. Island acceptance launches disable this worker; legacy download acceptance runs local version probes with network/update work disabled. See [the engine evidence](progress/v2/M6/README.md) and [privacy statement](PRIVACY.md).
 
 ## Run
 

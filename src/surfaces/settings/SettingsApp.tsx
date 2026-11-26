@@ -1,3 +1,4 @@
+import { useEngineEvents } from "../../lib/useEngineEvents";
 import { useEffect } from "react";
 import { isTauri } from "@tauri-apps/api/core";
 import { getCurrentWindow } from "@tauri-apps/api/window";
@@ -7,6 +8,7 @@ import { useAppStore } from "../../store/useAppStore";
 import { SettingsPanel } from "../../views/SettingsPanel";
 
 export function SettingsApp() {
+  useEngineEvents();
   const settings = useAppStore((state) => state.settings);
   const loading = useAppStore((state) => state.loading);
   const error = useAppStore((state) => state.error);

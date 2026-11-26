@@ -1,0 +1,19 @@
+    Finished `test` profile [unoptimized + debuginfo] target(s) in 4.03s
+     Running unittests src\lib.rs (src-tauri\target\debug\deps\nabbit_lib-124f67a018d3c306.exe)
+
+running 1 test
+test download::engine::tests::online_engine_smoke ... ENGINE_HEALTH_SMOKE={"ytdlpPath":"D:\\claude-upgrade-26\\nabbit\\src-tauri\\binaries\\yt-dlp-x86_64-pc-windows-msvc.exe","ffmpegPath":"D:\\claude-upgrade-26\\nabbit\\src-tauri\\binaries\\ffmpeg-x86_64-pc-windows-msvc.exe","ytdlpVersion":null,"denoPath":"D:\\claude-upgrade-26\\nabbit\\src-tauri\\binaries\\deno-x86_64-pc-windows-msvc.exe","denoVersion":"2.9.8","ffmpegVersion":"N-129306-g35ef294f5d-20261125","checkedAt":"2026-11-26T12:41:25.515141200+00:00","updatedAt":null,"channel":"stable","extraction":{"result":"skipped","checkedAt":"2026-11-26T12:41:28.930945500+00:00","detail":"The 3-second test timed out; checked local engine versions."},"failure":"SiteChanged","updateError":null,"busy":false,"lastUpdateCheck":null,"missing":["yt-dlp"]}
+
+thread 'download::engine::tests::online_engine_smoke' (8740) panicked at src\download\engine_tests.rs:220:9:
+yt-dlp did not probe
+note: run with `RUST_BACKTRACE=1` environment variable to display a backtrace
+FAILED
+
+failures:
+
+failures:
+    download::engine::tests::online_engine_smoke
+
+test result: FAILED. 0 passed; 1 failed; 0 ignored; 0 measured; 103 filtered out; finished in 11.14s
+
+error: test failed, to rerun pass `--lib`

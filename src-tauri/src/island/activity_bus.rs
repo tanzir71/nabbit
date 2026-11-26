@@ -174,7 +174,15 @@ pub fn download(app: &AppHandle, job: &crate::db::models::DownloadJob) {
         },
         "failed" => ActivityEvent::DownloadFailed {
             job_id: job.id.clone(),
-            error: super::activity::ErrorKind::Unknown,
+            error: if job
+                .error
+                .as_deref()
+                .is_some_and(|e| e.starts_with("MissingJsRuntime:"))
+            {
+                super::activity::ErrorKind::MissingJsRuntime
+            } else {
+                super::activity::ErrorKind::Unknown
+            },
         },
         _ => ActivityEvent::DownloadRemoved {
             job_id: job.id.clone(),

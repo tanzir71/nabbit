@@ -1,0 +1,107 @@
+
+> nabbit@0.1.0 verify
+> npm run verify:icons && npm run verify:fonts && npm run verify:tokens && npm run typecheck && npm run lint && npm test -- --run && npm run build
+
+
+> nabbit@0.1.0 verify:icons
+> node scripts/generate-brand-icons.mjs --check
+
+Verified desktop app icons, optical tray glyphs and site favicons.
+
+> nabbit@0.1.0 verify:fonts
+> node scripts/verify-font-assets.mjs
+
+Verified 5 pinned Geist 1.9.2 assets and OFL.
+
+> nabbit@0.1.0 verify:tokens
+> node scripts/generate-tokens.mjs --check
+
+Verified 36 light/dark tokens for app and site.
+
+> nabbit@0.1.0 typecheck
+> tsc -b
+
+
+> nabbit@0.1.0 lint
+> eslint .
+
+
+> nabbit@0.1.0 test
+> vitest --run
+
+
+ RUN  v3.2.7 D:/claude-upgrade-26/nabbit
+
+ ✓ src/lib/islandVisibility.test.ts (5 tests) 42ms
+ ✓ src/lib/islandMotion.test.ts (2 tests) 169ms
+ ✓ src/lib/islandInput.test.ts (7 tests) 84ms
+ ✓ src/views/IslandShortcutField.test.tsx (3 tests) 2074ms
+   ✓ edits a shortcut without saving intermediate strings and reports a rejected remap  1010ms
+   ✓ supports an empty binding without treating IME Enter as a save  615ms
+   ✓ does not clear a rejected remap when an older startup status arrives late  446ms
+ ✓ scripts/island-frame-metrics.test.js (6 tests) 30ms
+ ✓ src/lib/islandKeyboard.test.ts (4 tests) 54ms
+ ✓ src/lib/islandActivity.test.ts (6 tests) 31ms
+ ✓ src/lib/islandDrop.test.tsx (4 tests) 429ms
+ ✓ src/surfaces/island/IslandApp.test.tsx (1 test) 506ms
+   ✓ does not close an opening native Peek when the activity snapshot initializes first  503ms
+ ✓ spikes/island/IslandSpike.test.tsx (4 tests) 2788ms
+   ✓ island synthetic HTML5 drag events > routes link to the first matching zone and keeps it as a review candidate  819ms
+   ✓ island synthetic HTML5 drag events > routes files to the first matching zone and keeps it as a review candidate  325ms
+   ✓ island synthetic HTML5 drag events > routes text to the first matching zone and keeps it as a review candidate  845ms
+   ✓ island synthetic HTML5 drag events > rejects an executable URI and cancels when the drag leaves the band/target  797ms
+ ✓ src/views/ClipboardList.test.tsx (2 tests) 4454ms
+   ✓ ClipboardList acceptance behavior > filters instantly, copies by click, and supports keyboard copy/delete/focus shortcuts  3417ms
+   ✓ ClipboardList acceptance behavior > hands video URL rows to the download tab without copying the row  981ms
+ ✓ scripts/screenshots/policy.test.js (2 tests) 43ms
+ ✓ scripts/entry-bundles.test.js (4 tests) 165ms
+ ✓ src/views/EngineHealthCard.test.tsx (6 tests) 5492ms
+   ✓ engine health > shows the engine error copy and opens review from Fix  372ms
+   ✓ engine health > shows all real version fields and a separate extraction result  831ms
+   ✓ engine health > repairs a missing helper without creating a download  873ms
+   ✓ engine health > disables duplicate commands while checking and reports skipped network checks  770ms
+   ✓ engine health > switches channels only on explicit action and preserves failed-update copy  1812ms
+   ✓ engine health > pushes health updates without polling and unsubscribes on disposal  831ms
+ ✓ src/lib/islandSurface.test.ts (2 tests) 14ms
+ ✓ src/components/Components.test.tsx (8 tests) 7882ms
+   ✓ foundation interaction contracts > buttons require an explicit submit type inside a form  1335ms
+   ✓ foundation interaction contracts > switches expose their label/description and respond to Space  1421ms
+   ✓ foundation interaction contracts > disabled buttons, presets and switches cannot dispatch actions  696ms
+   ✓ foundation interaction contracts > segmented arrow/Home/End navigation wraps and skips disabled choices  1148ms
+   ✓ foundation interaction contracts > fields retain external descriptions, associate errors and generate unique IDs  703ms
+   ✓ foundation interaction contracts > native select options work with labels, descriptions and disabled choices  936ms
+   ✓ foundation interaction contracts > checklist actions keep card-open actions separate and preserve IDs  1220ms
+   ✓ foundation interaction contracts > readonly tasks do not expose editable checks and dynamic progress stays valid  420ms
+ ❯ src/views/IslandSettings.test.tsx (3 tests | 1 failed) 10040ms
+   × persists independent shape, size, monitor and enabled changes without overwriting other settings 5699ms
+     → Test timed out in 5000ms.
+If this is a long-running test, pass a timeout value as the last argument or configure it globally with "testTimeout".
+   ✓ keeps the chosen monitor when disconnected and cleans up the event subscription  2034ms
+   ✓ reports save failures and prevents overlapping preference writes  2305ms
+ ✓ scripts/screenshots/mock-ipc.test.js (5 tests) 15ms
+ ✓ spikes/island/drop.test.ts (3 tests) 10ms
+ ✓ src/lib/search.test.ts (3 tests) 11ms
+ ✓ src/lib/theme.test.ts (4 tests) 16ms
+ ✓ src/store/islandStore.test.ts (16 tests) 16ms
+ ✓ src/store/settingsBootstrap.test.ts (2 tests) 69ms
+
+⎯⎯⎯⎯⎯⎯⎯ Failed Tests 1 ⎯⎯⎯⎯⎯⎯⎯
+
+ FAIL  src/views/IslandSettings.test.tsx > persists independent shape, size, monitor and enabled changes without overwriting other settings
+Error: Test timed out in 5000ms.
+If this is a long-running test, pass a timeout value as the last argument or configure it globally with "testTimeout".
+ ❯ src/views/IslandSettings.test.tsx:59:1
+     57|   };
+     58| }
+     59| it("persists independent shape, size, monitor and enabled changes with…
+       | ^
+     60|   const { user, save } = await setup();
+     61|   await user.click(screen.getByRole("button", { name: "Notch" }));
+
+ Test Files  1 failed | 22 passed (23)
+      Tests  1 failed | 101 passed (102)
+   Start at  18:39:59
+   Duration  39.50s (transform 59.10s, setup 11.37s, collect 80.98s, tests 34.44s, environment 79.71s, prepare 14.68s)
+
+
+⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯[1/1]⎯

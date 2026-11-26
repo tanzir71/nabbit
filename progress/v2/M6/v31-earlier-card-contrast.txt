@@ -1,0 +1,176 @@
+file:///D:/claude-upgrade-26/nabbit/scripts/screenshots/harness.mjs:244
+            throw new Error(`${scenario.name} (${theme}@${scale}x): ${error.message}`, {
+                  ^
+
+Error: engine-missing (light@1x): Expected values to be strictly deep-equal:
++ actual - expected
+
++ [
++   {
++     description: 'Ensure the contrast between foreground and background colors meets WCAG 2 AA minimum contrast ratio thresholds',
++     help: 'Elements must meet minimum color contrast ratio thresholds',
++     helpUrl: 'https://dequeuniversity.com/rules/axe/4.14/color-contrast?application=axeAPI',
++     id: 'color-contrast',
++     impact: 'serious',
++     nodes: [
++       {
++         all: [],
++         any: [
++           {
++             data: {
++               bgColor: '#fff4e0',
++               colorParse: undefined,
++               contrastRatio: 4.36,
++               expectedContrastRatio: '4.5:1',
++               fgColor: '#a86200',
++               fontSize: '8.3pt (11px)',
++               fontWeight: 'normal',
++               messageKey: null,
++               shadowColor: undefined
++             },
++             id: 'color-contrast',
++             impact: 'serious',
++             message: 'Element has insufficient color contrast of 4.36 (foreground color: #a86200, background color: #fff4e0, font size: 8.3pt (11px), font weight: normal). Expected contrast ratio of 4.5:1',
++             relatedNodes: [
++               {
++                 html: '<span class="n-badge n-badge--warning">Needs attention</span>',
++                 target: [
++                   '.n-badge'
++                 ]
++               }
++             ]
++           }
++         ],
++         failureSummary: 'Fix any of the following:\n' +
++           '  Element has insufficient color contrast of 4.36 (foreground color: #a86200, background color: #fff4e0, font size: 8.3pt (11px), font weight: normal). Expected contrast ratio of 4.5:1',
++         html: '<span class="n-badge n-badge--warning">Needs attention</span>',
++         impact: 'serious',
++         none: [],
++         target: [
++           '.n-badge'
++         ]
++       }
++     ],
++     tags: [
++       'cat.color',
++       'wcag2aa',
++       'wcag143',
++       'TTv5',
++       'TT13.c',
++       'EN-301-549',
++       'EN-9.1.4.3',
++       'ACT',
++       'RGAAv4',
++       'RGAA-3.2.1'
++     ]
++   }
++ ]
+- []
+
+    at captureSuite (file:///D:/claude-upgrade-26/nabbit/scripts/screenshots/harness.mjs:244:19)
+    at async file:///D:/claude-upgrade-26/nabbit/scripts/verify-engine-health.mjs:164:1 {
+  [cause]: AssertionError [ERR_ASSERTION]: Expected values to be strictly deep-equal:
+  + actual - expected
+
+  + [
+  +   {
+  +     description: 'Ensure the contrast between foreground and background colors meets WCAG 2 AA minimum contrast ratio thresholds',
+  +     help: 'Elements must meet minimum color contrast ratio thresholds',
+  +     helpUrl: 'https://dequeuniversity.com/rules/axe/4.14/color-contrast?application=axeAPI',
+  +     id: 'color-contrast',
+  +     impact: 'serious',
+  +     nodes: [
+  +       {
+  +         all: [],
+  +         any: [
+  +           {
+  +             data: {
+  +               bgColor: '#fff4e0',
+  +               colorParse: undefined,
+  +               contrastRatio: 4.36,
+  +               expectedContrastRatio: '4.5:1',
+  +               fgColor: '#a86200',
+  +               fontSize: '8.3pt (11px)',
+  +               fontWeight: 'normal',
+  +               messageKey: null,
+  +               shadowColor: undefined
+  +             },
+  +             id: 'color-contrast',
+  +             impact: 'serious',
+  +             message: 'Element has insufficient color contrast of 4.36 (foreground color: #a86200, background color: #fff4e0, font size: 8.3pt (11px), font weight: normal). Expected contrast ratio of 4.5:1',
+  +             relatedNodes: [
+  +               {
+  +                 html: '<span class="n-badge n-badge--warning">Needs attention</span>',
+  +                 target: [
+  +                   '.n-badge'
+  +                 ]
+  +               }
+  +             ]
+  +           }
+  +         ],
+  +         failureSummary: 'Fix any of the following:\n' +
+  +           '  Element has insufficient color contrast of 4.36 (foreground color: #a86200, background color: #fff4e0, font size: 8.3pt (11px), font weight: normal). Expected contrast ratio of 4.5:1',
+  +         html: '<span class="n-badge n-badge--warning">Needs attention</span>',
+  +         impact: 'serious',
+  +         none: [],
+  +         target: [
+  +           '.n-badge'
+  +         ]
+  +       }
+  +     ],
+  +     tags: [
+  +       'cat.color',
+  +       'wcag2aa',
+  +       'wcag143',
+  +       'TTv5',
+  +       'TT13.c',
+  +       'EN-301-549',
+  +       'EN-9.1.4.3',
+  +       'ACT',
+  +       'RGAAv4',
+  +       'RGAA-3.2.1'
+  +     ]
+  +   }
+  + ]
+  - []
+
+      at Object.ready (file:///D:/claude-upgrade-26/nabbit/scripts/verify-engine-health.mjs:78:12)
+      at async captureSuite (file:///D:/claude-upgrade-26/nabbit/scripts/screenshots/harness.mjs:135:33)
+      at async file:///D:/claude-upgrade-26/nabbit/scripts/verify-engine-health.mjs:164:1 {
+    generatedMessage: true,
+    code: 'ERR_ASSERTION',
+    actual: [
+      {
+        id: 'color-contrast',
+        impact: 'serious',
+        tags: [
+          'cat.color',  'wcag2aa',
+          'wcag143',    'TTv5',
+          'TT13.c',     'EN-301-549',
+          'EN-9.1.4.3', 'ACT',
+          'RGAAv4',     'RGAA-3.2.1'
+        ],
+        description: 'Ensure the contrast between foreground and background colors meets WCAG 2 AA minimum contrast ratio thresholds',
+        help: 'Elements must meet minimum color contrast ratio thresholds',
+        helpUrl: 'https://dequeuniversity.com/rules/axe/4.14/color-contrast?application=axeAPI',
+        nodes: [
+          {
+            any: [Array],
+            all: [],
+            none: [],
+            impact: 'serious',
+            html: '<span class="n-badge n-badge--warning">Needs attention</span>',
+            target: [Array],
+            failureSummary: 'Fix any of the following:\n' +
+              '  Element has insufficient color contrast of 4.36 (foreground color: #a86200, background color: #fff4e0, font size: 8.3pt (11px), font weight: normal). Expected contrast ratio of 4.5:1'
+          }
+        ]
+      }
+    ],
+    expected: [],
+    operator: 'deepStrictEqual',
+    diff: 'simple'
+  }
+}
+
+Node.js v24.22.2

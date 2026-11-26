@@ -194,7 +194,9 @@ export const api = {
     }),
   revealDownload: (id: string) => call<void>("reveal_download", { id }, () => undefined),
   openDownloadsFolder: () => call<void>("open_downloads_folder", undefined, () => undefined),
-  repairEngine: () => call<EngineStatus>("repair_engine", undefined, () => ({ missing: [] })),
+  repairEngine: (channel?: "stable" | "nightly") =>
+    call<EngineStatus>("repair_engine", { channel }, () => ({ missing: [] })),
+  checkEngine: () => call<EngineStatus>("check_engine", undefined, () => ({ missing: [] })),
   getEngineStatus: () =>
     call<EngineStatus>("get_engine_status", undefined, () => ({ missing: [] })),
   quickDownloadStaged: () =>

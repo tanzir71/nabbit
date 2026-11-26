@@ -1,9 +1,8 @@
-use chrono::Utc;
-use std::{fs, path::Path, process::Command};
+use std::fs;
 
 use crate::{
     db::models::{DownloadJob, DownloadMetadata, DownloadRequest, EngineStatus},
-    download::{manager::reveal_path, probe, ytdlp},
+    download::{engine::Channel, manager::reveal_path, probe},
     error::{msg, Result},
     util::default_output_dir,
     AppState,
@@ -87,14 +86,30 @@ pub fn open_downloads_folder(state: tauri::State<'_, AppState>) -> Result<()> {
 
 #[tauri::command]
 pub fn get_engine_status(state: tauri::State<'_, AppState>) -> Result<EngineStatus> {
-    Ok(engine_status(&state))
+    Ok(state.engine.snapshot())
 }
 
 #[tauri::command]
-pub fn repair_engine(state: tauri::State<'_, AppState>) -> Result<EngineStatus> {
-    fetch_ytdlp(&state.app_data_dir)?;
-    let _ = install_ffmpeg_from_path(&state.app_data_dir);
-    Ok(engine_status(&state))
+pub async fn check_engine(
+    app: tauri::AppHandle,
+    state: tauri::State<'_, AppState>,
+) -> Result<EngineStatus> {
+    let engine = state.engine.clone();
+    tauri::async_runtime::spawn_blocking(move || engine.run(&app, false, None))
+        .await
+        .map_err(|e| msg(e.to_string()))
+}
+
+#[tauri::command]
+pub async fn repair_engine(
+    app: tauri::AppHandle,
+    state: tauri::State<'_, AppState>,
+    channel: Option<Channel>,
+) -> Result<EngineStatus> {
+    let engine = state.engine.clone();
+    tauri::async_runtime::spawn_blocking(move || engine.run(&app, true, channel))
+        .await
+        .map_err(|e| msg(e.to_string()))
 }
 
 #[tauri::command]
@@ -110,166 +125,4 @@ pub fn quick_download_staged(state: tauri::State<'_, AppState>) -> Result<Option
         playlist_range: None,
     };
     state.downloads.enqueue(request).map(Some)
-}
-
-pub fn engine_status(state: &AppState) -> EngineStatus {
-    let ytdlp = ytdlp::resolve_engine(&state.app_data_dir, "yt-dlp");
-    let ffmpeg = ytdlp::resolve_engine(&state.app_data_dir, "ffmpeg");
-    let version = ytdlp::ytdlp_version(&state.app_data_dir);
-    let ffmpeg_works = ffmpeg
-        .as_deref()
-        .map(|path| engine_probe_succeeds(path, "-version"))
-        .unwrap_or(false);
-    let mut missing = Vec::new();
-    if ytdlp.is_none() || version.is_none() {
-        missing.push("yt-dlp".into());
-    }
-    if ffmpeg.is_none() || !ffmpeg_works {
-        missing.push("ffmpeg".into());
-    }
-    EngineStatus {
-        ytdlp_path: ytdlp.map(|path| path.to_string_lossy().to_string()),
-        ffmpeg_path: ffmpeg.map(|path| path.to_string_lossy().to_string()),
-        ytdlp_version: version,
-        last_update_check: state
-            .db
-            .setting_value("engine_last_update_check")
-            .ok()
-            .flatten(),
-        missing,
-    }
-}
-
-fn engine_probe_succeeds(path: &Path, arg: &str) -> bool {
-    Command::new(path)
-        .arg(arg)
-        .output()
-        .map(|output| output.status.success())
-        .unwrap_or(false)
-}
-
-pub fn spawn_engine_update(state: AppState) {
-    std::thread::Builder::new()
-        .name("nabbit-engine-update".into())
-        .spawn(move || {
-            let Ok(settings) = state.db.get_settings() else {
-                return;
-            };
-            if !settings.engine_auto_update {
-                return;
-            }
-            let last = state
-                .db
-                .setting_value("engine_last_update_check")
-                .ok()
-                .flatten();
-            let should_run = last
-                .and_then(|value| chrono::DateTime::parse_from_rfc3339(&value).ok())
-                .map(|value| {
-                    Utc::now()
-                        .signed_duration_since(value.with_timezone(&Utc))
-                        .num_hours()
-                        >= 24
-                })
-                .unwrap_or(true);
-            if !should_run {
-                return;
-            }
-            let _ = state
-                .db
-                .set_setting_value("engine_last_update_check", &Utc::now().to_rfc3339());
-            if let Some(path) = ytdlp::resolve_engine(&state.app_data_dir, "yt-dlp") {
-                let _ = Command::new(path).arg("-U").output();
-            } else {
-                let _ = fetch_ytdlp(&state.app_data_dir);
-            }
-        })
-        .expect("spawn engine update");
-}
-
-fn fetch_ytdlp(app_data_dir: &Path) -> Result<()> {
-    let engine_dir = app_data_dir.join("engine");
-    fs::create_dir_all(&engine_dir)?;
-    let url = if cfg!(target_os = "windows") {
-        "https://github.com/yt-dlp/yt-dlp/releases/latest/download/yt-dlp.exe"
-    } else if cfg!(target_os = "linux") {
-        "https://github.com/yt-dlp/yt-dlp/releases/latest/download/yt-dlp"
-    } else {
-        "https://github.com/yt-dlp/yt-dlp/releases/latest/download/yt-dlp_macos"
-    };
-    let target = engine_dir.join(if cfg!(target_os = "windows") {
-        "yt-dlp.exe"
-    } else {
-        "yt-dlp"
-    });
-    let response = reqwest::blocking::get(url)
-        .map_err(|error| msg(format!("engine download failed: {error}")))?;
-    if !response.status().is_success() {
-        return Err(msg(format!(
-            "engine download returned {}",
-            response.status()
-        )));
-    }
-    fs::write(
-        &target,
-        response.bytes().map_err(|error| msg(error.to_string()))?,
-    )?;
-    #[cfg(unix)]
-    {
-        use std::os::unix::fs::PermissionsExt;
-        let mut permissions = fs::metadata(&target)?.permissions();
-        permissions.set_mode(0o755);
-        fs::set_permissions(&target, permissions)?;
-    }
-    Ok(())
-}
-
-fn install_ffmpeg_from_path(app_data_dir: &Path) -> Result<()> {
-    let ffmpeg = which::which(if cfg!(target_os = "windows") {
-        "ffmpeg.exe"
-    } else {
-        "ffmpeg"
-    })
-    .map_err(|error| msg(format!("ffmpeg not found on PATH: {error}")))?;
-    let engine_dir = app_data_dir.join("engine");
-    fs::create_dir_all(&engine_dir)?;
-    let target = engine_dir.join(if cfg!(target_os = "windows") {
-        "ffmpeg.exe"
-    } else {
-        "ffmpeg"
-    });
-    fs::copy(ffmpeg, &target)?;
-    #[cfg(unix)]
-    {
-        use std::os::unix::fs::PermissionsExt;
-        let mut permissions = fs::metadata(&target)?.permissions();
-        permissions.set_mode(0o755);
-        fs::set_permissions(&target, permissions)?;
-    }
-    Ok(())
-}
-
-#[cfg(test)]
-mod tests {
-    use super::engine_probe_succeeds;
-    use std::{fs, path::PathBuf};
-    use uuid::Uuid;
-
-    #[test]
-    fn engine_probe_rejects_unlaunchable_file() {
-        let path = tempfile_dir().join(if cfg!(target_os = "windows") {
-            "yt-dlp.exe"
-        } else {
-            "yt-dlp"
-        });
-        fs::write(&path, b"not an executable").unwrap();
-
-        assert!(!engine_probe_succeeds(&path, "--version"));
-    }
-
-    fn tempfile_dir() -> PathBuf {
-        let dir = std::env::temp_dir().join(format!("nabbit-engine-test-{}", Uuid::new_v4()));
-        fs::create_dir_all(&dir).unwrap();
-        dir
-    }
 }

@@ -51,6 +51,7 @@ use tauri_plugin_global_shortcut::{GlobalShortcutExt, ShortcutState};
 pub struct AppState {
     pub db: Database,
     pub downloads: DownloadManager,
+    pub engine: Arc<download::engine::Service>,
     pub app_data_dir: PathBuf,
     pub shutdown: Arc<AtomicBool>,
 }
@@ -134,6 +135,7 @@ pub fn run() {
             commands::download::reveal_download,
             commands::download::open_downloads_folder,
             commands::download::get_engine_status,
+            commands::download::check_engine,
             commands::download::repair_engine,
             commands::download::quick_download_staged,
             #[cfg(all(windows, feature = "island-spike"))]
@@ -173,6 +175,7 @@ pub fn run() {
             let state = AppState {
                 db: db.clone(),
                 downloads,
+                engine: download::engine::Service::new(db.clone(), app_data_dir.clone()),
                 app_data_dir,
                 shutdown: shutdown.clone(),
             };
@@ -209,7 +212,7 @@ pub fn run() {
             if configure_os_integration && !island::acceptance_session() {
                 apply_runtime_settings(app.handle(), &state, &settings);
             }
-            commands::download::spawn_engine_update(state.clone());
+            state.engine.start(app.handle().clone());
             if !settings.start_hidden {
                 let _ = show_popover(app.handle());
             }
@@ -247,6 +250,7 @@ pub fn run() {
                 let _ = (api, code);
                 if let Some(state) = app.try_state::<AppState>() {
                     state.shutdown.store(true, Ordering::Relaxed);
+                    state.engine.stop();
                 }
                 if let Some(bus) = app.try_state::<Arc<island::activity_bus::Bus>>() {
                     bus.stop();

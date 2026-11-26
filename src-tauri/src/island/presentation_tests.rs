@@ -271,3 +271,28 @@ fn artwork_decoding_is_local_bounded_and_returns_premultiplied_pixels() {
     assert!(super::artwork::decode("https://example.invalid/art.png").is_none());
     assert!(super::artwork::decode("data:image/png;base64,not-a-png").is_none());
 }
+
+#[test]
+fn engine_health_error_draws_its_own_copy_and_fix_then_clears() {
+    let mut engine = engine();
+    let status = crate::db::models::EngineStatus {
+        failure: Some(ErrorKind::MissingJsRuntime),
+        ..Default::default()
+    };
+    engine.submit(
+        crate::download::engine::health_activity(&status),
+        None,
+        clock(1),
+    );
+    let snapshot = engine.snapshot();
+    let scene = compact(Some(&snapshot.views[0]), Shape::Island);
+    let json = serde_json::to_string(&scene).unwrap();
+    assert!(json.contains("Download engine needs an update"));
+    assert!(json.contains("Fix"));
+    engine.submit(
+        crate::download::engine::health_activity(&Default::default()),
+        None,
+        clock(2),
+    );
+    assert!(engine.snapshot().views[0].primary.is_none());
+}

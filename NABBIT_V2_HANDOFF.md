@@ -765,7 +765,7 @@ Commit after every task (§0.1). Lines marked **MILESTONE** are tasks of their o
 - [x] **MILESTONE M5 — Island interface.**
 
 ### Phase V3 — Downloads v2
-- [ ] V3.1 Deno sidecar + fetch scripts + engine health (daily check, card `18:260`, island Error state).
+- [x] V3.1 Deno sidecar + fetch scripts + engine health (daily check, card `18:260`, island Error state).
 - [ ] V3.2 Options builder (§7.3) with unit tests; presets per site.
 - [ ] V3.3 Capture paths: drag, deep link (`tauri-plugin-deep-link`), hotkey; link-detected pill + peek.
 - [ ] V3.4 Island Nab tab and tray Nab redesign (`10:519`, `13:2`), queue rows with progress/pause/cancel/open/reveal.

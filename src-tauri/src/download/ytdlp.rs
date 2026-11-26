@@ -31,6 +31,14 @@ pub fn resolve_engine(app_data_dir: &Path, name: &str) -> Option<PathBuf> {
         return Some(app_data);
     }
 
+    if let Ok(exe) = std::env::current_exe() {
+        if let Some(parent) = exe.parent() {
+            let bundled = parent.join(format!("{name}{ext}"));
+            if bundled.is_file() {
+                return Some(bundled);
+            }
+        }
+    }
     let target = target_triple();
     let file_name = format!("{name}-{target}{ext}");
     let dev_path = PathBuf::from(env!("CARGO_MANIFEST_DIR"))
@@ -55,6 +63,8 @@ pub fn resolve_engine(app_data_dir: &Path, name: &str) -> Option<PathBuf> {
 pub fn target_triple() -> &'static str {
     if cfg!(all(target_os = "windows", target_arch = "x86_64")) {
         "x86_64-pc-windows-msvc"
+    } else if cfg!(all(target_os = "windows", target_arch = "aarch64")) {
+        "aarch64-pc-windows-msvc"
     } else if cfg!(all(target_os = "macos", target_arch = "x86_64")) {
         "x86_64-apple-darwin"
     } else if cfg!(all(target_os = "macos", target_arch = "aarch64")) {
@@ -68,22 +78,15 @@ pub fn target_triple() -> &'static str {
     }
 }
 
-pub fn ytdlp_version(app_data_dir: &Path) -> Option<String> {
-    let path = resolve_engine(app_data_dir, "yt-dlp")?;
-    let output = Command::new(path).arg("--version").output().ok()?;
-    if !output.status.success() {
-        return None;
-    }
-    Some(String::from_utf8_lossy(&output.stdout).trim().to_string())
-}
-
 pub fn probe_metadata(app_data_dir: &Path, url: &str) -> Result<DownloadMetadata> {
     let normalized = normalize_video_url(url).unwrap_or_else(|| url.trim().to_string());
     let Some(ytdlp) = resolve_engine(app_data_dir, "yt-dlp") else {
         return Ok(fallback_metadata(&normalized, "yt-dlp sidecar missing"));
     };
 
+    let runtime = super::engine::runtime_args(resolve_engine(app_data_dir, "deno").as_deref())?;
     let output = Command::new(ytdlp)
+        .args(runtime)
         .args(["-J", "--no-warnings", "--skip-download", "--flat-playlist"])
         .arg(&normalized)
         .output()?;

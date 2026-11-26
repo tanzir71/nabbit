@@ -2,6 +2,8 @@ use thiserror::Error;
 
 #[derive(Debug, Error)]
 pub enum NabbitError {
+    #[error("MissingJsRuntime: The engine needs its helper. Install Deno with Repair engine.")]
+    MissingJsRuntime,
     #[error("{0}")]
     Message(String),
     #[error(transparent)]

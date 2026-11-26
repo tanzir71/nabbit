@@ -91,7 +91,9 @@ export function activityTitle(item: ActivityItem) {
     case "downloadDone":
       return basename(e.path);
     case "downloadFailed":
-      return "Download needs attention";
+      return e.jobId === "engine-health"
+        ? "Download engine needs an update"
+        : "Download needs attention";
     case "mediaChanged":
       return e.title;
     case "timerTick":

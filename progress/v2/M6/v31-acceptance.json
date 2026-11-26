@@ -1,0 +1,251 @@
+{
+  "task": "V3.1",
+  "checkedAtUtc": "2026-11-26T12:52:13.485134+00:00",
+  "baseCommit": "7cc7944a59e31226bcb1571eeec43d211220cab8",
+  "frontendTests": 102,
+  "rustTests": 103,
+  "optionalOnlineSmokePassed": true,
+  "sampleExtraction": {
+    "result": "skipped",
+    "checkedAt": "2026-11-26T12:45:49.376535200+00:00",
+    "detail": "The 3-second test timed out; checked local engine versions."
+  },
+  "pinnedYtdlp": "2026.11.23",
+  "pinnedDeno": "2.9.8",
+  "pinnedFfmpegBuild": "autobuild-2026-11-25-23-12",
+  "runtimeFlagsVerifiedAgainstPinnedHelp": true,
+  "upstreamReference": "https://github.com/yt-dlp/yt-dlp/wiki/EJS",
+  "runtimeFlags": [
+    "--ignore-config",
+    "--no-js-runtimes",
+    "--js-runtimes",
+    "deno:<resolved path>"
+  ],
+  "versionProbeTimeoutSeconds": 10,
+  "extractionTimeoutSeconds": 3,
+  "idleScheduling": "Rust Condvar, daily; pushed cached results; no JavaScript polling",
+  "checks": {
+    "npmVerify": true,
+    "rustFmt": true,
+    "defaultClippyAllTargetsWarningsDenied": true,
+    "spikeClippyAllTargetsWarningsDenied": true,
+    "serialRustTests": true,
+    "windowsPinnedSidecarSetup": true
+  },
+  "screenshotCount": 16,
+  "defaultRuleAxeScans": 12,
+  "unreviewedAxeIncomplete": 0,
+  "figmaCardNode": "18:260",
+  "healthyCardCssPixels": [
+    420,
+    342
+  ],
+  "visualReview": "Compared light 1x and dark 1.5x card and island Error against Figma; same original assets/layout; secondary text and scoped warning badge use readable tokens.",
+  "islandInitialGzipBytes": 89648,
+  "islandGzipLimit": 120000,
+  "pngLimitBytes": 300000,
+  "maxPngBytes": 65762,
+  "screenshotEvidence": [
+    {
+      "file": "v31-health-checked-engine-healthy-light@1x.png",
+      "bytes": 34883,
+      "width": 420,
+      "height": 342,
+      "sha256": "ebd8aab18dec60e8b97053d555c6ff2a91c3b9cdb2adc0fefee5bffdc0e2fde9"
+    },
+    {
+      "file": "v31-health-checked-engine-missing-light@1x.png",
+      "bytes": 36426,
+      "width": 420,
+      "height": 342,
+      "sha256": "9201ce035d94dd588b2abcf7ceb0919d275819d93e881f06419fdd5fe6cc832c"
+    },
+    {
+      "file": "v31-health-checked-engine-offline-light@1x.png",
+      "bytes": 35059,
+      "width": 420,
+      "height": 358,
+      "sha256": "b4b2909bc5f6569ad20922a1b51a7f399c5c13355bf6a2ed73dee92844895d61"
+    },
+    {
+      "file": "v31-health-checked-engine-island-error-light@1x.png",
+      "bytes": 9307,
+      "width": 720,
+      "height": 460,
+      "sha256": "4dcc2bcb4f5af9e3cd5018fc5542bd63ffcfe1b3371c347378b7af69e2393276"
+    },
+    {
+      "file": "v31-health-checked-engine-healthy-light@1.5x.png",
+      "bytes": 62802,
+      "width": 630,
+      "height": 513,
+      "sha256": "b41f2e5e68fabe332c1c8bfcac0ae7b6157f97b106d6ef4d7a06584a614cf0d0"
+    },
+    {
+      "file": "v31-health-checked-engine-missing-light@1.5x.png",
+      "bytes": 65761,
+      "width": 630,
+      "height": 513,
+      "sha256": "3eef89a630ca97455636d4abf5e69e324eaec5663927f7bdfd894615c9ee014d"
+    },
+    {
+      "file": "v31-health-checked-engine-offline-light@1.5x.png",
+      "bytes": 64315,
+      "width": 630,
+      "height": 537,
+      "sha256": "4f35d50aae449c005b0260d45b1c50064685e0b2ec83317d099a30dab33d7a78"
+    },
+    {
+      "file": "v31-health-checked-engine-island-error-light@1.5x.png",
+      "bytes": 15462,
+      "width": 1080,
+      "height": 690,
+      "sha256": "c4317d5a90cd267c690300e391b4385cbaee8025d80643eaf8e180bbf655670e"
+    },
+    {
+      "file": "v31-health-checked-engine-healthy-dark@1x.png",
+      "bytes": 36381,
+      "width": 420,
+      "height": 342,
+      "sha256": "dd591904fd701a2f040f84cd576273335ae0ec9250a903a52aed7035f8d3c208"
+    },
+    {
+      "file": "v31-health-checked-engine-missing-dark@1x.png",
+      "bytes": 38206,
+      "width": 420,
+      "height": 342,
+      "sha256": "fd64b239569117a8f1877e88946aa3524cd5c435dd2a96f62d2302a79504cd96"
+    },
+    {
+      "file": "v31-health-checked-engine-offline-dark@1x.png",
+      "bytes": 36757,
+      "width": 420,
+      "height": 358,
+      "sha256": "60916ae94957e15675ea8232da57bb48c2b85431234c2c50bc43435eb85f2eff"
+    },
+    {
+      "file": "v31-health-checked-engine-island-error-dark@1x.png",
+      "bytes": 9307,
+      "width": 720,
+      "height": 460,
+      "sha256": "4dcc2bcb4f5af9e3cd5018fc5542bd63ffcfe1b3371c347378b7af69e2393276"
+    },
+    {
+      "file": "v31-health-checked-engine-healthy-dark@1.5x.png",
+      "bytes": 62604,
+      "width": 630,
+      "height": 513,
+      "sha256": "4df9dfb347fcf8a66f31115eb0030dd46adbd7c7fd1ec757cd0d1d5599004566"
+    },
+    {
+      "file": "v31-health-checked-engine-missing-dark@1.5x.png",
+      "bytes": 65762,
+      "width": 630,
+      "height": 513,
+      "sha256": "b57e6b3a5344a4c63e91c66af981b91f574fccc2dea65ebc9d3a01aa45d47271"
+    },
+    {
+      "file": "v31-health-checked-engine-offline-dark@1.5x.png",
+      "bytes": 64025,
+      "width": 630,
+      "height": 537,
+      "sha256": "c70c61368e2e58e40eff95e16f685391eb8cd1ffab0a8dd0a520eeeae74520c4"
+    },
+    {
+      "file": "v31-health-checked-engine-island-error-dark@1.5x.png",
+      "bytes": 15462,
+      "width": 1080,
+      "height": 690,
+      "sha256": "c4317d5a90cd267c690300e391b4385cbaee8025d80643eaf8e180bbf655670e"
+    }
+  ],
+  "sidecarsNotCommitted": {
+    "yt-dlp": {
+      "bytes": 23627865,
+      "sha256": "622ed48023cac1daa52a3bf3a6ac38f03514de214b5f0fa069389fd0f6d17e5c"
+    },
+    "deno": {
+      "bytes": 98081568,
+      "sha256": "924397800533d3eb0ed0c889b20ad70e18b970d93acd8135bc043f425e528266"
+    },
+    "ffmpeg": {
+      "bytes": 172605952,
+      "sha256": "69dc91b4e7868d0595b09b64932b42d8a0c809928ad913523ae6963150fc1136"
+    }
+  },
+  "sourceInputHashNormalization": "SHA-256 after CRLF to LF conversion; no other text edits",
+  "sourceInputs": {
+    "PRIVACY.md": "9cedad13b02d0b0061e9dd761c268abfbd0ab2553cb6621dddaab83a069d2111",
+    "README.md": "92fb295f7d02822e94e02ac52bf41a8c6ba3fb7dc0de123b75d784baa32583c5",
+    "scripts/engine-pins.json": "292ed34ff2fb00fa325ac6bc509eefadc8ff98718102d46da0ef5170c250f3b5",
+    "scripts/fetch-binaries.ps1": "a1b510aaac0c85ea137186b088c6c5c1819a4235b1552c311a5c023e1c137576",
+    "scripts/fetch-binaries.sh": "2fb5b9c79a4b9354a965690271f063b6b3ebd97f5f9c99b3b936849619e47ed3",
+    "scripts/fetch-engines.mjs": "20a87813ffe0fa1773560c4bfcc2fc4f9e6c058cb50ae5d8f73ddace1ec9105b",
+    "scripts/screenshots/harness.mjs": "c7fb129770501f1703a9e627a6061fdb1bdeff209462959e1697a4924091680e",
+    "scripts/screenshots/mock-ipc.mjs": "a3f4835e55cd427f0932b68e72638a4cf8e087000c2c822eae192eb008d619bd",
+    "scripts/verify-engine-health.mjs": "4988e1e2e246d79232b8068cfcfe9a6189eabc07b31eacfb26a24082b64e1c4c",
+    "scripts/windows-acceptance-smoke.ps1": "6170aa33ebc3a2bc3fdf2b04fcb2865b4d4db19fd5adcfb78da899e0ebc7cdce",
+    "src-tauri/Cargo.lock": "719b8484fea50d6e0c7270aa957e0e746010a2fa800fd54871c5c2063818c3f1",
+    "src-tauri/Cargo.toml": "f8068c76774d2551556ece0ab71d3e9663441cc77741383c7ef6c06c2bf96730",
+    "src-tauri/src/commands/download.rs": "821a05bd1d8c951ff44e54872662d20801428ad72e5ce251c342aa8010095b5e",
+    "src-tauri/src/db/models.rs": "c9700d7f349d3ac25ecb361ac6a54b36fec868861315fb33b201bd8d3a35605f",
+    "src-tauri/src/download/engine.rs": "15ab3724765260e4268404fe40f7c4ff4421c1d0ccb27af0da47c67321b3f778",
+    "src-tauri/src/download/engine_process.rs": "5502c9a09a3403ded3f67eb31778685e071ce4580441180b941231687fd9049d",
+    "src-tauri/src/download/engine_tests.rs": "3c40e7c9c0fba3255a32fbd4033d67c7ed0784f6021a4dd32f4d7d00413e2501",
+    "src-tauri/src/download/manager.rs": "d22c0f9e1a9d2924c65b138480131b4da8b9ada31bb80b5673ba6025c163fd66",
+    "src-tauri/src/download/mod.rs": "87e9c233a1a0c238ad93e320d2fc2f78799b97b2d8b3a46d22216ad93d35050a",
+    "src-tauri/src/download/ytdlp.rs": "a2b4182809bc7e27105dc7bb74f3afa4a870e7e2431190d391dd8652b028e1bf",
+    "src-tauri/src/error.rs": "e094e778d3e9d6581fe727b419dd94ba0f7410c2fc923ec848769df5bfd12953",
+    "src-tauri/src/island/activity_bus.rs": "64ff3938b4f4976ab5ddb4568724ba293bc9c65623d224f70e7e06cc84397385",
+    "src-tauri/src/island/presentation.rs": "22e32ae72a528f40e604cca0de8822823ee7150b9b805b4065f8e34fad35f45a",
+    "src-tauri/src/island/presentation_tests.rs": "32348a6efc1d2aaeb7b62a88a58f069f174a87fc1c9181f2fb0ad80b31917b7d",
+    "src-tauri/src/lib.rs": "f7f690083a24817fa78145397f4eb2b4db3760a75b8983676d4ce75fb14184d5",
+    "src-tauri/tauri.conf.json": "9675720b885cc7a445d2b7d6713d8be5edf15190d01946579195523cb3aadb11",
+    "src/App.tsx": "864c5553da8cb7b69cf796a3d36c367bd575780259a1ab5180c9277460333a37",
+    "src/assets/engine/check.svg": "1906dba101ae73d5b9a6804441d6ffaa32dcfeaac4cecaaa158e4aa417602ffd",
+    "src/assets/engine/cpu.svg": "2fdc23973b71ee9ef35f6127542fa85cc3565a4a62bab1d47b8af237092374fc",
+    "src/assets/engine/refresh.svg": "807d86356a1847dbcdf6937cd08044c437ef9d738a9e6d849e6ae00d921853f8",
+    "src/components/DesignIcon.tsx": "72d8b757fbcf29fa3b9046c9d65cd255d9f3885144be3724d1bc75b764896836",
+    "src/lib/ipc.ts": "2fb6f2042d423352e80aa8c780e3d54bb8d4956b5f976d89fa90a9be201b7ee7",
+    "src/lib/islandPresentation.ts": "3e1852b922cc6b89a86f7ae33d14a212d045e4f1d8ad8da597f755f2bd290721",
+    "src/lib/types.ts": "fb9b11bd837ffa0e88135649cd136d4d3858b6d44808867302e81411bd0a65e1",
+    "src/lib/useEngineEvents.ts": "c2e8241baac977b357680bd8fec70a97d1ef2a247818d503d24d6e0a93e07e44",
+    "src/lib/useEngineHealth.ts": "622e002cefe73a2499956419c2feb9582c0dee682e05adac315884edb331f483",
+    "src/surfaces/island/CompactContent.tsx": "4b2bdd02b6194bf92967423f6171fbd131675c39c1de3032deb60aef26a3d6ae",
+    "src/surfaces/island/ModuleBody.tsx": "b51ff9c514d6163a9bc19262604d84874ae403c4aa2a327fc219f277cf6cf574",
+    "src/surfaces/settings/SettingsApp.tsx": "9be30ff51925d93b145746dca66a00e377330c3ac04a801961031d242a6dc6e5",
+    "src/views/DownloadPanel.tsx": "d638122719c29d693dcf054144fa78f7319923890adf1c67fd64c4ac219a3f19",
+    "src/views/EngineHealthCard.test.tsx": "1d7786a1e0ebfe6a6f977d30fe8e537c6925f9168dcd4960e71279caebe7ea5f",
+    "src/views/EngineHealthCard.tsx": "4ab39e64bd612a52d5d98da76d7c25ed519e8ef553ba0ac6092b428cda56a29b",
+    "src/views/SettingsPanel.tsx": "0f6398cc998e980bcd405f8df75b69a5162ee6959fa13b4726bae5958ceffd7d",
+    "src/views/engine-health.css": "c1370341720a8b3f2c1331991ca8911cc5f498f6e7e0ebcbb52ae4e6ba507404",
+    "vitest.config.ts": "7b6895dd48b49b3d34d25ce7558fc25c20da972ec5bf01ac767ad67694e88e50"
+  },
+  "retainedEarlierFailures": [
+    "earlier-ui-timeout",
+    "earlier-version-deadline",
+    "earlier-card-contrast",
+    "earlier-clippy"
+  ],
+  "limitations": [
+    "Only x64 Windows sidecars were executed here; other target assets selected from upstream metadata.",
+    "The 3-second online sample timed out and is skipped, not an extraction-success claim.",
+    "Full download acceptance and deep-link smoke remain V3.7; this pass updates the legacy health timestamp check without claiming a fresh full smoke run.",
+    "Existing V0/native frame/focus limitations are unchanged."
+  ],
+  "publication": "Local main task commit only; milestone M6 remains pending; no PR, workflow edit, tag or release.",
+  "logNormalization": "Trailing whitespace and extra final blank lines removed for git diff --check; raw log SHA-256 fingerprints retained.",
+  "rawLogSha256": {
+    "v31-earlier-card-contrast.txt": "a5dfab97f3eba3accfcf0953c29c1616d621a3586ed46e9c6f073d22b9c51029",
+    "v31-earlier-clippy.txt": "cc4e2843a773992de6d6f4eebf5e06f17696fdc0db3fb577c7191f4ef2d53270",
+    "v31-earlier-ui-timeout.txt": "0de7277f318ce9c14e419e23cab2a1fcd68aba110ac6a7bcc65b132bdbc434c5",
+    "v31-earlier-version-deadline.txt": "0a8d233ee68bce53ccfe05f42c1e2554f16b8cf63b60d551e5aaa8405da5a36c",
+    "v31-npm-verify.txt": "88a07431a1718aad58f5968741d0d886afbab4ce65f0cfc32015a1ea21b4e615",
+    "v31-online-smoke.txt": "9a34366ba350adb7289c68fc0e18c1511082a15f1a9caf05bd4b096c7f73f870",
+    "v31-rust-clippy-spike.txt": "57ec93f628dd501463901d1a73b22d307d58e4a7059378cb62901437fb57ee02",
+    "v31-rust-clippy.txt": "392669f7dd59b11f324af0c530c34ae558ce1d27897ce6b93628ce70609974e9",
+    "v31-rust-fmt.txt": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+    "v31-rust-tests.txt": "be705902b545a677784c3627d1e02630d5cad2541240a56977a896787fc380bd",
+    "v31-sidecar-setup.txt": "c5cf4c470778a841acf3b636fcf606cea4089e510829d68a3dc6374e3f718cb8"
+  }
+}

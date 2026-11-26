@@ -1,15 +1,6 @@
-import {
-  AlertCircle,
-  Download,
-  FolderOpen,
-  Link,
-  Pause,
-  Play,
-  RefreshCcw,
-  RotateCcw,
-  X,
-} from "lucide-react";
+import { Download, FolderOpen, Link, Pause, Play, RotateCcw, X } from "lucide-react";
 import { FormEvent, useEffect, useMemo, useState } from "react";
+import { EngineHealthCard } from "./EngineHealthCard";
 import { Button } from "../components/Button";
 import { Field } from "../components/Field";
 import { IconButton } from "../components/IconButton";
@@ -40,7 +31,6 @@ export function DownloadPanel() {
   const pauseDownload = useAppStore((state) => state.pauseDownload);
   const resumeDownload = useAppStore((state) => state.resumeDownload);
   const retryDownload = useAppStore((state) => state.retryDownload);
-  const repairEngine = useAppStore((state) => state.repairEngine);
   const [input, setInput] = useState(stagedUrl);
   const [quality, setQuality] = useState<Quality>(settings?.defaultQuality ?? "1080p");
   const [playlistMode, setPlaylistMode] = useState<"video" | "playlist">("video");
@@ -67,18 +57,7 @@ export function DownloadPanel() {
   return (
     <div className="flex h-full flex-col overflow-hidden">
       <div className="shrink-0 space-y-3 border-b border-subtle p-4">
-        {engine?.missing.length ? (
-          <div className="flex items-center gap-3 rounded-lg border border-warning-base/30 bg-warning-soft p-3 text-xs text-warning-base">
-            <AlertCircle size={18} />
-            <span className="min-w-0 flex-1">
-              Downloader engine needs repair: {engine.missing.join(", ")}
-            </span>
-            <Button size="sm" onClick={() => void repairEngine()}>
-              <RefreshCcw size={14} />
-              Repair
-            </Button>
-          </div>
-        ) : null}
+        {engine?.missing.length || engine?.failure ? <EngineHealthCard /> : null}
 
         <form onSubmit={submit} className="flex gap-2">
           <Field

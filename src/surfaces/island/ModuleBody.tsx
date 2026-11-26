@@ -1,6 +1,7 @@
 import { useEffect, useState } from "react";
 import { invoke } from "@tauri-apps/api/core";
 import { listen } from "@tauri-apps/api/event";
+import { EngineHealthCard } from "../../views/EngineHealthCard";
 import { PresetChip } from "../../components/PresetChip";
 import { ProgressRing } from "../../components/ProgressRing";
 import { IconButton } from "../../components/IconButton";
@@ -62,6 +63,9 @@ function Nab({ model, dispatch, act }: Props) {
   };
   return (
     <div className="island-module-body">
+      {itemsOf(model).some(
+        (item) => item.event.kind === "downloadFailed" && item.event.jobId === "engine-health",
+      ) && <EngineHealthCard />}
       {event ? (
         <>
           <div className="island-nab-review">

@@ -1,3 +1,4 @@
+import { useEngineEvents } from "./lib/useEngineEvents";
 import { useEffect } from "react";
 import { api } from "./lib/ipc";
 import type { ClipboardEntry, DownloadJob, DownloadMetadata } from "./lib/types";
@@ -7,6 +8,7 @@ import { Popover } from "./views/Popover";
 import { useTheme } from "./lib/useTheme";
 
 export default function App() {
+  useEngineEvents();
   const loadInitialData = useAppStore((state) => state.loadInitialData);
   const refreshClipboard = useAppStore((state) => state.refreshClipboard);
   const refreshDownloads = useAppStore((state) => state.refreshDownloads);

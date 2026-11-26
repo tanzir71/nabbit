@@ -231,10 +231,10 @@ try {
   Add-Result "release app launch" "process $($StartedProcess.Id) stayed alive and created $DbPath"
 
   $OriginalSettings = Invoke-SqliteScalar "SELECT value FROM settings WHERE key = 'app_settings'"
-  $engineUpdateElapsed = Wait-For "engine update timestamp" {
+  $engineUpdateElapsed = Wait-For "local engine health timestamp" {
     -not [string]::IsNullOrWhiteSpace((Invoke-SqliteScalar "SELECT value FROM settings WHERE key = 'engine_last_update_check'"))
-  } 10000
-  Add-Result "engine self-update background" "last update timestamp appeared in ${engineUpdateElapsed}ms while app remained responsive for smoke checks"
+  } 35000
+  Add-Result "engine health background" "local version-check timestamp appeared in ${engineUpdateElapsed}ms while app remained responsive; acceptance sessions skip engine updates and network extraction"
   Set-AppSetting "outputDir" $SmokeDownloadDir
   Set-AppSetting "maxConcurrentDownloads" "1"
   Invoke-SqliteExec "DELETE FROM clipboard_entries WHERE content IN (?1, ?2, ?3, ?4, ?5, ?6, ?7)" @($Marker, $SensitiveSample, $ExcludedSample, $RetentionOld, $RetentionPinned, $RetentionFresh, $ClearMarker)

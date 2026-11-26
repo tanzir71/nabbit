@@ -67,12 +67,22 @@ pub struct StorageStats {
     pub db_size_bytes: u64,
 }
 
-#[derive(Debug, Clone, Serialize, Deserialize)]
-#[serde(rename_all = "camelCase")]
+#[derive(Debug, Clone, Default, Serialize, Deserialize)]
+#[serde(default, rename_all = "camelCase")]
 pub struct EngineStatus {
     pub ytdlp_path: Option<String>,
     pub ffmpeg_path: Option<String>,
     pub ytdlp_version: Option<String>,
+    pub deno_path: Option<String>,
+    pub deno_version: Option<String>,
+    pub ffmpeg_version: Option<String>,
+    pub checked_at: Option<String>,
+    pub updated_at: Option<String>,
+    pub channel: crate::download::engine::Channel,
+    pub extraction: crate::download::engine::Extraction,
+    pub failure: Option<crate::island::activity::ErrorKind>,
+    pub update_error: Option<String>,
+    pub busy: bool,
     pub last_update_check: Option<String>,
     pub missing: Vec<String>,
 }

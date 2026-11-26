@@ -178,6 +178,7 @@ export async function captureSuite(root, options, cases = scenarios) {
                     "list_island_pins",
                     "get_island_drop",
                     "list_clipboard_entries",
+                    "get_engine_status",
                     "plugin:event|listen",
                     "plugin:event|unlisten",
                   ].includes(command),

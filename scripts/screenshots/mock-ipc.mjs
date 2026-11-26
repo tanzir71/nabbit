@@ -188,6 +188,14 @@ export function installMockIpc(seed) {
         return clone(state.jobs);
       case "get_engine_status":
         return clone(state.engine);
+      case "check_engine":
+      case "repair_engine": {
+        const response = seed.responses?.[command];
+        if (!response) throw new Error(`Missing explicit ${command} fixture`);
+        state.engine = clone(response);
+        dispatch("engine:health", clone(state.engine));
+        return clone(state.engine);
+      }
       case "get_staged_url":
         return state.stagedUrl;
       case "get_storage_stats":

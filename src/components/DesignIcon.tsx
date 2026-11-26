@@ -1,7 +1,11 @@
 import type { CSSProperties } from "react";
 import { componentAssets } from "../assets/components/assets";
-export function DesignIcon({ name }: { name: keyof typeof componentAssets }) {
-  const asset = componentAssets[name];
+export function DesignIcon(
+  props:
+    | { name: keyof typeof componentAssets }
+    | { asset: { src: string; file: string; width: number; height: number } },
+) {
+  const asset = "asset" in props ? props.asset : componentAssets[props.name];
   return (
     <span
       aria-hidden="true"

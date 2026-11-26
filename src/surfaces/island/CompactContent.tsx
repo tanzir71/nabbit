@@ -140,7 +140,11 @@ export function CompactContent({
       return (
         <>
           {icon("iconTriangleAlert")}
-          <span className="island-ellipsis">Download needs attention</span>
+          <span className="island-ellipsis">
+            {e.jobId === "engine-health"
+              ? "Download engine needs an update"
+              : "Download needs attention"}
+          </span>
           <MiniButton onClick={() => invoke("review")}>{icon("iconWrench")}Fix</MiniButton>
         </>
       );

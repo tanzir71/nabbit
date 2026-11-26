@@ -1,0 +1,2990 @@
+{
+  "milestone": "M6",
+  "prefix": "v31-health-checked",
+  "suite": "surfaces",
+  "browser": "159.0.8154.6",
+  "playwright": "1.65.1",
+  "platform": "win32",
+  "node": "v24.22.2",
+  "captureTime": "2026-11-26T09:00:00.000Z",
+  "buildManifestSha256": "82e3b47d42d32f303f0ebfd8f2cee3ce0ff46774c37d6f9208871ad2d2817565",
+  "screenshotScale": "device",
+  "pngBudgetBytes": 307200,
+  "isolatedContexts": true,
+  "mockedIpc": true,
+  "osPreferencesChanged": false,
+  "captures": [
+    {
+      "file": "v31-health-checked-engine-healthy-light@1x.png",
+      "scenario": "engine-healthy",
+      "entry": "settings.html",
+      "figmaNode": "18:260",
+      "theme": "light",
+      "resolvedTheme": "light",
+      "scale": 1,
+      "viewport": {
+        "width": 460,
+        "height": 680
+      },
+      "clip": {
+        "x": 16,
+        "y": 197,
+        "width": 420,
+        "height": 342
+      },
+      "width": 420,
+      "height": 342,
+      "bytes": 34883,
+      "sha256": "ebd8aab18dec60e8b97053d555c6ff2a91c3b9cdb2adc0fefee5bffdc0e2fde9",
+      "repeatMatches": true,
+      "font": [
+        {
+          "familyName": "Geist",
+          "postScriptName": "Geist",
+          "isCustomFont": true,
+          "glyphCount": 15
+        }
+      ],
+      "fixtureSha256": "4a48e4d8311e7f4114c2c8c440ccc076fc6496007f68625c96f513e3f5020b48",
+      "assertions": {
+        "audit": {
+          "violations": [],
+          "incomplete": [],
+          "passes": [
+            "aria-allowed-attr",
+            "aria-allowed-role",
+            "aria-conditional-attr",
+            "aria-deprecated-role",
+            "aria-hidden-focus",
+            "aria-prohibited-attr",
+            "aria-required-attr",
+            "aria-roles",
+            "aria-valid-attr-value",
+            "aria-valid-attr",
+            "button-name",
+            "color-contrast",
+            "empty-heading",
+            "heading-order",
+            "landmark-no-duplicate-banner",
+            "landmark-unique",
+            "nested-interactive"
+          ]
+        },
+        "geometry": {
+          "width": 420,
+          "height": 342,
+          "assets": [
+            {
+              "src": "image/svg+xml,%3csvg%20preserveAspectRatio='none'%20overflow='visible'%20style='display:%20block;'%20width='18'%20height='18'%20viewBox='0%200%2018%2018'%20fill='none'%20xmlns='http://www.w3.org/2000/svg'%3e%3cg%20id='icon/cpu'%3e%3cpath%20id='Vector'%20d='M4.5%203H13.5C14.3284%203%2015%203.67157%2015%204.5V13.5C15%2014.3284%2014.3284%2015%2013.5%2015H4.5C3.67157%2015%203%2014.3284%203%2013.5V4.5C3%203.67157%203.67157%203%204.5%203Z'%20stroke-width='1.3125'%20stroke-linecap='round'%20stroke-linejoin='round'%20stroke='%2317171A'/%3e%3cpath%20id='Vector_2'%20d='M7.5%206.75H10.5C10.9142%206.75%2011.25%207.08579%2011.25%207.5V10.5C11.25%2010.9142%2010.9142%2011.25%2010.5%2011.25H7.5C7.08579%2011.25%206.75%2010.9142%206.75%2010.5V7.5C6.75%207.08579%207.08579%206.75%207.5%206.75Z'%20stroke-width='1.3125'%20stroke-linecap='round'%20stroke-linejoin='round'%20stroke='%2317171A'/%3e%3cpath%20id='Vector_3'%20d='M11.25%201.5V3'%20stroke-width='1.3125'%20stroke-linecap='round'%20stroke-linejoin='round'%20stroke='%2317171A'/%3e%3cpath%20id='Vector_4'%20d='M11.25%2015V16.5'%20stroke-width='1.3125'%20stroke-linecap='round'%20stroke-linejoin='round'%20stroke='%2317171A'/%3e%3cpath%20id='Vector_5'%20d='M1.5%2011.25H3'%20stroke-width='1.3125'%20stroke-linecap='round'%20stroke-linejoin='round'%20stroke='%2317171A'/%3e%3cpath%20id='Vector_6'%20d='M1.5%206.75H3'%20stroke-width='1.3125'%20stroke-linecap='round'%20stroke-linejoin='round'%20stroke='%2317171A'/%3e%3cpath%20id='Vector_7'%20d='M15%2011.25H16.5'%20stroke-width='1.3125'%20stroke-linecap='round'%20stroke-linejoin='round'%20stroke='%2317171A'/%3e%3cpath%20id='Vector_8'%20d='M15%206.75H16.5'%20stroke-width='1.3125'%20stroke-linecap='round'%20stroke-linejoin='round'%20stroke='%2317171A'/%3e%3cpath%20id='Vector_9'%20d='M6.75%201.5V3'%20stroke-width='1.3125'%20stroke-linecap='round'%20stroke-linejoin='round'%20stroke='%2317171A'/%3e%3cpath%20id='Vector_10'%20d='M6.75%2015V16.5'%20stroke-width='1.3125'%20stroke-linecap='round'%20stroke-linejoin='round'%20stroke='%2317171A'/%3e%3c/g%3e%3c/svg%3e",
+              "natural": [
+                18,
+                18
+              ],
+              "rendered": [
+                18,
+                18
+              ]
+            },
+            {
+              "src": "image/svg+xml,%3csvg%20preserveAspectRatio='none'%20overflow='visible'%20style='display:%20block;'%20width='16'%20height='16'%20viewBox='0%200%2016%2016'%20fill='none'%20xmlns='http://www.w3.org/2000/svg'%3e%3cg%20id='icon/circle-check'%3e%3cpath%20id='Vector'%20d='M14.6667%208C14.6667%2011.6819%2011.6819%2014.6667%208%2014.6667C4.3181%2014.6667%201.33333%2011.6819%201.33333%208C1.33333%204.3181%204.3181%201.33333%208%201.33333C11.6819%201.33333%2014.6667%204.3181%2014.6667%208Z'%20stroke-width='1.16667'%20stroke-linecap='round'%20stroke-linejoin='round'%20stroke='%234A6E0B'/%3e%3cpath%20id='Vector_2'%20d='M6%208L7.33333%209.33333L10%206.66667'%20stroke-width='1.16667'%20stroke-linecap='round'%20stroke-linejoin='round'%20stroke='%234A6E0B'/%3e%3c/g%3e%3c/svg%3e",
+              "natural": [
+                16,
+                16
+              ],
+              "rendered": [
+                16,
+                16
+              ]
+            },
+            {
+              "src": "image/svg+xml,%3csvg%20preserveAspectRatio='none'%20overflow='visible'%20style='display:%20block;'%20width='16'%20height='16'%20viewBox='0%200%2016%2016'%20fill='none'%20xmlns='http://www.w3.org/2000/svg'%3e%3cg%20id='icon/circle-check'%3e%3cpath%20id='Vector'%20d='M14.6667%208C14.6667%2011.6819%2011.6819%2014.6667%208%2014.6667C4.3181%2014.6667%201.33333%2011.6819%201.33333%208C1.33333%204.3181%204.3181%201.33333%208%201.33333C11.6819%201.33333%2014.6667%204.3181%2014.6667%208Z'%20stroke-width='1.16667'%20stroke-linecap='round'%20stroke-linejoin='round'%20stroke='%234A6E0B'/%3e%3cpath%20id='Vector_2'%20d='M6%208L7.33333%209.33333L10%206.66667'%20stroke-width='1.16667'%20stroke-linecap='round'%20stroke-linejoin='round'%20stroke='%234A6E0B'/%3e%3c/g%3e%3c/svg%3e",
+              "natural": [
+                16,
+                16
+              ],
+              "rendered": [
+                16,
+                16
+              ]
+            },
+            {
+              "src": "image/svg+xml,%3csvg%20preserveAspectRatio='none'%20overflow='visible'%20style='display:%20block;'%20width='16'%20height='16'%20viewBox='0%200%2016%2016'%20fill='none'%20xmlns='http://www.w3.org/2000/svg'%3e%3cg%20id='icon/circle-check'%3e%3cpath%20id='Vector'%20d='M14.6667%208C14.6667%2011.6819%2011.6819%2014.6667%208%2014.6667C4.3181%2014.6667%201.33333%2011.6819%201.33333%208C1.33333%204.3181%204.3181%201.33333%208%201.33333C11.6819%201.33333%2014.6667%204.3181%2014.6667%208Z'%20stroke-width='1.16667'%20stroke-linecap='round'%20stroke-linejoin='round'%20stroke='%234A6E0B'/%3e%3cpath%20id='Vector_2'%20d='M6%208L7.33333%209.33333L10%206.66667'%20stroke-width='1.16667'%20stroke-linecap='round'%20stroke-linejoin='round'%20stroke='%234A6E0B'/%3e%3c/g%3e%3c/svg%3e",
+              "natural": [
+                16,
+                16
+              ],
+              "rendered": [
+                16,
+                16
+              ]
+            },
+            {
+              "src": "image/svg+xml,%3csvg%20preserveAspectRatio='none'%20overflow='visible'%20style='display:%20block;'%20width='16'%20height='16'%20viewBox='0%200%2016%2016'%20fill='none'%20xmlns='http://www.w3.org/2000/svg'%3e%3cg%20id='icon/circle-check'%3e%3cpath%20id='Vector'%20d='M14.6667%208C14.6667%2011.6819%2011.6819%2014.6667%208%2014.6667C4.3181%2014.6667%201.33333%2011.6819%201.33333%208C1.33333%204.3181%204.3181%201.33333%208%201.33333C11.6819%201.33333%2014.6667%204.3181%2014.6667%208Z'%20stroke-width='1.16667'%20stroke-linecap='round'%20stroke-linejoin='round'%20stroke='%234A6E0B'/%3e%3cpath%20id='Vector_2'%20d='M6%208L7.33333%209.33333L10%206.66667'%20stroke-width='1.16667'%20stroke-linecap='round'%20stroke-linejoin='round'%20stroke='%234A6E0B'/%3e%3c/g%3e%3c/svg%3e",
+              "natural": [
+                16,
+                16
+              ],
+              "rendered": [
+                16,
+                16
+              ]
+            },
+            {
+              "src": "image/svg+xml,%3csvg%20preserveAspectRatio='none'%20overflow='visible'%20style='display:%20block;'%20width='16'%20height='16'%20viewBox='0%200%2016%2016'%20fill='none'%20xmlns='http://www.w3.org/2000/svg'%3e%3cg%20id='Icon'%3e%3cpath%20id='Vector'%20d='M2%208C2%206.4087%202.63214%204.88258%203.75736%203.75736C4.88258%202.63214%206.4087%202%208%202C9.67737%202.00631%2011.2874%202.66082%2012.4933%203.82667L14%205.33333'%20stroke-width='1.16667'%20stroke-linecap='round'%20stroke-linejoin='round'%20stroke='%2317171A'/%3e%3cpath%20id='Vector_2'%20d='M14%202V5.33333H10.6667'%20stroke-width='1.16667'%20stroke-linecap='round'%20stroke-linejoin='round'%20stroke='%2317171A'/%3e%3cpath%20id='Vector_3'%20d='M14%208C14%209.5913%2013.3679%2011.1174%2012.2426%2012.2426C11.1174%2013.3679%209.5913%2014%208%2014C6.32263%2013.9937%204.71265%2013.3392%203.50667%2012.1733L2%2010.6667'%20stroke-width='1.16667'%20stroke-linecap='round'%20stroke-linejoin='round'%20stroke='%2317171A'/%3e%3cpath%20id='Vector_4'%20d='M5.33333%2010.6667H2V14'%20stroke-width='1.16667'%20stroke-linecap='round'%20stroke-linejoin='round'%20stroke='%2317171A'/%3e%3c/g%3e%3c/svg%3e",
+              "natural": [
+                16,
+                16
+              ],
+              "rendered": [
+                16,
+                16
+              ]
+            }
+          ]
+        },
+        "mono": [
+          {
+            "familyName": "Geist Mono",
+            "postScriptName": "GeistMono",
+            "isCustomFont": true,
+            "glyphCount": 10
+          }
+        ]
+      },
+      "ipc": [
+        {
+          "command": "plugin:event|listen",
+          "args": {
+            "event": "engine:health",
+            "target": {
+              "kind": "Any"
+            },
+            "handler": 1
+          }
+        },
+        {
+          "command": "plugin:event|listen",
+          "args": {
+            "event": "tauri://theme-changed",
+            "target": {
+              "kind": "Window",
+              "label": "settings"
+            },
+            "handler": 3
+          }
+        },
+        {
+          "command": "get_settings",
+          "args": {}
+        },
+        {
+          "command": "get_engine_status",
+          "args": {}
+        },
+        {
+          "command": "get_storage_stats",
+          "args": {}
+        },
+        {
+          "command": "plugin:window|theme",
+          "args": {
+            "label": "settings"
+          }
+        },
+        {
+          "command": "get_island_snapshot",
+          "args": {}
+        },
+        {
+          "command": "plugin:event|listen",
+          "args": {
+            "event": "nabbit://island-config",
+            "target": {
+              "kind": "Any"
+            },
+            "handler": 5
+          }
+        },
+        {
+          "command": "get_island_snapshot",
+          "args": {}
+        },
+        {
+          "command": "plugin:event|listen",
+          "args": {
+            "event": "engine:health",
+            "target": {
+              "kind": "Any"
+            },
+            "handler": 7
+          }
+        },
+        {
+          "command": "get_engine_status",
+          "args": {}
+        }
+      ],
+      "unsupported": [],
+      "runtimeAndNetworkProblems": []
+    },
+    {
+      "file": "v31-health-checked-engine-missing-light@1x.png",
+      "scenario": "engine-missing",
+      "entry": "settings.html",
+      "figmaNode": "18:260",
+      "theme": "light",
+      "resolvedTheme": "light",
+      "scale": 1,
+      "viewport": {
+        "width": 460,
+        "height": 680
+      },
+      "clip": {
+        "x": 16,
+        "y": 197,
+        "width": 420,
+        "height": 342
+      },
+      "width": 420,
+      "height": 342,
+      "bytes": 36426,
+      "sha256": "9201ce035d94dd588b2abcf7ceb0919d275819d93e881f06419fdd5fe6cc832c",
+      "repeatMatches": true,
+      "font": [
+        {
+          "familyName": "Geist",
+          "postScriptName": "Geist",
+          "isCustomFont": true,
+          "glyphCount": 15
+        }
+      ],
+      "fixtureSha256": "99fb17bd32dd235ced7ff70647c9c25c3a8e2e378af92a8dedae00bb05a80e70",
+      "assertions": {
+        "audit": {
+          "violations": [],
+          "incomplete": [],
+          "passes": [
+            "aria-allowed-attr",
+            "aria-allowed-role",
+            "aria-conditional-attr",
+            "aria-deprecated-role",
+            "aria-hidden-focus",
+            "aria-prohibited-attr",
+            "aria-required-attr",
+            "aria-roles",
+            "aria-valid-attr-value",
+            "aria-valid-attr",
+            "button-name",
+            "color-contrast",
+            "empty-heading",
+            "heading-order",
+            "landmark-no-duplicate-banner",
+            "landmark-unique",
+            "nested-interactive"
+          ]
+        },
+        "geometry": {
+          "width": 420,
+          "height": 342,
+          "assets": [
+            {
+              "src": "image/svg+xml,%3csvg%20preserveAspectRatio='none'%20overflow='visible'%20style='display:%20block;'%20width='18'%20height='18'%20viewBox='0%200%2018%2018'%20fill='none'%20xmlns='http://www.w3.org/2000/svg'%3e%3cg%20id='icon/cpu'%3e%3cpath%20id='Vector'%20d='M4.5%203H13.5C14.3284%203%2015%203.67157%2015%204.5V13.5C15%2014.3284%2014.3284%2015%2013.5%2015H4.5C3.67157%2015%203%2014.3284%203%2013.5V4.5C3%203.67157%203.67157%203%204.5%203Z'%20stroke-width='1.3125'%20stroke-linecap='round'%20stroke-linejoin='round'%20stroke='%2317171A'/%3e%3cpath%20id='Vector_2'%20d='M7.5%206.75H10.5C10.9142%206.75%2011.25%207.08579%2011.25%207.5V10.5C11.25%2010.9142%2010.9142%2011.25%2010.5%2011.25H7.5C7.08579%2011.25%206.75%2010.9142%206.75%2010.5V7.5C6.75%207.08579%207.08579%206.75%207.5%206.75Z'%20stroke-width='1.3125'%20stroke-linecap='round'%20stroke-linejoin='round'%20stroke='%2317171A'/%3e%3cpath%20id='Vector_3'%20d='M11.25%201.5V3'%20stroke-width='1.3125'%20stroke-linecap='round'%20stroke-linejoin='round'%20stroke='%2317171A'/%3e%3cpath%20id='Vector_4'%20d='M11.25%2015V16.5'%20stroke-width='1.3125'%20stroke-linecap='round'%20stroke-linejoin='round'%20stroke='%2317171A'/%3e%3cpath%20id='Vector_5'%20d='M1.5%2011.25H3'%20stroke-width='1.3125'%20stroke-linecap='round'%20stroke-linejoin='round'%20stroke='%2317171A'/%3e%3cpath%20id='Vector_6'%20d='M1.5%206.75H3'%20stroke-width='1.3125'%20stroke-linecap='round'%20stroke-linejoin='round'%20stroke='%2317171A'/%3e%3cpath%20id='Vector_7'%20d='M15%2011.25H16.5'%20stroke-width='1.3125'%20stroke-linecap='round'%20stroke-linejoin='round'%20stroke='%2317171A'/%3e%3cpath%20id='Vector_8'%20d='M15%206.75H16.5'%20stroke-width='1.3125'%20stroke-linecap='round'%20stroke-linejoin='round'%20stroke='%2317171A'/%3e%3cpath%20id='Vector_9'%20d='M6.75%201.5V3'%20stroke-width='1.3125'%20stroke-linecap='round'%20stroke-linejoin='round'%20stroke='%2317171A'/%3e%3cpath%20id='Vector_10'%20d='M6.75%2015V16.5'%20stroke-width='1.3125'%20stroke-linecap='round'%20stroke-linejoin='round'%20stroke='%2317171A'/%3e%3c/g%3e%3c/svg%3e",
+              "natural": [
+                18,
+                18
+              ],
+              "rendered": [
+                18,
+                18
+              ]
+            },
+            {
+              "src": "image/svg+xml,%3csvg%20preserveAspectRatio='none'%20overflow='visible'%20style='display:%20block;'%20width='16'%20height='16'%20viewBox='0%200%2016%2016'%20fill='none'%20xmlns='http://www.w3.org/2000/svg'%3e%3cg%20id='icon/circle-check'%3e%3cpath%20id='Vector'%20d='M14.6667%208C14.6667%2011.6819%2011.6819%2014.6667%208%2014.6667C4.3181%2014.6667%201.33333%2011.6819%201.33333%208C1.33333%204.3181%204.3181%201.33333%208%201.33333C11.6819%201.33333%2014.6667%204.3181%2014.6667%208Z'%20stroke-width='1.16667'%20stroke-linecap='round'%20stroke-linejoin='round'%20stroke='%234A6E0B'/%3e%3cpath%20id='Vector_2'%20d='M6%208L7.33333%209.33333L10%206.66667'%20stroke-width='1.16667'%20stroke-linecap='round'%20stroke-linejoin='round'%20stroke='%234A6E0B'/%3e%3c/g%3e%3c/svg%3e",
+              "natural": [
+                16,
+                16
+              ],
+              "rendered": [
+                16,
+                16
+              ]
+            },
+            {
+              "src": "image/svg+xml,%3csvg%20preserveAspectRatio='none'%20overflow='visible'%20style='display:%20block;'%20width='16'%20height='16'%20viewBox='0%200%2016%2016'%20fill='none'%20xmlns='http://www.w3.org/2000/svg'%3e%3cg%20id='icon/circle-check'%3e%3cpath%20id='Vector'%20d='M14.6667%208C14.6667%2011.6819%2011.6819%2014.6667%208%2014.6667C4.3181%2014.6667%201.33333%2011.6819%201.33333%208C1.33333%204.3181%204.3181%201.33333%208%201.33333C11.6819%201.33333%2014.6667%204.3181%2014.6667%208Z'%20stroke-width='1.16667'%20stroke-linecap='round'%20stroke-linejoin='round'%20stroke='%234A6E0B'/%3e%3cpath%20id='Vector_2'%20d='M6%208L7.33333%209.33333L10%206.66667'%20stroke-width='1.16667'%20stroke-linecap='round'%20stroke-linejoin='round'%20stroke='%234A6E0B'/%3e%3c/g%3e%3c/svg%3e",
+              "natural": [
+                16,
+                16
+              ],
+              "rendered": [
+                16,
+                16
+              ]
+            },
+            {
+              "src": "image/svg+xml,%3csvg%20preserveAspectRatio='none'%20overflow='visible'%20style='display:%20block;'%20width='16'%20height='16'%20viewBox='0%200%2016%2016'%20fill='none'%20xmlns='http://www.w3.org/2000/svg'%3e%3cg%20id='Icon'%3e%3cpath%20id='Vector'%20d='M2%208C2%206.4087%202.63214%204.88258%203.75736%203.75736C4.88258%202.63214%206.4087%202%208%202C9.67737%202.00631%2011.2874%202.66082%2012.4933%203.82667L14%205.33333'%20stroke-width='1.16667'%20stroke-linecap='round'%20stroke-linejoin='round'%20stroke='%2317171A'/%3e%3cpath%20id='Vector_2'%20d='M14%202V5.33333H10.6667'%20stroke-width='1.16667'%20stroke-linecap='round'%20stroke-linejoin='round'%20stroke='%2317171A'/%3e%3cpath%20id='Vector_3'%20d='M14%208C14%209.5913%2013.3679%2011.1174%2012.2426%2012.2426C11.1174%2013.3679%209.5913%2014%208%2014C6.32263%2013.9937%204.71265%2013.3392%203.50667%2012.1733L2%2010.6667'%20stroke-width='1.16667'%20stroke-linecap='round'%20stroke-linejoin='round'%20stroke='%2317171A'/%3e%3cpath%20id='Vector_4'%20d='M5.33333%2010.6667H2V14'%20stroke-width='1.16667'%20stroke-linecap='round'%20stroke-linejoin='round'%20stroke='%2317171A'/%3e%3c/g%3e%3c/svg%3e",
+              "natural": [
+                16,
+                16
+              ],
+              "rendered": [
+                16,
+                16
+              ]
+            }
+          ]
+        },
+        "mono": [
+          {
+            "familyName": "Geist Mono",
+            "postScriptName": "GeistMono",
+            "isCustomFont": true,
+            "glyphCount": 10
+          }
+        ]
+      },
+      "ipc": [
+        {
+          "command": "plugin:event|listen",
+          "args": {
+            "event": "engine:health",
+            "target": {
+              "kind": "Any"
+            },
+            "handler": 1
+          }
+        },
+        {
+          "command": "plugin:event|listen",
+          "args": {
+            "event": "tauri://theme-changed",
+            "target": {
+              "kind": "Window",
+              "label": "settings"
+            },
+            "handler": 3
+          }
+        },
+        {
+          "command": "get_settings",
+          "args": {}
+        },
+        {
+          "command": "get_engine_status",
+          "args": {}
+        },
+        {
+          "command": "get_storage_stats",
+          "args": {}
+        },
+        {
+          "command": "plugin:window|theme",
+          "args": {
+            "label": "settings"
+          }
+        },
+        {
+          "command": "get_island_snapshot",
+          "args": {}
+        },
+        {
+          "command": "plugin:event|listen",
+          "args": {
+            "event": "nabbit://island-config",
+            "target": {
+              "kind": "Any"
+            },
+            "handler": 5
+          }
+        },
+        {
+          "command": "get_island_snapshot",
+          "args": {}
+        },
+        {
+          "command": "plugin:event|listen",
+          "args": {
+            "event": "engine:health",
+            "target": {
+              "kind": "Any"
+            },
+            "handler": 7
+          }
+        },
+        {
+          "command": "get_engine_status",
+          "args": {}
+        }
+      ],
+      "unsupported": [],
+      "runtimeAndNetworkProblems": []
+    },
+    {
+      "file": "v31-health-checked-engine-offline-light@1x.png",
+      "scenario": "engine-offline",
+      "entry": "settings.html",
+      "figmaNode": "18:260",
+      "theme": "light",
+      "resolvedTheme": "light",
+      "scale": 1,
+      "viewport": {
+        "width": 460,
+        "height": 680
+      },
+      "clip": {
+        "x": 16,
+        "y": 189,
+        "width": 420,
+        "height": 358
+      },
+      "width": 420,
+      "height": 358,
+      "bytes": 35059,
+      "sha256": "b4b2909bc5f6569ad20922a1b51a7f399c5c13355bf6a2ed73dee92844895d61",
+      "repeatMatches": true,
+      "font": [
+        {
+          "familyName": "Geist",
+          "postScriptName": "Geist",
+          "isCustomFont": true,
+          "glyphCount": 15
+        }
+      ],
+      "fixtureSha256": "4d25ae050be2ccc06231392058394be9f2607c30dff7a060d788289a3ccfb5f1",
+      "assertions": {
+        "audit": {
+          "violations": [],
+          "incomplete": [],
+          "passes": [
+            "aria-allowed-attr",
+            "aria-allowed-role",
+            "aria-conditional-attr",
+            "aria-deprecated-role",
+            "aria-hidden-focus",
+            "aria-prohibited-attr",
+            "aria-required-attr",
+            "aria-roles",
+            "aria-valid-attr-value",
+            "aria-valid-attr",
+            "button-name",
+            "color-contrast",
+            "empty-heading",
+            "heading-order",
+            "landmark-no-duplicate-banner",
+            "landmark-unique",
+            "nested-interactive"
+          ]
+        },
+        "geometry": {
+          "width": 420,
+          "height": 358,
+          "assets": [
+            {
+              "src": "image/svg+xml,%3csvg%20preserveAspectRatio='none'%20overflow='visible'%20style='display:%20block;'%20width='18'%20height='18'%20viewBox='0%200%2018%2018'%20fill='none'%20xmlns='http://www.w3.org/2000/svg'%3e%3cg%20id='icon/cpu'%3e%3cpath%20id='Vector'%20d='M4.5%203H13.5C14.3284%203%2015%203.67157%2015%204.5V13.5C15%2014.3284%2014.3284%2015%2013.5%2015H4.5C3.67157%2015%203%2014.3284%203%2013.5V4.5C3%203.67157%203.67157%203%204.5%203Z'%20stroke-width='1.3125'%20stroke-linecap='round'%20stroke-linejoin='round'%20stroke='%2317171A'/%3e%3cpath%20id='Vector_2'%20d='M7.5%206.75H10.5C10.9142%206.75%2011.25%207.08579%2011.25%207.5V10.5C11.25%2010.9142%2010.9142%2011.25%2010.5%2011.25H7.5C7.08579%2011.25%206.75%2010.9142%206.75%2010.5V7.5C6.75%207.08579%207.08579%206.75%207.5%206.75Z'%20stroke-width='1.3125'%20stroke-linecap='round'%20stroke-linejoin='round'%20stroke='%2317171A'/%3e%3cpath%20id='Vector_3'%20d='M11.25%201.5V3'%20stroke-width='1.3125'%20stroke-linecap='round'%20stroke-linejoin='round'%20stroke='%2317171A'/%3e%3cpath%20id='Vector_4'%20d='M11.25%2015V16.5'%20stroke-width='1.3125'%20stroke-linecap='round'%20stroke-linejoin='round'%20stroke='%2317171A'/%3e%3cpath%20id='Vector_5'%20d='M1.5%2011.25H3'%20stroke-width='1.3125'%20stroke-linecap='round'%20stroke-linejoin='round'%20stroke='%2317171A'/%3e%3cpath%20id='Vector_6'%20d='M1.5%206.75H3'%20stroke-width='1.3125'%20stroke-linecap='round'%20stroke-linejoin='round'%20stroke='%2317171A'/%3e%3cpath%20id='Vector_7'%20d='M15%2011.25H16.5'%20stroke-width='1.3125'%20stroke-linecap='round'%20stroke-linejoin='round'%20stroke='%2317171A'/%3e%3cpath%20id='Vector_8'%20d='M15%206.75H16.5'%20stroke-width='1.3125'%20stroke-linecap='round'%20stroke-linejoin='round'%20stroke='%2317171A'/%3e%3cpath%20id='Vector_9'%20d='M6.75%201.5V3'%20stroke-width='1.3125'%20stroke-linecap='round'%20stroke-linejoin='round'%20stroke='%2317171A'/%3e%3cpath%20id='Vector_10'%20d='M6.75%2015V16.5'%20stroke-width='1.3125'%20stroke-linecap='round'%20stroke-linejoin='round'%20stroke='%2317171A'/%3e%3c/g%3e%3c/svg%3e",
+              "natural": [
+                18,
+                18
+              ],
+              "rendered": [
+                18,
+                18
+              ]
+            },
+            {
+              "src": "image/svg+xml,%3csvg%20preserveAspectRatio='none'%20overflow='visible'%20style='display:%20block;'%20width='16'%20height='16'%20viewBox='0%200%2016%2016'%20fill='none'%20xmlns='http://www.w3.org/2000/svg'%3e%3cg%20id='icon/circle-check'%3e%3cpath%20id='Vector'%20d='M14.6667%208C14.6667%2011.6819%2011.6819%2014.6667%208%2014.6667C4.3181%2014.6667%201.33333%2011.6819%201.33333%208C1.33333%204.3181%204.3181%201.33333%208%201.33333C11.6819%201.33333%2014.6667%204.3181%2014.6667%208Z'%20stroke-width='1.16667'%20stroke-linecap='round'%20stroke-linejoin='round'%20stroke='%234A6E0B'/%3e%3cpath%20id='Vector_2'%20d='M6%208L7.33333%209.33333L10%206.66667'%20stroke-width='1.16667'%20stroke-linecap='round'%20stroke-linejoin='round'%20stroke='%234A6E0B'/%3e%3c/g%3e%3c/svg%3e",
+              "natural": [
+                16,
+                16
+              ],
+              "rendered": [
+                16,
+                16
+              ]
+            },
+            {
+              "src": "image/svg+xml,%3csvg%20preserveAspectRatio='none'%20overflow='visible'%20style='display:%20block;'%20width='16'%20height='16'%20viewBox='0%200%2016%2016'%20fill='none'%20xmlns='http://www.w3.org/2000/svg'%3e%3cg%20id='icon/circle-check'%3e%3cpath%20id='Vector'%20d='M14.6667%208C14.6667%2011.6819%2011.6819%2014.6667%208%2014.6667C4.3181%2014.6667%201.33333%2011.6819%201.33333%208C1.33333%204.3181%204.3181%201.33333%208%201.33333C11.6819%201.33333%2014.6667%204.3181%2014.6667%208Z'%20stroke-width='1.16667'%20stroke-linecap='round'%20stroke-linejoin='round'%20stroke='%234A6E0B'/%3e%3cpath%20id='Vector_2'%20d='M6%208L7.33333%209.33333L10%206.66667'%20stroke-width='1.16667'%20stroke-linecap='round'%20stroke-linejoin='round'%20stroke='%234A6E0B'/%3e%3c/g%3e%3c/svg%3e",
+              "natural": [
+                16,
+                16
+              ],
+              "rendered": [
+                16,
+                16
+              ]
+            },
+            {
+              "src": "image/svg+xml,%3csvg%20preserveAspectRatio='none'%20overflow='visible'%20style='display:%20block;'%20width='16'%20height='16'%20viewBox='0%200%2016%2016'%20fill='none'%20xmlns='http://www.w3.org/2000/svg'%3e%3cg%20id='icon/circle-check'%3e%3cpath%20id='Vector'%20d='M14.6667%208C14.6667%2011.6819%2011.6819%2014.6667%208%2014.6667C4.3181%2014.6667%201.33333%2011.6819%201.33333%208C1.33333%204.3181%204.3181%201.33333%208%201.33333C11.6819%201.33333%2014.6667%204.3181%2014.6667%208Z'%20stroke-width='1.16667'%20stroke-linecap='round'%20stroke-linejoin='round'%20stroke='%234A6E0B'/%3e%3cpath%20id='Vector_2'%20d='M6%208L7.33333%209.33333L10%206.66667'%20stroke-width='1.16667'%20stroke-linecap='round'%20stroke-linejoin='round'%20stroke='%234A6E0B'/%3e%3c/g%3e%3c/svg%3e",
+              "natural": [
+                16,
+                16
+              ],
+              "rendered": [
+                16,
+                16
+              ]
+            },
+            {
+              "src": "image/svg+xml,%3csvg%20preserveAspectRatio='none'%20overflow='visible'%20style='display:%20block;'%20width='16'%20height='16'%20viewBox='0%200%2016%2016'%20fill='none'%20xmlns='http://www.w3.org/2000/svg'%3e%3cg%20id='Icon'%3e%3cpath%20id='Vector'%20d='M2%208C2%206.4087%202.63214%204.88258%203.75736%203.75736C4.88258%202.63214%206.4087%202%208%202C9.67737%202.00631%2011.2874%202.66082%2012.4933%203.82667L14%205.33333'%20stroke-width='1.16667'%20stroke-linecap='round'%20stroke-linejoin='round'%20stroke='%2317171A'/%3e%3cpath%20id='Vector_2'%20d='M14%202V5.33333H10.6667'%20stroke-width='1.16667'%20stroke-linecap='round'%20stroke-linejoin='round'%20stroke='%2317171A'/%3e%3cpath%20id='Vector_3'%20d='M14%208C14%209.5913%2013.3679%2011.1174%2012.2426%2012.2426C11.1174%2013.3679%209.5913%2014%208%2014C6.32263%2013.9937%204.71265%2013.3392%203.50667%2012.1733L2%2010.6667'%20stroke-width='1.16667'%20stroke-linecap='round'%20stroke-linejoin='round'%20stroke='%2317171A'/%3e%3cpath%20id='Vector_4'%20d='M5.33333%2010.6667H2V14'%20stroke-width='1.16667'%20stroke-linecap='round'%20stroke-linejoin='round'%20stroke='%2317171A'/%3e%3c/g%3e%3c/svg%3e",
+              "natural": [
+                16,
+                16
+              ],
+              "rendered": [
+                16,
+                16
+              ]
+            }
+          ]
+        },
+        "mono": [
+          {
+            "familyName": "Geist Mono",
+            "postScriptName": "GeistMono",
+            "isCustomFont": true,
+            "glyphCount": 10
+          }
+        ]
+      },
+      "ipc": [
+        {
+          "command": "plugin:event|listen",
+          "args": {
+            "event": "engine:health",
+            "target": {
+              "kind": "Any"
+            },
+            "handler": 1
+          }
+        },
+        {
+          "command": "plugin:event|listen",
+          "args": {
+            "event": "tauri://theme-changed",
+            "target": {
+              "kind": "Window",
+              "label": "settings"
+            },
+            "handler": 3
+          }
+        },
+        {
+          "command": "get_settings",
+          "args": {}
+        },
+        {
+          "command": "get_engine_status",
+          "args": {}
+        },
+        {
+          "command": "get_storage_stats",
+          "args": {}
+        },
+        {
+          "command": "plugin:window|theme",
+          "args": {
+            "label": "settings"
+          }
+        },
+        {
+          "command": "get_island_snapshot",
+          "args": {}
+        },
+        {
+          "command": "plugin:event|listen",
+          "args": {
+            "event": "nabbit://island-config",
+            "target": {
+              "kind": "Any"
+            },
+            "handler": 5
+          }
+        },
+        {
+          "command": "get_island_snapshot",
+          "args": {}
+        },
+        {
+          "command": "plugin:event|listen",
+          "args": {
+            "event": "engine:health",
+            "target": {
+              "kind": "Any"
+            },
+            "handler": 7
+          }
+        },
+        {
+          "command": "get_engine_status",
+          "args": {}
+        }
+      ],
+      "unsupported": [],
+      "runtimeAndNetworkProblems": []
+    },
+    {
+      "file": "v31-health-checked-engine-island-error-light@1x.png",
+      "scenario": "engine-island-error",
+      "entry": "island.html",
+      "figmaNode": "7:103",
+      "theme": "light",
+      "resolvedTheme": "dark",
+      "scale": 1,
+      "viewport": {
+        "width": 720,
+        "height": 460
+      },
+      "clip": {
+        "x": 0,
+        "y": 0,
+        "width": 720,
+        "height": 460
+      },
+      "width": 720,
+      "height": 460,
+      "bytes": 9307,
+      "sha256": "4dcc2bcb4f5af9e3cd5018fc5542bd63ffcfe1b3371c347378b7af69e2393276",
+      "repeatMatches": true,
+      "font": null,
+      "fixtureSha256": "dcb04560da9fa4bf52589e414d1fed441ee2656eeeb1c70f8dcaad6ab48ecc06",
+      "assertions": {
+        "engineErrorCopy": true,
+        "fixVisible": true
+      },
+      "ipc": [
+        {
+          "command": "plugin:event|listen",
+          "args": {
+            "event": "nabbit://island-visibility",
+            "target": {
+              "kind": "Any"
+            },
+            "handler": 1
+          }
+        },
+        {
+          "command": "plugin:event|listen",
+          "args": {
+            "event": "nabbit://island",
+            "target": {
+              "kind": "Any"
+            },
+            "handler": 3
+          }
+        },
+        {
+          "command": "plugin:event|listen",
+          "args": {
+            "event": "nabbit://island-surface",
+            "target": {
+              "kind": "Any"
+            },
+            "handler": 5
+          }
+        },
+        {
+          "command": "plugin:event|listen",
+          "args": {
+            "event": "tauri://drag-enter",
+            "target": {
+              "kind": "WebviewWindow",
+              "label": "island"
+            },
+            "handler": 7
+          }
+        },
+        {
+          "command": "get_island_snapshot",
+          "args": {}
+        },
+        {
+          "command": "get_activity_snapshot",
+          "args": {}
+        },
+        {
+          "command": "get_island_surface",
+          "args": {}
+        },
+        {
+          "command": "plugin:event|listen",
+          "args": {
+            "event": "tauri://drag-over",
+            "target": {
+              "kind": "WebviewWindow",
+              "label": "island"
+            },
+            "handler": 9
+          }
+        },
+        {
+          "command": "plugin:event|listen",
+          "args": {
+            "event": "tauri://drag-drop",
+            "target": {
+              "kind": "WebviewWindow",
+              "label": "island"
+            },
+            "handler": 11
+          }
+        },
+        {
+          "command": "plugin:event|listen",
+          "args": {
+            "event": "tauri://drag-leave",
+            "target": {
+              "kind": "WebviewWindow",
+              "label": "island"
+            },
+            "handler": 13
+          }
+        },
+        {
+          "command": "island_set_hitrect",
+          "args": {
+            "rect": {
+              "x": 178,
+              "y": -2,
+              "w": 364,
+              "h": 48
+            }
+          }
+        },
+        {
+          "command": "island_surface_ack",
+          "args": {
+            "generation": 1
+          }
+        }
+      ],
+      "unsupported": [],
+      "runtimeAndNetworkProblems": []
+    },
+    {
+      "file": "v31-health-checked-engine-healthy-light@1.5x.png",
+      "scenario": "engine-healthy",
+      "entry": "settings.html",
+      "figmaNode": "18:260",
+      "theme": "light",
+      "resolvedTheme": "light",
+      "scale": 1.5,
+      "viewport": {
+        "width": 460,
+        "height": 680
+      },
+      "clip": {
+        "x": 16,
+        "y": 197,
+        "width": 420,
+        "height": 342
+      },
+      "width": 630,
+      "height": 513,
+      "bytes": 62802,
+      "sha256": "b41f2e5e68fabe332c1c8bfcac0ae7b6157f97b106d6ef4d7a06584a614cf0d0",
+      "repeatMatches": true,
+      "font": [
+        {
+          "familyName": "Geist",
+          "postScriptName": "Geist",
+          "isCustomFont": true,
+          "glyphCount": 15
+        }
+      ],
+      "fixtureSha256": "4a48e4d8311e7f4114c2c8c440ccc076fc6496007f68625c96f513e3f5020b48",
+      "assertions": {
+        "audit": {
+          "violations": [],
+          "incomplete": [],
+          "passes": [
+            "aria-allowed-attr",
+            "aria-allowed-role",
+            "aria-conditional-attr",
+            "aria-deprecated-role",
+            "aria-hidden-focus",
+            "aria-prohibited-attr",
+            "aria-required-attr",
+            "aria-roles",
+            "aria-valid-attr-value",
+            "aria-valid-attr",
+            "button-name",
+            "color-contrast",
+            "empty-heading",
+            "heading-order",
+            "landmark-no-duplicate-banner",
+            "landmark-unique",
+            "nested-interactive"
+          ]
+        },
+        "geometry": {
+          "width": 420,
+          "height": 342,
+          "assets": [
+            {
+              "src": "image/svg+xml,%3csvg%20preserveAspectRatio='none'%20overflow='visible'%20style='display:%20block;'%20width='18'%20height='18'%20viewBox='0%200%2018%2018'%20fill='none'%20xmlns='http://www.w3.org/2000/svg'%3e%3cg%20id='icon/cpu'%3e%3cpath%20id='Vector'%20d='M4.5%203H13.5C14.3284%203%2015%203.67157%2015%204.5V13.5C15%2014.3284%2014.3284%2015%2013.5%2015H4.5C3.67157%2015%203%2014.3284%203%2013.5V4.5C3%203.67157%203.67157%203%204.5%203Z'%20stroke-width='1.3125'%20stroke-linecap='round'%20stroke-linejoin='round'%20stroke='%2317171A'/%3e%3cpath%20id='Vector_2'%20d='M7.5%206.75H10.5C10.9142%206.75%2011.25%207.08579%2011.25%207.5V10.5C11.25%2010.9142%2010.9142%2011.25%2010.5%2011.25H7.5C7.08579%2011.25%206.75%2010.9142%206.75%2010.5V7.5C6.75%207.08579%207.08579%206.75%207.5%206.75Z'%20stroke-width='1.3125'%20stroke-linecap='round'%20stroke-linejoin='round'%20stroke='%2317171A'/%3e%3cpath%20id='Vector_3'%20d='M11.25%201.5V3'%20stroke-width='1.3125'%20stroke-linecap='round'%20stroke-linejoin='round'%20stroke='%2317171A'/%3e%3cpath%20id='Vector_4'%20d='M11.25%2015V16.5'%20stroke-width='1.3125'%20stroke-linecap='round'%20stroke-linejoin='round'%20stroke='%2317171A'/%3e%3cpath%20id='Vector_5'%20d='M1.5%2011.25H3'%20stroke-width='1.3125'%20stroke-linecap='round'%20stroke-linejoin='round'%20stroke='%2317171A'/%3e%3cpath%20id='Vector_6'%20d='M1.5%206.75H3'%20stroke-width='1.3125'%20stroke-linecap='round'%20stroke-linejoin='round'%20stroke='%2317171A'/%3e%3cpath%20id='Vector_7'%20d='M15%2011.25H16.5'%20stroke-width='1.3125'%20stroke-linecap='round'%20stroke-linejoin='round'%20stroke='%2317171A'/%3e%3cpath%20id='Vector_8'%20d='M15%206.75H16.5'%20stroke-width='1.3125'%20stroke-linecap='round'%20stroke-linejoin='round'%20stroke='%2317171A'/%3e%3cpath%20id='Vector_9'%20d='M6.75%201.5V3'%20stroke-width='1.3125'%20stroke-linecap='round'%20stroke-linejoin='round'%20stroke='%2317171A'/%3e%3cpath%20id='Vector_10'%20d='M6.75%2015V16.5'%20stroke-width='1.3125'%20stroke-linecap='round'%20stroke-linejoin='round'%20stroke='%2317171A'/%3e%3c/g%3e%3c/svg%3e",
+              "natural": [
+                18,
+                18
+              ],
+              "rendered": [
+                18,
+                18
+              ]
+            },
+            {
+              "src": "image/svg+xml,%3csvg%20preserveAspectRatio='none'%20overflow='visible'%20style='display:%20block;'%20width='16'%20height='16'%20viewBox='0%200%2016%2016'%20fill='none'%20xmlns='http://www.w3.org/2000/svg'%3e%3cg%20id='icon/circle-check'%3e%3cpath%20id='Vector'%20d='M14.6667%208C14.6667%2011.6819%2011.6819%2014.6667%208%2014.6667C4.3181%2014.6667%201.33333%2011.6819%201.33333%208C1.33333%204.3181%204.3181%201.33333%208%201.33333C11.6819%201.33333%2014.6667%204.3181%2014.6667%208Z'%20stroke-width='1.16667'%20stroke-linecap='round'%20stroke-linejoin='round'%20stroke='%234A6E0B'/%3e%3cpath%20id='Vector_2'%20d='M6%208L7.33333%209.33333L10%206.66667'%20stroke-width='1.16667'%20stroke-linecap='round'%20stroke-linejoin='round'%20stroke='%234A6E0B'/%3e%3c/g%3e%3c/svg%3e",
+              "natural": [
+                16,
+                16
+              ],
+              "rendered": [
+                16,
+                16
+              ]
+            },
+            {
+              "src": "image/svg+xml,%3csvg%20preserveAspectRatio='none'%20overflow='visible'%20style='display:%20block;'%20width='16'%20height='16'%20viewBox='0%200%2016%2016'%20fill='none'%20xmlns='http://www.w3.org/2000/svg'%3e%3cg%20id='icon/circle-check'%3e%3cpath%20id='Vector'%20d='M14.6667%208C14.6667%2011.6819%2011.6819%2014.6667%208%2014.6667C4.3181%2014.6667%201.33333%2011.6819%201.33333%208C1.33333%204.3181%204.3181%201.33333%208%201.33333C11.6819%201.33333%2014.6667%204.3181%2014.6667%208Z'%20stroke-width='1.16667'%20stroke-linecap='round'%20stroke-linejoin='round'%20stroke='%234A6E0B'/%3e%3cpath%20id='Vector_2'%20d='M6%208L7.33333%209.33333L10%206.66667'%20stroke-width='1.16667'%20stroke-linecap='round'%20stroke-linejoin='round'%20stroke='%234A6E0B'/%3e%3c/g%3e%3c/svg%3e",
+              "natural": [
+                16,
+                16
+              ],
+              "rendered": [
+                16,
+                16
+              ]
+            },
+            {
+              "src": "image/svg+xml,%3csvg%20preserveAspectRatio='none'%20overflow='visible'%20style='display:%20block;'%20width='16'%20height='16'%20viewBox='0%200%2016%2016'%20fill='none'%20xmlns='http://www.w3.org/2000/svg'%3e%3cg%20id='icon/circle-check'%3e%3cpath%20id='Vector'%20d='M14.6667%208C14.6667%2011.6819%2011.6819%2014.6667%208%2014.6667C4.3181%2014.6667%201.33333%2011.6819%201.33333%208C1.33333%204.3181%204.3181%201.33333%208%201.33333C11.6819%201.33333%2014.6667%204.3181%2014.6667%208Z'%20stroke-width='1.16667'%20stroke-linecap='round'%20stroke-linejoin='round'%20stroke='%234A6E0B'/%3e%3cpath%20id='Vector_2'%20d='M6%208L7.33333%209.33333L10%206.66667'%20stroke-width='1.16667'%20stroke-linecap='round'%20stroke-linejoin='round'%20stroke='%234A6E0B'/%3e%3c/g%3e%3c/svg%3e",
+              "natural": [
+                16,
+                16
+              ],
+              "rendered": [
+                16,
+                16
+              ]
+            },
+            {
+              "src": "image/svg+xml,%3csvg%20preserveAspectRatio='none'%20overflow='visible'%20style='display:%20block;'%20width='16'%20height='16'%20viewBox='0%200%2016%2016'%20fill='none'%20xmlns='http://www.w3.org/2000/svg'%3e%3cg%20id='icon/circle-check'%3e%3cpath%20id='Vector'%20d='M14.6667%208C14.6667%2011.6819%2011.6819%2014.6667%208%2014.6667C4.3181%2014.6667%201.33333%2011.6819%201.33333%208C1.33333%204.3181%204.3181%201.33333%208%201.33333C11.6819%201.33333%2014.6667%204.3181%2014.6667%208Z'%20stroke-width='1.16667'%20stroke-linecap='round'%20stroke-linejoin='round'%20stroke='%234A6E0B'/%3e%3cpath%20id='Vector_2'%20d='M6%208L7.33333%209.33333L10%206.66667'%20stroke-width='1.16667'%20stroke-linecap='round'%20stroke-linejoin='round'%20stroke='%234A6E0B'/%3e%3c/g%3e%3c/svg%3e",
+              "natural": [
+                16,
+                16
+              ],
+              "rendered": [
+                16,
+                16
+              ]
+            },
+            {
+              "src": "image/svg+xml,%3csvg%20preserveAspectRatio='none'%20overflow='visible'%20style='display:%20block;'%20width='16'%20height='16'%20viewBox='0%200%2016%2016'%20fill='none'%20xmlns='http://www.w3.org/2000/svg'%3e%3cg%20id='Icon'%3e%3cpath%20id='Vector'%20d='M2%208C2%206.4087%202.63214%204.88258%203.75736%203.75736C4.88258%202.63214%206.4087%202%208%202C9.67737%202.00631%2011.2874%202.66082%2012.4933%203.82667L14%205.33333'%20stroke-width='1.16667'%20stroke-linecap='round'%20stroke-linejoin='round'%20stroke='%2317171A'/%3e%3cpath%20id='Vector_2'%20d='M14%202V5.33333H10.6667'%20stroke-width='1.16667'%20stroke-linecap='round'%20stroke-linejoin='round'%20stroke='%2317171A'/%3e%3cpath%20id='Vector_3'%20d='M14%208C14%209.5913%2013.3679%2011.1174%2012.2426%2012.2426C11.1174%2013.3679%209.5913%2014%208%2014C6.32263%2013.9937%204.71265%2013.3392%203.50667%2012.1733L2%2010.6667'%20stroke-width='1.16667'%20stroke-linecap='round'%20stroke-linejoin='round'%20stroke='%2317171A'/%3e%3cpath%20id='Vector_4'%20d='M5.33333%2010.6667H2V14'%20stroke-width='1.16667'%20stroke-linecap='round'%20stroke-linejoin='round'%20stroke='%2317171A'/%3e%3c/g%3e%3c/svg%3e",
+              "natural": [
+                16,
+                16
+              ],
+              "rendered": [
+                16,
+                16
+              ]
+            }
+          ]
+        },
+        "mono": [
+          {
+            "familyName": "Geist Mono",
+            "postScriptName": "GeistMono",
+            "isCustomFont": true,
+            "glyphCount": 10
+          }
+        ]
+      },
+      "ipc": [
+        {
+          "command": "plugin:event|listen",
+          "args": {
+            "event": "engine:health",
+            "target": {
+              "kind": "Any"
+            },
+            "handler": 1
+          }
+        },
+        {
+          "command": "plugin:event|listen",
+          "args": {
+            "event": "tauri://theme-changed",
+            "target": {
+              "kind": "Window",
+              "label": "settings"
+            },
+            "handler": 3
+          }
+        },
+        {
+          "command": "get_settings",
+          "args": {}
+        },
+        {
+          "command": "get_engine_status",
+          "args": {}
+        },
+        {
+          "command": "get_storage_stats",
+          "args": {}
+        },
+        {
+          "command": "plugin:window|theme",
+          "args": {
+            "label": "settings"
+          }
+        },
+        {
+          "command": "get_island_snapshot",
+          "args": {}
+        },
+        {
+          "command": "plugin:event|listen",
+          "args": {
+            "event": "nabbit://island-config",
+            "target": {
+              "kind": "Any"
+            },
+            "handler": 5
+          }
+        },
+        {
+          "command": "get_island_snapshot",
+          "args": {}
+        },
+        {
+          "command": "plugin:event|listen",
+          "args": {
+            "event": "engine:health",
+            "target": {
+              "kind": "Any"
+            },
+            "handler": 7
+          }
+        },
+        {
+          "command": "get_engine_status",
+          "args": {}
+        }
+      ],
+      "unsupported": [],
+      "runtimeAndNetworkProblems": []
+    },
+    {
+      "file": "v31-health-checked-engine-missing-light@1.5x.png",
+      "scenario": "engine-missing",
+      "entry": "settings.html",
+      "figmaNode": "18:260",
+      "theme": "light",
+      "resolvedTheme": "light",
+      "scale": 1.5,
+      "viewport": {
+        "width": 460,
+        "height": 680
+      },
+      "clip": {
+        "x": 16,
+        "y": 197,
+        "width": 420,
+        "height": 342
+      },
+      "width": 630,
+      "height": 513,
+      "bytes": 65761,
+      "sha256": "3eef89a630ca97455636d4abf5e69e324eaec5663927f7bdfd894615c9ee014d",
+      "repeatMatches": true,
+      "font": [
+        {
+          "familyName": "Geist",
+          "postScriptName": "Geist",
+          "isCustomFont": true,
+          "glyphCount": 15
+        }
+      ],
+      "fixtureSha256": "99fb17bd32dd235ced7ff70647c9c25c3a8e2e378af92a8dedae00bb05a80e70",
+      "assertions": {
+        "audit": {
+          "violations": [],
+          "incomplete": [],
+          "passes": [
+            "aria-allowed-attr",
+            "aria-allowed-role",
+            "aria-conditional-attr",
+            "aria-deprecated-role",
+            "aria-hidden-focus",
+            "aria-prohibited-attr",
+            "aria-required-attr",
+            "aria-roles",
+            "aria-valid-attr-value",
+            "aria-valid-attr",
+            "button-name",
+            "color-contrast",
+            "empty-heading",
+            "heading-order",
+            "landmark-no-duplicate-banner",
+            "landmark-unique",
+            "nested-interactive"
+          ]
+        },
+        "geometry": {
+          "width": 420,
+          "height": 342,
+          "assets": [
+            {
+              "src": "image/svg+xml,%3csvg%20preserveAspectRatio='none'%20overflow='visible'%20style='display:%20block;'%20width='18'%20height='18'%20viewBox='0%200%2018%2018'%20fill='none'%20xmlns='http://www.w3.org/2000/svg'%3e%3cg%20id='icon/cpu'%3e%3cpath%20id='Vector'%20d='M4.5%203H13.5C14.3284%203%2015%203.67157%2015%204.5V13.5C15%2014.3284%2014.3284%2015%2013.5%2015H4.5C3.67157%2015%203%2014.3284%203%2013.5V4.5C3%203.67157%203.67157%203%204.5%203Z'%20stroke-width='1.3125'%20stroke-linecap='round'%20stroke-linejoin='round'%20stroke='%2317171A'/%3e%3cpath%20id='Vector_2'%20d='M7.5%206.75H10.5C10.9142%206.75%2011.25%207.08579%2011.25%207.5V10.5C11.25%2010.9142%2010.9142%2011.25%2010.5%2011.25H7.5C7.08579%2011.25%206.75%2010.9142%206.75%2010.5V7.5C6.75%207.08579%207.08579%206.75%207.5%206.75Z'%20stroke-width='1.3125'%20stroke-linecap='round'%20stroke-linejoin='round'%20stroke='%2317171A'/%3e%3cpath%20id='Vector_3'%20d='M11.25%201.5V3'%20stroke-width='1.3125'%20stroke-linecap='round'%20stroke-linejoin='round'%20stroke='%2317171A'/%3e%3cpath%20id='Vector_4'%20d='M11.25%2015V16.5'%20stroke-width='1.3125'%20stroke-linecap='round'%20stroke-linejoin='round'%20stroke='%2317171A'/%3e%3cpath%20id='Vector_5'%20d='M1.5%2011.25H3'%20stroke-width='1.3125'%20stroke-linecap='round'%20stroke-linejoin='round'%20stroke='%2317171A'/%3e%3cpath%20id='Vector_6'%20d='M1.5%206.75H3'%20stroke-width='1.3125'%20stroke-linecap='round'%20stroke-linejoin='round'%20stroke='%2317171A'/%3e%3cpath%20id='Vector_7'%20d='M15%2011.25H16.5'%20stroke-width='1.3125'%20stroke-linecap='round'%20stroke-linejoin='round'%20stroke='%2317171A'/%3e%3cpath%20id='Vector_8'%20d='M15%206.75H16.5'%20stroke-width='1.3125'%20stroke-linecap='round'%20stroke-linejoin='round'%20stroke='%2317171A'/%3e%3cpath%20id='Vector_9'%20d='M6.75%201.5V3'%20stroke-width='1.3125'%20stroke-linecap='round'%20stroke-linejoin='round'%20stroke='%2317171A'/%3e%3cpath%20id='Vector_10'%20d='M6.75%2015V16.5'%20stroke-width='1.3125'%20stroke-linecap='round'%20stroke-linejoin='round'%20stroke='%2317171A'/%3e%3c/g%3e%3c/svg%3e",
+              "natural": [
+                18,
+                18
+              ],
+              "rendered": [
+                18,
+                18
+              ]
+            },
+            {
+              "src": "image/svg+xml,%3csvg%20preserveAspectRatio='none'%20overflow='visible'%20style='display:%20block;'%20width='16'%20height='16'%20viewBox='0%200%2016%2016'%20fill='none'%20xmlns='http://www.w3.org/2000/svg'%3e%3cg%20id='icon/circle-check'%3e%3cpath%20id='Vector'%20d='M14.6667%208C14.6667%2011.6819%2011.6819%2014.6667%208%2014.6667C4.3181%2014.6667%201.33333%2011.6819%201.33333%208C1.33333%204.3181%204.3181%201.33333%208%201.33333C11.6819%201.33333%2014.6667%204.3181%2014.6667%208Z'%20stroke-width='1.16667'%20stroke-linecap='round'%20stroke-linejoin='round'%20stroke='%234A6E0B'/%3e%3cpath%20id='Vector_2'%20d='M6%208L7.33333%209.33333L10%206.66667'%20stroke-width='1.16667'%20stroke-linecap='round'%20stroke-linejoin='round'%20stroke='%234A6E0B'/%3e%3c/g%3e%3c/svg%3e",
+              "natural": [
+                16,
+                16
+              ],
+              "rendered": [
+                16,
+                16
+              ]
+            },
+            {
+              "src": "image/svg+xml,%3csvg%20preserveAspectRatio='none'%20overflow='visible'%20style='display:%20block;'%20width='16'%20height='16'%20viewBox='0%200%2016%2016'%20fill='none'%20xmlns='http://www.w3.org/2000/svg'%3e%3cg%20id='icon/circle-check'%3e%3cpath%20id='Vector'%20d='M14.6667%208C14.6667%2011.6819%2011.6819%2014.6667%208%2014.6667C4.3181%2014.6667%201.33333%2011.6819%201.33333%208C1.33333%204.3181%204.3181%201.33333%208%201.33333C11.6819%201.33333%2014.6667%204.3181%2014.6667%208Z'%20stroke-width='1.16667'%20stroke-linecap='round'%20stroke-linejoin='round'%20stroke='%234A6E0B'/%3e%3cpath%20id='Vector_2'%20d='M6%208L7.33333%209.33333L10%206.66667'%20stroke-width='1.16667'%20stroke-linecap='round'%20stroke-linejoin='round'%20stroke='%234A6E0B'/%3e%3c/g%3e%3c/svg%3e",
+              "natural": [
+                16,
+                16
+              ],
+              "rendered": [
+                16,
+                16
+              ]
+            },
+            {
+              "src": "image/svg+xml,%3csvg%20preserveAspectRatio='none'%20overflow='visible'%20style='display:%20block;'%20width='16'%20height='16'%20viewBox='0%200%2016%2016'%20fill='none'%20xmlns='http://www.w3.org/2000/svg'%3e%3cg%20id='Icon'%3e%3cpath%20id='Vector'%20d='M2%208C2%206.4087%202.63214%204.88258%203.75736%203.75736C4.88258%202.63214%206.4087%202%208%202C9.67737%202.00631%2011.2874%202.66082%2012.4933%203.82667L14%205.33333'%20stroke-width='1.16667'%20stroke-linecap='round'%20stroke-linejoin='round'%20stroke='%2317171A'/%3e%3cpath%20id='Vector_2'%20d='M14%202V5.33333H10.6667'%20stroke-width='1.16667'%20stroke-linecap='round'%20stroke-linejoin='round'%20stroke='%2317171A'/%3e%3cpath%20id='Vector_3'%20d='M14%208C14%209.5913%2013.3679%2011.1174%2012.2426%2012.2426C11.1174%2013.3679%209.5913%2014%208%2014C6.32263%2013.9937%204.71265%2013.3392%203.50667%2012.1733L2%2010.6667'%20stroke-width='1.16667'%20stroke-linecap='round'%20stroke-linejoin='round'%20stroke='%2317171A'/%3e%3cpath%20id='Vector_4'%20d='M5.33333%2010.6667H2V14'%20stroke-width='1.16667'%20stroke-linecap='round'%20stroke-linejoin='round'%20stroke='%2317171A'/%3e%3c/g%3e%3c/svg%3e",
+              "natural": [
+                16,
+                16
+              ],
+              "rendered": [
+                16,
+                16
+              ]
+            }
+          ]
+        },
+        "mono": [
+          {
+            "familyName": "Geist Mono",
+            "postScriptName": "GeistMono",
+            "isCustomFont": true,
+            "glyphCount": 10
+          }
+        ]
+      },
+      "ipc": [
+        {
+          "command": "plugin:event|listen",
+          "args": {
+            "event": "engine:health",
+            "target": {
+              "kind": "Any"
+            },
+            "handler": 1
+          }
+        },
+        {
+          "command": "plugin:event|listen",
+          "args": {
+            "event": "tauri://theme-changed",
+            "target": {
+              "kind": "Window",
+              "label": "settings"
+            },
+            "handler": 3
+          }
+        },
+        {
+          "command": "get_settings",
+          "args": {}
+        },
+        {
+          "command": "get_engine_status",
+          "args": {}
+        },
+        {
+          "command": "get_storage_stats",
+          "args": {}
+        },
+        {
+          "command": "plugin:window|theme",
+          "args": {
+            "label": "settings"
+          }
+        },
+        {
+          "command": "get_island_snapshot",
+          "args": {}
+        },
+        {
+          "command": "plugin:event|listen",
+          "args": {
+            "event": "nabbit://island-config",
+            "target": {
+              "kind": "Any"
+            },
+            "handler": 5
+          }
+        },
+        {
+          "command": "get_island_snapshot",
+          "args": {}
+        },
+        {
+          "command": "plugin:event|listen",
+          "args": {
+            "event": "engine:health",
+            "target": {
+              "kind": "Any"
+            },
+            "handler": 7
+          }
+        },
+        {
+          "command": "get_engine_status",
+          "args": {}
+        }
+      ],
+      "unsupported": [],
+      "runtimeAndNetworkProblems": []
+    },
+    {
+      "file": "v31-health-checked-engine-offline-light@1.5x.png",
+      "scenario": "engine-offline",
+      "entry": "settings.html",
+      "figmaNode": "18:260",
+      "theme": "light",
+      "resolvedTheme": "light",
+      "scale": 1.5,
+      "viewport": {
+        "width": 460,
+        "height": 680
+      },
+      "clip": {
+        "x": 16,
+        "y": 189,
+        "width": 420,
+        "height": 358
+      },
+      "width": 630,
+      "height": 537,
+      "bytes": 64315,
+      "sha256": "4f35d50aae449c005b0260d45b1c50064685e0b2ec83317d099a30dab33d7a78",
+      "repeatMatches": true,
+      "font": [
+        {
+          "familyName": "Geist",
+          "postScriptName": "Geist",
+          "isCustomFont": true,
+          "glyphCount": 15
+        }
+      ],
+      "fixtureSha256": "4d25ae050be2ccc06231392058394be9f2607c30dff7a060d788289a3ccfb5f1",
+      "assertions": {
+        "audit": {
+          "violations": [],
+          "incomplete": [],
+          "passes": [
+            "aria-allowed-attr",
+            "aria-allowed-role",
+            "aria-conditional-attr",
+            "aria-deprecated-role",
+            "aria-hidden-focus",
+            "aria-prohibited-attr",
+            "aria-required-attr",
+            "aria-roles",
+            "aria-valid-attr-value",
+            "aria-valid-attr",
+            "button-name",
+            "color-contrast",
+            "empty-heading",
+            "heading-order",
+            "landmark-no-duplicate-banner",
+            "landmark-unique",
+            "nested-interactive"
+          ]
+        },
+        "geometry": {
+          "width": 420,
+          "height": 358,
+          "assets": [
+            {
+              "src": "image/svg+xml,%3csvg%20preserveAspectRatio='none'%20overflow='visible'%20style='display:%20block;'%20width='18'%20height='18'%20viewBox='0%200%2018%2018'%20fill='none'%20xmlns='http://www.w3.org/2000/svg'%3e%3cg%20id='icon/cpu'%3e%3cpath%20id='Vector'%20d='M4.5%203H13.5C14.3284%203%2015%203.67157%2015%204.5V13.5C15%2014.3284%2014.3284%2015%2013.5%2015H4.5C3.67157%2015%203%2014.3284%203%2013.5V4.5C3%203.67157%203.67157%203%204.5%203Z'%20stroke-width='1.3125'%20stroke-linecap='round'%20stroke-linejoin='round'%20stroke='%2317171A'/%3e%3cpath%20id='Vector_2'%20d='M7.5%206.75H10.5C10.9142%206.75%2011.25%207.08579%2011.25%207.5V10.5C11.25%2010.9142%2010.9142%2011.25%2010.5%2011.25H7.5C7.08579%2011.25%206.75%2010.9142%206.75%2010.5V7.5C6.75%207.08579%207.08579%206.75%207.5%206.75Z'%20stroke-width='1.3125'%20stroke-linecap='round'%20stroke-linejoin='round'%20stroke='%2317171A'/%3e%3cpath%20id='Vector_3'%20d='M11.25%201.5V3'%20stroke-width='1.3125'%20stroke-linecap='round'%20stroke-linejoin='round'%20stroke='%2317171A'/%3e%3cpath%20id='Vector_4'%20d='M11.25%2015V16.5'%20stroke-width='1.3125'%20stroke-linecap='round'%20stroke-linejoin='round'%20stroke='%2317171A'/%3e%3cpath%20id='Vector_5'%20d='M1.5%2011.25H3'%20stroke-width='1.3125'%20stroke-linecap='round'%20stroke-linejoin='round'%20stroke='%2317171A'/%3e%3cpath%20id='Vector_6'%20d='M1.5%206.75H3'%20stroke-width='1.3125'%20stroke-linecap='round'%20stroke-linejoin='round'%20stroke='%2317171A'/%3e%3cpath%20id='Vector_7'%20d='M15%2011.25H16.5'%20stroke-width='1.3125'%20stroke-linecap='round'%20stroke-linejoin='round'%20stroke='%2317171A'/%3e%3cpath%20id='Vector_8'%20d='M15%206.75H16.5'%20stroke-width='1.3125'%20stroke-linecap='round'%20stroke-linejoin='round'%20stroke='%2317171A'/%3e%3cpath%20id='Vector_9'%20d='M6.75%201.5V3'%20stroke-width='1.3125'%20stroke-linecap='round'%20stroke-linejoin='round'%20stroke='%2317171A'/%3e%3cpath%20id='Vector_10'%20d='M6.75%2015V16.5'%20stroke-width='1.3125'%20stroke-linecap='round'%20stroke-linejoin='round'%20stroke='%2317171A'/%3e%3c/g%3e%3c/svg%3e",
+              "natural": [
+                18,
+                18
+              ],
+              "rendered": [
+                18,
+                18
+              ]
+            },
+            {
+              "src": "image/svg+xml,%3csvg%20preserveAspectRatio='none'%20overflow='visible'%20style='display:%20block;'%20width='16'%20height='16'%20viewBox='0%200%2016%2016'%20fill='none'%20xmlns='http://www.w3.org/2000/svg'%3e%3cg%20id='icon/circle-check'%3e%3cpath%20id='Vector'%20d='M14.6667%208C14.6667%2011.6819%2011.6819%2014.6667%208%2014.6667C4.3181%2014.6667%201.33333%2011.6819%201.33333%208C1.33333%204.3181%204.3181%201.33333%208%201.33333C11.6819%201.33333%2014.6667%204.3181%2014.6667%208Z'%20stroke-width='1.16667'%20stroke-linecap='round'%20stroke-linejoin='round'%20stroke='%234A6E0B'/%3e%3cpath%20id='Vector_2'%20d='M6%208L7.33333%209.33333L10%206.66667'%20stroke-width='1.16667'%20stroke-linecap='round'%20stroke-linejoin='round'%20stroke='%234A6E0B'/%3e%3c/g%3e%3c/svg%3e",
+              "natural": [
+                16,
+                16
+              ],
+              "rendered": [
+                16,
+                16
+              ]
+            },
+            {
+              "src": "image/svg+xml,%3csvg%20preserveAspectRatio='none'%20overflow='visible'%20style='display:%20block;'%20width='16'%20height='16'%20viewBox='0%200%2016%2016'%20fill='none'%20xmlns='http://www.w3.org/2000/svg'%3e%3cg%20id='icon/circle-check'%3e%3cpath%20id='Vector'%20d='M14.6667%208C14.6667%2011.6819%2011.6819%2014.6667%208%2014.6667C4.3181%2014.6667%201.33333%2011.6819%201.33333%208C1.33333%204.3181%204.3181%201.33333%208%201.33333C11.6819%201.33333%2014.6667%204.3181%2014.6667%208Z'%20stroke-width='1.16667'%20stroke-linecap='round'%20stroke-linejoin='round'%20stroke='%234A6E0B'/%3e%3cpath%20id='Vector_2'%20d='M6%208L7.33333%209.33333L10%206.66667'%20stroke-width='1.16667'%20stroke-linecap='round'%20stroke-linejoin='round'%20stroke='%234A6E0B'/%3e%3c/g%3e%3c/svg%3e",
+              "natural": [
+                16,
+                16
+              ],
+              "rendered": [
+                16,
+                16
+              ]
+            },
+            {
+              "src": "image/svg+xml,%3csvg%20preserveAspectRatio='none'%20overflow='visible'%20style='display:%20block;'%20width='16'%20height='16'%20viewBox='0%200%2016%2016'%20fill='none'%20xmlns='http://www.w3.org/2000/svg'%3e%3cg%20id='icon/circle-check'%3e%3cpath%20id='Vector'%20d='M14.6667%208C14.6667%2011.6819%2011.6819%2014.6667%208%2014.6667C4.3181%2014.6667%201.33333%2011.6819%201.33333%208C1.33333%204.3181%204.3181%201.33333%208%201.33333C11.6819%201.33333%2014.6667%204.3181%2014.6667%208Z'%20stroke-width='1.16667'%20stroke-linecap='round'%20stroke-linejoin='round'%20stroke='%234A6E0B'/%3e%3cpath%20id='Vector_2'%20d='M6%208L7.33333%209.33333L10%206.66667'%20stroke-width='1.16667'%20stroke-linecap='round'%20stroke-linejoin='round'%20stroke='%234A6E0B'/%3e%3c/g%3e%3c/svg%3e",
+              "natural": [
+                16,
+                16
+              ],
+              "rendered": [
+                16,
+                16
+              ]
+            },
+            {
+              "src": "image/svg+xml,%3csvg%20preserveAspectRatio='none'%20overflow='visible'%20style='display:%20block;'%20width='16'%20height='16'%20viewBox='0%200%2016%2016'%20fill='none'%20xmlns='http://www.w3.org/2000/svg'%3e%3cg%20id='Icon'%3e%3cpath%20id='Vector'%20d='M2%208C2%206.4087%202.63214%204.88258%203.75736%203.75736C4.88258%202.63214%206.4087%202%208%202C9.67737%202.00631%2011.2874%202.66082%2012.4933%203.82667L14%205.33333'%20stroke-width='1.16667'%20stroke-linecap='round'%20stroke-linejoin='round'%20stroke='%2317171A'/%3e%3cpath%20id='Vector_2'%20d='M14%202V5.33333H10.6667'%20stroke-width='1.16667'%20stroke-linecap='round'%20stroke-linejoin='round'%20stroke='%2317171A'/%3e%3cpath%20id='Vector_3'%20d='M14%208C14%209.5913%2013.3679%2011.1174%2012.2426%2012.2426C11.1174%2013.3679%209.5913%2014%208%2014C6.32263%2013.9937%204.71265%2013.3392%203.50667%2012.1733L2%2010.6667'%20stroke-width='1.16667'%20stroke-linecap='round'%20stroke-linejoin='round'%20stroke='%2317171A'/%3e%3cpath%20id='Vector_4'%20d='M5.33333%2010.6667H2V14'%20stroke-width='1.16667'%20stroke-linecap='round'%20stroke-linejoin='round'%20stroke='%2317171A'/%3e%3c/g%3e%3c/svg%3e",
+              "natural": [
+                16,
+                16
+              ],
+              "rendered": [
+                16,
+                16
+              ]
+            }
+          ]
+        },
+        "mono": [
+          {
+            "familyName": "Geist Mono",
+            "postScriptName": "GeistMono",
+            "isCustomFont": true,
+            "glyphCount": 10
+          }
+        ]
+      },
+      "ipc": [
+        {
+          "command": "plugin:event|listen",
+          "args": {
+            "event": "engine:health",
+            "target": {
+              "kind": "Any"
+            },
+            "handler": 1
+          }
+        },
+        {
+          "command": "plugin:event|listen",
+          "args": {
+            "event": "tauri://theme-changed",
+            "target": {
+              "kind": "Window",
+              "label": "settings"
+            },
+            "handler": 3
+          }
+        },
+        {
+          "command": "get_settings",
+          "args": {}
+        },
+        {
+          "command": "get_engine_status",
+          "args": {}
+        },
+        {
+          "command": "get_storage_stats",
+          "args": {}
+        },
+        {
+          "command": "plugin:window|theme",
+          "args": {
+            "label": "settings"
+          }
+        },
+        {
+          "command": "get_island_snapshot",
+          "args": {}
+        },
+        {
+          "command": "plugin:event|listen",
+          "args": {
+            "event": "nabbit://island-config",
+            "target": {
+              "kind": "Any"
+            },
+            "handler": 5
+          }
+        },
+        {
+          "command": "get_island_snapshot",
+          "args": {}
+        },
+        {
+          "command": "plugin:event|listen",
+          "args": {
+            "event": "engine:health",
+            "target": {
+              "kind": "Any"
+            },
+            "handler": 7
+          }
+        },
+        {
+          "command": "get_engine_status",
+          "args": {}
+        }
+      ],
+      "unsupported": [],
+      "runtimeAndNetworkProblems": []
+    },
+    {
+      "file": "v31-health-checked-engine-island-error-light@1.5x.png",
+      "scenario": "engine-island-error",
+      "entry": "island.html",
+      "figmaNode": "7:103",
+      "theme": "light",
+      "resolvedTheme": "dark",
+      "scale": 1.5,
+      "viewport": {
+        "width": 720,
+        "height": 460
+      },
+      "clip": {
+        "x": 0,
+        "y": 0,
+        "width": 720,
+        "height": 460
+      },
+      "width": 1080,
+      "height": 690,
+      "bytes": 15462,
+      "sha256": "c4317d5a90cd267c690300e391b4385cbaee8025d80643eaf8e180bbf655670e",
+      "repeatMatches": true,
+      "font": null,
+      "fixtureSha256": "dcb04560da9fa4bf52589e414d1fed441ee2656eeeb1c70f8dcaad6ab48ecc06",
+      "assertions": {
+        "engineErrorCopy": true,
+        "fixVisible": true
+      },
+      "ipc": [
+        {
+          "command": "plugin:event|listen",
+          "args": {
+            "event": "nabbit://island-visibility",
+            "target": {
+              "kind": "Any"
+            },
+            "handler": 1
+          }
+        },
+        {
+          "command": "plugin:event|listen",
+          "args": {
+            "event": "nabbit://island",
+            "target": {
+              "kind": "Any"
+            },
+            "handler": 3
+          }
+        },
+        {
+          "command": "plugin:event|listen",
+          "args": {
+            "event": "nabbit://island-surface",
+            "target": {
+              "kind": "Any"
+            },
+            "handler": 5
+          }
+        },
+        {
+          "command": "plugin:event|listen",
+          "args": {
+            "event": "tauri://drag-enter",
+            "target": {
+              "kind": "WebviewWindow",
+              "label": "island"
+            },
+            "handler": 7
+          }
+        },
+        {
+          "command": "get_island_snapshot",
+          "args": {}
+        },
+        {
+          "command": "get_activity_snapshot",
+          "args": {}
+        },
+        {
+          "command": "get_island_surface",
+          "args": {}
+        },
+        {
+          "command": "plugin:event|listen",
+          "args": {
+            "event": "tauri://drag-over",
+            "target": {
+              "kind": "WebviewWindow",
+              "label": "island"
+            },
+            "handler": 9
+          }
+        },
+        {
+          "command": "plugin:event|listen",
+          "args": {
+            "event": "tauri://drag-drop",
+            "target": {
+              "kind": "WebviewWindow",
+              "label": "island"
+            },
+            "handler": 11
+          }
+        },
+        {
+          "command": "plugin:event|listen",
+          "args": {
+            "event": "tauri://drag-leave",
+            "target": {
+              "kind": "WebviewWindow",
+              "label": "island"
+            },
+            "handler": 13
+          }
+        },
+        {
+          "command": "island_set_hitrect",
+          "args": {
+            "rect": {
+              "x": 178,
+              "y": -2,
+              "w": 364,
+              "h": 48
+            }
+          }
+        },
+        {
+          "command": "island_surface_ack",
+          "args": {
+            "generation": 1
+          }
+        }
+      ],
+      "unsupported": [],
+      "runtimeAndNetworkProblems": []
+    },
+    {
+      "file": "v31-health-checked-engine-healthy-dark@1x.png",
+      "scenario": "engine-healthy",
+      "entry": "settings.html",
+      "figmaNode": "18:260",
+      "theme": "dark",
+      "resolvedTheme": "dark",
+      "scale": 1,
+      "viewport": {
+        "width": 460,
+        "height": 680
+      },
+      "clip": {
+        "x": 16,
+        "y": 197,
+        "width": 420,
+        "height": 342
+      },
+      "width": 420,
+      "height": 342,
+      "bytes": 36381,
+      "sha256": "dd591904fd701a2f040f84cd576273335ae0ec9250a903a52aed7035f8d3c208",
+      "repeatMatches": true,
+      "font": [
+        {
+          "familyName": "Geist",
+          "postScriptName": "Geist",
+          "isCustomFont": true,
+          "glyphCount": 15
+        }
+      ],
+      "fixtureSha256": "9e2cf669e90eee0c040164c6254f8f2a9d46957908eebbabce63289d0ea51e69",
+      "assertions": {
+        "audit": {
+          "violations": [],
+          "incomplete": [],
+          "passes": [
+            "aria-allowed-attr",
+            "aria-allowed-role",
+            "aria-conditional-attr",
+            "aria-deprecated-role",
+            "aria-hidden-focus",
+            "aria-prohibited-attr",
+            "aria-required-attr",
+            "aria-roles",
+            "aria-valid-attr-value",
+            "aria-valid-attr",
+            "button-name",
+            "color-contrast",
+            "empty-heading",
+            "heading-order",
+            "landmark-no-duplicate-banner",
+            "landmark-unique",
+            "nested-interactive"
+          ]
+        },
+        "geometry": {
+          "width": 420,
+          "height": 342,
+          "assets": [
+            {
+              "src": "image/svg+xml,%3csvg%20preserveAspectRatio='none'%20overflow='visible'%20style='display:%20block;'%20width='18'%20height='18'%20viewBox='0%200%2018%2018'%20fill='none'%20xmlns='http://www.w3.org/2000/svg'%3e%3cg%20id='icon/cpu'%3e%3cpath%20id='Vector'%20d='M4.5%203H13.5C14.3284%203%2015%203.67157%2015%204.5V13.5C15%2014.3284%2014.3284%2015%2013.5%2015H4.5C3.67157%2015%203%2014.3284%203%2013.5V4.5C3%203.67157%203.67157%203%204.5%203Z'%20stroke-width='1.3125'%20stroke-linecap='round'%20stroke-linejoin='round'%20stroke='%2317171A'/%3e%3cpath%20id='Vector_2'%20d='M7.5%206.75H10.5C10.9142%206.75%2011.25%207.08579%2011.25%207.5V10.5C11.25%2010.9142%2010.9142%2011.25%2010.5%2011.25H7.5C7.08579%2011.25%206.75%2010.9142%206.75%2010.5V7.5C6.75%207.08579%207.08579%206.75%207.5%206.75Z'%20stroke-width='1.3125'%20stroke-linecap='round'%20stroke-linejoin='round'%20stroke='%2317171A'/%3e%3cpath%20id='Vector_3'%20d='M11.25%201.5V3'%20stroke-width='1.3125'%20stroke-linecap='round'%20stroke-linejoin='round'%20stroke='%2317171A'/%3e%3cpath%20id='Vector_4'%20d='M11.25%2015V16.5'%20stroke-width='1.3125'%20stroke-linecap='round'%20stroke-linejoin='round'%20stroke='%2317171A'/%3e%3cpath%20id='Vector_5'%20d='M1.5%2011.25H3'%20stroke-width='1.3125'%20stroke-linecap='round'%20stroke-linejoin='round'%20stroke='%2317171A'/%3e%3cpath%20id='Vector_6'%20d='M1.5%206.75H3'%20stroke-width='1.3125'%20stroke-linecap='round'%20stroke-linejoin='round'%20stroke='%2317171A'/%3e%3cpath%20id='Vector_7'%20d='M15%2011.25H16.5'%20stroke-width='1.3125'%20stroke-linecap='round'%20stroke-linejoin='round'%20stroke='%2317171A'/%3e%3cpath%20id='Vector_8'%20d='M15%206.75H16.5'%20stroke-width='1.3125'%20stroke-linecap='round'%20stroke-linejoin='round'%20stroke='%2317171A'/%3e%3cpath%20id='Vector_9'%20d='M6.75%201.5V3'%20stroke-width='1.3125'%20stroke-linecap='round'%20stroke-linejoin='round'%20stroke='%2317171A'/%3e%3cpath%20id='Vector_10'%20d='M6.75%2015V16.5'%20stroke-width='1.3125'%20stroke-linecap='round'%20stroke-linejoin='round'%20stroke='%2317171A'/%3e%3c/g%3e%3c/svg%3e",
+              "natural": [
+                18,
+                18
+              ],
+              "rendered": [
+                18,
+                18
+              ]
+            },
+            {
+              "src": "image/svg+xml,%3csvg%20preserveAspectRatio='none'%20overflow='visible'%20style='display:%20block;'%20width='16'%20height='16'%20viewBox='0%200%2016%2016'%20fill='none'%20xmlns='http://www.w3.org/2000/svg'%3e%3cg%20id='icon/circle-check'%3e%3cpath%20id='Vector'%20d='M14.6667%208C14.6667%2011.6819%2011.6819%2014.6667%208%2014.6667C4.3181%2014.6667%201.33333%2011.6819%201.33333%208C1.33333%204.3181%204.3181%201.33333%208%201.33333C11.6819%201.33333%2014.6667%204.3181%2014.6667%208Z'%20stroke-width='1.16667'%20stroke-linecap='round'%20stroke-linejoin='round'%20stroke='%234A6E0B'/%3e%3cpath%20id='Vector_2'%20d='M6%208L7.33333%209.33333L10%206.66667'%20stroke-width='1.16667'%20stroke-linecap='round'%20stroke-linejoin='round'%20stroke='%234A6E0B'/%3e%3c/g%3e%3c/svg%3e",
+              "natural": [
+                16,
+                16
+              ],
+              "rendered": [
+                16,
+                16
+              ]
+            },
+            {
+              "src": "image/svg+xml,%3csvg%20preserveAspectRatio='none'%20overflow='visible'%20style='display:%20block;'%20width='16'%20height='16'%20viewBox='0%200%2016%2016'%20fill='none'%20xmlns='http://www.w3.org/2000/svg'%3e%3cg%20id='icon/circle-check'%3e%3cpath%20id='Vector'%20d='M14.6667%208C14.6667%2011.6819%2011.6819%2014.6667%208%2014.6667C4.3181%2014.6667%201.33333%2011.6819%201.33333%208C1.33333%204.3181%204.3181%201.33333%208%201.33333C11.6819%201.33333%2014.6667%204.3181%2014.6667%208Z'%20stroke-width='1.16667'%20stroke-linecap='round'%20stroke-linejoin='round'%20stroke='%234A6E0B'/%3e%3cpath%20id='Vector_2'%20d='M6%208L7.33333%209.33333L10%206.66667'%20stroke-width='1.16667'%20stroke-linecap='round'%20stroke-linejoin='round'%20stroke='%234A6E0B'/%3e%3c/g%3e%3c/svg%3e",
+              "natural": [
+                16,
+                16
+              ],
+              "rendered": [
+                16,
+                16
+              ]
+            },
+            {
+              "src": "image/svg+xml,%3csvg%20preserveAspectRatio='none'%20overflow='visible'%20style='display:%20block;'%20width='16'%20height='16'%20viewBox='0%200%2016%2016'%20fill='none'%20xmlns='http://www.w3.org/2000/svg'%3e%3cg%20id='icon/circle-check'%3e%3cpath%20id='Vector'%20d='M14.6667%208C14.6667%2011.6819%2011.6819%2014.6667%208%2014.6667C4.3181%2014.6667%201.33333%2011.6819%201.33333%208C1.33333%204.3181%204.3181%201.33333%208%201.33333C11.6819%201.33333%2014.6667%204.3181%2014.6667%208Z'%20stroke-width='1.16667'%20stroke-linecap='round'%20stroke-linejoin='round'%20stroke='%234A6E0B'/%3e%3cpath%20id='Vector_2'%20d='M6%208L7.33333%209.33333L10%206.66667'%20stroke-width='1.16667'%20stroke-linecap='round'%20stroke-linejoin='round'%20stroke='%234A6E0B'/%3e%3c/g%3e%3c/svg%3e",
+              "natural": [
+                16,
+                16
+              ],
+              "rendered": [
+                16,
+                16
+              ]
+            },
+            {
+              "src": "image/svg+xml,%3csvg%20preserveAspectRatio='none'%20overflow='visible'%20style='display:%20block;'%20width='16'%20height='16'%20viewBox='0%200%2016%2016'%20fill='none'%20xmlns='http://www.w3.org/2000/svg'%3e%3cg%20id='icon/circle-check'%3e%3cpath%20id='Vector'%20d='M14.6667%208C14.6667%2011.6819%2011.6819%2014.6667%208%2014.6667C4.3181%2014.6667%201.33333%2011.6819%201.33333%208C1.33333%204.3181%204.3181%201.33333%208%201.33333C11.6819%201.33333%2014.6667%204.3181%2014.6667%208Z'%20stroke-width='1.16667'%20stroke-linecap='round'%20stroke-linejoin='round'%20stroke='%234A6E0B'/%3e%3cpath%20id='Vector_2'%20d='M6%208L7.33333%209.33333L10%206.66667'%20stroke-width='1.16667'%20stroke-linecap='round'%20stroke-linejoin='round'%20stroke='%234A6E0B'/%3e%3c/g%3e%3c/svg%3e",
+              "natural": [
+                16,
+                16
+              ],
+              "rendered": [
+                16,
+                16
+              ]
+            },
+            {
+              "src": "image/svg+xml,%3csvg%20preserveAspectRatio='none'%20overflow='visible'%20style='display:%20block;'%20width='16'%20height='16'%20viewBox='0%200%2016%2016'%20fill='none'%20xmlns='http://www.w3.org/2000/svg'%3e%3cg%20id='Icon'%3e%3cpath%20id='Vector'%20d='M2%208C2%206.4087%202.63214%204.88258%203.75736%203.75736C4.88258%202.63214%206.4087%202%208%202C9.67737%202.00631%2011.2874%202.66082%2012.4933%203.82667L14%205.33333'%20stroke-width='1.16667'%20stroke-linecap='round'%20stroke-linejoin='round'%20stroke='%2317171A'/%3e%3cpath%20id='Vector_2'%20d='M14%202V5.33333H10.6667'%20stroke-width='1.16667'%20stroke-linecap='round'%20stroke-linejoin='round'%20stroke='%2317171A'/%3e%3cpath%20id='Vector_3'%20d='M14%208C14%209.5913%2013.3679%2011.1174%2012.2426%2012.2426C11.1174%2013.3679%209.5913%2014%208%2014C6.32263%2013.9937%204.71265%2013.3392%203.50667%2012.1733L2%2010.6667'%20stroke-width='1.16667'%20stroke-linecap='round'%20stroke-linejoin='round'%20stroke='%2317171A'/%3e%3cpath%20id='Vector_4'%20d='M5.33333%2010.6667H2V14'%20stroke-width='1.16667'%20stroke-linecap='round'%20stroke-linejoin='round'%20stroke='%2317171A'/%3e%3c/g%3e%3c/svg%3e",
+              "natural": [
+                16,
+                16
+              ],
+              "rendered": [
+                16,
+                16
+              ]
+            }
+          ]
+        },
+        "mono": [
+          {
+            "familyName": "Geist Mono",
+            "postScriptName": "GeistMono",
+            "isCustomFont": true,
+            "glyphCount": 10
+          }
+        ]
+      },
+      "ipc": [
+        {
+          "command": "plugin:event|listen",
+          "args": {
+            "event": "engine:health",
+            "target": {
+              "kind": "Any"
+            },
+            "handler": 1
+          }
+        },
+        {
+          "command": "plugin:event|listen",
+          "args": {
+            "event": "tauri://theme-changed",
+            "target": {
+              "kind": "Window",
+              "label": "settings"
+            },
+            "handler": 3
+          }
+        },
+        {
+          "command": "get_settings",
+          "args": {}
+        },
+        {
+          "command": "get_engine_status",
+          "args": {}
+        },
+        {
+          "command": "get_storage_stats",
+          "args": {}
+        },
+        {
+          "command": "plugin:window|theme",
+          "args": {
+            "label": "settings"
+          }
+        },
+        {
+          "command": "get_island_snapshot",
+          "args": {}
+        },
+        {
+          "command": "plugin:event|listen",
+          "args": {
+            "event": "nabbit://island-config",
+            "target": {
+              "kind": "Any"
+            },
+            "handler": 5
+          }
+        },
+        {
+          "command": "get_island_snapshot",
+          "args": {}
+        },
+        {
+          "command": "plugin:event|listen",
+          "args": {
+            "event": "engine:health",
+            "target": {
+              "kind": "Any"
+            },
+            "handler": 7
+          }
+        },
+        {
+          "command": "get_engine_status",
+          "args": {}
+        }
+      ],
+      "unsupported": [],
+      "runtimeAndNetworkProblems": []
+    },
+    {
+      "file": "v31-health-checked-engine-missing-dark@1x.png",
+      "scenario": "engine-missing",
+      "entry": "settings.html",
+      "figmaNode": "18:260",
+      "theme": "dark",
+      "resolvedTheme": "dark",
+      "scale": 1,
+      "viewport": {
+        "width": 460,
+        "height": 680
+      },
+      "clip": {
+        "x": 16,
+        "y": 197,
+        "width": 420,
+        "height": 342
+      },
+      "width": 420,
+      "height": 342,
+      "bytes": 38206,
+      "sha256": "fd64b239569117a8f1877e88946aa3524cd5c435dd2a96f62d2302a79504cd96",
+      "repeatMatches": true,
+      "font": [
+        {
+          "familyName": "Geist",
+          "postScriptName": "Geist",
+          "isCustomFont": true,
+          "glyphCount": 15
+        }
+      ],
+      "fixtureSha256": "0656d7c321e86242dfcfe6172e8fd92d0c95c174e0a86c6ebe4c54a39c3f36ab",
+      "assertions": {
+        "audit": {
+          "violations": [],
+          "incomplete": [],
+          "passes": [
+            "aria-allowed-attr",
+            "aria-allowed-role",
+            "aria-conditional-attr",
+            "aria-deprecated-role",
+            "aria-hidden-focus",
+            "aria-prohibited-attr",
+            "aria-required-attr",
+            "aria-roles",
+            "aria-valid-attr-value",
+            "aria-valid-attr",
+            "button-name",
+            "color-contrast",
+            "empty-heading",
+            "heading-order",
+            "landmark-no-duplicate-banner",
+            "landmark-unique",
+            "nested-interactive"
+          ]
+        },
+        "geometry": {
+          "width": 420,
+          "height": 342,
+          "assets": [
+            {
+              "src": "image/svg+xml,%3csvg%20preserveAspectRatio='none'%20overflow='visible'%20style='display:%20block;'%20width='18'%20height='18'%20viewBox='0%200%2018%2018'%20fill='none'%20xmlns='http://www.w3.org/2000/svg'%3e%3cg%20id='icon/cpu'%3e%3cpath%20id='Vector'%20d='M4.5%203H13.5C14.3284%203%2015%203.67157%2015%204.5V13.5C15%2014.3284%2014.3284%2015%2013.5%2015H4.5C3.67157%2015%203%2014.3284%203%2013.5V4.5C3%203.67157%203.67157%203%204.5%203Z'%20stroke-width='1.3125'%20stroke-linecap='round'%20stroke-linejoin='round'%20stroke='%2317171A'/%3e%3cpath%20id='Vector_2'%20d='M7.5%206.75H10.5C10.9142%206.75%2011.25%207.08579%2011.25%207.5V10.5C11.25%2010.9142%2010.9142%2011.25%2010.5%2011.25H7.5C7.08579%2011.25%206.75%2010.9142%206.75%2010.5V7.5C6.75%207.08579%207.08579%206.75%207.5%206.75Z'%20stroke-width='1.3125'%20stroke-linecap='round'%20stroke-linejoin='round'%20stroke='%2317171A'/%3e%3cpath%20id='Vector_3'%20d='M11.25%201.5V3'%20stroke-width='1.3125'%20stroke-linecap='round'%20stroke-linejoin='round'%20stroke='%2317171A'/%3e%3cpath%20id='Vector_4'%20d='M11.25%2015V16.5'%20stroke-width='1.3125'%20stroke-linecap='round'%20stroke-linejoin='round'%20stroke='%2317171A'/%3e%3cpath%20id='Vector_5'%20d='M1.5%2011.25H3'%20stroke-width='1.3125'%20stroke-linecap='round'%20stroke-linejoin='round'%20stroke='%2317171A'/%3e%3cpath%20id='Vector_6'%20d='M1.5%206.75H3'%20stroke-width='1.3125'%20stroke-linecap='round'%20stroke-linejoin='round'%20stroke='%2317171A'/%3e%3cpath%20id='Vector_7'%20d='M15%2011.25H16.5'%20stroke-width='1.3125'%20stroke-linecap='round'%20stroke-linejoin='round'%20stroke='%2317171A'/%3e%3cpath%20id='Vector_8'%20d='M15%206.75H16.5'%20stroke-width='1.3125'%20stroke-linecap='round'%20stroke-linejoin='round'%20stroke='%2317171A'/%3e%3cpath%20id='Vector_9'%20d='M6.75%201.5V3'%20stroke-width='1.3125'%20stroke-linecap='round'%20stroke-linejoin='round'%20stroke='%2317171A'/%3e%3cpath%20id='Vector_10'%20d='M6.75%2015V16.5'%20stroke-width='1.3125'%20stroke-linecap='round'%20stroke-linejoin='round'%20stroke='%2317171A'/%3e%3c/g%3e%3c/svg%3e",
+              "natural": [
+                18,
+                18
+              ],
+              "rendered": [
+                18,
+                18
+              ]
+            },
+            {
+              "src": "image/svg+xml,%3csvg%20preserveAspectRatio='none'%20overflow='visible'%20style='display:%20block;'%20width='16'%20height='16'%20viewBox='0%200%2016%2016'%20fill='none'%20xmlns='http://www.w3.org/2000/svg'%3e%3cg%20id='icon/circle-check'%3e%3cpath%20id='Vector'%20d='M14.6667%208C14.6667%2011.6819%2011.6819%2014.6667%208%2014.6667C4.3181%2014.6667%201.33333%2011.6819%201.33333%208C1.33333%204.3181%204.3181%201.33333%208%201.33333C11.6819%201.33333%2014.6667%204.3181%2014.6667%208Z'%20stroke-width='1.16667'%20stroke-linecap='round'%20stroke-linejoin='round'%20stroke='%234A6E0B'/%3e%3cpath%20id='Vector_2'%20d='M6%208L7.33333%209.33333L10%206.66667'%20stroke-width='1.16667'%20stroke-linecap='round'%20stroke-linejoin='round'%20stroke='%234A6E0B'/%3e%3c/g%3e%3c/svg%3e",
+              "natural": [
+                16,
+                16
+              ],
+              "rendered": [
+                16,
+                16
+              ]
+            },
+            {
+              "src": "image/svg+xml,%3csvg%20preserveAspectRatio='none'%20overflow='visible'%20style='display:%20block;'%20width='16'%20height='16'%20viewBox='0%200%2016%2016'%20fill='none'%20xmlns='http://www.w3.org/2000/svg'%3e%3cg%20id='icon/circle-check'%3e%3cpath%20id='Vector'%20d='M14.6667%208C14.6667%2011.6819%2011.6819%2014.6667%208%2014.6667C4.3181%2014.6667%201.33333%2011.6819%201.33333%208C1.33333%204.3181%204.3181%201.33333%208%201.33333C11.6819%201.33333%2014.6667%204.3181%2014.6667%208Z'%20stroke-width='1.16667'%20stroke-linecap='round'%20stroke-linejoin='round'%20stroke='%234A6E0B'/%3e%3cpath%20id='Vector_2'%20d='M6%208L7.33333%209.33333L10%206.66667'%20stroke-width='1.16667'%20stroke-linecap='round'%20stroke-linejoin='round'%20stroke='%234A6E0B'/%3e%3c/g%3e%3c/svg%3e",
+              "natural": [
+                16,
+                16
+              ],
+              "rendered": [
+                16,
+                16
+              ]
+            },
+            {
+              "src": "image/svg+xml,%3csvg%20preserveAspectRatio='none'%20overflow='visible'%20style='display:%20block;'%20width='16'%20height='16'%20viewBox='0%200%2016%2016'%20fill='none'%20xmlns='http://www.w3.org/2000/svg'%3e%3cg%20id='Icon'%3e%3cpath%20id='Vector'%20d='M2%208C2%206.4087%202.63214%204.88258%203.75736%203.75736C4.88258%202.63214%206.4087%202%208%202C9.67737%202.00631%2011.2874%202.66082%2012.4933%203.82667L14%205.33333'%20stroke-width='1.16667'%20stroke-linecap='round'%20stroke-linejoin='round'%20stroke='%2317171A'/%3e%3cpath%20id='Vector_2'%20d='M14%202V5.33333H10.6667'%20stroke-width='1.16667'%20stroke-linecap='round'%20stroke-linejoin='round'%20stroke='%2317171A'/%3e%3cpath%20id='Vector_3'%20d='M14%208C14%209.5913%2013.3679%2011.1174%2012.2426%2012.2426C11.1174%2013.3679%209.5913%2014%208%2014C6.32263%2013.9937%204.71265%2013.3392%203.50667%2012.1733L2%2010.6667'%20stroke-width='1.16667'%20stroke-linecap='round'%20stroke-linejoin='round'%20stroke='%2317171A'/%3e%3cpath%20id='Vector_4'%20d='M5.33333%2010.6667H2V14'%20stroke-width='1.16667'%20stroke-linecap='round'%20stroke-linejoin='round'%20stroke='%2317171A'/%3e%3c/g%3e%3c/svg%3e",
+              "natural": [
+                16,
+                16
+              ],
+              "rendered": [
+                16,
+                16
+              ]
+            }
+          ]
+        },
+        "mono": [
+          {
+            "familyName": "Geist Mono",
+            "postScriptName": "GeistMono",
+            "isCustomFont": true,
+            "glyphCount": 10
+          }
+        ]
+      },
+      "ipc": [
+        {
+          "command": "plugin:event|listen",
+          "args": {
+            "event": "engine:health",
+            "target": {
+              "kind": "Any"
+            },
+            "handler": 1
+          }
+        },
+        {
+          "command": "plugin:event|listen",
+          "args": {
+            "event": "tauri://theme-changed",
+            "target": {
+              "kind": "Window",
+              "label": "settings"
+            },
+            "handler": 3
+          }
+        },
+        {
+          "command": "get_settings",
+          "args": {}
+        },
+        {
+          "command": "get_engine_status",
+          "args": {}
+        },
+        {
+          "command": "get_storage_stats",
+          "args": {}
+        },
+        {
+          "command": "plugin:window|theme",
+          "args": {
+            "label": "settings"
+          }
+        },
+        {
+          "command": "get_island_snapshot",
+          "args": {}
+        },
+        {
+          "command": "plugin:event|listen",
+          "args": {
+            "event": "nabbit://island-config",
+            "target": {
+              "kind": "Any"
+            },
+            "handler": 5
+          }
+        },
+        {
+          "command": "get_island_snapshot",
+          "args": {}
+        },
+        {
+          "command": "plugin:event|listen",
+          "args": {
+            "event": "engine:health",
+            "target": {
+              "kind": "Any"
+            },
+            "handler": 7
+          }
+        },
+        {
+          "command": "get_engine_status",
+          "args": {}
+        }
+      ],
+      "unsupported": [],
+      "runtimeAndNetworkProblems": []
+    },
+    {
+      "file": "v31-health-checked-engine-offline-dark@1x.png",
+      "scenario": "engine-offline",
+      "entry": "settings.html",
+      "figmaNode": "18:260",
+      "theme": "dark",
+      "resolvedTheme": "dark",
+      "scale": 1,
+      "viewport": {
+        "width": 460,
+        "height": 680
+      },
+      "clip": {
+        "x": 16,
+        "y": 189,
+        "width": 420,
+        "height": 358
+      },
+      "width": 420,
+      "height": 358,
+      "bytes": 36757,
+      "sha256": "60916ae94957e15675ea8232da57bb48c2b85431234c2c50bc43435eb85f2eff",
+      "repeatMatches": true,
+      "font": [
+        {
+          "familyName": "Geist",
+          "postScriptName": "Geist",
+          "isCustomFont": true,
+          "glyphCount": 15
+        }
+      ],
+      "fixtureSha256": "28023a7eafb04ee870517c67d22ca7fb1c125da772ee54c527b9810735daf27d",
+      "assertions": {
+        "audit": {
+          "violations": [],
+          "incomplete": [],
+          "passes": [
+            "aria-allowed-attr",
+            "aria-allowed-role",
+            "aria-conditional-attr",
+            "aria-deprecated-role",
+            "aria-hidden-focus",
+            "aria-prohibited-attr",
+            "aria-required-attr",
+            "aria-roles",
+            "aria-valid-attr-value",
+            "aria-valid-attr",
+            "button-name",
+            "color-contrast",
+            "empty-heading",
+            "heading-order",
+            "landmark-no-duplicate-banner",
+            "landmark-unique",
+            "nested-interactive"
+          ]
+        },
+        "geometry": {
+          "width": 420,
+          "height": 358,
+          "assets": [
+            {
+              "src": "image/svg+xml,%3csvg%20preserveAspectRatio='none'%20overflow='visible'%20style='display:%20block;'%20width='18'%20height='18'%20viewBox='0%200%2018%2018'%20fill='none'%20xmlns='http://www.w3.org/2000/svg'%3e%3cg%20id='icon/cpu'%3e%3cpath%20id='Vector'%20d='M4.5%203H13.5C14.3284%203%2015%203.67157%2015%204.5V13.5C15%2014.3284%2014.3284%2015%2013.5%2015H4.5C3.67157%2015%203%2014.3284%203%2013.5V4.5C3%203.67157%203.67157%203%204.5%203Z'%20stroke-width='1.3125'%20stroke-linecap='round'%20stroke-linejoin='round'%20stroke='%2317171A'/%3e%3cpath%20id='Vector_2'%20d='M7.5%206.75H10.5C10.9142%206.75%2011.25%207.08579%2011.25%207.5V10.5C11.25%2010.9142%2010.9142%2011.25%2010.5%2011.25H7.5C7.08579%2011.25%206.75%2010.9142%206.75%2010.5V7.5C6.75%207.08579%207.08579%206.75%207.5%206.75Z'%20stroke-width='1.3125'%20stroke-linecap='round'%20stroke-linejoin='round'%20stroke='%2317171A'/%3e%3cpath%20id='Vector_3'%20d='M11.25%201.5V3'%20stroke-width='1.3125'%20stroke-linecap='round'%20stroke-linejoin='round'%20stroke='%2317171A'/%3e%3cpath%20id='Vector_4'%20d='M11.25%2015V16.5'%20stroke-width='1.3125'%20stroke-linecap='round'%20stroke-linejoin='round'%20stroke='%2317171A'/%3e%3cpath%20id='Vector_5'%20d='M1.5%2011.25H3'%20stroke-width='1.3125'%20stroke-linecap='round'%20stroke-linejoin='round'%20stroke='%2317171A'/%3e%3cpath%20id='Vector_6'%20d='M1.5%206.75H3'%20stroke-width='1.3125'%20stroke-linecap='round'%20stroke-linejoin='round'%20stroke='%2317171A'/%3e%3cpath%20id='Vector_7'%20d='M15%2011.25H16.5'%20stroke-width='1.3125'%20stroke-linecap='round'%20stroke-linejoin='round'%20stroke='%2317171A'/%3e%3cpath%20id='Vector_8'%20d='M15%206.75H16.5'%20stroke-width='1.3125'%20stroke-linecap='round'%20stroke-linejoin='round'%20stroke='%2317171A'/%3e%3cpath%20id='Vector_9'%20d='M6.75%201.5V3'%20stroke-width='1.3125'%20stroke-linecap='round'%20stroke-linejoin='round'%20stroke='%2317171A'/%3e%3cpath%20id='Vector_10'%20d='M6.75%2015V16.5'%20stroke-width='1.3125'%20stroke-linecap='round'%20stroke-linejoin='round'%20stroke='%2317171A'/%3e%3c/g%3e%3c/svg%3e",
+              "natural": [
+                18,
+                18
+              ],
+              "rendered": [
+                18,
+                18
+              ]
+            },
+            {
+              "src": "image/svg+xml,%3csvg%20preserveAspectRatio='none'%20overflow='visible'%20style='display:%20block;'%20width='16'%20height='16'%20viewBox='0%200%2016%2016'%20fill='none'%20xmlns='http://www.w3.org/2000/svg'%3e%3cg%20id='icon/circle-check'%3e%3cpath%20id='Vector'%20d='M14.6667%208C14.6667%2011.6819%2011.6819%2014.6667%208%2014.6667C4.3181%2014.6667%201.33333%2011.6819%201.33333%208C1.33333%204.3181%204.3181%201.33333%208%201.33333C11.6819%201.33333%2014.6667%204.3181%2014.6667%208Z'%20stroke-width='1.16667'%20stroke-linecap='round'%20stroke-linejoin='round'%20stroke='%234A6E0B'/%3e%3cpath%20id='Vector_2'%20d='M6%208L7.33333%209.33333L10%206.66667'%20stroke-width='1.16667'%20stroke-linecap='round'%20stroke-linejoin='round'%20stroke='%234A6E0B'/%3e%3c/g%3e%3c/svg%3e",
+              "natural": [
+                16,
+                16
+              ],
+              "rendered": [
+                16,
+                16
+              ]
+            },
+            {
+              "src": "image/svg+xml,%3csvg%20preserveAspectRatio='none'%20overflow='visible'%20style='display:%20block;'%20width='16'%20height='16'%20viewBox='0%200%2016%2016'%20fill='none'%20xmlns='http://www.w3.org/2000/svg'%3e%3cg%20id='icon/circle-check'%3e%3cpath%20id='Vector'%20d='M14.6667%208C14.6667%2011.6819%2011.6819%2014.6667%208%2014.6667C4.3181%2014.6667%201.33333%2011.6819%201.33333%208C1.33333%204.3181%204.3181%201.33333%208%201.33333C11.6819%201.33333%2014.6667%204.3181%2014.6667%208Z'%20stroke-width='1.16667'%20stroke-linecap='round'%20stroke-linejoin='round'%20stroke='%234A6E0B'/%3e%3cpath%20id='Vector_2'%20d='M6%208L7.33333%209.33333L10%206.66667'%20stroke-width='1.16667'%20stroke-linecap='round'%20stroke-linejoin='round'%20stroke='%234A6E0B'/%3e%3c/g%3e%3c/svg%3e",
+              "natural": [
+                16,
+                16
+              ],
+              "rendered": [
+                16,
+                16
+              ]
+            },
+            {
+              "src": "image/svg+xml,%3csvg%20preserveAspectRatio='none'%20overflow='visible'%20style='display:%20block;'%20width='16'%20height='16'%20viewBox='0%200%2016%2016'%20fill='none'%20xmlns='http://www.w3.org/2000/svg'%3e%3cg%20id='icon/circle-check'%3e%3cpath%20id='Vector'%20d='M14.6667%208C14.6667%2011.6819%2011.6819%2014.6667%208%2014.6667C4.3181%2014.6667%201.33333%2011.6819%201.33333%208C1.33333%204.3181%204.3181%201.33333%208%201.33333C11.6819%201.33333%2014.6667%204.3181%2014.6667%208Z'%20stroke-width='1.16667'%20stroke-linecap='round'%20stroke-linejoin='round'%20stroke='%234A6E0B'/%3e%3cpath%20id='Vector_2'%20d='M6%208L7.33333%209.33333L10%206.66667'%20stroke-width='1.16667'%20stroke-linecap='round'%20stroke-linejoin='round'%20stroke='%234A6E0B'/%3e%3c/g%3e%3c/svg%3e",
+              "natural": [
+                16,
+                16
+              ],
+              "rendered": [
+                16,
+                16
+              ]
+            },
+            {
+              "src": "image/svg+xml,%3csvg%20preserveAspectRatio='none'%20overflow='visible'%20style='display:%20block;'%20width='16'%20height='16'%20viewBox='0%200%2016%2016'%20fill='none'%20xmlns='http://www.w3.org/2000/svg'%3e%3cg%20id='Icon'%3e%3cpath%20id='Vector'%20d='M2%208C2%206.4087%202.63214%204.88258%203.75736%203.75736C4.88258%202.63214%206.4087%202%208%202C9.67737%202.00631%2011.2874%202.66082%2012.4933%203.82667L14%205.33333'%20stroke-width='1.16667'%20stroke-linecap='round'%20stroke-linejoin='round'%20stroke='%2317171A'/%3e%3cpath%20id='Vector_2'%20d='M14%202V5.33333H10.6667'%20stroke-width='1.16667'%20stroke-linecap='round'%20stroke-linejoin='round'%20stroke='%2317171A'/%3e%3cpath%20id='Vector_3'%20d='M14%208C14%209.5913%2013.3679%2011.1174%2012.2426%2012.2426C11.1174%2013.3679%209.5913%2014%208%2014C6.32263%2013.9937%204.71265%2013.3392%203.50667%2012.1733L2%2010.6667'%20stroke-width='1.16667'%20stroke-linecap='round'%20stroke-linejoin='round'%20stroke='%2317171A'/%3e%3cpath%20id='Vector_4'%20d='M5.33333%2010.6667H2V14'%20stroke-width='1.16667'%20stroke-linecap='round'%20stroke-linejoin='round'%20stroke='%2317171A'/%3e%3c/g%3e%3c/svg%3e",
+              "natural": [
+                16,
+                16
+              ],
+              "rendered": [
+                16,
+                16
+              ]
+            }
+          ]
+        },
+        "mono": [
+          {
+            "familyName": "Geist Mono",
+            "postScriptName": "GeistMono",
+            "isCustomFont": true,
+            "glyphCount": 10
+          }
+        ]
+      },
+      "ipc": [
+        {
+          "command": "plugin:event|listen",
+          "args": {
+            "event": "engine:health",
+            "target": {
+              "kind": "Any"
+            },
+            "handler": 1
+          }
+        },
+        {
+          "command": "plugin:event|listen",
+          "args": {
+            "event": "tauri://theme-changed",
+            "target": {
+              "kind": "Window",
+              "label": "settings"
+            },
+            "handler": 3
+          }
+        },
+        {
+          "command": "get_settings",
+          "args": {}
+        },
+        {
+          "command": "get_engine_status",
+          "args": {}
+        },
+        {
+          "command": "get_storage_stats",
+          "args": {}
+        },
+        {
+          "command": "plugin:window|theme",
+          "args": {
+            "label": "settings"
+          }
+        },
+        {
+          "command": "get_island_snapshot",
+          "args": {}
+        },
+        {
+          "command": "plugin:event|listen",
+          "args": {
+            "event": "nabbit://island-config",
+            "target": {
+              "kind": "Any"
+            },
+            "handler": 5
+          }
+        },
+        {
+          "command": "get_island_snapshot",
+          "args": {}
+        },
+        {
+          "command": "plugin:event|listen",
+          "args": {
+            "event": "engine:health",
+            "target": {
+              "kind": "Any"
+            },
+            "handler": 7
+          }
+        },
+        {
+          "command": "get_engine_status",
+          "args": {}
+        }
+      ],
+      "unsupported": [],
+      "runtimeAndNetworkProblems": []
+    },
+    {
+      "file": "v31-health-checked-engine-island-error-dark@1x.png",
+      "scenario": "engine-island-error",
+      "entry": "island.html",
+      "figmaNode": "7:103",
+      "theme": "dark",
+      "resolvedTheme": "dark",
+      "scale": 1,
+      "viewport": {
+        "width": 720,
+        "height": 460
+      },
+      "clip": {
+        "x": 0,
+        "y": 0,
+        "width": 720,
+        "height": 460
+      },
+      "width": 720,
+      "height": 460,
+      "bytes": 9307,
+      "sha256": "4dcc2bcb4f5af9e3cd5018fc5542bd63ffcfe1b3371c347378b7af69e2393276",
+      "repeatMatches": true,
+      "font": null,
+      "fixtureSha256": "50482c0207ac4e6e16a66122ad29b248456dcb08a10d097b2eee1c3b68b45162",
+      "assertions": {
+        "engineErrorCopy": true,
+        "fixVisible": true
+      },
+      "ipc": [
+        {
+          "command": "plugin:event|listen",
+          "args": {
+            "event": "nabbit://island-visibility",
+            "target": {
+              "kind": "Any"
+            },
+            "handler": 1
+          }
+        },
+        {
+          "command": "plugin:event|listen",
+          "args": {
+            "event": "nabbit://island",
+            "target": {
+              "kind": "Any"
+            },
+            "handler": 3
+          }
+        },
+        {
+          "command": "plugin:event|listen",
+          "args": {
+            "event": "nabbit://island-surface",
+            "target": {
+              "kind": "Any"
+            },
+            "handler": 5
+          }
+        },
+        {
+          "command": "plugin:event|listen",
+          "args": {
+            "event": "tauri://drag-enter",
+            "target": {
+              "kind": "WebviewWindow",
+              "label": "island"
+            },
+            "handler": 7
+          }
+        },
+        {
+          "command": "get_island_snapshot",
+          "args": {}
+        },
+        {
+          "command": "get_activity_snapshot",
+          "args": {}
+        },
+        {
+          "command": "get_island_surface",
+          "args": {}
+        },
+        {
+          "command": "plugin:event|listen",
+          "args": {
+            "event": "tauri://drag-over",
+            "target": {
+              "kind": "WebviewWindow",
+              "label": "island"
+            },
+            "handler": 9
+          }
+        },
+        {
+          "command": "plugin:event|listen",
+          "args": {
+            "event": "tauri://drag-drop",
+            "target": {
+              "kind": "WebviewWindow",
+              "label": "island"
+            },
+            "handler": 11
+          }
+        },
+        {
+          "command": "plugin:event|listen",
+          "args": {
+            "event": "tauri://drag-leave",
+            "target": {
+              "kind": "WebviewWindow",
+              "label": "island"
+            },
+            "handler": 13
+          }
+        },
+        {
+          "command": "island_set_hitrect",
+          "args": {
+            "rect": {
+              "x": 178,
+              "y": -2,
+              "w": 364,
+              "h": 48
+            }
+          }
+        },
+        {
+          "command": "island_surface_ack",
+          "args": {
+            "generation": 1
+          }
+        }
+      ],
+      "unsupported": [],
+      "runtimeAndNetworkProblems": []
+    },
+    {
+      "file": "v31-health-checked-engine-healthy-dark@1.5x.png",
+      "scenario": "engine-healthy",
+      "entry": "settings.html",
+      "figmaNode": "18:260",
+      "theme": "dark",
+      "resolvedTheme": "dark",
+      "scale": 1.5,
+      "viewport": {
+        "width": 460,
+        "height": 680
+      },
+      "clip": {
+        "x": 16,
+        "y": 197,
+        "width": 420,
+        "height": 342
+      },
+      "width": 630,
+      "height": 513,
+      "bytes": 62604,
+      "sha256": "4df9dfb347fcf8a66f31115eb0030dd46adbd7c7fd1ec757cd0d1d5599004566",
+      "repeatMatches": true,
+      "font": [
+        {
+          "familyName": "Geist",
+          "postScriptName": "Geist",
+          "isCustomFont": true,
+          "glyphCount": 15
+        }
+      ],
+      "fixtureSha256": "9e2cf669e90eee0c040164c6254f8f2a9d46957908eebbabce63289d0ea51e69",
+      "assertions": {
+        "audit": {
+          "violations": [],
+          "incomplete": [],
+          "passes": [
+            "aria-allowed-attr",
+            "aria-allowed-role",
+            "aria-conditional-attr",
+            "aria-deprecated-role",
+            "aria-hidden-focus",
+            "aria-prohibited-attr",
+            "aria-required-attr",
+            "aria-roles",
+            "aria-valid-attr-value",
+            "aria-valid-attr",
+            "button-name",
+            "color-contrast",
+            "empty-heading",
+            "heading-order",
+            "landmark-no-duplicate-banner",
+            "landmark-unique",
+            "nested-interactive"
+          ]
+        },
+        "geometry": {
+          "width": 420,
+          "height": 342,
+          "assets": [
+            {
+              "src": "image/svg+xml,%3csvg%20preserveAspectRatio='none'%20overflow='visible'%20style='display:%20block;'%20width='18'%20height='18'%20viewBox='0%200%2018%2018'%20fill='none'%20xmlns='http://www.w3.org/2000/svg'%3e%3cg%20id='icon/cpu'%3e%3cpath%20id='Vector'%20d='M4.5%203H13.5C14.3284%203%2015%203.67157%2015%204.5V13.5C15%2014.3284%2014.3284%2015%2013.5%2015H4.5C3.67157%2015%203%2014.3284%203%2013.5V4.5C3%203.67157%203.67157%203%204.5%203Z'%20stroke-width='1.3125'%20stroke-linecap='round'%20stroke-linejoin='round'%20stroke='%2317171A'/%3e%3cpath%20id='Vector_2'%20d='M7.5%206.75H10.5C10.9142%206.75%2011.25%207.08579%2011.25%207.5V10.5C11.25%2010.9142%2010.9142%2011.25%2010.5%2011.25H7.5C7.08579%2011.25%206.75%2010.9142%206.75%2010.5V7.5C6.75%207.08579%207.08579%206.75%207.5%206.75Z'%20stroke-width='1.3125'%20stroke-linecap='round'%20stroke-linejoin='round'%20stroke='%2317171A'/%3e%3cpath%20id='Vector_3'%20d='M11.25%201.5V3'%20stroke-width='1.3125'%20stroke-linecap='round'%20stroke-linejoin='round'%20stroke='%2317171A'/%3e%3cpath%20id='Vector_4'%20d='M11.25%2015V16.5'%20stroke-width='1.3125'%20stroke-linecap='round'%20stroke-linejoin='round'%20stroke='%2317171A'/%3e%3cpath%20id='Vector_5'%20d='M1.5%2011.25H3'%20stroke-width='1.3125'%20stroke-linecap='round'%20stroke-linejoin='round'%20stroke='%2317171A'/%3e%3cpath%20id='Vector_6'%20d='M1.5%206.75H3'%20stroke-width='1.3125'%20stroke-linecap='round'%20stroke-linejoin='round'%20stroke='%2317171A'/%3e%3cpath%20id='Vector_7'%20d='M15%2011.25H16.5'%20stroke-width='1.3125'%20stroke-linecap='round'%20stroke-linejoin='round'%20stroke='%2317171A'/%3e%3cpath%20id='Vector_8'%20d='M15%206.75H16.5'%20stroke-width='1.3125'%20stroke-linecap='round'%20stroke-linejoin='round'%20stroke='%2317171A'/%3e%3cpath%20id='Vector_9'%20d='M6.75%201.5V3'%20stroke-width='1.3125'%20stroke-linecap='round'%20stroke-linejoin='round'%20stroke='%2317171A'/%3e%3cpath%20id='Vector_10'%20d='M6.75%2015V16.5'%20stroke-width='1.3125'%20stroke-linecap='round'%20stroke-linejoin='round'%20stroke='%2317171A'/%3e%3c/g%3e%3c/svg%3e",
+              "natural": [
+                18,
+                18
+              ],
+              "rendered": [
+                18,
+                18
+              ]
+            },
+            {
+              "src": "image/svg+xml,%3csvg%20preserveAspectRatio='none'%20overflow='visible'%20style='display:%20block;'%20width='16'%20height='16'%20viewBox='0%200%2016%2016'%20fill='none'%20xmlns='http://www.w3.org/2000/svg'%3e%3cg%20id='icon/circle-check'%3e%3cpath%20id='Vector'%20d='M14.6667%208C14.6667%2011.6819%2011.6819%2014.6667%208%2014.6667C4.3181%2014.6667%201.33333%2011.6819%201.33333%208C1.33333%204.3181%204.3181%201.33333%208%201.33333C11.6819%201.33333%2014.6667%204.3181%2014.6667%208Z'%20stroke-width='1.16667'%20stroke-linecap='round'%20stroke-linejoin='round'%20stroke='%234A6E0B'/%3e%3cpath%20id='Vector_2'%20d='M6%208L7.33333%209.33333L10%206.66667'%20stroke-width='1.16667'%20stroke-linecap='round'%20stroke-linejoin='round'%20stroke='%234A6E0B'/%3e%3c/g%3e%3c/svg%3e",
+              "natural": [
+                16,
+                16
+              ],
+              "rendered": [
+                16,
+                16
+              ]
+            },
+            {
+              "src": "image/svg+xml,%3csvg%20preserveAspectRatio='none'%20overflow='visible'%20style='display:%20block;'%20width='16'%20height='16'%20viewBox='0%200%2016%2016'%20fill='none'%20xmlns='http://www.w3.org/2000/svg'%3e%3cg%20id='icon/circle-check'%3e%3cpath%20id='Vector'%20d='M14.6667%208C14.6667%2011.6819%2011.6819%2014.6667%208%2014.6667C4.3181%2014.6667%201.33333%2011.6819%201.33333%208C1.33333%204.3181%204.3181%201.33333%208%201.33333C11.6819%201.33333%2014.6667%204.3181%2014.6667%208Z'%20stroke-width='1.16667'%20stroke-linecap='round'%20stroke-linejoin='round'%20stroke='%234A6E0B'/%3e%3cpath%20id='Vector_2'%20d='M6%208L7.33333%209.33333L10%206.66667'%20stroke-width='1.16667'%20stroke-linecap='round'%20stroke-linejoin='round'%20stroke='%234A6E0B'/%3e%3c/g%3e%3c/svg%3e",
+              "natural": [
+                16,
+                16
+              ],
+              "rendered": [
+                16,
+                16
+              ]
+            },
+            {
+              "src": "image/svg+xml,%3csvg%20preserveAspectRatio='none'%20overflow='visible'%20style='display:%20block;'%20width='16'%20height='16'%20viewBox='0%200%2016%2016'%20fill='none'%20xmlns='http://www.w3.org/2000/svg'%3e%3cg%20id='icon/circle-check'%3e%3cpath%20id='Vector'%20d='M14.6667%208C14.6667%2011.6819%2011.6819%2014.6667%208%2014.6667C4.3181%2014.6667%201.33333%2011.6819%201.33333%208C1.33333%204.3181%204.3181%201.33333%208%201.33333C11.6819%201.33333%2014.6667%204.3181%2014.6667%208Z'%20stroke-width='1.16667'%20stroke-linecap='round'%20stroke-linejoin='round'%20stroke='%234A6E0B'/%3e%3cpath%20id='Vector_2'%20d='M6%208L7.33333%209.33333L10%206.66667'%20stroke-width='1.16667'%20stroke-linecap='round'%20stroke-linejoin='round'%20stroke='%234A6E0B'/%3e%3c/g%3e%3c/svg%3e",
+              "natural": [
+                16,
+                16
+              ],
+              "rendered": [
+                16,
+                16
+              ]
+            },
+            {
+              "src": "image/svg+xml,%3csvg%20preserveAspectRatio='none'%20overflow='visible'%20style='display:%20block;'%20width='16'%20height='16'%20viewBox='0%200%2016%2016'%20fill='none'%20xmlns='http://www.w3.org/2000/svg'%3e%3cg%20id='icon/circle-check'%3e%3cpath%20id='Vector'%20d='M14.6667%208C14.6667%2011.6819%2011.6819%2014.6667%208%2014.6667C4.3181%2014.6667%201.33333%2011.6819%201.33333%208C1.33333%204.3181%204.3181%201.33333%208%201.33333C11.6819%201.33333%2014.6667%204.3181%2014.6667%208Z'%20stroke-width='1.16667'%20stroke-linecap='round'%20stroke-linejoin='round'%20stroke='%234A6E0B'/%3e%3cpath%20id='Vector_2'%20d='M6%208L7.33333%209.33333L10%206.66667'%20stroke-width='1.16667'%20stroke-linecap='round'%20stroke-linejoin='round'%20stroke='%234A6E0B'/%3e%3c/g%3e%3c/svg%3e",
+              "natural": [
+                16,
+                16
+              ],
+              "rendered": [
+                16,
+                16
+              ]
+            },
+            {
+              "src": "image/svg+xml,%3csvg%20preserveAspectRatio='none'%20overflow='visible'%20style='display:%20block;'%20width='16'%20height='16'%20viewBox='0%200%2016%2016'%20fill='none'%20xmlns='http://www.w3.org/2000/svg'%3e%3cg%20id='Icon'%3e%3cpath%20id='Vector'%20d='M2%208C2%206.4087%202.63214%204.88258%203.75736%203.75736C4.88258%202.63214%206.4087%202%208%202C9.67737%202.00631%2011.2874%202.66082%2012.4933%203.82667L14%205.33333'%20stroke-width='1.16667'%20stroke-linecap='round'%20stroke-linejoin='round'%20stroke='%2317171A'/%3e%3cpath%20id='Vector_2'%20d='M14%202V5.33333H10.6667'%20stroke-width='1.16667'%20stroke-linecap='round'%20stroke-linejoin='round'%20stroke='%2317171A'/%3e%3cpath%20id='Vector_3'%20d='M14%208C14%209.5913%2013.3679%2011.1174%2012.2426%2012.2426C11.1174%2013.3679%209.5913%2014%208%2014C6.32263%2013.9937%204.71265%2013.3392%203.50667%2012.1733L2%2010.6667'%20stroke-width='1.16667'%20stroke-linecap='round'%20stroke-linejoin='round'%20stroke='%2317171A'/%3e%3cpath%20id='Vector_4'%20d='M5.33333%2010.6667H2V14'%20stroke-width='1.16667'%20stroke-linecap='round'%20stroke-linejoin='round'%20stroke='%2317171A'/%3e%3c/g%3e%3c/svg%3e",
+              "natural": [
+                16,
+                16
+              ],
+              "rendered": [
+                16,
+                16
+              ]
+            }
+          ]
+        },
+        "mono": [
+          {
+            "familyName": "Geist Mono",
+            "postScriptName": "GeistMono",
+            "isCustomFont": true,
+            "glyphCount": 10
+          }
+        ]
+      },
+      "ipc": [
+        {
+          "command": "plugin:event|listen",
+          "args": {
+            "event": "engine:health",
+            "target": {
+              "kind": "Any"
+            },
+            "handler": 1
+          }
+        },
+        {
+          "command": "plugin:event|listen",
+          "args": {
+            "event": "tauri://theme-changed",
+            "target": {
+              "kind": "Window",
+              "label": "settings"
+            },
+            "handler": 3
+          }
+        },
+        {
+          "command": "get_settings",
+          "args": {}
+        },
+        {
+          "command": "get_engine_status",
+          "args": {}
+        },
+        {
+          "command": "get_storage_stats",
+          "args": {}
+        },
+        {
+          "command": "plugin:window|theme",
+          "args": {
+            "label": "settings"
+          }
+        },
+        {
+          "command": "get_island_snapshot",
+          "args": {}
+        },
+        {
+          "command": "plugin:event|listen",
+          "args": {
+            "event": "nabbit://island-config",
+            "target": {
+              "kind": "Any"
+            },
+            "handler": 5
+          }
+        },
+        {
+          "command": "get_island_snapshot",
+          "args": {}
+        },
+        {
+          "command": "plugin:event|listen",
+          "args": {
+            "event": "engine:health",
+            "target": {
+              "kind": "Any"
+            },
+            "handler": 7
+          }
+        },
+        {
+          "command": "get_engine_status",
+          "args": {}
+        }
+      ],
+      "unsupported": [],
+      "runtimeAndNetworkProblems": []
+    },
+    {
+      "file": "v31-health-checked-engine-missing-dark@1.5x.png",
+      "scenario": "engine-missing",
+      "entry": "settings.html",
+      "figmaNode": "18:260",
+      "theme": "dark",
+      "resolvedTheme": "dark",
+      "scale": 1.5,
+      "viewport": {
+        "width": 460,
+        "height": 680
+      },
+      "clip": {
+        "x": 16,
+        "y": 197,
+        "width": 420,
+        "height": 342
+      },
+      "width": 630,
+      "height": 513,
+      "bytes": 65762,
+      "sha256": "b57e6b3a5344a4c63e91c66af981b91f574fccc2dea65ebc9d3a01aa45d47271",
+      "repeatMatches": true,
+      "font": [
+        {
+          "familyName": "Geist",
+          "postScriptName": "Geist",
+          "isCustomFont": true,
+          "glyphCount": 15
+        }
+      ],
+      "fixtureSha256": "0656d7c321e86242dfcfe6172e8fd92d0c95c174e0a86c6ebe4c54a39c3f36ab",
+      "assertions": {
+        "audit": {
+          "violations": [],
+          "incomplete": [],
+          "passes": [
+            "aria-allowed-attr",
+            "aria-allowed-role",
+            "aria-conditional-attr",
+            "aria-deprecated-role",
+            "aria-hidden-focus",
+            "aria-prohibited-attr",
+            "aria-required-attr",
+            "aria-roles",
+            "aria-valid-attr-value",
+            "aria-valid-attr",
+            "button-name",
+            "color-contrast",
+            "empty-heading",
+            "heading-order",
+            "landmark-no-duplicate-banner",
+            "landmark-unique",
+            "nested-interactive"
+          ]
+        },
+        "geometry": {
+          "width": 420,
+          "height": 342,
+          "assets": [
+            {
+              "src": "image/svg+xml,%3csvg%20preserveAspectRatio='none'%20overflow='visible'%20style='display:%20block;'%20width='18'%20height='18'%20viewBox='0%200%2018%2018'%20fill='none'%20xmlns='http://www.w3.org/2000/svg'%3e%3cg%20id='icon/cpu'%3e%3cpath%20id='Vector'%20d='M4.5%203H13.5C14.3284%203%2015%203.67157%2015%204.5V13.5C15%2014.3284%2014.3284%2015%2013.5%2015H4.5C3.67157%2015%203%2014.3284%203%2013.5V4.5C3%203.67157%203.67157%203%204.5%203Z'%20stroke-width='1.3125'%20stroke-linecap='round'%20stroke-linejoin='round'%20stroke='%2317171A'/%3e%3cpath%20id='Vector_2'%20d='M7.5%206.75H10.5C10.9142%206.75%2011.25%207.08579%2011.25%207.5V10.5C11.25%2010.9142%2010.9142%2011.25%2010.5%2011.25H7.5C7.08579%2011.25%206.75%2010.9142%206.75%2010.5V7.5C6.75%207.08579%207.08579%206.75%207.5%206.75Z'%20stroke-width='1.3125'%20stroke-linecap='round'%20stroke-linejoin='round'%20stroke='%2317171A'/%3e%3cpath%20id='Vector_3'%20d='M11.25%201.5V3'%20stroke-width='1.3125'%20stroke-linecap='round'%20stroke-linejoin='round'%20stroke='%2317171A'/%3e%3cpath%20id='Vector_4'%20d='M11.25%2015V16.5'%20stroke-width='1.3125'%20stroke-linecap='round'%20stroke-linejoin='round'%20stroke='%2317171A'/%3e%3cpath%20id='Vector_5'%20d='M1.5%2011.25H3'%20stroke-width='1.3125'%20stroke-linecap='round'%20stroke-linejoin='round'%20stroke='%2317171A'/%3e%3cpath%20id='Vector_6'%20d='M1.5%206.75H3'%20stroke-width='1.3125'%20stroke-linecap='round'%20stroke-linejoin='round'%20stroke='%2317171A'/%3e%3cpath%20id='Vector_7'%20d='M15%2011.25H16.5'%20stroke-width='1.3125'%20stroke-linecap='round'%20stroke-linejoin='round'%20stroke='%2317171A'/%3e%3cpath%20id='Vector_8'%20d='M15%206.75H16.5'%20stroke-width='1.3125'%20stroke-linecap='round'%20stroke-linejoin='round'%20stroke='%2317171A'/%3e%3cpath%20id='Vector_9'%20d='M6.75%201.5V3'%20stroke-width='1.3125'%20stroke-linecap='round'%20stroke-linejoin='round'%20stroke='%2317171A'/%3e%3cpath%20id='Vector_10'%20d='M6.75%2015V16.5'%20stroke-width='1.3125'%20stroke-linecap='round'%20stroke-linejoin='round'%20stroke='%2317171A'/%3e%3c/g%3e%3c/svg%3e",
+              "natural": [
+                18,
+                18
+              ],
+              "rendered": [
+                18,
+                18
+              ]
+            },
+            {
+              "src": "image/svg+xml,%3csvg%20preserveAspectRatio='none'%20overflow='visible'%20style='display:%20block;'%20width='16'%20height='16'%20viewBox='0%200%2016%2016'%20fill='none'%20xmlns='http://www.w3.org/2000/svg'%3e%3cg%20id='icon/circle-check'%3e%3cpath%20id='Vector'%20d='M14.6667%208C14.6667%2011.6819%2011.6819%2014.6667%208%2014.6667C4.3181%2014.6667%201.33333%2011.6819%201.33333%208C1.33333%204.3181%204.3181%201.33333%208%201.33333C11.6819%201.33333%2014.6667%204.3181%2014.6667%208Z'%20stroke-width='1.16667'%20stroke-linecap='round'%20stroke-linejoin='round'%20stroke='%234A6E0B'/%3e%3cpath%20id='Vector_2'%20d='M6%208L7.33333%209.33333L10%206.66667'%20stroke-width='1.16667'%20stroke-linecap='round'%20stroke-linejoin='round'%20stroke='%234A6E0B'/%3e%3c/g%3e%3c/svg%3e",
+              "natural": [
+                16,
+                16
+              ],
+              "rendered": [
+                16,
+                16
+              ]
+            },
+            {
+              "src": "image/svg+xml,%3csvg%20preserveAspectRatio='none'%20overflow='visible'%20style='display:%20block;'%20width='16'%20height='16'%20viewBox='0%200%2016%2016'%20fill='none'%20xmlns='http://www.w3.org/2000/svg'%3e%3cg%20id='icon/circle-check'%3e%3cpath%20id='Vector'%20d='M14.6667%208C14.6667%2011.6819%2011.6819%2014.6667%208%2014.6667C4.3181%2014.6667%201.33333%2011.6819%201.33333%208C1.33333%204.3181%204.3181%201.33333%208%201.33333C11.6819%201.33333%2014.6667%204.3181%2014.6667%208Z'%20stroke-width='1.16667'%20stroke-linecap='round'%20stroke-linejoin='round'%20stroke='%234A6E0B'/%3e%3cpath%20id='Vector_2'%20d='M6%208L7.33333%209.33333L10%206.66667'%20stroke-width='1.16667'%20stroke-linecap='round'%20stroke-linejoin='round'%20stroke='%234A6E0B'/%3e%3c/g%3e%3c/svg%3e",
+              "natural": [
+                16,
+                16
+              ],
+              "rendered": [
+                16,
+                16
+              ]
+            },
+            {
+              "src": "image/svg+xml,%3csvg%20preserveAspectRatio='none'%20overflow='visible'%20style='display:%20block;'%20width='16'%20height='16'%20viewBox='0%200%2016%2016'%20fill='none'%20xmlns='http://www.w3.org/2000/svg'%3e%3cg%20id='Icon'%3e%3cpath%20id='Vector'%20d='M2%208C2%206.4087%202.63214%204.88258%203.75736%203.75736C4.88258%202.63214%206.4087%202%208%202C9.67737%202.00631%2011.2874%202.66082%2012.4933%203.82667L14%205.33333'%20stroke-width='1.16667'%20stroke-linecap='round'%20stroke-linejoin='round'%20stroke='%2317171A'/%3e%3cpath%20id='Vector_2'%20d='M14%202V5.33333H10.6667'%20stroke-width='1.16667'%20stroke-linecap='round'%20stroke-linejoin='round'%20stroke='%2317171A'/%3e%3cpath%20id='Vector_3'%20d='M14%208C14%209.5913%2013.3679%2011.1174%2012.2426%2012.2426C11.1174%2013.3679%209.5913%2014%208%2014C6.32263%2013.9937%204.71265%2013.3392%203.50667%2012.1733L2%2010.6667'%20stroke-width='1.16667'%20stroke-linecap='round'%20stroke-linejoin='round'%20stroke='%2317171A'/%3e%3cpath%20id='Vector_4'%20d='M5.33333%2010.6667H2V14'%20stroke-width='1.16667'%20stroke-linecap='round'%20stroke-linejoin='round'%20stroke='%2317171A'/%3e%3c/g%3e%3c/svg%3e",
+              "natural": [
+                16,
+                16
+              ],
+              "rendered": [
+                16,
+                16
+              ]
+            }
+          ]
+        },
+        "mono": [
+          {
+            "familyName": "Geist Mono",
+            "postScriptName": "GeistMono",
+            "isCustomFont": true,
+            "glyphCount": 10
+          }
+        ]
+      },
+      "ipc": [
+        {
+          "command": "plugin:event|listen",
+          "args": {
+            "event": "engine:health",
+            "target": {
+              "kind": "Any"
+            },
+            "handler": 1
+          }
+        },
+        {
+          "command": "plugin:event|listen",
+          "args": {
+            "event": "tauri://theme-changed",
+            "target": {
+              "kind": "Window",
+              "label": "settings"
+            },
+            "handler": 3
+          }
+        },
+        {
+          "command": "get_settings",
+          "args": {}
+        },
+        {
+          "command": "get_engine_status",
+          "args": {}
+        },
+        {
+          "command": "get_storage_stats",
+          "args": {}
+        },
+        {
+          "command": "plugin:window|theme",
+          "args": {
+            "label": "settings"
+          }
+        },
+        {
+          "command": "get_island_snapshot",
+          "args": {}
+        },
+        {
+          "command": "plugin:event|listen",
+          "args": {
+            "event": "nabbit://island-config",
+            "target": {
+              "kind": "Any"
+            },
+            "handler": 5
+          }
+        },
+        {
+          "command": "get_island_snapshot",
+          "args": {}
+        },
+        {
+          "command": "plugin:event|listen",
+          "args": {
+            "event": "engine:health",
+            "target": {
+              "kind": "Any"
+            },
+            "handler": 7
+          }
+        },
+        {
+          "command": "get_engine_status",
+          "args": {}
+        }
+      ],
+      "unsupported": [],
+      "runtimeAndNetworkProblems": []
+    },
+    {
+      "file": "v31-health-checked-engine-offline-dark@1.5x.png",
+      "scenario": "engine-offline",
+      "entry": "settings.html",
+      "figmaNode": "18:260",
+      "theme": "dark",
+      "resolvedTheme": "dark",
+      "scale": 1.5,
+      "viewport": {
+        "width": 460,
+        "height": 680
+      },
+      "clip": {
+        "x": 16,
+        "y": 189,
+        "width": 420,
+        "height": 358
+      },
+      "width": 630,
+      "height": 537,
+      "bytes": 64025,
+      "sha256": "c70c61368e2e58e40eff95e16f685391eb8cd1ffab0a8dd0a520eeeae74520c4",
+      "repeatMatches": true,
+      "font": [
+        {
+          "familyName": "Geist",
+          "postScriptName": "Geist",
+          "isCustomFont": true,
+          "glyphCount": 15
+        }
+      ],
+      "fixtureSha256": "28023a7eafb04ee870517c67d22ca7fb1c125da772ee54c527b9810735daf27d",
+      "assertions": {
+        "audit": {
+          "violations": [],
+          "incomplete": [],
+          "passes": [
+            "aria-allowed-attr",
+            "aria-allowed-role",
+            "aria-conditional-attr",
+            "aria-deprecated-role",
+            "aria-hidden-focus",
+            "aria-prohibited-attr",
+            "aria-required-attr",
+            "aria-roles",
+            "aria-valid-attr-value",
+            "aria-valid-attr",
+            "button-name",
+            "color-contrast",
+            "empty-heading",
+            "heading-order",
+            "landmark-no-duplicate-banner",
+            "landmark-unique",
+            "nested-interactive"
+          ]
+        },
+        "geometry": {
+          "width": 420,
+          "height": 358,
+          "assets": [
+            {
+              "src": "image/svg+xml,%3csvg%20preserveAspectRatio='none'%20overflow='visible'%20style='display:%20block;'%20width='18'%20height='18'%20viewBox='0%200%2018%2018'%20fill='none'%20xmlns='http://www.w3.org/2000/svg'%3e%3cg%20id='icon/cpu'%3e%3cpath%20id='Vector'%20d='M4.5%203H13.5C14.3284%203%2015%203.67157%2015%204.5V13.5C15%2014.3284%2014.3284%2015%2013.5%2015H4.5C3.67157%2015%203%2014.3284%203%2013.5V4.5C3%203.67157%203.67157%203%204.5%203Z'%20stroke-width='1.3125'%20stroke-linecap='round'%20stroke-linejoin='round'%20stroke='%2317171A'/%3e%3cpath%20id='Vector_2'%20d='M7.5%206.75H10.5C10.9142%206.75%2011.25%207.08579%2011.25%207.5V10.5C11.25%2010.9142%2010.9142%2011.25%2010.5%2011.25H7.5C7.08579%2011.25%206.75%2010.9142%206.75%2010.5V7.5C6.75%207.08579%207.08579%206.75%207.5%206.75Z'%20stroke-width='1.3125'%20stroke-linecap='round'%20stroke-linejoin='round'%20stroke='%2317171A'/%3e%3cpath%20id='Vector_3'%20d='M11.25%201.5V3'%20stroke-width='1.3125'%20stroke-linecap='round'%20stroke-linejoin='round'%20stroke='%2317171A'/%3e%3cpath%20id='Vector_4'%20d='M11.25%2015V16.5'%20stroke-width='1.3125'%20stroke-linecap='round'%20stroke-linejoin='round'%20stroke='%2317171A'/%3e%3cpath%20id='Vector_5'%20d='M1.5%2011.25H3'%20stroke-width='1.3125'%20stroke-linecap='round'%20stroke-linejoin='round'%20stroke='%2317171A'/%3e%3cpath%20id='Vector_6'%20d='M1.5%206.75H3'%20stroke-width='1.3125'%20stroke-linecap='round'%20stroke-linejoin='round'%20stroke='%2317171A'/%3e%3cpath%20id='Vector_7'%20d='M15%2011.25H16.5'%20stroke-width='1.3125'%20stroke-linecap='round'%20stroke-linejoin='round'%20stroke='%2317171A'/%3e%3cpath%20id='Vector_8'%20d='M15%206.75H16.5'%20stroke-width='1.3125'%20stroke-linecap='round'%20stroke-linejoin='round'%20stroke='%2317171A'/%3e%3cpath%20id='Vector_9'%20d='M6.75%201.5V3'%20stroke-width='1.3125'%20stroke-linecap='round'%20stroke-linejoin='round'%20stroke='%2317171A'/%3e%3cpath%20id='Vector_10'%20d='M6.75%2015V16.5'%20stroke-width='1.3125'%20stroke-linecap='round'%20stroke-linejoin='round'%20stroke='%2317171A'/%3e%3c/g%3e%3c/svg%3e",
+              "natural": [
+                18,
+                18
+              ],
+              "rendered": [
+                18,
+                18
+              ]
+            },
+            {
+              "src": "image/svg+xml,%3csvg%20preserveAspectRatio='none'%20overflow='visible'%20style='display:%20block;'%20width='16'%20height='16'%20viewBox='0%200%2016%2016'%20fill='none'%20xmlns='http://www.w3.org/2000/svg'%3e%3cg%20id='icon/circle-check'%3e%3cpath%20id='Vector'%20d='M14.6667%208C14.6667%2011.6819%2011.6819%2014.6667%208%2014.6667C4.3181%2014.6667%201.33333%2011.6819%201.33333%208C1.33333%204.3181%204.3181%201.33333%208%201.33333C11.6819%201.33333%2014.6667%204.3181%2014.6667%208Z'%20stroke-width='1.16667'%20stroke-linecap='round'%20stroke-linejoin='round'%20stroke='%234A6E0B'/%3e%3cpath%20id='Vector_2'%20d='M6%208L7.33333%209.33333L10%206.66667'%20stroke-width='1.16667'%20stroke-linecap='round'%20stroke-linejoin='round'%20stroke='%234A6E0B'/%3e%3c/g%3e%3c/svg%3e",
+              "natural": [
+                16,
+                16
+              ],
+              "rendered": [
+                16,
+                16
+              ]
+            },
+            {
+              "src": "image/svg+xml,%3csvg%20preserveAspectRatio='none'%20overflow='visible'%20style='display:%20block;'%20width='16'%20height='16'%20viewBox='0%200%2016%2016'%20fill='none'%20xmlns='http://www.w3.org/2000/svg'%3e%3cg%20id='icon/circle-check'%3e%3cpath%20id='Vector'%20d='M14.6667%208C14.6667%2011.6819%2011.6819%2014.6667%208%2014.6667C4.3181%2014.6667%201.33333%2011.6819%201.33333%208C1.33333%204.3181%204.3181%201.33333%208%201.33333C11.6819%201.33333%2014.6667%204.3181%2014.6667%208Z'%20stroke-width='1.16667'%20stroke-linecap='round'%20stroke-linejoin='round'%20stroke='%234A6E0B'/%3e%3cpath%20id='Vector_2'%20d='M6%208L7.33333%209.33333L10%206.66667'%20stroke-width='1.16667'%20stroke-linecap='round'%20stroke-linejoin='round'%20stroke='%234A6E0B'/%3e%3c/g%3e%3c/svg%3e",
+              "natural": [
+                16,
+                16
+              ],
+              "rendered": [
+                16,
+                16
+              ]
+            },
+            {
+              "src": "image/svg+xml,%3csvg%20preserveAspectRatio='none'%20overflow='visible'%20style='display:%20block;'%20width='16'%20height='16'%20viewBox='0%200%2016%2016'%20fill='none'%20xmlns='http://www.w3.org/2000/svg'%3e%3cg%20id='icon/circle-check'%3e%3cpath%20id='Vector'%20d='M14.6667%208C14.6667%2011.6819%2011.6819%2014.6667%208%2014.6667C4.3181%2014.6667%201.33333%2011.6819%201.33333%208C1.33333%204.3181%204.3181%201.33333%208%201.33333C11.6819%201.33333%2014.6667%204.3181%2014.6667%208Z'%20stroke-width='1.16667'%20stroke-linecap='round'%20stroke-linejoin='round'%20stroke='%234A6E0B'/%3e%3cpath%20id='Vector_2'%20d='M6%208L7.33333%209.33333L10%206.66667'%20stroke-width='1.16667'%20stroke-linecap='round'%20stroke-linejoin='round'%20stroke='%234A6E0B'/%3e%3c/g%3e%3c/svg%3e",
+              "natural": [
+                16,
+                16
+              ],
+              "rendered": [
+                16,
+                16
+              ]
+            },
+            {
+              "src": "image/svg+xml,%3csvg%20preserveAspectRatio='none'%20overflow='visible'%20style='display:%20block;'%20width='16'%20height='16'%20viewBox='0%200%2016%2016'%20fill='none'%20xmlns='http://www.w3.org/2000/svg'%3e%3cg%20id='Icon'%3e%3cpath%20id='Vector'%20d='M2%208C2%206.4087%202.63214%204.88258%203.75736%203.75736C4.88258%202.63214%206.4087%202%208%202C9.67737%202.00631%2011.2874%202.66082%2012.4933%203.82667L14%205.33333'%20stroke-width='1.16667'%20stroke-linecap='round'%20stroke-linejoin='round'%20stroke='%2317171A'/%3e%3cpath%20id='Vector_2'%20d='M14%202V5.33333H10.6667'%20stroke-width='1.16667'%20stroke-linecap='round'%20stroke-linejoin='round'%20stroke='%2317171A'/%3e%3cpath%20id='Vector_3'%20d='M14%208C14%209.5913%2013.3679%2011.1174%2012.2426%2012.2426C11.1174%2013.3679%209.5913%2014%208%2014C6.32263%2013.9937%204.71265%2013.3392%203.50667%2012.1733L2%2010.6667'%20stroke-width='1.16667'%20stroke-linecap='round'%20stroke-linejoin='round'%20stroke='%2317171A'/%3e%3cpath%20id='Vector_4'%20d='M5.33333%2010.6667H2V14'%20stroke-width='1.16667'%20stroke-linecap='round'%20stroke-linejoin='round'%20stroke='%2317171A'/%3e%3c/g%3e%3c/svg%3e",
+              "natural": [
+                16,
+                16
+              ],
+              "rendered": [
+                16,
+                16
+              ]
+            }
+          ]
+        },
+        "mono": [
+          {
+            "familyName": "Geist Mono",
+            "postScriptName": "GeistMono",
+            "isCustomFont": true,
+            "glyphCount": 10
+          }
+        ]
+      },
+      "ipc": [
+        {
+          "command": "plugin:event|listen",
+          "args": {
+            "event": "engine:health",
+            "target": {
+              "kind": "Any"
+            },
+            "handler": 1
+          }
+        },
+        {
+          "command": "plugin:event|listen",
+          "args": {
+            "event": "tauri://theme-changed",
+            "target": {
+              "kind": "Window",
+              "label": "settings"
+            },
+            "handler": 3
+          }
+        },
+        {
+          "command": "get_settings",
+          "args": {}
+        },
+        {
+          "command": "get_engine_status",
+          "args": {}
+        },
+        {
+          "command": "get_storage_stats",
+          "args": {}
+        },
+        {
+          "command": "plugin:window|theme",
+          "args": {
+            "label": "settings"
+          }
+        },
+        {
+          "command": "get_island_snapshot",
+          "args": {}
+        },
+        {
+          "command": "plugin:event|listen",
+          "args": {
+            "event": "nabbit://island-config",
+            "target": {
+              "kind": "Any"
+            },
+            "handler": 5
+          }
+        },
+        {
+          "command": "get_island_snapshot",
+          "args": {}
+        },
+        {
+          "command": "plugin:event|listen",
+          "args": {
+            "event": "engine:health",
+            "target": {
+              "kind": "Any"
+            },
+            "handler": 7
+          }
+        },
+        {
+          "command": "get_engine_status",
+          "args": {}
+        }
+      ],
+      "unsupported": [],
+      "runtimeAndNetworkProblems": []
+    },
+    {
+      "file": "v31-health-checked-engine-island-error-dark@1.5x.png",
+      "scenario": "engine-island-error",
+      "entry": "island.html",
+      "figmaNode": "7:103",
+      "theme": "dark",
+      "resolvedTheme": "dark",
+      "scale": 1.5,
+      "viewport": {
+        "width": 720,
+        "height": 460
+      },
+      "clip": {
+        "x": 0,
+        "y": 0,
+        "width": 720,
+        "height": 460
+      },
+      "width": 1080,
+      "height": 690,
+      "bytes": 15462,
+      "sha256": "c4317d5a90cd267c690300e391b4385cbaee8025d80643eaf8e180bbf655670e",
+      "repeatMatches": true,
+      "font": null,
+      "fixtureSha256": "50482c0207ac4e6e16a66122ad29b248456dcb08a10d097b2eee1c3b68b45162",
+      "assertions": {
+        "engineErrorCopy": true,
+        "fixVisible": true
+      },
+      "ipc": [
+        {
+          "command": "plugin:event|listen",
+          "args": {
+            "event": "nabbit://island-visibility",
+            "target": {
+              "kind": "Any"
+            },
+            "handler": 1
+          }
+        },
+        {
+          "command": "plugin:event|listen",
+          "args": {
+            "event": "nabbit://island",
+            "target": {
+              "kind": "Any"
+            },
+            "handler": 3
+          }
+        },
+        {
+          "command": "plugin:event|listen",
+          "args": {
+            "event": "nabbit://island-surface",
+            "target": {
+              "kind": "Any"
+            },
+            "handler": 5
+          }
+        },
+        {
+          "command": "plugin:event|listen",
+          "args": {
+            "event": "tauri://drag-enter",
+            "target": {
+              "kind": "WebviewWindow",
+              "label": "island"
+            },
+            "handler": 7
+          }
+        },
+        {
+          "command": "get_island_snapshot",
+          "args": {}
+        },
+        {
+          "command": "get_activity_snapshot",
+          "args": {}
+        },
+        {
+          "command": "get_island_surface",
+          "args": {}
+        },
+        {
+          "command": "plugin:event|listen",
+          "args": {
+            "event": "tauri://drag-over",
+            "target": {
+              "kind": "WebviewWindow",
+              "label": "island"
+            },
+            "handler": 9
+          }
+        },
+        {
+          "command": "plugin:event|listen",
+          "args": {
+            "event": "tauri://drag-drop",
+            "target": {
+              "kind": "WebviewWindow",
+              "label": "island"
+            },
+            "handler": 11
+          }
+        },
+        {
+          "command": "plugin:event|listen",
+          "args": {
+            "event": "tauri://drag-leave",
+            "target": {
+              "kind": "WebviewWindow",
+              "label": "island"
+            },
+            "handler": 13
+          }
+        },
+        {
+          "command": "island_set_hitrect",
+          "args": {
+            "rect": {
+              "x": 178,
+              "y": -2,
+              "w": 364,
+              "h": 48
+            }
+          }
+        },
+        {
+          "command": "island_surface_ack",
+          "args": {
+            "generation": 1
+          }
+        }
+      ],
+      "unsupported": [],
+      "runtimeAndNetworkProblems": []
+    }
+  ]
+}
