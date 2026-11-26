@@ -771,7 +771,7 @@ Commit after every task (§0.1). Lines marked **MILESTONE** are tasks of their o
 - [x] V3.4 Island Nab tab and tray Nab redesign (`10:519`, `13:2`), queue rows with progress/pause/cancel/open/reveal.
 - [x] **MILESTONE M6 — Downloads core.**
 - [x] V3.5 Options sheet `17:137`, Trim `17:270`, Playlist `18:160`.
-- [ ] V3.6 Error mapping (§7.7) with stderr fixtures; error rows and actions.
+- [x] V3.6 Error mapping (§7.7) with stderr fixtures; error rows and actions.
 - [ ] V3.7 Downloads acceptance §7.8; extend the PowerShell smoke; swap the landing downloads visual to a real screenshot.
 - [ ] **MILESTONE M7 — Downloads complete.**
 

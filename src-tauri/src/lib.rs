@@ -156,6 +156,8 @@ pub fn run() {
             commands::download::resume_download,
             commands::download::retry_download,
             commands::download::retry_download_with_browser,
+            commands::download::recover_download,
+            commands::download::copy_download_details,
             commands::download::reveal_download,
             commands::download::open_downloads_folder,
             commands::download::get_engine_status,
@@ -238,6 +240,7 @@ pub fn run() {
                 apply_runtime_settings(app.handle(), &state, &settings);
             }
             state.engine.start(app.handle().clone());
+            state.downloads.start_deferred();
             state
                 .capture
                 .start(app.handle().clone(), state.app_data_dir.clone());
@@ -299,6 +302,7 @@ pub fn run() {
                 if let Some(state) = app.try_state::<AppState>() {
                     state.shutdown.store(true, Ordering::Relaxed);
                     state.engine.stop();
+                    state.downloads.stop();
                     state.capture.stop();
                 }
                 if let Some(bus) = app.try_state::<Arc<island::activity_bus::Bus>>() {

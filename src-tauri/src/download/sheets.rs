@@ -22,6 +22,8 @@ pub struct Draft {
     pub options: super::options::DownloadOptions,
     #[serde(default)]
     pub remember: bool,
+    #[serde(default)]
+    pub retry_job_id: Option<String>,
 }
 #[derive(Debug, Clone, Serialize)]
 #[serde(rename_all = "camelCase")]
@@ -51,6 +53,20 @@ pub fn open_download_sheet(
 ) -> Result<()> {
     draft.url = crate::capture::web_url(&draft.url)?;
     draft.options = draft.options.normalized()?;
+    if let Some(id) = &draft.retry_job_id {
+        let job = state.db.get_download(id)?;
+        if job.url != draft.url || job.status != "failed" {
+            return Err(msg("This download is no longer available to change."));
+        }
+        super::errors::apply_recovery(
+            &job,
+            &super::errors::Recovery::Options {
+                options: draft.options.clone(),
+                browser: None,
+            },
+        )?;
+        draft.remember = false;
+    }
     let intent = Intent {
         id: uuid::Uuid::new_v4().to_string(),
         metadata: state
@@ -127,6 +143,7 @@ mod tests {
                 url: "https://example.invalid/new".into(),
                 options: Default::default(),
                 remember: false,
+                retry_job_id: None,
             },
             metadata: None,
         });

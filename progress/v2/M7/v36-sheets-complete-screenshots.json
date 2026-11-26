@@ -1,0 +1,3058 @@
+{
+  "milestone": "M7",
+  "prefix": "v36-sheets-complete",
+  "suite": "all",
+  "browser": "159.0.8154.6",
+  "playwright": "1.65.1",
+  "platform": "win32",
+  "node": "v24.22.2",
+  "captureTime": "2026-11-26T09:00:00.000Z",
+  "buildManifestSha256": "dd66f57fbba31a91fabb319b1e7e0d026fe7c070ffe4cafd60a14a910550d678",
+  "screenshotScale": "device",
+  "pngBudgetBytes": 307200,
+  "isolatedContexts": true,
+  "mockedIpc": true,
+  "osPreferencesChanged": false,
+  "captures": [
+    {
+      "file": "v36-sheets-complete-sheet-options-light@1x.png",
+      "scenario": "sheet-options",
+      "entry": "index.html",
+      "figmaNode": "17:137",
+      "theme": "light",
+      "resolvedTheme": "light",
+      "scale": 1,
+      "viewport": {
+        "width": 460,
+        "height": 680
+      },
+      "clip": {
+        "x": 0,
+        "y": 0,
+        "width": 460,
+        "height": 680
+      },
+      "width": 460,
+      "height": 680,
+      "bytes": 50568,
+      "sha256": "0c0f35aa136a92cdf122173e08c12815bf7a1e43fe3b122409f85def067ea6fb",
+      "repeatMatches": true,
+      "caret": "initial",
+      "font": [
+        {
+          "familyName": "Geist",
+          "postScriptName": "Geist",
+          "isCustomFont": true,
+          "glyphCount": 16
+        }
+      ],
+      "fixtureSha256": "6be6b4e1f5c90b31637121e0d4598d4894f45e83abe9f54baa2c0605964cbad3",
+      "assertions": {
+        "geometry": {
+          "x": 0,
+          "y": 0,
+          "width": 460,
+          "height": 680
+        },
+        "mono": [
+          {
+            "familyName": "Geist Mono",
+            "postScriptName": "GeistMono",
+            "isCustomFont": true,
+            "glyphCount": 32
+          }
+        ],
+        "typography": {
+          "weight": "600",
+          "size": "14px",
+          "lineHeight": "20px"
+        },
+        "assets": [
+          {
+            "file": "download-sheets/d2028.svg",
+            "naturalWidth": 18,
+            "naturalHeight": 18,
+            "width": 18,
+            "height": 18,
+            "src": "data:image/svg+xml,%3csvg%20preserveAspectRatio='none'%20overflow='visible'%20style='display:%20block;'%20width='18'%20height='18'%20viewBox='0%200%2018%2018'%20fill='none'%20xmlns='http://www.w3.org/2000/svg'%3e%3cg%20id='Icon'%3e%3cpath%20id='Vector'%20d='M13.5%204.5L4.5%2013.5'%20stroke-width='1.3125'%20stroke-linecap='round'%20stroke-linejoin='round'%20stroke='%2366666D'/%3e%3cpath%20id='Vector_2'%20d='M4.5%204.5L13.5%2013.5'%20stroke-width='1.3125'%20stroke-linecap='round'%20stroke-linejoin='round'%20stroke='%2366666D'/%3e%3c/g%3e%3c/svg%3e"
+          },
+          {
+            "file": "download-sheets/ef790.svg",
+            "naturalWidth": 14,
+            "naturalHeight": 14,
+            "width": 14,
+            "height": 14,
+            "src": "data:image/svg+xml,%3csvg%20preserveAspectRatio='none'%20overflow='visible'%20style='display:%20block;'%20width='14'%20height='14'%20viewBox='0%200%2014%2014'%20fill='none'%20xmlns='http://www.w3.org/2000/svg'%3e%3ccircle%20id='Ellipse'%20cx='7'%20cy='7'%20r='6.25'%20stroke-width='1.5'%20stroke='%23CFCEC9'/%3e%3c/svg%3e"
+          },
+          {
+            "file": "download-sheets/ef790.svg",
+            "naturalWidth": 14,
+            "naturalHeight": 14,
+            "width": 14,
+            "height": 14,
+            "src": "data:image/svg+xml,%3csvg%20preserveAspectRatio='none'%20overflow='visible'%20style='display:%20block;'%20width='14'%20height='14'%20viewBox='0%200%2014%2014'%20fill='none'%20xmlns='http://www.w3.org/2000/svg'%3e%3ccircle%20id='Ellipse'%20cx='7'%20cy='7'%20r='6.25'%20stroke-width='1.5'%20stroke='%23CFCEC9'/%3e%3c/svg%3e"
+          },
+          {
+            "file": "download-sheets/fd956.svg",
+            "naturalWidth": 14,
+            "naturalHeight": 14,
+            "width": 14,
+            "height": 14,
+            "src": "data:image/svg+xml,%3csvg%20preserveAspectRatio='none'%20overflow='visible'%20style='display:%20block;'%20width='14'%20height='14'%20viewBox='0%200%2014%2014'%20fill='none'%20xmlns='http://www.w3.org/2000/svg'%3e%3ccircle%20id='Ellipse'%20cx='7'%20cy='7'%20r='5'%20fill='white'%20stroke-width='4'%20stroke='%2317171A'/%3e%3c/svg%3e"
+          },
+          {
+            "file": "download-sheets/ef790.svg",
+            "naturalWidth": 14,
+            "naturalHeight": 14,
+            "width": 14,
+            "height": 14,
+            "src": "data:image/svg+xml,%3csvg%20preserveAspectRatio='none'%20overflow='visible'%20style='display:%20block;'%20width='14'%20height='14'%20viewBox='0%200%2014%2014'%20fill='none'%20xmlns='http://www.w3.org/2000/svg'%3e%3ccircle%20id='Ellipse'%20cx='7'%20cy='7'%20r='6.25'%20stroke-width='1.5'%20stroke='%23CFCEC9'/%3e%3c/svg%3e"
+          },
+          {
+            "file": "chevron-down-14.svg",
+            "naturalWidth": 14,
+            "naturalHeight": 14,
+            "width": 14,
+            "height": 14,
+            "src": "data:image/svg+xml,%3csvg%20preserveAspectRatio='none'%20overflow='visible'%20style='display:%20block;'%20width='14'%20height='14'%20viewBox='0%200%2014%2014'%20fill='none'%20xmlns='http://www.w3.org/2000/svg'%3e%3cg%20id='icon/chevron-down'%3e%3cpath%20id='Vector'%20d='M3.5%205.25L7%208.75L10.5%205.25'%20stroke-width='1.02083'%20stroke-linecap='round'%20stroke-linejoin='round'%20stroke='%239A9AA0'/%3e%3c/g%3e%3c/svg%3e"
+          },
+          {
+            "file": "chevron-down-14.svg",
+            "naturalWidth": 14,
+            "naturalHeight": 14,
+            "width": 14,
+            "height": 14,
+            "src": "data:image/svg+xml,%3csvg%20preserveAspectRatio='none'%20overflow='visible'%20style='display:%20block;'%20width='14'%20height='14'%20viewBox='0%200%2014%2014'%20fill='none'%20xmlns='http://www.w3.org/2000/svg'%3e%3cg%20id='icon/chevron-down'%3e%3cpath%20id='Vector'%20d='M3.5%205.25L7%208.75L10.5%205.25'%20stroke-width='1.02083'%20stroke-linecap='round'%20stroke-linejoin='round'%20stroke='%239A9AA0'/%3e%3c/g%3e%3c/svg%3e"
+          },
+          {
+            "file": "chevron-down-14.svg",
+            "naturalWidth": 14,
+            "naturalHeight": 14,
+            "width": 14,
+            "height": 14,
+            "src": "data:image/svg+xml,%3csvg%20preserveAspectRatio='none'%20overflow='visible'%20style='display:%20block;'%20width='14'%20height='14'%20viewBox='0%200%2014%2014'%20fill='none'%20xmlns='http://www.w3.org/2000/svg'%3e%3cg%20id='icon/chevron-down'%3e%3cpath%20id='Vector'%20d='M3.5%205.25L7%208.75L10.5%205.25'%20stroke-width='1.02083'%20stroke-linecap='round'%20stroke-linejoin='round'%20stroke='%239A9AA0'/%3e%3c/g%3e%3c/svg%3e"
+          },
+          {
+            "file": "toggle-on.svg",
+            "naturalWidth": 34,
+            "naturalHeight": 20,
+            "width": 34,
+            "height": 20,
+            "src": "data:image/svg+xml,%3csvg%20preserveAspectRatio='none'%20overflow='visible'%20style='display:%20block;'%20width='34'%20height='20'%20viewBox='0%200%2034%2020'%20fill='none'%20xmlns='http://www.w3.org/2000/svg'%3e%3cg%20id='Toggle'%3e%3crect%20width='34'%20height='20'%20rx='10'%20fill='%2317171A'/%3e%3ccircle%20id='Knob'%20cx='24'%20cy='10'%20r='8'%20fill='white'/%3e%3c/g%3e%3c/svg%3e"
+          },
+          {
+            "file": "download-sheets/aa883.svg",
+            "naturalWidth": 15,
+            "naturalHeight": 15,
+            "width": 15,
+            "height": 15,
+            "src": "data:image/svg+xml,%3csvg%20preserveAspectRatio='none'%20overflow='visible'%20style='display:%20block;'%20width='15'%20height='15'%20viewBox='0%200%2015%2015'%20fill='none'%20xmlns='http://www.w3.org/2000/svg'%3e%3cg%20id='icon/folder-open'%3e%3cpath%20id='Vector'%20d='M3.75%208.75L4.6875%206.9375C4.78942%206.73509%204.94445%206.56419%205.13601%206.44309C5.32756%206.32199%205.54844%206.25525%205.775%206.25H12.5M12.5%206.25C12.691%206.24967%2012.8795%206.29309%2013.051%206.37693C13.2226%206.46077%2013.3727%206.5828%2013.4897%206.73367C13.6068%206.88453%2013.6878%207.06021%2013.7264%207.24722C13.765%207.43423%2013.7602%207.62761%2013.7125%207.8125L12.75%2011.5625C12.6804%2011.8322%2012.5226%2012.071%2012.3018%2012.2408C12.081%2012.4107%2011.8098%2012.5019%2011.5312%2012.5H2.5C2.16848%2012.5%201.85054%2012.3683%201.61612%2012.1339C1.3817%2011.8995%201.25%2011.5815%201.25%2011.25V3.125C1.25%202.79348%201.3817%202.47554%201.61612%202.24112C1.85054%202.0067%202.16848%201.875%202.5%201.875H4.9375C5.14655%201.87295%205.35278%201.92337%205.53731%202.02164C5.72184%202.11991%205.87878%202.26289%205.99375%202.4375L6.5%203.1875C6.61382%203.36033%206.76877%203.5022%206.95094%203.60038C7.13311%203.69855%207.33681%203.74997%207.54375%203.75H11.25C11.5815%203.75%2011.8995%203.8817%2012.1339%204.11612C12.3683%204.35054%2012.5%204.66848%2012.5%205V6.25Z'%20stroke-width='1.09375'%20stroke-linecap='round'%20stroke-linejoin='round'%20stroke='%239A9AA0'/%3e%3c/g%3e%3c/svg%3e"
+          },
+          {
+            "file": "chevron-down-14.svg",
+            "naturalWidth": 14,
+            "naturalHeight": 14,
+            "width": 14,
+            "height": 14,
+            "src": "data:image/svg+xml,%3csvg%20preserveAspectRatio='none'%20overflow='visible'%20style='display:%20block;'%20width='14'%20height='14'%20viewBox='0%200%2014%2014'%20fill='none'%20xmlns='http://www.w3.org/2000/svg'%3e%3cg%20id='icon/chevron-down'%3e%3cpath%20id='Vector'%20d='M3.5%205.25L7%208.75L10.5%205.25'%20stroke-width='1.02083'%20stroke-linecap='round'%20stroke-linejoin='round'%20stroke='%239A9AA0'/%3e%3c/g%3e%3c/svg%3e"
+          },
+          {
+            "file": "chevron-down-14.svg",
+            "naturalWidth": 14,
+            "naturalHeight": 14,
+            "width": 14,
+            "height": 14,
+            "src": "data:image/svg+xml,%3csvg%20preserveAspectRatio='none'%20overflow='visible'%20style='display:%20block;'%20width='14'%20height='14'%20viewBox='0%200%2014%2014'%20fill='none'%20xmlns='http://www.w3.org/2000/svg'%3e%3cg%20id='icon/chevron-down'%3e%3cpath%20id='Vector'%20d='M3.5%205.25L7%208.75L10.5%205.25'%20stroke-width='1.02083'%20stroke-linecap='round'%20stroke-linejoin='round'%20stroke='%239A9AA0'/%3e%3c/g%3e%3c/svg%3e"
+          },
+          {
+            "file": "chevron-down-14.svg",
+            "naturalWidth": 14,
+            "naturalHeight": 14,
+            "width": 14,
+            "height": 14,
+            "src": "data:image/svg+xml,%3csvg%20preserveAspectRatio='none'%20overflow='visible'%20style='display:%20block;'%20width='14'%20height='14'%20viewBox='0%200%2014%2014'%20fill='none'%20xmlns='http://www.w3.org/2000/svg'%3e%3cg%20id='icon/chevron-down'%3e%3cpath%20id='Vector'%20d='M3.5%205.25L7%208.75L10.5%205.25'%20stroke-width='1.02083'%20stroke-linecap='round'%20stroke-linejoin='round'%20stroke='%239A9AA0'/%3e%3c/g%3e%3c/svg%3e"
+          },
+          {
+            "file": "toggle-on.svg",
+            "naturalWidth": 34,
+            "naturalHeight": 20,
+            "width": 34,
+            "height": 20,
+            "src": "data:image/svg+xml,%3csvg%20preserveAspectRatio='none'%20overflow='visible'%20style='display:%20block;'%20width='34'%20height='20'%20viewBox='0%200%2034%2020'%20fill='none'%20xmlns='http://www.w3.org/2000/svg'%3e%3cg%20id='Toggle'%3e%3crect%20width='34'%20height='20'%20rx='10'%20fill='%2317171A'/%3e%3ccircle%20id='Knob'%20cx='24'%20cy='10'%20r='8'%20fill='white'/%3e%3c/g%3e%3c/svg%3e"
+          },
+          {
+            "file": "download-sheets/3d2ea.svg",
+            "naturalWidth": 16,
+            "naturalHeight": 16,
+            "width": 16,
+            "height": 16,
+            "src": "data:image/svg+xml,%3csvg%20preserveAspectRatio='none'%20overflow='visible'%20style='display:%20block;'%20width='16'%20height='16'%20viewBox='0%200%2016%2016'%20fill='none'%20xmlns='http://www.w3.org/2000/svg'%3e%3cg%20id='icon/download'%3e%3cpath%20id='Vector'%20d='M14%2010V12.6667C14%2013.0203%2013.8595%2013.3594%2013.6095%2013.6095C13.3594%2013.8595%2013.0203%2014%2012.6667%2014H3.33333C2.97971%2014%202.64057%2013.8595%202.39052%2013.6095C2.14048%2013.3594%202%2013.0203%202%2012.6667V10'%20stroke-width='1.16667'%20stroke-linecap='round'%20stroke-linejoin='round'%20stroke='white'/%3e%3cpath%20id='Vector_2'%20d='M4.66667%206.66667L8%2010L11.3333%206.66667'%20stroke-width='1.16667'%20stroke-linecap='round'%20stroke-linejoin='round'%20stroke='white'/%3e%3cpath%20id='Vector_3'%20d='M8%2010V2'%20stroke-width='1.16667'%20stroke-linecap='round'%20stroke-linejoin='round'%20stroke='white'/%3e%3c/g%3e%3c/svg%3e"
+          }
+        ],
+        "accessibility": {
+          "violations": [],
+          "incomplete": []
+        },
+        "explicitStarts": 0,
+        "behavior": "Options are draft-only until explicit primary activation"
+      },
+      "ipc": [
+        {
+          "command": "plugin:event|listen",
+          "args": {
+            "event": "tauri://theme-changed",
+            "target": {
+              "kind": "Window",
+              "label": "download-sheet"
+            },
+            "handler": 1
+          }
+        },
+        {
+          "command": "plugin:event|listen",
+          "args": {
+            "event": "download:sheet",
+            "target": {
+              "kind": "Any"
+            },
+            "handler": 3
+          }
+        },
+        {
+          "command": "get_settings",
+          "args": {}
+        },
+        {
+          "command": "plugin:window|theme",
+          "args": {
+            "label": "download-sheet"
+          }
+        },
+        {
+          "command": "get_download_sheet",
+          "args": {}
+        },
+        {
+          "command": "download_sheet_ready",
+          "args": {}
+        }
+      ],
+      "unsupported": [],
+      "runtimeAndNetworkProblems": []
+    },
+    {
+      "file": "v36-sheets-complete-sheet-options-advanced-light@1x.png",
+      "scenario": "sheet-options-advanced",
+      "entry": "index.html",
+      "figmaNode": "17:137",
+      "theme": "light",
+      "resolvedTheme": "light",
+      "scale": 1,
+      "viewport": {
+        "width": 460,
+        "height": 680
+      },
+      "clip": {
+        "x": 0,
+        "y": 0,
+        "width": 460,
+        "height": 680
+      },
+      "width": 460,
+      "height": 680,
+      "bytes": 44736,
+      "sha256": "8ea57f05420ff57ec2e9e5c358ce6999eed785c19065bdbbb8e9822b5b4790b6",
+      "repeatMatches": true,
+      "caret": "initial",
+      "font": [
+        {
+          "familyName": "Geist",
+          "postScriptName": "Geist",
+          "isCustomFont": true,
+          "glyphCount": 16
+        }
+      ],
+      "fixtureSha256": "81b519cbd58151c59544a2b522dd4f0465db084ce13a20a31df116805bdfa01c",
+      "assertions": {
+        "geometry": {
+          "x": 0,
+          "y": 0,
+          "width": 460,
+          "height": 680
+        },
+        "mono": [
+          {
+            "familyName": "Geist Mono",
+            "postScriptName": "GeistMono",
+            "isCustomFont": true,
+            "glyphCount": 32
+          }
+        ],
+        "typography": {
+          "weight": "600",
+          "size": "14px",
+          "lineHeight": "20px"
+        },
+        "assets": [
+          {
+            "file": "download-sheets/d2028.svg",
+            "naturalWidth": 18,
+            "naturalHeight": 18,
+            "width": 18,
+            "height": 18,
+            "src": "data:image/svg+xml,%3csvg%20preserveAspectRatio='none'%20overflow='visible'%20style='display:%20block;'%20width='18'%20height='18'%20viewBox='0%200%2018%2018'%20fill='none'%20xmlns='http://www.w3.org/2000/svg'%3e%3cg%20id='Icon'%3e%3cpath%20id='Vector'%20d='M13.5%204.5L4.5%2013.5'%20stroke-width='1.3125'%20stroke-linecap='round'%20stroke-linejoin='round'%20stroke='%2366666D'/%3e%3cpath%20id='Vector_2'%20d='M4.5%204.5L13.5%2013.5'%20stroke-width='1.3125'%20stroke-linecap='round'%20stroke-linejoin='round'%20stroke='%2366666D'/%3e%3c/g%3e%3c/svg%3e"
+          },
+          {
+            "file": "download-sheets/ef790.svg",
+            "naturalWidth": 14,
+            "naturalHeight": 14,
+            "width": 14,
+            "height": 14,
+            "src": "data:image/svg+xml,%3csvg%20preserveAspectRatio='none'%20overflow='visible'%20style='display:%20block;'%20width='14'%20height='14'%20viewBox='0%200%2014%2014'%20fill='none'%20xmlns='http://www.w3.org/2000/svg'%3e%3ccircle%20id='Ellipse'%20cx='7'%20cy='7'%20r='6.25'%20stroke-width='1.5'%20stroke='%23CFCEC9'/%3e%3c/svg%3e"
+          },
+          {
+            "file": "download-sheets/ef790.svg",
+            "naturalWidth": 14,
+            "naturalHeight": 14,
+            "width": 14,
+            "height": 14,
+            "src": "data:image/svg+xml,%3csvg%20preserveAspectRatio='none'%20overflow='visible'%20style='display:%20block;'%20width='14'%20height='14'%20viewBox='0%200%2014%2014'%20fill='none'%20xmlns='http://www.w3.org/2000/svg'%3e%3ccircle%20id='Ellipse'%20cx='7'%20cy='7'%20r='6.25'%20stroke-width='1.5'%20stroke='%23CFCEC9'/%3e%3c/svg%3e"
+          },
+          {
+            "file": "download-sheets/fd956.svg",
+            "naturalWidth": 14,
+            "naturalHeight": 14,
+            "width": 14,
+            "height": 14,
+            "src": "data:image/svg+xml,%3csvg%20preserveAspectRatio='none'%20overflow='visible'%20style='display:%20block;'%20width='14'%20height='14'%20viewBox='0%200%2014%2014'%20fill='none'%20xmlns='http://www.w3.org/2000/svg'%3e%3ccircle%20id='Ellipse'%20cx='7'%20cy='7'%20r='5'%20fill='white'%20stroke-width='4'%20stroke='%2317171A'/%3e%3c/svg%3e"
+          },
+          {
+            "file": "download-sheets/ef790.svg",
+            "naturalWidth": 14,
+            "naturalHeight": 14,
+            "width": 14,
+            "height": 14,
+            "src": "data:image/svg+xml,%3csvg%20preserveAspectRatio='none'%20overflow='visible'%20style='display:%20block;'%20width='14'%20height='14'%20viewBox='0%200%2014%2014'%20fill='none'%20xmlns='http://www.w3.org/2000/svg'%3e%3ccircle%20id='Ellipse'%20cx='7'%20cy='7'%20r='6.25'%20stroke-width='1.5'%20stroke='%23CFCEC9'/%3e%3c/svg%3e"
+          },
+          {
+            "file": "chevron-down-14.svg",
+            "naturalWidth": 14,
+            "naturalHeight": 14,
+            "width": 14,
+            "height": 14,
+            "src": "data:image/svg+xml,%3csvg%20preserveAspectRatio='none'%20overflow='visible'%20style='display:%20block;'%20width='14'%20height='14'%20viewBox='0%200%2014%2014'%20fill='none'%20xmlns='http://www.w3.org/2000/svg'%3e%3cg%20id='icon/chevron-down'%3e%3cpath%20id='Vector'%20d='M3.5%205.25L7%208.75L10.5%205.25'%20stroke-width='1.02083'%20stroke-linecap='round'%20stroke-linejoin='round'%20stroke='%239A9AA0'/%3e%3c/g%3e%3c/svg%3e"
+          },
+          {
+            "file": "chevron-down-14.svg",
+            "naturalWidth": 14,
+            "naturalHeight": 14,
+            "width": 14,
+            "height": 14,
+            "src": "data:image/svg+xml,%3csvg%20preserveAspectRatio='none'%20overflow='visible'%20style='display:%20block;'%20width='14'%20height='14'%20viewBox='0%200%2014%2014'%20fill='none'%20xmlns='http://www.w3.org/2000/svg'%3e%3cg%20id='icon/chevron-down'%3e%3cpath%20id='Vector'%20d='M3.5%205.25L7%208.75L10.5%205.25'%20stroke-width='1.02083'%20stroke-linecap='round'%20stroke-linejoin='round'%20stroke='%239A9AA0'/%3e%3c/g%3e%3c/svg%3e"
+          },
+          {
+            "file": "chevron-down-14.svg",
+            "naturalWidth": 14,
+            "naturalHeight": 14,
+            "width": 14,
+            "height": 14,
+            "src": "data:image/svg+xml,%3csvg%20preserveAspectRatio='none'%20overflow='visible'%20style='display:%20block;'%20width='14'%20height='14'%20viewBox='0%200%2014%2014'%20fill='none'%20xmlns='http://www.w3.org/2000/svg'%3e%3cg%20id='icon/chevron-down'%3e%3cpath%20id='Vector'%20d='M3.5%205.25L7%208.75L10.5%205.25'%20stroke-width='1.02083'%20stroke-linecap='round'%20stroke-linejoin='round'%20stroke='%239A9AA0'/%3e%3c/g%3e%3c/svg%3e"
+          },
+          {
+            "file": "toggle-on.svg",
+            "naturalWidth": 34,
+            "naturalHeight": 20,
+            "width": 34,
+            "height": 20,
+            "src": "data:image/svg+xml,%3csvg%20preserveAspectRatio='none'%20overflow='visible'%20style='display:%20block;'%20width='34'%20height='20'%20viewBox='0%200%2034%2020'%20fill='none'%20xmlns='http://www.w3.org/2000/svg'%3e%3cg%20id='Toggle'%3e%3crect%20width='34'%20height='20'%20rx='10'%20fill='%2317171A'/%3e%3ccircle%20id='Knob'%20cx='24'%20cy='10'%20r='8'%20fill='white'/%3e%3c/g%3e%3c/svg%3e"
+          },
+          {
+            "file": "download-sheets/aa883.svg",
+            "naturalWidth": 15,
+            "naturalHeight": 15,
+            "width": 15,
+            "height": 15,
+            "src": "data:image/svg+xml,%3csvg%20preserveAspectRatio='none'%20overflow='visible'%20style='display:%20block;'%20width='15'%20height='15'%20viewBox='0%200%2015%2015'%20fill='none'%20xmlns='http://www.w3.org/2000/svg'%3e%3cg%20id='icon/folder-open'%3e%3cpath%20id='Vector'%20d='M3.75%208.75L4.6875%206.9375C4.78942%206.73509%204.94445%206.56419%205.13601%206.44309C5.32756%206.32199%205.54844%206.25525%205.775%206.25H12.5M12.5%206.25C12.691%206.24967%2012.8795%206.29309%2013.051%206.37693C13.2226%206.46077%2013.3727%206.5828%2013.4897%206.73367C13.6068%206.88453%2013.6878%207.06021%2013.7264%207.24722C13.765%207.43423%2013.7602%207.62761%2013.7125%207.8125L12.75%2011.5625C12.6804%2011.8322%2012.5226%2012.071%2012.3018%2012.2408C12.081%2012.4107%2011.8098%2012.5019%2011.5312%2012.5H2.5C2.16848%2012.5%201.85054%2012.3683%201.61612%2012.1339C1.3817%2011.8995%201.25%2011.5815%201.25%2011.25V3.125C1.25%202.79348%201.3817%202.47554%201.61612%202.24112C1.85054%202.0067%202.16848%201.875%202.5%201.875H4.9375C5.14655%201.87295%205.35278%201.92337%205.53731%202.02164C5.72184%202.11991%205.87878%202.26289%205.99375%202.4375L6.5%203.1875C6.61382%203.36033%206.76877%203.5022%206.95094%203.60038C7.13311%203.69855%207.33681%203.74997%207.54375%203.75H11.25C11.5815%203.75%2011.8995%203.8817%2012.1339%204.11612C12.3683%204.35054%2012.5%204.66848%2012.5%205V6.25Z'%20stroke-width='1.09375'%20stroke-linecap='round'%20stroke-linejoin='round'%20stroke='%239A9AA0'/%3e%3c/g%3e%3c/svg%3e"
+          },
+          {
+            "file": "chevron-down-14.svg",
+            "naturalWidth": 14,
+            "naturalHeight": 14,
+            "width": 14,
+            "height": 14,
+            "src": "data:image/svg+xml,%3csvg%20preserveAspectRatio='none'%20overflow='visible'%20style='display:%20block;'%20width='14'%20height='14'%20viewBox='0%200%2014%2014'%20fill='none'%20xmlns='http://www.w3.org/2000/svg'%3e%3cg%20id='icon/chevron-down'%3e%3cpath%20id='Vector'%20d='M3.5%205.25L7%208.75L10.5%205.25'%20stroke-width='1.02083'%20stroke-linecap='round'%20stroke-linejoin='round'%20stroke='%239A9AA0'/%3e%3c/g%3e%3c/svg%3e"
+          },
+          {
+            "file": "chevron-down-14.svg",
+            "naturalWidth": 14,
+            "naturalHeight": 14,
+            "width": 14,
+            "height": 14,
+            "src": "data:image/svg+xml,%3csvg%20preserveAspectRatio='none'%20overflow='visible'%20style='display:%20block;'%20width='14'%20height='14'%20viewBox='0%200%2014%2014'%20fill='none'%20xmlns='http://www.w3.org/2000/svg'%3e%3cg%20id='icon/chevron-down'%3e%3cpath%20id='Vector'%20d='M3.5%205.25L7%208.75L10.5%205.25'%20stroke-width='1.02083'%20stroke-linecap='round'%20stroke-linejoin='round'%20stroke='%239A9AA0'/%3e%3c/g%3e%3c/svg%3e"
+          },
+          {
+            "file": "chevron-down-14.svg",
+            "naturalWidth": 14,
+            "naturalHeight": 14,
+            "width": 14,
+            "height": 14,
+            "src": "data:image/svg+xml,%3csvg%20preserveAspectRatio='none'%20overflow='visible'%20style='display:%20block;'%20width='14'%20height='14'%20viewBox='0%200%2014%2014'%20fill='none'%20xmlns='http://www.w3.org/2000/svg'%3e%3cg%20id='icon/chevron-down'%3e%3cpath%20id='Vector'%20d='M3.5%205.25L7%208.75L10.5%205.25'%20stroke-width='1.02083'%20stroke-linecap='round'%20stroke-linejoin='round'%20stroke='%239A9AA0'/%3e%3c/g%3e%3c/svg%3e"
+          },
+          {
+            "file": "toggle-on.svg",
+            "naturalWidth": 34,
+            "naturalHeight": 20,
+            "width": 34,
+            "height": 20,
+            "src": "data:image/svg+xml,%3csvg%20preserveAspectRatio='none'%20overflow='visible'%20style='display:%20block;'%20width='34'%20height='20'%20viewBox='0%200%2034%2020'%20fill='none'%20xmlns='http://www.w3.org/2000/svg'%3e%3cg%20id='Toggle'%3e%3crect%20width='34'%20height='20'%20rx='10'%20fill='%2317171A'/%3e%3ccircle%20id='Knob'%20cx='24'%20cy='10'%20r='8'%20fill='white'/%3e%3c/g%3e%3c/svg%3e"
+          },
+          {
+            "file": "download-sheets/3d2ea.svg",
+            "naturalWidth": 16,
+            "naturalHeight": 16,
+            "width": 16,
+            "height": 16,
+            "src": "data:image/svg+xml,%3csvg%20preserveAspectRatio='none'%20overflow='visible'%20style='display:%20block;'%20width='16'%20height='16'%20viewBox='0%200%2016%2016'%20fill='none'%20xmlns='http://www.w3.org/2000/svg'%3e%3cg%20id='icon/download'%3e%3cpath%20id='Vector'%20d='M14%2010V12.6667C14%2013.0203%2013.8595%2013.3594%2013.6095%2013.6095C13.3594%2013.8595%2013.0203%2014%2012.6667%2014H3.33333C2.97971%2014%202.64057%2013.8595%202.39052%2013.6095C2.14048%2013.3594%202%2013.0203%202%2012.6667V10'%20stroke-width='1.16667'%20stroke-linecap='round'%20stroke-linejoin='round'%20stroke='white'/%3e%3cpath%20id='Vector_2'%20d='M4.66667%206.66667L8%2010L11.3333%206.66667'%20stroke-width='1.16667'%20stroke-linecap='round'%20stroke-linejoin='round'%20stroke='white'/%3e%3cpath%20id='Vector_3'%20d='M8%2010V2'%20stroke-width='1.16667'%20stroke-linecap='round'%20stroke-linejoin='round'%20stroke='white'/%3e%3c/g%3e%3c/svg%3e"
+          }
+        ],
+        "accessibility": {
+          "violations": [],
+          "incomplete": []
+        },
+        "explicitStarts": 0,
+        "behavior": "Options are draft-only until explicit primary activation"
+      },
+      "ipc": [
+        {
+          "command": "plugin:event|listen",
+          "args": {
+            "event": "tauri://theme-changed",
+            "target": {
+              "kind": "Window",
+              "label": "download-sheet"
+            },
+            "handler": 1
+          }
+        },
+        {
+          "command": "plugin:event|listen",
+          "args": {
+            "event": "download:sheet",
+            "target": {
+              "kind": "Any"
+            },
+            "handler": 3
+          }
+        },
+        {
+          "command": "get_settings",
+          "args": {}
+        },
+        {
+          "command": "plugin:window|theme",
+          "args": {
+            "label": "download-sheet"
+          }
+        },
+        {
+          "command": "get_download_sheet",
+          "args": {}
+        },
+        {
+          "command": "download_sheet_ready",
+          "args": {}
+        }
+      ],
+      "unsupported": [],
+      "runtimeAndNetworkProblems": []
+    },
+    {
+      "file": "v36-sheets-complete-sheet-trim-light@1x.png",
+      "scenario": "sheet-trim",
+      "entry": "index.html",
+      "figmaNode": "17:270",
+      "theme": "light",
+      "resolvedTheme": "light",
+      "scale": 1,
+      "viewport": {
+        "width": 460,
+        "height": 680
+      },
+      "clip": {
+        "x": 0,
+        "y": 0,
+        "width": 460,
+        "height": 680
+      },
+      "width": 460,
+      "height": 680,
+      "bytes": 78290,
+      "sha256": "857f190320595052dbd400f4193910d5d57be8df413117b3c3bbb114bd5b4b06",
+      "repeatMatches": true,
+      "caret": "initial",
+      "font": [
+        {
+          "familyName": "Geist",
+          "postScriptName": "Geist",
+          "isCustomFont": true,
+          "glyphCount": 17
+        }
+      ],
+      "fixtureSha256": "927b0c5e4b2be60114141c03e2fbd98c6376d473d8c98c50916e7eb5d5cd3dba",
+      "assertions": {
+        "geometry": {
+          "x": 0,
+          "y": 0,
+          "width": 460,
+          "height": 680
+        },
+        "mono": [
+          {
+            "familyName": "Geist Mono",
+            "postScriptName": "GeistMono",
+            "isCustomFont": true,
+            "glyphCount": 7
+          }
+        ],
+        "typography": {
+          "weight": "600",
+          "size": "14px",
+          "lineHeight": "20px"
+        },
+        "assets": [
+          {
+            "file": "download-sheets/d2028.svg",
+            "naturalWidth": 18,
+            "naturalHeight": 18,
+            "width": 18,
+            "height": 18,
+            "src": "data:image/svg+xml,%3csvg%20preserveAspectRatio='none'%20overflow='visible'%20style='display:%20block;'%20width='18'%20height='18'%20viewBox='0%200%2018%2018'%20fill='none'%20xmlns='http://www.w3.org/2000/svg'%3e%3cg%20id='Icon'%3e%3cpath%20id='Vector'%20d='M13.5%204.5L4.5%2013.5'%20stroke-width='1.3125'%20stroke-linecap='round'%20stroke-linejoin='round'%20stroke='%2366666D'/%3e%3cpath%20id='Vector_2'%20d='M4.5%204.5L13.5%2013.5'%20stroke-width='1.3125'%20stroke-linecap='round'%20stroke-linejoin='round'%20stroke='%2366666D'/%3e%3c/g%3e%3c/svg%3e"
+          },
+          {
+            "file": "download-sheets/a9396.svg",
+            "naturalWidth": 18,
+            "naturalHeight": 18,
+            "width": 18,
+            "height": 18,
+            "src": "data:image/svg+xml,%3csvg%20preserveAspectRatio='none'%20overflow='visible'%20style='display:%20block;'%20width='18'%20height='18'%20viewBox='0%200%2018%2018'%20fill='none'%20xmlns='http://www.w3.org/2000/svg'%3e%3cg%20id='icon/play'%3e%3cpath%20id='Vector'%20d='M4.5%202.25L15%209L4.5%2015.75V2.25Z'%20stroke-width='1.3125'%20stroke-linecap='round'%20stroke-linejoin='round'%20stroke='%23F5F5F3'/%3e%3c/g%3e%3c/svg%3e"
+          },
+          {
+            "file": "toggle-off.svg",
+            "naturalWidth": 34,
+            "naturalHeight": 20,
+            "width": 34,
+            "height": 20,
+            "src": "data:image/svg+xml,%3csvg%20preserveAspectRatio='none'%20overflow='visible'%20style='display:%20block;'%20width='34'%20height='20'%20viewBox='0%200%2034%2020'%20fill='none'%20xmlns='http://www.w3.org/2000/svg'%3e%3cg%20id='Toggle'%3e%3crect%20width='34'%20height='20'%20rx='10'%20fill='%23CFCEC9'/%3e%3ccircle%20id='Knob'%20cx='10'%20cy='10'%20r='8'%20fill='white'/%3e%3c/g%3e%3c/svg%3e"
+          },
+          {
+            "file": "download-sheets/2ed91.svg",
+            "naturalWidth": 16,
+            "naturalHeight": 16,
+            "width": 16,
+            "height": 16,
+            "src": "data:image/svg+xml,%3csvg%20preserveAspectRatio='none'%20overflow='visible'%20style='display:%20block;'%20width='16'%20height='16'%20viewBox='0%200%2016%2016'%20fill='none'%20xmlns='http://www.w3.org/2000/svg'%3e%3cg%20id='Icon'%3e%3cpath%20id='Vector'%20d='M6%204C6%205.10457%205.10457%206%204%206C2.89543%206%202%205.10457%202%204C2%202.89543%202.89543%202%204%202C5.10457%202%206%202.89543%206%204Z'%20stroke-width='1.16667'%20stroke-linecap='round'%20stroke-linejoin='round'%20stroke='white'/%3e%3cpath%20id='Vector_2'%20d='M5.41333%205.41333L8%208'%20stroke-width='1.16667'%20stroke-linecap='round'%20stroke-linejoin='round'%20stroke='white'/%3e%3cpath%20id='Vector_3'%20d='M13.3333%202.66667L5.41333%2010.5867'%20stroke-width='1.16667'%20stroke-linecap='round'%20stroke-linejoin='round'%20stroke='white'/%3e%3cpath%20id='Vector_4'%20d='M6%2012C6%2013.1046%205.10457%2014%204%2014C2.89543%2014%202%2013.1046%202%2012C2%2010.8954%202.89543%2010%204%2010C5.10457%2010%206%2010.8954%206%2012Z'%20stroke-width='1.16667'%20stroke-linecap='round'%20stroke-linejoin='round'%20stroke='white'/%3e%3cpath%20id='Vector_5'%20d='M9.86667%209.86667L13.3333%2013.3333'%20stroke-width='1.16667'%20stroke-linecap='round'%20stroke-linejoin='round'%20stroke='white'/%3e%3c/g%3e%3c/svg%3e"
+          }
+        ],
+        "accessibility": {
+          "violations": [],
+          "incomplete": []
+        },
+        "explicitStarts": 0,
+        "behavior": "Real browser range keyboard snapping and modal focus wrap"
+      },
+      "ipc": [
+        {
+          "command": "plugin:event|listen",
+          "args": {
+            "event": "tauri://theme-changed",
+            "target": {
+              "kind": "Window",
+              "label": "download-sheet"
+            },
+            "handler": 1
+          }
+        },
+        {
+          "command": "plugin:event|listen",
+          "args": {
+            "event": "download:sheet",
+            "target": {
+              "kind": "Any"
+            },
+            "handler": 3
+          }
+        },
+        {
+          "command": "get_settings",
+          "args": {}
+        },
+        {
+          "command": "plugin:window|theme",
+          "args": {
+            "label": "download-sheet"
+          }
+        },
+        {
+          "command": "get_download_sheet",
+          "args": {}
+        },
+        {
+          "command": "download_sheet_ready",
+          "args": {}
+        }
+      ],
+      "unsupported": [],
+      "runtimeAndNetworkProblems": []
+    },
+    {
+      "file": "v36-sheets-complete-sheet-playlist-light@1x.png",
+      "scenario": "sheet-playlist",
+      "entry": "index.html",
+      "figmaNode": "18:160",
+      "theme": "light",
+      "resolvedTheme": "light",
+      "scale": 1,
+      "viewport": {
+        "width": 460,
+        "height": 680
+      },
+      "clip": {
+        "x": 0,
+        "y": 0,
+        "width": 460,
+        "height": 680
+      },
+      "width": 460,
+      "height": 680,
+      "bytes": 51109,
+      "sha256": "1eb735f190e7e827b587ad008b28bcd361236581a1b7b9e64a581084b3159a56",
+      "repeatMatches": true,
+      "caret": "initial",
+      "font": [
+        {
+          "familyName": "Geist",
+          "postScriptName": "Geist",
+          "isCustomFont": true,
+          "glyphCount": 28
+        }
+      ],
+      "fixtureSha256": "d5344a79314365b3f8bd911844e50f564cff1fa5e1d9995adab46225d27c7bba",
+      "assertions": {
+        "geometry": {
+          "x": 0,
+          "y": 0,
+          "width": 460,
+          "height": 680
+        },
+        "mono": [
+          {
+            "familyName": "Geist Mono",
+            "postScriptName": "GeistMono",
+            "isCustomFont": true,
+            "glyphCount": 2
+          }
+        ],
+        "typography": {
+          "weight": "600",
+          "size": "14px",
+          "lineHeight": "20px"
+        },
+        "assets": [
+          {
+            "file": "download-sheets/ad273.svg",
+            "naturalWidth": 18,
+            "naturalHeight": 18,
+            "width": 18,
+            "height": 18,
+            "src": "data:image/svg+xml,%3csvg%20preserveAspectRatio='none'%20overflow='visible'%20style='display:%20block;'%20width='18'%20height='18'%20viewBox='0%200%2018%2018'%20fill='none'%20xmlns='http://www.w3.org/2000/svg'%3e%3cg%20id='icon/layers-2'%3e%3cpath%20id='Vector'%20d='M12.015%209L16.125%2011.3475C16.2404%2011.4129%2016.3364%2011.5078%2016.4032%2011.6224C16.47%2011.737%2016.5052%2011.8673%2016.5052%2012C16.5052%2012.1327%2016.47%2012.263%2016.4032%2012.3776C16.3364%2012.4922%2016.2404%2012.5871%2016.125%2012.6525L9.75%2016.305C9.52197%2016.4367%209.26331%2016.506%209%2016.506C8.7367%2016.506%208.47803%2016.4367%208.25%2016.305L1.875%2012.6525C1.75958%2012.5871%201.66357%2012.4922%201.59678%2012.3776C1.52998%2012.263%201.49479%2012.1327%201.49479%2012C1.49479%2011.8673%201.52998%2011.737%201.59678%2011.6224C1.66357%2011.5078%201.75958%2011.4129%201.875%2011.3475L5.985%209'%20stroke-width='1.3125'%20stroke-linecap='round'%20stroke-linejoin='round'%20stroke='%2317171A'/%3e%3cpath%20id='Vector_2'%20d='M9.75%2010.305C9.52197%2010.4367%209.26331%2010.506%209%2010.506C8.7367%2010.506%208.47803%2010.4367%208.25%2010.305L1.875%206.6525C1.75958%206.58709%201.66357%206.49223%201.59678%206.3776C1.52998%206.26297%201.49479%206.13267%201.49479%206C1.49479%205.86733%201.52998%205.73703%201.59678%205.6224C1.66357%205.50777%201.75958%205.41291%201.875%205.3475L8.25%201.695C8.47803%201.56335%208.7367%201.49404%209%201.49404C9.26331%201.49404%209.52197%201.56335%209.75%201.695L16.125%205.3475C16.2404%205.41291%2016.3364%205.50777%2016.4032%205.6224C16.47%205.73703%2016.5052%205.86733%2016.5052%206C16.5052%206.13267%2016.47%206.26297%2016.4032%206.3776C16.3364%206.49223%2016.2404%206.58709%2016.125%206.6525L9.75%2010.305Z'%20stroke-width='1.3125'%20stroke-linecap='round'%20stroke-linejoin='round'%20stroke='%2317171A'/%3e%3c/g%3e%3c/svg%3e"
+          },
+          {
+            "file": "download-sheets/d2028.svg",
+            "naturalWidth": 18,
+            "naturalHeight": 18,
+            "width": 18,
+            "height": 18,
+            "src": "data:image/svg+xml,%3csvg%20preserveAspectRatio='none'%20overflow='visible'%20style='display:%20block;'%20width='18'%20height='18'%20viewBox='0%200%2018%2018'%20fill='none'%20xmlns='http://www.w3.org/2000/svg'%3e%3cg%20id='Icon'%3e%3cpath%20id='Vector'%20d='M13.5%204.5L4.5%2013.5'%20stroke-width='1.3125'%20stroke-linecap='round'%20stroke-linejoin='round'%20stroke='%2366666D'/%3e%3cpath%20id='Vector_2'%20d='M4.5%204.5L13.5%2013.5'%20stroke-width='1.3125'%20stroke-linecap='round'%20stroke-linejoin='round'%20stroke='%2366666D'/%3e%3c/g%3e%3c/svg%3e"
+          },
+          {
+            "file": "download-sheets/338a5.svg",
+            "naturalWidth": 12,
+            "naturalHeight": 12,
+            "width": 12,
+            "height": 12,
+            "src": "data:image/svg+xml,%3csvg%20preserveAspectRatio='none'%20overflow='visible'%20style='display:%20block;'%20width='12'%20height='12'%20viewBox='0%200%2012%2012'%20fill='none'%20xmlns='http://www.w3.org/2000/svg'%3e%3cg%20id='icon/check'%3e%3cpath%20id='Vector'%20d='M10%203L4.5%208.5L2%206'%20stroke-width='0.875'%20stroke-linecap='round'%20stroke-linejoin='round'%20stroke='white'/%3e%3c/g%3e%3c/svg%3e"
+          },
+          {
+            "file": "download-sheets/338a5.svg",
+            "naturalWidth": 12,
+            "naturalHeight": 12,
+            "width": 12,
+            "height": 12,
+            "src": "data:image/svg+xml,%3csvg%20preserveAspectRatio='none'%20overflow='visible'%20style='display:%20block;'%20width='12'%20height='12'%20viewBox='0%200%2012%2012'%20fill='none'%20xmlns='http://www.w3.org/2000/svg'%3e%3cg%20id='icon/check'%3e%3cpath%20id='Vector'%20d='M10%203L4.5%208.5L2%206'%20stroke-width='0.875'%20stroke-linecap='round'%20stroke-linejoin='round'%20stroke='white'/%3e%3c/g%3e%3c/svg%3e"
+          },
+          {
+            "file": "download-sheets/338a5.svg",
+            "naturalWidth": 12,
+            "naturalHeight": 12,
+            "width": 12,
+            "height": 12,
+            "src": "data:image/svg+xml,%3csvg%20preserveAspectRatio='none'%20overflow='visible'%20style='display:%20block;'%20width='12'%20height='12'%20viewBox='0%200%2012%2012'%20fill='none'%20xmlns='http://www.w3.org/2000/svg'%3e%3cg%20id='icon/check'%3e%3cpath%20id='Vector'%20d='M10%203L4.5%208.5L2%206'%20stroke-width='0.875'%20stroke-linecap='round'%20stroke-linejoin='round'%20stroke='white'/%3e%3c/g%3e%3c/svg%3e"
+          },
+          {
+            "file": "download-sheets/338a5.svg",
+            "naturalWidth": 12,
+            "naturalHeight": 12,
+            "width": 12,
+            "height": 12,
+            "src": "data:image/svg+xml,%3csvg%20preserveAspectRatio='none'%20overflow='visible'%20style='display:%20block;'%20width='12'%20height='12'%20viewBox='0%200%2012%2012'%20fill='none'%20xmlns='http://www.w3.org/2000/svg'%3e%3cg%20id='icon/check'%3e%3cpath%20id='Vector'%20d='M10%203L4.5%208.5L2%206'%20stroke-width='0.875'%20stroke-linecap='round'%20stroke-linejoin='round'%20stroke='white'/%3e%3c/g%3e%3c/svg%3e"
+          },
+          {
+            "file": "download-sheets/338a5.svg",
+            "naturalWidth": 12,
+            "naturalHeight": 12,
+            "width": 12,
+            "height": 12,
+            "src": "data:image/svg+xml,%3csvg%20preserveAspectRatio='none'%20overflow='visible'%20style='display:%20block;'%20width='12'%20height='12'%20viewBox='0%200%2012%2012'%20fill='none'%20xmlns='http://www.w3.org/2000/svg'%3e%3cg%20id='icon/check'%3e%3cpath%20id='Vector'%20d='M10%203L4.5%208.5L2%206'%20stroke-width='0.875'%20stroke-linecap='round'%20stroke-linejoin='round'%20stroke='white'/%3e%3c/g%3e%3c/svg%3e"
+          },
+          {
+            "file": "download-sheets/3d2ea.svg",
+            "naturalWidth": 16,
+            "naturalHeight": 16,
+            "width": 16,
+            "height": 16,
+            "src": "data:image/svg+xml,%3csvg%20preserveAspectRatio='none'%20overflow='visible'%20style='display:%20block;'%20width='16'%20height='16'%20viewBox='0%200%2016%2016'%20fill='none'%20xmlns='http://www.w3.org/2000/svg'%3e%3cg%20id='icon/download'%3e%3cpath%20id='Vector'%20d='M14%2010V12.6667C14%2013.0203%2013.8595%2013.3594%2013.6095%2013.6095C13.3594%2013.8595%2013.0203%2014%2012.6667%2014H3.33333C2.97971%2014%202.64057%2013.8595%202.39052%2013.6095C2.14048%2013.3594%202%2013.0203%202%2012.6667V10'%20stroke-width='1.16667'%20stroke-linecap='round'%20stroke-linejoin='round'%20stroke='white'/%3e%3cpath%20id='Vector_2'%20d='M4.66667%206.66667L8%2010L11.3333%206.66667'%20stroke-width='1.16667'%20stroke-linecap='round'%20stroke-linejoin='round'%20stroke='white'/%3e%3cpath%20id='Vector_3'%20d='M8%2010V2'%20stroke-width='1.16667'%20stroke-linecap='round'%20stroke-linejoin='round'%20stroke='white'/%3e%3c/g%3e%3c/svg%3e"
+          }
+        ],
+        "accessibility": {
+          "violations": [],
+          "incomplete": []
+        },
+        "explicitStarts": 0,
+        "behavior": "Sparse/range selection updates; no enqueue"
+      },
+      "ipc": [
+        {
+          "command": "plugin:event|listen",
+          "args": {
+            "event": "tauri://theme-changed",
+            "target": {
+              "kind": "Window",
+              "label": "download-sheet"
+            },
+            "handler": 1
+          }
+        },
+        {
+          "command": "plugin:event|listen",
+          "args": {
+            "event": "download:sheet",
+            "target": {
+              "kind": "Any"
+            },
+            "handler": 3
+          }
+        },
+        {
+          "command": "get_settings",
+          "args": {}
+        },
+        {
+          "command": "plugin:window|theme",
+          "args": {
+            "label": "download-sheet"
+          }
+        },
+        {
+          "command": "get_download_sheet",
+          "args": {}
+        },
+        {
+          "command": "download_sheet_ready",
+          "args": {}
+        }
+      ],
+      "unsupported": [],
+      "runtimeAndNetworkProblems": []
+    },
+    {
+      "file": "v36-sheets-complete-sheet-options-light@1.5x.png",
+      "scenario": "sheet-options",
+      "entry": "index.html",
+      "figmaNode": "17:137",
+      "theme": "light",
+      "resolvedTheme": "light",
+      "scale": 1.5,
+      "viewport": {
+        "width": 460,
+        "height": 680
+      },
+      "clip": {
+        "x": 0,
+        "y": 0,
+        "width": 460,
+        "height": 680
+      },
+      "width": 690,
+      "height": 1020,
+      "bytes": 92862,
+      "sha256": "0d02b97f83eef1cf1b784df55ce620fdf5e90e81b8f74e95eb6daa62f5dd8e65",
+      "repeatMatches": true,
+      "caret": "initial",
+      "font": [
+        {
+          "familyName": "Geist",
+          "postScriptName": "Geist",
+          "isCustomFont": true,
+          "glyphCount": 16
+        }
+      ],
+      "fixtureSha256": "6be6b4e1f5c90b31637121e0d4598d4894f45e83abe9f54baa2c0605964cbad3",
+      "assertions": {
+        "geometry": {
+          "x": 0,
+          "y": 0,
+          "width": 460,
+          "height": 680
+        },
+        "mono": [
+          {
+            "familyName": "Geist Mono",
+            "postScriptName": "GeistMono",
+            "isCustomFont": true,
+            "glyphCount": 32
+          }
+        ],
+        "typography": {
+          "weight": "600",
+          "size": "14px",
+          "lineHeight": "20px"
+        },
+        "assets": [
+          {
+            "file": "download-sheets/d2028.svg",
+            "naturalWidth": 18,
+            "naturalHeight": 18,
+            "width": 18,
+            "height": 18,
+            "src": "data:image/svg+xml,%3csvg%20preserveAspectRatio='none'%20overflow='visible'%20style='display:%20block;'%20width='18'%20height='18'%20viewBox='0%200%2018%2018'%20fill='none'%20xmlns='http://www.w3.org/2000/svg'%3e%3cg%20id='Icon'%3e%3cpath%20id='Vector'%20d='M13.5%204.5L4.5%2013.5'%20stroke-width='1.3125'%20stroke-linecap='round'%20stroke-linejoin='round'%20stroke='%2366666D'/%3e%3cpath%20id='Vector_2'%20d='M4.5%204.5L13.5%2013.5'%20stroke-width='1.3125'%20stroke-linecap='round'%20stroke-linejoin='round'%20stroke='%2366666D'/%3e%3c/g%3e%3c/svg%3e"
+          },
+          {
+            "file": "download-sheets/ef790.svg",
+            "naturalWidth": 14,
+            "naturalHeight": 14,
+            "width": 14,
+            "height": 14,
+            "src": "data:image/svg+xml,%3csvg%20preserveAspectRatio='none'%20overflow='visible'%20style='display:%20block;'%20width='14'%20height='14'%20viewBox='0%200%2014%2014'%20fill='none'%20xmlns='http://www.w3.org/2000/svg'%3e%3ccircle%20id='Ellipse'%20cx='7'%20cy='7'%20r='6.25'%20stroke-width='1.5'%20stroke='%23CFCEC9'/%3e%3c/svg%3e"
+          },
+          {
+            "file": "download-sheets/ef790.svg",
+            "naturalWidth": 14,
+            "naturalHeight": 14,
+            "width": 14,
+            "height": 14,
+            "src": "data:image/svg+xml,%3csvg%20preserveAspectRatio='none'%20overflow='visible'%20style='display:%20block;'%20width='14'%20height='14'%20viewBox='0%200%2014%2014'%20fill='none'%20xmlns='http://www.w3.org/2000/svg'%3e%3ccircle%20id='Ellipse'%20cx='7'%20cy='7'%20r='6.25'%20stroke-width='1.5'%20stroke='%23CFCEC9'/%3e%3c/svg%3e"
+          },
+          {
+            "file": "download-sheets/fd956.svg",
+            "naturalWidth": 14,
+            "naturalHeight": 14,
+            "width": 14,
+            "height": 14,
+            "src": "data:image/svg+xml,%3csvg%20preserveAspectRatio='none'%20overflow='visible'%20style='display:%20block;'%20width='14'%20height='14'%20viewBox='0%200%2014%2014'%20fill='none'%20xmlns='http://www.w3.org/2000/svg'%3e%3ccircle%20id='Ellipse'%20cx='7'%20cy='7'%20r='5'%20fill='white'%20stroke-width='4'%20stroke='%2317171A'/%3e%3c/svg%3e"
+          },
+          {
+            "file": "download-sheets/ef790.svg",
+            "naturalWidth": 14,
+            "naturalHeight": 14,
+            "width": 14,
+            "height": 14,
+            "src": "data:image/svg+xml,%3csvg%20preserveAspectRatio='none'%20overflow='visible'%20style='display:%20block;'%20width='14'%20height='14'%20viewBox='0%200%2014%2014'%20fill='none'%20xmlns='http://www.w3.org/2000/svg'%3e%3ccircle%20id='Ellipse'%20cx='7'%20cy='7'%20r='6.25'%20stroke-width='1.5'%20stroke='%23CFCEC9'/%3e%3c/svg%3e"
+          },
+          {
+            "file": "chevron-down-14.svg",
+            "naturalWidth": 14,
+            "naturalHeight": 14,
+            "width": 14,
+            "height": 14,
+            "src": "data:image/svg+xml,%3csvg%20preserveAspectRatio='none'%20overflow='visible'%20style='display:%20block;'%20width='14'%20height='14'%20viewBox='0%200%2014%2014'%20fill='none'%20xmlns='http://www.w3.org/2000/svg'%3e%3cg%20id='icon/chevron-down'%3e%3cpath%20id='Vector'%20d='M3.5%205.25L7%208.75L10.5%205.25'%20stroke-width='1.02083'%20stroke-linecap='round'%20stroke-linejoin='round'%20stroke='%239A9AA0'/%3e%3c/g%3e%3c/svg%3e"
+          },
+          {
+            "file": "chevron-down-14.svg",
+            "naturalWidth": 14,
+            "naturalHeight": 14,
+            "width": 14,
+            "height": 14,
+            "src": "data:image/svg+xml,%3csvg%20preserveAspectRatio='none'%20overflow='visible'%20style='display:%20block;'%20width='14'%20height='14'%20viewBox='0%200%2014%2014'%20fill='none'%20xmlns='http://www.w3.org/2000/svg'%3e%3cg%20id='icon/chevron-down'%3e%3cpath%20id='Vector'%20d='M3.5%205.25L7%208.75L10.5%205.25'%20stroke-width='1.02083'%20stroke-linecap='round'%20stroke-linejoin='round'%20stroke='%239A9AA0'/%3e%3c/g%3e%3c/svg%3e"
+          },
+          {
+            "file": "chevron-down-14.svg",
+            "naturalWidth": 14,
+            "naturalHeight": 14,
+            "width": 14,
+            "height": 14,
+            "src": "data:image/svg+xml,%3csvg%20preserveAspectRatio='none'%20overflow='visible'%20style='display:%20block;'%20width='14'%20height='14'%20viewBox='0%200%2014%2014'%20fill='none'%20xmlns='http://www.w3.org/2000/svg'%3e%3cg%20id='icon/chevron-down'%3e%3cpath%20id='Vector'%20d='M3.5%205.25L7%208.75L10.5%205.25'%20stroke-width='1.02083'%20stroke-linecap='round'%20stroke-linejoin='round'%20stroke='%239A9AA0'/%3e%3c/g%3e%3c/svg%3e"
+          },
+          {
+            "file": "toggle-on.svg",
+            "naturalWidth": 34,
+            "naturalHeight": 20,
+            "width": 34,
+            "height": 20,
+            "src": "data:image/svg+xml,%3csvg%20preserveAspectRatio='none'%20overflow='visible'%20style='display:%20block;'%20width='34'%20height='20'%20viewBox='0%200%2034%2020'%20fill='none'%20xmlns='http://www.w3.org/2000/svg'%3e%3cg%20id='Toggle'%3e%3crect%20width='34'%20height='20'%20rx='10'%20fill='%2317171A'/%3e%3ccircle%20id='Knob'%20cx='24'%20cy='10'%20r='8'%20fill='white'/%3e%3c/g%3e%3c/svg%3e"
+          },
+          {
+            "file": "download-sheets/aa883.svg",
+            "naturalWidth": 15,
+            "naturalHeight": 15,
+            "width": 15,
+            "height": 15,
+            "src": "data:image/svg+xml,%3csvg%20preserveAspectRatio='none'%20overflow='visible'%20style='display:%20block;'%20width='15'%20height='15'%20viewBox='0%200%2015%2015'%20fill='none'%20xmlns='http://www.w3.org/2000/svg'%3e%3cg%20id='icon/folder-open'%3e%3cpath%20id='Vector'%20d='M3.75%208.75L4.6875%206.9375C4.78942%206.73509%204.94445%206.56419%205.13601%206.44309C5.32756%206.32199%205.54844%206.25525%205.775%206.25H12.5M12.5%206.25C12.691%206.24967%2012.8795%206.29309%2013.051%206.37693C13.2226%206.46077%2013.3727%206.5828%2013.4897%206.73367C13.6068%206.88453%2013.6878%207.06021%2013.7264%207.24722C13.765%207.43423%2013.7602%207.62761%2013.7125%207.8125L12.75%2011.5625C12.6804%2011.8322%2012.5226%2012.071%2012.3018%2012.2408C12.081%2012.4107%2011.8098%2012.5019%2011.5312%2012.5H2.5C2.16848%2012.5%201.85054%2012.3683%201.61612%2012.1339C1.3817%2011.8995%201.25%2011.5815%201.25%2011.25V3.125C1.25%202.79348%201.3817%202.47554%201.61612%202.24112C1.85054%202.0067%202.16848%201.875%202.5%201.875H4.9375C5.14655%201.87295%205.35278%201.92337%205.53731%202.02164C5.72184%202.11991%205.87878%202.26289%205.99375%202.4375L6.5%203.1875C6.61382%203.36033%206.76877%203.5022%206.95094%203.60038C7.13311%203.69855%207.33681%203.74997%207.54375%203.75H11.25C11.5815%203.75%2011.8995%203.8817%2012.1339%204.11612C12.3683%204.35054%2012.5%204.66848%2012.5%205V6.25Z'%20stroke-width='1.09375'%20stroke-linecap='round'%20stroke-linejoin='round'%20stroke='%239A9AA0'/%3e%3c/g%3e%3c/svg%3e"
+          },
+          {
+            "file": "chevron-down-14.svg",
+            "naturalWidth": 14,
+            "naturalHeight": 14,
+            "width": 14,
+            "height": 14,
+            "src": "data:image/svg+xml,%3csvg%20preserveAspectRatio='none'%20overflow='visible'%20style='display:%20block;'%20width='14'%20height='14'%20viewBox='0%200%2014%2014'%20fill='none'%20xmlns='http://www.w3.org/2000/svg'%3e%3cg%20id='icon/chevron-down'%3e%3cpath%20id='Vector'%20d='M3.5%205.25L7%208.75L10.5%205.25'%20stroke-width='1.02083'%20stroke-linecap='round'%20stroke-linejoin='round'%20stroke='%239A9AA0'/%3e%3c/g%3e%3c/svg%3e"
+          },
+          {
+            "file": "chevron-down-14.svg",
+            "naturalWidth": 14,
+            "naturalHeight": 14,
+            "width": 14,
+            "height": 14,
+            "src": "data:image/svg+xml,%3csvg%20preserveAspectRatio='none'%20overflow='visible'%20style='display:%20block;'%20width='14'%20height='14'%20viewBox='0%200%2014%2014'%20fill='none'%20xmlns='http://www.w3.org/2000/svg'%3e%3cg%20id='icon/chevron-down'%3e%3cpath%20id='Vector'%20d='M3.5%205.25L7%208.75L10.5%205.25'%20stroke-width='1.02083'%20stroke-linecap='round'%20stroke-linejoin='round'%20stroke='%239A9AA0'/%3e%3c/g%3e%3c/svg%3e"
+          },
+          {
+            "file": "chevron-down-14.svg",
+            "naturalWidth": 14,
+            "naturalHeight": 14,
+            "width": 14,
+            "height": 14,
+            "src": "data:image/svg+xml,%3csvg%20preserveAspectRatio='none'%20overflow='visible'%20style='display:%20block;'%20width='14'%20height='14'%20viewBox='0%200%2014%2014'%20fill='none'%20xmlns='http://www.w3.org/2000/svg'%3e%3cg%20id='icon/chevron-down'%3e%3cpath%20id='Vector'%20d='M3.5%205.25L7%208.75L10.5%205.25'%20stroke-width='1.02083'%20stroke-linecap='round'%20stroke-linejoin='round'%20stroke='%239A9AA0'/%3e%3c/g%3e%3c/svg%3e"
+          },
+          {
+            "file": "toggle-on.svg",
+            "naturalWidth": 34,
+            "naturalHeight": 20,
+            "width": 34,
+            "height": 20,
+            "src": "data:image/svg+xml,%3csvg%20preserveAspectRatio='none'%20overflow='visible'%20style='display:%20block;'%20width='34'%20height='20'%20viewBox='0%200%2034%2020'%20fill='none'%20xmlns='http://www.w3.org/2000/svg'%3e%3cg%20id='Toggle'%3e%3crect%20width='34'%20height='20'%20rx='10'%20fill='%2317171A'/%3e%3ccircle%20id='Knob'%20cx='24'%20cy='10'%20r='8'%20fill='white'/%3e%3c/g%3e%3c/svg%3e"
+          },
+          {
+            "file": "download-sheets/3d2ea.svg",
+            "naturalWidth": 16,
+            "naturalHeight": 16,
+            "width": 16,
+            "height": 16,
+            "src": "data:image/svg+xml,%3csvg%20preserveAspectRatio='none'%20overflow='visible'%20style='display:%20block;'%20width='16'%20height='16'%20viewBox='0%200%2016%2016'%20fill='none'%20xmlns='http://www.w3.org/2000/svg'%3e%3cg%20id='icon/download'%3e%3cpath%20id='Vector'%20d='M14%2010V12.6667C14%2013.0203%2013.8595%2013.3594%2013.6095%2013.6095C13.3594%2013.8595%2013.0203%2014%2012.6667%2014H3.33333C2.97971%2014%202.64057%2013.8595%202.39052%2013.6095C2.14048%2013.3594%202%2013.0203%202%2012.6667V10'%20stroke-width='1.16667'%20stroke-linecap='round'%20stroke-linejoin='round'%20stroke='white'/%3e%3cpath%20id='Vector_2'%20d='M4.66667%206.66667L8%2010L11.3333%206.66667'%20stroke-width='1.16667'%20stroke-linecap='round'%20stroke-linejoin='round'%20stroke='white'/%3e%3cpath%20id='Vector_3'%20d='M8%2010V2'%20stroke-width='1.16667'%20stroke-linecap='round'%20stroke-linejoin='round'%20stroke='white'/%3e%3c/g%3e%3c/svg%3e"
+          }
+        ],
+        "accessibility": {
+          "violations": [],
+          "incomplete": []
+        },
+        "explicitStarts": 0,
+        "behavior": "Options are draft-only until explicit primary activation"
+      },
+      "ipc": [
+        {
+          "command": "plugin:event|listen",
+          "args": {
+            "event": "tauri://theme-changed",
+            "target": {
+              "kind": "Window",
+              "label": "download-sheet"
+            },
+            "handler": 1
+          }
+        },
+        {
+          "command": "plugin:event|listen",
+          "args": {
+            "event": "download:sheet",
+            "target": {
+              "kind": "Any"
+            },
+            "handler": 3
+          }
+        },
+        {
+          "command": "get_settings",
+          "args": {}
+        },
+        {
+          "command": "plugin:window|theme",
+          "args": {
+            "label": "download-sheet"
+          }
+        },
+        {
+          "command": "get_download_sheet",
+          "args": {}
+        },
+        {
+          "command": "download_sheet_ready",
+          "args": {}
+        }
+      ],
+      "unsupported": [],
+      "runtimeAndNetworkProblems": []
+    },
+    {
+      "file": "v36-sheets-complete-sheet-options-advanced-light@1.5x.png",
+      "scenario": "sheet-options-advanced",
+      "entry": "index.html",
+      "figmaNode": "17:137",
+      "theme": "light",
+      "resolvedTheme": "light",
+      "scale": 1.5,
+      "viewport": {
+        "width": 460,
+        "height": 680
+      },
+      "clip": {
+        "x": 0,
+        "y": 0,
+        "width": 460,
+        "height": 680
+      },
+      "width": 690,
+      "height": 1020,
+      "bytes": 80936,
+      "sha256": "8c2c6664b2aed92e186401ef3555f418a197b43eb88c11a322e0a22e1390d26c",
+      "repeatMatches": true,
+      "caret": "initial",
+      "font": [
+        {
+          "familyName": "Geist",
+          "postScriptName": "Geist",
+          "isCustomFont": true,
+          "glyphCount": 16
+        }
+      ],
+      "fixtureSha256": "81b519cbd58151c59544a2b522dd4f0465db084ce13a20a31df116805bdfa01c",
+      "assertions": {
+        "geometry": {
+          "x": 0,
+          "y": 0,
+          "width": 460,
+          "height": 680
+        },
+        "mono": [
+          {
+            "familyName": "Geist Mono",
+            "postScriptName": "GeistMono",
+            "isCustomFont": true,
+            "glyphCount": 32
+          }
+        ],
+        "typography": {
+          "weight": "600",
+          "size": "14px",
+          "lineHeight": "20px"
+        },
+        "assets": [
+          {
+            "file": "download-sheets/d2028.svg",
+            "naturalWidth": 18,
+            "naturalHeight": 18,
+            "width": 18,
+            "height": 18,
+            "src": "data:image/svg+xml,%3csvg%20preserveAspectRatio='none'%20overflow='visible'%20style='display:%20block;'%20width='18'%20height='18'%20viewBox='0%200%2018%2018'%20fill='none'%20xmlns='http://www.w3.org/2000/svg'%3e%3cg%20id='Icon'%3e%3cpath%20id='Vector'%20d='M13.5%204.5L4.5%2013.5'%20stroke-width='1.3125'%20stroke-linecap='round'%20stroke-linejoin='round'%20stroke='%2366666D'/%3e%3cpath%20id='Vector_2'%20d='M4.5%204.5L13.5%2013.5'%20stroke-width='1.3125'%20stroke-linecap='round'%20stroke-linejoin='round'%20stroke='%2366666D'/%3e%3c/g%3e%3c/svg%3e"
+          },
+          {
+            "file": "download-sheets/ef790.svg",
+            "naturalWidth": 14,
+            "naturalHeight": 14,
+            "width": 14,
+            "height": 14,
+            "src": "data:image/svg+xml,%3csvg%20preserveAspectRatio='none'%20overflow='visible'%20style='display:%20block;'%20width='14'%20height='14'%20viewBox='0%200%2014%2014'%20fill='none'%20xmlns='http://www.w3.org/2000/svg'%3e%3ccircle%20id='Ellipse'%20cx='7'%20cy='7'%20r='6.25'%20stroke-width='1.5'%20stroke='%23CFCEC9'/%3e%3c/svg%3e"
+          },
+          {
+            "file": "download-sheets/ef790.svg",
+            "naturalWidth": 14,
+            "naturalHeight": 14,
+            "width": 14,
+            "height": 14,
+            "src": "data:image/svg+xml,%3csvg%20preserveAspectRatio='none'%20overflow='visible'%20style='display:%20block;'%20width='14'%20height='14'%20viewBox='0%200%2014%2014'%20fill='none'%20xmlns='http://www.w3.org/2000/svg'%3e%3ccircle%20id='Ellipse'%20cx='7'%20cy='7'%20r='6.25'%20stroke-width='1.5'%20stroke='%23CFCEC9'/%3e%3c/svg%3e"
+          },
+          {
+            "file": "download-sheets/fd956.svg",
+            "naturalWidth": 14,
+            "naturalHeight": 14,
+            "width": 14,
+            "height": 14,
+            "src": "data:image/svg+xml,%3csvg%20preserveAspectRatio='none'%20overflow='visible'%20style='display:%20block;'%20width='14'%20height='14'%20viewBox='0%200%2014%2014'%20fill='none'%20xmlns='http://www.w3.org/2000/svg'%3e%3ccircle%20id='Ellipse'%20cx='7'%20cy='7'%20r='5'%20fill='white'%20stroke-width='4'%20stroke='%2317171A'/%3e%3c/svg%3e"
+          },
+          {
+            "file": "download-sheets/ef790.svg",
+            "naturalWidth": 14,
+            "naturalHeight": 14,
+            "width": 14,
+            "height": 14,
+            "src": "data:image/svg+xml,%3csvg%20preserveAspectRatio='none'%20overflow='visible'%20style='display:%20block;'%20width='14'%20height='14'%20viewBox='0%200%2014%2014'%20fill='none'%20xmlns='http://www.w3.org/2000/svg'%3e%3ccircle%20id='Ellipse'%20cx='7'%20cy='7'%20r='6.25'%20stroke-width='1.5'%20stroke='%23CFCEC9'/%3e%3c/svg%3e"
+          },
+          {
+            "file": "chevron-down-14.svg",
+            "naturalWidth": 14,
+            "naturalHeight": 14,
+            "width": 14,
+            "height": 14,
+            "src": "data:image/svg+xml,%3csvg%20preserveAspectRatio='none'%20overflow='visible'%20style='display:%20block;'%20width='14'%20height='14'%20viewBox='0%200%2014%2014'%20fill='none'%20xmlns='http://www.w3.org/2000/svg'%3e%3cg%20id='icon/chevron-down'%3e%3cpath%20id='Vector'%20d='M3.5%205.25L7%208.75L10.5%205.25'%20stroke-width='1.02083'%20stroke-linecap='round'%20stroke-linejoin='round'%20stroke='%239A9AA0'/%3e%3c/g%3e%3c/svg%3e"
+          },
+          {
+            "file": "chevron-down-14.svg",
+            "naturalWidth": 14,
+            "naturalHeight": 14,
+            "width": 14,
+            "height": 14,
+            "src": "data:image/svg+xml,%3csvg%20preserveAspectRatio='none'%20overflow='visible'%20style='display:%20block;'%20width='14'%20height='14'%20viewBox='0%200%2014%2014'%20fill='none'%20xmlns='http://www.w3.org/2000/svg'%3e%3cg%20id='icon/chevron-down'%3e%3cpath%20id='Vector'%20d='M3.5%205.25L7%208.75L10.5%205.25'%20stroke-width='1.02083'%20stroke-linecap='round'%20stroke-linejoin='round'%20stroke='%239A9AA0'/%3e%3c/g%3e%3c/svg%3e"
+          },
+          {
+            "file": "chevron-down-14.svg",
+            "naturalWidth": 14,
+            "naturalHeight": 14,
+            "width": 14,
+            "height": 14,
+            "src": "data:image/svg+xml,%3csvg%20preserveAspectRatio='none'%20overflow='visible'%20style='display:%20block;'%20width='14'%20height='14'%20viewBox='0%200%2014%2014'%20fill='none'%20xmlns='http://www.w3.org/2000/svg'%3e%3cg%20id='icon/chevron-down'%3e%3cpath%20id='Vector'%20d='M3.5%205.25L7%208.75L10.5%205.25'%20stroke-width='1.02083'%20stroke-linecap='round'%20stroke-linejoin='round'%20stroke='%239A9AA0'/%3e%3c/g%3e%3c/svg%3e"
+          },
+          {
+            "file": "toggle-on.svg",
+            "naturalWidth": 34,
+            "naturalHeight": 20,
+            "width": 34,
+            "height": 20,
+            "src": "data:image/svg+xml,%3csvg%20preserveAspectRatio='none'%20overflow='visible'%20style='display:%20block;'%20width='34'%20height='20'%20viewBox='0%200%2034%2020'%20fill='none'%20xmlns='http://www.w3.org/2000/svg'%3e%3cg%20id='Toggle'%3e%3crect%20width='34'%20height='20'%20rx='10'%20fill='%2317171A'/%3e%3ccircle%20id='Knob'%20cx='24'%20cy='10'%20r='8'%20fill='white'/%3e%3c/g%3e%3c/svg%3e"
+          },
+          {
+            "file": "download-sheets/aa883.svg",
+            "naturalWidth": 15,
+            "naturalHeight": 15,
+            "width": 15,
+            "height": 15,
+            "src": "data:image/svg+xml,%3csvg%20preserveAspectRatio='none'%20overflow='visible'%20style='display:%20block;'%20width='15'%20height='15'%20viewBox='0%200%2015%2015'%20fill='none'%20xmlns='http://www.w3.org/2000/svg'%3e%3cg%20id='icon/folder-open'%3e%3cpath%20id='Vector'%20d='M3.75%208.75L4.6875%206.9375C4.78942%206.73509%204.94445%206.56419%205.13601%206.44309C5.32756%206.32199%205.54844%206.25525%205.775%206.25H12.5M12.5%206.25C12.691%206.24967%2012.8795%206.29309%2013.051%206.37693C13.2226%206.46077%2013.3727%206.5828%2013.4897%206.73367C13.6068%206.88453%2013.6878%207.06021%2013.7264%207.24722C13.765%207.43423%2013.7602%207.62761%2013.7125%207.8125L12.75%2011.5625C12.6804%2011.8322%2012.5226%2012.071%2012.3018%2012.2408C12.081%2012.4107%2011.8098%2012.5019%2011.5312%2012.5H2.5C2.16848%2012.5%201.85054%2012.3683%201.61612%2012.1339C1.3817%2011.8995%201.25%2011.5815%201.25%2011.25V3.125C1.25%202.79348%201.3817%202.47554%201.61612%202.24112C1.85054%202.0067%202.16848%201.875%202.5%201.875H4.9375C5.14655%201.87295%205.35278%201.92337%205.53731%202.02164C5.72184%202.11991%205.87878%202.26289%205.99375%202.4375L6.5%203.1875C6.61382%203.36033%206.76877%203.5022%206.95094%203.60038C7.13311%203.69855%207.33681%203.74997%207.54375%203.75H11.25C11.5815%203.75%2011.8995%203.8817%2012.1339%204.11612C12.3683%204.35054%2012.5%204.66848%2012.5%205V6.25Z'%20stroke-width='1.09375'%20stroke-linecap='round'%20stroke-linejoin='round'%20stroke='%239A9AA0'/%3e%3c/g%3e%3c/svg%3e"
+          },
+          {
+            "file": "chevron-down-14.svg",
+            "naturalWidth": 14,
+            "naturalHeight": 14,
+            "width": 14,
+            "height": 14,
+            "src": "data:image/svg+xml,%3csvg%20preserveAspectRatio='none'%20overflow='visible'%20style='display:%20block;'%20width='14'%20height='14'%20viewBox='0%200%2014%2014'%20fill='none'%20xmlns='http://www.w3.org/2000/svg'%3e%3cg%20id='icon/chevron-down'%3e%3cpath%20id='Vector'%20d='M3.5%205.25L7%208.75L10.5%205.25'%20stroke-width='1.02083'%20stroke-linecap='round'%20stroke-linejoin='round'%20stroke='%239A9AA0'/%3e%3c/g%3e%3c/svg%3e"
+          },
+          {
+            "file": "chevron-down-14.svg",
+            "naturalWidth": 14,
+            "naturalHeight": 14,
+            "width": 14,
+            "height": 14,
+            "src": "data:image/svg+xml,%3csvg%20preserveAspectRatio='none'%20overflow='visible'%20style='display:%20block;'%20width='14'%20height='14'%20viewBox='0%200%2014%2014'%20fill='none'%20xmlns='http://www.w3.org/2000/svg'%3e%3cg%20id='icon/chevron-down'%3e%3cpath%20id='Vector'%20d='M3.5%205.25L7%208.75L10.5%205.25'%20stroke-width='1.02083'%20stroke-linecap='round'%20stroke-linejoin='round'%20stroke='%239A9AA0'/%3e%3c/g%3e%3c/svg%3e"
+          },
+          {
+            "file": "chevron-down-14.svg",
+            "naturalWidth": 14,
+            "naturalHeight": 14,
+            "width": 14,
+            "height": 14,
+            "src": "data:image/svg+xml,%3csvg%20preserveAspectRatio='none'%20overflow='visible'%20style='display:%20block;'%20width='14'%20height='14'%20viewBox='0%200%2014%2014'%20fill='none'%20xmlns='http://www.w3.org/2000/svg'%3e%3cg%20id='icon/chevron-down'%3e%3cpath%20id='Vector'%20d='M3.5%205.25L7%208.75L10.5%205.25'%20stroke-width='1.02083'%20stroke-linecap='round'%20stroke-linejoin='round'%20stroke='%239A9AA0'/%3e%3c/g%3e%3c/svg%3e"
+          },
+          {
+            "file": "toggle-on.svg",
+            "naturalWidth": 34,
+            "naturalHeight": 20,
+            "width": 34,
+            "height": 20,
+            "src": "data:image/svg+xml,%3csvg%20preserveAspectRatio='none'%20overflow='visible'%20style='display:%20block;'%20width='34'%20height='20'%20viewBox='0%200%2034%2020'%20fill='none'%20xmlns='http://www.w3.org/2000/svg'%3e%3cg%20id='Toggle'%3e%3crect%20width='34'%20height='20'%20rx='10'%20fill='%2317171A'/%3e%3ccircle%20id='Knob'%20cx='24'%20cy='10'%20r='8'%20fill='white'/%3e%3c/g%3e%3c/svg%3e"
+          },
+          {
+            "file": "download-sheets/3d2ea.svg",
+            "naturalWidth": 16,
+            "naturalHeight": 16,
+            "width": 16,
+            "height": 16,
+            "src": "data:image/svg+xml,%3csvg%20preserveAspectRatio='none'%20overflow='visible'%20style='display:%20block;'%20width='16'%20height='16'%20viewBox='0%200%2016%2016'%20fill='none'%20xmlns='http://www.w3.org/2000/svg'%3e%3cg%20id='icon/download'%3e%3cpath%20id='Vector'%20d='M14%2010V12.6667C14%2013.0203%2013.8595%2013.3594%2013.6095%2013.6095C13.3594%2013.8595%2013.0203%2014%2012.6667%2014H3.33333C2.97971%2014%202.64057%2013.8595%202.39052%2013.6095C2.14048%2013.3594%202%2013.0203%202%2012.6667V10'%20stroke-width='1.16667'%20stroke-linecap='round'%20stroke-linejoin='round'%20stroke='white'/%3e%3cpath%20id='Vector_2'%20d='M4.66667%206.66667L8%2010L11.3333%206.66667'%20stroke-width='1.16667'%20stroke-linecap='round'%20stroke-linejoin='round'%20stroke='white'/%3e%3cpath%20id='Vector_3'%20d='M8%2010V2'%20stroke-width='1.16667'%20stroke-linecap='round'%20stroke-linejoin='round'%20stroke='white'/%3e%3c/g%3e%3c/svg%3e"
+          }
+        ],
+        "accessibility": {
+          "violations": [],
+          "incomplete": []
+        },
+        "explicitStarts": 0,
+        "behavior": "Options are draft-only until explicit primary activation"
+      },
+      "ipc": [
+        {
+          "command": "plugin:event|listen",
+          "args": {
+            "event": "tauri://theme-changed",
+            "target": {
+              "kind": "Window",
+              "label": "download-sheet"
+            },
+            "handler": 1
+          }
+        },
+        {
+          "command": "plugin:event|listen",
+          "args": {
+            "event": "download:sheet",
+            "target": {
+              "kind": "Any"
+            },
+            "handler": 3
+          }
+        },
+        {
+          "command": "get_settings",
+          "args": {}
+        },
+        {
+          "command": "plugin:window|theme",
+          "args": {
+            "label": "download-sheet"
+          }
+        },
+        {
+          "command": "get_download_sheet",
+          "args": {}
+        },
+        {
+          "command": "download_sheet_ready",
+          "args": {}
+        }
+      ],
+      "unsupported": [],
+      "runtimeAndNetworkProblems": []
+    },
+    {
+      "file": "v36-sheets-complete-sheet-trim-light@1.5x.png",
+      "scenario": "sheet-trim",
+      "entry": "index.html",
+      "figmaNode": "17:270",
+      "theme": "light",
+      "resolvedTheme": "light",
+      "scale": 1.5,
+      "viewport": {
+        "width": 460,
+        "height": 680
+      },
+      "clip": {
+        "x": 0,
+        "y": 0,
+        "width": 460,
+        "height": 680
+      },
+      "width": 690,
+      "height": 1020,
+      "bytes": 169141,
+      "sha256": "98e6c72012230603ff261f51fa8c9c61b79ccd589921537302d5f6d4d9a4aa7d",
+      "repeatMatches": true,
+      "caret": "initial",
+      "font": [
+        {
+          "familyName": "Geist",
+          "postScriptName": "Geist",
+          "isCustomFont": true,
+          "glyphCount": 17
+        }
+      ],
+      "fixtureSha256": "927b0c5e4b2be60114141c03e2fbd98c6376d473d8c98c50916e7eb5d5cd3dba",
+      "assertions": {
+        "geometry": {
+          "x": 0,
+          "y": 0,
+          "width": 460,
+          "height": 680
+        },
+        "mono": [
+          {
+            "familyName": "Geist Mono",
+            "postScriptName": "GeistMono",
+            "isCustomFont": true,
+            "glyphCount": 7
+          }
+        ],
+        "typography": {
+          "weight": "600",
+          "size": "14px",
+          "lineHeight": "20px"
+        },
+        "assets": [
+          {
+            "file": "download-sheets/d2028.svg",
+            "naturalWidth": 18,
+            "naturalHeight": 18,
+            "width": 18,
+            "height": 18,
+            "src": "data:image/svg+xml,%3csvg%20preserveAspectRatio='none'%20overflow='visible'%20style='display:%20block;'%20width='18'%20height='18'%20viewBox='0%200%2018%2018'%20fill='none'%20xmlns='http://www.w3.org/2000/svg'%3e%3cg%20id='Icon'%3e%3cpath%20id='Vector'%20d='M13.5%204.5L4.5%2013.5'%20stroke-width='1.3125'%20stroke-linecap='round'%20stroke-linejoin='round'%20stroke='%2366666D'/%3e%3cpath%20id='Vector_2'%20d='M4.5%204.5L13.5%2013.5'%20stroke-width='1.3125'%20stroke-linecap='round'%20stroke-linejoin='round'%20stroke='%2366666D'/%3e%3c/g%3e%3c/svg%3e"
+          },
+          {
+            "file": "download-sheets/a9396.svg",
+            "naturalWidth": 18,
+            "naturalHeight": 18,
+            "width": 18,
+            "height": 18,
+            "src": "data:image/svg+xml,%3csvg%20preserveAspectRatio='none'%20overflow='visible'%20style='display:%20block;'%20width='18'%20height='18'%20viewBox='0%200%2018%2018'%20fill='none'%20xmlns='http://www.w3.org/2000/svg'%3e%3cg%20id='icon/play'%3e%3cpath%20id='Vector'%20d='M4.5%202.25L15%209L4.5%2015.75V2.25Z'%20stroke-width='1.3125'%20stroke-linecap='round'%20stroke-linejoin='round'%20stroke='%23F5F5F3'/%3e%3c/g%3e%3c/svg%3e"
+          },
+          {
+            "file": "toggle-off.svg",
+            "naturalWidth": 34,
+            "naturalHeight": 20,
+            "width": 34,
+            "height": 20,
+            "src": "data:image/svg+xml,%3csvg%20preserveAspectRatio='none'%20overflow='visible'%20style='display:%20block;'%20width='34'%20height='20'%20viewBox='0%200%2034%2020'%20fill='none'%20xmlns='http://www.w3.org/2000/svg'%3e%3cg%20id='Toggle'%3e%3crect%20width='34'%20height='20'%20rx='10'%20fill='%23CFCEC9'/%3e%3ccircle%20id='Knob'%20cx='10'%20cy='10'%20r='8'%20fill='white'/%3e%3c/g%3e%3c/svg%3e"
+          },
+          {
+            "file": "download-sheets/2ed91.svg",
+            "naturalWidth": 16,
+            "naturalHeight": 16,
+            "width": 16,
+            "height": 16,
+            "src": "data:image/svg+xml,%3csvg%20preserveAspectRatio='none'%20overflow='visible'%20style='display:%20block;'%20width='16'%20height='16'%20viewBox='0%200%2016%2016'%20fill='none'%20xmlns='http://www.w3.org/2000/svg'%3e%3cg%20id='Icon'%3e%3cpath%20id='Vector'%20d='M6%204C6%205.10457%205.10457%206%204%206C2.89543%206%202%205.10457%202%204C2%202.89543%202.89543%202%204%202C5.10457%202%206%202.89543%206%204Z'%20stroke-width='1.16667'%20stroke-linecap='round'%20stroke-linejoin='round'%20stroke='white'/%3e%3cpath%20id='Vector_2'%20d='M5.41333%205.41333L8%208'%20stroke-width='1.16667'%20stroke-linecap='round'%20stroke-linejoin='round'%20stroke='white'/%3e%3cpath%20id='Vector_3'%20d='M13.3333%202.66667L5.41333%2010.5867'%20stroke-width='1.16667'%20stroke-linecap='round'%20stroke-linejoin='round'%20stroke='white'/%3e%3cpath%20id='Vector_4'%20d='M6%2012C6%2013.1046%205.10457%2014%204%2014C2.89543%2014%202%2013.1046%202%2012C2%2010.8954%202.89543%2010%204%2010C5.10457%2010%206%2010.8954%206%2012Z'%20stroke-width='1.16667'%20stroke-linecap='round'%20stroke-linejoin='round'%20stroke='white'/%3e%3cpath%20id='Vector_5'%20d='M9.86667%209.86667L13.3333%2013.3333'%20stroke-width='1.16667'%20stroke-linecap='round'%20stroke-linejoin='round'%20stroke='white'/%3e%3c/g%3e%3c/svg%3e"
+          }
+        ],
+        "accessibility": {
+          "violations": [],
+          "incomplete": []
+        },
+        "explicitStarts": 0,
+        "behavior": "Real browser range keyboard snapping and modal focus wrap"
+      },
+      "ipc": [
+        {
+          "command": "plugin:event|listen",
+          "args": {
+            "event": "tauri://theme-changed",
+            "target": {
+              "kind": "Window",
+              "label": "download-sheet"
+            },
+            "handler": 1
+          }
+        },
+        {
+          "command": "plugin:event|listen",
+          "args": {
+            "event": "download:sheet",
+            "target": {
+              "kind": "Any"
+            },
+            "handler": 3
+          }
+        },
+        {
+          "command": "get_settings",
+          "args": {}
+        },
+        {
+          "command": "plugin:window|theme",
+          "args": {
+            "label": "download-sheet"
+          }
+        },
+        {
+          "command": "get_download_sheet",
+          "args": {}
+        },
+        {
+          "command": "download_sheet_ready",
+          "args": {}
+        }
+      ],
+      "unsupported": [],
+      "runtimeAndNetworkProblems": []
+    },
+    {
+      "file": "v36-sheets-complete-sheet-playlist-light@1.5x.png",
+      "scenario": "sheet-playlist",
+      "entry": "index.html",
+      "figmaNode": "18:160",
+      "theme": "light",
+      "resolvedTheme": "light",
+      "scale": 1.5,
+      "viewport": {
+        "width": 460,
+        "height": 680
+      },
+      "clip": {
+        "x": 0,
+        "y": 0,
+        "width": 460,
+        "height": 680
+      },
+      "width": 690,
+      "height": 1020,
+      "bytes": 89459,
+      "sha256": "aed02f8323d17211b683ac028944765feccfaf05ecc9ecb56786d5b7b76efd39",
+      "repeatMatches": true,
+      "caret": "initial",
+      "font": [
+        {
+          "familyName": "Geist",
+          "postScriptName": "Geist",
+          "isCustomFont": true,
+          "glyphCount": 28
+        }
+      ],
+      "fixtureSha256": "d5344a79314365b3f8bd911844e50f564cff1fa5e1d9995adab46225d27c7bba",
+      "assertions": {
+        "geometry": {
+          "x": 0,
+          "y": 0,
+          "width": 460,
+          "height": 680
+        },
+        "mono": [
+          {
+            "familyName": "Geist Mono",
+            "postScriptName": "GeistMono",
+            "isCustomFont": true,
+            "glyphCount": 2
+          }
+        ],
+        "typography": {
+          "weight": "600",
+          "size": "14px",
+          "lineHeight": "20px"
+        },
+        "assets": [
+          {
+            "file": "download-sheets/ad273.svg",
+            "naturalWidth": 18,
+            "naturalHeight": 18,
+            "width": 18,
+            "height": 18,
+            "src": "data:image/svg+xml,%3csvg%20preserveAspectRatio='none'%20overflow='visible'%20style='display:%20block;'%20width='18'%20height='18'%20viewBox='0%200%2018%2018'%20fill='none'%20xmlns='http://www.w3.org/2000/svg'%3e%3cg%20id='icon/layers-2'%3e%3cpath%20id='Vector'%20d='M12.015%209L16.125%2011.3475C16.2404%2011.4129%2016.3364%2011.5078%2016.4032%2011.6224C16.47%2011.737%2016.5052%2011.8673%2016.5052%2012C16.5052%2012.1327%2016.47%2012.263%2016.4032%2012.3776C16.3364%2012.4922%2016.2404%2012.5871%2016.125%2012.6525L9.75%2016.305C9.52197%2016.4367%209.26331%2016.506%209%2016.506C8.7367%2016.506%208.47803%2016.4367%208.25%2016.305L1.875%2012.6525C1.75958%2012.5871%201.66357%2012.4922%201.59678%2012.3776C1.52998%2012.263%201.49479%2012.1327%201.49479%2012C1.49479%2011.8673%201.52998%2011.737%201.59678%2011.6224C1.66357%2011.5078%201.75958%2011.4129%201.875%2011.3475L5.985%209'%20stroke-width='1.3125'%20stroke-linecap='round'%20stroke-linejoin='round'%20stroke='%2317171A'/%3e%3cpath%20id='Vector_2'%20d='M9.75%2010.305C9.52197%2010.4367%209.26331%2010.506%209%2010.506C8.7367%2010.506%208.47803%2010.4367%208.25%2010.305L1.875%206.6525C1.75958%206.58709%201.66357%206.49223%201.59678%206.3776C1.52998%206.26297%201.49479%206.13267%201.49479%206C1.49479%205.86733%201.52998%205.73703%201.59678%205.6224C1.66357%205.50777%201.75958%205.41291%201.875%205.3475L8.25%201.695C8.47803%201.56335%208.7367%201.49404%209%201.49404C9.26331%201.49404%209.52197%201.56335%209.75%201.695L16.125%205.3475C16.2404%205.41291%2016.3364%205.50777%2016.4032%205.6224C16.47%205.73703%2016.5052%205.86733%2016.5052%206C16.5052%206.13267%2016.47%206.26297%2016.4032%206.3776C16.3364%206.49223%2016.2404%206.58709%2016.125%206.6525L9.75%2010.305Z'%20stroke-width='1.3125'%20stroke-linecap='round'%20stroke-linejoin='round'%20stroke='%2317171A'/%3e%3c/g%3e%3c/svg%3e"
+          },
+          {
+            "file": "download-sheets/d2028.svg",
+            "naturalWidth": 18,
+            "naturalHeight": 18,
+            "width": 18,
+            "height": 18,
+            "src": "data:image/svg+xml,%3csvg%20preserveAspectRatio='none'%20overflow='visible'%20style='display:%20block;'%20width='18'%20height='18'%20viewBox='0%200%2018%2018'%20fill='none'%20xmlns='http://www.w3.org/2000/svg'%3e%3cg%20id='Icon'%3e%3cpath%20id='Vector'%20d='M13.5%204.5L4.5%2013.5'%20stroke-width='1.3125'%20stroke-linecap='round'%20stroke-linejoin='round'%20stroke='%2366666D'/%3e%3cpath%20id='Vector_2'%20d='M4.5%204.5L13.5%2013.5'%20stroke-width='1.3125'%20stroke-linecap='round'%20stroke-linejoin='round'%20stroke='%2366666D'/%3e%3c/g%3e%3c/svg%3e"
+          },
+          {
+            "file": "download-sheets/338a5.svg",
+            "naturalWidth": 12,
+            "naturalHeight": 12,
+            "width": 12,
+            "height": 12,
+            "src": "data:image/svg+xml,%3csvg%20preserveAspectRatio='none'%20overflow='visible'%20style='display:%20block;'%20width='12'%20height='12'%20viewBox='0%200%2012%2012'%20fill='none'%20xmlns='http://www.w3.org/2000/svg'%3e%3cg%20id='icon/check'%3e%3cpath%20id='Vector'%20d='M10%203L4.5%208.5L2%206'%20stroke-width='0.875'%20stroke-linecap='round'%20stroke-linejoin='round'%20stroke='white'/%3e%3c/g%3e%3c/svg%3e"
+          },
+          {
+            "file": "download-sheets/338a5.svg",
+            "naturalWidth": 12,
+            "naturalHeight": 12,
+            "width": 12,
+            "height": 12,
+            "src": "data:image/svg+xml,%3csvg%20preserveAspectRatio='none'%20overflow='visible'%20style='display:%20block;'%20width='12'%20height='12'%20viewBox='0%200%2012%2012'%20fill='none'%20xmlns='http://www.w3.org/2000/svg'%3e%3cg%20id='icon/check'%3e%3cpath%20id='Vector'%20d='M10%203L4.5%208.5L2%206'%20stroke-width='0.875'%20stroke-linecap='round'%20stroke-linejoin='round'%20stroke='white'/%3e%3c/g%3e%3c/svg%3e"
+          },
+          {
+            "file": "download-sheets/338a5.svg",
+            "naturalWidth": 12,
+            "naturalHeight": 12,
+            "width": 12,
+            "height": 12,
+            "src": "data:image/svg+xml,%3csvg%20preserveAspectRatio='none'%20overflow='visible'%20style='display:%20block;'%20width='12'%20height='12'%20viewBox='0%200%2012%2012'%20fill='none'%20xmlns='http://www.w3.org/2000/svg'%3e%3cg%20id='icon/check'%3e%3cpath%20id='Vector'%20d='M10%203L4.5%208.5L2%206'%20stroke-width='0.875'%20stroke-linecap='round'%20stroke-linejoin='round'%20stroke='white'/%3e%3c/g%3e%3c/svg%3e"
+          },
+          {
+            "file": "download-sheets/338a5.svg",
+            "naturalWidth": 12,
+            "naturalHeight": 12,
+            "width": 12,
+            "height": 12,
+            "src": "data:image/svg+xml,%3csvg%20preserveAspectRatio='none'%20overflow='visible'%20style='display:%20block;'%20width='12'%20height='12'%20viewBox='0%200%2012%2012'%20fill='none'%20xmlns='http://www.w3.org/2000/svg'%3e%3cg%20id='icon/check'%3e%3cpath%20id='Vector'%20d='M10%203L4.5%208.5L2%206'%20stroke-width='0.875'%20stroke-linecap='round'%20stroke-linejoin='round'%20stroke='white'/%3e%3c/g%3e%3c/svg%3e"
+          },
+          {
+            "file": "download-sheets/338a5.svg",
+            "naturalWidth": 12,
+            "naturalHeight": 12,
+            "width": 12,
+            "height": 12,
+            "src": "data:image/svg+xml,%3csvg%20preserveAspectRatio='none'%20overflow='visible'%20style='display:%20block;'%20width='12'%20height='12'%20viewBox='0%200%2012%2012'%20fill='none'%20xmlns='http://www.w3.org/2000/svg'%3e%3cg%20id='icon/check'%3e%3cpath%20id='Vector'%20d='M10%203L4.5%208.5L2%206'%20stroke-width='0.875'%20stroke-linecap='round'%20stroke-linejoin='round'%20stroke='white'/%3e%3c/g%3e%3c/svg%3e"
+          },
+          {
+            "file": "download-sheets/3d2ea.svg",
+            "naturalWidth": 16,
+            "naturalHeight": 16,
+            "width": 16,
+            "height": 16,
+            "src": "data:image/svg+xml,%3csvg%20preserveAspectRatio='none'%20overflow='visible'%20style='display:%20block;'%20width='16'%20height='16'%20viewBox='0%200%2016%2016'%20fill='none'%20xmlns='http://www.w3.org/2000/svg'%3e%3cg%20id='icon/download'%3e%3cpath%20id='Vector'%20d='M14%2010V12.6667C14%2013.0203%2013.8595%2013.3594%2013.6095%2013.6095C13.3594%2013.8595%2013.0203%2014%2012.6667%2014H3.33333C2.97971%2014%202.64057%2013.8595%202.39052%2013.6095C2.14048%2013.3594%202%2013.0203%202%2012.6667V10'%20stroke-width='1.16667'%20stroke-linecap='round'%20stroke-linejoin='round'%20stroke='white'/%3e%3cpath%20id='Vector_2'%20d='M4.66667%206.66667L8%2010L11.3333%206.66667'%20stroke-width='1.16667'%20stroke-linecap='round'%20stroke-linejoin='round'%20stroke='white'/%3e%3cpath%20id='Vector_3'%20d='M8%2010V2'%20stroke-width='1.16667'%20stroke-linecap='round'%20stroke-linejoin='round'%20stroke='white'/%3e%3c/g%3e%3c/svg%3e"
+          }
+        ],
+        "accessibility": {
+          "violations": [],
+          "incomplete": []
+        },
+        "explicitStarts": 0,
+        "behavior": "Sparse/range selection updates; no enqueue"
+      },
+      "ipc": [
+        {
+          "command": "plugin:event|listen",
+          "args": {
+            "event": "tauri://theme-changed",
+            "target": {
+              "kind": "Window",
+              "label": "download-sheet"
+            },
+            "handler": 1
+          }
+        },
+        {
+          "command": "plugin:event|listen",
+          "args": {
+            "event": "download:sheet",
+            "target": {
+              "kind": "Any"
+            },
+            "handler": 3
+          }
+        },
+        {
+          "command": "get_settings",
+          "args": {}
+        },
+        {
+          "command": "plugin:window|theme",
+          "args": {
+            "label": "download-sheet"
+          }
+        },
+        {
+          "command": "get_download_sheet",
+          "args": {}
+        },
+        {
+          "command": "download_sheet_ready",
+          "args": {}
+        }
+      ],
+      "unsupported": [],
+      "runtimeAndNetworkProblems": []
+    },
+    {
+      "file": "v36-sheets-complete-sheet-options-dark@1x.png",
+      "scenario": "sheet-options",
+      "entry": "index.html",
+      "figmaNode": "17:137",
+      "theme": "dark",
+      "resolvedTheme": "dark",
+      "scale": 1,
+      "viewport": {
+        "width": 460,
+        "height": 680
+      },
+      "clip": {
+        "x": 0,
+        "y": 0,
+        "width": 460,
+        "height": 680
+      },
+      "width": 460,
+      "height": 680,
+      "bytes": 52119,
+      "sha256": "15d647d5c71090cda07455f01bbced084f6b0b2e3f296fbf85883bd96563b440",
+      "repeatMatches": true,
+      "caret": "initial",
+      "font": [
+        {
+          "familyName": "Geist",
+          "postScriptName": "Geist",
+          "isCustomFont": true,
+          "glyphCount": 16
+        }
+      ],
+      "fixtureSha256": "2e9cb2a36414fcc612e5c53a455d77cc6d705b003124c1eaa0552ad0ed364cd8",
+      "assertions": {
+        "geometry": {
+          "x": 0,
+          "y": 0,
+          "width": 460,
+          "height": 680
+        },
+        "mono": [
+          {
+            "familyName": "Geist Mono",
+            "postScriptName": "GeistMono",
+            "isCustomFont": true,
+            "glyphCount": 32
+          }
+        ],
+        "typography": {
+          "weight": "600",
+          "size": "14px",
+          "lineHeight": "20px"
+        },
+        "assets": [
+          {
+            "file": "download-sheets/d2028.svg",
+            "naturalWidth": 18,
+            "naturalHeight": 18,
+            "width": 18,
+            "height": 18,
+            "src": "data:image/svg+xml,%3csvg%20preserveAspectRatio='none'%20overflow='visible'%20style='display:%20block;'%20width='18'%20height='18'%20viewBox='0%200%2018%2018'%20fill='none'%20xmlns='http://www.w3.org/2000/svg'%3e%3cg%20id='Icon'%3e%3cpath%20id='Vector'%20d='M13.5%204.5L4.5%2013.5'%20stroke-width='1.3125'%20stroke-linecap='round'%20stroke-linejoin='round'%20stroke='%2366666D'/%3e%3cpath%20id='Vector_2'%20d='M4.5%204.5L13.5%2013.5'%20stroke-width='1.3125'%20stroke-linecap='round'%20stroke-linejoin='round'%20stroke='%2366666D'/%3e%3c/g%3e%3c/svg%3e"
+          },
+          {
+            "file": "download-sheets/ef790.svg",
+            "naturalWidth": 14,
+            "naturalHeight": 14,
+            "width": 14,
+            "height": 14,
+            "src": "data:image/svg+xml,%3csvg%20preserveAspectRatio='none'%20overflow='visible'%20style='display:%20block;'%20width='14'%20height='14'%20viewBox='0%200%2014%2014'%20fill='none'%20xmlns='http://www.w3.org/2000/svg'%3e%3ccircle%20id='Ellipse'%20cx='7'%20cy='7'%20r='6.25'%20stroke-width='1.5'%20stroke='%23CFCEC9'/%3e%3c/svg%3e"
+          },
+          {
+            "file": "download-sheets/ef790.svg",
+            "naturalWidth": 14,
+            "naturalHeight": 14,
+            "width": 14,
+            "height": 14,
+            "src": "data:image/svg+xml,%3csvg%20preserveAspectRatio='none'%20overflow='visible'%20style='display:%20block;'%20width='14'%20height='14'%20viewBox='0%200%2014%2014'%20fill='none'%20xmlns='http://www.w3.org/2000/svg'%3e%3ccircle%20id='Ellipse'%20cx='7'%20cy='7'%20r='6.25'%20stroke-width='1.5'%20stroke='%23CFCEC9'/%3e%3c/svg%3e"
+          },
+          {
+            "file": "download-sheets/fd956.svg",
+            "naturalWidth": 14,
+            "naturalHeight": 14,
+            "width": 14,
+            "height": 14,
+            "src": "data:image/svg+xml,%3csvg%20preserveAspectRatio='none'%20overflow='visible'%20style='display:%20block;'%20width='14'%20height='14'%20viewBox='0%200%2014%2014'%20fill='none'%20xmlns='http://www.w3.org/2000/svg'%3e%3ccircle%20id='Ellipse'%20cx='7'%20cy='7'%20r='5'%20fill='white'%20stroke-width='4'%20stroke='%2317171A'/%3e%3c/svg%3e"
+          },
+          {
+            "file": "download-sheets/ef790.svg",
+            "naturalWidth": 14,
+            "naturalHeight": 14,
+            "width": 14,
+            "height": 14,
+            "src": "data:image/svg+xml,%3csvg%20preserveAspectRatio='none'%20overflow='visible'%20style='display:%20block;'%20width='14'%20height='14'%20viewBox='0%200%2014%2014'%20fill='none'%20xmlns='http://www.w3.org/2000/svg'%3e%3ccircle%20id='Ellipse'%20cx='7'%20cy='7'%20r='6.25'%20stroke-width='1.5'%20stroke='%23CFCEC9'/%3e%3c/svg%3e"
+          },
+          {
+            "file": "chevron-down-14.svg",
+            "naturalWidth": 14,
+            "naturalHeight": 14,
+            "width": 14,
+            "height": 14,
+            "src": "data:image/svg+xml,%3csvg%20preserveAspectRatio='none'%20overflow='visible'%20style='display:%20block;'%20width='14'%20height='14'%20viewBox='0%200%2014%2014'%20fill='none'%20xmlns='http://www.w3.org/2000/svg'%3e%3cg%20id='icon/chevron-down'%3e%3cpath%20id='Vector'%20d='M3.5%205.25L7%208.75L10.5%205.25'%20stroke-width='1.02083'%20stroke-linecap='round'%20stroke-linejoin='round'%20stroke='%239A9AA0'/%3e%3c/g%3e%3c/svg%3e"
+          },
+          {
+            "file": "chevron-down-14.svg",
+            "naturalWidth": 14,
+            "naturalHeight": 14,
+            "width": 14,
+            "height": 14,
+            "src": "data:image/svg+xml,%3csvg%20preserveAspectRatio='none'%20overflow='visible'%20style='display:%20block;'%20width='14'%20height='14'%20viewBox='0%200%2014%2014'%20fill='none'%20xmlns='http://www.w3.org/2000/svg'%3e%3cg%20id='icon/chevron-down'%3e%3cpath%20id='Vector'%20d='M3.5%205.25L7%208.75L10.5%205.25'%20stroke-width='1.02083'%20stroke-linecap='round'%20stroke-linejoin='round'%20stroke='%239A9AA0'/%3e%3c/g%3e%3c/svg%3e"
+          },
+          {
+            "file": "chevron-down-14.svg",
+            "naturalWidth": 14,
+            "naturalHeight": 14,
+            "width": 14,
+            "height": 14,
+            "src": "data:image/svg+xml,%3csvg%20preserveAspectRatio='none'%20overflow='visible'%20style='display:%20block;'%20width='14'%20height='14'%20viewBox='0%200%2014%2014'%20fill='none'%20xmlns='http://www.w3.org/2000/svg'%3e%3cg%20id='icon/chevron-down'%3e%3cpath%20id='Vector'%20d='M3.5%205.25L7%208.75L10.5%205.25'%20stroke-width='1.02083'%20stroke-linecap='round'%20stroke-linejoin='round'%20stroke='%239A9AA0'/%3e%3c/g%3e%3c/svg%3e"
+          },
+          {
+            "file": "toggle-on.svg",
+            "naturalWidth": 34,
+            "naturalHeight": 20,
+            "width": 34,
+            "height": 20,
+            "src": "data:image/svg+xml,%3csvg%20preserveAspectRatio='none'%20overflow='visible'%20style='display:%20block;'%20width='34'%20height='20'%20viewBox='0%200%2034%2020'%20fill='none'%20xmlns='http://www.w3.org/2000/svg'%3e%3cg%20id='Toggle'%3e%3crect%20width='34'%20height='20'%20rx='10'%20fill='%2317171A'/%3e%3ccircle%20id='Knob'%20cx='24'%20cy='10'%20r='8'%20fill='white'/%3e%3c/g%3e%3c/svg%3e"
+          },
+          {
+            "file": "download-sheets/aa883.svg",
+            "naturalWidth": 15,
+            "naturalHeight": 15,
+            "width": 15,
+            "height": 15,
+            "src": "data:image/svg+xml,%3csvg%20preserveAspectRatio='none'%20overflow='visible'%20style='display:%20block;'%20width='15'%20height='15'%20viewBox='0%200%2015%2015'%20fill='none'%20xmlns='http://www.w3.org/2000/svg'%3e%3cg%20id='icon/folder-open'%3e%3cpath%20id='Vector'%20d='M3.75%208.75L4.6875%206.9375C4.78942%206.73509%204.94445%206.56419%205.13601%206.44309C5.32756%206.32199%205.54844%206.25525%205.775%206.25H12.5M12.5%206.25C12.691%206.24967%2012.8795%206.29309%2013.051%206.37693C13.2226%206.46077%2013.3727%206.5828%2013.4897%206.73367C13.6068%206.88453%2013.6878%207.06021%2013.7264%207.24722C13.765%207.43423%2013.7602%207.62761%2013.7125%207.8125L12.75%2011.5625C12.6804%2011.8322%2012.5226%2012.071%2012.3018%2012.2408C12.081%2012.4107%2011.8098%2012.5019%2011.5312%2012.5H2.5C2.16848%2012.5%201.85054%2012.3683%201.61612%2012.1339C1.3817%2011.8995%201.25%2011.5815%201.25%2011.25V3.125C1.25%202.79348%201.3817%202.47554%201.61612%202.24112C1.85054%202.0067%202.16848%201.875%202.5%201.875H4.9375C5.14655%201.87295%205.35278%201.92337%205.53731%202.02164C5.72184%202.11991%205.87878%202.26289%205.99375%202.4375L6.5%203.1875C6.61382%203.36033%206.76877%203.5022%206.95094%203.60038C7.13311%203.69855%207.33681%203.74997%207.54375%203.75H11.25C11.5815%203.75%2011.8995%203.8817%2012.1339%204.11612C12.3683%204.35054%2012.5%204.66848%2012.5%205V6.25Z'%20stroke-width='1.09375'%20stroke-linecap='round'%20stroke-linejoin='round'%20stroke='%239A9AA0'/%3e%3c/g%3e%3c/svg%3e"
+          },
+          {
+            "file": "chevron-down-14.svg",
+            "naturalWidth": 14,
+            "naturalHeight": 14,
+            "width": 14,
+            "height": 14,
+            "src": "data:image/svg+xml,%3csvg%20preserveAspectRatio='none'%20overflow='visible'%20style='display:%20block;'%20width='14'%20height='14'%20viewBox='0%200%2014%2014'%20fill='none'%20xmlns='http://www.w3.org/2000/svg'%3e%3cg%20id='icon/chevron-down'%3e%3cpath%20id='Vector'%20d='M3.5%205.25L7%208.75L10.5%205.25'%20stroke-width='1.02083'%20stroke-linecap='round'%20stroke-linejoin='round'%20stroke='%239A9AA0'/%3e%3c/g%3e%3c/svg%3e"
+          },
+          {
+            "file": "chevron-down-14.svg",
+            "naturalWidth": 14,
+            "naturalHeight": 14,
+            "width": 14,
+            "height": 14,
+            "src": "data:image/svg+xml,%3csvg%20preserveAspectRatio='none'%20overflow='visible'%20style='display:%20block;'%20width='14'%20height='14'%20viewBox='0%200%2014%2014'%20fill='none'%20xmlns='http://www.w3.org/2000/svg'%3e%3cg%20id='icon/chevron-down'%3e%3cpath%20id='Vector'%20d='M3.5%205.25L7%208.75L10.5%205.25'%20stroke-width='1.02083'%20stroke-linecap='round'%20stroke-linejoin='round'%20stroke='%239A9AA0'/%3e%3c/g%3e%3c/svg%3e"
+          },
+          {
+            "file": "chevron-down-14.svg",
+            "naturalWidth": 14,
+            "naturalHeight": 14,
+            "width": 14,
+            "height": 14,
+            "src": "data:image/svg+xml,%3csvg%20preserveAspectRatio='none'%20overflow='visible'%20style='display:%20block;'%20width='14'%20height='14'%20viewBox='0%200%2014%2014'%20fill='none'%20xmlns='http://www.w3.org/2000/svg'%3e%3cg%20id='icon/chevron-down'%3e%3cpath%20id='Vector'%20d='M3.5%205.25L7%208.75L10.5%205.25'%20stroke-width='1.02083'%20stroke-linecap='round'%20stroke-linejoin='round'%20stroke='%239A9AA0'/%3e%3c/g%3e%3c/svg%3e"
+          },
+          {
+            "file": "toggle-on.svg",
+            "naturalWidth": 34,
+            "naturalHeight": 20,
+            "width": 34,
+            "height": 20,
+            "src": "data:image/svg+xml,%3csvg%20preserveAspectRatio='none'%20overflow='visible'%20style='display:%20block;'%20width='34'%20height='20'%20viewBox='0%200%2034%2020'%20fill='none'%20xmlns='http://www.w3.org/2000/svg'%3e%3cg%20id='Toggle'%3e%3crect%20width='34'%20height='20'%20rx='10'%20fill='%2317171A'/%3e%3ccircle%20id='Knob'%20cx='24'%20cy='10'%20r='8'%20fill='white'/%3e%3c/g%3e%3c/svg%3e"
+          },
+          {
+            "file": "download-sheets/3d2ea.svg",
+            "naturalWidth": 16,
+            "naturalHeight": 16,
+            "width": 16,
+            "height": 16,
+            "src": "data:image/svg+xml,%3csvg%20preserveAspectRatio='none'%20overflow='visible'%20style='display:%20block;'%20width='16'%20height='16'%20viewBox='0%200%2016%2016'%20fill='none'%20xmlns='http://www.w3.org/2000/svg'%3e%3cg%20id='icon/download'%3e%3cpath%20id='Vector'%20d='M14%2010V12.6667C14%2013.0203%2013.8595%2013.3594%2013.6095%2013.6095C13.3594%2013.8595%2013.0203%2014%2012.6667%2014H3.33333C2.97971%2014%202.64057%2013.8595%202.39052%2013.6095C2.14048%2013.3594%202%2013.0203%202%2012.6667V10'%20stroke-width='1.16667'%20stroke-linecap='round'%20stroke-linejoin='round'%20stroke='white'/%3e%3cpath%20id='Vector_2'%20d='M4.66667%206.66667L8%2010L11.3333%206.66667'%20stroke-width='1.16667'%20stroke-linecap='round'%20stroke-linejoin='round'%20stroke='white'/%3e%3cpath%20id='Vector_3'%20d='M8%2010V2'%20stroke-width='1.16667'%20stroke-linecap='round'%20stroke-linejoin='round'%20stroke='white'/%3e%3c/g%3e%3c/svg%3e"
+          }
+        ],
+        "accessibility": {
+          "violations": [],
+          "incomplete": []
+        },
+        "explicitStarts": 0,
+        "behavior": "Options are draft-only until explicit primary activation"
+      },
+      "ipc": [
+        {
+          "command": "plugin:event|listen",
+          "args": {
+            "event": "tauri://theme-changed",
+            "target": {
+              "kind": "Window",
+              "label": "download-sheet"
+            },
+            "handler": 1
+          }
+        },
+        {
+          "command": "plugin:event|listen",
+          "args": {
+            "event": "download:sheet",
+            "target": {
+              "kind": "Any"
+            },
+            "handler": 3
+          }
+        },
+        {
+          "command": "get_settings",
+          "args": {}
+        },
+        {
+          "command": "plugin:window|theme",
+          "args": {
+            "label": "download-sheet"
+          }
+        },
+        {
+          "command": "get_download_sheet",
+          "args": {}
+        },
+        {
+          "command": "download_sheet_ready",
+          "args": {}
+        }
+      ],
+      "unsupported": [],
+      "runtimeAndNetworkProblems": []
+    },
+    {
+      "file": "v36-sheets-complete-sheet-options-advanced-dark@1x.png",
+      "scenario": "sheet-options-advanced",
+      "entry": "index.html",
+      "figmaNode": "17:137",
+      "theme": "dark",
+      "resolvedTheme": "dark",
+      "scale": 1,
+      "viewport": {
+        "width": 460,
+        "height": 680
+      },
+      "clip": {
+        "x": 0,
+        "y": 0,
+        "width": 460,
+        "height": 680
+      },
+      "width": 460,
+      "height": 680,
+      "bytes": 45898,
+      "sha256": "72b9e928d2e7a900ab9f39f1c7074b6c429863efb9a89f2d3f340b96e1414a19",
+      "repeatMatches": true,
+      "caret": "initial",
+      "font": [
+        {
+          "familyName": "Geist",
+          "postScriptName": "Geist",
+          "isCustomFont": true,
+          "glyphCount": 16
+        }
+      ],
+      "fixtureSha256": "daf053cf7bce89b94dc25b445a0ad3edc5083ed0bc54c77f88e02c63dc600ff4",
+      "assertions": {
+        "geometry": {
+          "x": 0,
+          "y": 0,
+          "width": 460,
+          "height": 680
+        },
+        "mono": [
+          {
+            "familyName": "Geist Mono",
+            "postScriptName": "GeistMono",
+            "isCustomFont": true,
+            "glyphCount": 32
+          }
+        ],
+        "typography": {
+          "weight": "600",
+          "size": "14px",
+          "lineHeight": "20px"
+        },
+        "assets": [
+          {
+            "file": "download-sheets/d2028.svg",
+            "naturalWidth": 18,
+            "naturalHeight": 18,
+            "width": 18,
+            "height": 18,
+            "src": "data:image/svg+xml,%3csvg%20preserveAspectRatio='none'%20overflow='visible'%20style='display:%20block;'%20width='18'%20height='18'%20viewBox='0%200%2018%2018'%20fill='none'%20xmlns='http://www.w3.org/2000/svg'%3e%3cg%20id='Icon'%3e%3cpath%20id='Vector'%20d='M13.5%204.5L4.5%2013.5'%20stroke-width='1.3125'%20stroke-linecap='round'%20stroke-linejoin='round'%20stroke='%2366666D'/%3e%3cpath%20id='Vector_2'%20d='M4.5%204.5L13.5%2013.5'%20stroke-width='1.3125'%20stroke-linecap='round'%20stroke-linejoin='round'%20stroke='%2366666D'/%3e%3c/g%3e%3c/svg%3e"
+          },
+          {
+            "file": "download-sheets/ef790.svg",
+            "naturalWidth": 14,
+            "naturalHeight": 14,
+            "width": 14,
+            "height": 14,
+            "src": "data:image/svg+xml,%3csvg%20preserveAspectRatio='none'%20overflow='visible'%20style='display:%20block;'%20width='14'%20height='14'%20viewBox='0%200%2014%2014'%20fill='none'%20xmlns='http://www.w3.org/2000/svg'%3e%3ccircle%20id='Ellipse'%20cx='7'%20cy='7'%20r='6.25'%20stroke-width='1.5'%20stroke='%23CFCEC9'/%3e%3c/svg%3e"
+          },
+          {
+            "file": "download-sheets/ef790.svg",
+            "naturalWidth": 14,
+            "naturalHeight": 14,
+            "width": 14,
+            "height": 14,
+            "src": "data:image/svg+xml,%3csvg%20preserveAspectRatio='none'%20overflow='visible'%20style='display:%20block;'%20width='14'%20height='14'%20viewBox='0%200%2014%2014'%20fill='none'%20xmlns='http://www.w3.org/2000/svg'%3e%3ccircle%20id='Ellipse'%20cx='7'%20cy='7'%20r='6.25'%20stroke-width='1.5'%20stroke='%23CFCEC9'/%3e%3c/svg%3e"
+          },
+          {
+            "file": "download-sheets/fd956.svg",
+            "naturalWidth": 14,
+            "naturalHeight": 14,
+            "width": 14,
+            "height": 14,
+            "src": "data:image/svg+xml,%3csvg%20preserveAspectRatio='none'%20overflow='visible'%20style='display:%20block;'%20width='14'%20height='14'%20viewBox='0%200%2014%2014'%20fill='none'%20xmlns='http://www.w3.org/2000/svg'%3e%3ccircle%20id='Ellipse'%20cx='7'%20cy='7'%20r='5'%20fill='white'%20stroke-width='4'%20stroke='%2317171A'/%3e%3c/svg%3e"
+          },
+          {
+            "file": "download-sheets/ef790.svg",
+            "naturalWidth": 14,
+            "naturalHeight": 14,
+            "width": 14,
+            "height": 14,
+            "src": "data:image/svg+xml,%3csvg%20preserveAspectRatio='none'%20overflow='visible'%20style='display:%20block;'%20width='14'%20height='14'%20viewBox='0%200%2014%2014'%20fill='none'%20xmlns='http://www.w3.org/2000/svg'%3e%3ccircle%20id='Ellipse'%20cx='7'%20cy='7'%20r='6.25'%20stroke-width='1.5'%20stroke='%23CFCEC9'/%3e%3c/svg%3e"
+          },
+          {
+            "file": "chevron-down-14.svg",
+            "naturalWidth": 14,
+            "naturalHeight": 14,
+            "width": 14,
+            "height": 14,
+            "src": "data:image/svg+xml,%3csvg%20preserveAspectRatio='none'%20overflow='visible'%20style='display:%20block;'%20width='14'%20height='14'%20viewBox='0%200%2014%2014'%20fill='none'%20xmlns='http://www.w3.org/2000/svg'%3e%3cg%20id='icon/chevron-down'%3e%3cpath%20id='Vector'%20d='M3.5%205.25L7%208.75L10.5%205.25'%20stroke-width='1.02083'%20stroke-linecap='round'%20stroke-linejoin='round'%20stroke='%239A9AA0'/%3e%3c/g%3e%3c/svg%3e"
+          },
+          {
+            "file": "chevron-down-14.svg",
+            "naturalWidth": 14,
+            "naturalHeight": 14,
+            "width": 14,
+            "height": 14,
+            "src": "data:image/svg+xml,%3csvg%20preserveAspectRatio='none'%20overflow='visible'%20style='display:%20block;'%20width='14'%20height='14'%20viewBox='0%200%2014%2014'%20fill='none'%20xmlns='http://www.w3.org/2000/svg'%3e%3cg%20id='icon/chevron-down'%3e%3cpath%20id='Vector'%20d='M3.5%205.25L7%208.75L10.5%205.25'%20stroke-width='1.02083'%20stroke-linecap='round'%20stroke-linejoin='round'%20stroke='%239A9AA0'/%3e%3c/g%3e%3c/svg%3e"
+          },
+          {
+            "file": "chevron-down-14.svg",
+            "naturalWidth": 14,
+            "naturalHeight": 14,
+            "width": 14,
+            "height": 14,
+            "src": "data:image/svg+xml,%3csvg%20preserveAspectRatio='none'%20overflow='visible'%20style='display:%20block;'%20width='14'%20height='14'%20viewBox='0%200%2014%2014'%20fill='none'%20xmlns='http://www.w3.org/2000/svg'%3e%3cg%20id='icon/chevron-down'%3e%3cpath%20id='Vector'%20d='M3.5%205.25L7%208.75L10.5%205.25'%20stroke-width='1.02083'%20stroke-linecap='round'%20stroke-linejoin='round'%20stroke='%239A9AA0'/%3e%3c/g%3e%3c/svg%3e"
+          },
+          {
+            "file": "toggle-on.svg",
+            "naturalWidth": 34,
+            "naturalHeight": 20,
+            "width": 34,
+            "height": 20,
+            "src": "data:image/svg+xml,%3csvg%20preserveAspectRatio='none'%20overflow='visible'%20style='display:%20block;'%20width='34'%20height='20'%20viewBox='0%200%2034%2020'%20fill='none'%20xmlns='http://www.w3.org/2000/svg'%3e%3cg%20id='Toggle'%3e%3crect%20width='34'%20height='20'%20rx='10'%20fill='%2317171A'/%3e%3ccircle%20id='Knob'%20cx='24'%20cy='10'%20r='8'%20fill='white'/%3e%3c/g%3e%3c/svg%3e"
+          },
+          {
+            "file": "download-sheets/aa883.svg",
+            "naturalWidth": 15,
+            "naturalHeight": 15,
+            "width": 15,
+            "height": 15,
+            "src": "data:image/svg+xml,%3csvg%20preserveAspectRatio='none'%20overflow='visible'%20style='display:%20block;'%20width='15'%20height='15'%20viewBox='0%200%2015%2015'%20fill='none'%20xmlns='http://www.w3.org/2000/svg'%3e%3cg%20id='icon/folder-open'%3e%3cpath%20id='Vector'%20d='M3.75%208.75L4.6875%206.9375C4.78942%206.73509%204.94445%206.56419%205.13601%206.44309C5.32756%206.32199%205.54844%206.25525%205.775%206.25H12.5M12.5%206.25C12.691%206.24967%2012.8795%206.29309%2013.051%206.37693C13.2226%206.46077%2013.3727%206.5828%2013.4897%206.73367C13.6068%206.88453%2013.6878%207.06021%2013.7264%207.24722C13.765%207.43423%2013.7602%207.62761%2013.7125%207.8125L12.75%2011.5625C12.6804%2011.8322%2012.5226%2012.071%2012.3018%2012.2408C12.081%2012.4107%2011.8098%2012.5019%2011.5312%2012.5H2.5C2.16848%2012.5%201.85054%2012.3683%201.61612%2012.1339C1.3817%2011.8995%201.25%2011.5815%201.25%2011.25V3.125C1.25%202.79348%201.3817%202.47554%201.61612%202.24112C1.85054%202.0067%202.16848%201.875%202.5%201.875H4.9375C5.14655%201.87295%205.35278%201.92337%205.53731%202.02164C5.72184%202.11991%205.87878%202.26289%205.99375%202.4375L6.5%203.1875C6.61382%203.36033%206.76877%203.5022%206.95094%203.60038C7.13311%203.69855%207.33681%203.74997%207.54375%203.75H11.25C11.5815%203.75%2011.8995%203.8817%2012.1339%204.11612C12.3683%204.35054%2012.5%204.66848%2012.5%205V6.25Z'%20stroke-width='1.09375'%20stroke-linecap='round'%20stroke-linejoin='round'%20stroke='%239A9AA0'/%3e%3c/g%3e%3c/svg%3e"
+          },
+          {
+            "file": "chevron-down-14.svg",
+            "naturalWidth": 14,
+            "naturalHeight": 14,
+            "width": 14,
+            "height": 14,
+            "src": "data:image/svg+xml,%3csvg%20preserveAspectRatio='none'%20overflow='visible'%20style='display:%20block;'%20width='14'%20height='14'%20viewBox='0%200%2014%2014'%20fill='none'%20xmlns='http://www.w3.org/2000/svg'%3e%3cg%20id='icon/chevron-down'%3e%3cpath%20id='Vector'%20d='M3.5%205.25L7%208.75L10.5%205.25'%20stroke-width='1.02083'%20stroke-linecap='round'%20stroke-linejoin='round'%20stroke='%239A9AA0'/%3e%3c/g%3e%3c/svg%3e"
+          },
+          {
+            "file": "chevron-down-14.svg",
+            "naturalWidth": 14,
+            "naturalHeight": 14,
+            "width": 14,
+            "height": 14,
+            "src": "data:image/svg+xml,%3csvg%20preserveAspectRatio='none'%20overflow='visible'%20style='display:%20block;'%20width='14'%20height='14'%20viewBox='0%200%2014%2014'%20fill='none'%20xmlns='http://www.w3.org/2000/svg'%3e%3cg%20id='icon/chevron-down'%3e%3cpath%20id='Vector'%20d='M3.5%205.25L7%208.75L10.5%205.25'%20stroke-width='1.02083'%20stroke-linecap='round'%20stroke-linejoin='round'%20stroke='%239A9AA0'/%3e%3c/g%3e%3c/svg%3e"
+          },
+          {
+            "file": "chevron-down-14.svg",
+            "naturalWidth": 14,
+            "naturalHeight": 14,
+            "width": 14,
+            "height": 14,
+            "src": "data:image/svg+xml,%3csvg%20preserveAspectRatio='none'%20overflow='visible'%20style='display:%20block;'%20width='14'%20height='14'%20viewBox='0%200%2014%2014'%20fill='none'%20xmlns='http://www.w3.org/2000/svg'%3e%3cg%20id='icon/chevron-down'%3e%3cpath%20id='Vector'%20d='M3.5%205.25L7%208.75L10.5%205.25'%20stroke-width='1.02083'%20stroke-linecap='round'%20stroke-linejoin='round'%20stroke='%239A9AA0'/%3e%3c/g%3e%3c/svg%3e"
+          },
+          {
+            "file": "toggle-on.svg",
+            "naturalWidth": 34,
+            "naturalHeight": 20,
+            "width": 34,
+            "height": 20,
+            "src": "data:image/svg+xml,%3csvg%20preserveAspectRatio='none'%20overflow='visible'%20style='display:%20block;'%20width='34'%20height='20'%20viewBox='0%200%2034%2020'%20fill='none'%20xmlns='http://www.w3.org/2000/svg'%3e%3cg%20id='Toggle'%3e%3crect%20width='34'%20height='20'%20rx='10'%20fill='%2317171A'/%3e%3ccircle%20id='Knob'%20cx='24'%20cy='10'%20r='8'%20fill='white'/%3e%3c/g%3e%3c/svg%3e"
+          },
+          {
+            "file": "download-sheets/3d2ea.svg",
+            "naturalWidth": 16,
+            "naturalHeight": 16,
+            "width": 16,
+            "height": 16,
+            "src": "data:image/svg+xml,%3csvg%20preserveAspectRatio='none'%20overflow='visible'%20style='display:%20block;'%20width='16'%20height='16'%20viewBox='0%200%2016%2016'%20fill='none'%20xmlns='http://www.w3.org/2000/svg'%3e%3cg%20id='icon/download'%3e%3cpath%20id='Vector'%20d='M14%2010V12.6667C14%2013.0203%2013.8595%2013.3594%2013.6095%2013.6095C13.3594%2013.8595%2013.0203%2014%2012.6667%2014H3.33333C2.97971%2014%202.64057%2013.8595%202.39052%2013.6095C2.14048%2013.3594%202%2013.0203%202%2012.6667V10'%20stroke-width='1.16667'%20stroke-linecap='round'%20stroke-linejoin='round'%20stroke='white'/%3e%3cpath%20id='Vector_2'%20d='M4.66667%206.66667L8%2010L11.3333%206.66667'%20stroke-width='1.16667'%20stroke-linecap='round'%20stroke-linejoin='round'%20stroke='white'/%3e%3cpath%20id='Vector_3'%20d='M8%2010V2'%20stroke-width='1.16667'%20stroke-linecap='round'%20stroke-linejoin='round'%20stroke='white'/%3e%3c/g%3e%3c/svg%3e"
+          }
+        ],
+        "accessibility": {
+          "violations": [],
+          "incomplete": []
+        },
+        "explicitStarts": 0,
+        "behavior": "Options are draft-only until explicit primary activation"
+      },
+      "ipc": [
+        {
+          "command": "plugin:event|listen",
+          "args": {
+            "event": "tauri://theme-changed",
+            "target": {
+              "kind": "Window",
+              "label": "download-sheet"
+            },
+            "handler": 1
+          }
+        },
+        {
+          "command": "plugin:event|listen",
+          "args": {
+            "event": "download:sheet",
+            "target": {
+              "kind": "Any"
+            },
+            "handler": 3
+          }
+        },
+        {
+          "command": "get_settings",
+          "args": {}
+        },
+        {
+          "command": "plugin:window|theme",
+          "args": {
+            "label": "download-sheet"
+          }
+        },
+        {
+          "command": "get_download_sheet",
+          "args": {}
+        },
+        {
+          "command": "download_sheet_ready",
+          "args": {}
+        }
+      ],
+      "unsupported": [],
+      "runtimeAndNetworkProblems": []
+    },
+    {
+      "file": "v36-sheets-complete-sheet-trim-dark@1x.png",
+      "scenario": "sheet-trim",
+      "entry": "index.html",
+      "figmaNode": "17:270",
+      "theme": "dark",
+      "resolvedTheme": "dark",
+      "scale": 1,
+      "viewport": {
+        "width": 460,
+        "height": 680
+      },
+      "clip": {
+        "x": 0,
+        "y": 0,
+        "width": 460,
+        "height": 680
+      },
+      "width": 460,
+      "height": 680,
+      "bytes": 78838,
+      "sha256": "7683ef8af6c41c4fbc2889a5c093f5cb7b3f68e64349c9b02237527b3084a7c0",
+      "repeatMatches": true,
+      "caret": "initial",
+      "font": [
+        {
+          "familyName": "Geist",
+          "postScriptName": "Geist",
+          "isCustomFont": true,
+          "glyphCount": 17
+        }
+      ],
+      "fixtureSha256": "a3eeab98e38c681a2e45e8a8034e215697dbb4f5e36b1caa1904588e3ddde8b7",
+      "assertions": {
+        "geometry": {
+          "x": 0,
+          "y": 0,
+          "width": 460,
+          "height": 680
+        },
+        "mono": [
+          {
+            "familyName": "Geist Mono",
+            "postScriptName": "GeistMono",
+            "isCustomFont": true,
+            "glyphCount": 7
+          }
+        ],
+        "typography": {
+          "weight": "600",
+          "size": "14px",
+          "lineHeight": "20px"
+        },
+        "assets": [
+          {
+            "file": "download-sheets/d2028.svg",
+            "naturalWidth": 18,
+            "naturalHeight": 18,
+            "width": 18,
+            "height": 18,
+            "src": "data:image/svg+xml,%3csvg%20preserveAspectRatio='none'%20overflow='visible'%20style='display:%20block;'%20width='18'%20height='18'%20viewBox='0%200%2018%2018'%20fill='none'%20xmlns='http://www.w3.org/2000/svg'%3e%3cg%20id='Icon'%3e%3cpath%20id='Vector'%20d='M13.5%204.5L4.5%2013.5'%20stroke-width='1.3125'%20stroke-linecap='round'%20stroke-linejoin='round'%20stroke='%2366666D'/%3e%3cpath%20id='Vector_2'%20d='M4.5%204.5L13.5%2013.5'%20stroke-width='1.3125'%20stroke-linecap='round'%20stroke-linejoin='round'%20stroke='%2366666D'/%3e%3c/g%3e%3c/svg%3e"
+          },
+          {
+            "file": "download-sheets/a9396.svg",
+            "naturalWidth": 18,
+            "naturalHeight": 18,
+            "width": 18,
+            "height": 18,
+            "src": "data:image/svg+xml,%3csvg%20preserveAspectRatio='none'%20overflow='visible'%20style='display:%20block;'%20width='18'%20height='18'%20viewBox='0%200%2018%2018'%20fill='none'%20xmlns='http://www.w3.org/2000/svg'%3e%3cg%20id='icon/play'%3e%3cpath%20id='Vector'%20d='M4.5%202.25L15%209L4.5%2015.75V2.25Z'%20stroke-width='1.3125'%20stroke-linecap='round'%20stroke-linejoin='round'%20stroke='%23F5F5F3'/%3e%3c/g%3e%3c/svg%3e"
+          },
+          {
+            "file": "toggle-off.svg",
+            "naturalWidth": 34,
+            "naturalHeight": 20,
+            "width": 34,
+            "height": 20,
+            "src": "data:image/svg+xml,%3csvg%20preserveAspectRatio='none'%20overflow='visible'%20style='display:%20block;'%20width='34'%20height='20'%20viewBox='0%200%2034%2020'%20fill='none'%20xmlns='http://www.w3.org/2000/svg'%3e%3cg%20id='Toggle'%3e%3crect%20width='34'%20height='20'%20rx='10'%20fill='%23CFCEC9'/%3e%3ccircle%20id='Knob'%20cx='10'%20cy='10'%20r='8'%20fill='white'/%3e%3c/g%3e%3c/svg%3e"
+          },
+          {
+            "file": "download-sheets/2ed91.svg",
+            "naturalWidth": 16,
+            "naturalHeight": 16,
+            "width": 16,
+            "height": 16,
+            "src": "data:image/svg+xml,%3csvg%20preserveAspectRatio='none'%20overflow='visible'%20style='display:%20block;'%20width='16'%20height='16'%20viewBox='0%200%2016%2016'%20fill='none'%20xmlns='http://www.w3.org/2000/svg'%3e%3cg%20id='Icon'%3e%3cpath%20id='Vector'%20d='M6%204C6%205.10457%205.10457%206%204%206C2.89543%206%202%205.10457%202%204C2%202.89543%202.89543%202%204%202C5.10457%202%206%202.89543%206%204Z'%20stroke-width='1.16667'%20stroke-linecap='round'%20stroke-linejoin='round'%20stroke='white'/%3e%3cpath%20id='Vector_2'%20d='M5.41333%205.41333L8%208'%20stroke-width='1.16667'%20stroke-linecap='round'%20stroke-linejoin='round'%20stroke='white'/%3e%3cpath%20id='Vector_3'%20d='M13.3333%202.66667L5.41333%2010.5867'%20stroke-width='1.16667'%20stroke-linecap='round'%20stroke-linejoin='round'%20stroke='white'/%3e%3cpath%20id='Vector_4'%20d='M6%2012C6%2013.1046%205.10457%2014%204%2014C2.89543%2014%202%2013.1046%202%2012C2%2010.8954%202.89543%2010%204%2010C5.10457%2010%206%2010.8954%206%2012Z'%20stroke-width='1.16667'%20stroke-linecap='round'%20stroke-linejoin='round'%20stroke='white'/%3e%3cpath%20id='Vector_5'%20d='M9.86667%209.86667L13.3333%2013.3333'%20stroke-width='1.16667'%20stroke-linecap='round'%20stroke-linejoin='round'%20stroke='white'/%3e%3c/g%3e%3c/svg%3e"
+          }
+        ],
+        "accessibility": {
+          "violations": [],
+          "incomplete": []
+        },
+        "explicitStarts": 0,
+        "behavior": "Real browser range keyboard snapping and modal focus wrap"
+      },
+      "ipc": [
+        {
+          "command": "plugin:event|listen",
+          "args": {
+            "event": "tauri://theme-changed",
+            "target": {
+              "kind": "Window",
+              "label": "download-sheet"
+            },
+            "handler": 1
+          }
+        },
+        {
+          "command": "plugin:event|listen",
+          "args": {
+            "event": "download:sheet",
+            "target": {
+              "kind": "Any"
+            },
+            "handler": 3
+          }
+        },
+        {
+          "command": "get_settings",
+          "args": {}
+        },
+        {
+          "command": "plugin:window|theme",
+          "args": {
+            "label": "download-sheet"
+          }
+        },
+        {
+          "command": "get_download_sheet",
+          "args": {}
+        },
+        {
+          "command": "download_sheet_ready",
+          "args": {}
+        }
+      ],
+      "unsupported": [],
+      "runtimeAndNetworkProblems": []
+    },
+    {
+      "file": "v36-sheets-complete-sheet-playlist-dark@1x.png",
+      "scenario": "sheet-playlist",
+      "entry": "index.html",
+      "figmaNode": "18:160",
+      "theme": "dark",
+      "resolvedTheme": "dark",
+      "scale": 1,
+      "viewport": {
+        "width": 460,
+        "height": 680
+      },
+      "clip": {
+        "x": 0,
+        "y": 0,
+        "width": 460,
+        "height": 680
+      },
+      "width": 460,
+      "height": 680,
+      "bytes": 52026,
+      "sha256": "2b57cd1d3d79259d4c94d10a086c2b8cea18638d9a743d95f3c01ddbd20183cb",
+      "repeatMatches": true,
+      "caret": "initial",
+      "font": [
+        {
+          "familyName": "Geist",
+          "postScriptName": "Geist",
+          "isCustomFont": true,
+          "glyphCount": 28
+        }
+      ],
+      "fixtureSha256": "178cda48e6012fc8a76397a94661e144a8a6b7612767db02741491bc1401781d",
+      "assertions": {
+        "geometry": {
+          "x": 0,
+          "y": 0,
+          "width": 460,
+          "height": 680
+        },
+        "mono": [
+          {
+            "familyName": "Geist Mono",
+            "postScriptName": "GeistMono",
+            "isCustomFont": true,
+            "glyphCount": 2
+          }
+        ],
+        "typography": {
+          "weight": "600",
+          "size": "14px",
+          "lineHeight": "20px"
+        },
+        "assets": [
+          {
+            "file": "download-sheets/ad273.svg",
+            "naturalWidth": 18,
+            "naturalHeight": 18,
+            "width": 18,
+            "height": 18,
+            "src": "data:image/svg+xml,%3csvg%20preserveAspectRatio='none'%20overflow='visible'%20style='display:%20block;'%20width='18'%20height='18'%20viewBox='0%200%2018%2018'%20fill='none'%20xmlns='http://www.w3.org/2000/svg'%3e%3cg%20id='icon/layers-2'%3e%3cpath%20id='Vector'%20d='M12.015%209L16.125%2011.3475C16.2404%2011.4129%2016.3364%2011.5078%2016.4032%2011.6224C16.47%2011.737%2016.5052%2011.8673%2016.5052%2012C16.5052%2012.1327%2016.47%2012.263%2016.4032%2012.3776C16.3364%2012.4922%2016.2404%2012.5871%2016.125%2012.6525L9.75%2016.305C9.52197%2016.4367%209.26331%2016.506%209%2016.506C8.7367%2016.506%208.47803%2016.4367%208.25%2016.305L1.875%2012.6525C1.75958%2012.5871%201.66357%2012.4922%201.59678%2012.3776C1.52998%2012.263%201.49479%2012.1327%201.49479%2012C1.49479%2011.8673%201.52998%2011.737%201.59678%2011.6224C1.66357%2011.5078%201.75958%2011.4129%201.875%2011.3475L5.985%209'%20stroke-width='1.3125'%20stroke-linecap='round'%20stroke-linejoin='round'%20stroke='%2317171A'/%3e%3cpath%20id='Vector_2'%20d='M9.75%2010.305C9.52197%2010.4367%209.26331%2010.506%209%2010.506C8.7367%2010.506%208.47803%2010.4367%208.25%2010.305L1.875%206.6525C1.75958%206.58709%201.66357%206.49223%201.59678%206.3776C1.52998%206.26297%201.49479%206.13267%201.49479%206C1.49479%205.86733%201.52998%205.73703%201.59678%205.6224C1.66357%205.50777%201.75958%205.41291%201.875%205.3475L8.25%201.695C8.47803%201.56335%208.7367%201.49404%209%201.49404C9.26331%201.49404%209.52197%201.56335%209.75%201.695L16.125%205.3475C16.2404%205.41291%2016.3364%205.50777%2016.4032%205.6224C16.47%205.73703%2016.5052%205.86733%2016.5052%206C16.5052%206.13267%2016.47%206.26297%2016.4032%206.3776C16.3364%206.49223%2016.2404%206.58709%2016.125%206.6525L9.75%2010.305Z'%20stroke-width='1.3125'%20stroke-linecap='round'%20stroke-linejoin='round'%20stroke='%2317171A'/%3e%3c/g%3e%3c/svg%3e"
+          },
+          {
+            "file": "download-sheets/d2028.svg",
+            "naturalWidth": 18,
+            "naturalHeight": 18,
+            "width": 18,
+            "height": 18,
+            "src": "data:image/svg+xml,%3csvg%20preserveAspectRatio='none'%20overflow='visible'%20style='display:%20block;'%20width='18'%20height='18'%20viewBox='0%200%2018%2018'%20fill='none'%20xmlns='http://www.w3.org/2000/svg'%3e%3cg%20id='Icon'%3e%3cpath%20id='Vector'%20d='M13.5%204.5L4.5%2013.5'%20stroke-width='1.3125'%20stroke-linecap='round'%20stroke-linejoin='round'%20stroke='%2366666D'/%3e%3cpath%20id='Vector_2'%20d='M4.5%204.5L13.5%2013.5'%20stroke-width='1.3125'%20stroke-linecap='round'%20stroke-linejoin='round'%20stroke='%2366666D'/%3e%3c/g%3e%3c/svg%3e"
+          },
+          {
+            "file": "download-sheets/338a5.svg",
+            "naturalWidth": 12,
+            "naturalHeight": 12,
+            "width": 12,
+            "height": 12,
+            "src": "data:image/svg+xml,%3csvg%20preserveAspectRatio='none'%20overflow='visible'%20style='display:%20block;'%20width='12'%20height='12'%20viewBox='0%200%2012%2012'%20fill='none'%20xmlns='http://www.w3.org/2000/svg'%3e%3cg%20id='icon/check'%3e%3cpath%20id='Vector'%20d='M10%203L4.5%208.5L2%206'%20stroke-width='0.875'%20stroke-linecap='round'%20stroke-linejoin='round'%20stroke='white'/%3e%3c/g%3e%3c/svg%3e"
+          },
+          {
+            "file": "download-sheets/338a5.svg",
+            "naturalWidth": 12,
+            "naturalHeight": 12,
+            "width": 12,
+            "height": 12,
+            "src": "data:image/svg+xml,%3csvg%20preserveAspectRatio='none'%20overflow='visible'%20style='display:%20block;'%20width='12'%20height='12'%20viewBox='0%200%2012%2012'%20fill='none'%20xmlns='http://www.w3.org/2000/svg'%3e%3cg%20id='icon/check'%3e%3cpath%20id='Vector'%20d='M10%203L4.5%208.5L2%206'%20stroke-width='0.875'%20stroke-linecap='round'%20stroke-linejoin='round'%20stroke='white'/%3e%3c/g%3e%3c/svg%3e"
+          },
+          {
+            "file": "download-sheets/338a5.svg",
+            "naturalWidth": 12,
+            "naturalHeight": 12,
+            "width": 12,
+            "height": 12,
+            "src": "data:image/svg+xml,%3csvg%20preserveAspectRatio='none'%20overflow='visible'%20style='display:%20block;'%20width='12'%20height='12'%20viewBox='0%200%2012%2012'%20fill='none'%20xmlns='http://www.w3.org/2000/svg'%3e%3cg%20id='icon/check'%3e%3cpath%20id='Vector'%20d='M10%203L4.5%208.5L2%206'%20stroke-width='0.875'%20stroke-linecap='round'%20stroke-linejoin='round'%20stroke='white'/%3e%3c/g%3e%3c/svg%3e"
+          },
+          {
+            "file": "download-sheets/338a5.svg",
+            "naturalWidth": 12,
+            "naturalHeight": 12,
+            "width": 12,
+            "height": 12,
+            "src": "data:image/svg+xml,%3csvg%20preserveAspectRatio='none'%20overflow='visible'%20style='display:%20block;'%20width='12'%20height='12'%20viewBox='0%200%2012%2012'%20fill='none'%20xmlns='http://www.w3.org/2000/svg'%3e%3cg%20id='icon/check'%3e%3cpath%20id='Vector'%20d='M10%203L4.5%208.5L2%206'%20stroke-width='0.875'%20stroke-linecap='round'%20stroke-linejoin='round'%20stroke='white'/%3e%3c/g%3e%3c/svg%3e"
+          },
+          {
+            "file": "download-sheets/338a5.svg",
+            "naturalWidth": 12,
+            "naturalHeight": 12,
+            "width": 12,
+            "height": 12,
+            "src": "data:image/svg+xml,%3csvg%20preserveAspectRatio='none'%20overflow='visible'%20style='display:%20block;'%20width='12'%20height='12'%20viewBox='0%200%2012%2012'%20fill='none'%20xmlns='http://www.w3.org/2000/svg'%3e%3cg%20id='icon/check'%3e%3cpath%20id='Vector'%20d='M10%203L4.5%208.5L2%206'%20stroke-width='0.875'%20stroke-linecap='round'%20stroke-linejoin='round'%20stroke='white'/%3e%3c/g%3e%3c/svg%3e"
+          },
+          {
+            "file": "download-sheets/3d2ea.svg",
+            "naturalWidth": 16,
+            "naturalHeight": 16,
+            "width": 16,
+            "height": 16,
+            "src": "data:image/svg+xml,%3csvg%20preserveAspectRatio='none'%20overflow='visible'%20style='display:%20block;'%20width='16'%20height='16'%20viewBox='0%200%2016%2016'%20fill='none'%20xmlns='http://www.w3.org/2000/svg'%3e%3cg%20id='icon/download'%3e%3cpath%20id='Vector'%20d='M14%2010V12.6667C14%2013.0203%2013.8595%2013.3594%2013.6095%2013.6095C13.3594%2013.8595%2013.0203%2014%2012.6667%2014H3.33333C2.97971%2014%202.64057%2013.8595%202.39052%2013.6095C2.14048%2013.3594%202%2013.0203%202%2012.6667V10'%20stroke-width='1.16667'%20stroke-linecap='round'%20stroke-linejoin='round'%20stroke='white'/%3e%3cpath%20id='Vector_2'%20d='M4.66667%206.66667L8%2010L11.3333%206.66667'%20stroke-width='1.16667'%20stroke-linecap='round'%20stroke-linejoin='round'%20stroke='white'/%3e%3cpath%20id='Vector_3'%20d='M8%2010V2'%20stroke-width='1.16667'%20stroke-linecap='round'%20stroke-linejoin='round'%20stroke='white'/%3e%3c/g%3e%3c/svg%3e"
+          }
+        ],
+        "accessibility": {
+          "violations": [],
+          "incomplete": []
+        },
+        "explicitStarts": 0,
+        "behavior": "Sparse/range selection updates; no enqueue"
+      },
+      "ipc": [
+        {
+          "command": "plugin:event|listen",
+          "args": {
+            "event": "tauri://theme-changed",
+            "target": {
+              "kind": "Window",
+              "label": "download-sheet"
+            },
+            "handler": 1
+          }
+        },
+        {
+          "command": "plugin:event|listen",
+          "args": {
+            "event": "download:sheet",
+            "target": {
+              "kind": "Any"
+            },
+            "handler": 3
+          }
+        },
+        {
+          "command": "get_settings",
+          "args": {}
+        },
+        {
+          "command": "plugin:window|theme",
+          "args": {
+            "label": "download-sheet"
+          }
+        },
+        {
+          "command": "get_download_sheet",
+          "args": {}
+        },
+        {
+          "command": "download_sheet_ready",
+          "args": {}
+        }
+      ],
+      "unsupported": [],
+      "runtimeAndNetworkProblems": []
+    },
+    {
+      "file": "v36-sheets-complete-sheet-options-dark@1.5x.png",
+      "scenario": "sheet-options",
+      "entry": "index.html",
+      "figmaNode": "17:137",
+      "theme": "dark",
+      "resolvedTheme": "dark",
+      "scale": 1.5,
+      "viewport": {
+        "width": 460,
+        "height": 680
+      },
+      "clip": {
+        "x": 0,
+        "y": 0,
+        "width": 460,
+        "height": 680
+      },
+      "width": 690,
+      "height": 1020,
+      "bytes": 92835,
+      "sha256": "56099bdc656a39c0b4aa588e0bc82913d9ce33a31b8bbd27cc4727f8327f46af",
+      "repeatMatches": true,
+      "caret": "initial",
+      "font": [
+        {
+          "familyName": "Geist",
+          "postScriptName": "Geist",
+          "isCustomFont": true,
+          "glyphCount": 16
+        }
+      ],
+      "fixtureSha256": "2e9cb2a36414fcc612e5c53a455d77cc6d705b003124c1eaa0552ad0ed364cd8",
+      "assertions": {
+        "geometry": {
+          "x": 0,
+          "y": 0,
+          "width": 460,
+          "height": 680
+        },
+        "mono": [
+          {
+            "familyName": "Geist Mono",
+            "postScriptName": "GeistMono",
+            "isCustomFont": true,
+            "glyphCount": 32
+          }
+        ],
+        "typography": {
+          "weight": "600",
+          "size": "14px",
+          "lineHeight": "20px"
+        },
+        "assets": [
+          {
+            "file": "download-sheets/d2028.svg",
+            "naturalWidth": 18,
+            "naturalHeight": 18,
+            "width": 18,
+            "height": 18,
+            "src": "data:image/svg+xml,%3csvg%20preserveAspectRatio='none'%20overflow='visible'%20style='display:%20block;'%20width='18'%20height='18'%20viewBox='0%200%2018%2018'%20fill='none'%20xmlns='http://www.w3.org/2000/svg'%3e%3cg%20id='Icon'%3e%3cpath%20id='Vector'%20d='M13.5%204.5L4.5%2013.5'%20stroke-width='1.3125'%20stroke-linecap='round'%20stroke-linejoin='round'%20stroke='%2366666D'/%3e%3cpath%20id='Vector_2'%20d='M4.5%204.5L13.5%2013.5'%20stroke-width='1.3125'%20stroke-linecap='round'%20stroke-linejoin='round'%20stroke='%2366666D'/%3e%3c/g%3e%3c/svg%3e"
+          },
+          {
+            "file": "download-sheets/ef790.svg",
+            "naturalWidth": 14,
+            "naturalHeight": 14,
+            "width": 14,
+            "height": 14,
+            "src": "data:image/svg+xml,%3csvg%20preserveAspectRatio='none'%20overflow='visible'%20style='display:%20block;'%20width='14'%20height='14'%20viewBox='0%200%2014%2014'%20fill='none'%20xmlns='http://www.w3.org/2000/svg'%3e%3ccircle%20id='Ellipse'%20cx='7'%20cy='7'%20r='6.25'%20stroke-width='1.5'%20stroke='%23CFCEC9'/%3e%3c/svg%3e"
+          },
+          {
+            "file": "download-sheets/ef790.svg",
+            "naturalWidth": 14,
+            "naturalHeight": 14,
+            "width": 14,
+            "height": 14,
+            "src": "data:image/svg+xml,%3csvg%20preserveAspectRatio='none'%20overflow='visible'%20style='display:%20block;'%20width='14'%20height='14'%20viewBox='0%200%2014%2014'%20fill='none'%20xmlns='http://www.w3.org/2000/svg'%3e%3ccircle%20id='Ellipse'%20cx='7'%20cy='7'%20r='6.25'%20stroke-width='1.5'%20stroke='%23CFCEC9'/%3e%3c/svg%3e"
+          },
+          {
+            "file": "download-sheets/fd956.svg",
+            "naturalWidth": 14,
+            "naturalHeight": 14,
+            "width": 14,
+            "height": 14,
+            "src": "data:image/svg+xml,%3csvg%20preserveAspectRatio='none'%20overflow='visible'%20style='display:%20block;'%20width='14'%20height='14'%20viewBox='0%200%2014%2014'%20fill='none'%20xmlns='http://www.w3.org/2000/svg'%3e%3ccircle%20id='Ellipse'%20cx='7'%20cy='7'%20r='5'%20fill='white'%20stroke-width='4'%20stroke='%2317171A'/%3e%3c/svg%3e"
+          },
+          {
+            "file": "download-sheets/ef790.svg",
+            "naturalWidth": 14,
+            "naturalHeight": 14,
+            "width": 14,
+            "height": 14,
+            "src": "data:image/svg+xml,%3csvg%20preserveAspectRatio='none'%20overflow='visible'%20style='display:%20block;'%20width='14'%20height='14'%20viewBox='0%200%2014%2014'%20fill='none'%20xmlns='http://www.w3.org/2000/svg'%3e%3ccircle%20id='Ellipse'%20cx='7'%20cy='7'%20r='6.25'%20stroke-width='1.5'%20stroke='%23CFCEC9'/%3e%3c/svg%3e"
+          },
+          {
+            "file": "chevron-down-14.svg",
+            "naturalWidth": 14,
+            "naturalHeight": 14,
+            "width": 14,
+            "height": 14,
+            "src": "data:image/svg+xml,%3csvg%20preserveAspectRatio='none'%20overflow='visible'%20style='display:%20block;'%20width='14'%20height='14'%20viewBox='0%200%2014%2014'%20fill='none'%20xmlns='http://www.w3.org/2000/svg'%3e%3cg%20id='icon/chevron-down'%3e%3cpath%20id='Vector'%20d='M3.5%205.25L7%208.75L10.5%205.25'%20stroke-width='1.02083'%20stroke-linecap='round'%20stroke-linejoin='round'%20stroke='%239A9AA0'/%3e%3c/g%3e%3c/svg%3e"
+          },
+          {
+            "file": "chevron-down-14.svg",
+            "naturalWidth": 14,
+            "naturalHeight": 14,
+            "width": 14,
+            "height": 14,
+            "src": "data:image/svg+xml,%3csvg%20preserveAspectRatio='none'%20overflow='visible'%20style='display:%20block;'%20width='14'%20height='14'%20viewBox='0%200%2014%2014'%20fill='none'%20xmlns='http://www.w3.org/2000/svg'%3e%3cg%20id='icon/chevron-down'%3e%3cpath%20id='Vector'%20d='M3.5%205.25L7%208.75L10.5%205.25'%20stroke-width='1.02083'%20stroke-linecap='round'%20stroke-linejoin='round'%20stroke='%239A9AA0'/%3e%3c/g%3e%3c/svg%3e"
+          },
+          {
+            "file": "chevron-down-14.svg",
+            "naturalWidth": 14,
+            "naturalHeight": 14,
+            "width": 14,
+            "height": 14,
+            "src": "data:image/svg+xml,%3csvg%20preserveAspectRatio='none'%20overflow='visible'%20style='display:%20block;'%20width='14'%20height='14'%20viewBox='0%200%2014%2014'%20fill='none'%20xmlns='http://www.w3.org/2000/svg'%3e%3cg%20id='icon/chevron-down'%3e%3cpath%20id='Vector'%20d='M3.5%205.25L7%208.75L10.5%205.25'%20stroke-width='1.02083'%20stroke-linecap='round'%20stroke-linejoin='round'%20stroke='%239A9AA0'/%3e%3c/g%3e%3c/svg%3e"
+          },
+          {
+            "file": "toggle-on.svg",
+            "naturalWidth": 34,
+            "naturalHeight": 20,
+            "width": 34,
+            "height": 20,
+            "src": "data:image/svg+xml,%3csvg%20preserveAspectRatio='none'%20overflow='visible'%20style='display:%20block;'%20width='34'%20height='20'%20viewBox='0%200%2034%2020'%20fill='none'%20xmlns='http://www.w3.org/2000/svg'%3e%3cg%20id='Toggle'%3e%3crect%20width='34'%20height='20'%20rx='10'%20fill='%2317171A'/%3e%3ccircle%20id='Knob'%20cx='24'%20cy='10'%20r='8'%20fill='white'/%3e%3c/g%3e%3c/svg%3e"
+          },
+          {
+            "file": "download-sheets/aa883.svg",
+            "naturalWidth": 15,
+            "naturalHeight": 15,
+            "width": 15,
+            "height": 15,
+            "src": "data:image/svg+xml,%3csvg%20preserveAspectRatio='none'%20overflow='visible'%20style='display:%20block;'%20width='15'%20height='15'%20viewBox='0%200%2015%2015'%20fill='none'%20xmlns='http://www.w3.org/2000/svg'%3e%3cg%20id='icon/folder-open'%3e%3cpath%20id='Vector'%20d='M3.75%208.75L4.6875%206.9375C4.78942%206.73509%204.94445%206.56419%205.13601%206.44309C5.32756%206.32199%205.54844%206.25525%205.775%206.25H12.5M12.5%206.25C12.691%206.24967%2012.8795%206.29309%2013.051%206.37693C13.2226%206.46077%2013.3727%206.5828%2013.4897%206.73367C13.6068%206.88453%2013.6878%207.06021%2013.7264%207.24722C13.765%207.43423%2013.7602%207.62761%2013.7125%207.8125L12.75%2011.5625C12.6804%2011.8322%2012.5226%2012.071%2012.3018%2012.2408C12.081%2012.4107%2011.8098%2012.5019%2011.5312%2012.5H2.5C2.16848%2012.5%201.85054%2012.3683%201.61612%2012.1339C1.3817%2011.8995%201.25%2011.5815%201.25%2011.25V3.125C1.25%202.79348%201.3817%202.47554%201.61612%202.24112C1.85054%202.0067%202.16848%201.875%202.5%201.875H4.9375C5.14655%201.87295%205.35278%201.92337%205.53731%202.02164C5.72184%202.11991%205.87878%202.26289%205.99375%202.4375L6.5%203.1875C6.61382%203.36033%206.76877%203.5022%206.95094%203.60038C7.13311%203.69855%207.33681%203.74997%207.54375%203.75H11.25C11.5815%203.75%2011.8995%203.8817%2012.1339%204.11612C12.3683%204.35054%2012.5%204.66848%2012.5%205V6.25Z'%20stroke-width='1.09375'%20stroke-linecap='round'%20stroke-linejoin='round'%20stroke='%239A9AA0'/%3e%3c/g%3e%3c/svg%3e"
+          },
+          {
+            "file": "chevron-down-14.svg",
+            "naturalWidth": 14,
+            "naturalHeight": 14,
+            "width": 14,
+            "height": 14,
+            "src": "data:image/svg+xml,%3csvg%20preserveAspectRatio='none'%20overflow='visible'%20style='display:%20block;'%20width='14'%20height='14'%20viewBox='0%200%2014%2014'%20fill='none'%20xmlns='http://www.w3.org/2000/svg'%3e%3cg%20id='icon/chevron-down'%3e%3cpath%20id='Vector'%20d='M3.5%205.25L7%208.75L10.5%205.25'%20stroke-width='1.02083'%20stroke-linecap='round'%20stroke-linejoin='round'%20stroke='%239A9AA0'/%3e%3c/g%3e%3c/svg%3e"
+          },
+          {
+            "file": "chevron-down-14.svg",
+            "naturalWidth": 14,
+            "naturalHeight": 14,
+            "width": 14,
+            "height": 14,
+            "src": "data:image/svg+xml,%3csvg%20preserveAspectRatio='none'%20overflow='visible'%20style='display:%20block;'%20width='14'%20height='14'%20viewBox='0%200%2014%2014'%20fill='none'%20xmlns='http://www.w3.org/2000/svg'%3e%3cg%20id='icon/chevron-down'%3e%3cpath%20id='Vector'%20d='M3.5%205.25L7%208.75L10.5%205.25'%20stroke-width='1.02083'%20stroke-linecap='round'%20stroke-linejoin='round'%20stroke='%239A9AA0'/%3e%3c/g%3e%3c/svg%3e"
+          },
+          {
+            "file": "chevron-down-14.svg",
+            "naturalWidth": 14,
+            "naturalHeight": 14,
+            "width": 14,
+            "height": 14,
+            "src": "data:image/svg+xml,%3csvg%20preserveAspectRatio='none'%20overflow='visible'%20style='display:%20block;'%20width='14'%20height='14'%20viewBox='0%200%2014%2014'%20fill='none'%20xmlns='http://www.w3.org/2000/svg'%3e%3cg%20id='icon/chevron-down'%3e%3cpath%20id='Vector'%20d='M3.5%205.25L7%208.75L10.5%205.25'%20stroke-width='1.02083'%20stroke-linecap='round'%20stroke-linejoin='round'%20stroke='%239A9AA0'/%3e%3c/g%3e%3c/svg%3e"
+          },
+          {
+            "file": "toggle-on.svg",
+            "naturalWidth": 34,
+            "naturalHeight": 20,
+            "width": 34,
+            "height": 20,
+            "src": "data:image/svg+xml,%3csvg%20preserveAspectRatio='none'%20overflow='visible'%20style='display:%20block;'%20width='34'%20height='20'%20viewBox='0%200%2034%2020'%20fill='none'%20xmlns='http://www.w3.org/2000/svg'%3e%3cg%20id='Toggle'%3e%3crect%20width='34'%20height='20'%20rx='10'%20fill='%2317171A'/%3e%3ccircle%20id='Knob'%20cx='24'%20cy='10'%20r='8'%20fill='white'/%3e%3c/g%3e%3c/svg%3e"
+          },
+          {
+            "file": "download-sheets/3d2ea.svg",
+            "naturalWidth": 16,
+            "naturalHeight": 16,
+            "width": 16,
+            "height": 16,
+            "src": "data:image/svg+xml,%3csvg%20preserveAspectRatio='none'%20overflow='visible'%20style='display:%20block;'%20width='16'%20height='16'%20viewBox='0%200%2016%2016'%20fill='none'%20xmlns='http://www.w3.org/2000/svg'%3e%3cg%20id='icon/download'%3e%3cpath%20id='Vector'%20d='M14%2010V12.6667C14%2013.0203%2013.8595%2013.3594%2013.6095%2013.6095C13.3594%2013.8595%2013.0203%2014%2012.6667%2014H3.33333C2.97971%2014%202.64057%2013.8595%202.39052%2013.6095C2.14048%2013.3594%202%2013.0203%202%2012.6667V10'%20stroke-width='1.16667'%20stroke-linecap='round'%20stroke-linejoin='round'%20stroke='white'/%3e%3cpath%20id='Vector_2'%20d='M4.66667%206.66667L8%2010L11.3333%206.66667'%20stroke-width='1.16667'%20stroke-linecap='round'%20stroke-linejoin='round'%20stroke='white'/%3e%3cpath%20id='Vector_3'%20d='M8%2010V2'%20stroke-width='1.16667'%20stroke-linecap='round'%20stroke-linejoin='round'%20stroke='white'/%3e%3c/g%3e%3c/svg%3e"
+          }
+        ],
+        "accessibility": {
+          "violations": [],
+          "incomplete": []
+        },
+        "explicitStarts": 0,
+        "behavior": "Options are draft-only until explicit primary activation"
+      },
+      "ipc": [
+        {
+          "command": "plugin:event|listen",
+          "args": {
+            "event": "tauri://theme-changed",
+            "target": {
+              "kind": "Window",
+              "label": "download-sheet"
+            },
+            "handler": 1
+          }
+        },
+        {
+          "command": "plugin:event|listen",
+          "args": {
+            "event": "download:sheet",
+            "target": {
+              "kind": "Any"
+            },
+            "handler": 3
+          }
+        },
+        {
+          "command": "get_settings",
+          "args": {}
+        },
+        {
+          "command": "plugin:window|theme",
+          "args": {
+            "label": "download-sheet"
+          }
+        },
+        {
+          "command": "get_download_sheet",
+          "args": {}
+        },
+        {
+          "command": "download_sheet_ready",
+          "args": {}
+        }
+      ],
+      "unsupported": [],
+      "runtimeAndNetworkProblems": []
+    },
+    {
+      "file": "v36-sheets-complete-sheet-options-advanced-dark@1.5x.png",
+      "scenario": "sheet-options-advanced",
+      "entry": "index.html",
+      "figmaNode": "17:137",
+      "theme": "dark",
+      "resolvedTheme": "dark",
+      "scale": 1.5,
+      "viewport": {
+        "width": 460,
+        "height": 680
+      },
+      "clip": {
+        "x": 0,
+        "y": 0,
+        "width": 460,
+        "height": 680
+      },
+      "width": 690,
+      "height": 1020,
+      "bytes": 80662,
+      "sha256": "2e8eab26cd033d3cc5a7383b79697f594cb018c82bdf777993b00873ad9b972b",
+      "repeatMatches": true,
+      "caret": "initial",
+      "font": [
+        {
+          "familyName": "Geist",
+          "postScriptName": "Geist",
+          "isCustomFont": true,
+          "glyphCount": 16
+        }
+      ],
+      "fixtureSha256": "daf053cf7bce89b94dc25b445a0ad3edc5083ed0bc54c77f88e02c63dc600ff4",
+      "assertions": {
+        "geometry": {
+          "x": 0,
+          "y": 0,
+          "width": 460,
+          "height": 680
+        },
+        "mono": [
+          {
+            "familyName": "Geist Mono",
+            "postScriptName": "GeistMono",
+            "isCustomFont": true,
+            "glyphCount": 32
+          }
+        ],
+        "typography": {
+          "weight": "600",
+          "size": "14px",
+          "lineHeight": "20px"
+        },
+        "assets": [
+          {
+            "file": "download-sheets/d2028.svg",
+            "naturalWidth": 18,
+            "naturalHeight": 18,
+            "width": 18,
+            "height": 18,
+            "src": "data:image/svg+xml,%3csvg%20preserveAspectRatio='none'%20overflow='visible'%20style='display:%20block;'%20width='18'%20height='18'%20viewBox='0%200%2018%2018'%20fill='none'%20xmlns='http://www.w3.org/2000/svg'%3e%3cg%20id='Icon'%3e%3cpath%20id='Vector'%20d='M13.5%204.5L4.5%2013.5'%20stroke-width='1.3125'%20stroke-linecap='round'%20stroke-linejoin='round'%20stroke='%2366666D'/%3e%3cpath%20id='Vector_2'%20d='M4.5%204.5L13.5%2013.5'%20stroke-width='1.3125'%20stroke-linecap='round'%20stroke-linejoin='round'%20stroke='%2366666D'/%3e%3c/g%3e%3c/svg%3e"
+          },
+          {
+            "file": "download-sheets/ef790.svg",
+            "naturalWidth": 14,
+            "naturalHeight": 14,
+            "width": 14,
+            "height": 14,
+            "src": "data:image/svg+xml,%3csvg%20preserveAspectRatio='none'%20overflow='visible'%20style='display:%20block;'%20width='14'%20height='14'%20viewBox='0%200%2014%2014'%20fill='none'%20xmlns='http://www.w3.org/2000/svg'%3e%3ccircle%20id='Ellipse'%20cx='7'%20cy='7'%20r='6.25'%20stroke-width='1.5'%20stroke='%23CFCEC9'/%3e%3c/svg%3e"
+          },
+          {
+            "file": "download-sheets/ef790.svg",
+            "naturalWidth": 14,
+            "naturalHeight": 14,
+            "width": 14,
+            "height": 14,
+            "src": "data:image/svg+xml,%3csvg%20preserveAspectRatio='none'%20overflow='visible'%20style='display:%20block;'%20width='14'%20height='14'%20viewBox='0%200%2014%2014'%20fill='none'%20xmlns='http://www.w3.org/2000/svg'%3e%3ccircle%20id='Ellipse'%20cx='7'%20cy='7'%20r='6.25'%20stroke-width='1.5'%20stroke='%23CFCEC9'/%3e%3c/svg%3e"
+          },
+          {
+            "file": "download-sheets/fd956.svg",
+            "naturalWidth": 14,
+            "naturalHeight": 14,
+            "width": 14,
+            "height": 14,
+            "src": "data:image/svg+xml,%3csvg%20preserveAspectRatio='none'%20overflow='visible'%20style='display:%20block;'%20width='14'%20height='14'%20viewBox='0%200%2014%2014'%20fill='none'%20xmlns='http://www.w3.org/2000/svg'%3e%3ccircle%20id='Ellipse'%20cx='7'%20cy='7'%20r='5'%20fill='white'%20stroke-width='4'%20stroke='%2317171A'/%3e%3c/svg%3e"
+          },
+          {
+            "file": "download-sheets/ef790.svg",
+            "naturalWidth": 14,
+            "naturalHeight": 14,
+            "width": 14,
+            "height": 14,
+            "src": "data:image/svg+xml,%3csvg%20preserveAspectRatio='none'%20overflow='visible'%20style='display:%20block;'%20width='14'%20height='14'%20viewBox='0%200%2014%2014'%20fill='none'%20xmlns='http://www.w3.org/2000/svg'%3e%3ccircle%20id='Ellipse'%20cx='7'%20cy='7'%20r='6.25'%20stroke-width='1.5'%20stroke='%23CFCEC9'/%3e%3c/svg%3e"
+          },
+          {
+            "file": "chevron-down-14.svg",
+            "naturalWidth": 14,
+            "naturalHeight": 14,
+            "width": 14,
+            "height": 14,
+            "src": "data:image/svg+xml,%3csvg%20preserveAspectRatio='none'%20overflow='visible'%20style='display:%20block;'%20width='14'%20height='14'%20viewBox='0%200%2014%2014'%20fill='none'%20xmlns='http://www.w3.org/2000/svg'%3e%3cg%20id='icon/chevron-down'%3e%3cpath%20id='Vector'%20d='M3.5%205.25L7%208.75L10.5%205.25'%20stroke-width='1.02083'%20stroke-linecap='round'%20stroke-linejoin='round'%20stroke='%239A9AA0'/%3e%3c/g%3e%3c/svg%3e"
+          },
+          {
+            "file": "chevron-down-14.svg",
+            "naturalWidth": 14,
+            "naturalHeight": 14,
+            "width": 14,
+            "height": 14,
+            "src": "data:image/svg+xml,%3csvg%20preserveAspectRatio='none'%20overflow='visible'%20style='display:%20block;'%20width='14'%20height='14'%20viewBox='0%200%2014%2014'%20fill='none'%20xmlns='http://www.w3.org/2000/svg'%3e%3cg%20id='icon/chevron-down'%3e%3cpath%20id='Vector'%20d='M3.5%205.25L7%208.75L10.5%205.25'%20stroke-width='1.02083'%20stroke-linecap='round'%20stroke-linejoin='round'%20stroke='%239A9AA0'/%3e%3c/g%3e%3c/svg%3e"
+          },
+          {
+            "file": "chevron-down-14.svg",
+            "naturalWidth": 14,
+            "naturalHeight": 14,
+            "width": 14,
+            "height": 14,
+            "src": "data:image/svg+xml,%3csvg%20preserveAspectRatio='none'%20overflow='visible'%20style='display:%20block;'%20width='14'%20height='14'%20viewBox='0%200%2014%2014'%20fill='none'%20xmlns='http://www.w3.org/2000/svg'%3e%3cg%20id='icon/chevron-down'%3e%3cpath%20id='Vector'%20d='M3.5%205.25L7%208.75L10.5%205.25'%20stroke-width='1.02083'%20stroke-linecap='round'%20stroke-linejoin='round'%20stroke='%239A9AA0'/%3e%3c/g%3e%3c/svg%3e"
+          },
+          {
+            "file": "toggle-on.svg",
+            "naturalWidth": 34,
+            "naturalHeight": 20,
+            "width": 34,
+            "height": 20,
+            "src": "data:image/svg+xml,%3csvg%20preserveAspectRatio='none'%20overflow='visible'%20style='display:%20block;'%20width='34'%20height='20'%20viewBox='0%200%2034%2020'%20fill='none'%20xmlns='http://www.w3.org/2000/svg'%3e%3cg%20id='Toggle'%3e%3crect%20width='34'%20height='20'%20rx='10'%20fill='%2317171A'/%3e%3ccircle%20id='Knob'%20cx='24'%20cy='10'%20r='8'%20fill='white'/%3e%3c/g%3e%3c/svg%3e"
+          },
+          {
+            "file": "download-sheets/aa883.svg",
+            "naturalWidth": 15,
+            "naturalHeight": 15,
+            "width": 15,
+            "height": 15,
+            "src": "data:image/svg+xml,%3csvg%20preserveAspectRatio='none'%20overflow='visible'%20style='display:%20block;'%20width='15'%20height='15'%20viewBox='0%200%2015%2015'%20fill='none'%20xmlns='http://www.w3.org/2000/svg'%3e%3cg%20id='icon/folder-open'%3e%3cpath%20id='Vector'%20d='M3.75%208.75L4.6875%206.9375C4.78942%206.73509%204.94445%206.56419%205.13601%206.44309C5.32756%206.32199%205.54844%206.25525%205.775%206.25H12.5M12.5%206.25C12.691%206.24967%2012.8795%206.29309%2013.051%206.37693C13.2226%206.46077%2013.3727%206.5828%2013.4897%206.73367C13.6068%206.88453%2013.6878%207.06021%2013.7264%207.24722C13.765%207.43423%2013.7602%207.62761%2013.7125%207.8125L12.75%2011.5625C12.6804%2011.8322%2012.5226%2012.071%2012.3018%2012.2408C12.081%2012.4107%2011.8098%2012.5019%2011.5312%2012.5H2.5C2.16848%2012.5%201.85054%2012.3683%201.61612%2012.1339C1.3817%2011.8995%201.25%2011.5815%201.25%2011.25V3.125C1.25%202.79348%201.3817%202.47554%201.61612%202.24112C1.85054%202.0067%202.16848%201.875%202.5%201.875H4.9375C5.14655%201.87295%205.35278%201.92337%205.53731%202.02164C5.72184%202.11991%205.87878%202.26289%205.99375%202.4375L6.5%203.1875C6.61382%203.36033%206.76877%203.5022%206.95094%203.60038C7.13311%203.69855%207.33681%203.74997%207.54375%203.75H11.25C11.5815%203.75%2011.8995%203.8817%2012.1339%204.11612C12.3683%204.35054%2012.5%204.66848%2012.5%205V6.25Z'%20stroke-width='1.09375'%20stroke-linecap='round'%20stroke-linejoin='round'%20stroke='%239A9AA0'/%3e%3c/g%3e%3c/svg%3e"
+          },
+          {
+            "file": "chevron-down-14.svg",
+            "naturalWidth": 14,
+            "naturalHeight": 14,
+            "width": 14,
+            "height": 14,
+            "src": "data:image/svg+xml,%3csvg%20preserveAspectRatio='none'%20overflow='visible'%20style='display:%20block;'%20width='14'%20height='14'%20viewBox='0%200%2014%2014'%20fill='none'%20xmlns='http://www.w3.org/2000/svg'%3e%3cg%20id='icon/chevron-down'%3e%3cpath%20id='Vector'%20d='M3.5%205.25L7%208.75L10.5%205.25'%20stroke-width='1.02083'%20stroke-linecap='round'%20stroke-linejoin='round'%20stroke='%239A9AA0'/%3e%3c/g%3e%3c/svg%3e"
+          },
+          {
+            "file": "chevron-down-14.svg",
+            "naturalWidth": 14,
+            "naturalHeight": 14,
+            "width": 14,
+            "height": 14,
+            "src": "data:image/svg+xml,%3csvg%20preserveAspectRatio='none'%20overflow='visible'%20style='display:%20block;'%20width='14'%20height='14'%20viewBox='0%200%2014%2014'%20fill='none'%20xmlns='http://www.w3.org/2000/svg'%3e%3cg%20id='icon/chevron-down'%3e%3cpath%20id='Vector'%20d='M3.5%205.25L7%208.75L10.5%205.25'%20stroke-width='1.02083'%20stroke-linecap='round'%20stroke-linejoin='round'%20stroke='%239A9AA0'/%3e%3c/g%3e%3c/svg%3e"
+          },
+          {
+            "file": "chevron-down-14.svg",
+            "naturalWidth": 14,
+            "naturalHeight": 14,
+            "width": 14,
+            "height": 14,
+            "src": "data:image/svg+xml,%3csvg%20preserveAspectRatio='none'%20overflow='visible'%20style='display:%20block;'%20width='14'%20height='14'%20viewBox='0%200%2014%2014'%20fill='none'%20xmlns='http://www.w3.org/2000/svg'%3e%3cg%20id='icon/chevron-down'%3e%3cpath%20id='Vector'%20d='M3.5%205.25L7%208.75L10.5%205.25'%20stroke-width='1.02083'%20stroke-linecap='round'%20stroke-linejoin='round'%20stroke='%239A9AA0'/%3e%3c/g%3e%3c/svg%3e"
+          },
+          {
+            "file": "toggle-on.svg",
+            "naturalWidth": 34,
+            "naturalHeight": 20,
+            "width": 34,
+            "height": 20,
+            "src": "data:image/svg+xml,%3csvg%20preserveAspectRatio='none'%20overflow='visible'%20style='display:%20block;'%20width='34'%20height='20'%20viewBox='0%200%2034%2020'%20fill='none'%20xmlns='http://www.w3.org/2000/svg'%3e%3cg%20id='Toggle'%3e%3crect%20width='34'%20height='20'%20rx='10'%20fill='%2317171A'/%3e%3ccircle%20id='Knob'%20cx='24'%20cy='10'%20r='8'%20fill='white'/%3e%3c/g%3e%3c/svg%3e"
+          },
+          {
+            "file": "download-sheets/3d2ea.svg",
+            "naturalWidth": 16,
+            "naturalHeight": 16,
+            "width": 16,
+            "height": 16,
+            "src": "data:image/svg+xml,%3csvg%20preserveAspectRatio='none'%20overflow='visible'%20style='display:%20block;'%20width='16'%20height='16'%20viewBox='0%200%2016%2016'%20fill='none'%20xmlns='http://www.w3.org/2000/svg'%3e%3cg%20id='icon/download'%3e%3cpath%20id='Vector'%20d='M14%2010V12.6667C14%2013.0203%2013.8595%2013.3594%2013.6095%2013.6095C13.3594%2013.8595%2013.0203%2014%2012.6667%2014H3.33333C2.97971%2014%202.64057%2013.8595%202.39052%2013.6095C2.14048%2013.3594%202%2013.0203%202%2012.6667V10'%20stroke-width='1.16667'%20stroke-linecap='round'%20stroke-linejoin='round'%20stroke='white'/%3e%3cpath%20id='Vector_2'%20d='M4.66667%206.66667L8%2010L11.3333%206.66667'%20stroke-width='1.16667'%20stroke-linecap='round'%20stroke-linejoin='round'%20stroke='white'/%3e%3cpath%20id='Vector_3'%20d='M8%2010V2'%20stroke-width='1.16667'%20stroke-linecap='round'%20stroke-linejoin='round'%20stroke='white'/%3e%3c/g%3e%3c/svg%3e"
+          }
+        ],
+        "accessibility": {
+          "violations": [],
+          "incomplete": []
+        },
+        "explicitStarts": 0,
+        "behavior": "Options are draft-only until explicit primary activation"
+      },
+      "ipc": [
+        {
+          "command": "plugin:event|listen",
+          "args": {
+            "event": "tauri://theme-changed",
+            "target": {
+              "kind": "Window",
+              "label": "download-sheet"
+            },
+            "handler": 1
+          }
+        },
+        {
+          "command": "plugin:event|listen",
+          "args": {
+            "event": "download:sheet",
+            "target": {
+              "kind": "Any"
+            },
+            "handler": 3
+          }
+        },
+        {
+          "command": "get_settings",
+          "args": {}
+        },
+        {
+          "command": "plugin:window|theme",
+          "args": {
+            "label": "download-sheet"
+          }
+        },
+        {
+          "command": "get_download_sheet",
+          "args": {}
+        },
+        {
+          "command": "download_sheet_ready",
+          "args": {}
+        }
+      ],
+      "unsupported": [],
+      "runtimeAndNetworkProblems": []
+    },
+    {
+      "file": "v36-sheets-complete-sheet-trim-dark@1.5x.png",
+      "scenario": "sheet-trim",
+      "entry": "index.html",
+      "figmaNode": "17:270",
+      "theme": "dark",
+      "resolvedTheme": "dark",
+      "scale": 1.5,
+      "viewport": {
+        "width": 460,
+        "height": 680
+      },
+      "clip": {
+        "x": 0,
+        "y": 0,
+        "width": 460,
+        "height": 680
+      },
+      "width": 690,
+      "height": 1020,
+      "bytes": 169766,
+      "sha256": "b76bcb047664f72e511e1cb173c302b9d99443695f0c711ddd2f19201a29346d",
+      "repeatMatches": true,
+      "caret": "initial",
+      "font": [
+        {
+          "familyName": "Geist",
+          "postScriptName": "Geist",
+          "isCustomFont": true,
+          "glyphCount": 17
+        }
+      ],
+      "fixtureSha256": "a3eeab98e38c681a2e45e8a8034e215697dbb4f5e36b1caa1904588e3ddde8b7",
+      "assertions": {
+        "geometry": {
+          "x": 0,
+          "y": 0,
+          "width": 460,
+          "height": 680
+        },
+        "mono": [
+          {
+            "familyName": "Geist Mono",
+            "postScriptName": "GeistMono",
+            "isCustomFont": true,
+            "glyphCount": 7
+          }
+        ],
+        "typography": {
+          "weight": "600",
+          "size": "14px",
+          "lineHeight": "20px"
+        },
+        "assets": [
+          {
+            "file": "download-sheets/d2028.svg",
+            "naturalWidth": 18,
+            "naturalHeight": 18,
+            "width": 18,
+            "height": 18,
+            "src": "data:image/svg+xml,%3csvg%20preserveAspectRatio='none'%20overflow='visible'%20style='display:%20block;'%20width='18'%20height='18'%20viewBox='0%200%2018%2018'%20fill='none'%20xmlns='http://www.w3.org/2000/svg'%3e%3cg%20id='Icon'%3e%3cpath%20id='Vector'%20d='M13.5%204.5L4.5%2013.5'%20stroke-width='1.3125'%20stroke-linecap='round'%20stroke-linejoin='round'%20stroke='%2366666D'/%3e%3cpath%20id='Vector_2'%20d='M4.5%204.5L13.5%2013.5'%20stroke-width='1.3125'%20stroke-linecap='round'%20stroke-linejoin='round'%20stroke='%2366666D'/%3e%3c/g%3e%3c/svg%3e"
+          },
+          {
+            "file": "download-sheets/a9396.svg",
+            "naturalWidth": 18,
+            "naturalHeight": 18,
+            "width": 18,
+            "height": 18,
+            "src": "data:image/svg+xml,%3csvg%20preserveAspectRatio='none'%20overflow='visible'%20style='display:%20block;'%20width='18'%20height='18'%20viewBox='0%200%2018%2018'%20fill='none'%20xmlns='http://www.w3.org/2000/svg'%3e%3cg%20id='icon/play'%3e%3cpath%20id='Vector'%20d='M4.5%202.25L15%209L4.5%2015.75V2.25Z'%20stroke-width='1.3125'%20stroke-linecap='round'%20stroke-linejoin='round'%20stroke='%23F5F5F3'/%3e%3c/g%3e%3c/svg%3e"
+          },
+          {
+            "file": "toggle-off.svg",
+            "naturalWidth": 34,
+            "naturalHeight": 20,
+            "width": 34,
+            "height": 20,
+            "src": "data:image/svg+xml,%3csvg%20preserveAspectRatio='none'%20overflow='visible'%20style='display:%20block;'%20width='34'%20height='20'%20viewBox='0%200%2034%2020'%20fill='none'%20xmlns='http://www.w3.org/2000/svg'%3e%3cg%20id='Toggle'%3e%3crect%20width='34'%20height='20'%20rx='10'%20fill='%23CFCEC9'/%3e%3ccircle%20id='Knob'%20cx='10'%20cy='10'%20r='8'%20fill='white'/%3e%3c/g%3e%3c/svg%3e"
+          },
+          {
+            "file": "download-sheets/2ed91.svg",
+            "naturalWidth": 16,
+            "naturalHeight": 16,
+            "width": 16,
+            "height": 16,
+            "src": "data:image/svg+xml,%3csvg%20preserveAspectRatio='none'%20overflow='visible'%20style='display:%20block;'%20width='16'%20height='16'%20viewBox='0%200%2016%2016'%20fill='none'%20xmlns='http://www.w3.org/2000/svg'%3e%3cg%20id='Icon'%3e%3cpath%20id='Vector'%20d='M6%204C6%205.10457%205.10457%206%204%206C2.89543%206%202%205.10457%202%204C2%202.89543%202.89543%202%204%202C5.10457%202%206%202.89543%206%204Z'%20stroke-width='1.16667'%20stroke-linecap='round'%20stroke-linejoin='round'%20stroke='white'/%3e%3cpath%20id='Vector_2'%20d='M5.41333%205.41333L8%208'%20stroke-width='1.16667'%20stroke-linecap='round'%20stroke-linejoin='round'%20stroke='white'/%3e%3cpath%20id='Vector_3'%20d='M13.3333%202.66667L5.41333%2010.5867'%20stroke-width='1.16667'%20stroke-linecap='round'%20stroke-linejoin='round'%20stroke='white'/%3e%3cpath%20id='Vector_4'%20d='M6%2012C6%2013.1046%205.10457%2014%204%2014C2.89543%2014%202%2013.1046%202%2012C2%2010.8954%202.89543%2010%204%2010C5.10457%2010%206%2010.8954%206%2012Z'%20stroke-width='1.16667'%20stroke-linecap='round'%20stroke-linejoin='round'%20stroke='white'/%3e%3cpath%20id='Vector_5'%20d='M9.86667%209.86667L13.3333%2013.3333'%20stroke-width='1.16667'%20stroke-linecap='round'%20stroke-linejoin='round'%20stroke='white'/%3e%3c/g%3e%3c/svg%3e"
+          }
+        ],
+        "accessibility": {
+          "violations": [],
+          "incomplete": []
+        },
+        "explicitStarts": 0,
+        "behavior": "Real browser range keyboard snapping and modal focus wrap"
+      },
+      "ipc": [
+        {
+          "command": "plugin:event|listen",
+          "args": {
+            "event": "tauri://theme-changed",
+            "target": {
+              "kind": "Window",
+              "label": "download-sheet"
+            },
+            "handler": 1
+          }
+        },
+        {
+          "command": "plugin:event|listen",
+          "args": {
+            "event": "download:sheet",
+            "target": {
+              "kind": "Any"
+            },
+            "handler": 3
+          }
+        },
+        {
+          "command": "get_settings",
+          "args": {}
+        },
+        {
+          "command": "plugin:window|theme",
+          "args": {
+            "label": "download-sheet"
+          }
+        },
+        {
+          "command": "get_download_sheet",
+          "args": {}
+        },
+        {
+          "command": "download_sheet_ready",
+          "args": {}
+        }
+      ],
+      "unsupported": [],
+      "runtimeAndNetworkProblems": []
+    },
+    {
+      "file": "v36-sheets-complete-sheet-playlist-dark@1.5x.png",
+      "scenario": "sheet-playlist",
+      "entry": "index.html",
+      "figmaNode": "18:160",
+      "theme": "dark",
+      "resolvedTheme": "dark",
+      "scale": 1.5,
+      "viewport": {
+        "width": 460,
+        "height": 680
+      },
+      "clip": {
+        "x": 0,
+        "y": 0,
+        "width": 460,
+        "height": 680
+      },
+      "width": 690,
+      "height": 1020,
+      "bytes": 89382,
+      "sha256": "822bdcf9c9efec088b198b63f2a872249e8ba1f46cfade5484dd0ac8724beb05",
+      "repeatMatches": true,
+      "caret": "initial",
+      "font": [
+        {
+          "familyName": "Geist",
+          "postScriptName": "Geist",
+          "isCustomFont": true,
+          "glyphCount": 28
+        }
+      ],
+      "fixtureSha256": "178cda48e6012fc8a76397a94661e144a8a6b7612767db02741491bc1401781d",
+      "assertions": {
+        "geometry": {
+          "x": 0,
+          "y": 0,
+          "width": 460,
+          "height": 680
+        },
+        "mono": [
+          {
+            "familyName": "Geist Mono",
+            "postScriptName": "GeistMono",
+            "isCustomFont": true,
+            "glyphCount": 2
+          }
+        ],
+        "typography": {
+          "weight": "600",
+          "size": "14px",
+          "lineHeight": "20px"
+        },
+        "assets": [
+          {
+            "file": "download-sheets/ad273.svg",
+            "naturalWidth": 18,
+            "naturalHeight": 18,
+            "width": 18,
+            "height": 18,
+            "src": "data:image/svg+xml,%3csvg%20preserveAspectRatio='none'%20overflow='visible'%20style='display:%20block;'%20width='18'%20height='18'%20viewBox='0%200%2018%2018'%20fill='none'%20xmlns='http://www.w3.org/2000/svg'%3e%3cg%20id='icon/layers-2'%3e%3cpath%20id='Vector'%20d='M12.015%209L16.125%2011.3475C16.2404%2011.4129%2016.3364%2011.5078%2016.4032%2011.6224C16.47%2011.737%2016.5052%2011.8673%2016.5052%2012C16.5052%2012.1327%2016.47%2012.263%2016.4032%2012.3776C16.3364%2012.4922%2016.2404%2012.5871%2016.125%2012.6525L9.75%2016.305C9.52197%2016.4367%209.26331%2016.506%209%2016.506C8.7367%2016.506%208.47803%2016.4367%208.25%2016.305L1.875%2012.6525C1.75958%2012.5871%201.66357%2012.4922%201.59678%2012.3776C1.52998%2012.263%201.49479%2012.1327%201.49479%2012C1.49479%2011.8673%201.52998%2011.737%201.59678%2011.6224C1.66357%2011.5078%201.75958%2011.4129%201.875%2011.3475L5.985%209'%20stroke-width='1.3125'%20stroke-linecap='round'%20stroke-linejoin='round'%20stroke='%2317171A'/%3e%3cpath%20id='Vector_2'%20d='M9.75%2010.305C9.52197%2010.4367%209.26331%2010.506%209%2010.506C8.7367%2010.506%208.47803%2010.4367%208.25%2010.305L1.875%206.6525C1.75958%206.58709%201.66357%206.49223%201.59678%206.3776C1.52998%206.26297%201.49479%206.13267%201.49479%206C1.49479%205.86733%201.52998%205.73703%201.59678%205.6224C1.66357%205.50777%201.75958%205.41291%201.875%205.3475L8.25%201.695C8.47803%201.56335%208.7367%201.49404%209%201.49404C9.26331%201.49404%209.52197%201.56335%209.75%201.695L16.125%205.3475C16.2404%205.41291%2016.3364%205.50777%2016.4032%205.6224C16.47%205.73703%2016.5052%205.86733%2016.5052%206C16.5052%206.13267%2016.47%206.26297%2016.4032%206.3776C16.3364%206.49223%2016.2404%206.58709%2016.125%206.6525L9.75%2010.305Z'%20stroke-width='1.3125'%20stroke-linecap='round'%20stroke-linejoin='round'%20stroke='%2317171A'/%3e%3c/g%3e%3c/svg%3e"
+          },
+          {
+            "file": "download-sheets/d2028.svg",
+            "naturalWidth": 18,
+            "naturalHeight": 18,
+            "width": 18,
+            "height": 18,
+            "src": "data:image/svg+xml,%3csvg%20preserveAspectRatio='none'%20overflow='visible'%20style='display:%20block;'%20width='18'%20height='18'%20viewBox='0%200%2018%2018'%20fill='none'%20xmlns='http://www.w3.org/2000/svg'%3e%3cg%20id='Icon'%3e%3cpath%20id='Vector'%20d='M13.5%204.5L4.5%2013.5'%20stroke-width='1.3125'%20stroke-linecap='round'%20stroke-linejoin='round'%20stroke='%2366666D'/%3e%3cpath%20id='Vector_2'%20d='M4.5%204.5L13.5%2013.5'%20stroke-width='1.3125'%20stroke-linecap='round'%20stroke-linejoin='round'%20stroke='%2366666D'/%3e%3c/g%3e%3c/svg%3e"
+          },
+          {
+            "file": "download-sheets/338a5.svg",
+            "naturalWidth": 12,
+            "naturalHeight": 12,
+            "width": 12,
+            "height": 12,
+            "src": "data:image/svg+xml,%3csvg%20preserveAspectRatio='none'%20overflow='visible'%20style='display:%20block;'%20width='12'%20height='12'%20viewBox='0%200%2012%2012'%20fill='none'%20xmlns='http://www.w3.org/2000/svg'%3e%3cg%20id='icon/check'%3e%3cpath%20id='Vector'%20d='M10%203L4.5%208.5L2%206'%20stroke-width='0.875'%20stroke-linecap='round'%20stroke-linejoin='round'%20stroke='white'/%3e%3c/g%3e%3c/svg%3e"
+          },
+          {
+            "file": "download-sheets/338a5.svg",
+            "naturalWidth": 12,
+            "naturalHeight": 12,
+            "width": 12,
+            "height": 12,
+            "src": "data:image/svg+xml,%3csvg%20preserveAspectRatio='none'%20overflow='visible'%20style='display:%20block;'%20width='12'%20height='12'%20viewBox='0%200%2012%2012'%20fill='none'%20xmlns='http://www.w3.org/2000/svg'%3e%3cg%20id='icon/check'%3e%3cpath%20id='Vector'%20d='M10%203L4.5%208.5L2%206'%20stroke-width='0.875'%20stroke-linecap='round'%20stroke-linejoin='round'%20stroke='white'/%3e%3c/g%3e%3c/svg%3e"
+          },
+          {
+            "file": "download-sheets/338a5.svg",
+            "naturalWidth": 12,
+            "naturalHeight": 12,
+            "width": 12,
+            "height": 12,
+            "src": "data:image/svg+xml,%3csvg%20preserveAspectRatio='none'%20overflow='visible'%20style='display:%20block;'%20width='12'%20height='12'%20viewBox='0%200%2012%2012'%20fill='none'%20xmlns='http://www.w3.org/2000/svg'%3e%3cg%20id='icon/check'%3e%3cpath%20id='Vector'%20d='M10%203L4.5%208.5L2%206'%20stroke-width='0.875'%20stroke-linecap='round'%20stroke-linejoin='round'%20stroke='white'/%3e%3c/g%3e%3c/svg%3e"
+          },
+          {
+            "file": "download-sheets/338a5.svg",
+            "naturalWidth": 12,
+            "naturalHeight": 12,
+            "width": 12,
+            "height": 12,
+            "src": "data:image/svg+xml,%3csvg%20preserveAspectRatio='none'%20overflow='visible'%20style='display:%20block;'%20width='12'%20height='12'%20viewBox='0%200%2012%2012'%20fill='none'%20xmlns='http://www.w3.org/2000/svg'%3e%3cg%20id='icon/check'%3e%3cpath%20id='Vector'%20d='M10%203L4.5%208.5L2%206'%20stroke-width='0.875'%20stroke-linecap='round'%20stroke-linejoin='round'%20stroke='white'/%3e%3c/g%3e%3c/svg%3e"
+          },
+          {
+            "file": "download-sheets/338a5.svg",
+            "naturalWidth": 12,
+            "naturalHeight": 12,
+            "width": 12,
+            "height": 12,
+            "src": "data:image/svg+xml,%3csvg%20preserveAspectRatio='none'%20overflow='visible'%20style='display:%20block;'%20width='12'%20height='12'%20viewBox='0%200%2012%2012'%20fill='none'%20xmlns='http://www.w3.org/2000/svg'%3e%3cg%20id='icon/check'%3e%3cpath%20id='Vector'%20d='M10%203L4.5%208.5L2%206'%20stroke-width='0.875'%20stroke-linecap='round'%20stroke-linejoin='round'%20stroke='white'/%3e%3c/g%3e%3c/svg%3e"
+          },
+          {
+            "file": "download-sheets/3d2ea.svg",
+            "naturalWidth": 16,
+            "naturalHeight": 16,
+            "width": 16,
+            "height": 16,
+            "src": "data:image/svg+xml,%3csvg%20preserveAspectRatio='none'%20overflow='visible'%20style='display:%20block;'%20width='16'%20height='16'%20viewBox='0%200%2016%2016'%20fill='none'%20xmlns='http://www.w3.org/2000/svg'%3e%3cg%20id='icon/download'%3e%3cpath%20id='Vector'%20d='M14%2010V12.6667C14%2013.0203%2013.8595%2013.3594%2013.6095%2013.6095C13.3594%2013.8595%2013.0203%2014%2012.6667%2014H3.33333C2.97971%2014%202.64057%2013.8595%202.39052%2013.6095C2.14048%2013.3594%202%2013.0203%202%2012.6667V10'%20stroke-width='1.16667'%20stroke-linecap='round'%20stroke-linejoin='round'%20stroke='white'/%3e%3cpath%20id='Vector_2'%20d='M4.66667%206.66667L8%2010L11.3333%206.66667'%20stroke-width='1.16667'%20stroke-linecap='round'%20stroke-linejoin='round'%20stroke='white'/%3e%3cpath%20id='Vector_3'%20d='M8%2010V2'%20stroke-width='1.16667'%20stroke-linecap='round'%20stroke-linejoin='round'%20stroke='white'/%3e%3c/g%3e%3c/svg%3e"
+          }
+        ],
+        "accessibility": {
+          "violations": [],
+          "incomplete": []
+        },
+        "explicitStarts": 0,
+        "behavior": "Sparse/range selection updates; no enqueue"
+      },
+      "ipc": [
+        {
+          "command": "plugin:event|listen",
+          "args": {
+            "event": "tauri://theme-changed",
+            "target": {
+              "kind": "Window",
+              "label": "download-sheet"
+            },
+            "handler": 1
+          }
+        },
+        {
+          "command": "plugin:event|listen",
+          "args": {
+            "event": "download:sheet",
+            "target": {
+              "kind": "Any"
+            },
+            "handler": 3
+          }
+        },
+        {
+          "command": "get_settings",
+          "args": {}
+        },
+        {
+          "command": "plugin:window|theme",
+          "args": {
+            "label": "download-sheet"
+          }
+        },
+        {
+          "command": "get_download_sheet",
+          "args": {}
+        },
+        {
+          "command": "download_sheet_ready",
+          "args": {}
+        }
+      ],
+      "unsupported": [],
+      "runtimeAndNetworkProblems": []
+    }
+  ]
+}

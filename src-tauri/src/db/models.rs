@@ -29,6 +29,8 @@ pub struct DownloadJob {
     pub eta: Option<String>,
     pub output_path: Option<String>,
     pub error: Option<String>,
+    #[serde(default)]
+    pub failure: Option<crate::download::errors::Failure>,
     pub quality: String,
     #[serde(default)]
     pub options: Option<crate::download::options::DownloadOptions>,
@@ -54,6 +56,8 @@ pub struct DownloadMetadata {
     pub qualities: Vec<crate::download::format_sizes::QualityEstimate>,
     #[serde(default)]
     pub details: Option<crate::download::media::Details>,
+    #[serde(default)]
+    pub live_pending: Option<bool>,
 }
 
 #[derive(Debug, Clone, Serialize, Deserialize)]

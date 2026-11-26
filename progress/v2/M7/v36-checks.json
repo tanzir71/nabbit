@@ -1,0 +1,58 @@
+{
+  "npmVerify": {
+    "command": "npm run verify",
+    "exitCode": 0,
+    "file": "v36-npmVerify.txt",
+    "rawSha256": "6122f9aaf1d5679e46c7f16d15d7f88922f48fc43428987d10564cc01cd3d3e4",
+    "savedSha256": "658a470437c4a691d345d35dafd7f5729fd9dd330860c65789671d5e4160920d"
+  },
+  "rustFmt": {
+    "command": "cargo fmt --manifest-path src-tauri/Cargo.toml --check",
+    "exitCode": 0,
+    "file": "v36-rustFmt.txt",
+    "rawSha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+    "savedSha256": "01ba4719c80b6fe911b091a7c05124b64eeece964e09c058ef8f9805daca546b"
+  },
+  "rustClippy": {
+    "command": "cargo clippy --manifest-path src-tauri/Cargo.toml --all-targets -- -D warnings",
+    "exitCode": 0,
+    "file": "v36-rustClippy.txt",
+    "rawSha256": "eb981b9617120b3d0b69e9cdb16b472b003c16cf635e8699baa24ee31cbe02f9",
+    "savedSha256": "e67c14bd86ebe90f6a1b673a5b469dbaf62d6268eade970ff688516f893a0181"
+  },
+  "rustSpikeClippy": {
+    "command": "cargo clippy --manifest-path src-tauri/Cargo.toml --all-targets --features island-spike -- -D warnings",
+    "exitCode": 0,
+    "file": "v36-rustSpikeClippy.txt",
+    "rawSha256": "46d077c0acbb8ebbe094f9d4bf361f53c2f09983fe82cf89c4c12acc1f88f94b",
+    "savedSha256": "63140347923b1c305ecc025770f46dac52f98b5a2973b202af7e1a6cc312867b"
+  },
+  "rustTests": {
+    "command": "cargo test --manifest-path src-tauri/Cargo.toml -- --test-threads=1",
+    "exitCode": 0,
+    "file": "v36-rustTests.txt",
+    "rawSha256": "ad07a90d5a0db00e28e98c78bf1bf8108b68d16ff825d92b08dc73d55d14afbb",
+    "savedSha256": "1c8173db3dc145908b2743959a4f08588bac7f874deb99c8c7d2b87ed3f6ff6d"
+  },
+  "errorCaptures": {
+    "command": "node scripts/verify-download-errors.mjs v36-checked",
+    "exitCode": 0,
+    "file": "v36-errorCaptures.txt",
+    "rawSha256": "817bb578d2e07603bc9bb67b1a09ea4a6de753a054ae8b2affbff663388eff0c",
+    "savedSha256": "e94a3ad9e3fd0ac2a75b8ae17ec27ce956a30a36198dd777ff69e76aec3b5847"
+  },
+  "sheetCaptures": {
+    "command": "node scripts/verify-download-sheets.mjs v36-sheets-checked",
+    "exitCode": 0,
+    "file": "v36-sheetCaptures.txt",
+    "rawSha256": "5ce60069dede08ed238a019dd8a4d8f2cf40d5c7528ae99f740e024ef47580bf",
+    "savedSha256": "398afe09c29b2a88b6b2a7fbfd718c07a00da3343f879aa077ed838b241f3890"
+  },
+  "nabCaptures": {
+    "command": "node scripts/verify-nab-views.mjs v36-nab-checked M7",
+    "exitCode": 0,
+    "file": "v36-nabCaptures.txt",
+    "rawSha256": "6198f427c7bf2e34d78d951128dd5f064023a86a84eb7e46ab145c0350945d62",
+    "savedSha256": "4055b5eaf535d3920551443e15d5c793b4362d93f6e4877c2006a81658c96293"
+  }
+}

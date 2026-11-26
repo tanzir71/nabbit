@@ -58,18 +58,7 @@ impl Preferences {
         self
     }
 }
-#[derive(Clone, Copy, Debug, Deserialize, Serialize, PartialEq, Eq)]
-pub enum ErrorKind {
-    SignInRequired,
-    SiteChanged,
-    MissingJsRuntime,
-    FormatUnavailable,
-    Drm,
-    Disk,
-    Offline,
-    Live,
-    Unknown,
-}
+pub use crate::download::errors::ErrorKind;
 #[derive(Clone, Copy, Debug, Default, Deserialize, Serialize, PartialEq, Eq)]
 #[serde(rename_all = "camelCase")]
 pub enum SyncStatus {

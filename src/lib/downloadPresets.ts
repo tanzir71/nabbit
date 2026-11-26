@@ -17,6 +17,7 @@ export function defaultDownloadOptions(): Required<DownloadOptions> {
     playlistMode: "video",
     playlistItems: null,
     speedLimit: null,
+    waitForVideo: false,
   };
 }
 export function defaultDownloadPresets(): DownloadPreset[] {
@@ -45,6 +46,7 @@ export function previewPreset(options: DownloadOptions): DownloadPreset {
     playlistMode: "video" as const,
     playlistItems: null,
     outputDir: null,
+    waitForVideo: false,
   };
   if (!["mp4", "mkv", "webm"].includes(reusable.format)) reusable.height = null;
   if (reusable.filenameTemplate === "%(title)s [%(id)s].%(ext)s") reusable.filenameTemplate = null;

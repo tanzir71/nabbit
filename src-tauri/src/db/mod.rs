@@ -534,7 +534,7 @@ impl Database {
         conn.execute(
             "UPDATE downloads
              SET title = ?2, thumbnail = ?3, status = ?4, progress = ?5, speed = ?6, eta = ?7,
-                 output_path = ?8, error = ?9, quality = ?10, playlist_mode = ?11, playlist_range = ?12, updated_at = ?13
+                 output_path = ?8, error = ?9, quality = ?10, playlist_mode = ?11, playlist_range = ?12, updated_at = ?13, options_json = ?14
              WHERE id = ?1",
             params![
                 job.id,
@@ -549,7 +549,8 @@ impl Database {
                 job.quality,
                 job.playlist_mode,
                 job.playlist_range,
-                job.updated_at.to_rfc3339()
+                job.updated_at.to_rfc3339(),
+                job.options.as_ref().map(serde_json::to_string).transpose()?
             ],
         )?;
         Ok(())
@@ -677,7 +678,7 @@ fn row_to_clipboard_entry(row: &rusqlite::Row<'_>) -> rusqlite::Result<Clipboard
 }
 
 fn row_to_download_job(row: &rusqlite::Row<'_>) -> rusqlite::Result<DownloadJob> {
-    Ok(DownloadJob {
+    let mut job = DownloadJob {
         id: row.get(0)?,
         url: row.get(1)?,
         title: row.get(2)?,
@@ -688,6 +689,7 @@ fn row_to_download_job(row: &rusqlite::Row<'_>) -> rusqlite::Result<DownloadJob>
         eta: row.get(7)?,
         output_path: row.get(8)?,
         error: row.get(9)?,
+        failure: None,
         options: row
             .get::<_, Option<String>>(15)?
             .map(|raw| {
@@ -705,7 +707,9 @@ fn row_to_download_job(row: &rusqlite::Row<'_>) -> rusqlite::Result<DownloadJob>
         playlist_range: row.get(12)?,
         created_at: parse_dt(row.get(13)?)?,
         updated_at: parse_dt(row.get(14)?)?,
-    })
+    };
+    job.failure = crate::download::errors::for_job(&job);
+    Ok(job)
 }
 
 #[cfg(test)]

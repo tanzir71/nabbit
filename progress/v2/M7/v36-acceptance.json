@@ -1,0 +1,240 @@
+{
+  "task": "V3.6 Error mapping and recovery actions",
+  "recordedAtUtc": "2026-11-26T17:43:06.875146+00:00",
+  "baseCommit": "059e8f574078db0f788377e36a1dd59c5b43801e",
+  "branch": "main",
+  "checks": {
+    "npmVerify": {
+      "command": "npm run verify",
+      "exitCode": 0,
+      "file": "v36-npmVerify.txt",
+      "rawSha256": "6122f9aaf1d5679e46c7f16d15d7f88922f48fc43428987d10564cc01cd3d3e4",
+      "savedSha256": "658a470437c4a691d345d35dafd7f5729fd9dd330860c65789671d5e4160920d"
+    },
+    "rustFmt": {
+      "command": "cargo fmt --manifest-path src-tauri/Cargo.toml --check",
+      "exitCode": 0,
+      "file": "v36-rustFmt.txt",
+      "rawSha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "savedSha256": "01ba4719c80b6fe911b091a7c05124b64eeece964e09c058ef8f9805daca546b"
+    },
+    "rustClippy": {
+      "command": "cargo clippy --manifest-path src-tauri/Cargo.toml --all-targets -- -D warnings",
+      "exitCode": 0,
+      "file": "v36-rustClippy.txt",
+      "rawSha256": "eb981b9617120b3d0b69e9cdb16b472b003c16cf635e8699baa24ee31cbe02f9",
+      "savedSha256": "e67c14bd86ebe90f6a1b673a5b469dbaf62d6268eade970ff688516f893a0181"
+    },
+    "rustSpikeClippy": {
+      "command": "cargo clippy --manifest-path src-tauri/Cargo.toml --all-targets --features island-spike -- -D warnings",
+      "exitCode": 0,
+      "file": "v36-rustSpikeClippy.txt",
+      "rawSha256": "46d077c0acbb8ebbe094f9d4bf361f53c2f09983fe82cf89c4c12acc1f88f94b",
+      "savedSha256": "63140347923b1c305ecc025770f46dac52f98b5a2973b202af7e1a6cc312867b"
+    },
+    "rustTests": {
+      "command": "cargo test --manifest-path src-tauri/Cargo.toml -- --test-threads=1",
+      "exitCode": 0,
+      "file": "v36-rustTests.txt",
+      "rawSha256": "ad07a90d5a0db00e28e98c78bf1bf8108b68d16ff825d92b08dc73d55d14afbb",
+      "savedSha256": "1c8173db3dc145908b2743959a4f08588bac7f874deb99c8c7d2b87ed3f6ff6d"
+    },
+    "errorCaptures": {
+      "command": "node scripts/verify-download-errors.mjs v36-checked",
+      "exitCode": 0,
+      "file": "v36-errorCaptures.txt",
+      "rawSha256": "817bb578d2e07603bc9bb67b1a09ea4a6de753a054ae8b2affbff663388eff0c",
+      "savedSha256": "e94a3ad9e3fd0ac2a75b8ae17ec27ce956a30a36198dd777ff69e76aec3b5847"
+    },
+    "sheetCaptures": {
+      "command": "node scripts/verify-download-sheets.mjs v36-sheets-checked",
+      "exitCode": 0,
+      "file": "v36-sheetCaptures.txt",
+      "rawSha256": "5ce60069dede08ed238a019dd8a4d8f2cf40d5c7528ae99f740e024ef47580bf",
+      "savedSha256": "398afe09c29b2a88b6b2a7fbfd718c07a00da3343f879aa077ed838b241f3890"
+    },
+    "nabCaptures": {
+      "command": "node scripts/verify-nab-views.mjs v36-nab-checked M7",
+      "exitCode": 0,
+      "file": "v36-nabCaptures.txt",
+      "rawSha256": "6198f427c7bf2e34d78d951128dd5f064023a86a84eb7e46ab145c0350945d62",
+      "savedSha256": "4055b5eaf535d3920551443e15d5c793b4362d93f6e4877c2006a81658c96293"
+    }
+  },
+  "frontendTests": 175,
+  "newUiTests": 26,
+  "rustTests": {
+    "passed": 152,
+    "ignored": 2,
+    "newTests": 9
+  },
+  "stderrFixtureCount": 21,
+  "errorKinds": 9,
+  "fixtures": "v36-error-fixtures.json",
+  "nativeCompactCopyEqualsFrontend": {
+    "SignInRequired": "YouTube wants you signed in",
+    "SiteChanged": "YouTube changed something",
+    "MissingJsRuntime": "The engine needs its helper",
+    "FormatUnavailable": "That quality isn’t offered",
+    "Drm": "This media is protected",
+    "Disk": "Check the download folder",
+    "Offline": "You’re offline",
+    "Live": "This is still live",
+    "Unknown": "Download failed"
+  },
+  "nativeSourcesUnchangedFromAcceptedRun": true,
+  "screenshots": {
+    "reports": [
+      "v36-checked-screenshots.json",
+      "v36-sheets-checked-screenshots.json",
+      "v36-nab-checked-screenshots.json"
+    ],
+    "finalCount": 108,
+    "errorAndAcknowledgementCount": 76,
+    "sheetRegressionCount": 16,
+    "nabRegressionCount": 16,
+    "independentAudit": "v36-png-audit.json",
+    "largestBytes": 169766,
+    "allRetainedCount": 284,
+    "allRetainedLargestBytes": 169766,
+    "strictBudgetBytes": 300000,
+    "themes": [
+      "light",
+      "dark"
+    ],
+    "scales": [
+      1,
+      1.5
+    ],
+    "islandAlwaysDark": true,
+    "repeatIdentical": true,
+    "buildManifestSha256": "bbb0af2f1feb7ce813ad2cac6e8ce6b5cec2e84449e690d32ecd1fa514cd2b1f"
+  },
+  "accessibility": {
+    "errorAndAcknowledgementScopes": 76,
+    "sheetScopes": 16,
+    "nabScopes": 16,
+    "violations": 0,
+    "errorAndSheetIncomplete": 0,
+    "nabIncomplete": [
+      {
+        "file": "v36-nab-checked-nab-island-light@1x.png",
+        "rules": [
+          "color-contrast"
+        ]
+      },
+      {
+        "file": "v36-nab-checked-nab-island-light@1.5x.png",
+        "rules": [
+          "color-contrast"
+        ]
+      },
+      {
+        "file": "v36-nab-checked-nab-island-dark@1x.png",
+        "rules": [
+          "color-contrast"
+        ]
+      },
+      {
+        "file": "v36-nab-checked-nab-island-dark@1.5x.png",
+        "rules": [
+          "color-contrast"
+        ]
+      }
+    ],
+    "existingNabContrastProof": "../M6/v34-badge-contrast.json",
+    "scope": "Default-rule scoped scans; no whole-app conformance claim."
+  },
+  "design": {
+    "node": "18:330",
+    "fullContextAndScreenshotFetched": true,
+    "assets": "v36-assets.json",
+    "originalSvgExports": 11,
+    "trayRowWidth": 426,
+    "fonts": "Actual bundled Geist glyph audits; title 500/13px/18px; shared captions/tokens."
+  },
+  "islandInitialGzipBytes": 90605,
+  "islandBudgetBytes": 120000,
+  "entries": 4,
+  "pinnedYtdlpVersion": "2026.11.23",
+  "pinnedParser": "v36-pinned-parser.json",
+  "earlierAttempts": "v36-earlier-attempts.json",
+  "behavior": [
+    "Typed row failures and activity events share Rust classification, including warning precedence and DRM negative cases.",
+    "No raw stderr or stack trace is rendered; Copy details invokes the raw-text writer only on click.",
+    "Recovery edits the existing job/options without changing its URL or remembered preset; browser choice remains only in memory.",
+    "DRM offers only acknowledgement; acknowledged problems can reopen their fix without retrying.",
+    "Helper/engine repair retries only after success; failed repair stays a short status.",
+    "Offline waits in Rust, using bounded origin HEAD requests only while deferred; cancel and automatic eligibility checks share the manager lock.",
+    "Replay waiting is job-only, gated by known nonlive metadata and protected by the pinned wait/filter/reject flags.",
+    "Worker cleanup precedes failure publication so a new recovery cannot race cleanup of that failed worker."
+  ],
+  "limits": [
+    "V3.7 full native/fake-runner downloader acceptance and the landing download visual remain unchecked.",
+    "No real profile, media download, native button click, installer/signing, account or display-setting test is claimed.",
+    "Existing V0/V2.7 native frame/focus/performance limitations remain open.",
+    "Connectivity uses a 30-second deferred check and a five-second HEAD deadline, rather than immediate OS notifications.",
+    "Missing replay status blocks recording instead of assuming that a replay is ready."
+  ],
+  "publication": {
+    "commitDirectlyTo": "main",
+    "pushThisPass": false,
+    "pullRequest": false,
+    "nextTask": "V3.7 Downloads acceptance",
+    "milestoneM7Checked": false
+  },
+  "sourceHashNormalization": "CRLF to LF only",
+  "sourceSha256LfNormalized": {
+    "scripts/screenshots/harness.mjs": "17bb3b7e19aec7c87af0fc2220ce9caaf4f88f1eeca5dc6962cbf01e8566debb",
+    "scripts/verify-download-errors.mjs": "b40e07e779c24bf09b8136109e3161b934f7cc108c3dec8fde715f1c48e77b33",
+    "scripts/verify-nab-views.mjs": "0fe55edf0b55009cecd3cdb4df9851cc83db591ea2240924865ee11e12c14a51",
+    "src-tauri/src/capture.rs": "24a8d3b2fc450e3d49d1ed1c7bd0c68d7a38248696f81b510764edf9a0eeceae",
+    "src-tauri/src/commands/download.rs": "d51a9339e591d5c50ce05be8dceb6c18132cbb6ec510d166b04a2ff90074ab96",
+    "src-tauri/src/db/download_presets_tests.rs": "8d9aa14157774e99cfc0f2e0b00bddd5bb3a6a3908a645b54d080dff4edaa7d5",
+    "src-tauri/src/db/mod.rs": "29367c9b187983507c94bb5553d158a7c4dd714d865be20f4ea9e96292452167",
+    "src-tauri/src/db/models.rs": "54fc69ea7f27dad0ca258a55485dcc19081e3dcb6040da5b635b9222dcce408b",
+    "src-tauri/src/download/deferred.rs": "15743c03fe1cc7b41b069eed7e98eb14afe448d34d2f97f7dc53f4e38bb36cd4",
+    "src-tauri/src/download/errors.rs": "bc8e42f2b6c3e78b0c2926e205f412f93c56b56a872342accac2e65a48d1377a",
+    "src-tauri/src/download/errors_tests.rs": "1e17e4ef7d0f0649fe0b69019237a91c36ba59650486a16fafa0ccc26ad1d377",
+    "src-tauri/src/download/fixtures/errors.json": "2f4a83b3db64976c25f25574ae63d55464dea27471c69b423e756fbac8ab8cd2",
+    "src-tauri/src/download/manager.rs": "64ca93d1c9a3df391c4c3e62ba74f58abf652bfa852181284de7ebd9e43f572d",
+    "src-tauri/src/download/mod.rs": "b91c64ba26f1a868b0737916dc1fd89cb2183e6e9fdba8f47f6ccde5144ce548",
+    "src-tauri/src/download/options.rs": "e02cc3035d72180f40910280d005c683ecd1c107e9a4dbd47c3b6fab47b8db1a",
+    "src-tauri/src/download/sheets.rs": "12d0524201920abed34b6246d37fa79e473e9fc2d8dfad3f295eb0ef168a93c0",
+    "src-tauri/src/download/ytdlp.rs": "c4fafecf82949abfb00157f2201ef7f5977d00dae20caadc32e4394eec33dda0",
+    "src-tauri/src/island/activity.rs": "a8207ccd7e66590abff76b734bc05ae65fdd6f66151e1653e5444f8304562caf",
+    "src-tauri/src/island/activity_bus.rs": "2718812db72e5d76c14d2694111c4ec3b8fa343e45247af758a4a9017a0604b5",
+    "src-tauri/src/island/presentation.rs": "6000b3cd5db0d044df57973dad42342cf98f2fff3023a14e4dac18941665a52a",
+    "src-tauri/src/lib.rs": "bbc87749456b5f8a1c1773fd927312f69b5fed75edeb05c92110fc69e7f21eeb",
+    "src/assets/download-errors/18902.svg": "36faec4c7299aa007aacbed5fd47fe6755e4fcc351bc6b5d1e551a0ce70990db",
+    "src/assets/download-errors/1ddbc.svg": "9f74712d240d9657edb41f461cd7dd380a38ccf9e9d67cf6c972e4ab079f7d6b",
+    "src/assets/download-errors/2984a.svg": "b2cc994a28e1a642a653393937e1d5798294f372d68ea6b2b5696e59ad9c3fd2",
+    "src/assets/download-errors/48f16.svg": "22f5b8b156f8e15eb9a174e38d6bc50e8b3dccf2a23f2e21983c2e287303ee0d",
+    "src/assets/download-errors/4c9d0.svg": "46b175003aa836948431ef1eabaab0444fea19272e316ec37480930ec6122289",
+    "src/assets/download-errors/8fce1.svg": "10bfe57faeebdbb074e2623a0a08df2752fbc8b3364693f7f989c05356ea995d",
+    "src/assets/download-errors/a92d4.svg": "a4e0360a7edb4aa24de927ac20766338a0de8f6eb92ae11efdfbd1900b87bf8c",
+    "src/assets/download-errors/ba187.svg": "f751d68a4af0f60315871c3c5c77704a5795fe6d7ad974852ac08584e01ed1b1",
+    "src/assets/download-errors/e8c4c.svg": "3ad4d2bd170cb4600bc24ed3972018e4269175773ea0a6f69757eeba10052ab4",
+    "src/assets/download-errors/ee21d.svg": "e12dd144c7ffdc37de213ec9741df1a56705104d67cda19e45e47ecf3ff48030",
+    "src/assets/download-errors/f01e4.svg": "b977acc5bc2f16d60a75fe61d110bc1e38c40c4bbbd0920e68f252f3346075af",
+    "src/features/downloads/DownloadFailure.tsx": "e73a3d7117baa944901fbafce9a4d48c754ebb53f0198e09945a2399777e79e5",
+    "src/features/downloads/DownloadQueue.tsx": "156456867879a0049ab4d176de29d8358ac142b6fa3e60e7856830d72f383acd",
+    "src/features/downloads/DownloadSheetApp.tsx": "be9f768745b8a384a8cff611bfa09fc491d42f73039d80d68a3fae33f3b2a50a",
+    "src/features/downloads/OptionsSheet.tsx": "2b98afc3eeb52b5412a7a2f8851a05b90c7ddd9e5a463aa199a5545a182ad0ae",
+    "src/features/downloads/downloadErrors.test.tsx": "14547665573a3d8e819dd2e6e675c529b693419433218fe5a0d96666bb18f483",
+    "src/features/downloads/downloadSheets.test.tsx": "597500954ba5730ca136d9c56945efb198287b400b448a15333c301dde6a15a7",
+    "src/features/downloads/downloads.test.tsx": "97181c2f4dac93a5a75fed91307adb9878bf5a409103a018552df7bbea5e8c28",
+    "src/features/downloads/errors.css": "92c88ca70d61c5d54e92dc149745616e5fe190ce5d10e014420450be2cd90b53",
+    "src/lib/downloadErrors.ts": "189077213c0fd528df81915c7809715ac0ddd7cb9845a1f7772c4360ef9ac393",
+    "src/lib/downloadPresets.ts": "46574b33bf135bdbd98ae9dd8f466ee96cea88aef757a6b08eb06de6e9bec8f5",
+    "src/lib/ipc.ts": "bf60043f4d5d2419927508d6a20224bf5179403c92947fa927ea198cb9026f3f",
+    "src/lib/islandPresentation.ts": "b931e03ec2d1fd385774f09e8f626380bd3112458c5b08a70030507937fd74bc",
+    "src/lib/types.ts": "84177077352af3823199e44f2a44bc80dd385fe96f24ecc9aa1df115cd4d227a",
+    "src/surfaces/island/CompactContent.tsx": "17cb06b8f71d590cc6c614dbd502ce496c36d210cc0f230d403a5490220f8446"
+  },
+  "documentSha256LfNormalized": {
+    "NABBIT_V2_HANDOFF.md": "aecdb98b2fc2e67f0fc679663a6e5de429fe18d1ccb0e938bf6fa7768a68c703",
+    "PROGRESS.md": "b81c094fe63d28fa84eb3eedc6b6e4cdc23206ffab9be5d59915b53703be5d5e",
+    "progress/v2/M7/README.md": "8449832996dd5ea2c56050325c15e748068346276f318d68c15fea3835ce9713"
+  }
+}

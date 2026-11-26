@@ -1,0 +1,38 @@
+{
+  "binarySha256": "622ed48023cac1daa52a3bf3a6ac38f03514de214b5f0fa069389fd0f6d17e5c",
+  "noUrlsOrProfilesOrMedia": true,
+  "cases": [
+    {
+      "case": "valid",
+      "arguments": [
+        "--ignore-config",
+        "--wait-for-video",
+        "30",
+        "--match-filter",
+        "!is_live",
+        "--break-on-reject",
+        "--skip-download"
+      ],
+      "exitCode": 2,
+      "stdout": "",
+      "stderr": "\nUsage: yt-dlp-x86_64-pc-windows-msvc.exe [OPTIONS] URL [URL...]\n\nyt-dlp-x86_64-pc-windows-msvc.exe: error: You must provide at least one URL.\nType yt-dlp --help to see a list of all options.\n",
+      "expected": true
+    },
+    {
+      "case": "invalid",
+      "arguments": [
+        "--ignore-config",
+        "--wait-for-video",
+        "invalid",
+        "--match-filter",
+        "!is_live",
+        "--break-on-reject",
+        "--skip-download"
+      ],
+      "exitCode": 2,
+      "stdout": "",
+      "stderr": "\nUsage: yt-dlp-x86_64-pc-windows-msvc.exe [OPTIONS] URL [URL...]\n\nyt-dlp-x86_64-pc-windows-msvc.exe: error: invalid time range to wait for video \"invalid\" given\n",
+      "expected": true
+    }
+  ]
+}

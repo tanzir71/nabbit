@@ -1,0 +1,18 @@
+{
+  "source": "src-tauri/src/download/fixtures/errors.json",
+  "sha256LfNormalized": "2f4a83b3db64976c25f25574ae63d55464dea27471c69b423e756fbac8ab8cd2",
+  "fixtureCount": 21,
+  "errorKinds": [
+    "SignInRequired",
+    "SiteChanged",
+    "MissingJsRuntime",
+    "FormatUnavailable",
+    "Drm",
+    "Disk",
+    "Offline",
+    "Live",
+    "Unknown"
+  ],
+  "uiSelection": "First fixture per kind, preserving the explicit unknown traceback input.",
+  "scope": "Sanitized representative stderr inputs; no account/profile/media failure is claimed to have been induced."
+}

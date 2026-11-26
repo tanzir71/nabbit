@@ -305,6 +305,32 @@ export const api = {
       job.error = null;
       return job;
     }),
+  recoverDownload: (id: string, recovery: import("./types").DownloadRecovery) =>
+    call<DownloadJob>("recover_download", { id, recovery }, () => {
+      const job = browserJobs.find((j) => j.id === id);
+      if (!job) throw new Error("Job not found");
+      if (recovery.kind === "options") job.options = recovery.options;
+      if (recovery.kind === "bestAvailable") job.options = { ...job.options, height: null };
+      if (recovery.kind === "folder")
+        job.options = { ...job.options, outputDir: recovery.outputDir };
+      if (recovery.kind === "waitForVideo") job.options = { ...job.options, waitForVideo: true };
+      job.status = "queued";
+      job.error = null;
+      job.failure = null;
+      return job;
+    }),
+  copyDownloadDetails: (id: string) =>
+    call<void>("copy_download_details", { id }, async () => {
+      const job = browserJobs.find((j) => j.id === id);
+      if (!job?.error) throw new Error("There are no download details.");
+      await navigator.clipboard.writeText(job.error);
+    }),
+  dismissDownloadProblem: (id: string) =>
+    call<void>(
+      "island_activity_action",
+      { action: { kind: "dismiss", id: `downloadFailed:${id}` } },
+      () => undefined,
+    ),
   openDownloadsFolder: () => call<void>("open_downloads_folder", undefined, () => undefined),
   repairEngine: (channel?: "stable" | "nightly") =>
     call<EngineStatus>("repair_engine", { channel }, () => ({ missing: [] })),

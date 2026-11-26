@@ -531,3 +531,22 @@ describe("trim/selection boundaries", () => {
     }
   });
 });
+
+it("retries the existing failed row from Choose without adding a job or changing its site preset", async () => {
+  intent.draft.retryJobId = "failed-original";
+  const recover = vi.spyOn(api, "recoverDownload").mockResolvedValue({} as DownloadJob);
+  render(<DownloadSheetApp />);
+  const retry = await screen.findByRole("button", { name: "Retry download" });
+  expect(screen.queryByRole("switch", { name: /Remember/ })).toBeNull();
+  fireEvent.click(retry);
+  await waitFor(() =>
+    expect(recover).toHaveBeenCalledWith(
+      "failed-original",
+      expect.objectContaining({
+        kind: "options",
+        options: expect.objectContaining({ format: "mp4" }),
+      }),
+    ),
+  );
+  expect(api.startDownload).not.toHaveBeenCalled();
+});

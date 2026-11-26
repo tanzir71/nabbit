@@ -1,0 +1,13 @@
+Selected result/error lines; full raw-log SHA-256 is recorded in the index.
+test db::tests::migrations_create_expected_tables ... ok
+test download::engine::tests::health_error_is_one_reserved_activity_and_recovers_without_jobs ... ok
+test download::errors::tests::every_error_kind_maps_fixture_stderr_to_copy_and_at_most_two_actions_without_raw_logs ... ok
+test download::errors::tests::live_probe_requires_an_explicit_ended_or_nonlive_signal ... ok
+test download::errors::tests::offline_and_replay_wait_resume_only_pending_jobs_and_stop_after_cancel_or_another_error ... ok
+test download::errors::tests::recovered_options_and_raw_error_survive_sqlite_without_persisting_browser_choice ... ok
+test download::errors::tests::recovery_uses_validated_job_snapshots_and_never_changes_a_preset_or_bypasses_drm ... ok
+test island::activity_tests::errors_stay_until_dismissed_and_retry_replaces_the_error ... ok
+test island::presentation_tests::engine_health_error_draws_its_own_copy_and_fix_then_clears ... ok
+test result: ok. 151 passed; 0 failed; 2 ignored; 0 measured; 0 filtered out; finished in 9.30s
+test result: ok. 0 passed; 0 failed; 0 ignored; 0 measured; 0 filtered out; finished in 0.00s
+test result: ok. 0 passed; 0 failed; 0 ignored; 0 measured; 0 filtered out; finished in 0.00s

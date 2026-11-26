@@ -155,7 +155,13 @@ function SheetSession({
         rememberForSite: remember,
         cookiesFromBrowser: browser,
       };
-      if (indices) await api.startPlaylistDownload(request, indices);
+      if (intent.draft.retryJobId)
+        await api.recoverDownload(intent.draft.retryJobId, {
+          kind: "options",
+          options: next,
+          browser,
+        });
+      else if (indices) await api.startPlaylistDownload(request, indices);
       else await api.startDownload(request);
       setSubmitted(true);
       await api.closeDownloadSheet(intent.id);
@@ -265,6 +271,7 @@ function SheetSession({
             onDownload={() => void download()}
             remember={remember}
             onRemember={setRemember}
+            retry={Boolean(intent.draft.retryJobId)}
           />
         ) : kind === "trim" ? (
           <TrimSheet {...controls} onDownload={(o) => void download(o)} />

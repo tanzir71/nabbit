@@ -1,0 +1,2 @@
+Selected result/error lines; full raw-log SHA-256 is recorded in the index.
+src/lib/downloadPresets.ts(5,3): error TS2741: Property 'waitForVideo' is missing in type '{ format: "mp4"; height: number; subtitles: null; chapters: "off"; sponsorBlock: "off"; embedThumbnail: false; embedMetadata: false; filenameTemplate: null; outputDir: null; sections: never[]; preciseCuts: false; playlistMode: "video"; playlistItems: null; speedLimit: null; }' but required in type 'Required<DownloadOptions>'.

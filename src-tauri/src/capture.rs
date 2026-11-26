@@ -81,6 +81,7 @@ fn placeholder(url: String) -> DownloadMetadata {
         extractor: Some("capture".into()),
         qualities: vec![],
         details: None,
+        live_pending: None,
     }
 }
 

@@ -20,6 +20,7 @@ export function OptionsSheet({
   remember,
   onRemember,
   onKind,
+  retry = false,
 }: SheetControls & {
   settings: AppSettings;
   browser?: DownloadBrowser;
@@ -27,6 +28,7 @@ export function OptionsSheet({
   onDownload: () => void;
   remember: boolean;
   onRemember: (value: boolean) => void;
+  retry?: boolean;
 }) {
   const [folderEdit, setFolderEdit] = useState(false),
     [customLanguages, setCustomLanguages] = useState(() =>
@@ -352,11 +354,15 @@ export function OptionsSheet({
         </details>
       </div>
       <footer className="sheet-footer">
-        <Remember checked={remember} onChange={onRemember} site={metadata.normalizedUrl} />
+        {retry ? (
+          <span>Update this download</span>
+        ) : (
+          <Remember checked={remember} onChange={onRemember} site={metadata.normalizedUrl} />
+        )}
         <span className="nab-spacer" />
         <Button data-sheet-primary variant="primary" disabled={busy} onClick={onDownload}>
           <SheetIcon name="download" />
-          {busy ? "Adding…" : "Download"}
+          {busy ? "Adding…" : retry ? "Retry download" : "Download"}
         </Button>
       </footer>
     </>

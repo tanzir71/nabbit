@@ -74,30 +74,20 @@ pub fn target_triple() -> &'static str {
 }
 
 pub fn probe_metadata(app_data_dir: &Path, url: &str) -> Result<DownloadMetadata> {
+    probe_metadata_with_browser(app_data_dir, url, None)
+}
+pub fn probe_metadata_with_browser(
+    app_data_dir: &Path,
+    url: &str,
+    browser: Option<super::options::Browser>,
+) -> Result<DownloadMetadata> {
     let normalized = crate::capture::web_url(url)?;
     let Some(ytdlp) = resolve_engine(app_data_dir, "yt-dlp") else {
         return Ok(fallback_metadata(&normalized, "yt-dlp sidecar missing"));
     };
 
     let runtime = super::engine::runtime_args(resolve_engine(app_data_dir, "deno").as_deref())?;
-    let mut args = runtime;
-    args.extend(
-        [
-            "-J",
-            "--no-warnings",
-            "--skip-download",
-            "--flat-playlist",
-            "--playlist-end",
-            "1000",
-            "--socket-timeout",
-            "5",
-            "--retries",
-            "0",
-            "--",
-            &normalized,
-        ]
-        .map(str::to_owned),
-    );
+    let args = probe_args(runtime, &normalized, browser);
     let output = super::engine::run_bounded_with_output_limit(
         &ytdlp,
         &args,
@@ -114,6 +104,33 @@ pub fn probe_metadata(app_data_dir: &Path, url: &str) -> Result<DownloadMetadata
 
     let value: Value = serde_json::from_str(&output.stdout)?;
     metadata_from_value(&value, &normalized)
+}
+fn probe_args(
+    mut args: Vec<String>,
+    normalized: &str,
+    browser: Option<super::options::Browser>,
+) -> Vec<String> {
+    if let Some(browser) = browser {
+        args.extend(["--cookies-from-browser".into(), browser.as_str().into()]);
+    }
+    args.extend(
+        [
+            "-J",
+            "--no-warnings",
+            "--skip-download",
+            "--flat-playlist",
+            "--playlist-end",
+            "1000",
+            "--socket-timeout",
+            "5",
+            "--retries",
+            "0",
+            "--",
+            normalized,
+        ]
+        .map(str::to_owned),
+    );
+    args
 }
 
 pub fn metadata_from_value(value: &Value, url: &str) -> Result<DownloadMetadata> {
@@ -133,6 +150,11 @@ pub fn metadata_from_value(value: &Value, url: &str) -> Result<DownloadMetadata>
 
     let details = super::media::from_probe(value, &normalized);
     Ok(DownloadMetadata {
+        live_pending: match value.get("live_status").and_then(Value::as_str) {
+            Some("is_live" | "is_upcoming" | "post_live") => Some(true),
+            Some("not_live" | "was_live") => Some(false),
+            _ => value.get("is_live").and_then(Value::as_bool),
+        },
         url: url.to_string(),
         normalized_url: normalized.clone(),
         title: value
@@ -238,12 +260,45 @@ fn fallback_metadata(url: &str, reason: &str) -> DownloadMetadata {
         extractor: Some("fallback".into()),
         qualities: vec![],
         details: None,
+        live_pending: None,
     }
 }
 
 #[cfg(test)]
 mod tests {
     use super::*;
+    #[test]
+    fn only_an_explicit_job_browser_is_passed_to_the_bounded_replay_probe() {
+        let url = "https://www.youtube.com/watch?v=fixture";
+        let base = probe_args(vec![], url, None);
+        assert_eq!(
+            base,
+            vec![
+                "-J",
+                "--no-warnings",
+                "--skip-download",
+                "--flat-playlist",
+                "--playlist-end",
+                "1000",
+                "--socket-timeout",
+                "5",
+                "--retries",
+                "0",
+                "--",
+                url
+            ]
+        );
+        for browser in [
+            super::super::options::Browser::Chrome,
+            super::super::options::Browser::Edge,
+            super::super::options::Browser::Firefox,
+            super::super::options::Browser::Brave,
+        ] {
+            let args = probe_args(vec![], url, Some(browser));
+            assert_eq!(&args[..2], ["--cookies-from-browser", browser.as_str()]);
+            assert_eq!(&args[2..], base);
+        }
+    }
 
     #[test]
     fn parses_machine_progress() {

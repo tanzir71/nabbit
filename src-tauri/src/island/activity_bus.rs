@@ -170,7 +170,10 @@ pub fn publish_to(app: &AppHandle, event: ActivityEvent, target: Option<String>)
     }
 }
 pub fn download(app: &AppHandle, job: &crate::db::models::DownloadJob) {
-    let event = match job.status.as_str() {
+    publish(app, download_event(job));
+}
+pub(crate) fn download_event(job: &crate::db::models::DownloadJob) -> ActivityEvent {
+    match job.status.as_str() {
         "running" => ActivityEvent::DownloadProgress {
             job_id: job.id.clone(),
             title: job.title.clone(),
@@ -184,21 +187,12 @@ pub fn download(app: &AppHandle, job: &crate::db::models::DownloadJob) {
         },
         "failed" => ActivityEvent::DownloadFailed {
             job_id: job.id.clone(),
-            error: if job
-                .error
-                .as_deref()
-                .is_some_and(|e| e.starts_with("MissingJsRuntime:"))
-            {
-                super::activity::ErrorKind::MissingJsRuntime
-            } else {
-                super::activity::ErrorKind::Unknown
-            },
+            error: crate::download::errors::classify(job.error.as_deref().unwrap_or_default()),
         },
         _ => ActivityEvent::DownloadRemoved {
             job_id: job.id.clone(),
         },
-    };
-    publish(app, event);
+    }
 }
 #[tauri::command]
 pub fn get_activity_snapshot(app: AppHandle) -> Result<Snapshot, String> {

@@ -172,6 +172,7 @@ export async function captureSuite(root, options, cases = scenarios) {
                   "resume_download",
                   "retry_download",
                   "retry_download_with_browser",
+                  "recover_download",
                 ].includes(command),
               ),
               "A capture cannot start downloads",

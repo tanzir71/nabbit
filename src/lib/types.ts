@@ -56,6 +56,7 @@ export interface DownloadSheetDraft {
   url: string;
   options: DownloadOptions;
   remember: boolean;
+  retryJobId?: string | null;
 }
 export interface DownloadSheetIntent {
   id: string;
@@ -77,6 +78,7 @@ export interface DownloadJob {
   eta?: string | null;
   outputPath?: string | null;
   error?: string | null;
+  failure?: DownloadFailure | null;
   quality: string;
   options?: DownloadOptions | null;
   playlistMode: "video" | "playlist";
@@ -150,7 +152,31 @@ export interface DownloadOptions {
   playlistMode?: "video" | "playlist";
   playlistItems?: string | null;
   speedLimit?: string | null;
+  waitForVideo?: boolean;
 }
+export type DownloadErrorAction =
+  | "signIn"
+  | "retry"
+  | "updateEngine"
+  | "copyDetails"
+  | "installDeno"
+  | "dismiss"
+  | "bestAvailable"
+  | "choose"
+  | "chooseFolder"
+  | "cancel"
+  | "waitForVideo";
+export interface DownloadFailure {
+  kind: ErrorKind;
+  title: string;
+  description: string;
+  actions: DownloadErrorAction[];
+}
+export type DownloadRecovery =
+  | { kind: "retry" | "bestAvailable" | "waitForVideo" }
+  | { kind: "signIn"; browser: DownloadBrowser }
+  | { kind: "folder"; outputDir: string }
+  | { kind: "options"; options: DownloadOptions; browser?: DownloadBrowser };
 export interface DownloadPreset {
   id: "mp4_1080" | "mp4_720" | "mp3_320" | "m4a" | "custom";
   label: string;

@@ -104,6 +104,7 @@ pub struct DownloadOptions {
     pub playlist_mode: PlaylistMode,
     pub playlist_items: Option<String>,
     pub speed_limit: Option<String>,
+    pub wait_for_video: bool,
 }
 impl Default for DownloadOptions {
     fn default() -> Self {
@@ -122,6 +123,7 @@ impl Default for DownloadOptions {
             playlist_mode: PlaylistMode::Video,
             playlist_items: None,
             speed_limit: None,
+            wait_for_video: false,
         }
     }
 }
@@ -257,6 +259,7 @@ impl DownloadOptions {
         o.playlist_mode = PlaylistMode::Video;
         o.playlist_items = None;
         o.output_dir = None;
+        o.wait_for_video = false;
         Ok(o)
     }
     pub fn with_defaults(&self, output_dir: &str, template: &str) -> Result<Self> {
@@ -465,6 +468,15 @@ pub fn build(
     }
     if o.precise_cuts {
         args.push("--force-keyframes-at-cuts".into());
+    }
+    if o.wait_for_video {
+        args.extend(["--wait-for-video".into(), "30".into()]);
+        // Recheck in yt-dlp too: a replay probe must never turn into live recording.
+        args.extend([
+            "--match-filter".into(),
+            "!is_live".into(),
+            "--break-on-reject".into(),
+        ]);
     }
     match o.playlist_mode {
         PlaylistMode::Video => args.push("--no-playlist".into()),

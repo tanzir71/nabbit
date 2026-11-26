@@ -124,6 +124,32 @@ pub fn retry_download_with_browser(
 }
 
 #[tauri::command]
+pub fn recover_download(
+    state: tauri::State<'_, AppState>,
+    id: String,
+    recovery: crate::download::errors::Recovery,
+) -> Result<DownloadJob> {
+    state.downloads.recover(&id, recovery)
+}
+#[tauri::command]
+pub fn copy_download_details(state: tauri::State<'_, AppState>, id: String) -> Result<()> {
+    copy_details_with(&state.db.get_download(&id)?, |details| {
+        let mut clipboard = arboard::Clipboard::new()
+            .map_err(|_| msg("The clipboard is unavailable. Try again."))?;
+        clipboard
+            .set_text(details)
+            .map_err(|_| msg("The download details could not be copied. Try again."))
+    })
+}
+fn copy_details_with(job: &DownloadJob, writer: impl FnOnce(String) -> Result<()>) -> Result<()> {
+    writer(
+        job.error
+            .clone()
+            .ok_or_else(|| msg("There are no error details for this download."))?,
+    )
+}
+
+#[tauri::command]
 pub fn reveal_download(state: tauri::State<'_, AppState>, id: String) -> Result<()> {
     let job = state.db.get_download(&id)?;
     if let Some(path) = job.output_path {
@@ -227,6 +253,23 @@ pub async fn start_download_with_preset(
 mod tests {
     use super::*;
     use chrono::Utc;
+    #[test]
+    fn copy_details_passes_the_unmodified_log_only_to_the_explicit_writer() {
+        let raw = "ERROR: fixture\r\nTraceback (most recent call last):\r\n  File fixture.py\r\n";
+        let mut failed = job("failed", std::path::Path::new("fixture.mp4"));
+        failed.error = Some(raw.into());
+        let mut copied = None;
+        copy_details_with(&failed, |text| {
+            copied = Some(text);
+            Ok(())
+        })
+        .unwrap();
+        assert_eq!(copied.as_deref(), Some(raw));
+        failed.error = None;
+        assert!(
+            copy_details_with(&failed, |_| panic!("no log must not write the clipboard")).is_err()
+        );
+    }
     fn job(status: &str, path: &std::path::Path) -> DownloadJob {
         DownloadJob {
             id: uuid::Uuid::new_v4().to_string(),
@@ -239,6 +282,7 @@ mod tests {
             eta: None,
             output_path: Some(path.to_string_lossy().into_owned()),
             error: None,
+            failure: None,
             quality: "720p".into(),
             options: None,
             playlist_mode: "video".into(),

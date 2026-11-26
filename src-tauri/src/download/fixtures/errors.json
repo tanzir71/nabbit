@@ -1,0 +1,271 @@
+[
+  {
+    "kind": "SignInRequired",
+    "stderr": "WARNING: optional format skipped: HTTP Error 403\nERROR: [youtube] sample: Sign in to confirm you’re not a bot. Use --cookies-from-browser for authentication.",
+    "failure": {
+      "kind": "SignInRequired",
+      "title": "YouTube wants you signed in",
+      "description": "Use your browser’s sign-in for this one download. Nabbit reads that browser’s cookies only for this request.",
+      "actions": [
+        "signIn",
+        "retry"
+      ]
+    }
+  },
+  {
+    "kind": "SignInRequired",
+    "stderr": "ERROR: [youtube] sample: Sign in to confirm your age. This video may be inappropriate for some users.",
+    "failure": {
+      "kind": "SignInRequired",
+      "title": "YouTube wants you signed in",
+      "description": "Use your browser’s sign-in for this one download. Nabbit reads that browser’s cookies only for this request.",
+      "actions": [
+        "signIn",
+        "retry"
+      ]
+    }
+  },
+  {
+    "kind": "SignInRequired",
+    "stderr": "ERROR: [youtube] sample: Join this channel to get access to members-only content.",
+    "failure": {
+      "kind": "SignInRequired",
+      "title": "YouTube wants you signed in",
+      "description": "Use your browser’s sign-in for this one download. Nabbit reads that browser’s cookies only for this request.",
+      "actions": [
+        "signIn",
+        "retry"
+      ]
+    }
+  },
+  {
+    "kind": "SiteChanged",
+    "stderr": "ERROR: unable to download video data: HTTP Error 403: Forbidden",
+    "failure": {
+      "kind": "SiteChanged",
+      "title": "YouTube changed something",
+      "description": "A newer download engine usually fixes this within a day. Nabbit checks daily; you can update now.",
+      "actions": [
+        "updateEngine",
+        "copyDetails"
+      ]
+    }
+  },
+  {
+    "kind": "SiteChanged",
+    "stderr": "ERROR: [youtube] sample: nsig extraction failed: Some formats may be missing",
+    "failure": {
+      "kind": "SiteChanged",
+      "title": "YouTube changed something",
+      "description": "A newer download engine usually fixes this within a day. Nabbit checks daily; you can update now.",
+      "actions": [
+        "updateEngine",
+        "copyDetails"
+      ]
+    }
+  },
+  {
+    "kind": "SiteChanged",
+    "stderr": "ERROR: [youtube] sample: Failed to obtain a GVS PO Token",
+    "failure": {
+      "kind": "SiteChanged",
+      "title": "YouTube changed something",
+      "description": "A newer download engine usually fixes this within a day. Nabbit checks daily; you can update now.",
+      "actions": [
+        "updateEngine",
+        "copyDetails"
+      ]
+    }
+  },
+  {
+    "kind": "MissingJsRuntime",
+    "stderr": "MissingJsRuntime: Deno sidecar missing. No supported JavaScript runtime could be found.",
+    "failure": {
+      "kind": "MissingJsRuntime",
+      "title": "The engine needs its helper",
+      "description": "yt-dlp now needs Deno to see every YouTube format. One-time download, about 40 MB.",
+      "actions": [
+        "installDeno",
+        "dismiss"
+      ]
+    }
+  },
+  {
+    "kind": "MissingJsRuntime",
+    "stderr": "WARNING: [youtube] No supported JavaScript runtime could be found.\nERROR: [youtube] sample: Requested format is not available. Use --list-formats for a list of available formats",
+    "failure": {
+      "kind": "MissingJsRuntime",
+      "title": "The engine needs its helper",
+      "description": "yt-dlp now needs Deno to see every YouTube format. One-time download, about 40 MB.",
+      "actions": [
+        "installDeno",
+        "dismiss"
+      ]
+    }
+  },
+  {
+    "kind": "FormatUnavailable",
+    "stderr": "WARNING: [youtube] Some formats require a PO Token\nERROR: [youtube] sample: Requested format is not available. Use --list-formats for a list of available formats",
+    "failure": {
+      "kind": "FormatUnavailable",
+      "title": "1080p isn’t offered for this video",
+      "description": "Download the best available quality instead, or pick another preset.",
+      "actions": [
+        "bestAvailable",
+        "choose"
+      ]
+    }
+  },
+  {
+    "kind": "Drm",
+    "stderr": "ERROR: [generic] sample: This video is DRM protected",
+    "failure": {
+      "kind": "Drm",
+      "title": "This media is protected",
+      "description": "Nabbit doesn’t download DRM-protected content, and won’t try to work around it.",
+      "actions": [
+        "dismiss"
+      ]
+    }
+  },
+  {
+    "kind": "Drm",
+    "stderr": "ERROR: [generic] sample: Encrypted streams detected by extractor",
+    "failure": {
+      "kind": "Drm",
+      "title": "This media is protected",
+      "description": "Nabbit doesn’t download DRM-protected content, and won’t try to work around it.",
+      "actions": [
+        "dismiss"
+      ]
+    }
+  },
+  {
+    "kind": "Disk",
+    "stderr": "ERROR: unable to open for writing: [Errno 28] No space left on device: 'D:\\Videos\\clip.mp4.part'",
+    "failure": {
+      "kind": "Disk",
+      "title": "Not enough space on D:",
+      "description": "Free some space or save somewhere else. Check that the folder is writable and the full filename is not too long.",
+      "actions": [
+        "chooseFolder",
+        "retry"
+      ]
+    }
+  },
+  {
+    "kind": "Disk",
+    "stderr": "ERROR: unable to open for writing: [WinError 5] Access denied: 'D:\\Videos\\clip.mp4.part'",
+    "failure": {
+      "kind": "Disk",
+      "title": "Not enough space on D:",
+      "description": "Free some space or save somewhere else. Check that the folder is writable and the full filename is not too long.",
+      "actions": [
+        "chooseFolder",
+        "retry"
+      ]
+    }
+  },
+  {
+    "kind": "Disk",
+    "stderr": "ERROR: [WinError 206] The filename or extension is too long (path too long)",
+    "failure": {
+      "kind": "Disk",
+      "title": "Not enough space on D:",
+      "description": "Free some space or save somewhere else. Check that the folder is writable and the full filename is not too long.",
+      "actions": [
+        "chooseFolder",
+        "retry"
+      ]
+    }
+  },
+  {
+    "kind": "Offline",
+    "stderr": "WARNING: Retrying (1/3)...\nWARNING: Retrying (2/3)...\nERROR: unable to download webpage: [Errno 11001] getaddrinfo failed (caused by TransportError)",
+    "failure": {
+      "kind": "Offline",
+      "title": "You’re offline",
+      "description": "It’s queued. Nabbit resumes automatically when you’re back online.",
+      "actions": [
+        "cancel"
+      ]
+    }
+  },
+  {
+    "kind": "Offline",
+    "stderr": "ERROR: unable to download video data: Connection reset by peer; giving up after 3 retries",
+    "failure": {
+      "kind": "Offline",
+      "title": "You’re offline",
+      "description": "It’s queued. Nabbit resumes automatically when you’re back online.",
+      "actions": [
+        "cancel"
+      ]
+    }
+  },
+  {
+    "kind": "Live",
+    "stderr": "ERROR: [youtube] sample: This live event will begin in 2 hours.",
+    "failure": {
+      "kind": "Live",
+      "title": "This is still live",
+      "description": "Nabbit can save the replay once the stream ends.",
+      "actions": [
+        "waitForVideo",
+        "cancel"
+      ]
+    }
+  },
+  {
+    "kind": "Live",
+    "stderr": "ERROR: This is still live (is_live / is_upcoming); waiting for the replay.",
+    "failure": {
+      "kind": "Live",
+      "title": "This is still live",
+      "description": "Nabbit can save the replay once the stream ends.",
+      "actions": [
+        "waitForVideo",
+        "cancel"
+      ]
+    }
+  },
+  {
+    "kind": "Unknown",
+    "stderr": "ERROR: [generic] An unexpected extractor failure\nTraceback (most recent call last):\n  File \"fixture.py\", line 7\nValueError: synthetic failure",
+    "failure": {
+      "kind": "Unknown",
+      "title": "Download failed",
+      "description": "The downloader could not finish this item. Retry, or copy the details to investigate.",
+      "actions": [
+        "retry",
+        "copyDetails"
+      ]
+    }
+  },
+  {
+    "kind": "SiteChanged",
+    "stderr": "ERROR: [youtube] adrm12free: unable to download video data: HTTP Error 403: Forbidden",
+    "failure": {
+      "kind": "SiteChanged",
+      "title": "YouTube changed something",
+      "description": "A newer download engine usually fixes this within a day. Nabbit checks daily; you can update now.",
+      "actions": [
+        "updateEngine",
+        "copyDetails"
+      ]
+    }
+  },
+  {
+    "kind": "Unknown",
+    "stderr": "ERROR: Could not load a DRM-free catalogue for this item",
+    "failure": {
+      "kind": "Unknown",
+      "title": "Download failed",
+      "description": "The downloader could not finish this item. Retry, or copy the details to investigate.",
+      "actions": [
+        "retry",
+        "copyDetails"
+      ]
+    }
+  }
+]

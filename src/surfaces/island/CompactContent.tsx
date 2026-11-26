@@ -150,7 +150,7 @@ export function CompactContent({
           <span className="island-ellipsis">
             {e.jobId === "engine-health"
               ? "Download engine needs an update"
-              : "Download needs attention"}
+              : activityTitle(item)}
           </span>
           <MiniButton onClick={() => invoke("review")}>{icon("iconWrench")}Fix</MiniButton>
         </>

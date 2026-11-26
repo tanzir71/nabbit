@@ -1,6 +1,6 @@
 # M7 — Downloads complete (in progress)
 
-This folder starts with **V3.5: Options, Trim and Playlist sheets**. The live milestone remains M6. Full error mapping and download acceptance are V3.6/V3.7; M7 is a later, separate milestone push.
+This folder contains **V3.5: Options, Trim and Playlist sheets** and **V3.6: error mapping and recovery**. The live milestone remains M6. Full downloader acceptance is V3.7; M7 is a later, separate milestone push.
 
 ## V3.5 — Download sheets
 
@@ -45,3 +45,44 @@ node scripts/verify-nab-views.mjs v35-local-nab M7
 ```
 
 V3.5 is committed directly to main with `[skip ci]`. No PR, tag, release, workflow edit/dispatch or push belongs to this task pass.
+
+## V3.6 — Plain-language download errors
+
+`download/errors.rs` owns all nine ErrorKinds, titles, descriptions and recovery actions. Both loaded SQLite rows and pushed updates include that typed description; the activity bus uses the same classifier. The tray shows the full message and at most two actions. Expanded island rows share that component, and the compact Error surface names the problem with its existing Fix action. The reserved engine-health activity retains its own copy.
+
+Twenty-one sanitized stderr fixtures cover sign-in/age/member restrictions, 403/nsig/PO-token failures, missing Deno, unavailable formats, DRM/encryption, disk/permissions/path limits, network failures, live/upcoming streams and unknown traces. Terminal errors take priority over unrelated warnings. A missing-runtime warning plus unavailable formats identifies the helper problem; a harmless PO-token warning does not mask an unrelated terminal error. DRM matching excludes incidental IDs and DRM-free copy. Fixtures are representative test inputs; they do not claim live account, browser-profile or media failures were induced for this task.
+
+The UI never derives display text from the raw log. Copy details invokes a job-specific native clipboard writer only after its button is clicked. The runner stores decoded stderr text without whitespace trimming and drains it concurrently with stdout so a long failure cannot fill that pipe. The injected clipboard and SQLite tests check unmodified stored text, including line endings, without changing the system clipboard. Final UI inputs include an unknown error containing a traceback, which must stay absent from the rendered DOM.
+
+Browser sign-in offers Chrome, Edge, Firefox and Brave explicitly for that job, with Chrome as the Figma default. Its choice remains in the manager's memory and reaches both the replay preflight and the downloader; ordinary metadata probes omit browser access. Pure argument tests cover all four choices without reading profiles. Retry, best available, folder changes and Options update the existing row and its validated options snapshot; they create no duplicate row and change no site preset. Choose opens the existing Options sheet with the original job ID and a Retry download action, omitting the remember-site control. Folder choice uses an inline path editor. Already active/completed jobs and DRM recovery are rejected in Rust. Format failures now wait for an explicit choice; the existing one-attempt merge fallback remains separate.
+
+Update engine and Install Deno use the existing checksum/atomic repair service and retry the same job only after a successful result. Failed or incomplete repair shows a short status without exposing its log. Skip for now and DRM's sole OK action acknowledge the problem and dismiss its island activity; they do not attempt a workaround. Show fix can reopen the row's controls later, including after the helper is repaired elsewhere.
+
+Offline recovery uses one Rust scheduler. With no deferred jobs it blocks indefinitely; with pending work it checks after 30 seconds. A bounded five-second HEAD request to that job's origin establishes connectivity from any HTTP response, including 403/405, without cookies, an external connectivity service or reading a response body. Cancel removes the pending request; automatic recovery revalidates eligibility under the manager lock. The local HTTP fixture checks HEAD-only/no-cookie behavior and disconnects, without public-network traffic. No collapsed JavaScript polling is added.
+
+Download when it ends sets a job-only replay-wait option. Bounded metadata probes distinguish live/upcoming/processing from an ended/nonlive replay; missing status cannot start recording. The builder passes `--wait-for-video 30`, `--match-filter !is_live` and `--break-on-reject`. The pinned [yt-dlp extraction/wait implementation](https://github.com/yt-dlp/yt-dlp/blob/2026.11.23/yt_dlp/YoutubeDL.py) waits for scheduled availability, so the separate replay check is necessary. These flags are accepted by the actual pinned CLI's parser with no URL/profile/media access. The wait option is removed from remembered presets. Waiting remains cancellable and releases the queue slot between attempts.
+
+Figma **18:330** supplied a full context and screenshot. Eleven unmodified original SVG exports retain their 16×16 or 14×14 geometry, with no byte-identical existing export to substitute. Shared Button, Select, Field and DesignIcon components render them. The 480px catalogue examples adapt to the actual 426px tray row; their kind label, 13/18 medium title, 12/16 caption, 10px gaps and 12px inset message padding are retained. The catalogue's raw-pattern documentation line is omitted from the product row. Both themes use shared tokens, with neutral messages for DRM/offline/live. The new browser selector supports the specified browser-specific action.
+
+Final `npm run verify` passes **175 tests**. Rust formatting, default and island-spike all-target Clippy with warnings denied, and **152 serial Rust tests** pass (two existing opt-in tests ignored). Results are pinned in `v36-checks.json`.
+
+`v36-checked-screenshots.json` contains **76 repeat-identical error/acknowledgement captures** (all nine tray kinds, all nine compact kinds and the acknowledged/reopened state × light/dark × 1×/1.5×). `v36-sheets-checked-screenshots.json` and `v36-nab-checked-screenshots.json` add **32 regressions**. All **108 final PNGs** and **284 retained PNGs** independently decode and match their dimensions/hashes under the strict **300,000-byte** cap (largest **169,766 bytes**). All reports bind to the same final build manifest. Initial island JavaScript is **90,605/120,000 gzip bytes**, with four HTML entries and no app-store import in the initial island graph.
+
+The 76 error/acknowledgement and sixteen sheet axe scopes have no violations or incompletes. Sixteen Nab scopes have no violations; four existing gradient-duration incompletes retain M6's measured 7.8668:1 contrast bound. This is scoped evidence, not whole-app conformance. Original asset geometry and actual bundled fonts are audited in both scales/themes. The island remains dark in every theme context.
+
+Earlier compiler/default errors and successful superseded runs are retained in `v36-earlier-attempts.json`. The first capture selection let a later classifier edge case replace the explicit unknown traceback example; final fixtures preserve the first example per kind. Acknowledgement reopening was added after the intermediate captures. The final checked reports, source/document fingerprints, local parser proof and independent image audit are authoritative in `v36-acceptance.json`.
+
+The task uses unit/injected-provider and headless browser evidence. It does not claim native button clicks, real browser profiles, account sign-in, public-network media, installer/signing, display changes or a new native frame/focus/performance measurement. V3.7 owns full downloader/native fake-runner acceptance and the landing download visual. Existing V0/V2.7 limitations remain open. V3.6 is a local skip-ci task commit on main; M7 publication remains separate.
+
+Automated reproduction (use new screenshot prefixes):
+
+```powershell
+npm run verify
+cargo fmt --manifest-path src-tauri/Cargo.toml --check
+cargo clippy --manifest-path src-tauri/Cargo.toml --all-targets -- -D warnings
+cargo clippy --manifest-path src-tauri/Cargo.toml --all-targets --features island-spike -- -D warnings
+cargo test --manifest-path src-tauri/Cargo.toml -- --test-threads=1
+node scripts/verify-download-errors.mjs v36-local-errors
+node scripts/verify-download-sheets.mjs v36-local-sheets
+node scripts/verify-nab-views.mjs v36-local-nab M7
+```

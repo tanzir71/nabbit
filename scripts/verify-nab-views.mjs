@@ -41,6 +41,16 @@ const job = (id, status, title) => ({
   updatedAt: "2026-11-26T08:50:00Z",
   outputPath: status === "completed" ? "C:\\Fixture\\short-film.mp4" : null,
   error: status === "failed" ? "This video needs you to be signed in" : null,
+  failure:
+    status === "failed"
+      ? {
+          kind: "SignInRequired",
+          title: "YouTube wants you signed in",
+          description:
+            "Use your browser’s sign-in for this one download. Nabbit reads that browser’s cookies only for this request.",
+          actions: ["signIn", "retry"],
+        }
+      : null,
 });
 const preferences = {
   order: [

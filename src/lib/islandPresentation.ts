@@ -1,4 +1,5 @@
 import type { ActivityItem } from "./activity";
+import { downloadErrorTitle } from "./downloadErrors";
 
 export type CompactKind =
   | "volume"
@@ -93,7 +94,7 @@ export function activityTitle(item: ActivityItem) {
     case "downloadFailed":
       return e.jobId === "engine-health"
         ? "Download engine needs an update"
-        : "Download needs attention";
+        : downloadErrorTitle[e.error];
     case "mediaChanged":
       return e.title;
     case "timerTick":

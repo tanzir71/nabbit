@@ -31,6 +31,7 @@ fn job(id: &str, options: Option<DownloadOptions>) -> DownloadJob {
         eta: None,
         output_path: None,
         error: None,
+        failure: None,
         quality: "1080p".into(),
         playlist_mode: "video".into(),
         playlist_range: None,

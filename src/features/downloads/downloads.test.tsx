@@ -38,6 +38,16 @@ const job = (id: string, status: DownloadJob["status"]): DownloadJob => ({
   updatedAt: "2026-11-26T09:00:00Z",
   outputPath: status === "completed" ? "C:\\Fixture\\video.mp4" : null,
   error: status === "failed" ? "This video needs you to be signed in" : null,
+  failure:
+    status === "failed"
+      ? ({
+          kind: "SignInRequired",
+          title: "YouTube wants you signed in",
+          description:
+            "Use your browser’s sign-in for this one download. Nabbit reads that browser’s cookies only for this request.",
+          actions: ["signIn", "retry"],
+        } as DownloadJob["failure"])
+      : null,
 });
 let jobs: DownloadJob[];
 beforeEach(async () => {

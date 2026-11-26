@@ -233,13 +233,13 @@ fn draw(item: &Item, width: f32) -> Vec<Draw> {
             text(filename(path), 76.0, width - 143.0, false, false, true),
             button("Open", right - 47.0, 47.0, false),
         ],
-        Event::DownloadFailed { job_id, .. } => vec![
+        Event::DownloadFailed { job_id, error } => vec![
             icon("iconTriangleAlert", 10.0),
             text(
                 if job_id == crate::download::engine::HEALTH_JOB {
                     "Download engine needs an update"
                 } else {
-                    "Download needs attention"
+                    error.compact_title()
                 },
                 34.0,
                 width - 100.0,

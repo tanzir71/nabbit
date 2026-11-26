@@ -1,4 +1,6 @@
+pub mod deferred;
 pub mod engine;
+pub mod errors;
 pub mod format_sizes;
 pub mod manager;
 pub mod media;

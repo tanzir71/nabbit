@@ -7,6 +7,7 @@ import { IslandAsset } from "../../surfaces/island/IslandAsset";
 import { api } from "../../lib/ipc";
 import type { DownloadJob } from "../../lib/types";
 import { useAppStore } from "../../store/useAppStore";
+import { DownloadFailure } from "./DownloadFailure";
 import { DownloadIcon } from "./DownloadIcon";
 import { formatLabel, jobSummary, terminal } from "./model";
 export function DownloadQueue({
@@ -78,18 +79,12 @@ function QueueRow({ job, island }: { job: DownloadJob; island: boolean }) {
   const store = useAppStore;
   const running = job.status === "running" || job.status === "queued";
   const resumable = job.status === "paused" || job.status === "interrupted";
-  const retryable = job.status === "failed" || job.status === "cancelled";
-  const action = async (
-    name: "pause" | "cancel" | "resume" | "retry" | "open" | "reveal" | "signIn",
-  ) => {
+  const action = async (name: "pause" | "cancel" | "resume" | "retry" | "open" | "reveal") => {
     setBusy(true);
     setError("");
     setMenu(false);
     try {
-      if (name === "signIn") {
-        await api.retryDownloadWithBrowser(job.id, "chrome");
-        await store.getState().refreshDownloads();
-      } else if (name === "open") await api.openDownload(job.id);
+      if (name === "open") await api.openDownload(job.id);
       else if (name === "reveal") await api.revealDownload(job.id);
       else await store.getState()[`${name}Download`](job.id);
     } catch (reason) {
@@ -108,13 +103,6 @@ function QueueRow({ job, island }: { job: DownloadJob; island: boolean }) {
       {name === "resume" ? <DownloadIcon name="retry" /> : <DownloadIcon name={name} />}
     </IconButton>
   );
-  const failedCopy =
-    job.error
-      ?.split(/\r?\n/)
-      .find((line) => line.trim().startsWith("ERROR:"))
-      ?.replace(/^\s*ERROR:\s*/, "") ||
-    (job.error?.includes("\n") ? "The downloader could not finish this item." : job.error) ||
-    "The downloader could not finish this item.";
   return (
     <article
       className={`nab-queue-row is-${job.status}`}
@@ -158,12 +146,8 @@ function QueueRow({ job, island }: { job: DownloadJob; island: boolean }) {
         )}
         <div className="nab-job-text">
           <h3 title={job.title}>{job.title}</h3>
-          {!island && (
-            <p
-              className={job.status === "failed" ? "nab-error" : running ? "nab-job-progress" : ""}
-            >
-              {job.status === "failed" ? failedCopy.slice(0, 180) : jobSummary(job)}
-            </p>
+          {!island && job.status !== "failed" && (
+            <p className={running ? "nab-job-progress" : ""}>{jobSummary(job)}</p>
           )}
         </div>
         {island && (
@@ -198,17 +182,19 @@ function QueueRow({ job, island }: { job: DownloadJob; island: boolean }) {
                 Open
               </Button>
             )}
-            <IconButton
-              size={28}
-              variant="island"
-              className={`nab-island-control ${job.status === "running" ? "nab-row-more" : ""}`}
-              label={`Download actions: ${job.title}`}
-              aria-haspopup="menu"
-              aria-expanded={menu}
-              onClick={() => setMenu(!menu)}
-            >
-              <IslandAsset group="9:78" name="iconEllipsis1" />
-            </IconButton>
+            {job.status !== "failed" && (
+              <IconButton
+                size={28}
+                variant="island"
+                className={`nab-island-control ${job.status === "running" ? "nab-row-more" : ""}`}
+                label={`Download actions: ${job.title}`}
+                aria-haspopup="menu"
+                aria-expanded={menu}
+                onClick={() => setMenu(!menu)}
+              >
+                <IslandAsset group="9:78" name="iconEllipsis1" />
+              </IconButton>
+            )}
           </>
         ) : (
           <>
@@ -251,25 +237,13 @@ function QueueRow({ job, island }: { job: DownloadJob; island: boolean }) {
           <i style={{ width: `${Math.max(0, Math.min(100, job.progress))}%` }} />
         </div>
       )}
-      {!island && retryable && (
-        <div className="nab-job-fix">
-          {job.status === "failed" &&
-            /sign(?:ed)?[\s-]*in|members.only|age.restrict/i.test(job.error ?? "") && (
-              <Button size="sm" disabled={busy} onClick={() => void action("signIn")}>
-                <DownloadIcon name="signIn" />
-                Use Chrome sign-in
-              </Button>
-            )}
-          <Button size="sm" variant="ghost" disabled={busy} onClick={() => void action("retry")}>
-            <DownloadIcon name="retry" />
-            Retry
-          </Button>
-          <span className="nab-spacer" />
-          <details>
-            <summary>Why?</summary>
-            <p>The downloader could not finish this item. Retry or check the download engine.</p>
-          </details>
-        </div>
+      {job.status === "failed" && (
+        <DownloadFailure key={job.updatedAt + (job.error ?? "")} job={job} />
+      )}
+      {!island && job.status === "cancelled" && (
+        <Button size="sm" variant="ghost" disabled={busy} onClick={() => void action("retry")}>
+          Retry
+        </Button>
       )}
       {menu && (
         <div role="menu" className="nab-job-menu" aria-label={`Actions for ${job.title}`}>
@@ -288,7 +262,7 @@ function QueueRow({ job, island }: { job: DownloadJob; island: boolean }) {
               Cancel
             </button>
           )}
-          {retryable && (
+          {job.status === "cancelled" && (
             <button role="menuitem" disabled={busy} onClick={() => void action("retry")}>
               Retry
             </button>

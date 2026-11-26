@@ -1,7 +1,7 @@
 use std::{
     collections::{HashMap, VecDeque},
     fs,
-    io::{BufRead, BufReader},
+    io::{BufRead, BufReader, Read},
     path::{Path, PathBuf},
     process::{Command, Stdio},
     sync::{Arc, Mutex},
@@ -32,6 +32,7 @@ pub struct DownloadManager {
     db: Database,
     app: AppHandle,
     app_data_dir: PathBuf,
+    deferred: Arc<super::deferred::Scheduler>,
 }
 
 struct Inner {
@@ -48,8 +49,10 @@ struct ChildHandle {
 
 impl DownloadManager {
     fn emit_updated(&self, job: &DownloadJob) {
+        let mut job = job.clone();
+        job.failure = super::errors::for_job(&job);
         let _ = self.app.emit("download:updated", job.clone());
-        crate::island::activity_bus::download(&self.app, job);
+        crate::island::activity_bus::download(&self.app, &job);
     }
     pub fn new(db: Database, app: AppHandle, app_data_dir: PathBuf) -> Self {
         Self {
@@ -62,6 +65,7 @@ impl DownloadManager {
             db,
             app,
             app_data_dir,
+            deferred: Arc::default(),
         }
     }
 
@@ -108,6 +112,7 @@ impl DownloadManager {
                 extractor: Some("acceptance".into()),
                 qualities: vec![],
                 details: None,
+                live_pending: None,
             }
         } else if let Some(metadata) = captured {
             metadata
@@ -124,6 +129,7 @@ impl DownloadManager {
                 extractor: Some("fallback".into()),
                 qualities: vec![],
                 details: None,
+                live_pending: None,
             })
         };
         let job = job_from_metadata(metadata, options);
@@ -183,32 +189,107 @@ impl DownloadManager {
     }
 
     pub fn retry(&self, id: &str) -> Result<DownloadJob> {
+        self.recover(id, super::errors::Recovery::Retry)
+    }
+    pub fn retry_with_browser(&self, id: &str, browser: Browser) -> Result<DownloadJob> {
+        self.recover(id, super::errors::Recovery::SignIn { browser })
+    }
+
+    pub fn recover(&self, id: &str, recovery: super::errors::Recovery) -> Result<DownloadJob> {
+        self.recover_inner(id, recovery, false)
+    }
+    fn recover_inner(
+        &self,
+        id: &str,
+        recovery: super::errors::Recovery,
+        automatic: bool,
+    ) -> Result<DownloadJob> {
+        let mut inner = self
+            .inner
+            .lock()
+            .map_err(|_| msg("download manager lock poisoned"))?;
         let mut job = self.db.get_download(id)?;
+        if automatic && !super::deferred::eligible(&job) {
+            return Err(msg("This download is no longer waiting."));
+        }
+        job.options = Some(super::errors::apply_recovery(&job, &recovery)?);
+        job.quality = job.options.as_ref().unwrap().legacy_quality();
+        job.playlist_mode = if job.options.as_ref().unwrap().playlist_mode
+            == super::options::PlaylistMode::Playlist
+        {
+            "playlist"
+        } else {
+            "video"
+        }
+        .into();
+        job.playlist_range = job.options.as_ref().unwrap().playlist_items.clone();
         job.status = "queued".into();
         job.progress = 0.0;
+        job.speed = None;
+        job.eta = None;
         job.error = None;
+        job.failure = None;
         job.updated_at = Utc::now();
         self.db.update_download(&job)?;
-        {
-            let mut inner = self
-                .inner
-                .lock()
-                .map_err(|_| msg("download manager lock poisoned"))?;
-            if !inner.queue.contains(&job.id) {
-                inner.queue.push_back(job.id.clone());
+        match recovery {
+            super::errors::Recovery::SignIn { browser } => {
+                inner.browsers.insert(id.into(), browser);
             }
+            super::errors::Recovery::Options { browser, .. } => {
+                inner.browsers.remove(id);
+                if let Some(browser) = browser {
+                    inner.browsers.insert(id.into(), browser);
+                }
+            }
+            _ => (),
         }
+        self.deferred.remove(id);
+        if !inner.queue.contains(&job.id) {
+            inner.queue.push_back(job.id.clone());
+        }
+        drop(inner);
+        self.emit_updated(&job);
         self.pump();
         Ok(job)
     }
-    pub fn retry_with_browser(&self, id: &str, browser: Browser) -> Result<DownloadJob> {
-        self.db.get_download(id)?;
-        self.inner
-            .lock()
-            .map_err(|_| msg("download manager lock poisoned"))?
-            .browsers
-            .insert(id.into(), browser);
-        self.retry(id)
+    pub fn start_deferred(&self) {
+        for job in self
+            .db
+            .list_downloads()
+            .unwrap_or_default()
+            .into_iter()
+            .filter(super::deferred::eligible)
+        {
+            self.deferred.schedule(&job.id);
+        }
+        let manager = self.clone();
+        thread::Builder::new()
+            .name("nabbit-download-recovery".into())
+            .spawn(move || {
+                while let Some(ids) = manager.deferred.next() {
+                    for id in ids {
+                        let Ok(job) = manager.db.get_download(&id) else {
+                            continue;
+                        };
+                        if !super::deferred::eligible(&job) {
+                            continue;
+                        }
+                        let kind =
+                            super::errors::classify(job.error.as_deref().unwrap_or_default());
+                        if kind == super::errors::ErrorKind::Offline
+                            && !super::deferred::online(&job.url)
+                        {
+                            manager.deferred.schedule(&id);
+                            continue;
+                        }
+                        let _ = manager.recover_inner(&id, super::errors::Recovery::Retry, true);
+                    }
+                }
+            })
+            .expect("spawn deferred download recovery");
+    }
+    pub fn stop(&self) {
+        self.deferred.stop();
     }
 
     pub fn cancel(&self, id: &str) -> Result<()> {
@@ -243,18 +324,17 @@ impl DownloadManager {
     }
 
     fn stop_job(&self, id: &str, status: &str, error: Option<&str>) -> Result<()> {
-        {
-            let mut inner = self
-                .inner
-                .lock()
-                .map_err(|_| msg("download manager lock poisoned"))?;
-            inner.queue.retain(|queued| queued != id);
-            if status == "cancelled" {
-                inner.browsers.remove(id);
-            }
-            if let Some(child) = inner.children.remove(id) {
-                kill_pid(child.pid);
-            }
+        let mut inner = self
+            .inner
+            .lock()
+            .map_err(|_| msg("download manager lock poisoned"))?;
+        self.deferred.remove(id);
+        inner.queue.retain(|queued| queued != id);
+        if status == "cancelled" {
+            inner.browsers.remove(id);
+        }
+        if let Some(child) = inner.children.remove(id) {
+            kill_pid(child.pid);
         }
         let mut job = self.db.get_download(id)?;
         if job.status != "completed" {
@@ -303,41 +383,47 @@ impl DownloadManager {
 
     fn run_job(&self, id: String, fallback_format: bool) {
         let result = self.run_job_inner(&id, fallback_format);
+        if result.as_ref().is_err_and(|error| {
+            !fallback_format && should_fallback_download_error(&error.to_string())
+        }) && self
+            .db
+            .get_download(&id)
+            .is_ok_and(|job| !matches!(job.status.as_str(), "paused" | "cancelled"))
+        {
+            self.run_job(id, true);
+            return;
+        }
+        // Publish the terminal state only after releasing this worker's slot/child.
+        // A recovery action therefore cannot race cleanup of the same job.
+        let mut inner = self.inner.lock().unwrap_or_else(|e| e.into_inner());
+        inner.active = inner.active.saturating_sub(1);
+        inner.children.remove(&id);
         if let Err(error) = result {
-            if let Ok(job) = self.db.get_download(&id) {
-                if matches!(job.status.as_str(), "paused" | "cancelled") {
-                    if let Ok(mut inner) = self.inner.lock() {
-                        inner.active = inner.active.saturating_sub(1);
-                        inner.children.remove(&id);
-                    }
-                    self.pump();
-                    return;
-                }
-            }
-            if !fallback_format && should_fallback_download_error(&error.to_string()) {
-                self.run_job(id.clone(), true);
-                return;
-            }
-            if let Ok(mut job) = self.db.get_download(&id) {
+            if let Some(mut job) =
+                self.db.get_download(&id).ok().filter(|job| {
+                    !matches!(job.status.as_str(), "paused" | "cancelled" | "completed")
+                })
+            {
                 job.status = "failed".into();
                 job.error = Some(error.to_string());
+                job.failure = super::errors::for_job(&job);
                 job.updated_at = Utc::now();
-                let _ = self.db.update_download(&job);
-                self.emit_updated(&job);
+                if self.db.update_download(&job).is_ok() {
+                    self.emit_updated(&job);
+                    if super::deferred::eligible(&job) {
+                        self.deferred.schedule(&id);
+                    }
+                }
             }
         }
-
-        if let Ok(mut inner) = self.inner.lock() {
-            inner.active = inner.active.saturating_sub(1);
-            inner.children.remove(&id);
-            if self
-                .db
-                .get_download(&id)
-                .is_ok_and(|j| matches!(j.status.as_str(), "completed" | "cancelled"))
-            {
-                inner.browsers.remove(&id);
-            }
+        if self
+            .db
+            .get_download(&id)
+            .is_ok_and(|job| matches!(job.status.as_str(), "completed" | "cancelled"))
+        {
+            inner.browsers.remove(&id);
         }
+        drop(inner);
         self.pump();
     }
 
@@ -347,6 +433,27 @@ impl DownloadManager {
         }
 
         let mut job = self.db.get_download(id)?;
+        if job.options.as_ref().is_some_and(|o| o.wait_for_video) {
+            let browser = self
+                .inner
+                .lock()
+                .map_err(|_| msg("download manager lock poisoned"))?
+                .browsers
+                .get(id)
+                .copied();
+            let metadata =
+                ytdlp::probe_metadata_with_browser(&self.app_data_dir, &job.url, browser)?;
+            if metadata.live_pending == Some(true) {
+                return Err(msg(
+                    "This is still live (is_live / is_upcoming); waiting for the replay.",
+                ));
+            }
+            if metadata.live_pending.is_none() {
+                return Err(msg(
+                    "The source did not report whether the replay is ready. Try again later.",
+                ));
+            }
+        }
         let Some(ytdlp) = ytdlp::resolve_engine(&self.app_data_dir, "yt-dlp") else {
             return Err(msg(
                 "yt-dlp sidecar missing. Use Repair to fetch the downloader engine.",
@@ -396,6 +503,17 @@ impl DownloadManager {
         }
         args.extend(["--".into(), job.url.clone()]);
 
+        let mut inner = self
+            .inner
+            .lock()
+            .map_err(|_| msg("download manager lock poisoned"))?;
+        if self
+            .db
+            .get_download(id)
+            .is_ok_and(|j| matches!(j.status.as_str(), "paused" | "cancelled" | "completed"))
+        {
+            return Ok(());
+        }
         job.status = "running".into();
         job.updated_at = Utc::now();
         self.db.update_download(&job)?;
@@ -407,9 +525,18 @@ impl DownloadManager {
             .stderr(Stdio::piped())
             .spawn()?;
         let pid = child.id();
-        if let Ok(mut inner) = self.inner.lock() {
-            inner.children.insert(id.to_string(), ChildHandle { pid });
-        }
+        inner.children.insert(id.to_string(), ChildHandle { pid });
+        drop(inner);
+
+        // Drain stderr alongside stdout so a long failure/trace cannot fill its pipe.
+        let mut stderr_pipe = child
+            .stderr
+            .take()
+            .ok_or_else(|| msg("download process stderr unavailable"))?;
+        let stderr_reader = thread::spawn(move || {
+            let mut bytes = Vec::new();
+            stderr_pipe.read_to_end(&mut bytes).map(|_| bytes)
+        });
 
         let stdout = child
             .stdout
@@ -419,7 +546,14 @@ impl DownloadManager {
         let mut last_output_path = None;
         for line in reader.lines().map_while(std::result::Result::ok) {
             if let Some(progress) = ytdlp::parse_progress_line(&line) {
+                let _guard = self
+                    .inner
+                    .lock()
+                    .map_err(|_| msg("download manager lock poisoned"))?;
                 let mut update = self.db.get_download(id)?;
+                if matches!(update.status.as_str(), "paused" | "cancelled") {
+                    break;
+                }
                 if let Some(value) = progress.progress {
                     update.progress = value;
                 }
@@ -437,7 +571,17 @@ impl DownloadManager {
         }
 
         let output = child.wait_with_output()?;
+        let stderr = stderr_reader
+            .join()
+            .map_err(|_| msg("download error log reader failed"))??;
+        let _guard = self
+            .inner
+            .lock()
+            .map_err(|_| msg("download manager lock poisoned"))?;
         let mut finished = self.db.get_download(id)?;
+        if matches!(finished.status.as_str(), "paused" | "cancelled") {
+            return Ok(());
+        }
         finished.updated_at = Utc::now();
         finished.output_path = finished.output_path.or(last_output_path);
         if output.status.success() {
@@ -461,8 +605,8 @@ impl DownloadManager {
             }
             Ok(())
         } else {
-            let stderr = String::from_utf8_lossy(&output.stderr).trim().to_string();
-            Err(msg(if stderr.is_empty() {
+            let stderr = String::from_utf8_lossy(&stderr).to_string();
+            Err(msg(if stderr.trim().is_empty() {
                 "Download failed without an error message".into()
             } else {
                 stderr
@@ -634,17 +778,10 @@ fn video_id_from_url(value: &str) -> Option<String> {
 
 fn should_fallback_download_error(error: &str) -> bool {
     let lower = error.to_lowercase();
-    [
-        "format",
-        "requested format",
-        "ffmpeg",
-        "merge",
-        "merging",
-        "mux",
-        "postprocessing",
-    ]
-    .iter()
-    .any(|needle| lower.contains(needle))
+    super::errors::classify(error) == super::errors::ErrorKind::Unknown
+        && ["ffmpeg", "merge", "merging", "mux", "postprocessing"]
+            .iter()
+            .any(|needle| lower.contains(needle))
 }
 
 #[cfg(test)]
@@ -673,7 +810,7 @@ mod tests {
 
     #[test]
     fn fallback_covers_format_and_merge_failures() {
-        assert!(should_fallback_download_error(
+        assert!(!should_fallback_download_error(
             "Requested format is not available"
         ));
         assert!(should_fallback_download_error(
@@ -711,6 +848,7 @@ fn job_from_metadata(metadata: DownloadMetadata, options: DownloadOptions) -> Do
         eta: None,
         output_path: None,
         error: None,
+        failure: None,
         quality: options.legacy_quality(),
         playlist_mode: match options.playlist_mode {
             super::options::PlaylistMode::Video => "video",
@@ -746,6 +884,7 @@ fn playlist_jobs(
                     extractor: metadata.extractor.clone(),
                     qualities: entry.qualities,
                     details: None,
+                    live_pending: None,
                 },
                 options.clone(),
             )

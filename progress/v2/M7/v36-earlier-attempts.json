@@ -1,0 +1,93 @@
+{
+  "authoritativeChecks": "v36-checks.json",
+  "attempts": [
+    {
+      "rawLog": "v36-check1.log",
+      "rawSha256": "f1f107174392fc30f64448d698de297f44f610d1d2e99613a1515ea106f35070",
+      "outcome": "failed",
+      "reason": "E0505: copy the scheduler duration before moving its mutex guard into the condvar wait.",
+      "selectedTranscript": "v36-earlier-check1.txt",
+      "savedSha256": "a9899c779a606c6419e3d7bb0b4e9d524c9e38f6007155b9923c971ddd8c923f"
+    },
+    {
+      "rawLog": "v36-typecheck1.log",
+      "rawSha256": "bf087faa2ac054c42462df8cf2007e1080a3101d1b6c434994f08a23e54acbb3",
+      "outcome": "failed",
+      "reason": "Add the required replay-wait default to the frontend options model.",
+      "selectedTranscript": "v36-earlier-typecheck1.txt",
+      "savedSha256": "85da8781d8b8c7883698864c8f403fe68b05e05fa4f6d3d155661d0295d0795b"
+    },
+    {
+      "rawLog": "v36-ui-tests1.log",
+      "rawSha256": "7748e4eb959993112e2c11b863c4df7e3450603e10c9543cce504f1fa2b67a79",
+      "outcome": "passed-superseded",
+      "reason": "64 focused UI tests before final acknowledgement reopening coverage.",
+      "selectedTranscript": "v36-earlier-ui-tests1.txt",
+      "savedSha256": "95f280114f5b0ee4c3d7f60b6efc41e69f9f0bc55ea7a4d47946321f1c3785cc"
+    },
+    {
+      "rawLog": "v36-tests1.log",
+      "rawSha256": "7253eb50751f5e695856374227b27de51ec07ae6ff2028e2e16c5ea6b999697a",
+      "outcome": "passed-superseded",
+      "reason": "150 Rust tests before the local HEAD connectivity test and final assertions.",
+      "selectedTranscript": "v36-earlier-tests1.txt",
+      "savedSha256": "a39888c7fd0aa678ec5ae5680452a56e4cee46b25d756a589feccb0c95736b8c"
+    },
+    {
+      "rawLog": "v36-rust-tests-final.log",
+      "rawSha256": "d5b54da025859fb12e155a93de0d80dd598e932fdb8c4dc1ec897f148991ea35",
+      "outcome": "passed-superseded",
+      "reason": "151 Rust tests before replay preflight received the explicit job browser; the final run adds the browser argument test.",
+      "selectedTranscript": "v36-earlier-rust-tests-final.txt",
+      "savedSha256": "8f55b9ffbafe80b331aac66106d8b5ba4dc4b4c9aa05618421e9d51d84f34978"
+    },
+    {
+      "rawLog": "v36-verify-first.log",
+      "rawSha256": "4b4bc3754eaf5e372532868347394e04911ac14b222a8ebcab5a2fba9629c88b",
+      "outcome": "passed-superseded",
+      "reason": "175 tests and production build; later fixture-selection/acknowledgement changes require the final checked build.",
+      "selectedTranscript": "v36-earlier-verify-first.txt",
+      "savedSha256": "ab982863ceeb7a9dd472f29e9154cb621232e19b818893f0876be538dce29b45"
+    },
+    {
+      "rawLog": "v36-verify-complete.log",
+      "rawSha256": "8ee8bffed3bdadcc524f8f0fff7d96b900958b0ac5c5e998536daefd8c7d91d7",
+      "outcome": "passed-superseded",
+      "reason": "175 tests and build before acknowledgement Show fix.",
+      "selectedTranscript": "v36-earlier-verify-complete.txt",
+      "savedSha256": "7d1387350ff4698e249602b4f8fd1cc6868285bf8aeb3424a2202e0701ccf5a9"
+    },
+    {
+      "rawLog": "v36-errors-first.log",
+      "rawSha256": "78e342ff03fab8aaf8bf4ba8008e255562384f99e4f2a2962e8681b38e8cd6f6",
+      "outcome": "passed-superseded",
+      "reason": "72 captures before preserving the first unknown traceback fixture.",
+      "selectedTranscript": "v36-earlier-errors-first.txt",
+      "savedSha256": "6b81dbce178d89b1442df9432da671f20758999fc42a141ad4a9248333706590"
+    },
+    {
+      "rawLog": "v36-errors-complete.log",
+      "rawSha256": "78e342ff03fab8aaf8bf4ba8008e255562384f99e4f2a2962e8681b38e8cd6f6",
+      "outcome": "passed-superseded",
+      "reason": "72 captures with corrected fixture selection before acknowledgement Show fix.",
+      "selectedTranscript": "v36-earlier-errors-complete.txt",
+      "savedSha256": "6b81dbce178d89b1442df9432da671f20758999fc42a141ad4a9248333706590"
+    },
+    {
+      "rawLog": "v36-sheets-complete.log",
+      "rawSha256": "5ce60069dede08ed238a019dd8a4d8f2cf40d5c7528ae99f740e024ef47580bf",
+      "outcome": "passed-superseded",
+      "reason": "16 sheet regressions against the earlier build.",
+      "selectedTranscript": "v36-earlier-sheets-complete.txt",
+      "savedSha256": "cda24354f88662a597ba50a4e578ab6c3bb6b711f1eb0f1bca4708181f4856db"
+    },
+    {
+      "rawLog": "v36-nab-complete.log",
+      "rawSha256": "6198f427c7bf2e34d78d951128dd5f064023a86a84eb7e46ab145c0350945d62",
+      "outcome": "passed-superseded",
+      "reason": "16 Nab regressions against the earlier build.",
+      "selectedTranscript": "v36-earlier-nab-complete.txt",
+      "savedSha256": "b0f72a6152fb4529c46dea2f60b83a690e9b09fe27fc6ec018f93585cc06ecb9"
+    }
+  ]
+}
