@@ -136,7 +136,13 @@ assert(demo.body.textContent.includes("Simulated demo"));
 assert(demo.body.textContent.includes("does not read your clipboard"));
 assert(demo.getElementById("download"));
 const notFound = documents.get("404.html");
-assert.equal(notFound.querySelector('meta[name="robots"]')?.getAttribute("content"), "noindex");
+assert(
+  notFound
+    .querySelector('meta[name="robots"]')
+    ?.getAttribute("content")
+    .split(/\s*,\s*/)
+    .includes("noindex"),
+);
 assert(
   notFound.querySelector(`a[href="${base.href}"]`),
   "404 recovery must work from nested missing URLs",

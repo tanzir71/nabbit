@@ -1,63 +1,37 @@
 <!doctype html>
-<html lang="en">
+<html lang="en" data-theme="light">
   <head>
-    <base href="/nabbit/" />
-    <link rel="icon" href="assets/favicon.ico" sizes="any" />
-    <link rel="icon" type="image/svg+xml" href="assets/favicon.svg" />
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
-    <meta name="robots" content="noindex" />
+    <base href="/nabbit/" />
+    <meta name="robots" content="noindex, follow" />
+    <meta
+      name="description"
+      content="This Nabbit page could not be found. Return to the landing to follow the v2 build or view the source."
+    />
     <title>Page not found — Nabbit</title>
-    <style>
-      :root {
-        font-family: "Segoe UI", system-ui, sans-serif;
-        background: #0b0c0f;
-        color: #e8eaf0;
-      }
-      * {
-        box-sizing: border-box;
-      }
-      body {
-        margin: 0;
-        min-height: 100vh;
-        display: grid;
-        place-items: center;
-        padding: 24px;
-      }
-      main {
-        max-width: 480px;
-      }
-      .code {
-        color: #fbbf24;
-        font-family: ui-monospace, Consolas, monospace;
-      }
-      h1 {
-        font-size: 36px;
-        line-height: 1.15;
-        letter-spacing: -0.8px;
-      }
-      p {
-        color: #9aa0ae;
-        line-height: 1.65;
-      }
-      a {
-        display: inline-block;
-        margin: 16px 16px 0 0;
-        color: #e8eaf0;
-      }
-      a:focus-visible {
-        outline: 3px solid #fbbf24;
-        outline-offset: 5px;
-      }
-    </style>
+    <link rel="icon" href="assets/favicon.ico" sizes="any" />
+    <link rel="icon" type="image/svg+xml" href="assets/favicon.svg" />
+    <link rel="stylesheet" href="assets/tokens.css" />
+    <link rel="stylesheet" href="assets/site.css" />
   </head>
-  <body>
+  <body class="not-found">
     <main>
-      <p class="code">NABBIT · 404</p>
-      <h1>This page has moved or doesn't exist.</h1>
-      <p>Return to Nabbit to follow the build, explore the demo, or view the source.</p>
-      <a href="https://tanzir71.github.io/nabbit/">Back to Nabbit</a>
-      <a href="https://github.com/tanzir71/nabbit">View source on GitHub</a>
+      <a class="brand" href="https://tanzir71.github.io/nabbit/" aria-label="Nabbit home">
+        <img src="assets/favicon.svg" width="32" height="32" alt="" />
+        <span>Nabbit</span>
+      </a>
+      <p class="not-found-code">404 · PAGE NOT FOUND</p>
+      <h1>That page isn’t here.</h1>
+      <p class="lead">
+        It may have moved, or the link may be incomplete. Head back to Nabbit to follow the build.
+      </p>
+      <div class="actions">
+        <a class="button primary large" href="https://tanzir71.github.io/nabbit/">Back to Nabbit</a>
+        <a class="button secondary large" href="https://github.com/tanzir71/nabbit"
+          >View source on GitHub</a
+        >
+      </div>
     </main>
   </body>
 </html>

@@ -1,34 +1,53 @@
 # Nabbit
 
-Nabbit is a Windows-first Tauri tray utility combining searchable local clipboard history with explicit-click yt-dlp/ffmpeg downloads.
+> A small island at the top of Windows for videos, file tools and notes in your own Tack. Nabbit v2 is open source, in development and building in public.
 
 Website: https://tanzir71.github.io/nabbit/
-Simulation: https://tanzir71.github.io/nabbit/demo/
+Build progress and milestone screenshots: https://tanzir71.github.io/nabbit/#progress
 Repository: https://github.com/tanzir71/nabbit
+README and setup: https://github.com/tanzir71/nabbit/blob/main/README.md
+V2 specification and task status: https://github.com/tanzir71/nabbit/blob/main/NABBIT_V2_HANDOFF.md
+Implementation log and measured limitations: https://github.com/tanzir71/nabbit/blob/main/PROGRESS.md
 Privacy: https://github.com/tanzir71/nabbit/blob/main/PRIVACY.md
+License: https://github.com/tanzir71/nabbit/blob/main/LICENSE
+Simulated v0.1 tray demo: https://tanzir71.github.io/nabbit/demo/
 
-The public demo is deterministic HTML. It does not read the clipboard, contact YouTube, launch sidecars, or write files.
+## Release state and previews
 
-## v2 development
+There is no v2 release yet. The first v2 release follows milestone M12. Use the landing's Follow the build links rather than promising an installer or linking to a nonexistent latest release. The milestone list is the current source for completed work; the v2 handoff distinguishes completed tasks from planned features.
 
-Nabbit v2 is being built in public. Follow milestones M0–M12 at https://tanzir71.github.io/nabbit/#progress. There is no v2 release yet; the first release follows M12. The current demo shows the accepted v0.1 tray app.
+The landing's island, download, note and file visuals are Figma design previews, not screenshots proving those features are implemented. The browser demo simulates the accepted v0.1 tray app. It does not read the clipboard, contact YouTube, launch sidecars or write files.
 
-## Build
+## V2 product scope
 
-npm install
+- Windows 10 1809+ and Windows 11, x64 and ARM64 are target platforms; this does not claim every platform has been verified.
+- A glanceable island, a tray interface and sticky-note windows, with shared tools and configurable modes.
+- Explicit-click video downloads: copied links, top-edge drops, a browser bookmarklet and a hotkey stage a review before a download starts.
+- Local file tools and pins: convert or shrink dropped files, move them to a pinned folder, and invoke Send to Nabbit from Explorer. Outputs never overwrite inputs.
+- Notes sync with the Tack server the user hosts; local-only notes work without a Tack account. There is no Nabbit cloud or new account.
+- Clipboard history, now playing, a focus timer and microphone/camera indicators. Later milestones implement and verify the v2 surfaces and integrations.
+
+## Existing v0.1 foundation
+
+The accepted app is Tauri v2 with a Rust core, React/TypeScript frontend, local SQLite, an event-driven Windows clipboard watcher and yt-dlp/ffmpeg sidecars. It already supplies searchable clipboard history and explicit-click downloads. V2 extends that code rather than replacing it.
+
+## Build and automated checks
+
+npm ci
 npm run verify
-cargo test --manifest-path src-tauri/Cargo.toml
+npm run verify:site
+cargo fmt --manifest-path src-tauri/Cargo.toml --check
 cargo clippy --manifest-path src-tauri/Cargo.toml --all-targets -- -D warnings
+cargo test --manifest-path src-tauri/Cargo.toml -- --test-threads=1
 
-On Windows, fetch yt-dlp with scripts/fetch-binaries.ps1 and supply ffmpeg in src-tauri/binaries or on PATH. Run npm run tauri:dev.
+The README documents sidecar setup. Run npm run tauri:dev for the existing tray app; its current shortcut is Ctrl+Shift+V. The v2 handoff documents the planned shortcut changes. The static docs/ website needs no production build, backend, analytics or third-party resource requests.
 
 ## Privacy and behavior
 
-- Clipboard history stays in local SQLite under OS app data.
-- Supported links are staged only; downloads never start from clipboard observation.
-- A user chooses format/range and clicks Download before yt-dlp/ffmpeg run.
-- No analytics or cloud clipboard sync are included.
-- Retention options are 30, 60, or 90 days; pinned entries survive cleanup.
-- Password-manager exclusions and optional sensitive-text heuristics reduce accidental storage.
+- Clipboard history stays in local SQLite under OS app data; no cloud clipboard sync or telemetry.
+- Observed links are staged only. Downloads require an explicit click or user hotkey confirmation.
+- Retention options are 30, 60 or 90 days; pinned entries survive cleanup.
+- Password-manager exclusions, OS concealed-content flags and optional sensitive-text heuristics reduce accidental storage.
+- Tack sync goes only to the user's configured server. No hosted Tack credentials or account are needed for local-only use.
 
-Nabbit is a working codename and is not release-clear. Use download features only for content you have rights to obtain and follow each site's terms.
+Nabbit is a working codename. Download only content you own or have permission to save. DRM-protected media is unsupported; Nabbit is not affiliated with YouTube.

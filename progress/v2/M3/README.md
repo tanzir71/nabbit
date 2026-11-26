@@ -1,5 +1,13 @@
 # M3 evidence — new landing page
 
+## L.2 — metadata, social preview and 404
+
+[Implementation, automated evidence and reproduction](L.2.md). Shared v2
+Open Graph/Twitter metadata now points to a reproducible 1200×630 Playwright
+PNG. The verified Figma favicons, shared-style nested 404 recovery and accurate
+agent documentation pass 12 browser contexts, with 12 PNGs below 300 KB.
+L.3's full acceptance/axe pass and the M3 deployment remain next.
+
 ## L.1 — Figma landing implementation
 
 The static `docs/index.html` now follows desktop Figma `27:220`, mobile `31:933`

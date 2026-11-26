@@ -79,6 +79,29 @@ button:disabled {
   width: min(1120px, calc(100% - 80px));
   margin-inline: auto;
 }
+.not-found {
+  min-height: 100svh;
+  display: grid;
+  align-items: center;
+  padding: 64px 20px;
+}
+.not-found main {
+  width: min(640px, 100%);
+  margin-inline: auto;
+}
+.not-found-code {
+  font: 12px/18px var(--font-mono);
+  color: var(--text-secondary);
+  margin-top: 48px;
+}
+.not-found h1,
+.not-found .lead {
+  margin-top: 20px;
+}
+.not-found .actions {
+  margin-top: 32px;
+  flex-wrap: wrap;
+}
 .skip-link {
   position: absolute;
   top: 8px;
@@ -667,10 +690,10 @@ h3 {
   .brand {
     gap: 10px;
   }
-  .brand img {
+  .site-nav .brand img {
     display: none;
   }
-  .brand .mobile-only {
+  .site-nav .brand .mobile-only {
     display: block;
   }
   .nav-menu > summary {

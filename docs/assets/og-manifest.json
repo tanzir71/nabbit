@@ -1,0 +1,86 @@
+{
+  "source": "og.html",
+  "renderer": "Playwright Chromium",
+  "playwright": "1.65.1",
+  "width": 1200,
+  "height": 630,
+  "scale": 1,
+  "image": {
+    "file": "assets/og.png",
+    "bytes": 78876,
+    "sha256": "888b7649c07bfa9f177746975ed90a58a7411086d610ab9f93f2c8271fd98245"
+  },
+  "fonts": {
+    "sans": [
+      {
+        "familyName": "Geist",
+        "postScriptName": "Geist",
+        "isCustomFont": true,
+        "glyphCount": 35
+      }
+    ],
+    "mono": [
+      {
+        "familyName": "Geist Mono",
+        "postScriptName": "GeistMono",
+        "isCustomFont": true,
+        "glyphCount": 38
+      }
+    ]
+  },
+  "sources": [
+    {
+      "file": "assets/design/1e04f.svg",
+      "sha256": "e3797b2b0e7f27ae473d1058af3fc41f9a38b5e456a4293366c2bf4a9d411445"
+    },
+    {
+      "file": "assets/design/2d937.svg",
+      "sha256": "a42e9eeefea60df583427215b9f5d817621e0bc604c9831c55065ee351c9c305"
+    },
+    {
+      "file": "assets/design/53933.svg",
+      "sha256": "21bb0cc849162e35fda4c585a338777af5d40bf04a4cc08aef2fe088240ecfd1"
+    },
+    {
+      "file": "assets/design/5da32.svg",
+      "sha256": "f7b0145cf4bdcc394f8467862cf28994c7bbf3e2caabac1c20fe5c2a57aa69d5"
+    },
+    {
+      "file": "assets/design/68343.svg",
+      "sha256": "aa8187290783772f4726896d098bccfe84bfb38a9fcc1036aef47c122a781566"
+    },
+    {
+      "file": "assets/design/f717a.svg",
+      "sha256": "e6d460cf4c78cf696f01fb66e9234747a9e876559b74d4fbf12980b336557e7d"
+    },
+    {
+      "file": "assets/favicon.ico",
+      "sha256": "3c29f37cec3c120a9eadeda97a9e3f04cc8cd65c48cc1034dda24fc3f694c0f0"
+    },
+    {
+      "file": "assets/favicon.svg",
+      "sha256": "6a4114cac4d1d291a70e0cbc8e804924e89932c7a9c15410f3387c32f5cef5bd"
+    },
+    {
+      "file": "assets/fonts/Geist-Latin.woff2",
+      "sha256": "4f026cc891d66312cd49fef56f280e80a82b193dcbe211a3060c6be6858c945e"
+    },
+    {
+      "file": "assets/fonts/GeistMono-Latin.woff2",
+      "sha256": "64ec1d79585224e723d748f33a9232da6fead81a249e8f731fe3b241b0a63ec4"
+    },
+    {
+      "file": "assets/site.css",
+      "sha256": "8c5e8f1971b1b1f5c26b7fb52b28cdfd07e91cabec78b22c9d9840bed7dc85ea"
+    },
+    {
+      "file": "assets/tokens.css",
+      "sha256": "edbcbcd634bc7a8a8b7d032b0764cdd581e3013830be42813b7d70b78600bf05"
+    },
+    {
+      "file": "og.html",
+      "sha256": "a17f35cf26afe7bc4d51bf1944d37a25987ad127f89a155cdf934f5c6232013c"
+    }
+  ],
+  "textHashNormalization": "LF for HTML/CSS/SVG; binary bytes unchanged"
+}
