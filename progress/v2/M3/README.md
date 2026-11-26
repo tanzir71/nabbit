@@ -1,5 +1,31 @@
 # M3 evidence — new landing page
 
+## M3 — New landing page
+
+Application source: `d04113b` on main, retaining separate L.1–L.3 commits.
+This milestone publishes the static Figma landing, local fonts/tokens, original
+artwork and HTML/CSS island previews, bookmarklet, responsive navigation,
+accessible progress list, social metadata/image and recovery/agent pages.
+Feature visuals remain labelled design previews while v2 is in development.
+
+The milestone capture shows metadata M3, M3 Done with its Screenshots link,
+and M4 In progress. Eight desktop/mobile × light/dark × 1×/1.5× contexts pass,
+including 24 clean axe scans and keyboard interactions. The conservative site
+transfer is 490,848 / 500,000 bytes excluding fonts; 108 local HTTP asset bodies
+match source. All 278 M3 PNGs are under 300,000 bytes (largest 274,427 bytes).
+Full-page device pixels are preserved in lossless tiles. Required frontend/Rust
+checks pass: 43 and 39 tests, formatting, Clippy with warnings denied, pins,
+typecheck/lint and the four-entry build. Initial island JS remains 46,346 /
+120,000 gzip bytes. The M1 performance limitations are unchanged.
+
+Open `https://tanzir71.github.io/nabbit/` for the published milestone. Existing
+tray development remains `npm run tauri:dev`, then Ctrl+Shift+V; the production
+island lifecycle and module interfaces remain the next implementation phases.
+Use fresh prefixes with the L.3 reproduction commands for local screenshot and
+accessibility checks. `m3-prepublication.json` and `m3-readiness.json` record the
+source, baseline repository/Pages configuration, workflow IDs and capture pins.
+Publication and live-source verification are recorded after the milestone push.
+
 ## L.3 — final site acceptance
 
 [Implementation, automated evidence and reproduction](L.3.md). Final checks
