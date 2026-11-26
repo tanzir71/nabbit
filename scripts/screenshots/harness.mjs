@@ -95,7 +95,13 @@ export async function captureSuite(root, options, cases = scenarios) {
               socket.close();
             });
             const data = fixtureData(scenario.name);
-            await context.addInitScript(installMockIpc, { theme, label: scenario.label, data });
+            const seed = {
+              theme,
+              label: scenario.label,
+              data,
+              ...scenario.fixture?.(theme, scale),
+            };
+            await context.addInitScript(installMockIpc, seed);
             const page = await context.newPage();
             page.setDefaultTimeout(10000);
             page.on("pageerror", (error) => problems.push(`Page error: ${error.message}`));
@@ -126,7 +132,7 @@ export async function captureSuite(root, options, cases = scenarios) {
               waitUntil: "networkidle",
             });
             assert(response?.ok());
-            await scenario.ready(page);
+            const assertions = (await scenario.ready(page)) ?? null;
             if (scenario.surface)
               assert.equal(
                 await page.locator("html").getAttribute("data-surface"),
@@ -163,6 +169,11 @@ export async function captureSuite(root, options, cases = scenarios) {
                     "island_set_drag",
                     "get_island_snapshot",
                     "get_activity_snapshot",
+                    "get_island_surface",
+                    "island_surface_request",
+                    "island_surface_ack",
+                    "get_island_drop",
+                    "list_clipboard_entries",
                     "plugin:event|listen",
                     "plugin:event|unlisten",
                   ].includes(command),
@@ -218,7 +229,8 @@ export async function captureSuite(root, options, cases = scenarios) {
               sha256: hash(bytes),
               repeatMatches: options.repeatCheck ?? false,
               font,
-              fixtureSha256: hash(JSON.stringify(data)),
+              fixtureSha256: hash(JSON.stringify(seed)),
+              assertions,
               ipc: fixture.calls,
               unsupported: fixture.unsupported,
               runtimeAndNetworkProblems: problems,

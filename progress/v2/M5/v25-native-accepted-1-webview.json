@@ -1,0 +1,1692 @@
+{
+  "ownerProcessId": 4356,
+  "checks": [
+    {
+      "name": "peek-owner",
+      "snapshot": {
+        "activity": {
+          "preferences": {
+            "disabled": [],
+            "focusMode": false,
+            "hiddenUntilMs": null,
+            "order": [
+              "privacy",
+              "timerEnding",
+              "download",
+              "tool",
+              "link",
+              "result",
+              "media",
+              "timer",
+              "power"
+            ],
+            "showAlertsOverFullscreen": false
+          },
+          "revision": 32,
+          "syncState": "localOnly",
+          "views": [
+            {
+              "bubble": null,
+              "focusMode": false,
+              "fullscreen": false,
+              "gate": "visible",
+              "label": "island",
+              "primary": {
+                "alert": false,
+                "bubbleOnly": false,
+                "category": "download",
+                "event": {
+                  "eta": "1:12",
+                  "jobId": "surface-job",
+                  "kind": "downloadProgress",
+                  "percent": 38,
+                  "speed": "4.2 MB/s",
+                  "title": "Tiny tray app in Rust, full walkthrough"
+                },
+                "id": "download:surface-job"
+              },
+              "queue": [],
+              "userHidden": false
+            }
+          ]
+        },
+        "activityScheduler": {
+          "nextDeadlineMs": null,
+          "wakeups": 32
+        },
+        "desktop": {
+          "cursor": {
+            "x": 120,
+            "y": 400
+          },
+          "monitors": [
+            {
+              "bounds": {
+                "height": 1080,
+                "width": 1920,
+                "x": 0,
+                "y": 0
+              },
+              "id": "primary",
+              "name": "Fixture primary",
+              "primary": true,
+              "scaleFactor": 1,
+              "workArea": {
+                "height": 1032,
+                "width": 1920,
+                "x": 0,
+                "y": 0
+              }
+            }
+          ],
+          "topTaskbar": null
+        },
+        "foreground": {
+          "cloaked": false,
+          "desktop": false,
+          "maximised": false,
+          "minimised": false,
+          "monitor": null,
+          "notificationState": null,
+          "ownProcess": false,
+          "rect": null,
+          "visible": false,
+          "windowId": 0
+        },
+        "hosts": [
+          {
+            "commits": 30,
+            "hwnd": 19665476,
+            "placement": {
+              "bounds": {
+                "height": 460,
+                "width": 720,
+                "x": 600,
+                "y": 0
+              },
+              "dpiScale": 1,
+              "label": "island",
+              "monitorId": "primary",
+              "renderScale": 1,
+              "shape": "island",
+              "sizeScale": 1
+            },
+            "warp": false
+          }
+        ],
+        "input": [
+          {
+            "decision": {
+              "dragging": false,
+              "hidden": false,
+              "interactive": true,
+              "pollMs": 25
+            },
+            "hitrect": {
+              "h": 88,
+              "w": 416,
+              "x": 152,
+              "y": 0
+            },
+            "interactive": true,
+            "label": "island",
+            "revision": 52,
+            "source": "web"
+          }
+        ],
+        "inputWatcher": {
+          "cursorSamples": 514,
+          "foregroundEvents": 0,
+          "hookInstalled": true,
+          "ownForegroundEvents": 0,
+          "systemSamples": 142
+        },
+        "lastError": null,
+        "preferences": {
+          "enabled": true,
+          "monitorId": null,
+          "monitorMode": "followMouse",
+          "shape": "island",
+          "size": "standard"
+        },
+        "reconciliations": 110,
+        "renderer": "native",
+        "supported": true,
+        "surfaces": {
+          "island": {
+            "beforeDrag": null,
+            "closeAt": null,
+            "focusTab": null,
+            "generation": 30,
+            "hoverAt": null,
+            "opening": false,
+            "pending": null,
+            "state": "peek",
+            "webAllocated": true,
+            "webHwnd": 38012382,
+            "webOwner": true
+          }
+        },
+        "visibility": [
+          {
+            "base": "visible",
+            "label": "island",
+            "mode": "visible",
+            "opacity": 1,
+            "reason": "none",
+            "revision": 1
+          }
+        ],
+        "webviews": 1
+      }
+    },
+    {
+      "name": "expanded-owner",
+      "snapshot": {
+        "activity": {
+          "preferences": {
+            "disabled": [],
+            "focusMode": false,
+            "hiddenUntilMs": null,
+            "order": [
+              "privacy",
+              "timerEnding",
+              "download",
+              "tool",
+              "link",
+              "result",
+              "media",
+              "timer",
+              "power"
+            ],
+            "showAlertsOverFullscreen": false
+          },
+          "revision": 32,
+          "syncState": "localOnly",
+          "views": [
+            {
+              "bubble": null,
+              "focusMode": false,
+              "fullscreen": false,
+              "gate": "visible",
+              "label": "island",
+              "primary": {
+                "alert": false,
+                "bubbleOnly": false,
+                "category": "download",
+                "event": {
+                  "eta": "1:12",
+                  "jobId": "surface-job",
+                  "kind": "downloadProgress",
+                  "percent": 38,
+                  "speed": "4.2 MB/s",
+                  "title": "Tiny tray app in Rust, full walkthrough"
+                },
+                "id": "download:surface-job"
+              },
+              "queue": [],
+              "userHidden": false
+            }
+          ]
+        },
+        "activityScheduler": {
+          "nextDeadlineMs": null,
+          "wakeups": 32
+        },
+        "desktop": {
+          "cursor": {
+            "x": 120,
+            "y": 400
+          },
+          "monitors": [
+            {
+              "bounds": {
+                "height": 1080,
+                "width": 1920,
+                "x": 0,
+                "y": 0
+              },
+              "id": "primary",
+              "name": "Fixture primary",
+              "primary": true,
+              "scaleFactor": 1,
+              "workArea": {
+                "height": 1032,
+                "width": 1920,
+                "x": 0,
+                "y": 0
+              }
+            }
+          ],
+          "topTaskbar": null
+        },
+        "foreground": {
+          "cloaked": false,
+          "desktop": false,
+          "maximised": false,
+          "minimised": false,
+          "monitor": null,
+          "notificationState": null,
+          "ownProcess": false,
+          "rect": null,
+          "visible": false,
+          "windowId": 0
+        },
+        "hosts": [
+          {
+            "commits": 31,
+            "hwnd": 19665476,
+            "placement": {
+              "bounds": {
+                "height": 460,
+                "width": 720,
+                "x": 600,
+                "y": 0
+              },
+              "dpiScale": 1,
+              "label": "island",
+              "monitorId": "primary",
+              "renderScale": 1,
+              "shape": "island",
+              "sizeScale": 1
+            },
+            "warp": false
+          }
+        ],
+        "input": [
+          {
+            "decision": {
+              "dragging": false,
+              "hidden": false,
+              "interactive": true,
+              "pollMs": 25
+            },
+            "hitrect": {
+              "h": 175,
+              "w": 696,
+              "x": 12,
+              "y": 0
+            },
+            "interactive": true,
+            "label": "island",
+            "revision": 63,
+            "source": "web"
+          }
+        ],
+        "inputWatcher": {
+          "cursorSamples": 574,
+          "foregroundEvents": 0,
+          "hookInstalled": true,
+          "ownForegroundEvents": 0,
+          "systemSamples": 145
+        },
+        "lastError": null,
+        "preferences": {
+          "enabled": true,
+          "monitorId": null,
+          "monitorMode": "followMouse",
+          "shape": "island",
+          "size": "standard"
+        },
+        "reconciliations": 110,
+        "renderer": "native",
+        "supported": true,
+        "surfaces": {
+          "island": {
+            "beforeDrag": null,
+            "closeAt": null,
+            "focusTab": null,
+            "generation": 31,
+            "hoverAt": null,
+            "opening": false,
+            "pending": null,
+            "state": "expanded",
+            "webAllocated": true,
+            "webHwnd": 38012382,
+            "webOwner": true
+          }
+        },
+        "visibility": [
+          {
+            "base": "visible",
+            "label": "island",
+            "mode": "visible",
+            "opacity": 1,
+            "reason": "none",
+            "revision": 1
+          }
+        ],
+        "webviews": 1
+      }
+    },
+    {
+      "name": "tab-filter-search-scroll",
+      "snapshot": {
+        "activity": {
+          "preferences": {
+            "disabled": [],
+            "focusMode": false,
+            "hiddenUntilMs": null,
+            "order": [
+              "privacy",
+              "timerEnding",
+              "download",
+              "tool",
+              "link",
+              "result",
+              "media",
+              "timer",
+              "power"
+            ],
+            "showAlertsOverFullscreen": false
+          },
+          "revision": 32,
+          "syncState": "localOnly",
+          "views": [
+            {
+              "bubble": null,
+              "focusMode": false,
+              "fullscreen": false,
+              "gate": "visible",
+              "label": "island",
+              "primary": {
+                "alert": false,
+                "bubbleOnly": false,
+                "category": "download",
+                "event": {
+                  "eta": "1:12",
+                  "jobId": "surface-job",
+                  "kind": "downloadProgress",
+                  "percent": 38,
+                  "speed": "4.2 MB/s",
+                  "title": "Tiny tray app in Rust, full walkthrough"
+                },
+                "id": "download:surface-job"
+              },
+              "queue": [],
+              "userHidden": false
+            }
+          ]
+        },
+        "activityScheduler": {
+          "nextDeadlineMs": null,
+          "wakeups": 32
+        },
+        "desktop": {
+          "cursor": {
+            "x": 120,
+            "y": 400
+          },
+          "monitors": [
+            {
+              "bounds": {
+                "height": 1080,
+                "width": 1920,
+                "x": 0,
+                "y": 0
+              },
+              "id": "primary",
+              "name": "Fixture primary",
+              "primary": true,
+              "scaleFactor": 1,
+              "workArea": {
+                "height": 1032,
+                "width": 1920,
+                "x": 0,
+                "y": 0
+              }
+            }
+          ],
+          "topTaskbar": null
+        },
+        "foreground": {
+          "cloaked": false,
+          "desktop": false,
+          "maximised": false,
+          "minimised": false,
+          "monitor": null,
+          "notificationState": null,
+          "ownProcess": false,
+          "rect": null,
+          "visible": false,
+          "windowId": 0
+        },
+        "hosts": [
+          {
+            "commits": 31,
+            "hwnd": 19665476,
+            "placement": {
+              "bounds": {
+                "height": 460,
+                "width": 720,
+                "x": 600,
+                "y": 0
+              },
+              "dpiScale": 1,
+              "label": "island",
+              "monitorId": "primary",
+              "renderScale": 1,
+              "shape": "island",
+              "sizeScale": 1
+            },
+            "warp": false
+          }
+        ],
+        "input": [
+          {
+            "decision": {
+              "dragging": false,
+              "hidden": false,
+              "interactive": true,
+              "pollMs": 25
+            },
+            "hitrect": {
+              "h": 433.0625,
+              "w": 696,
+              "x": 12,
+              "y": 0
+            },
+            "interactive": true,
+            "label": "island",
+            "revision": 126,
+            "source": "web"
+          }
+        ],
+        "inputWatcher": {
+          "cursorSamples": 730,
+          "foregroundEvents": 0,
+          "hookInstalled": true,
+          "ownForegroundEvents": 0,
+          "systemSamples": 153
+        },
+        "lastError": null,
+        "preferences": {
+          "enabled": true,
+          "monitorId": null,
+          "monitorMode": "followMouse",
+          "shape": "island",
+          "size": "standard"
+        },
+        "reconciliations": 110,
+        "renderer": "native",
+        "supported": true,
+        "surfaces": {
+          "island": {
+            "beforeDrag": null,
+            "closeAt": null,
+            "focusTab": null,
+            "generation": 31,
+            "hoverAt": null,
+            "opening": false,
+            "pending": null,
+            "state": "expanded",
+            "webAllocated": true,
+            "webHwnd": 38012382,
+            "webOwner": true
+          }
+        },
+        "visibility": [
+          {
+            "base": "visible",
+            "label": "island",
+            "mode": "visible",
+            "opacity": 1,
+            "reason": "none",
+            "revision": 1
+          }
+        ],
+        "webviews": 1
+      }
+    },
+    {
+      "name": "destroyed-on-collapse",
+      "snapshot": {
+        "activity": {
+          "preferences": {
+            "disabled": [],
+            "focusMode": false,
+            "hiddenUntilMs": null,
+            "order": [
+              "privacy",
+              "timerEnding",
+              "download",
+              "tool",
+              "link",
+              "result",
+              "media",
+              "timer",
+              "power"
+            ],
+            "showAlertsOverFullscreen": false
+          },
+          "revision": 32,
+          "syncState": "localOnly",
+          "views": [
+            {
+              "bubble": null,
+              "focusMode": false,
+              "fullscreen": false,
+              "gate": "visible",
+              "label": "island",
+              "primary": {
+                "alert": false,
+                "bubbleOnly": false,
+                "category": "download",
+                "event": {
+                  "eta": "1:12",
+                  "jobId": "surface-job",
+                  "kind": "downloadProgress",
+                  "percent": 38,
+                  "speed": "4.2 MB/s",
+                  "title": "Tiny tray app in Rust, full walkthrough"
+                },
+                "id": "download:surface-job"
+              },
+              "queue": [],
+              "userHidden": false
+            }
+          ]
+        },
+        "activityScheduler": {
+          "nextDeadlineMs": null,
+          "wakeups": 32
+        },
+        "desktop": {
+          "cursor": {
+            "x": 120,
+            "y": 400
+          },
+          "monitors": [
+            {
+              "bounds": {
+                "height": 1080,
+                "width": 1920,
+                "x": 0,
+                "y": 0
+              },
+              "id": "primary",
+              "name": "Fixture primary",
+              "primary": true,
+              "scaleFactor": 1,
+              "workArea": {
+                "height": 1032,
+                "width": 1920,
+                "x": 0,
+                "y": 0
+              }
+            }
+          ],
+          "topTaskbar": null
+        },
+        "foreground": {
+          "cloaked": false,
+          "desktop": false,
+          "maximised": false,
+          "minimised": false,
+          "monitor": null,
+          "notificationState": null,
+          "ownProcess": false,
+          "rect": null,
+          "visible": false,
+          "windowId": 0
+        },
+        "hosts": [
+          {
+            "commits": 32,
+            "hwnd": 19665476,
+            "placement": {
+              "bounds": {
+                "height": 460,
+                "width": 720,
+                "x": 600,
+                "y": 0
+              },
+              "dpiScale": 1,
+              "label": "island",
+              "monitorId": "primary",
+              "renderScale": 1,
+              "shape": "island",
+              "sizeScale": 1
+            },
+            "warp": false
+          }
+        ],
+        "input": [
+          {
+            "decision": {
+              "dragging": false,
+              "hidden": false,
+              "interactive": false,
+              "pollMs": 500
+            },
+            "hitrect": {
+              "h": 40,
+              "w": 128,
+              "x": 296,
+              "y": 0
+            },
+            "interactive": false,
+            "label": "island",
+            "revision": 140,
+            "source": "native"
+          }
+        ],
+        "inputWatcher": {
+          "cursorSamples": 746,
+          "foregroundEvents": 0,
+          "hookInstalled": true,
+          "ownForegroundEvents": 0,
+          "systemSamples": 154
+        },
+        "lastError": null,
+        "preferences": {
+          "enabled": true,
+          "monitorId": null,
+          "monitorMode": "followMouse",
+          "shape": "island",
+          "size": "standard"
+        },
+        "reconciliations": 111,
+        "renderer": "native",
+        "supported": true,
+        "surfaces": {
+          "island": {
+            "beforeDrag": null,
+            "closeAt": null,
+            "focusTab": null,
+            "generation": 32,
+            "hoverAt": null,
+            "opening": false,
+            "pending": null,
+            "state": "live",
+            "webAllocated": false,
+            "webHwnd": 0,
+            "webOwner": false
+          }
+        },
+        "visibility": [
+          {
+            "base": "visible",
+            "label": "island",
+            "mode": "visible",
+            "opacity": 1,
+            "reason": "none",
+            "revision": 1
+          }
+        ],
+        "webviews": 0
+      }
+    },
+    {
+      "name": "restored-ui-memory",
+      "snapshot": {
+        "activity": {
+          "preferences": {
+            "disabled": [],
+            "focusMode": false,
+            "hiddenUntilMs": null,
+            "order": [
+              "privacy",
+              "timerEnding",
+              "download",
+              "tool",
+              "link",
+              "result",
+              "media",
+              "timer",
+              "power"
+            ],
+            "showAlertsOverFullscreen": false
+          },
+          "revision": 32,
+          "syncState": "localOnly",
+          "views": [
+            {
+              "bubble": null,
+              "focusMode": false,
+              "fullscreen": false,
+              "gate": "visible",
+              "label": "island",
+              "primary": {
+                "alert": false,
+                "bubbleOnly": false,
+                "category": "download",
+                "event": {
+                  "eta": "1:12",
+                  "jobId": "surface-job",
+                  "kind": "downloadProgress",
+                  "percent": 38,
+                  "speed": "4.2 MB/s",
+                  "title": "Tiny tray app in Rust, full walkthrough"
+                },
+                "id": "download:surface-job"
+              },
+              "queue": [],
+              "userHidden": false
+            }
+          ]
+        },
+        "activityScheduler": {
+          "nextDeadlineMs": null,
+          "wakeups": 32
+        },
+        "desktop": {
+          "cursor": {
+            "x": 120,
+            "y": 400
+          },
+          "monitors": [
+            {
+              "bounds": {
+                "height": 1080,
+                "width": 1920,
+                "x": 0,
+                "y": 0
+              },
+              "id": "primary",
+              "name": "Fixture primary",
+              "primary": true,
+              "scaleFactor": 1,
+              "workArea": {
+                "height": 1032,
+                "width": 1920,
+                "x": 0,
+                "y": 0
+              }
+            }
+          ],
+          "topTaskbar": null
+        },
+        "foreground": {
+          "cloaked": false,
+          "desktop": false,
+          "maximised": false,
+          "minimised": false,
+          "monitor": null,
+          "notificationState": null,
+          "ownProcess": false,
+          "rect": null,
+          "visible": false,
+          "windowId": 0
+        },
+        "hosts": [
+          {
+            "commits": 32,
+            "hwnd": 19665476,
+            "placement": {
+              "bounds": {
+                "height": 460,
+                "width": 720,
+                "x": 600,
+                "y": 0
+              },
+              "dpiScale": 1,
+              "label": "island",
+              "monitorId": "primary",
+              "renderScale": 1,
+              "shape": "island",
+              "sizeScale": 1
+            },
+            "warp": false
+          }
+        ],
+        "input": [
+          {
+            "decision": {
+              "dragging": false,
+              "hidden": false,
+              "interactive": false,
+              "pollMs": 500
+            },
+            "hitrect": {
+              "h": 220.328125,
+              "w": 688.109375,
+              "x": 15.9453125,
+              "y": 0
+            },
+            "interactive": false,
+            "label": "island",
+            "revision": 162,
+            "source": "web"
+          }
+        ],
+        "inputWatcher": {
+          "cursorSamples": 771,
+          "foregroundEvents": 0,
+          "hookInstalled": true,
+          "ownForegroundEvents": 0,
+          "systemSamples": 158
+        },
+        "lastError": null,
+        "preferences": {
+          "enabled": true,
+          "monitorId": null,
+          "monitorMode": "followMouse",
+          "shape": "island",
+          "size": "standard"
+        },
+        "reconciliations": 112,
+        "renderer": "native",
+        "supported": true,
+        "surfaces": {
+          "island": {
+            "beforeDrag": null,
+            "closeAt": null,
+            "focusTab": null,
+            "generation": 33,
+            "hoverAt": null,
+            "opening": false,
+            "pending": null,
+            "state": "expanded",
+            "webAllocated": true,
+            "webHwnd": 38077918,
+            "webOwner": false
+          }
+        },
+        "visibility": [
+          {
+            "base": "visible",
+            "label": "island",
+            "mode": "visible",
+            "opacity": 1,
+            "reason": "none",
+            "revision": 1
+          }
+        ],
+        "webviews": 1
+      }
+    },
+    {
+      "name": "drop-owner",
+      "snapshot": {
+        "activity": {
+          "preferences": {
+            "disabled": [],
+            "focusMode": false,
+            "hiddenUntilMs": null,
+            "order": [
+              "privacy",
+              "timerEnding",
+              "download",
+              "tool",
+              "link",
+              "result",
+              "media",
+              "timer",
+              "power"
+            ],
+            "showAlertsOverFullscreen": false
+          },
+          "revision": 33,
+          "syncState": "localOnly",
+          "views": [
+            {
+              "bubble": null,
+              "focusMode": false,
+              "fullscreen": false,
+              "gate": "visible",
+              "label": "island",
+              "primary": {
+                "alert": false,
+                "bubbleOnly": false,
+                "category": "download",
+                "event": {
+                  "eta": "1:12",
+                  "jobId": "surface-job",
+                  "kind": "downloadProgress",
+                  "percent": 38,
+                  "speed": "4.2 MB/s",
+                  "title": "Tiny tray app in Rust, full walkthrough"
+                },
+                "id": "download:surface-job"
+              },
+              "queue": [],
+              "userHidden": false
+            }
+          ]
+        },
+        "activityScheduler": {
+          "nextDeadlineMs": null,
+          "wakeups": 33
+        },
+        "desktop": {
+          "cursor": {
+            "x": 120,
+            "y": 400
+          },
+          "monitors": [
+            {
+              "bounds": {
+                "height": 1080,
+                "width": 1920,
+                "x": 0,
+                "y": 0
+              },
+              "id": "primary",
+              "name": "Fixture primary",
+              "primary": true,
+              "scaleFactor": 1,
+              "workArea": {
+                "height": 1032,
+                "width": 1920,
+                "x": 0,
+                "y": 0
+              }
+            }
+          ],
+          "topTaskbar": null
+        },
+        "foreground": {
+          "cloaked": false,
+          "desktop": false,
+          "maximised": false,
+          "minimised": false,
+          "monitor": null,
+          "notificationState": null,
+          "ownProcess": false,
+          "rect": null,
+          "visible": false,
+          "windowId": 0
+        },
+        "hosts": [
+          {
+            "commits": 32,
+            "hwnd": 19665476,
+            "placement": {
+              "bounds": {
+                "height": 460,
+                "width": 720,
+                "x": 600,
+                "y": 0
+              },
+              "dpiScale": 1,
+              "label": "island",
+              "monitorId": "primary",
+              "renderScale": 1,
+              "shape": "island",
+              "sizeScale": 1
+            },
+            "warp": false
+          }
+        ],
+        "input": [
+          {
+            "decision": {
+              "dragging": true,
+              "hidden": false,
+              "interactive": true,
+              "pollMs": 25
+            },
+            "hitrect": {
+              "h": 185.25,
+              "w": 659.8125,
+              "x": 30.09375,
+              "y": 0
+            },
+            "interactive": true,
+            "label": "island",
+            "revision": 177,
+            "source": "web"
+          }
+        ],
+        "inputWatcher": {
+          "cursorSamples": 791,
+          "foregroundEvents": 0,
+          "hookInstalled": true,
+          "ownForegroundEvents": 0,
+          "systemSamples": 159
+        },
+        "lastError": null,
+        "preferences": {
+          "enabled": true,
+          "monitorId": null,
+          "monitorMode": "followMouse",
+          "shape": "island",
+          "size": "standard"
+        },
+        "reconciliations": 112,
+        "renderer": "native",
+        "supported": true,
+        "surfaces": {
+          "island": {
+            "beforeDrag": "expanded",
+            "closeAt": null,
+            "focusTab": null,
+            "generation": 34,
+            "hoverAt": null,
+            "opening": false,
+            "pending": null,
+            "state": "drop",
+            "webAllocated": true,
+            "webHwnd": 38077918,
+            "webOwner": false
+          }
+        },
+        "visibility": [
+          {
+            "base": "visible",
+            "label": "island",
+            "mode": "visible",
+            "opacity": 1,
+            "reason": "none",
+            "revision": 1
+          }
+        ],
+        "webviews": 1
+      }
+    },
+    {
+      "name": "disk-backed-file-selected-zone",
+      "snapshot": {
+        "activity": {
+          "preferences": {
+            "disabled": [],
+            "focusMode": false,
+            "hiddenUntilMs": null,
+            "order": [
+              "privacy",
+              "timerEnding",
+              "download",
+              "tool",
+              "link",
+              "result",
+              "media",
+              "timer",
+              "power"
+            ],
+            "showAlertsOverFullscreen": false
+          },
+          "revision": 34,
+          "syncState": "localOnly",
+          "views": [
+            {
+              "bubble": null,
+              "focusMode": false,
+              "fullscreen": false,
+              "gate": "visible",
+              "label": "island",
+              "primary": {
+                "alert": false,
+                "bubbleOnly": false,
+                "category": "download",
+                "event": {
+                  "eta": "1:12",
+                  "jobId": "surface-job",
+                  "kind": "downloadProgress",
+                  "percent": 38,
+                  "speed": "4.2 MB/s",
+                  "title": "Tiny tray app in Rust, full walkthrough"
+                },
+                "id": "download:surface-job"
+              },
+              "queue": [],
+              "userHidden": false
+            }
+          ]
+        },
+        "activityScheduler": {
+          "nextDeadlineMs": null,
+          "wakeups": 34
+        },
+        "desktop": {
+          "cursor": {
+            "x": 120,
+            "y": 400
+          },
+          "monitors": [
+            {
+              "bounds": {
+                "height": 1080,
+                "width": 1920,
+                "x": 0,
+                "y": 0
+              },
+              "id": "primary",
+              "name": "Fixture primary",
+              "primary": true,
+              "scaleFactor": 1,
+              "workArea": {
+                "height": 1032,
+                "width": 1920,
+                "x": 0,
+                "y": 0
+              }
+            }
+          ],
+          "topTaskbar": null
+        },
+        "foreground": {
+          "cloaked": false,
+          "desktop": false,
+          "maximised": false,
+          "minimised": false,
+          "monitor": null,
+          "notificationState": null,
+          "ownProcess": false,
+          "rect": null,
+          "visible": false,
+          "windowId": 0
+        },
+        "hosts": [
+          {
+            "commits": 32,
+            "hwnd": 19665476,
+            "placement": {
+              "bounds": {
+                "height": 460,
+                "width": 720,
+                "x": 600,
+                "y": 0
+              },
+              "dpiScale": 1,
+              "label": "island",
+              "monitorId": "primary",
+              "renderScale": 1,
+              "shape": "island",
+              "sizeScale": 1
+            },
+            "warp": false
+          }
+        ],
+        "input": [
+          {
+            "decision": {
+              "dragging": false,
+              "hidden": false,
+              "interactive": true,
+              "pollMs": 25
+            },
+            "hitrect": {
+              "h": 175.921875,
+              "w": 657.46875,
+              "x": 31.265625,
+              "y": 0
+            },
+            "interactive": true,
+            "label": "island",
+            "revision": 182,
+            "source": "web"
+          }
+        ],
+        "inputWatcher": {
+          "cursorSamples": 798,
+          "foregroundEvents": 0,
+          "hookInstalled": true,
+          "ownForegroundEvents": 0,
+          "systemSamples": 159
+        },
+        "lastError": null,
+        "preferences": {
+          "enabled": true,
+          "monitorId": null,
+          "monitorMode": "followMouse",
+          "shape": "island",
+          "size": "standard"
+        },
+        "reconciliations": 112,
+        "renderer": "native",
+        "supported": true,
+        "surfaces": {
+          "island": {
+            "beforeDrag": null,
+            "closeAt": null,
+            "focusTab": null,
+            "generation": 35,
+            "hoverAt": null,
+            "opening": false,
+            "pending": null,
+            "state": "expanded",
+            "webAllocated": true,
+            "webHwnd": 38077918,
+            "webOwner": false
+          }
+        },
+        "visibility": [
+          {
+            "base": "visible",
+            "label": "island",
+            "mode": "visible",
+            "opacity": 1,
+            "reason": "none",
+            "revision": 1
+          }
+        ],
+        "webviews": 1
+      }
+    },
+    {
+      "name": "text-staged-for-note",
+      "snapshot": {
+        "activity": {
+          "preferences": {
+            "disabled": [],
+            "focusMode": false,
+            "hiddenUntilMs": null,
+            "order": [
+              "privacy",
+              "timerEnding",
+              "download",
+              "tool",
+              "link",
+              "result",
+              "media",
+              "timer",
+              "power"
+            ],
+            "showAlertsOverFullscreen": false
+          },
+          "revision": 35,
+          "syncState": "localOnly",
+          "views": [
+            {
+              "bubble": null,
+              "focusMode": false,
+              "fullscreen": false,
+              "gate": "visible",
+              "label": "island",
+              "primary": {
+                "alert": false,
+                "bubbleOnly": false,
+                "category": "download",
+                "event": {
+                  "eta": "1:12",
+                  "jobId": "surface-job",
+                  "kind": "downloadProgress",
+                  "percent": 38,
+                  "speed": "4.2 MB/s",
+                  "title": "Tiny tray app in Rust, full walkthrough"
+                },
+                "id": "download:surface-job"
+              },
+              "queue": [],
+              "userHidden": false
+            }
+          ]
+        },
+        "activityScheduler": {
+          "nextDeadlineMs": null,
+          "wakeups": 35
+        },
+        "desktop": {
+          "cursor": {
+            "x": 120,
+            "y": 400
+          },
+          "monitors": [
+            {
+              "bounds": {
+                "height": 1080,
+                "width": 1920,
+                "x": 0,
+                "y": 0
+              },
+              "id": "primary",
+              "name": "Fixture primary",
+              "primary": true,
+              "scaleFactor": 1,
+              "workArea": {
+                "height": 1032,
+                "width": 1920,
+                "x": 0,
+                "y": 0
+              }
+            }
+          ],
+          "topTaskbar": null
+        },
+        "foreground": {
+          "cloaked": false,
+          "desktop": false,
+          "maximised": false,
+          "minimised": false,
+          "monitor": null,
+          "notificationState": null,
+          "ownProcess": false,
+          "rect": null,
+          "visible": false,
+          "windowId": 0
+        },
+        "hosts": [
+          {
+            "commits": 32,
+            "hwnd": 19665476,
+            "placement": {
+              "bounds": {
+                "height": 460,
+                "width": 720,
+                "x": 600,
+                "y": 0
+              },
+              "dpiScale": 1,
+              "label": "island",
+              "monitorId": "primary",
+              "renderScale": 1,
+              "shape": "island",
+              "sizeScale": 1
+            },
+            "warp": false
+          }
+        ],
+        "input": [
+          {
+            "decision": {
+              "dragging": true,
+              "hidden": false,
+              "interactive": true,
+              "pollMs": 25
+            },
+            "hitrect": {
+              "h": 175.921875,
+              "w": 657.46875,
+              "x": 31.265625,
+              "y": 0
+            },
+            "interactive": true,
+            "label": "island",
+            "revision": 186,
+            "source": "web"
+          }
+        ],
+        "inputWatcher": {
+          "cursorSamples": 802,
+          "foregroundEvents": 0,
+          "hookInstalled": true,
+          "ownForegroundEvents": 0,
+          "systemSamples": 159
+        },
+        "lastError": null,
+        "preferences": {
+          "enabled": true,
+          "monitorId": null,
+          "monitorMode": "followMouse",
+          "shape": "island",
+          "size": "standard"
+        },
+        "reconciliations": 112,
+        "renderer": "native",
+        "supported": true,
+        "surfaces": {
+          "island": {
+            "beforeDrag": "expanded",
+            "closeAt": null,
+            "focusTab": null,
+            "generation": 37,
+            "hoverAt": null,
+            "opening": false,
+            "pending": null,
+            "state": "expanded",
+            "webAllocated": true,
+            "webHwnd": 38077918,
+            "webOwner": false
+          }
+        },
+        "visibility": [
+          {
+            "base": "visible",
+            "label": "island",
+            "mode": "visible",
+            "opacity": 1,
+            "reason": "none",
+            "revision": 1
+          }
+        ],
+        "webviews": 1
+      }
+    },
+    {
+      "name": "URL-staged-for-review",
+      "snapshot": {
+        "activity": {
+          "preferences": {
+            "disabled": [],
+            "focusMode": false,
+            "hiddenUntilMs": null,
+            "order": [
+              "privacy",
+              "timerEnding",
+              "download",
+              "tool",
+              "link",
+              "result",
+              "media",
+              "timer",
+              "power"
+            ],
+            "showAlertsOverFullscreen": false
+          },
+          "revision": 36,
+          "syncState": "localOnly",
+          "views": [
+            {
+              "bubble": {
+                "alert": false,
+                "bubbleOnly": false,
+                "category": "link",
+                "event": {
+                  "duration": null,
+                  "kind": "linkDetected",
+                  "site": "example.invalid",
+                  "title": null,
+                  "url": "https://example.invalid/dropped-video"
+                },
+                "id": "link"
+              },
+              "focusMode": false,
+              "fullscreen": false,
+              "gate": "visible",
+              "label": "island",
+              "primary": {
+                "alert": false,
+                "bubbleOnly": false,
+                "category": "download",
+                "event": {
+                  "eta": "1:12",
+                  "jobId": "surface-job",
+                  "kind": "downloadProgress",
+                  "percent": 38,
+                  "speed": "4.2 MB/s",
+                  "title": "Tiny tray app in Rust, full walkthrough"
+                },
+                "id": "download:surface-job"
+              },
+              "queue": [],
+              "userHidden": false
+            }
+          ]
+        },
+        "activityScheduler": {
+          "nextDeadlineMs": 7956,
+          "wakeups": 36
+        },
+        "desktop": {
+          "cursor": {
+            "x": 120,
+            "y": 400
+          },
+          "monitors": [
+            {
+              "bounds": {
+                "height": 1080,
+                "width": 1920,
+                "x": 0,
+                "y": 0
+              },
+              "id": "primary",
+              "name": "Fixture primary",
+              "primary": true,
+              "scaleFactor": 1,
+              "workArea": {
+                "height": 1032,
+                "width": 1920,
+                "x": 0,
+                "y": 0
+              }
+            }
+          ],
+          "topTaskbar": null
+        },
+        "foreground": {
+          "cloaked": false,
+          "desktop": false,
+          "maximised": false,
+          "minimised": false,
+          "monitor": null,
+          "notificationState": null,
+          "ownProcess": false,
+          "rect": null,
+          "visible": false,
+          "windowId": 0
+        },
+        "hosts": [
+          {
+            "commits": 33,
+            "hwnd": 19665476,
+            "placement": {
+              "bounds": {
+                "height": 460,
+                "width": 720,
+                "x": 600,
+                "y": 0
+              },
+              "dpiScale": 1,
+              "label": "island",
+              "monitorId": "primary",
+              "renderScale": 1,
+              "shape": "island",
+              "sizeScale": 1
+            },
+            "warp": false
+          }
+        ],
+        "input": [
+          {
+            "decision": {
+              "dragging": true,
+              "hidden": false,
+              "interactive": true,
+              "pollMs": 25
+            },
+            "hitrect": {
+              "h": 175.921875,
+              "w": 657.46875,
+              "x": 31.265625,
+              "y": 0
+            },
+            "interactive": true,
+            "label": "island",
+            "revision": 189,
+            "source": "web"
+          }
+        ],
+        "inputWatcher": {
+          "cursorSamples": 809,
+          "foregroundEvents": 0,
+          "hookInstalled": true,
+          "ownForegroundEvents": 0,
+          "systemSamples": 159
+        },
+        "lastError": null,
+        "preferences": {
+          "enabled": true,
+          "monitorId": null,
+          "monitorMode": "followMouse",
+          "shape": "island",
+          "size": "standard"
+        },
+        "reconciliations": 112,
+        "renderer": "native",
+        "supported": true,
+        "surfaces": {
+          "island": {
+            "beforeDrag": "expanded",
+            "closeAt": null,
+            "focusTab": null,
+            "generation": 40,
+            "hoverAt": null,
+            "opening": false,
+            "pending": null,
+            "state": "drop",
+            "webAllocated": true,
+            "webHwnd": 38077918,
+            "webOwner": false
+          }
+        },
+        "visibility": [
+          {
+            "base": "visible",
+            "label": "island",
+            "mode": "visible",
+            "opacity": 1,
+            "reason": "none",
+            "revision": 1
+          }
+        ],
+        "webviews": 1
+      }
+    }
+  ],
+  "captures": [
+    {
+      "file": "v25-native-accepted-1-peek.png",
+      "bytes": 13835,
+      "sha256": "dd1dd7a37d1b557883f156604ac19b053b295af6bdf05ff70400fdc7f170f6cf",
+      "width": 720,
+      "height": 460,
+      "scale": 1,
+      "state": "peek"
+    },
+    {
+      "file": "v25-native-accepted-1-expanded-nab.png",
+      "bytes": 18733,
+      "sha256": "a9547a3f9c76803e0a313b6a9194151168ede4f9a19b3b43184b327ef7d845d1",
+      "width": 720,
+      "height": 460,
+      "scale": 1,
+      "state": "expanded"
+    },
+    {
+      "file": "v25-native-accepted-1-expanded-clipboard.png",
+      "bytes": 33954,
+      "sha256": "301dc3c09bc5963a11a3fe5ac9faf3d7ace61a62512ad7bebc4abd684df63246",
+      "width": 720,
+      "height": 460,
+      "scale": 1,
+      "state": "expanded"
+    },
+    {
+      "file": "v25-native-accepted-1-drop.png",
+      "bytes": 21127,
+      "sha256": "0dd4df09d1573bf7c3fe621151bfc04fbbb2cd8591a513b38f6d41f484fa667b",
+      "width": 720,
+      "height": 460,
+      "scale": 1,
+      "state": "drop"
+    }
+  ],
+  "memory": {
+    "tab": "clipboard",
+    "filters": {
+      "clipboard": "Text",
+      "clipboardQuery": "Saved surface",
+      "searchOpen": "true"
+    },
+    "searchText": "remember this query",
+    "scroll": {
+      "clipboard": 260
+    }
+  },
+  "draft": {
+    "payload": {
+      "files": [
+        "D:\\claude-upgrade-26\\nabbit\\progress\\v2\\M5\\v25-native-accepted-1-idle.png"
+      ],
+      "text": null,
+      "url": null
+    },
+    "zone": "note"
+  },
+  "errors": [],
+  "noDownloadsStarted": true,
+  "realCursorUntouched": true,
+  "source": "Actual release WebView2; native IPC, isolated SQLite and AdditionalObjects disk path"
+}

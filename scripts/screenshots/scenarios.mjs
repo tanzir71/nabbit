@@ -81,7 +81,7 @@ export const scenarios = [
         () =>
           globalThis.document.querySelector(".island-host").dataset.islandVisibility === "visible",
       );
-      const box = await page.locator(".island-idle").boundingBox();
+      const box = await page.locator(".island-morph").boundingBox();
       assert.deepEqual(box, { x: 304, y: 6, width: 112, height: 26 });
     },
   },

@@ -1,6 +1,18 @@
+#[cfg_attr(not(windows), allow(dead_code))]
+pub mod artwork;
+#[cfg(windows)]
+mod assets;
 #[cfg(windows)]
 #[path = "../../../spikes/island/native_capture.rs"]
 pub(crate) mod capture;
+#[cfg(windows)]
+mod compact_draw;
+#[cfg(windows)]
+#[path = "../../../spikes/island/native_files.rs"]
+pub(crate) mod files;
+#[cfg(windows)]
+#[path = "../../../spikes/island/native_fonts.rs"]
+pub(crate) mod fonts;
 #[cfg(windows)]
 mod foreground;
 #[cfg_attr(not(windows), allow(dead_code))]
@@ -9,10 +21,16 @@ pub mod input;
 mod input_watcher;
 #[cfg_attr(not(windows), allow(dead_code))]
 pub mod model;
+#[cfg_attr(not(windows), allow(dead_code))]
+pub mod motion;
 #[cfg(windows)]
 mod native;
+#[cfg_attr(not(windows), allow(dead_code))]
+pub mod presentation;
 #[cfg(windows)]
 mod renderer;
+#[cfg_attr(not(windows), allow(dead_code))]
+pub mod surface;
 #[cfg_attr(not(windows), allow(dead_code))]
 pub mod visibility;
 
@@ -83,6 +101,148 @@ pub fn acceptance_session() -> bool {
     std::env::var("NABBIT_ISLAND_ACCEPTANCE").as_deref() == Ok("1")
         && std::env::var_os("NABBIT_APP_DATA_DIR").is_some()
 }
+#[tauri::command]
+pub fn island_open_settings(
+    app: tauri::AppHandle,
+    window: tauri::WebviewWindow,
+) -> Result<(), String> {
+    #[cfg(windows)]
+    {
+        let manager = input_manager(&app)?;
+        let _ = manager.surface_instruction(window.label())?;
+        manager.settings_intent(true);
+    }
+    #[cfg(not(windows))]
+    let _ = window;
+    crate::show_popover(&app).map_err(|e| e.to_string())?;
+    use tauri::Emitter;
+    app.emit("nabbit://open-settings", ())
+        .map_err(|e| e.to_string())
+}
+#[tauri::command]
+pub fn consume_island_settings_intent(
+    app: tauri::AppHandle,
+    window: tauri::WebviewWindow,
+) -> Result<bool, String> {
+    if window.label() != "main" {
+        return Err("Only the tray can consume its navigation intent".into());
+    }
+    #[cfg(windows)]
+    {
+        use tauri::Manager as _;
+        Ok(app
+            .try_state::<std::sync::Arc<native::Manager>>()
+            .is_some_and(|manager| manager.settings_intent(false)))
+    }
+    #[cfg(not(windows))]
+    {
+        let _ = app;
+        Ok(false)
+    }
+}
+
+#[tauri::command]
+pub fn get_island_surface(
+    app: tauri::AppHandle,
+    window: tauri::WebviewWindow,
+) -> Result<serde_json::Value, String> {
+    #[cfg(windows)]
+    return serde_json::to_value(input_manager(&app)?.surface_instruction(window.label())?)
+        .map_err(|e| e.to_string());
+    #[cfg(not(windows))]
+    {
+        let _ = (app, window);
+        Err("Island surfaces are available on Windows".into())
+    }
+}
+#[tauri::command]
+pub fn island_surface_request(
+    app: tauri::AppHandle,
+    window: tauri::WebviewWindow,
+    state: surface::Mode,
+) -> Result<(), String> {
+    #[cfg(windows)]
+    return input_manager(&app)?.request_surface(window.label(), state);
+    #[cfg(not(windows))]
+    {
+        let _ = (app, window, state);
+        Err("Island surfaces are available on Windows".into())
+    }
+}
+#[tauri::command]
+pub fn island_surface_ack(
+    app: tauri::AppHandle,
+    window: tauri::WebviewWindow,
+    generation: u64,
+) -> Result<(), String> {
+    #[cfg(windows)]
+    return input_manager(&app)?.surface_ack(window.label(), generation);
+    #[cfg(not(windows))]
+    {
+        let _ = (app, window, generation);
+        Err("Island surfaces are available on Windows".into())
+    }
+}
+#[tauri::command]
+pub fn island_stage_drop(
+    app: tauri::AppHandle,
+    window: tauri::WebviewWindow,
+    payload: serde_json::Value,
+    zone: String,
+) -> Result<(), String> {
+    #[cfg(windows)]
+    return input_manager(&app)?.stage_drop(window.label(), payload, &zone);
+    #[cfg(not(windows))]
+    {
+        let _ = (app, window, payload, zone);
+        Err("Island surfaces are available on Windows".into())
+    }
+}
+#[tauri::command]
+pub fn get_island_drop(
+    app: tauri::AppHandle,
+    window: tauri::WebviewWindow,
+) -> Result<Option<serde_json::Value>, String> {
+    #[cfg(windows)]
+    return Ok(input_manager(&app)?.drop_draft(window.label()));
+    #[cfg(not(windows))]
+    {
+        let _ = (app, window);
+        Ok(None)
+    }
+}
+#[tauri::command]
+pub fn island_review_url(
+    app: tauri::AppHandle,
+    window: tauri::WebviewWindow,
+    state: tauri::State<'_, crate::AppState>,
+    url: String,
+) -> Result<(), String> {
+    #[cfg(windows)]
+    {
+        let _ = input_manager(&app)?.surface_instruction(window.label())?;
+    }
+    #[cfg(not(windows))]
+    let _ = window;
+    let parsed = url::Url::parse(url.trim()).map_err(|_| "Enter a valid web link")?;
+    if !matches!(parsed.scheme(), "http" | "https") || parsed.host_str().is_none() {
+        return Err("Enter an http or https link".into());
+    }
+    state
+        .db
+        .set_setting_value("staged_url", parsed.as_str())
+        .map_err(|e| e.to_string())?;
+    activity_bus::publish(
+        &app,
+        activity::ActivityEvent::LinkDetected {
+            url: parsed.to_string(),
+            title: None,
+            duration: None,
+            site: parsed.host_str().unwrap_or_default().into(),
+        },
+    );
+    Ok(())
+}
 
 #[cfg(windows)]
 pub fn production_session() -> bool {
@@ -98,3 +258,5 @@ pub mod activity;
 pub mod activity_bus;
 #[cfg(test)]
 mod activity_tests;
+#[cfg(test)]
+mod presentation_tests;

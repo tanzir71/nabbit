@@ -35,6 +35,8 @@ use windows_sys::{
 
 const REFRESH: u32 = WM_APP + 91;
 const INPUT_REFRESH: u32 = WM_APP + 92;
+#[path = "web.rs"]
+mod web;
 static MOUSE_LEFT: AtomicBool = AtomicBool::new(false);
 static MOUSE_BAND: AtomicBool = AtomicBool::new(false);
 static CURRENT: OnceLock<Mutex<Weak<Manager>>> = OnceLock::new();
@@ -58,6 +60,7 @@ pub struct Host {
 #[derive(Clone, Serialize)]
 #[serde(rename_all = "camelCase")]
 pub struct Snapshot {
+    pub surfaces: HashMap<String, super::surface::Session>,
     pub activity: super::activity::Snapshot,
     pub activity_scheduler: super::activity_bus::SchedulerStats,
     pub visibility: Vec<super::visibility::Report>,
@@ -74,6 +77,11 @@ pub struct Snapshot {
     pub last_error: Option<String>,
 }
 struct State {
+    reduced_motion: bool,
+    pending_settings: bool,
+    surfaces: HashMap<String, super::surface::Session>,
+    compact_motion: HashMap<String, (super::motion::Motion, Instant)>,
+    drop_drafts: HashMap<String, serde_json::Value>,
     visibility_revision: u64,
     scene_visibility: HashMap<String, super::visibility::Report>,
     visibility: HashMap<String, Visibility>,
@@ -163,6 +171,11 @@ pub fn start(app: &AppHandle, preferences: Preferences) -> Result<(), String> {
             stopped: AtomicBool::new(false),
             hook: AtomicIsize::new(0),
             state: Mutex::new(State {
+                reduced_motion: web::reduced_motion(),
+                pending_settings: false,
+                surfaces: HashMap::new(),
+                compact_motion: HashMap::new(),
+                drop_drafts: HashMap::new(),
                 visibility_revision: 0,
                 scene_visibility: HashMap::new(),
                 visibility: HashMap::new(),
@@ -228,6 +241,12 @@ pub fn start(app: &AppHandle, preferences: Preferences) -> Result<(), String> {
     }
 }
 impl Manager {
+    pub fn settings_intent(&self, active: bool) -> bool {
+        let mut state = lock(&self.state);
+        let previous = state.pending_settings;
+        state.pending_settings = active;
+        previous
+    }
     pub fn configure(&self, preferences: Preferences) {
         lock(&self.state).preferences = preferences;
         self.refresh()
@@ -237,6 +256,7 @@ impl Manager {
         let mut hosts: Vec<_> = state.hosts.values().cloned().collect();
         hosts.sort_by(|a, b| a.placement.label.cmp(&b.placement.label));
         Snapshot {
+            surfaces: state.surfaces.clone(),
             activity: self.app.state::<Arc<super::activity_bus::Bus>>().snapshot(),
             activity_scheduler: self.app.state::<Arc<super::activity_bus::Bus>>().stats(),
             visibility: hosts
@@ -278,6 +298,7 @@ impl Manager {
             return Ok(());
         }
         self.pending.store(false, Ordering::Relaxed);
+        lock(&self.state).reduced_motion = web::reduced_motion();
         self.sample_system();
         let (preferences, fixture) = {
             let state = lock(&self.state);
@@ -322,11 +343,19 @@ impl Manager {
         // A failed device update can be retried by the next system/config event.
         for (label, host) in &previous {
             if !desired.iter().any(|p| &p.label == label) {
+                if let Some(window) = self.app.get_webview_window(label) {
+                    let _ = window.destroy();
+                }
                 destroy_host(host.hwnd);
                 lock(&self.state).hosts.remove(label);
+                lock(&self.state).surfaces.remove(label);
+                lock(&self.state).compact_motion.remove(label);
             }
         }
         for placement in desired {
+            let placement_changed = previous
+                .get(&placement.label)
+                .is_none_or(|old| old.placement != placement);
             let host = if let Some(old) = previous.get(&placement.label) {
                 if old.placement == placement {
                     old.clone()
@@ -354,6 +383,9 @@ impl Manager {
             lock(&self.state)
                 .hosts
                 .insert(placement.label.clone(), host);
+            if placement_changed {
+                self.position_surface(&placement)?;
+            }
         }
         {
             let mut state = lock(&self.state);
@@ -489,6 +521,9 @@ impl Manager {
         }
         let hosts = std::mem::take(&mut lock(&self.state).hosts);
         for host in hosts.values() {
+            if let Some(window) = self.app.get_webview_window(&host.placement.label) {
+                let _ = window.destroy();
+            }
             destroy_host(host.hwnd)
         }
         unsafe {
@@ -560,6 +595,22 @@ impl Manager {
         let gate_override = state.gate_override;
         let now = self.started.elapsed().as_millis() as u64;
         for placement in &placements {
+            let geometry = state
+                .compact_motion
+                .get(&placement.label)
+                .map(|(m, t)| m.at(t.elapsed().as_secs_f64()));
+            if let (Some(geometry), Some(input)) =
+                (geometry, state.inputs.get_mut(&placement.label))
+            {
+                if !input.web {
+                    input.model.hitrect = Some(crate::island_interaction::Rect {
+                        x: geometry.x() as f64 - 8.0,
+                        y: geometry.top as f64 - 8.0,
+                        w: geometry.width as f64 + 16.0,
+                        h: geometry.height as f64 + 16.0,
+                    });
+                }
+            }
             let monitor = state
                 .desktop
                 .monitors
@@ -663,6 +714,10 @@ impl Manager {
                 (old.mode, old.base, old.reason) != (report.mode, report.base, report.reason)
             });
             let old_revision = old.map(|old| old.revision).unwrap_or(0);
+            let fade_from_visible = visibility_changed
+                && old.is_some_and(|old| old.mode == Gate::Visible)
+                && mode == Gate::Faded;
+            let reduced_or_forced = state.reduced_motion || gate_override.is_some();
             if visibility_changed {
                 state.visibility_revision += 1;
             }
@@ -680,7 +735,9 @@ impl Manager {
                 && mode == Gate::Faded;
             let unapplied = !state.applied_visibility.contains_key(&placement.label);
             if let Some(value) = state.inputs.get_mut(&placement.label) {
-                value.gate = input_gate;
+                value.gate = value
+                    .fade
+                    .gate(input_gate, fade_from_visible, now, reduced_or_forced);
                 value.dirty |= visibility_changed || unapplied;
                 value.step(&placement, sample);
                 // The wake band spans the host, including areas farther than
@@ -690,6 +747,33 @@ impl Manager {
                 }
                 delay = delay.min(value.decision.poll_ms);
                 changed |= value.decision != value.applied || value.dirty;
+            }
+            let inside = sample.filter(|s| s.valid()).is_some_and(|s| {
+                state
+                    .inputs
+                    .get(&placement.label)
+                    .and_then(|i| i.model.hitrect)
+                    .is_some_and(|r| r.contains(input::logical(&placement, s)))
+            });
+            let dragging = state
+                .inputs
+                .get(&placement.label)
+                .is_some_and(|i| i.decision.dragging);
+            changed |= self.sample_surface(
+                &mut state,
+                &placement.label,
+                inside,
+                dragging,
+                sample.is_some_and(|s| s.left_down),
+                now,
+                views.iter().find(|v| v.label == placement.label),
+            );
+            if state
+                .surfaces
+                .get(&placement.label)
+                .is_some_and(|s| s.hover_at.is_some() || s.close_at.is_some())
+            {
+                delay = delay.min(25);
             }
         }
         drop(state);
@@ -707,6 +791,9 @@ impl Manager {
         lock(&self.state).foreground = foreground;
     }
     pub fn activity_changed(&self) {
+        for input in lock(&self.state).inputs.values_mut() {
+            input.dirty = true;
+        }
         self.watcher.wake();
     }
     pub fn wake_island(&self, label: &str) -> Result<(), String> {
@@ -722,6 +809,9 @@ impl Manager {
     }
     fn apply_input(&self) {
         self.input_pending.store(false, Ordering::Relaxed);
+        if let Err(error) = self.flush_surfaces() {
+            lock(&self.state).error = Some(error);
+        }
         let mut state = lock(&self.state);
         let handles: Vec<_> = state
             .hosts
@@ -861,6 +951,7 @@ impl Manager {
                                     if request.live_foreground.unwrap_or(false){let mut state=lock(&manager.state);state.foreground_fixture=None;state.gate_override=None;drop(state);manager.watcher.system_changed();}
                                     if let Some(foreground)=request.foreground{let mut state=lock(&manager.state);state.foreground_fixture=Some(foreground.clone());state.foreground=foreground;state.gate_override=None;drop(state);manager.watcher.system_changed();}
                                     if let Some(label)=request.wake{let _=manager.wake_island(&label);}
+                                    if let Some(surface)=request.surface{let _=manager.request_surface(&surface.label,surface.state);}
                                     let outcome = preparation.and_then(|()| manager.accept(request.desktop, request.preferences, request.capture, &path));
                                     let response = serde_json::json!({"id":request.id,"snapshot":manager.snapshot(),"result":outcome.as_ref().ok(),"error":outcome.err()});
                                     let _ = std::fs::write(response_path, serde_json::to_vec(&response).unwrap_or_default());
@@ -925,6 +1016,7 @@ impl Manager {
 }
 #[derive(Deserialize)]
 struct Request {
+    surface: Option<SurfaceRequest>,
     activity: Option<Vec<super::activity::ActivityEvent>>,
     #[serde(rename = "liveForeground")]
     live_foreground: Option<bool>,
@@ -940,6 +1032,11 @@ struct Request {
     gate: Option<Gate>,
     foreground: Option<Foreground>,
     wake: Option<String>,
+}
+#[derive(Deserialize)]
+struct SurfaceRequest {
+    label: String,
+    state: super::surface::Mode,
 }
 #[derive(Deserialize)]
 struct Capture {
@@ -1117,6 +1214,12 @@ unsafe extern "system" fn host_proc(hwnd: HWND, message: u32, w: WPARAM, l: LPAR
             0
         }
         WM_MOUSEACTIVATE => MA_NOACTIVATE as LRESULT,
+        WM_LBUTTONUP => {
+            if let Some(manager) = current() {
+                manager.native_click(hwnd as isize, l);
+            }
+            0
+        }
         _ => DefWindowProcW(hwnd, message, w, l),
     }
 }

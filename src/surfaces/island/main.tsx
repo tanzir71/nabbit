@@ -1,12 +1,11 @@
 import React from "react";
 import { createRoot } from "react-dom/client";
-import { IdleIsland } from "./IdleIsland";
+import { IslandApp } from "./IslandApp";
 import "./island.css";
 
-// The native compact renderer remains selected. V2 will mount the larger web
-// surfaces here; no activity services or module bodies run from this entry.
+// Native idle/live owns the compact surface; this entry is allocated on demand.
 createRoot(document.getElementById("root")!).render(
   <React.StrictMode>
-    <IdleIsland />
+    <IslandApp />
   </React.StrictMode>,
 );

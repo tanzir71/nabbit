@@ -34,7 +34,7 @@ pub fn install(window: &WebviewWindow) -> tauri::Result<()> {
                         || !message.x.is_finite()
                         || !message.y.is_finite()
                         || !message.scale.is_finite()
-                        || !(0.75..=4.0).contains(&message.scale)
+                        || !(0.5..=8.0).contains(&message.scale)
                         || !(0.0..=720.0).contains(&message.x)
                         || !(0.0..=460.0).contains(&message.y)
                     {

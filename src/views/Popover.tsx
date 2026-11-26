@@ -1,5 +1,7 @@
 import { Download, History, Settings, X } from "lucide-react";
-import { lazy, Suspense, useMemo, useState } from "react";
+import { lazy, Suspense, useEffect, useMemo, useState } from "react";
+import { invoke } from "@tauri-apps/api/core";
+import { listen } from "@tauri-apps/api/event";
 import { Segmented } from "../components/Segmented";
 import { IconButton } from "../components/IconButton";
 import { BrandMark } from "../components/BrandMark";
@@ -16,6 +18,37 @@ export function Popover() {
   const error = useAppStore((state) => state.error);
   const setLastTab = useAppStore((state) => state.setLastTab);
   const [showSettings, setShowSettings] = useState(false);
+  useEffect(() => {
+    if (!("__TAURI_INTERNALS__" in window)) return;
+    let active = true,
+      stop: (() => void) | undefined;
+    const consume = async () => {
+      try {
+        const wanted = await invoke<boolean>("consume_island_settings_intent");
+        if (active && wanted) setShowSettings(true);
+      } catch (reason) {
+        if (active) useAppStore.setState({ error: String(reason) });
+      }
+    };
+    void listen("nabbit://open-settings", () => {
+      void consume();
+    })
+      .then((unlisten) => {
+        if (!active) {
+          unlisten();
+          return;
+        }
+        stop = unlisten;
+        void consume();
+      })
+      .catch((reason) => {
+        if (active) useAppStore.setState({ error: String(reason) });
+      });
+    return () => {
+      active = false;
+      stop?.();
+    };
+  }, []);
 
   const activeTab = settings?.lastTab ?? "download";
   const tabs = useMemo(

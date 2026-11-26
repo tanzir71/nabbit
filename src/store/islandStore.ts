@@ -30,6 +30,7 @@ export interface IslandModel extends IslandMemory {
   dropReturn: IslandMode | null;
 }
 export type IslandAction =
+  | { type: "present"; state: IslandMode }
   | { type: "backend"; snapshot: ActivitySnapshot; event?: ActivityMessage }
   | { type: "enter" | "leave" | "clock"; now: number }
   | { type: "open" | "collapse" | "escape" | "outside" | "dragEnter" | "dragLeave" }
@@ -114,6 +115,10 @@ function backend(
 }
 export function islandReducer(model: IslandModel, action: IslandAction): IslandModel {
   switch (action.type) {
+    case "present":
+      if(model.gate==="hidden"||model.fullscreen&&!(["hidden","idle","faded","live"] as IslandMode[]).includes(action.state))return collapsed(model);
+      if(action.state==="peek"&&!model.primary)return collapsed(model);
+      return { ...model, state: action.state, peekAt: null, closeAt: null, dropReturn: null };
     case "backend": {
       if (action.snapshot.revision < model.revision) return model;
       const next = backend(

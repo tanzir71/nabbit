@@ -121,6 +121,10 @@ pub struct Timeline {
     rename_all_fields = "camelCase"
 )]
 pub enum ActivityEvent {
+    VolumeChanged {
+        percent: u8,
+        muted: bool,
+    },
     LinkDetected {
         url: String,
         title: Option<String>,
@@ -444,6 +448,8 @@ impl Engine {
                 entry.item.bubble_only = true;
             }
             entry.remaining != Some(0)
+                && (!matches!(entry.item.event, ActivityEvent::VolumeChanged { .. })
+                    || now.mono_ms.saturating_sub(entry.created) < 1500)
         });
     }
     fn expose(&mut self, now: Time) {
@@ -492,10 +498,22 @@ impl Engine {
                     0.0
                 }
             }
-            ActivityEvent::PowerChanged { percent, .. } => *percent = (*percent).min(100),
+            ActivityEvent::PowerChanged { percent, .. }
+            | ActivityEvent::VolumeChanged { percent, .. } => *percent = (*percent).min(100),
             _ => {}
         }
         match &event {
+            ActivityEvent::VolumeChanged { .. } => {
+                self.entries.remove("volume");
+                self.put(
+                    "volume".into(),
+                    Kind::Result,
+                    event.clone(),
+                    false,
+                    now,
+                    None,
+                );
+            }
             ActivityEvent::LinkDetected { .. } => {
                 self.entries.remove("link");
                 self.put("link".into(), Kind::Link, event.clone(), false, now, None);
@@ -716,6 +734,11 @@ impl Engine {
             .hidden_until_ms
             .filter(|until| *until > self.last.unix_ms)
             .map(|until| until.saturating_sub(now.unix_ms).max(0) as u64);
-        alerts.chain(links).chain(hidden).min()
+        let volume = self
+            .entries
+            .values()
+            .filter(|entry| matches!(entry.item.event, ActivityEvent::VolumeChanged { .. }))
+            .map(|entry| 1500u64.saturating_sub(now.mono_ms.saturating_sub(entry.created)));
+        alerts.chain(links).chain(hidden).chain(volume).min()
     }
 }

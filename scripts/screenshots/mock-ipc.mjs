@@ -7,6 +7,7 @@ export function installMockIpc(seed) {
     callbacks = new Map(),
     listeners = new Map();
   let nextId = 1;
+  let surfaceGeneration = 0;
   const clone = (value) => (value === undefined ? undefined : globalThis.structuredClone(value));
   const dispatch = (event, payload) => {
     for (const [id, entry] of [...listeners]) {
@@ -27,6 +28,43 @@ export function installMockIpc(seed) {
     calls.push({ command, args: clone(args) });
     if (seed.failures?.[command]) throw new Error(seed.failures[command]);
     switch (command) {
+      case "consume_island_settings_intent":
+        return false;
+      case "get_island_surface":
+        return clone(
+          seed.responses?.get_island_surface ?? {
+            label: seed.label,
+            generation: surfaceGeneration,
+            state: "idle",
+            owner: "native",
+            shape: "island",
+            reducedMotion: false,
+            width: 112,
+            height: 26,
+            snapshot: await invoke("get_activity_snapshot"),
+          },
+        );
+      case "island_surface_request": {
+        const value = clone(
+          seed.responses?.get_island_surface ?? {
+            label: seed.label,
+            shape: "island",
+            reducedMotion: false,
+            width: 112,
+            height: 26,
+          },
+        );
+        value.generation = ++surfaceGeneration;
+        value.state = args.state;
+        value.owner = ["idle", "faded", "hidden", "live"].includes(args.state)
+          ? "native"
+          : "webview";
+        value.snapshot = await invoke("get_activity_snapshot");
+        dispatch("nabbit://island-surface", value);
+        return null;
+      }
+      case "island_surface_ack":
+        return null;
       case "get_settings":
         return clone(state.settings);
       case "island_set_hitrect":

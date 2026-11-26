@@ -5,7 +5,7 @@
   "type": "module",
   "scripts": {
     "dev": "vite --host 127.0.0.1 --port 1420",
-    "build": "npm run tokens && tsc -b && vite build && npm run verify:bundles",
+    "build": "npm run tokens && node scripts/generate-island-motion.mjs && tsc -b && vite build && npm run verify:bundles",
     "build:spike": "node scripts/build-island-spike.mjs",
     "preview": "vite preview",
     "tauri": "tauri",

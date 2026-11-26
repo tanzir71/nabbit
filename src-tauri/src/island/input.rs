@@ -43,6 +43,7 @@ pub struct Report {
     pub source: &'static str,
 }
 pub struct HostInput {
+    pub fade: FadeInput,
     gated_drag_armed: bool,
     pub model: Interaction,
     pub decision: Decision,
@@ -55,6 +56,7 @@ pub struct HostInput {
 impl HostInput {
     pub fn new(placement: &Placement) -> Self {
         Self {
+            fade: FadeInput::default(),
             gated_drag_armed: false,
             model: Interaction::with_hitrect(native_rect(placement)),
             decision: Decision::default(),
@@ -124,6 +126,33 @@ impl HostInput {
             interactive: self.applied.interactive,
             revision: self.revision,
             source: if self.web { "web" } else { "native" },
+        }
+    }
+}
+#[derive(Default)]
+pub struct FadeInput {
+    until: Option<u64>,
+}
+impl FadeInput {
+    pub fn gate(
+        &mut self,
+        target: Gate,
+        from_visible: bool,
+        now: u64,
+        reduced_or_forced: bool,
+    ) -> Gate {
+        if target != Gate::Faded || reduced_or_forced {
+            self.until = None;
+            return target;
+        }
+        if from_visible {
+            self.until = Some(now.saturating_add(200));
+        }
+        if self.until.is_some_and(|until| now < until) {
+            Gate::Visible
+        } else {
+            self.until = None;
+            Gate::Faded
         }
     }
 }
