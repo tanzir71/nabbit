@@ -1,5 +1,15 @@
 # M3 evidence — new landing page
 
+## L.3 — final site acceptance
+
+[Implementation, automated evidence and reproduction](L.3.md). Final checks
+include 27 axe scans with zero violations, full keyboard navigation, exact
+HTTP asset bodies, a strict 500,000-byte budget (490,716 bytes excluding fonts)
+and eight fresh full-page captures. Pixel comparisons preserve the Figma
+geometry outside documented text-color changes; the expanded mobile menu
+keeps hero content uncovered. All 190 M3 PNGs meet the 300 KB limit.
+The remaining task is the M3 milestone push and live deployment verification.
+
 ## L.2 — metadata, social preview and 404
 
 [Implementation, automated evidence and reproduction](L.2.md). Shared v2

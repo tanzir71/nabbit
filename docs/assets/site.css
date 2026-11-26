@@ -152,7 +152,7 @@ h3 {
 .caption {
   font-size: 12px;
   line-height: 16px;
-  color: var(--text-tertiary);
+  color: var(--text-secondary);
 }
 .mobile-only {
   display: none;
@@ -259,7 +259,7 @@ h3 {
 .hero .release-note {
   font-size: 12px;
   line-height: 16px;
-  color: var(--text-tertiary);
+  color: var(--text-secondary);
 }
 .hero-composite {
   width: 100%;
@@ -491,7 +491,7 @@ h3 {
   font-family: var(--font-mono);
   font-size: 12px;
   line-height: 16px;
-  color: var(--text-tertiary);
+  color: var(--text-secondary);
   width: 36px;
   flex: none;
 }
@@ -519,7 +519,7 @@ h3 {
 }
 .milestones [data-status="in-progress"] .milestone-status {
   background: var(--warning-soft);
-  color: var(--warning-base);
+  color: color-mix(in srgb, var(--warning-base) 95%, var(--text-primary));
 }
 .milestones a {
   font-size: 12px;
@@ -711,13 +711,28 @@ h3 {
   }
   .nav-menu {
     position: relative;
+    margin-block: 12px;
+  }
+  .nav-inner {
+    align-items: flex-start;
+  }
+  .site-nav .brand {
+    margin-block: 16px;
+  }
+  .nav-menu[open] {
+    width: min(220px, calc(100% - 118px));
+  }
+  .nav-menu > summary {
+    margin-left: auto;
   }
   .nav-links {
-    position: absolute;
+    position: static;
     z-index: 5;
     right: 0;
     top: 40px;
-    min-width: 220px;
+    min-width: 0;
+    width: 100%;
+    margin-top: 8px;
     display: flex;
     flex-direction: column;
     align-items: stretch;
@@ -1557,7 +1572,7 @@ h3 {
   font-size: 9.388px;
   font-weight: 500;
   line-height: 12.518px;
-  color: var(--island-muted, #8c8c92);
+  color: color-mix(in srgb, var(--island-muted) 92%, var(--island-fg));
 }
 .replica-40 {
   position: relative;
@@ -1670,7 +1685,7 @@ h3 {
   text-overflow: ellipsis;
   font-size: 9.388px;
   line-height: 12.518px;
-  color: var(--island-muted, #8c8c92);
+  color: color-mix(in srgb, var(--island-muted) 92%, var(--island-fg));
 }
 .replica-50 {
   position: relative;
@@ -2620,7 +2635,7 @@ h3 {
   font-size: 13px;
   font-weight: 400;
   line-height: 18px;
-  color: var(--text-tertiary, #9a9aa0);
+  color: var(--text-secondary, #66666d);
   text-decoration-line: line-through;
   text-decoration-style: solid;
   text-decoration-thickness: from-font;
@@ -2662,7 +2677,7 @@ h3 {
   font-size: 13px;
   font-weight: 400;
   line-height: 18px;
-  color: var(--text-tertiary, #9a9aa0);
+  color: var(--text-secondary, #66666d);
 }
 .replica-140 {
   position: relative;
@@ -2685,7 +2700,7 @@ h3 {
   font-size: 12px;
   font-weight: 400;
   line-height: 16px;
-  color: var(--text-tertiary, #9a9aa0);
+  color: var(--text-secondary, #66666d);
 }
 .replica-142 {
   position: relative;

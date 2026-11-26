@@ -1,10 +1,13 @@
 import assert from "node:assert/strict";
-import { access, readFile, stat } from "node:fs/promises";
+import { access, readFile, stat, writeFile } from "node:fs/promises";
+import { createHash } from "node:crypto";
+import { parseArgs } from "node:util";
 import { resolve, sep } from "node:path";
 import { fileURLToPath, URL } from "node:url";
 import { JSDOM } from "jsdom";
 
 const root = fileURLToPath(new URL("../", import.meta.url));
+const { values } = parseArgs({ options: { report: { type: "string" } } });
 const docs = resolve(root, "docs");
 const base = new URL("https://tanzir71.github.io/nabbit/");
 const pages = ["index.html", "demo/index.html", "404.html"];
@@ -156,7 +159,38 @@ for (const path of ["docs/index.html", "docs/llms.txt", "README.md"]) {
 let bytes = 0;
 for (const path of resources)
   if (!/\.(?:woff2?|ttf|otf)$/i.test(path)) bytes += (await stat(resolve(docs, path))).size;
-assert(bytes <= 500 * 1024, `Site transfer exceeds 500 KiB excluding fonts: ${bytes}`);
+assert(bytes <= 500000, `Site transfer exceeds 500 KB excluding fonts: ${bytes}`);
+if (values.report) {
+  const files = await Promise.all(
+    [...resources].sort().map(async (file) => {
+      const data = await readFile(resolve(docs, file));
+      return {
+        file,
+        bytes: data.length,
+        font: /\.(?:woff2?|ttf|otf)$/i.test(file),
+        sha256: createHash("sha256").update(data).digest("hex"),
+      };
+    }),
+  );
+  await writeFile(
+    resolve(root, values.report),
+    JSON.stringify(
+      {
+        basePath: base.pathname,
+        milestone: current,
+        budgetBytesExcludingFonts: 500000,
+        transferBytesExcludingFonts: bytes,
+        pages,
+        files,
+        socialImage:
+          "Metadata-only OG PNG is validated separately; it is not loaded by a normal page visit",
+      },
+      null,
+      2,
+    ) + "\n",
+    { flag: "wx" },
+  );
+}
 globalThis.console.log(
   `Verified Pages base path, links/assets, 13 milestone states, 3 pre-release CTAs, demo and 404 (${bytes} bytes excluding fonts).`,
 );

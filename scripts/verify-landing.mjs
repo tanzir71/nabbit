@@ -6,6 +6,7 @@ import { parseArgs } from "node:util";
 import { createHash } from "node:crypto";
 import { chromium } from "playwright";
 import { preview } from "vite";
+import { JSDOM } from "jsdom";
 import { auditFont } from "./font-audit.mjs";
 
 const root = fileURLToPath(new URL("../", import.meta.url));
@@ -25,6 +26,9 @@ try {
 const manifest = JSON.parse(
   await readFile(resolve(root, "docs/assets/landing-manifest.json"), "utf8"),
 );
+const expectedMilestone = new JSDOM(
+  await readFile(resolve(root, "docs/index.html"), "utf8"),
+).window.document.querySelector('meta[name="nabbit-milestone"]').content;
 const sourceSvg = new Map(manifest.svg.map((item) => [item.file, item]));
 const sourceBytes = new Map(
   await Promise.all(
@@ -98,7 +102,7 @@ try {
             assert.equal((await cta.textContent()).trim(), "Follow the build");
           assert.equal(
             await page.locator('meta[name="nabbit-milestone"]').getAttribute("content"),
-            "M2",
+            expectedMilestone,
           );
           const menu = page.locator(".nav-menu"),
             summary = menu.locator("summary");
@@ -199,6 +203,22 @@ try {
                 };
               });
             return {
+              colorAdjustmentRects: [
+                ...globalThis.document.querySelectorAll(
+                  '.release-note,.caption,.milestones code,.milestones [data-status="in-progress"] .milestone-status,.replica-49,.replica-39,.replica-135,.replica-139,.replica-141',
+                ),
+              ]
+                .map((el) => {
+                  const rect = el.getBoundingClientRect();
+                  return {
+                    className: el.className,
+                    x: rect.x,
+                    y: rect.y + globalThis.scrollY,
+                    width: rect.width,
+                    height: rect.height,
+                  };
+                })
+                .filter((rect) => rect.width > 0 && rect.height > 0),
               pageHeight: globalThis.document.documentElement.scrollHeight,
               scrollWidth: globalThis.document.documentElement.scrollWidth,
               sections: [
