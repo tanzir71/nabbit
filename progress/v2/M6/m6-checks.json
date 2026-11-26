@@ -1,0 +1,86 @@
+{
+  "npm-verify": {
+    "command": "npm run verify",
+    "exitCode": 0,
+    "file": "m6-npm-verify.txt",
+    "rawSha256": "290cee9bdf9645ddae92221f86ec45117226c64aee50fe042923c81d08095b82",
+    "savedSha256": "9e994d8f9d3edee0da7a0428189848268511c3a191de2550b95d95aa9168fb62"
+  },
+  "rust-fmt": {
+    "command": "cargo fmt --check",
+    "exitCode": 0,
+    "file": "m6-rust-fmt.txt",
+    "rawSha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+    "savedSha256": "01ba4719c80b6fe911b091a7c05124b64eeece964e09c058ef8f9805daca546b"
+  },
+  "rust-clippy": {
+    "command": "cargo clippy --all-targets -- -D warnings",
+    "exitCode": 0,
+    "file": "m6-rust-clippy.txt",
+    "rawSha256": "8262e2cbc71eba6bc77aa322abf21be46e3e747e371e395e5c6243d1029cc6e9",
+    "savedSha256": "63793a28a021b7adc6d4fae6021451dfb09f7d5958954326d9f4d39514ff68e6"
+  },
+  "rust-spike-clippy": {
+    "command": "cargo clippy --all-targets --features island-spike -- -D warnings",
+    "exitCode": 0,
+    "file": "m6-rust-spike-clippy.txt",
+    "rawSha256": "46ce575a66fd0f7fd69d2facea73e1371c6595ef4b7a0ffdec61e55673532c4f",
+    "savedSha256": "cf63e83f57976ddc6fee4c3e6e58e88a6e5597243ac51256756b9872c9833a51"
+  },
+  "rust-tests": {
+    "command": "cargo test -- --test-threads=1",
+    "exitCode": 0,
+    "file": "m6-rust-tests.txt",
+    "rawSha256": "5d0750f356685e8601fce0222a6323f3fdba1b843d17fef0fd44effaf09ed087",
+    "savedSha256": "3fd1f2c905d09570e212936fea7c7a572a704be14009a7229cd48de71fb65282"
+  },
+  "site": {
+    "command": "npm run verify:site",
+    "exitCode": 0,
+    "file": "m6-site.txt",
+    "rawSha256": "71e8f46548f70a795ecabff3d4c6bcbfba2c70e8847de35bae3c86deb5ca0415",
+    "savedSha256": "6d8d7ade179b73cf1423961a783dee74b1aa736328f0c8092911c389fe386720"
+  },
+  "site-assets": {
+    "command": "node scripts/verify-site.mjs --report progress/v2/M6/m6-site-assets.json",
+    "exitCode": 0,
+    "file": "m6-site-assets.txt",
+    "rawSha256": "9bc42e66fc1019ed2da6e9be390acfe5edc77b2eefb91d46445dfd2e851cdd5d",
+    "savedSha256": "ecf6d61d2f29373006483ef8e21eac0cccd046a2b7daec1f1097cd3824984881"
+  },
+  "site-http": {
+    "command": "node scripts/verify-site-http.mjs --assets progress/v2/M6/m6-site-assets.json --report progress/v2/M6/m6-http-assets.json",
+    "exitCode": 0,
+    "file": "m6-site-http.txt",
+    "rawSha256": "b07029124bd3054f46d501aa4cdd688d50d159f9a2ba703867bb08ae03eacefd",
+    "savedSha256": "a1eff69633be5b7185d15ba7bb49555089a7c1bfa360cf35a56b1698fb28b2e1"
+  },
+  "status": {
+    "command": "node scripts/verify-milestone-status.mjs --milestone M6 --previous-ref 75dbcc5 --prefix m6-status",
+    "exitCode": 0,
+    "file": "m6-status.txt",
+    "rawSha256": "c780f811402ee28b80eb081a5d81168437db2dc9c66975bf1807eff0646037d0",
+    "savedSha256": "786f90a9e62d96d0b5da9cb71600ba9ac56a5b2a70b8da005ea6453daceca7ca"
+  },
+  "accessibility": {
+    "command": "node scripts/verify-site-accessibility.mjs --milestone M6 --prefix m6",
+    "exitCode": 0,
+    "file": "m6-accessibility.txt",
+    "rawSha256": "781aa489dee5d6ffba3f8802bb82c6eceb045321b1c15b04a1ff557a77628fee",
+    "savedSha256": "7da11b7bc857599b38bf19d31fec2018546aa5a3daebf4b74aba3c45bd41e35c"
+  },
+  "og": {
+    "command": "npm run site:og -- --check",
+    "exitCode": 0,
+    "file": "m6-og.txt",
+    "rawSha256": "5ce62e93f7aa574610f7e00064323ae0d8445d494ca75bf00e7b45e3225c95fd",
+    "savedSha256": "63be078a347ac96b26ef57e5d6263cd594e6b5dd9931512290e4abed02941bec"
+  },
+  "history-gitleaks": {
+    "command": "gitleaks git --log-opts=origin/main..HEAD --redact --no-banner",
+    "exitCode": 0,
+    "file": "m6-history-gitleaks.txt",
+    "rawSha256": "01a37f667454f978ac185b40636222395720388cbba9fa12fe5366be0cc58b76",
+    "savedSha256": "0d684d96e68fed006c7a8573e784b142d944ba484e0e345922ff01eba4c60809"
+  }
+}

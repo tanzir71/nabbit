@@ -1,6 +1,13 @@
-# M6 — Downloads core (in progress)
+# M6 — Downloads core
 
-This folder contains **V3.1–V3.4: Deno and engine health, download options and per-site presets, capture paths, and the Nab/queue redesign**. M6 is not published yet; the live landing remains M5. Its milestone push is the next Build Loop task.
+This folder contains **V3.1–V3.4: Deno and engine health, download options and per-site presets, capture paths, and the Nab/queue redesign**. Application checkpoint: `75dbcc5`. The four task commits and their original evidence remain separate. Milestone publication is pending the push and live Pages verification recorded below.
+
+| Task | Commit | Evidence |
+|---|---|---|
+| V3.1 — Deno and engine health | `34d627e` | `v31-acceptance.json` |
+| V3.2 — Options builder and site presets | `6fa4ab9` | `v32-acceptance.json` |
+| V3.3 — Capture paths | `c2cf4a4` | `v33-acceptance.json` |
+| V3.4 — Nab views and live queue | `75dbcc5` | `v34-acceptance.json` |
 
 ## V3.1 behavior
 
@@ -117,3 +124,29 @@ cargo test --manifest-path src-tauri/Cargo.toml -- --test-threads=1
 ```
 
 No real media/profile access, native click, OS protocol installation, real keypress, installer, Tack account or display change is claimed. Existing V0/V2.7 performance/focus limitations are unchanged. V3.4 is a local task commit on main; no PR, tag, release, workflow edit/dispatch or push is part of this pass. M6 remains unchecked for its separate milestone procedure.
+
+## M6 milestone verification
+
+Fresh checks on application `75dbcc5` pass: **128 frontend/script tests**, **136 serial Rust tests** (two existing opt-in ignored), formatting, default/spike all-target Clippy with warnings denied, static/HTTP site checks and byte-identical social-card regeneration. Initial island JavaScript remains **90,289 / 120,000 gzip bytes**. This milestone changes the landing's metadata and M6/M7 rows only: M6 Done with this folder, M7 In progress. The pre-release Follow the build CTAs remain.
+
+`m6-readiness.json` verifies the source/document fingerprints against all four original task commits, **80 authoritative application PNGs** across the tasks, and the current application source against its latest recorded inputs. The fresh build manifest matches V3.4's final 40 captures. All **248 retained/final PNGs** in this folder independently decode and stay below **300,000 bytes** (largest **134,706 bytes**). Earlier task prefixes remain superseded development evidence. Eight milestone status captures retain default page geometry, bundled fonts and original 16px icons; eight focus captures and **24 default-rule axe scans** pass keyboard/accessibility checks. The site serves **106 exact local HTTP bodies** under `/nabbit/`, totaling **463,002/500,000 bytes excluding fonts**.
+
+The four unpushed task commits pass the history secret scan. `m6-prepublication.json` confirms the public repository, default main branch, legacy Pages from `main` `/docs`, no releases and the unchanged two historical repository CI run IDs. `m6-checks.json` pins fresh normalized logs and their raw/saved hashes. No app source or repository workflow is changed by this milestone.
+
+Current entry points are `npm run tauri:dev`, Alt+Space for island Nab, Ctrl+Shift+V for the tray and Ctrl+Alt+D for an explicit clipboard download. These describe the application and are not manual acceptance steps. Full Options/Trim/Playlist sheets, the complete error catalog and end-to-end download/media acceptance remain V3.5–V3.7. Existing V0/V2.7 native frame/focus limitations and V3.4's bounded duration-badge contrast proof are retained.
+
+Automated milestone reproduction (use unused output prefixes):
+
+```powershell
+npm run verify
+cargo fmt --manifest-path src-tauri/Cargo.toml --check
+cargo clippy --manifest-path src-tauri/Cargo.toml --all-targets -- -D warnings
+cargo clippy --manifest-path src-tauri/Cargo.toml --all-targets --features island-spike -- -D warnings
+cargo test --manifest-path src-tauri/Cargo.toml -- --test-threads=1
+npm run verify:site
+npm run site:og -- --check
+node scripts/verify-milestone-status.mjs --milestone M6 --previous-ref 75dbcc5 --prefix m6-repeat
+node scripts/verify-site-accessibility.mjs --milestone M6 --prefix m6-repeat
+```
+
+Publication will use a fast-forward push to main headed by the skip-ci milestone commit. The handoff checkbox and deployment receipt follow exact live-source, public screenshot and built-in Pages verification. No PR, tag, release, repository workflow edit or dispatch is permitted.
