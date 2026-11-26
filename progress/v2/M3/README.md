@@ -24,7 +24,13 @@ island lifecycle and module interfaces remain the next implementation phases.
 Use fresh prefixes with the L.3 reproduction commands for local screenshot and
 accessibility checks. `m3-prepublication.json` and `m3-readiness.json` record the
 source, baseline repository/Pages configuration, workflow IDs and capture pins.
-Publication and live-source verification are recorded after the milestone push.
+Published milestone: `c4b477d`. Built-in Pages run `45738349021` succeeded for
+that exact commit. Live HTTPS checks confirm M3 metadata, M3 Done/M4 In progress,
+all 108 source assets, nested custom 404 and all 278 public PNG hashes. Published
+normal resources total 490847 bytes excluding fonts. Repository CI IDs are unchanged.
+See `m3-deployment.json` and `m3-live-check.json` for the publication receipt
+and full remote audit. The milestone and verification-receipt commits use skip-ci
+with fast-forward main pushes.
 
 ## L.3 — final site acceptance
 
