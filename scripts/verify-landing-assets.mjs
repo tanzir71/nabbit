@@ -60,6 +60,23 @@ execFileSync("python", [resolve(root, "scripts/generate-island-hero.py"), "--che
   stdio: "pipe",
 });
 const fonts = JSON.parse(await readFile(resolve(root, "docs/assets/fonts/manifest.json"), "utf8"));
+const downloads = JSON.parse(
+  await readFile(resolve(root, "docs/assets/download-capture.json"), "utf8"),
+);
+for (const capture of downloads.captures) {
+  const images = [...document.querySelectorAll(`#downloads img[src="${capture.file}"]`)];
+  assert(images.length > 0);
+  for (const img of images) {
+    assert.equal(Number(img.getAttribute("width")), capture.width);
+    assert.equal(Number(img.getAttribute("height")), capture.height);
+    assert(img.getAttribute("alt").includes("Current Nabbit"));
+  }
+}
+assert(document.querySelector("#downloads .caption").textContent.includes("fixture data"));
+execFileSync("python", [resolve(root, "scripts/generate-download-visual.py"), "--check"], {
+  cwd: root,
+  stdio: "pipe",
+});
 for (const entry of fonts.files) {
   assert.equal(hash(await readFile(resolve(root, "docs/assets/fonts", entry.file))), entry.sha256);
   const sourceName = entry.file.replace("-Latin", "-Variable");

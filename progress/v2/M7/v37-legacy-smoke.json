@@ -1,0 +1,62 @@
+{
+  "checks": [
+    {
+      "Check": "release app launch",
+      "Evidence": "process 45532 stayed alive and created C:\\Users\\tanzir\\AppData\\Local\\Temp\\nabbit-smoke-7123055f-3fd5-4de5-8a8b-1275cc6cf23c\\app-data\\nabbit.sqlite3"
+    },
+    {
+      "Check": "engine health background",
+      "Evidence": "local version-check timestamp appeared in 5596ms while app remained responsive; acceptance sessions skip engine updates and network extraction"
+    },
+    {
+      "Check": "clipboard copy creates searchable entry",
+      "Evidence": "stored unique marker in 548ms; LIKE search count = 1"
+    },
+    {
+      "Check": "clipboard duplicates de-dupe",
+      "Evidence": "same marker remained at one row"
+    },
+    {
+      "Check": "sensitive clipboard skip",
+      "Evidence": "credit-card-shaped sample did not create a row"
+    },
+    {
+      "Check": "excluded app clipboard skip",
+      "Evidence": "Bitwarden.exe source-app sample was skipped by the app DB path"
+    },
+    {
+      "Check": "retention GC",
+      "Evidence": "30-day launch GC deleted expired unpinned row and kept pinned/fresh rows"
+    },
+    {
+      "Check": "clear all history",
+      "Evidence": "app command returned ok; clipboard_entries emptied and blob file removed"
+    },
+    {
+      "Check": "download progress/cancel/retry/concurrency",
+      "Evidence": "progress/speed/ETA appeared in 263ms; second job stayed queued at concurrency=1; cancel and retry completed"
+    },
+    {
+      "Check": "download history persists",
+      "Evidence": "completed video/audio jobs were returned by app list_downloads after restart"
+    },
+    {
+      "Check": "YouTube URL stages without download",
+      "Evidence": "staged in 307ms; downloads stayed at 2"
+    },
+    {
+      "Check": "deep-link review without download",
+      "Evidence": "real second-instance URI forwarding staged review in 496ms; job count unchanged; installed shell association not modified"
+    },
+    {
+      "Check": "idle watcher CPU",
+      "Evidence": "0.0156 CPU seconds over a 5-second idle sample"
+    },
+    {
+      "Check": "clipboard provider",
+      "Evidence": "injected event through the production consumer; no system clipboard or global key input"
+    }
+  ],
+  "executable": "6e6362cc18b019ea8708f4594cf9cf070cb21ba7b77d3eb1abba69b0fe96e3cd",
+  "injectedClipboard": true
+}

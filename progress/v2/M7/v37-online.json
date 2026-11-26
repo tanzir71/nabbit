@@ -1,0 +1,131 @@
+{
+  "outcome": "passed",
+  "scope": "Pinned engine CLI with a public sample; native queue/IPC is verified separately with isolated fixtures",
+  "sample": "https://www.youtube.com/watch?v=e6rhUvwB5Y8",
+  "trial": "D:\\claude-upgrade-26\\nabbit\\.tools\\v37-online-6106a03b-2bd6-44e8-8b79-f343dda6c4a8",
+  "counts": {
+    "withoutDeno": 47,
+    "withDeno": 48
+  },
+  "duration": 5,
+  "requestedDuration": 5,
+  "toleranceSeconds": 0.5,
+  "invocations": [
+    {
+      "executable": "D:\\claude-upgrade-26\\nabbit\\src-tauri\\binaries\\yt-dlp-x86_64-pc-windows-msvc.exe",
+      "args": [
+        "--ignore-config",
+        "--no-playlist",
+        "--socket-timeout",
+        "12",
+        "--retries",
+        "0",
+        "--extractor-retries",
+        "0",
+        "--no-js-runtimes",
+        "-F",
+        "https://www.youtube.com/watch?v=e6rhUvwB5Y8"
+      ],
+      "exitCode": 0,
+      "signal": null,
+      "elapsedMs": 9099,
+      "stdout": "[youtube] Extracting URL: https://www.youtube.com/watch?v=e6rhUvwB5Y8\n[youtube] e6rhUvwB5Y8: Downloading webpage\n[youtube] e6rhUvwB5Y8: Downloading visionos player API JSON\n[youtube] e6rhUvwB5Y8: Downloading m3u8 information\n[info] Available formats for e6rhUvwB5Y8:\nID  EXT   RESOLUTION FPS CH |   FILESIZE    TBR PROTO | VCODEC           VBR ACODEC      ABR ASR MORE INFO\n------------------------------------------------------------------------------------------------------------------\nsb2 mhtml 48x27        0    |                   mhtml | images                                   storyboard\nsb1 mhtml 80x45        1    |                   mhtml | images                                   storyboard\nsb0 mhtml 160x90       1    |                   mhtml | images                                   storyboard\n233 mp4   audio only        |                   m3u8  | audio only           unknown             Default, low\n234 mp4   audio only        |                   m3u8  | audio only           unknown             Default, high\n139 m4a   audio only      2 |    1.46MiB    49k https | audio only           mp4a.40.5   49k 22k low, m4a_dash\n249 webm  audio only      2 |    1.62MiB    54k https | audio only           opus        54k 48k low, webm_dash\n250 webm  audio only      2 |    2.15MiB    72k https | audio only           opus        72k 48k low, webm_dash\n140 m4a   audio only      2 |    3.87MiB   129k https | audio only           mp4a.40.2  129k 44k medium, m4a_dash\n251 webm  audio only      2 |    4.17MiB   140k https | audio only           opus       140k 48k medium, webm_dash\n602 mp4   256x144     15    | ~  2.66MiB    89k m3u8  | vp09.00.10.08    89k video only\n269 mp4   256x144     30    | ~  5.12MiB   172k m3u8  | avc1.4D400C     172k video only\n160 mp4   256x144     30    |    1.78MiB    60k https | avc1.4D400C      60k video only          144p, mp4_dash\n603 mp4   256x144     30    | ~  5.14MiB   173k m3u8  | vp09.00.11.08   173k video only\n278 webm  256x144     30    |    2.21MiB    74k https | vp9              74k video only          144p, webm_dash\n394 mp4   256x144     30    |    1.82MiB    61k https | av01.0.00M.08    61k video only          144p, mp4_dash\n229 mp4   426x240     30    | ~  9.31MiB   312k m3u8  | avc1.4D4015     312k video only\n133 mp4   426x240     30    |    4.23MiB   142k https | avc1.4D4015     142k video only          240p, mp4_dash\n604 mp4   426x240     30    | ~  9.13MiB   306k m3u8  | vp09.00.20.08   306k video only\n242 webm  426x240     30    |    3.68MiB   123k https | vp9             123k video only          240p, webm_dash\n395 mp4   426x240     30    |    3.89MiB   130k https | av01.0.00M.08   130k video only          240p, mp4_dash\n230 mp4   640x360     30    | ~ 23.99MiB   805k m3u8  | avc1.4D401E     805k video only\n134 mp4   640x360     30    |    9.51MiB   319k https | avc1.4D401E     319k video only          360p, mp4_dash\n605 mp4   640x360     30    | ~ 20.45MiB   686k m3u8  | vp09.00.21.08   686k video only\n243 webm  640x360     30    |    8.86MiB   297k https | vp9             297k video only          360p, webm_dash\n396 mp4   640x360     30    |    8.35MiB   280k https | av01.0.01M.08   280k video only          360p, mp4_dash\n231 mp4   854x480     30    | ~ 40.43MiB  1357k m3u8  | avc1.4D401F    1357k video only\n135 mp4   854x480     30    |   16.16MiB   541k https | avc1.4D401F     541k video only          480p, mp4_dash\n606 mp4   854x480     30    | ~ 35.30MiB  1184k m3u8  | vp09.00.30.08  1184k video only\n244 webm  854x480     30    |   13.70MiB   459k https | vp9             459k video only          480p, webm_dash\n397 mp4   854x480     30    |   16.95MiB   568k https | av01.0.04M.08   568k video only          480p, mp4_dash\n232 mp4   1280x720    30    | ~ 76.50MiB  2567k m3u8  | avc1.4D401F    2567k video only\n136 mp4   1280x720    30    |   26.18MiB   877k https | avc1.4D401F     877k video only          720p, mp4_dash\n609 mp4   1280x720    30    | ~ 63.19MiB  2120k m3u8  | vp09.00.31.08  2120k video only\n247 webm  1280x720    30    |   27.72MiB   929k https | vp9             929k video only          720p, webm_dash\n398 mp4   1280x720    30    |   34.14MiB  1144k https | av01.0.05M.08  1144k video only          720p, mp4_dash\n270 mp4   1920x1080   30    | ~169.53MiB  5688k m3u8  | avc1.640028    5688k video only\n137 mp4   1920x1080   30    |   91.78MiB  3075k https | avc1.640028    3075k video only          1080p, mp4_dash\n614 mp4   1920x1080   30    | ~106.15MiB  3562k m3u8  | vp09.00.40.08  3562k video only\n248 webm  1920x1080   30    |   50.53MiB  1693k https | vp9            1693k video only          1080p, webm_dash\n399 mp4   1920x1080   30    |   60.85MiB  2039k https | av01.0.08M.08  2039k video only          1080p, mp4_dash\n620 mp4   2560x1440   30    | ~282.17MiB  9468k m3u8  | vp09.00.50.08  9468k video only\n271 webm  2560x1440   30    |  191.94MiB  6430k https | vp9            6430k video only          1440p, webm_dash\n400 mp4   2560x1440   30    |  158.78MiB  5319k https | av01.0.12M.08  5319k video only          1440p, mp4_dash\n625 mp4   3840x2160   30    | ~561.27MiB 18833k m3u8  | vp09.00.50.08 18833k video only\n313 webm  3840x2160   30    |  404.83MiB 13562k https | vp9           13562k video only          2160p, webm_dash\n401 mp4   3840x2160   30    |  287.86MiB  9644k https | av01.0.12M.08  9644k video only          2160p, mp4_dash\n",
+      "stderr": "WARNING: [youtube] No supported JavaScript runtime could be found. Only deno is enabled by default; to use another runtime add  --js-runtimes RUNTIME[:PATH]  to your command/config. YouTube extraction without a JS runtime has been deprecated, and some formats may be missing. See  https://github.com/yt-dlp/yt-dlp/wiki/EJS  for details on installing one\n",
+      "error": null
+    },
+    {
+      "executable": "D:\\claude-upgrade-26\\nabbit\\src-tauri\\binaries\\yt-dlp-x86_64-pc-windows-msvc.exe",
+      "args": [
+        "--ignore-config",
+        "--no-playlist",
+        "--socket-timeout",
+        "12",
+        "--retries",
+        "0",
+        "--extractor-retries",
+        "0",
+        "--no-js-runtimes",
+        "--js-runtimes",
+        "deno:D:\\claude-upgrade-26\\nabbit\\src-tauri\\binaries\\deno-x86_64-pc-windows-msvc.exe",
+        "-F",
+        "https://www.youtube.com/watch?v=e6rhUvwB5Y8"
+      ],
+      "exitCode": 0,
+      "signal": null,
+      "elapsedMs": 15657,
+      "stdout": "[youtube] Extracting URL: https://www.youtube.com/watch?v=e6rhUvwB5Y8\n[youtube] e6rhUvwB5Y8: Downloading webpage\n[youtube] e6rhUvwB5Y8: Downloading tv samsung player API JSON\n[youtube] e6rhUvwB5Y8: Downloading visionos player API JSON\n[youtube] e6rhUvwB5Y8: Downloading player 9244921b-tv\n[youtube] [jsc:deno] Solving JS challenges using deno\n[youtube] e6rhUvwB5Y8: Downloading m3u8 information\n[info] Available formats for e6rhUvwB5Y8:\nID  EXT   RESOLUTION FPS CH |   FILESIZE    TBR PROTO | VCODEC           VBR ACODEC      ABR ASR MORE INFO\n------------------------------------------------------------------------------------------------------------------\nsb2 mhtml 48x27        0    |                   mhtml | images                                   storyboard\nsb1 mhtml 80x45        1    |                   mhtml | images                                   storyboard\nsb0 mhtml 160x90       1    |                   mhtml | images                                   storyboard\n233 mp4   audio only        |                   m3u8  | audio only           unknown             Default, low\n234 mp4   audio only        |                   m3u8  | audio only           unknown             Default, high\n139 m4a   audio only      2 |    1.46MiB    49k https | audio only           mp4a.40.5   49k 22k low, m4a_dash\n249 webm  audio only      2 |    1.62MiB    54k https | audio only           opus        54k 48k low, webm_dash\n250 webm  audio only      2 |    2.15MiB    72k https | audio only           opus        72k 48k low, webm_dash\n140 m4a   audio only      2 |    3.87MiB   129k https | audio only           mp4a.40.2  129k 44k medium, m4a_dash\n251 webm  audio only      2 |    4.17MiB   140k https | audio only           opus       140k 48k medium, webm_dash\n602 mp4   256x144     15    | ~  2.66MiB    89k m3u8  | vp09.00.10.08    89k video only\n269 mp4   256x144     30    | ~  5.12MiB   172k m3u8  | avc1.4D400C     172k video only\n160 mp4   256x144     30    |    1.78MiB    60k https | avc1.4D400C      60k video only          144p, mp4_dash\n603 mp4   256x144     30    | ~  5.14MiB   173k m3u8  | vp09.00.11.08   173k video only\n278 webm  256x144     30    |    2.21MiB    74k https | vp9              74k video only          144p, webm_dash\n394 mp4   256x144     30    |    1.82MiB    61k https | av01.0.00M.08    61k video only          144p, mp4_dash\n229 mp4   426x240     30    | ~  9.31MiB   312k m3u8  | avc1.4D4015     312k video only\n133 mp4   426x240     30    |    4.23MiB   142k https | avc1.4D4015     142k video only          240p, mp4_dash\n604 mp4   426x240     30    | ~  9.13MiB   306k m3u8  | vp09.00.20.08   306k video only\n242 webm  426x240     30    |    3.68MiB   123k https | vp9             123k video only          240p, webm_dash\n395 mp4   426x240     30    |    3.89MiB   130k https | av01.0.00M.08   130k video only          240p, mp4_dash\n230 mp4   640x360     30    | ~ 23.99MiB   805k m3u8  | avc1.4D401E     805k video only\n134 mp4   640x360     30    |    9.51MiB   319k https | avc1.4D401E     319k video only          360p, mp4_dash\n18  mp4   640x360     30  2 |  13.37MiB   448k https | avc1.42001E          mp4a.40.2       44k 360p\n605 mp4   640x360     30    | ~ 20.45MiB   686k m3u8  | vp09.00.21.08   686k video only\n243 webm  640x360     30    |    8.86MiB   297k https | vp9             297k video only          360p, webm_dash\n396 mp4   640x360     30    |    8.35MiB   280k https | av01.0.01M.08   280k video only          360p, mp4_dash\n231 mp4   854x480     30    | ~ 40.43MiB  1357k m3u8  | avc1.4D401F    1357k video only\n135 mp4   854x480     30    |   16.16MiB   541k https | avc1.4D401F     541k video only          480p, mp4_dash\n606 mp4   854x480     30    | ~ 35.30MiB  1184k m3u8  | vp09.00.30.08  1184k video only\n244 webm  854x480     30    |   13.70MiB   459k https | vp9             459k video only          480p, webm_dash\n397 mp4   854x480     30    |   16.95MiB   568k https | av01.0.04M.08   568k video only          480p, mp4_dash\n232 mp4   1280x720    30    | ~ 76.50MiB  2567k m3u8  | avc1.4D401F    2567k video only\n136 mp4   1280x720    30    |   26.18MiB   877k https | avc1.4D401F     877k video only          720p, mp4_dash\n609 mp4   1280x720    30    | ~ 63.19MiB  2120k m3u8  | vp09.00.31.08  2120k video only\n247 webm  1280x720    30    |   27.72MiB   929k https | vp9             929k video only          720p, webm_dash\n398 mp4   1280x720    30    |   34.14MiB  1144k https | av01.0.05M.08  1144k video only          720p, mp4_dash\n270 mp4   1920x1080   30    | ~169.53MiB  5688k m3u8  | avc1.640028    5688k video only\n137 mp4   1920x1080   30    |   91.78MiB  3075k https | avc1.640028    3075k video only          1080p, mp4_dash\n614 mp4   1920x1080   30    | ~106.15MiB  3562k m3u8  | vp09.00.40.08  3562k video only\n248 webm  1920x1080   30    |   50.53MiB  1693k https | vp9            1693k video only          1080p, webm_dash\n399 mp4   1920x1080   30    |   60.85MiB  2039k https | av01.0.08M.08  2039k video only          1080p, mp4_dash\n620 mp4   2560x1440   30    | ~282.17MiB  9468k m3u8  | vp09.00.50.08  9468k video only\n271 webm  2560x1440   30    |  191.94MiB  6430k https | vp9            6430k video only          1440p, webm_dash\n400 mp4   2560x1440   30    |  158.78MiB  5319k https | av01.0.12M.08  5319k video only          1440p, mp4_dash\n625 mp4   3840x2160   30    | ~561.27MiB 18833k m3u8  | vp09.00.50.08 18833k video only\n313 webm  3840x2160   30    |  404.83MiB 13562k https | vp9           13562k video only          2160p, webm_dash\n401 mp4   3840x2160   30    |  287.86MiB  9644k https | av01.0.12M.08  9644k video only          2160p, mp4_dash\n",
+      "stderr": "",
+      "error": null
+    },
+    {
+      "executable": "D:\\claude-upgrade-26\\nabbit\\src-tauri\\binaries\\yt-dlp-x86_64-pc-windows-msvc.exe",
+      "args": [
+        "--ignore-config",
+        "--no-playlist",
+        "--socket-timeout",
+        "12",
+        "--retries",
+        "0",
+        "--extractor-retries",
+        "0",
+        "--no-js-runtimes",
+        "--js-runtimes",
+        "deno:D:\\claude-upgrade-26\\nabbit\\src-tauri\\binaries\\deno-x86_64-pc-windows-msvc.exe",
+        "--ffmpeg-location",
+        "D:\\claude-upgrade-26\\nabbit\\src-tauri\\binaries\\ffmpeg-x86_64-pc-windows-msvc.exe",
+        "-f",
+        "bestvideo[height<=720][ext=mp4]+bestaudio[ext=m4a]/best[height<=720][ext=mp4]",
+        "--merge-output-format",
+        "mp4",
+        "--download-sections",
+        "*0-5",
+        "--force-keyframes-at-cuts",
+        "-o",
+        "D:\\claude-upgrade-26\\nabbit\\.tools\\v37-online-6106a03b-2bd6-44e8-8b79-f343dda6c4a8\\sample.%(ext)s",
+        "https://www.youtube.com/watch?v=e6rhUvwB5Y8"
+      ],
+      "exitCode": 0,
+      "signal": null,
+      "elapsedMs": 44994,
+      "stdout": "[youtube] Extracting URL: https://www.youtube.com/watch?v=e6rhUvwB5Y8\n[youtube] e6rhUvwB5Y8: Downloading webpage\n[youtube] e6rhUvwB5Y8: Downloading tv samsung player API JSON\n[youtube] e6rhUvwB5Y8: Downloading visionos player API JSON\n[youtube] e6rhUvwB5Y8: Downloading player b485e332-tv\n[youtube] [jsc:deno] Solving JS challenges using deno\n[youtube] e6rhUvwB5Y8: Downloading m3u8 information\n[info] e6rhUvwB5Y8: Downloading 1 format(s): 398+140\n[info] e6rhUvwB5Y8: Downloading 1 time ranges: 0.0-5.0\n[download] Destination: D:\\claude-upgrade-26\\nabbit\\.tools\\v37-online-6106a03b-2bd6-44e8-8b79-f343dda6c4a8\\sample.mp4\n\r[download] 100% of    3.06MiB in 00:00:22 at 137.80KiB/s\n",
+      "stderr": "Input #0, mov,mp4,m4a,3gp,3g2,mj2, from 'https://rr1---sn-cqi0c-q5jz.googlevideo.com/videoplayback?expire=1795738822&ei=ZngIa73cBNCwz7sP1IeK-Ak&ip=103.141.132.14&id=o-AOG28Wmbr4RV9mKzlx01Ek-G_DBOcSQGnNL161CXjBbs&itag=398&aitags=133%2C134%2C135%2C136%2C137%2C160%2C242%2C243%2C244%2C247%2C248%2C271%2C278%2C313%2C394%2C395%2C396%2C397%2C398%2C399%2C400%2C401&source=youtube&requiressl=yes&xpc=EgVo2aDSNQ%3D%3D&cps=221&met=1795717222%2C&mh=k8&mm=31%2C29&mn=sn-cqi0c-q5jz%2Csn-h557sn6z&ms=au%2Crdu&mv=m&mvi=1&pl=24&rms=au%2Cau&pcm2=yes&initcwndbps=1575750&bui=AZFAFb-D9L0g7A8Gb34CNxXBMs4LO08FCRhx4u1d_2IHGOc5U_4OPDxtk4L7mpdN0KjhlqWpRIfESbTf&spc=nfZ8Zk1BkM3EsKCH71CAD-O2Jtc&vprv=1&svpuc=1&mime=video%2Fmp4&ns=ttrCa7foYWmlwXiDyiu3T_Qa&rqh=1&gir=yes&clen=35802807&dur=250.399&lmt=1792491232592012&mt=1795716939&fvip=1&epbp=1&keepalive=yes&lmw=1&fexp=51565115&c=TVHTML5&sefc=1&txp=443G234&n=us66SQDFwNfSxQ&sparams=expire%2Cei%2Cip%2Cid%2Caitags%2Csource%2Crequiressl%2Cxpc%2Cpcm2%2Cbui%2Cspc%2Cvprv%2Csvpuc%2Cmime%2Cns%2Crqh%2Cgir%2Cclen%2Cdur%2Clmt&sig=AE0s2JYwRAIgay7AKUObLzdoyEYHxGm9EdXys2J1nyuib2CZMlYfx0ICIA0aGS6aUS73Znob6eL0LR3MrQPKdB--1J0cGfidbuPY&lsparams=cps%2Cmet%2Cmh%2Cmm%2Cmn%2Cms%2Cmv%2Cmvi%2Cpl%2Crms%2Cinitcwndbps&lsig=APaTxxMwRQIgSDSert6MPXWuG0bsJJGsv50G03WpwA5pvKopR0JcRIUCIQCRO1a72hVUafC-PbwWhqo8xlfCT77ahEksPiK-Pyj7Tw%3D%3D':\r\n  Metadata:\r\n    major_brand     : dash\r\n    minor_version   : 0\r\n    compatible_brands: iso6av01mp41\r\n    creation_time   : 2026-10-20T10:12:38.000000Z\r\n  Duration: 00:04:10.40, start: 0.000000, bitrate: 1143 kb/s\r\n  Stream #0:0[0x1](und): Video: av1 (libdav1d) (Main) (av01 / 0x31307661), yuv420p(tv, bt709), 1280x720 [SAR 1:1 DAR 16:9], 1773 kb/s, 30 fps, 30 tbr, 15360 tbn (default)\r\n    Metadata:\r\n      creation_time   : 2026-10-20T10:12:38.000000Z\r\n      handler_name    : ISO Media file produced by Google Inc.\r\nInput #1, mov,mp4,m4a,3gp,3g2,mj2, from 'https://rr1---sn-cqi0c-q5jz.googlevideo.com/videoplayback?expire=1795738822&ei=ZngIa73cBNCwz7sP1IeK-Ak&ip=103.141.132.14&id=o-AOG28Wmbr4RV9mKzlx01Ek-G_DBOcSQGnNL161CXjBbs&itag=140&source=youtube&requiressl=yes&xpc=EgVo2aDSNQ%3D%3D&cps=221&met=1795717222%2C&mh=k8&mm=31%2C29&mn=sn-cqi0c-q5jz%2Csn-h557sn6z&ms=au%2Crdu&mv=m&mvi=1&pl=24&rms=au%2Cau&pcm2=yes&initcwndbps=1575750&bui=AZFAFb-D9L0g7A8Gb34CNxXBMs4LO08FCRhx4u1d_2IHGOc5U_4OPDxtk4L7mpdN0KjhlqWpRIfESbTf&spc=nfZ8Zk1BkM3EsKCH71CAD-O2Jtc&vprv=1&svpuc=1&mime=audio%2Fmp4&ns=ttrCa7foYWmlwXiDyiu3T_Qa&rqh=1&gir=yes&clen=4054497&dur=250.473&lmt=1754715037878791&mt=1795716939&fvip=1&epbp=1&keepalive=yes&lmw=1&fexp=51565115&c=TVHTML5&sefc=1&txp=5432534&n=us66SQDFwNfSxQ&sparams=expire%2Cei%2Cip%2Cid%2Citag%2Csource%2Crequiressl%2Cxpc%2Cpcm2%2Cbui%2Cspc%2Cvprv%2Csvpuc%2Cmime%2Cns%2Crqh%2Cgir%2Cclen%2Cdur%2Clmt&sig=AE0s2JYwRQIgIFhXJd5YtvTfnIwQxi7JhqyY5ch3WthjwXr3clu0mZkCIQDwvTcbM2bmnP37i_wHsqRAXSx8PKtQVQ01m8zIO35HBA%3D%3D&lsparams=cps%2Cmet%2Cmh%2Cmm%2Cmn%2Cms%2Cmv%2Cmvi%2Cpl%2Crms%2Cinitcwndbps&lsig=APaTxxMwRQIgSDSert6MPXWuG0bsJJGsv50G03WpwA5pvKopR0JcRIUCIQCRO1a72hVUafC-PbwWhqo8xlfCT77ahEksPiK-Pyj7Tw%3D%3D':\r\n  Metadata:\r\n    major_brand     : dash\r\n    minor_version   : 0\r\n    compatible_brands: iso6mp41\r\n    creation_time   : 2025-08-09T04:49:56.000000Z\r\n    encoder         : Google\r\n  Duration: 00:04:10.47, start: 0.000000, bitrate: 129 kb/s\r\n  Stream #1:0[0x1](deu): Audio: aac (LC) (mp4a / 0x6134706D), 44100 Hz, stereo, fltp, 128 kb/s (default)\r\n    Metadata:\r\n      creation_time   : 2025-08-09T04:49:56.000000Z\r\n      handler_name    : ISO Media file produced by Google Inc.\r\nStream mapping:\r\n  Stream #0:0 -> #0:0 (av1 (libdav1d) -> h264 (libx264))\r\n  Stream #1:0 -> #0:1 (aac (native) -> aac (native))\r\nPress [q] to stop, [?] for help\r\n[libx264 @ 00000248b6ca3580] using SAR=1/1\r\n[libx264 @ 00000248b6ca3580] using cpu capabilities: MMX2 SSE2Fast SSSE3 SSE4.2 AVX FMA3 BMI2 AVX2\r\n[libx264 @ 00000248b6ca3580] profile High, level 3.1, 4:2:0, 8-bit\r\n[libx264 @ 00000248b6ca3580] 264 - core 165 - H.264/MPEG-4 AVC codec - Copyleft 2003-2025 - http://www.videolan.org/x264.html - options: cabac=1 ref=3 deblock=1:0:0 analyse=0x3:0x113 me=hex subme=7 psy=1 psy_rd=1.00:0.00 mixed_ref=1 me_range=16 chroma_me=1 trellis=1 8x8dct=1 cqm=0 deadzone=21,11 fast_pskip=1 chroma_qp_offset=-2 threads=18 lookahead_threads=3 sliced_threads=0 nr=0 decimate=1 interlaced=0 bluray_compat=0 constrained_intra=0 bframes=3 b_pyramid=2 b_adapt=1 b_bias=0 direct=1 weightb=1 open_gop=0 weightp=2 keyint=250 keyint_min=25 scenecut=40 intra_refresh=0 rc_lookahead=40 rc=crf mbtree=1 crf=23.0 qcomp=0.60 qpmin=0 qpmax=69 qpstep=4 ip_ratio=1.40 aq=1:1.00\r\nOutput #0, mp4, to 'file:D:\\claude-upgrade-26\\nabbit\\.tools\\v37-online-6106a03b-2bd6-44e8-8b79-f343dda6c4a8\\sample.mp4.part':\r\n  Metadata:\r\n    encoder         : Lavf63.21.100\r\n  Stream #0:0(und): Video: h264 (avc1 / 0x31637661), yuv420p(tv, bt709, progressive), 1280x720 [SAR 1:1 DAR 16:9], q=2-31, 30 fps, 15360 tbn (default)\r\n    Metadata:\r\n      encoder         : Lavc63.28.100 libx264\r\n      creation_time   : 2026-10-20T10:12:38.000000Z\r\n      handler_name    : ISO Media file produced by Google Inc.\r\n    Side data:\r\n      CPB properties: bitrate max/min/avg: 0/0/0 buffer size: 0 vbv_delay: N/A\r\n  Stream #0:1(deu): Audio: aac (LC) (mp4a / 0x6134706D), 44100 Hz, stereo, fltp, 128 kb/s (default)\r\n    Metadata:\r\n      encoder         : Lavc63.28.100 aac\r\n      creation_time   : 2025-08-09T04:49:56.000000Z\r\n      handler_name    : ISO Media file produced by Google Inc.\r\nframe=    0 fps=0.0 q=0.0 size=       0KiB time=00:00:00.13 bitrate=   2.8kbits/s speed=0.0787x elapsed=0:00:01.77    \rframe=    0 fps=0.0 q=0.0 size=       0KiB time=00:00:00.13 bitrate=   2.8kbits/s speed=0.0594x elapsed=0:00:02.34    \rframe=    0 fps=0.0 q=0.0 size=       0KiB time=00:00:00.13 bitrate=   2.8kbits/s speed=0.0473x elapsed=0:00:02.94    \rframe=    1 fps=0.3 q=29.0 size=       0KiB time=00:00:00.13 bitrate=   2.8kbits/s speed=0.0397x elapsed=0:00:03.50    \rframe=    1 fps=0.2 q=29.0 size=       0KiB time=00:00:00.13 bitrate=   2.8kbits/s speed=0.0336x elapsed=0:00:04.14    \rframe=   19 fps=3.9 q=29.0 size=     256KiB time=00:00:00.56 bitrate=3701.5kbits/s speed=0.117x elapsed=0:00:04.84    \rframe=   19 fps=3.3 q=29.0 size=     256KiB time=00:00:00.56 bitrate=3701.5kbits/s speed=0.0997x elapsed=0:00:05.68    \rframe=   24 fps=3.8 q=29.0 size=     256KiB time=00:00:00.73 bitrate=2860.3kbits/s speed=0.116x elapsed=0:00:06.31    \rframe=   37 fps=5.4 q=29.0 size=     768KiB time=00:00:01.16 bitrate=5393.0kbits/s speed=0.169x elapsed=0:00:06.88    \rframe=   54 fps=7.0 q=29.0 size=    1024KiB time=00:00:01.73 bitrate=4839.8kbits/s speed=0.224x elapsed=0:00:07.73    \rframe=   55 fps=6.6 q=29.0 size=    1024KiB time=00:00:01.76 bitrate=4748.5kbits/s speed=0.211x elapsed=0:00:08.38    \rframe=   60 fps=6.6 q=29.0 size=    1024KiB time=00:00:01.93 bitrate=4339.1kbits/s speed=0.214x elapsed=0:00:09.02    \rframe=   72 fps=7.1 q=29.0 size=    1536KiB time=00:00:02.33 bitrate=5392.8kbits/s speed=0.231x elapsed=0:00:10.09    \rframe=   82 fps=7.6 q=29.0 size=    1536KiB time=00:00:02.66 bitrate=4718.7kbits/s speed=0.246x elapsed=0:00:10.82    \rframe=   91 fps=7.9 q=29.0 size=    1792KiB time=N/A bitrate=N/A speed=N/A elapsed=0:00:11.55    \rframe=   91 fps=7.4 q=29.0 size=    1792KiB time=N/A bitrate=N/A speed=N/A elapsed=0:00:12.24    \rframe=  103 fps=8.1 q=29.0 size=    2048KiB time=N/A bitrate=N/A speed=N/A elapsed=0:00:12.75    \rframe=  109 fps=8.2 q=29.0 size=    2048KiB time=N/A bitrate=N/A speed=N/A elapsed=0:00:13.26    \rframe=  109 fps=7.9 q=29.0 size=    2048KiB time=N/A bitrate=N/A speed=N/A elapsed=0:00:13.77    \rframe=  127 fps=8.9 q=29.0 size=    2560KiB time=N/A bitrate=N/A speed=N/A elapsed=0:00:14.28    \rframe=  129 fps=8.7 q=29.0 size=    2560KiB time=N/A bitrate=N/A speed=N/A elapsed=0:00:14.79    \rframe=  132 fps=8.6 q=29.0 size=    2816KiB time=N/A bitrate=N/A speed=N/A elapsed=0:00:15.30    \rframe=  136 fps=8.6 q=-1.0 size=    2816KiB time=N/A bitrate=N/A speed=N/A elapsed=0:00:15.81    \rframe=  142 fps=8.7 q=-1.0 size=    2816KiB time=N/A bitrate=N/A speed=N/A elapsed=0:00:16.32    \r[out#0/mp4 @ 00000248b4cf8b00] video:3047KiB audio:79KiB subtitle:0KiB other streams:0KiB global headers:0KiB muxing overhead: 0.216294%\r\nframe=  150 fps=9.0 q=-1.0 Lsize=    3132KiB time=00:00:05.00 bitrate=5132.3kbits/s speed=0.299x elapsed=0:00:16.71    \r\n[libx264 @ 00000248b6ca3580] frame I:2     Avg QP:23.44  size:104454\r\n[libx264 @ 00000248b6ca3580] frame P:41    Avg QP:25.49  size: 34598\r\n[libx264 @ 00000248b6ca3580] frame B:107   Avg QP:27.24  size: 13944\r\n[libx264 @ 00000248b6ca3580] consecutive B-frames:  2.7%  5.3%  4.0% 88.0%\r\n[libx264 @ 00000248b6ca3580] mb I  I16..4:  7.1% 67.0% 25.9%\r\n[libx264 @ 00000248b6ca3580] mb P  I16..4:  4.7% 32.0%  6.0%  P16..4: 29.9%  9.7%  3.1%  0.0%  0.0%    skip:14.7%\r\n[libx264 @ 00000248b6ca3580] mb B  I16..4:  0.8%  4.2%  1.0%  B16..8: 28.3%  8.6%  2.3%  direct: 5.8%  skip:49.1%  L0:48.0% L1:39.9% BI:12.1%\r\n[libx264 @ 00000248b6ca3580] 8x8 transform intra:73.0% inter:81.4%\r\n[libx264 @ 00000248b6ca3580] coded y,uvDC,uvAC intra: 68.5% 76.2% 24.1% inter: 21.9% 28.0% 0.7%\r\n[libx264 @ 00000248b6ca3580] i16 v,h,dc,p: 27% 19%  8% 46%\r\n[libx264 @ 00000248b6ca3580] i8 v,h,dc,ddl,ddr,vr,hd,vl,hu: 26% 18% 14%  6%  6%  8%  5% 12%  7%\r\n[libx264 @ 00000248b6ca3580] i4 v,h,dc,ddl,ddr,vr,hd,vl,hu: 21% 24% 14%  9%  5%  5%  5% 11%  6%\r\n[libx264 @ 00000248b6ca3580] i8c dc,h,v,p: 40% 20% 27% 14%\r\n[libx264 @ 00000248b6ca3580] Weighted P-Frames: Y:0.0% UV:0.0%\r\n[libx264 @ 00000248b6ca3580] ref P L0: 50.9% 15.0% 19.7% 14.4%\r\n[libx264 @ 00000248b6ca3580] ref B L0: 85.8% 10.5%  3.7%\r\n[libx264 @ 00000248b6ca3580] ref B L1: 97.0%  3.0%\r\n[libx264 @ 00000248b6ca3580] kb/s:4991.14\r\n[aac @ 00000248b6ccc440] Qavg: 1.256  Tr: 2.3%  TNS(L): 0.9%  TNS(S): 40.0%  M/S: 53.4%  I/S: 0.5%  PNS: 0.0%\r\n",
+      "error": null
+    },
+    {
+      "executable": "C:\\ffmpeg\\ffmpeg-8.0-essentials_build\\bin\\ffprobe.exe",
+      "args": [
+        "-v",
+        "error",
+        "-show_entries",
+        "format=duration",
+        "-of",
+        "json",
+        "D:\\claude-upgrade-26\\nabbit\\.tools\\v37-online-6106a03b-2bd6-44e8-8b79-f343dda6c4a8\\sample.mp4"
+      ],
+      "exitCode": 0,
+      "signal": null,
+      "elapsedMs": 544,
+      "stdout": "{\r\n    \"format\": {\r\n        \"duration\": \"5.000000\"\r\n    }\r\n}\r\n",
+      "stderr": "",
+      "error": null
+    }
+  ],
+  "binaries": [
+    {
+      "name": "yt-dlp",
+      "sha256": "622ed48023cac1daa52a3bf3a6ac38f03514de214b5f0fa069389fd0f6d17e5c"
+    },
+    {
+      "name": "deno",
+      "sha256": "924397800533d3eb0ed0c889b20ad70e18b970d93acd8135bc043f425e528266"
+    },
+    {
+      "name": "ffmpeg",
+      "sha256": "69dc91b4e7868d0595b09b64932b42d8a0c809928ad913523ae6963150fc1136"
+    }
+  ],
+  "noConfig": true,
+  "noCookies": true,
+  "noBrowserProfile": true,
+  "optionalNeverGate": true
+}

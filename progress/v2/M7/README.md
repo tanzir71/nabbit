@@ -86,3 +86,43 @@ node scripts/verify-download-errors.mjs v36-local-errors
 node scripts/verify-download-sheets.mjs v36-local-sheets
 node scripts/verify-nab-views.mjs v36-local-nab M7
 ```
+
+
+## V3.7 — Downloader acceptance and real landing captures
+
+`v37-acceptance.json` is the task receipt. Nine native cases use the unsigned release executable with its packaged custom protocol, real SQLite/Tauri IPC, actual tray and playlist windows, and the v0.1 fake runner. Injected clipboard text enters the production consumer; synthetic DataTransfer drops enter the tray DOM; a second owned executable forwards a valid URI through the real single-instance/deep-link plugin. Malformed, non-web and JavaScript targets are rejected. Passive paths do not enqueue. Ctrl+Alt+D is the explicit remembered-preset download action established by §7.1 and the V3.3 decision.
+
+The native flow saves a custom per-site preset, restarts the process, checks hotkey resolution, exercises rapid pause/resume/cancel/retry, selects playlist videos 1–5 in the real native sheet, retries only the failed third item without changing the other four rows/files, and verifies history after another restart. Job generations now guard old worker updates and cleanup. The native test exposed a synchronous sheet-constructor deadlock; creation now runs from an async command on a blocking worker, matching the [Tauri 2.12.7 Windows constructor guidance](https://docs.rs/tauri/2.12.7/tauri/webview/struct.WebviewWindowBuilder.html).
+
+The extended PowerShell smoke passes fourteen checks, including retention, exclusions, sensitive input, deduplication, progress/speed/ETA, concurrency, cancel/retry, persistence and deep-link review without enqueue. It waits for the owned command consumer after restart rather than treating an old DB as readiness. The short progress predicate observes every field in one SQLite snapshot. The injected mode leaves the system clipboard and global keys untouched. The five-second legacy idle sample is not a new V0/V2.7 performance measurement.
+
+`npm run verify` passes 175 tests; final lint passes after capture-tool changes. Rust fmt, default/spike all-target Clippy with warnings denied and 152 serial tests pass (two existing opt-in tests ignored). The pinned yt-dlp executable also accepts eight combined help-only option mappings with no URL, cookies or profile. Existing exact-argument tests cover every §7.3 row; all nine ErrorKinds and three engine-version fixtures/MissingJsRuntime are exercised by the fresh unit suites.
+
+The optional public sample run succeeds with the pinned engines: ffprobe reports **5.0 seconds** for the requested five-second trim; `yt-dlp -F` lists **47 formats without Deno and 48 with Deno** in this run. `v37-online.json` retains exact arguments, process output and binary hashes. This is CLI media evidence, separate from the native fake-runner integration. No real browser profile or sign-in was used.
+
+The landing downloads section now uses actual owned-release WebView2 captures: **920×1360 tray** and **864×280 Peek**, including the full Peek and its transparent margin. Both repeat exactly and have independently checked PNG headers. `docs/assets/download-capture.json` binds them to the executable and source reports; `generate-download-visual.py --check` proves decoded RGBA equality with the lossless WebPs. There is no raster resizing, redrawing or retouching. CSS follows Figma **27:499** (596×560 desktop stage, 0.78 tray) and **31:1036** (328px mobile Peek, 0.82 scale), within the existing site's gutters. The visible caption identifies fixture data. The original illustration and SVG bytes remain archived and hash-checked.
+
+Eight landing contexts verify light/dark at 1×/1.5×, actual custom fonts, source-image bytes and geometry, keyboard disclosures and bookmarklet success/failure. Twenty-four axe scans retain all default rules; every incomplete has the existing explicit contrast proof, with no added exception. The mobile capture caption reserves 28px and has an opaque token background. Rendering the unchanged HEAD independently proves its real M5 hero was already 1003px and desktop page 7139px; only the verifier's old M3 assertion was stale. Desktop section geometry remains unchanged. The social preview was regenerated to refresh CSS provenance; its pixels remain the established design-preview card.
+
+The independent audit covers **106 final PNGs**: two native captures, sixteen Nab regressions, eighty lossless landing tiles from eight repeat-identical full sources, and eight keyboard-focus receipts. Native/Nab repeats and full-source equality are strict; focus receipts separately prove keyboard state. All **107 retained PNGs** decode and match their actual dimensions/hashes below **300,000 bytes** (largest **277,700**). The earlier tray file labelled @2x was actually 1x; its report is explicitly superseded, not accepted or silently rewritten. Initial island JS remains **90,605/120,000 gzip bytes**, and the site uses **457,328/500,000 bytes excluding fonts**.
+
+`v37-earlier-attempts.json` preserves failed/superseded diagnostics, including constructor deadlock, startup/cursor/exposure setup, font-node selection, DPR handling, stale OG/geometry checks and PowerShell evidence serialization. The final native, landing and smoke reports are authoritative. Installed shell association is not exercised because installation is off for v2; bundle registration and owned-executable plugin forwarding are covered. No hosted Tack, OS display change, installer/signing, real profile, global keypress, new performance claim, PR or push is part of this pass. M7 publication remains separate.
+
+Automated reproduction (use fresh prefixes and evidence paths):
+
+```powershell
+npm run verify
+cargo fmt --manifest-path src-tauri/Cargo.toml --check
+cargo clippy --manifest-path src-tauri/Cargo.toml --all-targets -- -D warnings
+cargo clippy --manifest-path src-tauri/Cargo.toml --all-targets --features island-spike -- -D warnings
+cargo test --manifest-path src-tauri/Cargo.toml -- --test-threads=1
+cargo build --manifest-path src-tauri/Cargo.toml --release --features custom-protocol
+node scripts/verify-download-acceptance.mjs src-tauri/target/release/nabbit.exe v37-local-native
+node scripts/capture-download-peek.mjs v37-local-peek
+scripts/windows-acceptance-smoke.ps1 -InjectedClipboard -EvidencePath .tools/v37-local-smoke.json
+python scripts/generate-download-visual.py --check
+npm run verify:site
+node scripts/verify-landing.mjs --prefix v37-local-landing --milestone M7
+python scripts/split-landing-captures.py --prefix v37-local-landing --milestone M7
+node scripts/verify-site-accessibility.mjs --prefix v37-local-site --milestone M7
+```

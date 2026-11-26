@@ -1,0 +1,286 @@
+{
+  "error": "AssertionError [ERR_ASSERTION]: Expected values to be strictly deep-equal:\n+ actual - expected\n\n  {\n+   height: 277,\n+   width: 680,\n+   x: 20,\n-   height: 100,\n-   width: 400,\n-   x: 160,\n    y: 6\n  }\n\n    at file:///D:/claude-upgrade-26/nabbit/scripts/capture-download-peek.mjs:159:10",
+  "trial": "D:\\claude-upgrade-26\\nabbit\\.tools\\v37-peek-0ce168ee-c8ca-441f-8b0a-23cd2edcb13a",
+  "pages": [
+    {
+      "url": "http://tauri.localhost/",
+      "state": {
+        "metadata": {
+          "currentWindow": {
+            "label": "main"
+          },
+          "currentWebview": {
+            "label": "main"
+          }
+        },
+        "ready": "complete",
+        "title": "Nabbit",
+        "body": "\n    NabbitIsland onNabNotesClipboardShelfPasteTiny tray app in Rust, full walkthroughFerris Builds · 12:48 · about 420 MBMP41080pMP4720pMP3320CustomTrimSubtitlesDownloadQueue0Clear finishedYour queue is empty.Engine readyPrivate by defaultOne quick acknowledgement before Nabbit starts watching.Clipboard history is stored locally. Nabbit does not send clipboard contents or analytics anywhere.Downloads require your click. Use Nabbit only for content you have the right to download and do not use it to bypass DRM or protected services.Acknowledge\n  \n\n"
+      }
+    },
+    {
+      "url": "http://tauri.localhost/island.html",
+      "state": {
+        "metadata": {
+          "currentWindow": {
+            "label": "island"
+          },
+          "currentWebview": {
+            "label": "island"
+          }
+        },
+        "ready": "complete",
+        "title": "Nabbit · Island",
+        "body": "\n    Nab12:48Tiny tray app in Rust, full walkthroughFerris Builds · youtube.com · about 420 MBMP41080pMP4720pMP3320M4ACustomTrim · fullSubtitles offMoreSaves to Downloads\\NabbitNab itEnterYour queue is empty.\n  \n\n"
+      }
+    }
+  ],
+  "targets": [
+    {
+      "description": "",
+      "devtoolsFrontendUrl": "https://aka.ms/docs-landing-page/serve_rev/@56b8f691820060b6e15f702165117f203442943f/inspector.html?ws=127.0.0.1:61371/devtools/page/1052A831BA62EADD26F508613EADCBA6",
+      "faviconUrl": "http://tauri.localhost/assets/app-32-isMvsoQz.svg",
+      "id": "1052A831BA62EADD26F508613EADCBA6",
+      "title": "Nabbit · Island",
+      "type": "page",
+      "url": "http://tauri.localhost/island.html",
+      "webSocketDebuggerUrl": "ws://127.0.0.1:61371/devtools/page/1052A831BA62EADD26F508613EADCBA6"
+    },
+    {
+      "description": "",
+      "devtoolsFrontendUrl": "https://aka.ms/docs-landing-page/serve_rev/@56b8f691820060b6e15f702165117f203442943f/inspector.html?ws=127.0.0.1:61371/devtools/page/02D628890A3633B9A53DA15A3F3044A7",
+      "faviconUrl": "http://tauri.localhost/assets/app-32-isMvsoQz.svg",
+      "id": "02D628890A3633B9A53DA15A3F3044A7",
+      "title": "Nabbit",
+      "type": "page",
+      "url": "http://tauri.localhost/",
+      "webSocketDebuggerUrl": "ws://127.0.0.1:61371/devtools/page/02D628890A3633B9A53DA15A3F3044A7"
+    }
+  ],
+  "snapshot": {
+    "error": null,
+    "id": "a4c9d140-ee17-4da5-9d0b-a8ebf2b3953a",
+    "result": null,
+    "snapshot": {
+      "activity": {
+        "preferences": {
+          "disabled": [],
+          "focusMode": false,
+          "hiddenUntilMs": null,
+          "order": [
+            "privacy",
+            "timerEnding",
+            "download",
+            "tool",
+            "link",
+            "result",
+            "media",
+            "timer",
+            "power"
+          ],
+          "showAlertsOverFullscreen": false
+        },
+        "revision": 4,
+        "syncState": "localOnly",
+        "views": [
+          {
+            "bubble": {
+              "alert": false,
+              "bubbleOnly": true,
+              "category": "link",
+              "event": {
+                "duration": 768,
+                "kind": "linkDetected",
+                "site": "www.youtube.com",
+                "title": "Tiny tray app in Rust, full walkthrough",
+                "url": "https://www.youtube.com/watch?v=fixture"
+              },
+              "id": "link"
+            },
+            "focusMode": false,
+            "fullscreen": false,
+            "gate": "visible",
+            "label": "island",
+            "primary": null,
+            "queue": [],
+            "userHidden": false
+          }
+        ]
+      },
+      "activityScheduler": {
+        "nextDeadlineMs": null,
+        "wakeups": 3
+      },
+      "desktop": {
+        "cursor": {
+          "x": 960,
+          "y": 20
+        },
+        "monitors": [
+          {
+            "bounds": {
+              "height": 1080,
+              "width": 1920,
+              "x": 0,
+              "y": 0
+            },
+            "id": "primary",
+            "name": "Fixture primary",
+            "primary": true,
+            "scaleFactor": 1,
+            "workArea": {
+              "height": 1032,
+              "width": 1920,
+              "x": 0,
+              "y": 0
+            }
+          }
+        ],
+        "topTaskbar": null
+      },
+      "foreground": {
+        "cloaked": false,
+        "desktop": false,
+        "maximised": false,
+        "minimised": false,
+        "monitor": null,
+        "notificationState": null,
+        "ownProcess": false,
+        "rect": null,
+        "visible": false,
+        "windowId": 0
+      },
+      "hosts": [
+        {
+          "commits": 5,
+          "hwnd": 32446190,
+          "placement": {
+            "bounds": {
+              "height": 460,
+              "width": 720,
+              "x": 600,
+              "y": 0
+            },
+            "dpiScale": 1,
+            "label": "island",
+            "monitorId": "primary",
+            "renderScale": 1,
+            "shape": "island",
+            "sizeScale": 1
+          },
+          "warp": false
+        }
+      ],
+      "input": [
+        {
+          "decision": {
+            "dragging": false,
+            "hidden": false,
+            "interactive": true,
+            "pollMs": 25
+          },
+          "hitrect": {
+            "h": 291,
+            "w": 696,
+            "x": 12,
+            "y": 0
+          },
+          "interactive": true,
+          "label": "island",
+          "revision": 18,
+          "source": "web"
+        }
+      ],
+      "inputWatcher": {
+        "cursorSamples": 777,
+        "fixtureReadRetries": 0,
+        "foregroundEvents": 5,
+        "hookInstalled": true,
+        "ownForegroundEvents": 0,
+        "systemSamples": 54
+      },
+      "keyboard": {
+        "acquired": 1,
+        "cancelled": 0,
+        "denied": 0,
+        "injectedFocus": true,
+        "lease": {
+          "active": true,
+          "label": "island",
+          "previous": {
+            "hwnd": 9001,
+            "process": 9001
+          },
+          "request_id": 1,
+          "window": {
+            "hwnd": 17570906,
+            "process": 13160
+          }
+        },
+        "lost": 0,
+        "request": {
+          "hint": {
+            "id": 1,
+            "target": "tab"
+          },
+          "label": "island",
+          "origin": {
+            "hwnd": 9001,
+            "process": 9001
+          },
+          "previous": {
+            "hwnd": 9001,
+            "process": 9001
+          }
+        },
+        "requests": 1,
+        "restoreAttempts": 0,
+        "restored": 0,
+        "shortcutError": null
+      },
+      "lastError": null,
+      "preferences": {
+        "enabled": true,
+        "monitorId": null,
+        "monitorMode": "followMouse",
+        "shape": "island",
+        "size": "standard"
+      },
+      "reconciliations": 4,
+      "renderer": "native",
+      "supported": true,
+      "surfaces": {
+        "island": {
+          "beforeDrag": null,
+          "closeAt": null,
+          "focusTab": null,
+          "generation": 4,
+          "hoverAt": null,
+          "opening": false,
+          "pending": null,
+          "state": "expanded",
+          "webAllocated": true,
+          "webHwnd": 17570906,
+          "webOwner": true
+        }
+      },
+      "visibility": [
+        {
+          "base": "visible",
+          "label": "island",
+          "mode": "visible",
+          "opacity": 1,
+          "reason": "none",
+          "revision": 1
+        }
+      ],
+      "webviews": 2,
+      "windowOrder": [
+        {
+          "label": "island",
+          "webAboveNative": true
+        }
+      ]
+    }
+  }
+}

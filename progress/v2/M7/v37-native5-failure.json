@@ -1,0 +1,430 @@
+{
+  "error": "page.evaluate: Target page, context or browser has been closed\n    at invoke (D:\\claude-upgrade-26\\nabbit\\scripts\\verify-download-acceptance.mjs:279:15)\n    at D:\\claude-upgrade-26\\nabbit\\scripts\\verify-download-acceptance.mjs:391:9",
+  "trial": "D:\\claude-upgrade-26\\nabbit\\.tools\\v37-native5-5adde998-5954-4cb0-bb9e-25c8a74b686e",
+  "checks": [
+    {
+      "name": "isolated native process ready",
+      "state": {
+        "captured": null,
+        "engine": {
+          "busy": false,
+          "channel": "stable",
+          "checkedAt": null,
+          "denoPath": null,
+          "denoVersion": null,
+          "extraction": {
+            "checkedAt": null,
+            "detail": null,
+            "result": ""
+          },
+          "failure": null,
+          "ffmpegPath": null,
+          "ffmpegVersion": null,
+          "lastUpdateCheck": null,
+          "missing": [],
+          "updateError": null,
+          "updatedAt": null,
+          "ytdlpPath": null,
+          "ytdlpVersion": null
+        },
+        "jobs": [],
+        "queue": {
+          "activeWorkers": 0,
+          "attempts": {},
+          "browserJobIds": [],
+          "epochs": {},
+          "queuedIds": []
+        },
+        "windows": [
+          "main"
+        ]
+      }
+    },
+    {
+      "name": "clipboard producer stages without enqueue",
+      "state": {
+        "captured": {
+          "channel": "Ferris Builds",
+          "details": {
+            "chapters": [],
+            "entries": [],
+            "thumbnails": [],
+            "truncated": false
+          },
+          "duration": 768,
+          "extractor": "acceptance",
+          "isPlaylist": false,
+          "livePending": false,
+          "normalizedUrl": "https://www.youtube.com/watch?v=fixture",
+          "playlistCount": null,
+          "qualities": [
+            {
+              "estimatedBytes": 420000000,
+              "height": 1080
+            },
+            {
+              "estimatedBytes": 210000000,
+              "height": 720
+            }
+          ],
+          "thumbnail": null,
+          "title": "Tiny tray app in Rust, full walkthrough",
+          "url": "https://www.youtube.com/watch?v=fixture"
+        },
+        "engine": {
+          "busy": false,
+          "channel": "stable",
+          "checkedAt": null,
+          "denoPath": null,
+          "denoVersion": null,
+          "extraction": {
+            "checkedAt": null,
+            "detail": null,
+            "result": ""
+          },
+          "failure": null,
+          "ffmpegPath": null,
+          "ffmpegVersion": null,
+          "lastUpdateCheck": null,
+          "missing": [],
+          "updateError": null,
+          "updatedAt": null,
+          "ytdlpPath": null,
+          "ytdlpVersion": null
+        },
+        "jobs": [],
+        "queue": {
+          "activeWorkers": 0,
+          "attempts": {},
+          "browserJobIds": [],
+          "epochs": {},
+          "queuedIds": []
+        },
+        "windows": [
+          "main"
+        ]
+      }
+    },
+    {
+      "name": "synthetic drop uses native capture without enqueue",
+      "state": {
+        "captured": {
+          "channel": null,
+          "details": null,
+          "duration": null,
+          "extractor": "acceptance",
+          "isPlaylist": false,
+          "livePending": null,
+          "normalizedUrl": "https://example.invalid/nabbit/drop",
+          "playlistCount": null,
+          "qualities": [],
+          "thumbnail": null,
+          "title": "Acceptance download https://example.invalid/nabbit/drop",
+          "url": "https://example.invalid/nabbit/drop"
+        },
+        "engine": {
+          "busy": false,
+          "channel": "stable",
+          "checkedAt": null,
+          "denoPath": null,
+          "denoVersion": null,
+          "extraction": {
+            "checkedAt": null,
+            "detail": null,
+            "result": ""
+          },
+          "failure": null,
+          "ffmpegPath": null,
+          "ffmpegVersion": null,
+          "lastUpdateCheck": null,
+          "missing": [],
+          "updateError": null,
+          "updatedAt": null,
+          "ytdlpPath": null,
+          "ytdlpVersion": null
+        },
+        "jobs": [],
+        "queue": {
+          "activeWorkers": 0,
+          "attempts": {},
+          "browserJobIds": [],
+          "epochs": {},
+          "queuedIds": []
+        },
+        "windows": [
+          "main"
+        ]
+      }
+    },
+    {
+      "name": "valid forwarded deep link opens review without enqueue",
+      "state": {
+        "captured": {
+          "channel": null,
+          "details": null,
+          "duration": null,
+          "extractor": "acceptance",
+          "isPlaylist": false,
+          "livePending": null,
+          "normalizedUrl": "https://example.invalid/nabbit/forwarded",
+          "playlistCount": null,
+          "qualities": [],
+          "thumbnail": null,
+          "title": "Acceptance download https://example.invalid/nabbit/forwarded",
+          "url": "https://example.invalid/nabbit/forwarded"
+        },
+        "engine": {
+          "busy": false,
+          "channel": "stable",
+          "checkedAt": null,
+          "denoPath": null,
+          "denoVersion": null,
+          "extraction": {
+            "checkedAt": null,
+            "detail": null,
+            "result": ""
+          },
+          "failure": null,
+          "ffmpegPath": null,
+          "ffmpegVersion": null,
+          "lastUpdateCheck": null,
+          "missing": [],
+          "updateError": null,
+          "updatedAt": null,
+          "ytdlpPath": null,
+          "ytdlpVersion": null
+        },
+        "jobs": [],
+        "queue": {
+          "activeWorkers": 0,
+          "attempts": {},
+          "browserJobIds": [],
+          "epochs": {},
+          "queuedIds": []
+        },
+        "windows": [
+          "main"
+        ]
+      }
+    },
+    {
+      "name": "remembered site preset survives restart and explicit hotkey enqueues it",
+      "state": {
+        "captured": {
+          "channel": null,
+          "details": null,
+          "duration": null,
+          "extractor": "acceptance",
+          "isPlaylist": false,
+          "livePending": null,
+          "normalizedUrl": "https://example.invalid/nabbit/forwarded",
+          "playlistCount": null,
+          "qualities": [],
+          "thumbnail": null,
+          "title": "Acceptance download https://example.invalid/nabbit/forwarded",
+          "url": "https://example.invalid/nabbit/forwarded"
+        },
+        "engine": {
+          "busy": false,
+          "channel": "stable",
+          "checkedAt": null,
+          "denoPath": null,
+          "denoVersion": null,
+          "extraction": {
+            "checkedAt": null,
+            "detail": null,
+            "result": ""
+          },
+          "failure": null,
+          "ffmpegPath": null,
+          "ffmpegVersion": null,
+          "lastUpdateCheck": null,
+          "missing": [],
+          "updateError": null,
+          "updatedAt": null,
+          "ytdlpPath": null,
+          "ytdlpVersion": null
+        },
+        "jobs": [
+          {
+            "createdAt": "2026-11-26T18:27:24.759328600Z",
+            "error": null,
+            "eta": null,
+            "failure": null,
+            "id": "89147ac2-7547-4328-8ea3-846af272e7d6",
+            "options": {
+              "chapters": "off",
+              "embedMetadata": true,
+              "embedThumbnail": false,
+              "filenameTemplate": "%(title)s [%(id)s].%(ext)s",
+              "format": "m4a",
+              "height": null,
+              "outputDir": "D:\\claude-upgrade-26\\nabbit\\.tools\\v37-native5-5adde998-5954-4cb0-bb9e-25c8a74b686e\\downloads",
+              "playlistItems": null,
+              "playlistMode": "video",
+              "preciseCuts": false,
+              "sections": [],
+              "speedLimit": "2M",
+              "sponsorBlock": "off",
+              "subtitles": null,
+              "waitForVideo": false
+            },
+            "outputPath": "D:\\claude-upgrade-26\\nabbit\\.tools\\v37-native5-5adde998-5954-4cb0-bb9e-25c8a74b686e\\downloads\\nabbit-acceptance-89147ac2-7547-4328-8ea3-846af272e7d6.m4a",
+            "playlistMode": "video",
+            "playlistRange": null,
+            "progress": 100,
+            "quality": "audio_m4a",
+            "speed": "1.0MiB/s",
+            "status": "completed",
+            "thumbnail": null,
+            "title": "Tiny tray app in Rust, full walkthrough",
+            "updatedAt": "2026-11-26T18:27:28.123060400Z",
+            "url": "https://www.youtube.com/watch?v=fixture"
+          }
+        ],
+        "queue": {
+          "activeWorkers": 0,
+          "attempts": {
+            "89147ac2-7547-4328-8ea3-846af272e7d6": 1
+          },
+          "browserJobIds": [],
+          "epochs": {},
+          "queuedIds": []
+        },
+        "windows": [
+          "main"
+        ]
+      }
+    },
+    {
+      "name": "rapid pause/resume/cancel/retry isolates old workers",
+      "state": {
+        "captured": {
+          "channel": null,
+          "details": null,
+          "duration": null,
+          "extractor": "acceptance",
+          "isPlaylist": false,
+          "livePending": null,
+          "normalizedUrl": "https://example.invalid/nabbit/forwarded",
+          "playlistCount": null,
+          "qualities": [],
+          "thumbnail": null,
+          "title": "Acceptance download https://example.invalid/nabbit/forwarded",
+          "url": "https://example.invalid/nabbit/forwarded"
+        },
+        "engine": {
+          "busy": false,
+          "channel": "stable",
+          "checkedAt": null,
+          "denoPath": null,
+          "denoVersion": null,
+          "extraction": {
+            "checkedAt": null,
+            "detail": null,
+            "result": ""
+          },
+          "failure": null,
+          "ffmpegPath": null,
+          "ffmpegVersion": null,
+          "lastUpdateCheck": null,
+          "missing": [],
+          "updateError": null,
+          "updatedAt": null,
+          "ytdlpPath": null,
+          "ytdlpVersion": null
+        },
+        "jobs": [
+          {
+            "createdAt": "2026-11-26T18:27:29.322961Z",
+            "error": null,
+            "eta": null,
+            "failure": null,
+            "id": "e1c81c89-c272-4dc0-ae69-ea51867dd05e",
+            "options": {
+              "chapters": "off",
+              "embedMetadata": false,
+              "embedThumbnail": false,
+              "filenameTemplate": "%(title)s [%(id)s].%(ext)s",
+              "format": "mp4",
+              "height": 1080,
+              "outputDir": "D:\\claude-upgrade-26\\nabbit\\.tools\\v37-native5-5adde998-5954-4cb0-bb9e-25c8a74b686e\\downloads",
+              "playlistItems": null,
+              "playlistMode": "video",
+              "preciseCuts": false,
+              "sections": [],
+              "speedLimit": null,
+              "sponsorBlock": "off",
+              "subtitles": null,
+              "waitForVideo": false
+            },
+            "outputPath": "D:\\claude-upgrade-26\\nabbit\\.tools\\v37-native5-5adde998-5954-4cb0-bb9e-25c8a74b686e\\downloads\\nabbit-acceptance-e1c81c89-c272-4dc0-ae69-ea51867dd05e.mp4",
+            "playlistMode": "video",
+            "playlistRange": null,
+            "progress": 100,
+            "quality": "1080p",
+            "speed": "1.0MiB/s",
+            "status": "completed",
+            "thumbnail": null,
+            "title": "Acceptance download https://example.invalid/nabbit/race",
+            "updatedAt": "2026-11-26T18:27:33.986605900Z",
+            "url": "https://example.invalid/nabbit/race"
+          },
+          {
+            "createdAt": "2026-11-26T18:27:24.759328600Z",
+            "error": null,
+            "eta": null,
+            "failure": null,
+            "id": "89147ac2-7547-4328-8ea3-846af272e7d6",
+            "options": {
+              "chapters": "off",
+              "embedMetadata": true,
+              "embedThumbnail": false,
+              "filenameTemplate": "%(title)s [%(id)s].%(ext)s",
+              "format": "m4a",
+              "height": null,
+              "outputDir": "D:\\claude-upgrade-26\\nabbit\\.tools\\v37-native5-5adde998-5954-4cb0-bb9e-25c8a74b686e\\downloads",
+              "playlistItems": null,
+              "playlistMode": "video",
+              "preciseCuts": false,
+              "sections": [],
+              "speedLimit": "2M",
+              "sponsorBlock": "off",
+              "subtitles": null,
+              "waitForVideo": false
+            },
+            "outputPath": "D:\\claude-upgrade-26\\nabbit\\.tools\\v37-native5-5adde998-5954-4cb0-bb9e-25c8a74b686e\\downloads\\nabbit-acceptance-89147ac2-7547-4328-8ea3-846af272e7d6.m4a",
+            "playlistMode": "video",
+            "playlistRange": null,
+            "progress": 100,
+            "quality": "audio_m4a",
+            "speed": "1.0MiB/s",
+            "status": "completed",
+            "thumbnail": null,
+            "title": "Tiny tray app in Rust, full walkthrough",
+            "updatedAt": "2026-11-26T18:27:28.123060400Z",
+            "url": "https://www.youtube.com/watch?v=fixture"
+          }
+        ],
+        "queue": {
+          "activeWorkers": 0,
+          "attempts": {
+            "89147ac2-7547-4328-8ea3-846af272e7d6": 1,
+            "e1c81c89-c272-4dc0-ae69-ea51867dd05e": 3
+          },
+          "browserJobIds": [],
+          "epochs": {
+            "e1c81c89-c272-4dc0-ae69-ea51867dd05e": 4
+          },
+          "queuedIds": []
+        },
+        "windows": [
+          "main"
+        ]
+      }
+    }
+  ],
+  "events": [],
+  "screenshots": [],
+  "pages": []
+}

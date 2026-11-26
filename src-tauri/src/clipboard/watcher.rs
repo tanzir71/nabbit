@@ -121,13 +121,30 @@ fn handle_clipboard_text(
     text: &str,
     last_url_emit: &mut Option<(String, Instant)>,
 ) {
+    injected_event(
+        app,
+        db,
+        text,
+        current_source_app(),
+        should_skip_os_protected_clipboard(),
+        last_url_emit,
+    );
+}
+pub(crate) fn injected_event(
+    app: &AppHandle,
+    db: &Database,
+    text: &str,
+    source: Option<String>,
+    os_protected: bool,
+    last_url_emit: &mut Option<(String, Instant)>,
+) {
     if let Some(state) = app.try_state::<crate::AppState>() {
         state.capture.invalidate();
     }
-    if should_skip_os_protected_clipboard() {
+    if os_protected {
         return;
     }
-    match ingest(db, text, current_source_app()) {
+    match ingest(db, text, source) {
         Ok(Some((entry, url))) => {
             let _ = app.emit("clipboard:new", &entry);
             if let Some(url) = url {

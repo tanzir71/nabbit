@@ -1,0 +1,100 @@
+{
+  "commit": "20504fe328bd245c066c458a350c7ab2671d726b",
+  "files": [
+    {
+      "file": "docs/index.html",
+      "sha256Lf": "3c2674adcb175a95bb1f1af0c70dd51ffd7b57ea00b922367623fe2a6720c0c4"
+    },
+    {
+      "file": "docs/assets/site.css",
+      "sha256Lf": "44b0b6842a759d269ff3a5fe12654c2df8ed4995a2421e2779d7c83652287145"
+    }
+  ],
+  "contexts": [
+    {
+      "width": 1440,
+      "height": 7139,
+      "sections": [
+        {
+          "name": "hero",
+          "h": 1003
+        },
+        {
+          "name": "section activities",
+          "h": 600
+        },
+        {
+          "name": "feature feature-downloads",
+          "h": 728
+        },
+        {
+          "name": "feature feature-notes",
+          "h": 728
+        },
+        {
+          "name": "feature feature-files",
+          "h": 728
+        },
+        {
+          "name": "section tools",
+          "h": 620
+        },
+        {
+          "name": "section modes",
+          "h": 648
+        },
+        {
+          "name": "privacy",
+          "h": 516
+        },
+        {
+          "name": "progress",
+          "h": 990
+        }
+      ]
+    },
+    {
+      "width": 390,
+      "height": 3762,
+      "sections": [
+        {
+          "name": "hero",
+          "h": 736
+        },
+        {
+          "name": "section activities",
+          "h": 0
+        },
+        {
+          "name": "feature feature-downloads",
+          "h": 467.953125
+        },
+        {
+          "name": "feature feature-notes",
+          "h": 496
+        },
+        {
+          "name": "feature feature-files",
+          "h": 454.15625
+        },
+        {
+          "name": "section tools",
+          "h": 551
+        },
+        {
+          "name": "section modes",
+          "h": 0
+        },
+        {
+          "name": "privacy",
+          "h": 390
+        },
+        {
+          "name": "progress",
+          "h": 457
+        }
+      ]
+    }
+  ],
+  "explanation": "The old landing verifier retained M3's 977px hero/7113px page. Rendering the unchanged HEAD proves the M5 real hero is already 1003px and page 7139px. Desktop downloads remains 728px; mobile gains the explicit 28px fixture-data caption."
+}

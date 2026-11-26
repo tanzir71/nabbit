@@ -1,6 +1,8 @@
 param(
   [string]$Exe = ".\src-tauri\target\release\nabbit.exe",
-  [string]$TestUrl = "https://www.youtube.com/watch?v=e6rhUvwB5Y8"
+  [string]$TestUrl = "https://www.youtube.com/watch?v=e6rhUvwB5Y8",
+  [switch]$InjectedClipboard,
+  [string]$EvidencePath
 )
 
 $ErrorActionPreference = "Stop"
@@ -10,6 +12,8 @@ $OriginalAppDataOverride = $env:NABBIT_APP_DATA_DIR
 $OriginalAcceptanceCommandDir = $env:NABBIT_ACCEPTANCE_COMMAND_DIR
 $OriginalFakeDownload = $env:NABBIT_ACCEPTANCE_FAKE_DOWNLOAD
 $OriginalFakeDownloadDelay = $env:NABBIT_ACCEPTANCE_FAKE_DOWNLOAD_DELAY_MS
+$AdditionalEnvironment=@{}
+foreach($name in @('NABBIT_DOWNLOAD_ACCEPTANCE','NABBIT_ACCEPTANCE_CLIPBOARD_PROVIDER','WEBVIEW2_USER_DATA_FOLDER')) {$AdditionalEnvironment[$name]=[Environment]::GetEnvironmentVariable($name,'Process')}
 $SmokeAppDataRoot = Join-Path ([System.IO.Path]::GetTempPath()) ("nabbit-smoke-" + [guid]::NewGuid().ToString())
 $SmokeAppDataDir = Join-Path $SmokeAppDataRoot "app-data"
 $CommandDir = Join-Path $SmokeAppDataRoot "commands"
@@ -21,6 +25,9 @@ $env:NABBIT_APP_DATA_DIR = $SmokeAppDataDir
 $env:NABBIT_ACCEPTANCE_COMMAND_DIR = $CommandDir
 $env:NABBIT_ACCEPTANCE_FAKE_DOWNLOAD = "1"
 $env:NABBIT_ACCEPTANCE_FAKE_DOWNLOAD_DELAY_MS = "350"
+$env:NABBIT_DOWNLOAD_ACCEPTANCE='1'
+$env:WEBVIEW2_USER_DATA_FOLDER=Join-Path $SmokeAppDataRoot 'webview'
+if($InjectedClipboard){$env:NABBIT_ACCEPTANCE_CLIPBOARD_PROVIDER='1'}else{Remove-Item Env:\NABBIT_ACCEPTANCE_CLIPBOARD_PROVIDER -ErrorAction SilentlyContinue}
 $DbPath = Join-Path $SmokeAppDataDir "nabbit.sqlite3"
 $Results = New-Object System.Collections.Generic.List[object]
 $StartedProcess = $null
@@ -191,10 +198,12 @@ function Add-Result([string]$Name, [string]$Evidence) {
 function Start-Nabbit() {
   $script:StartedProcess = Start-Process -FilePath $ExePath -WindowStyle Hidden -PassThru
   Wait-For "app database" { Test-Path -LiteralPath $DbPath } 10000 | Out-Null
-  Start-Sleep -Seconds 2
   if (-not (Get-Process -Id $script:StartedProcess.Id -ErrorAction SilentlyContinue)) {
     throw "Nabbit exited during startup."
   }
+  # An existing DB is not a readiness signal after restart. Wait for the owned
+  # command consumer before applying the unchanged five-second action deadlines.
+  Invoke-AcceptanceCommand 'download-list' 'download-list.done' $null 30000 | Out-Null
 }
 
 function Stop-Nabbit() {
@@ -208,6 +217,18 @@ function Stop-Nabbit() {
 }
 
 function Set-ClipboardText([string]$Value) {
+  if($InjectedClipboard) {
+    $id=[guid]::NewGuid().ToString();$path=Join-Path $CommandDir 'downloads-request.json'
+    [IO.File]::WriteAllText("$path.tmp",(@{id=$id;operation=@{kind='clipboard';text=$Value;sourceApp='Acceptance.exe';protected=$false}}|ConvertTo-Json -Depth 8),[Text.UTF8Encoding]::new($false))
+    Move-Item -LiteralPath "$path.tmp" -Destination $path -Force
+    $script:clipboardResponse=$null
+    Wait-For 'injected clipboard event' {
+      try {$script:clipboardResponse=Get-Content -LiteralPath (Join-Path $CommandDir 'downloads-response.json') -Raw -ErrorAction Stop|ConvertFrom-Json}catch{return $false}
+      $script:clipboardResponse.id -eq $id
+    } 5000 | Out-Null
+    if($script:clipboardResponse.error){throw $script:clipboardResponse.error}
+    return
+  }
   for ($attempt = 1; $attempt -le 10; $attempt++) {
     try {
       Set-Clipboard -Value $Value
@@ -223,7 +244,7 @@ function Set-ClipboardText([string]$Value) {
 
 Assert-Tool python
 if (Get-Process -Name nabbit -ErrorAction SilentlyContinue) {
-  throw "Nabbit is already running. Quit it before running this smoke test."
+  throw "An existing Nabbit process is left untouched."
 }
 
 try {
@@ -315,12 +336,8 @@ try {
   $videoJob = Start-FakeDownload "https://example.invalid/nabbit/video" "1080p"
   $audioJob = Start-FakeDownload "https://example.invalid/nabbit/audio" "audio_mp3"
   $progressElapsed = Wait-For "download progress and concurrency limit" {
-    $videoStatus = Invoke-SqliteScalar "SELECT status FROM downloads WHERE id = ?1" @($videoJob.id)
-    $videoProgress = [double](Invoke-SqliteScalar "SELECT progress FROM downloads WHERE id = ?1" @($videoJob.id))
-    $videoSpeed = Invoke-SqliteScalar "SELECT speed FROM downloads WHERE id = ?1" @($videoJob.id)
-    $videoEta = Invoke-SqliteScalar "SELECT eta FROM downloads WHERE id = ?1" @($videoJob.id)
-    $audioStatus = Invoke-SqliteScalar "SELECT status FROM downloads WHERE id = ?1" @($audioJob.id)
-    $videoStatus -eq "running" -and $videoProgress -gt 0 -and -not [string]::IsNullOrWhiteSpace($videoSpeed) -and -not [string]::IsNullOrWhiteSpace($videoEta) -and $audioStatus -eq "queued"
+    # Observe one consistent SQLite snapshot while the short fake runner advances.
+    (Invoke-SqliteScalar "SELECT COUNT(*) FROM downloads v JOIN downloads a ON a.id = ?2 WHERE v.id = ?1 AND v.status = 'running' AND v.progress > 0 AND length(trim(coalesce(v.speed, ''))) > 0 AND length(trim(coalesce(v.eta, ''))) > 0 AND a.status = 'queued'" @($videoJob.id, $audioJob.id)) -eq '1'
   } 5000
   $cancelStatus = Invoke-AcceptanceCommand "download-cancel.txt" "download-cancel.done" $videoJob.id 5000
   if ($cancelStatus -ne "ok") {
@@ -367,6 +384,18 @@ try {
   }
   Add-Result "YouTube URL stages without download" "staged in ${stageElapsed}ms; downloads stayed at $downloadsAfter"
 
+  # Installed protocol association is not required: pass the same URI to the owned
+  # executable so the real single-instance/deep-link plugin forwards it to this app.
+  $deepUrl='https://example.invalid/nabbit/deep-link'
+  $deepUri='nabbit://nab?url='+[Uri]::EscapeDataString($deepUrl)
+  $forwarder=Start-Process -FilePath $ExePath -ArgumentList @($deepUri) -WindowStyle Hidden -PassThru
+  $deepElapsed=Wait-For 'forwarded deep-link review' {
+    (Invoke-SqliteScalar "SELECT value FROM settings WHERE key = 'staged_url'") -eq $deepUrl
+  } 10000
+  if((Invoke-SqliteScalar 'SELECT COUNT(*) FROM downloads') -ne $downloadsBefore){throw 'The deep link started a download.'}
+  if($forwarder.Id -eq $StartedProcess.Id){throw 'Deep-link forwarding did not launch the second instance.'}
+  Add-Result 'deep-link review without download' "real second-instance URI forwarding staged review in ${deepElapsed}ms; job count unchanged; installed shell association not modified"
+
   $proc = Get-Process -Id $StartedProcess.Id
   $beforeCpu = $proc.TotalProcessorTime.TotalSeconds
   Start-Sleep -Seconds 5
@@ -377,6 +406,8 @@ try {
   }
   Add-Result "idle watcher CPU" "$cpuDelta CPU seconds over a 5-second idle sample"
 
+  Add-Result 'clipboard provider' $(if($InjectedClipboard){'injected event through the production consumer; no system clipboard or global key input'}else{'native Windows clipboard monitor input'})
+  if($EvidencePath){[IO.File]::WriteAllText([IO.Path]::GetFullPath($EvidencePath),(@{executable=(Get-FileHash -LiteralPath $ExePath -Algorithm SHA256).Hash.ToLowerInvariant();injectedClipboard=[bool]$InjectedClipboard;checks=$Results.ToArray()}|ConvertTo-Json -Depth 10),[Text.UTF8Encoding]::new($false))}
   $Results | Format-Table -AutoSize
 } finally {
   if ($OriginalSettings -ne $null -and (Test-Path -LiteralPath $DbPath)) {
@@ -411,5 +442,9 @@ try {
   } else {
     Remove-Item Env:\NABBIT_ACCEPTANCE_FAKE_DOWNLOAD_DELAY_MS -ErrorAction SilentlyContinue
   }
-  Remove-Item -LiteralPath $SmokeAppDataRoot -Recurse -Force -ErrorAction SilentlyContinue
+  foreach($name in $AdditionalEnvironment.Keys){[Environment]::SetEnvironmentVariable($name,$AdditionalEnvironment[$name],'Process')}
+  $resolvedSmoke=[IO.Path]::GetFullPath($SmokeAppDataRoot)
+  $resolvedTemp=[IO.Path]::GetFullPath([IO.Path]::GetTempPath()).TrimEnd([IO.Path]::DirectorySeparatorChar)+[IO.Path]::DirectorySeparatorChar
+  if(-not $resolvedSmoke.StartsWith($resolvedTemp,[StringComparison]::OrdinalIgnoreCase) -or [IO.Path]::GetFileName($resolvedSmoke) -notlike 'nabbit-smoke-*'){throw 'Refusing cleanup outside the owned smoke directory.'}
+  Remove-Item -LiteralPath $resolvedSmoke -Recurse -Force -ErrorAction SilentlyContinue
 }

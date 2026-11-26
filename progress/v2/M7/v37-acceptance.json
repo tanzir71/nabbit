@@ -1,0 +1,3347 @@
+{
+  "task": "V3.7 Downloads acceptance and real landing capture",
+  "recordedAtUtc": "2026-11-26T19:02:13.118345+00:00",
+  "baseCommit": "20504fe328bd245c066c458a350c7ab2671d726b",
+  "branch": "main",
+  "checks": {
+    "npmVerify": {
+      "command": "npm run verify",
+      "exitCode": 0,
+      "file": "v37-npmVerify.txt",
+      "rawSha256": "4ff802865f1e1fe5b31a5e2eaa51e5f7dfb365f4b8e0d478fe82ae212f74cb7e",
+      "savedSha256": "59d76a018732a77b478913b0560ec5736815c298c0ee62d66ec225132dac7d08"
+    },
+    "lintFinal": {
+      "command": "npm run lint",
+      "exitCode": 0,
+      "file": "v37-lintFinal.txt",
+      "rawSha256": "4fc9b2288bff368c1e29c5b6f4787bcff13fe66072e3eeb4acb8fc840f28a0b9",
+      "savedSha256": "04b453cf9252a1c433c72c79f11cdf063fb3c5e515ee8073381b59398e7b0440"
+    },
+    "rustFmt": {
+      "command": "cargo fmt --manifest-path src-tauri/Cargo.toml --check",
+      "exitCode": 0,
+      "file": "v37-rustFmt.txt",
+      "rawSha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "savedSha256": "01ba4719c80b6fe911b091a7c05124b64eeece964e09c058ef8f9805daca546b"
+    },
+    "rustClippy": {
+      "command": "cargo clippy --manifest-path src-tauri/Cargo.toml --all-targets -- -D warnings",
+      "exitCode": 0,
+      "file": "v37-rustClippy.txt",
+      "rawSha256": "38136530ba8ee3d48d2410bed0278dce710f2f2cafded8b43433b478e299e893",
+      "savedSha256": "c43d6ebcf90b55202dbaa225bc4cc49230ea1e55089977ffcdfe8c7d89db710d"
+    },
+    "rustSpikeClippy": {
+      "command": "cargo clippy --manifest-path src-tauri/Cargo.toml --all-targets --features island-spike -- -D warnings",
+      "exitCode": 0,
+      "file": "v37-rustSpikeClippy.txt",
+      "rawSha256": "148e08c7aebe268ee20abbabd8244844791ccffd3841728d8b887e4027a6bf5a",
+      "savedSha256": "f56eb56515891ba7c6954cfdf95c634546ca426e519a5551d89adf3bee0e1073"
+    },
+    "rustTests": {
+      "command": "cargo test --manifest-path src-tauri/Cargo.toml -- --test-threads=1",
+      "exitCode": 0,
+      "file": "v37-rustTests.txt",
+      "rawSha256": "ac68d23c3e6da18dfdf7a47e649c85abc0e9c2371e37bc4e96a241153c6dd269",
+      "savedSha256": "ba0ca9f081e3d7e12492aa1b17bfccb53eae910abc83750bb58de910210fea6b"
+    },
+    "pinnedHelp": {
+      "command": "cargo test --manifest-path src-tauri/Cargo.toml pinned_help_parses_every_generated_mapping_without_network_or_profiles -- --ignored --nocapture --test-threads=1",
+      "exitCode": 0,
+      "file": "v37-pinnedHelp.txt",
+      "rawSha256": "9b03637e61fff490712162250b6196a73e3c5d2930fc0847496b89a5def678da",
+      "savedSha256": "5711110012ffd9b78e5a7508bf19d26a52b4dbef4ae7126feeeeb88aab4fe1e9"
+    },
+    "releaseBuild": {
+      "command": "cargo build --manifest-path src-tauri/Cargo.toml --release --features custom-protocol",
+      "exitCode": 0,
+      "file": "v37-releaseBuild.txt",
+      "rawSha256": "f938d60048e14630aa1b27a8d2edfc30828f72cd33d689f77b7d55b05657ecbc",
+      "savedSha256": "d35b79de860b4a3cef4b35b5da5654c35c98fd4f55479a499d3ae712a352f25f"
+    },
+    "nativeDownloads": {
+      "command": "node scripts/verify-download-acceptance.mjs src-tauri/target/release/nabbit.exe v37-native-rendered",
+      "exitCode": 0,
+      "file": "v37-nativeDownloads.txt",
+      "rawSha256": "3a8d5ff03ee6068498439e6cd73acf0bc368ff2e8020f878c354e3734584a562",
+      "savedSha256": "4ba1dcef97662d12d37735fc2ee27cfc911bdf8628a65d046b8a1b933f6de826"
+    },
+    "nativePeek": {
+      "command": "node scripts/capture-download-peek.mjs",
+      "exitCode": 0,
+      "file": "v37-nativePeek.txt",
+      "rawSha256": "c5c92e3fc518cb7731f93e6e4efb676f720aac78abb929a6b8bea5bd694ee5bd",
+      "savedSha256": "176397e1be964315936830a8edccffc8294c4a91fa7278f3d6a0983e1dd2500d"
+    },
+    "legacySmoke": {
+      "command": "scripts/windows-acceptance-smoke.ps1 -InjectedClipboard -EvidencePath progress/v2/M7/v37-legacy-smoke.json",
+      "exitCode": 0,
+      "file": "v37-legacySmoke.txt",
+      "rawSha256": "286c3dda0814917df91e95bb7988a955e257e284516850e6be39099fec3504df",
+      "savedSha256": "107d372b65dd50dcc5bfcf8d2b9f4c09a3ef52fecdb03c8be77e61d8bd80f3bb"
+    },
+    "nabCaptures": {
+      "command": "node scripts/verify-nab-views.mjs v37-nab M7",
+      "exitCode": 0,
+      "file": "v37-nabCaptures.txt",
+      "rawSha256": "6198f427c7bf2e34d78d951128dd5f064023a86a84eb7e46ab145c0350945d62",
+      "savedSha256": "4055b5eaf535d3920551443e15d5c793b4362d93f6e4877c2006a81658c96293"
+    },
+    "site": {
+      "command": "npm run verify:site",
+      "exitCode": 0,
+      "file": "v37-site.txt",
+      "rawSha256": "b2c99a5e3faeadb290c02d14421ffd62c442ea3ffccbae4503da784c59b17328",
+      "savedSha256": "1f2961abc7a39c66c29ba62ed88b2b279c80ff01bb65a00801eb83367126c278"
+    },
+    "landing": {
+      "command": "node scripts/verify-landing.mjs --prefix v37-landing-final --milestone M7",
+      "exitCode": 0,
+      "file": "v37-landing.txt",
+      "rawSha256": "5621e5ad3db40b8c763c3b48fd7478dbf7ddc17eb2961d16dca2a859a67d7748",
+      "savedSha256": "4cd760d5044e79e3f4a6cafb496f713662d88dd93db5a6fce87f18e759ade301"
+    },
+    "landingTiles": {
+      "command": "python scripts/split-landing-captures.py --prefix v37-landing-final --milestone M7",
+      "exitCode": 0,
+      "file": "v37-landingTiles.txt",
+      "rawSha256": "4dd3d6b15f4766f400c0444f43a5d6772ce031b46ae8bea76fb72cfba4c4f29b",
+      "savedSha256": "9c3015c92baff7597461cbaa7a0b1fca121d48ed612927d5ab0561cdeb4219a9"
+    },
+    "siteAccessibility": {
+      "command": "node scripts/verify-site-accessibility.mjs --prefix v37-site-final --milestone M7",
+      "exitCode": 0,
+      "file": "v37-siteAccessibility.txt",
+      "rawSha256": "781aa489dee5d6ffba3f8802bb82c6eceb045321b1c15b04a1ff557a77628fee",
+      "savedSha256": "7da11b7bc857599b38bf19d31fec2018546aa5a3daebf4b74aba3c45bd41e35c"
+    },
+    "losslessVisual": {
+      "command": "python scripts/generate-download-visual.py",
+      "exitCode": 0,
+      "file": "v37-losslessVisual.txt",
+      "rawSha256": "0dbd557de70838e69d6997ca67bc6f3320d72d03dbcee39caa164d0c14d65b2d",
+      "savedSha256": "af2f15020c30e49f10a55b1abc14fff274cba5e06642304232736dc17234c70b"
+    },
+    "og": {
+      "command": "npm run site:og",
+      "exitCode": 0,
+      "file": "v37-og.txt",
+      "rawSha256": "6976782d4415d164ded51fd352c8ed6f08283e1efd7a92ebe07889ed8dc33f69",
+      "savedSha256": "897b37692f698ad0bb2f4f4f3a7e885a31a19156b617ad6133a0cffd9ded0bc0"
+    }
+  },
+  "native": {
+    "report": "v37-native-rendered-downloads.json",
+    "cases": 9,
+    "events": "v37-native-event-audit.json",
+    "executableSha256": "6e6362cc18b019ea8708f4594cf9cf070cb21ba7b77d3eb1abba69b0fe96e3cd",
+    "buildManifestSha256": "bbb0af2f1feb7ce813ad2cac6e8ce6b5cec2e84449e690d32ecd1fa514cd2b1f",
+    "legacyReport": "v37-legacy-smoke.json",
+    "legacyChecks": 14,
+    "peek": "v37-peek.json",
+    "fixtureProvidersOnly": true,
+    "noSystemClipboardOrGlobalKeysOrRealBrowserProfiles": true
+  },
+  "acceptanceMapping": {
+    "capturePaths": "Native clipboard consumer, real tray DataTransfer, invalid handler inputs, valid owned-executable/plugin URI forwarding; passive inputs leave job count unchanged. The explicit hotkey enqueues by the existing V3.3 decision.",
+    "presets": "SQLite reopen unit tests and native process restart with remembered M4A/speed options resolved by the hotkey.",
+    "arguments": "Exact-argument Rust tests cover section 7.3; eight actual pinned CLI help invocations cover combined mappings without URLs, cookies or media.",
+    "queue": "Real native sheet selects 1-5; FIFO event audit, concurrency bound, failed third-item retry, unchanged other rows/files, rapid lifecycle generations and restart history.",
+    "errors": "21 sanitized representative stderr fixtures/all nine ErrorKinds; fresh Rust/Vitest full-row and compact-copy tests. No live account failure is claimed.",
+    "engine": "Three sidecar version fixtures and MissingJsRuntime tests; real native health versions are visible in the captured footer.",
+    "smoke": "14 checks, including real second-instance deep-link route/no-enqueue and injectable clipboard mode. Installed shell association is excluded under policy.",
+    "optionalOnline": "Pinned CLI public sample passed at ffprobe duration 5.0 seconds; observed format counts 47 without Deno/48 with Deno. Native real-media integration is not claimed."
+  },
+  "visuals": {
+    "pngAudit": "v37-png-audit.json",
+    "authoritativePngs": 106,
+    "retainedPngs": 107,
+    "maximumBytes": 277700,
+    "strictBudgetBytes": 300000,
+    "losslessManifest": "docs/assets/download-capture.json",
+    "figma": {
+      "desktop": "27:499",
+      "mobile": "31:1036"
+    },
+    "landingContexts": 8,
+    "axeScans": 24,
+    "siteTransferBytesExcludingFonts": 457328,
+    "siteBudget": 500000,
+    "initialIslandGzipBytes": 90605,
+    "initialIslandBudget": 120000,
+    "baselineGeometry": "v37-baseline-geometry.json"
+  },
+  "scope": {
+    "installedShellAssociation": "Not automated under installer-off policy; bundle scheme configuration and actual plugin forwarding are covered.",
+    "onlineRun": "Optional engine CLI, separate from isolated native/fake-runner evidence.",
+    "performance": "No new V0/V2.7 CPU/frame/focus result; existing limitations remain open.",
+    "publication": "Local task commit only. M6 metadata remains; M7 milestone is separate. No PR, push, tag, release or workflow invocation."
+  },
+  "earlierAttempts": "v37-earlier-attempts.json",
+  "unchangedAppInputsUnderTestCount": 367,
+  "sourceSha256LfNormalized": [
+    {
+      "file": "docs/.nojekyll",
+      "digest": "01ba4719c80b6fe911b091a7c05124b64eeece964e09c058ef8f9805daca546b"
+    },
+    {
+      "file": "docs/404.html",
+      "digest": "bb6fa24fb5eaeb6be24e1b6833076ac1b17c068cdd1ab38f122afbf3fc88637d"
+    },
+    {
+      "file": "docs/assets/.gitattributes",
+      "digest": "bc2f0dbb24ea53c4d04026951f1a653a4e940877c80fe9eeee11e47a345047b8"
+    },
+    {
+      "file": "docs/assets/design/.gitattributes",
+      "digest": "d4278445e63e468596d13fafdbe59057153e1d3177fff356830decbb63bc9062"
+    },
+    {
+      "file": "docs/assets/design/0430d.svg",
+      "digest": "3f45e939fb55af082ded2e7c3df582bff0cf7f7eab1ba165b7237b0970dea4ab"
+    },
+    {
+      "file": "docs/assets/design/048b9.svg",
+      "digest": "6a4114cac4d1d291a70e0cbc8e804924e89932c7a9c15410f3387c32f5cef5bd"
+    },
+    {
+      "file": "docs/assets/design/09016.svg",
+      "digest": "113a0ba801015854c4726581905928b7c620d014991b68d27aa9de85c2b9ce0c"
+    },
+    {
+      "file": "docs/assets/design/0e6f7.svg",
+      "digest": "ff98aaa792fdc291abb8c6faa6071a3e8726ac78e10eaa9df1d41ad4708d57b4"
+    },
+    {
+      "file": "docs/assets/design/1091c.svg",
+      "digest": "10f9a82115ddd612b949f80fa709882ebf2e16e3f57b222fb0e0a83d0e7c50f0"
+    },
+    {
+      "file": "docs/assets/design/14662.svg",
+      "digest": "d2acdf50ca5fadeecabc069e1d8c2f79fcb2523083cbcac78646719fab728eec"
+    },
+    {
+      "file": "docs/assets/design/17950.svg",
+      "digest": "d848e61b7148abe2dc89dbbffae9c5b41e09a126d576ac922bd7f76e1cd5168b"
+    },
+    {
+      "file": "docs/assets/design/1d1c1.svg",
+      "digest": "f9aaa5d8b437fe028d6c1f5a63bd59a2b098cf57d6c9ce11ec285f95be4c8f5b"
+    },
+    {
+      "file": "docs/assets/design/1df4a.svg",
+      "digest": "ec4be2411d1d2c7652cf23eb7513530e88e2cd6b409cc6286a37d5df85053f8e"
+    },
+    {
+      "file": "docs/assets/design/1e04f.svg",
+      "digest": "e3797b2b0e7f27ae473d1058af3fc41f9a38b5e456a4293366c2bf4a9d411445"
+    },
+    {
+      "file": "docs/assets/design/20b59.svg",
+      "digest": "121b8b1cb7f358647fc26085bce4a13fbb18ee25d8347289c12f9bf32810a40d"
+    },
+    {
+      "file": "docs/assets/design/28e6f.svg",
+      "digest": "9647474a8e147a8d5a13850219024341acce20ee89f23fdd12e5e5d1dd01f41a"
+    },
+    {
+      "file": "docs/assets/design/29260.svg",
+      "digest": "1a91157ede7a91fe135ed8abc42503e7d897382ee02f691701ecbe7d2f6978ca"
+    },
+    {
+      "file": "docs/assets/design/2d937.svg",
+      "digest": "a42e9eeefea60df583427215b9f5d817621e0bc604c9831c55065ee351c9c305"
+    },
+    {
+      "file": "docs/assets/design/2e9e1.svg",
+      "digest": "0d5a57877f3cc9ff92c28bfbc79f67ed888f540f3ec1443f947d0cd1b601b505"
+    },
+    {
+      "file": "docs/assets/design/2ee9d.svg",
+      "digest": "201e79b183dcd5e68e7e2a4e1a06f4a9f52abbc193f82d3406a64029fb9fe67f"
+    },
+    {
+      "file": "docs/assets/design/315b6.svg",
+      "digest": "d33436a282fad46881e9f6d87cab8633d68a2ee8c8d37ddb17f7d229ece67654"
+    },
+    {
+      "file": "docs/assets/design/338a5.svg",
+      "digest": "143ac5f2d002c42e46f3b229c6eb2b9afc0ebc43af39d45a835bcabc600ac790"
+    },
+    {
+      "file": "docs/assets/design/34501.svg",
+      "digest": "65c3246c2ae19467d445a0ea54b7ba24555b42dc747450163fc881439103465c"
+    },
+    {
+      "file": "docs/assets/design/39f16.svg",
+      "digest": "1018cb5c332e2f394d5803eaf3943eee76609217a1eb1dd69a22e6340a4bfdfd"
+    },
+    {
+      "file": "docs/assets/design/3ad41.svg",
+      "digest": "70c131f3bd72213459e949c2bf694e199bfdccaa5fbdd08c593b37cd350ee95f"
+    },
+    {
+      "file": "docs/assets/design/3b2ee.svg",
+      "digest": "b76834a591e94b8afd94b7f57c6d36be336093583d0663e42aa8b44fd0de9b2c"
+    },
+    {
+      "file": "docs/assets/design/3f55b.svg",
+      "digest": "873b9488b557da1263aa591f31625c8d33abf8ccdb06a9a9318849fe690c15bc"
+    },
+    {
+      "file": "docs/assets/design/429d6.svg",
+      "digest": "03b04a64eb974e34aaf7fcbe61c9a2d9e4828339f9e063eda89a20c2faebe263"
+    },
+    {
+      "file": "docs/assets/design/42d5f.svg",
+      "digest": "ac3cd4c97cffbe0565a9bafac8cbba0b83e7459a97bce82c2551a8a38046c487"
+    },
+    {
+      "file": "docs/assets/design/44256.svg",
+      "digest": "8c50938081b0c322c648ceac25f311f3eac6195c6663fb016516048568b22489"
+    },
+    {
+      "file": "docs/assets/design/45982.svg",
+      "digest": "8b0bd55f452a8cc6fc981f26bbcb0be73db8fa0f411f1f54e880857feaa01d83"
+    },
+    {
+      "file": "docs/assets/design/48a7f.svg",
+      "digest": "3120040531a0653416d5b0e0fcb13af6038f1cd3ceb01a586546143d9fb33207"
+    },
+    {
+      "file": "docs/assets/design/4bee4.svg",
+      "digest": "3a536597eef2cd34dbae15e6a33b0d3a700b8e5453f5bd6e66106e7633f6ca43"
+    },
+    {
+      "file": "docs/assets/design/4c3d9.svg",
+      "digest": "1aa42eadb4fc784c738f3cb887ed9b0126228f6f0c4781a5e015396cfe32d8fd"
+    },
+    {
+      "file": "docs/assets/design/53933.svg",
+      "digest": "21bb0cc849162e35fda4c585a338777af5d40bf04a4cc08aef2fe088240ecfd1"
+    },
+    {
+      "file": "docs/assets/design/554d6.svg",
+      "digest": "228d93d054f99ee8ab5146fe625537903d147f8b94cfa0cdd86b608b0fcf9984"
+    },
+    {
+      "file": "docs/assets/design/5da32.svg",
+      "digest": "f7b0145cf4bdcc394f8467862cf28994c7bbf3e2caabac1c20fe5c2a57aa69d5"
+    },
+    {
+      "file": "docs/assets/design/602e5.svg",
+      "digest": "4b9c019b0f9b0eb4bf71e1741b99a05d2e247fa497e300c8fa9aeebc9aac0175"
+    },
+    {
+      "file": "docs/assets/design/65c81.svg",
+      "digest": "e49f7e7a0298ba2175deea52353905df723606b3eda9bfe0c37f31ef0ff5d004"
+    },
+    {
+      "file": "docs/assets/design/66215.svg",
+      "digest": "b1a7e4fc7cd030fbaad9f5a8b3acaf0e5707959a0864a87c081ed5306838c634"
+    },
+    {
+      "file": "docs/assets/design/68343.svg",
+      "digest": "aa8187290783772f4726896d098bccfe84bfb38a9fcc1036aef47c122a781566"
+    },
+    {
+      "file": "docs/assets/design/6a688.svg",
+      "digest": "10d804239b3c9244d4cdfd0940591350230f94a6a86e38423bc83ab472f5d95e"
+    },
+    {
+      "file": "docs/assets/design/73a72.svg",
+      "digest": "c251054f0d45fe5854ee58fbdf47bd6a0b948a596498c1b5d5265143ca736529"
+    },
+    {
+      "file": "docs/assets/design/754dc.svg",
+      "digest": "e9924c6299fc2091fe10b40cc3440bc398a3493af58f7b1351a84f5b375a14c5"
+    },
+    {
+      "file": "docs/assets/design/7e121.svg",
+      "digest": "425cc8c76419d68c90179db0977f7edb87c20e460fc9cee495d99082bc6ea74b"
+    },
+    {
+      "file": "docs/assets/design/83e93.svg",
+      "digest": "25bf9eff00439c1e53e5c44b187419e41c095aa518d8b5ace9007a2e26018a4e"
+    },
+    {
+      "file": "docs/assets/design/84b13.svg",
+      "digest": "acf0fe3a684fe43a46e098f883cf7cc759650b1b16d863c276f85aca4b6fb379"
+    },
+    {
+      "file": "docs/assets/design/84e44.svg",
+      "digest": "aab2930405928e2572c5d8387940aa3716ebb166b9178758d219b4bf3979136e"
+    },
+    {
+      "file": "docs/assets/design/85806.svg",
+      "digest": "4c42c7e5140f7ba3b610caedf2f82e406e61bcbc8778af93f62ccd21f60c96a9"
+    },
+    {
+      "file": "docs/assets/design/89759.svg",
+      "digest": "f02b03c5f5e517cb4ad4bfea717f2b6ebbe2e4ae3f5267b60ed3d7b927fbb3cc"
+    },
+    {
+      "file": "docs/assets/design/8b95d.svg",
+      "digest": "432163b930e84da0bbf089c998b56ed46e799308520d4545c23b919f94ff9491"
+    },
+    {
+      "file": "docs/assets/design/8cce7.svg",
+      "digest": "d99960e19a4451b77525ebd1f08b4f869aadad0c3d7b3d110d7870ab1d6b9edc"
+    },
+    {
+      "file": "docs/assets/design/8d24f.svg",
+      "digest": "af5f9c8094fb34a749436c61943a0da47db535496a93262be8e30fae0ec28b80"
+    },
+    {
+      "file": "docs/assets/design/8d77c.svg",
+      "digest": "242782b49535854bdf539cc928104cbd4816b65d84dd857a0711b851f58218d5"
+    },
+    {
+      "file": "docs/assets/design/8eaeb.svg",
+      "digest": "703fcedf39790dbfef63221d7a2ffadaaab2f5f901373bc4055a2db121e73b3a"
+    },
+    {
+      "file": "docs/assets/design/93a14.svg",
+      "digest": "fb224e7e40d2a71aca6afc918bfeb4ad6d49b769a293adaada573088322b3c7a"
+    },
+    {
+      "file": "docs/assets/design/94f27.svg",
+      "digest": "1bca13944bbe4824d2c8563eb221fe1912f6f2493dc1e43cfec368269a4d2c59"
+    },
+    {
+      "file": "docs/assets/design/9c7c6.svg",
+      "digest": "a40c0e61dc68a234f77fbddb2bfae6e89fad10985aabc37fc3cfd9f53b24df3e"
+    },
+    {
+      "file": "docs/assets/design/9c973.svg",
+      "digest": "ca978b0b1ee9e0c6ef73876808fe11769559f622760bb772e70587c8e3896838"
+    },
+    {
+      "file": "docs/assets/design/9d447.svg",
+      "digest": "adbec94984a7f59d4934c73376841e6e67f71ed24cada758801d4b780082095f"
+    },
+    {
+      "file": "docs/assets/design/a48a4.svg",
+      "digest": "e60be3ff147a178b19d7ad21b9559de730baa4b2d2259a860a02b3f313017d76"
+    },
+    {
+      "file": "docs/assets/design/a878b.svg",
+      "digest": "62b769a9d923e36296ecfb10961ffff2b02bb99fb3216c9a9a590d6672795cbe"
+    },
+    {
+      "file": "docs/assets/design/b36e8.svg",
+      "digest": "ddc15360a64953b89e3927ccedde86a7a0656034aa11603e2437fda27cd34a7e"
+    },
+    {
+      "file": "docs/assets/design/b4994.svg",
+      "digest": "e255e2f18a982d65283cb392e4696e9ffc2e0d069658f2e02d4844bfd2c7195d"
+    },
+    {
+      "file": "docs/assets/design/b626c.svg",
+      "digest": "ddeedbf2e1fbacb73fb5328a8785996226020f0dd36c64161fee75b1a81d2ded"
+    },
+    {
+      "file": "docs/assets/design/bb42e.svg",
+      "digest": "96eceaca3009df030cd66cdfedfe5bd07aa047e2246059b59efbede218d08755"
+    },
+    {
+      "file": "docs/assets/design/bbced.svg",
+      "digest": "40f6b1caf93dde951d16668f6a9ba2073ccc63434cdcedb8252e50806dc324cd"
+    },
+    {
+      "file": "docs/assets/design/c40d5.svg",
+      "digest": "f7eaa6f5f6efe2f77f920750410474b7687a99c4840b49a8eba0566fdb5ca4f1"
+    },
+    {
+      "file": "docs/assets/design/c5e35.svg",
+      "digest": "ac07bc204cae3685306f9e499dc0f444af2ad3e25d2071df85e278c09a73dcfc"
+    },
+    {
+      "file": "docs/assets/design/c641e.svg",
+      "digest": "ff417488fb23f0a5e2ea839c78304192bc17c237d59aa1f594f0bc4c0ffa3ded"
+    },
+    {
+      "file": "docs/assets/design/c9964.svg",
+      "digest": "24ef4dc3190e32e09c88ef36c786f8337eb44ffa206e3c57d807aabc3bdfef76"
+    },
+    {
+      "file": "docs/assets/design/c9ce9.svg",
+      "digest": "fda4e6d372ae4bfeff73726044822deaee16e1a6cdaf355107ea2688a0b16fe0"
+    },
+    {
+      "file": "docs/assets/design/cbd19.svg",
+      "digest": "05d0acd910928710c3cb54f890e0b178336235335531784f5924fa6f555ab0ec"
+    },
+    {
+      "file": "docs/assets/design/cc740.svg",
+      "digest": "7ae299e36780242c86ac63345a1a425edf08d1d6471514278e3b18a319cb772e"
+    },
+    {
+      "file": "docs/assets/design/d8371.svg",
+      "digest": "397e04a99a25d5a48de9ad42c053d02dc6f6539f2b6f7dfa54c7711693992fdf"
+    },
+    {
+      "file": "docs/assets/design/d9381.svg",
+      "digest": "e5345d5c8202529c47a4e535b0108ec2c64a5b5f99728f2688f1cd0a738215e0"
+    },
+    {
+      "file": "docs/assets/design/d9b5f.svg",
+      "digest": "f827d24b8218e5a771a0272f82f2299d7e06fd82f744fd0313f4b9d21cf55ec0"
+    },
+    {
+      "file": "docs/assets/design/dae24.svg",
+      "digest": "8eb2086fe123c185dad205f2c3f1f70d1af7093bdaeecbab3fd074a32fb8058a"
+    },
+    {
+      "file": "docs/assets/design/dd5bd.svg",
+      "digest": "16b5909d0a3192ef282e577967f64ad0732baa9d6b7d3788466acdcf0ea8da03"
+    },
+    {
+      "file": "docs/assets/design/deae5.svg",
+      "digest": "2d2763704a8fc62b400619d1fcac0d97f62235947b5460cf08d1cdc737a1cd93"
+    },
+    {
+      "file": "docs/assets/design/debd3.svg",
+      "digest": "0f650424e5f9e39ac8ed00ee9ab32b27b2f5cd2a076f9aaf10c446d66d9225e3"
+    },
+    {
+      "file": "docs/assets/design/e0703.svg",
+      "digest": "df02334af9812106a76d63523f1d22529a7e2b752cc3edd02823a4ada0f12b37"
+    },
+    {
+      "file": "docs/assets/design/e0ed1.svg",
+      "digest": "ce26c582fb9f0f9e01b3742bad2cd4a31401c757c3009fe3051fd77f61942254"
+    },
+    {
+      "file": "docs/assets/design/e1f07.svg",
+      "digest": "8f2892b9077f5cd62c10979d8030421b2408a8acdf39be6927eaf500c8432bc5"
+    },
+    {
+      "file": "docs/assets/design/e5858.svg",
+      "digest": "8ab2519ac5de59fc0df603a41df31e5d11957ac3a784b83a85f379452c993b4d"
+    },
+    {
+      "file": "docs/assets/design/e73ae.svg",
+      "digest": "e02687bfef599648647d072bd308ded302981e037f82a8702cd46dc9244d5c13"
+    },
+    {
+      "file": "docs/assets/design/eb840.svg",
+      "digest": "406deebc70d7ad3dd05d55910848deaf094a0ce338f08d496e2cd3a305d73eef"
+    },
+    {
+      "file": "docs/assets/design/ebf55.svg",
+      "digest": "1418ddc06b0aba84b59efa61b3f24cfd8922eb18935129230eb0bb1538055878"
+    },
+    {
+      "file": "docs/assets/design/f3886.svg",
+      "digest": "cb61ecbc506b5df2250f3262e28c6bdbadd9f84462857d3e6e1f8778438c7d81"
+    },
+    {
+      "file": "docs/assets/design/f4ec8.svg",
+      "digest": "e516b3864193779c6b52064d6c6f3e100711694a9b1b0dffbf903817e92b6b21"
+    },
+    {
+      "file": "docs/assets/design/f717a.svg",
+      "digest": "e6d460cf4c78cf696f01fb66e9234747a9e876559b74d4fbf12980b336557e7d"
+    },
+    {
+      "file": "docs/assets/design/fa55e.svg",
+      "digest": "d0944257f6f83022413211d46386cc184a61312eb4e9dfa9b78e3f5a78aad554"
+    },
+    {
+      "file": "docs/assets/design/fca7e.svg",
+      "digest": "a53b0f44f8985e6a6f09716b6a895617f177da785aae136dcdd5ab3b96b7cf52"
+    },
+    {
+      "file": "docs/assets/design/fceea.svg",
+      "digest": "f541eb5fbdcbfccc7f2a5e2ce63d7a0f08677d63984ef027da1f333d1ab67cc9"
+    },
+    {
+      "file": "docs/assets/design/fe887.svg",
+      "digest": "eb88ce07353c1f82f45504c989397c4e2223f08c7e3d55653723e8e9784e2cf6"
+    },
+    {
+      "file": "docs/assets/download-capture.json",
+      "digest": "f30025a4d3fb1e1ef182bc61424e3b48d622bf9dd9b4be9d827a3e6dbba4021e"
+    },
+    {
+      "file": "docs/assets/favicon.svg",
+      "digest": "6a4114cac4d1d291a70e0cbc8e804924e89932c7a9c15410f3387c32f5cef5bd"
+    },
+    {
+      "file": "docs/assets/fonts/.gitattributes",
+      "digest": "146d5f554bfee2788ed2bd1bd52a4be1b122c80e4827a7bc1a4e65caab259032"
+    },
+    {
+      "file": "docs/assets/fonts/OFL.txt",
+      "digest": "021caa749f89fecd7c2e40a50499de29e84d2bc19251659b47d499c2fbfffc17"
+    },
+    {
+      "file": "docs/assets/fonts/manifest.json",
+      "digest": "43b2bcd152c06dc1ba97b92c26370fc3e138db48c3b109118687f326c74e7d1c"
+    },
+    {
+      "file": "docs/assets/island-hero.json",
+      "digest": "4b8890b62f9b747da29bb50372d3356246d87fabb8332588b250e255faa40f32"
+    },
+    {
+      "file": "docs/assets/landing-manifest.json",
+      "digest": "9c8baa6025fea93c4bd306be8c819a2dda0d106eea52eab21c4c9a7478cbb6d6"
+    },
+    {
+      "file": "docs/assets/og-manifest.json",
+      "digest": "a18fb646d9de761b84c742bde0f9d89533bf2bb529c726b239321f8edc70b309"
+    },
+    {
+      "file": "docs/assets/pages.css",
+      "digest": "18e46814773c9bc5b417e825be6affc2b8a57ffd1bfb608ae7f5e60ca4557d19"
+    },
+    {
+      "file": "docs/assets/progress-check.svg",
+      "digest": "7ae299e36780242c86ac63345a1a425edf08d1d6471514278e3b18a319cb772e"
+    },
+    {
+      "file": "docs/assets/progress-hourglass.svg",
+      "digest": "703fcedf39790dbfef63221d7a2ffadaaab2f5f901373bc4055a2db121e73b3a"
+    },
+    {
+      "file": "docs/assets/site.css",
+      "digest": "d82101b5983d82431b7733ca48ced4c4b87ce47ee328666764bdab7157da33e8"
+    },
+    {
+      "file": "docs/assets/site.js",
+      "digest": "529355d54faa505a128d613690199e7312623e4b532eca4f1738d46e50485738"
+    },
+    {
+      "file": "docs/assets/tokens.css",
+      "digest": "edbcbcd634bc7a8a8b7d032b0764cdd581e3013830be42813b7d70b78600bf05"
+    },
+    {
+      "file": "docs/assets/visuals/.gitattributes",
+      "digest": "6ee8428a3dc3445ce2ce92353f2de7649d42d7508b435a6d8073409d21a0a59f"
+    },
+    {
+      "file": "docs/demo/index.html",
+      "digest": "e0ad40a67c15086fd886bcdcc6d97bbfa1889903db6a2dee9de71ab75ae1d08f"
+    },
+    {
+      "file": "docs/index.html",
+      "digest": "2f2a1431a1caa1865c9f971324e941e7743b1dbeb6b9b11fce2b135ca5cfe5cf"
+    },
+    {
+      "file": "docs/llms.txt",
+      "digest": "ecd8909b12b2b7a278a5f9d340c80668f1d3a81421cf6144ca7c55f490404d3e"
+    },
+    {
+      "file": "docs/og.html",
+      "digest": "a17f35cf26afe7bc4d51bf1944d37a25987ad127f89a155cdf934f5c6232013c"
+    },
+    {
+      "file": "package-lock.json",
+      "digest": "72c3a39fa4bd0b29c2061700135ee3fdeb1772a6c04cdd8c857cc69b02e0aca5"
+    },
+    {
+      "file": "package.json",
+      "digest": "b11efa7aeaf6e6f0eff56d3244b6576fcf3964b7d710596a2375d113704ab18b"
+    },
+    {
+      "file": "scripts/assert-island-activity-window.ps1",
+      "digest": "570cfe22606e4e6a8dd3553c5bda041fc2cf50d5dc3d8344945409d48e0baf9f"
+    },
+    {
+      "file": "scripts/build-components.mjs",
+      "digest": "2a5904edbe60036da6db73aea73a5eeaa0257e3b4196eb2e15ce53dce176c106"
+    },
+    {
+      "file": "scripts/build-island-spike.mjs",
+      "digest": "623c627ca43a6850c95dadcea6bd2f81d455f9a40aff2901926685bd57392e27"
+    },
+    {
+      "file": "scripts/build-release.ps1",
+      "digest": "0c339ca7480668df8aff4edc1d807ff7c08790a0d8fc0ad1192ca0e91703e35e"
+    },
+    {
+      "file": "scripts/build-release.sh",
+      "digest": "06938e7982907ece19e2d90f3f6a71a7a603dca0fb18b8b9203e90b30e70ce0c"
+    },
+    {
+      "file": "scripts/capture-download-peek.mjs",
+      "digest": "8a79e89dcdf72355ca4ea52b05bd64b8d97cbfc6336e9109c238ee07d2fc0586"
+    },
+    {
+      "file": "scripts/capture-island-activity.mjs",
+      "digest": "26d15b85a64136d5e7a283f359d7784fbf1440a4903ae913601c76c6fa35fa69"
+    },
+    {
+      "file": "scripts/capture-island-input.mjs",
+      "digest": "8276d9d60a6415e91842eaec460bf1de6ce1125ea3cad1e0fa8b2b78cccb7577"
+    },
+    {
+      "file": "scripts/capture-island-keyboard.mjs",
+      "digest": "217de3782807b938850ee5a0e46a249e7503df5110f2d91bddd4a6cf38df50c4"
+    },
+    {
+      "file": "scripts/capture-island-placement.mjs",
+      "digest": "38592e7e127bfa508e23ebdf26b8a664e92d03a6e5fcf303e804ccd26bc963d5"
+    },
+    {
+      "file": "scripts/capture-island-surfaces.mjs",
+      "digest": "e012cc13fa6393c0b6ceb763f14187a281556cbe767538526dc1b76825385773"
+    },
+    {
+      "file": "scripts/capture-island-visibility.mjs",
+      "digest": "010c89be55ed85772ef0d79ac29b6d175c35df0fa3e164c056e5609e522ba6a4"
+    },
+    {
+      "file": "scripts/capture-site.mjs",
+      "digest": "af08a6e1226a732683d3aaafd9b7f5ceec3a95b7fe699803484880214a3ea6d8"
+    },
+    {
+      "file": "scripts/contrast-review.mjs",
+      "digest": "a2f83b088444e4a860aec73ae7dfe7cfec23d1f8aaa0e0d91567b92d6c7bf1e4"
+    },
+    {
+      "file": "scripts/encode-island-lifecycle-capture.py",
+      "digest": "4264dad64a01fd66fe8f372e06df48d9065327c3f22443a3602aaf240c6528cc"
+    },
+    {
+      "file": "scripts/encode-island-surface.py",
+      "digest": "fb112b09cefe5e2d90f73f1f266cfcb124b35cdad6a345446f826245373983fa"
+    },
+    {
+      "file": "scripts/encode-island-visibility-capture.py",
+      "digest": "ee868a0a92bfd164bd610ad16158b746500ddb3e41d705a3c43bab140fcc1997"
+    },
+    {
+      "file": "scripts/encode-native-capture.py",
+      "digest": "319fc1e6cf943e229b11d82c6019b9313fcf7f0121773d8c3d7e54f56ffdbe30"
+    },
+    {
+      "file": "scripts/engine-pins.json",
+      "digest": "292ed34ff2fb00fa325ac6bc509eefadc8ff98718102d46da0ef5170c250f3b5"
+    },
+    {
+      "file": "scripts/entry-bundles.mjs",
+      "digest": "b74561cc9923dc6b1d0b849cffadf7c0ffc1ff73d6386459e0becea25bcf1a43"
+    },
+    {
+      "file": "scripts/entry-bundles.test.js",
+      "digest": "6d0b27d1411c1e94a140761942199472edf5027446a4708af0bb62632ce037d0"
+    },
+    {
+      "file": "scripts/fetch-binaries.ps1",
+      "digest": "a1b510aaac0c85ea137186b088c6c5c1819a4235b1552c311a5c023e1c137576"
+    },
+    {
+      "file": "scripts/fetch-binaries.sh",
+      "digest": "2fb5b9c79a4b9354a965690271f063b6b3ebd97f5f9c99b3b936849619e47ed3"
+    },
+    {
+      "file": "scripts/fetch-engines.mjs",
+      "digest": "20a87813ffe0fa1773560c4bfcc2fc4f9e6c058cb50ae5d8f73ddace1ec9105b"
+    },
+    {
+      "file": "scripts/font-audit.mjs",
+      "digest": "a7bf8ef5909e0f0c7420b4c6a16e7828239f36e3901c6e77ab7220ce2db0a5c9"
+    },
+    {
+      "file": "scripts/generate-brand-icons.mjs",
+      "digest": "dfa1d5201678c552df6116cfaeb80742a34ccc4fd8ef38ee31af928b25a39976"
+    },
+    {
+      "file": "scripts/generate-download-visual.py",
+      "digest": "fb98f4a6ba807e613539cfee7f173ac84671a3d7841dce2d5470c86a9f9bf78e"
+    },
+    {
+      "file": "scripts/generate-island-hero.py",
+      "digest": "0ee4cf48aea28100bf72287aef26b018504770e474a34612c6408e1dde90a7f0"
+    },
+    {
+      "file": "scripts/generate-island-motion.mjs",
+      "digest": "e2bf2692d9a98606093363858e854cba5b40caeab9320c6391d8cd8f07e020f8"
+    },
+    {
+      "file": "scripts/generate-tokens.mjs",
+      "digest": "459f5d34506fd9d83ca4cde38cceee4d362f753c934b86929092a12d2d2b374d"
+    },
+    {
+      "file": "scripts/island-frame-metrics.mjs",
+      "digest": "656108a0283a94883097a08f793e6293ab54243fa365446882df8110a8f6060e"
+    },
+    {
+      "file": "scripts/island-frame-metrics.test.js",
+      "digest": "7c9b75d646fe8feab23e9d0c817a09d09f753330a3b09bc1d97fa8ec690f1db9"
+    },
+    {
+      "file": "scripts/measure-island-frames.mjs",
+      "digest": "39227dd65775da7c9d347d3853553c5238bc083c3f8f92e740ae5648e18b1796"
+    },
+    {
+      "file": "scripts/render-site-og.mjs",
+      "digest": "09b4cf0a1aef2547f2f269918eaf889307d3d91ebf2a53fec42f09ebf169d9ff"
+    },
+    {
+      "file": "scripts/screenshots/README.md",
+      "digest": "b22126978164a455669378233eba14ca9939be1836a30edacb1206e6e573db9e"
+    },
+    {
+      "file": "scripts/screenshots/fixtures.mjs",
+      "digest": "0939b5b4df9fbfc20eca05f05717b3602a2abce88fde4e969f8304f997a9c383"
+    },
+    {
+      "file": "scripts/screenshots/harness.mjs",
+      "digest": "17bb3b7e19aec7c87af0fc2220ce9caaf4f88f1eeca5dc6962cbf01e8566debb"
+    },
+    {
+      "file": "scripts/screenshots/mock-ipc.mjs",
+      "digest": "c5e057a9b701a47f02d3f17d27415d48756fe102628b0470d00d80440bb95974"
+    },
+    {
+      "file": "scripts/screenshots/mock-ipc.test.js",
+      "digest": "3bf5b04c90b0a1f8327e8f9e46eb994e371383d118a610463ef51326071c8146"
+    },
+    {
+      "file": "scripts/screenshots/policy.mjs",
+      "digest": "fde1965f7a18f4dc32f2c485a8aa3845e5efee1cca83a6c4473059d109a8b3ce"
+    },
+    {
+      "file": "scripts/screenshots/policy.test.js",
+      "digest": "13b813d281143b5b0908af41c26562426d37dd7d98bdc1c214d770667f661232"
+    },
+    {
+      "file": "scripts/screenshots/run.mjs",
+      "digest": "5896e3d9654554ee5af9dce8bc4d8e7c6a66ffe498c1806ea35f3b5776170d0c"
+    },
+    {
+      "file": "scripts/screenshots/scenarios.mjs",
+      "digest": "7dfb5ac50ed250fed7c69fd8d6f2a060823760f3c06b940ee406ae3ce595101b"
+    },
+    {
+      "file": "scripts/screenshots/verify-captures.py",
+      "digest": "bed6fac0dfa42c246585b015997048f882a1c5099300b66b6ffc275a727c3d15"
+    },
+    {
+      "file": "scripts/screenshots/verify-failures.mjs",
+      "digest": "8f7bc04e55b8b2963191f1385f458836053d10c0976cbd6f7515e194927d9182"
+    },
+    {
+      "file": "scripts/seed-island-keyboard.py",
+      "digest": "ccaa6f0a8ab84ac9f6d2a19e9342116416733027937dec653cc1036d9998421b"
+    },
+    {
+      "file": "scripts/split-landing-captures.py",
+      "digest": "71131dfbeeb98c5a4bebc873568d52ccb73c26146a66ce019581a29a5adbd007"
+    },
+    {
+      "file": "scripts/subset-site-fonts.py",
+      "digest": "9dfd1cb13d4338662bcb76b234e7586c5728df2d70738add7c8c237c6e14d7c0"
+    },
+    {
+      "file": "scripts/verify-brand-captures.py",
+      "digest": "b7d0a061e7188ed77335c2db7bafc96662e2186d0ad985e5d09e14a4f557416f"
+    },
+    {
+      "file": "scripts/verify-brand.mjs",
+      "digest": "a9f2c40113dc699978ba6a9abe0f1a59792d1d0b008f37268a564088d7ac7382"
+    },
+    {
+      "file": "scripts/verify-capture-paths.mjs",
+      "digest": "cc4bd303e3139667023257ffc8aa28fdbb81fdee89ed62b9ac2867d1343fed97"
+    },
+    {
+      "file": "scripts/verify-component-pixels.py",
+      "digest": "b07b4a407295f6a109229d1dbe2f3ccdee158ac7f121d5f08fd6e8523f1b2302"
+    },
+    {
+      "file": "scripts/verify-components.mjs",
+      "digest": "5fc1c533d6771ac82cc97cc42117d6fe3b1bacab91034978148ff1453fee9675"
+    },
+    {
+      "file": "scripts/verify-download-acceptance.mjs",
+      "digest": "8271b2621a45cb53b9095d9b91c5d35e885350a091b2568276b2a992ec1acb26"
+    },
+    {
+      "file": "scripts/verify-download-errors.mjs",
+      "digest": "b40e07e779c24bf09b8136109e3161b934f7cc108c3dec8fde715f1c48e77b33"
+    },
+    {
+      "file": "scripts/verify-download-online.mjs",
+      "digest": "d5f5ae69107923d5c5556b5cf4849c6760ee96f64de56e7aa48be5604fefe628"
+    },
+    {
+      "file": "scripts/verify-download-sheets.mjs",
+      "digest": "f66e55353e63a699a6f3eda48ffbf73061f6f442044d4a316a1c3bb7b27bddae"
+    },
+    {
+      "file": "scripts/verify-engine-health.mjs",
+      "digest": "4988e1e2e246d79232b8068cfcfe9a6189eabc07b31eacfb26a24082b64e1c4c"
+    },
+    {
+      "file": "scripts/verify-entries.mjs",
+      "digest": "233f55372a9c80c56a6071455a334ab0fdaad164aecfa950203def22075b16eb"
+    },
+    {
+      "file": "scripts/verify-entry-bundles.mjs",
+      "digest": "0c76c37ba19e66539165121d5aaced4dd25fef649ba499bbb7ec473103a3e5f5"
+    },
+    {
+      "file": "scripts/verify-entry-captures.py",
+      "digest": "fd52918f7b50b9628362bd6329d23379a8b12684a4f6e225abb7891eb1cdf9ac"
+    },
+    {
+      "file": "scripts/verify-font-assets.mjs",
+      "digest": "50661740bc687a09360a6c7fa505e09d1972f210e828024e6005dbac2c907c4c"
+    },
+    {
+      "file": "scripts/verify-fonts.mjs",
+      "digest": "af37798051aac2b2053094ff19ea208aba6d46f3e4a03e9a65d4109ca203652f"
+    },
+    {
+      "file": "scripts/verify-island-acceptance-native.mjs",
+      "digest": "21c8cd22d8d818c3e5280aeacac599f31ad41a0208edd28dc8a4fa5eea0e414f"
+    },
+    {
+      "file": "scripts/verify-island-activity-native.mjs",
+      "digest": "a6f1ed19a145ba512cec61e57a44f04d389bd565f01109d85eeb864e54445b36"
+    },
+    {
+      "file": "scripts/verify-island-hero-site.mjs",
+      "digest": "ccef76f29b1f2090e5c1eddf4eb7b73dc8b52269bde7287a7fed599a2339ffe4"
+    },
+    {
+      "file": "scripts/verify-island-input-native.mjs",
+      "digest": "2d64761b7a0c45495d5388209285ee10e585f4e28f5593fd0ecf9e98bd2ac324"
+    },
+    {
+      "file": "scripts/verify-island-interaction.mjs",
+      "digest": "977a15e55c20d8c2473a407f205c05ed55c4bb0091c0f0c88463f2ab08ee6168"
+    },
+    {
+      "file": "scripts/verify-island-keyboard-native.mjs",
+      "digest": "347f3462b09fb9538c3fd59f550b5c2280155eb9cb8c7ba9be0e4c9e2478f7da"
+    },
+    {
+      "file": "scripts/verify-island-settings-native.mjs",
+      "digest": "b1faff81d44ba8679e5277e0b534a59c589553c57de6ec5a134f67d9aea67fa2"
+    },
+    {
+      "file": "scripts/verify-island-spike.mjs",
+      "digest": "17f55f7a3b4fc64c3d9c65526044b1ba8a6357b5e7080fefb921a4442833a507"
+    },
+    {
+      "file": "scripts/verify-island-surface-motion.mjs",
+      "digest": "1a44c10f4db6777a036aec2e7db30b7dc3c9001ac2999f40ee1fe0ecf973a7f7"
+    },
+    {
+      "file": "scripts/verify-island-surfaces-native.mjs",
+      "digest": "d0c8b33b091446add8ffaa37474e274ba10de1c0eae1e9f72ee5800f85584910"
+    },
+    {
+      "file": "scripts/verify-island-visibility-native.mjs",
+      "digest": "c53b9d8c957537d9fe1be37237fbe09307bfe1de598c0c1d76fc521a2a719ea2"
+    },
+    {
+      "file": "scripts/verify-landing-assets.mjs",
+      "digest": "ad918ce3f4200eeac54d6878e178f63dbe162c785ab26a5a174984f999038a10"
+    },
+    {
+      "file": "scripts/verify-landing-fidelity.py",
+      "digest": "ddddfaca7d7fcd866ed1a80f000b1105dd8416ea3c2ac0a2e60f2ac0a5c011f3"
+    },
+    {
+      "file": "scripts/verify-landing.mjs",
+      "digest": "db7ea23ad702034e167428166a7c62ead4b916308ce521959bc3e33e6ad4f1bd"
+    },
+    {
+      "file": "scripts/verify-milestone-status.mjs",
+      "digest": "2855f05219a0695f04ad91de4b5d79eb71b67e62969e06efc4a984af0198f39f"
+    },
+    {
+      "file": "scripts/verify-nab-views.mjs",
+      "digest": "0fe55edf0b55009cecd3cdb4df9851cc83db591ea2240924865ee11e12c14a51"
+    },
+    {
+      "file": "scripts/verify-native-entries.mjs",
+      "digest": "79365190829e311b8e7ec0f03a20a1574d490abd69f297c55ec7898fd9cb04f8"
+    },
+    {
+      "file": "scripts/verify-native-handoff.mjs",
+      "digest": "c84da61c399687059672ceb795c8b997471f744077b84ccf18e3097503d3f029"
+    },
+    {
+      "file": "scripts/verify-native-hybrid-drop.mjs",
+      "digest": "8f7c838bcda0c5217e7e154b19fe6ba9a32251f6284679dc3b0dc9e0ce029b3f"
+    },
+    {
+      "file": "scripts/verify-native-theme.mjs",
+      "digest": "49f7b59f1938ec58e1c2448d1720a01997bb02da6357b3964138d2c97ae0d94d"
+    },
+    {
+      "file": "scripts/verify-site-accessibility.mjs",
+      "digest": "e3f5e5ef72fd7736c32c4b8d6e9e00dd086cc6d23ac4c64eea20b4a933140d25"
+    },
+    {
+      "file": "scripts/verify-site-http.mjs",
+      "digest": "3fc558d7c5c99435186ceb65a223e05ef24fd5d2d29d303bfe17d93fe4fd50ff"
+    },
+    {
+      "file": "scripts/verify-site-meta.mjs",
+      "digest": "3a60daff4eea729cfa36010215bdd1e2565c25af46bd44a7d6a20571ce898767"
+    },
+    {
+      "file": "scripts/verify-site-publishing.mjs",
+      "digest": "b5080ff9a83d48d0a8fda85b22cd5339972f30f48ffac6cefb7257335d95c5f7"
+    },
+    {
+      "file": "scripts/verify-site.mjs",
+      "digest": "1bd3d4e7924da6b869e263573cfbf03fb0f1bbb9f26186040a159d9bb5f797e9"
+    },
+    {
+      "file": "scripts/verify-theme.mjs",
+      "digest": "6be24453b24d786e0a6b66af9c15241b9cf515de35a378ce2c9f118f36afe7b7"
+    },
+    {
+      "file": "scripts/windows-acceptance-smoke.ps1",
+      "digest": "983cf97fbabf2b2c74969ca78e1a53a39d24bd2c3d8bd2a5023322027703cba9"
+    },
+    {
+      "file": "scripts/windows-icon-resources.ps1",
+      "digest": "8c07cce717d28a4377da0385cfd390ce445b9f21513d43574cd88fa6c9341109"
+    },
+    {
+      "file": "scripts/windows-island-idle-acceptance.ps1",
+      "digest": "037f8adb3475e383bc247659538ddedeb569f28a354c1e3755940e1251a1ebab"
+    },
+    {
+      "file": "scripts/windows-island-input-smoke.ps1",
+      "digest": "1b0875fdf5bfba3c04251c90ace5984f1b80a5e8c6532a49782351ca65555926"
+    },
+    {
+      "file": "scripts/windows-island-lifecycle-smoke.ps1",
+      "digest": "9e4fcad088ec8a0afb68a0a93c090496dd580988ea0a3fdcb448c428ed2a9773"
+    },
+    {
+      "file": "scripts/windows-island-performance.ps1",
+      "digest": "fc6686ef0645c44e6bb22a151960919d3d81e77553874eec624235d66d2ced5d"
+    },
+    {
+      "file": "scripts/windows-island-spike-smoke.ps1",
+      "digest": "057917e8c090c5b45a813a4cf0167fa2665df318eb9f2d24359a43f7cba60936"
+    },
+    {
+      "file": "scripts/windows-island-surfaces-smoke.ps1",
+      "digest": "6f594ad8e2dbb957146bd1b9bfdcef957db30ec4188674f59333edb23f398a71"
+    },
+    {
+      "file": "scripts/windows-island-visibility-smoke.ps1",
+      "digest": "677311dda7d78bf969649701ff8d0a86ff8649fe2cab18d0f5bbe2630fc21b79"
+    },
+    {
+      "file": "scripts/windows-native-island-smoke.ps1",
+      "digest": "a1376efc54777a2f093a6abe0bb5f95857246df7a5d5b8ceda70a10b9e5eecab"
+    },
+    {
+      "file": "scripts/windows-real-download-smoke.ps1",
+      "digest": "fad6642b8491ba1e842ebfc4bd3060bb6300085409677532d4aff3f2de654a25"
+    },
+    {
+      "file": "scripts/windows-theme-smoke.ps1",
+      "digest": "27e38f44dd68f0d4d9e9e8a7c1c4f0af4693307d88869dcd5b47a14db58ad3ad"
+    },
+    {
+      "file": "src-tauri/Cargo.lock",
+      "digest": "ec8ca54eaa8dc53bf149d63cf58ecad7f83c99d1cf2cad05099dd072f549a273"
+    },
+    {
+      "file": "src-tauri/Cargo.toml",
+      "digest": "6177edd6c946083d98d21eaa668aacb15690f0605e54b6e555caf0c664609e5c"
+    },
+    {
+      "file": "src-tauri/build.rs",
+      "digest": "487059eaf8a947b80f20a9aacac038a5047b2ad69d2401b827376c67d6fe847f"
+    },
+    {
+      "file": "src-tauri/capabilities/default.json",
+      "digest": "5e1dfafed29d8ffdd7a47483b0e366e79427a55fce6001ca79b889fcc0c9f1ee"
+    },
+    {
+      "file": "src-tauri/capabilities/download-sheet.json",
+      "digest": "09814fedf7e23fd7dfa8734a42ee4887e7e4635e56ce771ecc83eaf316edc8c9"
+    },
+    {
+      "file": "src-tauri/capabilities/island-spike.json",
+      "digest": "a77cc0e6c9aef08abc8d54e03216d207540f5f0c6e742f0afd9c72730a09dbdd"
+    },
+    {
+      "file": "src-tauri/capabilities/island.json",
+      "digest": "41541a70348b91cd158e16fd69e5884c6c96ee9e078d9a0768b36703ff2fed67"
+    },
+    {
+      "file": "src-tauri/src/capture.rs",
+      "digest": "24a8d3b2fc450e3d49d1ed1c7bd0c68d7a38248696f81b510764edf9a0eeceae"
+    },
+    {
+      "file": "src-tauri/src/clipboard/mod.rs",
+      "digest": "017ae4844ddb4f749f5ea6c91cd9fe628610e8b437a86dcab810df0c239d4eb2"
+    },
+    {
+      "file": "src-tauri/src/clipboard/sensitive.rs",
+      "digest": "2aae8dc9e0939c0129726208a6510b226ef243b24efac1e9c396515b2c2db3b3"
+    },
+    {
+      "file": "src-tauri/src/clipboard/watcher.rs",
+      "digest": "e0ca64145ea2b81ecf741101ec4e945f8fd1bd10f7d8d832b3bec9d51a1cf979"
+    },
+    {
+      "file": "src-tauri/src/commands/app.rs",
+      "digest": "f406feef5897ad9f0b5aa24ae1bc63cdceb64365d5fccd401e0333d96419f5bd"
+    },
+    {
+      "file": "src-tauri/src/commands/clipboard.rs",
+      "digest": "f8fe2cf4025584ba507a6a76f5f4f23500f77ce8f13dc93d30f272f35e89d6a3"
+    },
+    {
+      "file": "src-tauri/src/commands/download.rs",
+      "digest": "d51a9339e591d5c50ce05be8dceb6c18132cbb6ec510d166b04a2ff90074ab96"
+    },
+    {
+      "file": "src-tauri/src/commands/mod.rs",
+      "digest": "bec1c7c940e3a3fe3f315ef2b48f6f2a5f267ce1b2f70cb78fa010dca586e9c5"
+    },
+    {
+      "file": "src-tauri/src/commands/settings.rs",
+      "digest": "2a87a2bb41571a34867167e8625c27d8e04e64c2782c34cb644f67571bf049b3"
+    },
+    {
+      "file": "src-tauri/src/db/download_presets.rs",
+      "digest": "8918fb3dd000b67b86969b047d19c83e2a17c52b9a1f3c199aa2fd40b2906c66"
+    },
+    {
+      "file": "src-tauri/src/db/download_presets_tests.rs",
+      "digest": "8d9aa14157774e99cfc0f2e0b00bddd5bb3a6a3908a645b54d080dff4edaa7d5"
+    },
+    {
+      "file": "src-tauri/src/db/mod.rs",
+      "digest": "29367c9b187983507c94bb5553d158a7c4dd714d865be20f4ea9e96292452167"
+    },
+    {
+      "file": "src-tauri/src/db/models.rs",
+      "digest": "54fc69ea7f27dad0ca258a55485dcc19081e3dcb6040da5b635b9222dcce408b"
+    },
+    {
+      "file": "src-tauri/src/download/acceptance.rs",
+      "digest": "d0fe61612475b460f11fd13939c645acf59c0936df67ae61eefffc820a32a05b"
+    },
+    {
+      "file": "src-tauri/src/download/deferred.rs",
+      "digest": "15743c03fe1cc7b41b069eed7e98eb14afe448d34d2f97f7dc53f4e38bb36cd4"
+    },
+    {
+      "file": "src-tauri/src/download/engine.rs",
+      "digest": "3c9e4f0f2567c78e984e909868c04f6d85e46fd92c30902f630e582cab46b56e"
+    },
+    {
+      "file": "src-tauri/src/download/engine_process.rs",
+      "digest": "c6a6b676412aff3cce88fac00aa8a1bb74f57f2d08b325488780ddbae3be6f7f"
+    },
+    {
+      "file": "src-tauri/src/download/engine_tests.rs",
+      "digest": "3c40e7c9c0fba3255a32fbd4033d67c7ed0784f6021a4dd32f4d7d00413e2501"
+    },
+    {
+      "file": "src-tauri/src/download/errors.rs",
+      "digest": "bc8e42f2b6c3e78b0c2926e205f412f93c56b56a872342accac2e65a48d1377a"
+    },
+    {
+      "file": "src-tauri/src/download/errors_tests.rs",
+      "digest": "1e17e4ef7d0f0649fe0b69019237a91c36ba59650486a16fafa0ccc26ad1d377"
+    },
+    {
+      "file": "src-tauri/src/download/fixtures/errors.json",
+      "digest": "2f4a83b3db64976c25f25574ae63d55464dea27471c69b423e756fbac8ab8cd2"
+    },
+    {
+      "file": "src-tauri/src/download/format_sizes.rs",
+      "digest": "87e73796688a0dd711e09b2536b2789345416d548b25e59bc375101c0825e42b"
+    },
+    {
+      "file": "src-tauri/src/download/manager.rs",
+      "digest": "de63c95a56c3ddafc5f4c2f6cad944929061fc3b914b9b3323e3dfcff90a315e"
+    },
+    {
+      "file": "src-tauri/src/download/media.rs",
+      "digest": "d3bb789e816b50457a70a87bccfd6507996db001e11116ac4803e821b5a5b17f"
+    },
+    {
+      "file": "src-tauri/src/download/mod.rs",
+      "digest": "2ff7f8c8ee4a1faca7e636f4b5528350ba9c0e0d5428fa18aee416f145dd4f2f"
+    },
+    {
+      "file": "src-tauri/src/download/options.rs",
+      "digest": "e02cc3035d72180f40910280d005c683ecd1c107e9a4dbd47c3b6fab47b8db1a"
+    },
+    {
+      "file": "src-tauri/src/download/options_tests.rs",
+      "digest": "5d525d0f373ee7b178e561fa3645003ef3a38d5c57105808499e179af7165b88"
+    },
+    {
+      "file": "src-tauri/src/download/presets.rs",
+      "digest": "d1609afa8e001cd4c41c45f148556d683520d8e04dc1d23c1bc90d417d6c4740"
+    },
+    {
+      "file": "src-tauri/src/download/probe.rs",
+      "digest": "4bf53b7f06fd032cf4d1b707eb82c40fe6ff7324b66ed968bf43a0269b6ef1dd"
+    },
+    {
+      "file": "src-tauri/src/download/sheets.rs",
+      "digest": "1709727574f26c1b8f25c2ae99a470644d0ad05d517968d1396f168f004b5e52"
+    },
+    {
+      "file": "src-tauri/src/download/ytdlp.rs",
+      "digest": "c4fafecf82949abfb00157f2201ef7f5977d00dae20caadc32e4394eec33dda0"
+    },
+    {
+      "file": "src-tauri/src/error.rs",
+      "digest": "e094e778d3e9d6581fe727b419dd94ba0f7410c2fc923ec848769df5bfd12953"
+    },
+    {
+      "file": "src-tauri/src/island/activity.rs",
+      "digest": "a8207ccd7e66590abff76b734bc05ae65fdd6f66151e1653e5444f8304562caf"
+    },
+    {
+      "file": "src-tauri/src/island/activity_bus.rs",
+      "digest": "2718812db72e5d76c14d2694111c4ec3b8fa343e45247af758a4a9017a0604b5"
+    },
+    {
+      "file": "src-tauri/src/island/activity_tests.rs",
+      "digest": "b4956b6ae3b7108e52438363197d2de7ff63dbbdea7574843ef38e773b1d86c5"
+    },
+    {
+      "file": "src-tauri/src/island/artwork.rs",
+      "digest": "de26e66f545f8e5138866e80c917ef131170bdda98251388b8136ef946674500"
+    },
+    {
+      "file": "src-tauri/src/island/assets.rs",
+      "digest": "b8436d0369984277f10311a437da8c605e98cdbc98ab87b5cf8b79762ec17fa1"
+    },
+    {
+      "file": "src-tauri/src/island/compact_draw.rs",
+      "digest": "a070d11313b5fc3bed8bf11463c0bfc3d6d597f2f498ac879bf536fcee504d83"
+    },
+    {
+      "file": "src-tauri/src/island/foreground.rs",
+      "digest": "4d20ab36a0263fc3024e81e742ba926accfc1229c649df9de9e7ffffc969f303"
+    },
+    {
+      "file": "src-tauri/src/island/input.rs",
+      "digest": "7c20da1ffb0cd61de03058bdf8896bbf28c5433590b9510ed29b1c82c769f352"
+    },
+    {
+      "file": "src-tauri/src/island/input_watcher.rs",
+      "digest": "9d053125f0a59278d71ecc2a90266b4d197337a046354654a5bc984d55eacc37"
+    },
+    {
+      "file": "src-tauri/src/island/keyboard.rs",
+      "digest": "1cc9bf55344a76ff15bef772e8ea72f8cb1ee5d19deed5871819ba1c6e3dc8e0"
+    },
+    {
+      "file": "src-tauri/src/island/keyboard_win.rs",
+      "digest": "21c90a4132f820e2126b8eab84d33102e6c8264aefd8c44006004511a98c6f0e"
+    },
+    {
+      "file": "src-tauri/src/island/mod.rs",
+      "digest": "787bad4de3cd65cdd31ec79c4c5e8c4b95cb0fc3d5755ecbaae22f74ef638039"
+    },
+    {
+      "file": "src-tauri/src/island/model.rs",
+      "digest": "e8ffd40335d20ab0998ab7d028c67c53f86680cdd754ee9d17a62a563d48cb4b"
+    },
+    {
+      "file": "src-tauri/src/island/motion.rs",
+      "digest": "17011c057443288e1e983acf89bd49219bb517b2485c4874c0bbc5c6810b2e68"
+    },
+    {
+      "file": "src-tauri/src/island/native.rs",
+      "digest": "2a317425808cb2ead881dc33ac06ac51333a4a462fdf2ecd2dcb9e2c3b19fa83"
+    },
+    {
+      "file": "src-tauri/src/island/presentation.rs",
+      "digest": "6000b3cd5db0d044df57973dad42342cf98f2fff3023a14e4dac18941665a52a"
+    },
+    {
+      "file": "src-tauri/src/island/presentation_tests.rs",
+      "digest": "32348a6efc1d2aaeb7b62a88a58f069f174a87fc1c9181f2fb0ad80b31917b7d"
+    },
+    {
+      "file": "src-tauri/src/island/renderer.rs",
+      "digest": "f1f698550e69292af1f96869ea466439156116ba92b9795ee137a3aafe902cf5"
+    },
+    {
+      "file": "src-tauri/src/island/surface.rs",
+      "digest": "9cfdd6903e7f15697f85e8f8c3ecdd333f78639a51c38d619348eab1c3f0c24c"
+    },
+    {
+      "file": "src-tauri/src/island/visibility.rs",
+      "digest": "7b1bc54ac9609924a8428e72a133cb959b693c7026bcc689a33beb30b0acc4de"
+    },
+    {
+      "file": "src-tauri/src/island/web.rs",
+      "digest": "b5d93e3aca64ddd08758b625dc29b28bc1b64735d97ffd09bd0e65ea4ba9cf34"
+    },
+    {
+      "file": "src-tauri/src/lib.rs",
+      "digest": "cc5e69f3e883e3390ec040d4d89a5e49bce287695285358e6bf022c41f3635b6"
+    },
+    {
+      "file": "src-tauri/src/main.rs",
+      "digest": "1520f6305fc582bb177429ced34ea4f74233dda104412f02db6cb001ab11afaa"
+    },
+    {
+      "file": "src-tauri/src/pins.rs",
+      "digest": "1553d3afdbc23430fc8d9fe198a90bd634ca432e1fa7294b2df7875b694cc1d9"
+    },
+    {
+      "file": "src-tauri/src/retention.rs",
+      "digest": "8411d0f264d0e67e56dec6fccfc0a29ce6c2a196421782a37c84d5ddde8fe58f"
+    },
+    {
+      "file": "src-tauri/src/taskbar_theme.rs",
+      "digest": "8845b45597f30b13a13d6b37c7689e165fdde671f679c3f86e62da5f36877182"
+    },
+    {
+      "file": "src-tauri/src/tray_icon.rs",
+      "digest": "5ee44cb02325fdd340074a70dd0497fa1dd29a631d48b2ec3423fe199ed83a24"
+    },
+    {
+      "file": "src-tauri/src/util.rs",
+      "digest": "9c8dbb242d856421a7b6e47e828e6464d90f92629fce4946865d12b2e2330d29"
+    },
+    {
+      "file": "src-tauri/tauri.conf.json",
+      "digest": "dab6a1a03b970765a3f234fba887a84c4c23ef80dbf39fbafbca1a9b57d36130"
+    },
+    {
+      "file": "src/App.tsx",
+      "digest": "08f7057cdc516ddbd82102ef0ffd62a9895af540a984f0e68fe88e401e3661fe"
+    },
+    {
+      "file": "src/assets/brand/.gitattributes",
+      "digest": "64971868aac0f426057b1e509bb5daca0c6ada97af0681dd0cc8258c05bf4743"
+    },
+    {
+      "file": "src/assets/brand/app-128.svg",
+      "digest": "fc3f2107fc524a6f26bc53baaf78a3e50990911458bc9428b94513bf3d0fb10f"
+    },
+    {
+      "file": "src/assets/brand/app-16.svg",
+      "digest": "e3e77f931e9671caeb8dceea3a515461792df46c9f5403b2db4cdf15f384060d"
+    },
+    {
+      "file": "src/assets/brand/app-24.svg",
+      "digest": "113a0ba801015854c4726581905928b7c620d014991b68d27aa9de85c2b9ce0c"
+    },
+    {
+      "file": "src/assets/brand/app-32.svg",
+      "digest": "6a4114cac4d1d291a70e0cbc8e804924e89932c7a9c15410f3387c32f5cef5bd"
+    },
+    {
+      "file": "src/assets/brand/app-64.svg",
+      "digest": "16b5909d0a3192ef282e577967f64ad0732baa9d6b7d3788466acdcf0ea8da03"
+    },
+    {
+      "file": "src/assets/brand/manifest.json",
+      "digest": "469345cda31067811d8921346c83c84dccf23f3ea3022e76b706335ef0e162ad"
+    },
+    {
+      "file": "src/assets/brand/tray-16.svg",
+      "digest": "299355137cfa3e148de6b60afe858617644b88c3ed58d225ded6a4b308936532"
+    },
+    {
+      "file": "src/assets/brand/tray-24.svg",
+      "digest": "645a1187a913ccf3e5078867142058a092c20ac6c251e496db5869775b66d7df"
+    },
+    {
+      "file": "src/assets/components/.gitattributes",
+      "digest": "d4278445e63e468596d13fafdbe59057153e1d3177fff356830decbb63bc9062"
+    },
+    {
+      "file": "src/assets/components/README.md",
+      "digest": "867dedcd4fbd6e84286a767807ddec3103e84e5cdde61c7c191aa6483035bd61"
+    },
+    {
+      "file": "src/assets/components/assets.ts",
+      "digest": "5886981cc1415f11f533bcdf335b26dd7f82f458da7e713aada1afd4b8d181e0"
+    },
+    {
+      "file": "src/assets/components/check-10.svg",
+      "digest": "b6441800b4edef41284ef2caf1b93438330fc250302a8f0a1b4d31462a3babeb"
+    },
+    {
+      "file": "src/assets/components/chevron-down-14.svg",
+      "digest": "77e68feff16f23989ffd55be5b0a80cd44d2e0fbf0a755e7b7a8a65a2e8d75c4"
+    },
+    {
+      "file": "src/assets/components/download-danger.svg",
+      "digest": "5dfd8ab9d2009684e4622ebd2425e7a468f44e0dcb194861bfa92fafb8f79172"
+    },
+    {
+      "file": "src/assets/components/download-primary.svg",
+      "digest": "a1ef5e1bcaea5476edb45049cdca33844709ede886ca13d47378dc9e240a139f"
+    },
+    {
+      "file": "src/assets/components/download.svg",
+      "digest": "0c06b6929d57201f9578129c40843419fb32f27fee06d184d17cea5c7164e9ea"
+    },
+    {
+      "file": "src/assets/components/manifest.json",
+      "digest": "dd7399e775b99847f3db1c1c5d4a9fafef395a20fe07f4f5d895081595630d53"
+    },
+    {
+      "file": "src/assets/components/more-16.svg",
+      "digest": "dd0ec844876aa3e4db562d22c920552df9798187cf2621d023847168d10ad0e8"
+    },
+    {
+      "file": "src/assets/components/more-18.svg",
+      "digest": "3e6d34517baa48fece028674207f208eea9bd2c2c5aa55c68243fcb31919b84f"
+    },
+    {
+      "file": "src/assets/components/more-island-16.svg",
+      "digest": "d88cf72a0c00e5b21d5649427c51d0588b5c05c8b3c6556250a30342c21f5f7a"
+    },
+    {
+      "file": "src/assets/components/more-island-18.svg",
+      "digest": "eb496ed1631871ebcb8d04ef838f780ad47e5485534df38b1969a0540fd5647d"
+    },
+    {
+      "file": "src/assets/components/tab-download-muted.svg",
+      "digest": "996aa6f58978a02b5be0d35e5d0e5845c87ece641a44cd7488ce6967c867b6d1"
+    },
+    {
+      "file": "src/assets/components/tab-download.svg",
+      "digest": "0c06b6929d57201f9578129c40843419fb32f27fee06d184d17cea5c7164e9ea"
+    },
+    {
+      "file": "src/assets/components/toggle-off.svg",
+      "digest": "82a0ddb683c4f0486e7c73d8fa41f8312d39a7f82ceebc52377930d88c500191"
+    },
+    {
+      "file": "src/assets/components/toggle-on.svg",
+      "digest": "5323983c4cbed2099f68b44eb8e72de0bed4c6f9ab2d2748e0d583e953e6e469"
+    },
+    {
+      "file": "src/assets/download-errors/18902.svg",
+      "digest": "36faec4c7299aa007aacbed5fd47fe6755e4fcc351bc6b5d1e551a0ce70990db"
+    },
+    {
+      "file": "src/assets/download-errors/1ddbc.svg",
+      "digest": "9f74712d240d9657edb41f461cd7dd380a38ccf9e9d67cf6c972e4ab079f7d6b"
+    },
+    {
+      "file": "src/assets/download-errors/2984a.svg",
+      "digest": "b2cc994a28e1a642a653393937e1d5798294f372d68ea6b2b5696e59ad9c3fd2"
+    },
+    {
+      "file": "src/assets/download-errors/48f16.svg",
+      "digest": "22f5b8b156f8e15eb9a174e38d6bc50e8b3dccf2a23f2e21983c2e287303ee0d"
+    },
+    {
+      "file": "src/assets/download-errors/4c9d0.svg",
+      "digest": "46b175003aa836948431ef1eabaab0444fea19272e316ec37480930ec6122289"
+    },
+    {
+      "file": "src/assets/download-errors/8fce1.svg",
+      "digest": "10bfe57faeebdbb074e2623a0a08df2752fbc8b3364693f7f989c05356ea995d"
+    },
+    {
+      "file": "src/assets/download-errors/a92d4.svg",
+      "digest": "a4e0360a7edb4aa24de927ac20766338a0de8f6eb92ae11efdfbd1900b87bf8c"
+    },
+    {
+      "file": "src/assets/download-errors/ba187.svg",
+      "digest": "f751d68a4af0f60315871c3c5c77704a5795fe6d7ad974852ac08584e01ed1b1"
+    },
+    {
+      "file": "src/assets/download-errors/e8c4c.svg",
+      "digest": "3ad4d2bd170cb4600bc24ed3972018e4269175773ea0a6f69757eeba10052ab4"
+    },
+    {
+      "file": "src/assets/download-errors/ee21d.svg",
+      "digest": "e12dd144c7ffdc37de213ec9741df1a56705104d67cda19e45e47ecf3ff48030"
+    },
+    {
+      "file": "src/assets/download-errors/f01e4.svg",
+      "digest": "b977acc5bc2f16d60a75fe61d110bc1e38c40c4bbbd0920e68f252f3346075af"
+    },
+    {
+      "file": "src/assets/download-sheets/2ed91.svg",
+      "digest": "be529463b308fe9894fc94a19c820323ce3fd6365980038c5b0ed1086c3a7a5d"
+    },
+    {
+      "file": "src/assets/download-sheets/338a5.svg",
+      "digest": "143ac5f2d002c42e46f3b229c6eb2b9afc0ebc43af39d45a835bcabc600ac790"
+    },
+    {
+      "file": "src/assets/download-sheets/3d2ea.svg",
+      "digest": "217dab25dffccf251e8b2862b5cbaec1250e68c26e44afe1aef4ce858c523eb3"
+    },
+    {
+      "file": "src/assets/download-sheets/46f95.svg",
+      "digest": "5323983c4cbed2099f68b44eb8e72de0bed4c6f9ab2d2748e0d583e953e6e469"
+    },
+    {
+      "file": "src/assets/download-sheets/5d1a3.svg",
+      "digest": "77e68feff16f23989ffd55be5b0a80cd44d2e0fbf0a755e7b7a8a65a2e8d75c4"
+    },
+    {
+      "file": "src/assets/download-sheets/a9396.svg",
+      "digest": "59f485204028e2fb48294a0b3d11aee23c71584527f92aac986fcf68cb5c8f66"
+    },
+    {
+      "file": "src/assets/download-sheets/aa883.svg",
+      "digest": "42c63d8879826f80602e8b87cc3450d405261084da3b7a18b6f46cb5e7af29fc"
+    },
+    {
+      "file": "src/assets/download-sheets/ad273.svg",
+      "digest": "f3bdf753dd98d2bda3bcf63801190b43c06bb3537bc69a880b5861a197a2b766"
+    },
+    {
+      "file": "src/assets/download-sheets/d2028.svg",
+      "digest": "245c63d7fdff99e43fd33f4ea1bb053c6e88e64a8168f741e58440817323664c"
+    },
+    {
+      "file": "src/assets/download-sheets/ef790.svg",
+      "digest": "faf899f72353c8b8e311e11b934846de05a300e965aa23411f080b49df83c550"
+    },
+    {
+      "file": "src/assets/download-sheets/fd956.svg",
+      "digest": "22da135d83c0f1452dd4cad67b3469c92955ba5677f6355ae175a37199b09982"
+    },
+    {
+      "file": "src/assets/downloads/tray-068f4.svg",
+      "digest": "87295874b10638153a31b5745a77f674d34a9b170b538cfd18045215aebafe83"
+    },
+    {
+      "file": "src/assets/downloads/tray-09016.svg",
+      "digest": "113a0ba801015854c4726581905928b7c620d014991b68d27aa9de85c2b9ce0c"
+    },
+    {
+      "file": "src/assets/downloads/tray-1c63b.svg",
+      "digest": "117175f7accb8fece581a6d23c1dc37ca2f1e66267b1fad117c8f5ac7d461977"
+    },
+    {
+      "file": "src/assets/downloads/tray-311e5.svg",
+      "digest": "3f48391cc0aac08162c3d0d410b308c5d0eaf43e2034e1bc7af5435c02e2f51e"
+    },
+    {
+      "file": "src/assets/downloads/tray-403ff.svg",
+      "digest": "c2f9f58b790d761d3bca2215799626208b584f6e1a46b3a120324fe9388148fa"
+    },
+    {
+      "file": "src/assets/downloads/tray-50e57.svg",
+      "digest": "68fbe537b322cdfc61bfe513fdcbea0db8328468e771b7d997b4c6fb28a4b171"
+    },
+    {
+      "file": "src/assets/downloads/tray-5762c.svg",
+      "digest": "f3f59581ac7ad2771dc8e92476ea245fadd89556d83308658d1d22218b805b26"
+    },
+    {
+      "file": "src/assets/downloads/tray-582a5.svg",
+      "digest": "117175f7accb8fece581a6d23c1dc37ca2f1e66267b1fad117c8f5ac7d461977"
+    },
+    {
+      "file": "src/assets/downloads/tray-74927.svg",
+      "digest": "1906dba101ae73d5b9a6804441d6ffaa32dcfeaac4cecaaa158e4aa417602ffd"
+    },
+    {
+      "file": "src/assets/downloads/tray-8d77c.svg",
+      "digest": "242782b49535854bdf539cc928104cbd4816b65d84dd857a0711b851f58218d5"
+    },
+    {
+      "file": "src/assets/downloads/tray-964b0.svg",
+      "digest": "6bda25ea53fd69e0b6b097ad72cde8c0db4ee4b925df85cf396d46274d1b1071"
+    },
+    {
+      "file": "src/assets/downloads/tray-97969.svg",
+      "digest": "66ea53c818a8660500a60e38a5f818492b2bc9cc4bc8e179f8a2c03c6c4f19d8"
+    },
+    {
+      "file": "src/assets/downloads/tray-9ff44.svg",
+      "digest": "879ce7233585c42df0c54edba183a1e99534503c426c02ec901af844ec0d1425"
+    },
+    {
+      "file": "src/assets/downloads/tray-be722.svg",
+      "digest": "2d9d42d014f726f060fe11395fd5c6bb984106ece2e6cd9a3f903b4be24779d4"
+    },
+    {
+      "file": "src/assets/downloads/tray-cc3a0.svg",
+      "digest": "4c5e7c42e3bcbacf41be2b6698a88107a5b863fe893beb375b44693134d920e2"
+    },
+    {
+      "file": "src/assets/downloads/tray-d2028.svg",
+      "digest": "245c63d7fdff99e43fd33f4ea1bb053c6e88e64a8168f741e58440817323664c"
+    },
+    {
+      "file": "src/assets/downloads/tray-d70dd.svg",
+      "digest": "ab4cddcfdb4a13e09598f249a7e571479015b1cdda24e16606bde5ed34e28820"
+    },
+    {
+      "file": "src/assets/downloads/tray-ea09f.svg",
+      "digest": "e4cd6fe3ccceba631ae8baf64979e219afe8752216ae517437783aa5c9466b95"
+    },
+    {
+      "file": "src/assets/downloads/tray-ee7c7.svg",
+      "digest": "d3493f878e8bb0bbdaaa94f1721c7446a7e922caf93314095e2f04654cf52078"
+    },
+    {
+      "file": "src/assets/downloads/tray-f2515.svg",
+      "digest": "0852c8cc69c7816c618801d0893786f6666911b8e4a2fffde299ba519b16a8ac"
+    },
+    {
+      "file": "src/assets/downloads/tray-fe9f2.svg",
+      "digest": "4afec92d4524e8a6e46996c0fe5e7d9cfa979b038b6175a124df7982a5403913"
+    },
+    {
+      "file": "src/assets/engine/check.svg",
+      "digest": "1906dba101ae73d5b9a6804441d6ffaa32dcfeaac4cecaaa158e4aa417602ffd"
+    },
+    {
+      "file": "src/assets/engine/cpu.svg",
+      "digest": "2fdc23973b71ee9ef35f6127542fa85cc3565a4a62bab1d47b8af237092374fc"
+    },
+    {
+      "file": "src/assets/engine/refresh.svg",
+      "digest": "807d86356a1847dbcdf6937cd08044c437ef9d738a9e6d849e6ae00d921853f8"
+    },
+    {
+      "file": "src/assets/fonts/.gitattributes",
+      "digest": "72fea228a2db2f7cd886a9eb3805d7c92a3faf73dbb83264059e73b7d597b5be"
+    },
+    {
+      "file": "src/assets/fonts/OFL.txt",
+      "digest": "021caa749f89fecd7c2e40a50499de29e84d2bc19251659b47d499c2fbfffc17"
+    },
+    {
+      "file": "src/assets/fonts/README.md",
+      "digest": "7ee3740c49a450b2eaeb9f91d0b3a5ffd2b948ca80c752474dbb2b48bb72f301"
+    },
+    {
+      "file": "src/assets/fonts/manifest.json",
+      "digest": "ceac17d5b586f8b9d848eb7a6f50c904a58a18ce3780099f715565c22059d45f"
+    },
+    {
+      "file": "src/assets/island/02758.svg",
+      "digest": "0000f6e1d83e279ac3df001bb8d9492409bb559cf9901a397f7d4fab4aff2023"
+    },
+    {
+      "file": "src/assets/island/07673.svg",
+      "digest": "2c91e807069611d91df5b0ad8d1e227bb0e932e63c3cf7db5894c4de0ebde260"
+    },
+    {
+      "file": "src/assets/island/0a56a.svg",
+      "digest": "14a9e5bf60f84846e993117d317028f1acd9dcfc652a9826e9871d71308c08ba"
+    },
+    {
+      "file": "src/assets/island/0ce20.svg",
+      "digest": "10cf44c1364854bbc2d6880a8ee705eb20f91466241941ef744f705303f5869e"
+    },
+    {
+      "file": "src/assets/island/11a18.svg",
+      "digest": "309063b06b90a988572a98033b04eb098ae2d0c7a36f7f451a94837b0207d708"
+    },
+    {
+      "file": "src/assets/island/17950.svg",
+      "digest": "d848e61b7148abe2dc89dbbffae9c5b41e09a126d576ac922bd7f76e1cd5168b"
+    },
+    {
+      "file": "src/assets/island/191a5.svg",
+      "digest": "3ba167949d45287232076b446e2a81f585bba5fb93474b6b3836df53b19f1d8d"
+    },
+    {
+      "file": "src/assets/island/19400.svg",
+      "digest": "c96704bac1dca4c83b0e1143129b94909d6ac0a9b0ff92dc04541815e65a1c7b"
+    },
+    {
+      "file": "src/assets/island/1a820.svg",
+      "digest": "a48de4ccd20a9d57b34c758be1e1f2020b84b9caf485be60720f44e48c1c655a"
+    },
+    {
+      "file": "src/assets/island/1ee00.svg",
+      "digest": "8d2d874c2583d08f3c5b1cd52dc30cc2eeef73a9ea5e9b27988d227988116c4a"
+    },
+    {
+      "file": "src/assets/island/202d3.svg",
+      "digest": "6f0f0f3e566bb023d88fc43af6934424ac85043c9fe6da0d3a833de99b7090e5"
+    },
+    {
+      "file": "src/assets/island/241bc.svg",
+      "digest": "51d88d6b8ebb30ea0c943a145ffadada75c92fa5a00d285a7b1691b8a0f68002"
+    },
+    {
+      "file": "src/assets/island/25987.svg",
+      "digest": "ff221799bcbd2b8d9cb253c1a2dd7ef02b9173e6c68b2d5a4bd151d7f6955ec4"
+    },
+    {
+      "file": "src/assets/island/26c03.svg",
+      "digest": "164424874a9c973ef19d89e4a1b99dfe3497eb808424e0916e8628ce7653fea9"
+    },
+    {
+      "file": "src/assets/island/2e6ca.svg",
+      "digest": "2382d49e3ed4ceebe2ede97de950a3a7528bb03fc36b765bb90ad5f905a9766e"
+    },
+    {
+      "file": "src/assets/island/301e5.svg",
+      "digest": "985ff9d5b81a96ec9126c767fe255ed5bf3be25681ff01ba40aa6124a91018a0"
+    },
+    {
+      "file": "src/assets/island/34d73.svg",
+      "digest": "bb18f6b52f420503259c4926ca9c3f61d153ff0efd4614a5edc66402acecdae3"
+    },
+    {
+      "file": "src/assets/island/35d0f.svg",
+      "digest": "4e04b83e59d11683b734fc9f605a17b540a2d72a7bb9b191e39164e6a594fc3f"
+    },
+    {
+      "file": "src/assets/island/3ad41.svg",
+      "digest": "70c131f3bd72213459e949c2bf694e199bfdccaa5fbdd08c593b37cd350ee95f"
+    },
+    {
+      "file": "src/assets/island/3ef26.svg",
+      "digest": "139e68decaf6421b22b1626fa0b233aea94628eb10be9a7966f01dea2d3a8ea7"
+    },
+    {
+      "file": "src/assets/island/3f4f6.svg",
+      "digest": "9991fec469928a38e0119c2ef59e8b817e38362508c08299ed74273df3720b79"
+    },
+    {
+      "file": "src/assets/island/3f55b.svg",
+      "digest": "873b9488b557da1263aa591f31625c8d33abf8ccdb06a9a9318849fe690c15bc"
+    },
+    {
+      "file": "src/assets/island/4087f.svg",
+      "digest": "dcdc3577ace739858682eeb99ca0aa8f2152fcadb9d931d147b3810ad9059129"
+    },
+    {
+      "file": "src/assets/island/4147e.svg",
+      "digest": "e7275f497c857252e875cb05156ed5a1c43731095536e663e180cc23ae6e33a7"
+    },
+    {
+      "file": "src/assets/island/45743.svg",
+      "digest": "6cfd25096e849f6d19a53a153a8b49f70702268f4c461a3a8fefd4949adf2c42"
+    },
+    {
+      "file": "src/assets/island/473e7.svg",
+      "digest": "148ed9a8749060c2e429cd5f3af840b6c23a7f3df07a47bd6e52df3d52babce0"
+    },
+    {
+      "file": "src/assets/island/494c6.svg",
+      "digest": "069e16d7a239a44e59660a8e1bf8e1d45385ad5d750a74d70d8f8b1a84eeab9a"
+    },
+    {
+      "file": "src/assets/island/4ab84.svg",
+      "digest": "1baf8344b133269d1bbb4c4c1e92d17aa40c96418156d3acc2fb4ce8204526af"
+    },
+    {
+      "file": "src/assets/island/4ebe2.svg",
+      "digest": "878c9b495382a0c7a3345ce9644206292a5cdba4bcdfb586b6155dd0e5b93568"
+    },
+    {
+      "file": "src/assets/island/53933.svg",
+      "digest": "e9e026bc248d3ea75f82e734711daf90a1f5adf9a2fc92eb117aaa1f5760d063"
+    },
+    {
+      "file": "src/assets/island/53e1c.svg",
+      "digest": "5ba0d4f5fd07ccfcdf2ba25a396c80536fdb9984a7620aa7c18605badfa2d006"
+    },
+    {
+      "file": "src/assets/island/57ee8.svg",
+      "digest": "2d05203bcee5657a735c234ea25d08f4c8e56d5791db5af4276c2ebd49ec02a3"
+    },
+    {
+      "file": "src/assets/island/585a3.svg",
+      "digest": "d8684662329bf1b639b123c24bdb1f5e7d09245fc1d047b620e69cfd88159089"
+    },
+    {
+      "file": "src/assets/island/5b27c.svg",
+      "digest": "460d6f262392b0ec68fc59fc22ad92ac0934952093590295c29db3f423f7b292"
+    },
+    {
+      "file": "src/assets/island/5da32.svg",
+      "digest": "f7b0145cf4bdcc394f8467862cf28994c7bbf3e2caabac1c20fe5c2a57aa69d5"
+    },
+    {
+      "file": "src/assets/island/5db7a.svg",
+      "digest": "19e5a182ad6114cbc9187ee3a3c6ec4a96bb8d1e068f2410fdb00347407219d1"
+    },
+    {
+      "file": "src/assets/island/68081.svg",
+      "digest": "1c52afc17bcc2dcc12d42ddef8c2846ba179987e0ce81b392c80940edac94190"
+    },
+    {
+      "file": "src/assets/island/70866.svg",
+      "digest": "7d58f803341894534fd9445b052e7279474eeb9623a2450033ee8fff61e36abb"
+    },
+    {
+      "file": "src/assets/island/73a72.svg",
+      "digest": "c251054f0d45fe5854ee58fbdf47bd6a0b948a596498c1b5d5265143ca736529"
+    },
+    {
+      "file": "src/assets/island/754dc.svg",
+      "digest": "e9924c6299fc2091fe10b40cc3440bc398a3493af58f7b1351a84f5b375a14c5"
+    },
+    {
+      "file": "src/assets/island/775e9.svg",
+      "digest": "80201025e16e2b42c86fac716ef6a3c876798c0cdfbfd0bfb07d4f34dac2e112"
+    },
+    {
+      "file": "src/assets/island/7b965.svg",
+      "digest": "e8b4528d9894842e71ce3432c152ca38cfc96a9c413b4c8c2adf6d9259c37c72"
+    },
+    {
+      "file": "src/assets/island/7d678.svg",
+      "digest": "2647428c4c54f303560faa089756ed150f464e452eb93803cd6114bfad04d37a"
+    },
+    {
+      "file": "src/assets/island/82100.svg",
+      "digest": "3d8a43a7d35c65ab279e54ecaf8c7a9abea23d4e22e54e94a1a906c726e2cfe3"
+    },
+    {
+      "file": "src/assets/island/826c3.svg",
+      "digest": "18dfb1c9386d75f49b2e5712c816a12749cfa22904041333d29da9763fd1637f"
+    },
+    {
+      "file": "src/assets/island/830b4.svg",
+      "digest": "9938ab44484a53c83239fae3615bc260eafd3c7b9beb940122a298e80adaa12e"
+    },
+    {
+      "file": "src/assets/island/85918.svg",
+      "digest": "0188716db7847d99195a86d44a2233cdb57cb76c1d833477e9791fd6ed36b205"
+    },
+    {
+      "file": "src/assets/island/85a6f.svg",
+      "digest": "32961aecd20fc9648a48d6d5ba7b73ca1cd0427a11c252fc792e70349f442177"
+    },
+    {
+      "file": "src/assets/island/85f58.svg",
+      "digest": "af64666706f929510be1275c88fe7916d2c66ca9fb1c3b9d6889add0fe80c39c"
+    },
+    {
+      "file": "src/assets/island/865a8.svg",
+      "digest": "193325de3fb97e64fbe2f83e716aec10b648e9d7c9e396e98fb44a4232146fe3"
+    },
+    {
+      "file": "src/assets/island/8928b.svg",
+      "digest": "881fba57c111b6caa35bc68930596d51346760bc2d03d482aa5834cbc233dbd5"
+    },
+    {
+      "file": "src/assets/island/8ae50.svg",
+      "digest": "18bf103971064a608a139d3367cc461c4fdfcf4c0a7e23ea3d6baaa0a117f101"
+    },
+    {
+      "file": "src/assets/island/92101.svg",
+      "digest": "5d42541e53062ecc4a14120a4dfcd16854fc68928bff7cadf93b439232f08daa"
+    },
+    {
+      "file": "src/assets/island/964b0.svg",
+      "digest": "6bda25ea53fd69e0b6b097ad72cde8c0db4ee4b925df85cf396d46274d1b1071"
+    },
+    {
+      "file": "src/assets/island/967b2.svg",
+      "digest": "ffbc6f8fb4ac41a8df12218be68c11097d7a68f22cb8650b23485c63389b6cf9"
+    },
+    {
+      "file": "src/assets/island/99938.svg",
+      "digest": "c88388f8ddf6da0ff5c20a9131ede18375f3d1e177ee403072267f9644dd19e1"
+    },
+    {
+      "file": "src/assets/island/9a8c7.svg",
+      "digest": "26d2553d44afaf2a418818a887de9dbf83a85e1d66bc3e9de2b7a21ef8e3fcec"
+    },
+    {
+      "file": "src/assets/island/a1079.svg",
+      "digest": "e36ec07f213bf9a60b88e631505993274255ea442f13f5a6d623ae2aa96d50de"
+    },
+    {
+      "file": "src/assets/island/a1573.svg",
+      "digest": "a74cf42092f0ed64469bec3110fc9664cc282d18af2dca86e5cbf0d9fd89b8c5"
+    },
+    {
+      "file": "src/assets/island/a313f.svg",
+      "digest": "a2271fb27ee0794e9914344c201fda991482c1450aa76c8ca8193d468f96b7fe"
+    },
+    {
+      "file": "src/assets/island/a58a5.svg",
+      "digest": "7ce9899da3c6cee77ae6e88e462ee6de8c00dbe561385fa78f57a2d3515c2dad"
+    },
+    {
+      "file": "src/assets/island/a5b7d.svg",
+      "digest": "6efc270710a8ab06e02117bdb497a3a76dde69686d7857c897ed017c89b9d519"
+    },
+    {
+      "file": "src/assets/island/a846f.svg",
+      "digest": "f95ad323aded897fd9b7990ebab342a84886e27228114709f07a717d39da6b7a"
+    },
+    {
+      "file": "src/assets/island/a9372.svg",
+      "digest": "b4ab79deae37d575b4bfe99a5d645c4a1490df1afce9e94e177daa99f890d70f"
+    },
+    {
+      "file": "src/assets/island/a9a7e.svg",
+      "digest": "fc5be5937e5bbf6116b64d90bab00799ec87d27799122ac8a55719094e7aa00e"
+    },
+    {
+      "file": "src/assets/island/adcc5.svg",
+      "digest": "f9eaf36259adf35bc17be416f2af3b9e6b160fcf72eac30e19b9c5e61d8d2e57"
+    },
+    {
+      "file": "src/assets/island/ae307.svg",
+      "digest": "44bb334b27f49aa6770dcf0e48725c5ac0e0ec0971edbc36bc17641bcbf0bc56"
+    },
+    {
+      "file": "src/assets/island/b0910.svg",
+      "digest": "83269fd78a2b81f28a217b85c1207ff4f4c288a5bbf0b582247960105b5d506d"
+    },
+    {
+      "file": "src/assets/island/b2f9a.svg",
+      "digest": "dc2209ef2684100fb85d04067fce74f88353ae500988bf02da880acc32c8e44d"
+    },
+    {
+      "file": "src/assets/island/bc216.svg",
+      "digest": "cc0671615b82e3b383f18549298c5273aa2bc72849323a9df2e953b9f643ac49"
+    },
+    {
+      "file": "src/assets/island/bcad8.svg",
+      "digest": "e23d00998a91740d33f0b482617e689a2f1920a037f37a891ec064e7753108a4"
+    },
+    {
+      "file": "src/assets/island/bea7b.svg",
+      "digest": "460620d3e6f7de862488fc0c75289f72cd87bf561aa352900d935c33fbec9f75"
+    },
+    {
+      "file": "src/assets/island/c3d3e.svg",
+      "digest": "8cf10ffc5309c7807825c4ab92fdfd4a2cddd87ee5abf148046bf7d2c323baf1"
+    },
+    {
+      "file": "src/assets/island/c4ffc.svg",
+      "digest": "e30f5187232f1f9e22f4a01c2c0b230fb8dc4339e74405ed74c1ea3f595c0362"
+    },
+    {
+      "file": "src/assets/island/c5253.svg",
+      "digest": "5227e0476b4c8c9ecd34d8f71f4c1970cf57de803aef40d3582620cb2ce37acf"
+    },
+    {
+      "file": "src/assets/island/c8e13.svg",
+      "digest": "afb42f82d478e7aba279b0ee158b72fc43bf8b0d188b6e4216c796240b2eee05"
+    },
+    {
+      "file": "src/assets/island/c9ce9.svg",
+      "digest": "fda4e6d372ae4bfeff73726044822deaee16e1a6cdaf355107ea2688a0b16fe0"
+    },
+    {
+      "file": "src/assets/island/c9e0f.svg",
+      "digest": "7cee23d1ec25a2b98050b6835783cca1427657542c243eef57002a563e273425"
+    },
+    {
+      "file": "src/assets/island/ca15a.svg",
+      "digest": "248f6776b4cc8820af0732f5144b99bfad0b6903915bf022ffc10d377c32d2c4"
+    },
+    {
+      "file": "src/assets/island/cce39.svg",
+      "digest": "7569f76787eece446cb0fc8aab4f1d236279ddc0b6a07fc41c95631facef42e7"
+    },
+    {
+      "file": "src/assets/island/d3ce6.svg",
+      "digest": "73f4c7f6995d9420f753cefdfcdc4a56064c9c2157ffb9340e9f92056c9a80ad"
+    },
+    {
+      "file": "src/assets/island/d978d.svg",
+      "digest": "0289d53590102bd90e9312befa4767cced7be55b8acc7d43ee4c9aa99803ea40"
+    },
+    {
+      "file": "src/assets/island/dcde2.svg",
+      "digest": "38e99847df3df8fc95263d5750cca96bd3d20d11b8d938e970056027d7ee4fc3"
+    },
+    {
+      "file": "src/assets/island/e161c.svg",
+      "digest": "4bf51715a30cdb3d264ba2a0109fd22df6dc468b134bd15f627322b0d33deca6"
+    },
+    {
+      "file": "src/assets/island/e1e1d.svg",
+      "digest": "a78d2f7c3db8e4b137d140ec76e9ac5921bf455e022e29b401499ff2b0f148fd"
+    },
+    {
+      "file": "src/assets/island/e3172.svg",
+      "digest": "98dce3b33895a5e80318191aab085f3b72c0a33a75a50afea23431cd90310276"
+    },
+    {
+      "file": "src/assets/island/e6dd1.svg",
+      "digest": "951539258b0f01bf80043c2f629085709255b8b14afbec0d274f4d65b46c8774"
+    },
+    {
+      "file": "src/assets/island/e6ebd.svg",
+      "digest": "dcb12c19fad725792caa55204efd402ab9873f8ef0de51683443b6ad1f833d83"
+    },
+    {
+      "file": "src/assets/island/e8cfe.svg",
+      "digest": "60ba3be352ac32021c93cd4278c00d2f6f9821cc1c966b68af9e1e96cb16a88b"
+    },
+    {
+      "file": "src/assets/island/e9d4e.svg",
+      "digest": "299b559f994cf18be3dcde9af3080cbe3cd92e8df1c8c6568553b04a9079a198"
+    },
+    {
+      "file": "src/assets/island/ec525.svg",
+      "digest": "2578b3f2f720d78f7a4c5e85bc7276e5a2f075eff2b8e691aae4899c401031e9"
+    },
+    {
+      "file": "src/assets/island/ecb09.svg",
+      "digest": "ee1972aff21a1c6c0fd1d5e0ce98cdda01d2ae6c5ceadcba51aaa2812730570b"
+    },
+    {
+      "file": "src/assets/island/ecb0d.svg",
+      "digest": "86cdc8abf712d5e76873972bacb38430c73e61c2116758c5fe9d07b4f33cb459"
+    },
+    {
+      "file": "src/assets/island/eefcc.svg",
+      "digest": "4cb364234e665fe2181e9969868d1ad5242eede016af090043a20daaf6b685e5"
+    },
+    {
+      "file": "src/assets/island/f0b39.svg",
+      "digest": "fc4c6a0c02707cab3bfb54707ae3b02c8d84474553d4b019e0c261c9a08f30ed"
+    },
+    {
+      "file": "src/assets/island/f0e92.svg",
+      "digest": "9342358580868267c190b5c5cde4bbce2808280e0aa746290d3f6eaff5727dec"
+    },
+    {
+      "file": "src/assets/island/f109a.svg",
+      "digest": "599514e542525b7eb6341fb9dda55ea8ca825e7104ec97e12d88112240cd78a0"
+    },
+    {
+      "file": "src/assets/island/f12cf.svg",
+      "digest": "84a643a76061020cdf06b02b78499fe849ddaa53e30d0139e2d3d24cda7621dc"
+    },
+    {
+      "file": "src/assets/island/f42b4.svg",
+      "digest": "e533eb6dc5d4603fed834ea12cf359a30f4f5f0dc001f986be9e5189c52aee67"
+    },
+    {
+      "file": "src/assets/island/f5c4d.svg",
+      "digest": "431948eba01b872c437815e9e57a12528c7c360d39e547ae55ead9b0d8e43a84"
+    },
+    {
+      "file": "src/assets/island/f717a.svg",
+      "digest": "e6d460cf4c78cf696f01fb66e9234747a9e876559b74d4fbf12980b336557e7d"
+    },
+    {
+      "file": "src/assets/island/fde81.svg",
+      "digest": "0e92c1f032eaf364cd9f59f6be7a57dd73929371283a8f271a717b64ecd4c20e"
+    },
+    {
+      "file": "src/assets/island/manifest.json",
+      "digest": "843dbe8be0d38c34c5146626dfce863e0465127375427fdd2ed73a092fdeccc0"
+    },
+    {
+      "file": "src/assets/island/slots.json",
+      "digest": "91d4621188b6ffc90e202bb7be25f495b2eb3fe7448dc71f4faa094f43754119"
+    },
+    {
+      "file": "src/components/Badge.tsx",
+      "digest": "418493c40ab95390cff1b170455772e4d490c657dbe365f06a7a991175c991d7"
+    },
+    {
+      "file": "src/components/BrandMark.tsx",
+      "digest": "b78aef488e44a80d2b2189f59b2ec1855933e5fc0715d1b594dc6b17a5925d75"
+    },
+    {
+      "file": "src/components/Button.tsx",
+      "digest": "3154694b00447825cba6166410b619941348350b8b3fa393c011743a8651c823"
+    },
+    {
+      "file": "src/components/Components.test.tsx",
+      "digest": "38f323256cf2f6164be1fb43029d3c81b6551ee20af34c355ba4eef248a6d335"
+    },
+    {
+      "file": "src/components/DesignIcon.tsx",
+      "digest": "72d8b757fbcf29fa3b9046c9d65cd255d9f3885144be3724d1bc75b764896836"
+    },
+    {
+      "file": "src/components/Field.tsx",
+      "digest": "5981a13719e47cc88c6ad79ed48b8424c3567beb8417a24631c9fbbf9d7f4100"
+    },
+    {
+      "file": "src/components/IconButton.tsx",
+      "digest": "425d0318d89bd497b4dd735651bb71f62a2ac12295395dc07dda2e5c9ed8ca84"
+    },
+    {
+      "file": "src/components/Kbd.tsx",
+      "digest": "227fd6fa2b9792b056ab419fd3eb87d3061bb00dabd85574b5e7d9649057d8b7"
+    },
+    {
+      "file": "src/components/NoteCard.tsx",
+      "digest": "49eee950d61e3a99675f44a41cbe8cdcb503500551a14fe4c753d1907d0b8a54"
+    },
+    {
+      "file": "src/components/PresetChip.tsx",
+      "digest": "954ba1d981f0cbc47fec27b46376b3c1fc2b3926a8e061654297ccf8542f0675"
+    },
+    {
+      "file": "src/components/ProgressRing.tsx",
+      "digest": "c623f835fd5a41ac62b534921a4a00782f73142c075da51e7dd8e75ce047ea97"
+    },
+    {
+      "file": "src/components/Segmented.tsx",
+      "digest": "820751b2ac2b2d560d3eb0592bfc60c5813f42a12778071fa3e48d5477f1f65c"
+    },
+    {
+      "file": "src/components/Select.tsx",
+      "digest": "f7738ee806e6c0fbb278f7d6243cbc901ca75eb74632dc8209e7b4be013baf09"
+    },
+    {
+      "file": "src/components/Tab.tsx",
+      "digest": "04d88dba39a0873ef6217983e282165ecf6ed004ced10e5dbd4cd5e044ba14a5"
+    },
+    {
+      "file": "src/components/Toggle.tsx",
+      "digest": "8a4adb08208b6817bdf991f34a852336539130766230be8fc70fb1ab5f2e4cc7"
+    },
+    {
+      "file": "src/features/downloads/DownloadFailure.tsx",
+      "digest": "e73a3d7117baa944901fbafce9a4d48c754ebb53f0198e09945a2399777e79e5"
+    },
+    {
+      "file": "src/features/downloads/DownloadIcon.tsx",
+      "digest": "7854ad560097458a9a1522ab85ff8c5d2b63abbc9387d2c01e32adb71e02acae"
+    },
+    {
+      "file": "src/features/downloads/DownloadQueue.tsx",
+      "digest": "156456867879a0049ab4d176de29d8358ac142b6fa3e60e7856830d72f383acd"
+    },
+    {
+      "file": "src/features/downloads/DownloadReview.tsx",
+      "digest": "b46a3c36ca7f0c4c754e12f9ef07c524fcb53371f307716c1fc8906b1b446cc3"
+    },
+    {
+      "file": "src/features/downloads/DownloadSheetApp.tsx",
+      "digest": "be9f768745b8a384a8cff611bfa09fc491d42f73039d80d68a3fae33f3b2a50a"
+    },
+    {
+      "file": "src/features/downloads/IslandNab.tsx",
+      "digest": "eff3a76fa1d7a0327d0303c4870669d6dbbfda47e6a07b8f6b6ecfaf646f97ae"
+    },
+    {
+      "file": "src/features/downloads/OptionsSheet.tsx",
+      "digest": "2b98afc3eeb52b5412a7a2f8851a05b90c7ddd9e5a463aa199a5545a182ad0ae"
+    },
+    {
+      "file": "src/features/downloads/PlaylistSheet.tsx",
+      "digest": "3def507d8c4c95f6a54d2f61fc8f570b0e080ada5e1661735b8d06f3e3df7aa7"
+    },
+    {
+      "file": "src/features/downloads/SheetCommon.tsx",
+      "digest": "23cb84e168520d1c61a8f6e2b488c87434691fde7b01f50ad989a5a58e7513c4"
+    },
+    {
+      "file": "src/features/downloads/SheetIcon.tsx",
+      "digest": "0c043bd5d5676e960db6420bf49af96a0d299f142c0f341971ae1c010eea32c0"
+    },
+    {
+      "file": "src/features/downloads/TrimSheet.tsx",
+      "digest": "f154a6017f2705d68d0457c60559efac977cb1226fac02d3152eaf84fddd60ea"
+    },
+    {
+      "file": "src/features/downloads/assets.ts",
+      "digest": "fc972232f65f6e0f4c40aea1bb0d7fd7cb5612068fed9f6b79eb62c9e866e54f"
+    },
+    {
+      "file": "src/features/downloads/downloadErrors.test.tsx",
+      "digest": "14547665573a3d8e819dd2e6e675c529b693419433218fe5a0d96666bb18f483"
+    },
+    {
+      "file": "src/features/downloads/downloadSheets.test.tsx",
+      "digest": "597500954ba5730ca136d9c56945efb198287b400b448a15333c301dde6a15a7"
+    },
+    {
+      "file": "src/features/downloads/downloads.css",
+      "digest": "0ac7378aae3dd8a4a724c9970887f9a596b04dfcc4af4e45a2d636117febd218"
+    },
+    {
+      "file": "src/features/downloads/downloads.test.tsx",
+      "digest": "97181c2f4dac93a5a75fed91307adb9878bf5a409103a018552df7bbea5e8c28"
+    },
+    {
+      "file": "src/features/downloads/errors.css",
+      "digest": "92c88ca70d61c5d54e92dc149745616e5fe190ce5d10e014420450be2cd90b53"
+    },
+    {
+      "file": "src/features/downloads/model.ts",
+      "digest": "5c128f829a9f423aae74e9b20840259c16b55024a845a70b4ae5399e2618f7f9"
+    },
+    {
+      "file": "src/features/downloads/previewSheet.tsx",
+      "digest": "a28e1241c992a9657e19314a982368decb72b2e8c0ef9bdb40d3e8b9f36b5c94"
+    },
+    {
+      "file": "src/features/downloads/sheetModel.ts",
+      "digest": "201cce4e3557bdd2ecde9e725b3151dcdc2a426ad8e8348d6aa330c71d6df214"
+    },
+    {
+      "file": "src/features/downloads/sheets.css",
+      "digest": "16f85d8fc0c253838775e54e04c2e5737c8d0c0634c815d57802b660bf55da65"
+    },
+    {
+      "file": "src/features/downloads/usePreset.ts",
+      "digest": "69cb9760b546dd6a220f8d627c1174e094cd22214c921c42574fdbca81794b99"
+    },
+    {
+      "file": "src/lib/activity.ts",
+      "digest": "74f9fb1d821f72a31cb027df69cae389c222be86f24ad2d32b90f47035186ae4"
+    },
+    {
+      "file": "src/lib/cn.ts",
+      "digest": "bb1b115661607a9821a6dadda357dd4019eceac69ca8691626e707252685c902"
+    },
+    {
+      "file": "src/lib/downloadErrors.ts",
+      "digest": "189077213c0fd528df81915c7809715ac0ddd7cb9845a1f7772c4360ef9ac393"
+    },
+    {
+      "file": "src/lib/downloadPresets.test.ts",
+      "digest": "e668d50d4aa31637fec73bf01aa8a19e1a6ada802fb07bb0912a21afed06bd97"
+    },
+    {
+      "file": "src/lib/downloadPresets.ts",
+      "digest": "46574b33bf135bdbd98ae9dd8f466ee96cea88aef757a6b08eb06de6e9bec8f5"
+    },
+    {
+      "file": "src/lib/ipc.ts",
+      "digest": "bf60043f4d5d2419927508d6a20224bf5179403c92947fa927ea198cb9026f3f"
+    },
+    {
+      "file": "src/lib/islandActivity.test.ts",
+      "digest": "f4d894a0fa8f5b1e64157ba1bf1e94a5f3b01b748ea8af41a595e96c5e32bdaf"
+    },
+    {
+      "file": "src/lib/islandActivity.ts",
+      "digest": "b2e95469ddf80f176c288bacf9c549a7531184d1c591855fbd8b892731699530"
+    },
+    {
+      "file": "src/lib/islandDrop.test.tsx",
+      "digest": "2eaf570dbf0b5c48c5e287739a3fadf56579aa74395a067b18e89276d2b8ef6d"
+    },
+    {
+      "file": "src/lib/islandDrop.ts",
+      "digest": "8d860df03e1a0c1bd27d918e7449c289ffea6fd6c30d94f32d74d7ba8d4815ad"
+    },
+    {
+      "file": "src/lib/islandInput.test.ts",
+      "digest": "35dff9e398e26b92b4967930acfbb24fcd6a11b35f71e6f98ff4c72704387f3b"
+    },
+    {
+      "file": "src/lib/islandInput.ts",
+      "digest": "cb5532f194ee6318eb1eb2bd02998d9804c03301d9115c4612185f59c2cec033"
+    },
+    {
+      "file": "src/lib/islandKeyboard.test.ts",
+      "digest": "31edd9129d97e60e465047c1e47fada0fc42e0740958647708bc8f5874ea5c40"
+    },
+    {
+      "file": "src/lib/islandKeyboard.ts",
+      "digest": "fc3c6b3a0533e7dbcd46e455d9079cc44731001fa9389fc26e0b95fc1d24f996"
+    },
+    {
+      "file": "src/lib/islandMotion.test.ts",
+      "digest": "1fd36fe538444100fac303c0f7419b491ddd86d29414de5c0c140162c3843639"
+    },
+    {
+      "file": "src/lib/islandMotion.ts",
+      "digest": "c3f46835e6f60fb1c4e7d803297e673c36da7b5c0e655ff97d2734bede6f4390"
+    },
+    {
+      "file": "src/lib/islandPresentation.ts",
+      "digest": "b931e03ec2d1fd385774f09e8f626380bd3112458c5b08a70030507937fd74bc"
+    },
+    {
+      "file": "src/lib/islandSurface.test.ts",
+      "digest": "72ad324902cd52ce7db380a639a56788921154b66e3dd356414cd591420f7fe5"
+    },
+    {
+      "file": "src/lib/islandSurface.ts",
+      "digest": "0983508f4c8514225e25bfc735ad36732603f2b95924693cc03916647ec5b05d"
+    },
+    {
+      "file": "src/lib/islandVisibility.test.ts",
+      "digest": "2cc8d4b922d1cf60bbdca5968dcf8e3f27fd2c0af254807417b3571e08d42157"
+    },
+    {
+      "file": "src/lib/islandVisibility.ts",
+      "digest": "8805909a093e23c21bbc4b8ad84202bd03ec0a99d4f44d8c12169371b3bea033"
+    },
+    {
+      "file": "src/lib/search.test.ts",
+      "digest": "9ac572a42a9c6e4a490ae902b95496e0e61a72c8dc947b23f7efa0090c1faf24"
+    },
+    {
+      "file": "src/lib/search.ts",
+      "digest": "f1a73aa20413bf632f8377155bcfa0e5f8e70ef190c0d30c8216eb69a95fc76c"
+    },
+    {
+      "file": "src/lib/theme.test.ts",
+      "digest": "9017ae836705f9da48ef7aab5100522d41ab310c07f69e8a403425f4ebc32450"
+    },
+    {
+      "file": "src/lib/theme.ts",
+      "digest": "7d63ab57b3595b634833f01fbf7a986c9ddbe1504bc22666d58424afffdca406"
+    },
+    {
+      "file": "src/lib/types.ts",
+      "digest": "84177077352af3823199e44f2a44bc80dd385fe96f24ecc9aa1df115cd4d227a"
+    },
+    {
+      "file": "src/lib/useEngineEvents.ts",
+      "digest": "c2e8241baac977b357680bd8fec70a97d1ef2a247818d503d24d6e0a93e07e44"
+    },
+    {
+      "file": "src/lib/useEngineHealth.ts",
+      "digest": "622e002cefe73a2499956419c2feb9582c0dee682e05adac315884edb331f483"
+    },
+    {
+      "file": "src/lib/useTheme.ts",
+      "digest": "b351f7611a8cec1a7b24144d7380c4abaf6516e1fa0e5a5d8d0d2046d838dd9c"
+    },
+    {
+      "file": "src/main.tsx",
+      "digest": "6a2ca66b6488d41929b76bf97eb5c941a38c8a66f0a8fc3995632da494994c32"
+    },
+    {
+      "file": "src/preview/ComponentsPreview.tsx",
+      "digest": "7a5dd915620be2f1bab9aeba3d2542a29532be9e55cf5bf473e8fb5bb49e0572"
+    },
+    {
+      "file": "src/preview/main.tsx",
+      "digest": "587f3d66e4f9142875c1094fe2cdcbf3f49802b7077396be1c7f31f1e7a6be16"
+    },
+    {
+      "file": "src/preview/preview.css",
+      "digest": "4bf87f82a0fa95dd6ccc90dbf2a5adaa68de3606d2eb081839a4eb14bd7dfcd0"
+    },
+    {
+      "file": "src/store/capture.test.ts",
+      "digest": "5c33271f5df28475cb9fcd671f96de5bdcd7aaf83242ba48b784e0997fae075c"
+    },
+    {
+      "file": "src/store/islandStore.test.ts",
+      "digest": "f269dd006ce3f88f087621c126a1337e63bb3a11b73a144a2c72d447cccef160"
+    },
+    {
+      "file": "src/store/islandStore.ts",
+      "digest": "3d0d9aaf231357bcf5b8c9cf3dda2369265180ba4f28cb97d2d4b45c6ed1539b"
+    },
+    {
+      "file": "src/store/settingsBootstrap.test.ts",
+      "digest": "9116e30182af061d37174b3515000add8cf7bb6582c6707afa0d5a09a4043dc9"
+    },
+    {
+      "file": "src/store/useAppStore.ts",
+      "digest": "a3743f8402d177ad7d9f180fb76fea9d3c8480de8e3ff361fe7805a62d008613"
+    },
+    {
+      "file": "src/styles/components.css",
+      "digest": "5013c3859b090ed778b9b54a7950d74fb96759826f3ecaed71ffb01fa9436c9d"
+    },
+    {
+      "file": "src/styles/fonts.css",
+      "digest": "7ccff2c3746633bc017526c14b49ebc571e8175ee3ebe542d9b4ac4002ce8633"
+    },
+    {
+      "file": "src/styles/index.css",
+      "digest": "6cfd88eb413f902f3b704ef32908a7c4c64444b7052b309c5ca095bc98499c66"
+    },
+    {
+      "file": "src/styles/island-motion.css",
+      "digest": "51cd02d4c96d3e1d1ed9f71b3c7f7181ad6ed0abcb0f94afa1c96d6833433731"
+    },
+    {
+      "file": "src/styles/tokens.css",
+      "digest": "edbcbcd634bc7a8a8b7d032b0764cdd581e3013830be42813b7d70b78600bf05"
+    },
+    {
+      "file": "src/styles/tokens.mjs",
+      "digest": "46909691824c6f785cec8da076542841a162337ba0fa5aa2d4b51c60e6c87a5d"
+    },
+    {
+      "file": "src/styles/typography.css",
+      "digest": "e6c54a1a60bdc034e2fb69809fb9c6e9379fe9b49a3a2fd21a39c5ba5612811d"
+    },
+    {
+      "file": "src/surfaces/island/CompactContent.tsx",
+      "digest": "17cb06b8f71d590cc6c614dbd502ce496c36d210cc0f230d403a5490220f8446"
+    },
+    {
+      "file": "src/surfaces/island/DropContent.tsx",
+      "digest": "b6966df4c9dc4ee011fe228610998c9496a1b8914ce5f0e4c2537063308400a0"
+    },
+    {
+      "file": "src/surfaces/island/ExpandedShell.tsx",
+      "digest": "0f1155fffba8168c990a298a86333719bf53a83ff3a9de568b34efbf0ba3d211"
+    },
+    {
+      "file": "src/surfaces/island/IslandApp.test.tsx",
+      "digest": "87c8b73576e9607a4caa3881d69b90e7a843d4421b3b1df40fdec0d2716e91e6"
+    },
+    {
+      "file": "src/surfaces/island/IslandApp.tsx",
+      "digest": "3073e619f48a1ade415fc089a77eec2227ed477c12f94057ef955623858aed7d"
+    },
+    {
+      "file": "src/surfaces/island/IslandAsset.tsx",
+      "digest": "7a55e1b09d996eb2938ad421f89eb0da5ea40e7996e49f54c3c4a188f80b9d62"
+    },
+    {
+      "file": "src/surfaces/island/ModuleBody.tsx",
+      "digest": "32eb86ff559a0e4ea0ca3aa5b894d32d6e20648ec811ae407cd72aaefadc55e1"
+    },
+    {
+      "file": "src/surfaces/island/PeekContent.tsx",
+      "digest": "613e928b8ea0aaac58dc1f9fc0ed0532dcfea159a5d61b6dc0c039fa0c62d396"
+    },
+    {
+      "file": "src/surfaces/island/SearchContent.tsx",
+      "digest": "30d8d7da8bfea7b3a9e6677a04e520d7a1107cfeb16e0637e5fbf7c512fb5379"
+    },
+    {
+      "file": "src/surfaces/island/island.css",
+      "digest": "632c0098d28d259dd22e636d777fba25dcfb6682ede37ff81dfb5529edd1a871"
+    },
+    {
+      "file": "src/surfaces/island/main.tsx",
+      "digest": "cbaae0501bfa624ba49269aa7f95ea0a4ad8432a597772685deaf017e5fcbe0d"
+    },
+    {
+      "file": "src/surfaces/settings/SettingsApp.tsx",
+      "digest": "9be30ff51925d93b145746dca66a00e377330c3ac04a801961031d242a6dc6e5"
+    },
+    {
+      "file": "src/surfaces/settings/main.tsx",
+      "digest": "61f32414c9a6a70a6ff58e2d5adf97f6866e95edb6084981ce3347d7d8c9b6b2"
+    },
+    {
+      "file": "src/surfaces/sticky/StickyApp.tsx",
+      "digest": "36b545cad687b5c3cdcccc60a75c50f85cf456bf739770d0f26544c97426b7a7"
+    },
+    {
+      "file": "src/surfaces/sticky/main.tsx",
+      "digest": "1de8f74b57d25691a789f328c3aa0603ff80f7b827da50da8f26e95b5b737125"
+    },
+    {
+      "file": "src/surfaces/sticky/sticky.css",
+      "digest": "cf8a0967347cbd9d5cde0e9258e066c476244d29b331512ff60bd2170648a11b"
+    },
+    {
+      "file": "src/test/setup.ts",
+      "digest": "9b328c4843431fa76d8de00008fc159e95f99a840211085ff3b8f25e53d14409"
+    },
+    {
+      "file": "src/views/ClipboardList.test.tsx",
+      "digest": "03d8068f986f96c4d424581441107d9efda6f9681b0a9ffb9c32c72d2b9f7cb8"
+    },
+    {
+      "file": "src/views/ClipboardList.tsx",
+      "digest": "f2cf928c5a7c4d817f50c61a7a6cee2ebfc6ef131697c7e7d29c50c79026bc6f"
+    },
+    {
+      "file": "src/views/DownloadPanel.tsx",
+      "digest": "e484b87c67e3968da7fb8bfac7d9d5d3818765a2e2f1d294a4034243141a94a0"
+    },
+    {
+      "file": "src/views/EngineHealthCard.test.tsx",
+      "digest": "1d7786a1e0ebfe6a6f977d30fe8e537c6925f9168dcd4960e71279caebe7ea5f"
+    },
+    {
+      "file": "src/views/EngineHealthCard.tsx",
+      "digest": "4ab39e64bd612a52d5d98da76d7c25ed519e8ef553ba0ac6092b428cda56a29b"
+    },
+    {
+      "file": "src/views/FirstRunNotice.tsx",
+      "digest": "40de251d61bf52156dd668f56183ddefdce5f6837296bd717ae113faa52f3176"
+    },
+    {
+      "file": "src/views/IslandSettings.test.tsx",
+      "digest": "5d5039148604c129eedc057d69781978a86ea50af7a4643c8f7c225751b48326"
+    },
+    {
+      "file": "src/views/IslandSettings.tsx",
+      "digest": "d85b7aad525a83aa415f213bf18fe6b4f4d0497834dde90256a1214b6065a8e5"
+    },
+    {
+      "file": "src/views/IslandShortcutField.test.tsx",
+      "digest": "a64377e290e8dce0c2c1ab0cda956a1a20b7b0f654bd2d8f3b4e595627942a66"
+    },
+    {
+      "file": "src/views/IslandShortcutField.tsx",
+      "digest": "706598bcc0baefca34655739f63b47cdc008ad32882ea40e2607f0746065bd1b"
+    },
+    {
+      "file": "src/views/Popover.tsx",
+      "digest": "59e9e56585bc302009047bcfe69ab01c96104b4f55b4549d535f4a0ca6228579"
+    },
+    {
+      "file": "src/views/SettingsPanel.tsx",
+      "digest": "0f6398cc998e980bcd405f8df75b69a5162ee6959fa13b4726bae5958ceffd7d"
+    },
+    {
+      "file": "src/views/engine-health.css",
+      "digest": "c1370341720a8b3f2c1331991ca8911cc5f498f6e7e0ebcbb52ae4e6ba507404"
+    },
+    {
+      "file": "src/views/island-settings.css",
+      "digest": "4d0da64340688470d09f9536e23713acb45771e6d1278ced3f1306bd2740d459"
+    },
+    {
+      "file": "src/vite-env.d.ts",
+      "digest": "65996936fbb042915f7b74a200fcdde7e410f32a669b1ab9597cfaa4b0faddb5"
+    },
+    {
+      "file": "vite.config.ts",
+      "digest": "a0ba2424a69a6fba26cd31e8c4b87a54ec687940375d566f9e9685f0c45de237"
+    }
+  ],
+  "binarySourceSha256": [
+    {
+      "file": "docs/assets/favicon.ico",
+      "digest": "3c29f37cec3c120a9eadeda97a9e3f04cc8cd65c48cc1034dda24fc3f694c0f0"
+    },
+    {
+      "file": "docs/assets/fonts/Geist-Latin.woff2",
+      "digest": "4f026cc891d66312cd49fef56f280e80a82b193dcbe211a3060c6be6858c945e"
+    },
+    {
+      "file": "docs/assets/fonts/GeistMono-Latin.woff2",
+      "digest": "64ec1d79585224e723d748f33a9232da6fead81a249e8f731fe3b241b0a63ec4"
+    },
+    {
+      "file": "docs/assets/og.png",
+      "digest": "1039543ed2f238db632d38e6f3b53318412d2421050d716a0174c6f59598fcc3"
+    },
+    {
+      "file": "docs/assets/visuals/download-peek@2x.webp",
+      "digest": "43876d8d96e7905ed9ad1722c2e86501c83659b56e093725b7e2901b5f1ed837"
+    },
+    {
+      "file": "docs/assets/visuals/download-tray@2x.webp",
+      "digest": "0b830f18edef785227155a363be744dcb469a4d887b4d97459d3299bc01d7fe0"
+    },
+    {
+      "file": "docs/assets/visuals/downloads@2x.webp",
+      "digest": "37d3ca88c833592623e5a7851084d973890cc99af88ef127049f8031d297322e"
+    },
+    {
+      "file": "docs/assets/visuals/hero@2x.webp",
+      "digest": "ff56e23f8bdb5b1efd8bfaf805477063e6393fd0657b442565858e9179e70dc4"
+    },
+    {
+      "file": "docs/assets/visuals/island-peek@1.5x.webp",
+      "digest": "dda500b556d8bb153a0fbf41874c10c5edc170faa2161fbbc76454175c744a27"
+    },
+    {
+      "file": "docs/assets/visuals/island-shell@1.5x.webp",
+      "digest": "b91c78b2fd65b490634517b9817d2d5a17a32a3fa842638e4723c1d83deed8e3"
+    },
+    {
+      "file": "docs/assets/visuals/notes@2x.webp",
+      "digest": "3b4103416472b9eaedca7afec093c2a208458e80dc0b14a3ed60bea3145e6209"
+    },
+    {
+      "file": "src/assets/fonts/Geist-Variable.ttf",
+      "digest": "b34955a09f71d9ac4b67e54cedb1825d3d5264c7992dbbafa0802080d617e241"
+    },
+    {
+      "file": "src/assets/fonts/Geist-Variable.woff2",
+      "digest": "3626eba547294501c8a4d662c7d9ea3b49734409a4c5a1ccf12fa86429b1687e"
+    },
+    {
+      "file": "src/assets/fonts/GeistMono-Variable.ttf",
+      "digest": "41d86e19407b1cb271be5d916fed8bb14051402270fb61cc28daf802e1a8ca63"
+    },
+    {
+      "file": "src/assets/fonts/GeistMono-Variable.woff2",
+      "digest": "5d93ee62680bbec1abc5405c2658311f9396f6f9a821ef8551ec463887e600d4"
+    }
+  ],
+  "documentSha256LfNormalized": {
+    "NABBIT_V2_HANDOFF.md": "57b040ed72a3fe6842a3f407a299850862dacadb2a65120d37790bd245054bd7",
+    "PROGRESS.md": "b3e79c75f7ffa1db9ff4f7cb0aed8fb316371719be29d02845fbff65391707a5",
+    "progress/v2/M7/README.md": "7b049f830590adb79acd1b609d418c28666c2e0c3124e1a89801e108e702afae"
+  },
+  "artifactSha256": [
+    {
+      "file": "v37-baseline-geometry.json",
+      "digest": "6d7b00963c203b36cc202674069a1d2d822d19b1d1f469085ef64c54d996005a"
+    },
+    {
+      "file": "v37-checks.json",
+      "digest": "ee022ea037916ee6800493d93c74ca13d3faa8a041fa4e194bbd9ab8459f7c3c"
+    },
+    {
+      "file": "v37-earlier-attempts.json",
+      "digest": "fba0a00ea1daf81b2dc8fe95270862b31e40ff6a89d2b8d9888f6e7c0149a018"
+    },
+    {
+      "file": "v37-earlier-build-first.txt",
+      "digest": "e1d0655c9189f5914968eed5800033eb6f7a3549ff180595ac8af3933c6aed1e"
+    },
+    {
+      "file": "v37-earlier-build-protocol.txt",
+      "digest": "89564c8489633505862d16c09325c177c16e19d6b939a12c42805fe59e2fb322"
+    },
+    {
+      "file": "v37-earlier-check1.txt",
+      "digest": "cf0767dd7cffaca77bf9e407018e02f1bd8d289f6d4a37b1467d1e115439051e"
+    },
+    {
+      "file": "v37-earlier-diff-warnings.txt",
+      "digest": "09fc619e9fe2b04dbe45c19e9d9b23f477d8316e68aa682b1b5e6f4a076386e0"
+    },
+    {
+      "file": "v37-earlier-landing.txt",
+      "digest": "8ab99ba918cf60a0586982cf36b33f1ce832aa9c51d98d45da36764c09394980"
+    },
+    {
+      "file": "v37-earlier-lint-checked.txt",
+      "digest": "04b453cf9252a1c433c72c79f11cdf063fb3c5e515ee8073381b59398e7b0440"
+    },
+    {
+      "file": "v37-earlier-lint-final.txt",
+      "digest": "031078760b6a54a752ff9cb281446e468433e4af88c22ed034fc36b055acc7c9"
+    },
+    {
+      "file": "v37-earlier-native-checked.txt",
+      "digest": "43d401e23dcbbfa5a0a29c0f6d902ce6150170f6b6d79b7a4f74c1188b743001"
+    },
+    {
+      "file": "v37-earlier-native-driver-format.txt",
+      "digest": "6ac90e42960c27ced64b2e87ff034b7266ca1bc557e4bfdbdb059ddbb2171480"
+    },
+    {
+      "file": "v37-earlier-native-driver-format2.txt",
+      "digest": "ad6a86e9c9461c8ccec4b1899a9445f598c662e097dc4d9738189d53e2832083"
+    },
+    {
+      "file": "v37-earlier-native-driver-format3.txt",
+      "digest": "bb0f43fdaced27fb8b8473abf801c80ff92b32a6bbfdaac3e4db8783e1f34049"
+    },
+    {
+      "file": "v37-earlier-native-final.txt",
+      "digest": "3bab32f6c226e068c8fd1e7ce4e91ca5a79860d60d7237dee722c1838e129036"
+    },
+    {
+      "file": "v37-earlier-native3.txt",
+      "digest": "0c68fa4d4c35040b91a705e134b18cc5ba26511cb889d7b819eaef333b99123a"
+    },
+    {
+      "file": "v37-earlier-native4.txt",
+      "digest": "da04cb8563b0f3739b9a8494dbdf121c53abb0c4f8917b5d56b41129d04de702"
+    },
+    {
+      "file": "v37-earlier-native5.txt",
+      "digest": "b4706df89b1040b6a2e1d23beab10040919d25ac5f3e0262bc17f867c93cd168"
+    },
+    {
+      "file": "v37-earlier-og.txt",
+      "digest": "897b37692f698ad0bb2f4f4f3a7e885a31a19156b617ad6133a0cffd9ded0bc0"
+    },
+    {
+      "file": "v37-earlier-peek-bootstrap.txt",
+      "digest": "b35ed1751163e9ac3ece26a0de285fd60c4bb7adef8de668e75fac2c3d6625d0"
+    },
+    {
+      "file": "v37-earlier-peek-cdp.txt",
+      "digest": "ae79476df32a8bffcf39df1bd42065d792294d6063198facc61e5d6d8505fa19"
+    },
+    {
+      "file": "v37-earlier-peek-checked.txt",
+      "digest": "1ebfcac132963fe2210e883ace8ec1a7a773e846fc1a051822365459b84ebfb6"
+    },
+    {
+      "file": "v37-earlier-peek-diagnostic.txt",
+      "digest": "94a528d05e37d4fe962a5a35699719296a0748e35e2576d457bd107f5a7a1121"
+    },
+    {
+      "file": "v37-earlier-peek-inside.txt",
+      "digest": "a9fb1aa52ad1441fc984cf9c8c3c7075b2741175982221e992fce7594c46daaa"
+    },
+    {
+      "file": "v37-earlier-peek-second.txt",
+      "digest": "8cf880eb72bed796a979895d19c589d1c72cb54b1a2dcd173aca138a117795af"
+    },
+    {
+      "file": "v37-earlier-peek-settled.txt",
+      "digest": "1a61e2ca90033ac37eee8d5cee309453b8a6902d1db72917aec9ecfb9b6bc619"
+    },
+    {
+      "file": "v37-earlier-peek.txt",
+      "digest": "9472911c27417a92f0e8e8c0e4de3d02b1f3ab8d0f44eb7b1f7b6fab9ea48c87"
+    },
+    {
+      "file": "v37-earlier-prettier-cdp.txt",
+      "digest": "b86be53dececa5791a20537913054754bcca108bc40540a09bdac2d27102c715"
+    },
+    {
+      "file": "v37-earlier-prettier-checked.txt",
+      "digest": "f4cf922d7ad38a872116b3106ab3797857c1e80fe73b9e50a3a43b8b298b5f32"
+    },
+    {
+      "file": "v37-earlier-prettier-final.txt",
+      "digest": "1abfef8d90aa8f942ed5ae957704f57c9391154eb510207ace53a4fc76f451b5"
+    },
+    {
+      "file": "v37-earlier-prettier-landing.txt",
+      "digest": "f37bb59bccf58a89f93f67c9256920216f7fc2398d2e02da4f947b829dc53613"
+    },
+    {
+      "file": "v37-earlier-prettier-site.txt",
+      "digest": "d5219d42584c5c7864a15d6fad71bcbf761ca6c825af76eee6f01374163c5d81"
+    },
+    {
+      "file": "v37-earlier-rustClippy.txt",
+      "digest": "3320aebd3df1c65bd80445d9a4dbe1ac6480587b6838e26303bf486c3149fc92"
+    },
+    {
+      "file": "v37-earlier-site-a11y.txt",
+      "digest": "bf9a2bbb53e385c1e8bbb12f1d44c089356cc76834916dd9b979274df621b852"
+    },
+    {
+      "file": "v37-earlier-site-assets.txt",
+      "digest": "07b5e93609ec69564e7d59796b637ac657761857151f6363d1f7c6112bbff3c9"
+    },
+    {
+      "file": "v37-earlier-site-checked.txt",
+      "digest": "fd3236fd8c188629433e1684a3d7897b01bccc37b2a30d0182ddd3f1085da3d6"
+    },
+    {
+      "file": "v37-earlier-site-final-assets.txt",
+      "digest": "c5dfa58d22a5d1caeb9996b0b030b1fd668c4952563f260247211798a285403e"
+    },
+    {
+      "file": "v37-earlier-site.txt",
+      "digest": "f4c34235aefac3ee0e5ea9a640ef4b569ee1badc2bcb5851e8ff0aa7ccac2d85"
+    },
+    {
+      "file": "v37-earlier-tests-first.txt",
+      "digest": "d54e06d41f5dce479e36511efbb286ca78f6463d9ed3a729c9815e176ff25658"
+    },
+    {
+      "file": "v37-earlier-visual.txt",
+      "digest": "e53d11a76942c2366f2516247413dc659a78c5f8f8d25853be33af93b32b0c7d"
+    },
+    {
+      "file": "v37-entry-bundles.json",
+      "digest": "c0345e86cf9cdd91c1c9c238bfc00884ff157aaa98594fa5977ea16ce34560c3"
+    },
+    {
+      "file": "v37-landing-final-1440-dark@1.5x-part-01.png",
+      "digest": "5ad38c68990b9e4ae63dcdba066357f5c995c28a3a119165ace078104a5819de"
+    },
+    {
+      "file": "v37-landing-final-1440-dark@1.5x-part-02.png",
+      "digest": "a0bdfde3822a2f1f56f0ae43e2102b697d31ee49e4a6792a7afbdb3e07914774"
+    },
+    {
+      "file": "v37-landing-final-1440-dark@1.5x-part-03.png",
+      "digest": "2c30b975f8196109748f7b3fea94a855c6a0dc29ac7bf9fa1acd38a739f90767"
+    },
+    {
+      "file": "v37-landing-final-1440-dark@1.5x-part-04.png",
+      "digest": "9736332b3497d4c598e5ce9a286b27156b9e9ecedbb28c8261ae6422930224cc"
+    },
+    {
+      "file": "v37-landing-final-1440-dark@1.5x-part-05.png",
+      "digest": "bc69bc4634911dc79d34e443edbbe737f3abaee0187b4a60860c78f3a46b9058"
+    },
+    {
+      "file": "v37-landing-final-1440-dark@1.5x-part-06.png",
+      "digest": "a3e12bcfcf0795a636cbfc5ac8c0229a421e3572891e50035f86c3dec0deaa3c"
+    },
+    {
+      "file": "v37-landing-final-1440-dark@1.5x-part-07.png",
+      "digest": "c44ebe9cfaad02e498c947688d41aeb96b1145ce18c48032fc11428004b9bd64"
+    },
+    {
+      "file": "v37-landing-final-1440-dark@1.5x-part-08.png",
+      "digest": "dae850de3105f6fc1fed2a8c13652fb7d978048b371b715c9584dbc16931b8f8"
+    },
+    {
+      "file": "v37-landing-final-1440-dark@1.5x-part-09.png",
+      "digest": "41157880057624b2a8d484fed0a6b8ab31578582cd96dab5cf38702eb8e7eab8"
+    },
+    {
+      "file": "v37-landing-final-1440-dark@1.5x-part-10.png",
+      "digest": "1537638eaa2f91edc3d89dc0c6590d4b32438a912709fa1532c5d47b1e860689"
+    },
+    {
+      "file": "v37-landing-final-1440-dark@1.5x-part-11.png",
+      "digest": "e7e44ceb131c5fc10bd152a469bb9db5058feadbf7076ee1ff09e15b72eef042"
+    },
+    {
+      "file": "v37-landing-final-1440-dark@1.5x-part-12.png",
+      "digest": "abe53d3321e8c53aae1595d50d308a1a7d5de21909e37220ed494ec7ccc733d1"
+    },
+    {
+      "file": "v37-landing-final-1440-dark@1.5x-part-13.png",
+      "digest": "69cb877810dc732b10aeb84cb907c8deaf564b5390f807b2665ff18cdd1dc4af"
+    },
+    {
+      "file": "v37-landing-final-1440-dark@1.5x-part-14.png",
+      "digest": "4580afdc8db79d596e367c10d9ffadf3ce41ca5d21ce11823cde5b378a6e719d"
+    },
+    {
+      "file": "v37-landing-final-1440-dark@1.5x-part-15.png",
+      "digest": "b78195242cff2890ce7e408f7da1de84c1aaae57280d00179e4fce188cdefdcf"
+    },
+    {
+      "file": "v37-landing-final-1440-dark@1.5x-part-16.png",
+      "digest": "728e55a1ae9118b83ccfbad01d0d2bf0982c8795ae0ed5ee1d95179dd3ffaf7e"
+    },
+    {
+      "file": "v37-landing-final-1440-dark@1x-part-01.png",
+      "digest": "5e7feb6742df8d691df71a681b203d2ebbefdd175b9533e92612b516e4f482dd"
+    },
+    {
+      "file": "v37-landing-final-1440-dark@1x-part-02.png",
+      "digest": "d5d130a002f2104bc847a0f7ee2b63fa5843abcddeb0dcc64e68799e2f9fa61a"
+    },
+    {
+      "file": "v37-landing-final-1440-dark@1x-part-03.png",
+      "digest": "5168c46566702a3b0c807ba88b520bb2f1a2b38299ba8ec012a09a41ce504242"
+    },
+    {
+      "file": "v37-landing-final-1440-dark@1x-part-04.png",
+      "digest": "12d51d7c0f4a09ab54f8c058558a5759a63aceab098adca0683b8d2e03be68f5"
+    },
+    {
+      "file": "v37-landing-final-1440-dark@1x-part-05.png",
+      "digest": "18168948ddf38d904fab1553a59dcea72b4d2e486a2338a12536e2f64b8cf630"
+    },
+    {
+      "file": "v37-landing-final-1440-dark@1x-part-06.png",
+      "digest": "9798833a18ec67721604d0d7bea80280db9b5d214b593ad17f2cf518abaa5947"
+    },
+    {
+      "file": "v37-landing-final-1440-dark@1x-part-07.png",
+      "digest": "46d760b4bd77bce27b31a3f0d4b7b4c4358910b21bd35cff92d64c17b19ba079"
+    },
+    {
+      "file": "v37-landing-final-1440-dark@1x-part-08.png",
+      "digest": "0033de8d4183fe4937a669740f452678f1693b59e2bbca435b9a92a3183098b4"
+    },
+    {
+      "file": "v37-landing-final-1440-dark@1x-part-09.png",
+      "digest": "9f7675348761d288d64c7a2d7460c736838bdfde542b8ae7accb81046ae9830c"
+    },
+    {
+      "file": "v37-landing-final-1440-dark@1x-part-10.png",
+      "digest": "9358fd1a67eaf31abfccb4c7f311d99d31ea30e8023b1b09620620acd3e55c3d"
+    },
+    {
+      "file": "v37-landing-final-1440-dark@1x-part-11.png",
+      "digest": "4b8a2f7e152b42bae2761e54fbcc54d15d5146d70d3335cf18b6e87dc39053dc"
+    },
+    {
+      "file": "v37-landing-final-1440-dark@1x-part-12.png",
+      "digest": "071b75617b56a37b965b8d6fbed261a26a03c7dead02e72cd6dbb7ee115af613"
+    },
+    {
+      "file": "v37-landing-final-1440-dark@1x-part-13.png",
+      "digest": "c3dc1895849f0584458a77476c5abf50c49728e8618e2a4b414f8cf9f1a14b1f"
+    },
+    {
+      "file": "v37-landing-final-1440-dark@1x-part-14.png",
+      "digest": "9d0616794949ee8f54d1bbec652be39c61286d8ee266506ffa7ae81cffae7331"
+    },
+    {
+      "file": "v37-landing-final-1440-dark@1x-part-15.png",
+      "digest": "d477e89befe2ac0836744ef995621ef277938b9049a2265607d2ab9f5eaaa086"
+    },
+    {
+      "file": "v37-landing-final-1440-light@1.5x-part-01.png",
+      "digest": "5ad38c68990b9e4ae63dcdba066357f5c995c28a3a119165ace078104a5819de"
+    },
+    {
+      "file": "v37-landing-final-1440-light@1.5x-part-02.png",
+      "digest": "a0bdfde3822a2f1f56f0ae43e2102b697d31ee49e4a6792a7afbdb3e07914774"
+    },
+    {
+      "file": "v37-landing-final-1440-light@1.5x-part-03.png",
+      "digest": "2c30b975f8196109748f7b3fea94a855c6a0dc29ac7bf9fa1acd38a739f90767"
+    },
+    {
+      "file": "v37-landing-final-1440-light@1.5x-part-04.png",
+      "digest": "9736332b3497d4c598e5ce9a286b27156b9e9ecedbb28c8261ae6422930224cc"
+    },
+    {
+      "file": "v37-landing-final-1440-light@1.5x-part-05.png",
+      "digest": "bc69bc4634911dc79d34e443edbbe737f3abaee0187b4a60860c78f3a46b9058"
+    },
+    {
+      "file": "v37-landing-final-1440-light@1.5x-part-06.png",
+      "digest": "a3e12bcfcf0795a636cbfc5ac8c0229a421e3572891e50035f86c3dec0deaa3c"
+    },
+    {
+      "file": "v37-landing-final-1440-light@1.5x-part-07.png",
+      "digest": "c44ebe9cfaad02e498c947688d41aeb96b1145ce18c48032fc11428004b9bd64"
+    },
+    {
+      "file": "v37-landing-final-1440-light@1.5x-part-08.png",
+      "digest": "dae850de3105f6fc1fed2a8c13652fb7d978048b371b715c9584dbc16931b8f8"
+    },
+    {
+      "file": "v37-landing-final-1440-light@1.5x-part-09.png",
+      "digest": "41157880057624b2a8d484fed0a6b8ab31578582cd96dab5cf38702eb8e7eab8"
+    },
+    {
+      "file": "v37-landing-final-1440-light@1.5x-part-10.png",
+      "digest": "1537638eaa2f91edc3d89dc0c6590d4b32438a912709fa1532c5d47b1e860689"
+    },
+    {
+      "file": "v37-landing-final-1440-light@1.5x-part-11.png",
+      "digest": "e7e44ceb131c5fc10bd152a469bb9db5058feadbf7076ee1ff09e15b72eef042"
+    },
+    {
+      "file": "v37-landing-final-1440-light@1.5x-part-12.png",
+      "digest": "abe53d3321e8c53aae1595d50d308a1a7d5de21909e37220ed494ec7ccc733d1"
+    },
+    {
+      "file": "v37-landing-final-1440-light@1.5x-part-13.png",
+      "digest": "69cb877810dc732b10aeb84cb907c8deaf564b5390f807b2665ff18cdd1dc4af"
+    },
+    {
+      "file": "v37-landing-final-1440-light@1.5x-part-14.png",
+      "digest": "4580afdc8db79d596e367c10d9ffadf3ce41ca5d21ce11823cde5b378a6e719d"
+    },
+    {
+      "file": "v37-landing-final-1440-light@1.5x-part-15.png",
+      "digest": "b78195242cff2890ce7e408f7da1de84c1aaae57280d00179e4fce188cdefdcf"
+    },
+    {
+      "file": "v37-landing-final-1440-light@1.5x-part-16.png",
+      "digest": "728e55a1ae9118b83ccfbad01d0d2bf0982c8795ae0ed5ee1d95179dd3ffaf7e"
+    },
+    {
+      "file": "v37-landing-final-1440-light@1x-part-01.png",
+      "digest": "5e7feb6742df8d691df71a681b203d2ebbefdd175b9533e92612b516e4f482dd"
+    },
+    {
+      "file": "v37-landing-final-1440-light@1x-part-02.png",
+      "digest": "d5d130a002f2104bc847a0f7ee2b63fa5843abcddeb0dcc64e68799e2f9fa61a"
+    },
+    {
+      "file": "v37-landing-final-1440-light@1x-part-03.png",
+      "digest": "5168c46566702a3b0c807ba88b520bb2f1a2b38299ba8ec012a09a41ce504242"
+    },
+    {
+      "file": "v37-landing-final-1440-light@1x-part-04.png",
+      "digest": "12d51d7c0f4a09ab54f8c058558a5759a63aceab098adca0683b8d2e03be68f5"
+    },
+    {
+      "file": "v37-landing-final-1440-light@1x-part-05.png",
+      "digest": "18168948ddf38d904fab1553a59dcea72b4d2e486a2338a12536e2f64b8cf630"
+    },
+    {
+      "file": "v37-landing-final-1440-light@1x-part-06.png",
+      "digest": "9798833a18ec67721604d0d7bea80280db9b5d214b593ad17f2cf518abaa5947"
+    },
+    {
+      "file": "v37-landing-final-1440-light@1x-part-07.png",
+      "digest": "46d760b4bd77bce27b31a3f0d4b7b4c4358910b21bd35cff92d64c17b19ba079"
+    },
+    {
+      "file": "v37-landing-final-1440-light@1x-part-08.png",
+      "digest": "0033de8d4183fe4937a669740f452678f1693b59e2bbca435b9a92a3183098b4"
+    },
+    {
+      "file": "v37-landing-final-1440-light@1x-part-09.png",
+      "digest": "9f7675348761d288d64c7a2d7460c736838bdfde542b8ae7accb81046ae9830c"
+    },
+    {
+      "file": "v37-landing-final-1440-light@1x-part-10.png",
+      "digest": "9358fd1a67eaf31abfccb4c7f311d99d31ea30e8023b1b09620620acd3e55c3d"
+    },
+    {
+      "file": "v37-landing-final-1440-light@1x-part-11.png",
+      "digest": "4b8a2f7e152b42bae2761e54fbcc54d15d5146d70d3335cf18b6e87dc39053dc"
+    },
+    {
+      "file": "v37-landing-final-1440-light@1x-part-12.png",
+      "digest": "071b75617b56a37b965b8d6fbed261a26a03c7dead02e72cd6dbb7ee115af613"
+    },
+    {
+      "file": "v37-landing-final-1440-light@1x-part-13.png",
+      "digest": "c3dc1895849f0584458a77476c5abf50c49728e8618e2a4b414f8cf9f1a14b1f"
+    },
+    {
+      "file": "v37-landing-final-1440-light@1x-part-14.png",
+      "digest": "9d0616794949ee8f54d1bbec652be39c61286d8ee266506ffa7ae81cffae7331"
+    },
+    {
+      "file": "v37-landing-final-1440-light@1x-part-15.png",
+      "digest": "d477e89befe2ac0836744ef995621ef277938b9049a2265607d2ab9f5eaaa086"
+    },
+    {
+      "file": "v37-landing-final-390-dark@1.5x-part-01.png",
+      "digest": "2382c666b65be594b25b77903ee7bbd8f8f276ca187f0ee81260c8a6daff95fd"
+    },
+    {
+      "file": "v37-landing-final-390-dark@1.5x-part-02.png",
+      "digest": "68fb4d0708280846477d6297c980d863f2527e59649ea9873f90bd50e69a5604"
+    },
+    {
+      "file": "v37-landing-final-390-dark@1.5x-part-03.png",
+      "digest": "e295e32292080352998b48ee5ae71ebd4d4bc1ec5ea04f87f41615227a03a4e3"
+    },
+    {
+      "file": "v37-landing-final-390-dark@1.5x-part-04.png",
+      "digest": "d0451e57c15bcc24521a1fd94c273a8ee564551df9a2aa79e077e6e7747971ac"
+    },
+    {
+      "file": "v37-landing-final-390-dark@1.5x-part-05.png",
+      "digest": "dc64651580bcc9166b88f98fbdce894bb0af1a56a862de8005babdc239046b77"
+    },
+    {
+      "file": "v37-landing-final-390-dark@1.5x-part-06.png",
+      "digest": "40f042a5283e2df98184e4ecc5fdcb2f87bffe27cac64bebbe3029f880004aea"
+    },
+    {
+      "file": "v37-landing-final-390-dark@1.5x-part-07.png",
+      "digest": "c356500bfea084e0ea28f4c6ab5a708cea8928ac15e49bcc872dc9df047689ea"
+    },
+    {
+      "file": "v37-landing-final-390-dark@1.5x-part-08.png",
+      "digest": "ab5ff253270ac4428ade9042e37bc446b0a998cc3d9ddbead773a5c1c2801cfd"
+    },
+    {
+      "file": "v37-landing-final-390-dark@1x-part-01.png",
+      "digest": "6cd2177daf4a7ad545e21bbb89492af302cd0d3b464b7a2686b1df104adb8414"
+    },
+    {
+      "file": "v37-landing-final-390-light@1.5x-part-01.png",
+      "digest": "2382c666b65be594b25b77903ee7bbd8f8f276ca187f0ee81260c8a6daff95fd"
+    },
+    {
+      "file": "v37-landing-final-390-light@1.5x-part-02.png",
+      "digest": "68fb4d0708280846477d6297c980d863f2527e59649ea9873f90bd50e69a5604"
+    },
+    {
+      "file": "v37-landing-final-390-light@1.5x-part-03.png",
+      "digest": "e295e32292080352998b48ee5ae71ebd4d4bc1ec5ea04f87f41615227a03a4e3"
+    },
+    {
+      "file": "v37-landing-final-390-light@1.5x-part-04.png",
+      "digest": "d0451e57c15bcc24521a1fd94c273a8ee564551df9a2aa79e077e6e7747971ac"
+    },
+    {
+      "file": "v37-landing-final-390-light@1.5x-part-05.png",
+      "digest": "dc64651580bcc9166b88f98fbdce894bb0af1a56a862de8005babdc239046b77"
+    },
+    {
+      "file": "v37-landing-final-390-light@1.5x-part-06.png",
+      "digest": "40f042a5283e2df98184e4ecc5fdcb2f87bffe27cac64bebbe3029f880004aea"
+    },
+    {
+      "file": "v37-landing-final-390-light@1.5x-part-07.png",
+      "digest": "c356500bfea084e0ea28f4c6ab5a708cea8928ac15e49bcc872dc9df047689ea"
+    },
+    {
+      "file": "v37-landing-final-390-light@1.5x-part-08.png",
+      "digest": "ab5ff253270ac4428ade9042e37bc446b0a998cc3d9ddbead773a5c1c2801cfd"
+    },
+    {
+      "file": "v37-landing-final-390-light@1x-part-01.png",
+      "digest": "6cd2177daf4a7ad545e21bbb89492af302cd0d3b464b7a2686b1df104adb8414"
+    },
+    {
+      "file": "v37-landing-final-browser-checks.json",
+      "digest": "b3ca100eec51ffcd94a80416862a5fc6e9b051a8a362e9a2e687d58bade3576d"
+    },
+    {
+      "file": "v37-landing-final-tiles.json",
+      "digest": "671120d0e1f251425235d979c6222f98d56bdd795c5144399661b971459e4f85"
+    },
+    {
+      "file": "v37-landing.txt",
+      "digest": "4cd760d5044e79e3f4a6cafb496f713662d88dd93db5a6fce87f18e759ade301"
+    },
+    {
+      "file": "v37-landingTiles.txt",
+      "digest": "9c3015c92baff7597461cbaa7a0b1fca121d48ed612927d5ab0561cdeb4219a9"
+    },
+    {
+      "file": "v37-legacy-smoke.json",
+      "digest": "f035ea53fd47f3fa4eea12796706931bccb0c338ae54e5de3380fc1c891342fa"
+    },
+    {
+      "file": "v37-legacySmoke.txt",
+      "digest": "107d372b65dd50dcc5bfcf8d2b9f4c09a3ef52fecdb03c8be77e61d8bd80f3bb"
+    },
+    {
+      "file": "v37-lintFinal.txt",
+      "digest": "04b453cf9252a1c433c72c79f11cdf063fb3c5e515ee8073381b59398e7b0440"
+    },
+    {
+      "file": "v37-losslessVisual.txt",
+      "digest": "af2f15020c30e49f10a55b1abc14fff274cba5e06642304232736dc17234c70b"
+    },
+    {
+      "file": "v37-nab-nab-empty-dark@1.5x.png",
+      "digest": "437ae530937de7cbafc86aaae59a73bb44ba92917b1434ad7636fc516feb5c1c"
+    },
+    {
+      "file": "v37-nab-nab-empty-dark@1x.png",
+      "digest": "7097fad4def146a4265c9175b6532ba35cb0a4a2dc388d00ba5ab9527e713883"
+    },
+    {
+      "file": "v37-nab-nab-empty-light@1.5x.png",
+      "digest": "5925309504971aa44864e85cbb56dea2a6f67c5684a1ee357fb22fe78765fcd9"
+    },
+    {
+      "file": "v37-nab-nab-empty-light@1x.png",
+      "digest": "2997e7d512b31c925de877effb4a5687e19463ff3f1efcc7348d7a1492b1c51b"
+    },
+    {
+      "file": "v37-nab-nab-island-dark@1.5x.png",
+      "digest": "6b033b6de66d5a0324bdbcb8612d9155598ba1d212f91618e9ae6b135cf71ef2"
+    },
+    {
+      "file": "v37-nab-nab-island-dark@1x.png",
+      "digest": "0ca61dc8f3cab0deae72baba746e0938aa512f8f2ab762ef0ad1c4be43b67e8f"
+    },
+    {
+      "file": "v37-nab-nab-island-light@1.5x.png",
+      "digest": "6b033b6de66d5a0324bdbcb8612d9155598ba1d212f91618e9ae6b135cf71ef2"
+    },
+    {
+      "file": "v37-nab-nab-island-light@1x.png",
+      "digest": "0ca61dc8f3cab0deae72baba746e0938aa512f8f2ab762ef0ad1c4be43b67e8f"
+    },
+    {
+      "file": "v37-nab-nab-paused-dark@1.5x.png",
+      "digest": "506991d37c0fc61b05b179b287c1accd4acc11af6cd4fb303316379595191efc"
+    },
+    {
+      "file": "v37-nab-nab-paused-dark@1x.png",
+      "digest": "f31b248a0173f5eebbac1ce2b236f20df15b56422d3990b05a4d3317367e9862"
+    },
+    {
+      "file": "v37-nab-nab-paused-light@1.5x.png",
+      "digest": "5aeaae357247eb0f5c4dac20ba23fb321ad48afa5acd8c7b4ee23b3e6257d0eb"
+    },
+    {
+      "file": "v37-nab-nab-paused-light@1x.png",
+      "digest": "5fc9029bfec5b3fefec3197e4f9b044fb2300bb85a64c9e4e31924cf17671238"
+    },
+    {
+      "file": "v37-nab-nab-tray-dark@1.5x.png",
+      "digest": "59d73f0c72f1af96c5c126e79babe1687e03aad32eec375c291a7abd8ab9280b"
+    },
+    {
+      "file": "v37-nab-nab-tray-dark@1x.png",
+      "digest": "7d94d3efc5969a749ff8a09c1257602496ab7b6eb5d6ce1b57a128b6c067f6f6"
+    },
+    {
+      "file": "v37-nab-nab-tray-light@1.5x.png",
+      "digest": "ce6953c15e08dc3125070fe7ca175a12ca5523e391cd18ee63cd500b40e97598"
+    },
+    {
+      "file": "v37-nab-nab-tray-light@1x.png",
+      "digest": "f034fcbd1861f929de3bddb551d317f2729a8b74b926ff8e50ac9af250a2dff7"
+    },
+    {
+      "file": "v37-nab-screenshots.json",
+      "digest": "8a40557e00fbedaff35c7223c3009fbd384502dcc48be50f653ce31d1e4f845c"
+    },
+    {
+      "file": "v37-nabCaptures.txt",
+      "digest": "4055b5eaf535d3920551443e15d5c793b4362d93f6e4877c2006a81658c96293"
+    },
+    {
+      "file": "v37-native-checked-downloads.json",
+      "digest": "91b61f1b7c3ba9c778352dc6ac3a03e5a9e5a62ef6e71d122cbe41bedcefc751"
+    },
+    {
+      "file": "v37-native-checked-tray-light@2x.png",
+      "digest": "32f7457c82ec08699953ba142912e9040d0eaa029e252c90168682b565a8a2d5"
+    },
+    {
+      "file": "v37-native-event-audit.json",
+      "digest": "a35c1acf47d12655cbc3a9adb7af3bc2a755574e72b16d23af6a6a543060aef5"
+    },
+    {
+      "file": "v37-native-final-failure.json",
+      "digest": "09863c0964b98ecfe1704dd744231cdf40f9b50f0e5f6ea73e60341b71f98272"
+    },
+    {
+      "file": "v37-native-rendered-downloads.json",
+      "digest": "84fd838dbd0a34311575f32fb5635c0f34809aeb99d02110569ff5add3cf8a34"
+    },
+    {
+      "file": "v37-native-rendered-tray-light@2x.png",
+      "digest": "b3821551f3a63263e48eacc4b9175de3d57460f01b9b1e232d833eff991a84c5"
+    },
+    {
+      "file": "v37-native2-failure.json",
+      "digest": "e04fa997c5b3da9c71df7001465ae46f1704a8c828b2ee986e7b77569de0aa87"
+    },
+    {
+      "file": "v37-native3-failure.json",
+      "digest": "2741e885c489c7af9ca3dc1ba25ce5b8d72f1b3ad699fae39f8c3a21b4e0d00a"
+    },
+    {
+      "file": "v37-native4-failure.json",
+      "digest": "6cead9b62d80f5c4d60b326bebfcd922f23bde847d7bd4bf371b9c7954aa4417"
+    },
+    {
+      "file": "v37-native5-failure.json",
+      "digest": "1ab751cb3592673231bf51ffbc85b2cf7eb2df3a164f896e6199bac37b9a7596"
+    },
+    {
+      "file": "v37-nativeDownloads.txt",
+      "digest": "4ba1dcef97662d12d37735fc2ee27cfc911bdf8628a65d046b8a1b933f6de826"
+    },
+    {
+      "file": "v37-nativePeek.txt",
+      "digest": "176397e1be964315936830a8edccffc8294c4a91fa7278f3d6a0983e1dd2500d"
+    },
+    {
+      "file": "v37-npmVerify.txt",
+      "digest": "59d76a018732a77b478913b0560ec5736815c298c0ee62d66ec225132dac7d08"
+    },
+    {
+      "file": "v37-og.txt",
+      "digest": "897b37692f698ad0bb2f4f4f3a7e885a31a19156b617ad6133a0cffd9ded0bc0"
+    },
+    {
+      "file": "v37-online.json",
+      "digest": "84a1bd1eef5f45dbad74fa836389adc230e56952fb097d9b394649a4253973b5"
+    },
+    {
+      "file": "v37-peek-failure-707dbd3b-58a3-459f-845b-8fc915415796.json",
+      "digest": "120d6e57273f3cedf650629aacd4a7b89f9270e6cdd8067718a1ddf7be33ec45"
+    },
+    {
+      "file": "v37-peek-failure-9cba38bd-318c-4094-9838-bff612dad619.json",
+      "digest": "51ab860bee20cc3d72c5c41617133e310d69d62ee6f66c986bdc068a5edcfc97"
+    },
+    {
+      "file": "v37-peek-failure-a06915df-8602-4d9f-b1d9-78f80d2f02e6.json",
+      "digest": "a271dd0853c64773d1777086b97097c3fdcb69d843d10efa47683e6a6766fd7d"
+    },
+    {
+      "file": "v37-peek-failure-ba2da17e-6c79-4fae-ab64-4a3a0b0c8062.json",
+      "digest": "b7434745f9e8e980394cc99eb27f929677b43846beaad82e2358ffceda0d3940"
+    },
+    {
+      "file": "v37-peek-failure-d0a56baa-dba9-4b0c-8bdd-bb27b868342d.json",
+      "digest": "0c55edabe5e6acf44260acb96b4e0f9f03127d0e66a020cf1ddbd3a3bc519080"
+    },
+    {
+      "file": "v37-peek-failure-e481ebc2-ea63-4fa0-b1a4-81191700b86d.json",
+      "digest": "88e35eaf68472e68b79d8d364873058886d5fcf9feda4278acd6c4205365aa54"
+    },
+    {
+      "file": "v37-peek.json",
+      "digest": "bc575262f2d00953258d38f613587970375622abf82430e3532055b15510c8b5"
+    },
+    {
+      "file": "v37-peek@2x.png",
+      "digest": "a3117cbdb6dd6a9492294b50f2f3d407f55b74a914f9b81a2865488128e426c3"
+    },
+    {
+      "file": "v37-pinned-options.json",
+      "digest": "a6a7ad642964a2286cd8a55c621c39e42cf5e72d122fa78df06308931253d3da"
+    },
+    {
+      "file": "v37-pinnedHelp.txt",
+      "digest": "5711110012ffd9b78e5a7508bf19d26a52b4dbef4ae7126feeeeb88aab4fe1e9"
+    },
+    {
+      "file": "v37-png-audit.json",
+      "digest": "9003f8fe0e045dcef426f332859180bc7276a897a3e6e4cebedd58618f8aafef"
+    },
+    {
+      "file": "v37-releaseBuild.txt",
+      "digest": "d35b79de860b4a3cef4b35b5da5654c35c98fd4f55479a499d3ae712a352f25f"
+    },
+    {
+      "file": "v37-rustClippy.txt",
+      "digest": "c43d6ebcf90b55202dbaa225bc4cc49230ea1e55089977ffcdfe8c7d89db710d"
+    },
+    {
+      "file": "v37-rustFmt.txt",
+      "digest": "01ba4719c80b6fe911b091a7c05124b64eeece964e09c058ef8f9805daca546b"
+    },
+    {
+      "file": "v37-rustSpikeClippy.txt",
+      "digest": "f56eb56515891ba7c6954cfdf95c634546ca426e519a5551d89adf3bee0e1073"
+    },
+    {
+      "file": "v37-rustTests.txt",
+      "digest": "ba0ca9f081e3d7e12492aa1b17bfccb53eae910abc83750bb58de910210fea6b"
+    },
+    {
+      "file": "v37-site-assets.json",
+      "digest": "09b078f59b15b47b3c82c074fee53d600f6ed50975a2636969d16e513266498f"
+    },
+    {
+      "file": "v37-site-final-accessibility.json",
+      "digest": "27f830204e4e0e452f391765c18dcf36a8742fbbcc16112e44905e34100ba834"
+    },
+    {
+      "file": "v37-site-final-assets.json",
+      "digest": "27b38972d865ec70982b7173129a9b1aa8f2f8dc0317a1420b1923abd82e83a3"
+    },
+    {
+      "file": "v37-site-final-menu-focus-390-dark@1.5x.png",
+      "digest": "069a549342fc86363ccdcf3adf30a58524891a3ab3ac03e0a7ac46341d9d2177"
+    },
+    {
+      "file": "v37-site-final-menu-focus-390-dark@1x.png",
+      "digest": "926d6b11cb0a911545e0b9e405622d46497565248ae155bee6f25f01299014b6"
+    },
+    {
+      "file": "v37-site-final-menu-focus-390-light@1.5x.png",
+      "digest": "069a549342fc86363ccdcf3adf30a58524891a3ab3ac03e0a7ac46341d9d2177"
+    },
+    {
+      "file": "v37-site-final-menu-focus-390-light@1x.png",
+      "digest": "926d6b11cb0a911545e0b9e405622d46497565248ae155bee6f25f01299014b6"
+    },
+    {
+      "file": "v37-site-final-nav-focus-1440-dark@1.5x.png",
+      "digest": "275e2ea40c5cd247456ea1f681bfd9790bd43f80bd52f952b2084b64c759cf64"
+    },
+    {
+      "file": "v37-site-final-nav-focus-1440-dark@1x.png",
+      "digest": "4d63b7d4ae9ffaebebd7b1b0dc8981041e5e3d56a263819da28b0e6758ff08f1"
+    },
+    {
+      "file": "v37-site-final-nav-focus-1440-light@1.5x.png",
+      "digest": "275e2ea40c5cd247456ea1f681bfd9790bd43f80bd52f952b2084b64c759cf64"
+    },
+    {
+      "file": "v37-site-final-nav-focus-1440-light@1x.png",
+      "digest": "4d63b7d4ae9ffaebebd7b1b0dc8981041e5e3d56a263819da28b0e6758ff08f1"
+    },
+    {
+      "file": "v37-site.txt",
+      "digest": "1f2961abc7a39c66c29ba62ed88b2b279c80ff01bb65a00801eb83367126c278"
+    },
+    {
+      "file": "v37-siteAccessibility.txt",
+      "digest": "7da11b7bc857599b38bf19d31fec2018546aa5a3daebf4b74aba3c45bd41e35c"
+    },
+    {
+      "file": "v37-secret-review.json",
+      "digest": "eb3ecf8715c1827cb03c0a86d57e905d69b61416316969decf3ed71a168f94b5"
+    }
+  ],
+  "checksumSchema": "File paths and SHA-256 digests are separate fields. See v37-secret-review.json for verified checksum false positives from the first staged scan."
+}

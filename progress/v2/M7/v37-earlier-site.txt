@@ -1,0 +1,25 @@
+> nabbit@0.1.0 verify:site
+> node scripts/verify-site.mjs && node scripts/verify-landing-assets.mjs && node scripts/verify-site-meta.mjs
+
+Verified Pages base path, links/assets, 13 milestone states, 3 pre-release CTAs, demo and 404 (457186 bytes excluding fonts).
+Verified 87 pinned original SVGs, 1 design WebPs, exact lossless harness hero, Latin font subsets/OFL, token parity and bookmarklet contract.
+node:internal/modules/run_main:107
+    triggerUncaughtException(
+    ^
+
+AssertionError [ERR_ASSERTION]: Regenerate stale OG source: assets/site.css
++ actual - expected
+
++ 'e9bae3cf1e7b2bb4ca1e72f0edd76b8732c073cd958e46b7c06eab1711b10624'
+- '44b0b6842a759d269ff3a5fe12654c2df8ed4995a2421e2779d7c83652287145'
+
+    at file:///D:/claude-upgrade-26/nabbit/scripts/verify-site-meta.mjs:56:10 {
+  generatedMessage: false,
+  code: 'ERR_ASSERTION',
+  actual: 'e9bae3cf1e7b2bb4ca1e72f0edd76b8732c073cd958e46b7c06eab1711b10624',
+  expected: '44b0b6842a759d269ff3a5fe12654c2df8ed4995a2421e2779d7c83652287145',
+  operator: 'strictEqual',
+  diff: 'simple'
+}
+
+Node.js v24.22.2

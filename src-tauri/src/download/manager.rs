@@ -40,11 +40,26 @@ struct Inner {
     active: usize,
     children: HashMap<String, ChildHandle>,
     browsers: HashMap<String, Browser>,
+    epochs: HashMap<String, u64>,
+    attempts: HashMap<String, u32>,
 }
 
 #[derive(Clone)]
 struct ChildHandle {
     pid: u32,
+    epoch: u64,
+}
+impl Inner {
+    fn epoch(&self, id: &str) -> u64 {
+        *self.epochs.get(id).unwrap_or(&0)
+    }
+    fn advance(&mut self, id: &str) {
+        let next = self.epoch(id).wrapping_add(1);
+        self.epochs.insert(id.into(), next);
+    }
+    fn current(&self, id: &str, epoch: u64) -> bool {
+        self.epoch(id) == epoch
+    }
 }
 
 impl DownloadManager {
@@ -61,6 +76,8 @@ impl DownloadManager {
                 active: 0,
                 children: HashMap::new(),
                 browsers: HashMap::new(),
+                epochs: HashMap::new(),
+                attempts: HashMap::new(),
             })),
             db,
             app,
@@ -99,21 +116,8 @@ impl DownloadManager {
             .filter(|m| {
                 m.normalized_url == normalized && m.extractor.as_deref() != Some("capture")
             });
-        let metadata = if std::env::var_os("NABBIT_ACCEPTANCE_FAKE_DOWNLOAD").is_some() {
-            DownloadMetadata {
-                url: request.url.clone(),
-                normalized_url: normalized.clone(),
-                title: format!("Acceptance download {normalized}"),
-                channel: None,
-                duration: None,
-                thumbnail: None,
-                is_playlist: normalized.contains("list="),
-                playlist_count: None,
-                extractor: Some("acceptance".into()),
-                qualities: vec![],
-                details: None,
-                live_pending: None,
-            }
+        let metadata = if super::acceptance::fake() {
+            super::acceptance::metadata(&normalized)?
         } else if let Some(metadata) = captured {
             metadata
         } else {
@@ -231,6 +235,7 @@ impl DownloadManager {
         job.failure = None;
         job.updated_at = Utc::now();
         self.db.update_download(&job)?;
+        inner.advance(id);
         match recovery {
             super::errors::Recovery::SignIn { browser } => {
                 inner.browsers.insert(id.into(), browser);
@@ -277,7 +282,11 @@ impl DownloadManager {
                         let kind =
                             super::errors::classify(job.error.as_deref().unwrap_or_default());
                         if kind == super::errors::ErrorKind::Offline
-                            && !super::deferred::online(&job.url)
+                            && !(if super::acceptance::fake() {
+                                super::acceptance::online(&job.url)
+                            } else {
+                                super::deferred::online(&job.url)
+                            })
                         {
                             manager.deferred.schedule(&id);
                             continue;
@@ -291,6 +300,10 @@ impl DownloadManager {
     pub fn stop(&self) {
         self.deferred.stop();
     }
+    pub(crate) fn acceptance_snapshot(&self) -> serde_json::Value {
+        let inner = self.inner.lock().unwrap_or_else(|e| e.into_inner());
+        serde_json::json!({"activeWorkers":inner.active,"queuedIds":inner.queue,"epochs":inner.epochs,"attempts":inner.attempts,"browserJobIds":inner.browsers.keys().collect::<Vec<_>>()})
+    }
 
     pub fn cancel(&self, id: &str) -> Result<()> {
         self.stop_job(id, "cancelled", Some("Cancelled"))
@@ -301,6 +314,10 @@ impl DownloadManager {
     }
 
     pub fn resume(&self, id: &str) -> Result<DownloadJob> {
+        let mut inner = self
+            .inner
+            .lock()
+            .map_err(|_| msg("download manager lock poisoned"))?;
         let mut job = self.db.get_download(id)?;
         if job.status != "paused" && job.status != "interrupted" {
             return Ok(job);
@@ -309,16 +326,12 @@ impl DownloadManager {
         job.error = None;
         job.updated_at = Utc::now();
         self.db.update_download(&job)?;
-        {
-            let mut inner = self
-                .inner
-                .lock()
-                .map_err(|_| msg("download manager lock poisoned"))?;
-            if !inner.queue.contains(&job.id) {
-                inner.queue.push_back(job.id.clone());
-            }
+        inner.advance(id);
+        if !inner.queue.contains(&job.id) {
+            inner.queue.push_back(job.id.clone());
         }
         self.emit_updated(&job);
+        drop(inner);
         self.pump();
         Ok(job)
     }
@@ -329,6 +342,7 @@ impl DownloadManager {
             .lock()
             .map_err(|_| msg("download manager lock poisoned"))?;
         self.deferred.remove(id);
+        inner.advance(id);
         inner.queue.retain(|queued| queued != id);
         if status == "cancelled" {
             inner.browsers.remove(id);
@@ -356,7 +370,7 @@ impl DownloadManager {
             }
         };
         loop {
-            let id = {
+            let (id, epoch) = {
                 let mut inner = match self.inner.lock() {
                     Ok(inner) => inner,
                     Err(_) => return,
@@ -367,7 +381,8 @@ impl DownloadManager {
                 match inner.queue.pop_front() {
                     Some(id) => {
                         inner.active += 1;
-                        id
+                        let epoch = inner.epoch(&id);
+                        (id, epoch)
                     }
                     None => return,
                 }
@@ -376,29 +391,43 @@ impl DownloadManager {
             let manager = self.clone();
             thread::Builder::new()
                 .name(format!("nabbit-download-{id}"))
-                .spawn(move || manager.run_job(id, false))
+                .spawn(move || manager.run_job(id, false, epoch))
                 .expect("spawn download worker");
         }
     }
 
-    fn run_job(&self, id: String, fallback_format: bool) {
-        let result = self.run_job_inner(&id, fallback_format);
+    fn run_job(&self, id: String, fallback_format: bool, epoch: u64) {
+        let result = self.run_job_inner(&id, fallback_format, epoch);
         if result.as_ref().is_err_and(|error| {
             !fallback_format && should_fallback_download_error(&error.to_string())
         }) && self
-            .db
-            .get_download(&id)
-            .is_ok_and(|job| !matches!(job.status.as_str(), "paused" | "cancelled"))
+            .inner
+            .lock()
+            .is_ok_and(|inner| inner.current(&id, epoch))
+            && self
+                .db
+                .get_download(&id)
+                .is_ok_and(|job| !matches!(job.status.as_str(), "paused" | "cancelled"))
         {
-            self.run_job(id, true);
+            self.run_job(id, true, epoch);
             return;
         }
         // Publish the terminal state only after releasing this worker's slot/child.
         // A recovery action therefore cannot race cleanup of the same job.
         let mut inner = self.inner.lock().unwrap_or_else(|e| e.into_inner());
         inner.active = inner.active.saturating_sub(1);
-        inner.children.remove(&id);
-        if let Err(error) = result {
+        if inner
+            .children
+            .get(&id)
+            .is_some_and(|child| child.epoch == epoch)
+        {
+            inner.children.remove(&id);
+        }
+        if let Err(error) = if inner.current(&id, epoch) {
+            result
+        } else {
+            Ok(())
+        } {
             if let Some(mut job) =
                 self.db.get_download(&id).ok().filter(|job| {
                     !matches!(job.status.as_str(), "paused" | "cancelled" | "completed")
@@ -416,10 +445,11 @@ impl DownloadManager {
                 }
             }
         }
-        if self
-            .db
-            .get_download(&id)
-            .is_ok_and(|job| matches!(job.status.as_str(), "completed" | "cancelled"))
+        if inner.current(&id, epoch)
+            && self
+                .db
+                .get_download(&id)
+                .is_ok_and(|job| matches!(job.status.as_str(), "completed" | "cancelled"))
         {
             inner.browsers.remove(&id);
         }
@@ -427,20 +457,22 @@ impl DownloadManager {
         self.pump();
     }
 
-    fn run_job_inner(&self, id: &str, fallback_format: bool) -> Result<()> {
-        if std::env::var_os("NABBIT_ACCEPTANCE_FAKE_DOWNLOAD").is_some() {
-            return self.run_acceptance_fake_job(id);
+    fn run_job_inner(&self, id: &str, fallback_format: bool, epoch: u64) -> Result<()> {
+        if super::acceptance::fake() {
+            return self.run_acceptance_fake_job(id, epoch);
         }
 
+        let inner = self
+            .inner
+            .lock()
+            .map_err(|_| msg("download manager lock poisoned"))?;
+        if !inner.current(id, epoch) {
+            return Ok(());
+        }
         let mut job = self.db.get_download(id)?;
+        let browser = inner.browsers.get(id).copied();
+        drop(inner);
         if job.options.as_ref().is_some_and(|o| o.wait_for_video) {
-            let browser = self
-                .inner
-                .lock()
-                .map_err(|_| msg("download manager lock poisoned"))?
-                .browsers
-                .get(id)
-                .copied();
             let metadata =
                 ytdlp::probe_metadata_with_browser(&self.app_data_dir, &job.url, browser)?;
             if metadata.live_pending == Some(true) {
@@ -467,13 +499,7 @@ impl DownloadManager {
             playlist_mode: job.playlist_mode.clone(),
             playlist_range: job.playlist_range.clone(),
             options: job.options.clone(),
-            cookies_from_browser: self
-                .inner
-                .lock()
-                .map_err(|_| msg("download manager lock poisoned"))?
-                .browsers
-                .get(id)
-                .copied(),
+            cookies_from_browser: browser,
             ..Default::default()
         };
         let output_dir = if let Some(dir) = job.options.as_ref().and_then(|o| o.output_dir.clone())
@@ -507,6 +533,9 @@ impl DownloadManager {
             .inner
             .lock()
             .map_err(|_| msg("download manager lock poisoned"))?;
+        if !inner.current(id, epoch) {
+            return Ok(());
+        }
         if self
             .db
             .get_download(id)
@@ -525,7 +554,9 @@ impl DownloadManager {
             .stderr(Stdio::piped())
             .spawn()?;
         let pid = child.id();
-        inner.children.insert(id.to_string(), ChildHandle { pid });
+        inner
+            .children
+            .insert(id.to_string(), ChildHandle { pid, epoch });
         drop(inner);
 
         // Drain stderr alongside stdout so a long failure/trace cannot fill its pipe.
@@ -546,10 +577,13 @@ impl DownloadManager {
         let mut last_output_path = None;
         for line in reader.lines().map_while(std::result::Result::ok) {
             if let Some(progress) = ytdlp::parse_progress_line(&line) {
-                let _guard = self
+                let guard = self
                     .inner
                     .lock()
                     .map_err(|_| msg("download manager lock poisoned"))?;
+                if !guard.current(id, epoch) {
+                    break;
+                }
                 let mut update = self.db.get_download(id)?;
                 if matches!(update.status.as_str(), "paused" | "cancelled") {
                     break;
@@ -574,10 +608,13 @@ impl DownloadManager {
         let stderr = stderr_reader
             .join()
             .map_err(|_| msg("download error log reader failed"))??;
-        let _guard = self
+        let guard = self
             .inner
             .lock()
             .map_err(|_| msg("download manager lock poisoned"))?;
+        if !guard.current(id, epoch) {
+            return Ok(());
+        }
         let mut finished = self.db.get_download(id)?;
         if matches!(finished.status.as_str(), "paused" | "cancelled") {
             return Ok(());
@@ -614,7 +651,7 @@ impl DownloadManager {
         }
     }
 
-    fn run_acceptance_fake_job(&self, id: &str) -> Result<()> {
+    fn run_acceptance_fake_job(&self, id: &str, epoch: u64) -> Result<()> {
         let settings = self.db.get_settings()?;
         let saved = self.db.get_download(id)?;
         let output_dir =
@@ -642,31 +679,79 @@ impl DownloadManager {
             .and_then(|value| value.parse().ok())
             .unwrap_or(250);
 
+        let mut inner = self
+            .inner
+            .lock()
+            .map_err(|_| msg("download manager lock poisoned"))?;
+        if !inner.current(id, epoch) {
+            return Ok(());
+        }
+        let attempt = inner.attempts.entry(id.into()).or_default();
+        *attempt += 1;
+        let attempt = *attempt;
         let mut job = self.db.get_download(id)?;
         job.status = "running".into();
         job.output_path = Some(output_path_string.clone());
         job.updated_at = Utc::now();
         self.db.update_download(&job)?;
         self.emit_updated(&job);
+        drop(inner);
 
         for step in 1..=5 {
             thread::sleep(Duration::from_millis(delay_ms));
 
+            let guard = self
+                .inner
+                .lock()
+                .map_err(|_| msg("download manager lock poisoned"))?;
+            if !guard.current(id, epoch) {
+                return Ok(());
+            }
             let mut update = self.db.get_download(id)?;
             if update.status != "running" {
                 return Ok(());
             }
 
             update.status = "running".into();
-            update.progress = step as f64 * 20.0;
+            update.progress = if step == 3 { 62.0 } else { step as f64 * 20.0 };
             update.speed = Some("1.0MiB/s".into());
             update.eta = (step < 5).then(|| format!("00:0{}", 5 - step));
             update.output_path = Some(output_path_string.clone());
             update.updated_at = Utc::now();
             self.db.update_download(&update)?;
             self.emit_updated(&update);
+            if step == 2 {
+                if let Some(error) = super::acceptance::failure(&saved.url, attempt)? {
+                    return Err(msg(error));
+                }
+            }
+            drop(guard);
+            if step == 3 {
+                let began = std::time::Instant::now();
+                while super::acceptance::held(&saved.url)? {
+                    if !self
+                        .inner
+                        .lock()
+                        .map_err(|_| msg("download manager lock poisoned"))?
+                        .current(id, epoch)
+                    {
+                        return Ok(());
+                    }
+                    if began.elapsed() > Duration::from_secs(60) {
+                        return Err(msg("Acceptance download hold exceeded its deadline."));
+                    }
+                    thread::sleep(Duration::from_millis(25));
+                }
+            }
         }
 
+        let guard = self
+            .inner
+            .lock()
+            .map_err(|_| msg("download manager lock poisoned"))?;
+        if !guard.current(id, epoch) {
+            return Ok(());
+        }
         let current = self.db.get_download(id)?;
         if current.status != "running" {
             return Ok(());

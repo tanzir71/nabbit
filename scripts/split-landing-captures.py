@@ -11,10 +11,12 @@ from PIL import Image
 
 parser = argparse.ArgumentParser(description=__doc__)
 parser.add_argument("--prefix", required=True)
+parser.add_argument("--milestone", default="M3")
 args = parser.parse_args()
 assert args.prefix and all(c in "abcdefghijklmnopqrstuvwxyz0123456789-" for c in args.prefix)
 root = Path(__file__).resolve().parents[1]
-output = root / "progress/v2/M3"
+assert args.milestone.startswith('M') and args.milestone[1:].isdigit()
+output = root / 'progress/v2' / args.milestone
 temporary = root / ".tools/landing-captures" / args.prefix
 report_path = output / f"{args.prefix}-tiles.json"
 assert not report_path.exists(), "Use a fresh capture prefix"

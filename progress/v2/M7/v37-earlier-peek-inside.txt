@@ -1,0 +1,27 @@
+node:internal/modules/run_main:107
+    triggerUncaughtException(
+    ^
+
+AssertionError [ERR_ASSERTION]: Expected values to be strictly deep-equal:
++ actual - expected
+
+  {
++   height: 277,
++   width: 680,
++   x: 20,
+-   height: 100,
+-   width: 400,
+-   x: 160,
+    y: 6
+  }
+
+    at file:///D:/claude-upgrade-26/nabbit/scripts/capture-download-peek.mjs:159:10 {
+  generatedMessage: true,
+  code: 'ERR_ASSERTION',
+  actual: { x: 20, y: 6, width: 680, height: 277 },
+  expected: { x: 160, y: 6, width: 400, height: 100 },
+  operator: 'deepStrictEqual',
+  diff: 'simple'
+}
+
+Node.js v24.22.2

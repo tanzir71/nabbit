@@ -1,0 +1,21 @@
+Verified 1440/light/1x: 2 axe states, keyboard navigation and focus.
+Verified 1440/light/1.5x: 2 axe states, keyboard navigation and focus.
+Verified 1440/dark/1x: 2 axe states, keyboard navigation and focus.
+Verified 1440/dark/1.5x: 2 axe states, keyboard navigation and focus.
+node:internal/modules/run_main:107
+    triggerUncaughtException(
+    ^
+
+AssertionError [ERR_ASSERTION]: Unreviewed overlap: .download-captures > .caption
+    at reviewContrast (file:///D:/claude-upgrade-26/nabbit/scripts/contrast-review.mjs:74:9)
+    at async scan (file:///D:/claude-upgrade-26/nabbit/scripts/verify-site-accessibility.mjs:122:37)
+    at async file:///D:/claude-upgrade-26/nabbit/scripts/verify-site-accessibility.mjs:162:11 {
+  generatedMessage: false,
+  code: 'ERR_ASSERTION',
+  actual: false,
+  expected: true,
+  operator: '==',
+  diff: 'simple'
+}
+
+Node.js v24.22.2

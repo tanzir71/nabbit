@@ -1,0 +1,16 @@
+node:internal/modules/run_main:107
+    triggerUncaughtException(
+    ^
+
+AssertionError [ERR_ASSERTION]: .island-morph: no rendered glyphs
+    at auditFont (file:///D:/claude-upgrade-26/nabbit/scripts/font-audit.mjs:15:5)
+    at async file:///D:/claude-upgrade-26/nabbit/scripts/capture-download-peek.mjs:164:17 {
+  generatedMessage: false,
+  code: 'ERR_ASSERTION',
+  actual: false,
+  expected: true,
+  operator: '==',
+  diff: 'simple'
+}
+
+Node.js v24.22.2

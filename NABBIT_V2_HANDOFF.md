@@ -471,14 +471,17 @@ Implement `download/errors.rs` mapping stderr patterns to an `ErrorKind` with co
 
 ### 7.8 Acceptance (downloads, automated)
 
-- [ ] Capture paths: tests drive the clipboard event, synthetic drops, the deep-link handler (valid, malformed, non-http and `javascript:` URLs) and the hotkey command; each opens the review and none creates a download job by itself.
-- [ ] Presets: the remembered preset per site survives a restart (DB test) and `Ctrl+Alt+D` resolves to it.
-- [ ] Options builder: every row of §7.3 has a unit test asserting the exact argument list for the pinned yt-dlp version.
-- [ ] Queue, playlist range 1–5 and per-item retry run against the v0.1 fake runner (`NABBIT_ACCEPTANCE_FAKE_DOWNLOAD`).
-- [ ] Each `ErrorKind` has a unit test with a captured stderr fixture; Vitest checks the island compact Error state and the full tray-row copy.
-- [ ] Engine: a missing Deno yields `MissingJsRuntime`; the health check parses version-output fixtures for all three sidecars.
-- [ ] `windows-acceptance-smoke.ps1` still passes and gains a deep-link check (`start nabbit://nab?url=…` → review open, no download row).
-- [ ] Online only, never a gate: a real trimmed-section download of the Creative Commons sample with an ffprobe duration check, and a comparison of `yt-dlp -F` format counts with and without the Deno runtime.
+- [x] Capture paths: tests drive the clipboard event, synthetic drops, the deep-link handler (valid, malformed, non-http and `javascript:` URLs) and the hotkey command. Passive capture opens review without a job; `Ctrl+Alt+D` explicitly enqueues the remembered preset, per §7.1 and the recorded V3.3 decision.
+- [x] Presets: the remembered preset per site survives a restart (DB test) and `Ctrl+Alt+D` resolves to it.
+- [x] Options builder: every row of §7.3 has a unit test asserting the exact argument list for the pinned yt-dlp version.
+- [x] Queue, playlist range 1–5 and per-item retry run against the v0.1 fake runner (`NABBIT_ACCEPTANCE_FAKE_DOWNLOAD`).
+- [x] Each `ErrorKind` has a unit test with a captured stderr fixture; Vitest checks the island compact Error state and the full tray-row copy.
+- [x] Engine: a missing Deno yields `MissingJsRuntime`; the health check parses version-output fixtures for all three sidecars.
+- [x] `windows-acceptance-smoke.ps1` still passes and gains a deep-link check (`start nabbit://nab?url=…` → review open, no download row).
+- [x] Online only, never a gate: a real trimmed-section download of the Creative Commons sample with an ffprobe duration check, and a comparison of `yt-dlp -F` format counts with and without the Deno runtime.
+
+
+V3.7 evidence: `progress/v2/M7/v37-acceptance.json`. The protocol route is exercised by forwarding the URI through a second owned executable; installed shell association is exempt under §0.2 and recorded in `PROGRESS.md`. The optional public run uses the pinned engine CLI; native queue/IPC uses isolated fixture providers.
 
 ---
 
@@ -772,7 +775,7 @@ Commit after every task (§0.1). Lines marked **MILESTONE** are tasks of their o
 - [x] **MILESTONE M6 — Downloads core.**
 - [x] V3.5 Options sheet `17:137`, Trim `17:270`, Playlist `18:160`.
 - [x] V3.6 Error mapping (§7.7) with stderr fixtures; error rows and actions.
-- [ ] V3.7 Downloads acceptance §7.8; extend the PowerShell smoke; swap the landing downloads visual to a real screenshot.
+- [x] V3.7 Downloads acceptance §7.8; extend the PowerShell smoke; swap the landing downloads visual to a real screenshot.
 - [ ] **MILESTONE M7 — Downloads complete.**
 
 ### Phase V4 — Notes · Tack

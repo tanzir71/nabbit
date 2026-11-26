@@ -211,7 +211,7 @@ pub fn run() {
             setup_tray(app.handle())?;
             #[cfg(all(windows, feature = "island-spike"))]
             island_spike::open_if_enabled(app.handle(), shutdown.clone())?;
-            if !island::acceptance_session() {
+            if !island::acceptance_session() && !download::acceptance::injected_clipboard() {
                 clipboard::watcher::spawn_clipboard_watcher(
                     app.handle().clone(),
                     db.clone(),
@@ -219,7 +219,7 @@ pub fn run() {
                 );
             }
             retention::spawn_retention_gc(db.clone(), shutdown.clone());
-            spawn_acceptance_automation(state.clone());
+            spawn_acceptance_automation(app.handle().clone(), state.clone());
             let settings = db.get_settings()?;
             #[cfg(windows)]
             if island::production_session() {
@@ -236,7 +236,10 @@ pub fn run() {
                     true
                 }
             };
-            if configure_os_integration && !island::acceptance_session() {
+            if configure_os_integration
+                && !island::acceptance_session()
+                && !download::acceptance::enabled()
+            {
                 apply_runtime_settings(app.handle(), &state, &settings);
             }
             state.engine.start(app.handle().clone());
@@ -320,7 +323,7 @@ pub fn run() {
         });
 }
 
-fn spawn_acceptance_automation(state: AppState) {
+fn spawn_acceptance_automation(app: AppHandle, state: AppState) {
     let Some(command_dir) = std::env::var_os("NABBIT_ACCEPTANCE_COMMAND_DIR").map(PathBuf::from)
     else {
         return;
@@ -346,7 +349,9 @@ fn spawn_acceptance_automation(state: AppState) {
             let clipboard_add_request = command_dir.join("clipboard-add.json");
             let clipboard_add_done = command_dir.join("clipboard-add.done");
 
+            let mut last_clipboard_url = None;
             while !shutdown.load(Ordering::Relaxed) {
+                download::acceptance::process(&app, &state, &command_dir, &mut last_clipboard_url);
                 if clear_request.exists() {
                     let result = state
                         .db

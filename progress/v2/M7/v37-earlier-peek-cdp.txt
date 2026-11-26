@@ -1,0 +1,18 @@
+node:internal/modules/run_main:107
+    triggerUncaughtException(
+    ^
+
+AssertionError [ERR_ASSERTION]: Expected values to be strictly equal:
+
+1728 !== 864
+
+    at file:///D:/claude-upgrade-26/nabbit/scripts/capture-download-peek.mjs:170:10 {
+  generatedMessage: true,
+  code: 'ERR_ASSERTION',
+  actual: 1728,
+  expected: 864,
+  operator: 'strictEqual',
+  diff: 'simple'
+}
+
+Node.js v24.22.2

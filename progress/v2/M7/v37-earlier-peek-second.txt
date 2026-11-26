@@ -1,0 +1,9 @@
+file:///D:/claude-upgrade-26/nabbit/scripts/capture-download-peek.mjs:100
+  throw new Error(`Timed out: ${label}; ${trial}`);
+        ^
+
+Error: Timed out: island WebView; D:\claude-upgrade-26\nabbit\.tools\v37-peek-f0a2d871-bc86-418f-9d47-a811c2ad4d3b
+    at wait (file:///D:/claude-upgrade-26/nabbit/scripts/capture-download-peek.mjs:100:9)
+    at async file:///D:/claude-upgrade-26/nabbit/scripts/capture-download-peek.mjs:130:16
+
+Node.js v24.22.2

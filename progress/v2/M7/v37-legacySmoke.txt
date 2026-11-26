@@ -1,0 +1,16 @@
+Check                                      Evidence
+-----                                      --------
+release app launch                         process 45532 stayed alive and created C:\Users\tanzir\AppData\Local\Temp\na…
+engine health background                   local version-check timestamp appeared in 5596ms while app remained responsi…
+clipboard copy creates searchable entry    stored unique marker in 548ms; LIKE search count = 1
+clipboard duplicates de-dupe               same marker remained at one row
+sensitive clipboard skip                   credit-card-shaped sample did not create a row
+excluded app clipboard skip                Bitwarden.exe source-app sample was skipped by the app DB path
+retention GC                               30-day launch GC deleted expired unpinned row and kept pinned/fresh rows
+clear all history                          app command returned ok; clipboard_entries emptied and blob file removed
+download progress/cancel/retry/concurrency progress/speed/ETA appeared in 263ms; second job stayed queued at concurrenc…
+download history persists                  completed video/audio jobs were returned by app list_downloads after restart
+YouTube URL stages without download        staged in 307ms; downloads stayed at 2
+deep-link review without download          real second-instance URI forwarding staged review in 496ms; job count unchan…
+idle watcher CPU                           0.0156 CPU seconds over a 5-second idle sample
+clipboard provider                         injected event through the production consumer; no system clipboard or globa…

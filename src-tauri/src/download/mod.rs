@@ -1,3 +1,4 @@
+pub mod acceptance;
 pub mod deferred;
 pub mod engine;
 pub mod errors;

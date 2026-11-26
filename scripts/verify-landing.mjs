@@ -10,9 +10,15 @@ import { JSDOM } from "jsdom";
 import { auditFont } from "./font-audit.mjs";
 
 const root = fileURLToPath(new URL("../", import.meta.url));
-const { values } = parseArgs({ options: { prefix: { type: "string", default: "l1" } } });
+const { values } = parseArgs({
+  options: {
+    prefix: { type: "string", default: "l1" },
+    milestone: { type: "string", default: "M3" },
+  },
+});
 assert(/^[a-z][a-z0-9-]{0,50}$/.test(values.prefix));
-const output = resolve(root, "progress/v2/M3");
+assert(/^M\d{1,2}$/.test(values.milestone));
+const output = resolve(root, "progress/v2", values.milestone);
 const temporary = resolve(root, ".tools/landing-captures", values.prefix);
 await mkdir(output, { recursive: true });
 await mkdir(temporary, { recursive: true });
@@ -25,6 +31,9 @@ try {
 }
 const manifest = JSON.parse(
   await readFile(resolve(root, "docs/assets/landing-manifest.json"), "utf8"),
+);
+const downloadCapture = JSON.parse(
+  await readFile(resolve(root, "docs/assets/download-capture.json"), "utf8"),
 );
 const expectedMilestone = new JSDOM(
   await readFile(resolve(root, "docs/index.html"), "utf8"),
@@ -97,6 +106,49 @@ try {
             });
           };
           await open();
+          for (const capture of downloadCapture.captures) {
+            const response = await context.request.get(`${origin}/nabbit/${capture.file}`);
+            assert.equal(hash(await response.body()), capture.sha256);
+            for (const img of await page.locator(`#downloads img[src="${capture.file}"]`).all()) {
+              assert.deepEqual(await img.evaluate((el) => [el.naturalWidth, el.naturalHeight]), [
+                capture.width,
+                capture.height,
+              ]);
+            }
+          }
+          const nativeDownloads = await page
+            .locator(width === 1440 ? ".download-desktop" : ".download-mobile")
+            .evaluate((stage) => {
+              const origin = stage.getBoundingClientRect();
+              return {
+                width: origin.width,
+                height: origin.height,
+                images: [...stage.querySelectorAll("img")].map((img) => {
+                  const box = img.getBoundingClientRect();
+                  return {
+                    file: img.getAttribute("src"),
+                    x: box.x - origin.x,
+                    y: box.y - origin.y,
+                    width: box.width,
+                    height: box.height,
+                  };
+                }),
+              };
+            });
+          const near = (a, b) => assert(Math.abs(a - b) < 0.03, `${a} differs from ${b}`);
+          near(nativeDownloads.width, width === 1440 ? 596 : width - 40);
+          near(nativeDownloads.height, width === 1440 ? 560 : 122);
+          const expectedImages =
+            width === 1440
+              ? [
+                  [201, 60, 358.8, 530.4],
+                  [12, 18, 432, 140],
+                ]
+              : [[(width - 40 - 354.24) / 2, 15.08, 354.24, 114.8]];
+          for (const [index, image] of nativeDownloads.images.entries())
+            [image.x, image.y, image.width, image.height].forEach((value, axis) =>
+              near(value, expectedImages[index][axis]),
+            );
           assert.equal(await page.locator("[data-download-cta]").count(), 3);
           for (const cta of await page.locator("[data-download-cta]").all())
             assert.equal((await cta.textContent()).trim(), "Follow the build");
@@ -240,10 +292,10 @@ try {
           });
           assert.equal(geometry.scrollWidth, width);
           if (width === 1440) {
-            assert.equal(geometry.pageHeight, 7113);
+            assert.equal(geometry.pageHeight, 7139);
             assert.deepEqual(
               geometry.sections.map((item) => Math.round(item.height)),
-              [69, 977, 600, 728, 728, 728, 620, 648, 516, 990, 428, 81],
+              [69, 1003, 600, 728, 728, 728, 620, 648, 516, 990, 428, 81],
             );
           }
           for (const image of geometry.svgs) {
@@ -281,12 +333,20 @@ try {
             scale: "device",
             caret: "hide",
           });
+          const repeated = await page.screenshot({
+            animations: "disabled",
+            fullPage: true,
+            scale: "device",
+            caret: "hide",
+          });
+          assert.equal(hash(repeated), hash(full), "Landing capture changed on repeat");
           contexts.push({
             width,
             theme,
             scale,
             fonts,
             geometry,
+            nativeDownloads,
             menuAndRoadmapKeyboard: width === 390,
             bookmarkletCopiedAndEncodedWithoutNavigation: true,
             clipboardFailureHasFeedback: true,
@@ -294,6 +354,7 @@ try {
             external,
             fullSource: fullName,
             fullSha256: hash(full),
+            repeatMatches: true,
           });
         } finally {
           await context.close();

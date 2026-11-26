@@ -46,11 +46,18 @@ impl Service {
 }
 
 #[tauri::command]
-pub fn open_download_sheet(
+pub async fn open_download_sheet(
     app: tauri::AppHandle,
     state: tauri::State<'_, AppState>,
-    mut draft: Draft,
+    draft: Draft,
 ) -> Result<()> {
+    let state = state.inner().clone();
+    // WebView2 creation must not block the Windows event thread servicing IPC.
+    tauri::async_runtime::spawn_blocking(move || open(&app, &state, draft))
+        .await
+        .map_err(|e| msg(e.to_string()))?
+}
+fn open(app: &tauri::AppHandle, state: &AppState, mut draft: Draft) -> Result<()> {
     draft.url = crate::capture::web_url(&draft.url)?;
     draft.options = draft.options.normalized()?;
     if let Some(id) = &draft.retry_job_id {
@@ -85,7 +92,7 @@ pub fn open_download_sheet(
         window.set_focus()?;
     } else {
         tauri::WebviewWindowBuilder::new(
-            &app,
+            app,
             "download-sheet",
             tauri::WebviewUrl::App("index.html?download-sheet".into()),
         )

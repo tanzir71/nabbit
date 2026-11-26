@@ -1,0 +1,18 @@
+node:internal/modules/run_main:107
+    triggerUncaughtException(
+    ^
+
+AssertionError [ERR_ASSERTION]: Expected values to be strictly equal:
+
+7139 !== 7113
+
+    at file:///D:/claude-upgrade-26/nabbit/scripts/verify-landing.mjs:295:20 {
+  generatedMessage: true,
+  code: 'ERR_ASSERTION',
+  actual: 7139,
+  expected: 7113,
+  operator: 'strictEqual',
+  diff: 'simple'
+}
+
+Node.js v24.22.2
