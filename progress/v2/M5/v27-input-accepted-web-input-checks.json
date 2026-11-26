@@ -1,0 +1,420 @@
+{
+  "records": [
+    {
+      "case": "layout-update",
+      "snapshot": {
+        "activity": {
+          "preferences": {
+            "disabled": [],
+            "focusMode": false,
+            "hiddenUntilMs": null,
+            "order": [
+              "privacy",
+              "timerEnding",
+              "download",
+              "tool",
+              "link",
+              "result",
+              "media",
+              "timer",
+              "power"
+            ],
+            "showAlertsOverFullscreen": false
+          },
+          "revision": 36,
+          "syncState": "localOnly",
+          "views": [
+            {
+              "bubble": null,
+              "focusMode": false,
+              "fullscreen": false,
+              "gate": "visible",
+              "label": "island",
+              "primary": null,
+              "queue": [],
+              "userHidden": false
+            }
+          ]
+        },
+        "activityScheduler": {
+          "nextDeadlineMs": null,
+          "wakeups": 34
+        },
+        "desktop": {
+          "cursor": {
+            "x": 1200,
+            "y": 248
+          },
+          "monitors": [
+            {
+              "bounds": {
+                "height": 1080,
+                "width": 1920,
+                "x": 0,
+                "y": 0
+              },
+              "id": "primary",
+              "name": "Fixture primary",
+              "primary": true,
+              "scaleFactor": 1,
+              "workArea": {
+                "height": 1032,
+                "width": 1920,
+                "x": 0,
+                "y": 48
+              }
+            },
+            {
+              "bounds": {
+                "height": 1080,
+                "width": 1920,
+                "x": -1920,
+                "y": -200
+              },
+              "id": "left",
+              "name": "Fixture left",
+              "primary": false,
+              "scaleFactor": 1.5,
+              "workArea": {
+                "height": 1032,
+                "width": 1920,
+                "x": -1920,
+                "y": -200
+              }
+            }
+          ],
+          "topTaskbar": null
+        },
+        "foreground": {
+          "cloaked": false,
+          "desktop": false,
+          "maximised": false,
+          "minimised": false,
+          "monitor": null,
+          "notificationState": null,
+          "ownProcess": false,
+          "rect": null,
+          "visible": false,
+          "windowId": 0
+        },
+        "hosts": [
+          {
+            "commits": 5,
+            "hwnd": 14489516,
+            "placement": {
+              "bounds": {
+                "height": 460,
+                "width": 720,
+                "x": 600,
+                "y": 48
+              },
+              "dpiScale": 1,
+              "label": "island",
+              "monitorId": "primary",
+              "renderScale": 1,
+              "shape": "island",
+              "sizeScale": 1
+            },
+            "warp": false
+          }
+        ],
+        "input": [
+          {
+            "decision": {
+              "dragging": false,
+              "hidden": false,
+              "interactive": true,
+              "pollMs": 25
+            },
+            "hitrect": {
+              "h": 311,
+              "w": 696,
+              "x": 12,
+              "y": 0
+            },
+            "interactive": true,
+            "label": "island",
+            "revision": 55,
+            "source": "web"
+          }
+        ],
+        "inputWatcher": {
+          "cursorSamples": 970,
+          "fixtureReadRetries": 2,
+          "foregroundEvents": 6,
+          "hookInstalled": true,
+          "ownForegroundEvents": 0,
+          "systemSamples": 179
+        },
+        "keyboard": {
+          "acquired": 0,
+          "cancelled": 0,
+          "denied": 0,
+          "injectedFocus": true,
+          "lease": null,
+          "lost": 0,
+          "request": null,
+          "requests": 0,
+          "restoreAttempts": 0,
+          "restored": 0,
+          "shortcutError": null
+        },
+        "lastError": null,
+        "preferences": {
+          "enabled": true,
+          "monitorId": null,
+          "monitorMode": "primary",
+          "shape": "island",
+          "size": "standard"
+        },
+        "reconciliations": 127,
+        "renderer": "native",
+        "supported": true,
+        "surfaces": {
+          "island": {
+            "beforeDrag": null,
+            "closeAt": null,
+            "focusTab": null,
+            "generation": 4,
+            "hoverAt": null,
+            "opening": false,
+            "pending": null,
+            "state": "expanded",
+            "webAllocated": true,
+            "webHwnd": 13244138,
+            "webOwner": true
+          }
+        },
+        "visibility": [
+          {
+            "base": "visible",
+            "label": "island",
+            "mode": "visible",
+            "opacity": 1,
+            "reason": "none",
+            "revision": 7
+          }
+        ],
+        "webviews": 2,
+        "windowOrder": [
+          {
+            "label": "island",
+            "webAboveNative": true
+          }
+        ]
+      }
+    },
+    {
+      "case": "html5-drag-lifetime",
+      "type": "text/uri-list",
+      "entered": [
+        {
+          "decision": {
+            "dragging": true,
+            "hidden": false,
+            "interactive": true,
+            "pollMs": 25
+          },
+          "hitrect": {
+            "h": 40,
+            "w": 128,
+            "x": 296,
+            "y": 0
+          },
+          "interactive": true,
+          "label": "island",
+          "revision": 81,
+          "source": "web"
+        }
+      ]
+    },
+    {
+      "case": "html5-drag-lifetime",
+      "type": "Files",
+      "entered": [
+        {
+          "decision": {
+            "dragging": true,
+            "hidden": false,
+            "interactive": true,
+            "pollMs": 25
+          },
+          "hitrect": {
+            "h": 40,
+            "w": 128,
+            "x": 296,
+            "y": 0
+          },
+          "interactive": true,
+          "label": "island",
+          "revision": 93,
+          "source": "web"
+        }
+      ]
+    },
+    {
+      "case": "html5-drag-lifetime",
+      "type": "text/plain",
+      "entered": [
+        {
+          "decision": {
+            "dragging": true,
+            "hidden": false,
+            "interactive": true,
+            "pollMs": 25
+          },
+          "hitrect": {
+            "h": 40,
+            "w": 128,
+            "x": 296,
+            "y": 0
+          },
+          "interactive": true,
+          "label": "island",
+          "revision": 102,
+          "source": "web"
+        }
+      ]
+    }
+  ],
+  "events": [
+    {
+      "event": "island:drag-enter",
+      "payload": {
+        "label": "island",
+        "hitrect": {
+          "x": 296,
+          "y": 0,
+          "w": 128,
+          "h": 40
+        },
+        "decision": {
+          "hidden": false,
+          "dragging": true,
+          "interactive": true,
+          "pollMs": 25
+        },
+        "interactive": true,
+        "revision": 79,
+        "source": "web"
+      }
+    },
+    {
+      "event": "island:drag-leave",
+      "payload": {
+        "label": "island",
+        "hitrect": {
+          "x": 296,
+          "y": 0,
+          "w": 128,
+          "h": 40
+        },
+        "decision": {
+          "hidden": false,
+          "dragging": false,
+          "interactive": false,
+          "pollMs": 500
+        },
+        "interactive": false,
+        "revision": 82,
+        "source": "web"
+      }
+    },
+    {
+      "event": "island:drag-enter",
+      "payload": {
+        "label": "island",
+        "hitrect": {
+          "x": 296,
+          "y": 0,
+          "w": 128,
+          "h": 40
+        },
+        "decision": {
+          "hidden": false,
+          "dragging": true,
+          "interactive": true,
+          "pollMs": 25
+        },
+        "interactive": true,
+        "revision": 92,
+        "source": "web"
+      }
+    },
+    {
+      "event": "island:drag-leave",
+      "payload": {
+        "label": "island",
+        "hitrect": {
+          "x": 296,
+          "y": 0,
+          "w": 128,
+          "h": 40
+        },
+        "decision": {
+          "hidden": false,
+          "dragging": false,
+          "interactive": false,
+          "pollMs": 500
+        },
+        "interactive": false,
+        "revision": 94,
+        "source": "web"
+      }
+    },
+    {
+      "event": "island:drag-enter",
+      "payload": {
+        "label": "island",
+        "hitrect": {
+          "x": 296,
+          "y": 0,
+          "w": 128,
+          "h": 40
+        },
+        "decision": {
+          "hidden": false,
+          "dragging": true,
+          "interactive": true,
+          "pollMs": 25
+        },
+        "interactive": true,
+        "revision": 101,
+        "source": "web"
+      }
+    },
+    {
+      "event": "island:drag-leave",
+      "payload": {
+        "label": "island",
+        "hitrect": {
+          "x": 296,
+          "y": 0,
+          "w": 128,
+          "h": 40
+        },
+        "decision": {
+          "hidden": false,
+          "dragging": false,
+          "interactive": false,
+          "pollMs": 500
+        },
+        "interactive": false,
+        "revision": 103,
+        "source": "web"
+      }
+    }
+  ],
+  "farSamples": 2,
+  "nearSamples": 37,
+  "sampleDurationMs": 1100,
+  "nativeCommitsStable": true,
+  "boundsStable": true,
+  "invalidRectanglesRejected": true,
+  "nonIslandCallersRejected": true,
+  "foregroundHookInstalled": true,
+  "farForegroundWakeups": 0,
+  "entryAsset": "island-CAgkG7GR.js",
+  "entrySha256": "7147baa207c83c9bd1f7a56d1b89dc992e24699450770fc5a22859397f186913",
+  "runtimeErrors": []
+}

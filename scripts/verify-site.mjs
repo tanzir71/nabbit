@@ -55,9 +55,14 @@ for (const [path, document] of documents) {
       );
   }
   for (const resource of document.querySelectorAll(
-    "[src], link[rel='stylesheet'], link[rel='icon'], link[rel='preload']",
+    "[src], source[srcset], link[rel='stylesheet'], link[rel='icon'], link[rel='preload']",
   )) {
-    await checkResource(resource.getAttribute("src") ?? resource.getAttribute("href"), path);
+    await checkResource(
+      resource.getAttribute("src") ??
+        resource.getAttribute("srcset") ??
+        resource.getAttribute("href"),
+      path,
+    );
   }
   for (const style of document.querySelectorAll("style")) await checkCss(style.textContent, path);
 }

@@ -1,0 +1,22 @@
+[
+ {
+  "RuleID": "generic-api-key",
+  "Description": "Detected a Generic API Key, potentially exposing access to various services and sensitive operations.",
+  "StartLine": 38,
+  "EndLine": 38,
+  "StartColumn": 369,
+  "EndColumn": 460,
+  "Match": "secrets. Release SHA-256: `REDACTED`",
+  "Secret": "REDACTED",
+  "File": "progress/v2/M5/V2.7.md",
+  "SymlinkFile": "",
+  "Commit": "",
+  "Entropy": 3.9140632,
+  "Author": "",
+  "Email": "",
+  "Date": "0001-01-01T00:00:00Z",
+  "Message": "",
+  "Tags": [],
+  "Fingerprint": "progress/v2/M5/V2.7.md:generic-api-key:38"
+ }
+]

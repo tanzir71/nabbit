@@ -212,12 +212,6 @@ try {
     .getByRole("button", { name: "Text", exact: true })
     .evaluate((button) => button.click());
   await page.getByRole("textbox", { name: "Search clipboard", exact: true }).fill("Saved surface");
-  await page
-    .getByRole("button", { name: "Search", exact: true })
-    .evaluate((button) => button.click());
-  await page
-    .getByRole("textbox", { name: "Search island", exact: true })
-    .fill("remember this query");
   await page.locator(".island-module-scroll").evaluate((element) => {
     element.scrollTop = 260;
     element.dispatchEvent(new globalThis.Event("scroll"));
@@ -231,10 +225,24 @@ try {
       ),
     "scroll memory",
   );
+  await screenshot("expanded-clipboard");
+  await page
+    .getByRole("button", { name: "Search", exact: true })
+    .evaluate((button) => button.click());
+  await page
+    .getByRole("combobox", { name: "Search island", exact: true })
+    .fill("remember this query");
+  await wait(
+    () =>
+      page.evaluate(() => {
+        const memory = JSON.parse(globalThis.localStorage.getItem("nabbit.island.ui.v1.island"));
+        return memory.searchText === "remember this query" && memory.filters.searchOpen === "true";
+      }),
+    "persisted Search memory",
+  );
   const memory = await page.evaluate(() =>
     JSON.parse(globalThis.localStorage.getItem("nabbit.island.ui.v1.island")),
   );
-  await screenshot("expanded-clipboard");
   await check("tab-filter-search-scroll");
   await writeFile(`${cursorPath}.surface`, JSON.stringify({ x: 1500, y: 900, leftDown: false }));
   await rename(`${cursorPath}.surface`, cursorPath);
@@ -248,6 +256,14 @@ try {
   checks.push({ name: "destroyed-on-collapse", snapshot: closed });
   await request({ surface: { label: "island", state: "expanded" } });
   await selectPage();
+  await page.getByRole("combobox", { name: "Search island", exact: true }).waitFor();
+  assert.equal(
+    await page.getByRole("combobox", { name: "Search island", exact: true }).inputValue(),
+    memory.searchText,
+  );
+  await page
+    .getByRole("button", { name: "Search", exact: true })
+    .evaluate((button) => button.click());
   await page.getByRole("textbox", { name: "Search clipboard", exact: true }).waitFor();
   await wait(
     async () =>
@@ -261,10 +277,7 @@ try {
     await page.getByRole("textbox", { name: "Search clipboard", exact: true }).inputValue(),
     memory.filters.clipboardQuery,
   );
-  assert.equal(
-    await page.getByRole("textbox", { name: "Search island", exact: true }).inputValue(),
-    memory.searchText,
-  );
+
   await wait(
     async () =>
       page.locator(".island-module-scroll").evaluate((element) => element.scrollTop === 260),

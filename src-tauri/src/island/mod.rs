@@ -47,7 +47,13 @@ pub fn island_set_hitrect(
 ) -> Result<(), String> {
     let rect = rect.validated().ok_or("Invalid island hit rectangle")?;
     #[cfg(windows)]
-    return input_manager(&app)?.set_hitrect(window.label(), Some(rect));
+    {
+        let manager = input_manager(&app)?;
+        if !current_input_window(&app, &window, &manager)? {
+            return Ok(());
+        }
+        manager.set_hitrect(window.label(), Some(rect))
+    }
     #[cfg(not(windows))]
     {
         let _ = (app, window, rect);
@@ -60,7 +66,13 @@ pub fn island_clear_hitrect(
     window: tauri::WebviewWindow,
 ) -> Result<(), String> {
     #[cfg(windows)]
-    return input_manager(&app)?.set_hitrect(window.label(), None);
+    {
+        let manager = input_manager(&app)?;
+        if !current_input_window(&app, &window, &manager)? {
+            return Ok(());
+        }
+        manager.set_hitrect(window.label(), None)
+    }
     #[cfg(not(windows))]
     {
         let _ = (app, window);
@@ -74,7 +86,13 @@ pub fn island_set_drag(
     active: bool,
 ) -> Result<(), String> {
     #[cfg(windows)]
-    return input_manager(&app)?.set_drag(window.label(), active);
+    {
+        let manager = input_manager(&app)?;
+        if !current_input_window(&app, &window, &manager)? {
+            return Ok(());
+        }
+        manager.set_drag(window.label(), active)
+    }
     #[cfg(not(windows))]
     {
         let _ = (app, window, active);
@@ -136,6 +154,24 @@ pub fn island_keyboard_ready(
         let _ = (app, window, request);
         Ok(())
     }
+}
+#[cfg(windows)]
+fn current_input_window(
+    app: &tauri::AppHandle,
+    window: &tauri::WebviewWindow,
+    manager: &Manager,
+) -> Result<bool, String> {
+    use tauri::Manager as _;
+    if !manager.has_label(window.label()) {
+        return Err("Only an active island surface can update input".into());
+    }
+    // Teardown IPC from a destroyed view must not mutate its replacement,
+    // even though both views use the same stable monitor label.
+    Ok(app
+        .get_webview_window(window.label())
+        .and_then(|active| active.hwnd().ok())
+        .zip(window.hwnd().ok())
+        .is_some_and(|(active, caller)| active == caller))
 }
 #[cfg(windows)]
 fn input_manager(app: &tauri::AppHandle) -> Result<std::sync::Arc<Manager>, String> {

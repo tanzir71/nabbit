@@ -1,0 +1,793 @@
+{
+  "checks": [
+    {
+      "name": "first-use-and-three-rounds-of-production-web-morphs",
+      "snapshot": {
+        "activity": {
+          "preferences": {
+            "disabled": [],
+            "focusMode": false,
+            "hiddenUntilMs": null,
+            "order": [
+              "privacy",
+              "timerEnding",
+              "download",
+              "tool",
+              "link",
+              "result",
+              "media",
+              "timer",
+              "power"
+            ],
+            "showAlertsOverFullscreen": false
+          },
+          "revision": 28,
+          "syncState": "localOnly",
+          "views": [
+            {
+              "bubble": null,
+              "focusMode": false,
+              "fullscreen": false,
+              "gate": "visible",
+              "label": "island",
+              "primary": {
+                "alert": false,
+                "bubbleOnly": false,
+                "category": "download",
+                "event": {
+                  "eta": "1:12",
+                  "jobId": "acceptance-motion-dpi",
+                  "kind": "downloadProgress",
+                  "percent": 38,
+                  "speed": "4.2 MB/s",
+                  "title": "Island acceptance fixture"
+                },
+                "id": "download:acceptance-motion-dpi"
+              },
+              "queue": [],
+              "userHidden": false
+            }
+          ]
+        },
+        "activityScheduler": {
+          "nextDeadlineMs": null,
+          "wakeups": 28
+        },
+        "desktop": {
+          "cursor": {
+            "x": 120,
+            "y": 400
+          },
+          "monitors": [
+            {
+              "bounds": {
+                "height": 1080,
+                "width": 1920,
+                "x": 0,
+                "y": 0
+              },
+              "id": "primary",
+              "name": "Fixture primary",
+              "primary": true,
+              "scaleFactor": 1,
+              "workArea": {
+                "height": 1032,
+                "width": 1920,
+                "x": 0,
+                "y": 0
+              }
+            }
+          ],
+          "topTaskbar": null
+        },
+        "foreground": {
+          "cloaked": false,
+          "desktop": false,
+          "maximised": false,
+          "minimised": false,
+          "monitor": null,
+          "notificationState": null,
+          "ownProcess": false,
+          "rect": null,
+          "visible": false,
+          "windowId": 0
+        },
+        "hosts": [
+          {
+            "commits": 48,
+            "hwnd": 2759802,
+            "placement": {
+              "bounds": {
+                "height": 460,
+                "width": 720,
+                "x": 600,
+                "y": 0
+              },
+              "dpiScale": 1,
+              "label": "island",
+              "monitorId": "primary",
+              "renderScale": 1,
+              "shape": "island",
+              "sizeScale": 1
+            },
+            "warp": false
+          }
+        ],
+        "input": [
+          {
+            "decision": {
+              "dragging": false,
+              "hidden": false,
+              "interactive": true,
+              "pollMs": 25
+            },
+            "hitrect": {
+              "h": 40,
+              "w": 128,
+              "x": 296,
+              "y": 0
+            },
+            "interactive": true,
+            "label": "island",
+            "revision": 1321,
+            "source": "native"
+          }
+        ],
+        "inputWatcher": {
+          "cursorSamples": 2928,
+          "fixtureReadRetries": 0,
+          "foregroundEvents": 2,
+          "hookInstalled": true,
+          "ownForegroundEvents": 0,
+          "systemSamples": 300
+        },
+        "keyboard": {
+          "acquired": 0,
+          "cancelled": 0,
+          "denied": 0,
+          "injectedFocus": true,
+          "lease": null,
+          "lost": 0,
+          "request": null,
+          "requests": 0,
+          "restoreAttempts": 0,
+          "restored": 0,
+          "shortcutError": null
+        },
+        "lastError": null,
+        "preferences": {
+          "enabled": true,
+          "monitorId": null,
+          "monitorMode": "followMouse",
+          "shape": "island",
+          "size": "standard"
+        },
+        "reconciliations": 212,
+        "renderer": "native",
+        "supported": true,
+        "surfaces": {
+          "island": {
+            "beforeDrag": null,
+            "closeAt": null,
+            "focusTab": null,
+            "generation": 77,
+            "hoverAt": null,
+            "opening": false,
+            "pending": null,
+            "state": "live",
+            "webAllocated": false,
+            "webHwnd": 0,
+            "webOwner": false
+          }
+        },
+        "visibility": [
+          {
+            "base": "visible",
+            "label": "island",
+            "mode": "visible",
+            "opacity": 1,
+            "reason": "none",
+            "revision": 1
+          }
+        ],
+        "webviews": 1,
+        "windowOrder": [
+          {
+            "label": "island",
+            "webAboveNative": null
+          }
+        ]
+      }
+    },
+    {
+      "name": "dpi-change-during-expanded-opening-preserves-host-and-state",
+      "snapshot": {
+        "activity": {
+          "preferences": {
+            "disabled": [],
+            "focusMode": false,
+            "hiddenUntilMs": null,
+            "order": [
+              "privacy",
+              "timerEnding",
+              "download",
+              "tool",
+              "link",
+              "result",
+              "media",
+              "timer",
+              "power"
+            ],
+            "showAlertsOverFullscreen": false
+          },
+          "revision": 28,
+          "syncState": "localOnly",
+          "views": [
+            {
+              "bubble": null,
+              "focusMode": false,
+              "fullscreen": false,
+              "gate": "visible",
+              "label": "island",
+              "primary": {
+                "alert": false,
+                "bubbleOnly": false,
+                "category": "download",
+                "event": {
+                  "eta": "1:12",
+                  "jobId": "acceptance-motion-dpi",
+                  "kind": "downloadProgress",
+                  "percent": 38,
+                  "speed": "4.2 MB/s",
+                  "title": "Island acceptance fixture"
+                },
+                "id": "download:acceptance-motion-dpi"
+              },
+              "queue": [],
+              "userHidden": false
+            }
+          ]
+        },
+        "activityScheduler": {
+          "nextDeadlineMs": null,
+          "wakeups": 28
+        },
+        "desktop": {
+          "cursor": {
+            "x": 120,
+            "y": 400
+          },
+          "monitors": [
+            {
+              "bounds": {
+                "height": 1080,
+                "width": 1920,
+                "x": 0,
+                "y": 0
+              },
+              "id": "primary",
+              "name": "Fixture primary",
+              "primary": true,
+              "scaleFactor": 1.5,
+              "workArea": {
+                "height": 1032,
+                "width": 1920,
+                "x": 0,
+                "y": 0
+              }
+            }
+          ],
+          "topTaskbar": null
+        },
+        "foreground": {
+          "cloaked": false,
+          "desktop": false,
+          "maximised": false,
+          "minimised": false,
+          "monitor": null,
+          "notificationState": null,
+          "ownProcess": false,
+          "rect": null,
+          "visible": false,
+          "windowId": 0
+        },
+        "hosts": [
+          {
+            "commits": 51,
+            "hwnd": 2759802,
+            "placement": {
+              "bounds": {
+                "height": 690,
+                "width": 1080,
+                "x": 420,
+                "y": 0
+              },
+              "dpiScale": 1.5,
+              "label": "island",
+              "monitorId": "primary",
+              "renderScale": 1.5,
+              "shape": "island",
+              "sizeScale": 1
+            },
+            "warp": false
+          }
+        ],
+        "input": [
+          {
+            "decision": {
+              "dragging": false,
+              "hidden": false,
+              "interactive": true,
+              "pollMs": 25
+            },
+            "hitrect": {
+              "h": 168.05209350585938,
+              "w": 687.6354370117188,
+              "x": 16.182292938232422,
+              "y": 0
+            },
+            "interactive": true,
+            "label": "island",
+            "revision": 1361,
+            "source": "web"
+          }
+        ],
+        "inputWatcher": {
+          "cursorSamples": 3007,
+          "fixtureReadRetries": 0,
+          "foregroundEvents": 2,
+          "hookInstalled": true,
+          "ownForegroundEvents": 0,
+          "systemSamples": 313
+        },
+        "keyboard": {
+          "acquired": 0,
+          "cancelled": 0,
+          "denied": 0,
+          "injectedFocus": true,
+          "lease": null,
+          "lost": 0,
+          "request": null,
+          "requests": 0,
+          "restoreAttempts": 0,
+          "restored": 0,
+          "shortcutError": null
+        },
+        "lastError": null,
+        "preferences": {
+          "enabled": true,
+          "monitorId": null,
+          "monitorMode": "followMouse",
+          "shape": "island",
+          "size": "standard"
+        },
+        "reconciliations": 226,
+        "renderer": "native",
+        "supported": true,
+        "surfaces": {
+          "island": {
+            "beforeDrag": null,
+            "closeAt": null,
+            "focusTab": null,
+            "generation": 79,
+            "hoverAt": null,
+            "opening": false,
+            "pending": null,
+            "state": "expanded",
+            "webAllocated": true,
+            "webHwnd": 29233934,
+            "webOwner": true
+          }
+        },
+        "visibility": [
+          {
+            "base": "visible",
+            "label": "island",
+            "mode": "visible",
+            "opacity": 1,
+            "reason": "none",
+            "revision": 1
+          }
+        ],
+        "webviews": 2,
+        "windowOrder": [
+          {
+            "label": "island",
+            "webAboveNative": true
+          }
+        ]
+      }
+    },
+    {
+      "name": "remove-expanded-monitor-destroys-web-and-focus-state",
+      "snapshot": {
+        "activity": {
+          "preferences": {
+            "disabled": [],
+            "focusMode": false,
+            "hiddenUntilMs": null,
+            "order": [
+              "privacy",
+              "timerEnding",
+              "download",
+              "tool",
+              "link",
+              "result",
+              "media",
+              "timer",
+              "power"
+            ],
+            "showAlertsOverFullscreen": false
+          },
+          "revision": 30,
+          "syncState": "localOnly",
+          "views": [
+            {
+              "bubble": null,
+              "focusMode": false,
+              "fullscreen": false,
+              "gate": "visible",
+              "label": "island-primary",
+              "primary": {
+                "alert": false,
+                "bubbleOnly": false,
+                "category": "download",
+                "event": {
+                  "eta": "1:12",
+                  "jobId": "acceptance-motion-dpi",
+                  "kind": "downloadProgress",
+                  "percent": 38,
+                  "speed": "4.2 MB/s",
+                  "title": "Island acceptance fixture"
+                },
+                "id": "download:acceptance-motion-dpi"
+              },
+              "queue": [],
+              "userHidden": false
+            }
+          ]
+        },
+        "activityScheduler": {
+          "nextDeadlineMs": null,
+          "wakeups": 30
+        },
+        "desktop": {
+          "cursor": {
+            "x": 120,
+            "y": 400
+          },
+          "monitors": [
+            {
+              "bounds": {
+                "height": 1080,
+                "width": 1920,
+                "x": 0,
+                "y": 0
+              },
+              "id": "primary",
+              "name": "Fixture primary",
+              "primary": true,
+              "scaleFactor": 1,
+              "workArea": {
+                "height": 1032,
+                "width": 1920,
+                "x": 0,
+                "y": 0
+              }
+            }
+          ],
+          "topTaskbar": null
+        },
+        "foreground": {
+          "cloaked": false,
+          "desktop": false,
+          "maximised": false,
+          "minimised": false,
+          "monitor": null,
+          "notificationState": null,
+          "ownProcess": false,
+          "rect": null,
+          "visible": false,
+          "windowId": 0
+        },
+        "hosts": [
+          {
+            "commits": 2,
+            "hwnd": 2825338,
+            "placement": {
+              "bounds": {
+                "height": 460,
+                "width": 720,
+                "x": 600,
+                "y": 0
+              },
+              "dpiScale": 1,
+              "label": "island-primary",
+              "monitorId": "primary",
+              "renderScale": 1,
+              "shape": "island",
+              "sizeScale": 1
+            },
+            "warp": false
+          }
+        ],
+        "input": [
+          {
+            "decision": {
+              "dragging": false,
+              "hidden": false,
+              "interactive": true,
+              "pollMs": 25
+            },
+            "hitrect": {
+              "h": 88,
+              "w": 416,
+              "x": 152,
+              "y": 0
+            },
+            "interactive": true,
+            "label": "island-primary",
+            "revision": 21,
+            "source": "web"
+          }
+        ],
+        "inputWatcher": {
+          "cursorSamples": 3099,
+          "fixtureReadRetries": 0,
+          "foregroundEvents": 2,
+          "hookInstalled": true,
+          "ownForegroundEvents": 0,
+          "systemSamples": 324
+        },
+        "keyboard": {
+          "acquired": 0,
+          "cancelled": 0,
+          "denied": 0,
+          "injectedFocus": true,
+          "lease": null,
+          "lost": 0,
+          "request": null,
+          "requests": 0,
+          "restoreAttempts": 0,
+          "restored": 0,
+          "shortcutError": null
+        },
+        "lastError": null,
+        "preferences": {
+          "enabled": true,
+          "monitorId": null,
+          "monitorMode": "all",
+          "shape": "island",
+          "size": "standard"
+        },
+        "reconciliations": 236,
+        "renderer": "native",
+        "supported": true,
+        "surfaces": {
+          "island-primary": {
+            "beforeDrag": null,
+            "closeAt": null,
+            "focusTab": null,
+            "generation": 2,
+            "hoverAt": null,
+            "opening": false,
+            "pending": null,
+            "state": "peek",
+            "webAllocated": true,
+            "webHwnd": 4660516,
+            "webOwner": true
+          }
+        },
+        "visibility": [
+          {
+            "base": "visible",
+            "label": "island-primary",
+            "mode": "visible",
+            "opacity": 1,
+            "reason": "none",
+            "revision": 3
+          }
+        ],
+        "webviews": 2,
+        "windowOrder": [
+          {
+            "label": "island-primary",
+            "webAboveNative": true
+          }
+        ]
+      }
+    },
+    {
+      "name": "restored-original-idle-fixture",
+      "snapshot": {
+        "activity": {
+          "preferences": {
+            "disabled": [],
+            "focusMode": false,
+            "hiddenUntilMs": null,
+            "order": [
+              "privacy",
+              "timerEnding",
+              "download",
+              "tool",
+              "link",
+              "result",
+              "media",
+              "timer",
+              "power"
+            ],
+            "showAlertsOverFullscreen": false
+          },
+          "revision": 35,
+          "syncState": "localOnly",
+          "views": [
+            {
+              "bubble": null,
+              "focusMode": false,
+              "fullscreen": false,
+              "gate": "visible",
+              "label": "island",
+              "primary": null,
+              "queue": [],
+              "userHidden": false
+            }
+          ]
+        },
+        "activityScheduler": {
+          "nextDeadlineMs": null,
+          "wakeups": 35
+        },
+        "desktop": {
+          "cursor": {
+            "x": 120,
+            "y": 400
+          },
+          "monitors": [
+            {
+              "bounds": {
+                "height": 1080,
+                "width": 1920,
+                "x": 0,
+                "y": 0
+              },
+              "id": "primary",
+              "name": "Fixture primary",
+              "primary": true,
+              "scaleFactor": 1,
+              "workArea": {
+                "height": 1032,
+                "width": 1920,
+                "x": 0,
+                "y": 0
+              }
+            }
+          ],
+          "topTaskbar": null
+        },
+        "foreground": {
+          "cloaked": false,
+          "desktop": false,
+          "maximised": false,
+          "minimised": false,
+          "monitor": null,
+          "notificationState": null,
+          "ownProcess": false,
+          "rect": null,
+          "visible": false,
+          "windowId": 0
+        },
+        "hosts": [
+          {
+            "commits": 3,
+            "hwnd": 2890874,
+            "placement": {
+              "bounds": {
+                "height": 460,
+                "width": 720,
+                "x": 600,
+                "y": 0
+              },
+              "dpiScale": 1,
+              "label": "island",
+              "monitorId": "primary",
+              "renderScale": 1,
+              "shape": "island",
+              "sizeScale": 1
+            },
+            "warp": false
+          }
+        ],
+        "input": [
+          {
+            "decision": {
+              "dragging": false,
+              "hidden": false,
+              "interactive": true,
+              "pollMs": 25
+            },
+            "hitrect": {
+              "h": 40,
+              "w": 128,
+              "x": 296,
+              "y": 0
+            },
+            "interactive": true,
+            "label": "island",
+            "revision": 3,
+            "source": "native"
+          }
+        ],
+        "inputWatcher": {
+          "cursorSamples": 3124,
+          "fixtureReadRetries": 0,
+          "foregroundEvents": 2,
+          "hookInstalled": true,
+          "ownForegroundEvents": 0,
+          "systemSamples": 330
+        },
+        "keyboard": {
+          "acquired": 0,
+          "cancelled": 0,
+          "denied": 0,
+          "injectedFocus": true,
+          "lease": null,
+          "lost": 0,
+          "request": null,
+          "requests": 0,
+          "restoreAttempts": 0,
+          "restored": 0,
+          "shortcutError": null
+        },
+        "lastError": null,
+        "preferences": {
+          "enabled": true,
+          "monitorId": null,
+          "monitorMode": "followMouse",
+          "shape": "island",
+          "size": "standard"
+        },
+        "reconciliations": 242,
+        "renderer": "native",
+        "supported": true,
+        "surfaces": {
+          "island": {
+            "beforeDrag": null,
+            "closeAt": null,
+            "focusTab": null,
+            "generation": 2,
+            "hoverAt": null,
+            "opening": false,
+            "pending": null,
+            "state": "idle",
+            "webAllocated": false,
+            "webHwnd": 0,
+            "webOwner": false
+          }
+        },
+        "visibility": [
+          {
+            "base": "visible",
+            "label": "island",
+            "mode": "visible",
+            "opacity": 1,
+            "reason": "none",
+            "revision": 4
+          }
+        ],
+        "webviews": 1,
+        "windowOrder": [
+          {
+            "label": "island",
+            "webAboveNative": null
+          }
+        ]
+      }
+    }
+  ],
+  "focusInjected": true,
+  "monitorsAndDpiInjected": true,
+  "realCursorUntouched": true,
+  "displaySettingsUntouched": true,
+  "nativeCompactFrameAttribution": "not available through CDP",
+  "framesWithinV0Budget": false
+}

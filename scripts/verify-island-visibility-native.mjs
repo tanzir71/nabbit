@@ -1,7 +1,6 @@
 import assert from "node:assert/strict";
 import { writeFile, rename, readFile } from "node:fs/promises";
 import { createHash, randomUUID } from "node:crypto";
-import { Buffer } from "node:buffer";
 import { setTimeout } from "node:timers/promises";
 import { resolve } from "node:path";
 import process from "node:process";
@@ -35,11 +34,11 @@ try {
     const bytes = new Uint8Array(await (await globalThis.fetch(url)).arrayBuffer());
     return {
       file: new globalThis.URL(url).pathname.split("/").pop(),
-      base64: globalThis.btoa(String.fromCharCode(...bytes)),
+      bytes: Array.from(bytes),
     };
   });
   const hash = (bytes) => createHash("sha256").update(bytes).digest("hex");
-  const entrySha256 = hash(Buffer.from(entryAsset.base64, "base64"));
+  const entrySha256 = hash(new Uint8Array(entryAsset.bytes));
   assert.equal(
     entrySha256,
     hash(await readFile(resolve("dist/assets", entryAsset.file))),
@@ -97,10 +96,14 @@ try {
       const s = await snapshot();
       return s.visibility[0].mode === mode && s;
     }, `native ${mode}`);
-    await page.waitForFunction(
-      (mode) => globalThis.document.querySelector("main").dataset.islandVisibility === mode,
-      mode,
-    );
+    await page.waitForFunction((mode) => {
+      const host = globalThis.document.querySelector("main");
+      const opacity = mode === "hidden" ? "0" : mode === "faded" ? "0.35" : "1";
+      return (
+        host.dataset.islandVisibility === mode &&
+        globalThis.getComputedStyle(host).opacity === opacity
+      );
+    }, mode);
     const actual = await page.locator("main").evaluate((host) => {
       const style = globalThis.getComputedStyle(host),
         box = host.getBoundingClientRect();

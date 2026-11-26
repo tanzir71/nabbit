@@ -116,9 +116,25 @@ function backend(
 export function islandReducer(model: IslandModel, action: IslandAction): IslandModel {
   switch (action.type) {
     case "present":
-      if(model.gate==="hidden"||model.fullscreen&&!(["hidden","idle","faded","live"] as IslandMode[]).includes(action.state))return collapsed(model);
-      if(action.state==="peek"&&!model.primary)return collapsed(model);
-      return { ...model, state: action.state, peekAt: null, closeAt: null, dropReturn: null };
+      if (
+        model.gate === "hidden" ||
+        (model.fullscreen &&
+          !(["hidden", "idle", "faded", "live"] as IslandMode[]).includes(action.state))
+      )
+        return collapsed(model);
+      if (action.state === "peek" && !model.primary) return collapsed(model);
+      return {
+        ...model,
+        state: action.state,
+        peekAt: null,
+        closeAt: null,
+        dropReturn:
+          action.state === "drop"
+            ? model.state === "drop"
+              ? model.dropReturn
+              : model.state
+            : null,
+      };
     case "backend": {
       if (action.snapshot.revision < model.revision) return model;
       const next = backend(

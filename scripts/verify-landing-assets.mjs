@@ -4,6 +4,7 @@ import { readFile } from "node:fs/promises";
 import { fileURLToPath, URL } from "node:url";
 import { resolve } from "node:path";
 import { JSDOM } from "jsdom";
+import { execFileSync } from "node:child_process";
 
 const root = fileURLToPath(new URL("../", import.meta.url));
 const manifest = JSON.parse(
@@ -44,6 +45,20 @@ for (const entry of manifest.composites) {
   assert.equal(Number(img.getAttribute("width")), entry.width);
   assert.equal(Number(img.getAttribute("height")), entry.height);
 }
+for (const entry of [...(manifest.retiredComposites ?? []), ...(manifest.retiredSvg ?? [])]) {
+  assert.equal(hash(await readFile(resolve(root, "docs", entry.file))), entry.sha256);
+}
+const hero = JSON.parse(await readFile(resolve(root, "docs/assets/island-hero.json"), "utf8"));
+const heroImage = document.querySelector(`[data-harness-capture] img[src="${hero.file}"]`);
+assert(heroImage && heroImage.getAttribute("alt").includes("Current Nabbit island"));
+assert.equal(Number(heroImage.getAttribute("width")), hero.width);
+assert.equal(Number(heroImage.getAttribute("height")), hero.height);
+assert.equal(document.querySelectorAll(".hero [role=img]").length, 0);
+assert(document.querySelector(".hero figcaption").textContent.includes("fixture data"));
+execFileSync("python", [resolve(root, "scripts/generate-island-hero.py"), "--check"], {
+  cwd: root,
+  stdio: "pipe",
+});
 const fonts = JSON.parse(await readFile(resolve(root, "docs/assets/fonts/manifest.json"), "utf8"));
 for (const entry of fonts.files) {
   assert.equal(hash(await readFile(resolve(root, "docs/assets/fonts", entry.file))), entry.sha256);
@@ -72,5 +87,5 @@ assert.equal(
 assert.equal(bookmarklet?.textContent.trim(), "Send to Nabbit");
 assert.equal(bookmarklet?.getAttribute("draggable"), "true");
 globalThis.console.log(
-  `Verified ${manifest.svg.length} pinned original SVGs, three 2x WebPs, Latin font subsets/OFL, token parity and bookmarklet contract.`,
+  `Verified ${manifest.svg.length} pinned original SVGs, ${manifest.composites.length} design WebPs, exact lossless harness hero, Latin font subsets/OFL, token parity and bookmarklet contract.`,
 );

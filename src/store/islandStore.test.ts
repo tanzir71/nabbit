@@ -182,6 +182,14 @@ describe("island presentation transitions (§6.3)", () => {
       const drop = islandReducer(state, { type: "dragEnter" });
       expect(drop.state).toBe("drop");
       expect(islandReducer(drop, { type: "dragLeave" }).state).toBe(mode);
+      const acknowledged = reduce(
+        drop,
+        { type: "present", state: "drop" },
+        { type: "present", state: "drop" },
+      );
+      expect(islandReducer(acknowledged, { type: "dragLeave" }).state).toBe(mode);
+      const nativeFirst = islandReducer(state, { type: "present", state: "drop" });
+      expect(islandReducer(nativeFirst, { type: "dragLeave" }).state).toBe(mode);
     },
   );
   it("forbids hidden drag, cancels Drop on suppression, and avoids restoring expired Peek content", () => {

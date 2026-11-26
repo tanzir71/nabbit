@@ -13,7 +13,7 @@ use std::{
     collections::HashMap,
     path::PathBuf,
     sync::{
-        atomic::{AtomicBool, AtomicIsize, Ordering},
+        atomic::{AtomicBool, AtomicIsize, AtomicU32, Ordering},
         Arc, Mutex, OnceLock, Weak,
     },
     time::{Duration, Instant},
@@ -44,6 +44,8 @@ static MOUSE_BAND: AtomicBool = AtomicBool::new(false);
 static CURRENT: OnceLock<Mutex<Weak<Manager>>> = OnceLock::new();
 static CONTROL: AtomicIsize = AtomicIsize::new(0);
 static MOUSE_MONITOR: AtomicIsize = AtomicIsize::new(0);
+static GEOMETRY_WINDOW: AtomicIsize = AtomicIsize::new(0);
+static TASKBAR_CREATED: AtomicU32 = AtomicU32::new(0);
 thread_local! { static GRAPHICS:RefCell<HashMap<isize,Renderer>>=RefCell::new(HashMap::new()); }
 fn lock<T>(value: &Mutex<T>) -> std::sync::MutexGuard<'_, T> {
     value.lock().unwrap_or_else(|e| e.into_inner())
@@ -62,6 +64,7 @@ pub struct Host {
 #[derive(Clone, Serialize)]
 #[serde(rename_all = "camelCase")]
 pub struct Snapshot {
+    pub window_order: Vec<WindowOrder>,
     pub keyboard: super::keyboard::Keyboard,
     pub surfaces: HashMap<String, super::surface::Session>,
     pub activity: super::activity::Snapshot,
@@ -78,6 +81,25 @@ pub struct Snapshot {
     pub webviews: usize,
     pub reconciliations: u64,
     pub last_error: Option<String>,
+}
+#[derive(Clone, Serialize)]
+#[serde(rename_all = "camelCase")]
+pub struct WindowOrder {
+    label: String,
+    web_above_native: Option<bool>,
+}
+fn above_window(web: isize, native: isize) -> bool {
+    let mut next = web as HWND;
+    for _ in 0..4096 {
+        next = unsafe { GetWindow(next, GW_HWNDNEXT) };
+        if next.is_null() {
+            return false;
+        }
+        if next as isize == native {
+            return true;
+        }
+    }
+    false
 }
 struct State {
     keyboard: super::keyboard::Keyboard,
@@ -222,8 +244,15 @@ pub fn start(app: &AppHandle, preferences: Preferences) -> Result<(), String> {
         manager
             .foreground_hook
             .store(hook as isize, Ordering::Relaxed);
+        TASKBAR_CREATED.store(
+            RegisterWindowMessageW(w!("TaskbarCreated")),
+            Ordering::Relaxed,
+        );
+        manager.track_foreground_window(GetForegroundWindow());
+        // Location hooks receive accessibility traffic even when every callback
+        // is discarded. Foreground/move/minimise events plus the existing 500ms
+        // geometry/notification fallback bound updates without that idle cost.
         for (first, last) in [
-            (EVENT_OBJECT_LOCATIONCHANGE, EVENT_OBJECT_LOCATIONCHANGE),
             (EVENT_SYSTEM_MOVESIZEEND, EVENT_SYSTEM_MOVESIZEEND),
             (EVENT_SYSTEM_MINIMIZESTART, EVENT_SYSTEM_MINIMIZEEND),
         ] {
@@ -236,11 +265,9 @@ pub fn start(app: &AppHandle, preferences: Preferences) -> Result<(), String> {
                 0,
                 WINEVENT_OUTOFCONTEXT,
             );
-            if hook.is_null() {
-                manager.stop();
-                return Err(std::io::Error::last_os_error().to_string());
+            if !hook.is_null() {
+                lock(&manager.visibility_hooks).push(hook as isize);
             }
-            lock(&manager.visibility_hooks).push(hook as isize);
         }
         if let Err(error) = manager.reconcile() {
             manager.stop();
@@ -267,6 +294,17 @@ impl Manager {
         let mut hosts: Vec<_> = state.hosts.values().cloned().collect();
         hosts.sort_by(|a, b| a.placement.label.cmp(&b.placement.label));
         Snapshot {
+            window_order: hosts
+                .iter()
+                .map(|host| WindowOrder {
+                    label: host.placement.label.clone(),
+                    web_above_native: state
+                        .surfaces
+                        .get(&host.placement.label)
+                        .filter(|surface| surface.web_hwnd != 0)
+                        .map(|surface| above_window(surface.web_hwnd, host.hwnd)),
+                })
+                .collect(),
             keyboard: state.keyboard.clone(),
             surfaces: state.surfaces.clone(),
             activity: self.app.state::<Arc<super::activity_bus::Bus>>().snapshot(),
@@ -515,6 +553,7 @@ impl Manager {
         }
         CONTROL.store(0, Ordering::Relaxed);
         self.watcher.stop();
+        GEOMETRY_WINDOW.store(0, Ordering::Relaxed);
         for hook in std::mem::take(&mut *lock(&self.visibility_hooks)) {
             unsafe {
                 UnhookWinEvent(hook as HWINEVENTHOOK);
@@ -550,6 +589,9 @@ impl Manager {
     pub fn has_hosts(&self) -> bool {
         !lock(&self.state).hosts.is_empty()
     }
+    pub fn has_label(&self, label: &str) -> bool {
+        lock(&self.state).hosts.contains_key(label)
+    }
     pub fn set_hitrect(
         &self,
         label: &str,
@@ -570,7 +612,7 @@ impl Manager {
         value.dirty = true;
         value.model.hitrect = Some(rect.unwrap_or_else(|| input::native_rect(&placement)));
         if !value.web {
-            value.model.cancel_drag();
+            value.clear_web_drag();
         }
         drop(state);
         self.watcher.wake();
@@ -810,6 +852,16 @@ impl Manager {
         let foreground = fixture.unwrap_or_else(super::foreground::read);
         lock(&self.state).foreground = foreground;
         self.observe_keyboard();
+    }
+    // Window geometry matters only for the foreground thread. Subscribing to
+    // every process's LOCATIONCHANGE delivers unrelated accessibility traffic
+    // to our UI thread even when its callback ultimately discards those events.
+    // Rebind on the UI thread at each foreground change; the existing 500ms
+    // read-only fallback still covers missed/denied hooks and notifications.
+    fn track_foreground_window(&self, hwnd: HWND) {
+        if !self.stopped.load(Ordering::Relaxed) {
+            GEOMETRY_WINDOW.store(hwnd as isize, Ordering::Relaxed);
+        }
     }
     pub fn activity_changed(&self) {
         for input in lock(&self.state).inputs.values_mut() {
@@ -1271,7 +1323,7 @@ unsafe extern "system" fn control_proc(hwnd: HWND, message: u32, w: WPARAM, l: L
         return 0;
     }
     if matches!(message, WM_DISPLAYCHANGE | WM_DPICHANGED | WM_SETTINGCHANGE)
-        || message == RegisterWindowMessageW(w!("TaskbarCreated"))
+        || (message != 0 && message == TASKBAR_CREATED.load(Ordering::Relaxed))
     {
         if let Some(manager) = current() {
             manager.refresh()
@@ -1338,6 +1390,13 @@ unsafe extern "system" fn foreground_hook(
     _: u32,
     _: u32,
 ) {
+    if event != EVENT_SYSTEM_FOREGROUND
+        && (object != OBJID_WINDOW
+            || child != CHILDID_SELF as i32
+            || hwnd as isize != GEOMETRY_WINDOW.load(Ordering::Relaxed))
+    {
+        return;
+    }
     if let Some(manager) = current() {
         if event != EVENT_SYSTEM_FOREGROUND {
             if hwnd == GetForegroundWindow()
@@ -1350,6 +1409,7 @@ unsafe extern "system" fn foreground_hook(
         }
         let mut process = 0;
         GetWindowThreadProcessId(hwnd, &mut process);
+        manager.track_foreground_window(hwnd);
         manager.watcher.foreground(process == std::process::id());
     }
 }

@@ -1,0 +1,871 @@
+{
+  "version": {
+    "protocolVersion": "1.3",
+    "product": "Edg/158.0.4370.33",
+    "revision": "@56b8f691820060b6e15f702165117f203442943f",
+    "userAgent": "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/158.0.0.0 Safari/537.36 Edg/158.0.0.0",
+    "jsVersion": "15.8.13.3"
+  },
+  "refreshHz": 60.00024000096,
+  "ownerProcessId": 18000,
+  "morphs": [
+    {
+      "id": "nabbit:motion:cold:1795684707791.8",
+      "round": 0,
+      "from": "native-live-first-use",
+      "to": "expanded",
+      "targetFrameId": "4C6ADA45E99E2E856641B62E5E5C22C6",
+      "observedTransition": {
+        "id": "nabbit:motion:cold:1795684707791.8",
+        "width": 680,
+        "height": 47.9375,
+        "scale": 1
+      }
+    },
+    {
+      "id": "nabbit:motion:cold:1795684719583.8",
+      "round": 1,
+      "from": "native-live",
+      "to": "peek",
+      "targetFrameId": "248C7DEEBC541349B8045E9EF3C100A0",
+      "observedTransition": {
+        "id": "nabbit:motion:cold:1795684719583.8",
+        "width": 400,
+        "height": 74,
+        "scale": 1
+      }
+    },
+    {
+      "id": "nabbit:motion:cold:1795684721512.9",
+      "round": 1,
+      "from": "native-live",
+      "to": "expanded",
+      "targetFrameId": "D36D209817808312C335556B117300F4",
+      "observedTransition": {
+        "id": "nabbit:motion:cold:1795684721512.9",
+        "width": 680,
+        "height": 159.296875,
+        "scale": 1
+      }
+    },
+    {
+      "id": "nabbit:motion:1:peek:expanded",
+      "round": 1,
+      "from": "peek",
+      "to": "expanded",
+      "targetFrameId": "D36D209817808312C335556B117300F4",
+      "observedTransition": {
+        "id": "nabbit:motion:1:peek:expanded",
+        "width": 680,
+        "height": 161,
+        "scale": 1
+      }
+    },
+    {
+      "id": "nabbit:motion:1:peek:live",
+      "round": 1,
+      "from": "peek",
+      "to": "live",
+      "targetFrameId": "D36D209817808312C335556B117300F4",
+      "observedTransition": {
+        "id": "nabbit:motion:1:peek:live",
+        "width": 320,
+        "height": 32,
+        "scale": 1
+      }
+    },
+    {
+      "id": "nabbit:motion:1:expanded:peek",
+      "round": 1,
+      "from": "expanded",
+      "to": "peek",
+      "targetFrameId": "55B0EA9BB534BEA2D4555268D66B5573",
+      "observedTransition": {
+        "id": "nabbit:motion:1:expanded:peek",
+        "width": 400,
+        "height": 74,
+        "scale": 1
+      }
+    },
+    {
+      "id": "nabbit:motion:1:expanded:live",
+      "round": 1,
+      "from": "expanded",
+      "to": "live",
+      "targetFrameId": "55B0EA9BB534BEA2D4555268D66B5573",
+      "observedTransition": {
+        "id": "nabbit:motion:1:expanded:live",
+        "width": 320,
+        "height": 32,
+        "scale": 1
+      }
+    },
+    {
+      "id": "nabbit:motion:cold:1795684726543.6",
+      "round": 2,
+      "from": "native-live",
+      "to": "peek",
+      "targetFrameId": "35BBF04D1099384E92578703913C85C9",
+      "observedTransition": {
+        "id": "nabbit:motion:cold:1795684726543.6",
+        "width": 400,
+        "height": 74,
+        "scale": 1
+      }
+    },
+    {
+      "id": "nabbit:motion:cold:1795684728190.7",
+      "round": 2,
+      "from": "native-live",
+      "to": "expanded",
+      "targetFrameId": "A20F0068B28D62377205C81AB052A6F6",
+      "observedTransition": {
+        "id": "nabbit:motion:cold:1795684728190.7",
+        "width": 680,
+        "height": 160.765625,
+        "scale": 1
+      }
+    },
+    {
+      "id": "nabbit:motion:2:peek:expanded",
+      "round": 2,
+      "from": "peek",
+      "to": "expanded",
+      "targetFrameId": "A20F0068B28D62377205C81AB052A6F6",
+      "observedTransition": {
+        "id": "nabbit:motion:2:peek:expanded",
+        "width": 680,
+        "height": 161,
+        "scale": 1
+      }
+    },
+    {
+      "id": "nabbit:motion:2:peek:live",
+      "round": 2,
+      "from": "peek",
+      "to": "live",
+      "targetFrameId": "A20F0068B28D62377205C81AB052A6F6",
+      "observedTransition": {
+        "id": "nabbit:motion:2:peek:live",
+        "width": 320,
+        "height": 32,
+        "scale": 1
+      }
+    },
+    {
+      "id": "nabbit:motion:2:expanded:peek",
+      "round": 2,
+      "from": "expanded",
+      "to": "peek",
+      "targetFrameId": "C19465A481D6FC4FB0342398CFF897B3",
+      "observedTransition": {
+        "id": "nabbit:motion:2:expanded:peek",
+        "width": 400,
+        "height": 74,
+        "scale": 1
+      }
+    },
+    {
+      "id": "nabbit:motion:2:expanded:live",
+      "round": 2,
+      "from": "expanded",
+      "to": "live",
+      "targetFrameId": "C19465A481D6FC4FB0342398CFF897B3",
+      "observedTransition": {
+        "id": "nabbit:motion:2:expanded:live",
+        "width": 320,
+        "height": 32,
+        "scale": 1
+      }
+    },
+    {
+      "id": "nabbit:motion:cold:1795684733677.1",
+      "round": 3,
+      "from": "native-live",
+      "to": "peek",
+      "targetFrameId": "BD51EDB8C10DBF7B426D98764D18FA4A",
+      "observedTransition": {
+        "id": "nabbit:motion:cold:1795684733677.1",
+        "width": 400,
+        "height": 74,
+        "scale": 1
+      }
+    },
+    {
+      "id": "nabbit:motion:cold:1795684735678.6",
+      "round": 3,
+      "from": "native-live",
+      "to": "expanded",
+      "targetFrameId": "B58FC0211E1A4B7E6D59E0FBF22BD0A0",
+      "observedTransition": {
+        "id": "nabbit:motion:cold:1795684735678.6",
+        "width": 680,
+        "height": 160.765625,
+        "scale": 1
+      }
+    },
+    {
+      "id": "nabbit:motion:3:peek:expanded",
+      "round": 3,
+      "from": "peek",
+      "to": "expanded",
+      "targetFrameId": "B58FC0211E1A4B7E6D59E0FBF22BD0A0",
+      "observedTransition": {
+        "id": "nabbit:motion:3:peek:expanded",
+        "width": 680,
+        "height": 161,
+        "scale": 1
+      }
+    },
+    {
+      "id": "nabbit:motion:3:peek:live",
+      "round": 3,
+      "from": "peek",
+      "to": "live",
+      "targetFrameId": "B58FC0211E1A4B7E6D59E0FBF22BD0A0",
+      "observedTransition": {
+        "id": "nabbit:motion:3:peek:live",
+        "width": 320,
+        "height": 32,
+        "scale": 1
+      }
+    },
+    {
+      "id": "nabbit:motion:3:expanded:peek",
+      "round": 3,
+      "from": "expanded",
+      "to": "peek",
+      "targetFrameId": "B03271754DFBE38393C6199D5DB4D622",
+      "observedTransition": {
+        "id": "nabbit:motion:3:expanded:peek",
+        "width": 400,
+        "height": 74,
+        "scale": 1
+      }
+    },
+    {
+      "id": "nabbit:motion:3:expanded:live",
+      "round": 3,
+      "from": "expanded",
+      "to": "live",
+      "targetFrameId": "B03271754DFBE38393C6199D5DB4D622",
+      "observedTransition": {
+        "id": "nabbit:motion:3:expanded:live",
+        "width": 320,
+        "height": 32,
+        "scale": 1
+      }
+    }
+  ],
+  "results": [
+    {
+      "id": "nabbit:motion:cold:1795684707791.8",
+      "round": 0,
+      "from": "native-live-first-use",
+      "to": "expanded",
+      "targetFrameId": "4C6ADA45E99E2E856641B62E5E5C22C6",
+      "observedTransition": {
+        "id": "nabbit:motion:cold:1795684707791.8",
+        "width": 680,
+        "height": 47.9375,
+        "scale": 1
+      },
+      "rendererPid": 21344,
+      "layerTreeId": 1,
+      "traceStartUs": 91528981935,
+      "traceEndUs": 91529530170,
+      "tracedDurationMs": 548.235,
+      "accountingWindowUs": [
+        91528965268.4,
+        91529546836.6
+      ],
+      "frameBudgetMs": 16.666600000000003,
+      "begunFrames": 36,
+      "drawnFrames": 3,
+      "droppedFrames": 28,
+      "partialFrames": 1,
+      "droppedFrameSequenceIds": [
+        600,
+        601,
+        602,
+        603,
+        604,
+        605,
+        606,
+        607,
+        608,
+        609,
+        610,
+        611,
+        612,
+        613,
+        614,
+        615,
+        616,
+        617,
+        618,
+        619,
+        620,
+        621,
+        622,
+        623,
+        624,
+        625,
+        626,
+        628
+      ],
+      "maxDrawGapMs": 426.016,
+      "withinTwoDroppedFrames": false
+    },
+    {
+      "id": "nabbit:motion:cold:1795684719583.8",
+      "round": 1,
+      "from": "native-live",
+      "to": "peek",
+      "targetFrameId": "248C7DEEBC541349B8045E9EF3C100A0",
+      "observedTransition": {
+        "id": "nabbit:motion:cold:1795684719583.8",
+        "width": 400,
+        "height": 74,
+        "scale": 1
+      },
+      "rendererPid": 18752,
+      "layerTreeId": 1,
+      "traceStartUs": 91531097172,
+      "traceEndUs": 91531883207,
+      "tracedDurationMs": 786.035,
+      "accountingWindowUs": [
+        91531080505.4,
+        91531899873.6
+      ],
+      "frameBudgetMs": 16.666600000000003,
+      "begunFrames": 49,
+      "drawnFrames": 4,
+      "droppedFrames": 20,
+      "partialFrames": 1,
+      "droppedFrameSequenceIds": [
+        42,
+        43,
+        44,
+        45,
+        46,
+        47,
+        48,
+        49,
+        50,
+        51,
+        52,
+        53,
+        54,
+        55,
+        56,
+        57,
+        58,
+        59,
+        60,
+        61
+      ],
+      "maxDrawGapMs": 326.771,
+      "withinTwoDroppedFrames": false
+    },
+    {
+      "id": "nabbit:motion:1:peek:expanded",
+      "round": 1,
+      "from": "peek",
+      "to": "expanded",
+      "targetFrameId": "D36D209817808312C335556B117300F4",
+      "observedTransition": {
+        "id": "nabbit:motion:1:peek:expanded",
+        "width": 680,
+        "height": 161,
+        "scale": 1
+      },
+      "rendererPid": 46380,
+      "layerTreeId": 1,
+      "traceStartUs": 91533986978,
+      "traceEndUs": 91534343020,
+      "tracedDurationMs": 356.042,
+      "accountingWindowUs": [
+        91533970311.4,
+        91534359686.6
+      ],
+      "frameBudgetMs": 16.666600000000003,
+      "begunFrames": 24,
+      "drawnFrames": 13,
+      "droppedFrames": 12,
+      "partialFrames": 1,
+      "droppedFrameSequenceIds": [
+        72,
+        75,
+        76,
+        77,
+        78,
+        80,
+        81,
+        82,
+        85,
+        87,
+        88,
+        89
+      ],
+      "maxDrawGapMs": 84.83,
+      "withinTwoDroppedFrames": false
+    },
+    {
+      "id": "nabbit:motion:1:peek:live",
+      "round": 1,
+      "from": "peek",
+      "to": "live",
+      "targetFrameId": "D36D209817808312C335556B117300F4",
+      "observedTransition": {
+        "id": "nabbit:motion:1:peek:live",
+        "width": 320,
+        "height": 32,
+        "scale": 1
+      },
+      "rendererPid": 46380,
+      "layerTreeId": 1,
+      "traceStartUs": 91534758182,
+      "traceEndUs": 91535060077,
+      "tracedDurationMs": 301.895,
+      "accountingWindowUs": [
+        91534741515.4,
+        91535076743.6
+      ],
+      "frameBudgetMs": 16.666600000000003,
+      "begunFrames": 19,
+      "drawnFrames": 20,
+      "droppedFrames": 0,
+      "partialFrames": 0,
+      "droppedFrameSequenceIds": [],
+      "maxDrawGapMs": 19.527,
+      "withinTwoDroppedFrames": true
+    },
+    {
+      "id": "nabbit:motion:1:expanded:peek",
+      "round": 1,
+      "from": "expanded",
+      "to": "peek",
+      "targetFrameId": "55B0EA9BB534BEA2D4555268D66B5573",
+      "observedTransition": {
+        "id": "nabbit:motion:1:expanded:peek",
+        "width": 400,
+        "height": 74,
+        "scale": 1
+      },
+      "rendererPid": 5472,
+      "layerTreeId": 1,
+      "traceStartUs": 91536303436,
+      "traceEndUs": 91536595432,
+      "tracedDurationMs": 291.996,
+      "accountingWindowUs": [
+        91536286769.4,
+        91536612098.6
+      ],
+      "frameBudgetMs": 16.666600000000003,
+      "begunFrames": 20,
+      "drawnFrames": 11,
+      "droppedFrames": 10,
+      "partialFrames": 1,
+      "droppedFrameSequenceIds": [
+        64,
+        65,
+        66,
+        67,
+        68,
+        69,
+        70,
+        71,
+        72,
+        73
+      ],
+      "maxDrawGapMs": 165.645,
+      "withinTwoDroppedFrames": false
+    },
+    {
+      "id": "nabbit:motion:1:expanded:live",
+      "round": 1,
+      "from": "expanded",
+      "to": "live",
+      "targetFrameId": "55B0EA9BB534BEA2D4555268D66B5573",
+      "observedTransition": {
+        "id": "nabbit:motion:1:expanded:live",
+        "width": 320,
+        "height": 32,
+        "scale": 1
+      },
+      "rendererPid": 5472,
+      "layerTreeId": 1,
+      "traceStartUs": 91536993952,
+      "traceEndUs": 91537314724,
+      "tracedDurationMs": 320.772,
+      "accountingWindowUs": [
+        91536977285.4,
+        91537331390.6
+      ],
+      "frameBudgetMs": 16.666600000000003,
+      "begunFrames": 20,
+      "drawnFrames": 21,
+      "droppedFrames": 0,
+      "partialFrames": 0,
+      "droppedFrameSequenceIds": [],
+      "maxDrawGapMs": 23.413,
+      "withinTwoDroppedFrames": true
+    },
+    {
+      "id": "nabbit:motion:cold:1795684728190.7",
+      "round": 2,
+      "from": "native-live",
+      "to": "expanded",
+      "targetFrameId": "A20F0068B28D62377205C81AB052A6F6",
+      "observedTransition": {
+        "id": "nabbit:motion:cold:1795684728190.7",
+        "width": 680,
+        "height": 160.765625,
+        "scale": 1
+      },
+      "rendererPid": 28996,
+      "layerTreeId": 1,
+      "traceStartUs": 91539799852,
+      "traceEndUs": 91540249057,
+      "tracedDurationMs": 449.205,
+      "accountingWindowUs": [
+        91539783185.4,
+        91540265723.6
+      ],
+      "frameBudgetMs": 16.666600000000003,
+      "begunFrames": 29,
+      "drawnFrames": 3,
+      "droppedFrames": 0,
+      "partialFrames": 0,
+      "droppedFrameSequenceIds": [],
+      "maxDrawGapMs": 17.218,
+      "withinTwoDroppedFrames": true
+    },
+    {
+      "id": "nabbit:motion:2:peek:expanded",
+      "round": 2,
+      "from": "peek",
+      "to": "expanded",
+      "targetFrameId": "A20F0068B28D62377205C81AB052A6F6",
+      "observedTransition": {
+        "id": "nabbit:motion:2:peek:expanded",
+        "width": 680,
+        "height": 161,
+        "scale": 1
+      },
+      "rendererPid": 28996,
+      "layerTreeId": 1,
+      "traceStartUs": 91540871593,
+      "traceEndUs": 91541216788,
+      "tracedDurationMs": 345.195,
+      "accountingWindowUs": [
+        91540854926.4,
+        91541233454.6
+      ],
+      "frameBudgetMs": 16.666600000000003,
+      "begunFrames": 23,
+      "drawnFrames": 22,
+      "droppedFrames": 0,
+      "partialFrames": 0,
+      "droppedFrameSequenceIds": [],
+      "maxDrawGapMs": 19.234,
+      "withinTwoDroppedFrames": true
+    },
+    {
+      "id": "nabbit:motion:2:peek:live",
+      "round": 2,
+      "from": "peek",
+      "to": "live",
+      "targetFrameId": "A20F0068B28D62377205C81AB052A6F6",
+      "observedTransition": {
+        "id": "nabbit:motion:2:peek:live",
+        "width": 320,
+        "height": 32,
+        "scale": 1
+      },
+      "rendererPid": 28996,
+      "layerTreeId": 1,
+      "traceStartUs": 91541582240,
+      "traceEndUs": 91541883888,
+      "tracedDurationMs": 301.648,
+      "accountingWindowUs": [
+        91541565573.4,
+        91541900554.6
+      ],
+      "frameBudgetMs": 16.666600000000003,
+      "begunFrames": 19,
+      "drawnFrames": 20,
+      "droppedFrames": 0,
+      "partialFrames": 0,
+      "droppedFrameSequenceIds": [],
+      "maxDrawGapMs": 23.245,
+      "withinTwoDroppedFrames": true
+    },
+    {
+      "id": "nabbit:motion:2:expanded:peek",
+      "round": 2,
+      "from": "expanded",
+      "to": "peek",
+      "targetFrameId": "C19465A481D6FC4FB0342398CFF897B3",
+      "observedTransition": {
+        "id": "nabbit:motion:2:expanded:peek",
+        "width": 400,
+        "height": 74,
+        "scale": 1
+      },
+      "rendererPid": 32408,
+      "layerTreeId": 1,
+      "traceStartUs": 91543389461,
+      "traceEndUs": 91543686863,
+      "tracedDurationMs": 297.402,
+      "accountingWindowUs": [
+        91543372794.4,
+        91543703529.6
+      ],
+      "frameBudgetMs": 16.666600000000003,
+      "begunFrames": 20,
+      "drawnFrames": 19,
+      "droppedFrames": 0,
+      "partialFrames": 0,
+      "droppedFrameSequenceIds": [],
+      "maxDrawGapMs": 20.681,
+      "withinTwoDroppedFrames": true
+    },
+    {
+      "id": "nabbit:motion:2:expanded:live",
+      "round": 2,
+      "from": "expanded",
+      "to": "live",
+      "targetFrameId": "C19465A481D6FC4FB0342398CFF897B3",
+      "observedTransition": {
+        "id": "nabbit:motion:2:expanded:live",
+        "width": 320,
+        "height": 32,
+        "scale": 1
+      },
+      "rendererPid": 32408,
+      "layerTreeId": 1,
+      "traceStartUs": 91544117887,
+      "traceEndUs": 91544420956,
+      "tracedDurationMs": 303.069,
+      "accountingWindowUs": [
+        91544101220.4,
+        91544437622.6
+      ],
+      "frameBudgetMs": 16.666600000000003,
+      "begunFrames": 19,
+      "drawnFrames": 20,
+      "droppedFrames": 0,
+      "partialFrames": 0,
+      "droppedFrameSequenceIds": [],
+      "maxDrawGapMs": 19.89,
+      "withinTwoDroppedFrames": true
+    },
+    {
+      "id": "nabbit:motion:cold:1795684733677.1",
+      "round": 3,
+      "from": "native-live",
+      "to": "peek",
+      "targetFrameId": "BD51EDB8C10DBF7B426D98764D18FA4A",
+      "observedTransition": {
+        "id": "nabbit:motion:cold:1795684733677.1",
+        "width": 400,
+        "height": 74,
+        "scale": 1
+      },
+      "rendererPid": 44544,
+      "layerTreeId": 1,
+      "traceStartUs": 91545191737,
+      "traceEndUs": 91545985323,
+      "tracedDurationMs": 793.586,
+      "accountingWindowUs": [
+        91545175070.4,
+        91546001989.6
+      ],
+      "frameBudgetMs": 16.666600000000003,
+      "begunFrames": 49,
+      "drawnFrames": 15,
+      "droppedFrames": 8,
+      "partialFrames": 1,
+      "droppedFrameSequenceIds": [
+        59,
+        60,
+        61,
+        62,
+        63,
+        64,
+        65,
+        66
+      ],
+      "maxDrawGapMs": 150.609,
+      "withinTwoDroppedFrames": false
+    },
+    {
+      "id": "nabbit:motion:cold:1795684735678.6",
+      "round": 3,
+      "from": "native-live",
+      "to": "expanded",
+      "targetFrameId": "B58FC0211E1A4B7E6D59E0FBF22BD0A0",
+      "observedTransition": {
+        "id": "nabbit:motion:cold:1795684735678.6",
+        "width": 680,
+        "height": 160.765625,
+        "scale": 1
+      },
+      "rendererPid": 35880,
+      "layerTreeId": 1,
+      "traceStartUs": 91547181435,
+      "traceEndUs": 91547624107,
+      "tracedDurationMs": 442.672,
+      "accountingWindowUs": [
+        91547164768.4,
+        91547640773.6
+      ],
+      "frameBudgetMs": 16.666600000000003,
+      "begunFrames": 29,
+      "drawnFrames": 3,
+      "droppedFrames": 0,
+      "partialFrames": 0,
+      "droppedFrameSequenceIds": [],
+      "maxDrawGapMs": 19.719,
+      "withinTwoDroppedFrames": true
+    },
+    {
+      "id": "nabbit:motion:3:peek:expanded",
+      "round": 3,
+      "from": "peek",
+      "to": "expanded",
+      "targetFrameId": "B58FC0211E1A4B7E6D59E0FBF22BD0A0",
+      "observedTransition": {
+        "id": "nabbit:motion:3:peek:expanded",
+        "width": 680,
+        "height": 161,
+        "scale": 1
+      },
+      "rendererPid": 35880,
+      "layerTreeId": 1,
+      "traceStartUs": 91550197859,
+      "traceEndUs": 91550543783,
+      "tracedDurationMs": 345.924,
+      "accountingWindowUs": [
+        91550181192.4,
+        91550560449.6
+      ],
+      "frameBudgetMs": 16.666600000000003,
+      "begunFrames": 23,
+      "drawnFrames": 22,
+      "droppedFrames": 0,
+      "partialFrames": 0,
+      "droppedFrameSequenceIds": [],
+      "maxDrawGapMs": 20.054,
+      "withinTwoDroppedFrames": true
+    },
+    {
+      "id": "nabbit:motion:3:peek:live",
+      "round": 3,
+      "from": "peek",
+      "to": "live",
+      "targetFrameId": "B58FC0211E1A4B7E6D59E0FBF22BD0A0",
+      "observedTransition": {
+        "id": "nabbit:motion:3:peek:live",
+        "width": 320,
+        "height": 32,
+        "scale": 1
+      },
+      "rendererPid": 35880,
+      "layerTreeId": 1,
+      "traceStartUs": 91551076158,
+      "traceEndUs": 91551377237,
+      "tracedDurationMs": 301.079,
+      "accountingWindowUs": [
+        91551059491.4,
+        91551393903.6
+      ],
+      "frameBudgetMs": 16.666600000000003,
+      "begunFrames": 19,
+      "drawnFrames": 20,
+      "droppedFrames": 0,
+      "partialFrames": 0,
+      "droppedFrameSequenceIds": [],
+      "maxDrawGapMs": 19.681,
+      "withinTwoDroppedFrames": true
+    },
+    {
+      "id": "nabbit:motion:3:expanded:peek",
+      "round": 3,
+      "from": "expanded",
+      "to": "peek",
+      "targetFrameId": "B03271754DFBE38393C6199D5DB4D622",
+      "observedTransition": {
+        "id": "nabbit:motion:3:expanded:peek",
+        "width": 400,
+        "height": 74,
+        "scale": 1
+      },
+      "rendererPid": 40804,
+      "layerTreeId": 1,
+      "traceStartUs": 91552482767,
+      "traceEndUs": 91552779085,
+      "tracedDurationMs": 296.318,
+      "accountingWindowUs": [
+        91552466100.4,
+        91552795751.6
+      ],
+      "frameBudgetMs": 16.666600000000003,
+      "begunFrames": 20,
+      "drawnFrames": 19,
+      "droppedFrames": 0,
+      "partialFrames": 0,
+      "droppedFrameSequenceIds": [],
+      "maxDrawGapMs": 18.888,
+      "withinTwoDroppedFrames": true
+    },
+    {
+      "id": "nabbit:motion:3:expanded:live",
+      "round": 3,
+      "from": "expanded",
+      "to": "live",
+      "targetFrameId": "B03271754DFBE38393C6199D5DB4D622",
+      "observedTransition": {
+        "id": "nabbit:motion:3:expanded:live",
+        "width": 320,
+        "height": 32,
+        "scale": 1
+      },
+      "rendererPid": 40804,
+      "layerTreeId": 1,
+      "traceStartUs": 91553193779,
+      "traceEndUs": 91553495640,
+      "tracedDurationMs": 301.861,
+      "accountingWindowUs": [
+        91553177112.4,
+        91553512306.6
+      ],
+      "frameBudgetMs": 16.666600000000003,
+      "begunFrames": 19,
+      "drawnFrames": 20,
+      "droppedFrames": 0,
+      "partialFrames": 0,
+      "droppedFrameSequenceIds": [],
+      "maxDrawGapMs": 19.179,
+      "withinTwoDroppedFrames": true
+    }
+  ],
+  "collectionProblems": [
+    {
+      "id": "nabbit:motion:cold:1795684721512.9",
+      "reason": "nabbit:motion:cold:1795684721512.9: insufficient compositor frames; do not infer zero drops"
+    },
+    {
+      "id": "nabbit:motion:cold:1795684726543.6",
+      "reason": "nabbit:motion:cold:1795684726543.6: insufficient compositor frames; do not infer zero drops"
+    }
+  ],
+  "maxDroppedFrames": 28,
+  "withinV0TwoDropBudget": false,
+  "traceEventCount": 165765,
+  "traceDataLoss": false,
+  "method": "Actual production WebView2 target renderer/layer-tree BeginFrame/DrawFrame/explicit DroppedFrame IDs. First-use Expanded, cold native-to-Peek/Expanded allocation, both directed web morphs and both returns to native, three rounds. Partial drops count; draw gaps do not infer drops. Drop geometry is exercised separately by the native surface/drag smoke and normal/reduced-motion browser checks.",
+  "nativeCompactScope": "Idle/live geometry uses DirectComposition with no WebView. Its compositor frames cannot be attributed through CDP; native motion unit tests and owned-window smokes cover geometry/ownership, not an unmeasured zero-drop claim."
+}

@@ -34,6 +34,7 @@ export function IslandApp({ suppliedStore }: { suppliedStore?: IslandStore }) {
   const outgoing = useRef<HTMLDivElement>(null),
     motion = useRef<ReturnType<typeof observeIslandMotion>>();
   const [instruction, setInstruction] = useState<SurfaceInstruction | null>(null);
+  const [bootstrap, setBootstrap] = useState<SurfaceInstruction["shape"] | null>(null);
   const receiving = useRef(false),
     focusedGeneration = useRef(-1),
     surfaceReady = useRef(false),
@@ -45,6 +46,16 @@ export function IslandApp({ suppliedStore }: { suppliedStore?: IslandStore }) {
     [over, setOver] = useState<DropZone | null>(null),
     [notice, setNotice] = useState("");
   const fail = useCallback((reason: unknown) => setNotice(String(reason)), []);
+  const visualState =
+    native() && !instruction
+      ? model.gate === "hidden"
+        ? "hidden"
+        : model.gate === "faded"
+          ? "faded"
+          : model.primary
+            ? "live"
+            : "idle"
+      : model.state;
   const keyboard = useRef<ReturnType<typeof connectIslandKeyboard>>();
   const keyboardRequest = useRef(-1);
   const keyboardEntered = useRef(false);
@@ -106,8 +117,8 @@ export function IslandApp({ suppliedStore }: { suppliedStore?: IslandStore }) {
     };
   }, []);
   useLayoutEffect(() => {
-    motion.current?.update(model.state);
-  }, [model.state]);
+    motion.current?.update(visualState);
+  }, [visualState]);
   const dispatch = useCallback(
     (action: IslandAction) => store.getState().dispatch(action),
     [store],
@@ -144,10 +155,13 @@ export function IslandApp({ suppliedStore }: { suppliedStore?: IslandStore }) {
       if (store.getState().revision < 0) store.setState({ state: "idle", gate: "visible" });
       return;
     }
-    const input = observeIslandInput(pill.current, host.current),
+    const input = observeIslandInput(pill.current, host.current, {
+        enabled: () => surfaceReady.current,
+      }),
       visibility = connectIslandVisibility(host.current);
     const activity = connectIslandActivity(store, { onError: fail });
-    const surface = connectIslandSurface(
+    let active = true;
+    const surface: ReturnType<typeof connectIslandSurface> = connectIslandSurface(
       label,
       (value) => {
         receiving.current = true;
@@ -166,13 +180,44 @@ export function IslandApp({ suppliedStore }: { suppliedStore?: IslandStore }) {
         receiving.current = false;
       },
       fail,
+      async (value) => {
+        performance.mark("nabbit:surface-prepare-start");
+        await Promise.all([
+          import("./ExpandedShell"),
+          import("./ModuleBody"),
+          ...(store.getState().filters.searchOpen === "true" ? [import("./SearchContent")] : []),
+          document.fonts.load('600 14px "Geist"'),
+          document.fonts.load('500 12px "Geist Mono"'),
+          document.fonts.ready,
+          visibility.known,
+          activity.ready,
+        ]);
+        await surface.shown;
+        if (!active) return;
+        if (!value.reducedMotion) {
+          setBootstrap(value.shape);
+          await new Promise<void>((done) =>
+            requestAnimationFrame(() => requestAnimationFrame(() => done())),
+          );
+          if (!active) return;
+          await Promise.all(
+            [...document.images].map((image) => image.decode().catch(() => undefined)),
+          );
+          if (host.current) host.current.dataset.compactPrepared = "true";
+        }
+        performance.mark("nabbit:surface-prepare-end");
+        performance.measure(
+          "nabbit:surface-preparation",
+          "nabbit:surface-prepare-start",
+          "nabbit:surface-prepare-end",
+        );
+      },
     );
     const offState = store.subscribe((next, previous) => {
       if (surfaceReady.current && !receiving.current && next.state !== previous.state)
         void invoke("island_surface_request", { state: next.state }).catch(fail);
     });
-    let active = true,
-      offDrop: (() => void) | undefined;
+    let offDrop: (() => void) | undefined;
     void getCurrentWebviewWindow()
       .onDragDropEvent((event) => {
         if (!active || event.payload.type !== "drop") return;
@@ -320,13 +365,13 @@ export function IslandApp({ suppliedStore }: { suppliedStore?: IslandStore }) {
         : undefined;
     void receiveDrop(readDrag(event.dataTransfer), zone);
   };
-  const compact = ["idle", "faded", "hidden", "live"].includes(model.state),
+  const compact = ["idle", "faded", "hidden", "live"].includes(visualState),
     kind = compactKind(model.primary);
   const primaryWidth = model.primary
     ? model.bubble
       ? 260
       : compactWidths[kind]
-    : instruction?.shape === "notch"
+    : (instruction?.shape ?? bootstrap) === "notch"
       ? 168
       : 112;
   const width = compact
@@ -348,13 +393,16 @@ export function IslandApp({ suppliedStore }: { suppliedStore?: IslandStore }) {
       ref={host}
       className="island-host"
       data-theme="dark"
-      data-island-state={model.state}
-      data-shape={instruction?.shape ?? "island"}
+      data-native={native() || undefined}
+      data-island-state={visualState}
+      data-shape={instruction?.shape ?? bootstrap ?? "island"}
       data-reduced-motion={instruction?.reducedMotion || undefined}
       aria-label="Nabbit island"
-      style={{
-        opacity: native() ? 0 : model.state === "hidden" ? 0 : model.state === "faded" ? 0.35 : 1,
-      }}
+      style={
+        native()
+          ? undefined
+          : { opacity: model.state === "hidden" ? 0 : model.state === "faded" ? 0.35 : 1 }
+      }
       onPointerDown={(event) => {
         if (event.target === host.current) dispatch({ type: "outside" });
         else if (native() && model.state === "expanded" && event.button === 0)
@@ -393,18 +441,19 @@ export function IslandApp({ suppliedStore }: { suppliedStore?: IslandStore }) {
         ref={pill}
         className={`island-morph${compact && model.bubble ? " is-split" : ""}`}
         data-kind={kind}
+        data-bootstrapping={(native() && !instruction) || undefined}
         data-alert={model.alert?.id}
         style={{
           width,
           height: targetHeight,
-          visibility: native() && !instruction ? "hidden" : undefined,
+          visibility: native() && !instruction && !bootstrap ? "hidden" : undefined,
         }}
         onPointerEnter={() => dispatch({ type: "enter", now: performance.now() })}
         onPointerLeave={() => dispatch({ type: "leave", now: performance.now() })}
       >
         <div
           ref={content}
-          className={`island-content island-content--${model.state}`}
+          className={`island-content island-content--${visualState}`}
           style={{ width }}
         >
           {compact ? (

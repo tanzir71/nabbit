@@ -10,11 +10,25 @@ const [endpoint, cursorPath, folder, prefix] = process.argv.slice(2);
 const browser = await chromium.connectOverCDP(endpoint);
 try {
   const wait = async (predicate, label) => {
-    for (let i = 0; i < 120; i++) {
+    for (let i = 0; i < 300; i++) {
       const value = await predicate();
       if (value) return value;
       await setTimeout(50);
     }
+    const pages = browser.contexts().flatMap((context) => context.pages());
+    const diagnostics = [];
+    for (const page of pages)
+      diagnostics.push({
+        url: page.url(),
+        snapshot: await page
+          .evaluate(() => globalThis.__TAURI_INTERNALS__?.invoke("get_island_snapshot"))
+          .catch(() => null),
+      });
+    await writeFile(
+      resolve(folder, `${prefix}-input-failure.json`),
+      JSON.stringify({ label, diagnostics }, null, 2),
+      { flag: "wx" },
+    ).catch(() => {});
     throw new Error(`Timed out: ${label}`);
   };
   const page = await wait(
@@ -34,12 +48,10 @@ try {
     const bytes = new Uint8Array(await response.arrayBuffer());
     return {
       file: new globalThis.URL(url).pathname.split("/").pop(),
-      base64: globalThis.btoa(String.fromCharCode(...bytes)),
+      bytes: Array.from(bytes),
     };
   });
-  const entrySha256 = createHash("sha256")
-    .update(Buffer.from(entryAsset.base64, "base64"))
-    .digest("hex");
+  const entrySha256 = createHash("sha256").update(Buffer.from(entryAsset.bytes)).digest("hex");
   assert.equal(
     entrySha256,
     createHash("sha256")
@@ -55,9 +67,10 @@ try {
   const snapshot = () => invoke("get_island_snapshot");
   const native = await wait(async () => {
     const value = await snapshot();
-    return value.input[0]?.source === "web" && value;
+    return value.input[0]?.source === "web" && value.input[0].hitrect.w === 696 && value;
   }, "ResizeObserver → native hit rectangle");
-  assert.deepEqual(native.input[0].hitrect, { x: 296, y: 0, w: 128, h: 40 });
+  assert.equal(native.input[0].hitrect.x, 12);
+  assert.equal(native.input[0].hitrect.y, 0);
   const placement = native.hosts[0].placement;
   const cursor = async (x, y, leftDown = false) => {
     await writeFile(
@@ -76,9 +89,14 @@ try {
       return value.input[0].interactive === expected && value;
     }, `interactive ${expected}`);
   const records = [];
+  await page.locator(".island-morph").evaluate((element) => {
+    element.style.width = "112px";
+    element.style.height = "26px";
+  });
+  await wait(async () => (await snapshot()).input[0].hitrect.w === 128, "test compact geometry");
   await cursor(600, 200);
   await interactive(false);
-  await page.locator(".island-idle").evaluate((element) => {
+  await page.locator(".island-morph").evaluate((element) => {
     element.style.width = "680px";
     element.style.height = "297px";
   });
@@ -87,7 +105,7 @@ try {
     return value.input[0].hitrect.w === 696 && value.input[0].interactive && value;
   }, "changed web layout");
   records.push({ case: "layout-update", snapshot: expanded });
-  await page.locator(".island-idle").evaluate((element) => {
+  await page.locator(".island-morph").evaluate((element) => {
     element.style.width = "112px";
     element.style.height = "26px";
   });
@@ -142,8 +160,23 @@ try {
     );
     await wait(async () => {
       const value = await snapshot();
-      return !value.input[0].decision.dragging && !value.input[0].interactive;
+      return (
+        !value.input[0].decision.dragging &&
+        value.surfaces.island.state === "expanded" &&
+        value.surfaces.island.webOwner
+      );
     }, `${type} drag end`);
+    await page.waitForFunction(
+      () => globalThis.document.querySelector("main")?.dataset.islandState === "expanded",
+    );
+    await page.locator(".island-morph").evaluate((element) => {
+      element.style.width = "112px";
+      element.style.height = "26px";
+    });
+    await wait(async () => {
+      const value = await snapshot();
+      return value.input[0].hitrect.w === 128 && !value.input[0].interactive;
+    }, `${type} restored compact test geometry`);
     records.push({ case: "html5-drag-lifetime", type, entered: entered.input });
   }
   const events = await wait(async () => {

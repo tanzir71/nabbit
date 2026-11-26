@@ -393,13 +393,15 @@ Modes: Primary only · Follow mouse (default) · All monitors · Specific monito
 
 ### 6.7 Acceptance (island shell, automated)
 
-- [ ] Idle budget: a PowerShell smoke launches the release exe with isolated app data, waits 20 s, samples 60 s and asserts 0.0% CPU across the app and its `msedgewebview2.exe` children; the working set is recorded in `PROGRESS.md`.
-- [ ] Click-through: unit tests cover the hit-rect state (cursor inside, outside, on the edge, rect updates mid-animation, faded = always click-through). The smoke injects cursor positions through an acceptance-only `NABBIT_ACCEPTANCE_CURSOR` provider and asserts the extended window styles flip accordingly.
-- [ ] Motion: in acceptance mode, enable the WebView2 remote-debugging port, trigger each morph and read frame timings over CDP; record this machine's refresh rate, scaling and dropped frames and compare with the V0 gate.
-- [ ] Fullscreen and maximised: unit tests feed notification states (`QUNS_*`) plus foreground and monitor rectangles and assert hidden, faded or visible.
-- [ ] Drag and drop: Vitest dispatches synthetic drag events with URL, file and text payloads (zone order and routing); Rust tests drive the band detector with simulated button and cursor states.
-- [ ] Monitors: unit tests over fixture layouts (two monitors at 100% and 150%, taskbar top, bottom or auto-hide, a monitor removed while expanded, DPI change mid-animation).
-- [ ] No focus steal: the smoke opens its own helper window, focuses it, pushes island updates and asserts `GetForegroundWindow()` never changes and the island window has `WS_EX_NOACTIVATE`.
+- [x] Idle budget: a PowerShell smoke launches the release exe with isolated app data, waits 20 s, samples 60 s and asserts 0.0% CPU across the app and its `msedgewebview2.exe` children; the working set is recorded in `PROGRESS.md`.
+- [x] Click-through: unit tests cover the hit-rect state (cursor inside, outside, on the edge, rect updates mid-animation, faded = always click-through). The smoke injects cursor positions through an acceptance-only `NABBIT_ACCEPTANCE_CURSOR` provider and asserts the extended window styles flip accordingly.
+- [x] Motion: in acceptance mode, enable the WebView2 remote-debugging port, trigger each morph and read frame timings over CDP; record this machine's refresh rate, scaling and dropped frames and compare with the V0 gate.
+- [x] Fullscreen and maximised: unit tests feed notification states (`QUNS_*`) plus foreground and monitor rectangles and assert hidden, faded or visible.
+- [x] Drag and drop: Vitest dispatches synthetic drag events with URL, file and text payloads (zone order and routing); Rust tests drive the band detector with simulated button and cursor states.
+- [x] Monitors: unit tests over fixture layouts (two monitors at 100% and 150%, taskbar top, bottom or auto-hide, a monitor removed while expanded, DPI change mid-animation).
+- [x] No focus steal: the smoke opens its own helper window, focuses it, pushes island updates and asserts `GetForegroundWindow()` never changes and the island window has `WS_EX_NOACTIVATE`.
+
+V2.7 coverage and measured comparisons: `progress/v2/M5/V2.7.md`. The focused-helper activation denial and unavailable native DirectComposition/CDP attribution remain recorded under `PROGRESS.md` → `v2 Not automated`, per §0.2; neither is claimed as observed. Cold larger-WebView motion still exceeds V0’s two-drop comparison and retains the V0.4 native compact fallback.
 
 ---
 
@@ -759,7 +761,7 @@ Commit after every task (§0.1). Lines marked **MILESTONE** are tasks of their o
 - [x] **MILESTONE M4 — Island plumbing.**
 - [x] V2.5 Compact states (`7:103`), Peek (`8:119`), Expanded shell with tabs (`10:519`), Drop target (`8:192`), motion (§4.6).
 - [x] V2.6 Keyboard: Alt+Space, Ctrl+1–6, Alt+1–9 (pins), type-to-search, Esc, focus management, tooltips/aria labels.
-- [ ] V2.7 Island acceptance §6.7; swap the landing hero visual to a real harness screenshot.
+- [x] V2.7 Island acceptance §6.7; swap the landing hero visual to a real harness screenshot.
 - [ ] **MILESTONE M5 — Island interface.**
 
 ### Phase V3 — Downloads v2

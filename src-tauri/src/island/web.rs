@@ -8,6 +8,7 @@ use crate::island::{
 #[derive(Clone, Serialize)]
 #[serde(rename_all = "camelCase")]
 pub struct Instruction {
+    ready: bool,
     keyboard: Option<crate::island::keyboard::Hint>,
     focus_tab: Option<String>,
     label: String,
@@ -70,7 +71,24 @@ impl Manager {
         let actual = unsafe { GetDpiForWindow(hwnd as HWND) } as f64 / 96.0;
         window
             .set_zoom(placement.render_scale / actual)
-            .map_err(|e| e.to_string())
+            .map_err(|e| e.to_string())?;
+        // The native compact HWND remains shown until the web paint ack.
+        // Keep the larger surface above it, including after DPI repositioning.
+        if unsafe {
+            SetWindowPos(
+                hwnd as HWND,
+                HWND_TOPMOST,
+                0,
+                0,
+                0,
+                0,
+                SWP_NOACTIVATE | SWP_NOMOVE | SWP_NOSIZE,
+            )
+        } == 0
+        {
+            return Err(std::io::Error::last_os_error().to_string());
+        }
+        Ok(())
     }
     fn surface_disconnected(&self, label: &str, hwnd: isize) {
         let snapshot = self
@@ -86,6 +104,13 @@ impl Manager {
         }
         surface.web_hwnd = 0;
         if !surface.web_allocated {
+            // Destruction can finish after a new open was requested. Wake the
+            // pending allocation now that the old registration is gone.
+            if let Some(input) = state.inputs.get_mut(label) {
+                input.dirty = true;
+            }
+            drop(state);
+            self.watcher.wake();
             return;
         }
         surface.web_allocated = false;
@@ -125,6 +150,7 @@ impl Manager {
             host.placement.shape,
         );
         Ok(Instruction {
+            ready: surface.web_allocated,
             keyboard: surface
                 .web_allocated
                 .then(|| state.keyboard.hint(label))
@@ -207,7 +233,7 @@ impl Manager {
                             if let Some(rect) = rect {
                                 input.model.hitrect = Some(rect);
                             }
-                            input.model.cancel_drag();
+                            input.clear_web_drag();
                         }
                     }
                     if !destroy {
@@ -272,6 +298,7 @@ impl Manager {
         let reduced = reduced_motion();
         for host in hosts {
             let label = &host.placement.label;
+            let registered = self.app.get_webview_window(label).is_some();
             let view = snapshot.views.iter().find(|view| &view.label == label);
             let compact = base(view);
             let (changed, open, allocated, native_owner, closing) = {
@@ -296,7 +323,7 @@ impl Manager {
                     };
                 let closing = !surface.state.compact() && desired.compact();
                 let changed = surface.request(desired);
-                let open = !surface.state.compact() && !surface.web_allocated && !surface.opening;
+                let open = surface.can_allocate(registered);
                 if open {
                     surface.opening = true;
                 }
@@ -375,6 +402,21 @@ impl Manager {
                     })
                     .map_err(|e| e.to_string())?;
             } else if changed && allocated {
+                // A cold drag can leave before the page has prepared any web
+                // geometry. Native still owns the paint, so there is no web
+                // transition to wait for. Do not retain an unready view waiting
+                // for an acknowledgement from a page that never opened.
+                let unprepared_close = closing
+                    && native_owner
+                    && !lock(&self.state)
+                        .inputs
+                        .get(label)
+                        .is_some_and(|input| input.web);
+                if unprepared_close {
+                    let generation = lock(&self.state).surfaces[label].generation;
+                    self.surface_ack(label, generation)?;
+                    continue;
+                }
                 if let Some(window) = self.app.get_webview_window(label) {
                     let _ =
                         window.emit("nabbit://island-surface", self.surface_instruction(label)?);

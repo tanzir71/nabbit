@@ -15,6 +15,58 @@ use windows_sys::Win32::{
         WindowsAndMessaging::GetCursorPos,
     },
 };
+
+type FixtureVersion = Option<(SystemTime, u64)>;
+
+fn read_fixture(
+    path: &std::path::Path,
+    previous: &mut FixtureVersion,
+    cached: &mut Option<Sample>,
+    retries: &AtomicU64,
+) -> Option<Sample> {
+    // Windows can briefly deny a read while a fixture writer replaces the
+    // file. Retry only transient I/O, not invalid JSON or cursor values. A
+    // persistently unavailable provider still fails closed within four ms.
+    for attempt in 0..5 {
+        let read = || -> std::io::Result<_> {
+            let metadata = std::fs::metadata(path)?;
+            let version = Some((metadata.modified()?, metadata.len()));
+            if version == *previous {
+                return Ok((version, *cached));
+            }
+            let raw = std::fs::read(path)?;
+            Ok((
+                version,
+                serde_json::from_slice::<Sample>(&raw)
+                    .ok()
+                    .filter(|s| s.valid()),
+            ))
+        };
+        match read() {
+            Ok((version, sample)) => {
+                *previous = version;
+                *cached = sample;
+                return sample;
+            }
+            Err(error)
+                if attempt < 4
+                    && (matches!(
+                        error.kind(),
+                        std::io::ErrorKind::NotFound
+                            | std::io::ErrorKind::PermissionDenied
+                            | std::io::ErrorKind::WouldBlock
+                    ) || matches!(error.raw_os_error(), Some(32 | 33))) =>
+            {
+                retries.fetch_add(1, Ordering::Relaxed);
+                std::thread::sleep(Duration::from_millis(1));
+            }
+            Err(_) => break,
+        }
+    }
+    *previous = None;
+    *cached = None;
+    None
+}
 #[derive(Default)]
 pub struct Watcher {
     generation: Mutex<u64>,
@@ -25,6 +77,7 @@ pub struct Watcher {
     own_events: AtomicU64,
     system_dirty: AtomicBool,
     system_samples: AtomicU64,
+    fixture_read_retries: AtomicU64,
 }
 #[derive(Clone, Serialize)]
 #[serde(rename_all = "camelCase")]
@@ -34,6 +87,7 @@ pub struct Stats {
     pub own_foreground_events: u64,
     pub hook_installed: bool,
     pub system_samples: u64,
+    pub fixture_read_retries: u64,
 }
 impl Watcher {
     pub fn wake(&self) {
@@ -58,6 +112,7 @@ impl Watcher {
             own_foreground_events: self.own_events.load(Ordering::Relaxed),
             hook_installed,
             system_samples: self.system_samples.load(Ordering::Relaxed),
+            fixture_read_retries: self.fixture_read_retries.load(Ordering::Relaxed),
         }
     }
     pub fn stop(&self) {
@@ -71,10 +126,12 @@ impl Watcher {
         } else {
             None
         };
+        let fixed_fixture = super::acceptance_session()
+            && std::env::var("NABBIT_ACCEPTANCE_CURSOR_STATIC").as_deref() == Ok("1");
         let _ = std::thread::Builder::new()
             .name("nabbit-island-input".into())
             .spawn(move || {
-                let mut fixture_version: Option<(SystemTime, u64)> = None;
+                let mut fixture_version: FixtureVersion = None;
                 let mut fixture_sample: Option<Sample> = None;
                 let mut next_system = Instant::now();
                 while !watcher.stopped.load(Ordering::Relaxed) {
@@ -95,15 +152,13 @@ impl Watcher {
                             Some(Some(path)) => {
                                 // Fixture polling must model the cheap real API,
                                 // rather than re-open/parse an unchanged file at 40Hz.
-                                let version = std::fs::metadata(path).ok().and_then(|metadata| {
-                                    metadata.modified().ok().map(|time| (time, metadata.len()))
-                                });
-                                if version.is_none() || version != fixture_version {
-                                    fixture_sample = std::fs::read(path)
-                                        .ok()
-                                        .and_then(|raw| serde_json::from_slice::<Sample>(&raw).ok())
-                                        .filter(|s| s.valid());
-                                    fixture_version = version;
+                                if !fixed_fixture || fixture_version.is_none() {
+                                    fixture_sample = read_fixture(
+                                        path,
+                                        &mut fixture_version,
+                                        &mut fixture_sample,
+                                        &watcher.fixture_read_retries,
+                                    );
                                 }
                                 fixture_sample
                             }

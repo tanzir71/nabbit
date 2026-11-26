@@ -654,6 +654,14 @@ body,
 .island-host {
   transition: opacity 200ms linear;
 }
+.island-host[data-native] {
+  opacity: 0;
+}
+.island-morph[data-bootstrapping],
+.island-morph[data-bootstrapping] .island-content {
+  transition: none !important;
+  animation: none !important;
+}
 .island-host[data-island-visibility="hidden"] {
   transition: none;
 }

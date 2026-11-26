@@ -39,6 +39,7 @@ export function observeIslandInput(
   host: HTMLElement,
   options: {
     scale?: () => number;
+    enabled?: () => boolean;
     transport?: IslandInputTransport;
     onError?: (error: unknown) => void;
   } = {},
@@ -48,6 +49,7 @@ export function observeIslandInput(
   let live = true,
     queued = false,
     last = "",
+    ownsRect = false,
     pending: HitRect | false | null = null;
   let sending: Promise<void> | null = null,
     dragging = dragStates.get(transport) ?? false;
@@ -59,8 +61,13 @@ export function observeIslandInput(
       while (live && pending !== null) {
         const rect = pending;
         pending = null;
-        if (rect === false) await transport.clear();
-        else await transport.rect(rect);
+        if (rect === false) {
+          await transport.clear();
+          ownsRect = false;
+        } else {
+          await transport.rect(rect);
+          ownsRect = true;
+        }
       }
     })()
       .catch(fail)
@@ -70,11 +77,11 @@ export function observeIslandInput(
       });
   };
   const report = () => {
-    if (!live || queued) return;
+    if (!live || queued || options.enabled?.() === false) return;
     queued = true;
     queueMicrotask(() => {
       queued = false;
-      if (!live) return;
+      if (!live || options.enabled?.() === false) return;
       const scale = options.scale?.() ?? 1;
       if (!Number.isFinite(scale) || scale <= 0) {
         if (last !== "clear") {
@@ -154,7 +161,7 @@ export function observeIslandInput(
           dragStates.set(transport, false);
           await transport.drag(false).catch(fail);
         }
-        await transport.clear().catch(fail);
+        if (ownsRect) await transport.clear().catch(fail);
       }
     },
   };

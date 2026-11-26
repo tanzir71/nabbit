@@ -1,5 +1,6 @@
-param([string]$Exe='src-tauri/target/release/nabbit.exe',[string]$Prefix='v25-native',[ValidateSet(1,1.5)][double]$Scale=1,[switch]$Keyboard)
+param([string]$Exe='src-tauri/target/release/nabbit.exe',[string]$Prefix='v25-native',[ValidateSet(1,1.5)][double]$Scale=1,[switch]$Keyboard,[switch]$Acceptance)
 $ErrorActionPreference='Stop'
+if($Keyboard -and $Acceptance){throw 'Select one native driver.'}
 if($Prefix -notmatch '^[a-z0-9-]+$'){throw 'Invalid evidence prefix'}
 $root=Split-Path -Parent $PSScriptRoot
 $exePath=(Resolve-Path -LiteralPath (Join-Path $root $Exe)).Path
@@ -22,6 +23,8 @@ public static class SurfaceWindowProbe {
  public static int[] Bounds(IntPtr hwnd){Rect r;if(!GetWindowRect(hwnd,out r))throw new Exception("GetWindowRect failed");return new[]{r.left,r.top,r.right-r.left,r.bottom-r.top};}
  [DllImport("user32.dll")] static extern uint GetWindowThreadProcessId(IntPtr hwnd,out uint process);
  public static uint Owner(IntPtr hwnd){uint process;GetWindowThreadProcessId(hwnd,out process);return process;}
+ [DllImport("dwmapi.dll")] static extern int DwmGetCompositionTimingInfo(IntPtr hwnd,IntPtr info);
+ public static double RefreshHz(){var info=Marshal.AllocHGlobal(292);try{for(int i=0;i<292;i+=4)Marshal.WriteInt32(info,i,0);Marshal.WriteInt32(info,292);int result=DwmGetCompositionTimingInfo(IntPtr.Zero,info);if(result!=0)Marshal.ThrowExceptionForHR(result);uint n=unchecked((uint)Marshal.ReadInt32(info,4)),d=unchecked((uint)Marshal.ReadInt32(info,8));if(n==0||d==0)throw new Exception("Refresh unavailable");return(double)n/d;}finally{Marshal.FreeHGlobal(info);}}
 }
 '@
 function Assert($condition,$message){if(-not $condition){throw $message}}
@@ -92,7 +95,12 @@ try {
  $focusBaseline=[SurfaceWindowProbe]::GetForegroundWindow();for($i=0;$i -lt 20 -and $focusBaseline -eq [IntPtr]::Zero;$i++){Start-Sleep -Milliseconds 100;$focusBaseline=[SurfaceWindowProbe]::GetForegroundWindow()}
  Assert ($s.inputWatcher.ownForegroundEvents -eq 0) 'Startup activated an island window'
  Check $s;Assert ($s.webviews -eq 0) 'Idle allocated a webview';$records+=@{case='idle';snapshot=$s};$captures+=Capture 'idle'
- if($Keyboard){
+ if($Acceptance){
+  $null=Command @{prepareTray=$true}
+  Push-Location $root
+  try{& node scripts/verify-island-acceptance-native.mjs $endpoint $env:NABBIT_ACCEPTANCE_CURSOR $env:NABBIT_ACCEPTANCE_COMMAND_DIR $folder $Prefix $appProcess.Id ([SurfaceWindowProbe]::RefreshHz()) ((Get-FileHash -LiteralPath $exePath -Algorithm SHA256).Hash.ToLowerInvariant());Assert ($LASTEXITCODE -eq 0) 'Native island acceptance failed'}finally{Pop-Location}
+  $null=Command @{prepareTray=$false};Cursor 1000 700;$s=Mode 'idle' $false;Check $s;$records+=@{case='acceptance-closed';snapshot=$s}
+ }elseif($Keyboard){
   Assert $s.keyboard.injectedFocus 'Focus seam must be injected for automated keyboard runs'
   $null=Command @{shortcut='Alt+Space'};$s=Mode 'expanded' $true;Check $s;$records+=@{case='keyboard-open';snapshot=$s}
   Push-Location $root
@@ -131,9 +139,9 @@ try {
  $records+=@{case='quiet-native';before=$quietBefore;after=$quietAfter}
  $null=Command @{quit=$true};Assert ($appProcess.WaitForExit(15000)) 'Graceful exit failed';$appProcess=$null
  & python -c 'import sqlite3,sys;c=sqlite3.connect(sys.argv[1]);assert c.execute("SELECT COUNT(*) FROM downloads").fetchone()[0]==0' (Join-Path $env:NABBIT_APP_DATA_DIR 'nabbit.sqlite3');Assert ($LASTEXITCODE -eq 0) 'Smoke started a download'
- $report=@{records=$records;captures=$captures;scale=$Scale;keyboardMode=$Keyboard.IsPresent;executableSha256=(Get-FileHash -LiteralPath $exePath -Algorithm SHA256).Hash.ToLowerInvariant();isolatedProfile=$true;realCursorUntouched=$true;displaySettingsUntouched=$true;foregroundUnchanged=($externalForegroundChanges.Count -eq 0);externalForegroundChanges=$externalForegroundChanges;noAppOrDescendantActivation=$true;noDownloads=$true;gracefulExit=$true}
+ $report=@{records=$records;captures=$captures;scale=$Scale;keyboardMode=$Keyboard.IsPresent;acceptanceMode=$Acceptance.IsPresent;executableSha256=(Get-FileHash -LiteralPath $exePath -Algorithm SHA256).Hash.ToLowerInvariant();isolatedProfile=$true;realCursorUntouched=$true;displaySettingsUntouched=$true;foregroundUnchanged=($externalForegroundChanges.Count -eq 0);externalForegroundChanges=$externalForegroundChanges;noAppOrDescendantActivation=$true;noDownloads=$true;gracefulExit=$true}
  $reportPath=Join-Path $folder "$Prefix-surfaces.json";if(Test-Path -LiteralPath $reportPath){throw 'Evidence already exists'};WriteJson $reportPath $report
- if($Keyboard){Write-Output "Passed native keyboard and focus flow at $Scale scale."}else{Write-Output "Passed native compact / Peek / Expanded / Drop ownership flow at $Scale scale."}
+ if($Acceptance){Write-Output "Passed native island acceptance flow at $Scale scale."}elseif($Keyboard){Write-Output "Passed native keyboard and focus flow at $Scale scale."}else{Write-Output "Passed native compact / Peek / Expanded / Drop ownership flow at $Scale scale."}
 }finally{
  if($appProcess -and -not $appProcess.HasExited){Stop-Process -Id $appProcess.Id -Force;$appProcess.WaitForExit()}
  foreach($name in $names){if($null -eq $original[$name]){Remove-Item -LiteralPath ("Env:"+$name) -ErrorAction SilentlyContinue}else{[Environment]::SetEnvironmentVariable($name,$original[$name],'Process')}}

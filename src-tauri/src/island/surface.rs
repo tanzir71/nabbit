@@ -111,6 +111,9 @@ impl Default for Session {
     }
 }
 impl Session {
+    pub fn can_allocate(&self, registered: bool) -> bool {
+        !self.state.compact() && !self.web_allocated && !self.opening && !registered
+    }
     pub fn request(&mut self, next: Mode) -> bool {
         if self.state == next {
             return false;
@@ -126,7 +129,10 @@ impl Session {
         true
     }
     pub fn acknowledge(&mut self, generation: u64) -> bool {
-        if generation != self.generation || !self.web_allocated {
+        if generation != self.generation
+            || !self.web_allocated
+            || self.pending.is_some_and(|mode| !mode.compact())
+        {
             return false;
         }
         self.web_owner = !self.state.compact();
@@ -217,6 +223,35 @@ mod tests {
         assert!(s.acknowledge(s.generation));
         assert!(!s.web_allocated);
         assert!(!s.web_owner);
+    }
+    #[test]
+    fn pending_reopen_rejects_an_older_compact_paint_ack() {
+        let mut s = Session::default();
+        s.request(Mode::Expanded);
+        s.web_allocated = true;
+        s.acknowledge(s.generation);
+        s.request(Mode::Idle);
+        let closing = s.generation;
+        s.pending = Some(Mode::Drop);
+        assert!(!s.acknowledge(closing));
+        assert!(s.web_allocated);
+        s.request(Mode::Drop);
+        assert!(s.acknowledge(s.generation));
+        assert!(s.web_owner);
+    }
+    #[test]
+    fn reopening_waits_for_the_previous_webview_registration_to_disappear() {
+        let mut s = Session::default();
+        s.request(Mode::Drop);
+        assert!(s.can_allocate(false));
+        s.web_allocated = true;
+        s.request(Mode::Idle);
+        assert!(s.acknowledge(s.generation));
+        s.request(Mode::Expanded);
+        assert!(!s.can_allocate(true));
+        assert!(s.can_allocate(false));
+        s.opening = true;
+        assert!(!s.can_allocate(false));
     }
     #[test]
     fn drag_cancel_restores_expanded_and_suppression_wins() {

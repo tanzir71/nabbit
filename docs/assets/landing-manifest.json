@@ -87,15 +87,6 @@
       ]
     },
     {
-      "file": "assets/design/1e04f.svg",
-      "width": 11.48,
-      "height": 11.48,
-      "sha256": "e3797b2b0e7f27ae473d1058af3fc41f9a38b5e456a4293366c2bf4a9d411445",
-      "contexts": [
-        "31:933"
-      ]
-    },
-    {
       "file": "assets/design/20b59.svg",
       "width": 11.7353,
       "height": 11.7353,
@@ -120,15 +111,6 @@
       "sha256": "1a91157ede7a91fe135ed8abc42503e7d897382ee02f691701ecbe7d2f6978ca",
       "contexts": [
         "49:1132"
-      ]
-    },
-    {
-      "file": "assets/design/2d937.svg",
-      "width": 11.48,
-      "height": 11.48,
-      "sha256": "a42e9eeefea60df583427215b9f5d817621e0bc604c9831c55065ee351c9c305",
-      "contexts": [
-        "31:933"
       ]
     },
     {
@@ -333,15 +315,6 @@
       "sha256": "b1a7e4fc7cd030fbaad9f5a8b3acaf0e5707959a0864a87c081ed5306838c634",
       "contexts": [
         "27:470"
-      ]
-    },
-    {
-      "file": "assets/design/68343.svg",
-      "width": 13.12,
-      "height": 13.12,
-      "sha256": "aa8187290783772f4726896d098bccfe84bfb38a9fcc1036aef47c122a781566",
-      "contexts": [
-        "31:933"
       ]
     },
     {
@@ -838,17 +811,6 @@
   ],
   "composites": [
     {
-      "file": "assets/visuals/hero@2x.webp",
-      "node": "27:273",
-      "scale": 2,
-      "width": 2240,
-      "height": 940,
-      "encoding": "WebP quality 95, method 6",
-      "bytes": 62496,
-      "sha256": "ff56e23f8bdb5b1efd8bfaf805477063e6393fd0657b442565858e9179e70dc4",
-      "originalPngSha256": "1af3b126040354b1bbb95808e70127e461349970f16ff97f71be2acf8dfdc92b"
-    },
-    {
       "file": "assets/visuals/downloads@2x.webp",
       "node": "27:499",
       "scale": 2,
@@ -869,6 +831,48 @@
       "bytes": 81200,
       "sha256": "3b4103416472b9eaedca7afec093c2a208458e80dc0b14a3ed60bea3145e6209",
       "originalPngSha256": "149d6449a592fb14e1a23d4508f746c12ccae4de7ef0c4cfdde5a8a00ec25af7"
+    }
+  ],
+  "retiredComposites": [
+    {
+      "file": "assets/visuals/hero@2x.webp",
+      "node": "27:273",
+      "scale": 2,
+      "width": 2240,
+      "height": 940,
+      "encoding": "WebP quality 95, method 6",
+      "bytes": 62496,
+      "sha256": "ff56e23f8bdb5b1efd8bfaf805477063e6393fd0657b442565858e9179e70dc4",
+      "originalPngSha256": "1af3b126040354b1bbb95808e70127e461349970f16ff97f71be2acf8dfdc92b"
+    }
+  ],
+  "retiredSvg": [
+    {
+      "file": "assets/design/1e04f.svg",
+      "width": 11.48,
+      "height": 11.48,
+      "sha256": "e3797b2b0e7f27ae473d1058af3fc41f9a38b5e456a4293366c2bf4a9d411445",
+      "contexts": [
+        "31:933"
+      ]
+    },
+    {
+      "file": "assets/design/2d937.svg",
+      "width": 11.48,
+      "height": 11.48,
+      "sha256": "a42e9eeefea60df583427215b9f5d817621e0bc604c9831c55065ee351c9c305",
+      "contexts": [
+        "31:933"
+      ]
+    },
+    {
+      "file": "assets/design/68343.svg",
+      "width": 13.12,
+      "height": 13.12,
+      "sha256": "aa8187290783772f4726896d098bccfe84bfb38a9fcc1036aef47c122a781566",
+      "contexts": [
+        "31:933"
+      ]
     }
   ]
 }

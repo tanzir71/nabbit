@@ -1,10 +1,10 @@
-param([string]$Exe='src-tauri/target/release/nabbit.exe',[string]$Prefix='v23',[switch]$Activity)
+param([string]$Exe='src-tauri/target/release/nabbit.exe',[string]$Prefix='v23',[switch]$Activity,[ValidatePattern('^M(?:[0-9]|1[0-2])$')][string]$Milestone='M4')
 $ErrorActionPreference='Stop'
 if($Prefix -notmatch '^[a-z0-9-]+$'){throw 'Invalid evidence prefix'}
 $root=Split-Path -Parent $PSScriptRoot;$exePath=(Resolve-Path -LiteralPath (Join-Path $root $Exe)).Path
 if(Get-Process -Name nabbit -ErrorAction SilentlyContinue){throw 'Leave the existing Nabbit process untouched.'}
 $trial=Join-Path $root ('.tools/island-visibility-'+[guid]::NewGuid());New-Item -ItemType Directory -Path $trial|Out-Null
-$folder=Join-Path $root 'progress/v2/M4';New-Item -ItemType Directory -Path $folder -Force|Out-Null
+$folder=Join-Path $root "progress/v2/$Milestone";New-Item -ItemType Directory -Path $folder -Force|Out-Null
 $names=@('NABBIT_APP_DATA_DIR','NABBIT_ISLAND_ACCEPTANCE','NABBIT_ISLAND_LAYOUT','NABBIT_ACCEPTANCE_CURSOR','NABBIT_ACCEPTANCE_COMMAND_DIR','NABBIT_ISLAND_SPIKE','WEBVIEW2_USER_DATA_FOLDER','WEBVIEW2_ADDITIONAL_BROWSER_ARGUMENTS')
 $original=@{};foreach($name in $names){$original[$name]=[Environment]::GetEnvironmentVariable($name,'Process')}
 Add-Type -TypeDefinition @'
@@ -39,7 +39,7 @@ function Request($fields=@{}){
 }
 function Command($fields=@{}){(Request $fields).snapshot}
 function WaitMode($mode,$label='island'){for($i=0;$i -lt 60;$i++){$snapshot=Command;if(($snapshot.visibility|Where-Object label -eq $label).mode -eq $mode){return $snapshot};Start-Sleep -Milliseconds 50};throw ('Visibility timeout: '+($snapshot.visibility|ConvertTo-Json -Depth 5))}
-function Cursor($placement,[double]$x,[double]$y){WriteJson $env:NABBIT_ACCEPTANCE_CURSOR @{x=($placement.bounds.x+$x*$placement.renderScale);y=($placement.bounds.y+$y*$placement.renderScale);leftDown=$false}}
+function Cursor($placement,[double]$x,[double]$y){$path=$env:NABBIT_ACCEPTANCE_CURSOR;WriteJson "$path.tmp" @{x=($placement.bounds.x+$x*$placement.renderScale);y=($placement.bounds.y+$y*$placement.renderScale);leftDown=$false};Move-Item -LiteralPath "$path.tmp" -Destination $path -Force}
 function Check($snapshot){foreach($hostInfo in $snapshot.hosts){$handle=[IntPtr][long]$hostInfo.hwnd;$inputInfo=$snapshot.input|Where-Object label -eq $hostInfo.placement.label;$visibility=$snapshot.visibility|Where-Object label -eq $hostInfo.placement.label
   Assert ([IslandVisibilityProbe]::IsWindowVisible($handle)) 'Opacity must never hide the HWND';$flags=[IslandVisibilityProbe]::Flags($handle,-20).ToInt64()
   Assert ((($flags -band 0x20) -eq 0) -eq [bool]$inputInfo.interactive) 'Actual click-through disagrees with applied input'

@@ -135,7 +135,13 @@ it("keeps an unbound surface transparent until its own native state arrives", as
   host.style.opacity = "0";
   await connection.ready;
   expect(host.style.opacity).toBe("0");
+  const known = vi.fn();
+  void connection.known.then(known);
+  await Promise.resolve();
+  expect(known).not.toHaveBeenCalled();
   send(report("faded", 1));
+  await connection.known;
   expect(host.style.opacity).toBe("0.35");
+  expect(host.style.getPropertyValue("--native-island-opacity")).toBe("0.35");
   connection.dispose();
 });

@@ -1,5 +1,5 @@
 import { StrictMode } from "react";
-import { cleanup, render, waitFor } from "@testing-library/react";
+import { act, cleanup, render, waitFor } from "@testing-library/react";
 import { afterEach, expect, it, vi } from "vitest";
 import { IslandApp } from "./IslandApp";
 import { createIslandStore } from "../../store/islandStore";
@@ -29,10 +29,10 @@ it("does not close an opening native Peek when the activity snapshot initializes
       disconnect() {}
     },
   );
-  vi.stubGlobal("matchMedia", () => ({ matches: true }));
+  vi.stubGlobal("matchMedia", () => ({ matches: false }));
   Object.defineProperty(document, "fonts", {
     configurable: true,
-    value: { ready: Promise.resolve() },
+    value: { ready: Promise.resolve(), load: vi.fn().mockResolvedValue([]) },
   });
   Object.defineProperty(Element.prototype, "getAnimations", {
     configurable: true,
@@ -86,7 +86,7 @@ it("does not close an opening native Peek when the activity snapshot initializes
         state: "peek",
         owner: "webview",
         shape: "island",
-        reducedMotion: true,
+        reducedMotion: false,
         width: 320,
         height: 32,
         snapshot,
@@ -100,6 +100,9 @@ it("does not close an opening native Peek when the activity snapshot initializes
     </StrictMode>,
   );
   await waitFor(() => expect(store.getState().state).toBe("peek"));
+  expect(app.container.querySelector("main")?.style.opacity).toBe("1");
+  act(() => store.getState().dispatch({ type: "filter", name: "preset", value: "720p" }));
+  expect(app.container.querySelector("main")?.style.opacity).toBe("1");
   const fixture = (
     globalThis as unknown as {
       __NABBIT_CAPTURE__: {
@@ -115,6 +118,7 @@ it("does not close an opening native Peek when the activity snapshot initializes
     fixture.snapshot().calls.filter((call) => call.command === "island_surface_request"),
   ).toEqual([]);
   expect(fixture.snapshot().unsupported).toEqual([]);
+  expect(app.container.querySelector("main")?.getAttribute("data-compact-prepared")).toBe("true");
   app.unmount();
   await Promise.resolve();
   expect(fixture.snapshot().listenerCount).toBe(0);

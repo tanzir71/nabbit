@@ -43,6 +43,7 @@ pub struct Report {
     pub source: &'static str,
 }
 pub struct HostInput {
+    pub left_down: bool,
     pub fade: FadeInput,
     gated_drag_armed: bool,
     pub model: Interaction,
@@ -56,6 +57,7 @@ pub struct HostInput {
 impl HostInput {
     pub fn new(placement: &Placement) -> Self {
         Self {
+            left_down: false,
             fade: FadeInput::default(),
             gated_drag_armed: false,
             model: Interaction::with_hitrect(native_rect(placement)),
@@ -68,6 +70,7 @@ impl HostInput {
         }
     }
     pub fn step(&mut self, placement: &Placement, sample: Option<Sample>) {
+        self.left_down = sample.filter(|s| s.valid()).is_some_and(|s| s.left_down);
         self.decision = if let Some(sample) = sample.filter(|s| s.valid()) {
             let cursor = logical(placement, sample);
             self.model.step(Input {
@@ -88,6 +91,12 @@ impl HostInput {
                 ..Decision::default()
             }
         };
+    }
+    pub fn clear_web_drag(&mut self) {
+        self.model.ole_drag = false;
+        if !self.left_down {
+            self.model.cancel_drag();
+        }
     }
     pub fn gate_for_sample(
         &mut self,
@@ -290,6 +299,27 @@ mod tests {
         step(&mut input, 80.0, 300.0, false);
         assert!(!input.decision.dragging && !input.decision.interactive);
         assert_eq!(input.model.hitrect, Some(native_rect(&p)));
+    }
+    #[test]
+    fn web_teardown_does_not_cancel_a_new_held_native_drag() {
+        let p = placement();
+        let mut input = HostInput::new(&p);
+        let sample = |y: f64, down: bool| {
+            Some(Sample {
+                x: -1800.0 + 80.0 * 1.725,
+                y: 60.0 + y * 1.725,
+                left_down: down,
+            })
+        };
+        input.step(&p, sample(300.0, true));
+        input.step(&p, sample(10.0, true));
+        assert!(input.decision.dragging);
+        input.clear_web_drag();
+        input.step(&p, sample(120.0, true));
+        assert!(input.decision.dragging && input.decision.interactive);
+        input.step(&p, sample(120.0, false));
+        input.clear_web_drag();
+        assert!(!input.decision.dragging);
     }
     #[test]
     fn faded_held_drag_wakes_only_after_band_entry_and_hidden_always_cancels() {

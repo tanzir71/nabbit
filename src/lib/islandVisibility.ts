@@ -36,13 +36,24 @@ export function connectIslandVisibility(
   let live = true,
     revision = -1,
     stop: (() => void) | undefined;
+  let resolveKnown!: () => void;
+  const known = new Promise<void>((resolve) => {
+    resolveKnown = resolve;
+  });
   const apply = (value: IslandVisibility) => {
     if (!live || value.label !== label || value.revision < revision) return;
     revision = value.revision;
+    const previousMode = host.dataset.islandVisibility;
+    host.style.transition = previousMode === "visible" && value.mode === "faded" ? "" : "none";
     host.dataset.islandVisibility = value.mode;
+    host.style.setProperty(
+      "--native-island-opacity",
+      String(value.mode === "hidden" ? 0 : value.mode === "faded" ? 0.35 : 1),
+    );
     host.style.opacity = String(value.mode === "hidden" ? 0 : value.mode === "faded" ? 0.35 : 1);
     host.style.pointerEvents = value.mode === "visible" ? "auto" : "none";
     host.setAttribute("aria-hidden", value.mode === "hidden" ? "true" : "false");
+    resolveKnown();
   };
   const ready = transport
     .subscribe(apply)
@@ -61,8 +72,10 @@ export function connectIslandVisibility(
     );
   return {
     ready,
+    known,
     dispose: () => {
       live = false;
+      resolveKnown();
       stop?.();
       stop = undefined;
     },

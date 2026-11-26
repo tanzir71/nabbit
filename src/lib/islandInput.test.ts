@@ -15,6 +15,22 @@ afterEach(() => {
   vi.restoreAllMocks();
   vi.unstubAllGlobals();
 });
+it("does not publish or clear a bootstrap rectangle before the native surface is ready", async () => {
+  const { host, pill, transport } = setup();
+  let ready = false;
+  const input = observeIslandInput(pill, host, { transport, enabled: () => ready });
+  await tick();
+  expect(transport.rect).not.toHaveBeenCalled();
+  await input.dispose();
+  expect(transport.clear).not.toHaveBeenCalled();
+  const next = observeIslandInput(pill, host, { transport, enabled: () => ready });
+  ready = true;
+  next.report();
+  await tick();
+  expect(transport.rect).toHaveBeenCalledOnce();
+  await next.dispose();
+  expect(transport.clear).toHaveBeenCalledOnce();
+});
 function setup() {
   vi.stubGlobal("ResizeObserver", Observer);
   const host = document.createElement("main"),

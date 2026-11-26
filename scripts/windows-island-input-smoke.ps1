@@ -1,10 +1,10 @@
-param([string]$Exe='src-tauri/target/release/nabbit.exe',[string]$Prefix='v22')
+param([string]$Exe='src-tauri/target/release/nabbit.exe',[string]$Prefix='v22',[ValidatePattern('^M(?:[0-9]|1[0-2])$')][string]$Milestone='M4')
 $ErrorActionPreference='Stop'
 if($Prefix -notmatch '^[a-z0-9-]+$'){throw 'Invalid evidence prefix'}
 $root=Split-Path -Parent $PSScriptRoot;$exePath=(Resolve-Path -LiteralPath (Join-Path $root $Exe)).Path
 if(Get-Process -Name nabbit -ErrorAction SilentlyContinue){throw 'Leave the existing Nabbit process untouched.'}
 $trial=Join-Path $root ('.tools/island-input-'+[guid]::NewGuid());New-Item -ItemType Directory -Path $trial|Out-Null
-$folder=Join-Path $root 'progress/v2/M4';New-Item -ItemType Directory -Path $folder -Force|Out-Null
+$folder=Join-Path $root "progress/v2/$Milestone";New-Item -ItemType Directory -Path $folder -Force|Out-Null
 $names=@('NABBIT_APP_DATA_DIR','NABBIT_ISLAND_ACCEPTANCE','NABBIT_ISLAND_LAYOUT','NABBIT_ACCEPTANCE_CURSOR','NABBIT_ACCEPTANCE_COMMAND_DIR','NABBIT_ISLAND_SPIKE','WEBVIEW2_USER_DATA_FOLDER','WEBVIEW2_ADDITIONAL_BROWSER_ARGUMENTS')
 $original=@{};foreach($name in $names){$original[$name]=[Environment]::GetEnvironmentVariable($name,'Process')}
 Add-Type -TypeDefinition @'
@@ -38,7 +38,7 @@ function Command($fields=@{}){
   };throw "Native request timed out. Logs: $trial"
 }
 function WaitInput([scriptblock]$condition){for($i=0;$i -lt 70;$i++){$snapshot=Command;if(& $condition $snapshot){return $snapshot};Start-Sleep -Milliseconds 50};throw ('Input timeout: '+($snapshot.input|ConvertTo-Json -Depth 8))}
-function Cursor($placement,[double]$x,[double]$y,[bool]$down=$false){WriteJson $env:NABBIT_ACCEPTANCE_CURSOR @{x=($placement.bounds.x+$x*$placement.renderScale);y=($placement.bounds.y+$y*$placement.renderScale);leftDown=$down}}
+function Cursor($placement,[double]$x,[double]$y,[bool]$down=$false){$path=$env:NABBIT_ACCEPTANCE_CURSOR;WriteJson "$path.tmp" @{x=($placement.bounds.x+$x*$placement.renderScale);y=($placement.bounds.y+$y*$placement.renderScale);leftDown=$down};Move-Item -LiteralPath "$path.tmp" -Destination $path -Force}
 function Check($snapshot){foreach($hostInfo in $snapshot.hosts){$handle=[IntPtr][long]$hostInfo.hwnd;$inputInfo=$snapshot.input|Where-Object label -eq $hostInfo.placement.label
   Assert ([IslandInputProbe]::IsWindowVisible($handle)) 'Host must stay shown/composited';$flags=[IslandInputProbe]::Flags($handle,-20).ToInt64()
   Assert ((($flags -band 0x20) -eq 0) -eq [bool]$inputInfo.interactive) 'Actual click-through style disagrees with input decision'
@@ -69,7 +69,7 @@ try{
     $null=WaitInput {param($s)$s.inputWatcher.cursorSamples -ge $samples+2}
     Cursor $p 80 10 $true;$drag=WaitInput {param($s)$s.input[0].decision.dragging -and $s.input[0].interactive};Check $drag
     Cursor $p 80 120 $true;$held=WaitInput {param($s)$s.input[0].decision.dragging -and $s.input[0].interactive};Check $held
-    Cursor $p 80 300;$cancel=WaitInput {param($s)-not $s.input[0].decision.dragging -and -not $s.input[0].interactive};Check $cancel
+    Cursor $p 80 300;$cancel=WaitInput {param($s)-not $s.input[0].decision.dragging -and -not $s.input[0].interactive -and -not $s.surfaces.island.webAllocated -and -not $s.surfaces.island.opening};Check $cancel
     $reports+=@{case='native-input';dpi=$dpi;shape=$shape;size=$size;inside=$inside.input;outside=$outside.input;drag=$drag.input;cancel=$cancel.input}
     if($size -eq 'standard'){$stem="$Prefix-native-$shape-$($dpi.ToString().Replace('.','-'))x";$capturePath=Join-Path $env:NABBIT_ACCEPTANCE_COMMAND_DIR "$stem.bgra"
       $captureId=[guid]::NewGuid().ToString();WriteJson (Join-Path $env:NABBIT_ACCEPTANCE_COMMAND_DIR 'island-request.json') @{id=$captureId;capture=@{label='island';stem=$stem}}
@@ -86,14 +86,14 @@ try{
   $snapshot=Command @{gate='hidden'};$snapshot=WaitInput {param($s)$s.input[0].decision.hidden -and -not $s.input[0].interactive};Check $snapshot;$reports+=@{case='hidden-input-gate';snapshot=$snapshot}
   $null=Command @{gate='visible'};$null=WaitInput {param($s)$s.input[0].interactive}
   [IO.File]::WriteAllText($env:NABBIT_ACCEPTANCE_CURSOR,'invalid fixture');$snapshot=WaitInput {param($s)-not $s.input[0].interactive};Check $snapshot;$reports+=@{case='invalid-provider-fails-closed';snapshot=$snapshot}
-  Cursor $p 80 300;$null=Command @{prepareInput=$true;prepareTray=$true}
+  Cursor $p 80 300;$null=Command @{surface=@{label='island';state='expanded'};prepareTray=$true}
   Push-Location $root;try{& node scripts/verify-island-input-native.mjs $endpoint $env:NABBIT_ACCEPTANCE_CURSOR $folder $Prefix;Assert ($LASTEXITCODE -eq 0) 'Actual WebView2 input bridge failed'}finally{Pop-Location}
   $snapshot=WaitInput {param($s)$s.input[0].interactive};Check $snapshot
-  $webHandle=[IslandInputProbe]::Find($appProcess.Id,'Nabbit island input probe');Assert ($webHandle -ne [IntPtr]::Zero -and ([IslandInputProbe]::Flags($webHandle,-20).ToInt64() -band 0x20) -eq 0) 'WebView2 surface did not become interactive'
+  $webHandle=[IslandInputProbe]::Find($appProcess.Id,'Nabbit island');Assert ($webHandle -ne [IntPtr]::Zero -and ([IslandInputProbe]::Flags($webHandle,-20).ToInt64() -band 0x20) -eq 0) 'WebView2 surface did not become interactive'
   Assert ([IslandInputProbe]::IsWindowVisible($webHandle) -and ([IslandInputProbe]::Flags($webHandle,-20).ToInt64() -band 0x08000000) -ne 0) 'WebView2 must stay shown and nonactivating'
   Cursor $p 80 400;$snapshot=WaitInput {param($s)-not $s.input[0].interactive};Check $snapshot
   Assert (([IslandInputProbe]::Flags($webHandle,-20).ToInt64() -band 0x20) -ne 0) 'WebView2 margins did not pass clicks through'
-  $snapshot=Command @{prepareInput=$false;prepareTray=$false};$snapshot=WaitInput {param($s)$s.input[0].source -eq 'native'};Check $snapshot
+  $snapshot=Command @{surface=@{label='island';state='idle'};prepareTray=$false};$snapshot=WaitInput {param($s)$s.input[0].source -eq 'native'};Check $snapshot
   $reports+=@{case='webview-style-and-teardown';snapshot=$snapshot}
   $handles=@($snapshot.hosts.hwnd);$null=Command @{quit=$true};Assert ($appProcess.WaitForExit(15000)) 'Graceful exit failed';$appProcess=$null
   foreach($handle in $handles){Assert (-not [IslandInputProbe]::IsWindow([IntPtr][long]$handle)) 'Exit retained native HWND'}

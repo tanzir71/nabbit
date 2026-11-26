@@ -1,0 +1,113 @@
+{
+  "scope": "Retained development attempts; none substitutes for final v27-acceptance-* evidence.",
+  "motion": [
+    {
+      "file": "v27-native-drag-frame-timings.json",
+      "sha256": "04f47424cb27c1f7829d33496e7b906643da9e7bf11756a34be42d5ae24960d2",
+      "measuredMorphs": 16,
+      "missing": 3,
+      "maxDroppedFrames": 28,
+      "withinV0Budget": false
+    },
+    {
+      "file": "v27-native-order-frame-timings.json",
+      "sha256": "c8627a09e3d631f985421e7750f9e7a862ef944f8ac93d2432564d1c763475bf",
+      "measuredMorphs": 15,
+      "missing": 4,
+      "maxDroppedFrames": 4,
+      "withinV0Budget": false
+    },
+    {
+      "file": "v27-native-owned-frame-timings.json",
+      "sha256": "2fa3225da8b671d23cc18ed585d795bb405f0809906101c9a6e06287374da368",
+      "measuredMorphs": 19,
+      "missing": 0,
+      "maxDroppedFrames": 20,
+      "withinV0Budget": false
+    },
+    {
+      "file": "v27-native-preview-frame-timings.json",
+      "sha256": "032257b082f82643041a38bbf8b407bc38e041fbf4ccca7f7452502f8be85911",
+      "measuredMorphs": 19,
+      "missing": 0,
+      "maxDroppedFrames": 22,
+      "withinV0Budget": false
+    },
+    {
+      "file": "v27-native-prime-frame-timings.json",
+      "sha256": "20641be5b4a739668bd22830401b3f1a7538065da6c82b4f4fc8363b45bd3b96",
+      "measuredMorphs": 17,
+      "missing": 2,
+      "maxDroppedFrames": 28,
+      "withinV0Budget": false
+    },
+    {
+      "file": "v27-native-probe-2-frame-timings.json",
+      "sha256": "5cfd79e2a25c7a234066ef9ab70a11ba34911efd0e6b1d6deb876a0208802213",
+      "measuredMorphs": 14,
+      "missing": 5,
+      "maxDroppedFrames": 23,
+      "withinV0Budget": false
+    },
+    {
+      "file": "v27-native-visible-frame-timings.json",
+      "sha256": "3d0a61930ffa2b61ebe1216bcc8e3c53a175c7c6ef8420f134bd385a1a74e725",
+      "measuredMorphs": 17,
+      "missing": 2,
+      "maxDroppedFrames": 19,
+      "withinV0Budget": false
+    }
+  ],
+  "inputAttempt": {
+    "prefix": "v27-input-final",
+    "result": "Held-drag timeout at small 150% fixture; two prior captures retained. Fixture replacement I/O was investigated; run did not reach final IPC checks.",
+    "productionBinary": "a532670ac301b228cf1f5afd64572c981f8e17dce3e41b66e5c25f378afb0ffe"
+  },
+  "fixtureWriterProbe": {
+    "file": "v27-cursor-writer-probe.json",
+    "result": "300 replacements per method; both Move-Item -Force and File.Replace caused transient unavailable reads. File.Replace was not adopted; Move(overwrite) experiment also encountered access denial. Provider now bounds retries for transient I/O, while malformed data and persistent failures stay fail-closed."
+  },
+  "supersededIdle": {
+    "file": "v27-idle-final.json",
+    "result": "Raw 0.000000% and rounded 0.0%; repeated on the final binary separately because the fixture reader changed."
+  },
+  "removedExperiment": "In-memory WebView2 CapturePreview did not establish a useful cold-frame improvement; implementation removed, v27-native-preview evidence retained.",
+  "inputSecondAttempt": {
+    "prefix": "v27-input-verified",
+    "result": "Cancellation before first web preparation retained an allocated idle WebView with no hit rectangle, paint owner or acknowledgement; fixture-read retries were zero. Fixed native-owned cancellation without waiting for an unprepared page.",
+    "finalEvidence": false
+  },
+  "inputThirdAttempt": {
+    "prefix": "v27-input-complete",
+    "result": "All 12 geometry/held-drag cases and four captures passed; input page did not appear within the former six-second helper deadline. Allocation now defers until the old Tauri window registration disappears and wakes on destruction. Helper deadline now matches the 15-second native driver deadline, with failure snapshots."
+  },
+  "inputFourthAttempt": {
+    "prefix": "v27-input-current",
+    "result": "All 12 geometry/held-drag cases and four captures passed. Real input bridge opened, but native present(Drop) cleared React dropReturn; empty synthetic drop later closed the page. Reducer now preserves the return state, and five existing transition cases cover repeated/native-first acknowledgements. Helper additionally asserts restoration of Expanded and reapplies its synthetic compact geometry."
+  },
+  "visibilityAttempt": {
+    "prefix": "v27-visibility-final",
+    "result": "All 28 native scenarios/captures passed, but helper asserted 0.35 while computed opacity was 0.67421 during the required 200ms fade. Checker now waits for settled computed opacity without disabling motion."
+  },
+  "supersededNativePasses": {
+    "input": "v27-input-accepted (17 cases, actual IPC/caller/style/drag checks, 2 far / 37 near samples, graceful/no downloads)",
+    "visibility": "v27-visibility-accepted (28 cases + actual WebView bridge, 2 fallback samples, graceful/no downloads)",
+    "reason": "Both passed before the final location-hook removal; current executable reruns are pinned separately."
+  },
+  "idleSameForegroundFailure": {
+    "file": "v27-idle-confirmed.json",
+    "result": "0.285152% of one core / 0.3% rounded; main thread 0.1875 CPU seconds, worker zero, no foreground switch. Location hook callback delivery cost remained despite filtering. Removed high-volume location hook, preserving foreground/move/minimise events and the 500ms geometry/notification fallback."
+  },
+  "surfaceLegacyHelper": {
+    "prefix": "v27-surfaces-100",
+    "result": "Native compact captures passed, but the old helper expected Search island as a textbox alongside Clipboard. Current Search is a combobox replacing module content. Updated selector/sequence verify clipboard scroll before Search, Search persistence on reopen, then clipboard restoration after Search closes."
+  },
+  "dpi150FirstPass": {
+    "prefix": "v27-acceptance-150",
+    "result": "All 49 morphs collected and four native checks completed; the DPI fixture reapplied 150% rather than changing it. Final v27-acceptance-150-reverse changes 150% to100% during animation. First pass retained, not used as proof of a DPI change."
+  },
+  "scannerFalsePositive": {
+    "file": "v27-gitleaks-false-positive.json",
+    "result": "Generic API rule matched the public release SHA-256 after the prose word secrets. Separated/reworded that prose; no rule, allowlist or scanner exception added."
+  }
+}

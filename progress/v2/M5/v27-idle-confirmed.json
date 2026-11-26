@@ -1,0 +1,1082 @@
+{
+  "warmupSeconds": 20,
+  "extendedStyles": 136839336,
+  "dpi": 96,
+  "scalingPercent": 100,
+  "oneCoreCpuPercent": 0.28515225237280517,
+  "cpuMethod": "100 * sum(app and descendant CPU seconds) / elapsed wall seconds; nearest one decimal for 0.0% gate; raw and machine-normalized values retained.",
+  "workingSetBytes": {
+    "minimum": 41840640.0,
+    "mean": 41872237.71428572,
+    "peak": 41902080.0
+  },
+  "elapsedSeconds": 60.2748176,
+  "samples": [
+    {
+      "processes": [
+        {
+          "parent": 26016,
+          "name": "nabbit.exe",
+          "workingSetBytes": 30507008,
+          "id": 47016,
+          "present": true,
+          "cpuSeconds": 0.296875
+        },
+        {
+          "parent": 47016,
+          "name": "conhost.exe",
+          "workingSetBytes": 11354112,
+          "id": 40316,
+          "present": true,
+          "cpuSeconds": 0.0625
+        }
+      ],
+      "elapsedMs": 934.4612,
+      "totalCpuSeconds": 0.0,
+      "workingSetBytes": 41861120
+    },
+    {
+      "processes": [
+        {
+          "parent": 26016,
+          "name": "nabbit.exe",
+          "workingSetBytes": 30507008,
+          "id": 47016,
+          "present": true,
+          "cpuSeconds": 0.3125
+        },
+        {
+          "parent": 47016,
+          "name": "conhost.exe",
+          "workingSetBytes": 11354112,
+          "id": 40316,
+          "present": true,
+          "cpuSeconds": 0.0625
+        }
+      ],
+      "elapsedMs": 2608.2107,
+      "totalCpuSeconds": 0.015625,
+      "workingSetBytes": 41861120
+    },
+    {
+      "processes": [
+        {
+          "parent": 26016,
+          "name": "nabbit.exe",
+          "workingSetBytes": 30507008,
+          "id": 47016,
+          "present": true,
+          "cpuSeconds": 0.3125
+        },
+        {
+          "parent": 47016,
+          "name": "conhost.exe",
+          "workingSetBytes": 11354112,
+          "id": 40316,
+          "present": true,
+          "cpuSeconds": 0.0625
+        }
+      ],
+      "elapsedMs": 4132.2211,
+      "totalCpuSeconds": 0.015625,
+      "workingSetBytes": 41861120
+    },
+    {
+      "processes": [
+        {
+          "parent": 26016,
+          "name": "nabbit.exe",
+          "workingSetBytes": 30507008,
+          "id": 47016,
+          "present": true,
+          "cpuSeconds": 0.3125
+        },
+        {
+          "parent": 47016,
+          "name": "conhost.exe",
+          "workingSetBytes": 11354112,
+          "id": 40316,
+          "present": true,
+          "cpuSeconds": 0.0625
+        }
+      ],
+      "elapsedMs": 5764.8488,
+      "totalCpuSeconds": 0.015625,
+      "workingSetBytes": 41861120
+    },
+    {
+      "processes": [
+        {
+          "parent": 26016,
+          "name": "nabbit.exe",
+          "workingSetBytes": 30507008,
+          "id": 47016,
+          "present": true,
+          "cpuSeconds": 0.3125
+        },
+        {
+          "parent": 47016,
+          "name": "conhost.exe",
+          "workingSetBytes": 11354112,
+          "id": 40316,
+          "present": true,
+          "cpuSeconds": 0.0625
+        }
+      ],
+      "elapsedMs": 7372.8065,
+      "totalCpuSeconds": 0.015625,
+      "workingSetBytes": 41861120
+    },
+    {
+      "processes": [
+        {
+          "parent": 26016,
+          "name": "nabbit.exe",
+          "workingSetBytes": 30490624,
+          "id": 47016,
+          "present": true,
+          "cpuSeconds": 0.3125
+        },
+        {
+          "parent": 47016,
+          "name": "conhost.exe",
+          "workingSetBytes": 11354112,
+          "id": 40316,
+          "present": true,
+          "cpuSeconds": 0.0625
+        }
+      ],
+      "elapsedMs": 8923.6666,
+      "totalCpuSeconds": 0.015625,
+      "workingSetBytes": 41844736
+    },
+    {
+      "processes": [
+        {
+          "parent": 26016,
+          "name": "nabbit.exe",
+          "workingSetBytes": 30543872,
+          "id": 47016,
+          "present": true,
+          "cpuSeconds": 0.3125
+        },
+        {
+          "parent": 47016,
+          "name": "conhost.exe",
+          "workingSetBytes": 11354112,
+          "id": 40316,
+          "present": true,
+          "cpuSeconds": 0.0625
+        }
+      ],
+      "elapsedMs": 10466.0146,
+      "totalCpuSeconds": 0.015625,
+      "workingSetBytes": 41897984
+    },
+    {
+      "processes": [
+        {
+          "parent": 26016,
+          "name": "nabbit.exe",
+          "workingSetBytes": 30543872,
+          "id": 47016,
+          "present": true,
+          "cpuSeconds": 0.3125
+        },
+        {
+          "parent": 47016,
+          "name": "conhost.exe",
+          "workingSetBytes": 11354112,
+          "id": 40316,
+          "present": true,
+          "cpuSeconds": 0.0625
+        }
+      ],
+      "elapsedMs": 11985.6341,
+      "totalCpuSeconds": 0.015625,
+      "workingSetBytes": 41897984
+    },
+    {
+      "processes": [
+        {
+          "parent": 26016,
+          "name": "nabbit.exe",
+          "workingSetBytes": 30543872,
+          "id": 47016,
+          "present": true,
+          "cpuSeconds": 0.3125
+        },
+        {
+          "parent": 47016,
+          "name": "conhost.exe",
+          "workingSetBytes": 11354112,
+          "id": 40316,
+          "present": true,
+          "cpuSeconds": 0.0625
+        }
+      ],
+      "elapsedMs": 13485.5845,
+      "totalCpuSeconds": 0.015625,
+      "workingSetBytes": 41897984
+    },
+    {
+      "processes": [
+        {
+          "parent": 26016,
+          "name": "nabbit.exe",
+          "workingSetBytes": 30543872,
+          "id": 47016,
+          "present": true,
+          "cpuSeconds": 0.3125
+        },
+        {
+          "parent": 47016,
+          "name": "conhost.exe",
+          "workingSetBytes": 11354112,
+          "id": 40316,
+          "present": true,
+          "cpuSeconds": 0.0625
+        }
+      ],
+      "elapsedMs": 15008.3985,
+      "totalCpuSeconds": 0.015625,
+      "workingSetBytes": 41897984
+    },
+    {
+      "processes": [
+        {
+          "parent": 26016,
+          "name": "nabbit.exe",
+          "workingSetBytes": 30543872,
+          "id": 47016,
+          "present": true,
+          "cpuSeconds": 0.3125
+        },
+        {
+          "parent": 47016,
+          "name": "conhost.exe",
+          "workingSetBytes": 11354112,
+          "id": 40316,
+          "present": true,
+          "cpuSeconds": 0.0625
+        }
+      ],
+      "elapsedMs": 16500.5571,
+      "totalCpuSeconds": 0.015625,
+      "workingSetBytes": 41897984
+    },
+    {
+      "processes": [
+        {
+          "parent": 26016,
+          "name": "nabbit.exe",
+          "workingSetBytes": 30543872,
+          "id": 47016,
+          "present": true,
+          "cpuSeconds": 0.3125
+        },
+        {
+          "parent": 47016,
+          "name": "conhost.exe",
+          "workingSetBytes": 11354112,
+          "id": 40316,
+          "present": true,
+          "cpuSeconds": 0.0625
+        }
+      ],
+      "elapsedMs": 18000.0105,
+      "totalCpuSeconds": 0.015625,
+      "workingSetBytes": 41897984
+    },
+    {
+      "processes": [
+        {
+          "parent": 26016,
+          "name": "nabbit.exe",
+          "workingSetBytes": 30543872,
+          "id": 47016,
+          "present": true,
+          "cpuSeconds": 0.3125
+        },
+        {
+          "parent": 47016,
+          "name": "conhost.exe",
+          "workingSetBytes": 11354112,
+          "id": 40316,
+          "present": true,
+          "cpuSeconds": 0.0625
+        }
+      ],
+      "elapsedMs": 19471.9828,
+      "totalCpuSeconds": 0.015625,
+      "workingSetBytes": 41897984
+    },
+    {
+      "processes": [
+        {
+          "parent": 26016,
+          "name": "nabbit.exe",
+          "workingSetBytes": 30543872,
+          "id": 47016,
+          "present": true,
+          "cpuSeconds": 0.3125
+        },
+        {
+          "parent": 47016,
+          "name": "conhost.exe",
+          "workingSetBytes": 11354112,
+          "id": 40316,
+          "present": true,
+          "cpuSeconds": 0.0625
+        }
+      ],
+      "elapsedMs": 20861.2154,
+      "totalCpuSeconds": 0.015625,
+      "workingSetBytes": 41897984
+    },
+    {
+      "processes": [
+        {
+          "parent": 26016,
+          "name": "nabbit.exe",
+          "workingSetBytes": 30547968,
+          "id": 47016,
+          "present": true,
+          "cpuSeconds": 0.3125
+        },
+        {
+          "parent": 47016,
+          "name": "conhost.exe",
+          "workingSetBytes": 11354112,
+          "id": 40316,
+          "present": true,
+          "cpuSeconds": 0.0625
+        }
+      ],
+      "elapsedMs": 22305.5391,
+      "totalCpuSeconds": 0.015625,
+      "workingSetBytes": 41902080
+    },
+    {
+      "processes": [
+        {
+          "parent": 26016,
+          "name": "nabbit.exe",
+          "workingSetBytes": 30547968,
+          "id": 47016,
+          "present": true,
+          "cpuSeconds": 0.3125
+        },
+        {
+          "parent": 47016,
+          "name": "conhost.exe",
+          "workingSetBytes": 11354112,
+          "id": 40316,
+          "present": true,
+          "cpuSeconds": 0.0625
+        }
+      ],
+      "elapsedMs": 23716.681,
+      "totalCpuSeconds": 0.015625,
+      "workingSetBytes": 41902080
+    },
+    {
+      "processes": [
+        {
+          "parent": 26016,
+          "name": "nabbit.exe",
+          "workingSetBytes": 30547968,
+          "id": 47016,
+          "present": true,
+          "cpuSeconds": 0.3125
+        },
+        {
+          "parent": 47016,
+          "name": "conhost.exe",
+          "workingSetBytes": 11354112,
+          "id": 40316,
+          "present": true,
+          "cpuSeconds": 0.0625
+        }
+      ],
+      "elapsedMs": 25131.59,
+      "totalCpuSeconds": 0.015625,
+      "workingSetBytes": 41902080
+    },
+    {
+      "processes": [
+        {
+          "parent": 26016,
+          "name": "nabbit.exe",
+          "workingSetBytes": 30547968,
+          "id": 47016,
+          "present": true,
+          "cpuSeconds": 0.3125
+        },
+        {
+          "parent": 47016,
+          "name": "conhost.exe",
+          "workingSetBytes": 11354112,
+          "id": 40316,
+          "present": true,
+          "cpuSeconds": 0.0625
+        }
+      ],
+      "elapsedMs": 26510.9767,
+      "totalCpuSeconds": 0.015625,
+      "workingSetBytes": 41902080
+    },
+    {
+      "processes": [
+        {
+          "parent": 26016,
+          "name": "nabbit.exe",
+          "workingSetBytes": 30547968,
+          "id": 47016,
+          "present": true,
+          "cpuSeconds": 0.3125
+        },
+        {
+          "parent": 47016,
+          "name": "conhost.exe",
+          "workingSetBytes": 11354112,
+          "id": 40316,
+          "present": true,
+          "cpuSeconds": 0.0625
+        }
+      ],
+      "elapsedMs": 27926.3664,
+      "totalCpuSeconds": 0.015625,
+      "workingSetBytes": 41902080
+    },
+    {
+      "processes": [
+        {
+          "parent": 26016,
+          "name": "nabbit.exe",
+          "workingSetBytes": 30547968,
+          "id": 47016,
+          "present": true,
+          "cpuSeconds": 0.3125
+        },
+        {
+          "parent": 47016,
+          "name": "conhost.exe",
+          "workingSetBytes": 11354112,
+          "id": 40316,
+          "present": true,
+          "cpuSeconds": 0.0625
+        }
+      ],
+      "elapsedMs": 29443.0826,
+      "totalCpuSeconds": 0.015625,
+      "workingSetBytes": 41902080
+    },
+    {
+      "processes": [
+        {
+          "parent": 26016,
+          "name": "nabbit.exe",
+          "workingSetBytes": 30547968,
+          "id": 47016,
+          "present": true,
+          "cpuSeconds": 0.328125
+        },
+        {
+          "parent": 47016,
+          "name": "conhost.exe",
+          "workingSetBytes": 11354112,
+          "id": 40316,
+          "present": true,
+          "cpuSeconds": 0.0625
+        }
+      ],
+      "elapsedMs": 30936.2696,
+      "totalCpuSeconds": 0.03125,
+      "workingSetBytes": 41902080
+    },
+    {
+      "processes": [
+        {
+          "parent": 26016,
+          "name": "nabbit.exe",
+          "workingSetBytes": 30547968,
+          "id": 47016,
+          "present": true,
+          "cpuSeconds": 0.34375
+        },
+        {
+          "parent": 47016,
+          "name": "conhost.exe",
+          "workingSetBytes": 11354112,
+          "id": 40316,
+          "present": true,
+          "cpuSeconds": 0.0625
+        }
+      ],
+      "elapsedMs": 32487.3304,
+      "totalCpuSeconds": 0.046875,
+      "workingSetBytes": 41902080
+    },
+    {
+      "processes": [
+        {
+          "parent": 26016,
+          "name": "nabbit.exe",
+          "workingSetBytes": 30547968,
+          "id": 47016,
+          "present": true,
+          "cpuSeconds": 0.34375
+        },
+        {
+          "parent": 47016,
+          "name": "conhost.exe",
+          "workingSetBytes": 11354112,
+          "id": 40316,
+          "present": true,
+          "cpuSeconds": 0.0625
+        }
+      ],
+      "elapsedMs": 33988.6263,
+      "totalCpuSeconds": 0.046875,
+      "workingSetBytes": 41902080
+    },
+    {
+      "processes": [
+        {
+          "parent": 26016,
+          "name": "nabbit.exe",
+          "workingSetBytes": 30547968,
+          "id": 47016,
+          "present": true,
+          "cpuSeconds": 0.34375
+        },
+        {
+          "parent": 47016,
+          "name": "conhost.exe",
+          "workingSetBytes": 11354112,
+          "id": 40316,
+          "present": true,
+          "cpuSeconds": 0.0625
+        }
+      ],
+      "elapsedMs": 35468.3832,
+      "totalCpuSeconds": 0.046875,
+      "workingSetBytes": 41902080
+    },
+    {
+      "processes": [
+        {
+          "parent": 26016,
+          "name": "nabbit.exe",
+          "workingSetBytes": 30547968,
+          "id": 47016,
+          "present": true,
+          "cpuSeconds": 0.34375
+        },
+        {
+          "parent": 47016,
+          "name": "conhost.exe",
+          "workingSetBytes": 11354112,
+          "id": 40316,
+          "present": true,
+          "cpuSeconds": 0.0625
+        }
+      ],
+      "elapsedMs": 36862.3587,
+      "totalCpuSeconds": 0.046875,
+      "workingSetBytes": 41902080
+    },
+    {
+      "processes": [
+        {
+          "parent": 26016,
+          "name": "nabbit.exe",
+          "workingSetBytes": 30547968,
+          "id": 47016,
+          "present": true,
+          "cpuSeconds": 0.34375
+        },
+        {
+          "parent": 47016,
+          "name": "conhost.exe",
+          "workingSetBytes": 11354112,
+          "id": 40316,
+          "present": true,
+          "cpuSeconds": 0.0625
+        }
+      ],
+      "elapsedMs": 38268.1758,
+      "totalCpuSeconds": 0.046875,
+      "workingSetBytes": 41902080
+    },
+    {
+      "processes": [
+        {
+          "parent": 26016,
+          "name": "nabbit.exe",
+          "workingSetBytes": 30507008,
+          "id": 47016,
+          "present": true,
+          "cpuSeconds": 0.375
+        },
+        {
+          "parent": 47016,
+          "name": "conhost.exe",
+          "workingSetBytes": 11333632,
+          "id": 40316,
+          "present": true,
+          "cpuSeconds": 0.0625
+        }
+      ],
+      "elapsedMs": 39708.7693,
+      "totalCpuSeconds": 0.078125,
+      "workingSetBytes": 41840640
+    },
+    {
+      "processes": [
+        {
+          "parent": 26016,
+          "name": "nabbit.exe",
+          "workingSetBytes": 30507008,
+          "id": 47016,
+          "present": true,
+          "cpuSeconds": 0.375
+        },
+        {
+          "parent": 47016,
+          "name": "conhost.exe",
+          "workingSetBytes": 11333632,
+          "id": 40316,
+          "present": true,
+          "cpuSeconds": 0.0625
+        }
+      ],
+      "elapsedMs": 41118.7716,
+      "totalCpuSeconds": 0.078125,
+      "workingSetBytes": 41840640
+    },
+    {
+      "processes": [
+        {
+          "parent": 26016,
+          "name": "nabbit.exe",
+          "workingSetBytes": 30507008,
+          "id": 47016,
+          "present": true,
+          "cpuSeconds": 0.390625
+        },
+        {
+          "parent": 47016,
+          "name": "conhost.exe",
+          "workingSetBytes": 11333632,
+          "id": 40316,
+          "present": true,
+          "cpuSeconds": 0.0625
+        }
+      ],
+      "elapsedMs": 42527.1785,
+      "totalCpuSeconds": 0.09375,
+      "workingSetBytes": 41840640
+    },
+    {
+      "processes": [
+        {
+          "parent": 26016,
+          "name": "nabbit.exe",
+          "workingSetBytes": 30507008,
+          "id": 47016,
+          "present": true,
+          "cpuSeconds": 0.390625
+        },
+        {
+          "parent": 47016,
+          "name": "conhost.exe",
+          "workingSetBytes": 11333632,
+          "id": 40316,
+          "present": true,
+          "cpuSeconds": 0.0625
+        }
+      ],
+      "elapsedMs": 43999.0859,
+      "totalCpuSeconds": 0.09375,
+      "workingSetBytes": 41840640
+    },
+    {
+      "processes": [
+        {
+          "parent": 26016,
+          "name": "nabbit.exe",
+          "workingSetBytes": 30507008,
+          "id": 47016,
+          "present": true,
+          "cpuSeconds": 0.40625
+        },
+        {
+          "parent": 47016,
+          "name": "conhost.exe",
+          "workingSetBytes": 11333632,
+          "id": 40316,
+          "present": true,
+          "cpuSeconds": 0.0625
+        }
+      ],
+      "elapsedMs": 45416.0112,
+      "totalCpuSeconds": 0.109375,
+      "workingSetBytes": 41840640
+    },
+    {
+      "processes": [
+        {
+          "parent": 26016,
+          "name": "nabbit.exe",
+          "workingSetBytes": 30507008,
+          "id": 47016,
+          "present": true,
+          "cpuSeconds": 0.40625
+        },
+        {
+          "parent": 47016,
+          "name": "conhost.exe",
+          "workingSetBytes": 11333632,
+          "id": 40316,
+          "present": true,
+          "cpuSeconds": 0.0625
+        }
+      ],
+      "elapsedMs": 46850.79,
+      "totalCpuSeconds": 0.109375,
+      "workingSetBytes": 41840640
+    },
+    {
+      "processes": [
+        {
+          "parent": 26016,
+          "name": "nabbit.exe",
+          "workingSetBytes": 30507008,
+          "id": 47016,
+          "present": true,
+          "cpuSeconds": 0.4375
+        },
+        {
+          "parent": 47016,
+          "name": "conhost.exe",
+          "workingSetBytes": 11333632,
+          "id": 40316,
+          "present": true,
+          "cpuSeconds": 0.0625
+        }
+      ],
+      "elapsedMs": 48299.2205,
+      "totalCpuSeconds": 0.140625,
+      "workingSetBytes": 41840640
+    },
+    {
+      "processes": [
+        {
+          "parent": 26016,
+          "name": "nabbit.exe",
+          "workingSetBytes": 30507008,
+          "id": 47016,
+          "present": true,
+          "cpuSeconds": 0.453125
+        },
+        {
+          "parent": 47016,
+          "name": "conhost.exe",
+          "workingSetBytes": 11333632,
+          "id": 40316,
+          "present": true,
+          "cpuSeconds": 0.0625
+        }
+      ],
+      "elapsedMs": 49754.3466,
+      "totalCpuSeconds": 0.15625,
+      "workingSetBytes": 41840640
+    },
+    {
+      "processes": [
+        {
+          "parent": 26016,
+          "name": "nabbit.exe",
+          "workingSetBytes": 30507008,
+          "id": 47016,
+          "present": true,
+          "cpuSeconds": 0.46875
+        },
+        {
+          "parent": 47016,
+          "name": "conhost.exe",
+          "workingSetBytes": 11333632,
+          "id": 40316,
+          "present": true,
+          "cpuSeconds": 0.0625
+        }
+      ],
+      "elapsedMs": 51177.8209,
+      "totalCpuSeconds": 0.171875,
+      "workingSetBytes": 41840640
+    },
+    {
+      "processes": [
+        {
+          "parent": 26016,
+          "name": "nabbit.exe",
+          "workingSetBytes": 30507008,
+          "id": 47016,
+          "present": true,
+          "cpuSeconds": 0.46875
+        },
+        {
+          "parent": 47016,
+          "name": "conhost.exe",
+          "workingSetBytes": 11333632,
+          "id": 40316,
+          "present": true,
+          "cpuSeconds": 0.0625
+        }
+      ],
+      "elapsedMs": 52572.1775,
+      "totalCpuSeconds": 0.171875,
+      "workingSetBytes": 41840640
+    },
+    {
+      "processes": [
+        {
+          "parent": 26016,
+          "name": "nabbit.exe",
+          "workingSetBytes": 30511104,
+          "id": 47016,
+          "present": true,
+          "cpuSeconds": 0.46875
+        },
+        {
+          "parent": 47016,
+          "name": "conhost.exe",
+          "workingSetBytes": 11333632,
+          "id": 40316,
+          "present": true,
+          "cpuSeconds": 0.0625
+        }
+      ],
+      "elapsedMs": 53972.522,
+      "totalCpuSeconds": 0.171875,
+      "workingSetBytes": 41844736
+    },
+    {
+      "processes": [
+        {
+          "parent": 26016,
+          "name": "nabbit.exe",
+          "workingSetBytes": 30511104,
+          "id": 47016,
+          "present": true,
+          "cpuSeconds": 0.46875
+        },
+        {
+          "parent": 47016,
+          "name": "conhost.exe",
+          "workingSetBytes": 11333632,
+          "id": 40316,
+          "present": true,
+          "cpuSeconds": 0.0625
+        }
+      ],
+      "elapsedMs": 55445.0564,
+      "totalCpuSeconds": 0.171875,
+      "workingSetBytes": 41844736
+    },
+    {
+      "processes": [
+        {
+          "parent": 26016,
+          "name": "nabbit.exe",
+          "workingSetBytes": 30511104,
+          "id": 47016,
+          "present": true,
+          "cpuSeconds": 0.46875
+        },
+        {
+          "parent": 47016,
+          "name": "conhost.exe",
+          "workingSetBytes": 11333632,
+          "id": 40316,
+          "present": true,
+          "cpuSeconds": 0.0625
+        }
+      ],
+      "elapsedMs": 56848.5177,
+      "totalCpuSeconds": 0.171875,
+      "workingSetBytes": 41844736
+    },
+    {
+      "processes": [
+        {
+          "parent": 26016,
+          "name": "nabbit.exe",
+          "workingSetBytes": 30511104,
+          "id": 47016,
+          "present": true,
+          "cpuSeconds": 0.46875
+        },
+        {
+          "parent": 47016,
+          "name": "conhost.exe",
+          "workingSetBytes": 11333632,
+          "id": 40316,
+          "present": true,
+          "cpuSeconds": 0.0625
+        }
+      ],
+      "elapsedMs": 58341.9373,
+      "totalCpuSeconds": 0.171875,
+      "workingSetBytes": 41844736
+    },
+    {
+      "processes": [
+        {
+          "parent": 26016,
+          "name": "nabbit.exe",
+          "workingSetBytes": 30511104,
+          "id": 47016,
+          "present": true,
+          "cpuSeconds": 0.46875
+        },
+        {
+          "parent": 47016,
+          "name": "conhost.exe",
+          "workingSetBytes": 11333632,
+          "id": 40316,
+          "present": true,
+          "cpuSeconds": 0.0625
+        }
+      ],
+      "elapsedMs": 59841.074,
+      "totalCpuSeconds": 0.171875,
+      "workingSetBytes": 41844736
+    },
+    {
+      "processes": [
+        {
+          "parent": 26016,
+          "name": "nabbit.exe",
+          "workingSetBytes": 30511104,
+          "id": 47016,
+          "present": true,
+          "cpuSeconds": 0.46875
+        },
+        {
+          "parent": 47016,
+          "name": "conhost.exe",
+          "workingSetBytes": 11333632,
+          "id": 40316,
+          "present": true,
+          "cpuSeconds": 0.0625
+        }
+      ],
+      "elapsedMs": 61209.2788,
+      "totalCpuSeconds": 0.171875,
+      "workingSetBytes": 41844736
+    }
+  ],
+  "refresh": {
+    "numerator": 10000000.0,
+    "denominator": 166666.0,
+    "hz": 60.000240000960005,
+    "source": "DwmGetCompositionTimingInfo"
+  },
+  "sourceCommit": "9e4967058a7f2ed939cc281a157061b1f743a781",
+  "sourceWorkingTreeDirty": true,
+  "oneCoreCpuPercentOneDecimal": 0.3,
+  "meanSnapshotIntervalMs": 1470.1175024390245,
+  "executableSha256": "b9019848932ffd1ed5132ea541f820fcd198c2b2ee95ed10d3530b2ebe2a15d7",
+  "historicalV0LimitationRetained": true,
+  "noAppOrDescendantActivation": true,
+  "observedWebviewCount": 0,
+  "idleBudgetPass": false,
+  "actualHwnd": 137632,
+  "cpuSeconds": 0.171875,
+  "threadCpu": [
+    {
+      "cpuSeconds": 0.1875,
+      "id": 46900,
+      "name": "main"
+    },
+    {
+      "cpuSeconds": 0.0,
+      "id": 16532,
+      "name": ""
+    },
+    {
+      "cpuSeconds": 0.0,
+      "id": 6152,
+      "name": "nabbit-activity"
+    },
+    {
+      "cpuSeconds": 0.0,
+      "id": 33336,
+      "name": "nabbit-taskbar-theme"
+    },
+    {
+      "cpuSeconds": 0.0,
+      "id": 25916,
+      "name": "nabbit-retention-gc"
+    },
+    {
+      "cpuSeconds": 0.0,
+      "id": 27072,
+      "name": ""
+    },
+    {
+      "cpuSeconds": 0.0,
+      "id": 41276,
+      "name": ""
+    },
+    {
+      "cpuSeconds": 0.0,
+      "id": 41876,
+      "name": "nabbit-island-input"
+    },
+    {
+      "cpuSeconds": 0.0,
+      "id": 33332,
+      "name": ""
+    },
+    {
+      "cpuSeconds": 0.0,
+      "id": 27592,
+      "name": ""
+    },
+    {
+      "cpuSeconds": 0.0,
+      "id": 37992,
+      "name": ""
+    },
+    {
+      "cpuSeconds": 0.0,
+      "id": 35892,
+      "name": ""
+    },
+    {
+      "cpuSeconds": 0.0,
+      "id": 21800,
+      "name": ""
+    }
+  ],
+  "observedChildrenFinalCpuIncludedAfterExit": true,
+  "isolation": {
+    "commandPollingDisabled": true,
+    "realCursorUntouched": true,
+    "clipboardWatcherDisabled": true,
+    "fixedCursorFixture": true,
+    "disposableProfile": true,
+    "displaySettingsUntouched": true,
+    "cdpAndTracingDisabled": true,
+    "osIntegrationsUntouched": true
+  },
+  "measuredAtUtc": "2026-11-26T11:19:10.2592255Z",
+  "observedProcessCount": 2,
+  "machineCpuPercent": 0.023762687697733764,
+  "renderer": "production hybrid native idle",
+  "foregroundChanges": []
+}
