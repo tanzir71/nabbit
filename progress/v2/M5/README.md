@@ -26,7 +26,7 @@ Fresh milestone checks pass: **96 frontend/script tests**, **92 serial Rust test
 
 `m5-readiness.json` verifies source, report and image fingerprints against each original task commit and verifies the current application against V2.7. Older shell, dotfile and PowerShell JSON fingerprints use their original CRLF representation; the audit records exact LF/CRLF conversions without changing content or historical reports. The three unpushed task commits pass a history secret scan. The repository remains public with legacy Pages from `main` `/docs`, no releases and the unchanged two historical repository CI run IDs.
 
-Milestone readiness, fresh checks, status/accessibility captures and publication receipts are recorded in the `m5-*` reports. M5 remains unchecked in the handoff until the milestone push and live Pages verification succeed. No PR, tag, release or repository workflow dispatch is part of this publication; only GitHub's built-in Pages deployment is allowed.
+Milestone readiness, fresh checks, status/accessibility captures and publication receipts are recorded in the `m5-*` reports. Published milestone: `7f0b943`. Built-in Pages run `45816514240` succeeded for that exact commit. Live HTTPS verification confirms M5 metadata, M5 Done/M6 In progress, all 106 source assets, the nested custom 404 and all 1,277 public PNG hashes. Published resources total 462,863 bytes excluding fonts. Repository CI IDs are unchanged. See `m5-deployment.json` and `m5-live-check.json`. The handoff checkbox is recorded only after this proof, in an append-only skip-ci verification receipt. No PR, tag, release or repository workflow dispatch is part of this publication; only GitHub's built-in Pages deployment is allowed.
 
 ## Automated reproduction
 

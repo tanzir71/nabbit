@@ -762,7 +762,7 @@ Commit after every task (§0.1). Lines marked **MILESTONE** are tasks of their o
 - [x] V2.5 Compact states (`7:103`), Peek (`8:119`), Expanded shell with tabs (`10:519`), Drop target (`8:192`), motion (§4.6).
 - [x] V2.6 Keyboard: Alt+Space, Ctrl+1–6, Alt+1–9 (pins), type-to-search, Esc, focus management, tooltips/aria labels.
 - [x] V2.7 Island acceptance §6.7; swap the landing hero visual to a real harness screenshot.
-- [ ] **MILESTONE M5 — Island interface.**
+- [x] **MILESTONE M5 — Island interface.**
 
 ### Phase V3 — Downloads v2
 - [ ] V3.1 Deno sidecar + fetch scripts + engine health (daily check, card `18:260`, island Error state).
