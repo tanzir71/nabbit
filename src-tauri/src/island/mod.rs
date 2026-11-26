@@ -20,6 +20,8 @@ pub mod input;
 #[cfg(windows)]
 mod input_watcher;
 #[cfg_attr(not(windows), allow(dead_code))]
+pub mod keyboard;
+#[cfg_attr(not(windows), allow(dead_code))]
 pub mod model;
 #[cfg_attr(not(windows), allow(dead_code))]
 pub mod motion;
@@ -87,6 +89,52 @@ pub fn island_wake(app: tauri::AppHandle, window: tauri::WebviewWindow) -> Resul
     {
         let _ = (app, window);
         Err("Island visibility is available on Windows".into())
+    }
+}
+#[tauri::command]
+pub fn island_toggle_keyboard(
+    app: tauri::AppHandle,
+    window: tauri::WebviewWindow,
+    trigger: Option<String>,
+) -> Result<(), String> {
+    #[cfg(windows)]
+    {
+        let manager = input_manager(&app)?;
+        let _ = manager.surface_instruction(window.label())?;
+        crate::dispatch_island_shortcut(&app, trigger.as_deref())
+    }
+    #[cfg(not(windows))]
+    {
+        let _ = (app, window, trigger);
+        Err("Island keyboard is available on Windows".into())
+    }
+}
+#[tauri::command]
+pub fn island_keyboard_focus(
+    app: tauri::AppHandle,
+    window: tauri::WebviewWindow,
+    target: keyboard::Target,
+) -> Result<(), String> {
+    #[cfg(windows)]
+    return input_manager(&app)?.request_keyboard_focus(window.label(), target);
+    #[cfg(not(windows))]
+    {
+        let _ = (app, window, target);
+        Err("Island keyboard is available on Windows".into())
+    }
+}
+#[tauri::command]
+pub fn island_keyboard_ready(
+    app: tauri::AppHandle,
+    window: tauri::WebviewWindow,
+    request: u64,
+) -> Result<(), String> {
+    #[cfg(windows)]
+    return input_manager(&app)?.keyboard_ready(window.label(), request);
+    #[cfg(not(windows))]
+    {
+        let _ = (app, window, request);
+        Ok(())
     }
 }
 #[cfg(windows)]

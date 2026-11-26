@@ -758,7 +758,7 @@ Commit after every task (§0.1). Lines marked **MILESTONE** are tasks of their o
 - [x] V2.4 `ActivityEvent` bus + priority queue + `islandStore` reducer with unit tests for every transition in §6.3.
 - [x] **MILESTONE M4 — Island plumbing.**
 - [x] V2.5 Compact states (`7:103`), Peek (`8:119`), Expanded shell with tabs (`10:519`), Drop target (`8:192`), motion (§4.6).
-- [ ] V2.6 Keyboard: Alt+Space, Ctrl+1–6, Alt+1–9 (pins), type-to-search, Esc, focus management, tooltips/aria labels.
+- [x] V2.6 Keyboard: Alt+Space, Ctrl+1–6, Alt+1–9 (pins), type-to-search, Esc, focus management, tooltips/aria labels.
 - [ ] V2.7 Island acceptance §6.7; swap the landing hero visual to a real harness screenshot.
 - [ ] **MILESTONE M5 — Island interface.**
 

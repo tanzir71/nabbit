@@ -29,7 +29,59 @@ pub fn save_settings(
     settings: AppSettings,
 ) -> Result<AppSettings> {
     let previous = state.db.get_settings()?;
-    let saved = state.db.save_settings(&settings)?;
+    let island_key_changed = previous.island_shortcut.trim() != settings.island_shortcut.trim();
+    let legacy_keys_changed = previous.toggle_popover_shortcut != settings.toggle_popover_shortcut
+        || previous.quick_download_shortcut != settings.quick_download_shortcut
+        || previous.clipboard_search_shortcut != settings.clipboard_search_shortcut;
+    if island_key_changed || legacy_keys_changed {
+        crate::island::keyboard::validate_shortcut(&settings).map_err(crate::error::msg)?;
+    }
+    let same_key = previous
+        .island_shortcut
+        .parse::<tauri_plugin_global_shortcut::Shortcut>()
+        .ok()
+        == settings
+            .island_shortcut
+            .trim()
+            .parse::<tauri_plugin_global_shortcut::Shortcut>()
+            .ok();
+    let prebind = island_key_changed
+        && !same_key
+        && !settings.island_shortcut.trim().is_empty()
+        && !crate::island::acceptance_session();
+    if prebind {
+        crate::register_island_shortcut(&app, &settings.island_shortcut)
+            .map_err(crate::error::msg)?;
+    }
+    let saved = match state.db.save_settings(&settings) {
+        Ok(saved) => saved,
+        Err(error) => {
+            if prebind {
+                use tauri_plugin_global_shortcut::GlobalShortcutExt;
+                let _ = app
+                    .global_shortcut()
+                    .unregister(settings.island_shortcut.trim());
+            }
+            return Err(error);
+        }
+    };
+    if island_key_changed
+        && !same_key
+        && !crate::island::acceptance_session()
+        && crate::island::keyboard::validate_shortcut(&previous).is_ok()
+        && !previous.island_shortcut.trim().is_empty()
+    {
+        use tauri_plugin_global_shortcut::GlobalShortcutExt;
+        let _ = app
+            .global_shortcut()
+            .unregister(previous.island_shortcut.trim());
+    }
+    #[cfg(windows)]
+    if island_key_changed {
+        if let Some(manager) = app.try_state::<std::sync::Arc<crate::island::Manager>>() {
+            manager.shortcut_status(None);
+        }
+    }
     if previous.island_activity != saved.island_activity {
         crate::island::activity_bus::publish(
             &app,

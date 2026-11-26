@@ -7,7 +7,9 @@ export function installMockIpc(seed) {
     callbacks = new Map(),
     listeners = new Map();
   let nextId = 1;
-  let surfaceGeneration = 0;
+  let surfaceGeneration = seed.responses?.get_island_surface?.generation ?? 0;
+  let surfaceState = seed.responses?.get_island_surface?.state ?? "idle";
+  let keyboardId = seed.responses?.get_island_surface?.keyboard?.id ?? 0;
   const clone = (value) => (value === undefined ? undefined : globalThis.structuredClone(value));
   const dispatch = (event, payload) => {
     for (const [id, entry] of [...listeners]) {
@@ -56,12 +58,48 @@ export function installMockIpc(seed) {
         );
         value.generation = ++surfaceGeneration;
         value.state = args.state;
+        surfaceState = args.state;
         value.owner = ["idle", "faded", "hidden", "live"].includes(args.state)
           ? "native"
           : "webview";
         value.snapshot = await invoke("get_activity_snapshot");
         dispatch("nabbit://island-surface", value);
         return null;
+      }
+      case "island_toggle_keyboard": {
+        if (
+          args.trigger &&
+          (state.settings.islandShortcut ?? "Alt+Space").toLowerCase() !==
+            args.trigger.toLowerCase()
+        )
+          return null;
+        const snapshot = await invoke("get_activity_snapshot");
+        const view = snapshot.views.find((view) => view.label === seed.label);
+        if (view?.gate === "hidden" || view?.fullscreen) return null;
+        const compact = view?.primary ? "live" : view?.gate === "faded" ? "faded" : "idle";
+        await invoke("island_surface_request", {
+          state: surfaceState === "expanded" ? compact : "expanded",
+        });
+        if (surfaceState === "expanded") await invoke("island_keyboard_focus", { target: "tab" });
+        return null;
+      }
+      case "island_keyboard_focus": {
+        const base = clone(await invoke("get_island_surface"));
+        base.state = surfaceState;
+        base.generation = surfaceGeneration;
+        base.keyboard = { id: ++keyboardId, target: args.target };
+        dispatch("nabbit://island-surface", base);
+        return null;
+      }
+      case "island_keyboard_ready":
+        return null;
+      case "list_island_pins":
+        return clone(seed.responses?.list_island_pins ?? []);
+      case "island_open_pin": {
+        const pins = seed.responses?.list_island_pins ?? [];
+        if (!pins.some((pin) => (args.id ? pin.id === args.id : pin.slot === args.slot)))
+          throw new Error("This pin slot is empty");
+        return null; // Explicit intent only; never launch a real file from a fixture.
       }
       case "island_surface_ack":
         return null;
@@ -137,7 +175,15 @@ export function installMockIpc(seed) {
         state.settings.firstRunAcknowledged = true;
         return clone(state.settings);
       case "list_clipboard_entries":
-        return clone(state.clipboard);
+        return clone(
+          state.clipboard.filter(
+            (entry) =>
+              !args.query ||
+              `${entry.preview} ${entry.content}`
+                .toLocaleLowerCase()
+                .includes(args.query.toLocaleLowerCase()),
+          ),
+        );
       case "list_downloads":
         return clone(state.jobs);
       case "get_engine_status":

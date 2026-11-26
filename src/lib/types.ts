@@ -65,6 +65,7 @@ export interface AppSettings {
   startHidden: boolean;
   showDockIcon: boolean;
   togglePopoverShortcut: string;
+  islandShortcut?: string;
   quickDownloadShortcut: string;
   clipboardSearchShortcut: string;
   defaultQuality: Quality;

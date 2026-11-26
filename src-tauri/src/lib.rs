@@ -4,6 +4,7 @@ mod db;
 mod download;
 mod error;
 mod island;
+mod pins;
 mod retention;
 #[cfg(windows)]
 mod taskbar_theme;
@@ -93,6 +94,11 @@ pub fn run() {
             island::island_clear_hitrect,
             island::island_set_drag,
             island::island_wake,
+            island::island_toggle_keyboard,
+            island::island_keyboard_focus,
+            island::island_keyboard_ready,
+            pins::list_island_pins,
+            pins::island_open_pin,
             island::island_open_settings,
             island::consume_island_settings_intent,
             island::get_island_surface,
@@ -458,8 +464,71 @@ fn toggle_popover(app: &AppHandle<Wry>) -> Result<()> {
     show_popover(app)
 }
 
+pub fn dispatch_island_shortcut(
+    app: &AppHandle<Wry>,
+    trigger: Option<&str>,
+) -> std::result::Result<(), String> {
+    if let Some(trigger) = trigger {
+        let settings = app
+            .state::<AppState>()
+            .db
+            .get_settings()
+            .map_err(|e| e.to_string())?;
+        let requested = trigger
+            .parse::<tauri_plugin_global_shortcut::Shortcut>()
+            .map_err(|e| e.to_string())?;
+        if settings
+            .island_shortcut
+            .trim()
+            .parse::<tauri_plugin_global_shortcut::Shortcut>()
+            .ok()
+            != Some(requested)
+        {
+            return Ok(());
+        }
+    }
+    #[cfg(windows)]
+    if let Some(manager) = app.try_state::<Arc<island::Manager>>() {
+        if manager.toggle_keyboard()? {
+            return Ok(());
+        }
+    }
+    toggle_popover(app).map_err(|e| e.to_string())
+}
+pub fn register_island_shortcut(
+    app: &AppHandle<Wry>,
+    shortcut: &str,
+) -> std::result::Result<(), String> {
+    if shortcut.trim().is_empty() {
+        Ok(())
+    } else {
+        app.global_shortcut()
+            .on_shortcut(shortcut.trim(), |app, shortcut, event| {
+                if event.state != ShortcutState::Pressed {
+                    return;
+                }
+                if let Err(error) = dispatch_island_shortcut(app, Some(&shortcut.to_string())) {
+                    #[cfg(windows)]
+                    if let Some(manager) = app.try_state::<Arc<island::Manager>>() {
+                        manager.shortcut_status(Some(error));
+                    }
+                    #[cfg(not(windows))]
+                    let _ = error;
+                }
+            })
+            .map_err(|e| format!("Island shortcut is unavailable: {e}"))
+    }
+}
 pub fn apply_runtime_settings(app: &AppHandle<Wry>, state: &AppState, settings: &AppSettings) {
     let _ = app.global_shortcut().unregister_all();
+    let island_registration = island::keyboard::validate_shortcut(settings)
+        .and_then(|()| register_island_shortcut(app, &settings.island_shortcut));
+    #[cfg(windows)]
+    if let Some(manager) = app.try_state::<Arc<island::Manager>>() {
+        manager.shortcut_status(island_registration.err());
+    }
+    #[cfg(not(windows))]
+    let _ = island_registration;
 
     if !settings.toggle_popover_shortcut.trim().is_empty() {
         let _ = app.global_shortcut().on_shortcut(

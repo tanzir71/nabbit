@@ -8,6 +8,7 @@ import { connectIslandVisibility } from "../../lib/islandVisibility";
 import { connectIslandActivity, getIslandStore } from "../../lib/islandActivity";
 import { connectIslandSurface, type SurfaceInstruction } from "../../lib/islandSurface";
 import { observeIslandMotion, seedIslandMorph } from "../../lib/islandMotion";
+import { connectIslandKeyboard } from "../../lib/islandKeyboard";
 import {
   activityTab,
   activityTitle,
@@ -44,6 +45,51 @@ export function IslandApp({ suppliedStore }: { suppliedStore?: IslandStore }) {
     [over, setOver] = useState<DropZone | null>(null),
     [notice, setNotice] = useState("");
   const fail = useCallback((reason: unknown) => setNotice(String(reason)), []);
+  const keyboard = useRef<ReturnType<typeof connectIslandKeyboard>>();
+  const keyboardRequest = useRef(-1);
+  const keyboardEntered = useRef(false);
+  useEffect(() => {
+    if (!host.current) return;
+    keyboard.current = connectIslandKeyboard(host.current, store, {
+      toggle: () => {
+        void invoke("island_toggle_keyboard", { trigger: "Alt+Space" }).catch(fail);
+      },
+      pin: (slot) => {
+        void invoke("island_open_pin", { slot, id: null })
+          .then(() => store.getState().dispatch({ type: "collapse" }))
+          .catch(fail);
+      },
+    });
+    return () => {
+      keyboard.current?.dispose();
+      keyboard.current = undefined;
+    };
+  }, [store, fail]);
+  useLayoutEffect(() => {
+    if (model.state !== "expanded") {
+      keyboardEntered.current = false;
+      return;
+    }
+    if (
+      model.state === "expanded" &&
+      instruction?.keyboard &&
+      instruction.keyboard.id >= keyboardRequest.current &&
+      (!keyboardEntered.current || instruction.keyboard.id > keyboardRequest.current)
+    ) {
+      keyboardRequest.current = instruction.keyboard.id;
+      keyboardEntered.current = true;
+      if (instruction.keyboard.target !== "preserve")
+        keyboard.current?.focus(
+          model.filters.searchOpen === "true"
+            ? '[aria-label="Search island"]'
+            : `[data-island-tab="${model.tab}"]`,
+          true,
+          () => {
+            void invoke("island_keyboard_ready", { request: instruction.keyboard?.id }).catch(fail);
+          },
+        );
+    }
+  }, [instruction, model.state, model.tab, model.filters.searchOpen, fail]);
   useLayoutEffect(() => {
     if (!pill.current || !content.current || !outgoing.current) return;
     motion.current = observeIslandMotion(
@@ -85,6 +131,7 @@ export function IslandApp({ suppliedStore }: { suppliedStore?: IslandStore }) {
         type: "tab",
         tab: intent.action === "fileReview" ? "files" : activityTab(intent.item ?? null),
       });
+      if (native()) void invoke("island_keyboard_focus", { target: "tab" }).catch(fail);
       if (intent.action === "audioReview")
         store.getState().dispatch({ type: "filter", name: "preset", value: "audio_mp3" });
       dispatch({ type: "open" });
@@ -310,6 +357,8 @@ export function IslandApp({ suppliedStore }: { suppliedStore?: IslandStore }) {
       }}
       onPointerDown={(event) => {
         if (event.target === host.current) dispatch({ type: "outside" });
+        else if (native() && model.state === "expanded" && event.button === 0)
+          void invoke("island_keyboard_focus", { target: "preserve" }).catch(fail);
       }}
       onDragEnter={(event) => {
         if (
@@ -384,7 +433,7 @@ export function IslandApp({ suppliedStore }: { suppliedStore?: IslandStore }) {
             <DropContent payload={payload} over={over} setOver={setOver} />
           ) : (
             <Suspense fallback={<div className="island-empty">Opening island…</div>}>
-              <Expanded model={model} dispatch={dispatch} act={act} />
+              <Expanded model={model} dispatch={dispatch} act={act} onError={fail} />
             </Suspense>
           )}
         </div>

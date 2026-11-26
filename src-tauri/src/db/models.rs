@@ -108,6 +108,8 @@ pub struct AppSettings {
     pub start_hidden: bool,
     pub show_dock_icon: bool,
     pub toggle_popover_shortcut: String,
+    #[serde(default = "default_island_shortcut")]
+    pub island_shortcut: String,
     pub quick_download_shortcut: String,
     pub clipboard_search_shortcut: String,
     pub default_quality: String,
@@ -120,6 +122,13 @@ pub struct AppSettings {
     pub last_tab: String,
 }
 
+fn default_island_shortcut() -> String {
+    if cfg!(windows) {
+        "Alt+Space".into()
+    } else {
+        String::new()
+    }
+}
 impl Default for AppSettings {
     fn default() -> Self {
         Self {
@@ -138,6 +147,7 @@ impl Default for AppSettings {
             start_hidden: true,
             show_dock_icon: false,
             toggle_popover_shortcut: "CmdOrCtrl+Shift+V".into(),
+            island_shortcut: default_island_shortcut(),
             quick_download_shortcut: "CmdOrCtrl+Shift+D".into(),
             clipboard_search_shortcut: "CmdOrCtrl+Shift+C".into(),
             default_quality: "1080p".into(),

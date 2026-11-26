@@ -4,7 +4,9 @@ import { IconButton } from "../../components/IconButton";
 import { tabs, type IslandModel, type IslandAction } from "../../store/islandStore";
 import { IslandAsset, type AssetGroup } from "./IslandAsset";
 import type { IslandIntent } from "./CompactContent";
+import { focusIslandTarget } from "../../lib/islandKeyboard";
 const Body = lazy(() => import("./ModuleBody"));
+const Search = lazy(() => import("./SearchContent"));
 const labels = {
   nab: "Nab",
   notes: "Notes",
@@ -33,18 +35,30 @@ export default function ExpandedShell({
   model,
   dispatch,
   act,
+  onError,
 }: {
   model: IslandModel;
   dispatch: (action: IslandAction) => void;
   act: (intent: IslandIntent) => void;
+  onError: (reason: unknown) => void;
 }) {
   const scroll = useRef<HTMLDivElement>(null),
     memory = useRef(model.scroll),
     restoring = useRef(false);
+  const searchOpen = model.filters.searchOpen === "true";
   memory.current = model.scroll;
+  useLayoutEffect(() => {
+    if (searchOpen && scroll.current)
+      return focusIslandTarget(scroll.current, '[aria-label="Search island"]', true);
+  }, [searchOpen]);
   useLayoutEffect(() => {
     const element = scroll.current;
     if (!element) return;
+    if (searchOpen) {
+      restoring.current = false;
+      element.scrollTop = 0;
+      return;
+    }
     const wanted = memory.current[model.tab] ?? 0;
     restoring.current = wanted > 0;
     const restore = () => {
@@ -68,35 +82,40 @@ export default function ExpandedShell({
       element.removeEventListener("wheel", manual);
       element.removeEventListener("touchstart", manual);
     };
-  }, [model.tab]);
+  }, [model.tab, searchOpen]);
   return (
     <div className="island-expanded-content">
       <nav className="island-tabbar" aria-label="Island modules">
         {tabs.map((tab, index) => (
           <Tab
             key={tab}
-            selected={model.tab === tab}
+            selected={!searchOpen && model.tab === tab}
             aria-label={labels[tab]}
-            title={labels[tab]}
+            title={`${labels[tab]} (Ctrl+${index + 1})`}
+            aria-keyshortcuts={`Control+${index + 1}`}
+            data-island-tab={tab}
             className="island-module-tab"
-            onClick={() => dispatch({ type: "tab", tab })}
+            onClick={() => {
+              dispatch({ type: "filter", name: "searchOpen", value: "false" });
+              dispatch({ type: "tab", tab });
+            }}
             style={{ "--tab-index": index } as React.CSSProperties}
           >
-            <IslandAsset group={groups[model.tab]} name={icons[index]} />
-            {model.tab === tab && labels[tab]}
+            <IslandAsset group={searchOpen ? "search" : groups[model.tab]} name={icons[index]} />
+            {!searchOpen && model.tab === tab && labels[tab]}
           </Tab>
         ))}
         <span className="island-spacer" />
         <IconButton
           label="Search"
           className="island-toolbar-button"
-          onClick={() =>
+          onClick={() => {
             dispatch({
               type: "filter",
               name: "searchOpen",
               value: model.filters.searchOpen === "true" ? "false" : "true",
-            })
-          }
+            });
+          }}
         >
           <IslandAsset group={groups[model.tab]} name="iconSearch" />
         </IconButton>
@@ -119,21 +138,11 @@ export default function ExpandedShell({
         ref={scroll}
         className="island-module-scroll"
         onScroll={(event) =>
+          !searchOpen &&
           !restoring.current &&
           dispatch({ type: "scroll", tab: model.tab, offset: event.currentTarget.scrollTop })
         }
       >
-        {model.filters.searchOpen === "true" && (
-          <label className="island-search">
-            <IslandAsset group={groups[model.tab]} name="iconSearch" />
-            <input
-              aria-label="Search island"
-              placeholder="Search notes, links, files…"
-              value={model.searchText}
-              onChange={(event) => dispatch({ type: "search", text: event.target.value })}
-            />
-          </label>
-        )}
         <Suspense
           fallback={
             <p className="island-empty" role="status">
@@ -141,7 +150,16 @@ export default function ExpandedShell({
             </p>
           }
         >
-          <Body model={model} dispatch={dispatch} act={act} />
+          {searchOpen ? (
+            <Search
+              query={model.searchText}
+              setQuery={(text) => dispatch({ type: "search", text })}
+              collapse={() => dispatch({ type: "collapse" })}
+              fail={onError}
+            />
+          ) : (
+            <Body model={model} dispatch={dispatch} act={act} />
+          )}
         </Suspense>
       </div>
     </div>

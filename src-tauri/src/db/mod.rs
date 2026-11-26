@@ -108,6 +108,12 @@ impl Database {
                 enabled INTEGER NOT NULL DEFAULT 1,
                 created_at TEXT NOT NULL
             );
+            CREATE TABLE IF NOT EXISTS pins (
+                id TEXT PRIMARY KEY, kind TEXT NOT NULL, path TEXT NOT NULL, label TEXT,
+                slot INTEGER, sort TEXT NOT NULL DEFAULT 'name', verb TEXT,
+                added_at TEXT, last_used TEXT
+            );
+            CREATE UNIQUE INDEX IF NOT EXISTS idx_pin_slot ON pins(slot) WHERE slot IS NOT NULL;
             ",
         )?;
         Ok(())
@@ -128,6 +134,46 @@ impl Database {
         Ok(())
     }
 
+    pub fn list_pins(&self) -> Result<Vec<crate::pins::Pin>> {
+        let conn = self
+            .conn
+            .lock()
+            .map_err(|_| msg("database lock poisoned"))?;
+        let mut stmt=conn.prepare("SELECT id, kind, path, label, slot FROM pins ORDER BY COALESCE(slot, 1000000), added_at, id")?;
+        let rows = stmt
+            .query_map([], |row| {
+                Ok(crate::pins::Pin {
+                    id: row.get(0)?,
+                    kind: row.get(1)?,
+                    path: row.get(2)?,
+                    label: row.get(3)?,
+                    slot: row.get(4)?,
+                })
+            })?
+            .collect::<std::result::Result<Vec<_>, _>>()?;
+        Ok(rows)
+    }
+    pub fn pin_target(&self, id: Option<&str>, slot: Option<u8>) -> Result<crate::pins::Pin> {
+        if !matches!((id, slot), (Some(_), None) | (None, Some(1..=9))) {
+            return Err(msg("Choose a pin or a slot from 1 to 9"));
+        }
+        self.list_pins()?
+            .into_iter()
+            .find(|pin| {
+                id.is_some_and(|id| id == pin.id) || slot.is_some_and(|slot| Some(slot) == pin.slot)
+            })
+            .ok_or_else(|| msg("This pin slot is empty"))
+    }
+    pub fn touch_pin(&self, id: &str) -> Result<()> {
+        self.conn
+            .lock()
+            .map_err(|_| msg("database lock poisoned"))?
+            .execute(
+                "UPDATE pins SET last_used=?1 WHERE id=?2",
+                params![Utc::now().to_rfc3339(), id],
+            )?;
+        Ok(())
+    }
     pub fn get_settings(&self) -> Result<AppSettings> {
         let conn = self
             .conn
@@ -545,6 +591,7 @@ fn backup_corrupt_db(app_data_dir: &Path, db_path: &Path) {
 }
 
 fn normalize_settings(mut settings: AppSettings) -> AppSettings {
+    settings.island_shortcut = settings.island_shortcut.trim().to_owned();
     settings.island_activity = settings.island_activity.normalized();
     settings.island.monitor_id = settings
         .island
@@ -827,6 +874,74 @@ mod tests {
             .starts_with("nabbit.corrupt.")));
     }
 
+    #[test]
+    fn keyboard_defaults_extend_old_settings_without_replacing_custom_keys() {
+        let dir = tempfile_dir();
+        let db = Database::open(&dir).unwrap();
+        let mut legacy = serde_json::to_value(AppSettings::default()).unwrap();
+        for field in ["islandShortcut", "island", "islandActivity", "theme"] {
+            legacy.as_object_mut().unwrap().remove(field);
+        }
+        legacy["togglePopoverShortcut"] = "Ctrl+Alt+F8".into();
+        legacy["quickDownloadShortcut"] = "Ctrl+Alt+F7".into();
+        db.set_setting_value("app_settings", &legacy.to_string())
+            .unwrap();
+        let mut settings = db.get_settings().unwrap();
+        assert_eq!(settings.toggle_popover_shortcut, "Ctrl+Alt+F8");
+        assert_eq!(
+            settings.island_shortcut,
+            if cfg!(windows) { "Alt+Space" } else { "" }
+        );
+        settings.island_shortcut = " Ctrl+Alt+F9 ".into();
+        db.save_settings(&settings).unwrap();
+        drop(db);
+        let settings = Database::open(&dir).unwrap().get_settings().unwrap();
+        assert_eq!(settings.island_shortcut, "Ctrl+Alt+F9");
+        assert_eq!(settings.quick_download_shortcut, "Ctrl+Alt+F7");
+    }
+    #[test]
+    fn keyboard_pin_slots_are_stable_unique_and_survive_reopen() {
+        let dir = tempfile_dir();
+        let db = Database::open(&dir).unwrap();
+        for slot in 1..=9 {
+            db.conn
+                .lock()
+                .unwrap()
+                .execute(
+                    "INSERT INTO pins(id,kind,path,slot) VALUES(?1,'file',?2,?3)",
+                    params![
+                        format!("pin-{slot}"),
+                        format!("C:\\Fixture\\{slot}.txt"),
+                        slot
+                    ],
+                )
+                .unwrap();
+        }
+        for slot in 1..=9 {
+            assert_eq!(
+                db.pin_target(None, Some(slot)).unwrap().id,
+                format!("pin-{slot}")
+            );
+        }
+        assert!(db.pin_target(None, Some(0)).is_err());
+        assert!(db.pin_target(None, Some(10)).is_err());
+        assert!(db.pin_target(None, None).is_err());
+        assert!(db.pin_target(Some("pin-1"), Some(1)).is_err());
+        assert!(db
+            .conn
+            .lock()
+            .unwrap()
+            .execute(
+                "INSERT INTO pins(id,kind,path,slot) VALUES('duplicate','file','x',1)",
+                []
+            )
+            .is_err());
+        db.touch_pin("pin-9").unwrap();
+        drop(db);
+        let db = Database::open(&dir).unwrap();
+        assert_eq!(db.list_pins().unwrap().len(), 9);
+        assert_eq!(db.pin_target(Some("pin-9"), None).unwrap().slot, Some(9));
+    }
     fn tempfile_dir() -> PathBuf {
         let dir = std::env::temp_dir().join(format!("nabbit-test-{}", Uuid::new_v4()));
         fs::create_dir_all(&dir).unwrap();

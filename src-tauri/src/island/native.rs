@@ -35,6 +35,8 @@ use windows_sys::{
 
 const REFRESH: u32 = WM_APP + 91;
 const INPUT_REFRESH: u32 = WM_APP + 92;
+#[path = "keyboard_win.rs"]
+mod keyboard_win;
 #[path = "web.rs"]
 mod web;
 static MOUSE_LEFT: AtomicBool = AtomicBool::new(false);
@@ -60,6 +62,7 @@ pub struct Host {
 #[derive(Clone, Serialize)]
 #[serde(rename_all = "camelCase")]
 pub struct Snapshot {
+    pub keyboard: super::keyboard::Keyboard,
     pub surfaces: HashMap<String, super::surface::Session>,
     pub activity: super::activity::Snapshot,
     pub activity_scheduler: super::activity_bus::SchedulerStats,
@@ -77,6 +80,8 @@ pub struct Snapshot {
     pub last_error: Option<String>,
 }
 struct State {
+    keyboard: super::keyboard::Keyboard,
+    keyboard_fixture: Option<super::keyboard::FixtureFocus>,
     reduced_motion: bool,
     pending_settings: bool,
     surfaces: HashMap<String, super::surface::Session>,
@@ -171,6 +176,12 @@ pub fn start(app: &AppHandle, preferences: Preferences) -> Result<(), String> {
             stopped: AtomicBool::new(false),
             hook: AtomicIsize::new(0),
             state: Mutex::new(State {
+                keyboard: super::keyboard::Keyboard {
+                    injected_focus: super::acceptance_session(),
+                    ..Default::default()
+                },
+                keyboard_fixture: super::acceptance_session()
+                    .then(super::keyboard::FixtureFocus::default),
                 reduced_motion: web::reduced_motion(),
                 pending_settings: false,
                 surfaces: HashMap::new(),
@@ -256,6 +267,7 @@ impl Manager {
         let mut hosts: Vec<_> = state.hosts.values().cloned().collect();
         hosts.sort_by(|a, b| a.placement.label.cmp(&b.placement.label));
         Snapshot {
+            keyboard: state.keyboard.clone(),
             surfaces: state.surfaces.clone(),
             activity: self.app.state::<Arc<super::activity_bus::Bus>>().snapshot(),
             activity_scheduler: self.app.state::<Arc<super::activity_bus::Bus>>().stats(),
@@ -343,6 +355,7 @@ impl Manager {
         // A failed device update can be retried by the next system/config event.
         for (label, host) in &previous {
             if !desired.iter().any(|p| &p.label == label) {
+                self.release_keyboard(label);
                 if let Some(window) = self.app.get_webview_window(label) {
                     let _ = window.destroy();
                 }
@@ -521,6 +534,7 @@ impl Manager {
         }
         let hosts = std::mem::take(&mut lock(&self.state).hosts);
         for host in hosts.values() {
+            self.release_keyboard(&host.placement.label);
             if let Some(window) = self.app.get_webview_window(&host.placement.label) {
                 let _ = window.destroy();
             }
@@ -587,6 +601,12 @@ impl Manager {
             .values()
             .map(|host| host.placement.clone())
             .collect();
+        if let Some(sample) = sample.filter(|s| s.valid()) {
+            state.desktop.cursor = Point {
+                x: sample.x.round() as i32,
+                y: sample.y.round() as i32,
+            };
+        }
         let mut delay = 500;
         let mut changed = false;
         let mut facts = vec![];
@@ -789,6 +809,7 @@ impl Manager {
         let fixture = lock(&self.state).foreground_fixture.clone();
         let foreground = fixture.unwrap_or_else(super::foreground::read);
         lock(&self.state).foreground = foreground;
+        self.observe_keyboard();
     }
     pub fn activity_changed(&self) {
         for input in lock(&self.state).inputs.values_mut() {
@@ -947,6 +968,9 @@ impl Manager {
                             let _ = app.run_on_main_thread(move || {
                                 if let Some(manager) = weak.upgrade() {
                                     if let Some(events)=request.activity{for event in events{super::activity_bus::publish(&manager.app,event);}}
+                                    if request.toggle_keyboard.unwrap_or(false){let _=manager.toggle_keyboard();}
+                                    if let Some(shortcut)=request.shortcut{let _=crate::dispatch_island_shortcut(&manager.app,Some(&shortcut));}
+                                    if let Some(window)=request.keyboard_foreground{if let Some(port)=lock(&manager.state).keyboard_fixture.as_mut(){port.current=super::keyboard::WindowId{hwnd:window,process:9001};}manager.observe_keyboard();manager.watcher.wake();}
                                     if let Some(gate)=request.gate{lock(&manager.state).gate_override=Some(gate);manager.watcher.wake();}
                                     if request.live_foreground.unwrap_or(false){let mut state=lock(&manager.state);state.foreground_fixture=None;state.gate_override=None;drop(state);manager.watcher.system_changed();}
                                     if let Some(foreground)=request.foreground{let mut state=lock(&manager.state);state.foreground_fixture=Some(foreground.clone());state.foreground=foreground;state.gate_override=None;drop(state);manager.watcher.system_changed();}
@@ -1016,6 +1040,11 @@ impl Manager {
 }
 #[derive(Deserialize)]
 struct Request {
+    shortcut: Option<String>,
+    #[serde(rename = "toggleKeyboard")]
+    toggle_keyboard: Option<bool>,
+    #[serde(rename = "keyboardForeground")]
+    keyboard_foreground: Option<u64>,
     surface: Option<SurfaceRequest>,
     activity: Option<Vec<super::activity::ActivityEvent>>,
     #[serde(rename = "liveForeground")]

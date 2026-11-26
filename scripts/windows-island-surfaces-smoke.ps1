@@ -1,4 +1,4 @@
-param([string]$Exe='src-tauri/target/release/nabbit.exe',[string]$Prefix='v25-native',[ValidateSet(1,1.5)][double]$Scale=1)
+param([string]$Exe='src-tauri/target/release/nabbit.exe',[string]$Prefix='v25-native',[ValidateSet(1,1.5)][double]$Scale=1,[switch]$Keyboard)
 $ErrorActionPreference='Stop'
 if($Prefix -notmatch '^[a-z0-9-]+$'){throw 'Invalid evidence prefix'}
 $root=Split-Path -Parent $PSScriptRoot
@@ -84,6 +84,7 @@ try {
  $env:NABBIT_ISLAND_LAYOUT=Join-Path $trial 'layout.json';WriteJson $env:NABBIT_ISLAND_LAYOUT @{monitors=@(@{id='primary';name='Fixture primary';primary=$true;bounds=@{x=0;y=0;width=1920;height=1080};workArea=@{x=0;y=0;width=1920;height=1032};scaleFactor=$Scale});cursor=@{x=120;y=400}}
  $env:NABBIT_ACCEPTANCE_CURSOR=Join-Path $trial 'cursor.json';Cursor 1000 700
  & python (Join-Path $root 'spikes/island/seed_acceptance.py') $env:NABBIT_APP_DATA_DIR;Assert ($LASTEXITCODE -eq 0) 'Seeding failed'
+ if($Keyboard){& python (Join-Path $root 'scripts/seed-island-keyboard.py') $env:NABBIT_APP_DATA_DIR;Assert ($LASTEXITCODE -eq 0) 'Keyboard seeding failed'}
  $listener=[Net.Sockets.TcpListener]::new([Net.IPAddress]::Loopback,0);$listener.Start();$port=$listener.LocalEndpoint.Port;$listener.Stop();$endpoint="http://127.0.0.1:$port"
  $env:WEBVIEW2_ADDITIONAL_BROWSER_ARGUMENTS="--remote-debugging-port=$port --remote-debugging-address=127.0.0.1"
  $appProcess=Start-Process -FilePath $exePath -WorkingDirectory $root -WindowStyle Hidden -RedirectStandardError (Join-Path $trial 'stderr.log') -PassThru
@@ -91,6 +92,13 @@ try {
  $focusBaseline=[SurfaceWindowProbe]::GetForegroundWindow();for($i=0;$i -lt 20 -and $focusBaseline -eq [IntPtr]::Zero;$i++){Start-Sleep -Milliseconds 100;$focusBaseline=[SurfaceWindowProbe]::GetForegroundWindow()}
  Assert ($s.inputWatcher.ownForegroundEvents -eq 0) 'Startup activated an island window'
  Check $s;Assert ($s.webviews -eq 0) 'Idle allocated a webview';$records+=@{case='idle';snapshot=$s};$captures+=Capture 'idle'
+ if($Keyboard){
+  Assert $s.keyboard.injectedFocus 'Focus seam must be injected for automated keyboard runs'
+  $null=Command @{shortcut='Alt+Space'};$s=Mode 'expanded' $true;Check $s;$records+=@{case='keyboard-open';snapshot=$s}
+  Push-Location $root
+  try{& node scripts/verify-island-keyboard-native.mjs $endpoint $env:NABBIT_ACCEPTANCE_CURSOR $env:NABBIT_ACCEPTANCE_COMMAND_DIR $folder $Prefix $appProcess.Id;Assert ($LASTEXITCODE -eq 0) 'Native keyboard flow failed'}finally{Pop-Location}
+  Cursor 1000 700;$s=Mode 'idle' $false;Check $s;$records+=@{case='keyboard-closed';snapshot=$s}
+ }else{
  $null=Command @{activity=@(@{kind='downloadProgress';jobId='surface-job';title='Tiny tray app in Rust, full walkthrough';percent=38;speed='4.2 MB/s';eta='1:12'})}
  $s=Mode 'live' $false;Start-Sleep -Milliseconds 450;Check $s;Assert ($s.webviews -eq 0) 'Live allocated a webview';$captures+=Capture 'download';$records+=@{case='native-live';snapshot=$s}
  $variants=@(
@@ -117,14 +125,15 @@ try {
  try{& node scripts/verify-island-surfaces-native.mjs $endpoint $env:NABBIT_ACCEPTANCE_CURSOR $env:NABBIT_ACCEPTANCE_COMMAND_DIR $folder $Prefix $appProcess.Id;Assert ($LASTEXITCODE -eq 0) 'Native WebView surface flow failed'}finally{Pop-Location}
  Cursor 1000 700;$null=Command @{surface=@{label='island';state='live'}};$s=Mode 'live' $false;Check $s
  Assert ($s.webviews -eq 0) 'Closing larger view retained WebView2';$records+=@{case='closed-to-native';snapshot=$s}
+ }
  Start-Sleep -Milliseconds 400;$quietBefore=(Command).snapshot;Start-Sleep -Milliseconds 750;$quietAfter=(Command).snapshot
  Assert ($quietBefore.hosts[0].commits -eq $quietAfter.hosts[0].commits) 'Unchanged compact scene kept committing';Assert ($quietAfter.webviews -eq 0) 'Quiet compact scene allocated a WebView'
  $records+=@{case='quiet-native';before=$quietBefore;after=$quietAfter}
  $null=Command @{quit=$true};Assert ($appProcess.WaitForExit(15000)) 'Graceful exit failed';$appProcess=$null
  & python -c 'import sqlite3,sys;c=sqlite3.connect(sys.argv[1]);assert c.execute("SELECT COUNT(*) FROM downloads").fetchone()[0]==0' (Join-Path $env:NABBIT_APP_DATA_DIR 'nabbit.sqlite3');Assert ($LASTEXITCODE -eq 0) 'Smoke started a download'
- $report=@{records=$records;captures=$captures;scale=$Scale;executableSha256=(Get-FileHash -LiteralPath $exePath -Algorithm SHA256).Hash.ToLowerInvariant();isolatedProfile=$true;realCursorUntouched=$true;displaySettingsUntouched=$true;foregroundUnchanged=($externalForegroundChanges.Count -eq 0);externalForegroundChanges=$externalForegroundChanges;noAppOrDescendantActivation=$true;noDownloads=$true;gracefulExit=$true}
+ $report=@{records=$records;captures=$captures;scale=$Scale;keyboardMode=$Keyboard.IsPresent;executableSha256=(Get-FileHash -LiteralPath $exePath -Algorithm SHA256).Hash.ToLowerInvariant();isolatedProfile=$true;realCursorUntouched=$true;displaySettingsUntouched=$true;foregroundUnchanged=($externalForegroundChanges.Count -eq 0);externalForegroundChanges=$externalForegroundChanges;noAppOrDescendantActivation=$true;noDownloads=$true;gracefulExit=$true}
  $reportPath=Join-Path $folder "$Prefix-surfaces.json";if(Test-Path -LiteralPath $reportPath){throw 'Evidence already exists'};WriteJson $reportPath $report
- Write-Output "Passed native compact / Peek / Expanded / Drop ownership flow at $Scale scale."
+ if($Keyboard){Write-Output "Passed native keyboard and focus flow at $Scale scale."}else{Write-Output "Passed native compact / Peek / Expanded / Drop ownership flow at $Scale scale."}
 }finally{
  if($appProcess -and -not $appProcess.HasExited){Stop-Process -Id $appProcess.Id -Force;$appProcess.WaitForExit()}
  foreach($name in $names){if($null -eq $original[$name]){Remove-Item -LiteralPath ("Env:"+$name) -ErrorAction SilentlyContinue}else{[Environment]::SetEnvironmentVariable($name,$original[$name],'Process')}}

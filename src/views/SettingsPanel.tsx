@@ -9,6 +9,7 @@ import { api } from "../lib/ipc";
 import { useAppStore } from "../store/useAppStore";
 import type { AppSettings, AppUpdateStatus, Quality } from "../lib/types";
 import { IslandSettings } from "./IslandSettings";
+import { IslandShortcutField } from "./IslandShortcutField";
 
 const qualities: Array<{ label: string; value: Quality }> = [
   { label: "Best", value: "best" },
@@ -86,6 +87,13 @@ export function SettingsPanel({ onClose }: { onClose: () => void }) {
               onChange={(event) => patch({ clipboardSearchShortcut: event.target.value })}
             />
           </div>
+          <IslandShortcutField
+            value={settings.islandShortcut ?? "Alt+Space"}
+            save={async (islandShortcut) => {
+              const current = useAppStore.getState().settings;
+              if (current) await saveSettings({ ...current, islandShortcut });
+            }}
+          />
         </Section>
 
         <IslandSettings value={settings.island} />

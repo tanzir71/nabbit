@@ -8,6 +8,7 @@ use crate::island::{
 #[derive(Clone, Serialize)]
 #[serde(rename_all = "camelCase")]
 pub struct Instruction {
+    keyboard: Option<crate::island::keyboard::Hint>,
     focus_tab: Option<String>,
     label: String,
     generation: u64,
@@ -19,7 +20,7 @@ pub struct Instruction {
     height: f32,
     snapshot: ActivitySnapshot,
 }
-fn base(view: Option<&View>) -> Mode {
+pub(super) fn base(view: Option<&View>) -> Mode {
     match view {
         Some(view) if view.gate == Gate::Hidden => Mode::Hidden,
         Some(view) if view.primary.is_some() => Mode::Live,
@@ -97,6 +98,7 @@ impl Manager {
             input.dirty = true;
         }
         drop(state);
+        self.release_keyboard(label);
         if let Some(host) = host {
             GRAPHICS.with(|graphics| {
                 if let Some(renderer) = graphics.borrow_mut().get_mut(&host.hwnd) {
@@ -123,6 +125,10 @@ impl Manager {
             host.placement.shape,
         );
         Ok(Instruction {
+            keyboard: surface
+                .web_allocated
+                .then(|| state.keyboard.hint(label))
+                .flatten(),
             focus_tab: surface.focus_tab.clone(),
             label: label.into(),
             generation: surface.generation,
@@ -180,6 +186,7 @@ impl Manager {
                             .map_err(|e| e.to_string())
                     })?;
                     if destroy {
+                        this.release_keyboard(&label);
                         if let Some(window) = this.app.get_webview_window(&label) {
                             window.destroy().map_err(|e| e.to_string())?;
                         }
@@ -202,6 +209,9 @@ impl Manager {
                             }
                             input.model.cancel_drag();
                         }
+                    }
+                    if !destroy {
+                        this.acquire_keyboard(&label)?;
                     }
                     this.watcher.wake();
                     Ok(())
@@ -264,7 +274,7 @@ impl Manager {
             let label = &host.placement.label;
             let view = snapshot.views.iter().find(|view| &view.label == label);
             let compact = base(view);
-            let (changed, open, allocated, native_owner) = {
+            let (changed, open, allocated, native_owner, closing) = {
                 let mut state = lock(&self.state);
                 let surface = state.surfaces.entry(label.clone()).or_default();
                 let requested = surface.pending.take();
@@ -284,14 +294,27 @@ impl Manager {
                     } else {
                         desired
                     };
+                let closing = !surface.state.compact() && desired.compact();
                 let changed = surface.request(desired);
                 let open = !surface.state.compact() && !surface.web_allocated && !surface.opening;
                 if open {
                     surface.opening = true;
                 }
-                (changed, open, surface.web_allocated, !surface.web_owner)
+                (
+                    changed,
+                    open,
+                    surface.web_allocated,
+                    !surface.web_owner,
+                    closing,
+                )
             };
             let scene = presentation::compact(view, host.placement.shape);
+            if closing {
+                self.release_keyboard(label);
+                if let Some(visibility) = lock(&self.state).visibility.get_mut(label) {
+                    visibility.release();
+                }
+            }
             let motion = GRAPHICS.with(|graphics| -> Result<_, String> {
                 let mut graphics = graphics.borrow_mut();
                 let renderer = graphics.get_mut(&host.hwnd).ok_or("Missing renderer")?;
@@ -536,6 +559,7 @@ impl Manager {
                     .focus_tab = Some(tab.into());
             }
             let _ = self.request_surface(label, Mode::Expanded);
+            let _ = self.request_keyboard_focus(label, crate::island::keyboard::Target::Tab);
         }
     }
 }
