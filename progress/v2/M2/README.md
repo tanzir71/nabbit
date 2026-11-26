@@ -1,5 +1,13 @@
 # M2 evidence — foundations in progress
 
+## V1.6 — shared screenshot harness
+
+[Implementation and automated evidence](V1.6.md). The reusable runner captures
+seven scenarios through explicit mocked Tauri IPC, in light/dark at 1×/1.5×.
+The `v16-*` manifest, validation reports and 28 PNGs cover deterministic repeats,
+actual font/theme/transparency pixels, immutable evidence and failure cleanup.
+All six foundation tasks are checked; M2 publication remains the next pass.
+
 ## V1.5 — capsule mark and icons
 
 [Implementation, automated evidence and reproduction](V1.5.md). Original Figma

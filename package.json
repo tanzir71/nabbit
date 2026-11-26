@@ -23,7 +23,9 @@
     "build:components": "node scripts/build-components.mjs",
     "verify:bundles": "node scripts/verify-entry-bundles.mjs",
     "icons": "node scripts/generate-brand-icons.mjs",
-    "verify:icons": "node scripts/generate-brand-icons.mjs --check"
+    "verify:icons": "node scripts/generate-brand-icons.mjs --check",
+    "screenshots": "npm run build:components && node scripts/screenshots/run.mjs",
+    "screenshots:install": "playwright install chromium"
   },
   "dependencies": {
     "@tauri-apps/api": "^2.12.5",
@@ -55,6 +57,7 @@
     "eslint-plugin-react-hooks": "^5.1.0",
     "eslint-plugin-react-refresh": "^0.4.16",
     "jsdom": "^25.0.1",
+    "playwright": "1.65.1",
     "postcss": "^8.4.49",
     "prettier": "^3.4.2",
     "tailwindcss": "^3.4.17",

@@ -70,6 +70,19 @@ Nabbit starts hidden by default. Use the tray icon or the configured shortcut to
 
 ## Verification
 
+The v2 screenshot harness captures seven mocked UI scenarios in light/dark at
+1×/1.5×, with PNGs and a manifest under `progress/v2/M<n>/`. Install the locked
+Chromium once with `npm run screenshots:install`, then use a fresh output prefix:
+
+```powershell
+npm run screenshots -- --milestone M2 --prefix local-proof --repeat-check
+```
+
+See [harness usage and extension points](scripts/screenshots/README.md). Captures
+use isolated browser fixtures; they never launch the native app or access the
+real clipboard, downloader or OS preferences. Run `npm run build` afterwards to
+restore the default production entries.
+
 ```bash
 npm run verify
 cargo fmt --manifest-path src-tauri/Cargo.toml --check

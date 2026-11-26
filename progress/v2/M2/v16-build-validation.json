@@ -1,0 +1,35 @@
+{
+  "frontendTests": 43,
+  "rustTests": 39,
+  "formatAndDefaultClippyPass": true,
+  "defaultBuildEntries": [
+    "index.html",
+    "island.html",
+    "settings.html",
+    "sticky.html"
+  ],
+  "islandInitialGzipBytes": 46346,
+  "noScreenshotOrPlaywrightModulesInProduction": true,
+  "lockedPlaywright": "1.65.1",
+  "playwrightAndCoreHaveNoNpmAdvisories": true,
+  "existingNpmAdvisoryTotals": {
+    "info": 0,
+    "low": 0,
+    "moderate": 10,
+    "high": 7,
+    "critical": 2,
+    "total": 19
+  },
+  "repeatCaptureMatches": true,
+  "capturedScenarios": [
+    "brand",
+    "controls",
+    "island-idle",
+    "settings",
+    "sticky-unbound",
+    "tray-clipboard",
+    "tray-downloads"
+  ],
+  "maximumPngBytes": 62754,
+  "defaultBuildManifestSha256": "73c3c665ad56b6725d63a7fde153342338ee4c4dec9d1a24722d1f248908fbcb"
+}
