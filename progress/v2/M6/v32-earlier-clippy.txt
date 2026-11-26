@@ -1,0 +1,85 @@
+    Checking nabbit v0.1.0 (D:\claude-upgrade-26\nabbit\src-tauri)
+error: manual implementation of `.is_multiple_of()`
+   --> src\download\options.rs:370:8
+    |
+370 |     if ms % 1000 == 0 {
+    |        ^^^^^^^^^^^^^^ help: replace with: `ms.is_multiple_of(1000)`
+    |
+    = help: for further information visit https://rust-lang.github.io/rust-clippy/rust-1.97.0/index.html#manual_is_multiple_of
+    = note: `-D clippy::manual-is-multiple-of` implied by `-D warnings`
+    = help: to override `-D warnings` add `#[allow(clippy::manual_is_multiple_of)]`
+
+error: useless use of `vec!`
+   --> src\download\options_tests.rs:422:17
+    |
+422 |       let cases = vec![
+    |  _________________^
+423 | |         DownloadOptions::default(),
+424 | |         DownloadOptions {
+425 | |             format: Format::Mkv,
+...   |
+473 | |         },
+474 | |     ];
+    | |_____^
+    |
+    = help: for further information visit https://rust-lang.github.io/rust-clippy/rust-1.97.0/index.html#useless_vec
+    = note: `-D clippy::useless-vec` implied by `-D warnings`
+    = help: to override `-D warnings` add `#[allow(clippy::useless_vec)]`
+help: you can use an array directly
+    |
+422 ~     let cases = [DownloadOptions::default(),
+423 +         DownloadOptions {
+424 +             format: Format::Mkv,
+425 +             ..Default::default()
+426 +         },
+427 +         DownloadOptions {
+428 +             format: Format::Webm,
+429 +             ..Default::default()
+430 +         },
+431 +         DownloadOptions {
+432 +             format: Format::Mp3,
+433 +             ..Default::default()
+434 +         },
+435 +         DownloadOptions {
+436 +             format: Format::M4a,
+437 +             ..Default::default()
+438 +         },
+439 +         DownloadOptions {
+440 +             format: Format::Opus,
+441 +             ..Default::default()
+442 +         },
+443 +         DownloadOptions {
+444 +             subtitles: Some(Subtitles {
+445 +                 languages: vec!["en.*".into(), "fr".into()],
+446 +                 embed: true,
+447 +             }),
+448 +             chapters: Chapters::Keep,
+449 +             sponsor_block: SponsorBlock::Mark,
+450 +             embed_metadata: true,
+451 +             embed_thumbnail: true,
+452 +             speed_limit: Some("4.2M".into()),
+453 +             ..Default::default()
+454 +         },
+455 +         DownloadOptions {
+456 +             chapters: Chapters::Split,
+457 +             sponsor_block: SponsorBlock::Cut,
+458 +             sections: vec![
+459 +                 TimeRange {
+460 +                     start_ms: 1000,
+461 +                     end_ms: 2000,
+462 +                 },
+463 +                 TimeRange {
+464 +                     start_ms: 3000,
+465 +                     end_ms: 4000,
+466 +                 },
+467 +             ],
+468 +             precise_cuts: true,
+469 +             playlist_mode: PlaylistMode::Playlist,
+470 +             playlist_items: Some("1-5".into()),
+471 +             ..Default::default()
+472 ~         }];
+    |
+
+error: could not compile `nabbit` (lib) due to 1 previous error
+warning: build failed, waiting for other jobs to finish...
+error: could not compile `nabbit` (lib test) due to 2 previous errors

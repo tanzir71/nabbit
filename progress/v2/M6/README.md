@@ -1,6 +1,6 @@
 # M6 — Downloads core (in progress)
 
-This folder starts with **V3.1: Deno and engine health**. M6 is not published yet; the live landing remains M5. Options, capture paths and the Nab redesign follow in V3.2–V3.4.
+This folder contains **V3.1: Deno and engine health** and **V3.2: download options and per-site presets**. M6 is not published yet; the live landing remains M5. Capture paths and the Nab redesign follow in V3.3–V3.4.
 
 ## V3.1 behavior
 
@@ -37,3 +37,22 @@ cargo test --manifest-path src-tauri/Cargo.toml -- --test-threads=1
 ```
 
 The optional `online_engine_smoke` Rust test uses only isolated data and public sidecars/sample; the network result is never a gate. No PR, tag, release, workflow edit/dispatch or milestone push is part of V3.1.
+
+## V3.2 — Options builder and per-site presets
+
+The queue now uses a pure, validated `download/options.rs` builder. It covers every §7.3 mapping: MP4/MKV/WebM height-capped selectors and merge formats; MP3 320K/M4A/Opus; subtitles; chapters; SponsorBlock; artwork/metadata; filenames; job-scoped browser sign-in; trim unions and precise cuts; playlist ranges/indices; and speed limits. No command shell is used. The probe returns estimated sizes per height from exact/approximate sizes or bitrates, includes separate audio where known, and leaves unknown totals empty. Storyboard and DRM formats are excluded from estimates.
+
+Each new job stores its normalized options snapshot, including its folder/template. Pause, retry and restart retain that snapshot; old jobs without one still use the legacy quality/settings path. The runner consumes the builder and recognizes the final `after_move` filepath, including audio and non-MP4 outputs. Browser choice stays in the job's in-memory runner map, separate from serialized options/history/presets; no cookie-file output argument is added. Only argument strings are tested for browser modes—real browser profiles are never opened.
+
+`download_presets` stores one reusable choice per canonical host. HTTP/HTTPS validation, one `www.` prefix and the known YouTube aliases define a site; other subdomains stay separate. Default choices are MP4 1080p, MP4 720p, MP3 320, M4A and Custom. Remembering strips the current video's ranges/precision, playlist selection and job folder. Saving a job and its remembered choice is transactional. Reading/remembering a choice cannot enqueue a job. The existing quick-download command/shortcut and a dedicated explicit-start command resolve the saved choice; the new Ctrl+Alt+D binding/capture path follows in V3.3. Typed frontend APIs and an isolated browser preview are available for the later Nab/sheet work.
+
+Verification is recorded in `v32-acceptance.json` and the `v32-*` logs:
+
+- **107 frontend/script tests**, typecheck, lint, icon/font/token checks and production build pass.
+- Rust formatting, default/spike all-target Clippy with warnings denied and **124 serial Rust tests** pass. The two provisioned-engine/online tests remain opt-in; the new pinned-parser test is explicitly run and passes.
+- **Eight generated option cases** are accepted by the actual pinned **yt-dlp 2026.11.23** executable in `--help` mode. The complete captured help, executable digest, argument arrays and [pinned upstream reference](https://github.com/yt-dlp/yt-dlp/blob/2026.11.23/README.md) are retained. This checks parser syntax without media transfer, network extraction, postprocessing or profile access; it does not replace V3.7's download acceptance.
+- Exact argument-vector tests cover every mapping, both subtitle modes, all chapter/SponsorBlock modes, all four browser choices, fractional ranges, range union, filename/path spacing, safe multi-range names and height-capped fallback. Time fields support mm:ss(.f); malformed rates, ranges and templates are rejected before queue work.
+- DB tests prove old-schema migration is repeatable without losing the existing job, presets survive reopen and remain site-isolated, option snapshots survive state updates/reopen, failed duplicate/invalid enqueues preserve the preset, and remembering itself creates no job.
+- Initial island JavaScript is **89,643 / 120,000 gzip bytes**. This backend/API pass changes no TSX/CSS view, so it adds no screenshots. V3.1's 16 captures remain intact; Nab and options-sheet visuals are V3.4/V3.5.
+
+Earlier compile/borrow, argument-order, transport-expectation and Clippy failures are retained separately from the accepted checks. Log trailing whitespace is normalized for Git; original log hashes are recorded. Source fingerprints use LF normalization only. SponsorBlock's opt-in network behavior and cookie-file/preset boundaries are reflected in the privacy statement. No performance gate, milestone, PR, tag, release or workflow state is reclassified by this task.

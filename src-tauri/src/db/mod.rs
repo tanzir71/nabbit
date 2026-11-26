@@ -1,3 +1,4 @@
+mod download_presets;
 pub mod models;
 
 use std::{
@@ -102,6 +103,11 @@ impl Database {
                 created_at TEXT NOT NULL,
                 updated_at TEXT NOT NULL
             );
+            CREATE TABLE IF NOT EXISTS download_presets (
+                site TEXT PRIMARY KEY,
+                options_json TEXT NOT NULL,
+                updated_at TEXT NOT NULL
+            );
             CREATE INDEX IF NOT EXISTS idx_downloads_updated ON downloads(updated_at DESC);
             CREATE TABLE IF NOT EXISTS app_exclusions (
                 app_name TEXT PRIMARY KEY,
@@ -116,6 +122,13 @@ impl Database {
             CREATE UNIQUE INDEX IF NOT EXISTS idx_pin_slot ON pins(slot) WHERE slot IS NOT NULL;
             ",
         )?;
+        let columns = conn
+            .prepare("PRAGMA table_info(downloads)")?
+            .query_map([], |row| row.get::<_, String>(1))?
+            .collect::<std::result::Result<Vec<_>, _>>()?;
+        if !columns.iter().any(|c| c == "options_json") {
+            conn.execute("ALTER TABLE downloads ADD COLUMN options_json TEXT", [])?;
+        }
         Ok(())
     }
 
@@ -461,32 +474,7 @@ impl Database {
     }
 
     pub fn insert_download(&self, job: &DownloadJob) -> Result<()> {
-        let conn = self
-            .conn
-            .lock()
-            .map_err(|_| msg("database lock poisoned"))?;
-        conn.execute(
-            "INSERT INTO downloads(id, url, title, thumbnail, status, progress, speed, eta, output_path, error, quality, playlist_mode, playlist_range, created_at, updated_at)
-             VALUES (?1, ?2, ?3, ?4, ?5, ?6, ?7, ?8, ?9, ?10, ?11, ?12, ?13, ?14, ?15)",
-            params![
-                job.id,
-                job.url,
-                job.title,
-                job.thumbnail,
-                job.status,
-                job.progress,
-                job.speed,
-                job.eta,
-                job.output_path,
-                job.error,
-                job.quality,
-                job.playlist_mode,
-                job.playlist_range,
-                job.created_at.to_rfc3339(),
-                job.updated_at.to_rfc3339()
-            ],
-        )?;
-        Ok(())
+        self.insert_download_and_preset(job, false)
     }
 
     pub fn update_download(&self, job: &DownloadJob) -> Result<()> {
@@ -524,7 +512,7 @@ impl Database {
             .lock()
             .map_err(|_| msg("database lock poisoned"))?;
         let mut stmt = conn.prepare(
-            "SELECT id, url, title, thumbnail, status, progress, speed, eta, output_path, error, quality, playlist_mode, playlist_range, created_at, updated_at
+            "SELECT id, url, title, thumbnail, status, progress, speed, eta, output_path, error, quality, playlist_mode, playlist_range, created_at, updated_at, options_json
              FROM downloads ORDER BY updated_at DESC LIMIT 200",
         )?;
         let rows = stmt
@@ -539,7 +527,7 @@ impl Database {
             .lock()
             .map_err(|_| msg("database lock poisoned"))?;
         Ok(conn.query_row(
-            "SELECT id, url, title, thumbnail, status, progress, speed, eta, output_path, error, quality, playlist_mode, playlist_range, created_at, updated_at
+            "SELECT id, url, title, thumbnail, status, progress, speed, eta, output_path, error, quality, playlist_mode, playlist_range, created_at, updated_at, options_json
              FROM downloads WHERE id = ?1",
             params![id],
             row_to_download_job,
@@ -648,6 +636,18 @@ fn row_to_download_job(row: &rusqlite::Row<'_>) -> rusqlite::Result<DownloadJob>
         eta: row.get(7)?,
         output_path: row.get(8)?,
         error: row.get(9)?,
+        options: row
+            .get::<_, Option<String>>(15)?
+            .map(|raw| {
+                serde_json::from_str(&raw).map_err(|e| {
+                    rusqlite::Error::FromSqlConversionFailure(
+                        15,
+                        rusqlite::types::Type::Text,
+                        Box::new(e),
+                    )
+                })
+            })
+            .transpose()?,
         quality: row.get(10)?,
         playlist_mode: row.get(11)?,
         playlist_range: row.get(12)?,

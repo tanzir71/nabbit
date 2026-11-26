@@ -149,6 +149,7 @@ fn handle_clipboard_text(
                                 is_playlist: text.contains("list="),
                                 playlist_count: None,
                                 extractor: Some("clipboard".into()),
+                                qualities: vec![],
                             };
                             crate::island::activity_bus::publish(
                                 app,

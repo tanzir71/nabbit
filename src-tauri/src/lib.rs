@@ -127,6 +127,11 @@ pub fn run() {
             commands::download::get_staged_url,
             commands::download::clear_staged_url,
             commands::download::start_download,
+            commands::download::list_download_presets,
+            commands::download::parse_download_timecode,
+            commands::download::resolve_download_preset,
+            commands::download::remember_download_preset,
+            commands::download::start_download_with_preset,
             commands::download::list_downloads,
             commands::download::cancel_download,
             commands::download::pause_download,
@@ -552,15 +557,7 @@ pub fn apply_runtime_settings(app: &AppHandle<Wry>, state: &AppState, settings: 
                 if event.state == ShortcutState::Pressed {
                     if let Some(state) = app.try_state::<AppState>() {
                         if let Ok(Some(url)) = state.db.setting_value("staged_url") {
-                            if let Ok(settings) = state.db.get_settings() {
-                                let request = db::models::DownloadRequest {
-                                    url,
-                                    quality: settings.default_quality,
-                                    playlist_mode: "video".into(),
-                                    playlist_range: None,
-                                };
-                                let _ = state.downloads.enqueue(request);
-                            }
+                            let _ = state.downloads.enqueue_remembered(url);
                         }
                     }
                 }

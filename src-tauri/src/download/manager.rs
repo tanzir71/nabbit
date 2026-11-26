@@ -18,7 +18,10 @@ use crate::{
         models::{DownloadJob, DownloadMetadata, DownloadRequest},
         Database,
     },
-    download::{probe, ytdlp},
+    download::{
+        options::{Browser, DownloadOptions},
+        probe, ytdlp,
+    },
     error::{msg, Result},
     util::{default_output_dir, normalize_video_url},
 };
@@ -35,6 +38,7 @@ struct Inner {
     queue: VecDeque<String>,
     active: usize,
     children: HashMap<String, ChildHandle>,
+    browsers: HashMap<String, Browser>,
 }
 
 #[derive(Clone)]
@@ -53,6 +57,7 @@ impl DownloadManager {
                 queue: VecDeque::new(),
                 active: 0,
                 children: HashMap::new(),
+                browsers: HashMap::new(),
             })),
             db,
             app,
@@ -60,9 +65,30 @@ impl DownloadManager {
         }
     }
 
+    pub fn enqueue_remembered(&self, url: String) -> Result<DownloadJob> {
+        let fallback = self.db.get_settings()?.default_quality;
+        let preset = self.db.download_preset(&url, &fallback)?;
+        self.enqueue(DownloadRequest {
+            url,
+            options: Some(preset.options),
+            ..Default::default()
+        })
+    }
+
     pub fn enqueue(&self, request: DownloadRequest) -> Result<DownloadJob> {
+        let settings = self.db.get_settings()?;
+        let options = match &request.options {
+            Some(o) => o.clone(),
+            None => DownloadOptions::from_legacy(
+                &request.quality,
+                &request.playlist_mode,
+                request.playlist_range.as_deref(),
+            )?,
+        }
+        .with_defaults(&settings.output_dir, &settings.filename_template)?;
         let normalized =
             normalize_video_url(&request.url).unwrap_or_else(|| request.url.trim().to_string());
+        super::presets::site_key(&normalized)?;
         let metadata = if std::env::var_os("NABBIT_ACCEPTANCE_FAKE_DOWNLOAD").is_some() {
             DownloadMetadata {
                 url: request.url.clone(),
@@ -74,6 +100,7 @@ impl DownloadManager {
                 is_playlist: normalized.contains("list="),
                 playlist_count: None,
                 extractor: Some("acceptance".into()),
+                qualities: vec![],
             }
         } else {
             probe::probe(&self.app_data_dir, &normalized).unwrap_or_else(|_| DownloadMetadata {
@@ -86,6 +113,7 @@ impl DownloadManager {
                 is_playlist: normalized.contains("list="),
                 playlist_count: None,
                 extractor: Some("fallback".into()),
+                qualities: vec![],
             })
         };
         let now = Utc::now();
@@ -100,18 +128,27 @@ impl DownloadManager {
             eta: None,
             output_path: None,
             error: None,
-            quality: request.quality,
-            playlist_mode: request.playlist_mode,
-            playlist_range: request.playlist_range,
+            quality: options.legacy_quality(),
+            playlist_mode: match options.playlist_mode {
+                super::options::PlaylistMode::Video => "video",
+                super::options::PlaylistMode::Playlist => "playlist",
+            }
+            .into(),
+            playlist_range: options.playlist_items.clone(),
+            options: Some(options),
             created_at: now,
             updated_at: now,
         };
-        self.db.insert_download(&job)?;
+        self.db
+            .insert_download_and_preset(&job, request.remember_for_site)?;
         {
             let mut inner = self
                 .inner
                 .lock()
                 .map_err(|_| msg("download manager lock poisoned"))?;
+            if let Some(browser) = request.cookies_from_browser {
+                inner.browsers.insert(job.id.clone(), browser);
+            }
             inner.queue.push_back(job.id.clone());
         }
         self.pump();
@@ -176,6 +213,9 @@ impl DownloadManager {
                 .lock()
                 .map_err(|_| msg("download manager lock poisoned"))?;
             inner.queue.retain(|queued| queued != id);
+            if status == "cancelled" {
+                inner.browsers.remove(id);
+            }
             if let Some(child) = inner.children.remove(id) {
                 kill_pid(child.pid);
             }
@@ -254,6 +294,13 @@ impl DownloadManager {
         if let Ok(mut inner) = self.inner.lock() {
             inner.active = inner.active.saturating_sub(1);
             inner.children.remove(&id);
+            if self
+                .db
+                .get_download(&id)
+                .is_ok_and(|j| matches!(j.status.as_str(), "completed" | "cancelled"))
+            {
+                inner.browsers.remove(&id);
+            }
         }
         self.pump();
     }
@@ -276,8 +323,20 @@ impl DownloadManager {
             quality: job.quality.clone(),
             playlist_mode: job.playlist_mode.clone(),
             playlist_range: job.playlist_range.clone(),
+            options: job.options.clone(),
+            cookies_from_browser: self
+                .inner
+                .lock()
+                .map_err(|_| msg("download manager lock poisoned"))?
+                .browsers
+                .get(id)
+                .copied(),
+            ..Default::default()
         };
-        let output_dir = if settings.output_dir.trim().is_empty() {
+        let output_dir = if let Some(dir) = job.options.as_ref().and_then(|o| o.output_dir.clone())
+        {
+            dir
+        } else if settings.output_dir.trim().is_empty() {
             default_output_dir()
         } else {
             settings.output_dir.clone()
@@ -288,7 +347,8 @@ impl DownloadManager {
             &settings.filename_template,
             ffmpeg.as_deref(),
             fallback_format,
-        );
+        )?;
+        fs::create_dir_all(&output_dir)?;
         args.extend(super::engine::runtime_args(
             ytdlp::resolve_engine(&self.app_data_dir, "deno").as_deref(),
         )?);
@@ -298,7 +358,7 @@ impl DownloadManager {
                 section.to_string_lossy().to_string(),
             ]);
         }
-        args.push(job.url.clone());
+        args.extend(["--".into(), job.url.clone()]);
 
         job.status = "running".into();
         job.updated_at = Utc::now();
@@ -349,7 +409,12 @@ impl DownloadManager {
             finished.progress = 100.0;
             finished.error = None;
             if let Some(path) =
-                find_final_output_path(&output_dir, &finished.url, &finished.quality)
+                find_final_output_path(&output_dir, &finished.url, &finished.quality).filter(|_| {
+                    !finished
+                        .output_path
+                        .as_deref()
+                        .is_some_and(|p| Path::new(p).is_file())
+                })
             {
                 finished.output_path = Some(path.to_string_lossy().to_string());
             }
@@ -371,18 +436,24 @@ impl DownloadManager {
 
     fn run_acceptance_fake_job(&self, id: &str) -> Result<()> {
         let settings = self.db.get_settings()?;
-        let output_dir = if settings.output_dir.trim().is_empty() {
-            default_output_dir()
-        } else {
-            settings.output_dir.clone()
-        };
+        let saved = self.db.get_download(id)?;
+        let output_dir =
+            if let Some(dir) = saved.options.as_ref().and_then(|o| o.output_dir.clone()) {
+                dir
+            } else if settings.output_dir.trim().is_empty() {
+                default_output_dir()
+            } else {
+                settings.output_dir.clone()
+            };
         fs::create_dir_all(&output_dir)?;
 
-        let extension = if self.db.get_download(id)?.quality == "audio_mp3" {
-            "mp3"
-        } else {
-            "mp4"
-        };
+        let extension = saved.options.as_ref().map(|o| o.format.as_str()).unwrap_or(
+            if saved.quality == "audio_mp3" {
+                "mp3"
+            } else {
+                "mp4"
+            },
+        );
         let output_path =
             Path::new(&output_dir).join(format!("nabbit-acceptance-{id}.{extension}"));
         let output_path_string = output_path.to_string_lossy().to_string();
@@ -461,6 +532,7 @@ fn find_final_output_path(output_dir: &str, url: &str, quality: &str) -> Option<
     let preferred_exts: &[&str] = match quality {
         "audio_mp3" => &["mp3"],
         "audio_m4a" => &["m4a", "mp4"],
+        "audio_opus" => &["opus"],
         _ => &["mp4", "mkv", "webm"],
     };
     let mut candidates = Vec::new();

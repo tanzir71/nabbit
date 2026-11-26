@@ -1,0 +1,129 @@
+
+> nabbit@0.1.0 verify
+> npm run verify:icons && npm run verify:fonts && npm run verify:tokens && npm run typecheck && npm run lint && npm test -- --run && npm run build
+
+
+> nabbit@0.1.0 verify:icons
+> node scripts/generate-brand-icons.mjs --check
+
+Verified desktop app icons, optical tray glyphs and site favicons.
+
+> nabbit@0.1.0 verify:fonts
+> node scripts/verify-font-assets.mjs
+
+Verified 5 pinned Geist 1.9.2 assets and OFL.
+
+> nabbit@0.1.0 verify:tokens
+> node scripts/generate-tokens.mjs --check
+
+Verified 36 light/dark tokens for app and site.
+
+> nabbit@0.1.0 typecheck
+> tsc -b
+
+
+> nabbit@0.1.0 lint
+> eslint .
+
+
+> nabbit@0.1.0 test
+> vitest --run
+
+
+ RUN  v3.2.7 D:/claude-upgrade-26/nabbit
+
+ ✓ src/components/Components.test.tsx (8 tests) 2109ms
+   ✓ foundation interaction contracts > buttons require an explicit submit type inside a form  567ms
+   ✓ foundation interaction contracts > disabled buttons, presets and switches cannot dispatch actions  433ms
+ ✓ src/views/IslandSettings.test.tsx (3 tests) 1792ms
+   ✓ persists independent shape, size, monitor and enabled changes without overwriting other settings  884ms
+   ✓ keeps the chosen monitor when disconnected and cleans up the event subscription  444ms
+   ✓ reports save failures and prevents overlapping preference writes  461ms
+ ❯ src/lib/downloadPresets.test.ts (5 tests | 2 failed) 27ms
+   ✓ parses trim field timecodes without network and rejects malformed input 5ms
+   ✓ exposes the five preset choices with independent options 2ms
+   × uses the real Tauri client for preset reads, remembering and explicit start 12ms
+     → expected last "spy" call to have been called with [ 'resolve_download_preset', …(1) ]
+   ✓ keeps preview site choices separate and never starts media when remembering 4ms
+   × sends browser choice on one explicit request and never as a saved preset field 2ms
+     → expected last "spy" call to have been called with [ 'start_download', …(1) ]
+ ✓ src/views/EngineHealthCard.test.tsx (6 tests) 663ms
+ ✓ src/views/ClipboardList.test.tsx (2 tests) 904ms
+   ✓ ClipboardList acceptance behavior > filters instantly, copies by click, and supports keyboard copy/delete/focus shortcuts  813ms
+ ✓ src/lib/islandDrop.test.tsx (4 tests) 110ms
+ ✓ src/surfaces/island/IslandApp.test.tsx (1 test) 496ms
+   ✓ does not close an opening native Peek when the activity snapshot initializes first  493ms
+ ✓ spikes/island/IslandSpike.test.tsx (4 tests) 401ms
+ ✓ scripts/screenshots/policy.test.js (2 tests) 21ms
+ ✓ src/views/IslandShortcutField.test.tsx (3 tests) 245ms
+ ✓ scripts/entry-bundles.test.js (4 tests) 20ms
+ ✓ scripts/island-frame-metrics.test.js (6 tests) 21ms
+ ✓ src/lib/islandKeyboard.test.ts (4 tests) 37ms
+ ✓ src/lib/islandMotion.test.ts (2 tests) 25ms
+ ✓ src/lib/islandActivity.test.ts (6 tests) 28ms
+ ✓ src/lib/islandInput.test.ts (7 tests) 118ms
+ ✓ src/lib/islandVisibility.test.ts (5 tests) 32ms
+ ✓ scripts/screenshots/mock-ipc.test.js (5 tests) 16ms
+ ✓ src/lib/theme.test.ts (4 tests) 13ms
+ ✓ src/lib/islandSurface.test.ts (2 tests) 13ms
+ ✓ src/store/islandStore.test.ts (16 tests) 14ms
+ ✓ src/store/settingsBootstrap.test.ts (2 tests) 15ms
+ ✓ spikes/island/drop.test.ts (3 tests) 8ms
+ ✓ src/lib/search.test.ts (3 tests) 9ms
+
+⎯⎯⎯⎯⎯⎯⎯ Failed Tests 2 ⎯⎯⎯⎯⎯⎯⎯
+
+ FAIL  src/lib/downloadPresets.test.ts > uses the real Tauri client for preset reads, remembering and explicit start
+AssertionError: expected last "spy" call to have been called with [ 'resolve_download_preset', …(1) ]
+
+- Expected
++ Received
+
+  [
+    "resolve_download_preset",
+    {
+      "url": "https://vimeo.com/42",
+    },
++   undefined,
+  ]
+
+ ❯ src/lib/downloadPresets.test.ts:32:18
+     30|   vi.stubGlobal("__TAURI_INTERNALS__", { invoke });
+     31|   expect(await api.resolveDownloadPreset("https://vimeo.com/42")).toEq…
+     32|   expect(invoke).toHaveBeenLastCalledWith("resolve_download_preset", {
+       |                  ^
+     33|     url: "https://vimeo.com/42",
+     34|   });
+
+⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯[1/2]⎯
+
+ FAIL  src/lib/downloadPresets.test.ts > sends browser choice on one explicit request and never as a saved preset field
+AssertionError: expected last "spy" call to have been called with [ 'start_download', …(1) ]
+
+- Expected
++ Received
+
+@@ -7,6 +7,7 @@
+          "format": "mp3",
+        },
+        "url": "https://vimeo.com/42",
+      },
+    },
++   undefined,
+  ]
+
+ ❯ src/lib/downloadPresets.test.ts:79:18
+     77|   const options: DownloadOptions = { format: "mp3" };
+     78|   await api.startDownload({ url: "https://vimeo.com/42", options, cook…
+     79|   expect(invoke).toHaveBeenLastCalledWith("start_download", {
+       |                  ^
+     80|     request: { url: "https://vimeo.com/42", options, cookiesFromBrowse…
+     81|   });
+
+⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯[2/2]⎯
+
+
+ Test Files  1 failed | 23 passed (24)
+      Tests  2 failed | 105 passed (107)
+   Start at  19:17:29
+   Duration  244.73s (transform 26.98s, setup 35.18s, collect 63.47s, tests 7.14s, environment 118.10s, prepare 15.10s)

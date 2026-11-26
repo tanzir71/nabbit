@@ -1,5 +1,4 @@
 use std::{
-    fs,
     path::{Path, PathBuf},
     process::Command,
 };
@@ -9,7 +8,7 @@ use serde_json::Value;
 use crate::{
     db::models::{DownloadMetadata, DownloadRequest},
     error::{msg, Result},
-    util::{default_output_dir, normalize_video_url},
+    util::normalize_video_url,
 };
 
 #[derive(Debug, Clone, Default)]
@@ -130,6 +129,7 @@ pub fn probe_metadata(app_data_dir: &Path, url: &str) -> Result<DownloadMetadata
             .map(ToOwned::to_owned),
         is_playlist,
         playlist_count,
+        qualities: super::format_sizes::from_probe(&value),
         extractor: value
             .get("extractor")
             .and_then(Value::as_str)
@@ -143,69 +143,30 @@ pub fn build_download_args(
     filename_template: &str,
     ffmpeg: Option<&Path>,
     fallback_format: bool,
-) -> Vec<String> {
-    let mut args = vec![
-        "--newline".into(),
-        "--no-warnings".into(),
-        "--progress-template".into(),
-        "download:nabbit:%(progress._percent_str)s|%(progress._speed_str)s|%(progress._eta_str)s|%(info.filename)s".into(),
-    ];
-
-    let quality = request.quality.as_str();
-    match quality {
-        "audio_mp3" => {
-            args.extend(["-x".into(), "--audio-format".into(), "mp3".into()]);
-        }
-        "audio_m4a" => {
-            args.extend(["-x".into(), "--audio-format".into(), "m4a".into()]);
-        }
-        "best" => {
-            args.extend(["-f".into(), "bestvideo*+bestaudio/best".into()]);
-        }
-        value if value.ends_with('p') => {
-            let height = value.trim_end_matches('p');
-            let format = if fallback_format {
-                format!("best[height<={height}]/best")
-            } else {
-                format!("bestvideo[height<={height}][ext=mp4]+bestaudio[ext=m4a]/best[height<={height}][ext=mp4]/best[height<={height}]")
-            };
-            args.extend(["-f".into(), format]);
-        }
-        _ => args.extend(["-f".into(), "bestvideo*+bestaudio/best".into()]),
-    }
-
-    if let Some(ffmpeg) = ffmpeg {
-        args.extend([
-            "--ffmpeg-location".into(),
-            ffmpeg.to_string_lossy().to_string(),
-        ]);
-    }
-
-    if request.playlist_mode == "playlist" {
-        args.push("--yes-playlist".into());
-        if let Some(range) = request
-            .playlist_range
-            .as_ref()
-            .filter(|value| !value.trim().is_empty())
-        {
-            args.extend(["--playlist-items".into(), range.trim().into()]);
-        }
-    } else {
-        args.push("--no-playlist".into());
-    }
-
-    let dir = if output_dir.trim().is_empty() {
-        default_output_dir()
-    } else {
-        output_dir.to_string()
+) -> Result<Vec<String>> {
+    let options = match &request.options {
+        Some(o) => o.clone(),
+        None => super::options::DownloadOptions::from_legacy(
+            &request.quality,
+            &request.playlist_mode,
+            request.playlist_range.as_deref(),
+        )?,
     };
-    let _ = fs::create_dir_all(&dir);
-    args.extend(["-P".into(), dir]);
-    args.extend(["-o".into(), filename_template.to_string()]);
-    args
+    super::options::build(
+        &options.with_defaults(output_dir, filename_template)?,
+        ffmpeg,
+        request.cookies_from_browser,
+        fallback_format,
+    )
 }
 
 pub fn parse_progress_line(line: &str) -> Option<ProgressLine> {
+    if let Some(path) = line.strip_prefix("nabbit-file:") {
+        return Some(ProgressLine {
+            output_path: Some(path.to_owned()),
+            ..Default::default()
+        });
+    }
     let payload = line
         .strip_prefix("nabbit:")
         .or_else(|| line.strip_prefix("download:"))
@@ -250,6 +211,7 @@ fn fallback_metadata(url: &str, reason: &str) -> DownloadMetadata {
         is_playlist: url.contains("list="),
         playlist_count: None,
         extractor: Some("fallback".into()),
+        qualities: vec![],
     }
 }
 
@@ -280,8 +242,9 @@ mod tests {
             quality: "audio_mp3".into(),
             playlist_mode: "video".into(),
             playlist_range: None,
+            ..Default::default()
         };
-        let args = build_download_args(&request, "", "%(title)s.%(ext)s", None, false);
+        let args = build_download_args(&request, "", "%(title)s.%(ext)s", None, false).unwrap();
         assert!(args.contains(&"-x".to_string()));
         assert!(args.contains(&"mp3".to_string()));
         assert!(args.contains(&"--no-playlist".to_string()));
@@ -294,11 +257,12 @@ mod tests {
             quality: "1080p".into(),
             playlist_mode: "playlist".into(),
             playlist_range: Some("1-3,7".into()),
+            ..Default::default()
         };
-        let args = build_download_args(&request, "", "%(title)s.%(ext)s", None, false);
+        let args = build_download_args(&request, "", "%(title)s.%(ext)s", None, false).unwrap();
 
         assert!(args.contains(&"--yes-playlist".to_string()));
-        assert!(args.contains(&"--playlist-items".to_string()));
+        assert!(args.contains(&"-I".to_string()));
         assert!(args.contains(&"1-3,7".to_string()));
         assert!(!args.contains(&"--no-playlist".to_string()));
     }
@@ -310,10 +274,20 @@ mod tests {
             quality: "1080p".into(),
             playlist_mode: "video".into(),
             playlist_range: None,
+            ..Default::default()
         };
-        let args = build_download_args(&request, "", "%(title)s.%(ext)s", None, true);
+        let args = build_download_args(&request, "", "%(title)s.%(ext)s", None, true).unwrap();
 
         let format_index = args.iter().position(|arg| arg == "-f").unwrap() + 1;
-        assert_eq!(args[format_index], "best[height<=1080]/best");
+        assert_eq!(args[format_index], "b[height<=1080]");
+    }
+    #[test]
+    fn final_postprocessed_path_is_authoritative_machine_output() {
+        let parsed = parse_progress_line("nabbit-file:C:\\Downloads\\A title [id].opus").unwrap();
+        assert_eq!(
+            parsed.output_path.as_deref(),
+            Some("C:\\Downloads\\A title [id].opus")
+        );
+        assert!(parsed.progress.is_none());
     }
 }

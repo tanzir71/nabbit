@@ -30,6 +30,8 @@ pub struct DownloadJob {
     pub output_path: Option<String>,
     pub error: Option<String>,
     pub quality: String,
+    #[serde(default)]
+    pub options: Option<crate::download::options::DownloadOptions>,
     pub playlist_mode: String,
     pub playlist_range: Option<String>,
     pub created_at: DateTime<Utc>,
@@ -48,15 +50,38 @@ pub struct DownloadMetadata {
     pub is_playlist: bool,
     pub playlist_count: Option<i64>,
     pub extractor: Option<String>,
+    #[serde(default)]
+    pub qualities: Vec<crate::download::format_sizes::QualityEstimate>,
 }
 
 #[derive(Debug, Clone, Serialize, Deserialize)]
 #[serde(rename_all = "camelCase")]
+#[serde(default)]
 pub struct DownloadRequest {
     pub url: String,
     pub quality: String,
     pub playlist_mode: String,
     pub playlist_range: Option<String>,
+    #[serde(default)]
+    pub options: Option<crate::download::options::DownloadOptions>,
+    #[serde(default)]
+    pub remember_for_site: bool,
+    #[serde(default)]
+    pub cookies_from_browser: Option<crate::download::options::Browser>,
+}
+
+impl Default for DownloadRequest {
+    fn default() -> Self {
+        Self {
+            url: String::new(),
+            quality: "1080p".into(),
+            playlist_mode: "video".into(),
+            playlist_range: None,
+            options: None,
+            remember_for_site: false,
+            cookies_from_browser: None,
+        }
+    }
 }
 
 #[derive(Debug, Clone, Serialize, Deserialize)]

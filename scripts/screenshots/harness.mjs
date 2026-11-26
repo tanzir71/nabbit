@@ -155,7 +155,11 @@ export async function captureSuite(root, options, cases = scenarios) {
               "Every IPC command must have an explicit fixture",
             );
             assert(
-              !fixture.calls.some(({ command }) => command === "start_download"),
+              !fixture.calls.some(({ command }) =>
+                ["start_download", "start_download_with_preset", "quick_download_staged"].includes(
+                  command,
+                ),
+              ),
               "A capture cannot start downloads",
             );
             if (scenario.suite === "foundations") assert.equal(fixture.calls.length, 0);

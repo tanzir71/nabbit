@@ -1,0 +1,14 @@
+    Blocking waiting for file lock on build directory
+    Checking nabbit v0.1.0 (D:\claude-upgrade-26\nabbit\src-tauri)
+error[E0658]: use of unstable library feature `str_as_str`
+  --> src\download\presets.rs:75:18
+   |
+75 |             host.as_str(),
+   |                  ^^^^^^
+   |
+   = note: see issue #130366 <https://github.com/rust-lang/rust/issues/130366> for more information
+
+For more information about this error, try `rustc --explain E0658`.
+error: could not compile `nabbit` (lib) due to 1 previous error
+warning: build failed, waiting for other jobs to finish...
+error: could not compile `nabbit` (lib test) due to 1 previous error

@@ -117,12 +117,41 @@ pub fn quick_download_staged(state: tauri::State<'_, AppState>) -> Result<Option
     let Some(url) = state.db.setting_value("staged_url")? else {
         return Ok(None);
     };
-    let settings = state.db.get_settings()?;
-    let request = DownloadRequest {
-        url,
-        quality: settings.default_quality,
-        playlist_mode: "video".into(),
-        playlist_range: None,
-    };
-    state.downloads.enqueue(request).map(Some)
+    state.downloads.enqueue_remembered(url).map(Some)
+}
+
+#[tauri::command]
+pub fn list_download_presets() -> Vec<crate::download::presets::Preset> {
+    crate::download::presets::defaults()
+}
+
+#[tauri::command]
+pub fn parse_download_timecode(value: String) -> Result<u64> {
+    crate::download::options::parse_timecode(&value)
+}
+#[tauri::command]
+pub fn resolve_download_preset(
+    state: tauri::State<'_, AppState>,
+    url: String,
+) -> Result<crate::download::presets::Preset> {
+    state
+        .db
+        .download_preset(&url, &state.db.get_settings()?.default_quality)
+}
+#[tauri::command]
+pub fn remember_download_preset(
+    state: tauri::State<'_, AppState>,
+    url: String,
+    options: crate::download::options::DownloadOptions,
+) -> Result<crate::download::presets::Preset> {
+    state.db.remember_download_preset(&url, &options)
+}
+#[tauri::command]
+pub fn start_download_with_preset(
+    state: tauri::State<'_, AppState>,
+    url: String,
+) -> Result<DownloadJob> {
+    let job = state.downloads.enqueue_remembered(url)?;
+    let _ = state.db.set_setting_value("staged_url", "");
+    Ok(job)
 }

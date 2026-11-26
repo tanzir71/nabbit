@@ -1,5 +1,12 @@
 import { invoke } from "@tauri-apps/api/core";
 import { listen } from "@tauri-apps/api/event";
+import {
+  defaultDownloadOptions,
+  defaultDownloadPresets,
+  previewPreset,
+  previewSite,
+  previewTimecode,
+} from "./downloadPresets";
 import { cachedThemePreference } from "./theme";
 import type {
   AppSettings,
@@ -8,6 +15,8 @@ import type {
   DownloadJob,
   DownloadMetadata,
   DownloadRequest,
+  DownloadPreset,
+  DownloadOptions,
   EngineStatus,
   StorageStats,
   IslandPreferences,
@@ -61,6 +70,35 @@ async function call<T>(
   if (hasTauri()) return invoke<T>(command, args);
   if (fallback) return fallback();
   throw new Error(`Tauri command unavailable in browser: ${command}`);
+}
+
+const browserPresets = new Map<string, DownloadPreset>();
+function previewDownload(request: DownloadRequest): DownloadJob {
+  const options = { ...defaultDownloadOptions(), ...request.options };
+  const now = new Date().toISOString();
+  const quality = request.options
+    ? ["mp4", "mkv", "webm"].includes(options.format)
+      ? options.height
+        ? `${options.height}p`
+        : "best"
+      : `audio_${options.format}`
+    : (request.quality ?? "1080p");
+  const job: DownloadJob = {
+    id: crypto.randomUUID(),
+    url: request.url,
+    title: "Browser preview job",
+    status: "queued",
+    progress: 0,
+    quality,
+    options: request.options ? structuredClone(request.options) : undefined,
+    playlistMode: request.options?.playlistMode ?? request.playlistMode ?? "video",
+    playlistRange: request.options?.playlistItems ?? request.playlistRange,
+    createdAt: now,
+    updatedAt: now,
+  };
+  if (request.rememberForSite) browserPresets.set(previewSite(request.url), previewPreset(options));
+  browserJobs = [job, ...browserJobs];
+  return job;
 }
 
 export const api = {
@@ -155,24 +193,30 @@ export const api = {
     })),
   getStagedUrl: () => call<string | null>("get_staged_url", undefined, () => null),
   clearStagedUrl: () => call<void>("clear_staged_url", undefined, () => undefined),
-  startDownload: (request: DownloadRequest) =>
-    call<DownloadJob>("start_download", { request }, () => {
-      const now = new Date().toISOString();
-      const job: DownloadJob = {
-        id: crypto.randomUUID(),
-        url: request.url,
-        title: "Browser preview job",
-        status: "queued",
-        progress: 0,
-        quality: request.quality,
-        playlistMode: request.playlistMode,
-        playlistRange: request.playlistRange,
-        createdAt: now,
-        updatedAt: now,
-      };
-      browserJobs = [job, ...browserJobs];
-      return job;
+  listDownloadPresets: () =>
+    call<DownloadPreset[]>("list_download_presets", undefined, defaultDownloadPresets),
+  parseDownloadTimecode: (value: string) =>
+    call<number>("parse_download_timecode", { value }, () => previewTimecode(value)),
+  resolveDownloadPreset: (url: string) =>
+    call<DownloadPreset>("resolve_download_preset", { url }, () =>
+      structuredClone(browserPresets.get(previewSite(url)) ?? defaultDownloadPresets()[0]),
+    ),
+  rememberDownloadPreset: (url: string, options: DownloadOptions) =>
+    call<DownloadPreset>("remember_download_preset", { url, options }, () => {
+      const preset = previewPreset(options);
+      browserPresets.set(previewSite(url), preset);
+      return structuredClone(preset);
     }),
+  startDownloadWithPreset: (url: string) =>
+    call<DownloadJob>("start_download_with_preset", { url }, () =>
+      previewDownload({
+        url,
+        options:
+          browserPresets.get(previewSite(url))?.options ?? defaultDownloadPresets()[0].options,
+      }),
+    ),
+  startDownload: (request: DownloadRequest) =>
+    call<DownloadJob>("start_download", { request }, () => previewDownload(request)),
   listDownloads: () => call<DownloadJob[]>("list_downloads", undefined, () => browserJobs),
   cancelDownload: (id: string) => call<void>("cancel_download", { id }, () => undefined),
   pauseDownload: (id: string) => call<void>("pause_download", { id }, () => undefined),

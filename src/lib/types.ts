@@ -1,7 +1,7 @@
 import type { ErrorKind } from "./activity";
 
 export type Quality =
-  "best" | "2160p" | "1440p" | "1080p" | "720p" | "480p" | "audio_mp3" | "audio_m4a";
+  "best" | "2160p" | "1440p" | "1080p" | "720p" | "480p" | "audio_mp3" | "audio_m4a" | "audio_opus";
 
 export type ClipboardContentType = "text" | "url" | "image" | "file";
 
@@ -28,6 +28,7 @@ export interface DownloadMetadata {
   isPlaylist: boolean;
   playlistCount?: number | null;
   extractor?: string | null;
+  qualities?: Array<{ height: number; estimatedBytes: number | null }>;
 }
 
 export type DownloadStatus =
@@ -44,7 +45,8 @@ export interface DownloadJob {
   eta?: string | null;
   outputPath?: string | null;
   error?: string | null;
-  quality: Quality;
+  quality: string;
+  options?: DownloadOptions | null;
   playlistMode: "video" | "playlist";
   playlistRange?: string | null;
   createdAt: string;
@@ -99,11 +101,37 @@ export interface StorageStats {
   dbSizeBytes: number;
 }
 
+export type DownloadFormat = "mp4" | "mkv" | "webm" | "mp3" | "m4a" | "opus";
+export type DownloadBrowser = "chrome" | "edge" | "firefox" | "brave";
+export interface DownloadOptions {
+  format?: DownloadFormat;
+  height?: number | null;
+  subtitles?: { languages: string[]; embed: boolean } | null;
+  chapters?: "off" | "keep" | "split";
+  sponsorBlock?: "off" | "mark" | "cut";
+  embedThumbnail?: boolean;
+  embedMetadata?: boolean;
+  filenameTemplate?: string | null;
+  outputDir?: string | null;
+  sections?: Array<{ startMs: number; endMs: number }>;
+  preciseCuts?: boolean;
+  playlistMode?: "video" | "playlist";
+  playlistItems?: string | null;
+  speedLimit?: string | null;
+}
+export interface DownloadPreset {
+  id: "mp4_1080" | "mp4_720" | "mp3_320" | "m4a" | "custom";
+  label: string;
+  options: DownloadOptions;
+}
 export interface DownloadRequest {
   url: string;
-  quality: Quality;
-  playlistMode: "video" | "playlist";
+  quality?: Quality;
+  playlistMode?: "video" | "playlist";
   playlistRange?: string;
+  options?: DownloadOptions;
+  rememberForSite?: boolean;
+  cookiesFromBrowser?: DownloadBrowser;
 }
 
 export interface EngineStatus {

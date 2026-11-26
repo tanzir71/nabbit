@@ -1,0 +1,159 @@
+    Blocking waiting for file lock on build directory
+   Compiling nabbit v0.1.0 (D:\claude-upgrade-26\nabbit\src-tauri)
+warning: function `parse_timecode` is never used
+   --> src\download\options.rs:323:8
+    |
+323 | pub fn parse_timecode(value: &str) -> Result<u64> {
+    |        ^^^^^^^^^^^^^^
+    |
+    = note: `#[warn(dead_code)]` (part of `#[warn(unused)]`) on by default
+
+warning: `nabbit` (lib) generated 1 warning
+    Finished `test` profile [unoptimized + debuginfo] target(s) in 7m 51s
+     Running unittests src\lib.rs (src-tauri\target\debug\deps\nabbit_lib-124f67a018d3c306.exe)
+
+running 126 tests
+test clipboard::sensitive::tests::detects_common_sensitive_shapes ... ok
+test clipboard::watcher::tests::detects_windows_clipboard_monitor_exclusion_format ... ok
+test clipboard::watcher::tests::windows_clipboard_monitor_receives_updates ... ok
+test db::download_presets::tests::defaults_and_reading_saving_presets_never_enqueue_downloads ... ok
+test db::download_presets::tests::enqueue_and_remember_are_atomic_and_invalid_options_leave_no_rows ... ok
+test db::download_presets::tests::host_keys_reject_non_http_inputs_and_default_choice_stays_unmodified ... ok
+test db::download_presets::tests::migrating_a_v01_database_preserves_jobs_and_is_idempotent ... ok
+test db::download_presets::tests::per_site_preset_survives_restart_and_youtube_aliases_share_it ... ok
+test db::download_presets::tests::snapshots_retain_trim_and_queue_updates_cannot_change_them ... ok
+test db::tests::activity_policy_extends_legacy_settings_normalizes_and_survives_reopen ... ok
+test db::tests::clear_clipboard_history_removes_blob_files ... ok
+test db::tests::duplicate_clipboard_hash_updates_entry ... ok
+test db::tests::island_preferences_extend_legacy_settings_and_survive_reopen ... ok
+test db::tests::keyboard_defaults_extend_old_settings_without_replacing_custom_keys ... ok
+test db::tests::keyboard_pin_slots_are_stable_unique_and_survive_reopen ... ok
+test db::tests::migrations_create_expected_tables ... ok
+test db::tests::open_recovers_from_corrupt_database_file ... ok
+test db::tests::retention_gc_keeps_pinned_entries ... ok
+test db::tests::sensitive_heuristics_skip_when_enabled ... ok
+test db::tests::source_app_exclusions_skip_entries ... ok
+test db::tests::theme_defaults_preserve_legacy_settings_and_override_survives_reopen ... ok
+test db::tests::very_large_clipboard_payloads_are_skipped ... ok
+test download::engine::tests::actual_process_timeout_reaps_the_owned_tree ... ok
+test download::engine::tests::atomic_swap_and_invalid_candidate_preserve_working_file ... ok
+test download::engine::tests::checksum_rejects_corrupt_or_missing_digest ... ok
+test download::engine::tests::daily_schedule_handles_boundaries_bad_dates_and_clock_rollback ... ok
+test download::engine::tests::explicit_runtime_path_is_one_argument_and_missing_helper_is_typed ... ok
+test download::engine::tests::extraction_reports_pass_failure_and_non_gating_offline_timeout ... ok
+test download::engine::tests::health_cache_round_trips_and_legacy_status_survives ... ok
+test download::engine::tests::health_error_is_one_reserved_activity_and_recovers_without_jobs ... ok
+test download::engine::tests::online_engine_smoke ... ignored, online-only engine probe; network is not an acceptance gate
+test download::engine::tests::persisted_health_survives_restart_and_getter_creates_no_jobs ... ok
+test download::engine::tests::target_assets_do_not_ship_x64_under_an_arm_name ... ok
+test download::engine::tests::version_fixtures_validate_identity_and_minimums ... ok
+test download::format_sizes::tests::exact_approximate_and_bitrate_sizes_include_audio_and_keep_unknowns ... ok
+test download::format_sizes::tests::missing_audio_or_bad_duration_never_fabricates_a_total ... ok
+test download::manager::tests::fallback_covers_format_and_merge_failures ... ok
+test download::manager::tests::final_output_prefers_extracted_mp3_for_audio_jobs ... ok
+test download::options::tests::all_audio_choices_and_mp3_bitrate_match_the_handoff ... ok
+test download::options::tests::browser_choice_is_job_only_never_an_options_field_or_cookie_file ... ok
+test download::options::tests::chapters_and_sponsorblock_every_mode_have_exact_flags ... ok
+test download::options::tests::every_video_container_has_the_exact_height_selector_and_merge_flag ... ok
+test download::options::tests::fallback_keeps_the_height_cap_instead_of_silently_raising_quality ... ok
+test download::options::tests::filename_and_ffmpeg_paths_with_spaces_remain_single_arguments ... ok
+test download::options::tests::pinned_help_parses_every_generated_mapping_without_network_or_profiles ... ignored, requires the locally provisioned pinned yt-dlp; no media or browser access
+test download::options::tests::playlists_range_and_indices_match_exact_ytdlp_arguments ... ok
+test download::options::tests::subtitles_support_embedded_and_sidecar_modes ... ok
+test download::options::tests::thumbnail_metadata_and_rate_are_opt_in ... FAILED
+test download::options::tests::timecodes_and_remembered_options_keep_reusable_choices_only ... ok
+test download::options::tests::trim_union_and_precise_cut_use_repeated_sections_without_overwrites ... ok
+test download::options::tests::validation_rejects_bad_ranges_inputs_and_non_finite_rate_without_io ... ok
+test download::ytdlp::tests::builds_audio_args ... ok
+test download::ytdlp::tests::builds_playlist_range_args ... ok
+test download::ytdlp::tests::fallback_format_uses_progressive_best_when_merge_fails ... ok
+test download::ytdlp::tests::final_postprocessed_path_is_authoritative_machine_output ... ok
+test download::ytdlp::tests::parses_bare_machine_progress_from_yt_dlp_type_prefix ... ok
+test download::ytdlp::tests::parses_machine_progress ... ok
+test island::activity_tests::default_priority_split_and_replacement_cover_all_activity_categories ... ok
+test island::activity_tests::disabled_alerts_are_not_replayed_when_the_category_is_reenabled ... ok
+test island::activity_tests::errors_stay_until_dismissed_and_retry_replaces_the_error ... ok
+test island::activity_tests::events_use_the_camel_case_contract_and_keep_target_and_revision ... ok
+test island::activity_tests::fullscreen_exception_is_opt_in_and_only_timer_end_and_download_failure ... ok
+test island::activity_tests::idle_has_no_deadline_and_repeated_unchanged_monitor_samples_emit_nothing ... ok
+test island::activity_tests::link_shrinks_at_eight_seconds_and_clipboard_change_removes_its_bubble ... ok
+test island::activity_tests::mixed_monitor_alert_exposure_is_global_without_replaying_already_seen_alerts ... ok
+test island::activity_tests::one_hour_hide_focus_and_wall_clock_changes_do_not_release_fullscreen_or_expire_queued_alerts ... ok
+test island::activity_tests::order_disable_fade_and_cleanup_are_deterministic ... ok
+test island::activity_tests::producer_lifecycles_remove_finished_tools_media_timers_and_preserve_result_payloads ... ok
+test island::activity_tests::queued_and_hidden_alerts_get_four_seconds_of_actual_primary_or_bubble_exposure ... ok
+test island::input::tests::faded_held_drag_wakes_only_after_band_entry_and_hidden_always_cancels ... ok
+test island::input::tests::faded_hidden_and_invalid_provider_fail_closed ... ok
+test island::input::tests::held_drag_requires_entry_and_cancel_restores_original_rect ... ok
+test island::input::tests::mixed_dpi_size_physical_edges_and_changed_rects ... ok
+test island::input::tests::web_teardown_does_not_cancel_a_new_held_native_drag ... ok
+test island::keyboard::tests::closed_or_reused_origin_is_never_activated_on_release ... ok
+test island::keyboard::tests::explicit_focus_is_once_per_request_and_returns_to_original_window ... ok
+test island::keyboard::tests::monitor_transfer_keeps_external_origin_and_ignores_other_labels ... ok
+test island::keyboard::tests::no_request_no_activation_and_delayed_open_never_takes_a_new_foreground ... ok
+test island::keyboard::tests::opening_from_the_full_app_restores_that_window ... ok
+test island::keyboard::tests::outside_switch_denial_and_pending_close_never_restore_or_retry ... ok
+test island::keyboard::tests::remapping_validates_syntax_and_preserves_legacy_bindings ... ok
+test island::model::tests::disabled_empty_invalid_and_duplicate_layouts_are_safe ... ok
+test island::model::tests::follows_mouse_across_mixed_dpi_negative_origin_and_shared_edges ... ok
+test island::model::tests::primary_all_and_specific_have_deterministic_labels_and_fallback ... ok
+test island::model::tests::size_and_shape_compose_with_dpi_without_state_dependent_host_resize ... ok
+test island::model::tests::work_area_covers_top_bottom_and_auto_hide_taskbars ... ok
+test island::motion::tests::collapse_fades_first_and_reduced_motion_has_no_morph ... ok
+test island::motion::tests::native_matches_generated_css_and_interrupted_geometry ... ok
+test island::presentation_tests::a_secondary_activity_is_one_bubble_without_resizing_the_host ... ok
+test island::presentation_tests::artwork_decoding_is_local_bounded_and_returns_premultiplied_pixels ... ok
+test island::presentation_tests::collapsing_under_the_pointer_requires_leave_before_another_hover_peek ... ok
+test island::presentation_tests::drop_staging_rejects_virtual_files_and_routes_only_supported_payloads ... ok
+test island::presentation_tests::engine_health_error_draws_its_own_copy_and_fix_then_clears ... ok
+test island::presentation_tests::every_v2_compact_payload_has_visible_drawing_and_bounded_text ... ok
+test island::presentation_tests::fading_releases_input_at_200ms_and_reduced_hidden_forced_modes_skip_it ... ok
+test island::presentation_tests::idle_and_notch_keep_fixed_reference_geometry ... ok
+test island::presentation_tests::volume_feedback_expires_while_hidden_and_repeated_input_refreshes_its_deadline ... ok
+test island::surface::tests::drag_cancel_restores_expanded_and_suppression_wins ... ok
+test island::surface::tests::hover_intent_and_leave_are_finite_and_cancelable ... ok
+test island::surface::tests::paint_ack_does_not_destroy_a_newer_open_and_compact_needs_no_web ... ok
+test island::surface::tests::pending_reopen_rejects_an_older_compact_paint_ack ... ok
+test island::surface::tests::reopening_waits_for_the_previous_webview_registration_to_disappear ... ok
+test island::visibility::tests::borderless_geometry_and_maximised_auto_hide_are_distinct ... ok
+test island::visibility::tests::explicit_wake_cannot_override_fullscreen_and_recovers_without_stale_hover ... ok
+test island::visibility::tests::hover_intent_requires_400ms_and_resets_on_leave_or_foreground_change ... ok
+test island::visibility::tests::notification_states_are_scoped_and_ignore_shell_own_and_invisible_windows ... ok
+test island_interaction::tests::adaptive_polling_obeys_the_120_pixel_radius ... ok
+test island_interaction::tests::drag_from_outside_band_activates_large_target_and_cancel_restores_hitrect ... ok
+test island_interaction::tests::inside_outside_edges_and_live_rect_updates ... ok
+test island_interaction::tests::notification_and_borderless_fullscreen_fixtures_exclude_shell_own_and_other_monitors ... ok
+test island_interaction::tests::ole_callback_holds_target_until_drop_and_fullscreen_always_overrides ... ok
+test island_interaction::tests::rect_validation_and_physical_dpi_conversion ... ok
+test island_native_model::tests::collapse_holds_for_the_content_fade_and_reduced_motion_has_no_geometry_animation ... ok
+test island_native_model::tests::compact_updates_never_allocate_a_webview ... ok
+test island_native_model::tests::drag_restores_the_original_surface_after_cancel_or_fullscreen ... ok
+test island_native_model::tests::interrupted_fades_do_not_flash_content_and_reduced_motion_still_crossfades ... ok
+test island_native_model::tests::native_spring_matches_the_existing_css_sample_and_never_resizes_the_host ... ok
+test island_native_model::tests::native_stays_owner_until_web_paint_ack_and_stale_acks_do_not_close_a_new_view ... ok
+test island_native_model::tests::retarget_starts_from_the_interpolated_geometry ... ok
+test pins::tests::explicit_launch_validates_paths_before_using_the_injected_opener ... ok
+test taskbar_theme::tests::real_notifications_follow_system_ignore_apps_deduplicate_and_stop ... ok
+test tray_icon::tests::missing_invalid_and_old_windows_registry_values_default_dark ... ok
+test tray_icon::tests::optical_glyphs_keep_alpha_and_are_monochrome_in_both_taskbar_themes ... ok
+test util::tests::normalizes_short_url ... ok
+test util::tests::normalizes_shorts_url ... ok
+test util::tests::normalizes_youtube_watch_url ... ok
+
+failures:
+
+---- download::options::tests::thumbnail_metadata_and_rate_are_opt_in stdout ----
+
+thread 'download::options::tests::thumbnail_metadata_and_rate_are_opt_in' (24060) panicked at src\download\options_tests.rs:31:5:
+assertion `left == right` failed
+  left: ["--newline", "--no-warnings", "--no-cache-dir", "--no-overwrites", "--progress-template", "download:nabbit:%(progress._percent_str)s|%(progress._speed_str)s|%(progress._eta_str)s|%(info.filename)s", "--print", "after_move:nabbit-file:%(filepath)s", "-f", "bv*[height<=1080]+ba/b[height<=1080]", "--merge-output-format", "mp4", "--embed-thumbnail", "--embed-metadata", "--no-playlist", "-r", "4.2M", "-o", "output with spaces\\%(title)s [%(id)s].%(ext)s"]
+ right: ["--newline", "--no-warnings", "--no-cache-dir", "--no-overwrites", "--progress-template", "download:nabbit:%(progress._percent_str)s|%(progress._speed_str)s|%(progress._eta_str)s|%(info.filename)s", "--print", "after_move:nabbit-file:%(filepath)s", "-f", "bv*[height<=1080]+ba/b[height<=1080]", "--merge-output-format", "mp4", "--embed-thumbnail", "--embed-metadata", "-r", "4.2M", "--no-playlist", "-o", "output with spaces\\%(title)s [%(id)s].%(ext)s"]
+note: run with `RUST_BACKTRACE=1` environment variable to display a backtrace
+
+
+failures:
+    download::options::tests::thumbnail_metadata_and_rate_are_opt_in
+
+test result: FAILED. 123 passed; 1 failed; 2 ignored; 0 measured; 0 filtered out; finished in 2.68s
+
+error: test failed, to rerun pass `--lib`
