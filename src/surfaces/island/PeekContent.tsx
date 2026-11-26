@@ -4,6 +4,8 @@ import { PresetChip } from "../../components/PresetChip";
 import { IconButton } from "../../components/IconButton";
 import { IslandAsset } from "./IslandAsset";
 import { MiniButton, type IslandIntent } from "./CompactContent";
+import { usePreset } from "../../features/downloads/usePreset";
+import { defaultDownloadPresets } from "../../lib/downloadPresets";
 export function PeekContent({
   item,
   act,
@@ -13,6 +15,13 @@ export function PeekContent({
 }) {
   const e = item.event,
     invoke = (action: string) => act({ action, item });
+  const choice = usePreset(e.kind === "linkDetected" ? e.url : "");
+  const primaryPreset =
+    choice.preset.id === "mp3_320" ? defaultDownloadPresets()[0] : choice.preset;
+  const [primaryLabel, primaryMeta] =
+    primaryPreset.id === "custom"
+      ? ["Custom", primaryPreset.options.format?.toUpperCase()]
+      : primaryPreset.label.replace("…", "").split(" · ");
   const control = (name: string, label: string, action: string) => (
     <IconButton variant="island" size={28} label={label} onClick={() => invoke(action)}>
       <IslandAsset group="peek" name={name} />
@@ -71,17 +80,36 @@ export function PeekContent({
       </div>
       {e.kind === "linkDetected" && (
         <div className="island-row">
-          <PresetChip surface="island" selected onClick={() => invoke("review")}>
-            MP4<span className="island-mono">1080p</span>
+          <PresetChip
+            surface="island"
+            selected={choice.preset.id !== "mp3_320"}
+            disabled={!choice.ready}
+            onClick={() => choice.choose(primaryPreset)}
+          >
+            {primaryLabel}
+            {primaryMeta && <span className="island-mono">{primaryMeta}</span>}
           </PresetChip>
-          <PresetChip surface="island" onClick={() => invoke("audioReview")}>
+          <PresetChip
+            surface="island"
+            selected={choice.preset.id === "mp3_320"}
+            disabled={!choice.ready}
+            onClick={() => choice.choose(defaultDownloadPresets()[2])}
+          >
             MP3<span className="island-mono">320</span>
           </PresetChip>
-          <PresetChip surface="island" onClick={() => invoke("review")}>
+          <PresetChip
+            surface="island"
+            onClick={() => act({ action: "review", item, preset: choice.preset })}
+          >
             More
           </PresetChip>
           <span className="island-spacer" />
-          <MiniButton signal onClick={() => invoke("review")}>
+          <MiniButton
+            signal
+            onClick={() => {
+              if (choice.ready) act({ action: "nab", item, options: choice.preset.options });
+            }}
+          >
             <IslandAsset group="peek" name="iconDownload" />
             Nab it
           </MiniButton>

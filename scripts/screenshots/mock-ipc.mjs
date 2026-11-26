@@ -201,6 +201,40 @@ export function installMockIpc(seed) {
         return state.stagedUrl;
       case "get_captured_link":
         return clone(state.metadata ?? seed.responses?.get_captured_link ?? null);
+      case "resolve_download_preset":
+        return clone(
+          seed.responses?.resolve_download_preset ?? {
+            id: "mp4_1080",
+            label: "MP4 · 1080p",
+            options: { format: "mp4", height: 1080, sections: [], playlistMode: "video" },
+          },
+        );
+      case "pause_download":
+      case "cancel_download":
+      case "resume_download":
+      case "retry_download":
+      case "retry_download_with_browser": {
+        const job = state.jobs.find((j) => j.id === args.id);
+        if (!job) throw new Error("Job not found");
+        job.status =
+          command === "pause_download"
+            ? "paused"
+            : command === "cancel_download"
+              ? "cancelled"
+              : "queued";
+        job.error = null;
+        dispatch("download:updated", clone(job));
+        return clone(job);
+      }
+      case "open_download":
+      case "reveal_download":
+        return null;
+      case "clear_finished_downloads":
+        state.jobs = state.jobs.filter((j) => !["completed", "cancelled"].includes(j.status));
+        dispatch("download:cleared", null);
+        return null;
+      case "plugin:clipboard-manager|read_text":
+        return seed.clipboardText ?? null;
       case "island_review_url":
       case "capture_url": {
         const url = new globalThis.URL(args.url);

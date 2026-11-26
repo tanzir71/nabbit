@@ -1,10 +1,12 @@
-import { Download, History, Settings, X } from "lucide-react";
-import { lazy, Suspense, useEffect, useMemo, useState } from "react";
+import { lazy, Suspense, useEffect, useState } from "react";
 import { invoke } from "@tauri-apps/api/core";
 import { listen } from "@tauri-apps/api/event";
-import { Segmented } from "../components/Segmented";
-import { IconButton } from "../components/IconButton";
+import { Tab } from "../components/Tab";
+import { Badge } from "../components/Badge";
+import { DownloadIcon } from "../features/downloads/DownloadIcon";
 import { BrandMark } from "../components/BrandMark";
+import { IconButton } from "../components/IconButton";
+
 import { useAppStore } from "../store/useAppStore";
 import { ClipboardList } from "./ClipboardList";
 import { DownloadPanel } from "./DownloadPanel";
@@ -16,6 +18,7 @@ export function Popover() {
   const settings = useAppStore((state) => state.settings);
   const loading = useAppStore((state) => state.loading);
   const error = useAppStore((state) => state.error);
+  const engine = useAppStore((state) => state.engine);
   const setLastTab = useAppStore((state) => state.setLastTab);
   const [showSettings, setShowSettings] = useState(false);
   useEffect(() => {
@@ -51,21 +54,6 @@ export function Popover() {
   }, []);
 
   const activeTab = settings?.lastTab ?? "download";
-  const tabs = useMemo(
-    () => [
-      {
-        value: "download" as const,
-        label: "Download",
-        icon: <Download size={16} strokeWidth={1.75} />,
-      },
-      {
-        value: "clipboard" as const,
-        label: "Clipboard",
-        icon: <History size={16} strokeWidth={1.75} />,
-      },
-    ],
-    [],
-  );
 
   if (loading || !settings) {
     return (
@@ -76,35 +64,53 @@ export function Popover() {
   }
 
   return (
-    <section className="mx-auto flex min-h-screen w-full max-w-[460px] flex-col overflow-hidden border-x border-subtle bg-surface shadow-popover">
-      <header className="flex h-14 shrink-0 items-center justify-between border-b border-subtle px-4">
-        <div className="flex min-w-0 items-center gap-2">
-          <BrandMark />
-          <div className="min-w-0">
-            <h1 className="truncate text-sm font-semibold">Nabbit</h1>
-            <p className="truncate text-xs text-secondary">Nab it. Keep it.</p>
-          </div>
-        </div>
-        <div className="flex items-center gap-1">
-          <IconButton label="Settings" onClick={() => setShowSettings(true)}>
-            <Settings size={17} />
-          </IconButton>
-          <IconButton
-            label="Hide"
-            onClick={() => void import("../lib/ipc").then(({ api }) => api.hideMainWindow())}
-          >
-            <X size={17} />
-          </IconButton>
-        </div>
+    <section className="tray-popover">
+      <header className="tray-header">
+        <BrandMark size={24} />
+        <h1>Nabbit</h1>
+        <Badge>{settings.island.enabled ? "Island on" : "Tray only"}</Badge>
+        <span className="nab-spacer" />
+        <IconButton
+          label={activeTab === "download" ? "Search downloads" : "Search clipboard"}
+          onClick={() =>
+            window.dispatchEvent(
+              new CustomEvent(
+                activeTab === "download" ? "nabbit:focus-download-search" : "nabbit:focus-search",
+              ),
+            )
+          }
+        >
+          <DownloadIcon name="search" />
+        </IconButton>
+        <IconButton label="Settings" onClick={() => setShowSettings(true)}>
+          <DownloadIcon name="settings" />
+        </IconButton>
+        <IconButton
+          label="Hide"
+          onClick={() => void import("../lib/ipc").then(({ api }) => api.hideMainWindow())}
+        >
+          <DownloadIcon name="close" />
+        </IconButton>
       </header>
-
-      <div className="h-12 shrink-0 border-b border-subtle p-1.5">
-        <Segmented
-          label="Navigation"
-          value={activeTab}
-          options={tabs}
-          onChange={(value) => void setLastTab(value)}
-        />
+      <div className="tray-tabs-wrap">
+        <nav className="tray-tabs" aria-label="Navigation">
+          <Tab selected={activeTab === "download"} onClick={() => void setLastTab("download")}>
+            <DownloadIcon name="nab" />
+            Nab
+          </Tab>
+          <Tab disabled title="Notes">
+            <DownloadIcon name="notes" />
+            Notes
+          </Tab>
+          <Tab selected={activeTab === "clipboard"} onClick={() => void setLastTab("clipboard")}>
+            <DownloadIcon name="clipboard" />
+            Clipboard
+          </Tab>
+          <Tab disabled title="Shelf">
+            <DownloadIcon name="shelf" />
+            Shelf
+          </Tab>
+        </nav>
       </div>
 
       {error ? (
@@ -113,10 +119,34 @@ export function Popover() {
         </div>
       ) : null}
 
-      <div className="min-h-0 flex-1 overflow-hidden">
-        {activeTab === "download" ? <DownloadPanel /> : <ClipboardList />}
+      <div className="tray-content">
+        {activeTab === "download" ? <DownloadPanel active={!showSettings} /> : <ClipboardList />}
       </div>
 
+      {activeTab === "download" && (
+        <footer className="tray-engine-footer">
+          <button
+            type="button"
+            onClick={() => window.dispatchEvent(new CustomEvent("nabbit:engine-health"))}
+            title="Download engine health"
+          >
+            <DownloadIcon name="engine" />
+            <span>
+              {engine?.missing.length || engine?.failure
+                ? "Download engine needs attention"
+                : "Engine ready"}
+              {[
+                engine?.ytdlpVersion && `yt-dlp ${engine.ytdlpVersion}`,
+                engine?.denoVersion && `Deno ${engine.denoVersion}`,
+                engine?.ffmpegVersion && `ffmpeg ${engine.ffmpegVersion}`,
+              ]
+                .filter(Boolean)
+                .map((v) => ` · ${v}`)
+                .join("")}
+            </span>
+          </button>
+        </footer>
+      )}
       {showSettings ? (
         <Suspense
           fallback={

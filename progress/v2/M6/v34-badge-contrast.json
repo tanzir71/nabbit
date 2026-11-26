@@ -1,0 +1,27 @@
+{
+  "foreground": "rgb(245, 245, 243)",
+  "background": "rgba(0, 0, 0, 0.7)",
+  "incomplete": [
+    {
+      "id": "color-contrast",
+      "nodes": [
+        {
+          "target": [
+            ".nab-duration"
+          ],
+          "summary": "Fix any of the following:\n  Element's background color could not be determined due to a background gradient"
+        }
+      ]
+    }
+  ],
+  "violations": [],
+  "worstCaseBackground": "white thumbnail beneath the same black alpha overlay",
+  "renderedBackgroundRgb": [
+    76,
+    76,
+    76
+  ],
+  "contrastRatio": 7.8667622276094376,
+  "minimumRequired": 4.5,
+  "passed": true
+}

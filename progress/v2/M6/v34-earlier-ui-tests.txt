@@ -1,0 +1,18 @@
+❯ src/features/downloads/downloads.test.tsx (12 tests | 1 failed) 715ms
+  Name "Video failed":
+    [33mtitle[39m=[32m"Video failed"[39m
+  Name "Video failed, failed":
+    [33maria-label[39m=[32m"Video failed, failed"[39m
+    [33mclass[39m=[32m"nab-queue-row is-failed"[39m
+⎯⎯⎯⎯⎯⎯⎯ Failed Tests 1 ⎯⎯⎯⎯⎯⎯⎯
+ FAIL  src/features/downloads/downloads.test.tsx > Nab review and persistent queue > offers Chrome sign-in as an explicit job-scoped retry without reading any profile
+TestingLibraryElementError: Unable to find an accessible element with the role "button" and name "Use Chrome sign-in"
+  Name "Video failed":
+    title="Video failed"
+  Name "Video failed, failed":
+    aria-label="Video failed, failed"
+    class="nab-queue-row is-failed"
+ ❯ src/features/downloads/downloads.test.tsx:227:28
+    228|     await waitFor(() => expect(retry).toHaveBeenCalledWith("failed", "…
+ Test Files  1 failed (1)
+      Tests  1 failed | 11 passed (12)

@@ -1,0 +1,11 @@
+✓ src/features/downloads/downloads.test.tsx (16 tests) 2947ms
+ ❯ src/surfaces/island/IslandApp.test.tsx (1 test | 1 failed) 1124ms
+     → expected 'live' to be 'peek' // Object.is equality
+⎯⎯⎯⎯⎯⎯⎯ Failed Tests 1 ⎯⎯⎯⎯⎯⎯⎯
+ FAIL  src/surfaces/island/IslandApp.test.tsx > does not close an opening native Peek when the activity snapshot initializes first
+AssertionError: expected 'live' to be 'peek' // Object.is equality
+Expected: "peek"
+Received: "live"
+ ❯ src/surfaces/island/IslandApp.test.tsx:102:54
+ Test Files  1 failed | 25 passed (26)
+      Tests  1 failed | 126 passed (127)

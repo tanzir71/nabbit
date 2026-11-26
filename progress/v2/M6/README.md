@@ -1,6 +1,6 @@
 # M6 — Downloads core (in progress)
 
-This folder contains **V3.1: Deno and engine health** and **V3.2: download options and per-site presets**. M6 is not published yet; the live landing remains M5. Capture paths and the Nab redesign follow in V3.3–V3.4.
+This folder contains **V3.1–V3.4: Deno and engine health, download options and per-site presets, capture paths, and the Nab/queue redesign**. M6 is not published yet; the live landing remains M5. Its milestone push is the next Build Loop task.
 
 ## V3.1 behavior
 
@@ -85,3 +85,35 @@ Reproduce with a fresh screenshot prefix after `npm run verify`:
 node scripts/verify-capture-paths.mjs v33-local
 cargo test --manifest-path src-tauri/Cargo.toml -- --test-threads=1
 ```
+
+## V3.4 — Nab views and live queue controls
+
+The tray and expanded island now share a captured-link review and persisted queue. Paste and synthetic drop stage review; metadata arrives through the Rust cache and pushed events. Preset chips resolve the remembered site choice, including M4A, and the island keeps its draft for the same link across panel teardown. A new link gets its own choice. Peek's selected preset carries into More or its explicit Nab action. Download, Nab it, Ctrl+Enter and the compact/native pill Nab button enqueue only after an explicit action; a busy guard prevents duplicate starts. The backend reuses ready metadata off the UI thread and clears only the matching review after success, preserving a newer captured link.
+
+Queue rows show pushed progress, speed and ETA and expose pause, resume, cancel, retry, Open and Reveal. Open requires a completed record and an existing recorded file before calling the opener. Clear finished transactionally removes completed/cancelled history while retaining files, active jobs and actionable failures. Chrome sign-in retry is explicitly selected per job and stored only in memory; automated tests inject the runner and never read a real browser profile. Search filters queue rows, and the engine footer toggles the existing health card. The island's Paste button receives only the clipboard read permission it needs. Notes and Shelf tray tabs remain disabled until their named phases.
+
+The Figma sources are tray **13:2** and expanded **10:519 / 9:78**, with design contexts and screenshots inspected. The tray is **460×680** and the expanded island is **680×297 CSS pixels**. `v34-assets.json` records **21 original SVG exports**, natural dimensions and hashes; the logo exactly matches the existing 24px brand asset. Existing original island icons and the shared progress ring are reused. Scoped readable chip/error text preserves shared palette tokens; dynamic titles, estimates, progress and thumbnail placeholders come from fixtures. Full Options, Trim and Playlist sheets remain V3.5. Basic inline options and legacy playlist range controls are retained; the bare first-video action selects item 1. The full error catalog and per-item playlist/download acceptance remain V3.6/V3.7.
+
+Accepted evidence is `v34-acceptance.json`, `v34-check-log-metadata.json`, `v34-entry-bundles.json`, the two **v34-checked** screenshot reports and `v34-png-audit.json`:
+
+- `npm run verify` passes **128 frontend/script tests**, typecheck, lint, icon/font/token checks and the production build. Initial island JavaScript is **90,289 / 120,000 gzip bytes**; IPC/store/editor/settings stay outside its initial closure.
+- Rust formatting, default and island-spike all-target Clippy with warnings denied, and **136 serial Rust tests** pass. Two existing engine/network tests remain opt-in. New native seams verify finished-history/file preservation and validated opening without launching an application.
+- Seventeen new UI tests cover review-only paste/drop, remembered choices, Peek actions, per-link draft lifetime, explicit shortcuts and duplicate guards, playlist defaults/ranges, subtitles/trim, queue lifecycle/actions/errors, clear finished, injected Chrome retry, menu controls and listener/bootstrap cleanup.
+- **40 repeat-identical final PNGs** cover 16 Nab views and 24 capture regressions, light/dark at 1×/1.5×; island contexts stay dark. Independent decoding, dimensions, hashes and a strict **300,000-byte** budget pass. The largest final capture is **110,706 bytes**. All **168 retained V3.4 PNGs** also decode and pass that budget (largest **111,175 bytes**); earlier prefixes are superseded evidence.
+- The 16 Nab contexts have zero default axe violations. Four island contexts report an incomplete contrast check for the translucent duration badge over a gradient. `v34-badge-contrast.json` resolves this with the actual browser's worst-case white-thumbnail composite: foreground rgb(245,245,243), black 70% overlay rendering rgb(76,76,76), **7.8668:1**, exceeding 4.5:1. This bounded probe does not claim whole-app WCAG conformance. Actual Geist/Geist Mono glyphs, heading typography, original asset slots and geometry are audited.
+- Screenshot IPC guards reject starts/resumes/retries and unexpected commands/network/errors; progress injection verifies pushed updates without starting work. Both final reports bind to the exact verified build manifest.
+
+Earlier compile, lint, fixture, contrast, hidden-hover-asset and cold-Peek failures remain in the diagnostic receipts and superseded captures. The cold-Peek test retains its original one-second deadline: production preparation now imports expanded-only modules only for expanded mode, allowing Peek/Drop to render without loading the Nab body. No timeouts or assertions were weakened. Log trailing whitespace is normalized, with raw/saved hashes retained; source fingerprints normalize LF only.
+
+Automated reproduction after `npm run verify` (use new screenshot prefixes):
+
+```powershell
+node scripts/verify-nab-views.mjs v34-local
+node scripts/verify-capture-paths.mjs v34-local-capture
+cargo fmt --manifest-path src-tauri/Cargo.toml --check
+cargo clippy --manifest-path src-tauri/Cargo.toml --all-targets -- -D warnings
+cargo clippy --manifest-path src-tauri/Cargo.toml --all-targets --features island-spike -- -D warnings
+cargo test --manifest-path src-tauri/Cargo.toml -- --test-threads=1
+```
+
+No real media/profile access, native click, OS protocol installation, real keypress, installer, Tack account or display change is claimed. Existing V0/V2.7 performance/focus limitations are unchanged. V3.4 is a local task commit on main; no PR, tag, release, workflow edit/dispatch or push is part of this pass. M6 remains unchecked for its separate milestone procedure.

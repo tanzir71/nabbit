@@ -156,9 +156,14 @@ export async function captureSuite(root, options, cases = scenarios) {
             );
             assert(
               !fixture.calls.some(({ command }) =>
-                ["start_download", "start_download_with_preset", "quick_download_staged"].includes(
-                  command,
-                ),
+                [
+                  "start_download",
+                  "start_download_with_preset",
+                  "quick_download_staged",
+                  "resume_download",
+                  "retry_download",
+                  "retry_download_with_browser",
+                ].includes(command),
               ),
               "A capture cannot start downloads",
             );
@@ -184,6 +189,11 @@ export async function captureSuite(root, options, cases = scenarios) {
                     "island_review_url",
                     "list_clipboard_entries",
                     "get_engine_status",
+                    "get_settings",
+                    "get_captured_link",
+                    "list_downloads",
+                    "get_storage_stats",
+                    "resolve_download_preset",
                     "plugin:event|listen",
                     "plugin:event|unlisten",
                   ].includes(command),

@@ -157,7 +157,7 @@ impl Service {
         state.pending = None;
         Ok(())
     }
-    pub fn clear_if_current(&self, url: &str) -> Result<()> {
+    pub fn clear_if_current(&self, url: &str) -> Result<bool> {
         let mut state = self
             .state
             .lock()
@@ -171,8 +171,9 @@ impl Service {
             state.revision += 1;
             state.current = None;
             state.pending = None;
+            return Ok(true);
         }
-        Ok(())
+        Ok(false)
     }
     pub fn stop(&self) {
         self.state.lock().unwrap_or_else(|e| e.into_inner()).stopped = true;
@@ -295,13 +296,24 @@ pub fn hotkey(app: &AppHandle) {
         );
         match result {
             Ok(job) => {
-                let _ = state.capture.clear_if_current(&job.url);
+                download_started(&app, &job.url);
             }
             Err(error) => {
                 let _ = app.emit("capture:error", error.to_string());
             }
         }
     });
+}
+
+pub fn download_started(app: &AppHandle, url: &str) {
+    let state = app.state::<crate::AppState>();
+    if state.capture.clear_if_current(url).unwrap_or(false) {
+        crate::island::activity_bus::publish(
+            app,
+            crate::island::activity::ActivityEvent::ClipboardChanged,
+        );
+        let _ = app.emit("url:cleared", url);
+    }
 }
 
 #[cfg(test)]

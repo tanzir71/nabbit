@@ -21,6 +21,7 @@ interface AppStore {
   loading: boolean;
   error: string | null;
   loadInitialData: () => Promise<void>;
+  loadDownloadData: () => Promise<void>;
   loadSettingsData: () => Promise<void>;
   saveSettings: (settings: AppSettings) => Promise<void>;
   acknowledgeFirstRun: () => Promise<void>;
@@ -33,6 +34,7 @@ interface AppStore {
   clearHistory: () => Promise<void>;
   stageUrl: (url: string) => Promise<void>;
   acceptCapturedLink: (metadata: DownloadMetadata) => void;
+  acceptClearedLink: (url: string) => void;
   clearStagedUrl: () => void;
   startDownload: (request: DownloadRequest) => Promise<void>;
   refreshDownloads: () => Promise<void>;
@@ -56,6 +58,23 @@ export const useAppStore = create<AppStore>((set, get) => ({
   stats: null,
   loading: true,
   error: null,
+  loadDownloadData: async () => {
+    const revision = captureRevision;
+    const [settings, downloads, metadata, engine] = await Promise.all([
+      api.getSettings(),
+      api.listDownloads(),
+      api.getCapturedLink(),
+      api.getEngineStatus(),
+    ]);
+    set({
+      settings,
+      downloads,
+      engine,
+      ...(revision === captureRevision
+        ? { metadata, stagedUrl: metadata?.normalizedUrl ?? "" }
+        : {}),
+    });
+  },
   loadSettingsData: () => {
     if (settingsLoad) return settingsLoad;
     set({ loading: true, error: null });
@@ -163,6 +182,12 @@ export const useAppStore = create<AppStore>((set, get) => ({
   acceptCapturedLink: (metadata) => {
     ++captureRevision;
     set({ metadata, stagedUrl: metadata.normalizedUrl, error: null });
+  },
+  acceptClearedLink: (url) => {
+    if (get().stagedUrl === url) {
+      ++captureRevision;
+      set({ metadata: null, stagedUrl: "" });
+    }
   },
   clearStagedUrl: () => {
     ++captureRevision;

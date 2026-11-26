@@ -217,6 +217,25 @@ impl Database {
             )?;
         Ok(())
     }
+    pub fn clear_finished_downloads(&self) -> Result<Vec<String>> {
+        let mut conn = self
+            .conn
+            .lock()
+            .map_err(|_| msg("database lock poisoned"))?;
+        let tx = conn.transaction()?;
+        let ids = {
+            let mut stmt =
+                tx.prepare("SELECT id FROM downloads WHERE status IN ('completed', 'cancelled')")?;
+            let rows = stmt.query_map([], |row| row.get::<_, String>(0))?;
+            rows.collect::<std::result::Result<Vec<_>, _>>()?
+        };
+        tx.execute(
+            "DELETE FROM downloads WHERE status IN ('completed', 'cancelled')",
+            [],
+        )?;
+        tx.commit()?;
+        Ok(ids)
+    }
     pub fn get_settings(&self) -> Result<AppSettings> {
         let conn = self
             .conn

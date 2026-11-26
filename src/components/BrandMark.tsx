@@ -7,5 +7,14 @@ const tiles = {
 };
 
 export function BrandMark({ size = 32 }: { size?: keyof typeof tiles }) {
-  return <img src={tiles[size]} width={size} height={size} alt="" className="shrink-0" />;
+  return (
+    <img
+      src={tiles[size]}
+      width={size}
+      height={size}
+      alt=""
+      className="shrink-0"
+      data-asset={`brand/app-${size}.svg`}
+    />
+  );
 }

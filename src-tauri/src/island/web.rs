@@ -593,16 +593,42 @@ impl Manager {
             let button=scene.primary.iter().any(|draw|matches!(draw,presentation::Draw::Button{x:left,width,..} if (5.0..=27.0).contains(&y)&&x>=*left&&x<=*left+*width));
             if button {
                 if let Some(crate::island::activity::Item {
+                    event: crate::island::activity::ActivityEvent::LinkDetected { url, .. },
+                    ..
+                }) = view.and_then(|view| view.primary.as_ref())
+                {
+                    let app = self.app.clone();
+                    let url = url.clone();
+                    tauri::async_runtime::spawn_blocking(move || {
+                        let state = app.state::<crate::AppState>();
+                        match state.downloads.enqueue_remembered(url) {
+                            Ok(job) => {
+                                crate::capture::download_started(&app, &job.url);
+                            }
+                            Err(error) => {
+                                let _ = app.emit("capture:error", error.to_string());
+                            }
+                        }
+                    });
+                    return;
+                }
+                if let Some(crate::island::activity::Item {
                     event: crate::island::activity::ActivityEvent::DownloadDone { job_id, .. },
                     ..
                 }) = view.and_then(|view| view.primary.as_ref())
                 {
-                    if let Err(error) = crate::commands::download::reveal_download(
-                        self.app.state::<crate::AppState>(),
-                        job_id.clone(),
-                    ) {
-                        lock(&self.state).error = Some(error.to_string());
-                    }
+                    let app = self.app.clone();
+                    let id = job_id.clone();
+                    tauri::async_runtime::spawn(async move {
+                        if let Err(error) = crate::commands::download::open_download(
+                            app.state::<crate::AppState>(),
+                            id,
+                        )
+                        .await
+                        {
+                            let _ = app.emit("capture:error", error.to_string());
+                        }
+                    });
                     return;
                 }
             }

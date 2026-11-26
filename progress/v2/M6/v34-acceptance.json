@@ -1,0 +1,211 @@
+{
+  "task": "V3.4 Island Nab tab and tray Nab redesign, live queue controls",
+  "baseCommit": "c2cf4a4bb7daa1acb5ce222eea1ff15f6496f372",
+  "branch": "main",
+  "checks": {
+    "npmVerify": {
+      "command": "npm run verify",
+      "exitCode": 0,
+      "file": "v34-npmVerify.txt",
+      "rawSha256": "d76d29a313a62c673759bcae0a066d98ea02bc65aba5e0a299fa9782a5af426d",
+      "savedSha256": "72cadff9c3efde163f29b7fb94a97c6b4a0ce456e38e1f4dc2a5dd3dd8297641"
+    },
+    "rustFmt": {
+      "command": "cargo fmt --check",
+      "exitCode": 0,
+      "file": "v34-rustFmt.txt",
+      "rawSha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "savedSha256": "c5668ee3be079d01aab4afe8f1271af60fe825cc74bc7d58af0840951544c42f"
+    },
+    "rustClippy": {
+      "command": "cargo clippy --all-targets -- -D warnings",
+      "exitCode": 0,
+      "file": "v34-rustClippy.txt",
+      "rawSha256": "4f036470d475750e120cea0f4a0f9961c3416cc20a0d7d89abd5a48455edb801",
+      "savedSha256": "4f33f724b748c9eb2be548e417d453a404fb662ca0776346d5d4ea325272c0c1"
+    },
+    "rustSpikeClippy": {
+      "command": "cargo clippy --all-targets --features island-spike -- -D warnings",
+      "exitCode": 0,
+      "file": "v34-rustSpikeClippy.txt",
+      "rawSha256": "3b0248b239cca6aa1376c2da8f6f0747553f430ca947b75921894f1858b761cb",
+      "savedSha256": "8453933ca2186d529e4a70a775bd12bf15d200364a6ed84674baa63a795fa6c8"
+    },
+    "rustTests": {
+      "command": "cargo test -- --test-threads=1",
+      "exitCode": 0,
+      "file": "v34-rustTests.txt",
+      "rawSha256": "239ecd0e29d22d6693ef6258958da390598494b177a4cbdc843752fa8b401c77",
+      "savedSha256": "6d2847b204a4883f2165a7a97beaab12b023286a991c9015c6e93735e77608d3"
+    },
+    "nabCaptures": {
+      "command": "node scripts/verify-nab-views.mjs v34-checked",
+      "exitCode": 0,
+      "file": "v34-nabCaptures.txt",
+      "rawSha256": "6198f427c7bf2e34d78d951128dd5f064023a86a84eb7e46ab145c0350945d62",
+      "savedSha256": "4055b5eaf535d3920551443e15d5c793b4362d93f6e4877c2006a81658c96293"
+    },
+    "captureRegression": {
+      "command": "node scripts/verify-capture-paths.mjs v34-checked-capture",
+      "exitCode": 0,
+      "file": "v34-captureRegression.txt",
+      "rawSha256": "c2fbc7b1c51edba95702f14e4e180b976c26355d8d64201943a741447e05785a",
+      "savedSha256": "a16840f5ca41fa11a19b2b030852e69f7af785a8020487e8149f673d4f979dc4"
+    }
+  },
+  "frontendTests": 128,
+  "rustTests": {
+    "passed": 136,
+    "ignored": 2,
+    "ignoredReason": "Existing opt-in real-engine/network tests; no profiles/media accessed in this pass."
+  },
+  "screenshots": {
+    "authoritativeReports": [
+      "v34-checked-screenshots.json",
+      "v34-checked-capture-screenshots.json"
+    ],
+    "independentAudit": "v34-png-audit.json",
+    "count": 40,
+    "repeatIdentical": true,
+    "largestBytes": 110706,
+    "strictBudgetBytes": 300000,
+    "retainedEarlierAndFinalCount": 168,
+    "retainedLargestBytes": 111175,
+    "themes": [
+      "light",
+      "dark"
+    ],
+    "deviceScaleFactors": [
+      1,
+      1.5
+    ],
+    "islandAlwaysDark": true,
+    "buildManifestSha256": "0e5ad9d7d327a5a8415b9ea666244bb8864fb316ce528c001c0efcd688da184b",
+    "ipcGuard": "No start, resume or retry calls; no unsupported IPC or unexpected network/runtime errors. Injected progress updates are asserted."
+  },
+  "design": {
+    "file": "tBm7NNhh1Y9aTQPJ3WxY5v",
+    "contextsAndScreenshots": [
+      "13:2",
+      "10:519",
+      "9:78"
+    ],
+    "trayCssPixels": [
+      460,
+      680
+    ],
+    "islandCssPixels": [
+      680,
+      297
+    ],
+    "assets": "v34-assets.json",
+    "originalSvgExports": 21,
+    "logo": "Original logo export exactly matches existing src/assets/brand/app-24.svg; static SVG paths preserved.",
+    "fonts": "Actual bundled Geist glyphs and 12 Geist Mono contexts audited; heading 600/14px/20px.",
+    "readability": "Scoped secondary metadata/error text overrides retain shared tokens."
+  },
+  "accessibility": {
+    "nabContexts": 16,
+    "defaultAxeViolations": 0,
+    "incompleteContexts": 4,
+    "incompleteRule": "color-contrast",
+    "incompleteTarget": ".nab-duration over gradient thumbnail",
+    "independentResolution": "v34-badge-contrast.json",
+    "worstCaseContrastRatio": 7.8667622276094376,
+    "minimumRatio": 4.5,
+    "scope": "Default-rule axe on Nab views and actual-browser worst-case duration badge compositing; no whole-app WCAG claim."
+  },
+  "islandInitialGzipBytes": 90289,
+  "islandBudgetBytes": 120000,
+  "behavior": [
+    "Shared tray/island review and persisted pushed queue; download-only listener bootstrap and cleanup.",
+    "Site-remembered preset selection including M4A and accurate known/unknown estimates; per-link island draft survives teardown without leaking to a new link.",
+    "Paste/drop stages only; explicit click/Ctrl+Enter or compact/Peek Nab starts the remembered/selected preset with duplicate guards.",
+    "Cached metadata starts off UI thread; successful starts clear matching review and preserve a newer URL.",
+    "Pause/resume/cancel/retry/Open/Reveal, queue search and engine health footer; validated completed-file Open.",
+    "Clear finished transaction removes completed/cancelled records and preserves files, failures and active work.",
+    "Explicit Chrome sign-in retry remains in-memory per job, tested with injected runner only.",
+    "Basic inline options and legacy playlist ranges retained; bare First video safely selects playlist item 1.",
+    "Island clipboard capability grants only clipboard-manager:allow-read-text for explicit Paste.",
+    "Cold Peek production preparation loads expanded-only modules only for expanded mode; original one-second assertion unchanged."
+  ],
+  "newUiTests": 17,
+  "earlierEvidence": {
+    "index": "v34-earlier-attempts.json",
+    "note": "Earlier compile/lint/fixture/contrast/hidden-asset and cold-Peek failures plus superseded PNG reports are retained. v34-checked reports alone are final build evidence. Log trailing whitespace normalized with raw/saved hashes; source hashes LF-only."
+  },
+  "limits": [
+    "Full Options/Trim/Playlist sheets and per-item selection remain V3.5; full ErrorKind catalog V3.6 and end-to-end download/media acceptance V3.7.",
+    "Notes/Shelf tray tabs disabled until their named phases; other island module shell behavior retained.",
+    "No real browser profile, native file click, OS protocol installation, real keypress, actual media download, Tack account, installer, signing or display preference change exercised.",
+    "No new native timing, frame, focus or working-set classification; known V0/V2.7 limitations unchanged."
+  ],
+  "publication": {
+    "commitDirectlyTo": "main",
+    "pullRequest": false,
+    "pushThisPass": false,
+    "nextTask": "MILESTONE M6 - Downloads core",
+    "milestoneChecked": false,
+    "workflowOrTagOrReleaseChanges": false
+  },
+  "sourceHashNormalization": "CRLF to LF only",
+  "sourceSha256LfNormalized": {
+    "scripts/screenshots/harness.mjs": "12d13112c09c415260ae3b6b1cafd4ebd9c1c857439449869c535fc8fac1c0f8",
+    "scripts/screenshots/mock-ipc.mjs": "c5e057a9b701a47f02d3f17d27415d48756fe102628b0470d00d80440bb95974",
+    "scripts/verify-capture-paths.mjs": "cc4bd303e3139667023257ffc8aa28fdbb81fdee89ed62b9ac2867d1343fed97",
+    "scripts/verify-nab-views.mjs": "29a6aa35fd242696364f518d599167047464ff105ada034becc3a966ec5b38ef",
+    "src-tauri/capabilities/island.json": "41541a70348b91cd158e16fd69e5884c6c96ee9e078d9a0768b36703ff2fed67",
+    "src-tauri/gen/schemas/capabilities.json": "13acd98972d2bf86b855f9095ea0e61f61c0ae59fb95c2c3b9ec9d458f4f00f6",
+    "src-tauri/src/capture.rs": "4c24366332f115ddb3242ecd29aaaea2fa8809c01ceb6d7b1bc8e234fe82a6eb",
+    "src-tauri/src/commands/download.rs": "e97a61b2d8dc882a4749aa926bef776e34b9b11449829a985284fcae38fd5f92",
+    "src-tauri/src/db/mod.rs": "aef7e69b1b3266d73e2d5b03eef257edd6c0ba87b7b180fa7a661a74f0719a1d",
+    "src-tauri/src/download/manager.rs": "eb8a06be1e34be0f7dbe0011d9dccec353b705620ceff131d902219089e6e05e",
+    "src-tauri/src/island/web.rs": "b5d93e3aca64ddd08758b625dc29b28bc1b64735d97ffd09bd0e65ea4ba9cf34",
+    "src-tauri/src/lib.rs": "824a50428919b8ea22e2cd8fbe7364a24cca6547631168497e59dd52f81c01a7",
+    "src/App.tsx": "08f7057cdc516ddbd82102ef0ffd62a9895af540a984f0e68fe88e401e3661fe",
+    "src/assets/downloads/tray-068f4.svg": "87295874b10638153a31b5745a77f674d34a9b170b538cfd18045215aebafe83",
+    "src/assets/downloads/tray-09016.svg": "113a0ba801015854c4726581905928b7c620d014991b68d27aa9de85c2b9ce0c",
+    "src/assets/downloads/tray-1c63b.svg": "117175f7accb8fece581a6d23c1dc37ca2f1e66267b1fad117c8f5ac7d461977",
+    "src/assets/downloads/tray-311e5.svg": "3f48391cc0aac08162c3d0d410b308c5d0eaf43e2034e1bc7af5435c02e2f51e",
+    "src/assets/downloads/tray-403ff.svg": "c2f9f58b790d761d3bca2215799626208b584f6e1a46b3a120324fe9388148fa",
+    "src/assets/downloads/tray-50e57.svg": "68fbe537b322cdfc61bfe513fdcbea0db8328468e771b7d997b4c6fb28a4b171",
+    "src/assets/downloads/tray-5762c.svg": "f3f59581ac7ad2771dc8e92476ea245fadd89556d83308658d1d22218b805b26",
+    "src/assets/downloads/tray-582a5.svg": "117175f7accb8fece581a6d23c1dc37ca2f1e66267b1fad117c8f5ac7d461977",
+    "src/assets/downloads/tray-74927.svg": "1906dba101ae73d5b9a6804441d6ffaa32dcfeaac4cecaaa158e4aa417602ffd",
+    "src/assets/downloads/tray-8d77c.svg": "242782b49535854bdf539cc928104cbd4816b65d84dd857a0711b851f58218d5",
+    "src/assets/downloads/tray-964b0.svg": "6bda25ea53fd69e0b6b097ad72cde8c0db4ee4b925df85cf396d46274d1b1071",
+    "src/assets/downloads/tray-97969.svg": "66ea53c818a8660500a60e38a5f818492b2bc9cc4bc8e179f8a2c03c6c4f19d8",
+    "src/assets/downloads/tray-9ff44.svg": "879ce7233585c42df0c54edba183a1e99534503c426c02ec901af844ec0d1425",
+    "src/assets/downloads/tray-be722.svg": "2d9d42d014f726f060fe11395fd5c6bb984106ece2e6cd9a3f903b4be24779d4",
+    "src/assets/downloads/tray-cc3a0.svg": "4c5e7c42e3bcbacf41be2b6698a88107a5b863fe893beb375b44693134d920e2",
+    "src/assets/downloads/tray-d2028.svg": "245c63d7fdff99e43fd33f4ea1bb053c6e88e64a8168f741e58440817323664c",
+    "src/assets/downloads/tray-d70dd.svg": "ab4cddcfdb4a13e09598f249a7e571479015b1cdda24e16606bde5ed34e28820",
+    "src/assets/downloads/tray-ea09f.svg": "e4cd6fe3ccceba631ae8baf64979e219afe8752216ae517437783aa5c9466b95",
+    "src/assets/downloads/tray-ee7c7.svg": "d3493f878e8bb0bbdaaa94f1721c7446a7e922caf93314095e2f04654cf52078",
+    "src/assets/downloads/tray-f2515.svg": "0852c8cc69c7816c618801d0893786f6666911b8e4a2fffde299ba519b16a8ac",
+    "src/assets/downloads/tray-fe9f2.svg": "4afec92d4524e8a6e46996c0fe5e7d9cfa979b038b6175a124df7982a5403913",
+    "src/components/BrandMark.tsx": "b78aef488e44a80d2b2189f59b2ec1855933e5fc0715d1b594dc6b17a5925d75",
+    "src/features/downloads/DownloadIcon.tsx": "7854ad560097458a9a1522ab85ff8c5d2b63abbc9387d2c01e32adb71e02acae",
+    "src/features/downloads/DownloadQueue.tsx": "b6d098f9ef924ac1c978fea21288816178475491e6458223e972e7e51d5e6915",
+    "src/features/downloads/DownloadReview.tsx": "215c4398a05eb09f756fca70a8f457352ab3797cf053ea7454bc6dd3022e11cd",
+    "src/features/downloads/IslandNab.tsx": "eff3a76fa1d7a0327d0303c4870669d6dbbfda47e6a07b8f6b6ecfaf646f97ae",
+    "src/features/downloads/assets.ts": "fc972232f65f6e0f4c40aea1bb0d7fd7cb5612068fed9f6b79eb62c9e866e54f",
+    "src/features/downloads/downloads.css": "0ac7378aae3dd8a4a724c9970887f9a596b04dfcc4af4e45a2d636117febd218",
+    "src/features/downloads/downloads.test.tsx": "38a6ecc32e4032f22b26a4e5cffd29d7e8c4126a88c45e8c2d4065adc133cd3a",
+    "src/features/downloads/model.ts": "5c128f829a9f423aae74e9b20840259c16b55024a845a70b4ae5399e2618f7f9",
+    "src/features/downloads/usePreset.ts": "69cb9760b546dd6a220f8d627c1174e094cd22214c921c42574fdbca81794b99",
+    "src/lib/ipc.ts": "eb237b41d6fca78d506b773602f768fdc1bd526343f5b8ece3b9f8b71f336695",
+    "src/store/useAppStore.ts": "a3743f8402d177ad7d9f180fb76fea9d3c8480de8e3ff361fe7805a62d008613",
+    "src/surfaces/island/CompactContent.tsx": "60aa75389d910fdfc15bb4f2973ed0a0b21299cecb96d79a7126e8433eaf8fbe",
+    "src/surfaces/island/IslandApp.tsx": "3073e619f48a1ade415fc089a77eec2227ed477c12f94057ef955623858aed7d",
+    "src/surfaces/island/ModuleBody.tsx": "32eb86ff559a0e4ea0ca3aa5b894d32d6e20648ec811ae407cd72aaefadc55e1",
+    "src/surfaces/island/PeekContent.tsx": "613e928b8ea0aaac58dc1f9fc0ed0532dcfea159a5d61b6dc0c039fa0c62d396",
+    "src/views/DownloadPanel.tsx": "e484b87c67e3968da7fb8bfac7d9d5d3818765a2e2f1d294a4034243141a94a0",
+    "src/views/Popover.tsx": "59e9e56585bc302009047bcfe69ab01c96104b4f55b4549d535f4a0ca6228579"
+  },
+  "documentSha256LfNormalized": {
+    "NABBIT_V2_HANDOFF.md": "a98915f0316c80e0cca0715a71795962814c4a09bdf1fe8ba26de1b04ceb943f",
+    "PROGRESS.md": "f6d64b0dd0fd5cffa570f0788596b75c44c615a094a27e3453e4dc985b5d91e7",
+    "progress/v2/M6/README.md": "756f53c09eb41e6b724ff7e8db9da2e4d7d618c808b91686dea917f11c6f2b05"
+  }
+}

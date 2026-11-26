@@ -1,0 +1,11 @@
+❯ src/features/downloads/downloads.test.tsx (17 tests | 1 failed) 2510ms
+     → Cannot spy on export "readText". Module namespace is not configurable in ESM. See: https://vitest.dev/guide/browser/#limitations
+ ✓ src/surfaces/island/IslandApp.test.tsx (1 test) 482ms
+⎯⎯⎯⎯⎯⎯⎯ Failed Tests 1 ⎯⎯⎯⎯⎯⎯⎯
+ FAIL  src/features/downloads/downloads.test.tsx > Nab review and persistent queue > reads Paste through the clipboard plugin and only stages review
+TypeError: Cannot spy on export "readText". Module namespace is not configurable in ESM. See: https://vitest.dev/guide/browser/#limitations
+ ❯ src/features/downloads/downloads.test.tsx:87:8
+Caused by: TypeError: Cannot redefine property: readText
+ ❯ src/features/downloads/downloads.test.tsx:87:8
+ Test Files  1 failed | 25 passed (26)
+      Tests  1 failed | 127 passed (128)

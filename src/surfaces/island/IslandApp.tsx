@@ -126,7 +126,14 @@ export function IslandApp({ suppliedStore }: { suppliedStore?: IslandStore }) {
   const act = useCallback(
     (intent: IslandIntent) => {
       const e = intent.item?.event;
-      if (["pause", "cancel", "reveal"].includes(intent.action) && e && "jobId" in e) {
+      if (intent.action === "nab" && e?.kind === "linkDetected") {
+        void invoke(
+          intent.options ? "start_download" : "start_download_with_preset",
+          intent.options ? { request: { url: e.url, options: intent.options } } : { url: e.url },
+        ).catch(fail);
+        return;
+      }
+      if (["pause", "cancel", "reveal", "open"].includes(intent.action) && e && "jobId" in e) {
         void invoke(`${intent.action === "reveal" ? "reveal" : intent.action}_download`, {
           id: e.jobId,
         }).catch(fail);
@@ -142,6 +149,12 @@ export function IslandApp({ suppliedStore }: { suppliedStore?: IslandStore }) {
         type: "tab",
         tab: intent.action === "fileReview" ? "files" : activityTab(intent.item ?? null),
       });
+      if (intent.preset && e?.kind === "linkDetected")
+        store.getState().dispatch({
+          type: "filter",
+          name: "nabDraft",
+          value: JSON.stringify({ url: e.url, preset: intent.preset }),
+        });
       if (native()) void invoke("island_keyboard_focus", { target: "tab" }).catch(fail);
       if (intent.action === "audioReview")
         store.getState().dispatch({ type: "filter", name: "preset", value: "audio_mp3" });
@@ -183,9 +196,12 @@ export function IslandApp({ suppliedStore }: { suppliedStore?: IslandStore }) {
       async (value) => {
         performance.mark("nabbit:surface-prepare-start");
         await Promise.all([
-          import("./ExpandedShell"),
-          import("./ModuleBody"),
-          ...(store.getState().filters.searchOpen === "true" ? [import("./SearchContent")] : []),
+          ...(value.state === "expanded"
+            ? [import("./ExpandedShell"), import("./ModuleBody")]
+            : []),
+          ...(value.state === "expanded" && store.getState().filters.searchOpen === "true"
+            ? [import("./SearchContent")]
+            : []),
           document.fonts.load('600 14px "Geist"'),
           document.fonts.load('500 12px "Geist Mono"'),
           document.fonts.ready,

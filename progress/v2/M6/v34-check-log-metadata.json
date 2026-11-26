@@ -1,0 +1,51 @@
+{
+  "npmVerify": {
+    "command": "npm run verify",
+    "exitCode": 0,
+    "file": "v34-npmVerify.txt",
+    "rawSha256": "d76d29a313a62c673759bcae0a066d98ea02bc65aba5e0a299fa9782a5af426d",
+    "savedSha256": "72cadff9c3efde163f29b7fb94a97c6b4a0ce456e38e1f4dc2a5dd3dd8297641"
+  },
+  "rustFmt": {
+    "command": "cargo fmt --check",
+    "exitCode": 0,
+    "file": "v34-rustFmt.txt",
+    "rawSha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+    "savedSha256": "c5668ee3be079d01aab4afe8f1271af60fe825cc74bc7d58af0840951544c42f"
+  },
+  "rustClippy": {
+    "command": "cargo clippy --all-targets -- -D warnings",
+    "exitCode": 0,
+    "file": "v34-rustClippy.txt",
+    "rawSha256": "4f036470d475750e120cea0f4a0f9961c3416cc20a0d7d89abd5a48455edb801",
+    "savedSha256": "4f33f724b748c9eb2be548e417d453a404fb662ca0776346d5d4ea325272c0c1"
+  },
+  "rustSpikeClippy": {
+    "command": "cargo clippy --all-targets --features island-spike -- -D warnings",
+    "exitCode": 0,
+    "file": "v34-rustSpikeClippy.txt",
+    "rawSha256": "3b0248b239cca6aa1376c2da8f6f0747553f430ca947b75921894f1858b761cb",
+    "savedSha256": "8453933ca2186d529e4a70a775bd12bf15d200364a6ed84674baa63a795fa6c8"
+  },
+  "rustTests": {
+    "command": "cargo test -- --test-threads=1",
+    "exitCode": 0,
+    "file": "v34-rustTests.txt",
+    "rawSha256": "239ecd0e29d22d6693ef6258958da390598494b177a4cbdc843752fa8b401c77",
+    "savedSha256": "6d2847b204a4883f2165a7a97beaab12b023286a991c9015c6e93735e77608d3"
+  },
+  "nabCaptures": {
+    "command": "node scripts/verify-nab-views.mjs v34-checked",
+    "exitCode": 0,
+    "file": "v34-nabCaptures.txt",
+    "rawSha256": "6198f427c7bf2e34d78d951128dd5f064023a86a84eb7e46ab145c0350945d62",
+    "savedSha256": "4055b5eaf535d3920551443e15d5c793b4362d93f6e4877c2006a81658c96293"
+  },
+  "captureRegression": {
+    "command": "node scripts/verify-capture-paths.mjs v34-checked-capture",
+    "exitCode": 0,
+    "file": "v34-captureRegression.txt",
+    "rawSha256": "c2fbc7b1c51edba95702f14e4e180b976c26355d8d64201943a741447e05785a",
+    "savedSha256": "a16840f5ca41fa11a19b2b030852e69f7af785a8020487e8149f673d4f979dc4"
+  }
+}

@@ -768,7 +768,7 @@ Commit after every task (§0.1). Lines marked **MILESTONE** are tasks of their o
 - [x] V3.1 Deno sidecar + fetch scripts + engine health (daily check, card `18:260`, island Error state).
 - [x] V3.2 Options builder (§7.3) with unit tests; presets per site.
 - [x] V3.3 Capture paths: drag, deep link (`tauri-plugin-deep-link`), hotkey; link-detected pill + peek.
-- [ ] V3.4 Island Nab tab and tray Nab redesign (`10:519`, `13:2`), queue rows with progress/pause/cancel/open/reveal.
+- [x] V3.4 Island Nab tab and tray Nab redesign (`10:519`, `13:2`), queue rows with progress/pause/cancel/open/reveal.
 - [ ] **MILESTONE M6 — Downloads core.**
 - [ ] V3.5 Options sheet `17:137`, Trim `17:270`, Playlist `18:160`.
 - [ ] V3.6 Error mapping (§7.7) with stderr fixtures; error rows and actions.

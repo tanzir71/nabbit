@@ -232,8 +232,21 @@ export const api = {
   startDownload: (request: DownloadRequest) =>
     call<DownloadJob>("start_download", { request }, () => previewDownload(request)),
   listDownloads: () => call<DownloadJob[]>("list_downloads", undefined, () => browserJobs),
-  cancelDownload: (id: string) => call<void>("cancel_download", { id }, () => undefined),
-  pauseDownload: (id: string) => call<void>("pause_download", { id }, () => undefined),
+  clearFinishedDownloads: () =>
+    call<void>("clear_finished_downloads", undefined, () => {
+      browserJobs = browserJobs.filter((job) => !["completed", "cancelled"].includes(job.status));
+    }),
+  openDownload: (id: string) => call<void>("open_download", { id }, () => undefined),
+  cancelDownload: (id: string) =>
+    call<void>("cancel_download", { id }, () => {
+      const job = browserJobs.find((j) => j.id === id);
+      if (job) job.status = "cancelled";
+    }),
+  pauseDownload: (id: string) =>
+    call<void>("pause_download", { id }, () => {
+      const job = browserJobs.find((j) => j.id === id);
+      if (job) job.status = "paused";
+    }),
   resumeDownload: (id: string) =>
     call<DownloadJob>("resume_download", { id }, () => {
       const job = browserJobs.find((item) => item.id === id);
@@ -251,6 +264,14 @@ export const api = {
       return job;
     }),
   revealDownload: (id: string) => call<void>("reveal_download", { id }, () => undefined),
+  retryDownloadWithBrowser: (id: string, browser: import("./types").DownloadBrowser) =>
+    call<DownloadJob>("retry_download_with_browser", { id, browser }, () => {
+      const job = browserJobs.find((j) => j.id === id);
+      if (!job) throw new Error("Job not found");
+      job.status = "queued";
+      job.error = null;
+      return job;
+    }),
   openDownloadsFolder: () => call<void>("open_downloads_folder", undefined, () => undefined),
   repairEngine: (channel?: "stable" | "nightly") =>
     call<EngineStatus>("repair_engine", { channel }, () => ({ missing: [] })),

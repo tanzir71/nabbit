@@ -10,7 +10,12 @@ import {
 import { ProgressRing } from "../../components/ProgressRing";
 import { Button } from "../../components/Button";
 import { IslandAsset } from "./IslandAsset";
-export type IslandIntent = { action: string; item?: ActivityItem };
+export type IslandIntent = {
+  action: string;
+  item?: ActivityItem;
+  options?: import("../../lib/types").DownloadOptions;
+  preset?: import("../../lib/types").DownloadPreset;
+};
 export function MiniButton({
   children,
   signal,
@@ -81,7 +86,7 @@ export function CompactContent({
             <span className="island-mono island-muted">{duration(e.duration)}</span>
           )}
           <span className="island-spacer" />
-          <MiniButton signal onClick={() => invoke("review")}>
+          <MiniButton signal onClick={() => invoke("nab")}>
             {icon("iconDownload")}Nab it
           </MiniButton>
         </>
@@ -135,7 +140,7 @@ export function CompactContent({
           {icon("iconCircleCheck")}
           <strong>Saved</strong>
           <span className="island-ellipsis island-muted">{basename(e.path)}</span>
-          {button("Open", "reveal")}
+          {button("Open", "open")}
         </>
       );
     case "downloadFailed":

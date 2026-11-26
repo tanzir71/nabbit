@@ -42,6 +42,10 @@ export default function App() {
       .onEvent<string>("capture:error", (error) => useAppStore.setState({ error }))
       .then(keep);
     void api.onEvent<DownloadJob>("download:updated", () => void refreshDownloads()).then(keep);
+    void api.onEvent<void>("download:cleared", () => void refreshDownloads()).then(keep);
+    void api
+      .onEvent<string>("url:cleared", (url) => useAppStore.getState().acceptClearedLink(url))
+      .then(keep);
     void api
       .onEvent<void>("shortcut:clipboard-search", () => {
         window.dispatchEvent(new CustomEvent("nabbit:focus-search"));

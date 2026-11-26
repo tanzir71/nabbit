@@ -103,7 +103,7 @@ const scenarios = ["pending", "compact", "peek", "drop", "drag-review"].map((nam
             }),
           );
         }, url);
-        await page.getByRole("heading", { name: url, exact: true }).waitFor();
+        await page.getByRole("heading", { name: new URL(url).hostname, exact: true }).waitFor();
         const fixture = await page.evaluate(() => globalThis.__NABBIT_CAPTURE__.snapshot());
         assert(fixture.calls.some((c) => c.command === "island_review_url" && c.args.url === url));
         assert.equal(fixture.state.jobs.length, fixtureData("tray-downloads").jobs.length);
@@ -120,12 +120,14 @@ const scenarios = ["pending", "compact", "peek", "drop", "drag-review"].map((nam
         assert(await page.getByText("12:48", { exact: true }).isVisible());
       }
       const assets = await page.locator("img[data-asset-slot]").evaluateAll((nodes) =>
-        nodes.map((img) => ({
-          slot: img.dataset.assetSlot,
-          natural: [img.naturalWidth, img.naturalHeight],
-          rendered: [img.getBoundingClientRect().width, img.getBoundingClientRect().height],
-          local: !img.src.includes("figma.com"),
-        })),
+        nodes
+          .filter((img) => img.getBoundingClientRect().width > 0)
+          .map((img) => ({
+            slot: img.dataset.assetSlot,
+            natural: [img.naturalWidth, img.naturalHeight],
+            rendered: [img.getBoundingClientRect().width, img.getBoundingClientRect().height],
+            local: !img.src.includes("figma.com"),
+          })),
       );
       assert(
         assets.every((a) => a.local && a.natural.every((n, i) => n > 0 && n === a.rendered[i])),

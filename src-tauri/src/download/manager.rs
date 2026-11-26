@@ -10,7 +10,7 @@ use std::{
 };
 
 use chrono::Utc;
-use tauri::{AppHandle, Emitter};
+use tauri::{AppHandle, Emitter, Manager};
 use uuid::Uuid;
 
 use crate::{
@@ -88,6 +88,13 @@ impl DownloadManager {
         .with_defaults(&settings.output_dir, &settings.filename_template)?;
         let normalized = crate::capture::web_url(&request.url)?;
         super::presets::site_key(&normalized)?;
+        let captured = self
+            .app
+            .try_state::<crate::AppState>()
+            .and_then(|s| s.capture.current())
+            .filter(|m| {
+                m.normalized_url == normalized && m.extractor.as_deref() != Some("capture")
+            });
         let metadata = if std::env::var_os("NABBIT_ACCEPTANCE_FAKE_DOWNLOAD").is_some() {
             DownloadMetadata {
                 url: request.url.clone(),
@@ -101,6 +108,8 @@ impl DownloadManager {
                 extractor: Some("acceptance".into()),
                 qualities: vec![],
             }
+        } else if let Some(metadata) = captured {
+            metadata
         } else {
             probe::probe(&self.app_data_dir, &normalized).unwrap_or_else(|_| DownloadMetadata {
                 url: request.url.clone(),
@@ -172,6 +181,15 @@ impl DownloadManager {
         }
         self.pump();
         Ok(job)
+    }
+    pub fn retry_with_browser(&self, id: &str, browser: Browser) -> Result<DownloadJob> {
+        self.db.get_download(id)?;
+        self.inner
+            .lock()
+            .map_err(|_| msg("download manager lock poisoned"))?
+            .browsers
+            .insert(id.into(), browser);
+        self.retry(id)
     }
 
     pub fn cancel(&self, id: &str) -> Result<()> {

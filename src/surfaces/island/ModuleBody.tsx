@@ -1,15 +1,13 @@
 import { useEffect, useState } from "react";
 import { invoke } from "@tauri-apps/api/core";
 import { listen } from "@tauri-apps/api/event";
-import { EngineHealthCard } from "../../views/EngineHealthCard";
+import { IslandNab } from "../../features/downloads/IslandNab";
 import { PresetChip } from "../../components/PresetChip";
 import { ProgressRing } from "../../components/ProgressRing";
-import { IconButton } from "../../components/IconButton";
-import { activityTitle, basename, duration, percent } from "../../lib/islandPresentation";
+import { basename, duration, percent } from "../../lib/islandPresentation";
 import type { ActivityItem } from "../../lib/activity";
-import type { ClipboardEntry, Quality } from "../../lib/types";
+import type { ClipboardEntry } from "../../lib/types";
 import type { IslandAction, IslandModel } from "../../store/islandStore";
-import { IslandAsset } from "./IslandAsset";
 import { MiniButton, type IslandIntent } from "./CompactContent";
 interface Props {
   model: IslandModel;
@@ -21,146 +19,6 @@ const itemsOf = (model: IslandModel) =>
     (item): item is ActivityItem => item !== null,
   );
 
-function Nab({ model, dispatch, act }: Props) {
-  const url = model.filters.nabUrl ?? "",
-    setUrl = (value: string) => dispatch({ type: "filter", name: "nabUrl", value });
-  const [error, setError] = useState("");
-  const [busy, setBusy] = useState(false);
-  const link = itemsOf(model).find((item) => item.event.kind === "linkDetected");
-  const event = link?.event.kind === "linkDetected" ? link.event : null;
-  const quality = (model.filters.preset || "1080p") as Quality;
-  const choices: Array<[Quality, string, string?]> = [
-    ["1080p", "MP4", "1080p"],
-    ["720p", "MP4", "720p"],
-    ["audio_mp3", "MP3", "320"],
-    ["audio_m4a", "M4A"],
-  ];
-  const start = async () => {
-    if (!event || busy) return;
-    setBusy(true);
-    setError("");
-    try {
-      await invoke("start_download", {
-        request: { url: event.url, quality, playlistMode: "video" },
-      });
-    } catch (reason) {
-      setError(String(reason));
-    } finally {
-      setBusy(false);
-    }
-  };
-  const review = async () => {
-    if (busy) return;
-    setBusy(true);
-    setError("");
-    try {
-      await invoke("island_review_url", { url });
-    } catch (reason) {
-      setError(String(reason));
-    } finally {
-      setBusy(false);
-    }
-  };
-  return (
-    <div className="island-module-body">
-      {itemsOf(model).some(
-        (item) => item.event.kind === "downloadFailed" && item.event.jobId === "engine-health",
-      ) && <EngineHealthCard />}
-      {event ? (
-        <>
-          <div className="island-nab-review">
-            <div className="island-thumbnail is-review">
-              {event.duration != null && (
-                <span className="island-duration island-mono">{duration(event.duration)}</span>
-              )}
-            </div>
-            <div className="island-text-stack island-spacer">
-              <h2>{event.title || event.url}</h2>
-              <p className="island-muted">{event.site}</p>
-              <div className="island-row is-wrap">
-                {choices.map(([value, label, meta]) => (
-                  <PresetChip
-                    key={value}
-                    surface="island"
-                    meta={meta}
-                    selected={quality === value}
-                    onClick={() => dispatch({ type: "filter", name: "preset", value })}
-                  >
-                    {label}
-                  </PresetChip>
-                ))}
-              </div>
-            </div>
-          </div>
-          <div className="island-row">
-            <span className="island-muted">Saves to your download folder</span>
-            <span className="island-spacer" />
-            <button className="island-nab-button" disabled={busy} onClick={() => void start()}>
-              <IslandAsset group="9:78" name="iconDownload1" />
-              {busy ? "Adding…" : "Nab it"}
-            </button>
-          </div>
-        </>
-      ) : (
-        <form
-          className="island-row"
-          onSubmit={(e) => {
-            e.preventDefault();
-            void review();
-          }}
-        >
-          <input
-            className="island-url-input"
-            aria-label="Video URL"
-            type="url"
-            required
-            placeholder="Paste a video link"
-            value={url}
-            onChange={(e) => setUrl(e.target.value)}
-          />
-          <button className="island-nab-button" disabled={busy}>
-            {busy ? "Checking…" : "Review"}
-          </button>
-        </form>
-      )}
-      {error && (
-        <p role="alert" className="island-error">
-          {error}
-        </p>
-      )}
-      {itemsOf(model).some((item) => item.category === "download") && (
-        <div className="island-queue">
-          {itemsOf(model)
-            .filter((item) => item.category === "download")
-            .map((item) => (
-              <div className="island-row" key={item.id}>
-                <ProgressRing
-                  value={item.event.kind === "downloadProgress" ? item.event.percent : 100}
-                  size={18}
-                  label="Download progress"
-                />
-                <span className="island-ellipsis">{activityTitle(item)}</span>
-                <span className="island-mono island-muted">
-                  {item.event.kind === "downloadProgress"
-                    ? `${percent(item.event.percent)}%${item.event.speed ? ` · ${item.event.speed}` : ""}`
-                    : item.event.kind === "downloadDone"
-                      ? "Saved"
-                      : "Needs attention"}
-                </span>
-                <IconButton
-                  label="Download details"
-                  className="island-queue-button"
-                  onClick={() => act({ action: "review", item })}
-                >
-                  <IslandAsset group="9:78" name="iconEllipsis1" />
-                </IconButton>
-              </div>
-            ))}
-        </div>
-      )}
-    </div>
-  );
-}
 function Clipboard({ model, dispatch, act }: Props) {
   const [entries, setEntries] = useState<ClipboardEntry[]>([]),
     [error, setError] = useState("");
@@ -270,7 +128,7 @@ function Clipboard({ model, dispatch, act }: Props) {
 }
 export default function ModuleBody(props: Props) {
   const { model, act } = props;
-  if (model.tab === "nab") return <Nab {...props} />;
+  if (model.tab === "nab") return <IslandNab model={model} dispatch={props.dispatch} />;
   if (model.tab === "clipboard") return <Clipboard {...props} />;
   const current = itemsOf(model).find((item) =>
     model.tab === "media"
