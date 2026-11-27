@@ -110,15 +110,23 @@ export function CompactContent({
           </span>
         </>
       );
+    case "timerPaused":
     case "timerTick":
     case "timerEnded":
       return (
         <>
+          <h1 className="island-sr-only">Focus timer</h1>
           {icon("iconTimer")}
           <span className="island-ellipsis island-muted">
-            {e.kind === "timerTick" ? e.label || "Focus" : "Time is up"}
+            {e.kind === "timerPaused"
+              ? "Paused"
+              : e.kind === "timerTick"
+                ? e.label || "Focus"
+                : "Time is up"}
           </span>
-          <span className="island-mono">{duration(e.kind === "timerTick" ? e.remainingS : 0)}</span>
+          <span className="island-mono">
+            {duration(e.kind !== "timerEnded" ? e.remainingS : 0)}
+          </span>
         </>
       );
     case "privacyChanged":

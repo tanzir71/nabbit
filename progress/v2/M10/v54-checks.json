@@ -1,0 +1,98 @@
+{
+  "allRequiredChecksPassed": true,
+  "buildManifestSha256": "e3f61ad9cc9fe18692d3b89979b0fb4b57d6ca8f117d411ba9bfd2420895dfbe",
+  "nativeExecutableSha256": "160cddda6c6f7c1139fbd0da61332f54525ec95413aa29e13ddc5218779cb1f6",
+  "checks": [
+    {
+      "name": "npmVerify",
+      "command": "npm run verify",
+      "exitCode": 0,
+      "log": "v54-npmVerify-log.txt",
+      "canonicalSha256": "392aed9393b1ae1b163c51739a4f052b185bbe296f7f1013f8f1f8a9889a14cb",
+      "originalArchive": "v54-npmVerify-original.txt.gz",
+      "originalBytes": 11499,
+      "originalSha256": "d4fa836e197fec9d35ac788ada9ea12eaccde4d4d5cacf932c7277f47a17ec88"
+    },
+    {
+      "name": "lintFinal",
+      "command": "npm run lint",
+      "exitCode": 0,
+      "log": "v54-lintFinal-log.txt",
+      "canonicalSha256": "04b453cf9252a1c433c72c79f11cdf063fb3c5e515ee8073381b59398e7b0440",
+      "originalArchive": "v54-lintFinal-original.txt.gz",
+      "originalBytes": 37,
+      "originalSha256": "4fc9b2288bff368c1e29c5b6f4787bcff13fe66072e3eeb4acb8fc840f28a0b9"
+    },
+    {
+      "name": "fmt",
+      "command": "cargo fmt --check",
+      "exitCode": 0,
+      "log": "v54-fmt-log.txt",
+      "canonicalSha256": "a8d0a4470e9562f417e2ea994294f068ed5c22e43c3c35504b9d2e52af2eb5eb",
+      "originalArchive": "v54-fmt-original.txt.gz",
+      "originalBytes": 0,
+      "originalSha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "name": "clippyDefault",
+      "command": "cargo clippy --all-targets -- -D warnings",
+      "exitCode": 0,
+      "log": "v54-clippyDefault-log.txt",
+      "canonicalSha256": "047219e5e90c61b9b447ceaaf97a91a2fa682e286ba14e61094f5da2574f4450",
+      "originalArchive": "v54-clippyDefault-original.txt.gz",
+      "originalBytes": 142,
+      "originalSha256": "8cf31ed0cabbdc4e8208a09b283f70e5ed186e6aad19c852297210175f40ecb4"
+    },
+    {
+      "name": "clippySpike",
+      "command": "cargo clippy --all-targets --features island-spike -- -D warnings",
+      "exitCode": 0,
+      "log": "v54-clippySpike-log.txt",
+      "canonicalSha256": "51720f0e832e04ca9b604bc3b6c8d150d0c5bb821617b60512837cbc9d239f2e",
+      "originalArchive": "v54-clippySpike-original.txt.gz",
+      "originalBytes": 142,
+      "originalSha256": "ecd0e611e3397ae7dcb0993f3ee3fe81c4cef6550a64bda83cb0c94a59269c4d"
+    },
+    {
+      "name": "rustTests",
+      "command": "cargo test -- --test-threads=1",
+      "exitCode": 0,
+      "log": "v54-rustTests-log.txt",
+      "canonicalSha256": "a4b80762730bbaf24e64141be2c40ac33da3279e21d568609c036995c8647f55",
+      "originalArchive": "v54-rustTests-original.txt.gz",
+      "originalBytes": 28382,
+      "originalSha256": "8c29cdd9a6c8d46c81b06540c2d84352b47da86a3ac338baf6afd1291807854d"
+    },
+    {
+      "name": "release",
+      "command": "cargo build --release --features custom-protocol",
+      "exitCode": 0,
+      "log": "v54-release-log.txt",
+      "canonicalSha256": "eda5d5a499a74615df19324520a433a58762bdd5c8668a14b55ebad5468a6bdd",
+      "originalArchive": "v54-release-original.txt.gz",
+      "originalBytes": 132,
+      "originalSha256": "949b4ffa068274a01ba47f3f35bb39e90f3fb89ec7a65d858c63ac52107a362d"
+    },
+    {
+      "name": "negativeHarness",
+      "command": "node scripts/screenshots/verify-failures.mjs --milestone M10 --prefix v54-delivery",
+      "exitCode": 0,
+      "log": "v54-negativeHarness-log.txt",
+      "canonicalSha256": "d4c73b693e0c0792965ee71de68d23b0d06d5114b11e6178dbf4dd4d48a21c6b",
+      "originalArchive": "v54-negativeHarness-original.txt.gz",
+      "originalBytes": 115,
+      "originalSha256": "744efdb66da95ddf2dcdc44aab2c28696f3cb004c2926241bd7e588d960294e8"
+    }
+  ],
+  "counts": {
+    "frontendTests": 460,
+    "frontendFiles": 43,
+    "rustPassed": 280,
+    "rustIgnored": 3,
+    "browserChecks": 9,
+    "nativeChecks": 5,
+    "visualCaptures": 40,
+    "nativeCaptures": 4,
+    "originalVisibleSvgSlots": 18
+  }
+}

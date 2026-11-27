@@ -14,6 +14,7 @@ mod sticky;
 pub mod tack;
 #[cfg(windows)]
 mod taskbar_theme;
+pub mod timer;
 mod tray_icon;
 mod util;
 
@@ -109,6 +110,10 @@ pub fn run() {
         ))
         .plugin(tauri_plugin_updater::Builder::new().build())
         .invoke_handler(tauri::generate_handler![
+            timer::timer_snapshot,
+            timer::timer_action,
+            timer::timer_view,
+            timer::timer_fixture,
             media::media_snapshot,
             media::media_select,
             media::media_action,
@@ -275,6 +280,7 @@ pub fn run() {
                 activity_settings,
             ));
             app.manage(media::start(app.handle().clone()));
+            app.manage(timer::start(app.handle().clone(), db.clone())?);
             let downloads =
                 DownloadManager::new(db.clone(), app.handle().clone(), app_data_dir.clone());
             let shutdown = Arc::new(AtomicBool::new(false));
@@ -387,6 +393,16 @@ pub fn run() {
         .build(context)
         .expect("error while building Nabbit")
         .run(|app, event| {
+            if let tauri::RunEvent::WindowEvent {
+                label,
+                event: tauri::WindowEvent::Destroyed,
+                ..
+            } = &event
+            {
+                if let Some(timer) = app.try_state::<Arc<timer::Service>>() {
+                    timer.window_closed(label.clone());
+                }
+            }
             if let tauri::RunEvent::ExitRequested { api, code, .. } = event {
                 #[cfg(windows)]
                 if island::production_session() && code.is_none() {
@@ -409,6 +425,9 @@ pub fn run() {
                 }
                 if let Some(bus) = app.try_state::<Arc<island::activity_bus::Bus>>() {
                     bus.stop();
+                }
+                if let Some(timer) = app.try_state::<Arc<timer::Service>>() {
+                    timer.stop();
                 }
                 if let Some(media) = app.try_state::<Arc<media::Service>>() {
                     media.stop();
@@ -651,6 +670,12 @@ pub fn dispatch_island_shortcut(
     app: &AppHandle<Wry>,
     trigger: Option<&str>,
 ) -> std::result::Result<(), String> {
+    if trigger.is_some_and(|t| {
+        t.parse::<tauri_plugin_global_shortcut::Shortcut>().ok() == timer::SHORTCUT.parse().ok()
+    }) {
+        app.state::<Arc<timer::Service>>().hotkey();
+        return Ok(());
+    }
     if let Some(trigger) = trigger {
         let settings = app
             .state::<AppState>()
@@ -704,6 +729,17 @@ pub fn register_island_shortcut(
 }
 pub fn apply_runtime_settings(app: &AppHandle<Wry>, state: &AppState, settings: &AppSettings) {
     let _ = app.global_shortcut().unregister_all();
+    let timer_registration = app
+        .global_shortcut()
+        .on_shortcut(timer::SHORTCUT, |app, _, event| {
+            if event.state == ShortcutState::Pressed {
+                app.state::<Arc<timer::Service>>().hotkey();
+            }
+        });
+    app.state::<Arc<timer::Service>>()
+        .shortcut_status(timer_registration.err().map(|_| {
+            "Ctrl+Alt+T is unavailable. Choose the Timer tab to control your session.".into()
+        }));
     let note_registration =
         app.global_shortcut()
             .on_shortcut(notes::capture::SHORTCUT, |app, _, event| {

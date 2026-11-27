@@ -1,3 +1,4 @@
+import { FocusTimer } from "../../features/timer/FocusTimer";
 import { MediaPlayer } from "../../features/media/MediaPlayer";
 import type { ActivityItem } from "../../lib/activity";
 import { activityTitle, basename, duration, percent } from "../../lib/islandPresentation";
@@ -158,6 +159,8 @@ function OtherPeekContent({
 }
 
 export function PeekContent(props: { item: ActivityItem; act: (intent: IslandIntent) => void }) {
+  if (["timerTick", "timerPaused", "timerEnded"].includes(props.item.event.kind))
+    return <FocusTimer peek />;
   return props.item.event.kind === "mediaChanged" ? (
     <MediaPlayer peek />
   ) : (

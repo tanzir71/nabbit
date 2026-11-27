@@ -1,0 +1,22 @@
+{
+  "passed": true,
+  "checks": [
+    "Actual Focus UI links a scoped tck-24 card and starts a persisted timer through production service/SQLite; time logging stays off",
+    "Injected-clock updates change the countdown only through Rust events; pause survives a simulated hour asleep and resume preserves the exact remaining duration",
+    "No renderer interval, snapshot polling or extra IPC occurs while the timer view is idle",
+    "Focus completion persists once at its UTC deadline; explicit break and next-round controls advance the correct phase/round without starting background rounds",
+    "Preset and custom controls explicitly stop/prepare settings, preserve the card association and never start until Start is clicked",
+    "Workspace changes hide the old card title/reference while the timer continues; a stale card binding never becomes a foreign-workspace card",
+    "The production completion event stays queued under fullscreen silence and becomes eligible only when the existing fullscreen-alert preference is enabled",
+    "Completed/stopped session history is local and Tack outbox count is unchanged by linking, timing, completion or workspace changes",
+    "Verified 30 pushed events with zero unknown IPC, runtime errors or external network"
+  ],
+  "problems": [],
+  "buildManifestSha256": "d39d6156f0430dbcdff6fb8d1f787c100197ce08c155eed90ea9fbbce79e23e4",
+  "rustBridgeExitCode": 0,
+  "scope": "Actual Focus timer UI and typed API through test-only loopback IPC forwarding to the production worker, SQLite, guarded card linking and activity arbitration. Clock/power/fullscreen facts are injected; no real OS clock, power, global keys or hosted Tack/account.",
+  "noHostedTack": true,
+  "noUserAccount": true,
+  "noRealClipboard": true,
+  "noExternalNetwork": true
+}

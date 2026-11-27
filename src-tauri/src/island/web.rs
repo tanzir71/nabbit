@@ -726,7 +726,9 @@ impl Manager {
                     ActivityEvent::MediaChanged { .. } | ActivityEvent::VolumeChanged { .. } => {
                         "media"
                     }
-                    ActivityEvent::TimerTick { .. } | ActivityEvent::TimerEnded { .. } => "timer",
+                    ActivityEvent::TimerTick { .. }
+                    | ActivityEvent::TimerPaused { .. }
+                    | ActivityEvent::TimerEnded { .. } => "timer",
                     ActivityEvent::FilesMoved { .. }
                     | ActivityEvent::ToolJob { .. }
                     | ActivityEvent::ToolResult { .. } => "files",

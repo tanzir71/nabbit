@@ -1,9 +1,8 @@
 import { useEffect, useState } from "react";
 import { invoke } from "@tauri-apps/api/core";
 import { IslandNab } from "../../features/downloads/IslandNab";
-import { ProgressRing } from "../../components/ProgressRing";
-import { basename, duration } from "../../lib/islandPresentation";
-import type { ActivityItem } from "../../lib/activity";
+import { FocusTimer } from "../../features/timer/FocusTimer";
+import { basename } from "../../lib/islandPresentation";
 import type { IslandAction, IslandModel } from "../../store/islandStore";
 import { MiniButton, type IslandIntent } from "./CompactContent";
 import { IslandNotes } from "../../features/notes/IslandNotes";
@@ -15,15 +14,11 @@ interface Props {
   dispatch: (action: IslandAction) => void;
   act: (intent: IslandIntent) => void;
 }
-const itemsOf = (model: IslandModel) =>
-  [model.primary, model.bubble, ...model.queue].filter(
-    (item): item is ActivityItem => item !== null,
-  );
-
 export default function ModuleBody(props: Props) {
   const { model, act } = props;
   if (model.tab === "nab") return <IslandNab model={model} dispatch={props.dispatch} />;
   if (model.tab === "clipboard") return <IslandClipboard model={model} dispatch={props.dispatch} />;
+  if (model.tab === "timer") return <FocusTimer />;
   if (model.tab === "media") return <MediaPlayer />;
   if (model.tab === "files") return <IslandShelf model={model} dispatch={props.dispatch} />;
   if (model.tab === "notes")
@@ -33,24 +28,6 @@ export default function ModuleBody(props: Props) {
         <IslandNotes model={model} dispatch={props.dispatch} />
       </>
     );
-  const current = itemsOf(model).find((item) =>
-    model.tab === "timer" ? ["timer", "timerEnding"].includes(item.category) : false,
-  );
-  if (model.tab === "timer" && current?.event.kind === "timerTick") {
-    const e = current.event;
-    return (
-      <div className="island-timer-body">
-        <div className="island-clock">
-          <ProgressRing value={Math.min(100, e.remainingS / 15)} label="Focus timer" size={120} />
-          <span>{duration(e.remainingS)}</span>
-        </div>
-        <div className="island-text-stack">
-          <h2>{e.label || "Focus"}</h2>
-          <p className="island-muted">Focus session</p>
-        </div>
-      </div>
-    );
-  }
   const empty = {
     notes: ["No notes yet", "Keep your thoughts close."],
     files: ["Your shelf is empty", "Files in transit will appear here."],

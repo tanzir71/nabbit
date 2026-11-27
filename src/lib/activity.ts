@@ -69,6 +69,8 @@ export type ActivityEvent =
       timeline: { positionS: number; durationS: number } | null;
       art: string | null;
     }
+  | { kind: "timerRemoved"; id: string }
+  | { kind: "timerPaused"; id: string; remainingS: number; label: string }
   | { kind: "timerTick"; id: string; remainingS: number; label: string }
   | { kind: "timerEnded"; id: string }
   | { kind: "privacyChanged"; mic: string[]; camera: string[] }

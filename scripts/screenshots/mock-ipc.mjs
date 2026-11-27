@@ -38,7 +38,32 @@ export function installMockIpc(seed) {
       throw typeof failure === "string" ? new Error(failure) : clone(failure);
     }
     switch (command) {
-      case "media_snapshot": return clone(state.media ?? {revision:0,sessions:[],selected:null,volume:null,error:null});
+      case "timer_view":
+        return null;
+      case "timer_snapshot":
+        return clone(
+          state.timer ?? {
+            revision: 0,
+            generation: 0,
+            config: {
+              preset: "25/5",
+              focusS: 1500,
+              breakS: 300,
+              rounds: 4,
+              label: "Focus",
+              card: null,
+            },
+            session: null,
+            linkedCard: null,
+            linkUnavailable: false,
+            shortcutError: null,
+            error: null,
+          },
+        );
+      case "media_snapshot":
+        return clone(
+          state.media ?? { revision: 0, sessions: [], selected: null, volume: null, error: null },
+        );
       case "shelf_list":
         return clone(state.shelf ?? []);
       case "shelf_preview":

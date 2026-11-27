@@ -1,0 +1,51 @@
+{
+  "task": "V5.4",
+  "story": "Timer presets/controls or reserved shortcut -> typed Tauri commands -> production deadline worker -> local SQLite and scoped Notes card -> pushed countdown/completion -> compact,peek,expanded and fullscreen-policy rendering.",
+  "requirements": [
+    {
+      "requirement": "Presets and custom focus/break rounds",
+      "assertions": "25/5 and50/10 have four explicit rounds;90 is one focus without break. Custom1-1440 focus minutes,0-120 break minutes,1-12 rounds and a bounded label. Selecting settings stops/prepares; every focus/break/round starts explicitly. Pause/resume/stop and Ctrl+Alt+T toggle work through shared service.",
+      "status": "passed"
+    },
+    {
+      "requirement": "UTC wall-clock persistence across sleep/restart/DST",
+      "assertions": "Persist UTC deadlines and exact paused milliseconds, not renderer ticks. Complete once at original deadline after sleep/restart, with local focus_sessions history. Fixtures cover both DST transitions, rollback, running/paused/expired restarts and write-failure retry. Actual owned release restarts against its own SQLite and preserves session ID/deadline/card.",
+      "status": "passed"
+    },
+    {
+      "requirement": "Visible1Hz and idle/hidden behavior",
+      "assertions": "Rust worker blocks when idle/paused and until the deadline when fully hidden. Only actual visible countdown hosts/view leases tick1Hz. An eligible queued timer wakes once at59s for activity priority. Covered native hosts are excluded; destroyed WebView leases clear. No JavaScript clock, read polling or periodic SQLite writes.",
+      "status": "passed"
+    },
+    {
+      "requirement": "Scoped Tack/local card link",
+      "assertions": "Card picker uses current Notes scope and production guarded lookup. Show actual tck-N when available, open/unlink functional; local cards say Local note. Workspace switch or removed/trashed cards hides old metadata while countdown continues. Stale binding/actions are rejected. Linking/timing never edits card JSON or Tack outbox. Tack time logging is explicitly disabled forv2.1.",
+      "status": "passed"
+    },
+    {
+      "requirement": "Completion alert/fullscreen policy",
+      "assertions": "Production TimerEnded enters existing activity arbitration, stays queued under fullscreen silence and is rendered over fullscreen only if showAlertsOverFullscreen is enabled. Native wake uses the same production clock/power callback seam. Owned native hidden frame has every alpha byte zero; enabled completion pill is captured.",
+      "status": "passed"
+    },
+    {
+      "requirement": "Figma/accessibility/bundle",
+      "assertions": "Fresh contexts/screenshots7:103,8:119,10:433(parent10:519), byte-identical original SVGs and shared controls/tokens.40 exact-repeat light/dark1x/1.5x captures, default axe zero violations/incompletes, Geist,18 visible original SVG slots and actual outer/control geometry. Initial island100675/120000 gzip bytes; no new dependency or sidecar.",
+      "status": "passed"
+    }
+  ],
+  "evidence": {
+    "checks": "v54-checks.json",
+    "flow": "v54-flow-c-flow.json",
+    "native": "v54-native-a-scene.json",
+    "visual": "v54-timer-h-screenshots.json",
+    "design": "v54-design.json",
+    "bundles": "v54-entry-bundles.json",
+    "pngAudit": "v54-png-audit.json"
+  },
+  "platformBoundary": "Windows x64 automated fixtures and owned isolated production custom-protocol native release. Actual OS sleep/DST/global shortcut delivery, Windows10/ARM64 and prior focus/performance limits remain unclaimed.",
+  "dependencies": {
+    "newPackages": false,
+    "newSidecar": false
+  },
+  "nextTask": "V5.5"
+}

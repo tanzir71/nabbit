@@ -1,0 +1,89 @@
+{
+  "passed": true,
+  "checks": [
+    "Ctrl+Alt+T dispatch starts the actual timer worker without OS key injection; native compact renders the persisted25/5 countdown and a guarded owned local card link",
+    "Actual release WebView2/Tauri Pause and Resume survive an injected hour asleep with exact remaining time; stable DPR2 running/paused captures use the current JS/stylesheets",
+    "After terminating and restarting the owned release against the same isolated SQLite, the running session ID/deadline/card link persist and the injected UTC clock recomputes23:43",
+    "The native clock/power wake seam completes the persisted expired timer. Fullscreen silence queues its alert and every captured native alpha byte stays zero",
+    "Enabling the existing fullscreen-alert preference renders the native completion pill; Stop removes it and all card JSON remains byte-equivalent. No Tack card/time mutation or real OS clock/power/key change occurs"
+  ],
+  "captures": [
+    {
+      "role": "timer-compact",
+      "file": "v54-native-a-compact@1x.png",
+      "width": 720,
+      "height": 460,
+      "bytes": 5408,
+      "sha256": "7032c2b3e845cfbede65b229f8bddede34a15af2de986c58d53597bbf943de78"
+    },
+    {
+      "role": "focus",
+      "file": "v54-native-a-focus@2x.png",
+      "sha256": "22b2d4e999cfd5c6743ac49f66113c37dd9ba13200890efcb4e371def6bf85d2",
+      "bytes": 60813,
+      "width": 1440,
+      "height": 920,
+      "logicalBounds": {
+        "x": 0,
+        "y": 0,
+        "width": 720,
+        "height": 460
+      },
+      "contentBounds": {
+        "x": 20,
+        "y": 6,
+        "width": 680,
+        "height": 192
+      },
+      "scale": 2,
+      "repeatMatches": true
+    },
+    {
+      "role": "paused",
+      "file": "v54-native-a-paused@2x.png",
+      "sha256": "bb598359fb2f920b07d122d1a226ad2691b119b7352c5e2e446f8c388468ff73",
+      "bytes": 60988,
+      "width": 1440,
+      "height": 920,
+      "logicalBounds": {
+        "x": 0,
+        "y": 0,
+        "width": 720,
+        "height": 460
+      },
+      "contentBounds": {
+        "x": 20,
+        "y": 6,
+        "width": 680,
+        "height": 192
+      },
+      "scale": 2,
+      "repeatMatches": true
+    },
+    {
+      "role": "timer-ended",
+      "file": "v54-native-a-ended@1x.png",
+      "width": 720,
+      "height": 460,
+      "bytes": 5576,
+      "sha256": "cf1bcdca95fe5f4256b2759f07bb5a22bb331c4cdf93435852eabcdf4437a0dc"
+    }
+  ],
+  "embeddedEntry": "/assets/island-DSzVBF53.js",
+  "embeddedStyles": [
+    "/assets/island-Bog0JJZv.css",
+    "/assets/EngineHealthCard-BLKwpQSy.css",
+    "/assets/links-CsTph8Fk.css",
+    "/assets/downloads-BSTwiXw-.css",
+    "/assets/QuickCapture-DUXyoEkk.css",
+    "/assets/SyncState-Co7PbncJ.css",
+    "/assets/ModuleBody-P3bXXQYY.css"
+  ],
+  "executableSha256": "160cddda6c6f7c1139fbd0da61332f54525ec95413aa29e13ddc5218779cb1f6",
+  "buildManifestSha256": "e3f61ad9cc9fe18692d3b89979b0fb4b57d6ca8f117d411ba9bfd2420895dfbe",
+  "noUserProfile": true,
+  "noHostedTack": true,
+  "noRealClipboard": true,
+  "noOsDisplayChange": true,
+  "scope": "Owned production DirectComposition/WebView2 release, actual Tauri timer service/SQLite/card linking and shortcut/wake handlers. The clock, fullscreen and power facts are injected; no real OS clock, power, keys, audio, account or user profile is touched. The owned process restarts against its own persistent profile."
+}

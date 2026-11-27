@@ -142,6 +142,9 @@ impl Bus {
         self.changed.notify_one();
     }
     fn emit(&self, message: Message, wake: bool) {
+        if let Some(timer) = self.app.try_state::<Arc<crate::timer::Service>>() {
+            timer.observe(&message.snapshot);
+        }
         let _ = self.app.emit("nabbit://activity", &message);
         let _ = self.app.emit("nabbit://island", &message);
         #[cfg(windows)]

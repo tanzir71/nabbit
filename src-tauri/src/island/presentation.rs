@@ -102,7 +102,7 @@ fn normal_width(event: &Event) -> f32 {
         Event::LinkDetected { .. } => 336.0,
         Event::DownloadProgress { .. } => 320.0,
         Event::MediaChanged { .. } | Event::NoteSaved { .. } | Event::LinkSaved { .. } => 272.0,
-        Event::TimerTick { .. } | Event::TimerEnded { .. } => 240.0,
+        Event::TimerTick { .. } | Event::TimerPaused { .. } | Event::TimerEnded { .. } => 240.0,
         Event::PrivacyChanged { .. } | Event::PowerChanged { .. } => 232.0,
         Event::DownloadDone { .. } | Event::DownloadFailed { .. } => 348.0,
         Event::FilesMoved { .. } => 312.0,
@@ -185,9 +185,23 @@ fn draw(item: &Item, width: f32) -> Vec<Draw> {
         ],
         Event::TimerTick {
             remaining_s, label, ..
+        }
+        | Event::TimerPaused {
+            remaining_s, label, ..
         } => vec![
             icon("iconTimer", 10.0),
-            text(label, 34.0, width - 98.0, false, false, true),
+            text(
+                if matches!(&item.event, Event::TimerPaused { .. }) {
+                    "Paused"
+                } else {
+                    label
+                },
+                34.0,
+                width - 98.0,
+                false,
+                false,
+                true,
+            ),
             text(time(*remaining_s), right - 43.0, 43.0, true, false, false),
         ],
         Event::TimerEnded { .. } => vec![
@@ -359,7 +373,9 @@ fn bubble(item: &Item) -> Vec<Draw> {
                 x: 7.0,
             }]
         }
-        Event::TimerTick { .. } | Event::TimerEnded { .. } => vec![icon("iconTimer1", 8.5)],
+        Event::TimerTick { .. } | Event::TimerPaused { .. } | Event::TimerEnded { .. } => {
+            vec![icon("iconTimer1", 8.5)]
+        }
         Event::LinkDetected { .. } => vec![icon("iconLink", 8.0)],
         Event::PrivacyChanged { .. } => vec![icon("iconMic", 8.0)],
         Event::MediaChanged { .. } => vec![icon("iconVolume2", 8.0)],

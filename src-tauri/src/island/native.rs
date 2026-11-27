@@ -954,7 +954,19 @@ impl Manager {
                 ));
             }
         }
+        let timer_hosts = state
+            .inputs
+            .iter()
+            .filter(|(label, value)| {
+                state.hosts.contains_key(*label) && !value.web && value.gate == Gate::Visible
+            })
+            .map(|(label, _)| label.clone())
+            .collect();
         drop(state);
+        self.app.state::<Arc<crate::timer::Service>>().native_hosts(
+            timer_hosts,
+            &self.app.state::<Arc<super::activity_bus::Bus>>().snapshot(),
+        );
         for report in visibility_events {
             let _ = self.app.emit("nabbit://island-visibility", report);
         }
@@ -1034,6 +1046,7 @@ impl Manager {
                                         let hwnd=lock(&manager.state).hosts.get(&g.label).map(|h|h.hwnd);
                                         hwnd.is_some_and(|hwnd|manager.native_media(hwnd,g.x,g.y,g.delta.map(|d|(d,g.fine))))
                                     });
+                                    if request.timer_wake.unwrap_or(false) {manager.app.state::<Arc<crate::timer::Service>>().wake();}
                                     let outcome = preparation.and_then(|()| manager.accept(request.desktop, request.preferences, request.capture, &path));
                                     let response = serde_json::json!({"id":request.id,"snapshot":manager.snapshot(),"media":manager.app.state::<Arc<crate::media::Service>>().snapshot(),"mediaGesture":media_gesture,"result":outcome.as_ref().ok(),"error":outcome.err()});
                                     let _ = std::fs::write(response_path, serde_json::to_vec(&response).unwrap_or_default());
@@ -1098,6 +1111,8 @@ impl Manager {
 }
 #[derive(Deserialize)]
 struct Request {
+    #[serde(rename = "timerWake")]
+    timer_wake: Option<bool>,
     #[serde(rename = "mediaGesture")]
     media_gesture: Option<MediaGesture>,
     shortcut: Option<String>,
@@ -1369,6 +1384,9 @@ unsafe extern "system" fn control_proc(hwnd: HWND, message: u32, w: WPARAM, l: L
                 .state::<Arc<super::activity_bus::Bus>>()
                 .refresh();
             manager.watcher.system_changed();
+            if message == WM_TIMECHANGE || (message == WM_POWERBROADCAST && w == 18) {
+                manager.app.state::<Arc<crate::timer::Service>>().wake();
+            }
             if message == WM_POWERBROADCAST && w == 18 {
                 manager.app.state::<Arc<crate::media::Service>>().resume();
             }

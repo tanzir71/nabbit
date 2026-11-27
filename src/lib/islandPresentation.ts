@@ -42,6 +42,7 @@ export function compactKind(item: ActivityItem | null): CompactKind {
       return "download";
     case "mediaChanged":
       return "media";
+    case "timerPaused":
     case "timerTick":
     case "timerEnded":
       return "timer";
@@ -97,6 +98,7 @@ export function activityTitle(item: ActivityItem) {
         : downloadErrorTitle[e.error];
     case "mediaChanged":
       return e.title;
+    case "timerPaused":
     case "timerTick":
       return e.label || "Focus";
     case "timerEnded":

@@ -797,7 +797,7 @@ Commit after every task (§0.1). Lines marked **MILESTONE** are tasks of their o
 - [x] V5.1 Clipboard island tab.
 - [x] V5.2 Shelf (+ drag out).
 - [x] V5.3 Now playing (GSMTC) + scroll-volume + middle-click.
-- [ ] V5.4 Focus timer (+ Tack card link).
+- [x] V5.4 Focus timer (+ Tack card link).
 - [ ] V5.5 Mic/camera dot.
 - [ ] V5.6 Battery/charging.
 - [ ] V5.7 Tool registry, presets, job runner (cancel/retry/quit warning, never-overwrite naming, date copy), result card with Reveal/Undo (`33:528`), Search everything (`34:777`) including pins and links; `cargo deny` licence rules; BtbN ffmpeg sidecar swap.

@@ -1,6 +1,20 @@
 //! Explicit-input focus ownership. Activity and hover never create a request.
 use serde::{Deserialize, Serialize};
 pub fn validate_shortcut(settings: &crate::db::models::AppSettings) -> Result<(), String> {
+    let timer = crate::timer::SHORTCUT
+        .parse::<tauri_plugin_global_shortcut::Shortcut>()
+        .map_err(|e| e.to_string())?;
+    for value in [
+        &settings.selected_text_shortcut,
+        &settings.island_shortcut,
+        &settings.toggle_popover_shortcut,
+        &settings.quick_download_shortcut,
+        &settings.clipboard_search_shortcut,
+    ] {
+        if value.parse::<tauri_plugin_global_shortcut::Shortcut>().ok() == Some(timer) {
+            return Err("Ctrl+Alt+T is reserved for the focus timer".into());
+        }
+    }
     if !settings.selected_text_shortcut.trim().is_empty() {
         let selected = settings
             .selected_text_shortcut

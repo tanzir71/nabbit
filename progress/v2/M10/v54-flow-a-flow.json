@@ -1,0 +1,32 @@
+{
+  "passed": false,
+  "failure": {
+    "message": "locator.waitFor: Timeout 10000ms exceeded.\nCall log:\n\u001b[2m  - waiting for getByRole('button', { name: 'Pause', exact: true }) to be visible\u001b[22m\n",
+    "stack": "locator.waitFor: Timeout 10000ms exceeded.\nCall log:\n\u001b[2m  - waiting for getByRole('button', { name: 'Pause', exact: true }) to be visible\u001b[22m\n\n    at D:\\claude-upgrade-26\\nabbit\\scripts\\verify-timer-flow.mjs:145:66",
+    "telemetry": {
+      "headings": [
+        "Focus timer",
+        "Focus · round 1 of 4"
+      ],
+      "notes": 0,
+      "events": 1,
+      "streamError": false,
+      "commands": [
+        "timer_view",
+        "timer_snapshot",
+        "get_notes_state",
+        "timer_action",
+        "timer_action"
+      ]
+    }
+  },
+  "checks": [],
+  "problems": [],
+  "buildManifestSha256": "85e456b7269d5af67016c5179055d9ad008cf63654424c00ea66b4ce7451653d",
+  "rustBridgeExitCode": 0,
+  "scope": "Actual Focus timer UI and typed API through test-only loopback IPC forwarding to the production worker, SQLite, guarded card linking and activity arbitration. Clock/power/fullscreen facts are injected; no real OS clock, power, global keys or hosted Tack/account.",
+  "noHostedTack": true,
+  "noUserAccount": true,
+  "noRealClipboard": true,
+  "noExternalNetwork": true
+}

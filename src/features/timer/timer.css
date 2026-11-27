@@ -1,0 +1,210 @@
+.focus-timer {
+  display: flex;
+  flex-direction: column;
+  gap: 14px;
+}
+.focus-body {
+  display: flex;
+  align-items: center;
+  gap: 20px;
+  min-width: 0;
+}
+.focus-ring {
+  isolation: isolate;
+  width: 120px;
+  height: 120px;
+  position: relative;
+  flex: none;
+  overflow: hidden;
+}
+.focus-ring > img {
+  position: absolute;
+  left: 0;
+  top: 0;
+}
+.focus-ring-extra,
+.focus-ring-arc {
+  pointer-events: none;
+  z-index: 0;
+  position: absolute;
+  inset: 0;
+  mask-repeat: no-repeat;
+}
+.focus-ring-arc img {
+  position: absolute;
+  right: 0;
+  top: 0;
+}
+.focus-clock-centre {
+  position: absolute;
+  inset: 0;
+  display: grid;
+  place-items: center;
+  z-index: 1;
+}
+.focus-digits {
+  width: max-content;
+  padding: 2px;
+  background: var(--island-bg);
+  text-align: center;
+  font: 500 var(--focus-digit-size, 26px)/32px var(--font-mono);
+  letter-spacing: -0.2px;
+}
+.focus-session {
+  display: flex;
+  flex: 1;
+  flex-direction: column;
+  gap: 10px;
+  min-width: 0;
+}
+.focus-titles {
+  display: flex;
+  flex-direction: column;
+  gap: 2px;
+  min-width: 0;
+}
+.focus-timer .focus-titles h2 {
+  font: 600 14px/20px var(--font-sans);
+  letter-spacing: -0.1px;
+}
+.focus-card-line,
+.focus-presets,
+.focus-controls {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  min-width: 0;
+}
+.focus-link {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  min-width: 0;
+  max-width: 100%;
+  background: transparent;
+  border: 0;
+  padding: 0;
+  color: var(--island-muted);
+  text-align: left;
+}
+.focus-link > span {
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+.focus-card-line .focus-unlink,
+.focus-card-line .focus-open {
+  background: transparent;
+  display: grid;
+  place-items: center;
+  width: 16px;
+  height: 16px;
+  border: 0;
+  padding: 0;
+  color: var(--island-muted);
+}
+.focus-presets .n-preset {
+  font: 500 13px/18px var(--font-sans);
+}
+.focus-controls {
+  gap: 8px;
+}
+.focus-timer .focus-button {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  min-height: 28px;
+  border-radius: 14px;
+  border: 0;
+  background: var(--island-raised);
+  color: var(--island-fg);
+  padding: 0 12px 0 10px;
+  font: 400 12px/16px var(--font-sans);
+  white-space: nowrap;
+}
+.focus-log-label {
+  font-size: 12px;
+  line-height: 16px;
+  white-space: nowrap;
+}
+.focus-peek .focus-peek-header {
+  gap: 12px;
+}
+.focus-peek .focus-titles strong {
+  font: 500 13px/18px var(--font-sans);
+}
+.focus-peek .focus-titles > span {
+  font: 400 12px/16px var(--font-sans);
+}
+.focus-peek-digits {
+  font: 500 22px/28px var(--font-mono);
+  letter-spacing: -0.2px;
+  white-space: nowrap;
+}
+.focus-peek .island-progress > i {
+  background: var(--signal-base);
+}
+.focus-peek .focus-titles {
+  gap: 0;
+}
+.focus-custom,
+.focus-card-picker {
+  background: var(--island-raised);
+  border-radius: 14px;
+  padding: 12px;
+}
+.focus-custom {
+  display: flex;
+  align-items: end;
+  flex-wrap: wrap;
+  gap: 10px;
+}
+.focus-custom label {
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+  flex: 1;
+  min-width: 90px;
+}
+.focus-custom input {
+  width: 100%;
+  border: 1px solid var(--island-track);
+  background: var(--island-bg);
+  color: var(--island-fg);
+  border-radius: 6px;
+  padding: 6px;
+}
+.focus-custom .focus-custom-label {
+  min-width: 180px;
+}
+.focus-custom .focus-button {
+  background: var(--island-bg);
+}
+.focus-card-picker {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+  max-height: 160px;
+  overflow-y: auto;
+}
+.focus-picker-title {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+.focus-timer .focus-card-option {
+  display: flex;
+  gap: 8px;
+  background: var(--island-bg);
+  color: var(--island-fg);
+  border: 0;
+  border-radius: 8px;
+  padding: 8px;
+  text-align: left;
+}
+
+.focus-peek .focus-titles > span {
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}

@@ -60,3 +60,25 @@ Authoritative evidence:
 All acceptance playback/audio actions use recorded hardware. Live GSMTC/Core Audio callbacks, actual output-device switching, real player acknowledgement and an OS sleep cycle are not exercised under section0.2. No user files/profile/account, hosted Tack, real clipboard/global input, OS setting, installer or signing is used; previous platform/focus/performance limits remain. See [privacy](../../../PRIVACY.md).
 
 V5.3 is a local skip-ci task commit directly on main. No PR or push; publication waits for M10. V5.4 Focus timer is next.
+
+
+## V5.4 — Focus timer and scoped card links
+
+Focus has25/5,50/10,90 and custom presets, explicit focus/break rounds, pause/resume/stop and Ctrl+Alt+T toggle. UTC deadlines and exact paused milliseconds persist with local session history. Sleep/restart/clock changes recompute remaining time and finish once at the original deadline. The Rust worker pushes visible1Hz updates; hidden/idle timers have no renderer clock or read polling.
+
+Link a current Notes/Tack card, display its actual reference/title and open/unlink it through the picker. Scope changes hide old metadata while the timer continues. Local cards are supported without inventing a Tack reference. Timer actions leave card JSON and the Tack outbox untouched. Time logging is disabled and labeled v2.1, as required by the handoff. Completed alerts obey the existing fullscreen-alert preference.
+
+Authoritative evidence:
+
+- [Receipt and exact staged Git pins](v54-acceptance.json), [requirements/story](v54-requirements.json), [checks and original logs](v54-checks.json).
+- [Nine browser-to-Rust checks](v54-flow-c-flow.json): actual timer UI/API, production worker/SQLite/scoped card lookup/arbitration,30 pushed events and no idle read polling.
+- [Five native checks/four captures](v54-native-a-scene.json): current custom-protocol executable and matching embedded entry/stylesheets, actual Tauri commands, shortcut dispatch, pause/resume, owned-process restart, native wake and fullscreen queue/exception. [Native Focus](v54-native-a-focus@2x.png), [paused](v54-native-a-paused@2x.png), [compact](v54-native-a-compact@1x.png), [completion](v54-native-a-ended@1x.png).
+- [40 final visual captures](v54-timer-h-screenshots.json): ten states in light/dark at1x/1.5x, always-dark island, exact repeat hashes, Geist, default axe zero violations/incompletes and18 original SVG slots at intrinsic dimensions. [Figma comparison](v54-design.json), [expanded](v54-timer-h-timer-running-light@1x.png), [peek](v54-timer-h-timer-peek-dark@1.5x.png), [custom](v54-timer-h-timer-custom-light@1x.png).
+- [Independent PNG audit](v54-png-audit.json): all205 retained M10 PNGs decode and stay <=300000 bytes (largest100111). [Entry graph](v54-entry-bundles.json):100675/120000 initial island gzip bytes. No new dependency or sidecar.
+- [Failure-harness proof](v54-delivery-failure-check.json) and [failed/superseded logs with exact original archives](v54-earlier-attempts.json). Earlier V5.1–V5.3 evidence remains unchanged. The initial Link→Start stale-generation race was fixed in the production hook and regression-tested; no accessibility rule was excluded.
+
+`npm run verify` passes460 tests/43 files; final lint, fmt, default+spike all-target Clippy and280 serial Rust tests pass, with three existing opt-in ignores. Tests cover both DST transitions, rollback, hidden scheduling, covered native hosts, scoped links, generation conflicts and completion-write failure/retry. A2px background inset encloses Geist Mono font bounds without moving visible text. Fractional-root original SVG edges allow only Chromium's2/64px geometry quantization; integer-root exports remain exact.
+
+Clock/power/fullscreen facts are injected. No real OS sleep/timezone/clock/global-key delivery, user profile/account, hosted Tack, clipboard/audio, OS setting, installer or signing is used. The native result proves the production handler/service/SQLite/render path, with prior platform/focus/performance limits retained. See [privacy](../../../PRIVACY.md).
+
+V5.4 is a local skip-ci task commit directly on main. No PR or task push; publication waits for M10. V5.5 Mic/camera dot is next.

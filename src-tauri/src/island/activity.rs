@@ -146,6 +146,14 @@ pub enum ActivityEvent {
         timeline: Option<Timeline>,
         art: Option<String>,
     },
+    TimerRemoved {
+        id: String,
+    },
+    TimerPaused {
+        id: String,
+        remaining_s: u32,
+        label: String,
+    },
     TimerTick {
         id: String,
         remaining_s: u32,
@@ -570,6 +578,21 @@ impl Engine {
             }
             ActivityEvent::MediaRemoved { session_id } => {
                 self.remove("media", session_id);
+            }
+            ActivityEvent::TimerRemoved { id } => {
+                self.remove("timer", id);
+                self.remove("timerEnded", id);
+            }
+            ActivityEvent::TimerPaused { id, .. } => {
+                self.remove("timerEnded", id);
+                self.put(
+                    format!("timer:{id}"),
+                    Kind::Timer,
+                    event.clone(),
+                    false,
+                    now,
+                    None,
+                );
             }
             ActivityEvent::TimerTick {
                 id, remaining_s, ..
