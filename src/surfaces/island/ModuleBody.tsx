@@ -9,6 +9,7 @@ import { IslandNotes } from "../../features/notes/IslandNotes";
 import { IslandClipboard } from "../../features/clipboard/IslandClipboard";
 import { MediaPlayer } from "../../features/media/MediaPlayer";
 import { IslandShelf } from "../../features/shelf/IslandShelf";
+import { ToolQueue } from "../../features/tools/ToolQueue";
 interface Props {
   model: IslandModel;
   dispatch: (action: IslandAction) => void;
@@ -20,7 +21,13 @@ export default function ModuleBody(props: Props) {
   if (model.tab === "clipboard") return <IslandClipboard model={model} dispatch={props.dispatch} />;
   if (model.tab === "timer") return <FocusTimer />;
   if (model.tab === "media") return <MediaPlayer />;
-  if (model.tab === "files") return <IslandShelf model={model} dispatch={props.dispatch} />;
+  if (model.tab === "files")
+    return (
+      <>
+        <IslandShelf model={model} dispatch={props.dispatch} />
+        <ToolQueue />
+      </>
+    );
   if (model.tab === "notes")
     return (
       <>

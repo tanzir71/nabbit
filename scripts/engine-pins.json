@@ -12,8 +12,9 @@
         "sha256": "cba84b26e0df5ae7f74fc66b86a95b866872a86292ebd84fa1e959927edd93bf"
       },
       "ffmpeg": {
-        "url": "https://github.com/yt-dlp/FFmpeg-Builds/releases/download/autobuild-2026-11-25-23-12/ffmpeg-N-129306-g35ef294f5d-win64-gpl.zip",
-        "sha256": "65f2007c1500bbe1dca88c728e75b54053a9409103b8caf08dd73d83e23c9bde"
+        "url": "https://github.com/FFmpeg-Builds/FFmpeg-Builds/releases/download/autobuild-2026-11-27-12-42/ffmpeg-N-129333-g7fdb4c2341-win64-gpl.zip",
+        "sha256": "202a55effd3295df24341b242ebe427762d5aca924aa761dbc9885bf06038ede",
+        "executableSha256": "25c833bc58179d1086584a8e88fdff261cde6d4a321fdb00ab5306d75dd445c4"
       }
     },
     "aarch64-pc-windows-msvc": {
@@ -26,8 +27,9 @@
         "sha256": "b413b92b735b50c198e8fe3b85af1aa50e29d5f72e229aab701d132286e14cef"
       },
       "ffmpeg": {
-        "url": "https://github.com/yt-dlp/FFmpeg-Builds/releases/download/autobuild-2026-11-25-23-12/ffmpeg-N-129306-g35ef294f5d-winarm64-gpl.zip",
-        "sha256": "6b337390dbc44a7fcebbeaaccc3f3db8cfada6422f9c700331c139358f5eb5ba"
+        "url": "https://github.com/FFmpeg-Builds/FFmpeg-Builds/releases/download/autobuild-2026-11-27-12-42/ffmpeg-N-129333-g7fdb4c2341-winarm64-gpl.zip",
+        "sha256": "b2f2fae67387f4fa45af2b366df283b226acf0c318168f728ecbe984eb057c2a",
+        "executableSha256": "438b60aa090c98b421586d595747c50d25ab9d503ec5c4b713437949ae73e55a"
       }
     },
     "x86_64-apple-darwin": {
@@ -79,5 +81,6 @@
       }
     }
   },
-  "ffmpegBuild": "autobuild-2026-11-25-23-12"
+  "ffmpegBuild": "autobuild-2026-11-27-12-42",
+  "ffmpegRepository": "FFmpeg-Builds/FFmpeg-Builds"
 }

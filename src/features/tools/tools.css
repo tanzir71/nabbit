@@ -1,0 +1,39 @@
+.tool-sheet,
+.tool-queue {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+  padding: 8px 0;
+  font-size: 13px;
+  line-height: 18px;
+}
+.tool-sheet label {
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+}
+.tool-sheet input,
+.tool-sheet select {
+  min-width: 0;
+  padding: 8px 10px;
+  border: 1px solid var(--island-track);
+  border-radius: 10px;
+  background: var(--island-raised);
+  color: var(--island-fg);
+}
+.tool-result {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+  padding: 12px;
+  border-radius: 14px;
+  background: var(--island-raised);
+}
+.tool-result progress {
+  width: 100%;
+  height: 4px;
+  accent-color: var(--signal-base);
+}
+.tool-result p {
+  overflow-wrap: anywhere;
+}

@@ -31,11 +31,13 @@ export function SettingsApp() {
       </main>
     );
   return (
-    <SettingsPanel
-      onClose={() => {
-        if (isTauri()) void getCurrentWindow().hide();
-        else window.location.assign("./index.html");
-      }}
-    />
+    <main>
+      <SettingsPanel
+        onClose={() => {
+          if (isTauri()) void getCurrentWindow().hide();
+          else window.location.assign("./index.html");
+        }}
+      />
+    </main>
   );
 }

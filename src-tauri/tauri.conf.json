@@ -39,7 +39,12 @@
       "icons/icon.ico"
     ],
     "externalBin": ["binaries/yt-dlp", "binaries/ffmpeg", "binaries/deno"],
-    "resources": ["../PRIVACY.md", "../src/assets/fonts/OFL.txt"],
+    "resources": [
+      "../PRIVACY.md",
+      "../src/assets/fonts/OFL.txt",
+      "../third-party/ffmpeg/",
+      "../third-party/notices.json"
+    ],
     "createUpdaterArtifacts": false
   },
   "plugins": {

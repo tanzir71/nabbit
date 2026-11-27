@@ -1,0 +1,30 @@
+file:///D:/claude-upgrade-26/nabbit/scripts/screenshots/harness.mjs:309
+            throw new Error(`${scenario.name} (${theme}@${scale}x): ${error.message}`, {
+                  ^
+
+Error: tools-search-pdf (light@1x): Unstable capture: tools-search-pdf/light/1
++ actual - expected
+
++ 'e16d20c4eb54abfd444ba6d36b2d275f793d868dd39d1a8652bbfa56b0e3bdb2'
+- 'c584da2b699386930162ad64ba582f0836e4bd828c89ae8fdf231e6de8675435'
+
+    at captureSuite (file:///D:/claude-upgrade-26/nabbit/scripts/screenshots/harness.mjs:309:19)
+    at async file:///D:/claude-upgrade-26/nabbit/scripts/verify-tools-screenshots.mjs:23:16 {
+  [cause]: AssertionError [ERR_ASSERTION]: Unstable capture: tools-search-pdf/light/1
+  + actual - expected
+
+  + 'e16d20c4eb54abfd444ba6d36b2d275f793d868dd39d1a8652bbfa56b0e3bdb2'
+  - 'c584da2b699386930162ad64ba582f0836e4bd828c89ae8fdf231e6de8675435'
+
+      at captureSuite (file:///D:/claude-upgrade-26/nabbit/scripts/screenshots/harness.mjs:278:22)
+      at async file:///D:/claude-upgrade-26/nabbit/scripts/verify-tools-screenshots.mjs:23:16 {
+    generatedMessage: false,
+    code: 'ERR_ASSERTION',
+    actual: 'e16d20c4eb54abfd444ba6d36b2d275f793d868dd39d1a8652bbfa56b0e3bdb2',
+    expected: 'c584da2b699386930162ad64ba582f0836e4bd828c89ae8fdf231e6de8675435',
+    operator: 'strictEqual',
+    diff: 'simple'
+  }
+}
+
+Node.js v24.22.2

@@ -1,0 +1,563 @@
+{
+  "beforeCapture": {
+    "active": "<input placeholder=\"Choose a file from the Shelf or enter its full path\" value=\"C:\\Fixture\\clip.mov\">",
+    "focus": true,
+    "visibility": "visible",
+    "host": {
+      "theme": "dark",
+      "native": "true",
+      "islandState": "expanded",
+      "shape": "island",
+      "islandVisibility": "visible",
+      "reducedMotion": "true"
+    },
+    "nodes": [
+      {
+        "class": "island-morph",
+        "text": "To MP4 optionsTo MP4BackFile pathChoose file…Creates a new file next to the original. Existing files are kept.To MP4",
+        "opacity": "1",
+        "visibility": "visible",
+        "animation": "none",
+        "rect": {
+          "x": 20,
+          "y": 6,
+          "width": 680,
+          "height": 280,
+          "top": 6,
+          "right": 700,
+          "bottom": 286,
+          "left": 20
+        }
+      },
+      {
+        "class": "island-content island-content--expanded",
+        "text": "To MP4 optionsTo MP4BackFile pathChoose file…Creates a new file next to the original. Existing files are kept.To MP4",
+        "opacity": "1",
+        "visibility": "visible",
+        "animation": "0.12s both island-content-in",
+        "rect": {
+          "x": 20,
+          "y": 6,
+          "width": 680,
+          "height": 280,
+          "top": 6,
+          "right": 700,
+          "bottom": 286,
+          "left": 20
+        }
+      },
+      {
+        "class": "tool-sheet",
+        "text": "To MP4 optionsTo MP4BackFile pathChoose file…Creates a new file next to the original. Existing files are kept.To MP4",
+        "opacity": "1",
+        "visibility": "visible",
+        "animation": "none",
+        "rect": {
+          "x": 36,
+          "y": 62,
+          "width": 648,
+          "height": 208,
+          "top": 62,
+          "right": 684,
+          "bottom": 270,
+          "left": 36
+        }
+      },
+      {
+        "class": "island-outgoing",
+        "text": "",
+        "opacity": "1",
+        "visibility": "visible",
+        "animation": "none",
+        "rect": {
+          "x": 0,
+          "y": 0,
+          "width": 0,
+          "height": 0,
+          "top": 0,
+          "right": 0,
+          "bottom": 0,
+          "left": 0
+        }
+      }
+    ],
+    "animations": [
+      {
+        "state": "finished",
+        "time": 120,
+        "pending": false
+      },
+      {
+        "state": "finished",
+        "time": 120,
+        "pending": false
+      },
+      {
+        "state": "finished",
+        "time": 120,
+        "pending": false
+      },
+      {
+        "state": "finished",
+        "time": 120,
+        "pending": false
+      },
+      {
+        "state": "finished",
+        "time": 120,
+        "pending": false
+      },
+      {
+        "state": "finished",
+        "time": 120,
+        "pending": false
+      },
+      {
+        "state": "finished",
+        "time": 120,
+        "pending": false
+      }
+    ],
+    "recentIpc": [
+      {
+        "command": "get_notes_state",
+        "args": {}
+      },
+      {
+        "command": "shelf_list",
+        "args": {}
+      },
+      {
+        "command": "island_set_hitrect",
+        "args": {
+          "rect": {
+            "x": 12,
+            "y": -2,
+            "w": 696,
+            "h": 436
+          }
+        }
+      },
+      {
+        "command": "island_set_hitrect",
+        "args": {
+          "rect": {
+            "x": 12,
+            "y": -2,
+            "w": 696,
+            "h": 208
+          }
+        }
+      },
+      {
+        "command": "island_keyboard_focus",
+        "args": {
+          "target": "preserve"
+        }
+      },
+      {
+        "command": "get_island_surface",
+        "args": {}
+      },
+      {
+        "command": "shelf_list",
+        "args": {}
+      },
+      {
+        "command": "tool_presets",
+        "args": {}
+      },
+      {
+        "command": "island_set_hitrect",
+        "args": {
+          "rect": {
+            "x": 12,
+            "y": -2,
+            "w": 696,
+            "h": 296
+          }
+        }
+      },
+      {
+        "command": "island_surface_ack",
+        "args": {
+          "generation": 1
+        }
+      }
+    ]
+  },
+  "afterFirst": {
+    "active": "<input placeholder=\"Choose a file from the Shelf or enter its full path\" value=\"C:\\Fixture\\clip.mov\" style=\"\">",
+    "focus": true,
+    "visibility": "visible",
+    "host": {
+      "theme": "dark",
+      "native": "true",
+      "islandState": "expanded",
+      "shape": "island",
+      "islandVisibility": "visible",
+      "reducedMotion": "true"
+    },
+    "nodes": [
+      {
+        "class": "island-morph",
+        "text": "To MP4 optionsTo MP4BackFile pathChoose file…Creates a new file next to the original. Existing files are kept.To MP4",
+        "opacity": "1",
+        "visibility": "visible",
+        "animation": "none",
+        "rect": {
+          "x": 20,
+          "y": 6,
+          "width": 680,
+          "height": 280,
+          "top": 6,
+          "right": 700,
+          "bottom": 286,
+          "left": 20
+        }
+      },
+      {
+        "class": "island-content island-content--expanded",
+        "text": "To MP4 optionsTo MP4BackFile pathChoose file…Creates a new file next to the original. Existing files are kept.To MP4",
+        "opacity": "1",
+        "visibility": "visible",
+        "animation": "0.12s both island-content-in",
+        "rect": {
+          "x": 20,
+          "y": 6,
+          "width": 680,
+          "height": 280,
+          "top": 6,
+          "right": 700,
+          "bottom": 286,
+          "left": 20
+        }
+      },
+      {
+        "class": "tool-sheet",
+        "text": "To MP4 optionsTo MP4BackFile pathChoose file…Creates a new file next to the original. Existing files are kept.To MP4",
+        "opacity": "1",
+        "visibility": "visible",
+        "animation": "none",
+        "rect": {
+          "x": 36,
+          "y": 62,
+          "width": 648,
+          "height": 208,
+          "top": 62,
+          "right": 684,
+          "bottom": 270,
+          "left": 36
+        }
+      },
+      {
+        "class": "island-outgoing",
+        "text": "",
+        "opacity": "1",
+        "visibility": "visible",
+        "animation": "none",
+        "rect": {
+          "x": 0,
+          "y": 0,
+          "width": 0,
+          "height": 0,
+          "top": 0,
+          "right": 0,
+          "bottom": 0,
+          "left": 0
+        }
+      }
+    ],
+    "animations": [
+      {
+        "state": "finished",
+        "time": 120,
+        "pending": false
+      },
+      {
+        "state": "finished",
+        "time": 120,
+        "pending": false
+      },
+      {
+        "state": "finished",
+        "time": 120,
+        "pending": false
+      },
+      {
+        "state": "finished",
+        "time": 120,
+        "pending": false
+      },
+      {
+        "state": "finished",
+        "time": 120,
+        "pending": false
+      },
+      {
+        "state": "finished",
+        "time": 120,
+        "pending": false
+      },
+      {
+        "state": "finished",
+        "time": 120,
+        "pending": false
+      }
+    ],
+    "recentIpc": [
+      {
+        "command": "get_notes_state",
+        "args": {}
+      },
+      {
+        "command": "shelf_list",
+        "args": {}
+      },
+      {
+        "command": "island_set_hitrect",
+        "args": {
+          "rect": {
+            "x": 12,
+            "y": -2,
+            "w": 696,
+            "h": 436
+          }
+        }
+      },
+      {
+        "command": "island_set_hitrect",
+        "args": {
+          "rect": {
+            "x": 12,
+            "y": -2,
+            "w": 696,
+            "h": 208
+          }
+        }
+      },
+      {
+        "command": "island_keyboard_focus",
+        "args": {
+          "target": "preserve"
+        }
+      },
+      {
+        "command": "get_island_surface",
+        "args": {}
+      },
+      {
+        "command": "shelf_list",
+        "args": {}
+      },
+      {
+        "command": "tool_presets",
+        "args": {}
+      },
+      {
+        "command": "island_set_hitrect",
+        "args": {
+          "rect": {
+            "x": 12,
+            "y": -2,
+            "w": 696,
+            "h": 296
+          }
+        }
+      },
+      {
+        "command": "island_surface_ack",
+        "args": {
+          "generation": 1
+        }
+      }
+    ]
+  },
+  "afterRepeat": {
+    "active": "<input placeholder=\"Choose a file from the Shelf or enter its full path\" value=\"C:\\Fixture\\clip.mov\" style=\"\">",
+    "focus": true,
+    "visibility": "visible",
+    "host": {
+      "theme": "dark",
+      "native": "true",
+      "islandState": "expanded",
+      "shape": "island",
+      "islandVisibility": "visible",
+      "reducedMotion": "true"
+    },
+    "nodes": [
+      {
+        "class": "island-morph",
+        "text": "To MP4 optionsTo MP4BackFile pathChoose file…Creates a new file next to the original. Existing files are kept.To MP4",
+        "opacity": "1",
+        "visibility": "visible",
+        "animation": "none",
+        "rect": {
+          "x": 20,
+          "y": 6,
+          "width": 680,
+          "height": 280,
+          "top": 6,
+          "right": 700,
+          "bottom": 286,
+          "left": 20
+        }
+      },
+      {
+        "class": "island-content island-content--expanded",
+        "text": "To MP4 optionsTo MP4BackFile pathChoose file…Creates a new file next to the original. Existing files are kept.To MP4",
+        "opacity": "1",
+        "visibility": "visible",
+        "animation": "0.12s both island-content-in",
+        "rect": {
+          "x": 20,
+          "y": 6,
+          "width": 680,
+          "height": 280,
+          "top": 6,
+          "right": 700,
+          "bottom": 286,
+          "left": 20
+        }
+      },
+      {
+        "class": "tool-sheet",
+        "text": "To MP4 optionsTo MP4BackFile pathChoose file…Creates a new file next to the original. Existing files are kept.To MP4",
+        "opacity": "1",
+        "visibility": "visible",
+        "animation": "none",
+        "rect": {
+          "x": 36,
+          "y": 62,
+          "width": 648,
+          "height": 208,
+          "top": 62,
+          "right": 684,
+          "bottom": 270,
+          "left": 36
+        }
+      },
+      {
+        "class": "island-outgoing",
+        "text": "",
+        "opacity": "1",
+        "visibility": "visible",
+        "animation": "none",
+        "rect": {
+          "x": 0,
+          "y": 0,
+          "width": 0,
+          "height": 0,
+          "top": 0,
+          "right": 0,
+          "bottom": 0,
+          "left": 0
+        }
+      }
+    ],
+    "animations": [
+      {
+        "state": "finished",
+        "time": 120,
+        "pending": false
+      },
+      {
+        "state": "finished",
+        "time": 120,
+        "pending": false
+      },
+      {
+        "state": "finished",
+        "time": 120,
+        "pending": false
+      },
+      {
+        "state": "finished",
+        "time": 120,
+        "pending": false
+      },
+      {
+        "state": "finished",
+        "time": 120,
+        "pending": false
+      },
+      {
+        "state": "finished",
+        "time": 120,
+        "pending": false
+      },
+      {
+        "state": "finished",
+        "time": 120,
+        "pending": false
+      }
+    ],
+    "recentIpc": [
+      {
+        "command": "get_notes_state",
+        "args": {}
+      },
+      {
+        "command": "shelf_list",
+        "args": {}
+      },
+      {
+        "command": "island_set_hitrect",
+        "args": {
+          "rect": {
+            "x": 12,
+            "y": -2,
+            "w": 696,
+            "h": 436
+          }
+        }
+      },
+      {
+        "command": "island_set_hitrect",
+        "args": {
+          "rect": {
+            "x": 12,
+            "y": -2,
+            "w": 696,
+            "h": 208
+          }
+        }
+      },
+      {
+        "command": "island_keyboard_focus",
+        "args": {
+          "target": "preserve"
+        }
+      },
+      {
+        "command": "get_island_surface",
+        "args": {}
+      },
+      {
+        "command": "shelf_list",
+        "args": {}
+      },
+      {
+        "command": "tool_presets",
+        "args": {}
+      },
+      {
+        "command": "island_set_hitrect",
+        "args": {
+          "rect": {
+            "x": 12,
+            "y": -2,
+            "w": 696,
+            "h": 296
+          }
+        }
+      },
+      {
+        "command": "island_surface_ack",
+        "args": {
+          "generation": 1
+        }
+      }
+    ]
+  }
+}

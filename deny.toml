@@ -1,0 +1,18 @@
+# The GPL sidecar is a separate executable, never a linked Rust dependency.
+# Anything absent from this allowlist (including GPL/AGPL/LGPL) fails closed.
+[licenses]
+include-dev = true
+include-build = true
+confidence-threshold = 0.8
+allow = [
+  "MIT", "Apache-2.0", "Apache-2.0 WITH LLVM-exception", "BSD-2-Clause",
+  "BSD-3-Clause", "ISC", "Zlib", "MPL-2.0", "Unicode-3.0", "Unicode-DFS-2016",
+  "CC0-1.0", "BSL-1.0", "OpenSSL", "Unlicense", "NCSA", "CDLA-Permissive-2.0",
+]
+
+[bans]
+deny = [
+  { name = "ffmpeg-next" }, { name = "ffmpeg-sys-next" },
+  { name = "imagequant" }, { name = "gifski" }, { name = "jpegli-rs" },
+  { name = "mupdf" }, { name = "mupdf-sys" }, { name = "ghostscript" }, { name = "selection" },
+]

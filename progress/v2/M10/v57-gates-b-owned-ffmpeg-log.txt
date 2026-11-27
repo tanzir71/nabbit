@@ -1,0 +1,21 @@
+Finished `test` profile [unoptimized + debuginfo] target(s) in 0.90s
+     Running unittests src\lib.rs (src-tauri\target\debug\deps\nabbit_lib-6253cfecbc41cea4.exe)
+
+running 1 test
+test tools::tests::owned_ffmpeg_cancellation_retry_and_typed_progress ... FAILED
+
+failures:
+
+---- tools::tests::owned_ffmpeg_cancellation_retry_and_typed_progress stdout ----
+
+thread 'tools::tests::owned_ffmpeg_cancellation_retry_and_typed_progress' (37388) panicked at src\tools\tests.rs:298:9:
+assertion failed: start.elapsed() < Duration::from_secs(5)
+note: run with `RUST_BACKTRACE=1` environment variable to display a backtrace
+
+
+failures:
+    tools::tests::owned_ffmpeg_cancellation_retry_and_typed_progress
+
+test result: FAILED. 0 passed; 1 failed; 0 ignored; 0 measured; 309 filtered out; finished in 9.77s
+
+error: test failed, to rerun pass `--lib`

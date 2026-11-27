@@ -1,0 +1,30 @@
+Compiling nabbit v0.1.0 (D:\claude-upgrade-26\nabbit\src-tauri)
+error[E0282]: type annotations needed
+  --> src\tools\process.rs:31:21
+   |
+31 |     let value = |n| captures[n].parse::<f64>().unwrap_or(0.);
+   |                     ^^^^^^^^^^^ cannot infer type
+
+error[E0500]: closure requires unique access to `*job` but it is already borrowed
+   --> src\tools\mod.rs:381:23
+    |
+366 |         let source = Path::new(&job.request.input);
+    |                                ------------------ borrow occurs here
+...
+381 |         let result = (|| {
+    |                       ^^ closure construction occurs here
+...
+390 |                         let mut update = job.clone();
+    |                                          --- second borrow occurs due to use of `*job` in closure
+...
+397 |                     let mut reader = ImageReader::open(source).map_err(|e| msg(e.to_string()))?;
+    |                                                        ------ first borrow later captured here by closure
+...
+431 |             job.output_hash = Some(files::hash(&temp)?);
+    |             --------------- capture is mutable because of use here
+
+Some errors have detailed explanations: E0282, E0500.
+For more information about an error, try `rustc --explain E0282`.
+error: could not compile `nabbit` (lib) due to 2 previous errors
+warning: build failed, waiting for other jobs to finish...
+error: could not compile `nabbit` (lib test) due to 2 previous errors

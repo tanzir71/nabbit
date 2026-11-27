@@ -1,0 +1,39 @@
+file:///D:/claude-upgrade-26/nabbit/scripts/screenshots/harness.mjs:379
+            throw new Error(`${scenario.name} (${theme}@${scale}x): ${error.message}`, {
+                  ^
+
+Error: tools-result-compact (light@1.5x): PNG must retain device-pixel dimensions
++ actual - expected
+
+  [
++   340,
++   32
+-   510,
+-   48
+  ]
+
+    at captureSuite (file:///D:/claude-upgrade-26/nabbit/scripts/screenshots/harness.mjs:379:19)
+    at async file:///D:/claude-upgrade-26/nabbit/scripts/verify-tools-screenshots.mjs:23:16 {
+  [cause]: AssertionError [ERR_ASSERTION]: PNG must retain device-pixel dimensions
+  + actual - expected
+
+    [
+  +   340,
+  +   32
+  -   510,
+  -   48
+    ]
+
+      at pngInfo (file:///D:/claude-upgrade-26/nabbit/scripts/screenshots/policy.mjs:27:10)
+      at captureSuite (file:///D:/claude-upgrade-26/nabbit/scripts/screenshots/harness.mjs:314:26)
+      at async file:///D:/claude-upgrade-26/nabbit/scripts/verify-tools-screenshots.mjs:23:16 {
+    generatedMessage: false,
+    code: 'ERR_ASSERTION',
+    actual: [ 340, 32 ],
+    expected: [ 510, 48 ],
+    operator: 'deepStrictEqual',
+    diff: 'simple'
+  }
+}
+
+Node.js v24.22.2

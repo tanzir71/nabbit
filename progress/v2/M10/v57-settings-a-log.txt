@@ -1,0 +1,91 @@
+file:///D:/claude-upgrade-26/nabbit/scripts/screenshots/harness.mjs:324
+            throw new Error(`${scenario.name} (${theme}@${scale}x): ${error.message}`, {
+                  ^
+
+Error: tools-settings-presets (light@1x): Expected values to be strictly deep-equal:
++ actual - expected
+
+  {
+    incomplete: [],
++   violations: [
++     {
++       id: 'color-contrast',
++       nodes: [
++         {
++           summary: 'Fix any of the following:\n' +
++             '  Element has insufficient color contrast of 3.88 (foreground color: #d93f3f, background color: #fdecec, font size: 9.8pt (13px), font weight: normal). Expected contrast ratio of 4.5:1',
++           target: [
++             '.n-button--danger'
++           ]
++         }
++       ]
++     },
++     {
++       id: 'heading-order',
++       nodes: [
++         {
++           summary: 'Fix any of the following:\n  Heading order invalid',
++           target: [
++             '.mb-6.gap-3.grid:nth-child(1) > .text-xs.uppercase.tracking-wide'
++           ]
++         }
++       ]
++     }
++   ]
+-   violations: []
+  }
+
+    at captureSuite (file:///D:/claude-upgrade-26/nabbit/scripts/screenshots/harness.mjs:324:19)
+    at async file:///D:/claude-upgrade-26/nabbit/scripts/verify-tools-settings-screenshots.mjs:18:16 {
+  [cause]: AssertionError [ERR_ASSERTION]: Expected values to be strictly deep-equal:
+  + actual - expected
+
+    {
+      incomplete: [],
+  +   violations: [
+  +     {
+  +       id: 'color-contrast',
+  +       nodes: [
+  +         {
+  +           summary: 'Fix any of the following:\n' +
+  +             '  Element has insufficient color contrast of 3.88 (foreground color: #d93f3f, background color: #fdecec, font size: 9.8pt (13px), font weight: normal). Expected contrast ratio of 4.5:1',
+  +           target: [
+  +             '.n-button--danger'
+  +           ]
+  +         }
+  +       ]
+  +     },
+  +     {
+  +       id: 'heading-order',
+  +       nodes: [
+  +         {
+  +           summary: 'Fix any of the following:\n  Heading order invalid',
+  +           target: [
+  +             '.mb-6.gap-3.grid:nth-child(1) > .text-xs.uppercase.tracking-wide'
+  +           ]
+  +         }
+  +       ]
+  +     }
+  +   ]
+  -   violations: []
+    }
+
+      at Object.ready (file:///D:/claude-upgrade-26/nabbit/scripts/verify-tools-settings-screenshots.mjs:74:14)
+      at async captureSuite (file:///D:/claude-upgrade-26/nabbit/scripts/screenshots/harness.mjs:143:33)
+      at async file:///D:/claude-upgrade-26/nabbit/scripts/verify-tools-settings-screenshots.mjs:18:16 {
+    generatedMessage: true,
+    code: 'ERR_ASSERTION',
+    actual: {
+      violations: [
+        { id: 'color-contrast', nodes: [ [Object] ] },
+        { id: 'heading-order', nodes: [ [Object] ] }
+      ],
+      incomplete: []
+    },
+    expected: { violations: [], incomplete: [] },
+    operator: 'deepStrictEqual',
+    diff: 'simple'
+  }
+}
+
+Node.js v24.22.2

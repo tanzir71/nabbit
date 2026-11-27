@@ -38,6 +38,10 @@ export function installMockIpc(seed) {
       throw typeof failure === "string" ? new Error(failure) : clone(failure);
     }
     switch (command) {
+      case "tool_catalog":
+      case "tool_jobs":
+      case "tool_presets":
+        return clone(seed.responses?.[command] ?? []);
       case "timer_view":
         return null;
       case "timer_snapshot":

@@ -1,4 +1,4 @@
-import { lazy, Suspense, useLayoutEffect, useRef } from "react";
+import { lazy, Suspense, useCallback, useLayoutEffect, useRef } from "react";
 import { Tab } from "../../components/Tab";
 import { IconButton } from "../../components/IconButton";
 import { tabs, type IslandModel, type IslandAction } from "../../store/islandStore";
@@ -46,6 +46,14 @@ export default function ExpandedShell({
     memory = useRef(model.scroll),
     restoring = useRef(false);
   const searchOpen = model.filters.searchOpen === "true";
+  const openShelf = useCallback(
+    (id: string) => {
+      dispatch({ type: "filter", name: "shelfSelection", value: JSON.stringify([id]) });
+      dispatch({ type: "filter", name: "searchOpen", value: "false" });
+      dispatch({ type: "tab", tab: "files" });
+    },
+    [dispatch],
+  );
   const group =
     model.tab === "files" && model.filters.shelfSelection ? "34:897" : groups[model.tab];
   memory.current = model.scroll;
@@ -158,6 +166,7 @@ export default function ExpandedShell({
               setQuery={(text) => dispatch({ type: "search", text })}
               collapse={() => dispatch({ type: "collapse" })}
               fail={onError}
+              openShelf={openShelf}
             />
           ) : (
             <Body model={model} dispatch={dispatch} act={act} />

@@ -14,6 +14,35 @@ The public demo is canned browser state. It never reads the clipboard, contacts 
 
 It lives in the system tray, starts hidden, and opens as a small popover on a shortcut or tray click. Nothing leaves your machine except the downloads you explicitly trigger; see [PRIVACY.md](PRIVACY.md).
 
+## Native file tools (v2 foundation)
+
+Search and Shelf actions use one native registry. To MP4 and To JPG currently
+use the shared durable job queue. Open a tool to choose a file, then run it
+explicitly. Files shows progress, Cancel, Retry, Reveal and Undo. Cancelled jobs
+stay in the queue; interrupted work waits for Retry. Quitting during a tool job
+shows a warning. Undo recycles the generated output only when its identity and
+content still match the recorded result.
+
+Outputs are created beside the input as `<name> (<Preset>).<ext>`, then ` 2`,
+` 3`, and so on for name clashes. Publication never replaces another file;
+modified and created dates are copied where supported. Settings → Files stores
+editable share limits: Discord 20 MB, email 25 MB, Outlook 10 MB and WhatsApp
+100 MB. The remaining media/image/PDF/context tools land in the following
+handoff tasks; they are not advertised as runnable registry entries yet.
+
+Windows conversions use only the pinned BtbN static GPL `ffmpeg.exe` as a
+separate process. The setup script installs no ffprobe, ffplay or libav DLL.
+Settings → About → Third-party licences includes the generated dependency
+notices, GPL text, source offer and original x64/ARM64 configure lines.
+
+Development verification requires cargo-deny 0.22.2 on PATH, or the verified
+Windows x64 helper installed with `node scripts/fetch-cargo-deny.mjs`.
+`npm run verify` includes `npm run verify:licenses`: it checks the locked crate
+graph and negative GPL/AGPL/LGPL/libav-binding fixtures. After dependency or
+sidecar pin changes, run `python scripts/generate-licenses.py` to regenerate the
+offline notice catalogue. No installer, administrator access or signing key
+is used for these checks.
+
 ## Architecture
 
 ```

@@ -17,7 +17,7 @@ The Shelf stores local file paths and order in SQLite. Adding a file permits pre
 - Nabbit does not include analytics in v1.
 - Clipboard links, dropped links, browser deep links and pasted links can fetch metadata without downloading media. Downloads require an explicit action, including Ctrl+Alt+D, which reads the current clipboard URL and uses that site's remembered preset. Deno runs yt-dlp's JavaScript helper locally; ffmpeg merges or converts the requested media locally.
 - Once per day, the engine health check probes a fixed public Creative Commons YouTube sample without downloading media. This check never reads your clipboard or browser profiles. Offline or timed-out checks are recorded as skipped.
-- Engine update checks contact GitHub. When engine auto-update is enabled, or you choose Repair or a different channel, verified yt-dlp/Deno binaries can be downloaded from their upstream projects. A missing Windows ffmpeg can be restored from yt-dlp's FFmpeg Builds project. There is no Nabbit telemetry service.
+- Engine update checks contact GitHub. When engine auto-update is enabled, or you choose Repair or a different channel, verified yt-dlp/Deno binaries can be downloaded from their upstream projects. Windows ffmpeg uses pinned BtbN (FFmpeg-Builds/FFmpeg-Builds) static GPL builds; repair prefers the matching executable already shipped with Nabbit before downloading the pinned archive. There is no Nabbit telemetry service.
 - SponsorBlock marking/cutting is off by default. When you choose it for a download, yt-dlp requests segment information from SponsorBlock for the selected video. Browser sign-in selection applies only to that job. Nabbit does not save a cookie file or include browser sign-in in remembered site presets.
 - Password-manager exclusions are seeded for 1Password, Bitwarden, KeePass, LastPass, and Dashlane where source-app detection is available.
 - Optional sensitive-text heuristics can skip likely OTPs, credit-card numbers, and high-entropy secrets.
@@ -25,6 +25,28 @@ The Shelf stores local file paths and order in SQLite. Adding a file permits pre
 - In the island Clipboard tab, clicking a history row, pressing 1–9 or Ctrl+C copies its stored text. Enter also attempts to restore the app that opened the island and send paste. If that destination is unavailable, Nabbit reports that the item was copied and leaves the panel open. File entries copy path text; image capture/copy remains unavailable. History search and filters do not read the current clipboard or open the stored paths.
 
 Users are responsible for complying with YouTube's Terms of Service and applicable copyright law. Nabbit is intended for content the user has the right to download.
+
+## File tool jobs and Search
+
+File tools run only after an explicit action. Inputs are read locally; they are
+not uploaded. The local SQLite queue stores input/output paths, the chosen
+preset, progress/status, sizes and an output content hash/file identity for
+Undo. Outputs get separate names; original content is kept. Cancel keeps the
+queue record and removes the tool's temporary output. Retry creates a new job
+using the previous options. Completed results persist across restarts. Undo
+moves the matching new file to the Windows Recycle Bin and refuses edited or
+replaced outputs.
+
+Search reads the registered tools, accessible active notes/bookmarks in the
+current Tack scope, stored pins, Shelf references and clipboard history. It
+does not scan the filesystem, browser profiles, current selection or current
+OS clipboard. Note/link navigation includes the original scope guard. Change
+subscriptions are installed before reading scoped results; lost subscriptions
+fail closed. No JavaScript polling runs while the island is collapsed.
+
+The third-party licence screen reads bundled notices and configure lines
+offline. Conversion invokes the verified ffmpeg executable as a separate
+process; Nabbit does not link libav libraries or bundle HEVC Store codecs.
 
 ## Links and bookmark imports
 

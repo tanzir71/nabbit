@@ -21,7 +21,7 @@ use std::{
 use tauri::{AppHandle, Emitter};
 
 #[path = "engine_process.rs"]
-mod process;
+pub(crate) mod process;
 pub use process::{run_bounded, run_bounded_with_output_limit, ProbeOutput};
 
 pub const SAMPLE: &str = "https://www.youtube.com/watch?v=e6rhUvwB5Y8";
@@ -485,48 +485,18 @@ fn update_sidecars(dir: &Path, channel: Channel) -> Result<bool> {
         |name| ytdlp::resolve_engine(dir, name).and_then(|p| probe_version(&p, name).ok());
     if version("yt-dlp").as_deref() == Some(ytdlp.version.as_str())
         && version("deno").as_deref() == Some(deno.version.trim_start_matches('v'))
-        && version("ffmpeg").is_some()
+        && super::ffmpeg::current(dir)
     {
         return Ok(false);
     }
     let engine_dir = dir.join("engine");
     fs::create_dir_all(&engine_dir)?;
-    if version("ffmpeg").is_none() {
-        let bytes = if cfg!(windows) {
-            let platform = if cfg!(target_arch = "aarch64") {
-                "winarm64"
-            } else {
-                "win64"
-            };
-            let asset = release_asset(
-                &client,
-                "yt-dlp/FFmpeg-Builds",
-                &format!("ffmpeg-master-latest-{platform}-gpl.zip"),
-            )?;
-            let bytes = download(&client, &asset)?;
-            let mut archive = zip::ZipArchive::new(Cursor::new(bytes))
-                .map_err(|_| msg("Invalid ffmpeg archive."))?;
-            let name = archive
-                .file_names()
-                .find(|n| n.ends_with("/bin/ffmpeg.exe"))
-                .map(str::to_string)
-                .ok_or_else(|| msg("ffmpeg missing from archive."))?;
-            let mut bytes = Vec::new();
-            archive
-                .by_name(&name)
-                .map_err(|_| msg("Invalid ffmpeg executable."))?
-                .take(180_000_001)
-                .read_to_end(&mut bytes)?;
-            if bytes.len() > 180_000_000 {
-                return Err(msg("ffmpeg exceeds the size limit."));
-            }
-            bytes
-        } else {
-            let source = which::which(executable("ffmpeg")).map_err(|_| {
-                msg("ffmpeg is missing. Run the sidecar setup script to restore it.")
-            })?;
-            fs::read(source)?
-        };
+    if cfg!(windows) && !super::ffmpeg::current(dir) {
+        super::ffmpeg::install(&client, &engine_dir)?;
+    } else if version("ffmpeg").is_none() {
+        let source = which::which(executable("ffmpeg"))
+            .map_err(|_| msg("ffmpeg is missing. Run the sidecar setup script to restore it."))?;
+        let bytes = fs::read(source)?;
         let staged = prepare(&engine_dir, "ffmpeg", &bytes)?;
         let result = atomic_replace(&staged, &engine_dir.join(executable("ffmpeg")));
         let _ = fs::remove_file(staged);
@@ -576,7 +546,7 @@ pub fn ytdlp_asset(target: &str) -> Option<&'static str> {
 fn executable(name: &str) -> String {
     format!("{name}{}", if cfg!(windows) { ".exe" } else { "" })
 }
-fn prepare(dir: &Path, name: &str, bytes: &[u8]) -> Result<PathBuf> {
+pub(crate) fn prepare(dir: &Path, name: &str, bytes: &[u8]) -> Result<PathBuf> {
     let path = dir.join(executable(&format!(".{name}-{}", uuid::Uuid::new_v4())));
     let result = (|| {
         use std::io::Write;

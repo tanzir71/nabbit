@@ -1,7 +1,7 @@
 import { FocusTimer } from "../../features/timer/FocusTimer";
 import { MediaPlayer } from "../../features/media/MediaPlayer";
 import type { ActivityItem } from "../../lib/activity";
-import { activityTitle, basename, duration, percent } from "../../lib/islandPresentation";
+import { activityTitle, basename, bytes, duration, percent } from "../../lib/islandPresentation";
 import { PresetChip } from "../../components/PresetChip";
 import { IconButton } from "../../components/IconButton";
 import { IslandAsset } from "./IslandAsset";
@@ -159,6 +159,45 @@ function OtherPeekContent({
 }
 
 export function PeekContent(props: { item: ActivityItem; act: (intent: IslandIntent) => void }) {
+  if (props.item.event.kind === "toolResult" || props.item.event.kind === "toolJob") {
+    const e = props.item.event;
+    return (
+      <section
+        className="island-peek-content"
+        aria-label={e.kind === "toolResult" ? "Tool result" : "Tool job"}
+      >
+        <h1 className="island-sr-only">{e.kind === "toolResult" ? "Tool result" : "Tool job"}</h1>
+        <div className="island-row">
+          <IslandAsset name="iconFileVideo" />
+          <strong className="island-spacer island-ellipsis">
+            {e.kind === "toolResult" ? basename(e.path) : e.label}
+          </strong>
+        </div>
+        <p className="island-muted">
+          {e.kind === "toolResult"
+            ? `${bytes(e.beforeBytes)} → ${bytes(e.afterBytes)}${e.note ? ` · ${e.note}` : ""}`
+            : e.state === "failed"
+              ? "The tool could not finish. Open the queue for details."
+              : `${percent(e.percent)}%`}
+        </p>
+        <div className="island-row">
+          {(e.kind === "toolResult"
+            ? ["reveal", "undo"]
+            : e.state === "failed"
+              ? ["retry"]
+              : ["cancel"]
+          ).map((action) => (
+            <MiniButton key={action} onClick={() => props.act({ action, item: props.item })}>
+              {action[0].toUpperCase() + action.slice(1)}
+            </MiniButton>
+          ))}
+          <MiniButton onClick={() => props.act({ action: "fileReview", item: props.item })}>
+            Tool jobs
+          </MiniButton>
+        </div>
+      </section>
+    );
+  }
   if (props.item.event.kind === "powerChanged") {
     const { percent } = props.item.event;
     return (

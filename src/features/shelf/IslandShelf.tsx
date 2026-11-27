@@ -6,6 +6,7 @@ import { MiniButton } from "../../surfaces/island/CompactContent";
 import { shelfApi, type ShelfItem } from "./api";
 import { shelfSelection, shelfSize } from "./model";
 import "./shelf.css";
+import { ToolActions } from "../tools/ToolActions";
 
 function ShelfPreview({ item, selectedMode }: { item: ShelfItem; selectedMode: boolean }) {
   const root = useRef<HTMLSpanElement>(null);
@@ -319,6 +320,12 @@ export function IslandShelf({
         <p role="status" className="shelf-status">
           {message}
         </p>
+      )}
+      {selectedMode && (
+        <ToolActions
+          key={selected.join()}
+          paths={items.filter((i) => selected.includes(i.id)).map((i) => i.path)}
+        />
       )}
       <footer className="shelf-footer">
         <span>

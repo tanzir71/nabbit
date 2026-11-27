@@ -39,6 +39,11 @@ for (const [name, asset] of Object.entries(pins.targets[target])) {
           maxBuffer: 180_000_000,
           windowsHide: true,
         });
+        if (
+          asset.executableSha256 &&
+          createHash("sha256").update(executable).digest("hex") !== asset.executableSha256
+        )
+          throw Error("ffmpeg executable checksum mismatch; existing sidecar kept");
         await writeFile(staged, executable);
       } else {
         if (process.platform === "win32") {

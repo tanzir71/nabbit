@@ -1,0 +1,21 @@
+Compiling nabbit v0.1.0 (D:\claude-upgrade-26\nabbit\src-tauri)
+    Finished `test` profile [unoptimized + debuginfo] target(s) in 1m 10s
+     Running unittests src\lib.rs (src-tauri\target\debug\deps\nabbit_lib-6253cfecbc41cea4.exe)
+
+running 8 tests
+test tools::tests::edited_output_is_never_removed_and_failures_retry_as_new_jobs ... ok
+test tools::tests::output_naming_is_atomic_and_never_overwrites ... ok
+test tools::tests::owned_ffmpeg_cancellation_retry_and_typed_progress ... ignored, owned ffmpeg process acceptance; requires the pinned setup sidecar
+test tools::tests::persisted_presets_validate_numbers_and_survive_restart ... ok
+test tools::tests::quit_warning_is_only_for_unconfirmed_active_work ... ok
+test tools::tests::real_job_dates_idempotency_undo_and_restart ... ok
+test tools::tests::recovery_recognizes_its_published_inode_and_never_claims_a_collision ... ok
+test tools::tests::registry_and_presets_are_unique_and_match_supported_inputs ... ok
+
+test result: ok. 7 passed; 0 failed; 1 ignored; 0 measured; 302 filtered out; finished in 0.27s
+
+     Running unittests src\main.rs (src-tauri\target\debug\deps\nabbit-9c1d100d2dd228ad.exe)
+
+running 0 tests
+
+test result: ok. 0 passed; 0 failed; 0 ignored; 0 measured; 0 filtered out; finished in 0.00s

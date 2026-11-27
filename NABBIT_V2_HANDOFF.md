@@ -800,7 +800,7 @@ Commit after every task (§0.1). Lines marked **MILESTONE** are tasks of their o
 - [x] V5.4 Focus timer (+ Tack card link).
 - [x] V5.5 Mic/camera dot.
 - [x] V5.6 Battery/charging.
-- [ ] V5.7 Tool registry, presets, job runner (cancel/retry/quit warning, never-overwrite naming, date copy), result card with Reveal/Undo (`33:528`), Search everything (`34:777`) including pins and links; `cargo deny` licence rules; BtbN ffmpeg sidecar swap.
+- [x] V5.7 Tool registry, presets, job runner (cancel/retry/quit warning, never-overwrite naming, date copy), result card with Reveal/Undo (`33:528`), Search everything (`34:777`) including pins and links; `cargo deny` licence rules; BtbN ffmpeg sidecar swap.
 - [ ] V5.8 Files tab (`10:249`): Shelf + Pins, pin peek (`43:755`), IFileOperation moves with the `file_ops` journal and Moved pill (`33:518`), drop target `Over=Pin` (`43:692`), Move to… on Shelf actions (`34:897`) and the download-done peek (`33:580`).
 - [ ] V5.9 Media tools: Fit under N MB (`45:282`) with encoder probe and retry loop, To MP4, trim, extract audio, To GIF, metadata strip; Tool running pill (`33:535`).
 - [ ] V5.10 Image and document tools: HEIC → JPG via WIC with the Store prompt, convert / Make smaller (`36:410`), PDF basics, text and QR from image files; drop suggestions per file type.

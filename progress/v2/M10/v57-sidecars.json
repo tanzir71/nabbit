@@ -1,0 +1,51 @@
+{
+  "executedAtUtc": "2026-11-27T20:54:56.072930+00:00",
+  "sourceRepository": "https://github.com/FFmpeg-Builds/FFmpeg-Builds",
+  "originalRepository": "https://github.com/BtbN/FFmpeg-Builds",
+  "upstreamRepositoryId": 292087234,
+  "buildScriptCommit": "d05871a37b5fc80e00714c708edec35c7b9ebfb0",
+  "builds": [
+    {
+      "target": "x86_64-pc-windows-msvc",
+      "archiveSha256": "202a55effd3295df24341b242ebe427762d5aca924aa761dbc9885bf06038ede",
+      "executableSha256": "25c833bc58179d1086584a8e88fdff261cde6d4a321fdb00ab5306d75dd445c4",
+      "executableBytes": 172603392,
+      "machine": "0x8664",
+      "configurationPinned": true,
+      "executableOnlyInstalled": true,
+      "url": "https://github.com/FFmpeg-Builds/FFmpeg-Builds/releases/download/autobuild-2026-11-27-12-42/ffmpeg-N-129333-g7fdb4c2341-win64-gpl.zip",
+      "executed": true
+    },
+    {
+      "target": "aarch64-pc-windows-msvc",
+      "archiveSha256": "b2f2fae67387f4fa45af2b366df283b226acf0c318168f728ecbe984eb057c2a",
+      "executableSha256": "438b60aa090c98b421586d595747c50d25ab9d503ec5c4b713437949ae73e55a",
+      "executableBytes": 100523520,
+      "machine": "0xaa64",
+      "configurationPinned": true,
+      "executableOnlyInstalled": true,
+      "url": "https://github.com/FFmpeg-Builds/FFmpeg-Builds/releases/download/autobuild-2026-11-27-12-42/ffmpeg-N-129333-g7fdb4c2341-winarm64-gpl.zip",
+      "executed": false
+    }
+  ],
+  "localOnlyInputFixture": {
+    "passed": true,
+    "returnedError": "[in#0 @ 00000263245f5840] Format not on whitelist 'mov,matroska,webm,avi,m4v'\r\n[in#0 @ 00000263245f5340] Error opening input: Invalid argument\r\nError opening input file D:\\claude-upgrade-26\\nabbit\\.tools\\v57-protocol-c8996a8e-b88c-4760-a64e-67295c9db5ba\\playlist.m3u8.\r\nError opening input files: Invalid argument\r\n",
+    "protectedHttpRequests": [],
+    "unrestrictedLoopbackControlRequests": [
+      "/part.ts"
+    ],
+    "noExternalNetwork": true,
+    "originalBytesPreserved": true
+  },
+  "notices": {
+    "components": 1049,
+    "packagesWithoutPublishedLicenseFiles": 57,
+    "declaredLicencesRetainedWithoutInventingMissingTexts": true,
+    "gplTextSha256": "8ceb4b9ee5adedde47b31e975c1d90c73ad27b6b165a1dcd80c7c545eb65b903",
+    "sourceOfferSha256": "a2812fd7bccb08e2659c90aa619da7505ef293bf500e3b350ae1719dc2dd3c4c"
+  },
+  "noLibavLinked": true,
+  "noFfprobeOrFfplayBundled": true,
+  "arm64ExecutionNotClaimed": true
+}

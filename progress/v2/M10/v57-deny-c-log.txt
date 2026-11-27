@@ -1,0 +1,19 @@
+warning[license-not-encountered]: license was not encountered
+   ┌─ D:\claude-upgrade-26\nabbit\deny.toml:10:50
+   │
+10 │   "CC0-1.0", "BSL-1.0", "OpenSSL", "Unlicense", "NCSA", "CDLA-Permissive-2.0",
+   │                                                  ━━━━ unmatched license allowance
+
+warning[license-not-encountered]: license was not encountered
+   ┌─ D:\claude-upgrade-26\nabbit\deny.toml:10:26
+   │
+10 │   "CC0-1.0", "BSL-1.0", "OpenSSL", "Unlicense", "NCSA", "CDLA-Permissive-2.0",
+   │                          ━━━━━━━ unmatched license allowance
+
+warning[license-not-encountered]: license was not encountered
+  ┌─ D:\claude-upgrade-26\nabbit\deny.toml:9:61
+  │
+9 │   "BSD-3-Clause", "ISC", "Zlib", "MPL-2.0", "Unicode-3.0", "Unicode-DFS-2016",
+  │                                                             ━━━━━━━━━━━━━━━━ unmatched license allowance
+
+licenses ok

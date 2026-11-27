@@ -1,5 +1,5 @@
 import { ExternalLink, RefreshCcw, Trash2, X } from "lucide-react";
-import { useState, type ReactNode } from "react";
+import { lazy, Suspense, useState, type ReactNode } from "react";
 import { Button } from "../components/Button";
 import { Field } from "../components/Field";
 import { IconButton } from "../components/IconButton";
@@ -12,6 +12,8 @@ import { EngineHealthCard } from "./EngineHealthCard";
 import { IslandSettings } from "./IslandSettings";
 import { IslandShortcutField } from "./IslandShortcutField";
 import { TackSettings } from "../features/notes/TackSettings";
+const FilesSettings = lazy(() => import("../features/tools/FilesSettings"));
+const Licenses = lazy(() => import("../features/tools/Licenses"));
 
 const qualities: Array<{ label: string; value: Quality }> = [
   { label: "Best", value: "best" },
@@ -37,7 +39,7 @@ export function SettingsPanel({ onClose }: { onClose: () => void }) {
   return (
     <div className="fixed inset-0 z-20 bg-surface">
       <header className="flex h-14 items-center justify-between border-b border-subtle px-4">
-        <h2 className="text-sm font-semibold">Settings</h2>
+        <h1 className="text-sm font-semibold">Settings</h1>
         <IconButton label="Close settings" onClick={onClose}>
           <X size={17} />
         </IconButton>
@@ -228,10 +230,16 @@ export function SettingsPanel({ onClose }: { onClose: () => void }) {
           </Button>
         </Section>
 
+        <Suspense fallback={<p role="status">Loading file presets…</p>}>
+          <FilesSettings />
+        </Suspense>
         <EngineHealthCard />
         <Section title="About">
           <div className="rounded-lg border border-subtle bg-surface p-3 text-sm leading-6">
             <p>Nabbit 0.1.0</p>
+            <Suspense fallback={<p role="status">Loading licences…</p>}>
+              <Licenses />
+            </Suspense>
             <p className="text-secondary">yt-dlp: {engine?.ytdlpVersion ?? "not found"}</p>
             <p className="break-all font-mono text-secondary">
               ffmpeg: {engine?.ffmpegPath ?? "not found"}
@@ -276,7 +284,7 @@ export function SettingsPanel({ onClose }: { onClose: () => void }) {
 function Section({ title, children }: { title: string; children: ReactNode }) {
   return (
     <section className="mb-6 grid gap-3">
-      <h3 className="text-xs font-semibold uppercase tracking-wide text-secondary">{title}</h3>
+      <h2 className="text-xs font-semibold uppercase tracking-wide text-secondary">{title}</h2>
       {children}
     </section>
   );

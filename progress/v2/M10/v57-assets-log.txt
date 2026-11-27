@@ -1,0 +1,21 @@
+Traceback (most recent call last):
+  File "D:\claude-upgrade-26\nabbit\.tools\v57-assets.py", line 9, in <module>
+    with concurrent.futures.ThreadPoolExecutor(max_workers=5) as pool: rows=list(pool.map(check,[(group,base,name) for group,base,names in items for name in names]))
+                                                                            ~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Python313\Lib\concurrent\futures\_base.py", line 625, in result_iterator
+    yield _result_or_cancel(fs.pop())
+          ~~~~~~~~~~~~~~~~~^^^^^^^^^^
+  File "C:\Python313\Lib\concurrent\futures\_base.py", line 318, in _result_or_cancel
+    return fut.result(timeout)
+           ~~~~~~~~~~^^^^^^^^^
+  File "C:\Python313\Lib\concurrent\futures\_base.py", line 453, in result
+    return self.__get_result()
+           ~~~~~~~~~~~~~~~~~^^
+  File "C:\Python313\Lib\concurrent\futures\_base.py", line 402, in __get_result
+    raise self._exception
+  File "C:\Python313\Lib\concurrent\futures\thread.py", line 59, in run
+    result = self.fn(*self.args, **self.kwargs)
+  File "D:\claude-upgrade-26\nabbit\.tools\v57-assets.py", line 7, in check
+    local=root/'src/assets/island'/name;data=file.read_bytes();assert data==local.read_bytes(),name
+                                                                      ^^^^^^^^^^^^^^^^^^^^^^^^
+AssertionError: f0b39.svg

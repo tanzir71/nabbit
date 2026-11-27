@@ -148,6 +148,13 @@ export function IslandApp({ suppliedStore }: { suppliedStore?: IslandStore }) {
         ).catch(fail);
         return;
       }
+      if (
+        (e?.kind === "toolJob" || e?.kind === "toolResult") &&
+        ["cancel", "retry", "reveal", "undo"].includes(intent.action)
+      ) {
+        void invoke(`tool_${intent.action}`, { id: e.jobId }).catch(fail);
+        return;
+      }
       if (["pause", "cancel", "reveal", "open"].includes(intent.action) && e && "jobId" in e) {
         void invoke(`${intent.action === "reveal" ? "reveal" : intent.action}_download`, {
           id: e.jobId,
@@ -164,6 +171,8 @@ export function IslandApp({ suppliedStore }: { suppliedStore?: IslandStore }) {
         type: "tab",
         tab: intent.action === "fileReview" ? "files" : activityTab(intent.item ?? null),
       });
+      if (intent.action === "fileReview" || e?.kind === "toolJob" || e?.kind === "toolResult")
+        store.getState().dispatch({ type: "filter", name: "searchOpen", value: "false" });
       if (intent.preset && e?.kind === "linkDetected")
         store.getState().dispatch({
           type: "filter",
@@ -200,6 +209,7 @@ export function IslandApp({ suppliedStore }: { suppliedStore?: IslandStore }) {
           tabs.includes(value.focusTab) &&
           value.generation !== focusedGeneration.current
         ) {
+          store.getState().dispatch({ type: "filter", name: "searchOpen", value: "false" });
           store.getState().dispatch({ type: "tab", tab: value.focusTab });
           focusedGeneration.current = value.generation;
         }

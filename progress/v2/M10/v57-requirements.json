@@ -1,0 +1,55 @@
+{
+  "task": "V5.7",
+  "story": "Registry \u2192 explicit tool review \u2192 native durable runner \u2192 typed progress/result \u2192 queue Reveal/Undo \u2192 restart; scoped Search discovers tools/notes/links/pins/Shelf/clipboard.",
+  "requirements": [
+    {
+      "requirement": "Registry and explicit review",
+      "assertions": "One metadata registry describes id/name/category/icon/keywords/accepts/presets/form and dispatches through run to an internal executor. Two real base executors (To JPG/To MP4), no fake runnable catalog. Search, selected Shelf actions and review form consume this registry. Native picker accepts only supported file extensions. Selection never runs a job; one primary Run action, advanced quality collapsed. Broader drop/Send To/clipboard integrations remain V5.11 and complete catalog remains V5.9/V5.10.",
+      "status": "passed"
+    },
+    {
+      "requirement": "Presets and durable jobs",
+      "assertions": "Persist validated result-named presets and jobs in SQLite, including request idempotency, UTC timestamps, preset snapshots, attempts/retryOf, progress, output hash/identity and staging publication journal. Defaults Discord20/email25/Outlook10/WhatsApp100 MB; Settings Files edits limits. A single sleeping native queue worker pushes typed ToolJob/ToolResult and tools:changed, with no collapsed JS timer. Cancel keeps records and stops owned process trees; retry is a new request with original preset snapshot. Active quit confirmation defaults Cancel; stop cancels and joins. Restart never auto-runs interrupted work.",
+      "status": "passed"
+    },
+    {
+      "requirement": "Source safety, dates and results",
+      "assertions": "Use exclusive owned staging, locked source and before/after hashes; publish atomically without replace with numbered collisions. Copy modified/created dates where supported and report inability. Journal before publication and recover only matching file identity/hash. Compact/Peek/queue show actual sizes/progress/error. Reveal and Undo are native Shell calls; Undo rejects replaced/edited outputs and requests Recycle Bin with fail-fast error behavior, then verifies removal before recording success. Native acceptance substitutes owned guarded providers only.",
+      "status": "passed"
+    },
+    {
+      "requirement": "Search everything in current scope",
+      "assertions": "Search compatible tools, visible active scoped notes/bookmarks including saved links, pins, Shelf and clipboard. Current-scope validation and generations prevent stale workspace results/navigation. Subscribe before first fetch; listener errors fail closed, changes push invalidation, no idle polling or filesystem/profile scan. Keyboard arrows/Enter/Escape respect composition. Saved-card navigation is scope-guarded; tool opens review; Shelf selects the stored item. Archive/trash excluded by visibleNotes scope.",
+      "status": "passed"
+    },
+    {
+      "requirement": "BtbN separate ffmpeg and licence rules",
+      "assertions": "Both exact x64/ARM64 GPL archives and extracted ffmpeg.exe SHA256 pinned, GPL/configure/source offer retained. Repository moved from BtbN to FFmpeg-Builds/FFmpeg-Builds with same repository identity. Only ffmpeg.exe installed, never ffprobe/ffplay or libav linkage. Preferred engine verified; exact shipped binary supports offline repair. Conversion inputs restrict protocols and demuxers. Actual x64 encoders include libx264, libwebp/libwebp_anim, h264_mf/NVENC/QSV/AMF; both configure lines enable libass. Presence is not a successful GPU/hardware probe. cargo-deny0.22.2 checks locked offline graph, excludes GPL/AGPL/LGPL allowances and bans known traps/libav wrappers; four negative crates rejected. Offline licence UI lazily returns1049 component notices plus original GPL/offer/configurations.57 packages lack published licence files; preserve declarations/source pointers honestly.",
+      "status": "passed"
+    },
+    {
+      "requirement": "Figma and complete native flow",
+      "assertions": "Fresh34:777,33:528,33:535 context/screenshots and17 exports,16 byte-exact plus one clip-id-only difference. Preserve original assets/tokens/geometry and actual progress ring.44 exact-repeat light/dark1x/1.5x browser captures, default axe zero violations/incompletes, four owned native captures. Native Tauri/SQLite flow runs a conversion, searches real owned records, reviews and runs numbered output, follows result to queue, verifies Reveal/Undo intents, restarts persistent queue and hashes every embedded manifest asset/full licence payload against current build. Initial island101395/120000 gzip bytes; no new performance claim.",
+      "status": "passed"
+    }
+  ],
+  "evidence": {
+    "checks": "v57-checks.json",
+    "native": "v57-native-a-scene.json",
+    "visualTools": "v57-tools-final-screenshots.json",
+    "visualSettings": "v57-settings-final-screenshots.json",
+    "figma": "v57-figma-assets.json",
+    "sidecars": "v57-sidecars.json",
+    "licenceNegatives": "v57-license-negatives.json",
+    "pngs": "v57-png-audit.json",
+    "bundles": "v57-entry-bundles.json"
+  },
+  "platformBoundary": "Windows x64 production build/owned processes/files and injected guarded Shell providers. ARM64 executable hash/PE/configure checked but not executed. macOS/Linux/Windows10 not run. Real picker/quit dialog/Explorer/Recycle Bin, GPU encoders, installers/signing and user files/profiles/hardware are not exercised. Pure seams/compile paths and owned fixtures cover this task without requiring a person.",
+  "referencePattern": {
+    "url": "https://github.com/tanzir71/tooldeck/blob/main/src-tauri/src/registry.rs",
+    "blobSha": "d67c071dc3ef3b84194f28cd269b8911f770bfb3",
+    "research": "Claude outputs/Nabbit native file tools.md"
+  },
+  "nextTask": "V5.8",
+  "publication": "local main task commit; milestone-only push at M10"
+}

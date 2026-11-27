@@ -106,6 +106,7 @@ it("does not close an opening native Peek when the activity snapshot initializes
   const fixture = (
     globalThis as unknown as {
       __NABBIT_CAPTURE__: {
+        emit: (event: string, payload: unknown) => void;
         snapshot: () => {
           calls: Array<{ command: string }>;
           unsupported: string[];
@@ -119,6 +120,23 @@ it("does not close an opening native Peek when the activity snapshot initializes
   ).toEqual([]);
   expect(fixture.snapshot().unsupported).toEqual([]);
   expect(app.container.querySelector("main")?.getAttribute("data-compact-prepared")).toBe("true");
+  act(() => {
+    store.getState().dispatch({ type: "filter", name: "searchOpen", value: "true" });
+    fixture.emit("nabbit://island-surface", {
+      label: "island",
+      generation: 3,
+      state: "expanded",
+      owner: "webview",
+      shape: "island",
+      reducedMotion: true,
+      width: 340,
+      height: 32,
+      snapshot,
+      focusTab: "files",
+    });
+  });
+  await waitFor(() => expect(store.getState().tab).toBe("files"));
+  expect(store.getState().filters.searchOpen).toBe("false");
   app.unmount();
   await Promise.resolve();
   expect(fixture.snapshot().listenerCount).toBe(0);

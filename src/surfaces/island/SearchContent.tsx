@@ -3,6 +3,12 @@ import { invoke } from "@tauri-apps/api/core";
 import { IslandAsset } from "./IslandAsset";
 import { Kbd } from "../../components/Kbd";
 import type { ClipboardEntry } from "../../lib/types";
+import { listen } from "@tauri-apps/api/event";
+import { notesApi } from "../../features/notes/api";
+import { visibleNotes } from "../../features/notes/types";
+import { shelfApi } from "../../features/shelf/api";
+import { toolsApi, type Tool } from "../../features/tools/api";
+import { ToolSheet } from "../../features/tools/ToolSheet";
 export interface IslandPin {
   id: string;
   kind: "file" | "folder";
@@ -17,43 +23,128 @@ type Result = {
   detail: string;
   icon: string;
   run: () => Promise<unknown>;
+  keepOpen?: boolean;
 };
 export default function SearchContent({
   query,
   setQuery,
   collapse,
   fail,
+  openShelf,
 }: {
   query: string;
   setQuery: (value: string) => void;
   collapse: () => void;
   fail: (reason: unknown) => void;
+  openShelf: (id: string) => void;
 }) {
   const [results, setItems] = useState<Result[]>([]),
     [loadedQuery, setLoadedQuery] = useState<string | null>(null),
     [selected, select] = useState(0),
     [busy, setBusy] = useState(false),
-    [loading, setLoading] = useState(false);
+    [loading, setLoading] = useState(false),
+    [revision, refresh] = useState(0),
+    [subscriptionsReady, setSubscriptionsReady] = useState(false),
+    [chosenTool, chooseTool] = useState<Tool | null>(null);
   const listId = useId();
   const items = loadedQuery === query ? results : [];
+  useEffect(() => {
+    let active = true;
+    setSubscriptionsReady(false);
+    const stops: Array<() => void> = [];
+    void Promise.allSettled(
+      ["notes:updated", "shelf:changed", "clipboard:changed", "nabbit://pin-opened"].map((name) =>
+        listen(name, () => {
+          if (active) {
+            setItems([]);
+            setLoadedQuery(null);
+            refresh((value) => value + 1);
+          }
+        }),
+      ),
+    ).then((values) => {
+      for (const value of values)
+        if (value.status === "fulfilled") {
+          if (active) stops.push(value.value);
+          else value.value();
+        }
+      if (active) {
+        if (values.every((value) => value.status === "fulfilled")) setSubscriptionsReady(true);
+        else
+          fail(
+            new Error("Live search updates are unavailable. Close and reopen Search to try again."),
+          );
+      }
+    });
+    return () => {
+      active = false;
+      stops.forEach((stop) => stop());
+    };
+  }, [fail]);
   useLayoutEffect(() => {
     document.getElementById(`${listId}-${selected}`)?.scrollIntoView({ block: "nearest" });
   }, [listId, selected, results]);
   useEffect(() => {
+    if (!subscriptionsReady) return;
     let active = true;
     setLoading(true);
     void Promise.all([
       invoke<ClipboardEntry[]>("list_clipboard_entries", { query: query || null }),
       invoke<IslandPin[]>("list_island_pins"),
+      toolsApi.catalog(),
+      notesApi.state(),
+      shelfApi.list(),
     ])
-      .then(([clipboard, pins]) => {
+      .then(([clipboard, pins, tools, notes, shelf]) => {
         if (!active) return;
         setLoadedQuery(query);
         const term = query.trim().toLocaleLowerCase();
         setItems(
           [
+            ...tools
+              .filter((tool) =>
+                [tool.name, ...tool.keywords].join(" ").toLocaleLowerCase().includes(term),
+              )
+              .map((tool): Result => ({
+                id: `tool:${tool.id}`,
+                group: "TOOLS",
+                title: tool.name,
+                detail:
+                  tool.category === "images"
+                    ? "Create a new image file"
+                    : "Create a shareable video",
+                icon: tool.icon,
+                keepOpen: true,
+                run: async () => chooseTool(tool),
+              })),
+            ...visibleNotes(notes.cards, "notes", "all", "", query, notes.preferences)
+              .slice(0, 15)
+              .map((note): Result => ({
+                id: `note:${note.value.id}`,
+                group: note.localOnly ? "NOTES · LOCAL" : "NOTES · TACK",
+                title: note.value.title || "Untitled note",
+                detail:
+                  note.value.kind === "bookmark"
+                    ? note.value.url
+                    : [
+                        note.value.ref,
+                        note.value.priority,
+                        ...note.value.labels.map((label) => `#${label}`),
+                      ]
+                        .filter(Boolean)
+                        .join(" · "),
+                icon: note.value.kind === "bookmark" ? "iconLink" : "iconStickyNote1",
+                run: () =>
+                  notesApi.open({
+                    kind: "card",
+                    id: note.value.id,
+                    expectedScope: note.scope ?? null,
+                  }),
+              }))
+              .sort((a, b) => a.group.localeCompare(b.group)),
             ...pins
               .filter((pin) => `${pin.label ?? ""} ${pin.path}`.toLocaleLowerCase().includes(term))
+              .slice(0, 10)
               .map((pin): Result => ({
                 id: `pin:${pin.id}`,
                 group: "PINS",
@@ -62,9 +153,21 @@ export default function SearchContent({
                 icon: pin.kind === "folder" ? "iconFolder" : "iconFile",
                 run: () => invoke("island_open_pin", { id: pin.id, slot: null }),
               })),
-            ...clipboard.map((entry): Result => ({
+            ...shelf
+              .filter((item) => `${item.name} ${item.path}`.toLocaleLowerCase().includes(term))
+              .slice(0, 10)
+              .map((item): Result => ({
+                id: `shelf:${item.id}`,
+                group: "SHELF AND CLIPBOARD",
+                title: item.name,
+                detail: `Shelf${item.available ? "" : " · File unavailable"}`,
+                icon: "iconFile",
+                keepOpen: true,
+                run: async () => openShelf(item.id),
+              })),
+            ...clipboard.slice(0, 15).map((entry): Result => ({
               id: `clipboard:${entry.id}`,
-              group: "CLIPBOARD",
+              group: "SHELF AND CLIPBOARD",
               title: entry.preview || entry.content,
               detail: entry.sourceApp || entry.contentType,
               icon: entry.contentType === "url" ? "iconLink" : "iconFile",
@@ -83,21 +186,23 @@ export default function SearchContent({
     return () => {
       active = false;
     };
-  }, [query, fail]);
+  }, [query, fail, revision, openShelf, subscriptionsReady]);
   const activate = async (index: number) => {
     if (!items[index] || busy || loading) return;
     setBusy(true);
     try {
       await items[index].run();
-      collapse();
+      if (!items[index].keepOpen) collapse();
     } catch (error) {
       fail(error);
     } finally {
       setBusy(false);
     }
   };
+  if (chosenTool) return <ToolSheet tool={chosenTool} close={() => chooseTool(null)} />;
   return (
     <div className="island-search-content">
+      <h1 className="island-sr-only">Search everything</h1>
       <label className="island-search">
         <IslandAsset group="search" name="iconSearch" />
         <input
@@ -169,7 +274,7 @@ export default function SearchContent({
               ? "Searching…"
               : query.trim()
                 ? "No matches"
-                : "Search your pins and clipboard"}
+                : "Search tools, notes, links, pins and files"}
           </p>
         )}
       </div>

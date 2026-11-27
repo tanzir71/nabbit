@@ -1,0 +1,14 @@
+> nabbit@0.1.0 test
+> vitest --run src/surfaces/island/SearchContent.test.tsx src/features/tools/ToolQueue.test.tsx
+
+
+ RUN  v3.2.7 D:/claude-upgrade-26/nabbit
+
+ ✓ src/features/tools/ToolQueue.test.tsx (4 tests) 434ms
+ ✓ src/surfaces/island/SearchContent.test.tsx (6 tests) 814ms
+   ✓ searches current notes, saved links, pins, Shelf and clipboard with guarded actions  370ms
+
+ Test Files  2 passed (2)
+      Tests  10 passed (10)
+   Start at  01:57:40
+   Duration  4.44s (transform 1.01s, setup 307ms, collect 3.59s, tests 1.25s, environment 1.85s, prepare 673ms)

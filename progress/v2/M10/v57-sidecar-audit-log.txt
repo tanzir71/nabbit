@@ -1,0 +1,5 @@
+Traceback (most recent call last):
+  File "D:\claude-upgrade-26\nabbit\.tools\v57-sidecar-audit.py", line 19, in <module>
+    assert result.returncode!=0;assert not Fixture.requests;error=result.stderr.decode('utf-8',errors='replace');assert 'whitelist' in error
+                                                                                                                        ^^^^^^^^^^^^^^^^^^^^
+AssertionError

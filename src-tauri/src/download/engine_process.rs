@@ -13,10 +13,10 @@ pub struct ProbeOutput {
 }
 
 #[cfg(windows)]
-struct Tree(windows_sys::Win32::Foundation::HANDLE);
+pub(crate) struct Tree(windows_sys::Win32::Foundation::HANDLE);
 #[cfg(windows)]
 impl Tree {
-    fn attach(child: &std::process::Child) -> Result<Self> {
+    pub(crate) fn attach(child: &std::process::Child) -> Result<Self> {
         use std::os::windows::io::AsRawHandle;
         use windows_sys::Win32::System::JobObjects::*;
         let job = unsafe { CreateJobObjectW(std::ptr::null(), std::ptr::null()) };
@@ -50,10 +50,10 @@ impl Drop for Tree {
     }
 }
 #[cfg(unix)]
-struct Tree(i32);
+pub(crate) struct Tree(i32);
 #[cfg(unix)]
 impl Tree {
-    fn attach(child: &std::process::Child) -> Result<Self> {
+    pub(crate) fn attach(child: &std::process::Child) -> Result<Self> {
         Ok(Self(child.id() as i32))
     }
 }

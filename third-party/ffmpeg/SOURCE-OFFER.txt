@@ -1,0 +1,33 @@
+FFmpeg separate executable · source offer
+
+Nabbit distributes an unmodified FFmpeg executable from BtbN's FFmpeg Static
+Auto-Builds project, now hosted as FFmpeg-Builds/FFmpeg-Builds. The executable
+is licensed under GNU GPL version 3 or later. It is invoked as a separate
+process. No libav library is linked into Nabbit. Only ffmpeg.exe is bundled;
+ffprobe, ffplay, DLLs, nonfree builds and HEVC Store codecs are not bundled.
+
+The Nabbit contributors offer the complete corresponding machine-readable
+source code for the distributed FFmpeg executable, including the applicable
+dependency sources and scripts needed to build it, at no charge for electronic
+delivery. This offer is valid for at least three years after the last
+distribution of the corresponding executable. Anyone who possesses a copy
+of that executable may request the source through:
+https://github.com/tanzir71/nabbit/issues
+Include the executable's SHA-256 and platform from this screen in the request.
+This source offer is in addition to the upstream source locations below.
+
+Pinned upstream release (both x64 and ARM64):
+https://github.com/FFmpeg-Builds/FFmpeg-Builds/releases/tag/autobuild-2026-11-27-12-42
+Build scripts, dependency recipes and patches at the release commit:
+https://github.com/FFmpeg-Builds/FFmpeg-Builds/tree/d05871a37b5fc80e00714c708edec35c7b9ebfb0
+Build scripts archive:
+https://github.com/FFmpeg-Builds/FFmpeg-Builds/archive/d05871a37b5fc80e00714c708edec35c7b9ebfb0.tar.gz
+FFmpeg source revision: 7fdb4c2341
+https://github.com/FFmpeg/FFmpeg/tree/7fdb4c2341
+
+The exact configure lines and SHA-256 values for each original executable
+appear below. Build instructions use the pinned scripts with target win64
+or winarm64 and variant gpl. See scripts.d for dependency recipes and patches.
+The original GPL text accompanies this offer. FFmpeg and its dependencies
+remain copyright their respective contributors. There is no warranty; see
+the included licence terms.

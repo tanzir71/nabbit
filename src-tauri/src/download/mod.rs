@@ -2,6 +2,7 @@ pub mod acceptance;
 pub mod deferred;
 pub mod engine;
 pub mod errors;
+pub mod ffmpeg;
 pub mod format_sizes;
 pub mod manager;
 pub mod media;

@@ -17,6 +17,7 @@ pub mod tack;
 #[cfg(windows)]
 mod taskbar_theme;
 pub mod timer;
+mod tools;
 mod tray_icon;
 mod util;
 
@@ -112,6 +113,18 @@ pub fn run() {
         ))
         .plugin(tauri_plugin_updater::Builder::new().build())
         .invoke_handler(tauri::generate_handler![
+            tools::commands::tool_catalog,
+            tools::commands::tool_pick_input,
+            tools::commands::third_party_licenses,
+            tools::commands::tool_presets,
+            tools::commands::tool_save_preset,
+            tools::commands::tool_jobs,
+            tools::commands::tool_start,
+            tools::commands::tool_cancel,
+            tools::commands::tool_retry,
+            tools::commands::tool_undo,
+            tools::commands::tool_reveal,
+            tools::commands::tool_quit,
             timer::timer_snapshot,
             timer::timer_action,
             timer::timer_view,
@@ -289,6 +302,11 @@ pub fn run() {
             app.manage(privacy::start(app.handle().clone()));
             app.manage(power::start(app.handle().clone()));
             app.manage(timer::start(app.handle().clone(), db.clone())?);
+            app.manage(tools::Service::start(
+                db.clone(),
+                app.handle().clone(),
+                app_data_dir.clone(),
+            )?);
             let downloads =
                 DownloadManager::new(db.clone(), app.handle().clone(), app_data_dir.clone());
             let shutdown = Arc::new(AtomicBool::new(false));
@@ -412,6 +430,15 @@ pub fn run() {
                 }
             }
             if let tauri::RunEvent::ExitRequested { api, code, .. } = event {
+                if code.is_some()
+                    && app
+                        .try_state::<Arc<tools::Service>>()
+                        .is_some_and(|s| s.active() && !s.quit_confirmed.load(Ordering::Acquire))
+                {
+                    api.prevent_exit();
+                    tools::request_quit(app);
+                    return;
+                }
                 #[cfg(windows)]
                 if island::production_session() && code.is_none() {
                     api.prevent_exit();
@@ -430,6 +457,9 @@ pub fn run() {
                     state.engine.stop();
                     state.downloads.stop();
                     state.capture.stop();
+                }
+                if let Some(tools) = app.try_state::<Arc<tools::Service>>() {
+                    tools.stop();
                 }
                 if let Some(bus) = app.try_state::<Arc<island::activity_bus::Bus>>() {
                     bus.stop();
@@ -929,7 +959,7 @@ fn setup_tray(app: &AppHandle<Wry>) -> Result<()> {
                         }
                     }
                 }
-                "quit" => app.exit(0),
+                "quit" => tools::request_quit(app),
                 _ => {}
             }
         })

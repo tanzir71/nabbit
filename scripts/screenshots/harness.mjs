@@ -3,6 +3,7 @@ import { createHash } from "node:crypto";
 import { access, mkdir, readFile, writeFile } from "node:fs/promises";
 import { resolve } from "node:path";
 import process from "node:process";
+import { Buffer } from "node:buffer";
 import { URL } from "node:url";
 import { chromium } from "playwright";
 import { preview } from "vite";
@@ -211,6 +212,9 @@ export async function captureSuite(root, options, cases = scenarios) {
                     "island_keyboard_focus",
                     "island_keyboard_ready",
                     "list_island_pins",
+                    "tool_catalog",
+                    "tool_jobs",
+                    "tool_presets",
                     "get_island_drop",
                     "island_review_url",
                     "list_clipboard_entries",
@@ -225,6 +229,7 @@ export async function captureSuite(root, options, cases = scenarios) {
                     ...(scenario.timer ? ["timer_snapshot", "timer_view"] : []),
                     ...(scenario.media ? ["media_snapshot"] : []),
                     ...(scenario.shelf ? ["shelf_list", "shelf_preview"] : []),
+                    ...(scenario.tools ? ["shelf_list", "get_notes_state"] : []),
                     "plugin:event|listen",
                     "plugin:event|unlisten",
                   ].includes(command),
@@ -254,19 +259,105 @@ export async function captureSuite(root, options, cases = scenarios) {
             assert(box);
             const screenshotOptions = {
               type: "png",
-              animations: "disabled",
+              animations: scenario.naturalMotion ? "allow" : "disabled",
               caret: scenario.caret ?? "hide",
               scale: "device",
               omitBackground: scenario.transparent ?? false,
             };
-            const bytes = await target.screenshot(screenshotOptions);
+            const captureSession = scenario.cdpCapture ? await context.newCDPSession(page) : null;
+            if (captureSession) {
+              await captureSession.send("Emulation.setDeviceMetricsOverride", {
+                width: scenario.viewport.width,
+                height: scenario.viewport.height,
+                deviceScaleFactor: scale,
+                mobile: false,
+              });
+              assert.equal(await page.evaluate(() => globalThis.devicePixelRatio), scale);
+              await page.evaluate(async () => {
+                await new Promise(globalThis.requestAnimationFrame);
+                await new Promise(globalThis.requestAnimationFrame);
+              });
+            }
+            if (captureSession && scenario.transparent)
+              await captureSession.send("Emulation.setDefaultBackgroundColorOverride", {
+                color: { r: 0, g: 0, b: 0, a: 0 },
+              });
+            const takeScreenshot = async () =>
+              captureSession
+                ? Buffer.from(
+                    (
+                      await captureSession.send("Page.captureScreenshot", {
+                        format: "png",
+                        fromSurface: true,
+                        captureBeyondViewport: true,
+                        clip: { ...box, scale: 1 },
+                      })
+                    ).data,
+                    "base64",
+                  )
+                : scenario.pageClip
+                  ? page.screenshot({ ...screenshotOptions, clip: box })
+                  : target.screenshot(screenshotOptions);
+            const diagnose = () =>
+              page.evaluate(() => ({
+                active: globalThis.document.activeElement?.outerHTML,
+                focus: globalThis.document.hasFocus(),
+                visibility: globalThis.document.visibilityState,
+                host: globalThis.document.querySelector(".island-host")?.dataset,
+                nodes: [
+                  ...globalThis.document.querySelectorAll(
+                    ".island-content,.island-outgoing,.tool-sheet,.island-morph",
+                  ),
+                ].map((node) => ({
+                  class: node.className,
+                  text: node.textContent?.slice(0, 150),
+                  opacity: globalThis.getComputedStyle(node).opacity,
+                  visibility: globalThis.getComputedStyle(node).visibility,
+                  animation: globalThis.getComputedStyle(node).animation,
+                  rect: node.getBoundingClientRect().toJSON(),
+                })),
+                animations: globalThis.document
+                  .getAnimations()
+                  .map((a) => ({ state: a.playState, time: a.currentTime, pending: a.pending })),
+                recentIpc: globalThis.__NABBIT_CAPTURE__?.snapshot().calls.slice(-10),
+              }));
+            const beforeCapture = scenario.retainFailures ? await diagnose() : null;
+            const bytes = await takeScreenshot();
+            const afterFirst = scenario.retainFailures ? await diagnose() : null;
             const info = pngInfo(
               bytes,
               Math.round(box.width * scale),
               Math.round(box.height * scale),
             );
             if (options.repeatCheck) {
-              const repeated = await target.screenshot(screenshotOptions);
+              const repeated = await takeScreenshot();
+              if (hash(repeated) !== hash(bytes) && scenario.retainFailures) {
+                await mkdir(config.folder, { recursive: true });
+                await writeFile(
+                  resolve(
+                    config.folder,
+                    `${config.prefix}-unstable-${scenario.name}-${theme}@${scale}x-dom.json`,
+                  ),
+                  JSON.stringify(
+                    { beforeCapture, afterFirst, afterRepeat: await diagnose() },
+                    null,
+                    2,
+                  ) + "\n",
+                  { flag: "wx" },
+                );
+                for (const [name, body] of [
+                  ["a", bytes],
+                  ["b", repeated],
+                ])
+                  await writeFile(
+                    resolve(
+                      config.folder,
+                      `${config.prefix}-unstable-${scenario.name}-${theme}@${scale}x-${name}.png`,
+                    ),
+                    body,
+                    { flag: "wx" },
+                  );
+              }
               assert.equal(
                 hash(repeated),
                 hash(bytes),
