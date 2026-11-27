@@ -95,8 +95,19 @@ pub(crate) fn migrate(conn: &mut Connection) -> Result<()> {
         CREATE TABLE IF NOT EXISTS note_reminders(scope TEXT NOT NULL,id TEXT NOT NULL,value TEXT NOT NULL,PRIMARY KEY(scope,id));
         CREATE TABLE IF NOT EXISTS note_revisions(history_id TEXT PRIMARY KEY,scope TEXT NOT NULL,tbl TEXT NOT NULL,id TEXT NOT NULL,value TEXT NOT NULL,reason TEXT NOT NULL,saved_at TEXT NOT NULL);
         CREATE TABLE IF NOT EXISTS note_capture_receipts(request_id TEXT PRIMARY KEY,scope TEXT NOT NULL,digest TEXT NOT NULL);
+        CREATE TABLE IF NOT EXISTS note_imports(id TEXT PRIMARY KEY,scope TEXT NOT NULL,digest TEXT NOT NULL,ids TEXT NOT NULL,result TEXT NOT NULL,undone INTEGER NOT NULL DEFAULT 0);
         CREATE TABLE IF NOT EXISTS tack_uploads(local_id TEXT PRIMARY KEY,scope TEXT NOT NULL,remote_id TEXT NOT NULL);
         CREATE INDEX IF NOT EXISTS idx_tack_queue ON tack_outbox(scope,queued_at,tbl,id);")?;
+    let receipt_columns = tx
+        .prepare("PRAGMA table_info(note_capture_receipts)")?
+        .query_map([], |r| r.get::<_, String>(1))?
+        .collect::<std::result::Result<Vec<_>, _>>()?;
+    if !receipt_columns.iter().any(|c| c == "card_id") {
+        tx.execute(
+            "ALTER TABLE note_capture_receipts ADD COLUMN card_id TEXT",
+            [],
+        )?;
+    }
     if meta(&tx, "editor_attachments_v45")?.is_none() {
         tx.execute("UPDATE tack_scopes SET cursor=0", [])?;
         set_meta(&tx, "editor_attachments_v45", "true")?;
@@ -896,6 +907,7 @@ impl Database {
             )?;
             count += 1;
         }
+        super::links::store::remap_local_imports(&tx, context)?;
         tx.commit()?;
         Ok(count)
     }

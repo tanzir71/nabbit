@@ -733,7 +733,7 @@ export function NoteEditor({
                 disabled={disabled || (creating && !hasContent)}
                 onClick={() => void save()}
               >
-                Save note
+                {creating && draft.kind === "bookmark" ? "Save link" : "Save note"}
               </Button>
             </div>
           ) : null}

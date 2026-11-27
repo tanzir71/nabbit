@@ -20,6 +20,7 @@ arboard = { version = "3", default-features = true }
 chrono = { version = "0.4", features = ["serde", "clock"] }
 clipboard-win = { version = "5.4", features = ["monitor"] }
 directories = "5"
+dom_query = "=0.30.0"
 open = "5"
 regex = "1"
 reqwest = { version = "0.12", default-features = false, features = ["blocking", "json", "rustls-tls", "cookies"] }
@@ -57,7 +58,7 @@ island-spike = []
 keyring = { version = "4.2", default-features = false, features = ["v1"] }
 webview2-com = { version = "0.39.1" }
 windows-numerics = { version = "0.3.1" }
-windows = { version = "0.62.2", features = ["Win32_Graphics_DirectComposition", "Win32_Graphics_Direct2D", "Win32_Graphics_Direct2D_Common", "Win32_Graphics_Direct3D11", "Win32_Graphics_Direct3D", "Win32_Graphics_DirectWrite", "Win32_Graphics_Dxgi_Common", "Win32_System_Com", "Win32_System_Com_StructuredStorage", "Win32_UI_Shell", "Foundation", "Graphics_Capture", "Graphics_DirectX_Direct3D11", "Win32_System_WinRT_Graphics_Capture", "Win32_System_WinRT_Direct3D11"] }
+windows = { version = "0.62.2", features = ["Win32_Graphics_DirectComposition", "Win32_Graphics_Direct2D", "Win32_Graphics_Direct2D_Common", "Win32_Graphics_Direct3D11", "Win32_Graphics_Direct3D", "Win32_Graphics_DirectWrite", "Win32_Graphics_Dxgi_Common", "Win32_System_Com", "Win32_System_Com_StructuredStorage", "Win32_UI_Shell", "Win32_UI_Shell_Common", "Win32_UI_Accessibility", "Foundation", "Graphics_Capture", "Graphics_DirectX_Direct3D11", "Win32_System_WinRT_Graphics_Capture", "Win32_System_WinRT_Direct3D11"] }
 
 [dev-dependencies]
 tiny_http = "0.12"

@@ -80,7 +80,7 @@ export type NotePatch = Partial<
     | "status"
   >
 >;
-export type NotesView = "notes" | "archive" | "trash";
+export type NotesView = "notes" | "links" | "archive" | "trash";
 export function visibleNotes(
   cards: StoredNote[],
   view: NotesView,
@@ -99,6 +99,7 @@ export function visibleNotes(
             (!preferences.filterLabels ||
               c.labels.some((label) => preferences.labels.includes(label))))) &&
         (view === "trash" ? !!c.trashedAt : !c.trashedAt && c.archived === (view === "archive")) &&
+        (view !== "links" || c.kind === "bookmark") &&
         (priority === "all" || c.priority === priority) &&
         (!label || c.labels.includes(label)) &&
         (!needle ||

@@ -1,0 +1,565 @@
+{
+  "attempts": [
+    {
+      "source": ".tools/v49-build-dialog.log",
+      "bytes": 5042,
+      "sha256": "73fc73f1b336850ba966f396488f4defa585d045d4b04d3b304c14a443371e93",
+      "archive": "v49-build-dialog.earlier.txt.gz",
+      "authoritative": false
+    },
+    {
+      "source": ".tools/v49-build-island-reset.log",
+      "bytes": 5043,
+      "sha256": "89c978a88c1bf52ed9c9755020a99106e2526dd1d82ba4cc4a5d2bc49793ee56",
+      "archive": "v49-build-island-reset.earlier.txt.gz",
+      "authoritative": false
+    },
+    {
+      "source": ".tools/v49-bundles-current.log",
+      "bytes": 135,
+      "sha256": "a6c8b1c6695175b218142929c3577d43a4b05c978e84a64780b09dda3ee62355",
+      "archive": "v49-bundles-current.earlier.txt.gz",
+      "authoritative": false
+    },
+    {
+      "source": ".tools/v49-bundles-delivery.log",
+      "bytes": 135,
+      "sha256": "f7a29d9415e7f4bf45b03c2d953cac49a219ec0a19fdd5a0792d06c4560970e6",
+      "archive": "v49-bundles-delivery.earlier.txt.gz",
+      "authoritative": false
+    },
+    {
+      "source": ".tools/v49-bundles-final.log",
+      "bytes": 135,
+      "sha256": "e15960983952dea9d8e9fd97217d462c6f3df3086c86f6d17473ffdcd9728081",
+      "archive": "v49-bundles-final.earlier.txt.gz",
+      "authoritative": false
+    },
+    {
+      "source": ".tools/v49-clippy-final.log",
+      "bytes": 141,
+      "sha256": "cdcdc0daaca2d39d3d641c93bc6b0de0339f343bfd764272051eceaa50db2044",
+      "archive": "v49-clippy-final.earlier.txt.gz",
+      "authoritative": false
+    },
+    {
+      "source": ".tools/v49-core-eighth.log",
+      "bytes": 142,
+      "sha256": "0f56ebf38324d636445c086c0556b0be1117186e69fd78e8c2d538841b26c9f8",
+      "archive": "v49-core-eighth.earlier.txt.gz",
+      "authoritative": false
+    },
+    {
+      "source": ".tools/v49-core-fifth.log",
+      "bytes": 1042,
+      "sha256": "abf79c5c5b238d0243da19359d0c04e233fdf5bc6baed294e803830d85bf4a08",
+      "archive": "v49-core-fifth.earlier.txt.gz",
+      "authoritative": false
+    },
+    {
+      "source": ".tools/v49-core-first.log",
+      "bytes": 4229,
+      "sha256": "e6022b1b3c7f7bddedb7be36e9e0d9eeec45e064fc624acc742021c6bcb8f4f3",
+      "archive": "v49-core-first.earlier.txt.gz",
+      "authoritative": false
+    },
+    {
+      "source": ".tools/v49-core-fourth.log",
+      "bytes": 142,
+      "sha256": "06128bd5aaad371f40fdc51fceae42728b3fed94f482e8f596d2d688ad7addf7",
+      "archive": "v49-core-fourth.earlier.txt.gz",
+      "authoritative": false
+    },
+    {
+      "source": ".tools/v49-core-ninth.log",
+      "bytes": 142,
+      "sha256": "c6d7257716bc438c329d5222612e705c398988d391505db0ae9944c4280fad36",
+      "archive": "v49-core-ninth.earlier.txt.gz",
+      "authoritative": false
+    },
+    {
+      "source": ".tools/v49-core-second.log",
+      "bytes": 1447,
+      "sha256": "a4b70e1be1b99585be1f183852b90c45dba33756d372832c969da5e4b9b82550",
+      "archive": "v49-core-second.earlier.txt.gz",
+      "authoritative": false
+    },
+    {
+      "source": ".tools/v49-core-seventh.log",
+      "bytes": 883,
+      "sha256": "c2481dd3ff30099f304f157097aef984b1a9f5268dfe9fa8cd03c77252286623",
+      "archive": "v49-core-seventh.earlier.txt.gz",
+      "authoritative": false
+    },
+    {
+      "source": ".tools/v49-core-sixth.log",
+      "bytes": 142,
+      "sha256": "7d0002c0f4518ba7e50a4d0142bb967bb77b761351315c612907aedc8f2df99c",
+      "archive": "v49-core-sixth.earlier.txt.gz",
+      "authoritative": false
+    },
+    {
+      "source": ".tools/v49-core-third.log",
+      "bytes": 2006,
+      "sha256": "8fb55c959911ac3576891249c2468068dcd447587a2509d37c691bf4337ff045",
+      "archive": "v49-core-third.earlier.txt.gz",
+      "authoritative": false
+    },
+    {
+      "source": ".tools/v49-diff-check.log",
+      "bytes": 2686,
+      "sha256": "453b86346e1e2a2500bd4d928c837e9ca5e068c3a83288cce36e53f806d59d57",
+      "archive": "v49-diff-check.earlier.txt.gz",
+      "authoritative": false
+    },
+    {
+      "source": ".tools/v49-diff-delivery.log",
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "archive": "v49-diff-delivery.earlier.txt.gz",
+      "authoritative": false
+    },
+    {
+      "source": ".tools/v49-flow-clipboard.log",
+      "bytes": 102,
+      "sha256": "d4ab02df8a0b90b638251d2f7f5a0890a8071622f21856f7aecf224367b427dd",
+      "archive": "v49-flow-clipboard.earlier.txt.gz",
+      "authoritative": false
+    },
+    {
+      "source": ".tools/v49-flow-final.log",
+      "bytes": 102,
+      "sha256": "0f8a9c023240f40ff28ae9cc4b136b54e5882a4e249a5c76d293cd5207f938a0",
+      "archive": "v49-flow-final.earlier.txt.gz",
+      "authoritative": false
+    },
+    {
+      "source": ".tools/v49-flow-first.log",
+      "bytes": 102,
+      "sha256": "31baa3f5e65270aa935d88fa3789942366432b88b2faafe0887fbfeabc936e6e",
+      "archive": "v49-flow-first.earlier.txt.gz",
+      "authoritative": false
+    },
+    {
+      "source": ".tools/v49-fmt-final.log",
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "archive": "v49-fmt-final.earlier.txt.gz",
+      "authoritative": false
+    },
+    {
+      "source": ".tools/v49-format-acceptance.log",
+      "bytes": 86,
+      "sha256": "aa32dd1e681f1d9d4105446c5f0cafc7ba717cef11d72006f0fe9d2d7c102e7b",
+      "archive": "v49-format-acceptance.earlier.txt.gz",
+      "authoritative": false
+    },
+    {
+      "source": ".tools/v49-format-bridge.log",
+      "bytes": 164,
+      "sha256": "f1e8b4199a5cf6f784f4061747202e1145e8382c7b3f1bd90b9e4ce3a0c00b34",
+      "archive": "v49-format-bridge.earlier.txt.gz",
+      "authoritative": false
+    },
+    {
+      "source": ".tools/v49-format-clipboard-shot.log",
+      "bytes": 44,
+      "sha256": "30e3c9b9e3e2b6037375a0df47720d38959ed08631428de305f7380ce8a42450",
+      "archive": "v49-format-clipboard-shot.earlier.txt.gz",
+      "authoritative": false
+    },
+    {
+      "source": ".tools/v49-format-context.log",
+      "bytes": 161,
+      "sha256": "bac6789626a59bdaf32d193cb3083eb89131a9c704756522de9b6cf6e23de4a4",
+      "archive": "v49-format-context.earlier.txt.gz",
+      "authoritative": false
+    },
+    {
+      "source": ".tools/v49-format-contrast.log",
+      "bytes": 36,
+      "sha256": "957052510e5055c737e4da4b8319a01a10828ecf83c31cda07e8b126c053090f",
+      "archive": "v49-format-contrast.earlier.txt.gz",
+      "authoritative": false
+    },
+    {
+      "source": ".tools/v49-format-copy-flow.log",
+      "bytes": 84,
+      "sha256": "e1be114180ad9aeaa5c4b90b1935e01e6fe0a532ea602cc1fdf741be717522ea",
+      "archive": "v49-format-copy-flow.earlier.txt.gz",
+      "authoritative": false
+    },
+    {
+      "source": ".tools/v49-format-debug.log",
+      "bytes": 44,
+      "sha256": "4c7c5adae7ba31f3f929f3af7938145059587692e38958c1b1e1ff87d63ff241",
+      "archive": "v49-format-debug.earlier.txt.gz",
+      "authoritative": false
+    },
+    {
+      "source": ".tools/v49-format-island-reset.log",
+      "bytes": 36,
+      "sha256": "dd03b45b52d6117a9802d055522e44f6fce0a827921436ae12194f2396f060e5",
+      "archive": "v49-format-island-reset.earlier.txt.gz",
+      "authoritative": false
+    },
+    {
+      "source": ".tools/v49-format-island-shot.log",
+      "bytes": 44,
+      "sha256": "1624d2844ab276ac064c1db8c9405ca8e37beaf9f426218471145f237f0be1b0",
+      "archive": "v49-format-island-shot.earlier.txt.gz",
+      "authoritative": false
+    },
+    {
+      "source": ".tools/v49-format-layout.log",
+      "bytes": 126,
+      "sha256": "64465176fba2f3ef3427f5eb5855f989943d0a3612604175fc9a1458d1191c2c",
+      "archive": "v49-format-layout.earlier.txt.gz",
+      "authoritative": false
+    },
+    {
+      "source": ".tools/v49-format-link-ui.log",
+      "bytes": 43,
+      "sha256": "c08149c77e3792969ae90d6ad4e4a645294810e7677f5c73f2daac43a1fbd078",
+      "archive": "v49-format-link-ui.earlier.txt.gz",
+      "authoritative": false
+    },
+    {
+      "source": ".tools/v49-format-mock.log",
+      "bytes": 52,
+      "sha256": "632b10db32bc5bbe9af060b158092145842b3bfac95c7ebf7440df2013ab645d",
+      "archive": "v49-format-mock.earlier.txt.gz",
+      "authoritative": false
+    },
+    {
+      "source": ".tools/v49-format-native.log",
+      "bytes": 112,
+      "sha256": "dcd6db5fb9f0744a70fecbaba19db90db1e379c0e4abdfe88bf15dd0d71e1e41",
+      "archive": "v49-format-native.earlier.txt.gz",
+      "authoritative": false
+    },
+    {
+      "source": ".tools/v49-format-readonly.log",
+      "bytes": 43,
+      "sha256": "bc4b59897aae9a2c293f89aaaedca95cc1986b21137fa0a046f2612d0aad0558",
+      "archive": "v49-format-readonly.earlier.txt.gz",
+      "authoritative": false
+    },
+    {
+      "source": ".tools/v49-format-scene.log",
+      "bytes": 43,
+      "sha256": "b3b77df2157c7488bfdbc2a0098df0394e44ee6bb556bcaa45a717a7886c41b7",
+      "archive": "v49-format-scene.earlier.txt.gz",
+      "authoritative": false
+    },
+    {
+      "source": ".tools/v49-format-shots-second.log",
+      "bytes": 44,
+      "sha256": "1e3315d3898be677b7859ecae83732c86a738c699ff46cb38353abc80b6ea49f",
+      "archive": "v49-format-shots-second.earlier.txt.gz",
+      "authoritative": false
+    },
+    {
+      "source": ".tools/v49-format-shots.log",
+      "bytes": 44,
+      "sha256": "aeb696f6b637560578350b594613bed2d94c34db2a7dc38c3f532136ec9b3b33",
+      "archive": "v49-format-shots.earlier.txt.gz",
+      "authoritative": false
+    },
+    {
+      "source": ".tools/v49-format-ui.log",
+      "bytes": 136,
+      "sha256": "94e34f7ce897809ac57f04261259ea53c73b463225ed24d8ab8e11c6dbce767c",
+      "archive": "v49-format-ui.earlier.txt.gz",
+      "authoritative": false
+    },
+    {
+      "source": ".tools/v49-import-ui-first.log",
+      "bytes": 435,
+      "sha256": "4f554fee46d45557181b883a2584e10243d9114720374b7a2d3215c03385114d",
+      "archive": "v49-import-ui-first.earlier.txt.gz",
+      "authoritative": false
+    },
+    {
+      "source": ".tools/v49-island-debug.log",
+      "bytes": 4924,
+      "sha256": "a21164d6efb00548c84621031a1f8a45c90d97af974606a07556552dbfff536b",
+      "archive": "v49-island-debug.earlier.txt.gz",
+      "authoritative": false
+    },
+    {
+      "source": ".tools/v49-links-eighth.log",
+      "bytes": 1121,
+      "sha256": "ed30eb3bf88443404652a8922d89dca632a8b33fca581304a528db5132fc38cd",
+      "archive": "v49-links-eighth.earlier.txt.gz",
+      "authoritative": false
+    },
+    {
+      "source": ".tools/v49-links-fifth.log",
+      "bytes": 1215,
+      "sha256": "7048129a2c896f87c220740a1fb27e01ddb1624cfe43786dcf9536b0404cff95",
+      "archive": "v49-links-fifth.earlier.txt.gz",
+      "authoritative": false
+    },
+    {
+      "source": ".tools/v49-links-first.log",
+      "bytes": 1139,
+      "sha256": "6a6dd17c43c4e27232b884511a40790f83c1bcfe38ab831906eb69a9b42643e1",
+      "archive": "v49-links-first.earlier.txt.gz",
+      "authoritative": false
+    },
+    {
+      "source": ".tools/v49-links-fourth.log",
+      "bytes": 1055,
+      "sha256": "e9b7ec5bdf40c45162dca76d59788973aa8dea6281dbdc00ee5771bf4100e2e3",
+      "archive": "v49-links-fourth.earlier.txt.gz",
+      "authoritative": false
+    },
+    {
+      "source": ".tools/v49-links-ninth.log",
+      "bytes": 2520,
+      "sha256": "5db66950e397d7380dafb5b428e854f1e4f0670f564e867ba8960bec84ba72ad",
+      "archive": "v49-links-ninth.earlier.txt.gz",
+      "authoritative": false
+    },
+    {
+      "source": ".tools/v49-links-second.log",
+      "bytes": 2263,
+      "sha256": "d4b3a205438f5fab8faa80cc683c71a859455a871dcb6330a871dab4ade8dd69",
+      "archive": "v49-links-second.earlier.txt.gz",
+      "authoritative": false
+    },
+    {
+      "source": ".tools/v49-links-seventh.log",
+      "bytes": 1167,
+      "sha256": "9c22d8834b9cda1e87a66a0b451fc917aeec03e406b6e62642cbb08c975aa750",
+      "archive": "v49-links-seventh.earlier.txt.gz",
+      "authoritative": false
+    },
+    {
+      "source": ".tools/v49-links-sixth.log",
+      "bytes": 1173,
+      "sha256": "b58677841bdeb9820380397bd4b18fa0160b2f74d43fdfc74b5fae2a93b149d4",
+      "archive": "v49-links-sixth.earlier.txt.gz",
+      "authoritative": false
+    },
+    {
+      "source": ".tools/v49-links-tenth.log",
+      "bytes": 35,
+      "sha256": "6a906e989aa296e98b8b3bff6be67f0f90444fa4fd06deab4f2c8b970e0876dd",
+      "archive": "v49-links-tenth.earlier.txt.gz",
+      "authoritative": false
+    },
+    {
+      "source": ".tools/v49-links-third.log",
+      "bytes": 1678,
+      "sha256": "e515ecc03a3ef0d2f21a1ada0b7769db4573900e1344318433baa09561ebc3b4",
+      "archive": "v49-links-third.earlier.txt.gz",
+      "authoritative": false
+    },
+    {
+      "source": ".tools/v49-lint-delivery.log",
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "archive": "v49-lint-delivery.earlier.txt.gz",
+      "authoritative": false
+    },
+    {
+      "source": ".tools/v49-lint-final.log",
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "archive": "v49-lint-final.earlier.txt.gz",
+      "authoritative": false
+    },
+    {
+      "source": ".tools/v49-lint-first.log",
+      "bytes": 1142,
+      "sha256": "ab4a5f14f90202e323d2de0b6f3c5a4d20ac0b2a2df2e3877d1ce711e69dd01d",
+      "archive": "v49-lint-first.earlier.txt.gz",
+      "authoritative": false
+    },
+    {
+      "source": ".tools/v49-lint-second.log",
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "archive": "v49-lint-second.earlier.txt.gz",
+      "authoritative": false
+    },
+    {
+      "source": ".tools/v49-negative-final.log",
+      "bytes": 115,
+      "sha256": "744efdb66da95ddf2dcdc44aab2c28696f3cb004c2926241bd7e588d960294e8",
+      "archive": "v49-negative-final.earlier.txt.gz",
+      "authoritative": false
+    },
+    {
+      "source": ".tools/v49-notes-first.log",
+      "bytes": 5672,
+      "sha256": "f88caa16f5a02607f5b26be159193f0bedf90d1691a0bd21738244b535a1c51f",
+      "archive": "v49-notes-first.earlier.txt.gz",
+      "authoritative": false
+    },
+    {
+      "source": ".tools/v49-notes-second.log",
+      "bytes": 4961,
+      "sha256": "57e30eadd113066a7deb3156786431468595703285c700067cd1eb45f9f3be2a",
+      "archive": "v49-notes-second.earlier.txt.gz",
+      "authoritative": false
+    },
+    {
+      "source": ".tools/v49-notes-third.log",
+      "bytes": 3057,
+      "sha256": "a7552cad13ea1497420fa78b0690e9b8e9a37ff66b47ea693a6b8bfff7d69242",
+      "archive": "v49-notes-third.earlier.txt.gz",
+      "authoritative": false
+    },
+    {
+      "source": ".tools/v49-parse-first.log",
+      "bytes": 3454,
+      "sha256": "0e894819c5b9bcf2955170add2991ac93a065969b5efff709a3890b4ba7ab6aa",
+      "archive": "v49-parse-first.earlier.txt.gz",
+      "authoritative": false
+    },
+    {
+      "source": ".tools/v49-release.log",
+      "bytes": 2124,
+      "sha256": "7132d58966cd9db572659f6d965f59445cf22647d9817dd1ff6289ada26ba4a9",
+      "archive": "v49-release.earlier.txt.gz",
+      "authoritative": false
+    },
+    {
+      "source": ".tools/v49-rust-final-first.log",
+      "bytes": 25549,
+      "sha256": "1d52a7693301401cbc63c2d52d741a255a1407add7c3952f4f2a735401874263",
+      "archive": "v49-rust-final-first.earlier.txt.gz",
+      "authoritative": false
+    },
+    {
+      "source": ".tools/v49-rust-final-second.log",
+      "bytes": 25963,
+      "sha256": "fb9a31656225ba20f4911b69052c4f4e99efcbcc775dcc6ec3ed1090f5b8fb2c",
+      "archive": "v49-rust-final-second.earlier.txt.gz",
+      "authoritative": false
+    },
+    {
+      "source": ".tools/v49-rust-first.log",
+      "bytes": 24781,
+      "sha256": "e9ef78911876b82c615360ba0e44cc47ccb9452236c9d39a0dc76fe6df5235d6",
+      "archive": "v49-rust-first.earlier.txt.gz",
+      "authoritative": false
+    },
+    {
+      "source": ".tools/v49-rust-third.log",
+      "bytes": 25194,
+      "sha256": "d878e5505853b29f2f721b7ec39fb639c81bb5c10783914987e7a687570f5075",
+      "archive": "v49-rust-third.earlier.txt.gz",
+      "authoritative": false
+    },
+    {
+      "source": ".tools/v49-spike-clippy-final.log",
+      "bytes": 142,
+      "sha256": "78f748b7416dcc4bbc43a79da1b52ee483bb6183c9be4c06fb1417db803aaf09",
+      "archive": "v49-spike-clippy-final.earlier.txt.gz",
+      "authoritative": false
+    },
+    {
+      "source": ".tools/v49-type-fifth.log",
+      "bytes": 2789,
+      "sha256": "3e0d0d469e232338cf0ef402f69637b516b3ea7365a7bfc5df7c0830421b581f",
+      "archive": "v49-type-fifth.earlier.txt.gz",
+      "authoritative": false
+    },
+    {
+      "source": ".tools/v49-type-first.log",
+      "bytes": 40,
+      "sha256": "eec1e338a4eb68539863dc418b57dea02dd4c6e77413edf6792f7a4998c81c08",
+      "archive": "v49-type-first.earlier.txt.gz",
+      "authoritative": false
+    },
+    {
+      "source": ".tools/v49-type-fourth.log",
+      "bytes": 40,
+      "sha256": "eec1e338a4eb68539863dc418b57dea02dd4c6e77413edf6792f7a4998c81c08",
+      "archive": "v49-type-fourth.earlier.txt.gz",
+      "authoritative": false
+    },
+    {
+      "source": ".tools/v49-type-second.log",
+      "bytes": 40,
+      "sha256": "eec1e338a4eb68539863dc418b57dea02dd4c6e77413edf6792f7a4998c81c08",
+      "archive": "v49-type-second.earlier.txt.gz",
+      "authoritative": false
+    },
+    {
+      "source": ".tools/v49-type-third.log",
+      "bytes": 40,
+      "sha256": "eec1e338a4eb68539863dc418b57dea02dd4c6e77413edf6792f7a4998c81c08",
+      "archive": "v49-type-third.earlier.txt.gz",
+      "authoritative": false
+    },
+    {
+      "source": ".tools/v49-ui-second.log",
+      "bytes": 741,
+      "sha256": "4bf2846244426babab64c47bf7e37b2ca011ba77963a93032f5c484f2fbb83de",
+      "archive": "v49-ui-second.earlier.txt.gz",
+      "authoritative": false
+    },
+    {
+      "source": ".tools/v49-verify-fifth.log",
+      "bytes": 10679,
+      "sha256": "25ca3561e1bc2db9f5b476ecfdaf95239b57e1a31ec0a5c666bb3068c8b16000",
+      "archive": "v49-verify-fifth.earlier.txt.gz",
+      "authoritative": false
+    },
+    {
+      "source": ".tools/v49-verify-final.log",
+      "bytes": 9967,
+      "sha256": "18e279f46e898e1ba0980937b4753356e89c67817d1f6faf014bc308ad4545db",
+      "archive": "v49-verify-final.earlier.txt.gz",
+      "authoritative": false
+    },
+    {
+      "source": ".tools/v49-verify-first.log",
+      "bytes": 1491,
+      "sha256": "68589d9a1b557ab406ca91eaa61db9b5708556f85330dca1ffa4c679e8337d47",
+      "archive": "v49-verify-first.earlier.txt.gz",
+      "authoritative": false
+    },
+    {
+      "source": ".tools/v49-verify-fourth.log",
+      "bytes": 803,
+      "sha256": "cc39c6b7c130c1cd09320d8568673e878cfe3e15dcede1a814550b47f1459697",
+      "archive": "v49-verify-fourth.earlier.txt.gz",
+      "authoritative": false
+    },
+    {
+      "source": ".tools/v49-verify-second.log",
+      "bytes": 801,
+      "sha256": "f159e1a023ab083ee991633220465cbea51622e54a5877b6a72db77a2495fb5e",
+      "archive": "v49-verify-second.earlier.txt.gz",
+      "authoritative": false
+    },
+    {
+      "source": ".tools/v49-verify-sixth.log",
+      "bytes": 10081,
+      "sha256": "f1e97687f83ef0e7101ee9a784f52cc637cb82ec25b326f7d1cf723abab97102",
+      "archive": "v49-verify-sixth.earlier.txt.gz",
+      "authoritative": false
+    },
+    {
+      "source": ".tools/v49-verify-third.log",
+      "bytes": 10856,
+      "sha256": "42766ca1a11f38d5080d31adde296fe3f641b44f29932c820af8af4b1502c539",
+      "archive": "v49-verify-third.earlier.txt.gz",
+      "authoritative": false
+    }
+  ],
+  "resolutionNotes": [
+    "Retained compiler/test mismatches, fixture selector corrections, contrast and ARIA failures and superseded builds. No failed screenshot suite publishes PNGs.",
+    "Dialog width overrides the browser UA maximum; whole-popover captures preserve fractional modal edges without cropping. Header/footer remain visible while the body scrolls.",
+    "Original white import SVG uses an exact-size currentColor mask in the added Links import control. Native button/input defaults are reset in the shared component so island contrast matches the always-dark design.",
+    "URL-only hotkey intake preserves the original address; one old normalization expectation was corrected, then all251 Rust tests passed.",
+    "Initial release invocation omitted custom-protocol and was stopped before any native acceptance. Authoritative native proof uses the completed production build with custom-protocol.",
+    "Superseded flow/capture reports remain as earlier evidence; only the delivery reports share the final manifest and executable."
+  ]
+}

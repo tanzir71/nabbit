@@ -1,4 +1,5 @@
 mod acceptance_tests;
+mod bookmark_tests;
 mod browser_bridge;
 mod connection_tests;
 mod fake;
@@ -659,3 +660,5 @@ fn tombstone_versions_and_paging_must_make_progress() {
     fake.fault(200,json!({"changes":[],"conflicts":[{"table":"cards","id":"missing","version":0,"value":null}],"cursor":0,"more":false,"userId":"user-1","workspaceId":"personal"}),vec![]);
     assert_eq!(client.sync(0, &[]).unwrap().conflicts[0].version, 0);
 }
+
+mod links_bridge;

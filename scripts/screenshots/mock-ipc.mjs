@@ -38,6 +38,61 @@ export function installMockIpc(seed) {
       throw typeof failure === "string" ? new Error(failure) : clone(failure);
     }
     switch (command) {
+      case "save_link":
+      case "capture_note": {
+        const request = clone(args.request);
+        const value = {
+          ...request.draft,
+          ...request.patch,
+          id: request.requestId,
+          title: request.patch?.title ?? request.draft.title,
+          createdAt: new Date().toISOString(),
+          updatedAt: new Date().toISOString(),
+          labels: request.patch?.labels ?? request.draft.labels ?? [],
+          kind: request.patch?.kind ?? request.draft.kind ?? "note",
+          archived: false,
+          trashedAt: null,
+          items: [],
+          revision: 0,
+          priority: request.draft.priority ?? "inbox",
+        };
+        const saved = {
+          value,
+          scope: request.expectedScope,
+          localOnly: !request.expectedScope,
+          editToken: "fixture-edit",
+        };
+        state.notes ??= [];
+        state.notes.unshift(saved);
+        dispatch("notes:updated", null);
+        return clone(saved);
+      }
+      case "bookmarks_discover":
+      case "bookmarks_pick_html":
+      case "bookmarks_preview":
+      case "bookmarks_commit":
+        if (!Object.hasOwn(seed.responses ?? {}, command))
+          throw new Error(`Missing explicit ${command} fixture`);
+        return clone(seed.responses[command]);
+      case "bookmarks_release":
+        return null;
+      case "bookmarks_history":
+        return clone(seed.responses?.bookmarks_history ?? []);
+      case "bookmarks_undo":
+        return seed.responses?.bookmarks_undo ?? 0;
+      case "links_bulk":
+      case "links_open":
+        return args.guards.length;
+      case "link_open_url":
+      case "plugin:clipboard-manager|write_text":
+        return null; // Record intent only: never use OS clipboard or shell in a fixture.
+      case "link_clean": {
+        const url = new globalThis.URL(args.url);
+        for (const key of [...url.searchParams.keys()])
+          if (/^utm_/i.test(key) || ["fbclid", "gclid", "mc_eid"].includes(key.toLowerCase()))
+            url.searchParams.delete(key);
+        return url.href;
+      }
       case "take_notes_intent":
         return clone(
           seed.responses?.take_notes_intent ?? { navigation: null, shortcutError: null },

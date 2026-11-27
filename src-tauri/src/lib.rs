@@ -82,6 +82,7 @@ pub fn run() {
     };
     let builder = tauri::Builder::default()
         .manage(sticky::Service::default())
+        .manage(notes::links::service::Service::default())
         .manage(download::sheets::Service::default())
         .manage(tack::service::Service::default());
     let builder = if sticky::acceptance_enabled() {
@@ -105,6 +106,18 @@ pub fn run() {
         ))
         .plugin(tauri_plugin_updater::Builder::new().build())
         .invoke_handler(tauri::generate_handler![
+            commands::links::save_link,
+            commands::links::link_clean,
+            commands::links::link_open_url,
+            commands::links::links_open,
+            commands::links::links_bulk,
+            commands::links::bookmarks_discover,
+            commands::links::bookmarks_pick_html,
+            commands::links::bookmarks_preview,
+            commands::links::bookmarks_commit,
+            commands::links::bookmarks_release,
+            commands::links::bookmarks_history,
+            commands::links::bookmarks_undo,
             commands::tack::tack_status,
             commands::tack::tack_snapshot,
             commands::tack::tack_login,
@@ -678,6 +691,28 @@ pub fn apply_runtime_settings(app: &AppHandle<Wry>, state: &AppState, settings: 
                 }
             });
     let _ = state.db.notes_shortcut_status(note_registration.is_err());
+    let selection_registration = if !settings.selected_text_shortcut.trim().is_empty() {
+        app.global_shortcut()
+            .on_shortcut(settings.selected_text_shortcut.as_str(), |app, _, event| {
+                if event.state == ShortcutState::Pressed {
+                    notes::links::intake::selection_hotkey(app);
+                }
+            })
+            .map_err(|_| ())
+    } else {
+        Ok(())
+    };
+    if let Ok(conn) = state.db.conn.lock() {
+        let _ = notes::sync_store::set_meta(
+            &conn,
+            "notes/selection_shortcut_error",
+            if selection_registration.is_err() {
+                "The selected-link shortcut is unavailable. Choose another shortcut in Settings."
+            } else {
+                ""
+            },
+        );
+    }
     let island_registration = island::keyboard::validate_shortcut(settings)
         .and_then(|()| register_island_shortcut(app, &settings.island_shortcut));
     #[cfg(windows)]

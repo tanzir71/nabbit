@@ -1,0 +1,73 @@
+{
+  "section": "8.9",
+  "task": "V4.9",
+  "requirements": [
+    {
+      "requirement": "Save link / clipboard / new editor / normalized duplicates",
+      "assertions": "Browser checks for actual copied-link row and new bookmark editor use production scoped capture, metadata HTTP and SQLite. Rust tests reject stale scope/read-only/invalid IDs and freeze retries. Native smoke repeats real Tauri IPC and cookie-free loopback GET. URL-only shortcut policy is tested without reading the real clipboard/selection or registering global keys.",
+      "status": "passed"
+    },
+    {
+      "requirement": "Metadata bounds / existing probe reuse",
+      "assertions": "Owned HTTP fixture asserts OG title precedence, fallback title/host, five redirects, 512KB limit, five-second timeout, no Cookie/Authorization on redirected requests and no extra GET when downloader metadata is already authoritative. UTF16 titles are capped at 300.",
+      "status": "passed"
+    },
+    {
+      "requirement": "All five browsers / exact source allowlist",
+      "assertions": "Synthetic Chrome, Edge, Brave and Vivaldi roots contain real Local State and Bookmarks plus forbidden History/Cookies/Login Data decoys. Firefox stays open in WAL mode while the real importer reads a private readonly copy and queries only bookmark rows. Browser import sheet displays exact read paths and HTML fixture picker adds one selected export. Reader refuses non-allowlisted files before opening.",
+      "status": "passed"
+    },
+    {
+      "requirement": "Tack HTML parity / dates / folder labels",
+      "assertions": "Pinned immutable Tack bookmarks.ts executes in the browser through its real DOMParser walk, with only the card constructor stubbed. Native HTML5 output matches URL/title/labels/ADD_DATE; Nabbit drops browser-root labels. JSON1601 microseconds, Firefox1970 microseconds and HTMLseconds produce the same dated cards; unsupported URLs are skipped before metadata validation.",
+      "status": "passed"
+    },
+    {
+      "requirement": "Import options / duplicate counts / batching / grouped undo",
+      "assertions": "UI defaults to Later, folders-as-labels and duplicate skipping. Unit tests also cover Inbox/disabled-labels/duplicates-off and atomic rollback. 56 cards cross real sync as 50+6; one idempotent import receipt and undo group survive restart, retry and explicit local-to-Tack upload remapping. Undo preserves edits made after import.",
+      "status": "passed"
+    },
+    {
+      "requirement": "Tray / island Links / bulk / video route",
+      "assertions": "Search matches title/domain and combines Later/labels. Selection freezes scope/content guards; Label/Later/Archive are atomic and stale/read-only writes preserve selection. Open-all validates selected URLs and Copy preserves original URLs; automation records these side effects. Video Download stages review. Shared island Links remains dark and lazy; new-note drop saves bookmark while the separate download zone stages media review.",
+      "status": "passed"
+    },
+    {
+      "requirement": "Visual / accessibility / footprint",
+      "assertions": "Ten final states across light/dark and1x/1.5x retain exact repeats, default axe with zero violations/incompletes, original SVG hashes/sizes and bundled Geist. Independent Pillow audit covers every retained M9 PNG at <=300000 bytes. Initial island graph remains below120000 gzip bytes and excludes app store/editor/settings. No new sidecars; dom_query was already locked transitively and is now an exact direct dependency.",
+      "status": "passed"
+    }
+  ],
+  "rustTests": [
+    "notes::links::capture::tests::a_workspace_change_during_title_fetch_preserves_both_scopes",
+    "notes::links::capture::tests::captured_title_is_frozen_for_retries_and_invalid_input_never_fetches",
+    "notes::links::intake::tests::selection_policy_never_reads_private_elements_and_only_accepts_web_links",
+    "notes::links::intake::tests::url_intent_is_unsaved_and_keeps_the_original_scope_epoch",
+    "notes::links::parse::tests::chromium_and_netscape_dom_preserve_same_folders_dates_and_safe_links",
+    "notes::links::parse::tests::normalization_is_for_identity_and_cleaning_preserves_anchor",
+    "notes::links::parse::tests::unsafe_schemes_and_oversize_titles_never_become_cards",
+    "notes::links::parse::tests::unsupported_links_are_skipped_before_their_invalid_metadata_is_read",
+    "notes::links::sources::tests::allow_list_rejects_non_bookmark_paths_before_opening_them",
+    "notes::links::tests::bookmark_capture_receipt_freezes_enriched_title_and_deduped_id",
+    "notes::links::tests::bulk_actions_are_atomic_stale_guarded_and_preserve_full_values",
+    "notes::links::tests::dedupe_includes_workspace_existing_links_and_can_be_disabled",
+    "notes::links::tests::firefox_live_wal_chromium_and_html_import_the_same_cards_without_other_file_reads",
+    "notes::links::tests::html_keeps_export_values_and_tack_numeric_add_dates",
+    "notes::links::tests::import_is_atomic_once_only_and_one_durable_undo_group",
+    "notes::links::tests::invalid_item_rolls_back_the_entire_import_and_receipt",
+    "notes::links::tests::preview_session_is_window_bound_rechecks_duplicates_and_replays_after_release",
+    "notes::links::title::tests::og_title_precedes_title_entities_decode_and_utf16_limit_is_respected",
+    "notes::links::title_tests::local_metadata_fixture_proves_og_fallback_caps_redirects_timeout_and_no_auth_material",
+    "tack::tests::bookmark_tests::bookmark_import_upload_and_group_undo_use_real_fifty_mutation_batches"
+  ],
+  "browserProof": "v49-delivery-flow.json",
+  "nativeProof": "v49-delivery-native.json",
+  "visualProof": "v49-delivery-screenshots.json",
+  "upstream": "v49-tack-source.json",
+  "limits": {
+    "nativePicker": "Compiled Windows IFileOpenDialog, tested through an injected picker; never opens a user browser export or real browser profile during acceptance.",
+    "selection": "Windows UI Automation adapter compiled; policy/source providers tested. No real selection, clipboard, global shortcut or synthetic Ctrl+C is invoked.",
+    "platforms": "Automated acceptance on this Windows machine only; no macOS/Linux runtime or external DPI/display claim.",
+    "backlog": "Dead-link and duplicate review/export remain v2.1; general selected-text tools remain V5.17."
+  }
+}

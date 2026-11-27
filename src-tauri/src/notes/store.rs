@@ -211,6 +211,16 @@ pub(crate) fn insert_note_card(
     id: &str,
     patch: &Value,
 ) -> Result<StoredNote> {
+    insert_note_card_dated(tx, draft, scope, id, patch, None)
+}
+pub(crate) fn insert_note_card_dated(
+    tx: &rusqlite::Transaction<'_>,
+    draft: NoteDraft,
+    scope: Option<&super::sync_store::Context>,
+    id: &str,
+    patch: &Value,
+    created_at: Option<&str>,
+) -> Result<StoredNote> {
     let key = scope.map_or("", |s| s.key.as_str());
     let first:Option<String>=tx.query_row("SELECT json_extract(value,'$.rank') FROM note_cards WHERE scope=?1 ORDER BY json_extract(value,'$.rank') COLLATE BINARY,id LIMIT 1",[key],|row|row.get(0)).optional()?;
     let now = super::sync_store::stamp();
@@ -232,6 +242,10 @@ pub(crate) fn insert_note_card(
         .as_object_mut()
         .expect("new card object")
         .extend(patch.clone());
+    if let Some(at) = created_at {
+        chrono::DateTime::parse_from_rfc3339(at).map_err(|_| msg("Invalid bookmark add date"))?;
+        value["createdAt"] = at.into();
+    }
     validate_card(&value)?;
     tx.execute("INSERT INTO note_cards(scope,id,value,local_only,updated_at,edit_token) VALUES(?1,?2,?3,?4,?5,?6)",params![key,id,value.to_string(),scope.is_none(),now,edit_token])?;
     if let Some(context) = scope {
@@ -330,64 +344,96 @@ impl Database {
         patch: Value,
         reminders: &[super::editor::ReminderEdit],
     ) -> Result<StoredNote> {
-        let patch = patch.as_object().ok_or_else(|| msg("Invalid note edit"))?;
-        if patch.is_empty() || patch.keys().any(|k| !EDITABLE.contains(&k.as_str())) {
-            return Err(msg("This note edit contains unsupported fields"));
-        }
         let mut conn = self
             .conn
             .lock()
             .map_err(|_| msg("database lock poisoned"))?;
         let tx = conn.transaction()?;
-        super::preferences::writable(&tx, scope)?;
-        let key = scope.map_or("", |s| s.key.as_str());
-        let (raw, local_only, token): (String, bool, String) = tx
-            .query_row(
-                "SELECT value,local_only,edit_token FROM note_cards WHERE scope=?1 AND id=?2",
-                params![key, id],
-                |r| Ok((r.get(0)?, r.get(1)?, r.get(2)?)),
-            )
-            .optional()?
-            .ok_or_else(|| msg("This note no longer exists"))?;
-        let mut value: Value = serde_json::from_str(&raw)?;
-        let current_revision = value["revision"]
-            .as_u64()
-            .ok_or_else(|| msg("Invalid note revision"))?;
-        if (expected_token.is_none() && current_revision != expected_revision)
-            || expected_token.is_some_and(|t| t != token)
-            || (scope.is_some() && expected_token.is_none())
-        {
-            return Err(msg("This note changed in another window. Your draft is still here; reopen the latest note before saving."));
-        }
-        value
-            .as_object_mut()
-            .ok_or_else(|| msg("Invalid stored note"))?
-            .extend(patch.clone());
-        value["revision"] = current_revision
-            .checked_add(1)
-            .ok_or_else(|| msg("Invalid note revision"))?
-            .into();
-        let now = super::sync_store::stamp();
-        value["updatedAt"] = now.clone().into();
-        validate_card(&value)?;
-        let edit_token = Uuid::new_v4().to_string();
-        tx.execute(
-            "UPDATE note_cards SET value=?1,updated_at=?2,edit_token=?3 WHERE scope=?4 AND id=?5",
-            params![value.to_string(), now, edit_token, key, id],
+        let note = write_note_patch(
+            &tx,
+            EditGuard {
+                id,
+                revision: expected_revision,
+                scope,
+                token: expected_token,
+            },
+            &patch,
+            reminders,
         )?;
-        if let Some(context) = scope {
-            super::sync_store::queue(&tx, context, "cards", id, &value)?;
-        }
-        super::editor::write_reminders(&tx, scope, id, reminders)?;
-        super::sync_store::changed(&tx)?;
         tx.commit()?;
-        Ok(StoredNote {
-            value,
-            local_only,
-            scope: scope.cloned(),
-            edit_token,
-        })
+        Ok(note)
     }
+}
+pub(crate) struct EditGuard<'a> {
+    pub id: &'a str,
+    pub revision: u64,
+    pub scope: Option<&'a super::sync_store::Context>,
+    pub token: Option<&'a str>,
+}
+/// Shared atomic optimistic writer for editor, bulk actions and grouped undo.
+pub(crate) fn write_note_patch(
+    tx: &rusqlite::Transaction<'_>,
+    guard: EditGuard<'_>,
+    patch: &Value,
+    reminders: &[super::editor::ReminderEdit],
+) -> Result<StoredNote> {
+    let EditGuard {
+        id,
+        revision: expected_revision,
+        scope,
+        token: expected_token,
+    } = guard;
+    let patch = patch.as_object().ok_or_else(|| msg("Invalid note edit"))?;
+    if patch.is_empty() || patch.keys().any(|k| !EDITABLE.contains(&k.as_str())) {
+        return Err(msg("This note edit contains unsupported fields"));
+    }
+    super::preferences::writable(tx, scope)?;
+    let key = scope.map_or("", |s| s.key.as_str());
+    let (raw, local_only, token): (String, bool, String) = tx
+        .query_row(
+            "SELECT value,local_only,edit_token FROM note_cards WHERE scope=?1 AND id=?2",
+            params![key, id],
+            |r| Ok((r.get(0)?, r.get(1)?, r.get(2)?)),
+        )
+        .optional()?
+        .ok_or_else(|| msg("This note no longer exists"))?;
+    let mut value: Value = serde_json::from_str(&raw)?;
+    let current_revision = value["revision"]
+        .as_u64()
+        .ok_or_else(|| msg("Invalid note revision"))?;
+    if (expected_token.is_none() && current_revision != expected_revision)
+        || expected_token.is_some_and(|t| t != token)
+        || (scope.is_some() && expected_token.is_none())
+    {
+        return Err(msg("This note changed in another window. Your draft is still here; reopen the latest note before saving."));
+    }
+    value
+        .as_object_mut()
+        .ok_or_else(|| msg("Invalid stored note"))?
+        .extend(patch.clone());
+    value["revision"] = current_revision
+        .checked_add(1)
+        .ok_or_else(|| msg("Invalid note revision"))?
+        .into();
+    let now = super::sync_store::stamp();
+    value["updatedAt"] = now.clone().into();
+    validate_card(&value)?;
+    let edit_token = Uuid::new_v4().to_string();
+    tx.execute(
+        "UPDATE note_cards SET value=?1,updated_at=?2,edit_token=?3 WHERE scope=?4 AND id=?5",
+        params![value.to_string(), now, edit_token, key, id],
+    )?;
+    if let Some(context) = scope {
+        super::sync_store::queue(tx, context, "cards", id, &value)?;
+    }
+    super::editor::write_reminders(tx, scope, id, reminders)?;
+    super::sync_store::changed(tx)?;
+    Ok(StoredNote {
+        value,
+        local_only,
+        scope: scope.cloned(),
+        edit_token,
+    })
 }
 
 #[cfg(test)]

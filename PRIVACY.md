@@ -14,3 +14,11 @@ Nabbit is local-first.
 - Clearing clipboard history deletes stored clipboard rows from the local database.
 
 Users are responsible for complying with YouTube's Terms of Service and applicable copyright law. Nabbit is intended for content the user has the right to download.
+
+## Links and bookmark imports
+
+Saving a link explicitly requests its page title with a cookie-free HTTP GET (5-second timeout, 512 KB body cap, at most five redirects), or reuses metadata already fetched for that URL. Nabbit never loads page scripts, favicons or subresources for Links. The saved address is preserved; tracking parameters and fragments are removed only when comparing duplicates. Clean link copies a separate address without tracking parameters.
+
+Import bookmarks scans only the known Chrome, Edge, Brave and Vivaldi profile roots for Local State and Bookmarks, and Firefox Profiles for places.sqlite and its WAL. Firefox is queried from a temporary private copy, restricted to bookmarked URLs and their folders; browsing-history-only rows are not imported. The import sheet lists the exact files read. An HTML export is read only after choosing it in the native picker. Browser cookies, passwords and other files are never read. Temporary copies are removed after parsing. Imported links stay on this PC unless you explicitly connect a Tack workspace or upload local notes.
+
+Ctrl+Alt+N uses the existing clipboard exclusions before offering Save link for a URL. Ctrl+Alt+S reads one selected URL through Windows UI Automation only after an explicit shortcut, rejecting password fields and excluded apps. There is no simulated-copy fallback or background selection collection. Both shortcuts open an unsaved editor; saving is explicit.

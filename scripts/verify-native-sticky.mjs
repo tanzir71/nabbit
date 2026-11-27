@@ -1,6 +1,7 @@
 // Runs only an owned executable with unique app-data, control and WebView2
 // directories. DOM input stays inside its webview; no global input is injected.
 import assert from "node:assert/strict";
+import { verifyNativeLinks } from "./verify-native-links.mjs";
 import { spawn } from "node:child_process";
 import { createServer } from "node:net";
 import { readFile, writeFile, mkdir, unlink, rename, stat } from "node:fs/promises";
@@ -165,6 +166,7 @@ try {
     entryScript.endsWith(buildManifest["sticky.html"].file),
     "Native executable must embed the completed current build",
   );
+  checks.push(...(await verifyNativeLinks(page)));
   await page.getByLabel("Note body", { exact: true }).fill("Saved via actual native IPC — বাংলা");
   await page.getByRole("button", { name: "Close sticky note", exact: true }).focus();
   rows = await wait(async () => {

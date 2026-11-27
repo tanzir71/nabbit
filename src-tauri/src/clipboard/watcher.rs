@@ -224,6 +224,54 @@ fn should_skip_os_protected_clipboard() -> bool {
         permission("CanUploadToCloudClipboard"),
     )
 }
+/// Explicit note/link hotkeys reuse the watcher policy without persisting the
+/// clipboard or ever synthesizing keys. Hold the Windows clipboard lock while
+/// checking privacy formats and reading the corresponding text.
+pub(crate) fn note_hotkey_text(db: &Database) -> Option<String> {
+    let source = current_source_app();
+    if source
+        .as_deref()
+        .is_some_and(|s| db.is_excluded_app(s).unwrap_or(true))
+    {
+        return None;
+    }
+    #[cfg(windows)]
+    let text = {
+        use clipboard_win::{is_format_avail, raw, register_format, Clipboard};
+        let _clipboard = Clipboard::new().ok()?;
+        let excluded = register_format("ExcludeClipboardContentFromMonitorProcessing")
+            .is_some_and(|f| is_format_avail(f.get()));
+        let permission = |name: &str| {
+            let f = register_format(name)?;
+            if !is_format_avail(f.get()) {
+                return None;
+            }
+            let mut bytes = Vec::new();
+            raw::get_vec(f.get(), &mut bytes).ok()?;
+            Some(u32::from_ne_bytes(bytes.get(..4)?.try_into().ok()?))
+        };
+        if protected(
+            excluded,
+            permission("CanIncludeInClipboardHistory"),
+            permission("CanUploadToCloudClipboard"),
+        ) {
+            return None;
+        }
+        if raw::size(clipboard_win::formats::CF_UNICODETEXT)?.get() > 32_770 {
+            return None;
+        }
+        let mut bytes = Vec::new();
+        raw::get_string(&mut bytes).ok()?;
+        String::from_utf8(bytes).ok()?
+    };
+    #[cfg(not(windows))]
+    let text = Clipboard::new().ok()?.get_text().ok()?;
+    let settings = db.get_settings().ok()?;
+    if settings.sensitive_heuristics && crate::clipboard::sensitive::looks_sensitive(&text) {
+        return None;
+    }
+    Some(text)
+}
 #[cfg(any(windows, test))]
 fn protected(excluded: bool, history: Option<u32>, cloud: Option<u32>) -> bool {
     excluded || history == Some(0) || cloud == Some(0)

@@ -37,6 +37,8 @@ pub enum NotesIntent {
         expected_scope: Option<Context>,
     },
     All,
+    Links,
+    Import,
 }
 #[derive(Debug, Serialize, Deserialize)]
 #[serde(rename_all = "camelCase")]
@@ -52,6 +54,14 @@ pub struct NavigationReply {
 }
 impl Database {
     pub fn capture_note(&self, request: CaptureRequest) -> Result<StoredNote> {
+        self.capture_note_enriched(request, None, false)
+    }
+    pub(crate) fn capture_note_enriched(
+        &self,
+        mut request: CaptureRequest,
+        title: Option<String>,
+        link: bool,
+    ) -> Result<StoredNote> {
         if Uuid::parse_str(&request.request_id).ok().is_none_or(|id| {
             id.get_version() != Some(uuid::Version::Random) || id.to_string() != request.request_id
         }) {
@@ -68,21 +78,21 @@ impl Database {
             .expected_scope
             .as_ref()
             .map_or("", |s| s.key.as_str());
-        let previous: Option<(String, String)> = tx
+        let previous: Option<(String, String, String)> = tx
             .query_row(
-                "SELECT scope,digest FROM note_capture_receipts WHERE request_id=?1",
+                "SELECT scope,digest,COALESCE(card_id,request_id) FROM note_capture_receipts WHERE request_id=?1",
                 [&request.request_id],
-                |r| Ok((r.get(0)?, r.get(1)?)),
+                |r| Ok((r.get(0)?, r.get(1)?,r.get(2)?)),
             )
             .optional()?;
-        if let Some((owner, previous)) = previous {
+        if let Some((owner, previous, card_id)) = previous {
             if owner != scope || previous != digest {
                 return Err(msg("This capture was already saved with different details. Your draft is preserved; review the saved note."));
             }
             let (raw, local_only, edit_token): (String, bool, String) = tx
                 .query_row(
                     "SELECT value,local_only,edit_token FROM note_cards WHERE scope=?1 AND id=?2",
-                    params![scope, request.request_id],
+                    params![scope, card_id],
                     |r| Ok((r.get(0)?, r.get(1)?, r.get(2)?)),
                 )
                 .optional()?
@@ -97,6 +107,39 @@ impl Database {
             });
         }
         super::preferences::writable(&tx, request.expected_scope.as_ref())?;
+        if link {
+            let normalized = super::links::parse::normalized_url(
+                request
+                    .patch
+                    .get("url")
+                    .and_then(Value::as_str)
+                    .unwrap_or(&request.draft.url),
+            )?;
+            if request
+                .patch
+                .get("kind")
+                .and_then(Value::as_str)
+                .or(request.draft.kind.as_deref())
+                != Some("bookmark")
+            {
+                return Err(msg("Link capture requires a bookmark"));
+            }
+            if let Some(note) = super::links::store::find_duplicate(
+                &tx,
+                request.expected_scope.as_ref(),
+                &normalized,
+            )? {
+                tx.execute("INSERT INTO note_capture_receipts(request_id,scope,digest,card_id) VALUES(?1,?2,?3,?4)",params![request.request_id,scope,digest,note.value["id"].as_str()])?;
+                tx.commit()?;
+                return Ok(note);
+            }
+            if let Some(title) = title {
+                request.draft.title = title.clone();
+                if request.patch.get("title").is_some() {
+                    request.patch["title"] = serde_json::json!(title);
+                }
+            }
+        }
         let note = store::insert_note_card(
             &tx,
             request.draft,
@@ -151,8 +194,15 @@ impl Database {
         let navigation = sync_store::meta(&tx, "notes/ui_intent")?
             .map(|s| serde_json::from_str::<Navigation>(&s))
             .transpose()?;
-        let shortcut_error =
-            sync_store::meta(&tx, "notes/shortcut_error")?.filter(|s| !s.is_empty());
+        let errors = [
+            sync_store::meta(&tx, "notes/shortcut_error")?,
+            sync_store::meta(&tx, "notes/selection_shortcut_error")?,
+        ]
+        .into_iter()
+        .flatten()
+        .filter(|s| !s.is_empty())
+        .collect::<Vec<_>>();
+        let shortcut_error = (!errors.is_empty()).then(|| errors.join("\n"));
         tx.execute("DELETE FROM tack_meta WHERE key='notes/ui_intent'", [])?;
         tx.commit()?;
         Ok(NavigationReply {
@@ -185,6 +235,22 @@ pub fn open(app: &tauri::AppHandle, intent: NotesIntent) -> Result<()> {
     Ok(())
 }
 pub fn hotkey(app: &tauri::AppHandle) {
+    let app = app.clone();
+    tauri::async_runtime::spawn_blocking(move || {
+        if let Some(text) =
+            crate::clipboard::watcher::note_hotkey_text(&app.state::<crate::AppState>().db)
+        {
+            if let Ok(intent) =
+                super::links::intake::url_intent(&app.state::<crate::AppState>().db, &text)
+            {
+                let _ = open(&app, intent);
+                return;
+            }
+        }
+        empty_hotkey(&app);
+    });
+}
+fn empty_hotkey(app: &tauri::AppHandle) {
     #[cfg(windows)]
     if let Some(manager) = app.try_state::<std::sync::Arc<crate::island::Manager>>() {
         match manager.open_notes_capture() {

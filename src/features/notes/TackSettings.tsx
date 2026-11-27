@@ -1,4 +1,4 @@
-import { useEffect, useRef, useState } from "react";
+import { lazy, Suspense, useEffect, useRef, useState } from "react";
 import { Button } from "../../components/Button";
 import { api } from "../../lib/ipc";
 import { tackApi, type TackConnection, type TackProfile, type TackSyncSnapshot } from "./tackApi";
@@ -7,6 +7,11 @@ import { TackConnectionSheet } from "./TackConnectionSheet";
 import "./tack.css";
 import { SyncState } from "./SyncState";
 import { ConflictSheet } from "./ConflictSheet";
+
+import { useNotesStore } from "../../store/notesStore";
+const BookmarkImportSheet = lazy(() =>
+  import("./BookmarkImportSheet").then((m) => ({ default: m.BookmarkImportSheet })),
+);
 
 type Data = { connection: TackConnection; profile: TackProfile; sync: TackSyncSnapshot };
 export function TackSettings({
@@ -20,6 +25,9 @@ export function TackSettings({
     [error, setError] = useState("");
   const [open, setOpen] = useState(false),
     [busy, setBusy] = useState(false);
+  const [importing, setImporting] = useState(false);
+  const notesScope = useNotesStore((s) => s.scope);
+  const notesReadOnly = useNotesStore((s) => s.readOnly);
   const [review, setReview] = useState(false);
   const generation = useRef(0),
     alive = useRef(true),
@@ -166,6 +174,17 @@ export function TackSettings({
           </div>
           {data?.connection.baseUrl ? <code>{data.connection.baseUrl}</code> : null}
           <div className="tack-settings-actions">
+            <Button
+              disabled={busy}
+              onClick={() =>
+                void act(async () => {
+                  await useNotesStore.getState().refresh();
+                  if (alive.current) setImporting(true);
+                })
+              }
+            >
+              Import bookmarks
+            </Button>
             <Button variant="primary" disabled={!data || busy} onClick={openSheet}>
               {authenticated && data.connection.ready ? "Workspace & scope" : "Connect Tack"}
             </Button>
@@ -217,6 +236,16 @@ export function TackSettings({
           </Button>
         </p>
       ) : null}
+      {importing && (
+        <Suspense fallback={<p role="status">Opening bookmark import…</p>}>
+          <BookmarkImportSheet
+            scope={notesScope}
+            readOnly={notesReadOnly}
+            close={() => setImporting(false)}
+            changed={useNotesStore.getState().refresh}
+          />
+        </Suspense>
+      )}
       {open && data ? (
         <TackConnectionSheet
           initial={data.connection}

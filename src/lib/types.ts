@@ -106,6 +106,7 @@ export interface AppSettings {
   islandShortcut?: string;
   quickDownloadShortcut: string;
   clipboardSearchShortcut: string;
+  selectedTextShortcut?: string;
   defaultQuality: Quality;
   outputDir: string;
   filenameTemplate: string;

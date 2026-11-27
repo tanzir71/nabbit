@@ -1,5 +1,6 @@
 import { lazy, Suspense, useEffect, useRef, useState } from "react";
 import { api } from "../lib/ipc";
+import { useAppStore } from "../store/useAppStore";
 import { useNotesStore } from "../store/notesStore";
 import { PresetChip } from "../components/PresetChip";
 import { NoteCard } from "../components/NoteCard";
@@ -12,6 +13,12 @@ import { type NoteCaptureRequest, type NotesNavigation } from "../features/notes
 import { captureCard, sameScope } from "../features/notes/captureDraft";
 import "../features/notes/notes.css";
 
+const LinksPanel = lazy(() =>
+  import("../features/notes/LinksPanel").then((m) => ({ default: m.LinksPanel })),
+);
+const BookmarkImportSheet = lazy(() =>
+  import("../features/notes/BookmarkImportSheet").then((m) => ({ default: m.BookmarkImportSheet })),
+);
 const priorities = ["all", "inbox", "now", "next", "later"] as const;
 const titleCase = (s: string) => s[0].toUpperCase() + s.slice(1);
 const NoteEditor = lazy(() =>
@@ -26,6 +33,7 @@ export function NotesView({ navigation }: { navigation?: NotesNavigation | null 
   const [search, setSearch] = useState<string | null>(null);
   const [announcement, setAnnouncement] = useState("");
   const [editing, setEditing] = useState<StoredNote | null>(null);
+  const [importing, setImporting] = useState(false);
   const [creation, setCreation] = useState<NoteCaptureRequest>();
   const [captureInitial] = useState(() => localStorage.getItem("nabbit:note-capture") ?? undefined);
   const consumed = useRef<string>();
@@ -50,6 +58,10 @@ export function NotesView({ navigation }: { navigation?: NotesNavigation | null 
         setCreation(undefined);
         setEditing(card);
       } else setAnnouncement("This note is no longer available in this workspace.");
+    } else if (intent.kind === "links") {
+      setView("links");
+    } else if (intent.kind === "import") {
+      setImporting(true);
     } else if (intent.kind === "capture") {
       document.querySelector<HTMLInputElement>("[data-note-capture]")?.focus();
     }
@@ -226,126 +238,164 @@ export function NotesView({ navigation }: { navigation?: NotesNavigation | null 
             Read-only Tack workspace. You can browse cards; editing is disabled.
           </p>
         ) : null}
-        <QuickCapture
-          scope={scope}
-          readOnly={readOnly}
-          ready={!loading}
-          cards={cards}
-          initial={captureInitial}
-          persist={(raw) => localStorage.setItem("nabbit:note-capture", raw)}
-          open={openDraft}
-          saved={() => {
-            void refresh();
-            setAnnouncement("Note saved on this device");
-          }}
-        />
-        {error && (
-          <div role="alert" className="notes-error">
-            {error}
-            <button
-              type="button"
-              onClick={() => {
-                useNotesStore.setState({ error: null });
-                void refresh();
-              }}
-            >
-              Retry
-            </button>
-          </div>
-        )}
-        <div className="notes-filters" role="group" aria-label="Note priority filter">
-          {priorities.map((p) => (
-            <PresetChip key={p} selected={filter === p} onClick={() => setFilter(p)}>
-              {titleCase(p)}
-            </PresetChip>
-          ))}
-          <details className="notes-view-menu" ref={menuRef}>
-            <summary aria-label="Notes view and labels" title="Notes view and labels">
-              <NotesIcon name="grid" />
-            </summary>
-            <div className="notes-menu">
-              <p>View</p>
-              {(["notes", "archive", "trash"] as const).map((v) => (
-                <button
-                  key={v}
-                  aria-pressed={view === v}
-                  onClick={() => {
-                    setView(v);
-                    closeViewMenu();
-                  }}
-                >
-                  {titleCase(v)}
-                </button>
-              ))}
-              <label>
-                Labels
-                <select
-                  aria-label="Filter by label"
-                  value={label}
-                  onChange={(e) => {
-                    setLabel(e.target.value);
-                    closeViewMenu();
-                  }}
-                >
-                  <option value="">All labels</option>
-                  {labels.map((item) => (
-                    <option key={item}>{item}</option>
-                  ))}
-                </select>
-              </label>
-            </div>
-          </details>
-        </div>
-        {(label || view !== "notes") && (
-          <div className="notes-current-filter">
-            <span>
-              {titleCase(view)}
-              {label ? ` · ${label}` : ""}
-            </span>
-            <button
-              onClick={() => {
-                setLabel("");
-                setView("notes");
-              }}
-            >
-              Reset view
-            </button>
-          </div>
-        )}
-        {search !== null && (
-          <label className="notes-search">
-            Search notes
-            <input
-              ref={searchRef}
-              aria-label="Search notes"
-              type="search"
-              value={search}
-              onChange={(e) => setSearch(e.target.value)}
-              onKeyDown={(e) => {
-                if (e.key === "Escape") {
-                  setSearch(null);
-                  document.querySelector<HTMLInputElement>("[data-note-capture]")?.focus();
-                }
+        {view === "links" ? (
+          <Suspense fallback={<p role="status">Loading links…</p>}>
+            <LinksPanel
+              cards={visibleNotes(cards, "links", "all", "", "", scope ? preferences : undefined)}
+              scope={scope}
+              readOnly={readOnly}
+              all={() => setView("notes")}
+              importBookmarks={() => setImporting(true)}
+              refresh={refresh}
+              download={async (url) => {
+                await useAppStore.getState().stageUrl(url);
+                await useAppStore.getState().setLastTab("download");
               }}
             />
-          </label>
-        )}
-        {loading ? (
-          <p role="status">Loading notes…</p>
-        ) : found.length ? (
-          <>
-            {group("Pinned", pinned)}
-            {group(pinned.length ? "Others" : view === "notes" ? "Notes" : titleCase(view), others)}
-          </>
+          </Suspense>
         ) : (
-          <div className="notes-empty">
-            <h2>{cards.length ? "No matching notes" : "A place for your notes"}</h2>
-            <p>
-              {cards.length
-                ? "Try another priority, label or search."
-                : "Take a note above. It stays on this device."}
-            </p>
-          </div>
+          <>
+            <QuickCapture
+              scope={scope}
+              readOnly={readOnly}
+              ready={!loading}
+              cards={cards}
+              initial={captureInitial}
+              persist={(raw) => localStorage.setItem("nabbit:note-capture", raw)}
+              open={openDraft}
+              saved={() => {
+                void refresh();
+                setAnnouncement("Note saved on this device");
+              }}
+            />
+            {error && (
+              <div role="alert" className="notes-error">
+                {error}
+                <button
+                  type="button"
+                  onClick={() => {
+                    useNotesStore.setState({ error: null });
+                    void refresh();
+                  }}
+                >
+                  Retry
+                </button>
+              </div>
+            )}
+            <div className="notes-filters" role="group" aria-label="Note priority filter">
+              {priorities.map((p) => (
+                <PresetChip key={p} selected={filter === p} onClick={() => setFilter(p)}>
+                  {titleCase(p)}
+                </PresetChip>
+              ))}
+              <PresetChip onClick={() => setView("links")}>
+                Links{" "}
+                {
+                  visibleNotes(cards, "links", "all", "", "", scope ? preferences : undefined)
+                    .length
+                }
+              </PresetChip>
+              <details className="notes-view-menu" ref={menuRef}>
+                <summary aria-label="Notes view and labels" title="Notes view and labels">
+                  <NotesIcon name="grid" />
+                </summary>
+                <div className="notes-menu">
+                  <p>View</p>
+                  {(["notes", "links", "archive", "trash"] as const).map((v) => (
+                    <button
+                      key={v}
+                      aria-pressed={view === v}
+                      onClick={() => {
+                        setView(v);
+                        closeViewMenu();
+                      }}
+                    >
+                      {titleCase(v)}
+                    </button>
+                  ))}
+                  <button
+                    type="button"
+                    onClick={() => {
+                      closeViewMenu();
+                      setImporting(true);
+                    }}
+                  >
+                    Import bookmarks
+                  </button>
+                  <label>
+                    Labels
+                    <select
+                      aria-label="Filter by label"
+                      value={label}
+                      onChange={(e) => {
+                        setLabel(e.target.value);
+                        closeViewMenu();
+                      }}
+                    >
+                      <option value="">All labels</option>
+                      {labels.map((item) => (
+                        <option key={item}>{item}</option>
+                      ))}
+                    </select>
+                  </label>
+                </div>
+              </details>
+            </div>
+            {(label || view !== "notes") && (
+              <div className="notes-current-filter">
+                <span>
+                  {titleCase(view)}
+                  {label ? ` · ${label}` : ""}
+                </span>
+                <button
+                  onClick={() => {
+                    setLabel("");
+                    setView("notes");
+                  }}
+                >
+                  Reset view
+                </button>
+              </div>
+            )}
+            {search !== null && (
+              <label className="notes-search">
+                Search notes
+                <input
+                  ref={searchRef}
+                  aria-label="Search notes"
+                  type="search"
+                  value={search}
+                  onChange={(e) => setSearch(e.target.value)}
+                  onKeyDown={(e) => {
+                    if (e.key === "Escape") {
+                      setSearch(null);
+                      document.querySelector<HTMLInputElement>("[data-note-capture]")?.focus();
+                    }
+                  }}
+                />
+              </label>
+            )}
+            {loading ? (
+              <p role="status">Loading notes…</p>
+            ) : found.length ? (
+              <>
+                {group("Pinned", pinned)}
+                {group(
+                  pinned.length ? "Others" : view === "notes" ? "Notes" : titleCase(view),
+                  others,
+                )}
+              </>
+            ) : (
+              <div className="notes-empty">
+                <h2>{cards.length ? "No matching notes" : "A place for your notes"}</h2>
+                <p>
+                  {cards.length
+                    ? "Try another priority, label or search."
+                    : "Take a note above. It stays on this device."}
+                </p>
+              </div>
+            )}
+          </>
         )}
         <span className="sr-only" role="status">
           {announcement}
@@ -354,6 +404,16 @@ export function NotesView({ navigation }: { navigation?: NotesNavigation | null 
       <footer className="notes-footer">
         <TackSettings compact />
       </footer>
+      {importing && (
+        <Suspense fallback={<p role="status">Opening bookmark import…</p>}>
+          <BookmarkImportSheet
+            scope={scope}
+            readOnly={readOnly}
+            close={() => setImporting(false)}
+            changed={refresh}
+          />
+        </Suspense>
+      )}
       {editing ? (
         <Suspense fallback={<span role="status">Opening note…</span>}>
           <NoteEditor

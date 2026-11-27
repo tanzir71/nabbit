@@ -50,6 +50,7 @@ const mockSettings: AppSettings = {
   togglePopoverShortcut: "CmdOrCtrl+Shift+V",
   quickDownloadShortcut: "Ctrl+Alt+D",
   clipboardSearchShortcut: "CmdOrCtrl+Shift+C",
+  selectedTextShortcut: "Ctrl+Alt+S",
   defaultQuality: "1080p",
   outputDir: "",
   filenameTemplate: "%(title)s [%(id)s].%(ext)s",

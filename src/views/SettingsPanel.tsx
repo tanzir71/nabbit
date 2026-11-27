@@ -89,6 +89,12 @@ export function SettingsPanel({ onClose }: { onClose: () => void }) {
               onChange={(event) => patch({ clipboardSearchShortcut: event.target.value })}
             />
           </div>
+          <Field
+            label="Act on selected link"
+            className="font-mono"
+            value={settings.selectedTextShortcut ?? "Ctrl+Alt+S"}
+            onChange={(e) => patch({ selectedTextShortcut: e.target.value })}
+          />
           <IslandShortcutField
             value={settings.islandShortcut ?? "Alt+Space"}
             save={async (islandShortcut) => {

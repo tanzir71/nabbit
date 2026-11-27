@@ -1,0 +1,28 @@
+import { draft } from "./types";
+export function parseBookmarks(text: string) {
+  const document = new DOMParser().parseFromString(text, "text/html");
+  const out = [] as ReturnType<typeof draft>[];
+  function walk(element: Element, path: string[]) {
+    let folder = "";
+    for (const child of element.children) {
+      if (child.tagName === "H3") folder = child.textContent ?? "";
+      if (child.tagName === "A") {
+        const url = child.getAttribute("href") ?? "";
+        if (!/^https?:\/\//i.test(url)) continue;
+        const d = draft(child.textContent ?? url, "", "bookmark");
+        d.card.url = url;
+        d.card.labels = path.filter(Boolean);
+        d.row = `bookmark ${out.length + 1}`;
+        const at = Number(child.getAttribute("add_date"));
+        if (at > 0) d.card.createdAt = new Date(at * 1000).toISOString();
+        out.push(d);
+      } else
+        walk(
+          child,
+          child.tagName === "DL" && folder ? [...path, folder] : path,
+        );
+    }
+  }
+  walk(document.body, []);
+  return out;
+}

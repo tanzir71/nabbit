@@ -111,3 +111,19 @@ Fresh Figma contexts `27:605`, `31:1064`, `13:242` and reference PNGs were revie
 **Optional PHP suite: skipped.** `v48-php.json` records installed PHP8.2.30 without pdo_sqlite. No portable runtime was installed; no hosted Tack, user account, real clipboard, global keyboard input or OS display/theme setting was used. This suite never gates acceptance. Existing platform/performance limits remain.
 
 Failed and superseded attempts remain in `v48-earlier-attempts.json`, partial PNGs/reports and deterministic gzip archives. The first native assertion dump contained unnecessary optimistic edit UUIDs: its complete original remains ignored and is hashed in that manifest; it is omitted from public diagnostics without waiving scanner rules. Accepted native snapshots already omit edit guards. Native driver races were fixed by waiting for both save/checkpoint completion and assigning a new CDP port per restart. The first sticky capture overlapped a Vite rebuild and received404s; accepted capture ran after build completion. The old generic site driver expects a permanently visible mobile nav CTA and fails against the current Figma menu; the current accessibility suite exercises that menu and its CTAs. The dedicated Notes driver verifies the actual new section. Only the authoritative prefixes named above establish acceptance.
+
+## V4.9 — Links and bookmark imports
+
+Save link is available in the copied-link row, URL capture/editor and island New note drop. Ctrl+Alt+N with a URL and Ctrl+Alt+S with one selected URL open an unsaved bookmark editor. Titles use a bounded cookie-free GET or existing downloader metadata. Original URLs remain intact; duplicate identity removes tracking/fragment/trailing slash only for comparison. Video links retain staged Download.
+
+Shared lazy Links in tray and always-dark island searches title/domain, filters labels/Later and supports guarded bulk Label/Later/Archive/Open all. Import is available in Notes overflow, Links and Settings → Notes & Tack. It scans known Chromium roots, copies Firefox places/WAL read-only and accepts a picked HTML export; the sheet lists exact paths. Folder labels, Later and duplicate skipping default on; Inbox and alternative options are supported. One durable import/undo group survives retry and explicit local upload. Progress uses the existing activity pill; sync batches remain at most 50.
+
+Authoritative evidence:
+
+- [Receipt](v49-acceptance.json), [requirements](v49-requirements.json), [checks and original log archives](v49-checks.json).
+- [19 browser-to-Rust cases](v49-delivery-flow.json), including actual clipboard Save/Clean, new bookmark editor, pinned Tack DOMParser parity, five synthetic browser profiles, HTML picker, 56-link import and grouped undo.
+- [Eight native cases](v49-delivery-native.json): six sticky regressions plus real Tauri link metadata/capture/dedupe/clean IPC, using an owned HTTP server and isolated SQLite/WebView2/HWND.
+- [40 visual captures](v49-delivery-screenshots.json): ten states, light/dark, 1x/1.5x, exact repeats, original SVG slots, bundled Geist and zero default axe violations/incompletes. [Figma comparison](v49-figma-reference.json), [original assets](v49-assets.json), [upstream Git blobs](v49-tack-source.json).
+- [All 857 retained M9 PNGs](v49-png-audit.json) decode and stay <=300,000 bytes. [Current entry graph](v49-delivery-entry-bundles.json): initial island JS 91,336/120,000 gzip bytes.
+
+Native picker/UIA adapters compile on Windows and use injected sources/policy in acceptance. No real bookmark profile, clipboard, selection, global shortcut, hosted Tack, user account, OS setting or installer is touched. [Privacy](../../../PRIVACY.md) describes the explicit reads/network requests. [Failed and superseded attempts](v49-earlier-attempts.json) remain; only delivery reports share the final manifest/executable. M9 is pending, with no push or PR in this task.

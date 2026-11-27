@@ -153,6 +153,8 @@ pub struct AppSettings {
     pub island_shortcut: String,
     pub quick_download_shortcut: String,
     pub clipboard_search_shortcut: String,
+    #[serde(default = "default_selection_shortcut")]
+    pub selected_text_shortcut: String,
     pub default_quality: String,
     pub output_dir: String,
     pub filename_template: String,
@@ -191,6 +193,7 @@ impl Default for AppSettings {
             island_shortcut: default_island_shortcut(),
             quick_download_shortcut: "Ctrl+Alt+D".into(),
             clipboard_search_shortcut: "CmdOrCtrl+Shift+C".into(),
+            selected_text_shortcut: default_selection_shortcut(),
             default_quality: "1080p".into(),
             output_dir: String::new(),
             filename_template: "%(title)s [%(id)s].%(ext)s".into(),
@@ -201,4 +204,8 @@ impl Default for AppSettings {
             last_tab: "download".into(),
         }
     }
+}
+
+fn default_selection_shortcut() -> String {
+    "Ctrl+Alt+S".into()
 }

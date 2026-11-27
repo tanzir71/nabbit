@@ -4,6 +4,8 @@ import { IconButton } from "../components/IconButton";
 import { filterClipboardEntries, formatRelativeTime, clampIndex } from "../lib/search";
 import type { ClipboardEntry } from "../lib/types";
 import { useAppStore } from "../store/useAppStore";
+import { newestClipboardEntry } from "../features/notes/linkPresentation";
+import { ClipboardLinkRow } from "../features/notes/ClipboardLinkRow";
 
 export function ClipboardList() {
   const entries = useAppStore((state) => state.clipboardEntries);
@@ -39,7 +41,11 @@ export function ClipboardList() {
     };
   }, []);
 
+  const contextEntry = query.trim() ? filtered[0] : newestClipboardEntry(entries);
+
   const handleKeyDown = (event: KeyboardEvent<HTMLDivElement>) => {
+    if (event.target instanceof HTMLElement && event.target.closest("button,a,select,textarea"))
+      return;
     if ((event.metaKey || event.ctrlKey) && event.key.toLowerCase() === "f") {
       event.preventDefault();
       searchRef.current?.focus();
@@ -89,6 +95,15 @@ export function ClipboardList() {
         </label>
       </div>
       <div className="min-h-0 flex-1 overflow-y-auto p-2">
+        {contextEntry?.contentType === "url" && (
+          <ClipboardLinkRow
+            entry={contextEntry}
+            download={async (url) => {
+              await stageUrl(url);
+              await setLastTab("download");
+            }}
+          />
+        )}
         {filtered.length === 0 ? (
           <div className="grid h-full place-items-center p-8 text-center">
             <div>

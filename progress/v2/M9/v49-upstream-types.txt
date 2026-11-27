@@ -1,0 +1,44 @@
+import { makeCard, type Attachment, type Card, type Reminder } from "../cards";
+import { parseCapture } from "../capture";
+export type Draft = {
+  card: Card;
+  reminder?: Omit<Reminder, "id" | "revision" | "entityId">;
+  attachments: Attachment[];
+  row: string;
+  projectName?: string;
+  priorityValue?: string;
+  duplicate?: boolean;
+};
+export function draft(
+  title: string,
+  body = "",
+  kind: Card["kind"] = "task",
+): Draft {
+  if(title.length>300)throw new Error('An imported title exceeds the 300-character limit. Shorten it in the source file and try again.');
+  if(body.length>200000)throw new Error('An imported body exceeds the 200,000-character limit. Shorten it in the source file or skip that column and try again.');
+  return {
+    card: makeCard(kind, title, body),
+    attachments: [],
+    row: "",
+  };
+}
+export function schedule(d: Draft, value: string) {
+  if (!value.trim()) return;
+  const parsed = /^\d{4}-\d{2}-\d{2}T/.test(value)
+    ? undefined
+    : parseCapture(`Reminder ${value}`).reminder;
+  const date = parsed ? new Date(parsed.at) : new Date(value);
+  if (!Number.isFinite(date.getTime()))
+    throw new Error(`Invalid reminder “${value}” at ${d.row || d.card.title}.`);
+  d.reminder = {
+    at: date.toISOString(),
+    timeZone:
+      parsed?.timeZone ?? Intl.DateTimeFormat().resolvedOptions().timeZone,
+    repeat: parsed?.repeat ?? "none",
+    anchorDay: date.getDate(),
+    entityType: "card",
+    enabled: true,
+    snoozedUntil: null,
+    lastCompletedAt: null,
+  };
+}

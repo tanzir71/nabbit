@@ -1,0 +1,31 @@
+{
+  "passed": true,
+  "checks": [
+    "Local-only editor saves body, colour, label, pin and reminder atomically through real Rust/SQLite with zero HTTP requests",
+    "Escape and close require an explicit dirty-draft decision; discard does not save",
+    "Explicit first connection uploads the local card and its remapped reminder once; the real fake allocates Tack's Build-label bui reference",
+    "Two actual HTTP clients create text conflicts; both UI resolutions use frozen guards, survive acknowledgement and retain the losing body in note_revisions",
+    "History is readable in the editor; reminder edits round trip through the fake and reload; DB/logs contain neither synthetic password nor recovery code",
+    "Parsed Enter capture writes one card/reminder atomically, replays without duplication and receives its reference through the real fake sync",
+    "Shift+Enter opens an unsaved checklist; full editor creates it once with stable item identity, parsed labels/priority, colour and body",
+    "Unlabelled UI capture receives a real server tck-N; editing/checking/recolouring/labelling/pinning preserves unknown nested card and checklist fields after HTTP acknowledgement",
+    "Archive, trash and restore UI actions persist and round trip through the owned fake, including archived-card editor navigation",
+    "Sticky UI autosaves via guarded production SQLite/outbox/Service/HTTP; main editor reads the same card and unknown fields survive (window lifecycle remains a test seam)",
+    "Native HTML5 import matches the pinned Tack DOMParser walk for nested folders, dates, entities and bookmarklet rejection, with Nabbit root-label filtering",
+    "New bookmark editor uses Save link, resolves its automatic title through the production metadata service and preserves the address",
+    "Bounded cookie-free metadata GET prefers OG title; scoped save preserves the original address and both request replay and normalized duplicate capture return one card",
+    "Import sheet reads five isolated browser profiles plus an injected HTML picker, displays exact allowlisted files, defaults Later/folder labels/dedupe, imports 56 dated links once and syncs in at most 50 mutations per request",
+    "Links UI searches domains, filters folder labels and applies guarded bulk labels/archive; Open all and Copy reach recording providers without opening browsers or touching the OS clipboard",
+    "One durable undo group trashes all 56 imported links through real sync, preserves subsequent labels/archive and is idempotent",
+    "Durable capture navigation is consumed once after reload; local-only Enter capture persists with zero additional fake HTTP calls",
+    "Live Rust push events reach the browser without a polling timer; no unknown IPC or external network"
+  ],
+  "problems": [],
+  "buildManifestSha256": "745bc8224d2e07494aa4f7c9f69a0e94a84eb8801403ec63638a1f494620db23",
+  "rustBridgeExitCode": 0,
+  "scope": "Actual browser UI, typed frontend API, test-only IPC forwarding bridge, production Rust Service/client/SQLite and in-process Rust fake. HTTPS .invalid alias maps to the owned loopback fake only in the test bridge. No native Tauri IPC or OS clipboard claim.",
+  "noHostedTack": true,
+  "noUserAccount": true,
+  "noRealClipboard": true,
+  "noExternalNetwork": true
+}

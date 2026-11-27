@@ -2,7 +2,11 @@ import { invoke } from "@tauri-apps/api/core";
 import type { NoteDraft, NotePatch, StoredNote, NotesState, NotesContext } from "./types";
 
 export const notesApi = {
-  capture: (request: NoteCaptureRequest) => invoke<StoredNote>("capture_note", { request }),
+  capture: (request: NoteCaptureRequest) =>
+    invoke<StoredNote>(
+      (request.patch.kind ?? request.draft.kind) === "bookmark" ? "save_link" : "capture_note",
+      { request },
+    ),
   open: (intent: NotesIntent) => invoke<void>("notes_open", { intent }),
   takeIntent: () =>
     invoke<{ navigation: NotesNavigation | null; shortcutError: string | null }>(
@@ -78,7 +82,7 @@ export interface NoteCaptureRequest {
   reminders: ReminderEdit[];
 }
 export type NotesIntent =
-  | { kind: "capture" | "all" }
+  | { kind: "capture" | "all" | "links" | "import" }
   | { kind: "new"; request: NoteCaptureRequest }
   | { kind: "card"; id: string; expectedScope: NotesContext | null };
 export interface NotesNavigation {

@@ -10,6 +10,8 @@ import type { ClipboardEntry } from "../../lib/types";
 import type { IslandAction, IslandModel } from "../../store/islandStore";
 import { MiniButton, type IslandIntent } from "./CompactContent";
 import { IslandNotes } from "../../features/notes/IslandNotes";
+import { newestClipboardEntry } from "../../features/notes/linkPresentation";
+import { ClipboardLinkRow } from "../../features/notes/ClipboardLinkRow";
 interface Props {
   model: IslandModel;
   dispatch: (action: IslandAction) => void;
@@ -62,6 +64,8 @@ function Clipboard({ model, dispatch, act }: Props) {
           )[filter]) &&
       `${entry.content} ${entry.preview}`.toLowerCase().includes(query.toLowerCase()),
   );
+  const contextEntry =
+    query.trim() || filter !== "All" ? filtered[0] : newestClipboardEntry(entries);
   return (
     <div className="island-module-body">
       <div className="island-row">
@@ -86,6 +90,15 @@ function Clipboard({ model, dispatch, act }: Props) {
         ))}
       </div>
       <div className="island-clipboard-rows">
+        {contextEntry?.contentType === "url" && (
+          <ClipboardLinkRow
+            entry={contextEntry}
+            download={async (url) => {
+              await invoke("island_review_url", { url });
+              dispatch({ type: "tab", tab: "nab" });
+            }}
+          />
+        )}
         {filtered.map((entry) => (
           <div key={entry.id} className="island-row">
             <button

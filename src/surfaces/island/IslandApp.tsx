@@ -21,6 +21,7 @@ import { tabs } from "../../store/islandStore";
 import { BubbleContent, CompactContent, type IslandIntent } from "./CompactContent";
 import { PeekContent } from "./PeekContent";
 import { DropContent } from "./DropContent";
+import { notesApi } from "../../features/notes/api";
 const Expanded = lazy(() => import("./ExpandedShell"));
 const native = () => "__TAURI_INTERNALS__" in window;
 
@@ -337,6 +338,22 @@ export function IslandApp({ suppliedStore }: { suppliedStore?: IslandStore }) {
         await invoke("island_review_url", { url });
         store.getState().dispatch({ type: "tab", tab: "nab" });
         dispatch({ type: "open" });
+      } catch (reason) {
+        fail(reason);
+      }
+    } else if (receipt.zone === "note" && classify(data) === "link") {
+      const url = data.url || data.text?.trim() || "";
+      try {
+        const { scope } = await notesApi.state();
+        await notesApi.capture({
+          requestId: crypto.randomUUID(),
+          expectedScope: scope,
+          draft: { kind: "bookmark", title: url, url, priority: "inbox", labels: [] },
+          patch: {},
+          reminders: [],
+        });
+        dispatch({ type: "dragLeave" });
+        dispatch({ type: "collapse" });
       } catch (reason) {
         fail(reason);
       }
