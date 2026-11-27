@@ -1,0 +1,17 @@
+{
+  "passed": true,
+  "checks": [
+    "HTTPS validation, sign in, password input clearing, recovery copy seam and mandatory saved confirmation; no sync before workspace confirmation",
+    "Explicit Team selection, persisted task/label scope, unchecked one-time local upload, real server ref, no duplicate after reopening/reload, no password or recovery code in DB/logs",
+    "Settings signout retains notes; reconnect prefills non-secret hints, clears password, sanitizes 503 and honors 429 retry delay",
+    "Live Rust push events reach the browser without a polling timer; no unknown IPC or external network"
+  ],
+  "problems": [],
+  "buildManifestSha256": "2d86f100569df6f04f532739618d36dce4f8a674e43b3af5c6be1abd50d37806",
+  "rustBridgeExitCode": 0,
+  "scope": "Actual browser UI, typed frontend API, test-only IPC forwarding bridge, production Rust Service/client/SQLite and in-process Rust fake. HTTPS .invalid alias maps to the owned loopback fake only in the test bridge. No native Tauri IPC or OS clipboard claim.",
+  "noHostedTack": true,
+  "noUserAccount": true,
+  "noRealClipboard": true,
+  "noExternalNetwork": true
+}

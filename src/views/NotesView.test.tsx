@@ -9,6 +9,9 @@ import { visibleNotes, type CardValue, type StoredNote } from "../features/notes
 vi.mock("../features/notes/api", () => ({
   notesApi: { list: vi.fn(), state: vi.fn(), create: vi.fn(), update: vi.fn() },
 }));
+vi.mock("../features/notes/TackSettings", () => ({
+  TackSettings: () => <span>Local only · Saved on this device</span>,
+}));
 function card(patch: Partial<CardValue> = {}): StoredNote {
   return {
     localOnly: true,

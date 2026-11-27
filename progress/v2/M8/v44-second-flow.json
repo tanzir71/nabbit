@@ -1,0 +1,18 @@
+{
+  "passed": false,
+  "failure": {
+    "message": "locator.waitFor: Timeout 30000ms exceeded.\nCall log:\n\u001b[2m  - waiting for getByRole('heading', { name: 'No matching notes', exact: true }) to be visible\u001b[22m\n",
+    "stack": "locator.waitFor: Timeout 30000ms exceeded.\nCall log:\n\u001b[2m  - waiting for getByRole('heading', { name: 'No matching notes', exact: true }) to be visible\u001b[22m\n\n    at D:\\claude-upgrade-26\\nabbit\\scripts\\verify-tack-flow.mjs:228:79"
+  },
+  "checks": [
+    "HTTPS validation, sign in, password input clearing, recovery copy seam and mandatory saved confirmation; no sync before workspace confirmation"
+  ],
+  "problems": [],
+  "buildManifestSha256": "2d86f100569df6f04f532739618d36dce4f8a674e43b3af5c6be1abd50d37806",
+  "rustBridgeExitCode": 0,
+  "scope": "Actual browser UI, typed frontend API, test-only IPC forwarding bridge, production Rust Service/client/SQLite and in-process Rust fake. HTTPS .invalid alias maps to the owned loopback fake only in the test bridge. No native Tauri IPC or OS clipboard claim.",
+  "noHostedTack": true,
+  "noUserAccount": true,
+  "noRealClipboard": true,
+  "noExternalNetwork": true
+}

@@ -6,7 +6,10 @@ use super::{
     schedule::Schedule,
     session::{KeyringVault, Password, RecoveryCode},
 };
-use crate::db::Database;
+use crate::{
+    db::Database,
+    notes::preferences::{Profile, Setup},
+};
 use std::sync::atomic::{AtomicU64, Ordering};
 use std::{
     sync::{Arc, Condvar, Mutex, OnceLock},
@@ -33,6 +36,8 @@ impl Default for State {
 }
 type Observer = dyn Fn(SyncSnapshot) + Send + Sync;
 struct Inner {
+    #[cfg(test)]
+    test_transport: OnceLock<(Endpoint, Arc<dyn super::session::Vault>)>,
     operation: Mutex<()>,
     client: Mutex<Option<Client>>,
     state: Mutex<State>,
@@ -47,6 +52,8 @@ pub struct Service(Arc<Inner>);
 impl Default for Service {
     fn default() -> Self {
         Self(Arc::new(Inner {
+            #[cfg(test)]
+            test_transport: OnceLock::new(),
             operation: Mutex::new(()),
             client: Mutex::new(None),
             state: Mutex::new(State::default()),
@@ -291,13 +298,47 @@ impl Service {
         }
         Ok(())
     }
+    fn endpoint(&self, base_url: &str) -> Result<Endpoint> {
+        #[cfg(test)]
+        if let Some((endpoint, _)) = self.0.test_transport.get() {
+            if endpoint.base().as_str() == base_url {
+                return Ok(endpoint.clone());
+            }
+        }
+        Endpoint::new(base_url)
+    }
+    fn client(&self, endpoint: Endpoint) -> Result<Client> {
+        #[cfg(test)]
+        if let Some((allowed, vault)) = self.0.test_transport.get() {
+            if allowed.base() == endpoint.base() {
+                return Client::new(endpoint, vault.clone());
+            }
+        }
+        Client::new(endpoint, Arc::new(KeyringVault))
+    }
+    fn staged(&self, pending: bool) -> Result<()> {
+        let mut state = self
+            .0
+            .state
+            .lock()
+            .map_err(|_| Error::new(ErrorCode::Offline))?;
+        state.schedule.disconnect();
+        state.error = None;
+        state.status = if pending {
+            SyncStatus::RecoveryPending
+        } else {
+            SyncStatus::LocalOnly
+        };
+        Ok(())
+    }
     pub fn status(&self, base_url: &str) -> Result<Connection> {
         let _operation = self
             .0
             .operation
             .lock()
             .map_err(|_| Error::new(ErrorCode::Offline))?;
-        let endpoint = Endpoint::new(base_url)?;
+        let endpoint = self.endpoint(base_url)?;
+        self.db()?.tack_hint(endpoint.base().as_str(), None)?;
         let result: Result<Connection> = (|| {
             let mut slot = self
                 .0
@@ -309,14 +350,16 @@ impl Service {
                 .is_none_or(|c| c.endpoint().base() != endpoint.base())
             {
                 self.pause()?;
-                *slot = Some(Client::new(endpoint, Arc::new(KeyringVault))?);
+                *slot = Some(self.client(endpoint)?);
             }
             let connection = slot
                 .as_mut()
                 .ok_or_else(|| Error::new(ErrorCode::SignedOut))?
                 .status()?;
-            if connection.ready {
+            if connection.ready && self.db()?.tack_enabled()? {
                 self.accept(&connection, false)?;
+            } else if connection.ready {
+                self.staged(false)?;
             } else {
                 self.failed(Error::new(if connection.recovery_pending {
                     ErrorCode::RecoveryPending
@@ -359,17 +402,10 @@ impl Service {
                 .as_mut()
                 .ok_or_else(|| Error::new(ErrorCode::SignedOut))?
                 .login(username, password)?;
-            if reply.connection.ready {
-                self.accept(&reply.connection, true)?;
-            } else {
-                let mut state = self
-                    .0
-                    .state
-                    .lock()
-                    .map_err(|_| Error::new(ErrorCode::Offline))?;
-                state.status = SyncStatus::RecoveryPending;
-                state.error = None;
+            if let (Some(base), Some(user)) = (&reply.connection.base_url, &reply.connection.user) {
+                self.db()?.tack_hint(base, Some(&user.username))?;
             }
+            self.staged(reply.connection.recovery_pending)?;
             Ok(reply)
         })();
         if let Err(error) = &result {
@@ -395,7 +431,7 @@ impl Service {
                 .as_mut()
                 .ok_or_else(|| Error::new(ErrorCode::SignedOut))?
                 .confirm_recovery(code)?;
-            self.accept(&connection, true)?;
+            self.staged(false)?;
             Ok(connection)
         })();
         if let Err(error) = &result {
@@ -421,7 +457,7 @@ impl Service {
                 .as_mut()
                 .ok_or_else(|| Error::new(ErrorCode::SignedOut))?
                 .switch_workspace(id)?;
-            self.accept(&connection, true)?;
+            self.staged(false)?;
             Ok(connection)
         })();
         if let Err(error) = &result {
@@ -429,6 +465,128 @@ impl Service {
         }
         self.emit();
         result
+    }
+    pub(crate) fn profile(&self) -> Result<Profile> {
+        Ok(self.db()?.tack_profile()?)
+    }
+    pub(crate) fn workspace_profile(&self, id: &str) -> Result<Profile> {
+        let connection = self.snapshot()?;
+        let workspace = connection
+            .workspaces
+            .iter()
+            .find(|w| w.id == id)
+            .ok_or_else(|| Error::new(ErrorCode::InvalidInput))?;
+        let mut identity = Self::identity(&connection)?;
+        identity.workspace_id = workspace.id.clone();
+        let mut profile = self.db()?.tack_profile_for(Some(&Context {
+            key: identity.key(),
+            epoch: 0,
+        }))?;
+        profile.read_only = workspace.role == "guest";
+        Ok(profile)
+    }
+    pub(crate) fn start_scope(&self, request: Setup) -> Result<Connection> {
+        let preferences = request
+            .preferences
+            .normalized()
+            .map_err(|_| Error::new(ErrorCode::InvalidInput))?;
+        let id = request.workspace_id.as_str();
+        let upload = request.upload_local;
+        let _operation = self
+            .0
+            .operation
+            .lock()
+            .map_err(|_| Error::new(ErrorCode::Offline))?;
+        let result = (|| {
+            let mut slot = self
+                .0
+                .client
+                .lock()
+                .map_err(|_| Error::new(ErrorCode::Offline))?;
+            self.pause()?;
+            let client = slot
+                .as_mut()
+                .ok_or_else(|| Error::new(ErrorCode::SignedOut))?;
+            let previous = client.snapshot();
+            if previous.user.as_ref().map(|u| u.id.as_str())
+                != Some(request.expected_user_id.as_str())
+                || previous.base_url.as_deref() != Some(request.expected_base_url.as_str())
+            {
+                return Err(Error::new(ErrorCode::WorkspaceChanged));
+            }
+            let fresh = client.status()?;
+            if fresh.user.as_ref().map(|u| u.id.as_str()) != Some(request.expected_user_id.as_str())
+            {
+                return Err(Error::new(ErrorCode::WorkspaceChanged));
+            }
+            if !fresh.ready {
+                return Err(Error::new(if fresh.recovery_pending {
+                    ErrorCode::RecoveryPending
+                } else {
+                    ErrorCode::SignedOut
+                }));
+            }
+            let workspace = fresh
+                .workspaces
+                .iter()
+                .find(|w| w.id == id)
+                .ok_or_else(|| Error::new(ErrorCode::WorkspaceChanged))?;
+            let read_only = workspace.role == "guest";
+            if read_only && upload {
+                return Err(Error::new(ErrorCode::InvalidInput));
+            }
+            let connection = if fresh.workspace.as_ref().is_some_and(|w| w.id == id) {
+                fresh
+            } else {
+                client.switch_workspace(id)?
+            };
+            let context = self.db()?.tack_configure(
+                &Self::identity(&connection)?,
+                Some((preferences, read_only)),
+            )?;
+            if upload {
+                self.db()?.tack_upload_local(&context)?;
+            }
+            self.db()?.tack_enable(&context)?;
+            let mut state = self
+                .0
+                .state
+                .lock()
+                .map_err(|_| Error::new(ErrorCode::Offline))?;
+            state.schedule.connect(self.now());
+            state.status = SyncStatus::Syncing;
+            state.error = None;
+            state.needs_status = false;
+            self.0.changed.notify_one();
+            Ok(connection)
+        })();
+        if let Err(error) = &result {
+            self.failed(error.clone());
+        }
+        self.emit();
+        result
+    }
+    pub(crate) fn browser_target(&self) -> Result<String> {
+        let connection = self.snapshot()?;
+        if !connection.checked {
+            return Err(Error::new(ErrorCode::InvalidServer));
+        }
+        let base = connection
+            .base_url
+            .ok_or_else(|| Error::new(ErrorCode::InvalidServer))?;
+        Ok(Endpoint::new(&base)?.base().to_string())
+    }
+    #[cfg(test)]
+    pub(super) fn test_connection(
+        db: Database,
+        endpoint: Endpoint,
+        vault: Arc<dyn super::session::Vault>,
+        observer: Arc<Observer>,
+    ) -> Result<Self> {
+        let service = Self::default();
+        let _ = service.0.test_transport.set((endpoint, vault));
+        service.start_worker(db, observer, false, false)?;
+        Ok(service)
     }
     pub fn logout(&self) -> Result<Connection> {
         let _operation = self

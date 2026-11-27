@@ -99,14 +99,14 @@ pub(crate) fn migrate(conn: &mut Connection) -> Result<()> {
     tx.commit()?;
     Ok(())
 }
-fn meta(conn: &Connection, key: &str) -> Result<Option<String>> {
+pub(crate) fn meta(conn: &Connection, key: &str) -> Result<Option<String>> {
     Ok(conn
         .query_row("SELECT value FROM tack_meta WHERE key=?1", [key], |r| {
             r.get(0)
         })
         .optional()?)
 }
-fn set_meta(conn: &Connection, key: &str, value: &str) -> Result<()> {
+pub(crate) fn set_meta(conn: &Connection, key: &str, value: &str) -> Result<()> {
     conn.execute("INSERT INTO tack_meta(key,value) VALUES(?1,?2) ON CONFLICT(key) DO UPDATE SET value=excluded.value",params![key,value])?;
     Ok(())
 }
@@ -152,7 +152,7 @@ pub(crate) fn queue(
     id: &str,
     value: &Value,
 ) -> Result<()> {
-    ensure(conn, Some(context))?;
+    super::preferences::writable(conn, Some(context))?;
     let base = conn
         .query_row(
             "SELECT version,value FROM tack_mirror WHERE scope=?1 AND tbl=?2 AND id=?3",
@@ -403,6 +403,16 @@ impl Database {
         )
     }
     pub(crate) fn tack_activate(&self, identity: &Identity) -> Result<Context> {
+        self.tack_configure(identity, None)
+    }
+    pub(crate) fn tack_configure(
+        &self,
+        identity: &Identity,
+        preferences: Option<(super::preferences::Preferences, bool)>,
+    ) -> Result<Context> {
+        let preferences = preferences
+            .map(|(p, ro)| p.normalized().map(|p| (p, ro)))
+            .transpose()?;
         let mut conn = self
             .conn
             .lock()
@@ -417,10 +427,38 @@ impl Database {
             params![context.key, serde_json::to_string(identity)?],
         )?;
         set_meta(&tx, "active_scope", &context.key)?;
-        set_meta(&tx, "enabled", "true")?;
+        set_meta(
+            &tx,
+            "enabled",
+            if preferences.is_some() {
+                "false"
+            } else {
+                "true"
+            },
+        )?;
+        if let Some((preferences, read_only)) = preferences {
+            set_meta(
+                &tx,
+                &format!("preferences/{}", context.key),
+                &serde_json::to_string(&preferences)?,
+            )?;
+            set_meta(
+                &tx,
+                &format!("read_only/{}", context.key),
+                if read_only { "true" } else { "false" },
+            )?;
+        }
         changed(&tx)?;
         tx.commit()?;
         Ok(context)
+    }
+    pub(crate) fn tack_enable(&self, context: &Context) -> Result<()> {
+        let conn = self
+            .conn
+            .lock()
+            .map_err(|_| msg("database lock poisoned"))?;
+        ensure(&conn, Some(context))?;
+        set_meta(&conn, "enabled", "true")
     }
     pub(crate) fn tack_identity(&self, context: &Context) -> Result<Identity> {
         let conn = self
@@ -477,6 +515,9 @@ impl Database {
             .lock()
             .map_err(|_| msg("database lock poisoned"))?;
         ensure(&conn, Some(context))?;
+        if super::preferences::read_only(&conn, Some(context))? {
+            return Ok(vec![]);
+        }
         let mut batch = vec![];
         let mut bytes = 128;
         let mut statement=conn.prepare("SELECT token,tbl,id,base_version,base_value,value,attempts FROM tack_outbox o WHERE scope=?1 AND NOT EXISTS(SELECT 1 FROM tack_conflicts c WHERE c.scope=o.scope AND c.tbl=o.tbl AND c.id=o.id) AND NOT EXISTS(SELECT 1 FROM tack_reference_issues i WHERE i.scope=o.scope AND i.tbl=o.tbl AND i.id=o.id) ORDER BY queued_at,tbl,id")?;
@@ -760,6 +801,9 @@ impl Database {
             ));
         }
         let remote: Value = serde_json::from_str(&raw)?;
+        if matches!(choice, Resolution::KeepLocal) {
+            super::preferences::writable(&tx, Some(context))?;
+        }
         match choice {
             Resolution::KeepLocal => {
                 history(&tx, context, table, id, &remote, "kept-this-pc")?;
@@ -801,7 +845,7 @@ impl Database {
             .lock()
             .map_err(|_| msg("database lock poisoned"))?;
         let tx = conn.transaction()?;
-        ensure(&tx, Some(context))?;
+        super::preferences::writable(&tx, Some(context))?;
         let rows=tx.prepare("SELECT id,value FROM note_cards WHERE scope='' AND local_only=1 ORDER BY json_extract(value,'$.rank') COLLATE BINARY,id")?.query_map([],|r|Ok((r.get::<_,String>(0)?,r.get::<_,String>(1)?)))?.collect::<std::result::Result<Vec<_>,_>>()?;
         let mut count = 0;
         for (local_id, raw) in rows {

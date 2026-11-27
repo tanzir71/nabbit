@@ -49,6 +49,8 @@ export interface NotesContext {
 export interface NotesState {
   cards: StoredNote[];
   scope: NotesContext | null;
+  preferences?: import("./tackApi").TackPreferences;
+  readOnly?: boolean;
 }
 export interface NoteDraft {
   title: string;
@@ -85,11 +87,17 @@ export function visibleNotes(
   priority: NotePriority | "all",
   label: string,
   query: string,
+  preferences?: import("./tackApi").TackPreferences,
 ) {
   const needle = query.trim().toLocaleLowerCase();
   return cards
     .filter(
-      ({ value: c }) =>
+      ({ value: c, localOnly }) =>
+        (localOnly ||
+          !preferences ||
+          ((preferences.showTasks || c.kind !== "task") &&
+            (!preferences.filterLabels ||
+              c.labels.some((label) => preferences.labels.includes(label))))) &&
         (view === "trash" ? !!c.trashedAt : !c.trashedAt && c.archived === (view === "archive")) &&
         (priority === "all" || c.priority === priority) &&
         (!label || c.labels.includes(label)) &&

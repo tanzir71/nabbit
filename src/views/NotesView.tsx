@@ -7,6 +7,7 @@ import { PresetChip } from "../components/PresetChip";
 import { NoteCard, type NoteColor } from "../components/NoteCard";
 import { DesignIcon } from "../components/DesignIcon";
 import { NotesIcon } from "../features/notes/NotesIcon";
+import { TackSettings } from "../features/notes/TackSettings";
 import {
   visibleNotes,
   type NoteKind,
@@ -44,7 +45,18 @@ const blank = (kind: NoteKind = "note"): Composer => ({
 });
 
 export function NotesView() {
-  const { cards, loading, error, busy, refresh, createNote, updateNote } = useNotesStore();
+  const {
+    cards,
+    scope,
+    preferences,
+    readOnly,
+    loading,
+    error,
+    busy,
+    refresh,
+    createNote,
+    updateNote,
+  } = useNotesStore();
   const [filter, setFilter] = useState<(typeof priorities)[number]>("all");
   const [label, setLabel] = useState("");
   const [view, setView] = useState<View>("notes");
@@ -56,10 +68,17 @@ export function NotesView() {
   const searchRef = useRef<HTMLInputElement>(null);
   const menuRef = useRef<HTMLDetailsElement>(null);
   const labels = [...new Set(cards.flatMap((c) => c.value.labels))].sort();
-  const found = visibleNotes(cards, view, filter, label, search ?? "");
+  const found = visibleNotes(
+    cards,
+    view,
+    filter,
+    label,
+    search ?? "",
+    scope ? preferences : undefined,
+  );
   const pinned = found.filter((c) => c.value.pinned),
     others = found.filter((c) => !c.value.pinned);
-  const saving = busy.includes(draft.card?.value.id ?? "new");
+  const saving = readOnly || busy.includes(draft.card?.value.id ?? "new");
   useEffect(() => {
     let active = true,
       stop: (() => void) | undefined;
@@ -179,7 +198,7 @@ export function NotesView() {
                 .filter((_, index) => index % 2 === column)
                 .map((note) => {
                   const c = note.value,
-                    disabled = busy.includes(c.id);
+                    disabled = readOnly || busy.includes(c.id);
                   const content =
                     c.kind === "note"
                       ? { kind: c.kind, body: c.body }
@@ -206,7 +225,7 @@ export function NotesView() {
                             ? (c.status ?? (c.completed ? "done" : "open"))
                             : undefined
                         }
-                        onOpen={() => edit(note)}
+                        onOpen={readOnly ? undefined : () => edit(note)}
                       />
                       <details className="notes-card-menu">
                         <summary
@@ -256,6 +275,11 @@ export function NotesView() {
   return (
     <section className="notes-view" aria-label="Notes">
       <div className="notes-body">
+        {readOnly ? (
+          <p className="tack-help" role="status">
+            Read-only Tack workspace. You can browse cards; editing is disabled.
+          </p>
+        ) : null}
         <form
           className="notes-composer"
           aria-label={draft.card ? "Edit local note" : "Create local note"}
@@ -561,7 +585,7 @@ export function NotesView() {
       </div>
       <footer className="notes-footer">
         <NotesIcon name="cloud" />
-        <span>Local only · Saved on this device</span>
+        <TackSettings compact />
       </footer>
     </section>
   );

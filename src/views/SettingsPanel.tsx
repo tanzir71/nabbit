@@ -11,6 +11,7 @@ import type { AppSettings, AppUpdateStatus, Quality } from "../lib/types";
 import { EngineHealthCard } from "./EngineHealthCard";
 import { IslandSettings } from "./IslandSettings";
 import { IslandShortcutField } from "./IslandShortcutField";
+import { TackSettings } from "../features/notes/TackSettings";
 
 const qualities: Array<{ label: string; value: Quality }> = [
   { label: "Best", value: "best" },
@@ -98,6 +99,10 @@ export function SettingsPanel({ onClose }: { onClose: () => void }) {
         </Section>
 
         <IslandSettings value={settings.island} />
+
+        <Section title="Notes & Tack">
+          <TackSettings />
+        </Section>
 
         <Section title="Downloads">
           <Segmented

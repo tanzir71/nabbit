@@ -3,6 +3,7 @@ pub mod endpoint;
 pub mod model;
 #[cfg(windows)]
 mod network;
+pub(crate) mod recovery_clipboard;
 mod schedule;
 pub mod service;
 pub mod session;

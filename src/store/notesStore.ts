@@ -5,6 +5,8 @@ import type { NoteDraft, NotePatch, StoredNote, NotesContext } from "../features
 interface NotesStore {
   cards: StoredNote[];
   scope: NotesContext | null;
+  preferences: import("../features/notes/tackApi").TackPreferences;
+  readOnly: boolean;
   loading: boolean;
   error: string | null;
   busy: string[];
@@ -17,6 +19,8 @@ const message = (reason: unknown) => (reason instanceof Error ? reason.message :
 export const useNotesStore = create<NotesStore>((set, get) => ({
   cards: [],
   scope: null,
+  preferences: { showTasks: true, filterLabels: false, labels: [] },
+  readOnly: false,
   loading: true,
   error: null,
   busy: [],
@@ -25,7 +29,13 @@ export const useNotesStore = create<NotesStore>((set, get) => ({
     try {
       const state = await notesApi.state();
       if (generation === loadGeneration)
-        set({ cards: state.cards, scope: state.scope, loading: false });
+        set({
+          cards: state.cards,
+          scope: state.scope,
+          preferences: state.preferences ?? { showTasks: true, filterLabels: false, labels: [] },
+          readOnly: state.readOnly ?? false,
+          loading: false,
+        });
     } catch (reason) {
       if (generation === loadGeneration) set({ error: message(reason), loading: false });
     }

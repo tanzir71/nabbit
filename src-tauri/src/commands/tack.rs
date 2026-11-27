@@ -1,3 +1,4 @@
+use crate::notes::preferences::{Profile, Setup};
 use crate::tack::{
     client::LoginReply,
     model::{Conflict, Connection, Context, Error, ErrorCode, Resolution, Result, SyncSnapshot},
@@ -99,4 +100,38 @@ pub async fn tack_upload_local_notes(
 pub async fn tack_local_mode(service: tauri::State<'_, Service>) -> Result<()> {
     let service = service.inner().clone();
     blocking(move || service.local_mode()).await
+}
+#[tauri::command]
+pub async fn tack_profile(service: tauri::State<'_, Service>) -> Result<Profile> {
+    let service = service.inner().clone();
+    blocking(move || service.profile()).await
+}
+#[tauri::command]
+pub async fn tack_workspace_profile(
+    service: tauri::State<'_, Service>,
+    id: String,
+) -> Result<Profile> {
+    let service = service.inner().clone();
+    blocking(move || service.workspace_profile(&id)).await
+}
+#[tauri::command]
+pub async fn tack_start_sync(
+    service: tauri::State<'_, Service>,
+    request: Setup,
+) -> Result<Connection> {
+    let service = service.inner().clone();
+    blocking(move || service.start_scope(request)).await
+}
+#[tauri::command]
+pub async fn tack_copy_recovery(code: String) -> Result<()> {
+    let code = crate::tack::session::RecoveryCode::new(code);
+    blocking(move || crate::tack::recovery_clipboard::copy(code)).await
+}
+#[tauri::command]
+pub async fn tack_open(service: tauri::State<'_, Service>) -> Result<()> {
+    let service = service.inner().clone();
+    blocking(move || {
+        open::that_detached(service.browser_target()?).map_err(|_| Error::new(ErrorCode::Offline))
+    })
+    .await
 }

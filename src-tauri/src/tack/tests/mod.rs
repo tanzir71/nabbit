@@ -1,3 +1,5 @@
+mod browser_bridge;
+mod connection_tests;
 mod fake;
 mod merge;
 mod sync_tests;

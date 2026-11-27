@@ -27,8 +27,16 @@ export function installMockIpc(seed) {
     entry?.handler(value);
   };
   const invoke = async (command, args = {}) => {
-    calls.push({ command, args: clone(args) });
-    if (seed.failures?.[command]) throw new Error(seed.failures[command]);
+    const loggedArgs = clone(args);
+    if (["tack_login", "tack_confirm_recovery", "tack_copy_recovery"].includes(command)) {
+      for (const key of ["password", "code"])
+        if (Object.hasOwn(loggedArgs, key)) loggedArgs[key] = "[redacted]";
+    }
+    calls.push({ command, args: loggedArgs });
+    if (seed.failures?.[command]) {
+      const failure = seed.failures[command];
+      throw typeof failure === "string" ? new Error(failure) : clone(failure);
+    }
     switch (command) {
       case "consume_island_settings_intent":
         return false;
@@ -190,7 +198,46 @@ export function installMockIpc(seed) {
       case "list_note_cards":
         return clone(state.notes ?? []);
       case "get_notes_state":
-        return { cards: clone(state.notes ?? []), scope: null };
+        return clone(seed.responses?.get_notes_state ?? { cards: state.notes ?? [], scope: null });
+      case "tack_snapshot":
+        return clone(
+          seed.responses?.tack_snapshot ?? {
+            checked: false,
+            baseUrl: null,
+            user: null,
+            workspace: null,
+            workspaces: [],
+            recoveryPending: false,
+            requiresLogin: true,
+            ready: false,
+            error: null,
+          },
+        );
+      case "tack_profile":
+      case "tack_workspace_profile":
+        return clone(
+          seed.responses?.[command] ?? {
+            baseUrl: null,
+            username: "",
+            localCount: (state.notes ?? []).filter((note) => note.localOnly).length,
+            preferences: { showTasks: true, filterLabels: false, labels: [] },
+            labels: [],
+            readOnly: false,
+          },
+        );
+      case "tack_sync_snapshot":
+        return clone(
+          seed.responses?.tack_sync_snapshot ?? {
+            state: "localOnly",
+            scope: null,
+            pending: 0,
+            conflicts: 0,
+            referenceIssues: 0,
+            lastSynced: null,
+            error: null,
+            nextAttemptMs: null,
+          },
+        );
       case "create_note_card": {
         const draft = clone(args.draft),
           now = new Date().toISOString();

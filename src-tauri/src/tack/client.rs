@@ -350,6 +350,7 @@ impl Client {
             self.connection.requires_login = self.connection.user.is_none();
             self.connection.recovery_pending = pending;
             self.connection.ready = !self.connection.requires_login && !pending;
+            self.connection.checked = true;
             Ok(self.snapshot())
         })();
         match result {
@@ -377,7 +378,7 @@ impl Client {
         self.status()?;
         let mut value = self.request(
             "login",
-            Some(json!({"username":username,"password":password.value()})),
+            Some(json!({"username":username,"password":password.value(),"remember":true})),
         )?;
         let code = value
             .as_object_mut()

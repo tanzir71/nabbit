@@ -32,3 +32,18 @@ cargo test --manifest-path src-tauri/Cargo.toml notes:: -- --test-threads=1
 ```
 
 Final V4.3 evidence and eight freshly checked upstream blobs are retained in `progress/v2/M8/v43-*`; nine V4.2 source pins remain historical evidence. The complete suite has **39 Tack tests and eight Notes tests**. Connection UI, conflict/editor UI and broad end-to-end Notes acceptance remain V4.4/V4.5/V4.8. The optional complete local Tack/PDO-SQLite suite was not run; the existing 100 actual PHP merge reference cases still pass. No hosted Tack or user account was used.
+
+## V4.4 connection acceptance
+
+`scripts/verify-tack-flow.mjs` launches an explicitly ignored, test-only Rust bridge with its own SQLite directory, in-memory vault, ephemeral loopback endpoints and origin/token guards. The browser uses the real connection components and typed invoke wrappers. Only the IPC boundary is forwarded; the actual production Service/client/transactions call this Rust fake. A reserved `https://fixture.invalid/tack/` alias maps to the owned loopback endpoint inside that bridge, preserving frontend HTTPS validation. Production has no bridge, alias override, test endpoint or plaintext vault. This is not a native Tauri IPC or OS clipboard test.
+
+Five flow cases cover pre-network HTTPS rejection, login/password clearing, mandatory recovery confirmation, stale-code rotation, protected-copy seam, no sync before explicit workspace confirmation, task/label scope, unchecked one-time upload, real server refs, reopening/reload without duplication, signout/hints, 503/429, keyboard focus restoration, local-only selection without HTTP, cached-card retention and live pushed updates. Bridge events flush explicitly because tiny_http's generic chunk encoder buffers small bodies. Test requests and capture receipts redact password/code fields; no hosted Tack or user account is used.
+
+Five connection Rust tests plus the protected-copy seam test bring the focused Tack suite to **45 passing tests**. They additionally verify guest membership pulling without uploads, write rejection/rollback, fresh account/server guards, preference validation/partitioning and restart. The bridge is the third opt-in ignore in the default suite and is separately invoked automatically by the flow driver. The two earlier opt-in ignores remain unchanged.
+
+```powershell
+node scripts/verify-tack-flow.mjs v44-local-flow
+node scripts/verify-tack-screenshots.mjs v44-local-captures
+```
+
+Use fresh prefixes; evidence files are exclusive. The authoritative receipts are `v44-verified-flow.json` and `v44-verified-screenshots.json`. Their scope and retained earlier attempts are documented in `progress/v2/M8/README.md`. Full editor/conflict/sync-state UI and broad §8.8 acceptance remain V4.5/V4.8.

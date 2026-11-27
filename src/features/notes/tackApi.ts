@@ -30,6 +30,7 @@ export interface TackWorkspace {
   sessionEpoch: number;
 }
 export interface TackConnection {
+  checked?: boolean;
   baseUrl: string | null;
   user: { id: string; username: string } | null;
   workspace: TackWorkspace | null;
@@ -39,6 +40,24 @@ export interface TackConnection {
   /** Authentication is ready; this does not claim notes have synced. */
   ready: boolean;
   error: TackError | null;
+}
+export interface TackPreferences {
+  showTasks: boolean;
+  filterLabels: boolean;
+  labels: string[];
+}
+export const defaultTackPreferences = (): TackPreferences => ({
+  showTasks: true,
+  filterLabels: false,
+  labels: [],
+});
+export interface TackProfile {
+  baseUrl: string | null;
+  username: string;
+  localCount: number;
+  preferences: TackPreferences;
+  labels: string[];
+  readOnly: boolean;
 }
 export interface TackSyncSnapshot {
   state: SyncStatus;
@@ -84,4 +103,23 @@ export const tackApi = {
     }),
   uploadLocal: (scope: NotesContext) => invoke<number>("tack_upload_local_notes", { scope }),
   localMode: () => invoke<void>("tack_local_mode"),
+  profile: () => invoke<TackProfile>("tack_profile"),
+  workspaceProfile: (id: string) => invoke<TackProfile>("tack_workspace_profile", { id }),
+  start: (
+    connection: TackConnection,
+    workspaceId: string,
+    preferences: TackPreferences,
+    uploadLocal: boolean,
+  ) =>
+    invoke<TackConnection>("tack_start_sync", {
+      request: {
+        expectedUserId: connection.user?.id,
+        expectedBaseUrl: connection.baseUrl,
+        workspaceId,
+        preferences,
+        uploadLocal,
+      },
+    }),
+  copyRecovery: (code: string) => invoke<void>("tack_copy_recovery", { code }),
+  open: () => invoke<void>("tack_open"),
 };

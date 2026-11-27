@@ -5,12 +5,14 @@ interface FieldProps extends InputHTMLAttributes<HTMLInputElement> {
   description?: string;
   error?: string;
   action?: ReactNode;
+  leading?: ReactNode;
 }
 export function Field({
   label,
   description,
   error,
   action,
+  leading,
   className,
   id,
   "aria-describedby": describedBy,
@@ -26,13 +28,16 @@ export function Field({
         <label htmlFor={inputId}>{label}</label>
         {action}
       </div>
-      <input
-        {...props}
-        id={inputId}
-        className={cn("n-input", className)}
-        aria-invalid={error ? true : props["aria-invalid"]}
-        aria-describedby={[describedBy, helpId, errorId].filter(Boolean).join(" ") || undefined}
-      />
+      <div className={leading ? "n-input-with-icon" : "contents"}>
+        {leading ? <span className="n-input-leading">{leading}</span> : null}
+        <input
+          {...props}
+          id={inputId}
+          className={cn("n-input", className)}
+          aria-invalid={error ? true : props["aria-invalid"]}
+          aria-describedby={[describedBy, helpId, errorId].filter(Boolean).join(" ") || undefined}
+        />
+      </div>
       {description && (
         <span id={helpId} className="n-help">
           {description}

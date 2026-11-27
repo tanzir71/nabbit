@@ -1,0 +1,114 @@
+[
+  {
+    "artifact": "progress/v2/M8/v44-earlier-check-first.txt.gz",
+    "resolution": "Early compile passed with an unused test constructor before its connection tests were added."
+  },
+  {
+    "artifact": "progress/v2/M8/v44-earlier-check-bridge.txt.gz",
+    "resolution": "The test-only bridge needed an explicit optional scope type; corrected."
+  },
+  {
+    "artifact": "progress/v2/M8/v44-earlier-check-bridge-second.txt.gz",
+    "resolution": "Bridge compiled successfully before final event flushing and expanded assertions."
+  },
+  {
+    "artifact": "progress/v2/M8/v44-earlier-tack-tests-first.txt.gz",
+    "resolution": "First 43 focused Tack tests passed before adding actual guest membership and preference partition cases."
+  },
+  {
+    "artifact": "progress/v2/M8/v44-earlier-frontend-first.txt.gz",
+    "resolution": "First 20 focused frontend tests passed before StrictMode cleanup and stale-code cases."
+  },
+  {
+    "artifact": "progress/v2/M8/v44-earlier-npm-verify-first.txt.gz",
+    "resolution": "Type checking caught Testing Library role-query options and an incomplete card fixture; corrected with complete types."
+  },
+  {
+    "artifact": "progress/v2/M8/v44-earlier-npm-verify-second.txt.gz",
+    "resolution": "Lint caught Node fetch globals, an unused type and ref-cleanup warnings. Fixed globals, removed the unused type, and made event lifecycle guards local to each effect."
+  },
+  {
+    "artifact": "progress/v2/M8/v44-earlier-npm-verify-third.txt.gz",
+    "resolution": "One new test failed because a Windows-default-encoding helper rewrote an em dash. The fixture was corrected as UTF-8; no assertion was removed. The DOM dump contains only a labelled synthetic recovery fixture."
+  },
+  {
+    "artifact": "progress/v2/M8/v44-earlier-npm-verify-fourth.txt.gz",
+    "resolution": "Complete 196-test frontend suite passed before the radio hit-area and final recovery handling changes."
+  },
+  {
+    "artifact": "progress/v2/M8/v44-earlier-npm-verify-fifth.txt.gz",
+    "resolution": "Complete 196-test frontend suite/build passed before adding the stale-code recovery case."
+  },
+  {
+    "artifact": "progress/v2/M8/v44-earlier-npm-verify-sixth.txt.gz",
+    "resolution": "The existing TypeScript target lacks Object.hasOwn; used Object.prototype.hasOwnProperty.call without changing the target."
+  },
+  {
+    "artifact": "progress/v2/M8/v44-earlier-clippy-first.txt.gz",
+    "resolution": "Default all-target Clippy passed before the guest/partition cases."
+  },
+  {
+    "artifact": "progress/v2/M8/v44-earlier-clippy-default-second.txt.gz",
+    "resolution": "The new guest fixture omitted its table argument; corrected to cards."
+  },
+  {
+    "artifact": "progress/v2/M8/v44-earlier-clippy-default-third.txt.gz",
+    "resolution": "Default all-target Clippy passed before the final bridge flush and input-error classification."
+  },
+  {
+    "artifact": "progress/v2/M8/v44-earlier-clippy-spike-second.txt.gz",
+    "resolution": "Spike all-target Clippy passed before the final bridge flush and input-error classification."
+  },
+  {
+    "artifact": "progress/v2/M8/v44-earlier-rust-tests-second.txt.gz",
+    "resolution": "Complete serial suite passed 205 tests with three opt-in ignores before the last bridge/helper corrections."
+  },
+  {
+    "artifact": "progress/v2/M8/v44-earlier-flow-first.txt.gz",
+    "resolution": "The radio artwork covered the sr-only input hit point. Replaced the tiny target with a transparent full-row native input; no forced clicks or weakened assertions."
+  },
+  {
+    "artifact": "progress/v2/M8/v44-earlier-browser-first.txt.gz",
+    "resolution": "The same radio hit-area failure stopped the matrix before publication. The production hit area was fixed."
+  },
+  {
+    "artifact": "progress/v2/M8/v44-earlier-flow-second.txt.gz",
+    "resolution": "The fake acknowledged the upload but the browser did not refresh: tiny_http buffers generic chunked streams. The test-only event bridge now writes and flushes each packet. Native production Tauri events are unchanged."
+  },
+  {
+    "artifact": "progress/v2/M8/v44-earlier-flow-third.txt.gz",
+    "resolution": "Four complete browser-to-Rust cases passed before adding stale-code rotation, keyboard focus restoration and local-only retention checks."
+  },
+  {
+    "artifact": "progress/v2/M8/v44-earlier-browser-second.txt.gz",
+    "resolution": "Forty geometry/repeat captures passed; the extra asset/axe hook was not called. Only recorded assertions and the harness font audit count. Superseded for default pointer state."
+  },
+  {
+    "artifact": "progress/v2/M8/v44-earlier-browser-third.txt.gz",
+    "resolution": "Forty default-state geometry/repeat captures passed. The unused extra hook means this is not asset/axe evidence; retained unchanged."
+  },
+  {
+    "artifact": "progress/v2/M8/v44-earlier-browser-final.txt.gz",
+    "resolution": "Forty repeat/geometry captures passed on the recovery-handler build, but lack the added asset/axe assertions. The receipt builder rejected that missing evidence."
+  },
+  {
+    "artifact": "progress/v2/M8/v44-earlier-flow-final.txt.gz",
+    "resolution": "Five complete cases passed before the ARIA-only code grouping fix; rerun on the final build."
+  },
+  {
+    "artifact": "progress/v2/M8/v44-earlier-npm-verify-final.txt.gz",
+    "resolution": "197-test suite/build passed before the ARIA code-element grouping correction."
+  },
+  {
+    "artifact": "progress/v2/M8/v44-earlier-browser-verified.txt.gz",
+    "resolution": "Correcting the callback activated an extra font audit missing its expected-family argument; fixed explicitly."
+  },
+  {
+    "artifact": "progress/v2/M8/v44-earlier-browser-audit-font.txt.gz",
+    "resolution": "The active default axe audit found an invalid aria-label on code. Replaced it with a named group containing the code; no rule or assertion was suppressed."
+  },
+  {
+    "artifact": "progress/v2/M8/v44-earlier-archive-gitleaks-first.txt.gz",
+    "resolution": "The scan flagged the public Figma document identifier under a field named fileKey. Renamed the metadata field figmaDocumentId, without changing its public value or adding a scan exclusion."
+  }
+]

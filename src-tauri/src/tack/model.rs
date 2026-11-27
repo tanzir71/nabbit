@@ -25,6 +25,7 @@ pub struct Workspace {
 #[derive(Clone, Debug, Default, Serialize)]
 #[serde(rename_all = "camelCase")]
 pub struct Connection {
+    pub checked: bool,
     pub base_url: Option<String>,
     pub user: Option<User>,
     pub workspace: Option<Workspace>,

@@ -92,3 +92,30 @@ Use the required commands shown above to reproduce the checks, plus a fresh Note
 ```powershell
 node scripts/verify-notes.mjs v43-local-browser
 ```
+
+## V4.4 — Connect Tack and Notes settings
+
+Implemented the server/sign-in and workspace/scope screens from [19:5](https://www.figma.com/design/tBm7NNhh1Y9aTQPJ3WxY5v/Nabbit?node-id=19-5) and [19:102](https://www.figma.com/design/tBm7NNhh1Y9aTQPJ3WxY5v/Nabbit?node-id=19-102), with Notes-footer and Settings entry points. The dialog validates HTTPS/API v4, supports recovery-code confirmation and reconnect hints, and offers an unchecked once-only local-note upload. Password input clears before awaiting and is never shared state. Recovery state is confined to the mounted dialog, clears after confirmation/close/expiration, and requires a new saved confirmation after rotation. Protected copying registers Windows history/cloud/monitor exclusion formats before writing the text; automation uses its seam and leaves the OS clipboard untouched.
+
+Authentication is staged until **Start syncing**. A fresh status/account/server/workspace check guards that action. Device/workspace task and label preferences persist independently of general settings, filter the view and preserve every cache/outbox record. Guest workspaces pull cards and reject edits, reminders and uploads transactionally. Local-only selection durably pauses HTTP while retaining cached Tack cards. Non-secret URL/username hints survive signout; session cookie/CSRF remain solely in Credential Manager. The specified 30-day desktop policy sends `remember:true`; its indicator is fixed. Board/focus-time controls are explicitly labelled v2.1 and disabled. Actual API membership names/roles replace sample data; card counts and registration status absent from the API are omitted. Captions use the existing readable secondary token.
+
+Final proof:
+
+- `npm run verify`: **197 tests / 30 files**, including **10 connection frontend tests**, plus type/lint/asset checks, build and entry audit. Current verifier lint also passes. Four entries and **90,612/120,000 initial island gzip bytes**, with no new initial settings/editor/app-store import.
+- Rust fmt, default/spike all-target Clippy with warnings denied, **205 passing serial tests**, doc-tests and three opt-in ignores. **45 Tack tests** pass, including actual guest membership, readonly rollback, workspace preference partition/restart, stale setup and input guards, protected-copy seam and the existing PHP/rank goldens. Two ignores predate this task; the new ignored bridge is separately invoked and passes.
+- `v44-verified-flow.json`: **five complete browser-to-Rust cases**, using real UI/typed wrappers → test-only IPC forwarding seam → production Rust Service/client/SQLite → in-process Rust fake → pushed events → rendered state. It proves recovery rotation/confirmation, no premature sync, explicit workspace/scope, one-time upload/ref/no duplicates, signout/hints, safe 503/429, Escape/focus, local-only/no HTTP/cached retention and live updates without a polling timer. This does **not** establish native Tauri IPC. The reserved HTTPS alias is confined to the test bridge. No hosted Tack, user account or OS clipboard is used.
+- `v44-verified-screenshots.json`: **40 exact-repeat captures**, light/dark at **1×/1.5×**, covering server, sign-in, recovery, workspace, labels, upload, readonly, narrow, error and Settings. Every case explicitly invokes original-asset source/render geometry checks, actual custom-font glyph checks and all default axe rules. **Zero violations and zero incomplete results**; all **13 visible asset files** are covered. Capture request secrets are redacted.
+- `v44-png-audit.json`: independent full PNG decoding/hashing, strict **300,000-byte** cap, **40 authoritative + 120 earlier + 2 original Figma reference PNGs**. Original exports and root dimensions are preserved. Supplied reference PNGs remain separate from implementation assets.
+
+The acceptance builder caught an evidence bug: the screenshot harness calls `ready`, so the extra `inspect` hook in earlier runs never executed. Those earlier images prove only their recorded geometry/repeat checks and the harness's own font audit; their success messages do not establish asset/axe coverage. The corrected callback explicitly calls the audit and serializes its results. It then found an invalid ARIA name on `code`; a named group now contains the code. A missing expected font-family argument was also corrected. The authoritative manifest is required to contain the complete assertions, not merely a passing console message. No axe rule or assertion was disabled.
+
+`v44-earlier-attempts.json` and exact original log archives retain those errors, the early type/lint/UTF-8 fixture issues, the radio target failure and buffered test-stream failure. Full-row transparent native radio inputs preserve the artwork and provide a 48px target; no forced click is used. The bridge now flushes each event packet, leaving production Tauri events unchanged. Earlier capture sets and flow failures remain immutable. `v44-acceptance.json` pins current source and all evidence using Git's LF text representation; readable logs trim console-only whitespace while compressed originals retain their exact bytes. Secret scans and staged Git-blob audits complete that receipt.
+
+No native app launch, installer/signing, OS scaling change, global keypress or new idle-performance claim is made. Existing V0/V2.7 limitations remain. The optional complete local Tack/PDO-SQLite suite remains unrun; the 100 actual PHP merge goldens pass. V4.5 owns the full editor/conflict/sync-state UI and V4.8 owns broad Notes acceptance. Only V4.4 is checked. Commit directly to main with `[skip ci]`; no PR, push, tag, release or repository workflow invocation. **M8 publication is the next pass.**
+
+Reproduce the required check commands above, then use fresh prefixes:
+
+```powershell
+node scripts/verify-tack-flow.mjs v44-local-flow
+node scripts/verify-tack-screenshots.mjs v44-local-captures
+```

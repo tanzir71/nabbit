@@ -158,6 +158,8 @@ pub fn validate_card(value: &Value) -> Result<()> {
 pub struct NotesState {
     pub cards: Vec<StoredNote>,
     pub scope: Option<super::sync_store::Context>,
+    pub preferences: super::preferences::Preferences,
+    pub read_only: bool,
 }
 
 pub(crate) fn remote_card(value: &Value) -> Result<Value> {
@@ -231,7 +233,12 @@ impl Database {
                 })
             })
             .collect::<Result<Vec<_>>>()?;
-        Ok(NotesState { cards, scope })
+        Ok(NotesState {
+            cards,
+            preferences: super::preferences::read(&conn, scope.as_ref())?,
+            read_only: super::preferences::read_only(&conn, scope.as_ref())?,
+            scope,
+        })
     }
     pub fn list_note_cards(&self) -> Result<Vec<StoredNote>> {
         Ok(self.notes_state()?.cards)

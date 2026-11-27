@@ -66,14 +66,22 @@ pub(super) struct State {
     pub requests: usize,
     pub actions: Vec<String>,
     pub limits: (usize, usize),
+    pub extra_guest: bool,
 }
 impl State {
+    fn workspace_list(&self) -> Vec<Value> {
+        let mut items = vec![workspace("personal"), workspace("team")];
+        if self.extra_guest {
+            items.push(workspace("guest"));
+        }
+        items
+    }
     fn token(&mut self, prefix: &str) -> String {
         self.serial += 1;
         format!("{prefix}{:032x}", self.serial)
     }
     fn connection(&self, session: &Session) -> Value {
-        json!({"available":true,"version":4,"user":if session.signed_in {json!({"id":"user-1","username":"fixture"})}else{Value::Null},"workspace":if session.signed_in{workspace(&session.workspace)}else{Value::Null},"workspaces":if session.signed_in{json!([workspace("personal"),workspace("team")])}else{json!([])},"requiresLogin":false,"workspaceAccessChanged":false,"recoveryPending":session.signed_in&&!self.confirmed,"csrf":session.csrf})
+        json!({"available":true,"version":4,"user":if session.signed_in {json!({"id":"user-1","username":"fixture"})}else{Value::Null},"workspace":if session.signed_in{workspace(&session.workspace)}else{Value::Null},"workspaces":if session.signed_in{json!(self.workspace_list())}else{json!([])},"requiresLogin":false,"workspaceAccessChanged":false,"recoveryPending":session.signed_in&&!self.confirmed,"csrf":session.csrf})
     }
     pub fn advance(&mut self, seconds: u64) {
         self.now += seconds;
@@ -128,6 +136,9 @@ impl State {
             return error(400);
         };
         let mut keys = HashSet::new();
+        if session.workspace == "guest" && !mutations.is_empty() {
+            return error(403);
+        }
         if mutations.len() > 50 || mutations.iter().any(|m| !keys.insert((&m.table, &m.id))) {
             return error(400);
         }
@@ -372,7 +383,7 @@ impl State {
     }
 }
 pub(super) fn workspace(id: &str) -> Value {
-    json!({"id":id,"name":if id=="personal"{"Personal"}else{"Team"},"role":"owner","displayName":"Fixture","userId":"user-1","sessionEpoch":1})
+    json!({"id":id,"name":if id=="personal"{"Personal"}else if id=="guest"{"Client project"}else{"Team"},"role":if id=="guest"{"guest"}else{"owner"},"displayName":"Fixture","userId":"user-1","sessionEpoch":1})
 }
 fn error(status: u16) -> (u16, Value) {
     (
@@ -524,7 +535,7 @@ fn handle(mut request: Request, state: &mut State) {
                     headers.push(session_cookie(&sid));
                     (
                         200,
-                        json!({"user":{"id":"user-1","username":"fixture"},"workspace":workspace("personal"),"workspaces":[workspace("personal"),workspace("team")],"csrf":session.csrf,"recoveryCode":recovery}),
+                        json!({"user":{"id":"user-1","username":"fixture"},"workspace":workspace("personal"),"workspaces":state.workspace_list(),"csrf":session.csrf,"recoveryCode":recovery}),
                     )
                 }
             } else if action == "logout" {
@@ -558,7 +569,7 @@ fn handle(mut request: Request, state: &mut State) {
                 error(409)
             } else if action == "workspace-switch" {
                 let id = input.get("id").and_then(Value::as_str).unwrap_or("");
-                if !["personal", "team"].contains(&id) {
+                if !["personal", "team"].contains(&id) && !(state.extra_guest && id == "guest") {
                     (
                         403,
                         json!({"workspaceAccessChanged":true,"workspaceId":id,"userId":"user-1"}),
@@ -568,7 +579,7 @@ fn handle(mut request: Request, state: &mut State) {
                     state.sessions.insert(sid, session.clone());
                     (
                         200,
-                        json!({"workspace":workspace(id),"workspaces":[workspace("personal"),workspace("team")]}),
+                        json!({"workspace":workspace(id),"workspaces":state.workspace_list()}),
                     )
                 }
             } else if action == "sync" {
