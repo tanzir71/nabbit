@@ -113,7 +113,7 @@ export interface AppSettings {
   revealAfterDownload: boolean;
   engineAutoUpdate: boolean;
   firstRunAcknowledged: boolean;
-  lastTab: "download" | "clipboard";
+  lastTab: "download" | "notes" | "clipboard";
 }
 
 export interface IslandPreferences {

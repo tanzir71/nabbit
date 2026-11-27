@@ -1,0 +1,97 @@
+{
+  "checks": [
+    {
+      "check": "npm-verify",
+      "command": "npm run verify",
+      "exitCode": 0,
+      "file": "progress/v2/M8/v41-npm-verify.txt",
+      "bytes": 7732,
+      "sha256": "8a5a551d25a7816325bd9b103fb6d9b943b381e1565caefdcad60e712f4b69e0"
+    },
+    {
+      "check": "fmt",
+      "command": "cargo fmt --manifest-path src-tauri/Cargo.toml --check",
+      "exitCode": 0,
+      "file": "progress/v2/M8/v41-fmt.txt",
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "check": "clippy",
+      "command": "cargo clippy --manifest-path src-tauri/Cargo.toml --all-targets -- -D warnings",
+      "exitCode": 0,
+      "file": "progress/v2/M8/v41-clippy.txt",
+      "bytes": 140,
+      "sha256": "115024d0f5b2738becef8ecbd28d399f2da05d07304799f84df58705f12b541c"
+    },
+    {
+      "check": "spike-clippy",
+      "command": "cargo clippy --manifest-path src-tauri/Cargo.toml --all-targets --features island-spike -- -D warnings",
+      "exitCode": 0,
+      "file": "progress/v2/M8/v41-spike-clippy.txt",
+      "bytes": 140,
+      "sha256": "d79b7c0755e8c88d5e69f46a6e8e8aea01e2bddf969245d73b2b0fba213f0b55"
+    },
+    {
+      "check": "rust-tests",
+      "command": "cargo test --manifest-path src-tauri/Cargo.toml -- --test-threads=1",
+      "exitCode": 0,
+      "file": "progress/v2/M8/v41-rust-tests.txt",
+      "bytes": 16028,
+      "sha256": "2345f8f369b1671563b4eb0c0ba1e655e999fa24e4cf8be71f480e709ebeab25",
+      "untrimmedTextArchive": {
+        "file": "progress/v2/M8/v41-rust-tests.original.txt.gz",
+        "bytes": 4924,
+        "sha256": "2fb6e5ce1415026432f0b6efad93bd9dfe35c51115f7d07cb33bce41f39c560d"
+      }
+    },
+    {
+      "check": "release",
+      "command": "cargo build --manifest-path src-tauri/Cargo.toml --release --features custom-protocol",
+      "exitCode": 0,
+      "file": "progress/v2/M8/v41-release.txt",
+      "bytes": 130,
+      "sha256": "6073a1a48ea38901ac3dd1cad61db7a13015dd1235a7d7651d23ae53a6e8a173"
+    },
+    {
+      "check": "browser",
+      "command": "node scripts/verify-notes.mjs v41-final",
+      "exitCode": 0,
+      "file": "progress/v2/M8/v41-browser.txt",
+      "bytes": 118,
+      "sha256": "11465477f73b80670fa38162dbf2179d440f89c2ced85d812f8a792eafc294cb"
+    },
+    {
+      "check": "native",
+      "command": "node scripts/verify-notes-native.mjs src-tauri/target/release/nabbit.exe v41-second-native",
+      "exitCode": 0,
+      "file": "progress/v2/M8/v41-native.txt",
+      "bytes": 99,
+      "sha256": "8717083ef5e68849c9622b819b794c832f1173bdcc688734e82297d1b4c1559a"
+    },
+    {
+      "check": "final-lint",
+      "command": "npm run lint",
+      "exitCode": 0,
+      "file": "progress/v2/M8/v41-final-lint.txt",
+      "bytes": 32,
+      "sha256": "8cb2a57c157fb138628d05c4fd564a735047dd361e5366ac466e9174626e2222",
+      "untrimmedTextArchive": {
+        "file": "progress/v2/M8/v41-final-lint.original.txt.gz",
+        "bytes": 50,
+        "sha256": "38fca84159f74668592021965d98f7191d56bf9007bd3ce0a3317134108a34cb"
+      }
+    }
+  ],
+  "allPassed": true,
+  "frontendTests": 184,
+  "frontendFiles": 29,
+  "allTestsSelected": true,
+  "vitestMaxWorkers": 2,
+  "rustTests": {
+    "passed": 157,
+    "ignored": 2,
+    "docTestCommandPassed": true
+  },
+  "textEvidenceLineEndings": "CRLF normalized to LF; trailing whitespace/blank EOF trimmed for Git; untrimmed text archives retain exact pre-trim bytes"
+}

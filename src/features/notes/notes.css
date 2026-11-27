@@ -1,0 +1,297 @@
+.notes-view {
+  display: flex;
+  flex-direction: column;
+  height: 100%;
+  min-height: 0;
+}
+.notes-body {
+  display: flex;
+  flex-direction: column;
+  gap: 14px;
+  padding: 6px 16px 12px;
+  flex: 1;
+  min-height: 0;
+  overflow: auto;
+}
+.notes-composer {
+  flex: none;
+}
+.notes-capture {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  height: 44px;
+  padding: 0 6px 0 14px;
+  border: 1px solid var(--border-strong);
+  border-radius: 12px;
+  background: var(--bg-surface);
+  box-shadow: 0 1px 2px #0000000d;
+}
+.notes-capture input {
+  min-width: 0;
+  flex: 1;
+  width: 100%;
+  outline: 0;
+  color: var(--text-primary);
+  background: transparent;
+  font: 400 13px/18px var(--font-sans);
+}
+.notes-capture input::placeholder {
+  color: var(--text-tertiary);
+}
+.notes-capture:focus-within {
+  outline: 2px solid var(--text-primary);
+  outline-offset: 2px;
+}
+.notes-capture .n-icon-button {
+  color: var(--text-secondary);
+}
+.notes-capture .n-icon-button:disabled {
+  opacity: 0.55;
+}
+.notes-filters {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  flex: none;
+}
+.notes-filters .n-preset {
+  flex: none;
+}
+.notes-view-menu {
+  margin-left: auto;
+}
+.notes-view-menu,
+.notes-card-menu {
+  position: relative;
+}
+.notes-view-menu summary,
+.notes-card-menu summary {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 28px;
+  height: 28px;
+  border-radius: 8px;
+  color: var(--text-secondary);
+  cursor: pointer;
+  list-style: none;
+}
+.notes-view-menu summary::-webkit-details-marker,
+.notes-card-menu summary::-webkit-details-marker {
+  display: none;
+}
+.notes-view-menu summary:focus-visible,
+.notes-card-menu summary:focus-visible {
+  outline: 2px solid var(--text-primary);
+  outline-offset: 2px;
+}
+.notes-menu {
+  position: absolute;
+  right: 0;
+  top: 100%;
+  z-index: 5;
+  width: 174px;
+  padding: 6px;
+  border: 1px solid var(--border-subtle);
+  border-radius: 10px;
+  background: var(--bg-surface);
+}
+.notes-menu button {
+  display: block;
+  text-align: left;
+  width: 100%;
+  padding: 7px 9px;
+  border-radius: 6px;
+  font: 400 13px/18px var(--font-sans);
+}
+.notes-menu button:hover,
+.notes-menu button:focus-visible {
+  background: var(--bg-raised);
+}
+.notes-menu p,
+.notes-menu label {
+  display: block;
+  padding: 6px 9px;
+  font: 500 11px/14px var(--font-sans);
+  color: var(--text-secondary);
+}
+.notes-menu select {
+  display: block;
+  width: 100%;
+  margin-top: 6px;
+  background: var(--bg-surface);
+  color: var(--text-primary);
+}
+.notes-group {
+  display: flex;
+  flex-direction: column;
+  gap: 14px;
+  flex: none;
+}
+.notes-group > h2 {
+  font: 500 11px/14px var(--font-sans);
+  letter-spacing: 0.2px;
+  color: var(--text-secondary);
+}
+.notes-masonry {
+  display: flex;
+  gap: 10px;
+  align-items: flex-start;
+}
+.notes-column {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  min-width: 0;
+  flex: 1;
+}
+.notes-card-wrap {
+  position: relative;
+  width: 100%;
+}
+.notes-card-wrap .n-note-card {
+  width: 100%;
+}
+.notes-card-wrap .n-note-meta {
+  flex-wrap: wrap;
+}
+.notes-card-wrap .n-note-reference,
+.notes-card-wrap .n-check-row.is-checked {
+  color: var(--text-secondary);
+}
+.notes-card-menu {
+  position: absolute;
+  top: 7px;
+  right: 5px;
+}
+.notes-card-menu > summary {
+  opacity: 0;
+  background: var(--bg-surface);
+}
+.notes-card-wrap:hover .notes-card-menu > summary,
+.notes-card-menu:focus-within > summary,
+.notes-card-menu[open] > summary {
+  opacity: 1;
+}
+.notes-card-wrap .n-note-url {
+  height: auto;
+  max-height: 48px;
+}
+.notes-footer {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  padding: 0 16px;
+  height: 40px;
+  flex: none;
+  border-top: 1px solid var(--border-subtle);
+  background: var(--bg-surface);
+  color: var(--text-secondary);
+  font: 400 12px/16px var(--font-sans);
+}
+.notes-empty {
+  padding: 35px 12px;
+  text-align: center;
+  color: var(--text-secondary);
+  font: 400 13px/18px var(--font-sans);
+}
+.notes-empty h2 {
+  color: var(--text-primary);
+  font: 600 14px/20px var(--font-sans);
+  margin-bottom: 8px;
+}
+.notes-compose-fields {
+  padding: 14px 2px 0;
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+.notes-compose-fields label,
+.notes-search {
+  display: flex;
+  flex-direction: column;
+  gap: 5px;
+  font: 500 12px/16px var(--font-sans);
+  color: var(--text-secondary);
+}
+.notes-compose-fields input,
+.notes-compose-fields textarea,
+.notes-compose-fields select,
+.notes-search input {
+  width: 100%;
+  padding: 7px 9px;
+  border: 1px solid var(--border-strong);
+  border-radius: 8px;
+  background: var(--bg-surface);
+  color: var(--text-primary);
+  font: 400 13px/18px var(--font-sans);
+}
+.notes-compose-fields textarea {
+  min-height: 72px;
+  resize: vertical;
+}
+.notes-properties {
+  display: flex;
+  gap: 10px;
+}
+.notes-properties label {
+  flex: 1;
+  min-width: 0;
+}
+.notes-compose-actions {
+  display: flex;
+  gap: 6px;
+}
+.notes-item-editor {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+  min-width: 0;
+  font: 500 12px/16px var(--font-sans);
+  color: var(--text-secondary);
+}
+.notes-item-editor > div {
+  display: flex;
+  gap: 6px;
+  align-items: center;
+}
+.notes-item-editor > div input {
+  flex: 1;
+  min-width: 0;
+}
+.notes-current-filter {
+  display: flex;
+  justify-content: space-between;
+  font: 400 12px/16px var(--font-sans);
+  color: var(--text-secondary);
+}
+.notes-current-filter button {
+  text-decoration: underline;
+}
+.notes-error {
+  border: 1px solid var(--border-strong);
+  border-radius: 8px;
+  padding: 10px;
+  color: var(--text-primary);
+  background: var(--warning-soft);
+  font: 400 13px/18px var(--font-sans);
+}
+.notes-error button {
+  display: block;
+  margin-top: 6px;
+  text-decoration: underline;
+}
+@media (max-width: 380px) {
+  .notes-body {
+    padding-left: 12px;
+    padding-right: 12px;
+  }
+  .notes-filters {
+    flex-wrap: wrap;
+  }
+  .notes-filters .n-preset {
+    padding-left: 9px;
+    padding-right: 9px;
+  }
+}

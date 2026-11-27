@@ -187,6 +187,67 @@ export function installMockIpc(seed) {
         );
       case "list_downloads":
         return clone(state.jobs);
+      case "list_note_cards":
+        return clone(state.notes ?? []);
+      case "create_note_card": {
+        const draft = clone(args.draft),
+          now = new Date().toISOString();
+        const card = {
+          localOnly: true,
+          value: {
+            id: globalThis.crypto.randomUUID(),
+            revision: 0,
+            assigneeId: null,
+            priority: "inbox",
+            ref: "",
+            doneWhen: "",
+            frontmatter: "",
+            kind: "note",
+            title: "",
+            body: "",
+            url: "",
+            labels: [],
+            items: [],
+            attachmentIds: [],
+            pinned: false,
+            archived: false,
+            trashedAt: null,
+            completed: false,
+            color: "default",
+            rank: "a0",
+            projectId: null,
+            createdAt: now,
+            updatedAt: now,
+            sourceId: null,
+            ...draft,
+          },
+        };
+        card.value.items = (draft.items ?? []).map((text) => ({
+          id: globalThis.crypto.randomUUID(),
+          text,
+          checked: false,
+        }));
+        state.notes ??= [];
+        state.notes.unshift(card);
+        dispatch("notes:updated", null);
+        return clone(card);
+      }
+      case "update_note_card": {
+        const card = (state.notes ?? []).find((c) => c.value.id === args.id);
+        if (!card) throw new Error("This note no longer exists");
+        if (card.value.revision !== args.expectedRevision)
+          throw new Error(
+            "This note changed in another window. Your draft is still here; reopen the latest note before saving.",
+          );
+        card.value = {
+          ...card.value,
+          ...clone(args.patch),
+          revision: card.value.revision + 1,
+          updatedAt: new Date().toISOString(),
+        };
+        dispatch("notes:updated", null);
+        return clone(card);
+      }
       case "get_engine_status":
         return clone(state.engine);
       case "check_engine":

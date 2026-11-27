@@ -1,0 +1,20 @@
+   Compiling nabbit v0.1.0 (D:\claude-upgrade-26\nabbit\src-tauri)
+error[E0433]: cannot find module or crate `tempfile` in this scope
+   --> src\notes\store.rs:299:19
+    |
+299 |         let dir = tempfile::tempdir().unwrap();
+    |                   ^^^^^^^^ use of unresolved module or unlinked crate `tempfile`
+    |
+    = help: if you wanted to use a crate named `tempfile`, use `cargo add tempfile` to add it to your `Cargo.toml`
+
+error[E0433]: cannot find module or crate `tempfile` in this scope
+   --> src\notes\store.rs:298:23
+    |
+298 |     fn database() -> (tempfile::TempDir, Database) {
+    |                       ^^^^^^^^ use of unresolved module or unlinked crate `tempfile`
+    |
+    = help: if you wanted to use a crate named `tempfile`, use `cargo add tempfile` to add it to your `Cargo.toml`
+
+For more information about this error, try `rustc --explain E0433`.
+error: could not compile `nabbit` (lib test) due to 2 previous errors
+warning: build failed, waiting for other jobs to finish...

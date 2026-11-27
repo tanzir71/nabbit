@@ -4,6 +4,7 @@ import { listen } from "@tauri-apps/api/event";
 import { Tab } from "../components/Tab";
 import { Badge } from "../components/Badge";
 import { DownloadIcon } from "../features/downloads/DownloadIcon";
+import { NotesIcon } from "../features/notes/NotesIcon";
 import { BrandMark } from "../components/BrandMark";
 import { IconButton } from "../components/IconButton";
 
@@ -12,6 +13,9 @@ import { ClipboardList } from "./ClipboardList";
 import { DownloadPanel } from "./DownloadPanel";
 const SettingsPanel = lazy(() =>
   import("./SettingsPanel").then((module) => ({ default: module.SettingsPanel })),
+);
+const NotesView = lazy(() =>
+  import("./NotesView").then((module) => ({ default: module.NotesView })),
 );
 
 export function Popover() {
@@ -71,11 +75,21 @@ export function Popover() {
         <Badge>{settings.island.enabled ? "Island on" : "Tray only"}</Badge>
         <span className="nab-spacer" />
         <IconButton
-          label={activeTab === "download" ? "Search downloads" : "Search clipboard"}
+          label={
+            activeTab === "download"
+              ? "Search downloads"
+              : activeTab === "notes"
+                ? "Search notes"
+                : "Search clipboard"
+          }
           onClick={() =>
             window.dispatchEvent(
               new CustomEvent(
-                activeTab === "download" ? "nabbit:focus-download-search" : "nabbit:focus-search",
+                activeTab === "download"
+                  ? "nabbit:focus-download-search"
+                  : activeTab === "notes"
+                    ? "nabbit:focus-notes-search"
+                    : "nabbit:focus-search",
               ),
             )
           }
@@ -98,8 +112,8 @@ export function Popover() {
             <DownloadIcon name="nab" />
             Nab
           </Tab>
-          <Tab disabled title="Notes">
-            <DownloadIcon name="notes" />
+          <Tab selected={activeTab === "notes"} onClick={() => void setLastTab("notes")}>
+            <NotesIcon name="notes" />
             Notes
           </Tab>
           <Tab selected={activeTab === "clipboard"} onClick={() => void setLastTab("clipboard")}>
@@ -120,7 +134,21 @@ export function Popover() {
       ) : null}
 
       <div className="tray-content">
-        {activeTab === "download" ? <DownloadPanel active={!showSettings} /> : <ClipboardList />}
+        {activeTab === "download" ? (
+          <DownloadPanel active={!showSettings} />
+        ) : activeTab === "notes" ? (
+          <Suspense
+            fallback={
+              <p role="status" className="p-4">
+                Opening notes…
+              </p>
+            }
+          >
+            <NotesView />
+          </Suspense>
+        ) : (
+          <ClipboardList />
+        )}
       </div>
 
       {activeTab === "download" && (

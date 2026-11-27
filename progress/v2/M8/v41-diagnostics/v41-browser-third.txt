@@ -1,0 +1,30 @@
+file:///D:/claude-upgrade-26/nabbit/scripts/screenshots/harness.mjs:280
+            throw new Error(`${scenario.name} (${theme}@${scale}x): ${error.message}`, {
+                  ^
+
+Error: notes-menu (light@1x): locator.focus: Error: strict mode violation: getByRole('button', { name: 'Notes', exact: true }) resolved to 2 elements:
+    1) <button type="button" aria-pressed="true" class="n-tab is-selected">…</button> aka getByRole('navigation', { name: 'Navigation' }).getByRole('button', { name: 'Notes' })
+    2) <button aria-pressed="true">Notes</button> aka getByRole('region', { name: 'Notes' }).getByRole('button', { name: 'Notes' })
+
+Call log:
+  - waiting for getByRole('button', { name: 'Notes', exact: true })
+
+    at captureSuite (file:///D:/claude-upgrade-26/nabbit/scripts/screenshots/harness.mjs:280:19)
+    at async file:///D:/claude-upgrade-26/nabbit/scripts/verify-notes.mjs:177:16 {
+  [cause]: locator.focus: Error: strict mode violation: getByRole('button', { name: 'Notes', exact: true }) resolved to 2 elements:
+      1) <button type="button" aria-pressed="true" class="n-tab is-selected">…</button> aka getByRole('navigation', { name: 'Navigation' }).getByRole('button', { name: 'Notes' })
+      2) <button aria-pressed="true">Notes</button> aka getByRole('region', { name: 'Notes' }).getByRole('button', { name: 'Notes' })
+
+  Call log:
+    - waiting for getByRole('button', { name: 'Notes', exact: true })
+
+      at Object.ready (D:\claude-upgrade-26\nabbit\scripts\verify-notes.mjs:67:68)
+      at async captureSuite (D:\claude-upgrade-26\nabbit\scripts\screenshots\harness.mjs:143:33)
+      at async file:///D:/claude-upgrade-26/nabbit/scripts/verify-notes.mjs:177:16 {
+    log: [
+      "  - waiting for getByRole('button', { name: 'Notes', exact: true })"
+    ]
+  }
+}
+
+Node.js v24.22.2

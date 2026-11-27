@@ -1,0 +1,13 @@
+
+ RUN  v3.2.7 D:/claude-upgrade-26/nabbit
+
+ ✓ src/views/NotesView.test.tsx (8 tests) 3732ms
+   ✓ local Notes view > groups pinned cards and filters by priority, label and search across all card content  1003ms
+   ✓ local Notes view > removing one checklist row does not reassign another row's ID or checked state  709ms
+   ✓ local Notes view > keeps a failed creation draft and permits retry with colour, priority and labels  1169ms
+   ✓ local Notes view > archives and trashes softly and restores through the view menu  737ms
+
+ Test Files  1 passed (1)
+      Tests  8 passed (8)
+   Start at  09:58:07
+   Duration  6.51s (transform 695ms, setup 104ms, collect 956ms, tests 3.73s, environment 573ms, prepare 126ms)

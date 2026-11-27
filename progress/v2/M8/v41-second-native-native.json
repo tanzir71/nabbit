@@ -1,0 +1,454 @@
+{
+  "passed": true,
+  "source": "owned unsigned release executable, real tray DOM/Tauri IPC/SQLite; no mock IPC",
+  "executable": "D:\\claude-upgrade-26\\nabbit\\src-tauri\\target\\release\\nabbit.exe",
+  "executableSha256": "b8192c22a6680308f9e738a9234288f695b6d06aeb12b90ddb5867b2e215e80b",
+  "buildManifestSha256": "fda6c5eee12bf076a98de3f3fa2d7374373f9a5c5b3d4401e6c4cf3d9d51c719",
+  "profile": "D:\\claude-upgrade-26\\nabbit\\.tools\\v41-second-native-9437e333-6030-42d9-ad07-e1f6131ea443\\app-data",
+  "checks": [
+    {
+      "name": "empty local-only store",
+      "state": {
+        "notes": [],
+        "downloads": 0,
+        "clipboard": 0,
+        "tables": [
+          "app_exclusions",
+          "clipboard_entries",
+          "download_presets",
+          "downloads",
+          "note_cards",
+          "pins",
+          "settings"
+        ]
+      }
+    },
+    {
+      "name": "native capture persisted with complete card shape",
+      "state": {
+        "notes": [
+          {
+            "value": {
+              "archived": false,
+              "assigneeId": null,
+              "attachmentIds": [],
+              "body": "Written without a Tack server or account.",
+              "color": "blue",
+              "completed": false,
+              "createdAt": "2026-11-27T04:21:35.918Z",
+              "doneWhen": "",
+              "frontmatter": "",
+              "id": "371b8629-6432-453b-bc23-019f01f2f4e6",
+              "items": [],
+              "kind": "note",
+              "labels": [
+                "Work",
+                "Ideas"
+              ],
+              "pinned": false,
+              "priority": "now",
+              "projectId": null,
+              "rank": "a0",
+              "ref": "",
+              "revision": 0,
+              "sourceId": null,
+              "title": "Local-only acceptance note",
+              "trashedAt": null,
+              "updatedAt": "2026-11-27T04:21:35.918Z",
+              "url": ""
+            },
+            "localOnly": true,
+            "updatedAtColumn": "2026-11-27T04:21:35.918Z"
+          }
+        ],
+        "downloads": 0,
+        "clipboard": 0,
+        "tables": [
+          "app_exclusions",
+          "clipboard_entries",
+          "download_presets",
+          "downloads",
+          "note_cards",
+          "pins",
+          "settings"
+        ]
+      }
+    },
+    {
+      "name": "native checklist updates preserve stable IDs and checked state",
+      "state": {
+        "notes": [
+          {
+            "value": {
+              "archived": false,
+              "assigneeId": null,
+              "attachmentIds": [],
+              "body": "Written without a Tack server or account.",
+              "color": "blue",
+              "completed": false,
+              "createdAt": "2026-11-27T04:21:35.918Z",
+              "doneWhen": "",
+              "frontmatter": "",
+              "id": "371b8629-6432-453b-bc23-019f01f2f4e6",
+              "items": [],
+              "kind": "note",
+              "labels": [
+                "Work",
+                "Ideas"
+              ],
+              "pinned": false,
+              "priority": "now",
+              "projectId": null,
+              "rank": "a0",
+              "ref": "",
+              "revision": 0,
+              "sourceId": null,
+              "title": "Local-only acceptance note",
+              "trashedAt": null,
+              "updatedAt": "2026-11-27T04:21:35.918Z",
+              "url": ""
+            },
+            "localOnly": true,
+            "updatedAtColumn": "2026-11-27T04:21:35.918Z"
+          },
+          {
+            "value": {
+              "archived": false,
+              "assigneeId": null,
+              "attachmentIds": [],
+              "body": "",
+              "color": "default",
+              "completed": false,
+              "createdAt": "2026-11-27T04:21:36.695Z",
+              "doneWhen": "",
+              "frontmatter": "",
+              "id": "50ee9480-c6d2-4ee3-af65-b74ec8e5a3d3",
+              "items": [
+                {
+                  "checked": true,
+                  "id": "213cbe25-60b6-41ed-879b-567c26a6bb73",
+                  "text": "Keep this checked row"
+                },
+                {
+                  "checked": false,
+                  "id": "1b6f82ef-34b4-4eed-8672-351e306695e3",
+                  "text": "Third row"
+                }
+              ],
+              "kind": "checklist",
+              "labels": [],
+              "pinned": false,
+              "priority": "inbox",
+              "projectId": null,
+              "rank": "Zz",
+              "ref": "",
+              "revision": 2,
+              "sourceId": null,
+              "title": "Stable checklist",
+              "trashedAt": null,
+              "updatedAt": "2026-11-27T04:21:37.603Z",
+              "url": ""
+            },
+            "localOnly": true,
+            "updatedAtColumn": "2026-11-27T04:21:37.603Z"
+          }
+        ],
+        "downloads": 0,
+        "clipboard": 0,
+        "tables": [
+          "app_exclusions",
+          "clipboard_entries",
+          "download_presets",
+          "downloads",
+          "note_cards",
+          "pins",
+          "settings"
+        ]
+      }
+    },
+    {
+      "name": "pin, priority/search filters and soft archive/trash/restore use real IPC",
+      "state": {
+        "notes": [
+          {
+            "value": {
+              "archived": false,
+              "assigneeId": null,
+              "attachmentIds": [],
+              "body": "Written without a Tack server or account.",
+              "color": "blue",
+              "completed": false,
+              "createdAt": "2026-11-27T04:21:35.918Z",
+              "doneWhen": "",
+              "frontmatter": "",
+              "id": "371b8629-6432-453b-bc23-019f01f2f4e6",
+              "items": [],
+              "kind": "note",
+              "labels": [
+                "Work",
+                "Ideas"
+              ],
+              "pinned": true,
+              "priority": "now",
+              "projectId": null,
+              "rank": "a0",
+              "ref": "",
+              "revision": 1,
+              "sourceId": null,
+              "title": "Local-only acceptance note",
+              "trashedAt": null,
+              "updatedAt": "2026-11-27T04:21:38.410Z",
+              "url": ""
+            },
+            "localOnly": true,
+            "updatedAtColumn": "2026-11-27T04:21:38.410Z"
+          },
+          {
+            "value": {
+              "archived": true,
+              "assigneeId": null,
+              "attachmentIds": [],
+              "body": "",
+              "color": "default",
+              "completed": false,
+              "createdAt": "2026-11-27T04:21:37.997Z",
+              "doneWhen": "",
+              "frontmatter": "",
+              "id": "4b1eb2b4-7801-4b4d-803e-6c86cedcae92",
+              "items": [],
+              "kind": "bookmark",
+              "labels": [],
+              "pinned": false,
+              "priority": "inbox",
+              "projectId": null,
+              "rank": "Zy",
+              "ref": "",
+              "revision": 3,
+              "sourceId": null,
+              "title": "Tauri documentation",
+              "trashedAt": null,
+              "updatedAt": "2026-11-27T04:21:39.627Z",
+              "url": "https://v2.tauri.app/reference/javascript/api"
+            },
+            "localOnly": true,
+            "updatedAtColumn": "2026-11-27T04:21:39.627Z"
+          },
+          {
+            "value": {
+              "archived": false,
+              "assigneeId": null,
+              "attachmentIds": [],
+              "body": "",
+              "color": "default",
+              "completed": false,
+              "createdAt": "2026-11-27T04:21:36.695Z",
+              "doneWhen": "",
+              "frontmatter": "",
+              "id": "50ee9480-c6d2-4ee3-af65-b74ec8e5a3d3",
+              "items": [
+                {
+                  "checked": true,
+                  "id": "213cbe25-60b6-41ed-879b-567c26a6bb73",
+                  "text": "Keep this checked row"
+                },
+                {
+                  "checked": false,
+                  "id": "1b6f82ef-34b4-4eed-8672-351e306695e3",
+                  "text": "Third row"
+                }
+              ],
+              "kind": "checklist",
+              "labels": [],
+              "pinned": false,
+              "priority": "inbox",
+              "projectId": null,
+              "rank": "Zz",
+              "ref": "",
+              "revision": 2,
+              "sourceId": null,
+              "title": "Stable checklist",
+              "trashedAt": null,
+              "updatedAt": "2026-11-27T04:21:37.603Z",
+              "url": ""
+            },
+            "localOnly": true,
+            "updatedAtColumn": "2026-11-27T04:21:37.603Z"
+          }
+        ],
+        "downloads": 0,
+        "clipboard": 0,
+        "tables": [
+          "app_exclusions",
+          "clipboard_entries",
+          "download_presets",
+          "downloads",
+          "note_cards",
+          "pins",
+          "settings"
+        ]
+      }
+    },
+    {
+      "name": "restart, stale revision rejection, retained draft and unknown JSON preservation",
+      "state": {
+        "notes": [
+          {
+            "value": {
+              "agentState": {
+                "newKey": "preserved",
+                "status": "open"
+              },
+              "archived": false,
+              "assigneeId": null,
+              "attachmentIds": [],
+              "body": "Concurrent window value",
+              "color": "blue",
+              "completed": false,
+              "createdAt": "2026-11-27T04:21:35.918Z",
+              "doneWhen": "",
+              "frontmatter": "",
+              "futureServerField": {
+                "nested": [
+                  1,
+                  {
+                    "kept": true
+                  }
+                ]
+              },
+              "id": "371b8629-6432-453b-bc23-019f01f2f4e6",
+              "items": [],
+              "kind": "note",
+              "labels": [
+                "Work",
+                "Ideas"
+              ],
+              "pinned": true,
+              "priority": "now",
+              "projectId": null,
+              "rank": "a0",
+              "ref": "",
+              "revision": 3,
+              "sourceId": null,
+              "title": "Persisted after restart",
+              "trashedAt": null,
+              "updatedAt": "2026-11-27T04:21:45.284Z",
+              "url": ""
+            },
+            "localOnly": true,
+            "updatedAtColumn": "2026-11-27T04:21:45.284Z"
+          },
+          {
+            "value": {
+              "archived": true,
+              "assigneeId": null,
+              "attachmentIds": [],
+              "body": "",
+              "color": "default",
+              "completed": false,
+              "createdAt": "2026-11-27T04:21:37.997Z",
+              "doneWhen": "",
+              "frontmatter": "",
+              "id": "4b1eb2b4-7801-4b4d-803e-6c86cedcae92",
+              "items": [],
+              "kind": "bookmark",
+              "labels": [],
+              "pinned": false,
+              "priority": "inbox",
+              "projectId": null,
+              "rank": "Zy",
+              "ref": "",
+              "revision": 3,
+              "sourceId": null,
+              "title": "Tauri documentation",
+              "trashedAt": null,
+              "updatedAt": "2026-11-27T04:21:39.627Z",
+              "url": "https://v2.tauri.app/reference/javascript/api"
+            },
+            "localOnly": true,
+            "updatedAtColumn": "2026-11-27T04:21:39.627Z"
+          },
+          {
+            "value": {
+              "archived": false,
+              "assigneeId": null,
+              "attachmentIds": [],
+              "body": "",
+              "color": "default",
+              "completed": false,
+              "createdAt": "2026-11-27T04:21:36.695Z",
+              "doneWhen": "",
+              "frontmatter": "",
+              "id": "50ee9480-c6d2-4ee3-af65-b74ec8e5a3d3",
+              "items": [
+                {
+                  "checked": true,
+                  "id": "213cbe25-60b6-41ed-879b-567c26a6bb73",
+                  "text": "Keep this checked row"
+                },
+                {
+                  "checked": false,
+                  "id": "1b6f82ef-34b4-4eed-8672-351e306695e3",
+                  "text": "Third row"
+                }
+              ],
+              "kind": "checklist",
+              "labels": [],
+              "pinned": false,
+              "priority": "inbox",
+              "projectId": null,
+              "rank": "Zz",
+              "ref": "",
+              "revision": 2,
+              "sourceId": null,
+              "title": "Stable checklist",
+              "trashedAt": null,
+              "updatedAt": "2026-11-27T04:21:37.603Z",
+              "url": ""
+            },
+            "localOnly": true,
+            "updatedAtColumn": "2026-11-27T04:21:37.603Z"
+          }
+        ],
+        "downloads": 0,
+        "clipboard": 0,
+        "tables": [
+          "app_exclusions",
+          "clipboard_entries",
+          "download_presets",
+          "downloads",
+          "note_cards",
+          "pins",
+          "settings"
+        ]
+      }
+    }
+  ],
+  "captures": [
+    {
+      "file": "v41-second-native-light.png",
+      "width": 460,
+      "height": 680,
+      "dpr": 1,
+      "bytes": 35859,
+      "sha256": "6fe505f772358e7971baf59f2757a9a3d290b5d469bcc800b9e0f7424f7611f3",
+      "repeatIdentical": true
+    },
+    {
+      "file": "v41-second-native-dark.png",
+      "width": 460,
+      "height": 680,
+      "dpr": 1,
+      "bytes": 32174,
+      "sha256": "8755ce91ab0044467a6cec019232530569525c5a2897879c2bb0d840fb46b429",
+      "repeatIdentical": true
+    }
+  ],
+  "networkProblems": [],
+  "rendererProblems": [],
+  "limits": [
+    "Native capture uses the actual device scale; the browser matrix separately covers 1x/1.5x light/dark.",
+    "The isolated acceptance provider disables real clipboard and OS shortcut/autostart configuration; no Tack endpoint, account or network is used.",
+    "The dedicated editor, Tack connection/sync, parsed island quick capture, sticky windows and bookmark imports remain later tasks.",
+    "Existing V0/V2.7 native performance/frame/focus limitations are unchanged."
+  ]
+}

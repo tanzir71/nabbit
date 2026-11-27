@@ -1,0 +1,91 @@
+{
+  "passed": false,
+  "failure": {
+    "message": "locator.check: Clicking the checkbox did not change its state\nCall log:\n\u001b[2m  - waiting for getByRole('checkbox', { name: 'Keep this checked row', exact: true })\u001b[22m\n\u001b[2m    - locator resolved to <input type=\"checkbox\"/>\u001b[22m\n\u001b[2m  - attempting click action\u001b[22m\n\u001b[2m    - waiting for element to be visible, enabled and stable\u001b[22m\n\u001b[2m    - element is visible, enabled and stable\u001b[22m\n\u001b[2m    - scrolling into view if needed\u001b[22m\n\u001b[2m    - done scrolling\u001b[22m\n\u001b[2m    - performing click action\u001b[22m\n\u001b[2m    - click action done\u001b[22m\n\u001b[2m    - waiting for scheduled navigations to finish\u001b[22m\n\u001b[2m    - navigations have finished\u001b[22m\n",
+    "stack": "locator.check: Clicking the checkbox did not change its state\nCall log:\n\u001b[2m  - waiting for getByRole('checkbox', { name: 'Keep this checked row', exact: true })\u001b[22m\n\u001b[2m    - locator resolved to <input type=\"checkbox\"/>\u001b[22m\n\u001b[2m  - attempting click action\u001b[22m\n\u001b[2m    - waiting for element to be visible, enabled and stable\u001b[22m\n\u001b[2m    - element is visible, enabled and stable\u001b[22m\n\u001b[2m    - scrolling into view if needed\u001b[22m\n\u001b[2m    - done scrolling\u001b[22m\n\u001b[2m    - performing click action\u001b[22m\n\u001b[2m    - click action done\u001b[22m\n\u001b[2m    - waiting for scheduled navigations to finish\u001b[22m\n\u001b[2m    - navigations have finished\u001b[22m\n\n    at D:\\claude-upgrade-26\\nabbit\\scripts\\verify-notes-native.mjs:253:84"
+  },
+  "source": "owned unsigned release executable, real tray DOM/Tauri IPC/SQLite; no mock IPC",
+  "executable": "D:\\claude-upgrade-26\\nabbit\\src-tauri\\target\\release\\nabbit.exe",
+  "executableSha256": "b8192c22a6680308f9e738a9234288f695b6d06aeb12b90ddb5867b2e215e80b",
+  "buildManifestSha256": "fda6c5eee12bf076a98de3f3fa2d7374373f9a5c5b3d4401e6c4cf3d9d51c719",
+  "profile": "D:\\claude-upgrade-26\\nabbit\\.tools\\v41-first-native-c3665058-3584-4ae8-8335-a951e1abfd78\\app-data",
+  "checks": [
+    {
+      "name": "empty local-only store",
+      "state": {
+        "notes": [],
+        "downloads": 0,
+        "clipboard": 0,
+        "tables": [
+          "app_exclusions",
+          "clipboard_entries",
+          "download_presets",
+          "downloads",
+          "note_cards",
+          "pins",
+          "settings"
+        ]
+      }
+    },
+    {
+      "name": "native capture persisted with complete card shape",
+      "state": {
+        "notes": [
+          {
+            "value": {
+              "archived": false,
+              "assigneeId": null,
+              "attachmentIds": [],
+              "body": "Written without a Tack server or account.",
+              "color": "blue",
+              "completed": false,
+              "createdAt": "2026-11-27T04:19:59.892Z",
+              "doneWhen": "",
+              "frontmatter": "",
+              "id": "2ca4ad62-2fbe-4bd6-a911-066ab5c40d45",
+              "items": [],
+              "kind": "note",
+              "labels": [
+                "Work",
+                "Ideas"
+              ],
+              "pinned": false,
+              "priority": "now",
+              "projectId": null,
+              "rank": "a0",
+              "ref": "",
+              "revision": 0,
+              "sourceId": null,
+              "title": "Local-only acceptance note",
+              "trashedAt": null,
+              "updatedAt": "2026-11-27T04:19:59.892Z",
+              "url": ""
+            },
+            "localOnly": true,
+            "updatedAtColumn": "2026-11-27T04:19:59.892Z"
+          }
+        ],
+        "downloads": 0,
+        "clipboard": 0,
+        "tables": [
+          "app_exclusions",
+          "clipboard_entries",
+          "download_presets",
+          "downloads",
+          "note_cards",
+          "pins",
+          "settings"
+        ]
+      }
+    }
+  ],
+  "captures": [],
+  "networkProblems": [],
+  "rendererProblems": [],
+  "limits": [
+    "Native capture uses the actual device scale; the browser matrix separately covers 1x/1.5x light/dark.",
+    "The isolated acceptance provider disables real clipboard and OS shortcut/autostart configuration; no Tack endpoint, account or network is used.",
+    "The dedicated editor, Tack connection/sync, parsed island quick capture, sticky windows and bookmark imports remain later tasks.",
+    "Existing V0/V2.7 native performance/frame/focus limitations are unchanged."
+  ]
+}

@@ -1,0 +1,154 @@
+{
+  "authoritativeBrowser": "v41-final-screenshots.json",
+  "authoritativeNative": "v41-second-native-native.json",
+  "authoritativeChecks": "v41-checks.json",
+  "earlierNativeReport": "v41-first-native-native.json",
+  "earlierBrowserManifest": "v41-fifth-screenshots.json",
+  "entries": [
+    {
+      "diagnostic": "v41-diagnostics/v41-rust-notes-first.txt",
+      "reason": "Initial unit helper referenced an unavailable tempfile dev-dependency. Replaced with the existing std/UUID fixture-directory pattern; no dependency added.",
+      "file": "progress/v2/M8/v41-diagnostics/v41-rust-notes-first.txt",
+      "bytes": 1011,
+      "sha256": "9cf8155ad2b4569632443f33c985183cc22a058f70129749917472309adcd82b"
+    },
+    {
+      "diagnostic": "v41-diagnostics/v41-rust-notes-second.txt",
+      "reason": "Five focused tests passed with an unused-assignment warning. The test now explicitly asserts the trash timestamp; both required Clippy variants and the final full test command are clean.",
+      "file": "progress/v2/M8/v41-diagnostics/v41-rust-notes-second.txt",
+      "bytes": 1356,
+      "sha256": "b66f8d79272e8318e8fadfb9ea47f32e8a1a6f6ed3b9037d3749d76e17d813fb",
+      "untrimmedTextArchive": {
+        "file": "progress/v2/M8/v41-diagnostics/v41-rust-notes-second.original.txt.gz",
+        "bytes": 683,
+        "sha256": "097b97df8fbaf1b9d17c39af37f39abe0bcd8a57a96adb55e663d865806a2fb6"
+      }
+    },
+    {
+      "diagnostic": "v41-diagnostics/v41-ui-tests-first.txt",
+      "reason": "Testing Library does not infer the native summary role in this environment. Corrected queries to the labelled summary; production markup stays native.",
+      "file": "progress/v2/M8/v41-diagnostics/v41-ui-tests-first.txt",
+      "bytes": 47748,
+      "sha256": "3b24d7c18ae7874624a9fe00c9bca18184ecbd89f46626fc3f2cd29e0f0a95a3",
+      "untrimmedTextArchive": {
+        "file": "progress/v2/M8/v41-diagnostics/v41-ui-tests-first.original.txt.gz",
+        "bytes": 4159,
+        "sha256": "a385fb9b8e96adb625a34e668d94625c560f96496e47130c26ce76993354ddcc"
+      }
+    },
+    {
+      "diagnostic": "v41-diagnostics/v41-ui-tests-second.txt",
+      "reason": "Scoped Archive queries to their card/view menus because JSDOM exposes closed-details descendants.",
+      "file": "progress/v2/M8/v41-diagnostics/v41-ui-tests-second.txt",
+      "bytes": 16335,
+      "sha256": "62b000cedf41395ce851fb70074207f80b68643891f3d998cae9cf76b052dbcf",
+      "untrimmedTextArchive": {
+        "file": "progress/v2/M8/v41-diagnostics/v41-ui-tests-second.original.txt.gz",
+        "bytes": 2782,
+        "sha256": "b4a8dd736c6b4f30f95aa00bacd48b2c5a4fe01999b79436a76381ec0b3ff1c7"
+      }
+    },
+    {
+      "diagnostic": "v41-diagnostics/v41-ui-tests-third.txt",
+      "reason": "Eight early tests pass; superseded by the final nine-test Notes suite inside all 184 frontend tests.",
+      "file": "progress/v2/M8/v41-diagnostics/v41-ui-tests-third.txt",
+      "bytes": 724,
+      "sha256": "87107d153452af5edc6565931dae6fbae07b43eb4bba4c0d552daeab8046b26a",
+      "untrimmedTextArchive": {
+        "file": "progress/v2/M8/v41-diagnostics/v41-ui-tests-third.original.txt.gz",
+        "bytes": 443,
+        "sha256": "97b1224db50a896b990f5d879daa1a3f19e997cab03b0303097dddcbc05f3fcb"
+      }
+    },
+    {
+      "diagnostic": "v41-diagnostics/v41-build-preview.txt",
+      "reason": "Initial new tests used Playwright exact query options in Testing Library. Removed unsupported options; string role names already match exactly.",
+      "file": "progress/v2/M8/v41-diagnostics/v41-build-preview.txt",
+      "bytes": 4105,
+      "sha256": "5204cdec440b8684ddee91d982398fe0f783ad394fb374c650b96afeb0db3dd7"
+    },
+    {
+      "diagnostic": "v41-diagnostics/v41-build-preview-second.txt",
+      "reason": "The same test-only option remained on two multiline queries; corrected before the final verify.",
+      "file": "progress/v2/M8/v41-diagnostics/v41-build-preview-second.txt",
+      "bytes": 1309,
+      "sha256": "bec4804907df5b3878ea0e561b29e4b61952e54495c82a60e674a89726555f98"
+    },
+    {
+      "diagnostic": "v41-diagnostics/v41-browser-first.txt",
+      "reason": "The source audit initially compared raw SVG bytes with Vite inline serialization. It now verifies the exact pinned serialization and records both raw and emitted SVG hashes.",
+      "file": "progress/v2/M8/v41-diagnostics/v41-browser-first.txt",
+      "bytes": 1369,
+      "sha256": "a6af1450d86c81cf3e8dc6a6a7f7f1c8d17468760f708cfa8f39fec8517c5eea",
+      "untrimmedTextArchive": {
+        "file": "progress/v2/M8/v41-diagnostics/v41-browser-first.original.txt.gz",
+        "bytes": 536,
+        "sha256": "85d83755082e9e6c7044ae151a0ac881af79259c092672dbdc9f0f384ce88611"
+      }
+    },
+    {
+      "diagnostic": "v41-diagnostics/v41-browser-second.txt",
+      "reason": "Foundation icon metadata names are relative to components/; corrected the audit source path, without changing an asset.",
+      "file": "progress/v2/M8/v41-diagnostics/v41-browser-second.txt",
+      "bytes": 1156,
+      "sha256": "2dd60e6376cb6257fce90c9427c5a62a4ed440e0bc9a38be9625a18767f54b79"
+    },
+    {
+      "diagnostic": "v41-diagnostics/v41-browser-third.txt",
+      "reason": "Notes is present in both the nav and open view menu; scoped the capture focus query to Navigation.",
+      "file": "progress/v2/M8/v41-diagnostics/v41-browser-third.txt",
+      "bytes": 1817,
+      "sha256": "e1cb6284f2829a0b0db7255a28fd102d6234105bf6ad9b0eedeb2b4c2c5adb97",
+      "untrimmedTextArchive": {
+        "file": "progress/v2/M8/v41-diagnostics/v41-browser-third.original.txt.gz",
+        "bytes": 551,
+        "sha256": "c501ba11f6456e1af80407f75386b776fec43623525327700e8d0e7b77e39f33"
+      }
+    },
+    {
+      "diagnostic": "v41-diagnostics/v41-browser-fourth.txt",
+      "reason": "Default axe found menu-occluded card text indeterminate. Added explicit opaque solid-colour contrast proofs, removed the new menu shadow and implemented outside/Escape dismissal; no rule or arbitrary incomplete is skipped.",
+      "file": "progress/v2/M8/v41-diagnostics/v41-browser-fourth.txt",
+      "bytes": 6373,
+      "sha256": "a0d6eacf41eb3e5b413b9b238e2620ff86a6845577f7b6a61bf077d2da21df41",
+      "untrimmedTextArchive": {
+        "file": "progress/v2/M8/v41-diagnostics/v41-browser-fourth.original.txt.gz",
+        "bytes": 893,
+        "sha256": "060840f053017f49070ddbc796b46d1b6eb34272b3bbe633c654909c0ab76074"
+      }
+    },
+    {
+      "diagnostic": "v41-diagnostics/v41-browser-fifth.txt",
+      "reason": "All 28 earlier captures passed. Superseded by 32 final captures separating default and keyboard focus, with path-segment bookmark wrapping.",
+      "file": "progress/v2/M8/v41-diagnostics/v41-browser-fifth.txt",
+      "bytes": 118,
+      "sha256": "5e062fbc77d96e2fc78eedb7879ec57feaf67e59e5c0c659968ccea5746134de"
+    },
+    {
+      "diagnostic": "v41-diagnostics/v41-lint-first.txt",
+      "reason": "The new helpers needed explicit Node Buffer/globalThis browser globals; corrected without changing app behaviour.",
+      "file": "progress/v2/M8/v41-diagnostics/v41-lint-first.txt",
+      "bytes": 461,
+      "sha256": "da8990b3cb8dbfbc3b6969959e97a839ce1df497cfc3172edc85e00a210af928",
+      "untrimmedTextArchive": {
+        "file": "progress/v2/M8/v41-diagnostics/v41-lint-first.original.txt.gz",
+        "bytes": 217,
+        "sha256": "0d4e8e57c0a2fa4b6e91674d2af9b291aebfa1c893e9f389537b761860089d3c"
+      }
+    },
+    {
+      "diagnostic": "v41-diagnostics/v41-native-first.txt",
+      "reason": "Playwright.check requires an immediate DOM toggle, while this controlled input waits for SQLite. The stopped fixture DB proves that the intended item was already checked. The final helper separately waits for stored and DOM checked state, and uses an isolated output directory too.",
+      "file": "progress/v2/M8/v41-diagnostics/v41-native-first.txt",
+      "bytes": 1273,
+      "sha256": "e7eb5fbc649138dc49d3e7cfa3a761c6091b6f7050d335e22ff4997dc63db90a"
+    },
+    {
+      "diagnostic": "v41-diagnostics/v41-receipt-initial.json",
+      "reason": "Initial receipt collection referenced an incorrect ignored bundle-report path; corrected from the verifier source.",
+      "file": "progress/v2/M8/v41-diagnostics/v41-receipt-initial.json",
+      "bytes": 323,
+      "sha256": "083e64e211f25202cfd00916ac23e58e93dd54630c3c775b1303302a35dc6dab"
+    }
+  ]
+}

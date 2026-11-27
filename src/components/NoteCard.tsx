@@ -1,4 +1,4 @@
-import type { CSSProperties } from "react";
+import { Fragment, type CSSProperties } from "react";
 import { cn } from "../lib/cn";
 import { Badge } from "./Badge";
 import { DesignIcon } from "./DesignIcon";
@@ -21,6 +21,7 @@ type NoteCardProps = Content & {
   title: string;
   color?: NoteColor;
   label?: string;
+  labels?: readonly string[];
   reference?: string;
   status?: string;
   onOpen?: () => void;
@@ -33,6 +34,7 @@ export function NoteCard(props: NoteCardProps) {
     title,
     color = "default",
     label,
+    labels = label ? [label] : [],
     reference,
     status,
     onOpen,
@@ -59,7 +61,24 @@ export function NoteCard(props: NoteCardProps) {
         )}
       </h3>
       {props.kind === "note" && <p className="n-note-body">{props.body}</p>}
-      {props.kind === "bookmark" && <p className="n-note-url">{props.url}</p>}
+      {props.kind === "bookmark" && (
+        <p className="n-note-url" title={props.url}>
+          {props.url
+            .replace(/^https?:\/\//i, "")
+            .replace(/\/$/, "")
+            .split("/")
+            .map((part, index) => (
+              <Fragment key={index}>
+                {index > 0 && (
+                  <>
+                    /<wbr />
+                  </>
+                )}
+                {part}
+              </Fragment>
+            ))}
+        </p>
+      )}
       {(props.kind === "checklist" || props.kind === "task") &&
         props.items.map((item) => (
           <label key={item.id} className={cn("n-check-row", item.checked && "is-checked")}>
@@ -75,9 +94,13 @@ export function NoteCard(props: NoteCardProps) {
             <span>{item.text}</span>
           </label>
         ))}
-      {(label || reference || status) && (
+      {(labels.length > 0 || reference || status) && (
         <div className="n-note-meta">
-          {label && <span className="n-note-label">{label}</span>}
+          {labels.map((item) => (
+            <span key={item} className="n-note-label">
+              {item}
+            </span>
+          ))}
           {reference && <span className="n-note-reference">{reference}</span>}
           {status && <Badge>{status}</Badge>}
         </div>

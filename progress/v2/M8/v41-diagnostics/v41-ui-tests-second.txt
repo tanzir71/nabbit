@@ -1,0 +1,194 @@
+
+ RUN  v3.2.7 D:/claude-upgrade-26/nabbit
+
+ ❯ src/views/NotesView.test.tsx (8 tests | 1 failed) 3148ms
+   ✓ local Notes view > groups pinned cards and filters by priority, label and search across all card content  973ms
+   ✓ local Notes view > checks an item with its stable ID, revision and unknown fields intact 93ms
+   ✓ local Notes view > removing one checklist row does not reassign another row's ID or checked state  552ms
+   ✓ local Notes view > keeps a failed creation draft and permits retry with colour, priority and labels  1409ms
+   × local Notes view > archives and trashes softly and restores through the view menu 116ms
+     → Found multiple elements with the role "button" and name "Archive"
+
+Here are the matching elements:
+
+Ignored nodes: comments, script, style
+[36m<button[39m
+  [33maria-pressed[39m=[32m"false"[39m
+[36m>[39m
+  [0mArchive[0m
+[36m</button>[39m
+
+Ignored nodes: comments, script, style
+[36m<button>[39m
+  [0mArchive[0m
+[36m</button>[39m
+
+(If this is intentional, then use the `*AllBy*` variant of the query (like `queryAllByText`, `getAllByText`, or `findAllByText`)).
+
+Ignored nodes: comments, script, style
+[36m<body>[39m
+  [36m<div>[39m
+    [36m<section[39m
+      [33maria-label[39m=[32m"Notes"[39m
+      [33mclass[39m=[32m"notes-view"[39m
+    [36m>[39m
+      [36m<div[39m
+        [33mclass[39m=[32m"notes-body"[39m
+      [36m>[39m
+        [36m<form[39m
+          [33maria-label[39m=[32m"Create local note"[39m
+          [33mclass[39m=[32m"notes-composer"[39m
+        [36m>[39m
+          [36m<div[39m
+            [33mclass[39m=[32m"notes-capture"[39m
+          [36m>[39m
+            [36m<input[39m
+              [33maria-label[39m=[32m"Note title"[39m
+              [33mmaxlength[39m=[32m"300"[39m
+              [33mplaceholder[39m=[32m"Take a note…"[39m
+              [33mvalue[39m=[32m""[39m
+            [36m/>[39m
+            [36m<button[39m
+              [33maria-label[39m=[32m"New checklist"[39m
+              [33mclass[39m=[32m"n-icon-button n-icon-button--ghost n-icon-button--small"[39m
+              [33mtitle[39m=[32m"New checklist"[39m
+              [33mtype[39m=[32m"button"[39m
+            [36m>[39m
+              [36m<span[39m
+                [33maria-hidden[39m=[32m"true"[39m
+                [33mclass[39m=[32m"n-asset"[39m
+                [33mstyle[39m=[32m"width: 16px; height: 16px; --asset: url(\"data:image/svg+xml,%3csvg%20preserveAspectRatio='none'%20overflow='visible'%20style='display:%20block;'%20width='16'%20height='16'%20viewBox='0%200%2016%2016'%20fill='none'%20xmlns='http://www.w3.org/2000/svg'%3e%3cg%20id='Icon'%3e%3cpath%20id='Vector'%20d='M2%2011.3333L3.33333%2012.6667L6%2010'%20stroke-width='1.16667'%20stroke-linecap='round'%20stroke-linejoin='round'%20stroke='%2366666D'/%3e%3cpath%20id='Vector_2'%20d='M2%204.66667L3.33333%206L6%203.33333'%20stroke-width='1.16667'%20stroke-linecap='round'%20stroke-linejoin='round'%20stroke='%2366666D'/%3e%3cpath%20id='Vector_3'%20d='M8.66667%204H14'%20stroke-width='1.16667'%20stroke-linecap='round'%20stroke-linejoin='round'%20stroke='%2366666D'/%3e%3cpath%20id='Vector_4'%20d='M8.66667%208H14'%20stroke-width='1.16667'%20stroke-linecap='round'%20stroke-linejoin='round'%20stroke='%2317171A'/%3e%3cpath%20id='Vector_5'%20d='M8.66667%2012H14'%20stroke-width='1.16667'%20stroke-linecap='round'%20stroke-linejoin='round'%20stroke='%2317171A'/%3e%3c/g%3e%3c/svg%3e\");"[39m
+              [36m>[39m
+                [36m<img[39m
+                  [33malt[39m=[32m""[39m
+                  [33mdata-asset[39m=[32m"notes/e989f.svg"[39m
+                  [33mdraggable[39m=[32m"false"[39m
+                  [33mheight[39m=[32m"16"[39m
+                  [33msrc[39m=[32m"data:image/svg+xml,%3csvg%20preserveAspectRatio='none'%20overflow='visible'%20style='display:%20block;'%20width='16'%20height='16'%20viewBox='0%200%2016%2016'%20fill='none'%20xmlns='http://www.w3.org/2000/svg'%3e%3cg%20id='Icon'%3e%3cpath%20id='Vector'%20d='M2%2011.3333L3.33333%2012.6667L6%2010'%20stroke-width='1.16667'%20stroke-linecap='round'%20stroke-linejoin='round'%20stroke='%2366666D'/%3e%3cpath%20id='Vector_2'%20d='M2%204.66667L3.33333%206L6%203.33333'%20stroke-width='1.16667'%20stroke-linecap='round'%20stroke-linejoin='round'%20stroke='%2366666D'/%3e%3cpath%20id='Vector_3'%20d='M8.66667%204H14'%20stroke-width='1.16667'%20stroke-linecap='round'%20stroke-linejoin='round'%20stroke='%2366666D'/%3e%3cpath%20id='Vector_4'%20d='M8.66667%208H14'%20stroke-width='1.16667'%20stroke-linecap='round'%20stroke-linejoin='round'%20stroke='%2317171A'/%3e%3cpath%20id='Vector_5'%20d='M8.66667%2012H14'%20stroke-width='1.16667'%20stroke-linecap='round'%20stroke-linejoin='round'%20stroke='%2317171A'/%3e%3c/g%3e%3c/svg%3e"[39m
+                  [33mwidth[39m=[32m"16"[39m
+                [36m/>[39m
+              [36m</span>[39m
+            [36m</button>[39m
+            [36m<button[39m
+              [33maria-label[39m=[32m"New link note"[39m
+              [33mclass[39m=[32m"n-icon-button n-icon-button--ghost n-icon-button--small"[39m
+              [33mtitle[39m=[32m"New link note"[39m
+              [33mtype[39m=[32m"button"[39m
+            [36m>[39m
+              [36m<span[39m
+                [33maria-hidden[39m=[32m"true"[39m
+                [33mclass[39m=[32m"n-asset"[39m
+                [33mstyle[39m=[32m"width: 16px; height: 16px; --asset: url(\"data:image/svg+xml,%3csvg%20preserveAspectRatio='none'%20overflow='visible'%20style='display:%20block;'%20width='16'%20height='16'%20viewBox='0%200%2016%2016'%20fill='none'%20xmlns='http://www.w3.org/2000/svg'%3e%3cg%20id='Icon'%3e%3cpath%20id='Vector'%20d='M6.66667%208.66667C6.95297%209.04942%207.31824%209.36612%207.7377%209.59529C8.15716%209.82446%208.62101%209.96074%209.09777%209.99489C9.57453%2010.029%2010.0531%209.96024%2010.5009%209.79319C10.9487%209.62613%2011.3554%209.36471%2011.6933%209.02667L13.6933%207.02667C14.3005%206.39799%2014.6365%205.55599%2014.6289%204.682C14.6213%203.80801%2014.2708%202.97197%2013.6527%202.35394C13.0347%201.73591%2012.1987%201.38535%2011.3247%201.37775C10.4507%201.37016%209.60867%201.70614%208.98%202.31333L7.83333%203.45333'%20stroke-width='1.16667'%20stroke-linecap='round'%20stroke-linejoin='round'%20stroke='%2366666D'/%3e%3cpath%20id='Vector_2'%20d='M9.33333%207.33333C9.04703%206.95058%208.68176%206.63388%208.2623%206.40471C7.84284%206.17554%207.379%206.03926%206.90223%206.00511C6.42547%205.97097%205.94694%206.03976%205.4991%206.20681C5.05126%206.37387%204.64459%206.63529%204.30667%206.97333L2.30667%208.97333C1.69947%209.60201%201.36349%2010.444%201.37109%2011.318C1.37868%2012.192%201.72924%2013.028%202.34727%2013.6461C2.9653%2014.2641%203.80134%2014.6147%204.67533%2014.6222C5.54932%2014.6298%206.39133%2014.2939%207.02%2013.6867L8.16%2012.5467'%20stroke-width='1.16667'%20stroke-linecap='round'%20stroke-linejoin='round'%20stroke='%2366666D'/%3e%3c/g%3e%3c/svg%3e\");"[39m
+              [36m>[39m
+                [36m<img[39m
+                  [33malt[39m=[32m""[39m
+                  [33mdata-asset[39m=[32m"notes/9d5d7.svg"[39m
+                  [33mdraggable[39m=[32m"false"[39m
+                  [33mheight[39m=[32m"16"[39m
+                  [33msrc[39m=[32m"data:image/svg+xml,%3csvg%20preserveAspectRatio='none'%20overflow='visible'%20style='display:%20block;'%20width='16'%20height='16'%20viewBox='0%200%2016%2016'%20fill='none'%20xmlns='http://www.w3.org/2000/svg'%3e%3cg%20id='Icon'%3e%3cpath%20id='Vector'%20d='M6.66667%208.66667C6.95297%209.04942%207.31824%209.36612%207.7377%209.59529C8.15716%209.82446%208.62101%209.96074%209.09777%209.99489C9.57453%2010.029%2010.0531%209.96024%2010.5009%209.79319C10.9487%209.62613%2011.3554%209.36471%2011.6933%209.02667L13.6933%207.02667C14.3005%206.39799%2014.6365%205.55599%2014.6289%204.682C14.6213%203.80801%2014.2708%202.97197%2013.6527%202.35394C13.0347%201.73591%2012.1987%201.38535%2011.3247%201.37775C10.4507%201.37016%209.60867%201.70614%208.98%202.31333L7.83333%203.45333'%20stroke-width='1.16667'...
+   ✓ Notes state races and filtering > a late list cannot overwrite a newer snapshot 1ms
+   ✓ Notes state races and filtering > a duplicate pending mutation does not issue a stale second write 1ms
+   ✓ Notes state races and filtering > task and bookmark content stays searchable while archive/trash stay separate 1ms
+
+⎯⎯⎯⎯⎯⎯⎯ Failed Tests 1 ⎯⎯⎯⎯⎯⎯⎯
+
+ FAIL  src/views/NotesView.test.tsx > local Notes view > archives and trashes softly and restores through the view menu
+TestingLibraryElementError: Found multiple elements with the role "button" and name "Archive"
+
+Here are the matching elements:
+
+Ignored nodes: comments, script, style
+<button
+  aria-pressed="false"
+>
+  Archive
+</button>
+
+Ignored nodes: comments, script, style
+<button>
+  Archive
+</button>
+
+(If this is intentional, then use the `*AllBy*` variant of the query (like `queryAllByText`, `getAllByText`, or `findAllByText`)).
+
+Ignored nodes: comments, script, style
+<body>
+  <div>
+    <section
+      aria-label="Notes"
+      class="notes-view"
+    >
+      <div
+        class="notes-body"
+      >
+        <form
+          aria-label="Create local note"
+          class="notes-composer"
+        >
+          <div
+            class="notes-capture"
+          >
+            <input
+              aria-label="Note title"
+              maxlength="300"
+              placeholder="Take a note…"
+              value=""
+            />
+            <button
+              aria-label="New checklist"
+              class="n-icon-button n-icon-button--ghost n-icon-button--small"
+              title="New checklist"
+              type="button"
+            >
+              <span
+                aria-hidden="true"
+                class="n-asset"
+                style="width: 16px; height: 16px; --asset: url(\"data:image/svg+xml,%3csvg%20preserveAspectRatio='none'%20overflow='visible'%20style='display:%20block;'%20width='16'%20height='16'%20viewBox='0%200%2016%2016'%20fill='none'%20xmlns='http://www.w3.org/2000/svg'%3e%3cg%20id='Icon'%3e%3cpath%20id='Vector'%20d='M2%2011.3333L3.33333%2012.6667L6%2010'%20stroke-width='1.16667'%20stroke-linecap='round'%20stroke-linejoin='round'%20stroke='%2366666D'/%3e%3cpath%20id='Vector_2'%20d='M2%204.66667L3.33333%206L6%203.33333'%20stroke-width='1.16667'%20stroke-linecap='round'%20stroke-linejoin='round'%20stroke='%2366666D'/%3e%3cpath%20id='Vector_3'%20d='M8.66667%204H14'%20stroke-width='1.16667'%20stroke-linecap='round'%20stroke-linejoin='round'%20stroke='%2366666D'/%3e%3cpath%20id='Vector_4'%20d='M8.66667%208H14'%20stroke-width='1.16667'%20stroke-linecap='round'%20stroke-linejoin='round'%20stroke='%2317171A'/%3e%3cpath%20id='Vector_5'%20d='M8.66667%2012H14'%20stroke-width='1.16667'%20stroke-linecap='round'%20stroke-linejoin='round'%20stroke='%2317171A'/%3e%3c/g%3e%3c/svg%3e\");"
+              >
+                <img
+                  alt=""
+                  data-asset="notes/e989f.svg"
+                  draggable="false"
+                  height="16"
+                  src="data:image/svg+xml,%3csvg%20preserveAspectRatio='none'%20overflow='visible'%20style='display:%20block;'%20width='16'%20height='16'%20viewBox='0%200%2016%2016'%20fill='none'%20xmlns='http://www.w3.org/2000/svg'%3e%3cg%20id='Icon'%3e%3cpath%20id='Vector'%20d='M2%2011.3333L3.33333%2012.6667L6%2010'%20stroke-width='1.16667'%20stroke-linecap='round'%20stroke-linejoin='round'%20stroke='%2366666D'/%3e%3cpath%20id='Vector_2'%20d='M2%204.66667L3.33333%206L6%203.33333'%20stroke-width='1.16667'%20stroke-linecap='round'%20stroke-linejoin='round'%20stroke='%2366666D'/%3e%3cpath%20id='Vector_3'%20d='M8.66667%204H14'%20stroke-width='1.16667'%20stroke-linecap='round'%20stroke-linejoin='round'%20stroke='%2366666D'/%3e%3cpath%20id='Vector_4'%20d='M8.66667%208H14'%20stroke-width='1.16667'%20stroke-linecap='round'%20stroke-linejoin='round'%20stroke='%2317171A'/%3e%3cpath%20id='Vector_5'%20d='M8.66667%2012H14'%20stroke-width='1.16667'%20stroke-linecap='round'%20stroke-linejoin='round'%20stroke='%2317171A'/%3e%3c/g%3e%3c/svg%3e"
+                  width="16"
+                />
+              </span>
+            </button>
+            <button
+              aria-label="New link note"
+              class="n-icon-button n-icon-button--ghost n-icon-button--small"
+              title="New link note"
+              type="button"
+            >
+              <span
+                aria-hidden="true"
+                class="n-asset"
+                style="width: 16px; height: 16px; --asset: url(\"data:image/svg+xml,%3csvg%20preserveAspectRatio='none'%20overflow='visible'%20style='display:%20block;'%20width='16'%20height='16'%20viewBox='0%200%2016%2016'%20fill='none'%20xmlns='http://www.w3.org/2000/svg'%3e%3cg%20id='Icon'%3e%3cpath%20id='Vector'%20d='M6.66667%208.66667C6.95297%209.04942%207.31824%209.36612%207.7377%209.59529C8.15716%209.82446%208.62101%209.96074%209.09777%209.99489C9.57453%2010.029%2010.0531%209.96024%2010.5009%209.79319C10.9487%209.62613%2011.3554%209.36471%2011.6933%209.02667L13.6933%207.02667C14.3005%206.39799%2014.6365%205.55599%2014.6289%204.682C14.6213%203.80801%2014.2708%202.97197%2013.6527%202.35394C13.0347%201.73591%2012.1987%201.38535%2011.3247%201.37775C10.4507%201.37016%209.60867%201.70614%208.98%202.31333L7.83333%203.45333'%20stroke-width='1.16667'%20stroke-linecap='round'%20stroke-linejoin='round'%20stroke='%2366666D'/%3e%3cpath%20id='Vector_2'%20d='M9.33333%207.33333C9.04703%206.95058%208.68176%206.63388%208.2623%206.40471C7.84284%206.17554%207.379%206.03926%206.90223%206.00511C6.42547%205.97097%205.94694%206.03976%205.4991%206.20681C5.05126%206.37387%204.64459%206.63529%204.30667%206.97333L2.30667%208.97333C1.69947%209.60201%201.36349%2010.444%201.37109%2011.318C1.37868%2012.192%201.72924%2013.028%202.34727%2013.6461C2.9653%2014.2641%203.80134%2014.6147%204.67533%2014.6222C5.54932%2014.6298%206.39133%2014.2939%207.02%2013.6867L8.16%2012.5467'%20stroke-width='1.16667'%20stroke-linecap='round'%20stroke-linejoin='round'%20stroke='%2366666D'/%3e%3c/g%3e%3c/svg%3e\");"
+              >
+                <img
+                  alt=""
+                  data-asset="notes/9d5d7.svg"
+                  draggable="false"
+                  height="16"
+                  src="data:image/svg+xml,%3csvg%20preserveAspectRatio='none'%20overflow='visible'%20style='display:%20block;'%20width='16'%20height='16'%20viewBox='0%200%2016%2016'%20fill='none'%20xmlns='http://www.w3.org/2000/svg'%3e%3cg%20id='Icon'%3e%3cpath%20id='Vector'%20d='M6.66667%208.66667C6.95297%209.04942%207.31824%209.36612%207.7377%209.59529C8.15716%209.82446%208.62101%209.96074%209.09777%209.99489C9.57453%2010.029%2010.0531%209.96024%2010.5009%209.79319C10.9487%209.62613%2011.3554%209.36471%2011.6933%209.02667L13.6933%207.02667C14.3005%206.39799%2014.6365%205.55599%2014.6289%204.682C14.6213%203.80801%2014.2708%202.97197%2013.6527%202.35394C13.0347%201.73591%2012.1987%201.38535%2011.3247%201.37775C10.4507%201.37016%209.60867%201.70614%208.98%202.31333L7.83333%203.45333'%20stroke-width='1.16667'...
+ ❯ Object.getElementError node_modules/@testing-library/dom/dist/config.js:37:19
+ ❯ getElementError node_modules/@testing-library/dom/dist/query-helpers.js:20:35
+ ❯ getMultipleElementsFoundError node_modules/@testing-library/dom/dist/query-helpers.js:23:10
+ ❯ node_modules/@testing-library/dom/dist/query-helpers.js:55:13
+ ❯ node_modules/@testing-library/dom/dist/query-helpers.js:95:19
+ ❯ src/views/NotesView.test.tsx:181:29
+
+    179|     await screen.findByText("My note");
+    180|     await user.click(screen.getByLabelText("Actions for My note"));
+    181|     await user.click(screen.getByRole("button", { name: "Archive", exa…
+       |                             ^
+    182|     await waitFor(() => expect(screen.queryByRole("article")).not.toBe…
+    183|     await user.click(screen.getByLabelText("Notes view and labels"));
+
+⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯[1/1]⎯
+
+ Test Files  1 failed (1)
+      Tests  1 failed | 7 passed (8)
+   Start at  09:56:15
+   Duration  5.28s (transform 393ms, setup 100ms, collect 664ms, tests 3.15s, environment 553ms, prepare 121ms)

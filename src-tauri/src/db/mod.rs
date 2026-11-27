@@ -19,7 +19,7 @@ use crate::{
 
 #[derive(Clone)]
 pub struct Database {
-    conn: Arc<Mutex<Connection>>,
+    pub(crate) conn: Arc<Mutex<Connection>>,
     db_path: PathBuf,
 }
 
@@ -120,6 +120,12 @@ impl Database {
                 added_at TEXT, last_used TEXT
             );
             CREATE UNIQUE INDEX IF NOT EXISTS idx_pin_slot ON pins(slot) WHERE slot IS NOT NULL;
+            CREATE TABLE IF NOT EXISTS note_cards (
+                id TEXT PRIMARY KEY,
+                value TEXT NOT NULL,
+                local_only INTEGER NOT NULL DEFAULT 0,
+                updated_at TEXT NOT NULL
+            );
             ",
         )?;
         let columns = conn
@@ -644,7 +650,7 @@ fn normalize_settings(mut settings: AppSettings) -> AppSettings {
     }
     settings.image_size_cap_mb = settings.image_size_cap_mb.clamp(1, 50);
     settings.max_concurrent_downloads = settings.max_concurrent_downloads.clamp(1, 6);
-    if !["download", "clipboard"].contains(&settings.last_tab.as_str()) {
+    if !["download", "notes", "clipboard"].contains(&settings.last_tab.as_str()) {
         settings.last_tab = "download".into();
     }
     settings

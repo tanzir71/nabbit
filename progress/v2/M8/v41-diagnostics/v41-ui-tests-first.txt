@@ -1,0 +1,1194 @@
+
+ RUN  v3.2.7 D:/claude-upgrade-26/nabbit
+
+ ❯ src/views/NotesView.test.tsx (8 tests | 2 failed) 2217ms
+   × local Notes view > groups pinned cards and filters by priority, label and search across all card content 302ms
+     → Unable to find an accessible element with the role "button" and name "Notes view and labels"
+
+Here are the accessible roles:
+
+  region:
+
+  Name "Notes":
+  [36m<section[39m
+    [33maria-label[39m=[32m"Notes"[39m
+    [33mclass[39m=[32m"notes-view"[39m
+  [36m/>[39m
+
+  Name "Pinned":
+  [36m<section[39m
+    [33maria-label[39m=[32m"Pinned"[39m
+    [33mclass[39m=[32m"notes-group"[39m
+  [36m/>[39m
+
+  --------------------------------------------------
+  form:
+
+  Name "Create local note":
+  [36m<form[39m
+    [33maria-label[39m=[32m"Create local note"[39m
+    [33mclass[39m=[32m"notes-composer"[39m
+  [36m/>[39m
+
+  --------------------------------------------------
+  textbox:
+
+  Name "Note title":
+  [36m<input[39m
+    [33maria-label[39m=[32m"Note title"[39m
+    [33mmaxlength[39m=[32m"300"[39m
+    [33mplaceholder[39m=[32m"Take a note…"[39m
+    [33mvalue[39m=[32m""[39m
+  [36m/>[39m
+
+  --------------------------------------------------
+  button:
+
+  Name "New checklist":
+  [36m<button[39m
+    [33maria-label[39m=[32m"New checklist"[39m
+    [33mclass[39m=[32m"n-icon-button n-icon-button--ghost n-icon-button--small"[39m
+    [33mtitle[39m=[32m"New checklist"[39m
+    [33mtype[39m=[32m"button"[39m
+  [36m/>[39m
+
+  Name "New link note":
+  [36m<button[39m
+    [33maria-label[39m=[32m"New link note"[39m
+    [33mclass[39m=[32m"n-icon-button n-icon-button--ghost n-icon-button--small"[39m
+    [33mtitle[39m=[32m"New link note"[39m
+    [33mtype[39m=[32m"button"[39m
+  [36m/>[39m
+
+  Name "Image attachments are read-only":
+  [36m<button[39m
+    [33maria-label[39m=[32m"Image attachments are read-only"[39m
+    [33mclass[39m=[32m"n-icon-button n-icon-button--ghost n-icon-button--small"[39m
+    [33mdisabled[39m=[32m""[39m
+    [33mtitle[39m=[32m"Image attachments are read-only"[39m
+    [33mtype[39m=[32m"button"[39m
+  [36m/>[39m
+
+  Name "All":
+  [36m<button[39m
+    [33maria-pressed[39m=[32m"false"[39m
+    [33mclass[39m=[32m"n-preset n-preset--light"[39m
+    [33mtype[39m=[32m"button"[39m
+  [36m/>[39m
+
+  Name "Inbox":
+  [36m<button[39m
+    [33maria-pressed[39m=[32m"false"[39m
+    [33mclass[39m=[32m"n-preset n-preset--light"[39m
+    [33mtype[39m=[32m"button"[39m
+  [36m/>[39m
+
+  Name "Now":
+  [36m<button[39m
+    [33maria-pressed[39m=[32m"true"[39m
+    [33mclass[39m=[32m"n-preset n-preset--light is-selected"[39m
+    [33mtype[39m=[32m"button"[39m
+  [36m/>[39m
+
+  Name "Next":
+  [36m<button[39m
+    [33maria-pressed[39m=[32m"false"[39m
+    [33mclass[39m=[32m"n-preset n-preset--light"[39m
+    [33mtype[39m=[32m"button"[39m
+  [36m/>[39m
+
+  Name "Later":
+  [36m<button[39m
+    [33maria-pressed[39m=[32m"false"[39m
+    [33mclass[39m=[32m"n-preset n-preset--light"[39m
+    [33mtype[39m=[32m"button"[39m
+  [36m/>[39m
+
+  Name "Notes":
+  [36m<button[39m
+    [33maria-pressed[39m=[32m"true"[39m
+  [36m/>[39m
+
+  Name "Archive":
+  [36m<button[39m
+    [33maria-pressed[39m=[32m"false"[39m
+  [36m/>[39m
+
+  Name "Trash":
+  [36m<button[39m
+    [33maria-pressed[39m=[32m"false"[39m
+  [36m/>[39m
+
+  Name "Pinned list":
+  [36m<button[39m
+    [33mclass[39m=[32m"n-note-open"[39m
+    [33mtype[39m=[32m"button"[39m
+  [36m/>[39m
+
+  Name "Edit":
+  [36m<button />[39m
+
+  Name "Unpin":
+  [36m<button />[39m
+
+  Name "Archive":
+  [36m<button />[39m
+
+  Name "Move to Trash":
+  [36m<button />[39m
+
+  --------------------------------------------------
+  group:
+
+  Name "Note priority filter":
+  [36m<div[39m
+    [33maria-label[39m=[32m"Note priority filter"[39m
+    [33mclass[39m=[32m"notes-filters"[39m
+    [33mrole[39m=[32m"group"[39m
+  [36m/>[39m
+
+  Name "":
+  [36m<details[39m
+    [33mclass[39m=[32m"notes-view-menu"[39m
+  [36m/>[39m
+
+  Name "":
+  [36m<details[39m
+    [33mclass[39m=[32m"notes-card-menu"[39m
+  [36m/>[39m
+
+  --------------------------------------------------
+  paragraph:
+
+  Name "":
+  [36m<p />[39m
+
+  --------------------------------------------------
+  combobox:
+
+  Name "Filter by label":
+  [36m<select[39m
+    [33maria-label[39m=[32m"Filter by label"[39m
+  [36m/>[39m
+
+  --------------------------------------------------
+  option:
+
+  Name "All labels":
+  [36m<option[39m
+    [33mvalue[39m=[32m""[39m
+  [36m/>[39m
+
+  Name "Build":
+  [36m<option />[39m
+
+  --------------------------------------------------
+  heading:
+
+  Name "Pinned":
+  [36m<h2 />[39m
+
+  Name "Pinned list":
+  [36m<h3[39m
+    [33mclass[39m=[32m"n-note-title"[39m
+  [36m/>[39m
+
+  --------------------------------------------------
+  article:
+
+  Name "Pinned list":
+  [36m<article[39m
+    [33maria-label[39m=[32m"Pinned list"[39m
+    [33mclass[39m=[32m"n-note-card"[39m
+    [33mdata-color[39m=[32m"default"[39m
+    [33mdata-kind[39m=[32m"checklist"[39m
+  [36m/>[39m
+
+  --------------------------------------------------
+  checkbox:
+
+  Name "Hidden searchable step":
+  [36m<input[39m
+    [33mtype[39m=[32m"checkbox"[39m
+  [36m/>[39m
+
+  --------------------------------------------------
+  status:
+
+  Name "":
+  [36m<span[39m
+    [33mclass[39m=[32m"sr-only"[39m
+    [33mrole[39m=[32m"status"[39m
+  [36m/>[39m
+
+  --------------------------------------------------
+  contentinfo:
+
+  Name "":
+  [36m<footer[39m
+    [33mclass[39m=[32m"notes-footer"[39m
+  [36m/>[39m
+
+  --------------------------------------------------
+
+Ignored nodes: comments, script, style
+[36m<body>[39m
+  [36m<div>[39m
+    [36m<section[39m
+      [33maria-label[39m=[32m"Notes"[39m
+      [33mclass[39m=[32m"notes-view"[39m
+    [36m>[39m
+      [36m<div[39m
+        [33mclass[39m=[32m"notes-body"[39m
+      [36m>[39m
+        [36m<form[39m
+          [33maria-label[39m=[32m"Create local note"[39m
+          [33mclass[39m=[32m"notes-composer"[39m
+        [36m>[39m
+          [36m<div[39m
+            [33mclass[39m=[32m"notes-capture"[39m
+          [36m>[39m
+            [36m<input[39m
+              [33maria-label[39m=[32m"Note title"[39m
+              [33mmaxlength[39m=[32m"300"[39m
+              [33mplaceholder[39m=[32m"Take a note…"[39m
+              [33mvalue[39m=[32m""[39m
+            [36m/>[39m
+            [36m<button[39m
+              [33maria-label[39m=[32m"New checklist"[39m
+              [33mclass[39m=[32m"n-icon-button n-icon-button--ghost n-icon-button--small"[39m
+              [33mtitle[39m=[32m"New checklist"[39m
+              [33mtype[39m=[32m"button"[39m
+            [36m>[39m
+              [36m<span[39m
+                [33maria-hidden[39m=[32m"true"[39m
+                [33mclass[39m=[32m"n-asset"[39m
+                [33mstyle[39m=[32m"width: 16px; height: 16px; --asset: url(\"data:image/svg+xml,%3csvg%20preserveAspectRatio='none'%20overflow='visible'%20style='display:%20block;'%20width='16'%20height='16'%20viewBox='0%200%2016%2016'%20fill='none'%20xmlns='http://www.w3.org/2000/svg'%3e%3cg%20id='Icon'%3e%3cpath%20id='Vector'%20d='M2%2011.3333L3.33333%2012.6667L6%2010'%20stroke-width='1.16667'%20stroke-linecap='round'%20stroke-linejoin='round'%20stroke='%2366666D'/%3e%3cpath%20id='Vector_2'%20d='M2%204.66667L3.33333%206L6%203.33333'%20stroke-width='1.16667'%20stroke-linecap='round'%20stroke-linejoin='round'%20stroke='%2366666D'/%3e%3cpath%20id='Vector_3'%20d='M8.66667%204H14'%20stroke-width='1.16667'%20stroke-linecap='round'%20stroke-linejoin='round'%20stroke='%2366666D'/%3e%3cpath%20id='Vector_4'%20d='M8.66667%208H14'%20stroke-width='1.16667'%20stroke-linecap='round'%20stroke-linejoin='round'%20stroke='%2317171A'/%3e%3cpath%20id='Vector_5'%20d='M8.66667%2012H14'%20stroke-width='1.16667'%20stroke-linecap='round'%20stroke-linejoin='round'%20stroke='%2317171A'/%3e%3c/g%3e%3c/svg%3e\");"[39m
+              [36m>[39m
+                [36m<img[39m
+                  [33malt[39m=[32m""[39m
+                  [33mdata-asset[39m=[32m"notes/e989f.svg"[39m
+                  [33mdraggable[39m=[32m"false"[39m
+                  [33mheight[39m=[32m"16"[39m
+                  [33msrc[39m=[32m"data:image/svg+xml,%3csvg%20preserveAspectRatio='none'%20overflow='visible'%20style='display:%20block;'%20width='16'%20height='16'%20viewBox='0%200%2016%2016'%20fill='none'%20xmlns='http://www.w3.org/2000/svg'%3e%3cg%20id='Icon'%3e%3cpath%20id='Vector'%20d='M2%2011.3333L3.33333%2012.6667L6%2010'%20stroke-width='1.16667'%20stroke-linecap='round'%20stroke-linejoin='round'%20stroke='%2366666D'/%3e%3cpath%20id='Vector_2'%20d='M2%204.66667L3.33333%206L6%203.33333'%20stroke-width='1.16667'%20stroke-linecap='round'%20stroke-linejoin='round'%20stroke='%2366666D'/%3e%3cpath%20id='Vector_3'%20d='M8.66667%204H14'%20stroke-width='1.16667'%20stroke-linecap='round'%20stroke-linejoin='round'%20stroke='%2366666D'/%3e%3cpath%20id='Vector_4'%20d='M8.66667%208H14'%20stroke-width='1.16667'%20stroke-linecap='round'%20stroke-linejoin='round'%20stroke='%2317171A'/%3e%3cpath%20id='Vector_5'%20d='M8.66667%2012H14'%20stroke-width='1.16667'%20stroke-linecap='round'%20stroke-linejoin='round'%20stroke='%2317171A'/%3e%3c/g%3e%3c/svg%3e"[39m
+                  [33mwidth[39m=[32m"16"[39m
+                [36m/>[39m
+              [36m</span>[39m
+            [36m</button>[39m
+            [36m<button[39m
+              [33maria-label[39m=[32m"New link note"[39m
+              [33mclass[39m=[32m"n-icon-button n-icon-button--ghost n-icon-button--small"[39m
+              [33mtitle[39m=[32m"New link note"[39m
+              [33mtype[39m=[32m"button"[39m
+            [36m>[39m
+              [36m<span[39m
+                [33maria-hidden[39m=[32m"true"[39m
+                [33mclass[39m=[32m"n-asset"[39m
+                [33mstyle[39m=[32m"width: 16px; height: 16px; --asset: url(\"data:image/svg+xml,%3csvg%20preserveAspectRatio='none'%20overflow='visible'%20style='display:%20block;'%20width='16'%20height='16'%20viewBox='0%200%2016%2016'%20fill='none'%20xmlns='http://www.w3.org/2000/svg'%3e%3cg%20id='Icon'%3e%3cpath%20id='Vector'%20d='M6.66667%208.66667C6.95297%209.04942%207.31824%209.36612%207.7377%209.59529C8.15716%209.82446%208.62101%209.96074%209.09777%209.99489C9.57453%2010.029%2010.0531%209.96024%2010.5009%209.79319C10.9487%209.62613%2011.3554%209.36471%2011.6933%209.02667L13.6933%207.02667C14.3005%206.39799%2014.6365%205.55599%2014.6289%204.682C14.6213%203.80801%2014.2708%202.97197%2013.6527%202.35394C13.0347%201.73591%2012.1987%201.38535%2011.3247%201.37775C10.4507%201.37016%209.60867%201.70614%208.98%202.31333L7.83333%203.45333'%20stroke-width='1.16667'%20stroke-linecap='round'%20stroke-linejoin='round'%20stroke='%2366666D'/%3e%3cpath%20id='Vector_2'%20d='M9.33333%207.33333C9.04703%206.95058%208.68176%206.63388%208.2623%206.40471C7.84284%206.17554%207.379%206.03926%206.90223%206.00511C6.42547%205.97097%205.94694%206.03976%205.4991%206.20681C5.05126%206.37387%204.64459%206.63529%204.30667%206.97333L2.30667%208.97333C1.69947%209.60201%201.36349%2010.444%201.37109%2011.318C1.37868%2012.192%201.72924%2013.028%202.34727%2013.6461C2.9653%2014.2641%203.80134%2014.6147%204.67533%2014.6222C5.54932%2014.6298%206.39133%2014.2939%207.02%2013.6867L8.16%2012.5467'%20stroke-width='1.16667'%20stroke-linecap='round'%20stroke-linejoin='round'%20stroke='%2366666D'/%3e%3c/g%3e%3c/svg%3e\");"[39m
+              [36m>[39m
+                [36m<img[39m
+                  [33malt[39m=[32m""[39m
+                  [33mdata-asset[39m=[32m"notes/9d5d7.svg"[39m
+                  [33mdraggable[39m=[32m"false"[39m
+                  [33mheight[39m=[32m"16"[39m
+                  [33msrc[39m=[32m"data:image/svg+xml,%3csvg%20preserveAspectRatio='none'%20overflow='visible'%20style='display:%20block;'%20width='16'%20height='16'%20viewBox='0%200%2016%2016'%20fill='none'%20xmlns='http://www.w3.org/2000/svg'%3e%3cg%20id='Icon'%3e%3cpath%20id='Vector'%20d='M6.66667%208.66667C6.95297%209.04942%207.31824%209.36612%207.7377%209.59529C8.15716%209.82446%208.62101%209.96074%209.09777%209.99489C9.57453%2010.029%2010.0531%209.96024%2010.5009%209.79319C10.9487%209.62613%2011.3554%209.36471%2011.6933%209.02667L13.6933%207.02667C14.3005%206.39799%2014.6365%205.55599%2014.6289%204.682C14.6213%203.80801%2014.2708%202.97197%2013.6527%202.35394C13.0347%201.73591%2012.1987%201.38535%2011.3247%201.37775C10.4507%201.37016%209.60867%201.70614%208.98%202.31333L7.83333%203.45333'%20stroke-width='1.16667'...
+   ✓ local Notes view > checks an item with its stable ID, revision and unknown fields intact 115ms
+   ✓ local Notes view > removing one checklist row does not reassign another row's ID or checked state  521ms
+   ✓ local Notes view > keeps a failed creation draft and permits retry with colour, priority and labels  1175ms
+   × local Notes view > archives and trashes softly and restores through the view menu 101ms
+     → Unable to find an accessible element with the role "button" and name "Actions for My note"
+
+Here are the accessible roles:
+
+  region:
+
+  Name "Notes":
+  [36m<section[39m
+    [33maria-label[39m=[32m"Notes"[39m
+    [33mclass[39m=[32m"notes-view"[39m
+  [36m/>[39m
+
+  Name "Notes":
+  [36m<section[39m
+    [33maria-label[39m=[32m"Notes"[39m
+    [33mclass[39m=[32m"notes-group"[39m
+  [36m/>[39m
+
+  --------------------------------------------------
+  form:
+
+  Name "Create local note":
+  [36m<form[39m
+    [33maria-label[39m=[32m"Create local note"[39m
+    [33mclass[39m=[32m"notes-composer"[39m
+  [36m/>[39m
+
+  --------------------------------------------------
+  textbox:
+
+  Name "Note title":
+  [36m<input[39m
+    [33maria-label[39m=[32m"Note title"[39m
+    [33mmaxlength[39m=[32m"300"[39m
+    [33mplaceholder[39m=[32m"Take a note…"[39m
+    [33mvalue[39m=[32m""[39m
+  [36m/>[39m
+
+  --------------------------------------------------
+  button:
+
+  Name "New checklist":
+  [36m<button[39m
+    [33maria-label[39m=[32m"New checklist"[39m
+    [33mclass[39m=[32m"n-icon-button n-icon-button--ghost n-icon-button--small"[39m
+    [33mtitle[39m=[32m"New checklist"[39m
+    [33mtype[39m=[32m"button"[39m
+  [36m/>[39m
+
+  Name "New link note":
+  [36m<button[39m
+    [33maria-label[39m=[32m"New link note"[39m
+    [33mclass[39m=[32m"n-icon-button n-icon-button--ghost n-icon-button--small"[39m
+    [33mtitle[39m=[32m"New link note"[39m
+    [33mtype[39m=[32m"button"[39m
+  [36m/>[39m
+
+  Name "Image attachments are read-only":
+  [36m<button[39m
+    [33maria-label[39m=[32m"Image attachments are read-only"[39m
+    [33mclass[39m=[32m"n-icon-button n-icon-button--ghost n-icon-button--small"[39m
+    [33mdisabled[39m=[32m""[39m
+    [33mtitle[39m=[32m"Image attachments are read-only"[39m
+    [33mtype[39m=[32m"button"[39m
+  [36m/>[39m
+
+  Name "All":
+  [36m<button[39m
+    [33maria-pressed[39m=[32m"true"[39m
+    [33mclass[39m=[32m"n-preset n-preset--light is-selected"[39m
+    [33mtype[39m=[32m"button"[39m
+  [36m/>[39m
+
+  Name "Inbox":
+  [36m<button[39m
+    [33maria-pressed[39m=[32m"false"[39m
+    [33mclass[39m=[32m"n-preset n-preset--light"[39m
+    [33mtype[39m=[32m"button"[39m
+  [36m/>[39m
+
+  Name "Now":
+  [36m<button[39m
+    [33maria-pressed[39m=[32m"false"[39m
+    [33mclass[39m=[32m"n-preset n-preset--light"[39m
+    [33mtype[39m=[32m"button"[39m
+  [36m/>[39m
+
+  Name "Next":
+  [36m<button[39m
+    [33maria-pressed[39m=[32m"false"[39m
+    [33mclass[39m=[32m"n-preset n-preset--light"[39m
+    [33mtype[39m=[32m"button"[39m
+  [36m/>[39m
+
+  Name "Later":
+  [36m<button[39m
+    [33maria-pressed[39m=[32m"false"[39m
+    [33mclass[39m=[32m"n-preset n-preset--light"[39m
+    [33mtype[39m=[32m"button"[39m
+  [36m/>[39m
+
+  Name "Notes":
+  [36m<button[39m
+    [33maria-pressed[39m=[32m"true"[39m
+  [36m/>[39m
+
+  Name "Archive":
+  [36m<button[39m
+    [33maria-pressed[39m=[32m"false"[39m
+  [36m/>[39m
+
+  Name "Trash":
+  [36m<button[39m
+    [33maria-pressed[39m=[32m"false"[39m
+  [36m/>[39m
+
+  Name "My note":
+  [36m<button[39m
+    [33mclass[39m=[32m"n-note-open"[39m
+    [33mtype[39m=[32m"button"[39m
+  [36m/>[39m
+
+  Name "Edit":
+  [36m<button />[39m
+
+  Name "Pin":
+  [36m<button />[39m
+
+  Name "Archive":
+  [36m<button />[39m
+
+  Name "Move to Trash":
+  [36m<button />[39m
+
+  --------------------------------------------------
+  group:
+
+  Name "Note priority filter":
+  [36m<div[39m
+    [33maria-label[39m=[32m"Note priority filter"[39m
+    [33mclass[39m=[32m"notes-filters"[39m
+    [33mrole[39m=[32m"group"[39m
+  [36m/>[39m
+
+  Name "":
+  [36m<details[39m
+    [33mclass[39m=[32m"notes-view-menu"[39m
+  [36m/>[39m
+
+  Name "":
+  [36m<details[39m
+    [33mclass[39m=[32m"notes-card-menu"[39m
+  [36m/>[39m
+
+  --------------------------------------------------
+  paragraph:
+
+  Name "":
+  [36m<p />[39m
+
+  Name "":
+  [36m<p[39m
+    [33mclass[39m=[32m"n-note-body"[39m
+  [36m/>[39m
+
+  --------------------------------------------------
+  combobox:
+
+  Name "Filter by label":
+  [36m<select[39m
+    [33maria-label[39m=[32m"Filter by label"[39m
+  [36m/>[39m
+
+  --------------------------------------------------
+  option:
+
+  Name "All labels":
+  [36m<option[39m
+    [33mvalue[39m=[32m""[39m
+  [36m/>[39m
+
+  --------------------------------------------------
+  heading:
+
+  Name "Notes":
+  [36m<h2 />[39m
+
+  Name "My note":
+  [36m<h3[39m
+    [33mclass[39m=[32m"n-note-title"[39m
+  [36m/>[39m
+
+  --------------------------------------------------
+  article:
+
+  Name "My note":
+  [36m<article[39m
+    [33maria-label[39m=[32m"My note"[39m
+    [33mclass[39m=[32m"n-note-card"[39m
+    [33mdata-color[39m=[32m"default"[39m
+    [33mdata-kind[39m=[32m"note"[39m
+  [36m/>[39m
+
+  --------------------------------------------------
+  status:
+
+  Name "":
+  [36m<span[39m
+    [33mclass[39m=[32m"sr-only"[39m
+    [33mrole[39m=[32m"status"[39m
+  [36m/>[39m
+
+  --------------------------------------------------
+  contentinfo:
+
+  Name "":
+  [36m<footer[39m
+    [33mclass[39m=[32m"notes-footer"[39m
+  [36m/>[39m
+
+  --------------------------------------------------
+
+Ignored nodes: comments, script, style
+[36m<body>[39m
+  [36m<div>[39m
+    [36m<section[39m
+      [33maria-label[39m=[32m"Notes"[39m
+      [33mclass[39m=[32m"notes-view"[39m
+    [36m>[39m
+      [36m<div[39m
+        [33mclass[39m=[32m"notes-body"[39m
+      [36m>[39m
+        [36m<form[39m
+          [33maria-label[39m=[32m"Create local note"[39m
+          [33mclass[39m=[32m"notes-composer"[39m
+        [36m>[39m
+          [36m<div[39m
+            [33mclass[39m=[32m"notes-capture"[39m
+          [36m>[39m
+            [36m<input[39m
+              [33maria-label[39m=[32m"Note title"[39m
+              [33mmaxlength[39m=[32m"300"[39m
+              [33mplaceholder[39m=[32m"Take a note…"[39m
+              [33mvalue[39m=[32m""[39m
+            [36m/>[39m
+            [36m<button[39m
+              [33maria-label[39m=[32m"New checklist"[39m
+              [33mclass[39m=[32m"n-icon-button n-icon-button--ghost n-icon-button--small"[39m
+              [33mtitle[39m=[32m"New checklist"[39m
+              [33mtype[39m=[32m"button"[39m
+            [36m>[39m
+              [36m<span[39m
+                [33maria-hidden[39m=[32m"true"[39m
+                [33mclass[39m=[32m"n-asset"[39m
+                [33mstyle[39m=[32m"width: 16px; height: 16px; --asset: url(\"data:image/svg+xml,%3csvg%20preserveAspectRatio='none'%20overflow='visible'%20style='display:%20block;'%20width='16'%20height='16'%20viewBox='0%200%2016%2016'%20fill='none'%20xmlns='http://www.w3.org/2000/svg'%3e%3cg%20id='Icon'%3e%3cpath%20id='Vector'%20d='M2%2011.3333L3.33333%2012.6667L6%2010'%20stroke-width='1.16667'%20stroke-linecap='round'%20stroke-linejoin='round'%20stroke='%2366666D'/%3e%3cpath%20id='Vector_2'%20d='M2%204.66667L3.33333%206L6%203.33333'%20stroke-width='1.16667'%20stroke-linecap='round'%20stroke-linejoin='round'%20stroke='%2366666D'/%3e%3cpath%20id='Vector_3'%20d='M8.66667%204H14'%20stroke-width='1.16667'%20stroke-linecap='round'%20stroke-linejoin='round'%20stroke='%2366666D'/%3e%3cpath%20id='Vector_4'%20d='M8.66667%208H14'%20stroke-width='1.16667'%20stroke-linecap='round'%20stroke-linejoin='round'%20stroke='%2317171A'/%3e%3cpath%20id='Vector_5'%20d='M8.66667%2012H14'%20stroke-width='1.16667'%20stroke-linecap='round'%20stroke-linejoin='round'%20stroke='%2317171A'/%3e%3c/g%3e%3c/svg%3e\");"[39m
+              [36m>[39m
+                [36m<img[39m
+                  [33malt[39m=[32m""[39m
+                  [33mdata-asset[39m=[32m"notes/e989f.svg"[39m
+                  [33mdraggable[39m=[32m"false"[39m
+                  [33mheight[39m=[32m"16"[39m
+                  [33msrc[39m=[32m"data:image/svg+xml,%3csvg%20preserveAspectRatio='none'%20overflow='visible'%20style='display:%20block;'%20width='16'%20height='16'%20viewBox='0%200%2016%2016'%20fill='none'%20xmlns='http://www.w3.org/2000/svg'%3e%3cg%20id='Icon'%3e%3cpath%20id='Vector'%20d='M2%2011.3333L3.33333%2012.6667L6%2010'%20stroke-width='1.16667'%20stroke-linecap='round'%20stroke-linejoin='round'%20stroke='%2366666D'/%3e%3cpath%20id='Vector_2'%20d='M2%204.66667L3.33333%206L6%203.33333'%20stroke-width='1.16667'%20stroke-linecap='round'%20stroke-linejoin='round'%20stroke='%2366666D'/%3e%3cpath%20id='Vector_3'%20d='M8.66667%204H14'%20stroke-width='1.16667'%20stroke-linecap='round'%20stroke-linejoin='round'%20stroke='%2366666D'/%3e%3cpath%20id='Vector_4'%20d='M8.66667%208H14'%20stroke-width='1.16667'%20stroke-linecap='round'%20stroke-linejoin='round'%20stroke='%2317171A'/%3e%3cpath%20id='Vector_5'%20d='M8.66667%2012H14'%20stroke-width='1.16667'%20stroke-linecap='round'%20stroke-linejoin='round'%20stroke='%2317171A'/%3e%3c/g%3e%3c/svg%3e"[39m
+                  [33mwidth[39m=[32m"16"[39m
+                [36m/>[39m
+              [36m</span>[39m
+            [36m</button>[39m
+            [36m<button[39m
+              [33maria-label[39m=[32m"New link note"[39m
+              [33mclass[39m=[32m"n-icon-button n-icon-button--ghost n-icon-button--small"[39m
+              [33mtitle[39m=[32m"New link note"[39m
+              [33mtype[39m=[32m"button"[39m
+            [36m>[39m
+              [36m<span[39m
+                [33maria-hidden[39m=[32m"true"[39m
+                [33mclass[39m=[32m"n-asset"[39m
+                [33mstyle[39m=[32m"width: 16px; height: 16px; --asset: url(\"data:image/svg+xml,%3csvg%20preserveAspectRatio='none'%20overflow='visible'%20style='display:%20block;'%20width='16'%20height='16'%20viewBox='0%200%2016%2016'%20fill='none'%20xmlns='http://www.w3.org/2000/svg'%3e%3cg%20id='Icon'%3e%3cpath%20id='Vector'%20d='M6.66667%208.66667C6.95297%209.04942%207.31824%209.36612%207.7377%209.59529C8.15716%209.82446%208.62101%209.96074%209.09777%209.99489C9.57453%2010.029%2010.0531%209.96024%2010.5009%209.79319C10.9487%209.62613%2011.3554%209.36471%2011.6933%209.02667L13.6933%207.02667C14.3005%206.39799%2014.6365%205.55599%2014.6289%204.682C14.6213%203.80801%2014.2708%202.97197%2013.6527%202.35394C13.0347%201.73591%2012.1987%201.38535%2011.3247%201.37775C10.4507%201.37016%209.60867%201.70614%208.98%202.31333L7.83333%203.45333'%20stroke-width='1.16667'%20stroke-linecap='round'%20stroke-linejoin='round'%20stroke='%2366666D'/%3e%3cpath%20id='Vector_2'%20d='M9.33333%207.33333C9.04703%206.95058%208.68176%206.63388%208.2623%206.40471C7.84284%206.17554%207.379%206.03926%206.90223%206.00511C6.42547%205.97097%205.94694%206.03976%205.4991%206.20681C5.05126%206.37387%204.64459%206.63529%204.30667%206.97333L2.30667%208.97333C1.69947%209.60201%201.36349%2010.444%201.37109%2011.318C1.37868%2012.192%201.72924%2013.028%202.34727%2013.6461C2.9653%2014.2641%203.80134%2014.6147%204.67533%2014.6222C5.54932%2014.6298%206.39133%2014.2939%207.02%2013.6867L8.16%2012.5467'%20stroke-width='1.16667'%20stroke-linecap='round'%20stroke-linejoin='round'%20stroke='%2366666D'/%3e%3c/g%3e%3c/svg%3e\");"[39m
+              [36m>[39m
+                [36m<img[39m
+                  [33malt[39m=[32m""[39m
+                  [33mdata-asset[39m=[32m"notes/9d5d7.svg"[39m
+                  [33mdraggable[39m=[32m"false"[39m
+                  [33mheight[39m=[32m"16"[39m
+                  [33msrc[39m=[32m"data:image/svg+xml,%3csvg%20preserveAspectRatio='none'%20overflow='visible'%20style='display:%20block;'%20width='16'%20height='16'%20viewBox='0%200%2016%2016'%20fill='none'%20xmlns='http://www.w3.org/2000/svg'%3e%3cg%20id='Icon'%3e%3cpath%20id='Vector'%20d='M6.66667%208.66667C6.95297%209.04942%207.31824%209.36612%207.7377%209.59529C8.15716%209.82446%208.62101%209.96074%209.09777%209.99489C9.57453%2010.029%2010.0531%209.96024%2010.5009%209.79319C10.9487%209.62613%2011.3554%209.36471%2011.6933%209.02667L13.6933%207.02667C14.3005%206.39799%2014.6365%205.55599%2014.6289%204.682C14.6213%203.80801%2014.2708%202.97197%2013.6527%202.35394C13.0347%201.73591%2012.1987%201.38535%2011.3247%201.37775C10.4507%201.37016%209.60867%201.70614%208.98%202.31333L7.83333%203.45333'%20stroke-width='1.16667'...
+   ✓ Notes state races and filtering > a late list cannot overwrite a newer snapshot 1ms
+   ✓ Notes state races and filtering > a duplicate pending mutation does not issue a stale second write 1ms
+   ✓ Notes state races and filtering > task and bookmark content stays searchable while archive/trash stay separate 1ms
+
+⎯⎯⎯⎯⎯⎯⎯ Failed Tests 2 ⎯⎯⎯⎯⎯⎯⎯
+
+ FAIL  src/views/NotesView.test.tsx > local Notes view > groups pinned cards and filters by priority, label and search across all card content
+TestingLibraryElementError: Unable to find an accessible element with the role "button" and name "Notes view and labels"
+
+Here are the accessible roles:
+
+  region:
+
+  Name "Notes":
+  <section
+    aria-label="Notes"
+    class="notes-view"
+  />
+
+  Name "Pinned":
+  <section
+    aria-label="Pinned"
+    class="notes-group"
+  />
+
+  --------------------------------------------------
+  form:
+
+  Name "Create local note":
+  <form
+    aria-label="Create local note"
+    class="notes-composer"
+  />
+
+  --------------------------------------------------
+  textbox:
+
+  Name "Note title":
+  <input
+    aria-label="Note title"
+    maxlength="300"
+    placeholder="Take a note…"
+    value=""
+  />
+
+  --------------------------------------------------
+  button:
+
+  Name "New checklist":
+  <button
+    aria-label="New checklist"
+    class="n-icon-button n-icon-button--ghost n-icon-button--small"
+    title="New checklist"
+    type="button"
+  />
+
+  Name "New link note":
+  <button
+    aria-label="New link note"
+    class="n-icon-button n-icon-button--ghost n-icon-button--small"
+    title="New link note"
+    type="button"
+  />
+
+  Name "Image attachments are read-only":
+  <button
+    aria-label="Image attachments are read-only"
+    class="n-icon-button n-icon-button--ghost n-icon-button--small"
+    disabled=""
+    title="Image attachments are read-only"
+    type="button"
+  />
+
+  Name "All":
+  <button
+    aria-pressed="false"
+    class="n-preset n-preset--light"
+    type="button"
+  />
+
+  Name "Inbox":
+  <button
+    aria-pressed="false"
+    class="n-preset n-preset--light"
+    type="button"
+  />
+
+  Name "Now":
+  <button
+    aria-pressed="true"
+    class="n-preset n-preset--light is-selected"
+    type="button"
+  />
+
+  Name "Next":
+  <button
+    aria-pressed="false"
+    class="n-preset n-preset--light"
+    type="button"
+  />
+
+  Name "Later":
+  <button
+    aria-pressed="false"
+    class="n-preset n-preset--light"
+    type="button"
+  />
+
+  Name "Notes":
+  <button
+    aria-pressed="true"
+  />
+
+  Name "Archive":
+  <button
+    aria-pressed="false"
+  />
+
+  Name "Trash":
+  <button
+    aria-pressed="false"
+  />
+
+  Name "Pinned list":
+  <button
+    class="n-note-open"
+    type="button"
+  />
+
+  Name "Edit":
+  <button />
+
+  Name "Unpin":
+  <button />
+
+  Name "Archive":
+  <button />
+
+  Name "Move to Trash":
+  <button />
+
+  --------------------------------------------------
+  group:
+
+  Name "Note priority filter":
+  <div
+    aria-label="Note priority filter"
+    class="notes-filters"
+    role="group"
+  />
+
+  Name "":
+  <details
+    class="notes-view-menu"
+  />
+
+  Name "":
+  <details
+    class="notes-card-menu"
+  />
+
+  --------------------------------------------------
+  paragraph:
+
+  Name "":
+  <p />
+
+  --------------------------------------------------
+  combobox:
+
+  Name "Filter by label":
+  <select
+    aria-label="Filter by label"
+  />
+
+  --------------------------------------------------
+  option:
+
+  Name "All labels":
+  <option
+    value=""
+  />
+
+  Name "Build":
+  <option />
+
+  --------------------------------------------------
+  heading:
+
+  Name "Pinned":
+  <h2 />
+
+  Name "Pinned list":
+  <h3
+    class="n-note-title"
+  />
+
+  --------------------------------------------------
+  article:
+
+  Name "Pinned list":
+  <article
+    aria-label="Pinned list"
+    class="n-note-card"
+    data-color="default"
+    data-kind="checklist"
+  />
+
+  --------------------------------------------------
+  checkbox:
+
+  Name "Hidden searchable step":
+  <input
+    type="checkbox"
+  />
+
+  --------------------------------------------------
+  status:
+
+  Name "":
+  <span
+    class="sr-only"
+    role="status"
+  />
+
+  --------------------------------------------------
+  contentinfo:
+
+  Name "":
+  <footer
+    class="notes-footer"
+  />
+
+  --------------------------------------------------
+
+Ignored nodes: comments, script, style
+<body>
+  <div>
+    <section
+      aria-label="Notes"
+      class="notes-view"
+    >
+      <div
+        class="notes-body"
+      >
+        <form
+          aria-label="Create local note"
+          class="notes-composer"
+        >
+          <div
+            class="notes-capture"
+          >
+            <input
+              aria-label="Note title"
+              maxlength="300"
+              placeholder="Take a note…"
+              value=""
+            />
+            <button
+              aria-label="New checklist"
+              class="n-icon-button n-icon-button--ghost n-icon-button--small"
+              title="New checklist"
+              type="button"
+            >
+              <span
+                aria-hidden="true"
+                class="n-asset"
+                style="width: 16px; height: 16px; --asset: url(\"data:image/svg+xml,%3csvg%20preserveAspectRatio='none'%20overflow='visible'%20style='display:%20block;'%20width='16'%20height='16'%20viewBox='0%200%2016%2016'%20fill='none'%20xmlns='http://www.w3.org/2000/svg'%3e%3cg%20id='Icon'%3e%3cpath%20id='Vector'%20d='M2%2011.3333L3.33333%2012.6667L6%2010'%20stroke-width='1.16667'%20stroke-linecap='round'%20stroke-linejoin='round'%20stroke='%2366666D'/%3e%3cpath%20id='Vector_2'%20d='M2%204.66667L3.33333%206L6%203.33333'%20stroke-width='1.16667'%20stroke-linecap='round'%20stroke-linejoin='round'%20stroke='%2366666D'/%3e%3cpath%20id='Vector_3'%20d='M8.66667%204H14'%20stroke-width='1.16667'%20stroke-linecap='round'%20stroke-linejoin='round'%20stroke='%2366666D'/%3e%3cpath%20id='Vector_4'%20d='M8.66667%208H14'%20stroke-width='1.16667'%20stroke-linecap='round'%20stroke-linejoin='round'%20stroke='%2317171A'/%3e%3cpath%20id='Vector_5'%20d='M8.66667%2012H14'%20stroke-width='1.16667'%20stroke-linecap='round'%20stroke-linejoin='round'%20stroke='%2317171A'/%3e%3c/g%3e%3c/svg%3e\");"
+              >
+                <img
+                  alt=""
+                  data-asset="notes/e989f.svg"
+                  draggable="false"
+                  height="16"
+                  src="data:image/svg+xml,%3csvg%20preserveAspectRatio='none'%20overflow='visible'%20style='display:%20block;'%20width='16'%20height='16'%20viewBox='0%200%2016%2016'%20fill='none'%20xmlns='http://www.w3.org/2000/svg'%3e%3cg%20id='Icon'%3e%3cpath%20id='Vector'%20d='M2%2011.3333L3.33333%2012.6667L6%2010'%20stroke-width='1.16667'%20stroke-linecap='round'%20stroke-linejoin='round'%20stroke='%2366666D'/%3e%3cpath%20id='Vector_2'%20d='M2%204.66667L3.33333%206L6%203.33333'%20stroke-width='1.16667'%20stroke-linecap='round'%20stroke-linejoin='round'%20stroke='%2366666D'/%3e%3cpath%20id='Vector_3'%20d='M8.66667%204H14'%20stroke-width='1.16667'%20stroke-linecap='round'%20stroke-linejoin='round'%20stroke='%2366666D'/%3e%3cpath%20id='Vector_4'%20d='M8.66667%208H14'%20stroke-width='1.16667'%20stroke-linecap='round'%20stroke-linejoin='round'%20stroke='%2317171A'/%3e%3cpath%20id='Vector_5'%20d='M8.66667%2012H14'%20stroke-width='1.16667'%20stroke-linecap='round'%20stroke-linejoin='round'%20stroke='%2317171A'/%3e%3c/g%3e%3c/svg%3e"
+                  width="16"
+                />
+              </span>
+            </button>
+            <button
+              aria-label="New link note"
+              class="n-icon-button n-icon-button--ghost n-icon-button--small"
+              title="New link note"
+              type="button"
+            >
+              <span
+                aria-hidden="true"
+                class="n-asset"
+                style="width: 16px; height: 16px; --asset: url(\"data:image/svg+xml,%3csvg%20preserveAspectRatio='none'%20overflow='visible'%20style='display:%20block;'%20width='16'%20height='16'%20viewBox='0%200%2016%2016'%20fill='none'%20xmlns='http://www.w3.org/2000/svg'%3e%3cg%20id='Icon'%3e%3cpath%20id='Vector'%20d='M6.66667%208.66667C6.95297%209.04942%207.31824%209.36612%207.7377%209.59529C8.15716%209.82446%208.62101%209.96074%209.09777%209.99489C9.57453%2010.029%2010.0531%209.96024%2010.5009%209.79319C10.9487%209.62613%2011.3554%209.36471%2011.6933%209.02667L13.6933%207.02667C14.3005%206.39799%2014.6365%205.55599%2014.6289%204.682C14.6213%203.80801%2014.2708%202.97197%2013.6527%202.35394C13.0347%201.73591%2012.1987%201.38535%2011.3247%201.37775C10.4507%201.37016%209.60867%201.70614%208.98%202.31333L7.83333%203.45333'%20stroke-width='1.16667'%20stroke-linecap='round'%20stroke-linejoin='round'%20stroke='%2366666D'/%3e%3cpath%20id='Vector_2'%20d='M9.33333%207.33333C9.04703%206.95058%208.68176%206.63388%208.2623%206.40471C7.84284%206.17554%207.379%206.03926%206.90223%206.00511C6.42547%205.97097%205.94694%206.03976%205.4991%206.20681C5.05126%206.37387%204.64459%206.63529%204.30667%206.97333L2.30667%208.97333C1.69947%209.60201%201.36349%2010.444%201.37109%2011.318C1.37868%2012.192%201.72924%2013.028%202.34727%2013.6461C2.9653%2014.2641%203.80134%2014.6147%204.67533%2014.6222C5.54932%2014.6298%206.39133%2014.2939%207.02%2013.6867L8.16%2012.5467'%20stroke-width='1.16667'%20stroke-linecap='round'%20stroke-linejoin='round'%20stroke='%2366666D'/%3e%3c/g%3e%3c/svg%3e\");"
+              >
+                <img
+                  alt=""
+                  data-asset="notes/9d5d7.svg"
+                  draggable="false"
+                  height="16"
+                  src="data:image/svg+xml,%3csvg%20preserveAspectRatio='none'%20overflow='visible'%20style='display:%20block;'%20width='16'%20height='16'%20viewBox='0%200%2016%2016'%20fill='none'%20xmlns='http://www.w3.org/2000/svg'%3e%3cg%20id='Icon'%3e%3cpath%20id='Vector'%20d='M6.66667%208.66667C6.95297%209.04942%207.31824%209.36612%207.7377%209.59529C8.15716%209.82446%208.62101%209.96074%209.09777%209.99489C9.57453%2010.029%2010.0531%209.96024%2010.5009%209.79319C10.9487%209.62613%2011.3554%209.36471%2011.6933%209.02667L13.6933%207.02667C14.3005%206.39799%2014.6365%205.55599%2014.6289%204.682C14.6213%203.80801%2014.2708%202.97197%2013.6527%202.35394C13.0347%201.73591%2012.1987%201.38535%2011.3247%201.37775C10.4507%201.37016%209.60867%201.70614%208.98%202.31333L7.83333%203.45333'%20stroke-width='1.16667'...
+ ❯ Object.getElementError node_modules/@testing-library/dom/dist/config.js:37:19
+ ❯ node_modules/@testing-library/dom/dist/query-helpers.js:76:38
+ ❯ node_modules/@testing-library/dom/dist/query-helpers.js:52:17
+ ❯ node_modules/@testing-library/dom/dist/query-helpers.js:95:19
+ ❯ src/views/NotesView.test.tsx:99:29
+     97|     await user.click(screen.getByRole("button", { name: "Now", exact: …
+     98|     expect(screen.queryByText("Later note")).not.toBeInTheDocument();
+     99|     await user.click(screen.getByRole("button", { name: "Notes view an…
+       |                             ^
+    100|     await user.selectOptions(screen.getByRole("combobox", { name: "Fil…
+    101|     fireEvent(window, new CustomEvent("nabbit:focus-notes-search"));
+
+⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯[1/2]⎯
+
+ FAIL  src/views/NotesView.test.tsx > local Notes view > archives and trashes softly and restores through the view menu
+TestingLibraryElementError: Unable to find an accessible element with the role "button" and name "Actions for My note"
+
+Here are the accessible roles:
+
+  region:
+
+  Name "Notes":
+  <section
+    aria-label="Notes"
+    class="notes-view"
+  />
+
+  Name "Notes":
+  <section
+    aria-label="Notes"
+    class="notes-group"
+  />
+
+  --------------------------------------------------
+  form:
+
+  Name "Create local note":
+  <form
+    aria-label="Create local note"
+    class="notes-composer"
+  />
+
+  --------------------------------------------------
+  textbox:
+
+  Name "Note title":
+  <input
+    aria-label="Note title"
+    maxlength="300"
+    placeholder="Take a note…"
+    value=""
+  />
+
+  --------------------------------------------------
+  button:
+
+  Name "New checklist":
+  <button
+    aria-label="New checklist"
+    class="n-icon-button n-icon-button--ghost n-icon-button--small"
+    title="New checklist"
+    type="button"
+  />
+
+  Name "New link note":
+  <button
+    aria-label="New link note"
+    class="n-icon-button n-icon-button--ghost n-icon-button--small"
+    title="New link note"
+    type="button"
+  />
+
+  Name "Image attachments are read-only":
+  <button
+    aria-label="Image attachments are read-only"
+    class="n-icon-button n-icon-button--ghost n-icon-button--small"
+    disabled=""
+    title="Image attachments are read-only"
+    type="button"
+  />
+
+  Name "All":
+  <button
+    aria-pressed="true"
+    class="n-preset n-preset--light is-selected"
+    type="button"
+  />
+
+  Name "Inbox":
+  <button
+    aria-pressed="false"
+    class="n-preset n-preset--light"
+    type="button"
+  />
+
+  Name "Now":
+  <button
+    aria-pressed="false"
+    class="n-preset n-preset--light"
+    type="button"
+  />
+
+  Name "Next":
+  <button
+    aria-pressed="false"
+    class="n-preset n-preset--light"
+    type="button"
+  />
+
+  Name "Later":
+  <button
+    aria-pressed="false"
+    class="n-preset n-preset--light"
+    type="button"
+  />
+
+  Name "Notes":
+  <button
+    aria-pressed="true"
+  />
+
+  Name "Archive":
+  <button
+    aria-pressed="false"
+  />
+
+  Name "Trash":
+  <button
+    aria-pressed="false"
+  />
+
+  Name "My note":
+  <button
+    class="n-note-open"
+    type="button"
+  />
+
+  Name "Edit":
+  <button />
+
+  Name "Pin":
+  <button />
+
+  Name "Archive":
+  <button />
+
+  Name "Move to Trash":
+  <button />
+
+  --------------------------------------------------
+  group:
+
+  Name "Note priority filter":
+  <div
+    aria-label="Note priority filter"
+    class="notes-filters"
+    role="group"
+  />
+
+  Name "":
+  <details
+    class="notes-view-menu"
+  />
+
+  Name "":
+  <details
+    class="notes-card-menu"
+  />
+
+  --------------------------------------------------
+  paragraph:
+
+  Name "":
+  <p />
+
+  Name "":
+  <p
+    class="n-note-body"
+  />
+
+  --------------------------------------------------
+  combobox:
+
+  Name "Filter by label":
+  <select
+    aria-label="Filter by label"
+  />
+
+  --------------------------------------------------
+  option:
+
+  Name "All labels":
+  <option
+    value=""
+  />
+
+  --------------------------------------------------
+  heading:
+
+  Name "Notes":
+  <h2 />
+
+  Name "My note":
+  <h3
+    class="n-note-title"
+  />
+
+  --------------------------------------------------
+  article:
+
+  Name "My note":
+  <article
+    aria-label="My note"
+    class="n-note-card"
+    data-color="default"
+    data-kind="note"
+  />
+
+  --------------------------------------------------
+  status:
+
+  Name "":
+  <span
+    class="sr-only"
+    role="status"
+  />
+
+  --------------------------------------------------
+  contentinfo:
+
+  Name "":
+  <footer
+    class="notes-footer"
+  />
+
+  --------------------------------------------------
+
+Ignored nodes: comments, script, style
+<body>
+  <div>
+    <section
+      aria-label="Notes"
+      class="notes-view"
+    >
+      <div
+        class="notes-body"
+      >
+        <form
+          aria-label="Create local note"
+          class="notes-composer"
+        >
+          <div
+            class="notes-capture"
+          >
+            <input
+              aria-label="Note title"
+              maxlength="300"
+              placeholder="Take a note…"
+              value=""
+            />
+            <button
+              aria-label="New checklist"
+              class="n-icon-button n-icon-button--ghost n-icon-button--small"
+              title="New checklist"
+              type="button"
+            >
+              <span
+                aria-hidden="true"
+                class="n-asset"
+                style="width: 16px; height: 16px; --asset: url(\"data:image/svg+xml,%3csvg%20preserveAspectRatio='none'%20overflow='visible'%20style='display:%20block;'%20width='16'%20height='16'%20viewBox='0%200%2016%2016'%20fill='none'%20xmlns='http://www.w3.org/2000/svg'%3e%3cg%20id='Icon'%3e%3cpath%20id='Vector'%20d='M2%2011.3333L3.33333%2012.6667L6%2010'%20stroke-width='1.16667'%20stroke-linecap='round'%20stroke-linejoin='round'%20stroke='%2366666D'/%3e%3cpath%20id='Vector_2'%20d='M2%204.66667L3.33333%206L6%203.33333'%20stroke-width='1.16667'%20stroke-linecap='round'%20stroke-linejoin='round'%20stroke='%2366666D'/%3e%3cpath%20id='Vector_3'%20d='M8.66667%204H14'%20stroke-width='1.16667'%20stroke-linecap='round'%20stroke-linejoin='round'%20stroke='%2366666D'/%3e%3cpath%20id='Vector_4'%20d='M8.66667%208H14'%20stroke-width='1.16667'%20stroke-linecap='round'%20stroke-linejoin='round'%20stroke='%2317171A'/%3e%3cpath%20id='Vector_5'%20d='M8.66667%2012H14'%20stroke-width='1.16667'%20stroke-linecap='round'%20stroke-linejoin='round'%20stroke='%2317171A'/%3e%3c/g%3e%3c/svg%3e\");"
+              >
+                <img
+                  alt=""
+                  data-asset="notes/e989f.svg"
+                  draggable="false"
+                  height="16"
+                  src="data:image/svg+xml,%3csvg%20preserveAspectRatio='none'%20overflow='visible'%20style='display:%20block;'%20width='16'%20height='16'%20viewBox='0%200%2016%2016'%20fill='none'%20xmlns='http://www.w3.org/2000/svg'%3e%3cg%20id='Icon'%3e%3cpath%20id='Vector'%20d='M2%2011.3333L3.33333%2012.6667L6%2010'%20stroke-width='1.16667'%20stroke-linecap='round'%20stroke-linejoin='round'%20stroke='%2366666D'/%3e%3cpath%20id='Vector_2'%20d='M2%204.66667L3.33333%206L6%203.33333'%20stroke-width='1.16667'%20stroke-linecap='round'%20stroke-linejoin='round'%20stroke='%2366666D'/%3e%3cpath%20id='Vector_3'%20d='M8.66667%204H14'%20stroke-width='1.16667'%20stroke-linecap='round'%20stroke-linejoin='round'%20stroke='%2366666D'/%3e%3cpath%20id='Vector_4'%20d='M8.66667%208H14'%20stroke-width='1.16667'%20stroke-linecap='round'%20stroke-linejoin='round'%20stroke='%2317171A'/%3e%3cpath%20id='Vector_5'%20d='M8.66667%2012H14'%20stroke-width='1.16667'%20stroke-linecap='round'%20stroke-linejoin='round'%20stroke='%2317171A'/%3e%3c/g%3e%3c/svg%3e"
+                  width="16"
+                />
+              </span>
+            </button>
+            <button
+              aria-label="New link note"
+              class="n-icon-button n-icon-button--ghost n-icon-button--small"
+              title="New link note"
+              type="button"
+            >
+              <span
+                aria-hidden="true"
+                class="n-asset"
+                style="width: 16px; height: 16px; --asset: url(\"data:image/svg+xml,%3csvg%20preserveAspectRatio='none'%20overflow='visible'%20style='display:%20block;'%20width='16'%20height='16'%20viewBox='0%200%2016%2016'%20fill='none'%20xmlns='http://www.w3.org/2000/svg'%3e%3cg%20id='Icon'%3e%3cpath%20id='Vector'%20d='M6.66667%208.66667C6.95297%209.04942%207.31824%209.36612%207.7377%209.59529C8.15716%209.82446%208.62101%209.96074%209.09777%209.99489C9.57453%2010.029%2010.0531%209.96024%2010.5009%209.79319C10.9487%209.62613%2011.3554%209.36471%2011.6933%209.02667L13.6933%207.02667C14.3005%206.39799%2014.6365%205.55599%2014.6289%204.682C14.6213%203.80801%2014.2708%202.97197%2013.6527%202.35394C13.0347%201.73591%2012.1987%201.38535%2011.3247%201.37775C10.4507%201.37016%209.60867%201.70614%208.98%202.31333L7.83333%203.45333'%20stroke-width='1.16667'%20stroke-linecap='round'%20stroke-linejoin='round'%20stroke='%2366666D'/%3e%3cpath%20id='Vector_2'%20d='M9.33333%207.33333C9.04703%206.95058%208.68176%206.63388%208.2623%206.40471C7.84284%206.17554%207.379%206.03926%206.90223%206.00511C6.42547%205.97097%205.94694%206.03976%205.4991%206.20681C5.05126%206.37387%204.64459%206.63529%204.30667%206.97333L2.30667%208.97333C1.69947%209.60201%201.36349%2010.444%201.37109%2011.318C1.37868%2012.192%201.72924%2013.028%202.34727%2013.6461C2.9653%2014.2641%203.80134%2014.6147%204.67533%2014.6222C5.54932%2014.6298%206.39133%2014.2939%207.02%2013.6867L8.16%2012.5467'%20stroke-width='1.16667'%20stroke-linecap='round'%20stroke-linejoin='round'%20stroke='%2366666D'/%3e%3c/g%3e%3c/svg%3e\");"
+              >
+                <img
+                  alt=""
+                  data-asset="notes/9d5d7.svg"
+                  draggable="false"
+                  height="16"
+                  src="data:image/svg+xml,%3csvg%20preserveAspectRatio='none'%20overflow='visible'%20style='display:%20block;'%20width='16'%20height='16'%20viewBox='0%200%2016%2016'%20fill='none'%20xmlns='http://www.w3.org/2000/svg'%3e%3cg%20id='Icon'%3e%3cpath%20id='Vector'%20d='M6.66667%208.66667C6.95297%209.04942%207.31824%209.36612%207.7377%209.59529C8.15716%209.82446%208.62101%209.96074%209.09777%209.99489C9.57453%2010.029%2010.0531%209.96024%2010.5009%209.79319C10.9487%209.62613%2011.3554%209.36471%2011.6933%209.02667L13.6933%207.02667C14.3005%206.39799%2014.6365%205.55599%2014.6289%204.682C14.6213%203.80801%2014.2708%202.97197%2013.6527%202.35394C13.0347%201.73591%2012.1987%201.38535%2011.3247%201.37775C10.4507%201.37016%209.60867%201.70614%208.98%202.31333L7.83333%203.45333'%20stroke-width='1.16667'...
+ ❯ Object.getElementError node_modules/@testing-library/dom/dist/config.js:37:19
+ ❯ node_modules/@testing-library/dom/dist/query-helpers.js:76:38
+ ❯ node_modules/@testing-library/dom/dist/query-helpers.js:52:17
+ ❯ node_modules/@testing-library/dom/dist/query-helpers.js:95:19
+ ❯ src/views/NotesView.test.tsx:180:29
+    178|     render(<NotesView />);
+    179|     await screen.findByText("My note");
+    180|     await user.click(screen.getByRole("button", { name: "Actions for M…
+       |                             ^
+    181|     await user.click(screen.getByRole("button", { name: "Archive", exa…
+    182|     await waitFor(() => expect(screen.queryByRole("article")).not.toBe…
+
+⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯[2/2]⎯
+
+
+ Test Files  1 failed (1)
+      Tests  2 failed | 6 passed (8)
+   Start at  09:55:27
+   Duration  4.95s (transform 1.09s, setup 92ms, collect 1.31s, tests 2.22s, environment 514ms, prepare 116ms)

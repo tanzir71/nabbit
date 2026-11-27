@@ -1,0 +1,31 @@
+file:///D:/claude-upgrade-26/nabbit/scripts/screenshots/harness.mjs:280
+            throw new Error(`${scenario.name} (${theme}@${scale}x): ${error.message}`, {
+                  ^
+
+Error: notes-design (light@1x): brand/app-24.svg
++ actual - expected
+
++ '113a0ba801015854c4726581905928b7c620d014991b68d27aa9de85c2b9ce0c'
+- '58f972441a8015caf1d4fbc0b4bfdf859211e2f2777109d8357922c3ba994ab7'
+
+    at captureSuite (file:///D:/claude-upgrade-26/nabbit/scripts/screenshots/harness.mjs:280:19)
+    at async file:///D:/claude-upgrade-26/nabbit/scripts/verify-notes.mjs:170:16 {
+  [cause]: AssertionError [ERR_ASSERTION]: brand/app-24.svg
+  + actual - expected
+
+  + '113a0ba801015854c4726581905928b7c620d014991b68d27aa9de85c2b9ce0c'
+  - '58f972441a8015caf1d4fbc0b4bfdf859211e2f2777109d8357922c3ba994ab7'
+
+      at Object.ready (file:///D:/claude-upgrade-26/nabbit/scripts/verify-notes.mjs:137:14)
+      at async captureSuite (file:///D:/claude-upgrade-26/nabbit/scripts/screenshots/harness.mjs:143:33)
+      at async file:///D:/claude-upgrade-26/nabbit/scripts/verify-notes.mjs:170:16 {
+    generatedMessage: false,
+    code: 'ERR_ASSERTION',
+    actual: '113a0ba801015854c4726581905928b7c620d014991b68d27aa9de85c2b9ce0c',
+    expected: '58f972441a8015caf1d4fbc0b4bfdf859211e2f2777109d8357922c3ba994ab7',
+    operator: 'strictEqual',
+    diff: 'simple'
+  }
+}
+
+Node.js v24.22.2

@@ -5,6 +5,7 @@ mod db;
 mod download;
 mod error;
 mod island;
+mod notes;
 mod pins;
 mod retention;
 #[cfg(windows)]
@@ -95,6 +96,9 @@ pub fn run() {
         ))
         .plugin(tauri_plugin_updater::Builder::new().build())
         .invoke_handler(tauri::generate_handler![
+            commands::notes::list_note_cards,
+            commands::notes::create_note_card,
+            commands::notes::update_note_card,
             download::sheets::open_download_sheet,
             download::sheets::get_download_sheet,
             download::sheets::download_sheet_ready,

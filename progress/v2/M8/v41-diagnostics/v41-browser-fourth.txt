@@ -1,0 +1,128 @@
+file:///D:/claude-upgrade-26/nabbit/scripts/screenshots/harness.mjs:280
+            throw new Error(`${scenario.name} (${theme}@${scale}x): ${error.message}`, {
+                  ^
+
+Error: notes-menu (light@1x): [{"id":"color-contrast","impact":"serious","nodes":[{"target":["article[aria-label=\"Island idea\"] > h3 > .n-note-open[type=\"button\"]"],"summary":"Fix any of the following:\n  Element's background color could not be determined because it is overlapped by another element"},{"target":["article[aria-label=\"Island idea\"] > .n-note-body"],"summary":"Fix any of the following:\n  Element's background color could not be determined because it is overlapped by another element"},{"target":["article[aria-label=\"Island idea\"] > .n-note-meta > .n-note-label"],"summary":"Fix any of the following:\n  Element's background color could not be determined because it is overlapped by another element"},{"target":["article[aria-label=\"Island idea\"] > .n-note-meta > .n-note-reference"],"summary":"Fix any of the following:\n  Element's background color could not be determined because it is overlapped by another element"}]}]
++ actual - expected
+
++ [
++   {
++     id: 'color-contrast',
++     impact: 'serious',
++     nodes: [
++       {
++         summary: 'Fix any of the following:\n' +
++           "  Element's background color could not be determined because it is overlapped by another element",
++         target: [
++           'article[aria-label="Island idea"] > h3 > .n-note-open[type="button"]'
++         ]
++       },
++       {
++         summary: 'Fix any of the following:\n' +
++           "  Element's background color could not be determined because it is overlapped by another element",
++         target: [
++           'article[aria-label="Island idea"] > .n-note-body'
++         ]
++       },
++       {
++         summary: 'Fix any of the following:\n' +
++           "  Element's background color could not be determined because it is overlapped by another element",
++         target: [
++           'article[aria-label="Island idea"] > .n-note-meta > .n-note-label'
++         ]
++       },
++       {
++         summary: 'Fix any of the following:\n' +
++           "  Element's background color could not be determined because it is overlapped by another element",
++         target: [
++           'article[aria-label="Island idea"] > .n-note-meta > .n-note-reference'
++         ]
++       }
++     ]
++   }
++ ]
+- []
+
+    at captureSuite (file:///D:/claude-upgrade-26/nabbit/scripts/screenshots/harness.mjs:280:19)
+    at async file:///D:/claude-upgrade-26/nabbit/scripts/verify-notes.mjs:177:16 {
+  [cause]: AssertionError [ERR_ASSERTION]: [{"id":"color-contrast","impact":"serious","nodes":[{"target":["article[aria-label=\"Island idea\"] > h3 > .n-note-open[type=\"button\"]"],"summary":"Fix any of the following:\n  Element's background color could not be determined because it is overlapped by another element"},{"target":["article[aria-label=\"Island idea\"] > .n-note-body"],"summary":"Fix any of the following:\n  Element's background color could not be determined because it is overlapped by another element"},{"target":["article[aria-label=\"Island idea\"] > .n-note-meta > .n-note-label"],"summary":"Fix any of the following:\n  Element's background color could not be determined because it is overlapped by another element"},{"target":["article[aria-label=\"Island idea\"] > .n-note-meta > .n-note-reference"],"summary":"Fix any of the following:\n  Element's background color could not be determined because it is overlapped by another element"}]}]
+  + actual - expected
+
+  + [
+  +   {
+  +     id: 'color-contrast',
+  +     impact: 'serious',
+  +     nodes: [
+  +       {
+  +         summary: 'Fix any of the following:\n' +
+  +           "  Element's background color could not be determined because it is overlapped by another element",
+  +         target: [
+  +           'article[aria-label="Island idea"] > h3 > .n-note-open[type="button"]'
+  +         ]
+  +       },
+  +       {
+  +         summary: 'Fix any of the following:\n' +
+  +           "  Element's background color could not be determined because it is overlapped by another element",
+  +         target: [
+  +           'article[aria-label="Island idea"] > .n-note-body'
+  +         ]
+  +       },
+  +       {
+  +         summary: 'Fix any of the following:\n' +
+  +           "  Element's background color could not be determined because it is overlapped by another element",
+  +         target: [
+  +           'article[aria-label="Island idea"] > .n-note-meta > .n-note-label'
+  +         ]
+  +       },
+  +       {
+  +         summary: 'Fix any of the following:\n' +
+  +           "  Element's background color could not be determined because it is overlapped by another element",
+  +         target: [
+  +           'article[aria-label="Island idea"] > .n-note-meta > .n-note-reference'
+  +         ]
+  +       }
+  +     ]
+  +   }
+  + ]
+  - []
+
+      at Object.ready (file:///D:/claude-upgrade-26/nabbit/scripts/verify-notes.mjs:165:12)
+      at async captureSuite (file:///D:/claude-upgrade-26/nabbit/scripts/screenshots/harness.mjs:143:33)
+      at async file:///D:/claude-upgrade-26/nabbit/scripts/verify-notes.mjs:177:16 {
+    generatedMessage: false,
+    code: 'ERR_ASSERTION',
+    actual: [
+      {
+        id: 'color-contrast',
+        impact: 'serious',
+        nodes: [
+          {
+            target: [Array],
+            summary: 'Fix any of the following:\n' +
+              "  Element's background color could not be determined because it is overlapped by another element"
+          },
+          {
+            target: [Array],
+            summary: 'Fix any of the following:\n' +
+              "  Element's background color could not be determined because it is overlapped by another element"
+          },
+          {
+            target: [Array],
+            summary: 'Fix any of the following:\n' +
+              "  Element's background color could not be determined because it is overlapped by another element"
+          },
+          {
+            target: [Array],
+            summary: 'Fix any of the following:\n' +
+              "  Element's background color could not be determined because it is overlapped by another element"
+          }
+        ]
+      }
+    ],
+    expected: [],
+    operator: 'deepStrictEqual',
+    diff: 'simple'
+  }
+}
+
+Node.js v24.22.2
