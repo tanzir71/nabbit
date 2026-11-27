@@ -15,6 +15,7 @@ const { values } = parseArgs({ options: { check: { type: "boolean", default: fal
 const sha = (bytes) => createHash("sha256").update(bytes).digest("hex");
 const imagePath = resolve(root, "docs/assets/og.png");
 const manifestPath = resolve(root, "docs/assets/og-manifest.json");
+const chromiumArgs = ["--disable-gpu", "--disable-skia-runtime-opts"];
 let server, browser;
 try {
   server = await preview({
@@ -24,7 +25,7 @@ try {
     logLevel: "error",
   });
   const origin = `http://127.0.0.1:${server.httpServer.address().port}`;
-  browser = await chromium.launch({ headless: true });
+  browser = await chromium.launch({ headless: true, args: chromiumArgs });
   const context = await browser.newContext({
     viewport: { width: 1200, height: 630 },
     deviceScaleFactor: 1,
@@ -70,6 +71,12 @@ try {
   assert.deepEqual(errors, []);
   assert.deepEqual(external, []);
   const bytes = await page.screenshot({ animations: "disabled", scale: "device", caret: "hide" });
+  const repeated = await page.screenshot({
+    animations: "disabled",
+    scale: "device",
+    caret: "hide",
+  });
+  assert(bytes.equals(repeated), "Social image changed between exact repeat captures");
   assert.equal(bytes.readUInt32BE(16), 1200);
   assert.equal(bytes.readUInt32BE(20), 630);
   assert(bytes.length < 300000);
@@ -101,6 +108,8 @@ try {
   const manifest = {
     source: "og.html",
     renderer: "Playwright Chromium",
+    chromiumArgs,
+    repeatIdentical: true,
     playwright: require("playwright/package.json").version,
     width: 1200,
     height: 630,
@@ -111,10 +120,12 @@ try {
     textHashNormalization: "LF for HTML/CSS/SVG; binary bytes unchanged",
   };
   if (values.check) {
-    assert.deepEqual(
-      await readFile(imagePath),
-      bytes,
-      "Regenerate stale social image with npm run site:og",
+    const saved = await readFile(imagePath);
+    // A Buffer deep-diff can allocate tens of GB when the image differs. Keep
+    // exact byte equality and report compact digests instead of a byte-array diff.
+    assert(
+      saved.equals(bytes),
+      `Regenerate stale social image with npm run site:og (${sha(saved)} != ${sha(bytes)})`,
     );
     assert.deepEqual(
       JSON.parse(await readFile(manifestPath, "utf8")),

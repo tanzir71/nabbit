@@ -1,0 +1,47 @@
+{
+  "logs": [
+    {
+      "file": "m7-earlier-status.txt",
+      "sha256": "21f54c36508a2bbf8d56e834503da957b6d4f184992ee4cb5cb6384c0f42eb61"
+    },
+    {
+      "file": "m7-earlier-rust-tests.txt",
+      "sha256": "195afd7525b6224d277bcbd3bfab2c94e62f2aa74eb07dbe5c94517e9622b84b"
+    },
+    {
+      "file": "m7-earlier-rust-tests-checked.txt",
+      "sha256": "5396e714059f661bb1c16905c56f4e2d419c1f56ac62cb0c3a94d08f8232298a"
+    },
+    {
+      "file": "m7-earlier-og-checked.txt.gz",
+      "sha256": "8bca9bebc74cd40370aa6b772f295941c50c9099fe51a9a19f4f4a70f5e91574",
+      "uncompressedSha256": "8678cb71a858dee8974a8115bcc49da3c2d1d92bf69fd746154d160383372960",
+      "summary": "m7-earlier-og-checked.txt",
+      "summarySha256": "e1fb245cd2c8ee4f2ee19990b659e7bf9ac8506a512019ebb1b218ef3e8ce590"
+    },
+    {
+      "file": "m7-earlier-accessibility-final.txt",
+      "sha256": "9217677c070b0936308d106ee62307ced36f1dd518303ceebe2e4d5bd2f8c1c5"
+    },
+    {
+      "file": "m7-earlier-npm-verify.txt",
+      "sha256": "ca8ddc6b3c55891e1cdecbb617959b17a94bcc86da22289250d43680e5e6bd78"
+    },
+    {
+      "file": "m7-earlier-npm-verify-checked.txt",
+      "sha256": "ca8ddc6b3c55891e1cdecbb617959b17a94bcc86da22289250d43680e5e6bd78"
+    },
+    {
+      "file": "m7-earlier-og-final.txt",
+      "sha256": "cc4dc317b49a45196c653f2e7fca5959c2780f3e6a85c2ee6d718e09ac834fc2"
+    },
+    {
+      "file": "m7-earlier-og-negative.txt",
+      "sha256": "61c4eba1b9411233ac67f5291c25980e761ed40b44b50552c37702ba47dff440"
+    }
+  ],
+  "cause": "An exact PNG mismatch triggered unbounded Node Buffer diff formatting; the owned render-site-og process was observed at 53165555712 private bytes and stopped. Affected full checks were repeated to completion; exact comparison was retained.",
+  "negativeCase": "m7-og-negative.json",
+  "rasterProvenance": "m7-og-raster.json",
+  "noRuntimeAppChanges": true
+}

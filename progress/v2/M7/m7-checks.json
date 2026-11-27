@@ -1,0 +1,86 @@
+{
+  "npm-verify": {
+    "command": "npm run verify",
+    "exitCode": 0,
+    "file": "m7-npm-verify.txt",
+    "rawSha256": "6fec8a430849a0d572dd83cda42bb0ffb07d5230250911293fa29402e9891f1d",
+    "savedSha256": "706b59b6a5f3c6722f189053db2c81bf7220a4d8dedf14fa3b4b79a5299b6303"
+  },
+  "rust-fmt": {
+    "command": "cargo fmt --manifest-path src-tauri/Cargo.toml --check",
+    "exitCode": 0,
+    "file": "m7-rust-fmt.txt",
+    "rawSha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+    "savedSha256": "01ba4719c80b6fe911b091a7c05124b64eeece964e09c058ef8f9805daca546b"
+  },
+  "rust-clippy": {
+    "command": "cargo clippy --manifest-path src-tauri/Cargo.toml --all-targets -- -D warnings",
+    "exitCode": 0,
+    "file": "m7-rust-clippy.txt",
+    "rawSha256": "4b4abf4b2b4fe78e74219529ea4818275903257d0ce81cdfb88a4f28f138185c",
+    "savedSha256": "9083506447799a2594303b0dcca4f97c0eaaf0a030783d905be4604da09e5673"
+  },
+  "rust-spike-clippy": {
+    "command": "cargo clippy --manifest-path src-tauri/Cargo.toml --all-targets --features island-spike -- -D warnings",
+    "exitCode": 0,
+    "file": "m7-rust-spike-clippy.txt",
+    "rawSha256": "f3c1aea1c4bd0f125b142679f68250b36bf1c4be3915492a20bcddf41d6c4225",
+    "savedSha256": "f50d9b3a10f2d34e367d7118405a57501a5d26405efeaacee211145b5ffc9bd6"
+  },
+  "rust-tests": {
+    "command": "cargo test --manifest-path src-tauri/Cargo.toml -- --test-threads=1",
+    "exitCode": 0,
+    "file": "m7-rust-tests.txt",
+    "rawSha256": "5eb64e616a4f73478e3800719995ad5cc5e584bea68dee547ffe215f60958e5f",
+    "savedSha256": "49690001b34b01b41ad5b193983115e8f51763a1996ea1a111f4efc993d8b17b"
+  },
+  "site": {
+    "command": "npm run verify:site",
+    "exitCode": 0,
+    "file": "m7-site.txt",
+    "rawSha256": "ff1a01f0d64c49828fca469812e0b3b76c0bac9215b9dd2e309cdf1aa6593a5c",
+    "savedSha256": "6229d8886daf331e705556c8cbf288a88e13c126b1d06640593ac5a5b5ad9e73"
+  },
+  "site-assets": {
+    "command": "node scripts/verify-site.mjs --report progress/v2/M7/m7-checked-site-assets.json",
+    "exitCode": 0,
+    "file": "m7-site-assets.txt",
+    "rawSha256": "a72788567484ee61776f29461358f20135b1e282416699996a6a57da91f49530",
+    "savedSha256": "6753c93908633c1d8692e9bdc6177d5e01b565907cc84c8e1d322a7f2020a786"
+  },
+  "site-http": {
+    "command": "node scripts/verify-site-http.mjs --assets progress/v2/M7/m7-checked-site-assets.json --report progress/v2/M7/m7-final-http-assets.json",
+    "exitCode": 0,
+    "file": "m7-site-http.txt",
+    "rawSha256": "c77bf1b7353abed884754696a92138800a1ca77d36a7d2bd8083532b3b64ca90",
+    "savedSha256": "da11b48697702c87ac2f8f79220562899eb7308c0cb069e5214de6ea3db1fa0a"
+  },
+  "status": {
+    "command": "node scripts/verify-milestone-status.mjs --milestone M7 --previous-ref 81c269e --prefix m7-status",
+    "exitCode": 0,
+    "file": "m7-status.txt",
+    "rawSha256": "a586f2b3558794d11ba068f35c5bb63656f3f37c752ea310982087ef304a6454",
+    "savedSha256": "b34dbe6059ee9164b6db5ec7c55604e72c0045a0476fb4d33593918d6dd4dbe2"
+  },
+  "accessibility": {
+    "command": "node scripts/verify-site-accessibility.mjs --milestone M7 --prefix m7-final",
+    "exitCode": 0,
+    "file": "m7-accessibility.txt",
+    "rawSha256": "781aa489dee5d6ffba3f8802bb82c6eceb045321b1c15b04a1ff557a77628fee",
+    "savedSha256": "7da11b7bc857599b38bf19d31fec2018546aa5a3daebf4b74aba3c45bd41e35c"
+  },
+  "og": {
+    "command": "npm run site:og -- --check",
+    "exitCode": 0,
+    "file": "m7-og.txt",
+    "rawSha256": "5ce62e93f7aa574610f7e00064323ae0d8445d494ca75bf00e7b45e3225c95fd",
+    "savedSha256": "63be078a347ac96b26ef57e5d6263cd594e6b5dd9931512290e4abed02941bec"
+  },
+  "history-gitleaks": {
+    "command": "gitleaks git --log-opts=origin/main..HEAD --redact --no-banner",
+    "exitCode": 0,
+    "file": "m7-history-gitleaks.txt",
+    "rawSha256": "e8dbaba1df741dd674ee09f55cf1bd8f827d30d179c8bc89419a8935a7276bd2",
+    "savedSha256": "c9e41e6f36a0f4e21ca7fbd0ae6a7950ebd89cbb448799c65b253f527f20b1de"
+  }
+}

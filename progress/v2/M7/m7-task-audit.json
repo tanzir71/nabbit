@@ -1,0 +1,61 @@
+{
+  "applicationCommit": "81c269e80ac6a8818ffce41f4acd536f7608f585",
+  "tasks": [
+    {
+      "task": "v35",
+      "commit": "059e8f574078db0f788377e36a1dd59c5b43801e",
+      "verifiedOriginalInputPins": 46,
+      "authoritativePngs": 32,
+      "appPngs": 32,
+      "originalCommitHashesAndPngBytesMatch": true,
+      "limitations": [
+        "Native sheet construction/configuration compiles, but no real native sheet click, real shortcut, browser profile/sign-in, media transfer, installer, signing, Tack account or display change is exercised.",
+        "V3.6 complete error mapping and V3.7 fake/native/media acceptance remain unchecked.",
+        "Known V0/V2.7 native frame/focus/performance limitations are retained.",
+        "Only the first 1000 flat-playlist entries are loaded; the UI explicitly reports truncation.",
+        "Earlier repeat captures showed low-bit RGB differences at rounded edges; rejected renderer-flag trials and the caret-style diagnostic are retained. Accepted captures keep initial caret styles with verified non-text focus, unchanged strict byte comparisons and no image normalization."
+      ]
+    },
+    {
+      "task": "v36",
+      "commit": "20504fe328bd245c066c458a350c7ab2671d726b",
+      "verifiedOriginalInputPins": 49,
+      "authoritativePngs": 108,
+      "appPngs": 108,
+      "originalCommitHashesAndPngBytesMatch": true,
+      "limitations": [
+        "V3.7 full native/fake-runner downloader acceptance and the landing download visual remain unchecked.",
+        "No real profile, media download, native button click, installer/signing, account or display-setting test is claimed.",
+        "Existing V0/V2.7 native frame/focus/performance limitations remain open.",
+        "Connectivity uses a 30-second deferred check and a five-second HEAD deadline, rather than immediate OS notifications.",
+        "Missing replay status blocks recording instead of assuming that a replay is ready."
+      ]
+    },
+    {
+      "task": "v37",
+      "commit": "81c269e80ac6a8818ffce41f4acd536f7608f585",
+      "verifiedOriginalInputPins": 791,
+      "authoritativePngs": 106,
+      "appPngs": 18,
+      "originalCommitHashesAndPngBytesMatch": true,
+      "limitations": {
+        "installedShellAssociation": "Not automated under installer-off policy; bundle scheme configuration and actual plugin forwarding are covered.",
+        "onlineRun": "Optional engine CLI, separate from isolated native/fake-runner evidence.",
+        "performance": "No new V0/V2.7 CPU/frame/focus result; existing limitations remain open.",
+        "publication": "Local task commit only. M6 metadata remains; M7 milestone is separate. No PR, push, tag, release or workflow invocation."
+      }
+    }
+  ],
+  "latestSourcePinsMatchCurrentExceptDocumentedMilestoneHelpersAndMetadata": true,
+  "allowedHelperChanges": [
+    "scripts/render-site-og.mjs: exact comparison without unbounded diff and deterministic CPU raster",
+    "vite.config.ts: exclude generated .tools/progress artifacts from test discovery"
+  ],
+  "allowedMetadataChanges": [
+    "docs/index.html: M7/M8 status",
+    "docs/assets/og-manifest.json and og.png: deterministic exact-repeat CPU rendering"
+  ],
+  "noAppRuntimeOrWorkflowSourceChanges": true,
+  "authoritativePngsAcrossTasks": 246,
+  "authoritativeAppPngsAcrossTasks": 158
+}

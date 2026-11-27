@@ -1,0 +1,238 @@
+Finished `test` profile [unoptimized + debuginfo] target(s) in 42.22s
+     Running unittests src\lib.rs (src-tauri\target\debug\deps\nabbit_lib-d2a31a0d6c52a8b8.exe)
+
+running 154 tests
+test capture::tests::captures_normalize_hosts_youtube_variants_and_strip_fragments ... ok
+test capture::tests::clear_and_clipboard_change_cancel_enrichment_without_changing_a_newer_capture ... ok
+test capture::tests::deep_links_decode_exactly_once_and_cannot_smuggle_actions ... ok
+test capture::tests::hotkey_reads_current_clipboard_and_resolves_that_sites_remembered_preset ... ok
+test capture::tests::invalid_review_urls_cannot_reach_the_extractor ... ok
+test capture::tests::passive_capture_paths_emit_immediately_store_review_and_create_no_jobs ... ok
+test capture::tests::worker_coalesces_pending_links_and_discards_slow_stale_results ... ok
+test clipboard::sensitive::tests::detects_common_sensitive_shapes ... ok
+test clipboard::watcher::tests::disabled_and_paused_detection_store_text_without_staging_or_enqueuing ... ok
+test clipboard::watcher::tests::intake_applies_exclusions_and_sensitive_filter_before_url_capture ... ok
+test clipboard::watcher::tests::protected_clipboard_flags_are_tested_without_reading_or_overwriting_the_os_clipboard ... ok
+test commands::download::tests::clear_finished_only_removes_completed_or_cancelled_records_and_keeps_files ... ok
+test commands::download::tests::copy_details_passes_the_unmodified_log_only_to_the_explicit_writer ... ok
+test commands::download::tests::open_validates_the_recorded_completed_file_before_calling_an_injected_opener ... ok
+test db::download_presets::tests::defaults_and_reading_saving_presets_never_enqueue_downloads ... ok
+test db::download_presets::tests::enqueue_and_remember_are_atomic_and_invalid_options_leave_no_rows ... ok
+test db::download_presets::tests::host_keys_reject_non_http_inputs_and_default_choice_stays_unmodified ... ok
+test db::download_presets::tests::large_playlist_queue_keeps_every_actionable_item_and_caps_only_finished_history ... ok
+test db::download_presets::tests::migrating_a_v01_database_preserves_jobs_and_is_idempotent ... ok
+test db::download_presets::tests::per_site_preset_survives_restart_and_youtube_aliases_share_it ... ok
+test db::download_presets::tests::playlist_batch_is_atomic_remembers_source_site_and_preserves_per_item_retry_options ... ok
+test db::download_presets::tests::snapshots_retain_trim_and_queue_updates_cannot_change_them ... ok
+test db::tests::activity_policy_extends_legacy_settings_normalizes_and_survives_reopen ... ok
+test db::tests::capture_shortcut_migrates_the_old_default_once_and_retains_custom_or_disabled_keys ... ok
+test db::tests::clear_clipboard_history_removes_blob_files ... ok
+test db::tests::duplicate_clipboard_hash_updates_entry ... ok
+test db::tests::island_preferences_extend_legacy_settings_and_survive_reopen ... ok
+test db::tests::keyboard_defaults_extend_old_settings_without_replacing_custom_keys ... ok
+test db::tests::keyboard_pin_slots_are_stable_unique_and_survive_reopen ... ok
+test db::tests::migrations_create_expected_tables ... ok
+test db::tests::open_recovers_from_corrupt_database_file ... ok
+test db::tests::retention_gc_keeps_pinned_entries ... ok
+test db::tests::sensitive_heuristics_skip_when_enabled ... ok
+test db::tests::source_app_exclusions_skip_entries ... ok
+test db::tests::theme_defaults_preserve_legacy_settings_and_override_survives_reopen ... ok
+test db::tests::very_large_clipboard_payloads_are_skipped ... ok
+test download::deferred::tests::connectivity_uses_head_only_and_accepts_a_forbidden_origin_response ... ok
+test download::deferred::tests::deadlines_cancel_and_rearm_without_a_render_timer ... ok
+test download::engine::tests::actual_process_timeout_reaps_the_owned_tree ... ok
+test download::engine::tests::atomic_swap_and_invalid_candidate_preserve_working_file ... ok
+test download::engine::tests::checksum_rejects_corrupt_or_missing_digest ... ok
+test download::engine::tests::daily_schedule_handles_boundaries_bad_dates_and_clock_rollback ... ok
+test download::engine::tests::explicit_runtime_path_is_one_argument_and_missing_helper_is_typed ... ok
+test download::engine::tests::extraction_reports_pass_failure_and_non_gating_offline_timeout ... ok
+test download::engine::tests::health_cache_round_trips_and_legacy_status_survives ... ok
+test download::engine::tests::health_error_is_one_reserved_activity_and_recovers_without_jobs ... ok
+test download::engine::tests::online_engine_smoke ... ignored, online-only engine probe; network is not an acceptance gate
+test download::engine::tests::persisted_health_survives_restart_and_getter_creates_no_jobs ... ok
+test download::engine::tests::target_assets_do_not_ship_x64_under_an_arm_name ... ok
+test download::engine::tests::version_fixtures_validate_identity_and_minimums ... ok
+test download::errors::tests::every_error_kind_maps_fixture_stderr_to_copy_and_at_most_two_actions_without_raw_logs ... ok
+test download::errors::tests::live_probe_requires_an_explicit_ended_or_nonlive_signal ... ok
+test download::errors::tests::offline_and_replay_wait_resume_only_pending_jobs_and_stop_after_cancel_or_another_error ... ok
+test download::errors::tests::recovered_options_and_raw_error_survive_sqlite_without_persisting_browser_choice ... ok
+test download::errors::tests::recovery_uses_validated_job_snapshots_and_never_changes_a_preset_or_bypasses_drm ... ok
+test download::format_sizes::tests::exact_approximate_and_bitrate_sizes_include_audio_and_keep_unknowns ... ok
+test download::format_sizes::tests::frame_rates_come_from_matching_non_drm_video_formats ... ok
+test download::format_sizes::tests::missing_audio_or_bad_duration_never_fabricates_a_total ... ok
+test download::manager::playlist_tests::selected_videos_get_distinct_jobs_with_individual_urls_and_snapshots ... ok
+test download::manager::tests::fallback_covers_format_and_merge_failures ... ok
+test download::manager::tests::final_output_prefers_extracted_mp3_for_audio_jobs ... ok
+test download::media::tests::chapters_thumbnails_and_flat_items_are_bounded_and_preserve_indices ... ok
+test download::media::tests::large_playlists_expose_the_limit_without_fabricating_entries_or_stream_urls ... ok
+test download::options::tests::all_audio_choices_and_mp3_bitrate_match_the_handoff ... ok
+test download::options::tests::browser_choice_is_job_only_never_an_options_field_or_cookie_file ... ok
+test download::options::tests::chapters_and_sponsorblock_every_mode_have_exact_flags ... ok
+test download::options::tests::every_video_container_has_the_exact_height_selector_and_merge_flag ... ok
+test download::options::tests::fallback_keeps_the_height_cap_instead_of_silently_raising_quality ... ok
+test download::options::tests::filename_and_ffmpeg_paths_with_spaces_remain_single_arguments ... ok
+test download::options::tests::pinned_help_parses_every_generated_mapping_without_network_or_profiles ... ignored, requires the locally provisioned pinned yt-dlp; no media or browser access
+test download::options::tests::playlists_range_and_indices_match_exact_ytdlp_arguments ... ok
+test download::options::tests::subtitles_support_embedded_and_sidecar_modes ... ok
+test download::options::tests::thumbnail_metadata_and_rate_are_opt_in ... ok
+test download::options::tests::timecodes_and_remembered_options_keep_reusable_choices_only ... ok
+test download::options::tests::trim_union_and_precise_cut_use_repeated_sections_without_overwrites ... ok
+test download::options::tests::validation_rejects_bad_ranges_inputs_and_non_finite_rate_without_io ... ok
+test download::sheets::tests::an_older_enqueue_cannot_close_the_newer_review ... ok
+test download::ytdlp::tests::builds_audio_args ... ok
+test download::ytdlp::tests::builds_playlist_range_args ... ok
+test download::ytdlp::tests::fallback_format_uses_progressive_best_when_merge_fails ... ok
+test download::ytdlp::tests::final_postprocessed_path_is_authoritative_machine_output ... ok
+test download::ytdlp::tests::only_an_explicit_job_browser_is_passed_to_the_bounded_replay_probe ... ok
+test download::ytdlp::tests::parses_bare_machine_progress_from_yt_dlp_type_prefix ... ok
+test download::ytdlp::tests::parses_machine_progress ... ok
+test island::activity_tests::default_priority_split_and_replacement_cover_all_activity_categories ... ok
+test island::activity_tests::disabled_alerts_are_not_replayed_when_the_category_is_reenabled ... ok
+test island::activity_tests::errors_stay_until_dismissed_and_retry_replaces_the_error ... ok
+test island::activity_tests::events_use_the_camel_case_contract_and_keep_target_and_revision ... ok
+test island::activity_tests::fullscreen_exception_is_opt_in_and_only_timer_end_and_download_failure ... ok
+test island::activity_tests::idle_has_no_deadline_and_repeated_unchanged_monitor_samples_emit_nothing ... ok
+test island::activity_tests::link_metadata_preserves_age_and_cannot_revive_dismissed_or_replaced_links ... ok
+test island::activity_tests::link_shrinks_at_eight_seconds_and_clipboard_change_removes_its_bubble ... ok
+test island::activity_tests::mixed_monitor_alert_exposure_is_global_without_replaying_already_seen_alerts ... ok
+test island::activity_tests::one_hour_hide_focus_and_wall_clock_changes_do_not_release_fullscreen_or_expire_queued_alerts ... ok
+test island::activity_tests::order_disable_fade_and_cleanup_are_deterministic ... ok
+test island::activity_tests::producer_lifecycles_remove_finished_tools_media_timers_and_preserve_result_payloads ... ok
+test island::activity_tests::queued_and_hidden_alerts_get_four_seconds_of_actual_primary_or_bubble_exposure ... ok
+test island::input::tests::faded_held_drag_wakes_only_after_band_entry_and_hidden_always_cancels ... ok
+test island::input::tests::faded_hidden_and_invalid_provider_fail_closed ... ok
+test island::input::tests::held_drag_requires_entry_and_cancel_restores_original_rect ... ok
+test island::input::tests::mixed_dpi_size_physical_edges_and_changed_rects ... ok
+test island::input::tests::web_teardown_does_not_cancel_a_new_held_native_drag ... ok
+test island::keyboard::tests::closed_or_reused_origin_is_never_activated_on_release ... ok
+test island::keyboard::tests::explicit_focus_is_once_per_request_and_returns_to_original_window ... ok
+test island::keyboard::tests::monitor_transfer_keeps_external_origin_and_ignores_other_labels ... ok
+test island::keyboard::tests::no_request_no_activation_and_delayed_open_never_takes_a_new_foreground ... ok
+test island::keyboard::tests::opening_from_the_full_app_restores_that_window ... ok
+test island::keyboard::tests::outside_switch_denial_and_pending_close_never_restore_or_retry ... ok
+test island::keyboard::tests::remapping_validates_syntax_and_preserves_legacy_bindings ... ok
+test island::model::tests::disabled_empty_invalid_and_duplicate_layouts_are_safe ... ok
+test island::model::tests::follows_mouse_across_mixed_dpi_negative_origin_and_shared_edges ... ok
+test island::model::tests::primary_all_and_specific_have_deterministic_labels_and_fallback ... ok
+test island::model::tests::size_and_shape_compose_with_dpi_without_state_dependent_host_resize ... ok
+test island::model::tests::work_area_covers_top_bottom_and_auto_hide_taskbars ... ok
+test island::motion::tests::collapse_fades_first_and_reduced_motion_has_no_morph ... ok
+test island::motion::tests::native_matches_generated_css_and_interrupted_geometry ... ok
+test island::presentation_tests::a_secondary_activity_is_one_bubble_without_resizing_the_host ... ok
+test island::presentation_tests::artwork_decoding_is_local_bounded_and_returns_premultiplied_pixels ... ok
+test island::presentation_tests::collapsing_under_the_pointer_requires_leave_before_another_hover_peek ... ok
+test island::presentation_tests::drop_staging_rejects_virtual_files_and_routes_only_supported_payloads ... ok
+test island::presentation_tests::engine_health_error_draws_its_own_copy_and_fix_then_clears ... ok
+test island::presentation_tests::every_v2_compact_payload_has_visible_drawing_and_bounded_text ... ok
+test island::presentation_tests::fading_releases_input_at_200ms_and_reduced_hidden_forced_modes_skip_it ... ok
+test island::presentation_tests::idle_and_notch_keep_fixed_reference_geometry ... ok
+test island::presentation_tests::volume_feedback_expires_while_hidden_and_repeated_input_refreshes_its_deadline ... ok
+test island::surface::tests::drag_cancel_restores_expanded_and_suppression_wins ... ok
+test island::surface::tests::hover_intent_and_leave_are_finite_and_cancelable ... ok
+test island::surface::tests::paint_ack_does_not_destroy_a_newer_open_and_compact_needs_no_web ... ok
+test island::surface::tests::pending_reopen_rejects_an_older_compact_paint_ack ... ok
+test island::surface::tests::reopening_waits_for_the_previous_webview_registration_to_disappear ... ok
+test island::visibility::tests::borderless_geometry_and_maximised_auto_hide_are_distinct ... ok
+test island::visibility::tests::explicit_wake_cannot_override_fullscreen_and_recovers_without_stale_hover ... ok
+test island::visibility::tests::hover_intent_requires_400ms_and_resets_on_leave_or_foreground_change ... ok
+test island::visibility::tests::notification_states_are_scoped_and_ignore_shell_own_and_invisible_windows ... ok
+test island_interaction::tests::adaptive_polling_obeys_the_120_pixel_radius ... ok
+test island_interaction::tests::drag_from_outside_band_activates_large_target_and_cancel_restores_hitrect ... ok
+test island_interaction::tests::inside_outside_edges_and_live_rect_updates ... ok
+test island_interaction::tests::notification_and_borderless_fullscreen_fixtures_exclude_shell_own_and_other_monitors ... ok
+test island_interaction::tests::ole_callback_holds_target_until_drop_and_fullscreen_always_overrides ... ok
+test island_interaction::tests::rect_validation_and_physical_dpi_conversion ... ok
+test island_native_model::tests::collapse_holds_for_the_content_fade_and_reduced_motion_has_no_geometry_animation ... ok
+test island_native_model::tests::compact_updates_never_allocate_a_webview ... ok
+test island_native_model::tests::drag_restores_the_original_surface_after_cancel_or_fullscreen ... ok
+test island_native_model::tests::interrupted_fades_do_not_flash_content_and_reduced_motion_still_crossfades ... ok
+test island_native_model::tests::native_spring_matches_the_existing_css_sample_and_never_resizes_the_host ... ok
+test island_native_model::tests::native_stays_owner_until_web_paint_ack_and_stale_acks_do_not_close_a_new_view ... ok
+test island_native_model::tests::retarget_starts_from_the_interpolated_geometry ... ok
+test pins::tests::explicit_launch_validates_paths_before_using_the_injected_opener ... ok
+test taskbar_theme::tests::real_notifications_follow_system_ignore_apps_deduplicate_and_stop ... ok
+test tray_icon::tests::missing_invalid_and_old_windows_registry_values_default_dark ... ok
+test tray_icon::tests::optical_glyphs_keep_alpha_and_are_monochrome_in_both_taskbar_themes ... ok
+test util::tests::normalizes_short_url ... ok
+test util::tests::normalizes_shorts_url ... ok
+test util::tests::normalizes_youtube_watch_url ... ok
+
+test result: ok. 152 passed; 0 failed; 2 ignored; 0 measured; 0 filtered out; finished in 20.53s
+
+     Running unittests src\main.rs (src-tauri\target\debug\deps\nabbit-606f909b1c3906c9.exe)
+
+running 0 tests
+
+test result: ok. 0 passed; 0 failed; 0 ignored; 0 measured; 0 filtered out; finished in 0.00s
+
+   Doc-tests nabbit_lib
+memory allocation of 2097152 bytes failed
+stack backtrace:
+   0:     0x7ff8ddf0a7ee - std::backtrace_rs::backtrace::win64::trace
+                               at /rustc/2d8144b7880597b6e6d3dfd63a9a9efae3f533d3/library\std\src\..\..\backtrace\src\backtrace\win64.rs:85
+   1:     0x7ff8ddf0a7ee - std::backtrace_rs::backtrace::trace_unsynchronized
+                               at /rustc/2d8144b7880597b6e6d3dfd63a9a9efae3f533d3/library\std\src\..\..\backtrace\src\backtrace\mod.rs:66
+   2:     0x7ff8ddf0a7ee - std::sys::backtrace::_print_fmt
+                               at /rustc/2d8144b7880597b6e6d3dfd63a9a9efae3f533d3/library\std\src\sys\backtrace.rs:74
+   3:     0x7ff8ddf0a7ee - std::sys::backtrace::impl$0::print::impl$0::fmt
+                               at /rustc/2d8144b7880597b6e6d3dfd63a9a9efae3f533d3/library\std\src\sys\backtrace.rs:44
+   4:     0x7ff8ddf330d1 - core::fmt::write
+                               at /rustc/2d8144b7880597b6e6d3dfd63a9a9efae3f533d3/library\core\src\fmt\mod.rs:0
+   5:     0x7ff8ddf1ac54 - std::io::default_write_fmt
+                               at /rustc/2d8144b7880597b6e6d3dfd63a9a9efae3f533d3/library\std\src\io\mod.rs:622
+   6:     0x7ff8ddf1ac54 - std::io::Write::write_fmt<std::sys::stdio::windows::Stderr>
+                               at /rustc/2d8144b7880597b6e6d3dfd63a9a9efae3f533d3/library\std\src\io\mod.rs:1977
+   7:     0x7ff8ddefdbe4 - std::sys::backtrace::BacktraceLock::print
+                               at /rustc/2d8144b7880597b6e6d3dfd63a9a9efae3f533d3/library\std\src\sys\backtrace.rs:47
+   8:     0x7ff8ddefdbe4 - std::alloc::default_alloc_error_hook
+                               at /rustc/2d8144b7880597b6e6d3dfd63a9a9efae3f533d3/library\std\src\alloc.rs:397
+   9:     0x7ff8ddee34cc - std::alloc::rust_oom::closure$0
+                               at /rustc/2d8144b7880597b6e6d3dfd63a9a9efae3f533d3/library\std\src\alloc.rs:428
+  10:     0x7ff8ddee0bcf - std::sys::backtrace::__rust_end_short_backtrace<std::alloc::rust_oom::closure_env$0,never$>
+                               at /rustc/2d8144b7880597b6e6d3dfd63a9a9efae3f533d3/library\std\src\sys\backtrace.rs:182
+  11:     0x7ff8ddefdc8b - std::alloc::rust_oom
+                               at /rustc/2d8144b7880597b6e6d3dfd63a9a9efae3f533d3/library\std\src\alloc.rs:424
+  12:     0x7ff8ddee4418 - std::alloc::_::__rust_alloc_error_handler
+                               at /rustc/2d8144b7880597b6e6d3dfd63a9a9efae3f533d3/library\std\src\alloc.rs:423
+  13:     0x7ff8e249bdd9 - alloc::alloc::handle_alloc_error::rt_error
+                               at /rustc/2d8144b7880597b6e6d3dfd63a9a9efae3f533d3/library\alloc\src\alloc.rs:551
+  14:     0x7ff8e249bdd9 - alloc::alloc::handle_alloc_error
+                               at /rustc/2d8144b7880597b6e6d3dfd63a9a9efae3f533d3/library\alloc\src\alloc.rs:557
+  15:     0x7ff8e249bdf6 - alloc::raw_vec::handle_error
+                               at /rustc/2d8144b7880597b6e6d3dfd63a9a9efae3f533d3/library\alloc\src\raw_vec\mod.rs:890
+  16:     0x7ff8df705403 - <rustc_arena[f0016127a838ea2d]::DroplessArena>::grow
+  17:     0x7ff8deb52f8c - <rustc_resolve[4c1965314ef89c5c]::Resolver as rustc_expand[525e0456a058ecfc]::base::ResolverExpand>::resolve_imports
+  18:     0x7ff8df2e59b7 - <rustc_expand[525e0456a058ecfc]::expand::MacroExpander>::fully_expand_fragment
+  19:     0x7ff8ddc399a3 - <rustc_expand[525e0456a058ecfc]::expand::MacroExpander>::expand_crate
+  20:     0x7ff8ddf5def0 - rustc_interface[72607620ed6b5c76]::util::check_abi_required_features
+  21:     0x7ff8db234034 - rustc_interface[72607620ed6b5c76]::passes::resolver_for_lowering_raw
+  22:     0x7ff8dda15723 - llvm::TargetTransformInfoImplBase::canHaveNonUndefGlobalInitializerInAddressSpace
+  23:     0x7ff8dd906190 - <<rustc_ty_utils[7fa32b34c3ce093e]::opaque_types::OpaqueTypeCollector>::collect_taits_declared_in_body::TaitInBodyFinder as rustc_hir[a1ed59c2a8e65ffa]::intravisit::Visitor>::visit_nested_item
+  24:     0x7ff8dda157a2 - llvm::TargetTransformInfoImplBase::canHaveNonUndefGlobalInitializerInAddressSpace
+  25:     0x7ff8ddd2bfcf - <rustc_middle[9ad8e2e2b921d296]::ty::context::TyCtxt>::resolver_for_lowering
+  26:     0x7ff8db23027d - rustc_interface[72607620ed6b5c76]::passes::early_lint_checks
+  27:     0x7ff8dda0412a - llvm::TargetTransformInfoImplBase::canHaveNonUndefGlobalInitializerInAddressSpace
+  28:     0x7ff8dd903a31 - <<rustc_ty_utils[7fa32b34c3ce093e]::opaque_types::OpaqueTypeCollector>::collect_taits_declared_in_body::TaitInBodyFinder as rustc_hir[a1ed59c2a8e65ffa]::intravisit::Visitor>::visit_nested_item
+  29:     0x7ff8dda04190 - llvm::TargetTransformInfoImplBase::canHaveNonUndefGlobalInitializerInAddressSpace
+  30:     0x7ff8debfc052 - rustc_ast_lowering[be9e3d2eac59449]::lower_to_hir
+  31:     0x7ff8dda20063 - llvm::TargetTransformInfoImplBase::canHaveNonUndefGlobalInitializerInAddressSpace
+  32:     0x7ff8dd911b86 - <<rustc_ty_utils[7fa32b34c3ce093e]::opaque_types::OpaqueTypeCollector>::collect_taits_declared_in_body::TaitInBodyFinder as rustc_hir[a1ed59c2a8e65ffa]::intravisit::Visitor>::visit_nested_item
+  33:     0x7ff8dda20272 - llvm::TargetTransformInfoImplBase::canHaveNonUndefGlobalInitializerInAddressSpace
+  34:     0x7ff8ddf77b59 - <rustc_interface[72607620ed6b5c76]::passes::LintStoreExpandImpl as rustc_expand[525e0456a058ecfc]::base::LintStoreExpand>::pre_expansion_lint
+  35:     0x7ff8dee317bb - rustc_query_impl[71fa813761f8e5ac]::dep_kind_vtables::make_dep_kind_vtables
+  36:     0x7ff8ded26c5d - RINvMs6_NtCsgvfGJFcjol4_9hashbrown3rawINtB6_8RawTableTINtNtCs1zeQXmGERrI_13rustc_type_ir14predicate_kind13PredicateKindNtNtNtCsdifnBs78Yhm_12rustc_middle2ty7context6TyCtxtEjEE14reserve_rehashNCINvNtB8_3map11make_hasherBQ_jNtCs8Wna7Nn88aQ_10rustc_hash13FxBu
+  37:     0x7ff8dee31838 - rustc_query_impl[71fa813761f8e5ac]::dep_kind_vtables::make_dep_kind_vtables
+  38:     0x7ff8df5d8d38 - <rustc_middle[9ad8e2e2b921d296]::ty::context::TyCtxt>::hir_attrs
+  39:     0x7ff6ee450816 - <unknown>
+  40:     0x7ff6ee430615 - <unknown>
+  41:     0x7ff6ee358d94 - <unknown>
+  42:     0x7ff6ee490a4e - <unknown>
+  43:     0x7ff8ddf079ba - std::sys::thread::windows::impl$0::new::thread_start
+                               at /rustc/2d8144b7880597b6e6d3dfd63a9a9efae3f533d3/library\std\src\sys\thread\windows.rs:58
+  44:     0x7ffa74c3dda7 - BaseThreadInitThunk
+  45:     0x7ffa76719c5c - RtlUserThreadStart
+error: doctest failed, to rerun pass `--doc`
+
+Caused by:
+  process didn't exit successfully: `C:\Users\tanzir\.rustup\toolchains\stable-x86_64-pc-windows-msvc\bin\rustdoc.exe --edition=2021 --crate-type staticlib --crate-type cdylib --crate-type rlib --color auto --crate-name nabbit_lib --test src\lib.rs --test-run-directory D:\claude-upgrade-26\nabbit\src-tauri -L "native=C:\Program Files\Microsoft Visual Studio\2022\Community\VC\Tools\MSVC\14.44.35207\atlmfc\lib\x64" -L native=C:\Users\tanzir\.cargo\registry\src\index.crates.io-1949cf8c6b5b557f\windows_x86_64_msvc-0.48.5\lib -L native=C:\Users\tanzir\.cargo\registry\src\index.crates.io-1949cf8c6b5b557f\windows_x86_64_msvc-0.52.6\lib -L native=C:\Users\tanzir\.cargo\registry\src\index.crates.io-1949cf8c6b5b557f\windows_x86_64_msvc-0.53.1\lib -L native=D:\claude-upgrade-26\nabbit\src-tauri\target\debug\build\libsqlite3-sys-1be5836f53524239\out -L native=D:\claude-upgrade-26\nabbit\src-tauri\target\debug\build\ring-056170003a78f44d\out -L native=D:\claude-upgrade-26\nabbit\src-tauri\target\debug\build\vswhom-sys-2637eed1c8ca380d\out -L native=D:\claude-upgrade-26\nabbit\src-tauri\target\debug\build\webview2-com-sys-9883bab7c0e51961\out\x64 --test-args --test-threads=1 --extern anyhow=D:\claude-upgrade-26\nabbit\src-tauri\target\debug\deps\libanyhow-f4f7473f6259aca6.rlib --extern arboard=D:\claude-upgrade-26\nabbit\src-tauri\target\debug\deps\libarboard-1dbb08e5d1788987.rlib --extern base64=D:\claude-upgrade-26\nabbit\src-tauri\target\debug\deps\libbase64-5a2799105606e332.rlib --extern chrono=D:\claude-upgrade-26\nabbit\src-tauri\target\debug\deps\libchrono-0257c8f26a6b1237.rlib --extern clipboard_win=D:\claude-upgrade-26\nabbit\src-tauri\target\debug\deps\libclipboard_win-7aa5c893d4088560.rlib --extern directories=D:\claude-upgrade-26\nabbit\src-tauri\target\debug\deps\libdirectories-7d3d68ed750bb90b.rlib --extern nabbit_lib=D:\claude-upgrade-26\nabbit\src-tauri\target\debug\deps\libnabbit_lib.rlib --extern open=D:\claude-upgrade-26\nabbit\src-tauri\target\debug\deps\libopen-d13474bdf078788a.rlib --extern regex=D:\claude-upgrade-26\nabbit\src-tauri\target\debug\deps\libregex-7fa3ec9c9565de39.rlib --extern reqwest=D:\claude-upgrade-26\nabbit\src-tauri\target\debug\deps\libreqwest-04aebf78ca670e7c.rlib --extern rusqlite=D:\claude-upgrade-26\nabbit\src-tauri\target\debug\deps\librusqlite-1a3725ffc82304bf.rlib --extern serde=D:\claude-upgrade-26\nabbit\src-tauri\target\debug\deps\libserde-f88c99c988936c9e.rlib --extern serde_json=D:\claude-upgrade-26\nabbit\src-tauri\target\debug\deps\libserde_json-bc451beb15d4b554.rlib --extern sha2=D:\claude-upgrade-26\nabbit\src-tauri\target\debug\deps\libsha2-1834a238164cfd64.rlib --extern sysinfo=D:\claude-upgrade-26\nabbit\src-tauri\target\debug\deps\libsysinfo-1e28825196ec3bc2.rlib --extern tauri=D:\claude-upgrade-26\nabbit\src-tauri\target\debug\deps\libtauri-c3c5e05433860b97.rlib --extern tauri_plugin_autostart=D:\claude-upgrade-26\nabbit\src-tauri\target\debug\deps\libtauri_plugin_autostart-e1b1d6a0fc744dd9.rlib --extern tauri_plugin_clipboard_manager=D:\claude-upgrade-26\nabbit\src-tauri\target\debug\deps\libtauri_plugin_clipboard_manager-15a8d6337a65c3fb.rlib --extern tauri_plugin_deep_link=D:\claude-upgrade-26\nabbit\src-tauri\target\debug\deps\libtauri_plugin_deep_link-40801e19edbbabd6.rlib --extern tauri_plugin_global_shortcut=D:\claude-upgrade-26\nabbit\src-tauri\target\debug\deps\libtauri_plugin_global_shortcut-549586ea4c226025.rlib --extern tauri_plugin_shell=D:\claude-upgrade-26\nabbit\src-tauri\target\debug\deps\libtauri_plugin_shell-38220e09cf6c16cd.rlib --extern tauri_plugin_single_instance=D:\claude-upgrade-26\nabbit\src-tauri\target\debug\deps\libtauri_plugin_single_instance-7aa40a7198820752.rlib --extern tauri_plugin_updater=D:\claude-upgrade-26\nabbit\src-tauri\target\debug\deps\libtauri_plugin_updater-92dcd5734e3cd193.rlib --extern thiserror=D:\claude-upgrade-26\nabbit\src-tauri\target\debug\deps\libthiserror-b3608c37b054e1c2.rlib --extern tokio=D:\claude-upgrade-26\nabbit\src-tauri\target\debug\deps\libtokio-9334413ef475518b.rlib --extern url=D:\claude-upgrade-26\nabbit\src-tauri\target\debug\deps\liburl-f704c51c47360d67.rlib --extern uuid=D:\claude-upgrade-26\nabbit\src-tauri\target\debug\deps\libuuid-2269715f9ba40e9c.rlib --extern webview2_com=D:\claude-upgrade-26\nabbit\src-tauri\target\debug\deps\libwebview2_com-5d65620569033820.rlib --extern which=D:\claude-upgrade-26\nabbit\src-tauri\target\debug\deps\libwhich-7133d0c333d030ec.rlib --extern windows=D:\claude-upgrade-26\nabbit\src-tauri\target\debug\deps\libwindows-6d71b140256d2a31.rlib --extern windows_numerics=D:\claude-upgrade-26\nabbit\src-tauri\target\debug\deps\libwindows_numerics-21e431245a679337.rlib --extern windows_sys=D:\claude-upgrade-26\nabbit\src-tauri\target\debug\deps\libwindows_sys-a3f22229ddb4236f.rlib --extern zip=D:\claude-upgrade-26\nabbit\src-tauri\target\debug\deps\libzip-f8d62697659ff5be.rlib -L dependency=D:\claude-upgrade-26\nabbit\src-tauri\target\debug\deps -C embed-bitcode=no --check-cfg cfg(docsrs,test) --check-cfg "cfg(feature, values(\"custom-protocol\", \"island-spike\"))" --cfg desktop --cfg dev --check-cfg cfg(desktop) --check-cfg cfg(mobile) --check-cfg cfg(dev) -C link-arg=/NODEFAULTLIB:libvcruntimed.lib -C link-arg=/NODEFAULTLIB:vcruntime.lib -C link-arg=/NODEFAULTLIB:vcruntimed.lib -C link-arg=/NODEFAULTLIB:libcmtd.lib -C link-arg=/NODEFAULTLIB:msvcrt.lib -C link-arg=/NODEFAULTLIB:msvcrtd.lib -C link-arg=/NODEFAULTLIB:libucrt.lib -C link-arg=/NODEFAULTLIB:libucrtd.lib -C link-arg=/DEFAULTLIB:libcmt.lib -C link-arg=/DEFAULTLIB:libvcruntime.lib -C link-arg=/DEFAULTLIB:ucrt.lib --error-format human` (exit code: 0xc0000409, STATUS_STACK_BUFFER_OVERRUN)
+note: test exited abnormally; to see the full output pass --no-capture to the harness.

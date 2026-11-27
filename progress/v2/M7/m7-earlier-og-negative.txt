@@ -1,0 +1,15 @@
+node:internal/modules/run_main:107
+    triggerUncaughtException(
+    ^
+
+AssertionError [ERR_ASSERTION]: Regenerate stale social image with npm run site:og (5327472d2fdda78b8e740404330171ffea9bcc19e14533fa4a561e72467f0456 != 888b7649c07bfa9f177746975ed90a58a7411086d610ab9f93f2c8271fd98245)
+    at file:///D:/claude-upgrade-26/nabbit/scripts/render-site-og.mjs:126:5 {
+  generatedMessage: false,
+  code: 'ERR_ASSERTION',
+  actual: false,
+  expected: true,
+  operator: '==',
+  diff: 'simple'
+}
+
+Node.js v24.22.2

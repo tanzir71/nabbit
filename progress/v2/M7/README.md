@@ -126,3 +126,12 @@ node scripts/verify-landing.mjs --prefix v37-local-landing --milestone M7
 python scripts/split-landing-captures.py --prefix v37-local-landing --milestone M7
 node scripts/verify-site-accessibility.mjs --prefix v37-local-site --milestone M7
 ```
+
+
+## M7 — Downloads complete publication
+
+`m7-readiness.json` audits the three original task commits, 886 input pins and 246 authoritative task PNGs (158 app captures and 88 landing/focus images). All 535 retained PNGs independently decode/hash below 300,000 bytes; the largest is 277,700. Fresh checks pass 175 frontend tests in 28 files, 152 Rust tests plus doc-tests, formatting and both Clippy configurations. Eight milestone browser contexts keep default geometry and original icon dimensions; eight accessibility contexts run 24 axe scans. All 106 HTTP resources match current source, and normal site transfer is 457,466/500,000 bytes excluding fonts. The four app entries and 90,605-byte initial island graph match the accepted download UI build.
+
+The milestone changes M7/M8 publication metadata and hardens two verification paths. `render-site-og.mjs` now uses exact Buffer equality with compact digests instead of generating a potentially enormous byte-array diff on failure. The previous failure consumed over 50 GB in the owned verifier and interrupted other checks; those diagnostics are retained. CPU rasterization is explicit and both same-session and fresh-browser checks require identical PNG bytes. The new artifact differs from the old by twelve antialiased pixels, documented in `m7-og-raster.json`; no tolerance or image normalization is used. A one-byte mismatch is rejected with 525 diagnostic characters and the source asset is restored before site verification. The Vitest configuration excludes only generated `.tools`/`progress` artifacts; the complete 28-file/175-test suite remains selected. Two workers bound test concurrency without changing test assertions.
+
+Runtime app sources, download behavior, shared tokens and design layouts are unchanged. Native protocol installation and V0/V2.7 performance/frame/focus exclusions remain explicit. Earlier interrupted verifiers are not counted as passing checks. The canonical status, fresh accessibility, exact OG, local HTTP and full unit/doc-test receipts are authoritative. The milestone checkbox stays open until the fast-forward push, built-in Pages deployment and live asset/PNG verification succeed; an append-only receipt then records that result. No PR or repository workflow is used.

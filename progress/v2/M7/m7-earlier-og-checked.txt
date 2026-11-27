@@ -1,0 +1,38 @@
+Full diagnostic retained losslessly in m7-earlier-og-checked.txt.gz (gzip).
+Uncompressed SHA-256: 8678cb71a858dee8974a8115bcc49da3c2d1d92bf69fd746154d160383372960
+
+> nabbit@0.1.0 site:og
+> node scripts/render-site-og.mjs --check
+
+node:internal/modules/run_main:107
+    triggerUncaughtException(
+    ^
+
+AssertionError [ERR_ASSERTION]: Regenerate stale social image with npm run site:og
++ actual - expected
+... Skipped lines
+
+  Buffer(78876) [Uint8Array] [
+    137,
+    80,
+    78,
+    71,
+...
+    184,
++   165,
+-   117,
+
+[byte-array diff omitted from this readable summary; exact full text is in the archive]
+
+     69, 223, 198, 103, 143,  68,  18,  73,  32,   9, 53,  64,
+     40,   9,   9,  16, 146, 208, 123, 149,  46,  65,  5,  65,
+    233,  42,  10, 159, 189,  33,  22,  44,   8,  40, 34, 168,
+     40, 138,  32, 130, 224, 171,  32, 160, 128, 162,  4,   1,
+      5, 149,  14, 161,
+    ... 78776 more items
+  ],
+  operator: 'deepStrictEqual',
+  diff: 'simple'
+}
+
+Node.js v24.22.2

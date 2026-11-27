@@ -1,6 +1,11 @@
 {
   "source": "og.html",
   "renderer": "Playwright Chromium",
+  "chromiumArgs": [
+    "--disable-gpu",
+    "--disable-skia-runtime-opts"
+  ],
+  "repeatIdentical": true,
   "playwright": "1.65.1",
   "width": 1200,
   "height": 630,
@@ -8,7 +13,7 @@
   "image": {
     "file": "assets/og.png",
     "bytes": 78876,
-    "sha256": "1039543ed2f238db632d38e6f3b53318412d2421050d716a0174c6f59598fcc3"
+    "sha256": "888b7649c07bfa9f177746975ed90a58a7411086d610ab9f93f2c8271fd98245"
   },
   "fonts": {
     "sans": [

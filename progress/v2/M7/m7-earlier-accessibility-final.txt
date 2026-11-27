@@ -1,0 +1,23 @@
+Verified 1440/light/1x: 2 axe states, keyboard navigation and focus.
+Verified 1440/light/1.5x: 2 axe states, keyboard navigation and focus.
+Verified 1440/dark/1x: 2 axe states, keyboard navigation and focus.
+Verified 1440/dark/1.5x: 2 axe states, keyboard navigation and focus.
+Verified 390/light/1x: 4 axe states, keyboard navigation and focus.
+Verified 390/light/1.5x: 4 axe states, keyboard navigation and focus.
+node:internal/modules/run_main:107
+    triggerUncaughtException(
+    ^
+
+page.goto: net::ERR_ABORTED; maybe frame was detached?
+Call log:
+  - navigating to "http://127.0.0.1:62938/nabbit/", waiting until "networkidle"
+
+    at open (D:\claude-upgrade-26\nabbit\scripts\verify-site-accessibility.mjs:93:24)
+    at D:\claude-upgrade-26\nabbit\scripts\verify-site-accessibility.mjs:234:19 {
+  log: [
+    '  - navigating to "http://127.0.0.1:62938/nabbit/", waiting until "networkidle"'
+  ],
+  name: 'Error'
+}
+
+Node.js v24.22.2

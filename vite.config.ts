@@ -1,5 +1,6 @@
 import react from "@vitejs/plugin-react";
 import { defineConfig, type Plugin } from "vite";
+import { configDefaults } from "vitest/config";
 import { relative, resolve } from "node:path";
 import { mkdirSync, readFileSync, writeFileSync } from "node:fs";
 import { createHash } from "node:crypto";
@@ -46,6 +47,7 @@ export default defineConfig({
   test: {
     environment: "jsdom",
     setupFiles: "./src/test/setup.ts",
+    exclude: [...configDefaults.exclude, ".tools/**", "progress/**"],
   },
   clearScreen: false,
   build: {
