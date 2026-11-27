@@ -1,0 +1,16 @@
+{
+  "passed": false,
+  "failure": {
+    "message": "Capture must be stable\n+ actual - expected\n\n+ 'eb664f5701ace8aae958adb2dceec5da2987a3a7a56ca329aec258f9bdfa9b6a'\n- '2be551d54ad89771c228c68bffe1f126dba64f337cbdd995b9433f181cc020d6'\n",
+    "stack": "AssertionError [ERR_ASSERTION]: Capture must be stable\n+ actual - expected\n\n+ 'eb664f5701ace8aae958adb2dceec5da2987a3a7a56ca329aec258f9bdfa9b6a'\n- '2be551d54ad89771c228c68bffe1f126dba64f337cbdd995b9433f181cc020d6'\n\n    at capture (file:///D:/claude-upgrade-26/nabbit/scripts/capture-native-notes.mjs:134:10)\n    at async file:///D:/claude-upgrade-26/nabbit/scripts/capture-native-notes.mjs:170:3"
+  },
+  "checks": [],
+  "captures": [],
+  "executableSha256": "94c402f4bac5642f56cd960d2807b59f36cc62a636db3c5043ce01b0375da2ca",
+  "buildManifestSha256": "1aae1158834f78885ae30f3a9707fada5bcc3c4bcb44e412bc871cb5c6b0ab27",
+  "noUserProfile": true,
+  "noHostedTack": true,
+  "noRealClipboard": true,
+  "noOsDisplayChange": true,
+  "scope": "Actual owned release WebView2 with native IPC and SQLite; local-only fixture data. This is capture provenance, not fake-Tack or native window-manager acceptance."
+}

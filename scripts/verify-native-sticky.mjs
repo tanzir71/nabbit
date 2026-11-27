@@ -27,10 +27,7 @@ for (const path of [output, pngOutput])
     (e) => assert.equal(e.code, "ENOENT"),
   );
 await mkdir(control, { recursive: true });
-const reservation = createServer();
-await new Promise((r) => reservation.listen(0, "127.0.0.1", r));
-const port = reservation.address().port;
-await new Promise((r) => reservation.close(r));
+let port;
 const env = {
   ...process.env,
   NABBIT_STICKY_ACCEPTANCE: "1",
@@ -73,6 +70,13 @@ const rpc = async (request) => {
   return result.value;
 };
 async function start() {
+  // WebView2 descendants can briefly outlive their owner on restart. Give each
+  // owned launch its own endpoint so readiness cannot match the previous host.
+  const reservation = createServer();
+  await new Promise((r) => reservation.listen(0, "127.0.0.1", r));
+  port = reservation.address().port;
+  await new Promise((r) => reservation.close(r));
+  env.WEBVIEW2_ADDITIONAL_BROWSER_ARGUMENTS = `--remote-debugging-port=${port} --remote-debugging-address=127.0.0.1`;
   child = spawn(exe, [], { cwd: root, env, windowsHide: true, stdio: ["ignore", "pipe", "pipe"] });
   child.stdout.on("data", (b) => {
     logs += b;
@@ -165,7 +169,10 @@ try {
   await page.getByRole("button", { name: "Close sticky note", exact: true }).focus();
   rows = await wait(async () => {
     const r = await windows();
-    return r[0]?.snapshot.content.note?.value.body === "Saved via actual native IPC — বাংলা"
+    // The note transaction and checkpoint acknowledgement are separate IPC
+    // steps. Wait for both durable postconditions before taking the snapshot.
+    return r[0]?.snapshot.content.note?.value.body === "Saved via actual native IPC — বাংলা" &&
+      r[0]?.snapshot.content.checkpoint === null
       ? r
       : null;
   }, "native autosave");

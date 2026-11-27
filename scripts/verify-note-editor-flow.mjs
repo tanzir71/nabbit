@@ -13,6 +13,7 @@ import { preview } from "vite";
 import { chromium } from "playwright";
 import { fixtureData } from "./screenshots/fixtures.mjs";
 import { installMockIpc } from "./screenshots/mock-ipc.mjs";
+import { verifyNotesAcceptance } from "./verify-notes-acceptance.mjs";
 
 function installBridge(info) {
   const original = globalThis.__TAURI_INTERNALS__.invoke;
@@ -24,7 +25,7 @@ function installBridge(info) {
     const response = await globalThis.fetch(`${info.url}/invoke`, {
       method: "POST",
       headers: { "Content-Type": "application/json", "X-Nabbit-Test": info.token },
-      body: JSON.stringify({ command, args }),
+      body: JSON.stringify({ command, args, window: info.window ?? "main" }),
     });
     const result = await response.json();
     if (!result.ok) throw result.error;
@@ -32,6 +33,8 @@ function installBridge(info) {
   };
   globalThis.__TAURI_INTERNALS__.invoke = (command, args) =>
     command.startsWith("tack_") ||
+    command.startsWith("sticky_") ||
+    command === "open_sticky" ||
     [
       "capture_note",
       "notes_open",
@@ -416,9 +419,31 @@ try {
   checks.push(
     "Shift+Enter opens an unsaved checklist; full editor creates it once with stable item identity, parsed labels/priority, colour and body",
   );
+  await verifyNotesAcceptance({
+    page,
+    context,
+    origin,
+    info,
+    data,
+    call,
+    inspect,
+    wait,
+    checks,
+    installMockIpc,
+    installBridge,
+  });
   // Exercise durable lazy-start navigation using production SQLite, with no HWND claims.
+  // Detach the live SSE consumer first: an already mounted main window can
+  // legitimately consume notes:open before reload, which is a different case.
+  await page.route(`${origin}/__acceptance_detached`, (route) =>
+    route.fulfill({
+      contentType: "text/html",
+      body: "<!doctype html><title>Detached consumer</title>",
+    }),
+  );
+  await page.goto(`${origin}/__acceptance_detached`);
   await call("notes_open", { intent: { kind: "capture" } });
-  await page.reload({ waitUntil: "domcontentloaded" });
+  await page.goto(origin, { waitUntil: "domcontentloaded" });
   await page.waitForFunction(() =>
     globalThis.document.activeElement?.hasAttribute("data-note-capture"),
   );

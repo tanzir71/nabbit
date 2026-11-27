@@ -1,0 +1,63 @@
+{
+  "passed": true,
+  "checks": [
+    "Three stable captures of the current owned release WebView2, real Tauri IPC/SQLite, synthetic local-only notes; fixture monitor/cursor and DOM-only DPR2 emulation"
+  ],
+  "captures": [
+    {
+      "role": "island",
+      "file": "v48-fourth-island@2x.png",
+      "sha256": "2c0c26b820e4bd624352d555b1f825f777bea8bf9f1dcb2a7769438da1095111",
+      "bytes": 33805,
+      "width": 680,
+      "height": 302,
+      "logicalBounds": {
+        "x": 20,
+        "y": 6,
+        "width": 680,
+        "height": 302
+      },
+      "scale": 2,
+      "repeatMatches": true
+    },
+    {
+      "role": "blue",
+      "file": "v48-fourth-blue@2x.png",
+      "sha256": "fa38b81509d2b8c3c8ae593440ca37f42b338b96fed65ea1961d64ceefcd8d53",
+      "bytes": 7551,
+      "width": 280,
+      "height": 122,
+      "logicalBounds": {
+        "x": 0,
+        "y": 0,
+        "width": 280,
+        "height": 122
+      },
+      "scale": 2,
+      "repeatMatches": true
+    },
+    {
+      "role": "green",
+      "file": "v48-fourth-green@2x.png",
+      "sha256": "2e000a0a2bbad146267350a7993c9b19d39c7ef85064523f0e026a6dfc6b64ed",
+      "bytes": 12145,
+      "width": 280,
+      "height": 200,
+      "logicalBounds": {
+        "x": 0,
+        "y": 0,
+        "width": 280,
+        "height": 200
+      },
+      "scale": 2,
+      "repeatMatches": true
+    }
+  ],
+  "executableSha256": "94c402f4bac5642f56cd960d2807b59f36cc62a636db3c5043ce01b0375da2ca",
+  "buildManifestSha256": "1aae1158834f78885ae30f3a9707fada5bcc3c4bcb44e412bc871cb5c6b0ab27",
+  "noUserProfile": true,
+  "noHostedTack": true,
+  "noRealClipboard": true,
+  "noOsDisplayChange": true,
+  "scope": "Actual owned release WebView2 with native IPC and SQLite; local-only fixture data. This is capture provenance, not fake-Tack or native window-manager acceptance."
+}

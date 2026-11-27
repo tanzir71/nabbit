@@ -85,6 +85,23 @@ for (const entry of fonts.files) {
     entry.sourceSha256,
   );
 }
+const notes = JSON.parse(await readFile(resolve(root, "docs/assets/notes-capture.json"), "utf8"));
+assert.equal(notes.captures.length, 3);
+for (const capture of notes.captures) {
+  const images = [...document.querySelectorAll(`#notes img[src="${capture.file}"]`)];
+  assert(images.length > 0);
+  for (const img of images) {
+    assert.equal(Number(img.getAttribute("width")), capture.width);
+    assert.equal(Number(img.getAttribute("height")), capture.height);
+    assert(img.getAttribute("alt").includes("Current Nabbit"));
+  }
+}
+assert(document.querySelector("#notes .caption").textContent.includes("local fixture data"));
+assert.equal(document.querySelectorAll("#notes .replica").length, 0);
+execFileSync("python", [resolve(root, "scripts/generate-notes-visual.py"), "--check"], {
+  cwd: root,
+  stdio: "pipe",
+});
 assert.deepEqual(
   await readFile(resolve(root, "docs/assets/fonts/OFL.txt")),
   await readFile(resolve(root, "src/assets/fonts/OFL.txt")),

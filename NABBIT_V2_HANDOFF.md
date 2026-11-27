@@ -554,11 +554,13 @@ Island Notes tab and `Ctrl+Alt+N`: one-line field. Port Tack's capture parsing (
 ### 8.8 Acceptance (notes, automated)
 
 - [x] **Fake Tack server** (Rust dev-dependency, in-process on 127.0.0.1) that mirrors `backend/index.php` for the actions Nabbit uses: `status`, `login` (including `recoveryCode`), `recovery-confirm`, `workspace-switch`, `logout`, and `sync` with cursor paging (`more`), the 50-mutation limit, versions, server ref allocation, three-way field merge, conflicts and the 401/403/409/413/428/429 responses. Derive its behaviour from Tack's code and keep request/response fixtures in `src-tauri/tests/fixtures/tack/`.
-- [ ] Against the fake: create, edit, check items, recolour, label, pin, archive, trash, a two-device conflict (both resolutions), offline queue replay, batches above 50 mutations, cursor paging, and every error → `SyncState`.
-- [ ] A new card gets a server-allocated `tck-N` ref that Nabbit reads back; unknown fields added on the server survive a Nabbit edit.
-- [ ] Local-only mode works with no network; "Upload local notes" migrates once with no duplicates.
-- [ ] Grep test: the password never appears in the DB, logs or crash output; Credential Manager holds only the session cookie and CSRF token.
-- [ ] Optional, never a gate: if PHP 8.1+ with pdo_sqlite is already on `PATH` (or a portable PHP unpacks into a gitignored `.tools/` without admin rights), build Tack's hosting zip from a temporary clone of `https://github.com/tanzir71/tack`, serve it on 127.0.0.1, register a throwaway account and run the same suite; otherwise record it as skipped. **Never call the user's hosted Tack or use their account.**
+- [x] Against the fake: create, edit, check items, recolour, label, pin, archive, trash, a two-device conflict (both resolutions), offline queue replay, batches above 50 mutations, cursor paging, and every error → `SyncState`.
+- [x] A new card gets a server-allocated `tck-N` ref that Nabbit reads back; unknown fields added on the server survive a Nabbit edit.
+- [x] Local-only mode works with no network; "Upload local notes" migrates once with no duplicates.
+- [x] Grep test: the password never appears in the DB, logs or crash output; Credential Manager holds only the session cookie and CSRF token.
+- [x] Optional, never a gate: if PHP 8.1+ with pdo_sqlite is already on `PATH` (or a portable PHP unpacks into a gitignored `.tools/` without admin rights), build Tack's hosting zip from a temporary clone of `https://github.com/tanzir71/tack`, serve it on 127.0.0.1, register a throwaway account and run the same suite; otherwise record it as skipped. **Never call the user's hosted Tack or use their account.**
+
+**V4.8 evidence:** `progress/v2/M9/v48-acceptance.json` and its requirement matrix. The optional PHP suite is **skipped**: PHP 8.2.30 is on PATH but has no `pdo_sqlite` (`v48-php.json`); no runtime was installed and no hosted/user Tack account was contacted.
 
 ### 8.9 Links and bookmarks (Tack bookmark cards)
 
@@ -787,7 +789,7 @@ Commit after every task (§0.1). Lines marked **MILESTONE** are tasks of their o
 - [x] V4.5 Editor (`19:182`), conflict sheet (`19:301`), sync state UI (`19:346`).
 - [x] V4.6 Quick capture (island Notes tab, Ctrl+Alt+N) with ported Tack parsing.
 - [x] V4.7 Sticky windows (`14:531`) with persistence per card per monitor.
-- [ ] V4.8 Notes acceptance §8.8 against the fake Tack (the real local Tack suite is optional); swap the landing notes visual to a real screenshot.
+- [x] V4.8 Notes acceptance §8.8 against the fake Tack (the real local Tack suite is optional); swap the landing notes visual to a real screenshot.
 - [ ] V4.9 Links and bookmarks (§8.9): Save link (clipboard row `45:568`, drop, Ctrl+Alt+N), Links filter (`45:452`), Import bookmarks (`45:362`) from Chromium JSON, Firefox places copy and HTML; acceptance in §8.9.
 - [ ] **MILESTONE M9 — Notes complete.**
 

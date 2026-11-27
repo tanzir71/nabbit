@@ -1,0 +1,81 @@
+{
+  "passed": true,
+  "checks": [
+    "Three stable captures of the current owned release WebView2, real Tauri IPC/SQLite, synthetic local-only notes; fixture monitor/cursor and DOM-only DPR2 emulation"
+  ],
+  "captures": [
+    {
+      "role": "island",
+      "file": "v48-landing-native-island@2x.png",
+      "sha256": "afdbe2e7683c91916686d56c82ac6792857a39cdb45848a4dadf8c40adbbaa1e",
+      "bytes": 88930,
+      "width": 1440,
+      "height": 920,
+      "logicalBounds": {
+        "x": 0,
+        "y": 0,
+        "width": 720,
+        "height": 460
+      },
+      "contentBounds": {
+        "x": 20,
+        "y": 6,
+        "width": 680,
+        "height": 312
+      },
+      "scale": 2,
+      "repeatMatches": true
+    },
+    {
+      "role": "blue",
+      "file": "v48-landing-native-blue@2x.png",
+      "sha256": "35925c34b4c1cfc429720fc14541a1b48bd77c889799cb61281be972e29615de",
+      "bytes": 28929,
+      "width": 560,
+      "height": 352,
+      "logicalBounds": {
+        "x": 0,
+        "y": 0,
+        "width": 280,
+        "height": 176
+      },
+      "contentBounds": {
+        "x": 0,
+        "y": 0,
+        "width": 280,
+        "height": 176
+      },
+      "scale": 2,
+      "repeatMatches": true
+    },
+    {
+      "role": "green",
+      "file": "v48-landing-native-green@2x.png",
+      "sha256": "794f5e3161d64d0b084af21477447028d242e1f8fe5222a90f63fe465632f3af",
+      "bytes": 29457,
+      "width": 560,
+      "height": 400,
+      "logicalBounds": {
+        "x": 0,
+        "y": 0,
+        "width": 280,
+        "height": 200
+      },
+      "contentBounds": {
+        "x": 0,
+        "y": 0,
+        "width": 280,
+        "height": 200
+      },
+      "scale": 2,
+      "repeatMatches": true
+    }
+  ],
+  "executableSha256": "94c402f4bac5642f56cd960d2807b59f36cc62a636db3c5043ce01b0375da2ca",
+  "buildManifestSha256": "1aae1158834f78885ae30f3a9707fada5bcc3c4bcb44e412bc871cb5c6b0ab27",
+  "noUserProfile": true,
+  "noHostedTack": true,
+  "noRealClipboard": true,
+  "noOsDisplayChange": true,
+  "scope": "Actual owned release WebView2 with native IPC and SQLite; local-only fixture data. This is capture provenance, not fake-Tack or native window-manager acceptance."
+}

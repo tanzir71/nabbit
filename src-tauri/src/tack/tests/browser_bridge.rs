@@ -139,12 +139,13 @@ fn browser_connection_bridge() {
     .unwrap();
     info.flush().unwrap();
     let copied = Arc::new(AtomicU64::new(0));
+    let sticky = Arc::new(super::sticky_bridge::Windows::default());
     let mut workers = vec![];
     while !stop.load(Ordering::Acquire) {
         let Some(mut request) = server.recv_timeout(Duration::from_millis(100)).unwrap() else {
             continue;
         };
-        let (service, db, fake, stop, events, copied, token, origin) = (
+        let (service, db, fake, stop, events, copied, token, origin, sticky) = (
             service.clone(),
             db.clone(),
             fake.clone(),
@@ -153,6 +154,7 @@ fn browser_connection_bridge() {
             copied.clone(),
             token.clone(),
             origin.clone(),
+            sticky.clone(),
         );
         workers.push(std::thread::spawn(move||{
             let cors=vec![header("Access-Control-Allow-Origin",&origin),header("Vary","Origin"),header("Access-Control-Allow-Headers","Content-Type, X-Nabbit-Test"),header("Access-Control-Allow-Methods","POST, GET, OPTIONS")];
@@ -166,6 +168,7 @@ fn browser_connection_bridge() {
             }
             let mut raw=Zeroizing::new(Vec::new());request.as_reader().take(1024*1024).read_to_end(&mut raw).unwrap();
             let mut input:Value=serde_json::from_slice(&raw).unwrap_or(Value::Null);
+            let window_label=input.get("window").and_then(Value::as_str).unwrap_or("main").to_string();
             let command=input.get("command").and_then(Value::as_str).unwrap_or("").to_owned();let mut args=input.get_mut("args").and_then(Value::as_object_mut).map(std::mem::take).unwrap_or_default();
             let result:Result<Value>=(||{
                 match command.as_str(){
@@ -196,9 +199,9 @@ if !page.more{return Err(Error::new(ErrorCode::InvalidInput));}cursor=page.curso
                     "list_note_cards"=>encode(db.list_note_cards()?),
                     "create_note_card"=>{let draft:NoteDraft=serde_json::from_value(args.remove("draft").unwrap_or(Value::Null)).map_err(|_|Error::new(ErrorCode::InvalidInput))?;let scope:Option<crate::notes::sync_store::Context>=serde_json::from_value(args.remove("expectedScope").unwrap_or(Value::Null)).map_err(|_|Error::new(ErrorCode::InvalidInput))?;encode(db.create_note_card_in(draft,scope.as_ref())?)},
                     "test.inspect"=>{let state=fake.state.lock().unwrap();Ok(json!({"syncCalls":state.sync_calls,"batches":state.batches,"actions":state.actions,"copyCount":copied.load(Ordering::Acquire),"notes":db.notes_state()?.cards,"profile":service.profile()?,"sync":service.sync_snapshot()?,"enabled":db.tack_enabled()?}))},
-                    "test.fault"=>{let status=args.get("status").and_then(Value::as_u64).unwrap_or(503)as u16;let headers=if status==429 {vec![("Retry-After".into(),"1".into())]}else{vec![]};fake.fault(status,json!({"error":"untrusted fixture response detail"}),headers);Ok(Value::Null)},
+                    "test.fault"=>{let status=args.get("status").and_then(Value::as_u64).unwrap_or(503)as u16;let headers=if status==429 {vec![("Retry-After".into(),"1".into())]}else{vec![]};let body=if args.get("accessChanged").and_then(Value::as_bool)==Some(true){json!({"workspaceAccessChanged":true,"workspaceId":"elsewhere"})}else{json!({"error":"untrusted fixture response detail"})};fake.fault(status,body,headers);Ok(Value::Null)},
                     "test.stop"=>{stop.store(true,Ordering::Release);Ok(Value::Null)},
-                    _=>Err(Error::new(ErrorCode::InvalidInput)),
+                    _=>super::sticky_bridge::route(&db,&service,&sticky,&window_label,&command,args),
                 }
             })();
             let mut reply=match result{Ok(value)=>json!({"ok":true,"value":value}),Err(error)=>json!({"ok":false,"error":error})};rewrite(&mut reply,fake.endpoint.base().as_str());

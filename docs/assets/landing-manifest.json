@@ -102,20 +102,6 @@
       "contexts": ["49:1132"]
     },
     {
-      "file": "assets/design/315b6.svg",
-      "width": 16.0,
-      "height": 16.0,
-      "sha256": "d33436a282fad46881e9f6d87cab8633d68a2ee8c8d37ddb17f7d229ece67654",
-      "contexts": ["27:605", "31:933"]
-    },
-    {
-      "file": "assets/design/338a5.svg",
-      "width": 12.0,
-      "height": 12.0,
-      "sha256": "143ac5f2d002c42e46f3b229c6eb2b9afc0ebc43af39d45a835bcabc600ac790",
-      "contexts": ["27:605", "31:933"]
-    },
-    {
       "file": "assets/design/34501.svg",
       "width": 18.0,
       "height": 18.0,
@@ -319,20 +305,6 @@
       "contexts": ["31:933"]
     },
     {
-      "file": "assets/design/8d24f.svg",
-      "width": 14.0,
-      "height": 14.0,
-      "sha256": "af5f9c8094fb34a749436c61943a0da47db535496a93262be8e30fae0ec28b80",
-      "contexts": ["27:605", "31:933"]
-    },
-    {
-      "file": "assets/design/8d77c.svg",
-      "width": 16.0,
-      "height": 16.0,
-      "sha256": "242782b49535854bdf539cc928104cbd4816b65d84dd857a0711b851f58218d5",
-      "contexts": ["27:605", "31:933"]
-    },
-    {
       "file": "assets/design/8eaeb.svg",
       "width": 16.0,
       "height": 16.0,
@@ -345,13 +317,6 @@
       "height": 12.5176,
       "sha256": "fb224e7e40d2a71aca6afc918bfeb4ad6d49b769a293adaada573088322b3c7a",
       "contexts": ["49:1132"]
-    },
-    {
-      "file": "assets/design/94f27.svg",
-      "width": 16.0,
-      "height": 16.0,
-      "sha256": "1bca13944bbe4824d2c8563eb221fe1912f6f2493dc1e43cfec368269a4d2c59",
-      "contexts": ["27:605", "31:933"]
     },
     {
       "file": "assets/design/9c7c6.svg",
@@ -380,13 +345,6 @@
       "height": 13.4565,
       "sha256": "e60be3ff147a178b19d7ad21b9559de730baa4b2d2259a860a02b3f313017d76",
       "contexts": ["49:1132"]
-    },
-    {
-      "file": "assets/design/a878b.svg",
-      "width": 16.0,
-      "height": 16.0,
-      "sha256": "62b769a9d923e36296ecfb10961ffff2b02bb99fb3216c9a9a590d6672795cbe",
-      "contexts": ["27:605", "31:933"]
     },
     {
       "file": "assets/design/b36e8.svg",
@@ -613,19 +571,7 @@
       "contexts": ["31:933"]
     }
   ],
-  "composites": [
-    {
-      "file": "assets/visuals/notes@2x.webp",
-      "node": "27:607",
-      "scale": 2,
-      "width": 1192,
-      "height": 1120,
-      "encoding": "WebP quality 95, method 6",
-      "bytes": 81200,
-      "sha256": "3b4103416472b9eaedca7afec093c2a208458e80dc0b14a3ed60bea3145e6209",
-      "originalPngSha256": "149d6449a592fb14e1a23d4508f746c12ccae4de7ef0c4cfdde5a8a00ec25af7"
-    }
-  ],
+  "composites": [],
   "retiredComposites": [
     {
       "file": "assets/visuals/hero@2x.webp",
@@ -648,6 +594,17 @@
       "bytes": 75000,
       "sha256": "37d3ca88c833592623e5a7851084d973890cc99af88ef127049f8031d297322e",
       "originalPngSha256": "88ad62edd3861c1f3b8cecff5760ac42811b18b13c95c77ed0010e3f8a94faae"
+    },
+    {
+      "file": "assets/visuals/notes@2x.webp",
+      "node": "27:607",
+      "scale": 2,
+      "width": 1192,
+      "height": 1120,
+      "encoding": "WebP quality 95, method 6",
+      "bytes": 81200,
+      "sha256": "3b4103416472b9eaedca7afec093c2a208458e80dc0b14a3ed60bea3145e6209",
+      "originalPngSha256": "149d6449a592fb14e1a23d4508f746c12ccae4de7ef0c4cfdde5a8a00ec25af7"
     }
   ],
   "retiredSvg": [
@@ -678,6 +635,48 @@
       "height": 11.48,
       "sha256": "406deebc70d7ad3dd05d55910848deaf094a0ce338f08d496e2cd3a305d73eef",
       "contexts": ["31:933"]
+    },
+    {
+      "file": "assets/design/315b6.svg",
+      "width": 16.0,
+      "height": 16.0,
+      "sha256": "d33436a282fad46881e9f6d87cab8633d68a2ee8c8d37ddb17f7d229ece67654",
+      "contexts": ["27:605", "31:933"]
+    },
+    {
+      "file": "assets/design/338a5.svg",
+      "width": 12.0,
+      "height": 12.0,
+      "sha256": "143ac5f2d002c42e46f3b229c6eb2b9afc0ebc43af39d45a835bcabc600ac790",
+      "contexts": ["27:605", "31:933"]
+    },
+    {
+      "file": "assets/design/8d24f.svg",
+      "width": 14.0,
+      "height": 14.0,
+      "sha256": "af5f9c8094fb34a749436c61943a0da47db535496a93262be8e30fae0ec28b80",
+      "contexts": ["27:605", "31:933"]
+    },
+    {
+      "file": "assets/design/8d77c.svg",
+      "width": 16.0,
+      "height": 16.0,
+      "sha256": "242782b49535854bdf539cc928104cbd4816b65d84dd857a0711b851f58218d5",
+      "contexts": ["27:605", "31:933"]
+    },
+    {
+      "file": "assets/design/94f27.svg",
+      "width": 16.0,
+      "height": 16.0,
+      "sha256": "1bca13944bbe4824d2c8563eb221fe1912f6f2493dc1e43cfec368269a4d2c59",
+      "contexts": ["27:605", "31:933"]
+    },
+    {
+      "file": "assets/design/a878b.svg",
+      "width": 16.0,
+      "height": 16.0,
+      "sha256": "62b769a9d923e36296ecfb10961ffff2b02bb99fb3216c9a9a590d6672795cbe",
+      "contexts": ["27:605", "31:933"]
     }
   ]
 }

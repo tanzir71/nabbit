@@ -1,0 +1,93 @@
+{
+  "section": "8.8",
+  "sourceCommit": "ad06dc0fb279357d6e3d82b758ad233239752cce",
+  "requirements": [
+    {
+      "requirement": "CRUD/check/colour/label/pin/archive/trash",
+      "rustTests": [
+        "create_edit_every_card_property_and_reminder_roundtrip_through_durable_outbox"
+      ],
+      "assertions": "Browser checks 8\u201310 additionally assert actual editor UI mutations and sticky autosave after real HTTP acknowledgement.",
+      "status": "passed"
+    },
+    {
+      "requirement": "Two-device conflicts, both resolutions",
+      "rustTests": [
+        "two_device_text_conflicts_both_resolutions_preserve_the_losing_body"
+      ],
+      "assertions": "Independent HTTP client creates conflicts; both choices retain losing full body in revisions; browser conflict sheet chooses both.",
+      "status": "passed"
+    },
+    {
+      "requirement": "Offline durable replay",
+      "rustTests": [
+        "lost_successful_response_replays_after_restart_without_duplicate_creation",
+        "offline_restart_retains_credentials_and_reauthenticates_on_network_regain"
+      ],
+      "assertions": "Lost successful response survives DB restart; queue empties to exactly one server card/ref without duplicate create.",
+      "status": "passed"
+    },
+    {
+      "requirement": "More than 50 mutations; upload once",
+      "rustTests": [
+        "upload_is_atomic_once_only_and_batches_over_fifty"
+      ],
+      "assertions": "56 local notes upload as 50 + 6. Repeated upload returns 0 before and after DB reopen, all 56 IDs distinct and refs nonempty.",
+      "status": "passed"
+    },
+    {
+      "requirement": "Cursor paging and interruption",
+      "rustTests": [
+        "hidden_and_unknown_pages_advance_cursor_and_resume_after_interruption",
+        "bad_page_rolls_back_mirrors_cards_outbox_and_cursor_together"
+      ],
+      "assertions": "205 ignored/hidden records advance cursor to 200 before second-page 503; restart resumes, supported cards/settings appear, ignored table is absent; invalid page rolls back atomically.",
+      "status": "passed"
+    },
+    {
+      "requirement": "Every error to public SyncState",
+      "rustTests": [
+        "service_errors_keep_queue_and_never_persist_password_or_untrusted_error_text",
+        "every_http_error_maps_to_safe_state_and_retry_after_blocks_network"
+      ],
+      "assertions": "Actual Service asserts 401/403 signedOut, 409 conflict, access-change409 workspaceChanged, 413 storageFull, 428 recoveryPending, 429 rateLimited, 503 offline. Pending outbox remains; hostile response detail never reaches public state.",
+      "status": "passed"
+    },
+    {
+      "requirement": "Server tck-N and unknown fields",
+      "rustTests": [
+        "server_merge_versions_conflicts_references_and_unknown_fields"
+      ],
+      "assertions": "Browser unlabelled capture receives /^tck-[1-9][0-9]*$/ from fake. Nested future card/item fields survive UI edits and sticky autosave with real acknowledgement.",
+      "status": "passed"
+    },
+    {
+      "requirement": "Local-only has no network",
+      "rustTests": [
+        "local_only_worker_never_connects_even_when_focus_edit_or_network_signals_arrive"
+      ],
+      "assertions": "Service focus/edit/network signals cause zero fake HTTP calls. Browser local editor and final capture separately assert unchanged syncCalls.",
+      "status": "passed"
+    },
+    {
+      "requirement": "Password absent DB/logs/crash; vault cookie+csrf only",
+      "rustTests": [
+        "service_errors_keep_queue_and_never_persist_password_or_untrusted_error_text",
+        "crash_output_redacts_auth_material",
+        "windows_credential_manager_roundtrip_contains_only_cookie_and_csrf"
+      ],
+      "assertions": "Eight service profiles scan all immediate SQLite/WAL/SHM files. Isolated panic child emits redacted Debug wrappers and no auth markers. Real Windows vault uses unique disposable .invalid target and exactly two JSON fields; deletes its own entry. Browser scans synthetic password/recovery in DB/logs.",
+      "status": "passed"
+    }
+  ],
+  "browserProof": "v48-fourth-flow.json",
+  "rustProof": "v48-rust-tests.txt",
+  "nativeBoundary": "v48-stable-native.json covers real local Tauri IPC/HWND; browser sticky uses explicit test-only window identity with real production store/Service/HTTP",
+  "optionalPhp": {
+    "status": "skipped",
+    "php": "8.2.30 on PATH",
+    "reason": "pdo_sqlite unavailable; no portable runtime installed, no hosted Tack/user account used",
+    "gate": false
+  },
+  "crashBoundary": "Owned Rust test-child panic output; no OS minidump claim"
+}

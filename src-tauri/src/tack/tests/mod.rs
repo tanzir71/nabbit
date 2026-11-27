@@ -1,7 +1,9 @@
+mod acceptance_tests;
 mod browser_bridge;
 mod connection_tests;
 mod fake;
 mod merge;
+mod sticky_bridge;
 mod sync_tests;
 
 #[test]

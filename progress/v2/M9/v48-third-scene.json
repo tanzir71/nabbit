@@ -1,0 +1,16 @@
+{
+  "passed": false,
+  "failure": {
+    "message": "page.evaluate: TypeError: Cannot read properties of undefined (reading 'invoke')\n    at eval (eval at evaluate (:370:30), <anonymous>:1:50)\n    at UtilityScript.evaluate (<anonymous>:372:16)\n    at UtilityScript.<anonymous> (<anonymous>:1:44)",
+    "stack": "page.evaluate: TypeError: Cannot read properties of undefined (reading 'invoke')\n    at eval (eval at evaluate (:370:30), <anonymous>:1:50)\n    at UtilityScript.evaluate (<anonymous>:372:16)\n    at UtilityScript.<anonymous> (<anonymous>:1:44)\n    at invoke (D:\\claude-upgrade-26\\nabbit\\scripts\\capture-native-notes.mjs:122:45)\n    at D:\\claude-upgrade-26\\nabbit\\scripts\\capture-native-notes.mjs:154:18"
+  },
+  "checks": [],
+  "captures": [],
+  "executableSha256": "94c402f4bac5642f56cd960d2807b59f36cc62a636db3c5043ce01b0375da2ca",
+  "buildManifestSha256": "1aae1158834f78885ae30f3a9707fada5bcc3c4bcb44e412bc871cb5c6b0ab27",
+  "noUserProfile": true,
+  "noHostedTack": true,
+  "noRealClipboard": true,
+  "noOsDisplayChange": true,
+  "scope": "Actual owned release WebView2 with native IPC and SQLite; local-only fixture data. This is capture provenance, not fake-Tack or native window-manager acceptance."
+}

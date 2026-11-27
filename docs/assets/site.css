@@ -3082,6 +3082,73 @@ h3 {
   position: relative;
   min-width: 0;
 }
+.notes-captures {
+  position: relative;
+  min-width: 0;
+  margin: 0;
+}
+.notes-desktop,
+.notes-mobile {
+  position: relative;
+  overflow: hidden;
+  background: linear-gradient(137.56377092009586deg, #9eadc7 0%, #c7c2c7 39.286%, #e5ccb8 71.429%);
+}
+.notes-desktop {
+  aspect-ratio: 596 / 560;
+  border-radius: 24px;
+}
+.notes-desktop img {
+  position: absolute;
+  max-width: none;
+  height: auto;
+}
+.notes-desktop .notes-island {
+  width: 96.6442953%;
+  left: 1.6778523%;
+  top: 3.4285714%;
+}
+.notes-desktop .notes-green {
+  width: 46.9798658%;
+  left: 8.0536913%;
+  top: 53.5714286%;
+  border-radius: 12px;
+  box-shadow: 0 16px 48px -8px #00000024;
+}
+.notes-desktop .notes-blue {
+  width: 46.9798658%;
+  left: 50.3355705%;
+  top: 60.7142857%;
+  border-radius: 12px;
+  box-shadow: 0 16px 48px -8px #00000024;
+}
+.notes-mobile {
+  padding: 20px;
+  border-radius: 20px;
+  text-align: center;
+}
+.notes-mobile img {
+  display: block;
+  width: 280px;
+  max-width: 100%;
+  height: auto;
+  margin: auto;
+  border-radius: 12px;
+  box-shadow: 0 16px 48px -8px #00000024;
+}
+.notes-captures .caption {
+  position: absolute;
+  top: calc(100% + 12px);
+  margin: 0;
+  font-size: 11px;
+  line-height: 16px;
+  background: var(--bg-canvas);
+}
+@media (max-width: 600px) {
+  .notes-captures .caption {
+    position: static;
+    margin-top: 12px;
+  }
+}
 .download-desktop,
 .download-mobile {
   position: relative;
