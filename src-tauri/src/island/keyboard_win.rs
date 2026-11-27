@@ -6,6 +6,158 @@ use crate::island::{
 };
 use webview2_com::Microsoft::Web::WebView2::Win32::COREWEBVIEW2_MOVE_FOCUS_REASON_PROGRAMMATIC;
 struct SystemFocus;
+
+impl Manager {
+    fn clipboard_surface_ready(&self, label: &str) -> bool {
+        let state = lock(&self.state);
+        state.hosts.contains_key(label)
+            && state.surfaces.get(label).is_some_and(|s| {
+                s.state == Mode::Expanded
+                    && s.web_allocated
+                    && s.web_hwnd != 0
+                    && s.pending.is_none_or(|p| p == Mode::Expanded)
+            })
+    }
+    pub(crate) fn clipboard_ticket(&self, label: &str) -> Option<crate::clipboard::pick::Ticket> {
+        if !self.keyboard_allowed(label) || !self.clipboard_surface_ready(label) {
+            return None;
+        }
+        with_focus(&mut lock(&self.state), |keyboard, port| {
+            let ticket = keyboard.paste_ticket(label, port.current())?;
+            port.valid(ticket.target).then_some(ticket)
+        })
+    }
+    fn restore_clipboard_target(
+        &self,
+        label: &str,
+        ticket: crate::clipboard::pick::Ticket,
+    ) -> bool {
+        if self.clipboard_ticket(label) != Some(ticket) {
+            return false;
+        }
+        with_focus(&mut lock(&self.state), |keyboard, port| {
+            keyboard.release(label, port);
+            port.valid(ticket.target) && port.current() == ticket.target
+        })
+    }
+    pub fn pick_clipboard(
+        &self,
+        label: &str,
+        id: String,
+        mode: crate::clipboard::pick::Mode,
+        done: tokio::sync::oneshot::Sender<Result<crate::clipboard::pick::Outcome, String>>,
+    ) -> Result<(), String> {
+        let this = current().ok_or("Island is unavailable")?;
+        let label = label.to_owned();
+        self.app
+            .run_on_main_thread(move || {
+                let result = (|| {
+                    // Native acceptance only renders owned windows. Side effects use
+                    // the injected Port in core/browser tests, never this OS adapter.
+                    if crate::island::acceptance_session()
+                        || crate::sticky::acceptance_enabled()
+                        || crate::download::acceptance::enabled()
+                    {
+                        return Err(
+                            "Native clipboard side effects are disabled in acceptance".into()
+                        );
+                    }
+                    if !this.clipboard_surface_ready(&label) {
+                        return Err("Reopen Clipboard before picking an item".into());
+                    }
+                    let ticket = this.clipboard_ticket(&label);
+                    let db = &this.app.state::<crate::AppState>().db;
+                    let outcome = crate::clipboard::pick::pick(
+                        db,
+                        &id,
+                        mode,
+                        ticket,
+                        &mut ClipboardPort {
+                            manager: &this,
+                            label: &label,
+                        },
+                    )
+                    .map_err(|e| e.to_string())?;
+                    let _ = this.app.emit("clipboard:changed", ());
+                    Ok(outcome)
+                })();
+                let _ = done.send(result);
+            })
+            .map_err(|e| e.to_string())
+    }
+}
+struct ClipboardPort<'a> {
+    manager: &'a Manager,
+    label: &'a str,
+}
+impl crate::clipboard::pick::Port for ClipboardPort<'_> {
+    fn eligible(&self, ticket: crate::clipboard::pick::Ticket) -> bool {
+        self.manager.clipboard_ticket(self.label) == Some(ticket)
+    }
+    fn copy_text(&mut self, text: &str) -> crate::error::Result<()> {
+        let mut clipboard =
+            arboard::Clipboard::new().map_err(|_| crate::error::msg("Clipboard is unavailable"))?;
+        clipboard
+            .set_text(text)
+            .map_err(|_| crate::error::msg("Clipboard could not be written"))
+    }
+    fn restore(&mut self, ticket: crate::clipboard::pick::Ticket) -> bool {
+        self.manager.restore_clipboard_target(self.label, ticket)
+    }
+    fn paste(&mut self, ticket: crate::clipboard::pick::Ticket) -> bool {
+        use windows_sys::Win32::UI::Input::KeyboardAndMouse::*;
+        if !SystemFocus.valid(ticket.target)
+            || SystemFocus.current() != ticket.target
+            || ticket.target.process == std::process::id()
+        {
+            return false;
+        }
+        unsafe {
+            if [VK_CONTROL, VK_MENU, VK_SHIFT, VK_LWIN, VK_RWIN]
+                .iter()
+                .any(|key| GetAsyncKeyState(*key as i32) < 0)
+            {
+                return false;
+            }
+            let key = |vk, flags| INPUT {
+                r#type: INPUT_KEYBOARD,
+                Anonymous: INPUT_0 {
+                    ki: KEYBDINPUT {
+                        wVk: vk,
+                        wScan: 0,
+                        dwFlags: flags,
+                        time: 0,
+                        dwExtraInfo: 0,
+                    },
+                },
+            };
+            let inputs = [
+                key(VK_CONTROL, 0),
+                key(0x56, 0),
+                key(0x56, KEYEVENTF_KEYUP),
+                key(VK_CONTROL, KEYEVENTF_KEYUP),
+            ];
+            let sent = SendInput(
+                inputs.len() as u32,
+                inputs.as_ptr(),
+                std::mem::size_of::<INPUT>() as i32,
+            );
+            if sent != inputs.len() as u32 && sent > 0 {
+                // Release only the synthetic keys this action introduced.
+                let release = [key(0x56, KEYEVENTF_KEYUP), key(VK_CONTROL, KEYEVENTF_KEYUP)];
+                SendInput(
+                    release.len() as u32,
+                    release.as_ptr(),
+                    std::mem::size_of::<INPUT>() as i32,
+                );
+            }
+            sent == inputs.len() as u32
+        }
+    }
+    fn collapse(&mut self) {
+        let _ = self.manager.request_surface(self.label, Mode::Idle);
+    }
+}
 fn identity(hwnd: HWND) -> WindowId {
     let mut process = 0;
     unsafe {

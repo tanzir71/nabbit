@@ -1,0 +1,47 @@
+{
+  "file": "tBm7NNhh1Y9aTQPJ3WxY5v",
+  "nodes": [
+    "10:519",
+    "9:330",
+    "13:422"
+  ],
+  "freshHighFidelityContext": true,
+  "referenceOnly": true,
+  "originalSvgAssets": "v51-assets.json",
+  "referenceInputs": [
+    {
+      "file": "v51-expanded-reference.png",
+      "bytes": 536966,
+      "sha256": "7151df5aa325cb6c8c6613881d6584ba6d4056a3ef7606738c18dbbf2fc7d1b3",
+      "retention": "ignored local Figma reference; never runtime imagery"
+    },
+    {
+      "file": "v51-figma-0.txt",
+      "bytes": 21444,
+      "sha256": "4469799be5f4412cd696f0420c6c3f6d22f771831f0390b333d9a8563ca0b812",
+      "retention": "ignored local Figma reference; never runtime imagery"
+    },
+    {
+      "file": "v51-figma-1.txt",
+      "bytes": 28654,
+      "sha256": "ca79937e49e9d1dd235f91643201b9a0549c66967bf679faf249ee566706cd56",
+      "retention": "ignored local Figma reference; never runtime imagery"
+    }
+  ],
+  "layout": {
+    "panelWidth": 680,
+    "baselinePanelHeight": 336,
+    "maximumPanelHeight": 420,
+    "panelRadius": 28,
+    "panelPadding": "12px 16px 16px",
+    "sectionGap": 14,
+    "search": "240 x 32; radius16; original14px search icon; Geist12/16; Mono11 kbd",
+    "filters": "six shared island PresetChip controls; gap8; height30",
+    "rows": "gap2; padding6px 8px; radius12; 28px tiles; 13/18 title and12/16 subtitle; original14px type/pin icons",
+    "filePath": "Geist Mono12/16",
+    "Nab": "24px high; radius12; padding10px; original12px download SVG; Geist11/14",
+    "footer": "Geist12/16 muted; real retention and count"
+  },
+  "comparison": "Compared baseline All, Links at1.5x and empty captures directly with the expanded Figma screenshot. The 680x336 baseline, header slots, search/chips, row tiles, gutters and footer match the source layout. Original SVGs retain intrinsic dimensions. Pinned-first ordering and source/age/count are live v0.1 data. Images without a supported preview use a disabled copy action and an honest missing-preview tile. No fake screenshot asset or runtime reference image. The retained V4.9 Save/Clean/Open/video context row appears for the newest or filtered URL and reduces list height to stay inside420px. V6.3 owns the tray redesign.",
+  "inspection": "40 repeat-exact captures cover All/Text/Links/Images/Files/Pinned/empty/load-error/80-row scroll/copied-link context across light/dark at1x and1.5x. Island resolves dark in all contexts. Default axe has zero violations and incompletes; all15 original asset slots are pinned and measured."
+}

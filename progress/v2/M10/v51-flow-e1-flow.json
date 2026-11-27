@@ -1,0 +1,23 @@
+{
+  "passed": false,
+  "failure": {
+    "message": "page.goto: Timeout 10000ms exceeded.\nCall log:\n\u001b[2m  - navigating to \"http://127.0.0.1:55634/island.html\", waiting until \"networkidle\"\u001b[22m\n",
+    "stack": "page.goto: Timeout 10000ms exceeded.\nCall log:\n\u001b[2m  - navigating to \"http://127.0.0.1:55634/island.html\", waiting until \"networkidle\"\u001b[22m\n\n    at D:\\claude-upgrade-26\\nabbit\\scripts\\verify-clipboard-flow.mjs:135:14",
+    "telemetry": {
+      "headings": [],
+      "notes": 0,
+      "events": 0,
+      "streamError": false,
+      "commands": []
+    }
+  },
+  "checks": [],
+  "problems": [],
+  "buildManifestSha256": "2a0bcedce9b92eac93603ac5467161dfd6b7c17af0a102d6d9eb4b5c02b82934",
+  "rustBridgeExitCode": 0,
+  "scope": "Actual Clipboard UI and typed API through a test-only forwarding bridge to production v0.1 SQLite and clipboard pick core. Recording copy/focus/paste providers, never the Windows OS adapter. Native IPC/rendering has a separate owned release smoke.",
+  "noHostedTack": true,
+  "noUserAccount": true,
+  "noRealClipboard": true,
+  "noExternalNetwork": true
+}

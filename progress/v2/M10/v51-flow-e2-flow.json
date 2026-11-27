@@ -1,0 +1,33 @@
+{
+  "passed": false,
+  "failure": {
+    "message": "Expected values to be strictly equal:\n+ actual - expected\n\n+ 'b6d5fe35-6fa1-4b89-b489-9507b5943b14'\n- 'fbfa7885-9d38-4f79-95a9-c80074b8217b'\n",
+    "stack": "AssertionError [ERR_ASSERTION]: Expected values to be strictly equal:\n+ actual - expected\n\n+ 'b6d5fe35-6fa1-4b89-b489-9507b5943b14'\n- 'fbfa7885-9d38-4f79-95a9-c80074b8217b'\n\n    at file:///D:/claude-upgrade-26/nabbit/scripts/verify-clipboard-flow.mjs:157:10\n    at process.processTicksAndRejections (node:internal/process/task_queues:104:5)",
+    "telemetry": {
+      "headings": [],
+      "notes": 0,
+      "events": 1,
+      "streamError": false,
+      "commands": [
+        "list_clipboard_entries",
+        "get_storage_stats",
+        "island_clipboard_pick",
+        "list_clipboard_entries",
+        "get_storage_stats",
+        "list_clipboard_entries",
+        "get_storage_stats"
+      ]
+    }
+  },
+  "checks": [
+    "Opening reads the existing SQLite history and storage count without OS clipboard, file or input access"
+  ],
+  "problems": [],
+  "buildManifestSha256": "2a0bcedce9b92eac93603ac5467161dfd6b7c17af0a102d6d9eb4b5c02b82934",
+  "rustBridgeExitCode": 0,
+  "scope": "Actual Clipboard UI and typed API through a test-only forwarding bridge to production v0.1 SQLite and clipboard pick core. Recording copy/focus/paste providers, never the Windows OS adapter. Native IPC/rendering has a separate owned release smoke.",
+  "noHostedTack": true,
+  "noUserAccount": true,
+  "noRealClipboard": true,
+  "noExternalNetwork": true
+}

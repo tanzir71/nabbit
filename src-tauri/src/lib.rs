@@ -196,6 +196,7 @@ pub fn run() {
             commands::clipboard::list_clipboard_entries,
             commands::clipboard::add_clipboard_text,
             commands::clipboard::copy_clipboard_entry,
+            island::island_clipboard_pick,
             commands::clipboard::toggle_pin_clipboard_entry,
             commands::clipboard::delete_clipboard_entry,
             commands::clipboard::clear_clipboard_history,
@@ -285,7 +286,7 @@ pub fn run() {
                     shutdown.clone(),
                 );
             }
-            retention::spawn_retention_gc(db.clone(), shutdown.clone());
+            retention::spawn_retention_gc(app.handle().clone(), db.clone(), shutdown.clone());
             spawn_acceptance_automation(app.handle().clone(), state.clone());
             let settings = db.get_settings()?;
             #[cfg(windows)]
@@ -829,6 +830,7 @@ fn setup_tray(app: &AppHandle<Wry>) -> Result<()> {
                                 if let Ok(mut clipboard) = Clipboard::new() {
                                     let _ = clipboard.set_text(entry.content.clone());
                                     let _ = state.db.touch_clipboard_entry(&entry.id);
+                                    let _ = app.emit("clipboard:changed", ());
                                 }
                             }
                         }
@@ -837,6 +839,7 @@ fn setup_tray(app: &AppHandle<Wry>) -> Result<()> {
                 "clear_history" => {
                     if let Some(state) = app.try_state::<AppState>() {
                         let _ = state.db.clear_clipboard_history();
+                        let _ = app.emit("clipboard:changed", ());
                     }
                 }
                 "downloads_folder" => {

@@ -28,6 +28,7 @@ export default function App() {
       else cleanup();
     };
     void api.onEvent<ClipboardEntry>("clipboard:new", () => void refreshClipboard()).then(keep);
+    void api.onEvent<void>("clipboard:changed", () => void refreshClipboard()).then(keep);
     void api
       .onEvent<DownloadMetadata>("url:detected", (payload) => {
         acceptCapturedLink(payload);

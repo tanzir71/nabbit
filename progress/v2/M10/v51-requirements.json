@@ -1,0 +1,56 @@
+{
+  "task": "V5.1",
+  "section": "9 Clipboard tab / 11 V5.1",
+  "requirements": [
+    {
+      "requirement": "Existing store/privacy",
+      "assertions": "The island reads the unchanged v0.1 SQLite history, retention and count. Accepted history text is copied exactly; v0.1 exclusions, protected formats and sensitive checks remain unchanged. Search never reads the OS clipboard.",
+      "status": "passed"
+    },
+    {
+      "requirement": "Search/six filters",
+      "assertions": "Existing Fuse search combines All/Text/Links/Images/Files/Pinned with persisted query/filter/list scroll and truthful total/latest500 shown count. Typed file/image fixtures prove filters; new file/image capture/classification remains V5.11.",
+      "status": "passed"
+    },
+    {
+      "requirement": "Keyboard/selection",
+      "assertions": "Bare1-9 selects/copies; Ctrl+C copies; arrows/Home/End select; Enter pastes; Delete removes; Ctrl+F focuses/selects the query. Numeric query text, selected-text copying, IME, modifiers, repeats and single-flight actions remain safe. Global Ctrl1-6/Alt1-9/Esc/Tab routing stays green.",
+      "status": "passed"
+    },
+    {
+      "requirement": "Paste boundary",
+      "assertions": "The production pick core uses injected copy/focus/input ports in Rust and browser tests. A ticket binds the original external HWND/PID and request ID to the live focus lease. Stale targets fail before write; missing lease, changed focus, denied restore or failed input falls back to copied-only without collapse. Success sends copy/restore/paste/collapse in order. Windows adapter compiles; automation never invokes it.",
+      "status": "passed"
+    },
+    {
+      "requirement": "History mutations/push",
+      "assertions": "Pin/delete reuse v1 commands and SQLite. Manual additions, copy/pin/delete/clear, tray-menu mutations and retention changes publish clipboard:changed. Listener-before-snapshot, revision invalidation, late cleanup and StrictMode tests protect mount/unmount; no collapsed JavaScript polling.",
+      "status": "passed"
+    },
+    {
+      "requirement": "Nab/context",
+      "assertions": "Each URL row opens the existing explicit download review. No media download starts. V4.9 Save/Clean/Open/video context remains. No clipboard or shell side effect is invoked by a screenshot fixture.",
+      "status": "passed"
+    },
+    {
+      "requirement": "Visual/accessibility",
+      "assertions": "Fresh high-fidelity Figma9:330 plus expanded/tray reference.40 repeat-exact captures at1x/1.5x and light/dark (always-dark island) measure all15 original SVGs and bundled Geist, with default axe zero violations/incompletes. Empty/loading/error states retain grid semantics and a hidden heading. Unsupported images show an honest missing-preview tile and reject writes.",
+      "status": "passed"
+    },
+    {
+      "requirement": "Native/footprint",
+      "assertions": "Owned custom-protocol release uses actual Tauri IPC and isolated SQLite for read/add/pin/event rendering, with a stable native DPR2 capture. No OS clipboard/global input, user account, browser profile or display setting is used. Initial island JS is below120000 gzip bytes; no dependency or sidecar is added.",
+      "status": "passed"
+    }
+  ],
+  "browserProof": "v51-delivery-flow.json",
+  "nativeProof": "v51-native-delivery-scene.json",
+  "visualProof": "v51-clipboard-e3-screenshots.json",
+  "limits": {
+    "images": "The v0.1 watcher remains text/URL-only. Image rows are filterable/pinnable with optional bounded raster data previews; image copying is rejected before OS writes. Stored local/remote blob paths are never opened for previews.",
+    "files": "Typed file history copies path text, not file-drop payloads. This task does not extend the legacy classifier.",
+    "paste": "The Windows arboard/SetForegroundWindow/SendInput adapter is compiled, with production decisions tested through recording providers. Real OS clipboard/input and foreground grants are not exercised under section0.2.",
+    "platforms": "This x64 Windows host only; previous V0/V2 focus/performance and external-platform limits remain.",
+    "later": "V5.2 Shelf next; V5.11 classifier/context and V6.3 tray redesign remain unchecked."
+  }
+}

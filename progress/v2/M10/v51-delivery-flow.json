@@ -1,0 +1,24 @@
+{
+  "passed": true,
+  "checks": [
+    "Opening reads the existing SQLite history and storage count without OS clipboard, file or input access",
+    "Bare 2 copies the second filtered item exactly and touches real history before the global search router",
+    "All six filters use actual history types and pin flags; Ctrl+F and numeric fuzzy queries do not pick",
+    "Pin mutates the v0.1 SQLite row; an external bridge mutation pushes clipboard:changed and refreshes the island without polling",
+    "Delete removes the selected file-path history record without reading its path",
+    "Image rows are filterable but unsupported image copying is rejected before any write or file access",
+    "A link-row Nab action opens review on the Nab tab; no download or clipboard write begins",
+    "Missing lease or denied restore returns copied-only, retains the panel and never invokes the paste provider",
+    "Write failure remains visible; success uses the shared production pick core in copy -> restore -> paste -> collapse order with recording providers only",
+    "Verified 7 pushed events; no unknown IPC, external network, OS clipboard or global input",
+    "Final SQLite history contains 4 records"
+  ],
+  "problems": [],
+  "buildManifestSha256": "b7a811142a5bf51680f5bb26373ce5bc019f686abfb6080639516cc2211a20f4",
+  "rustBridgeExitCode": 0,
+  "scope": "Actual Clipboard UI and typed API through a test-only forwarding bridge to production v0.1 SQLite and clipboard pick core. Recording copy/focus/paste providers, never the Windows OS adapter. Native IPC/rendering has a separate owned release smoke.",
+  "noHostedTack": true,
+  "noUserAccount": true,
+  "noRealClipboard": true,
+  "noExternalNetwork": true
+}

@@ -183,6 +183,24 @@ impl Keyboard {
         });
         acquired
     }
+    pub fn paste_ticket(
+        &self,
+        label: &str,
+        current: WindowId,
+    ) -> Option<crate::clipboard::pick::Ticket> {
+        let lease = self
+            .lease
+            .as_ref()
+            .filter(|l| l.label == label && l.active && l.window == current)?;
+        let target = lease
+            .previous
+            .filter(|w| w.hwnd != 0 && w.process != 0 && w.process != current.process)?;
+        Some(crate::clipboard::pick::Ticket {
+            window: lease.window,
+            target,
+            request_id: lease.request_id,
+        })
+    }
     pub fn release(&mut self, label: &str, port: &mut dyn FocusPort) {
         if self.request.as_ref().is_some_and(|r| r.label == label) {
             self.request = None;
@@ -279,8 +297,32 @@ mod tests {
         let mut keyboard = Keyboard::default();
         keyboard.begin("island", Target::Tab, main, OWN.hwnd);
         keyboard.ready("island", OWN, &mut port);
+        // The full app is not an external paste destination.
+        assert!(keyboard.paste_ticket("island", OWN).is_none());
         keyboard.release("island", &mut port);
         assert_eq!(port.current(), main);
+    }
+    #[test]
+    fn paste_ticket_is_bound_to_one_live_external_focus_lease() {
+        let mut keyboard = Keyboard::default();
+        let mut port = FixtureFocus::default();
+        let original = port.current();
+        assert!(keyboard.paste_ticket("a", OWN).is_none());
+        keyboard.begin("a", Target::Tab, original, OWN.hwnd);
+        assert!(keyboard.paste_ticket("a", OWN).is_none());
+        assert!(keyboard.ready("a", OWN, &mut port));
+        let ticket = keyboard.paste_ticket("a", OWN).unwrap();
+        assert_eq!(ticket.target, original);
+        assert!(keyboard.paste_ticket("b", OWN).is_none());
+        assert!(keyboard.paste_ticket("a", original).is_none());
+        keyboard.release("a", &mut port);
+        assert_eq!(port.current(), original);
+        assert!(keyboard.paste_ticket("a", OWN).is_none());
+        keyboard.begin("a", Target::Tab, original, OWN.hwnd);
+        assert!(keyboard.ready("a", OWN, &mut port));
+        assert_ne!(keyboard.paste_ticket("a", OWN).unwrap(), ticket);
+        keyboard.observe(original);
+        assert!(keyboard.paste_ticket("a", OWN).is_none());
     }
     #[test]
     fn closed_or_reused_origin_is_never_activated_on_release() {

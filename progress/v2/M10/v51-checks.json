@@ -1,0 +1,170 @@
+{
+  "allRequiredChecksPassed": true,
+  "checks": [
+    {
+      "name": "npm-verify",
+      "command": "npm run verify",
+      "exitCode": 0,
+      "file": "v51-npm-verify.txt",
+      "canonicalSha256": "190feb9fbeee0ee9cc8439f1575625605d7be158f87aa047f66cc6ca8a98c98f",
+      "originalArchive": "v51-npm-verify.original.txt.gz",
+      "originalSha256": "e3e57e74f56b6fe28684443edf870e14d27d1a668607e7d793c2cdbea8195178"
+    },
+    {
+      "name": "fmt",
+      "command": "cargo fmt --manifest-path src-tauri/Cargo.toml --check",
+      "exitCode": 0,
+      "file": "v51-fmt.txt",
+      "canonicalSha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "originalArchive": "v51-fmt.original.txt.gz",
+      "originalSha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "name": "clippy",
+      "command": "cargo clippy --manifest-path src-tauri/Cargo.toml --all-targets -- -D warnings",
+      "exitCode": 0,
+      "file": "v51-clippy.txt",
+      "canonicalSha256": "0928c8eb7ac444f7df8d7461cb18545eecd6180b8657212af422aa7dd49bb018",
+      "originalArchive": "v51-clippy.original.txt.gz",
+      "originalSha256": "4a7c33f77b38517f4cec3b76b7958ce4b37e4c96de9109d4d23f77dc612190cf"
+    },
+    {
+      "name": "spike-clippy",
+      "command": "cargo clippy --manifest-path src-tauri/Cargo.toml --all-targets --features island-spike -- -D warnings",
+      "exitCode": 0,
+      "file": "v51-spike-clippy.txt",
+      "canonicalSha256": "a2b922054231d979d28f242a95fd1adce098b8d54cdf3f2a72747b3a0abea29e",
+      "originalArchive": "v51-spike-clippy.original.txt.gz",
+      "originalSha256": "ad2e84a3ae76f0d58e7cdd0e98e26ef709abd676fa1944993a52f3cd67708917"
+    },
+    {
+      "name": "rust-tests",
+      "command": "cargo test --manifest-path src-tauri/Cargo.toml -- --test-threads=1",
+      "exitCode": 0,
+      "file": "v51-rust-tests.txt",
+      "canonicalSha256": "3020014480d7674bd0cb00bf1446c397ab894aa4d9465d2fcfdb4bce571baad7",
+      "originalArchive": "v51-rust-tests.original.txt.gz",
+      "originalSha256": "a189eb973303b81d06166eb9113e4dbfc2bc0a94ba90f4dcdfec4002ad579eaa"
+    },
+    {
+      "name": "release",
+      "command": "cargo build --manifest-path src-tauri/Cargo.toml --release --features custom-protocol",
+      "exitCode": 0,
+      "file": "v51-release.txt",
+      "canonicalSha256": "d3a00e1767e2f04ba6c37d49607b519b277a723fafedc64095732cd7a69299e9",
+      "originalArchive": "v51-release.original.txt.gz",
+      "originalSha256": "0fafd616ce899e2a75fa71ddf8933454ae8a99d44887494dc48be835419b9447"
+    },
+    {
+      "name": "screenshots",
+      "command": "node scripts/verify-clipboard-screenshots.mjs v51-clipboard-e3",
+      "exitCode": 0,
+      "file": "v51-screenshots.txt",
+      "canonicalSha256": "e88e044cf26a2764586d77918c5bf24e7bac75bcff82cefbef0ba0fd572bd3fd",
+      "originalArchive": "v51-screenshots.original.txt.gz",
+      "originalSha256": "bfd9f7ad2f002ba42cfbf337325727a691dbfc65c78e1eeb0b34a6aee698073c"
+    },
+    {
+      "name": "flow",
+      "command": "node scripts/verify-clipboard-flow.mjs v51-delivery",
+      "exitCode": 0,
+      "file": "v51-flow.txt",
+      "canonicalSha256": "a9c68d940920860aa1bac81268885fe456bd044d6d4c3733dd9629ce5b610d74",
+      "originalArchive": "v51-flow.original.txt.gz",
+      "originalSha256": "66095542bd18406438a448d890528fe025d8c25447339e5ab5d55166169a41a0"
+    },
+    {
+      "name": "native",
+      "command": "node scripts/capture-native-clipboard.mjs v51-native-delivery",
+      "exitCode": 0,
+      "file": "v51-native.txt",
+      "canonicalSha256": "2e48eb81bd6939a1edf8183639b2cd54f9917ade01a4855eef412feed6ec4e5b",
+      "originalArchive": "v51-native.original.txt.gz",
+      "originalSha256": "e52f50ad1dd3347b579a22f37e11a02b08ec387d02f26bed46c30987582c95ee"
+    },
+    {
+      "name": "lint",
+      "command": "npx eslint .",
+      "exitCode": 0,
+      "file": "v51-lint.txt",
+      "canonicalSha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "originalArchive": "v51-lint.original.txt.gz",
+      "originalSha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "name": "negative-harness",
+      "command": "node scripts/screenshots/verify-failures.mjs --milestone M10 --prefix v51-delivery",
+      "exitCode": 0,
+      "file": "v51-negative-harness.txt",
+      "canonicalSha256": "d4c73b693e0c0792965ee71de68d23b0d06d5114b11e6178dbf4dd4d48a21c6b",
+      "originalArchive": "v51-negative-harness.original.txt.gz",
+      "originalSha256": "744efdb66da95ddf2dcdc44aab2c28696f3cb004c2926241bd7e588d960294e8"
+    },
+    {
+      "name": "bundles",
+      "command": "node scripts/verify-entry-bundles.mjs --report progress/v2/M10/v51-entry-bundles.json",
+      "exitCode": 0,
+      "file": "v51-bundles.txt",
+      "canonicalSha256": "1e111d04f2d463fc06f4d9d092d17ea9f31e1a81d2b1562443daf7cede5e4ce8",
+      "originalArchive": "v51-bundles.original.txt.gz",
+      "originalSha256": "e30b4b5f52bdc887edfdbf02b004370525187f2e22bbc1ffcc8bcc2e132902b8"
+    },
+    {
+      "name": "v51-delivery-rust-log",
+      "command": "stdout/stderr of owned driver; see corresponding report",
+      "file": "v51-delivery-rust-log.txt",
+      "canonicalSha256": "91806bcb86006c07298895b3b2c844dd8c7f1653d702c16d9b7f579f22291433",
+      "originalArchive": "v51-delivery-rust-log.txt.original.gz",
+      "originalSha256": "146ccbea08651e8b80261693369038090af4964b3cbd12764cbd4418b05e206d"
+    },
+    {
+      "name": "v51-flow-e1-rust-log",
+      "command": "stdout/stderr of owned driver; see corresponding report",
+      "file": "v51-flow-e1-rust-log.txt",
+      "canonicalSha256": "b181b06dc36f21378e932b02a2aa30559c69a52b9b64a1a55c5ce8997d7e362b",
+      "originalArchive": "v51-flow-e1-rust-log.txt.original.gz",
+      "originalSha256": "bb1fdc0e506b3a9083c4107abe33afb69035d772d62810504240aa159bb7d4ac"
+    },
+    {
+      "name": "v51-flow-e2-rust-log",
+      "command": "stdout/stderr of owned driver; see corresponding report",
+      "file": "v51-flow-e2-rust-log.txt",
+      "canonicalSha256": "edcac5e9c2ab13ff40e45960c2adba1119c9a1a2a3a66d3d1a7a14a29c320a63",
+      "originalArchive": "v51-flow-e2-rust-log.txt.original.gz",
+      "originalSha256": "83237bf6f596d0a3ca2d63b6ac755e927339916302c264f8979c1d4432e139ce"
+    },
+    {
+      "name": "v51-flow-e3-rust-log",
+      "command": "stdout/stderr of owned driver; see corresponding report",
+      "file": "v51-flow-e3-rust-log.txt",
+      "canonicalSha256": "dd78702d61529e11a5770b9cab7c30e6ff8d7c6885587ed947ee8f74f870c598",
+      "originalArchive": "v51-flow-e3-rust-log.txt.original.gz",
+      "originalSha256": "5a9a0018fcc1223cb5da95d3234b6841c3dec2f744ce1f38c8aa72872b42b844"
+    },
+    {
+      "name": "v51-flow-e4-rust-log",
+      "command": "stdout/stderr of owned driver; see corresponding report",
+      "file": "v51-flow-e4-rust-log.txt",
+      "canonicalSha256": "672a738c771cc14b9eca30d72d4d32192499dec27d56c11543df5bc566ad7847",
+      "originalArchive": "v51-flow-e4-rust-log.txt.original.gz",
+      "originalSha256": "c291bc62e4cd626aca018c25efcb40d488bf60d026ab3eed4e96e38b99dfcf70"
+    },
+    {
+      "name": "v51-native-delivery-scene-log",
+      "command": "stdout/stderr of owned driver; see corresponding report",
+      "file": "v51-native-delivery-scene-log.txt",
+      "canonicalSha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "originalArchive": "v51-native-delivery-scene-log.txt.original.gz",
+      "originalSha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    }
+  ],
+  "frontendTests": 436,
+  "frontendFiles": 38,
+  "rustPassed": 257,
+  "rustIgnored": 3,
+  "browserToRustCases": 11,
+  "nativeCases": 3,
+  "captures": 40,
+  "buildManifestSha256": "b7a811142a5bf51680f5bb26373ce5bc019f686abfb6080639516cc2211a20f4",
+  "nativeExecutableSha256": "220d0df52d54a6cedd7ac0116f8037a78f71f2e369f83cd261dca40205f7f2a2"
+}

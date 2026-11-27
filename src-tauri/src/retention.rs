@@ -8,12 +8,15 @@ use std::{
 };
 
 use crate::db::Database;
+use tauri::Emitter;
 
-pub fn spawn_retention_gc(db: Database, shutdown: Arc<AtomicBool>) {
+pub fn spawn_retention_gc(app: tauri::AppHandle, db: Database, shutdown: Arc<AtomicBool>) {
     thread::Builder::new()
         .name("nabbit-retention-gc".into())
         .spawn(move || {
-            let _ = db.run_retention_gc();
+            if db.run_retention_gc().is_ok_and(|count| count > 0) {
+                let _ = app.emit("clipboard:changed", ());
+            }
             while !shutdown.load(Ordering::Relaxed) {
                 for _ in 0..(60 * 60 * 3) {
                     if shutdown.load(Ordering::Relaxed) {
@@ -21,8 +24,12 @@ pub fn spawn_retention_gc(db: Database, shutdown: Arc<AtomicBool>) {
                     }
                     thread::sleep(Duration::from_secs(1));
                 }
-                if let Err(error) = db.run_retention_gc() {
-                    eprintln!("retention GC error: {error}");
+                match db.run_retention_gc() {
+                    Ok(count) if count > 0 => {
+                        let _ = app.emit("clipboard:changed", ());
+                    }
+                    Err(error) => eprintln!("retention GC error: {error}"),
+                    _ => {}
                 }
             }
         })

@@ -12,6 +12,7 @@ Nabbit is local-first.
 - Password-manager exclusions are seeded for 1Password, Bitwarden, KeePass, LastPass, and Dashlane where source-app detection is available.
 - Optional sensitive-text heuristics can skip likely OTPs, credit-card numbers, and high-entropy secrets.
 - Clearing clipboard history deletes stored clipboard rows from the local database.
+- In the island Clipboard tab, clicking a history row, pressing 1–9 or Ctrl+C copies its stored text. Enter also attempts to restore the app that opened the island and send paste. If that destination is unavailable, Nabbit reports that the item was copied and leaves the panel open. File entries copy path text; image capture/copy remains unavailable. History search and filters do not read the current clipboard or open the stored paths.
 
 Users are responsible for complying with YouTube's Terms of Service and applicable copyright law. Nabbit is intended for content the user has the right to download.
 

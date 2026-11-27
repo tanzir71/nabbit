@@ -1,0 +1,52 @@
+{
+  "passed": false,
+  "failure": {
+    "message": "locator.waitFor: Timeout 10000ms exceeded.\nCall log:\n\u001b[2m  - waiting for getByRole('textbox', { name: 'Video URL', exact: true }) to be visible\u001b[22m\n",
+    "stack": "locator.waitFor: Timeout 10000ms exceeded.\nCall log:\n\u001b[2m  - waiting for getByRole('textbox', { name: 'Video URL', exact: true }) to be visible\u001b[22m\n\n    at D:\\claude-upgrade-26\\nabbit\\scripts\\verify-clipboard-flow.mjs:212:71",
+    "telemetry": {
+      "headings": [
+        "example.invalid"
+      ],
+      "notes": 0,
+      "events": 4,
+      "streamError": false,
+      "commands": [
+        "list_clipboard_entries",
+        "get_storage_stats",
+        "island_clipboard_pick",
+        "list_clipboard_entries",
+        "get_storage_stats",
+        "list_clipboard_entries",
+        "get_storage_stats",
+        "toggle_pin_clipboard_entry",
+        "list_clipboard_entries",
+        "get_storage_stats",
+        "list_clipboard_entries",
+        "get_storage_stats",
+        "list_clipboard_entries",
+        "get_storage_stats",
+        "delete_clipboard_entry",
+        "list_clipboard_entries",
+        "get_storage_stats",
+        "list_clipboard_entries",
+        "get_storage_stats"
+      ]
+    }
+  },
+  "checks": [
+    "Opening reads the existing SQLite history and storage count without OS clipboard, file or input access",
+    "Bare 2 copies the second filtered item exactly and touches real history before the global search router",
+    "All six filters use actual history types and pin flags; Ctrl+F and numeric fuzzy queries do not pick",
+    "Pin mutates the v0.1 SQLite row; an external bridge mutation pushes clipboard:changed and refreshes the island without polling",
+    "Delete removes the selected file-path history record without reading its path",
+    "Image rows are filterable but unsupported image copying is rejected before any write or file access"
+  ],
+  "problems": [],
+  "buildManifestSha256": "1b4c08354b3070b3603bd2b079d1d6cea576ecba1f0b540b76c760e211ce3058",
+  "rustBridgeExitCode": 0,
+  "scope": "Actual Clipboard UI and typed API through a test-only forwarding bridge to production v0.1 SQLite and clipboard pick core. Recording copy/focus/paste providers, never the Windows OS adapter. Native IPC/rendering has a separate owned release smoke.",
+  "noHostedTack": true,
+  "noUserAccount": true,
+  "noRealClipboard": true,
+  "noExternalNetwork": true
+}

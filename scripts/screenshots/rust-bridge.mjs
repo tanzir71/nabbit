@@ -24,6 +24,14 @@ export function installBridge(info) {
     command.startsWith("link_") ||
     command === "save_link" ||
     command === "open_sticky" ||
+    (info.clipboard &&
+      [
+        "list_clipboard_entries",
+        "get_storage_stats",
+        "island_clipboard_pick",
+        "toggle_pin_clipboard_entry",
+        "delete_clipboard_entry",
+      ].includes(command)) ||
     [
       "capture_note",
       "notes_open",

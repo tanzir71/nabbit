@@ -92,6 +92,7 @@ pub fn save_settings(
     }
     if previous.retention_days != saved.retention_days {
         let _ = state.db.run_retention_gc();
+        let _ = app.emit("clipboard:changed", ());
     }
     #[cfg(windows)]
     if previous.island != saved.island {

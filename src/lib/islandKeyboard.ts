@@ -140,6 +140,15 @@ export function connectIslandKeyboard(
   const onKey = (event: KeyboardEvent) => {
     if (event.defaultPrevented) return;
     const target = event.target instanceof Element ? event.target : null;
+    const current = store.getState();
+    if (
+      current.state === "expanded" &&
+      current.tab === "clipboard" &&
+      current.filters.searchOpen !== "true"
+    ) {
+      root.dispatchEvent(new CustomEvent("nabbit:island-clipboard-key", { detail: event }));
+      if (event.defaultPrevented) return;
+    }
     const intent = keyboardIntent(
       event,
       store.getState().state,

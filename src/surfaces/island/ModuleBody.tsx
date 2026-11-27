@@ -1,17 +1,13 @@
 import { useEffect, useState } from "react";
 import { invoke } from "@tauri-apps/api/core";
-import { listen } from "@tauri-apps/api/event";
 import { IslandNab } from "../../features/downloads/IslandNab";
-import { PresetChip } from "../../components/PresetChip";
 import { ProgressRing } from "../../components/ProgressRing";
 import { basename, duration, percent } from "../../lib/islandPresentation";
 import type { ActivityItem } from "../../lib/activity";
-import type { ClipboardEntry } from "../../lib/types";
 import type { IslandAction, IslandModel } from "../../store/islandStore";
 import { MiniButton, type IslandIntent } from "./CompactContent";
 import { IslandNotes } from "../../features/notes/IslandNotes";
-import { newestClipboardEntry } from "../../features/notes/linkPresentation";
-import { ClipboardLinkRow } from "../../features/notes/ClipboardLinkRow";
+import { IslandClipboard } from "../../features/clipboard/IslandClipboard";
 interface Props {
   model: IslandModel;
   dispatch: (action: IslandAction) => void;
@@ -22,128 +18,10 @@ const itemsOf = (model: IslandModel) =>
     (item): item is ActivityItem => item !== null,
   );
 
-function Clipboard({ model, dispatch, act }: Props) {
-  const [entries, setEntries] = useState<ClipboardEntry[]>([]),
-    [error, setError] = useState("");
-  useEffect(() => {
-    let active = true,
-      stop: (() => void) | undefined;
-    const refresh = () => {
-      void invoke<ClipboardEntry[]>("list_clipboard_entries", { query: null })
-        .then((data) => {
-          if (active) setEntries(data);
-        })
-        .catch((reason) => {
-          if (active) setError(String(reason));
-        });
-    };
-    void listen("clipboard:new", refresh)
-      .then((unlisten) => {
-        if (active) {
-          stop = unlisten;
-          refresh();
-        } else unlisten();
-      })
-      .catch((reason) => {
-        if (active) setError(String(reason));
-      });
-    return () => {
-      active = false;
-      stop?.();
-    };
-  }, []);
-  const filter = model.filters.clipboard || "All",
-    query = model.filters.clipboardQuery || "";
-  const filtered = entries.filter(
-    (entry) =>
-      (filter === "All" ||
-        (filter === "Pinned" && entry.pinned) ||
-        entry.contentType ===
-          (
-            { Text: "text", Links: "url", Images: "image", Files: "file" } as Record<string, string>
-          )[filter]) &&
-      `${entry.content} ${entry.preview}`.toLowerCase().includes(query.toLowerCase()),
-  );
-  const contextEntry =
-    query.trim() || filter !== "All" ? filtered[0] : newestClipboardEntry(entries);
-  return (
-    <div className="island-module-body">
-      <div className="island-row">
-        <input
-          aria-label="Search clipboard"
-          className="island-clipboard-search"
-          placeholder="Search clipboard"
-          value={query}
-          onChange={(e) =>
-            dispatch({ type: "filter", name: "clipboardQuery", value: e.target.value })
-          }
-        />
-        {["All", "Text", "Links", "Images", "Files", "Pinned"].map((name) => (
-          <PresetChip
-            key={name}
-            surface="island"
-            selected={filter === name}
-            onClick={() => dispatch({ type: "filter", name: "clipboard", value: name })}
-          >
-            {name}
-          </PresetChip>
-        ))}
-      </div>
-      <div className="island-clipboard-rows">
-        {contextEntry?.contentType === "url" && (
-          <ClipboardLinkRow
-            entry={contextEntry}
-            download={async (url) => {
-              await invoke("island_review_url", { url });
-              dispatch({ type: "tab", tab: "nab" });
-            }}
-          />
-        )}
-        {filtered.map((entry) => (
-          <div key={entry.id} className="island-row">
-            <button
-              className="island-clipboard-copy island-spacer"
-              onClick={() => {
-                void invoke("copy_clipboard_entry", { id: entry.id }).catch((reason) =>
-                  setError(String(reason)),
-                );
-              }}
-            >
-              <span>{entry.preview || entry.content}</span>
-              <small className="island-muted">{entry.sourceApp || entry.contentType}</small>
-            </button>
-            {entry.contentType === "url" && (
-              <MiniButton
-                signal
-                onClick={() => {
-                  void invoke("island_review_url", { url: entry.content })
-                    .then(() => dispatch({ type: "tab", tab: "nab" }))
-                    .catch((reason) => setError(String(reason)));
-                }}
-              >
-                Nab
-              </MiniButton>
-            )}
-          </div>
-        ))}
-      </div>
-      {!filtered.length && <p className="island-empty">No clipboard items</p>}
-      {error && (
-        <p role="alert" className="island-error">
-          {error}
-        </p>
-      )}
-      <div className="island-row island-muted">
-        <span className="island-spacer">{entries.length} items</span>
-        <MiniButton onClick={() => act({ action: "tray" })}>All clipboard</MiniButton>
-      </div>
-    </div>
-  );
-}
 export default function ModuleBody(props: Props) {
   const { model, act } = props;
   if (model.tab === "nab") return <IslandNab model={model} dispatch={props.dispatch} />;
-  if (model.tab === "clipboard") return <Clipboard {...props} />;
+  if (model.tab === "clipboard") return <IslandClipboard model={model} dispatch={props.dispatch} />;
   if (model.tab === "notes")
     return (
       <>

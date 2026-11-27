@@ -1,6 +1,7 @@
 mod acceptance_tests;
 mod bookmark_tests;
 mod browser_bridge;
+mod clipboard_bridge;
 mod connection_tests;
 mod fake;
 mod merge;

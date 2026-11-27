@@ -38,6 +38,30 @@ pub mod visibility;
 
 #[cfg(windows)]
 pub(crate) use native::real_desktop;
+
+#[tauri::command]
+pub async fn island_clipboard_pick(
+    app: tauri::AppHandle,
+    window: tauri::WebviewWindow,
+    id: String,
+    mode: crate::clipboard::pick::Mode,
+) -> Result<crate::clipboard::pick::Outcome, String> {
+    #[cfg(windows)]
+    {
+        let manager = input_manager(&app)?;
+        let _ = manager.surface_instruction(window.label())?;
+        let (sender, receiver) = tokio::sync::oneshot::channel();
+        manager.pick_clipboard(window.label(), id, mode, sender)?;
+        receiver
+            .await
+            .map_err(|_| "Clipboard pick stopped".to_string())?
+    }
+    #[cfg(not(windows))]
+    {
+        let _ = (app, window, id, mode);
+        Err("Island clipboard paste is available on Windows".into())
+    }
+}
 #[cfg(windows)]
 pub use native::{start, Manager};
 
