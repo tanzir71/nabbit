@@ -5,7 +5,13 @@ import { PresetChip } from "../../components/PresetChip";
 import { Badge } from "../../components/Badge";
 import { useNotesStore } from "../../store/notesStore";
 import type { CardValue, NotePatch, StoredNote } from "./types";
-import { notesApi, type NoteEditorData, type ReminderEdit, type ReminderValue } from "./api";
+import {
+  notesApi,
+  type NoteEditorData,
+  type ReminderEdit,
+  type ReminderValue,
+  type NoteCaptureRequest,
+} from "./api";
 import { EditorIcon } from "./EditorIcon";
 import { editorAssets } from "./editorAssets";
 import { TackSettings } from "./TackSettings";
@@ -39,7 +45,17 @@ const dateInput = (at: string) => {
     ? `${date.getFullYear()}-${String(date.getMonth() + 1).padStart(2, "0")}-${String(date.getDate()).padStart(2, "0")}T${String(date.getHours()).padStart(2, "0")}:${String(date.getMinutes()).padStart(2, "0")}`
     : "";
 };
-export function NoteEditor({ card, close }: { card: StoredNote; close: () => void }) {
+export function NoteEditor({
+  card,
+  close,
+  creation,
+  onSaved,
+}: {
+  card: StoredNote;
+  close: () => void;
+  creation?: NoteCaptureRequest;
+  onSaved?: (note: StoredNote) => void;
+}) {
   const dialog = useRef<HTMLDialogElement>(null),
     title = useId(),
     alive = useRef(true),
@@ -74,15 +90,48 @@ export function NoteEditor({ card, close }: { card: StoredNote; close: () => voi
       ]
     : [];
   const edits = snapshot ? patch(snapshot.note.value, draft) : {};
-  const dirty = Object.keys(edits).length > 0 || reminderEdits.length > 0;
+  const hasContent = !!(
+    draft.title.trim() ||
+    draft.body.trim() ||
+    draft.items.some((i) => i.text.trim()) ||
+    (draft.kind === "bookmark" && draft.url.trim())
+  );
+  const dirty =
+    (!!creation && hasContent) || Object.keys(edits).length > 0 || reminderEdits.length > 0;
   const disabled = busy || readOnly || moved || !snapshot;
   const opening = useRef(card);
+  const creationFocused = useRef(false);
+  useEffect(() => {
+    if (!creation || !snapshot || creationFocused.current) return;
+    creationFocused.current = true;
+    dialog.current
+      ?.querySelector<HTMLInputElement>(
+        creation.draft.kind === "checklist" ? ".note-editor-item > input" : ".note-editor-title",
+      )
+      ?.focus();
+  }, [creation, snapshot]);
   useEffect(() => {
     alive.current = true;
     let active = true;
     const origin = document.activeElement;
     dialog.current?.showModal();
     const initial = opening.current;
+    if (creation) {
+      setSnapshot({
+        note: initial,
+        reminders: creation.reminders
+          .filter((r) => r.value)
+          .map((r) => ({ value: r.value!, editToken: "" })),
+        attachments: [],
+        revisions: [],
+      });
+      setReminders(creation.reminders.flatMap((r) => (r.value ? [r.value] : [])));
+      return () => {
+        active = false;
+        alive.current = false;
+        if (origin instanceof HTMLElement && origin.isConnected) origin.focus();
+      };
+    }
     void notesApi
       .editor(initial.value.id, initial.scope)
       .then((data) => {
@@ -103,14 +152,14 @@ export function NoteEditor({ card, close }: { card: StoredNote; close: () => voi
       alive.current = false;
       if (origin instanceof HTMLElement && origin.isConnected) origin.focus();
     };
-  }, []);
+  }, [creation]);
   const requestClose = () => {
     if (working.current) return;
     if (dirty) setConfirmClose(true);
     else close();
   };
   const save = async (extra: NotePatch = {}, closeAfter = true) => {
-    if (working.current || disabled || !snapshot) return;
+    if (working.current || disabled || !snapshot || (creation && !hasContent)) return;
     working.current = true;
     setBusy(true);
     setError("");
@@ -118,9 +167,33 @@ export function NoteEditor({ card, close }: { card: StoredNote; close: () => voi
       const changes = { ...edits, ...extra };
       // A reminder-only change still participates in the card's optimistic transaction.
       if (!Object.keys(changes).length) changes.title = draft.title;
-      const saved = await notesApi.saveEditor(snapshot.note, changes, reminderEdits);
+      const saved = creation
+        ? await notesApi.capture({
+            ...creation,
+            draft: {
+              ...creation.draft,
+              title: draft.title,
+              body: draft.body,
+              url: draft.url,
+              kind: draft.kind,
+              labels: draft.labels,
+              priority: draft.priority,
+              color: draft.color,
+            },
+            patch: {
+              ...creation.patch,
+              ...changes,
+              items: draft.items,
+              pinned: draft.pinned,
+              completed: draft.completed,
+              ...(draft.status ? { status: draft.status } : {}),
+            },
+            reminders: reminders.map((value) => ({ id: value.id, expectedToken: null, value })),
+          })
+        : await notesApi.saveEditor(snapshot.note, changes, reminderEdits);
       await useNotesStore.getState().refresh();
       if (alive.current) {
+        onSaved?.(saved);
         if (closeAfter) close();
         else {
           const data = await notesApi.editor(saved.value.id, saved.scope);
@@ -609,10 +682,15 @@ export function NoteEditor({ card, close }: { card: StoredNote; close: () => voi
               </select>
             </label>
           ) : null}
-          {dirty ? (
+          {dirty || creation ? (
             <div className="note-save-actions">
               <span role="status">Unsaved changes</span>
-              <Button variant="primary" size="sm" disabled={disabled} onClick={() => void save()}>
+              <Button
+                variant="primary"
+                size="sm"
+                disabled={disabled || (!!creation && !hasContent)}
+                onClick={() => void save()}
+              >
                 Save note
               </Button>
             </div>

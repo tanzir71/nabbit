@@ -1,0 +1,117 @@
+.quick-capture {
+  display: flex;
+  flex-direction: column;
+  gap: 14px;
+  flex: none;
+}
+.quick-capture-field {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  height: 44px;
+  padding: 0 8px 0 14px;
+  border: 1px solid var(--border-strong);
+  border-radius: 14px;
+  background: var(--bg-surface);
+}
+.quick-capture-field input {
+  flex: 1;
+  min-width: 0;
+  width: 100%;
+  border: 0;
+  outline: 0;
+  background: transparent;
+  color: var(--text-primary);
+  font: 400 13px/18px var(--font-sans);
+}
+.quick-capture-field input::placeholder {
+  color: var(--text-tertiary);
+}
+.quick-capture-field:focus-within {
+  outline: 2px solid var(--text-primary);
+  outline-offset: 2px;
+}
+.quick-capture-field kbd {
+  color: var(--text-secondary);
+  font: 400 11px/16px var(--font-mono);
+}
+.quick-capture-preview {
+  display: flex;
+  align-items: center;
+  flex-wrap: wrap;
+  gap: 6px;
+  color: var(--text-secondary);
+  font: 400 12px/16px var(--font-sans);
+}
+.capture-chip {
+  display: inline-flex;
+  align-items: center;
+  min-height: 30px;
+  padding: 0 12px;
+  border-radius: 15px;
+  background: var(--bg-elevated, var(--bg-surface));
+  color: var(--text-primary);
+  font: 500 13px/18px var(--font-sans);
+}
+.capture-chip.is-kind {
+  background: var(--text-primary);
+  color: var(--bg-surface);
+  font-weight: 500;
+}
+.capture-mono {
+  color: var(--text-secondary);
+  font: 500 12px/16px var(--font-mono);
+}
+.capture-reminder {
+  gap: 6px;
+}
+.capture-detail-hint {
+  margin-left: auto;
+  white-space: nowrap;
+}
+.capture-help,
+.quick-capture > p {
+  margin: 0;
+  color: var(--text-secondary);
+  font: 400 12px/16px var(--font-sans);
+}
+.quick-capture > p > button {
+  text-decoration: underline;
+  background: transparent;
+  color: inherit;
+}
+.quick-capture--island {
+  --text-primary: var(--island-fg);
+  --text-secondary: var(--island-muted);
+  --text-tertiary: var(--island-muted);
+  --bg-surface: var(--island-bg);
+}
+.quick-capture--island .quick-capture-field {
+  border: 0;
+  background: var(--island-raised);
+  gap: 10px;
+}
+.quick-capture--island .quick-capture-field input {
+  caret-color: var(--signal-base);
+  font: 400 13px/18px var(--font-sans);
+}
+.quick-capture--island .n-icon-button {
+  flex: none;
+  padding: 0;
+  background: transparent;
+  border: 0;
+  border-radius: 8px;
+}
+.quick-capture--island .n-icon-button:disabled {
+  opacity: 0.5;
+}
+.quick-capture--island .capture-chip {
+  background: var(--island-raised);
+}
+.quick-capture--island .capture-chip.is-kind {
+  background: var(--island-fg);
+}
+.quick-capture--island .quick-capture-field .island-asset {
+  width: 15px;
+  height: 15px;
+}

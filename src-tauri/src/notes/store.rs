@@ -21,7 +21,7 @@ pub struct StoredNote {
     pub edit_token: String,
 }
 
-#[derive(Debug, Deserialize, Default)]
+#[derive(Debug, Clone, Serialize, Deserialize, Default)]
 #[serde(rename_all = "camelCase", deny_unknown_fields, default)]
 pub struct NoteDraft {
     pub title: String,
@@ -204,6 +204,48 @@ pub(crate) fn remote_card(value: &Value) -> Result<Value> {
     Ok(value)
 }
 
+pub(crate) fn insert_note_card(
+    tx: &rusqlite::Transaction<'_>,
+    draft: NoteDraft,
+    scope: Option<&super::sync_store::Context>,
+    id: &str,
+    patch: &Value,
+) -> Result<StoredNote> {
+    let key = scope.map_or("", |s| s.key.as_str());
+    let first:Option<String>=tx.query_row("SELECT json_extract(value,'$.rank') FROM note_cards WHERE scope=?1 ORDER BY json_extract(value,'$.rank') COLLATE BINARY,id LIMIT 1",[key],|row|row.get(0)).optional()?;
+    let now = super::sync_store::stamp();
+    let edit_token = Uuid::new_v4().to_string();
+    let items: Vec<_> = draft
+        .items
+        .into_iter()
+        .filter(|s| !s.trim().is_empty())
+        .map(|s| json!({"id":Uuid::new_v4().to_string(),"text":s,"checked":false}))
+        .collect();
+    let mut value = json!({"id":id,"revision":0,"assigneeId":null,"priority":draft.priority.unwrap_or_else(||"inbox".into()),"ref":"","doneWhen":"","frontmatter":"","kind":draft.kind.unwrap_or_else(||"note".into()),"title":draft.title,"body":draft.body,"url":draft.url,"labels":draft.labels,"items":items,"attachmentIds":[],"pinned":false,"archived":false,"trashedAt":null,"completed":false,"color":draft.color.unwrap_or_else(||"default".into()),"rank":super::rank::with_nonce(None,first.as_deref(),id)?,"projectId":null,"createdAt":now,"updatedAt":now,"sourceId":null});
+    let patch = patch
+        .as_object()
+        .ok_or_else(|| msg("Invalid note capture fields"))?;
+    if patch.keys().any(|key| !EDITABLE.contains(&key.as_str())) {
+        return Err(msg("Unsupported note capture field"));
+    }
+    value
+        .as_object_mut()
+        .expect("new card object")
+        .extend(patch.clone());
+    validate_card(&value)?;
+    tx.execute("INSERT INTO note_cards(scope,id,value,local_only,updated_at,edit_token) VALUES(?1,?2,?3,?4,?5,?6)",params![key,id,value.to_string(),scope.is_none(),now,edit_token])?;
+    if let Some(context) = scope {
+        super::sync_store::queue(tx, context, "cards", id, &value)?;
+    }
+    super::sync_store::changed(tx)?;
+    Ok(StoredNote {
+        value,
+        local_only: scope.is_none(),
+        scope: scope.cloned(),
+        edit_token,
+    })
+}
+
 impl Database {
     pub fn notes_state(&self) -> Result<NotesState> {
         let conn = self
@@ -257,31 +299,9 @@ impl Database {
             .map_err(|_| msg("database lock poisoned"))?;
         let tx = conn.transaction()?;
         super::sync_store::ensure(&tx, scope)?;
-        let key = scope.map_or("", |s| s.key.as_str());
-        let first:Option<String>=tx.query_row("SELECT json_extract(value,'$.rank') FROM note_cards WHERE scope=?1 ORDER BY json_extract(value,'$.rank') COLLATE BINARY,id LIMIT 1",[key],|row|row.get(0)).optional()?;
-        let now = super::sync_store::stamp();
-        let id = Uuid::new_v4().to_string();
-        let edit_token = Uuid::new_v4().to_string();
-        let items: Vec<_> = draft
-            .items
-            .into_iter()
-            .filter(|s| !s.trim().is_empty())
-            .map(|s| json!({"id":Uuid::new_v4().to_string(),"text":s,"checked":false}))
-            .collect();
-        let value = json!({"id":id,"revision":0,"assigneeId":null,"priority":draft.priority.unwrap_or_else(||"inbox".into()),"ref":"","doneWhen":"","frontmatter":"","kind":draft.kind.unwrap_or_else(||"note".into()),"title":draft.title,"body":draft.body,"url":draft.url,"labels":draft.labels,"items":items,"attachmentIds":[],"pinned":false,"archived":false,"trashedAt":null,"completed":false,"color":draft.color.unwrap_or_else(||"default".into()),"rank":super::rank::with_nonce(None,first.as_deref(),&id)?,"projectId":null,"createdAt":now,"updatedAt":now,"sourceId":null});
-        validate_card(&value)?;
-        tx.execute("INSERT INTO note_cards(scope,id,value,local_only,updated_at,edit_token) VALUES(?1,?2,?3,?4,?5,?6)",params![key,id,value.to_string(),scope.is_none(),now,edit_token])?;
-        if let Some(context) = scope {
-            super::sync_store::queue(&tx, context, "cards", &id, &value)?;
-        }
-        super::sync_store::changed(&tx)?;
+        let note = insert_note_card(&tx, draft, scope, &Uuid::new_v4().to_string(), &json!({}))?;
         tx.commit()?;
-        Ok(StoredNote {
-            value,
-            local_only: scope.is_none(),
-            scope: scope.cloned(),
-            edit_token,
-        })
+        Ok(note)
     }
     pub fn update_note_card(
         &self,

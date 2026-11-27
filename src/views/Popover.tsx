@@ -1,6 +1,7 @@
 import { lazy, Suspense, useEffect, useState } from "react";
 import { invoke } from "@tauri-apps/api/core";
 import { listen } from "@tauri-apps/api/event";
+import { notesApi, type NotesNavigation } from "../features/notes/api";
 import { Tab } from "../components/Tab";
 import { Badge } from "../components/Badge";
 import { DownloadIcon } from "../features/downloads/DownloadIcon";
@@ -25,6 +26,54 @@ export function Popover() {
   const engine = useAppStore((state) => state.engine);
   const setLastTab = useAppStore((state) => state.setLastTab);
   const [showSettings, setShowSettings] = useState(false);
+  const [notesNavigation, setNotesNavigation] = useState<NotesNavigation | null>(null);
+  useEffect(() => {
+    if (!("__TAURI_INTERNALS__" in window)) return;
+    let active = true,
+      stop: (() => void) | undefined;
+    let pending = Promise.resolve();
+    const consume = async () => {
+      try {
+        const reply = await notesApi.takeIntent();
+        if (!active) return;
+        if (reply.shortcutError) useAppStore.setState({ error: reply.shortcutError });
+        if (reply.navigation) {
+          setNotesNavigation(reply.navigation);
+          setShowSettings(false);
+          useAppStore.setState((s) => ({
+            settings: s.settings ? { ...s.settings, lastTab: "notes" } : s.settings,
+          }));
+        }
+      } catch {
+        if (active)
+          useAppStore.setState({
+            error: "Notes navigation could not be loaded. Open the Notes tab to continue.",
+          });
+      }
+    };
+    const schedule = () => {
+      pending = pending.then(consume);
+    };
+    void listen("notes:open", schedule)
+      .then((unlisten) => {
+        if (!active) {
+          unlisten();
+          return;
+        }
+        stop = unlisten;
+        schedule();
+      })
+      .catch(() => {
+        if (active)
+          useAppStore.setState({
+            error: "Notes shortcut events are unavailable. Open the Notes tab to continue.",
+          });
+      });
+    return () => {
+      active = false;
+      stop?.();
+    };
+  }, []);
   useEffect(() => {
     if (!("__TAURI_INTERNALS__" in window)) return;
     let active = true,
@@ -57,7 +106,7 @@ export function Popover() {
     };
   }, []);
 
-  const activeTab = settings?.lastTab ?? "download";
+  const activeTab = notesNavigation ? "notes" : (settings?.lastTab ?? "download");
 
   if (loading || !settings) {
     return (
@@ -108,7 +157,13 @@ export function Popover() {
       </header>
       <div className="tray-tabs-wrap">
         <nav className="tray-tabs" aria-label="Navigation">
-          <Tab selected={activeTab === "download"} onClick={() => void setLastTab("download")}>
+          <Tab
+            selected={activeTab === "download"}
+            onClick={() => {
+              setNotesNavigation(null);
+              void setLastTab("download");
+            }}
+          >
             <DownloadIcon name="nab" />
             Nab
           </Tab>
@@ -116,7 +171,13 @@ export function Popover() {
             <NotesIcon name="notes" />
             Notes
           </Tab>
-          <Tab selected={activeTab === "clipboard"} onClick={() => void setLastTab("clipboard")}>
+          <Tab
+            selected={activeTab === "clipboard"}
+            onClick={() => {
+              setNotesNavigation(null);
+              void setLastTab("clipboard");
+            }}
+          >
             <DownloadIcon name="clipboard" />
             Clipboard
           </Tab>
@@ -144,7 +205,7 @@ export function Popover() {
               </p>
             }
           >
-            <NotesView />
+            <NotesView navigation={notesNavigation} />
           </Suspense>
         ) : (
           <ClipboardList />

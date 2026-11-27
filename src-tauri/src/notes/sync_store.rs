@@ -94,6 +94,7 @@ pub(crate) fn migrate(conn: &mut Connection) -> Result<()> {
         CREATE TABLE IF NOT EXISTS tack_reference_issues(scope TEXT NOT NULL,tbl TEXT NOT NULL,id TEXT NOT NULL,value TEXT NOT NULL,PRIMARY KEY(scope,tbl,id));
         CREATE TABLE IF NOT EXISTS note_reminders(scope TEXT NOT NULL,id TEXT NOT NULL,value TEXT NOT NULL,PRIMARY KEY(scope,id));
         CREATE TABLE IF NOT EXISTS note_revisions(history_id TEXT PRIMARY KEY,scope TEXT NOT NULL,tbl TEXT NOT NULL,id TEXT NOT NULL,value TEXT NOT NULL,reason TEXT NOT NULL,saved_at TEXT NOT NULL);
+        CREATE TABLE IF NOT EXISTS note_capture_receipts(request_id TEXT PRIMARY KEY,scope TEXT NOT NULL,digest TEXT NOT NULL);
         CREATE TABLE IF NOT EXISTS tack_uploads(local_id TEXT PRIMARY KEY,scope TEXT NOT NULL,remote_id TEXT NOT NULL);
         CREATE INDEX IF NOT EXISTS idx_tack_queue ON tack_outbox(scope,queued_at,tbl,id);")?;
     if meta(&tx, "editor_attachments_v45")?.is_none() {

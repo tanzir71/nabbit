@@ -1,4 +1,4 @@
-import { Fragment, type CSSProperties } from "react";
+import { Fragment, type CSSProperties, type ReactNode } from "react";
 import { cn } from "../lib/cn";
 import { Badge } from "./Badge";
 import { DesignIcon } from "./DesignIcon";
@@ -28,6 +28,8 @@ type NoteCardProps = Content & {
   className?: string;
   style?: CSSProperties;
   id?: string;
+  titlePrefix?: ReactNode;
+  checkIcon?: (checked: boolean) => ReactNode;
 };
 export function NoteCard(props: NoteCardProps) {
   const {
@@ -54,10 +56,14 @@ export function NoteCard(props: NoteCardProps) {
       <h3 className="n-note-title">
         {onOpen ? (
           <button type="button" className="n-note-open" onClick={onOpen}>
+            {props.titlePrefix}
             {title}
           </button>
         ) : (
-          title
+          <>
+            {props.titlePrefix}
+            {title}
+          </>
         )}
       </h3>
       {props.kind === "note" && <p className="n-note-body">{props.body}</p>}
@@ -89,7 +95,11 @@ export function NoteCard(props: NoteCardProps) {
                 disabled={item.disabled || !props.onItemChange}
                 onChange={(event) => props.onItemChange?.(item.id, event.target.checked)}
               />
-              <span className="n-check-box">{item.checked && <DesignIcon name="check" />}</span>
+              <span className="n-check-box">
+                {props.checkIcon
+                  ? props.checkIcon(item.checked)
+                  : item.checked && <DesignIcon name="check" />}
+              </span>
             </span>
             <span>{item.text}</span>
           </label>

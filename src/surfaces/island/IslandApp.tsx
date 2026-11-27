@@ -87,20 +87,30 @@ export function IslandApp({ suppliedStore }: { suppliedStore?: IslandStore }) {
       instruction.keyboard.id >= keyboardRequest.current &&
       (!keyboardEntered.current || instruction.keyboard.id > keyboardRequest.current)
     ) {
+      if (
+        instruction.keyboard.target === "notes" &&
+        (model.tab !== "notes" || model.filters.searchOpen === "true")
+      ) {
+        store.getState().dispatch({ type: "filter", name: "searchOpen", value: "false" });
+        store.getState().dispatch({ type: "tab", tab: "notes" });
+        return;
+      }
       keyboardRequest.current = instruction.keyboard.id;
       keyboardEntered.current = true;
       if (instruction.keyboard.target !== "preserve")
         keyboard.current?.focus(
-          model.filters.searchOpen === "true"
-            ? '[aria-label="Search island"]'
-            : `[data-island-tab="${model.tab}"]`,
+          instruction.keyboard.target === "notes"
+            ? "[data-note-capture]:not(:disabled),[data-note-capture-disabled]"
+            : model.filters.searchOpen === "true"
+              ? '[aria-label="Search island"]'
+              : `[data-island-tab="${model.tab}"]`,
           true,
           () => {
             void invoke("island_keyboard_ready", { request: instruction.keyboard?.id }).catch(fail);
           },
         );
     }
-  }, [instruction, model.state, model.tab, model.filters.searchOpen, fail]);
+  }, [instruction, model.state, model.tab, model.filters.searchOpen, fail, store]);
   useLayoutEffect(() => {
     if (!pill.current || !content.current || !outgoing.current) return;
     motion.current = observeIslandMotion(
@@ -453,6 +463,7 @@ export function IslandApp({ suppliedStore }: { suppliedStore?: IslandStore }) {
         void drop(event);
       }}
     >
+      {compact && <h1 className="island-sr-only">Nabbit island</h1>}
       <div
         ref={pill}
         className={`island-morph${compact && model.bubble ? " is-split" : ""}`}

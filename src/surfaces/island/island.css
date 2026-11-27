@@ -665,6 +665,17 @@ body,
 .island-host[data-island-visibility="hidden"] {
   transition: none;
 }
+.island-sr-only {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  padding: 0;
+  margin: -1px;
+  overflow: hidden;
+  clip: rect(0, 0, 0, 0);
+  white-space: nowrap;
+  border: 0;
+}
 .island-compact > strong {
   font: 500 13px/18px var(--font-sans);
   white-space: nowrap;
@@ -703,6 +714,9 @@ body,
 }
 .island-outgoing:not(:empty) {
   animation: island-content-out 80ms linear both;
+}
+.island-outgoing:empty {
+  display: none;
 }
 .island-outgoing * {
   animation: none !important;

@@ -4,6 +4,7 @@ import { beforeEach, describe, expect, it, vi } from "vitest";
 import { NotesView } from "./NotesView";
 import { useNotesStore } from "../store/notesStore";
 import { notesApi } from "../features/notes/api";
+import { blankCapture, prepareCapture } from "../features/notes/captureDraft";
 import { visibleNotes, type CardValue, type StoredNote } from "../features/notes/types";
 
 vi.mock("../features/notes/api", () => ({
@@ -57,6 +58,7 @@ beforeEach(() => {
     this.setAttribute("open", "");
   };
   vi.clearAllMocks();
+  localStorage.clear();
   rows = [card()];
   useNotesStore.setState({ cards: [], scope: null, loading: true, error: null, busy: [] });
   vi.mocked(notesApi.list).mockImplementation(async () => structuredClone(rows));
@@ -96,6 +98,19 @@ beforeEach(() => {
 });
 
 describe("local Notes view", () => {
+  it("consumes a navigation draft without creating or reading a persisted card", async () => {
+    const request = prepareCapture({
+      ...blankCapture(null),
+      text: "Unsaved island draft #nabbit !next",
+    });
+    render(<NotesView navigation={{ id: "navigation", intent: { kind: "new", request } }} />);
+    const editor = await screen.findByRole("dialog", {}, { timeout: 10000 });
+    expect(within(editor).getByRole("textbox", { name: "Note title" })).toHaveValue(
+      "Unsaved island draft",
+    );
+    expect(notesApi.create).not.toHaveBeenCalled();
+    expect(notesApi.editor).not.toHaveBeenCalled();
+  });
   it("dismisses menus with Escape or outside focus and restores the summary focus", async () => {
     const user = userEvent.setup();
     render(<NotesView />);
@@ -187,33 +202,6 @@ describe("local Notes view", () => {
     expect(rows[0].value.items).toEqual([
       { id: "second", text: "Edited second row", checked: true, future: 42 },
     ]);
-  });
-  it("keeps a failed creation draft and permits retry with colour, priority and labels", async () => {
-    vi.mocked(notesApi.create).mockRejectedValueOnce(
-      new Error("Database is temporarily unavailable"),
-    );
-    const user = userEvent.setup();
-    render(<NotesView />);
-    await screen.findByText("My note");
-    await user.type(screen.getByRole("textbox", { name: "Note title" }), "A local thought");
-    await user.type(screen.getByRole("textbox", { name: "Note body" }), "Keep my draft");
-    await user.selectOptions(screen.getByRole("combobox", { name: "Note colour" }), "purple");
-    await user.selectOptions(screen.getByRole("combobox", { name: "Note priority" }), "next");
-    await user.type(screen.getByRole("textbox", { name: "Note labels" }), "Ideas, Ideas, Build");
-    await user.click(screen.getByRole("button", { name: "Save note" }));
-    expect(await screen.findByRole("alert")).toHaveTextContent(
-      "Database is temporarily unavailable",
-    );
-    expect(screen.getByRole("textbox", { name: "Note body" })).toHaveValue("Keep my draft");
-    await user.click(screen.getByRole("button", { name: "Save note" }));
-    await waitFor(() => expect(rows[0].value.title).toBe("A local thought"));
-    expect(rows[0].value).toMatchObject({
-      body: "Keep my draft",
-      priority: "next",
-      color: "purple",
-      labels: ["Ideas", "Build"],
-    });
-    expect(screen.queryByRole("textbox", { name: "Note body" })).not.toBeInTheDocument();
   });
   it("archives and trashes softly and restores through the view menu", async () => {
     const user = userEvent.setup();

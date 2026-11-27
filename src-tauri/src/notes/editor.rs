@@ -19,7 +19,7 @@ pub struct Reminder {
     pub value: Value,
     pub edit_token: String,
 }
-#[derive(Debug, Deserialize)]
+#[derive(Debug, Clone, Serialize, Deserialize)]
 #[serde(rename_all = "camelCase", deny_unknown_fields)]
 pub struct ReminderEdit {
     pub id: String,

@@ -106,7 +106,7 @@ export function activityTitle(item: ActivityItem) {
     case "powerChanged":
       return e.charging ? "Charging" : "Battery low";
     case "noteSaved":
-      return `Saved to ${e.destination}`;
+      return `Saved ${e.destination.startsWith("this PC") ? "on" : "to"} ${e.destination}`;
     case "linkSaved":
       return e.title;
     case "filesMoved":

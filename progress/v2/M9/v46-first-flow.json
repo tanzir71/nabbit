@@ -1,0 +1,23 @@
+{
+  "passed": false,
+  "failure": {
+    "message": "locator.click: Timeout 30000ms exceeded.\nCall log:\n\u001b[2m  - waiting for getByRole('button', { name: 'Local to upload', exact: true })\u001b[22m\n",
+    "stack": "locator.click: Timeout 30000ms exceeded.\nCall log:\n\u001b[2m  - waiting for getByRole('button', { name: 'Local to upload', exact: true })\u001b[22m\n\n    at D:\\claude-upgrade-26\\nabbit\\scripts\\verify-note-editor-flow.mjs:192:76",
+    "telemetry": {
+      "headings": [],
+      "notes": 0,
+      "events": 0,
+      "streamError": false,
+      "commands": []
+    }
+  },
+  "checks": [],
+  "problems": [],
+  "buildManifestSha256": "cee5cbbcf0fbe5767de8d990245907a7999239b26da92ee31ab068d4bfda7ed6",
+  "rustBridgeExitCode": 0,
+  "scope": "Actual browser UI, typed frontend API, test-only IPC forwarding bridge, production Rust Service/client/SQLite and in-process Rust fake. HTTPS .invalid alias maps to the owned loopback fake only in the test bridge. No native Tauri IPC or OS clipboard claim.",
+  "noHostedTack": true,
+  "noUserAccount": true,
+  "noRealClipboard": true,
+  "noExternalNetwork": true
+}

@@ -19,6 +19,34 @@ fn publish(app: &tauri::AppHandle) {
 }
 
 #[tauri::command]
+pub fn capture_note(
+    app: tauri::AppHandle,
+    state: tauri::State<'_, AppState>,
+    request: crate::notes::capture::CaptureRequest,
+) -> Result<StoredNote> {
+    let note = state.db.capture_note(request)?;
+    publish(&app);
+    crate::island::activity_bus::publish(
+        &app,
+        crate::island::activity::ActivityEvent::NoteSaved {
+            card_id: note.value["id"].as_str().unwrap_or_default().into(),
+            destination: crate::notes::capture::destination(&note),
+        },
+    );
+    Ok(note)
+}
+#[tauri::command]
+pub fn notes_open(app: tauri::AppHandle, intent: crate::notes::capture::NotesIntent) -> Result<()> {
+    crate::notes::capture::open(&app, intent)
+}
+#[tauri::command]
+pub fn take_notes_intent(
+    state: tauri::State<'_, AppState>,
+) -> Result<crate::notes::capture::NavigationReply> {
+    state.db.take_notes_intent()
+}
+
+#[tauri::command]
 pub fn list_note_cards(state: tauri::State<'_, AppState>) -> Result<Vec<StoredNote>> {
     state.db.list_note_cards()
 }

@@ -252,7 +252,14 @@ fn draw(item: &Item, width: f32) -> Vec<Draw> {
         Event::NoteSaved { destination, .. } => vec![
             icon("iconStickyNote", 10.0),
             text(
-                format!("Saved to {destination}"),
+                format!(
+                    "Saved {} {destination}",
+                    if destination.starts_with("this PC") {
+                        "on"
+                    } else {
+                        "to"
+                    }
+                ),
                 34.0,
                 width - 67.0,
                 false,
@@ -417,5 +424,41 @@ pub fn compact(view: Option<&View>, shape: Shape) -> Compact {
         alert: primary
             .filter(|item| item.alert)
             .map(|item| item.id.clone()),
+    }
+}
+#[cfg(test)]
+mod capture_tests {
+    use super::*;
+    #[test]
+    fn saved_note_reports_local_durability_in_the_existing_compact_slot() {
+        let item = Item {
+            id: "note:fixture".into(),
+            category: super::super::activity::Kind::Result,
+            event: Event::NoteSaved {
+                card_id: "fixture".into(),
+                destination: "this PC · Inbox".into(),
+            },
+            alert: false,
+            bubble_only: false,
+        };
+        assert_eq!(normal_width(&item.event), 272.0);
+        let draws = draw(&item, 272.0);
+        assert!(draws
+            .iter()
+            .any(|d| matches!(d,Draw::Text{value,..} if value=="Saved on this PC · Inbox")));
+        assert!(draws.iter().any(|d| matches!(
+            d,
+            Draw::Icon {
+                name: "iconStickyNote",
+                ..
+            }
+        )));
+        assert!(draws.iter().any(|d| matches!(
+            d,
+            Draw::Icon {
+                name: "iconCheck",
+                ..
+            }
+        )));
     }
 }

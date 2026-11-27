@@ -1,6 +1,19 @@
 //! Explicit-input focus ownership. Activity and hover never create a request.
 use serde::{Deserialize, Serialize};
 pub fn validate_shortcut(settings: &crate::db::models::AppSettings) -> Result<(), String> {
+    let capture = crate::notes::capture::SHORTCUT
+        .parse::<tauri_plugin_global_shortcut::Shortcut>()
+        .map_err(|e| e.to_string())?;
+    for value in [
+        &settings.island_shortcut,
+        &settings.toggle_popover_shortcut,
+        &settings.quick_download_shortcut,
+        &settings.clipboard_search_shortcut,
+    ] {
+        if value.parse::<tauri_plugin_global_shortcut::Shortcut>().ok() == Some(capture) {
+            return Err("Ctrl+Alt+N is reserved for quick note capture".into());
+        }
+    }
     let value = settings.island_shortcut.trim();
     if value.is_empty() {
         return Ok(());
@@ -36,6 +49,7 @@ pub enum Target {
     #[default]
     Tab,
     Preserve,
+    Notes,
 }
 #[derive(Clone, Debug, Serialize)]
 pub struct Hint {
@@ -283,6 +297,24 @@ mod tests {
         keyboard.release("island", &mut port);
         assert_eq!(port.current(), original);
         assert_eq!(keyboard.restored, 1);
+    }
+    #[test]
+    fn notes_capture_target_uses_the_same_explicit_focus_lease() {
+        let mut keyboard = Keyboard::default();
+        let mut port = FixtureFocus::default();
+        let original = port.current();
+        keyboard.begin("island", Target::Notes, original, 2);
+        assert_eq!(keyboard.hint("island").unwrap().target, Target::Notes);
+        assert_eq!(serde_json::to_string(&Target::Notes).unwrap(), "\"notes\"");
+        assert!(keyboard.ready("island", OWN, &mut port));
+        keyboard.release("island", &mut port);
+        assert_eq!(port.current(), original);
+        let mut settings = crate::db::models::AppSettings::default();
+        assert!(validate_shortcut(&settings).is_ok());
+        settings.quick_download_shortcut = "Alt+Ctrl+N".into();
+        assert!(validate_shortcut(&settings)
+            .unwrap_err()
+            .contains("reserved"));
     }
     #[test]
     fn no_request_no_activation_and_delayed_open_never_takes_a_new_foreground() {

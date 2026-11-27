@@ -88,26 +88,8 @@ impl Manager {
     pub fn shortcut_status(&self, error: Option<String>) {
         lock(&self.state).keyboard.shortcut_error = error;
     }
-    pub fn toggle_keyboard(&self) -> Result<bool, String> {
-        if !self.has_hosts() {
-            return Ok(false);
-        }
-        let this = current().ok_or("Island is unavailable")?;
-        self.app
-            .run_on_main_thread(move || {
-                if let Err(error) = this.toggle_keyboard_ui() {
-                    lock(&this.state).error = Some(error);
-                }
-            })
-            .map_err(|e| e.to_string())?;
-        Ok(true)
-    }
-    fn toggle_keyboard_ui(&self) -> Result<(), String> {
-        let snapshot = self
-            .app
-            .state::<Arc<crate::island::activity_bus::Bus>>()
-            .snapshot();
-        let label = {
+    fn keyboard_label(&self) -> Option<String> {
+        {
             let state = lock(&self.state);
             let preferred = state
                 .keyboard
@@ -127,7 +109,53 @@ impl Manager {
                     .or_else(|| hosts.first())
                     .map(|h| h.placement.label.clone())
             })
-        };
+        }
+    }
+    pub fn open_notes_capture(&self) -> Result<bool, String> {
+        if !self.has_hosts() {
+            return Ok(false);
+        }
+        let this = current().ok_or("Island is unavailable")?;
+        self.app
+            .run_on_main_thread(move || {
+                let result = (|| {
+                    let Some(label) = this.keyboard_label() else {
+                        return Ok(());
+                    };
+                    if !this.keyboard_allowed(&label) {
+                        return Ok(());
+                    }
+                    this.wake_island(&label)?;
+                    this.begin_keyboard_ui(&label, Target::Notes)?;
+                    this.request_surface(&label, Mode::Expanded)
+                })();
+                if let Err(error) = result {
+                    lock(&this.state).error = Some(error);
+                }
+            })
+            .map_err(|e| e.to_string())?;
+        Ok(true)
+    }
+    pub fn toggle_keyboard(&self) -> Result<bool, String> {
+        if !self.has_hosts() {
+            return Ok(false);
+        }
+        let this = current().ok_or("Island is unavailable")?;
+        self.app
+            .run_on_main_thread(move || {
+                if let Err(error) = this.toggle_keyboard_ui() {
+                    lock(&this.state).error = Some(error);
+                }
+            })
+            .map_err(|e| e.to_string())?;
+        Ok(true)
+    }
+    fn toggle_keyboard_ui(&self) -> Result<(), String> {
+        let snapshot = self
+            .app
+            .state::<Arc<crate::island::activity_bus::Bus>>()
+            .snapshot();
+        let label = self.keyboard_label();
         let Some(label) = label else {
             return Ok(());
         };

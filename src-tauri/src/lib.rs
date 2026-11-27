@@ -121,6 +121,9 @@ pub fn run() {
             commands::notes::get_note_editor,
             commands::notes::save_note_editor,
             commands::notes::create_note_card,
+            commands::notes::capture_note,
+            commands::notes::notes_open,
+            commands::notes::take_notes_intent,
             commands::notes::update_note_card,
             download::sheets::open_download_sheet,
             download::sheets::get_download_sheet,
@@ -640,6 +643,14 @@ pub fn register_island_shortcut(
 }
 pub fn apply_runtime_settings(app: &AppHandle<Wry>, state: &AppState, settings: &AppSettings) {
     let _ = app.global_shortcut().unregister_all();
+    let note_registration =
+        app.global_shortcut()
+            .on_shortcut(notes::capture::SHORTCUT, |app, _, event| {
+                if event.state == ShortcutState::Pressed {
+                    notes::capture::hotkey(app);
+                }
+            });
+    let _ = state.db.notes_shortcut_status(note_registration.is_err());
     let island_registration = island::keyboard::validate_shortcut(settings)
         .and_then(|()| register_island_shortcut(app, &settings.island_shortcut));
     #[cfg(windows)]

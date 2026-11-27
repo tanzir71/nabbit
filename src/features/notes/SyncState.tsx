@@ -2,6 +2,7 @@ import type { TackSyncSnapshot } from "./tackApi";
 import { EditorIcon } from "./EditorIcon";
 import { syncCopy } from "./syncCopy";
 import "./editor.css";
+import type { ReactNode } from "react";
 
 export function SyncState({
   snapshot,
@@ -10,6 +11,8 @@ export function SyncState({
   busy = false,
   act,
   actionLabel,
+  iconOverride,
+  titleOverride,
 }: {
   snapshot: TackSyncSnapshot;
   workspace?: string;
@@ -17,6 +20,8 @@ export function SyncState({
   busy?: boolean;
   act?: () => void;
   actionLabel?: string;
+  iconOverride?: ReactNode;
+  titleOverride?: string;
 }) {
   const copy = syncCopy(snapshot, workspace);
   const icon =
@@ -28,8 +33,10 @@ export function SyncState({
     >
       <div className="note-sync-copy" role="status" aria-live="polite">
         <span className="note-sync-title">
-          <EditorIcon name={compact && snapshot.state === "upToDate" ? "cloud" : icon} />
-          <strong>{copy.title}</strong>
+          {iconOverride ?? (
+            <EditorIcon name={compact && snapshot.state === "upToDate" ? "cloud" : icon} />
+          )}
+          <strong title={copy.detail}>{titleOverride ?? copy.title}</strong>
         </span>
         <span className="note-sync-detail" title={copy.detail}>
           {copy.detail}

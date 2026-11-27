@@ -1,74 +1,59 @@
 import { lazy, Suspense, useEffect, useRef, useState } from "react";
 import { api } from "../lib/ipc";
 import { useNotesStore } from "../store/notesStore";
-import { Button } from "../components/Button";
-import { IconButton } from "../components/IconButton";
 import { PresetChip } from "../components/PresetChip";
-import { NoteCard, type NoteColor } from "../components/NoteCard";
+import { NoteCard } from "../components/NoteCard";
 import { DesignIcon } from "../components/DesignIcon";
 import { NotesIcon } from "../features/notes/NotesIcon";
 import { TackSettings } from "../features/notes/TackSettings";
-import {
-  visibleNotes,
-  type NoteKind,
-  type NotePriority,
-  type NoteItem,
-  type NotesView as View,
-  type StoredNote,
-} from "../features/notes/types";
+import { visibleNotes, type NotesView as View, type StoredNote } from "../features/notes/types";
+import { QuickCapture } from "../features/notes/QuickCapture";
+import { type NoteCaptureRequest, type NotesNavigation } from "../features/notes/api";
+import { captureCard, sameScope } from "../features/notes/captureDraft";
 import "../features/notes/notes.css";
 
 const priorities = ["all", "inbox", "now", "next", "later"] as const;
-const colors: NoteColor[] = ["default", "blue", "purple", "green", "pink", "gray"];
 const titleCase = (s: string) => s[0].toUpperCase() + s.slice(1);
 const NoteEditor = lazy(() =>
   import("../features/notes/NoteEditor").then((module) => ({ default: module.NoteEditor })),
 );
-type Composer = {
-  card: StoredNote | null;
-  kind: NoteKind;
-  title: string;
-  body: string;
-  url: string;
-  items: NoteItem[];
-  priority: NotePriority;
-  color: NoteColor;
-  labels: string;
-};
-const blank = (kind: NoteKind = "note"): Composer => ({
-  card: null,
-  kind,
-  title: "",
-  body: "",
-  url: "",
-  items: [],
-  priority: "inbox",
-  color: "default",
-  labels: "",
-});
-
-export function NotesView() {
-  const {
-    cards,
-    scope,
-    preferences,
-    readOnly,
-    loading,
-    error,
-    busy,
-    refresh,
-    createNote,
-    updateNote,
-  } = useNotesStore();
+export function NotesView({ navigation }: { navigation?: NotesNavigation | null }) {
+  const { cards, scope, preferences, readOnly, loading, error, busy, refresh, updateNote } =
+    useNotesStore();
   const [filter, setFilter] = useState<(typeof priorities)[number]>("all");
   const [label, setLabel] = useState("");
   const [view, setView] = useState<View>("notes");
   const [search, setSearch] = useState<string | null>(null);
-  const [draft, setDraft] = useState<Composer>(() => blank());
-  const [expanded, setExpanded] = useState(false);
   const [announcement, setAnnouncement] = useState("");
   const [editing, setEditing] = useState<StoredNote | null>(null);
-  const titleRef = useRef<HTMLInputElement>(null);
+  const [creation, setCreation] = useState<NoteCaptureRequest>();
+  const [captureInitial] = useState(() => localStorage.getItem("nabbit:note-capture") ?? undefined);
+  const consumed = useRef<string>();
+  useEffect(() => {
+    if (!navigation || navigation.id === consumed.current || loading || editing) return;
+    consumed.current = navigation.id;
+    const intent = navigation.intent;
+    if (intent.kind === "new") {
+      if (!sameScope(intent.request.expectedScope, scope)) {
+        setAnnouncement("Workspace changed. Reopen your preserved capture in the island.");
+        return;
+      }
+      setCreation(intent.request);
+      setEditing(captureCard(intent.request));
+    } else if (intent.kind === "card") {
+      if (!sameScope(intent.expectedScope, scope)) {
+        setAnnouncement("Workspace changed. Reopen Notes to review this card.");
+        return;
+      }
+      const card = cards.find((c) => c.value.id === intent.id);
+      if (card) {
+        setCreation(undefined);
+        setEditing(card);
+      } else setAnnouncement("This note is no longer available in this workspace.");
+    } else if (intent.kind === "capture") {
+      document.querySelector<HTMLInputElement>("[data-note-capture]")?.focus();
+    }
+  }, [navigation, loading, editing, scope, cards]);
   const searchRef = useRef<HTMLInputElement>(null);
   const menuRef = useRef<HTMLDetailsElement>(null);
   const labels = [...new Set(cards.flatMap((c) => c.value.labels))].sort();
@@ -82,7 +67,6 @@ export function NotesView() {
   );
   const pinned = found.filter((c) => c.value.pinned),
     others = found.filter((c) => !c.value.pinned);
-  const saving = readOnly || busy.includes(draft.card?.value.id ?? "new");
   useEffect(() => {
     let active = true,
       stop: (() => void) | undefined;
@@ -142,41 +126,12 @@ export function NotesView() {
     }
   };
   const edit = (card: StoredNote) => {
+    setCreation(undefined);
     setEditing(card);
   };
-  const reset = () => {
-    setDraft(blank());
-    setExpanded(false);
-  };
-  const save = async () => {
-    const common = {
-      title: draft.title,
-      body: draft.body,
-      url: draft.url,
-      kind: draft.kind,
-      priority: draft.priority,
-      color: draft.color,
-      labels:
-        draft.card && draft.labels === draft.card.value.labels.join(", ")
-          ? draft.card.value.labels
-          : [
-              ...new Set(
-                draft.labels
-                  .split(",")
-                  .map((s) => s.trim())
-                  .filter(Boolean),
-              ),
-            ],
-    };
-    // Existing checklist IDs, checked state and unknown item fields survive text edits.
-    const items = draft.items.filter((item) => item.text.trim());
-    const saved = draft.card
-      ? await updateNote(draft.card, { ...common, items })
-      : await createNote({ ...common, items: items.map((item) => item.text) });
-    if (saved) {
-      reset();
-      setAnnouncement("Note saved on this device");
-    }
+  const openDraft = (request: NoteCaptureRequest) => {
+    setCreation(request);
+    setEditing(captureCard(request));
   };
   const group = (name: string, notes: StoredNote[]) =>
     notes.length > 0 && (
@@ -271,197 +226,19 @@ export function NotesView() {
             Read-only Tack workspace. You can browse cards; editing is disabled.
           </p>
         ) : null}
-        <form
-          className="notes-composer"
-          aria-label={draft.card ? "Edit local note" : "Create local note"}
-          onSubmit={(event) => {
-            event.preventDefault();
-            void save();
+        <QuickCapture
+          scope={scope}
+          readOnly={readOnly}
+          ready={!loading}
+          cards={cards}
+          initial={captureInitial}
+          persist={(raw) => localStorage.setItem("nabbit:note-capture", raw)}
+          open={openDraft}
+          saved={() => {
+            void refresh();
+            setAnnouncement("Note saved on this device");
           }}
-        >
-          <div className="notes-capture">
-            <input
-              ref={titleRef}
-              aria-label="Note title"
-              placeholder="Take a note…"
-              maxLength={300}
-              value={draft.title}
-              onChange={(event) => setDraft((d) => ({ ...d, title: event.target.value }))}
-              onFocus={() => setExpanded(true)}
-              disabled={saving}
-            />
-            <IconButton
-              label="New checklist"
-              size={28}
-              disabled={saving}
-              onClick={() => {
-                setDraft((d) => ({ ...d, kind: "checklist" }));
-                setExpanded(true);
-                titleRef.current?.focus();
-              }}
-            >
-              <NotesIcon name="checklist" />
-            </IconButton>
-            <IconButton
-              label="New link note"
-              size={28}
-              disabled={saving}
-              onClick={() => {
-                setDraft((d) => ({ ...d, kind: "bookmark" }));
-                setExpanded(true);
-                titleRef.current?.focus();
-              }}
-            >
-              <NotesIcon name="link" />
-            </IconButton>
-            <IconButton label="Image attachments are read-only" size={28} disabled>
-              <NotesIcon name="image" />
-            </IconButton>
-          </div>
-          {expanded && (
-            <div className="notes-compose-fields">
-              <label>
-                Type
-                <select
-                  aria-label="Note type"
-                  value={draft.kind}
-                  disabled={saving}
-                  onChange={(e) => setDraft((d) => ({ ...d, kind: e.target.value as NoteKind }))}
-                >
-                  {["note", "checklist", "bookmark", "task"].map((kind) => (
-                    <option key={kind} value={kind}>
-                      {titleCase(kind)}
-                    </option>
-                  ))}
-                </select>
-              </label>
-              {draft.kind === "bookmark" ? (
-                <label>
-                  Link
-                  <input
-                    aria-label="Link URL"
-                    type="url"
-                    required
-                    value={draft.url}
-                    disabled={saving}
-                    onChange={(e) => setDraft((d) => ({ ...d, url: e.target.value }))}
-                  />
-                </label>
-              ) : null}
-              {(draft.kind === "checklist" || draft.kind === "task") && (
-                <fieldset className="notes-item-editor">
-                  <legend>Checklist items</legend>
-                  {draft.items.map((item, index) => (
-                    <div key={item.id}>
-                      <input
-                        aria-label={`Checklist item ${index + 1}`}
-                        value={item.text}
-                        disabled={saving}
-                        onChange={(event) =>
-                          setDraft((d) => ({
-                            ...d,
-                            items: d.items.map((i) =>
-                              i.id === item.id ? { ...i, text: event.target.value } : i,
-                            ),
-                          }))
-                        }
-                      />
-                      <Button
-                        size="sm"
-                        disabled={saving}
-                        onClick={() =>
-                          setDraft((d) => ({
-                            ...d,
-                            items: d.items.filter((i) => i.id !== item.id),
-                          }))
-                        }
-                      >
-                        Remove item {index + 1}
-                      </Button>
-                    </div>
-                  ))}
-                  <Button
-                    size="sm"
-                    disabled={saving}
-                    onClick={() =>
-                      setDraft((d) => ({
-                        ...d,
-                        items: [...d.items, { id: crypto.randomUUID(), text: "", checked: false }],
-                      }))
-                    }
-                  >
-                    Add item
-                  </Button>
-                </fieldset>
-              )}
-              <label>
-                Note
-                <textarea
-                  aria-label="Note body"
-                  maxLength={200000}
-                  value={draft.body}
-                  disabled={saving}
-                  onChange={(e) => setDraft((d) => ({ ...d, body: e.target.value }))}
-                />
-              </label>
-              <div className="notes-properties">
-                <label>
-                  Priority
-                  <select
-                    aria-label="Note priority"
-                    value={draft.priority}
-                    disabled={saving}
-                    onChange={(e) =>
-                      setDraft((d) => ({ ...d, priority: e.target.value as NotePriority }))
-                    }
-                  >
-                    {priorities
-                      .filter((p) => p !== "all")
-                      .map((p) => (
-                        <option key={p} value={p}>
-                          {titleCase(p)}
-                        </option>
-                      ))}
-                  </select>
-                </label>
-                <label>
-                  Colour
-                  <select
-                    aria-label="Note colour"
-                    value={draft.color}
-                    disabled={saving}
-                    onChange={(e) =>
-                      setDraft((d) => ({ ...d, color: e.target.value as NoteColor }))
-                    }
-                  >
-                    {colors.map((color) => (
-                      <option key={color} value={color}>
-                        {titleCase(color)}
-                      </option>
-                    ))}
-                  </select>
-                </label>
-              </div>
-              <label>
-                Labels, separated by commas
-                <input
-                  aria-label="Note labels"
-                  value={draft.labels}
-                  disabled={saving}
-                  onChange={(e) => setDraft((d) => ({ ...d, labels: e.target.value }))}
-                />
-              </label>
-              <div className="notes-compose-actions">
-                <Button type="submit" variant="primary" disabled={saving}>
-                  {saving ? "Saving…" : "Save note"}
-                </Button>
-                <Button disabled={saving} variant="ghost" onClick={reset}>
-                  Cancel
-                </Button>
-              </div>
-            </div>
-          )}
-        </form>
+        />
         {error && (
           <div role="alert" className="notes-error">
             {error}
@@ -547,7 +324,7 @@ export function NotesView() {
               onKeyDown={(e) => {
                 if (e.key === "Escape") {
                   setSearch(null);
-                  titleRef.current?.focus();
+                  document.querySelector<HTMLInputElement>("[data-note-capture]")?.focus();
                 }
               }}
             />
@@ -579,7 +356,12 @@ export function NotesView() {
       </footer>
       {editing ? (
         <Suspense fallback={<span role="status">Opening note…</span>}>
-          <NoteEditor card={editing} close={() => setEditing(null)} />
+          <NoteEditor
+            key={editing.value.id}
+            card={editing}
+            creation={creation}
+            close={() => setEditing(null)}
+          />
         </Suspense>
       ) : null}
     </section>

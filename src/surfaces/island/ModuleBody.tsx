@@ -9,7 +9,7 @@ import type { ActivityItem } from "../../lib/activity";
 import type { ClipboardEntry } from "../../lib/types";
 import type { IslandAction, IslandModel } from "../../store/islandStore";
 import { MiniButton, type IslandIntent } from "./CompactContent";
-import { IslandNotesSync } from "../../features/notes/IslandNotesSync";
+import { IslandNotes } from "../../features/notes/IslandNotes";
 interface Props {
   model: IslandModel;
   dispatch: (action: IslandAction) => void;
@@ -131,6 +131,13 @@ export default function ModuleBody(props: Props) {
   const { model, act } = props;
   if (model.tab === "nab") return <IslandNab model={model} dispatch={props.dispatch} />;
   if (model.tab === "clipboard") return <Clipboard {...props} />;
+  if (model.tab === "notes")
+    return (
+      <>
+        <DraftBody model={model} fallback={null} />
+        <IslandNotes model={model} dispatch={props.dispatch} />
+      </>
+    );
   const current = itemsOf(model).find((item) =>
     model.tab === "media"
       ? item.category === "media"
@@ -204,7 +211,6 @@ export default function ModuleBody(props: Props) {
           </div>
         }
       />
-      {model.tab === "notes" ? <IslandNotesSync open={() => act({ action: "tray" })} /> : null}
     </>
   );
 }

@@ -190,6 +190,11 @@ export async function captureSuite(root, options, cases = scenarios) {
                   1,
                   "Expanded Notes reads one initial snapshot, then uses pushed events",
                 );
+                assert.equal(
+                  fixture.calls.filter(({ command }) => command === "get_notes_state").length,
+                  1,
+                  "Expanded Notes reads one atomic card snapshot, then uses pushed events",
+                );
               }
               assert(
                 fixture.calls.every(({ command }) =>
@@ -215,7 +220,8 @@ export async function captureSuite(root, options, cases = scenarios) {
                     "list_downloads",
                     "get_storage_stats",
                     "resolve_download_preset",
-                    ...(scenario.notesSync ? ["tack_sync_snapshot"] : []),
+                    ...(scenario.notesSync ? ["tack_sync_snapshot", "get_notes_state"] : []),
+                    ...(scenario.noteCapture ? ["notes_open", "capture_note"] : []),
                     "plugin:event|listen",
                     "plugin:event|unlisten",
                   ].includes(command),

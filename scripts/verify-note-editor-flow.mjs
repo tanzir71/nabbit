@@ -16,9 +16,11 @@ import { installMockIpc } from "./screenshots/mock-ipc.mjs";
 
 function installBridge(info) {
   const original = globalThis.__TAURI_INTERNALS__.invoke;
-  const commands = [];
+  const commands = [],
+    captureRequests = [];
   const send = async (command, args = {}) => {
     commands.push(command);
+    if (command === "capture_note") captureRequests.push(globalThis.structuredClone(args.request));
     const response = await globalThis.fetch(`${info.url}/invoke`, {
       method: "POST",
       headers: { "Content-Type": "application/json", "X-Nabbit-Test": info.token },
@@ -31,6 +33,9 @@ function installBridge(info) {
   globalThis.__TAURI_INTERNALS__.invoke = (command, args) =>
     command.startsWith("tack_") ||
     [
+      "capture_note",
+      "notes_open",
+      "take_notes_intent",
       "get_notes_state",
       "list_note_cards",
       "create_note_card",
@@ -40,7 +45,7 @@ function installBridge(info) {
     ].includes(command)
       ? send(command, args)
       : original(command, args);
-  globalThis.__NABBIT_TACK_TEST__ = { commands, events: 0, streamError: false };
+  globalThis.__NABBIT_TACK_TEST__ = { commands, captureRequests, events: 0, streamError: false };
   void (async () => {
     const response = await globalThis.fetch(`${info.url}/events`, {
       headers: { "X-Nabbit-Test": info.token },
@@ -348,6 +353,93 @@ try {
   assert(!logs.includes("fixture-passphrase-42"));
   checks.push(
     "History is readable in the editor; reminder edits round trip through the fake and reload; DB/logs contain neither synthetic password nor recovery code",
+  );
+
+  // V4.6 capture uses the exact parser result and one atomic Rust transaction.
+  const capture = page.getByRole("textbox", { name: "Note title", exact: true });
+  await capture.fill("Capture beta tomorrow 9am #nabbit !now");
+  await page.getByLabel("Capture preview").getByText("Task", { exact: true }).waitFor();
+  const countBefore = (await inspect()).notes.length;
+  await capture.press("Enter");
+  await wait(async () => (await capture.inputValue()) === "", "capture acknowledgement");
+  const firstRequest = await page.evaluate(() =>
+    globalThis.__NABBIT_TACK_TEST__.captureRequests.at(-1),
+  );
+  assert.equal(firstRequest.draft.title, "Capture beta");
+  assert.equal(firstRequest.draft.priority, "now");
+  assert.deepEqual(firstRequest.draft.labels, ["nabbit"]);
+  let captured = await call("get_note_editor", {
+    id: firstRequest.requestId,
+    expectedScope: firstRequest.expectedScope,
+  });
+  assert.equal(captured.note.value.kind, "task");
+  assert.equal(captured.reminders.length, 1);
+  assert.equal(captured.reminders[0].value.entityId, firstRequest.requestId);
+  assert.equal(captured.reminders[0].value.at, firstRequest.reminders[0].value.at);
+  const replay = await page.evaluate(
+    (request) => globalThis.__TAURI_INTERNALS__.invoke("capture_note", { request }),
+    firstRequest,
+  );
+  assert.equal(replay.value.id, firstRequest.requestId);
+  assert.equal((await inspect()).notes.length, countBefore + 1);
+  await wait(async () => (await inspect()).sync.pending === 0, "capture sync acknowledgement");
+  captured = await call("get_note_editor", {
+    id: firstRequest.requestId,
+    expectedScope: firstRequest.expectedScope,
+  });
+  assert.match(captured.note.value.ref, /^nab-[1-9][0-9]*$/);
+  assert.equal(captured.reminders[0].value.entityId, captured.note.value.id);
+  checks.push(
+    "Parsed Enter capture writes one card/reminder atomically, replays without duplication and receives its reference through the real fake sync",
+  );
+  await capture.fill("Checklist draft #home !next");
+  await capture.press("Shift+Enter");
+  await editor().waitFor();
+  assert.equal((await inspect()).notes.length, countBefore + 1, "Editor handoff is unsaved");
+  await editor().getByLabel("Checklist item 1", { exact: true }).fill("Preserve stable item");
+  await editor().getByLabel("Note body", { exact: true }).fill("Full editor creation body");
+  await editor().getByRole("button", { name: "Purple colour", exact: true }).click();
+  await editor().getByRole("button", { name: "Save note", exact: true }).click();
+  await editor().waitFor({ state: "detached" });
+  const secondRequest = await page.evaluate(() =>
+    globalThis.__NABBIT_TACK_TEST__.captureRequests.at(-1),
+  );
+  const created = await call("get_note_editor", {
+    id: secondRequest.requestId,
+    expectedScope: secondRequest.expectedScope,
+  });
+  assert.equal(created.note.value.kind, "checklist");
+  assert.equal(created.note.value.color, "purple");
+  assert.equal(created.note.value.body, "Full editor creation body");
+  assert.equal(created.note.value.items[0].text, "Preserve stable item");
+  assert.equal(created.note.value.items[0].id, secondRequest.patch.items[0].id);
+  checks.push(
+    "Shift+Enter opens an unsaved checklist; full editor creates it once with stable item identity, parsed labels/priority, colour and body",
+  );
+  // Exercise durable lazy-start navigation using production SQLite, with no HWND claims.
+  await call("notes_open", { intent: { kind: "capture" } });
+  await page.reload({ waitUntil: "domcontentloaded" });
+  await page.waitForFunction(() =>
+    globalThis.document.activeElement?.hasAttribute("data-note-capture"),
+  );
+  assert.equal((await call("take_notes_intent")).navigation, null);
+  const stateBeforeLocal = await inspect();
+  await call("tack_local_mode");
+  await page.reload({ waitUntil: "domcontentloaded" });
+  await capture.fill("Local capture #offline");
+  await capture.press("Enter");
+  await wait(async () => (await capture.inputValue()) === "", "local capture acknowledgement");
+  const localRequest = await page.evaluate(() =>
+    globalThis.__NABBIT_TACK_TEST__.captureRequests.at(-1),
+  );
+  const localCaptured = await call("get_note_editor", {
+    id: localRequest.requestId,
+    expectedScope: null,
+  });
+  assert.equal(localCaptured.note.localOnly, true);
+  assert.equal((await inspect()).syncCalls, stateBeforeLocal.syncCalls);
+  checks.push(
+    "Durable capture navigation is consumed once after reload; local-only Enter capture persists with zero additional fake HTTP calls",
   );
 
   const telemetry = await page.evaluate(() => ({

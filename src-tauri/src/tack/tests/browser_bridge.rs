@@ -185,6 +185,9 @@ fn browser_connection_bridge() {
                     "tack_local_mode"=>{service.local_mode()?;Ok(Value::Null)},
                     "tack_open"=>Ok(Value::Null), // Never opens a browser or a user account.
                     "get_notes_state"=>encode(db.notes_state()?),
+                    "capture_note"=>{let request=serde_json::from_value(args.remove("request").unwrap_or(Value::Null)).map_err(|_|Error::new(ErrorCode::InvalidInput))?;let saved=db.capture_note(request)?;service.edited();encode(saved)},
+                    "notes_open"=>{let intent=serde_json::from_value(args.remove("intent").unwrap_or(Value::Null)).map_err(|_|Error::new(ErrorCode::InvalidInput))?;db.queue_notes_intent(intent)?;Ok(Value::Null)},
+                    "take_notes_intent"=>encode(db.take_notes_intent()?),
                     "get_note_editor"=>{let scope:Option<crate::notes::sync_store::Context>=serde_json::from_value(args.remove("expectedScope").unwrap_or(Value::Null)).map_err(|_|Error::new(ErrorCode::InvalidInput))?;encode(db.note_editor(args.get("id").and_then(Value::as_str).unwrap_or(""),scope.as_ref())?)},
                     "save_note_editor"=>{let request=serde_json::from_value(args.remove("request").unwrap_or(Value::Null)).map_err(|_|Error::new(ErrorCode::InvalidInput))?;let saved=db.save_note_editor(request)?;service.edited();encode(saved)},
                     "update_note_card"=>{let scope:Option<crate::notes::sync_store::Context>=serde_json::from_value(args.remove("expectedScope").unwrap_or(Value::Null)).map_err(|_|Error::new(ErrorCode::InvalidInput))?;let saved=db.update_note_card_in(args.get("id").and_then(Value::as_str).unwrap_or(""),args.get("expectedRevision").and_then(Value::as_u64).unwrap_or(0),scope.as_ref(),args.get("expectedEditToken").and_then(Value::as_str),args.get("patch").cloned().unwrap_or(Value::Null))?;service.edited();encode(saved)},

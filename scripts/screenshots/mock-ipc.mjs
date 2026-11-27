@@ -38,6 +38,12 @@ export function installMockIpc(seed) {
       throw typeof failure === "string" ? new Error(failure) : clone(failure);
     }
     switch (command) {
+      case "take_notes_intent":
+        return clone(
+          seed.responses?.take_notes_intent ?? { navigation: null, shortcutError: null },
+        );
+      case "notes_open":
+        return null;
       case "consume_island_settings_intent":
         return false;
       case "get_island_surface":

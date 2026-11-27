@@ -148,9 +148,7 @@ export function CompactContent({
         <>
           {icon("iconTriangleAlert")}
           <span className="island-ellipsis">
-            {e.jobId === "engine-health"
-              ? "Download engine needs an update"
-              : activityTitle(item)}
+            {e.jobId === "engine-health" ? "Download engine needs an update" : activityTitle(item)}
           </span>
           <MiniButton onClick={() => invoke("review")}>{icon("iconWrench")}Fix</MiniButton>
         </>
@@ -161,7 +159,7 @@ export function CompactContent({
         <>
           {icon("iconStickyNote")}
           <span className="island-ellipsis">
-            {e.kind === "noteSaved" ? `Saved to ${e.destination}` : `Saved ${e.title}`}
+            {e.kind === "noteSaved" ? activityTitle(item) : `Saved ${e.title}`}
           </span>
           {icon("iconCheck")}
         </>
