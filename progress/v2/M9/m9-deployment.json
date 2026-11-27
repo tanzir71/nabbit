@@ -1,0 +1,86 @@
+{
+  "checkedAtUtc": "2026-11-27T15:18:40.688927+00:00",
+  "milestone": "M9",
+  "milestoneCommit": "418c99a1f3583d91e36b91520b6d20b8a7daed96",
+  "applicationCommit": "2cb8c0a5a3894409190db14f1d954ab5d7fbb550",
+  "pages": {
+    "url": "https://api.github.com/repos/tanzir71/nabbit/pages",
+    "status": "built",
+    "cname": null,
+    "custom_404": false,
+    "html_url": "https://tanzir71.github.io/nabbit/",
+    "build_type": "legacy",
+    "source": {
+      "branch": "main",
+      "path": "/docs"
+    },
+    "public": true,
+    "protected_domain_state": null,
+    "pending_domain_unverified_at": null,
+    "https_enforced": true
+  },
+  "latestBuild": {
+    "url": "https://api.github.com/repos/tanzir71/nabbit/pages/builds/1409005215",
+    "status": "built",
+    "error": {
+      "message": null
+    },
+    "pusher": {
+      "login": "tanzir71",
+      "id": 13024434,
+      "node_id": "MDQ6VXNlcjEzMDI0NDM0",
+      "avatar_url": "https://avatars.githubusercontent.com/u/13024434?v=4",
+      "gravatar_id": "",
+      "url": "https://api.github.com/users/tanzir71",
+      "html_url": "https://github.com/tanzir71",
+      "followers_url": "https://api.github.com/users/tanzir71/followers",
+      "following_url": "https://api.github.com/users/tanzir71/following{/other_user}",
+      "gists_url": "https://api.github.com/users/tanzir71/gists{/gist_id}",
+      "starred_url": "https://api.github.com/users/tanzir71/starred{/owner}{/repo}",
+      "subscriptions_url": "https://api.github.com/users/tanzir71/subscriptions",
+      "organizations_url": "https://api.github.com/users/tanzir71/orgs",
+      "repos_url": "https://api.github.com/users/tanzir71/repos",
+      "events_url": "https://api.github.com/users/tanzir71/events{/privacy}",
+      "received_events_url": "https://api.github.com/users/tanzir71/received_events",
+      "type": "User",
+      "user_view_type": "public",
+      "site_admin": false
+    },
+    "commit": "418c99a1f3583d91e36b91520b6d20b8a7daed96",
+    "duration": 26046,
+    "created_at": "2026-11-27T15:16:17Z",
+    "updated_at": "2026-11-27T15:16:43Z"
+  },
+  "deployment": {
+    "id": 46023398176,
+    "head_sha": "418c99a1f3583d91e36b91520b6d20b8a7daed96",
+    "path": "dynamic/pages/pages-build-deployment",
+    "event": "dynamic",
+    "status": "completed",
+    "conclusion": "success",
+    "html_url": "https://github.com/tanzir71/nabbit/actions/runs/46023398176"
+  },
+  "repositoryWorkflowIds": [
+    29048534241,
+    29225324035
+  ],
+  "liveSourceAndPublicPngEvidence": "m9-live-check.json",
+  "publishedSourceAssets": 103,
+  "publishedPngs": 888,
+  "publishedTransferBytesExcludingFonts": 419367,
+  "localTransferBytesExcludingFonts": 419368,
+  "transferDifference": "Published Git text uses LF; text comparisons normalize CRLF to LF, while all image bytes are exact.",
+  "milestoneGitSourcePinsVerified": 879,
+  "milestoneGitPngPinsVerified": 888,
+  "onlyBuiltInPagesRunsCreated": true,
+  "singleRebuildRequested": false,
+  "limits": [
+    "Each task receipt is verified against its own immutable commit. Older task captures establish behavior at that commit; V4.9 delivery captures match the current application manifest.",
+    "Browser acceptance forwards IPC into production Rust/SQLite/Service and an owned Tack fake; clipboard, picker, UIA selection and shell use test providers.",
+    "Native proofs use an owned executable, isolated profiles, actual WebView2/Tauri IPC/HWND/local SQLite and an owned metadata HTTP server. No real browser profile, clipboard, selected text, hosted Tack or global keys.",
+    "The optional full local PHP suite is skipped because installed PHP8.2.30 lacks pdo_sqlite; it never gates acceptance.",
+    "Existing V0/V2.7 performance/frame/focus/platform limitations remain; no new performance or external display claim.",
+    "M9 refreshes native local-only screenshot provenance; functional fake/native acceptance remains the immutable V4.9 proof matching the same manifest/executable."
+  ],
+  "publicationGate": "Satisfied by this verified Pages deployment; checkbox recorded only after live proof."
+}

@@ -1,4 +1,4 @@
-# M9 — Notes complete (publication pending)
+# M9 — Notes complete
 
 ## V4.5 — Notes editor, conflicts and sync states
 
@@ -140,3 +140,10 @@ HTML changes only metadata and M9 Done/M10 In progress, retaining pre-release CT
 [Prepublication](m9-prepublication.json) confirms public main/docs legacy Pages, five unpushed skip-ci task commits, no releases and unchanged repository workflow IDs. The five-commit secret scan has zero findings. [Checks](m9-checks.json), exact staged source/PNG pins in m9-readiness.json and [earlier schema attempts](m9-earlier-attempts.json) make the boundary reviewable. The earlier audit failures assumed viewport/shared-stage report fields described every landing crop; accepted audit validates original Git PNG bytes/hash and independent decode/dimensions. No original evidence is removed.
 
 M9 remains unchecked until live publication proof. Native picker/clipboard/selection/shell fixture seams, optional PHP skip and existing platform/performance/focus limits remain. No user account, hosted Tack, real clipboard/selection/global keys, installer/signing or OS setting is used.
+
+
+## Verified M9 publication
+
+Milestone 418c99a1f3583d91e36b91520b6d20b8a7daed96 was fast-forward pushed directly to main with skip-ci. GitHub built-in Pages run [46023398176](https://github.com/tanzir71/nabbit/actions/runs/46023398176) succeeded. [Live proof](m9-live-check.json) verifies **103 source bodies**, M9 Done/M10 In progress and its screenshot link, the nested custom 404, and all **888 public PNG bodies** against the milestone commit. Published transfer is **419,367/500,000 bytes excluding fonts** (local 419,368). Git text comparisons normalize CRLF to LF; image bytes match exactly. One stale rebuild requested: **False**.
+
+[Deployment receipt](m9-deployment.json) retains Pages configuration/build and rechecks **879 source and 888 PNG pins** against published Git blobs. Repository workflow IDs remain **29048534241 and 29225324035**; all new runs are built-in dynamic Pages. M9 is checked after live proof in a separate skip-ci bookkeeping commit. Published history is not amended. V5.1 Clipboard island tab is next; all documented automated/provider/platform limits remain.
