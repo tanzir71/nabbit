@@ -786,7 +786,7 @@ Commit after every task (§0.1). Lines marked **MILESTONE** are tasks of their o
 - [x] **MILESTONE M8 — Tack sync.**
 - [x] V4.5 Editor (`19:182`), conflict sheet (`19:301`), sync state UI (`19:346`).
 - [x] V4.6 Quick capture (island Notes tab, Ctrl+Alt+N) with ported Tack parsing.
-- [ ] V4.7 Sticky windows (`14:531`) with persistence per card per monitor.
+- [x] V4.7 Sticky windows (`14:531`) with persistence per card per monitor.
 - [ ] V4.8 Notes acceptance §8.8 against the fake Tack (the real local Tack suite is optional); swap the landing notes visual to a real screenshot.
 - [ ] V4.9 Links and bookmarks (§8.9): Save link (clipboard row `45:568`, drop, Ctrl+Alt+N), Links filter (`45:452`), Import bookmarks (`45:362`) from Chromium JSON, Firefox places copy and HTML; acceptance in §8.9.
 - [ ] **MILESTONE M9 — Notes complete.**

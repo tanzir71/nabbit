@@ -12,6 +12,7 @@ import {
   type ReminderValue,
   type NoteCaptureRequest,
 } from "./api";
+import { stickyApi } from "./stickyApi";
 import { EditorIcon } from "./EditorIcon";
 import { editorAssets } from "./editorAssets";
 import { TackSettings } from "./TackSettings";
@@ -71,6 +72,9 @@ export function NoteEditor({
     [label, setLabel] = useState("");
   const [historyOpen, setHistoryOpen] = useState(false);
   const [taskOptions, setTaskOptions] = useState(false);
+  const [created, setCreated] = useState(false);
+  const creating = !!creation && !created;
+  const openingSticky = useRef(false);
   const readOnly = useNotesStore((s) => s.readOnly),
     currentScope = useNotesStore((s) => s.scope);
   const moved = !equal(currentScope, card.scope ?? null);
@@ -97,7 +101,7 @@ export function NoteEditor({
     (draft.kind === "bookmark" && draft.url.trim())
   );
   const dirty =
-    (!!creation && hasContent) || Object.keys(edits).length > 0 || reminderEdits.length > 0;
+    (creating && hasContent) || Object.keys(edits).length > 0 || reminderEdits.length > 0;
   const disabled = busy || readOnly || moved || !snapshot;
   const opening = useRef(card);
   const creationFocused = useRef(false);
@@ -159,7 +163,7 @@ export function NoteEditor({
     else close();
   };
   const save = async (extra: NotePatch = {}, closeAfter = true) => {
-    if (working.current || disabled || !snapshot || (creation && !hasContent)) return;
+    if (working.current || disabled || !snapshot || (creating && !hasContent)) return;
     working.current = true;
     setBusy(true);
     setError("");
@@ -167,32 +171,34 @@ export function NoteEditor({
       const changes = { ...edits, ...extra };
       // A reminder-only change still participates in the card's optimistic transaction.
       if (!Object.keys(changes).length) changes.title = draft.title;
-      const saved = creation
-        ? await notesApi.capture({
-            ...creation,
-            draft: {
-              ...creation.draft,
-              title: draft.title,
-              body: draft.body,
-              url: draft.url,
-              kind: draft.kind,
-              labels: draft.labels,
-              priority: draft.priority,
-              color: draft.color,
-            },
-            patch: {
-              ...creation.patch,
-              ...changes,
-              items: draft.items,
-              pinned: draft.pinned,
-              completed: draft.completed,
-              ...(draft.status ? { status: draft.status } : {}),
-            },
-            reminders: reminders.map((value) => ({ id: value.id, expectedToken: null, value })),
-          })
-        : await notesApi.saveEditor(snapshot.note, changes, reminderEdits);
+      const saved =
+        creating && creation
+          ? await notesApi.capture({
+              ...creation,
+              draft: {
+                ...creation.draft,
+                title: draft.title,
+                body: draft.body,
+                url: draft.url,
+                kind: draft.kind,
+                labels: draft.labels,
+                priority: draft.priority,
+                color: draft.color,
+              },
+              patch: {
+                ...creation.patch,
+                ...changes,
+                items: draft.items,
+                pinned: draft.pinned,
+                completed: draft.completed,
+                ...(draft.status ? { status: draft.status } : {}),
+              },
+              reminders: reminders.map((value) => ({ id: value.id, expectedToken: null, value })),
+            })
+          : await notesApi.saveEditor(snapshot.note, changes, reminderEdits);
       await useNotesStore.getState().refresh();
       if (alive.current) {
+        if (creation) setCreated(true);
         onSaved?.(saved);
         if (closeAfter) close();
         else {
@@ -204,6 +210,7 @@ export function NoteEditor({
           }
         }
       }
+      return saved;
     } catch {
       if (alive.current)
         setError(
@@ -211,6 +218,31 @@ export function NoteEditor({
         );
     } finally {
       working.current = false;
+      if (alive.current) setBusy(false);
+    }
+  };
+  const popOut = async () => {
+    if (
+      openingSticky.current ||
+      busy ||
+      moved ||
+      !snapshot ||
+      (creating && !hasContent) ||
+      (readOnly && (dirty || creating))
+    )
+      return;
+    openingSticky.current = true;
+    try {
+      const saved = dirty ? await save({}, false) : snapshot.note;
+      if (!saved || !alive.current) return;
+      setBusy(true);
+      await stickyApi.open(saved);
+      if (alive.current) close();
+    } catch {
+      if (alive.current)
+        setError("Your note is saved, but its sticky window could not be opened. Retry Pop out.");
+    } finally {
+      openingSticky.current = false;
       if (alive.current) setBusy(false);
     }
   };
@@ -280,7 +312,17 @@ export function NoteEditor({
             <Badge>{draft.kind[0].toUpperCase() + draft.kind.slice(1)}</Badge>
           </button>
           <span className="note-toolbar-spacer" />
-          <IconButton label="Pop out · coming soon" disabled>
+          <IconButton
+            label="Pop out note"
+            disabled={
+              busy ||
+              moved ||
+              !snapshot ||
+              (creating && !hasContent) ||
+              (readOnly && (dirty || creating))
+            }
+            onClick={() => void popOut()}
+          >
             <EditorIcon name="popOut" />
           </IconButton>
           <IconButton
@@ -682,13 +724,13 @@ export function NoteEditor({
               </select>
             </label>
           ) : null}
-          {dirty || creation ? (
+          {dirty || creating ? (
             <div className="note-save-actions">
               <span role="status">Unsaved changes</span>
               <Button
                 variant="primary"
                 size="sm"
-                disabled={disabled || (!!creation && !hasContent)}
+                disabled={disabled || (creating && !hasContent)}
                 onClick={() => void save()}
               >
                 Save note

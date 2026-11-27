@@ -1,18 +1,286 @@
-html[data-surface="sticky"] body {
+html[data-surface="sticky"],
+html[data-surface="sticky"] body,
+html[data-surface="sticky"] #root {
   min-width: 220px;
+  width: 100%;
+  height: 100%;
+  min-height: 100%;
+  background: transparent;
 }
 .sticky-surface {
+  position: relative;
   display: flex;
   flex-direction: column;
-  gap: 8px;
+  width: 100%;
+  height: 100dvh;
   min-width: 220px;
-  min-height: 100vh;
-  padding: 16px;
+  overflow: hidden;
   border: 1px solid var(--border-subtle);
   border-radius: 12px;
   background: var(--note-default);
   color: var(--text-primary);
   box-shadow:
-    0 16px 48px -8px rgb(0 0 0 / 0.14),
-    0 1px 2px rgb(0 0 0 / 0.06);
+    0 1px 2px #0000000f,
+    0 16px 48px -8px #00000024;
+}
+.sticky-surface[data-color="green"] {
+  background: var(--note-green);
+}
+.sticky-surface[data-color="blue"] {
+  background: var(--note-blue);
+}
+.sticky-surface[data-color="purple"] {
+  background: var(--note-purple);
+}
+.sticky-surface[data-color="pink"] {
+  background: var(--note-pink);
+}
+.sticky-surface[data-color="gray"] {
+  background: var(--note-gray);
+}
+.sticky-titlebar {
+  display: flex;
+  align-items: center;
+  flex: none;
+  gap: 2px;
+  height: 34px;
+  padding: 0 4px 0 6px;
+  user-select: none;
+}
+.sticky-grip {
+  display: flex;
+  align-items: center;
+  width: 14px;
+  height: 14px;
+  color: var(--text-tertiary);
+  cursor: move;
+}
+.sticky-spacer {
+  flex: 1;
+  min-width: 0;
+}
+.sticky-titlebar .n-icon-button {
+  width: 28px;
+  height: 28px;
+  padding: 0;
+  border-radius: 8px;
+  color: var(--text-secondary);
+  background: transparent;
+}
+.sticky-titlebar .n-icon-button.is-active {
+  background: rgb(0 0 0/0.06);
+}
+[data-theme="dark"] .sticky-titlebar .n-icon-button.is-active {
+  background: rgb(255 255 255/0.08);
+}
+.sticky-scroll {
+  flex: 1;
+  min-height: 0;
+  overflow: auto;
+}
+.sticky-content-inner {
+  padding: 0 16px 12px;
+}
+.sticky-card.n-note-card {
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+  padding: 0;
+  border: 0;
+  border-radius: 0;
+  box-shadow: none;
+  background: transparent;
+}
+.sticky-card .n-note-title {
+  font: 600 14px/20px var(--font-sans);
+  letter-spacing: -0.1px;
+}
+.sticky-card textarea {
+  display: block;
+  resize: none;
+  width: 100%;
+  min-width: 0;
+  border: 0;
+  padding: 0;
+  margin: 0;
+  color: inherit;
+  background: transparent;
+  outline: 0;
+  max-height: 600px;
+}
+.sticky-card textarea:focus-visible {
+  outline: 2px solid var(--action-primary);
+  outline-offset: 2px;
+  border-radius: 3px;
+}
+.sticky-heading {
+  font: 600 14px/20px var(--font-sans);
+  letter-spacing: -0.1px;
+  max-height: 80px !important;
+}
+.sticky-body-input {
+  font: 400 13px/18px var(--font-sans);
+  color: var(--text-secondary) !important;
+}
+.sticky-card textarea::placeholder {
+  color: var(--text-secondary);
+}
+.sticky-card .n-check-row {
+  align-items: center;
+  gap: 8px;
+  font: 400 13px/18px var(--font-sans);
+  position: relative;
+}
+.sticky-card .n-check-row > textarea {
+  font: inherit;
+  padding-right: 18px;
+  max-height: 180px;
+}
+.sticky-card .n-check-row.is-checked > textarea {
+  color: var(--text-secondary);
+  text-decoration: line-through;
+}
+.sticky-card .n-check-row > .n-icon-button {
+  position: absolute;
+  right: -8px;
+  top: -5px;
+  opacity: 0;
+  color: var(--text-secondary);
+}
+.sticky-card .n-check-row:hover > .n-icon-button,
+.sticky-card .n-check-row:focus-within > .n-icon-button {
+  opacity: 1;
+}
+.sticky-card .n-check-control,
+.sticky-card .n-check-control input,
+.sticky-card .n-check-box {
+  width: 16px;
+  height: 16px;
+}
+.sticky-card .n-check-box {
+  border-width: 1.5px;
+  border-radius: 4px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+.sticky-add.n-button {
+  height: 18px;
+  min-height: 18px;
+  justify-content: flex-start;
+  padding: 0;
+  gap: 8px;
+  font: 400 13px/18px var(--font-sans);
+  color: var(--text-secondary);
+}
+.sticky-footer {
+  flex: none;
+  padding: 0 16px 12px;
+  min-width: 0;
+}
+.sticky-footer .note-sync-title {
+  gap: 6px;
+  min-width: 0;
+}
+.sticky-footer .note-sync-title strong,
+.sticky-caption {
+  font: 400 12px/16px var(--font-sans);
+  color: var(--text-secondary);
+}
+.sticky-footer .note-sync-title > .n-asset {
+  color: var(--text-secondary);
+  flex: none;
+}
+.sticky-footer .note-sync-detail {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  overflow: hidden;
+  clip: rect(0, 0, 0, 0);
+  white-space: nowrap;
+}
+.sticky-caption {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+}
+.sticky-footer .note-sync-title strong {
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+.sticky-menu {
+  position: absolute;
+  right: 5px;
+  top: 32px;
+  z-index: 2;
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+  width: min(220px, calc(100% - 10px));
+  max-height: calc(100dvh - 38px);
+  overflow: auto;
+  padding: 10px;
+  border: 1px solid var(--border-strong);
+  border-radius: 10px;
+  background: var(--bg-surface);
+  box-shadow: var(--shadow-popover);
+  font: 400 12px/16px var(--font-sans);
+}
+.sticky-menu label {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 6px;
+}
+.sticky-menu label > span {
+  margin-left: auto;
+}
+.sticky-menu input,
+.sticky-menu select {
+  width: 100%;
+  min-width: 0;
+}
+.sticky-menu .n-button {
+  justify-content: flex-start;
+}
+.sticky-messages {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+  padding-top: 8px;
+  font: 400 12px/16px var(--font-sans);
+}
+.sticky-messages p {
+  margin: 0;
+}
+.sticky-recovery {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 6px;
+}
+.sticky-empty {
+  font: 400 13px/18px var(--font-sans);
+}
+.sticky-decision {
+  position: absolute;
+  inset: 4px;
+  z-index: 3;
+  overflow: auto;
+  padding: 12px;
+  background: var(--bg-surface);
+  border: 1px solid var(--border-strong);
+  border-radius: 10px;
+  font: 400 13px/18px var(--font-sans);
+}
+.sticky-surface:has(.sticky-decision) > :not(.sticky-decision) {
+  visibility: hidden;
+}
+.sticky-decision p {
+  margin: 0 0 12px;
+}
+.sticky-decision > div {
+  display: flex;
+  gap: 6px;
+  flex-wrap: wrap;
 }

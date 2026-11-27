@@ -1,0 +1,143 @@
+{
+  "allRequiredChecksPassed": true,
+  "checks": [
+    {
+      "name": "npm-verify",
+      "command": "npm run verify",
+      "exitCode": 0,
+      "file": "v47-npm-verify.txt",
+      "canonicalSha256": "a6908a6b1b8bcada8b420ac2f089399026ebeb87da6b9aa5e1aaef2ea79ec4a8",
+      "originalArchive": "v47-npm-verify.original.txt.gz",
+      "originalSha256": "6290bf741c8cd03161654a04b26b80eb73a23f6a549a095e65e79a69866832f2"
+    },
+    {
+      "name": "fmt",
+      "command": "cargo fmt --manifest-path src-tauri/Cargo.toml --check",
+      "exitCode": 0,
+      "file": "v47-fmt.txt",
+      "canonicalSha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "originalArchive": "v47-fmt.original.txt.gz",
+      "originalSha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "name": "clippy",
+      "command": "cargo clippy --manifest-path src-tauri/Cargo.toml --all-targets -- -D warnings",
+      "exitCode": 0,
+      "file": "v47-clippy.txt",
+      "canonicalSha256": "61b9b4ed7aa3c9526d4f3b1ac0c0c0359fe314e56ba96d1c1d1db45b1db46435",
+      "originalArchive": "v47-clippy.original.txt.gz",
+      "originalSha256": "48ce5e72695b11220137a51c91e8691fe41de228e14b70b9afa17e5245f50758"
+    },
+    {
+      "name": "spike-clippy",
+      "command": "cargo clippy --manifest-path src-tauri/Cargo.toml --all-targets --features island-spike -- -D warnings",
+      "exitCode": 0,
+      "file": "v47-spike-clippy.txt",
+      "canonicalSha256": "20d801174d499a3d88fc17d7f4922edc5b1d1fb078aaa00c735798949ba3aa11",
+      "originalArchive": "v47-spike-clippy.original.txt.gz",
+      "originalSha256": "77a07f9a29ce2a0ca6a7e3733ae3bd631d53e2b716423c866c02e0f078fab432"
+    },
+    {
+      "name": "rust-tests",
+      "command": "cargo test --manifest-path src-tauri/Cargo.toml -- --test-threads=1",
+      "exitCode": 0,
+      "file": "v47-rust-tests.txt",
+      "canonicalSha256": "c07ae4d1d5f45fd78bcb2a18644d1c7fa43ed2849b2ccd038ee952ff84586f68",
+      "originalArchive": "v47-rust-tests.original.txt.gz",
+      "originalSha256": "e41cf3359193a91ce33c68909f003b13e3c7172de47054d372ca4202377cd5d5"
+    },
+    {
+      "name": "release",
+      "command": "cargo build --manifest-path src-tauri/Cargo.toml --release --features custom-protocol",
+      "exitCode": 0,
+      "file": "v47-release.txt",
+      "canonicalSha256": "45bc51fa0d922e80e31bf71762be15c1657847470fa9917dd584b6cd3fadab24",
+      "originalArchive": "v47-release.original.txt.gz",
+      "originalSha256": "d9943de2972ca88a77d4dabbc6ad7eabd48c99a8e5d75336a2228ea4d0801afd"
+    },
+    {
+      "name": "native",
+      "command": "node scripts/verify-native-sticky.mjs v47-accepted",
+      "exitCode": 0,
+      "file": "v47-native.txt",
+      "canonicalSha256": "efa282217ce7e36ee35cda522aa45642823ebefac935d3e5ecfe1ee9301b253a",
+      "originalArchive": "v47-native.original.txt.gz",
+      "originalSha256": "da6134fb5326e3217d807d1e06880ec48e1d70203a90969fed38748b19eabd2d"
+    },
+    {
+      "name": "screenshots",
+      "command": "node scripts/verify-sticky-screenshots.mjs v47-delivery",
+      "exitCode": 0,
+      "file": "v47-screenshots.txt",
+      "canonicalSha256": "2effabcd6990c98d799bdeff986ebdc0a083d0c32bffb2e0abb70ed65d73dff5",
+      "originalArchive": "v47-screenshots.original.txt.gz",
+      "originalSha256": "c0652a3de14fa9a00da16fad64a8c57ac04feb04a165fab4dacc2ffc871b86dd"
+    },
+    {
+      "name": "flow",
+      "command": "node scripts/verify-note-editor-flow.mjs v47-accepted",
+      "exitCode": 0,
+      "file": "v47-flow.txt",
+      "canonicalSha256": "2d78622a902bbe72661dae0c61da3520b5dfbde0b4920f131a81d34bda70f163",
+      "originalArchive": "v47-flow.original.txt.gz",
+      "originalSha256": "84ca1648ed31373a1a5f1b15f87648e18dd69d38470572cbd2769c6e798f1821"
+    },
+    {
+      "name": "negative-harness",
+      "command": "node scripts/screenshots/verify-failures.mjs --milestone M9 --prefix v47-final",
+      "exitCode": 0,
+      "file": "v47-negative-harness.txt",
+      "canonicalSha256": "d4c73b693e0c0792965ee71de68d23b0d06d5114b11e6178dbf4dd4d48a21c6b",
+      "originalArchive": "v47-negative-harness.original.txt.gz",
+      "originalSha256": "744efdb66da95ddf2dcdc44aab2c28696f3cb004c2926241bd7e588d960294e8"
+    },
+    {
+      "name": "lint",
+      "command": "npx eslint .",
+      "exitCode": 0,
+      "file": "v47-lint.txt",
+      "canonicalSha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "originalArchive": "v47-lint.original.txt.gz",
+      "originalSha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "name": "post-report-lint",
+      "command": "npx eslint .",
+      "exitCode": 0,
+      "file": "v47-post-report-lint.txt",
+      "canonicalSha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "originalArchive": "v47-post-report-lint.original.txt.gz",
+      "originalSha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    }
+  ],
+  "rust": [
+    {
+      "log": ".tools/v47-fmt-complete.log",
+      "exitCode": 0,
+      "name": "fmt"
+    },
+    {
+      "log": ".tools/v47-clippy-complete.log",
+      "exitCode": 0,
+      "name": "clippy"
+    },
+    {
+      "log": ".tools/v47-spike-clippy-complete.log",
+      "exitCode": 0,
+      "name": "spike-clippy"
+    },
+    {
+      "log": ".tools/v47-rust-complete.log",
+      "exitCode": 0,
+      "name": "rust-tests"
+    }
+  ],
+  "frontendTests": 414,
+  "frontendFiles": 34,
+  "rustPassed": 229,
+  "rustIgnored": 3,
+  "fakeStickyRoundtrip": "tack::tests::sync_tests::sticky_guarded_edits_roundtrip_then_remote_trash_preserves_draft_and_copy_receipt",
+  "nativeCases": 6,
+  "browserToRustRegressionCases": 9,
+  "buildManifestSha256": "1aae1158834f78885ae30f3a9707fada5bcc3c4bcb44e412bc871cb5c6b0ab27"
+}

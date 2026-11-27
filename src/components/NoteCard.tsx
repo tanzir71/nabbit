@@ -30,6 +30,10 @@ type NoteCardProps = Content & {
   id?: string;
   titlePrefix?: ReactNode;
   checkIcon?: (checked: boolean) => ReactNode;
+  titleEditor?: ReactNode;
+  bodyEditor?: ReactNode;
+  itemEditor?: (item: ChecklistItem, index: number) => ReactNode;
+  trailing?: ReactNode;
 };
 export function NoteCard(props: NoteCardProps) {
   const {
@@ -53,20 +57,24 @@ export function NoteCard(props: NoteCardProps) {
       data-color={color}
       data-kind={props.kind}
     >
-      <h3 className="n-note-title">
-        {onOpen ? (
-          <button type="button" className="n-note-open" onClick={onOpen}>
-            {props.titlePrefix}
-            {title}
-          </button>
-        ) : (
-          <>
-            {props.titlePrefix}
-            {title}
-          </>
-        )}
-      </h3>
-      {props.kind === "note" && <p className="n-note-body">{props.body}</p>}
+      {props.titleEditor ? (
+        <div className="n-note-title">{props.titleEditor}</div>
+      ) : (
+        <h3 className="n-note-title">
+          {onOpen ? (
+            <button type="button" className="n-note-open" onClick={onOpen}>
+              {props.titlePrefix}
+              {title}
+            </button>
+          ) : (
+            <>
+              {props.titlePrefix}
+              {title}
+            </>
+          )}
+        </h3>
+      )}
+      {props.bodyEditor ?? (props.kind === "note" && <p className="n-note-body">{props.body}</p>)}
       {props.kind === "bookmark" && (
         <p className="n-note-url" title={props.url}>
           {props.url
@@ -86,24 +94,31 @@ export function NoteCard(props: NoteCardProps) {
         </p>
       )}
       {(props.kind === "checklist" || props.kind === "task") &&
-        props.items.map((item) => (
-          <label key={item.id} className={cn("n-check-row", item.checked && "is-checked")}>
-            <span className="n-check-control">
-              <input
-                type="checkbox"
-                checked={item.checked}
-                disabled={item.disabled || !props.onItemChange}
-                onChange={(event) => props.onItemChange?.(item.id, event.target.checked)}
-              />
-              <span className="n-check-box">
-                {props.checkIcon
-                  ? props.checkIcon(item.checked)
-                  : item.checked && <DesignIcon name="check" />}
+        props.items.map((item, index) => {
+          const Row = props.itemEditor ? "div" : "label";
+          return (
+            <Row key={item.id} className={cn("n-check-row", item.checked && "is-checked")}>
+              <span className="n-check-control">
+                <input
+                  type="checkbox"
+                  checked={item.checked}
+                  aria-label={
+                    props.itemEditor ? `Complete ${item.text || `item ${index + 1}`}` : undefined
+                  }
+                  disabled={item.disabled || !props.onItemChange}
+                  onChange={(event) => props.onItemChange?.(item.id, event.target.checked)}
+                />
+                <span className="n-check-box">
+                  {props.checkIcon
+                    ? props.checkIcon(item.checked)
+                    : item.checked && <DesignIcon name="check" />}
+                </span>
               </span>
-            </span>
-            <span>{item.text}</span>
-          </label>
-        ))}
+              {props.itemEditor ? props.itemEditor(item, index) : <span>{item.text}</span>}
+            </Row>
+          );
+        })}
+      {props.trailing}
       {(labels.length > 0 || reference || status) && (
         <div className="n-note-meta">
           {labels.map((item) => (

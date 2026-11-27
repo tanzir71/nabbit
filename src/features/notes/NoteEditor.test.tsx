@@ -9,6 +9,8 @@ import { notesApi, type NoteEditorData } from "./api";
 import { tackApi, type TackConflict, type TackSyncSnapshot } from "./tackApi";
 import { useNotesStore } from "../../store/notesStore";
 import type { StoredNote } from "./types";
+import { stickyApi } from "./stickyApi";
+vi.mock("./stickyApi", () => ({ stickyApi: { open: vi.fn() } }));
 vi.mock("./api", () => ({ notesApi: { editor: vi.fn(), saveEditor: vi.fn(), state: vi.fn() } }));
 vi.mock("./TackSettings", () => ({
   TackSettings: () => <span>Local only · Saved on this device</span>,
@@ -90,6 +92,40 @@ async function open() {
   return { close, user: userEvent.setup(), ui: within(screen.getByRole("dialog")) };
 }
 describe("Notes editor", () => {
+  it("opens a clean persisted note in a sticky and closes only after native success", async () => {
+    vi.mocked(stickyApi.open).mockResolvedValue("sticky-owned");
+    const { user, close, ui } = await open();
+    await user.click(ui.getByRole("button", { name: "Pop out note" }));
+    await waitFor(() => expect(close).toHaveBeenCalledOnce());
+    expect(stickyApi.open).toHaveBeenCalledWith(card());
+    expect(notesApi.saveEditor).not.toHaveBeenCalled();
+  });
+  it("saves editor changes before popping out and keeps the saved note when creation fails", async () => {
+    const saved = { ...card(), editToken: "after-save", value: { ...card().value, body: "Draft" } };
+    vi.mocked(notesApi.saveEditor).mockImplementation(async () => {
+      vi.mocked(notesApi.editor).mockResolvedValue({ ...snapshot(), note: saved });
+      return saved;
+    });
+    vi.mocked(stickyApi.open).mockRejectedValue(new Error("untrusted native error"));
+    const { user, close, ui } = await open();
+    await user.clear(ui.getByLabelText("Note body"));
+    await user.type(ui.getByLabelText("Note body"), "Draft");
+    await user.click(ui.getByRole("button", { name: "Pop out note" }));
+    await waitFor(() => expect(stickyApi.open).toHaveBeenCalledWith(saved));
+    expect(notesApi.saveEditor).toHaveBeenCalledBefore(vi.mocked(stickyApi.open));
+    expect(close).not.toHaveBeenCalled();
+    expect(ui.getByLabelText("Note body")).toHaveValue("Draft");
+    expect(ui.getByRole("alert")).not.toHaveTextContent("untrusted native error");
+  });
+  it("leaves a failed editor save open without creating a stale sticky", async () => {
+    vi.mocked(notesApi.saveEditor).mockRejectedValue(new Error("save failed"));
+    const { user, close, ui } = await open();
+    await user.type(ui.getByLabelText("Note body"), " more");
+    await user.click(ui.getByRole("button", { name: "Pop out note" }));
+    await waitFor(() => expect(ui.getByRole("alert")).toHaveTextContent("Your draft"));
+    expect(stickyApi.open).not.toHaveBeenCalled();
+    expect(close).not.toHaveBeenCalled();
+  });
   it("submits changed fields with stable checklist IDs and original scope/token", async () => {
     const { user, close, ui } = await open();
     await user.clear(ui.getByLabelText("Checklist item 1"));

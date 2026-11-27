@@ -8,6 +8,7 @@ mod island;
 mod notes;
 mod pins;
 mod retention;
+mod sticky;
 pub mod tack;
 #[cfg(windows)]
 mod taskbar_theme;
@@ -79,15 +80,21 @@ pub fn run() {
         }
         context
     };
-    tauri::Builder::default()
+    let builder = tauri::Builder::default()
+        .manage(sticky::Service::default())
         .manage(download::sheets::Service::default())
-        .manage(tack::service::Service::default())
-        .plugin(tauri_plugin_single_instance::init(|app, args, _cwd| {
+        .manage(tack::service::Service::default());
+    let builder = if sticky::acceptance_enabled() {
+        builder
+    } else {
+        builder.plugin(tauri_plugin_single_instance::init(|app, args, _cwd| {
             // The plugin's deep-link integration already delivered configured scheme arguments.
             if !args.iter().any(|arg| arg.starts_with("nabbit:")) {
                 let _ = show_popover(app);
             }
         }))
+    };
+    builder
         .plugin(tauri_plugin_deep_link::init())
         .plugin(tauri_plugin_shell::init())
         .plugin(tauri_plugin_clipboard_manager::init())
@@ -121,6 +128,18 @@ pub fn run() {
             commands::notes::get_note_editor,
             commands::notes::save_note_editor,
             commands::notes::create_note_card,
+            sticky::open_sticky,
+            sticky::sticky_snapshot,
+            sticky::sticky_ready,
+            sticky::sticky_configure,
+            sticky::sticky_drag,
+            sticky::sticky_checkpoint,
+            sticky::sticky_clear_checkpoint,
+            sticky::sticky_save,
+            sticky::sticky_reload,
+            sticky::sticky_close,
+            sticky::sticky_leave,
+            sticky::sticky_save_as_new,
             commands::notes::capture_note,
             commands::notes::notes_open,
             commands::notes::take_notes_intent,
@@ -243,7 +262,10 @@ pub fn run() {
             setup_tray(app.handle())?;
             #[cfg(all(windows, feature = "island-spike"))]
             island_spike::open_if_enabled(app.handle(), shutdown.clone())?;
-            if !island::acceptance_session() && !download::acceptance::injected_clipboard() {
+            if !island::acceptance_session()
+                && !download::acceptance::injected_clipboard()
+                && !sticky::acceptance_enabled()
+            {
                 clipboard::watcher::spawn_clipboard_watcher(
                     app.handle().clone(),
                     db.clone(),
@@ -271,14 +293,18 @@ pub fn run() {
             if configure_os_integration
                 && !island::acceptance_session()
                 && !download::acceptance::enabled()
+                && !sticky::acceptance_enabled()
             {
                 apply_runtime_settings(app.handle(), &state, &settings);
             }
-            state.engine.start(app.handle().clone());
-            state.downloads.start_deferred();
-            state
-                .capture
-                .start(app.handle().clone(), state.app_data_dir.clone());
+            sticky::restore(app.handle());
+            if !sticky::acceptance_enabled() {
+                state.engine.start(app.handle().clone());
+                state.downloads.start_deferred();
+                state
+                    .capture
+                    .start(app.handle().clone(), state.app_data_dir.clone());
+            }
             let capture_app = app.handle().clone();
             app.deep_link().on_open_url(move |event| {
                 for url in event.urls() {
@@ -296,13 +322,13 @@ pub fn run() {
             Ok(())
         })
         .on_window_event(|window, event| {
+            sticky::event(window, event);
             if let Some(sync) = window.app_handle().try_state::<tack::service::Service>() {
+                let closing = matches!(event, tauri::WindowEvent::Destroyed)
+                    || (matches!(event, tauri::WindowEvent::CloseRequested { .. })
+                        && !window.label().starts_with("sticky-"));
                 let open = window.app_handle().webview_windows().values().any(|w| {
-                    !(matches!(
-                        event,
-                        tauri::WindowEvent::Destroyed | tauri::WindowEvent::CloseRequested { .. }
-                    ) && w.label() == window.label())
-                        && w.is_visible().unwrap_or(false)
+                    !(closing && w.label() == window.label()) && w.is_visible().unwrap_or(false)
                 });
                 sync.visibility(open, matches!(event, tauri::WindowEvent::Focused(true)));
             }
@@ -396,6 +422,7 @@ fn spawn_acceptance_automation(app: AppHandle, state: AppState) {
 
             let mut last_clipboard_url = None;
             while !shutdown.load(Ordering::Relaxed) {
+                sticky::acceptance::process(&app, &command_dir);
                 download::acceptance::process(&app, &state, &command_dir, &mut last_clipboard_url);
                 if clear_request.exists() {
                     let result = state

@@ -10,7 +10,7 @@ use crate::{
 use serde_json::Value;
 use tauri::{Emitter, Manager};
 
-fn publish(app: &tauri::AppHandle) {
+pub(crate) fn publish(app: &tauri::AppHandle) {
     if let Some(sync) = app.try_state::<Service>() {
         sync.edited();
     } else {

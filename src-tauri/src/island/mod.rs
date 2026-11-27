@@ -37,6 +37,8 @@ pub mod surface;
 pub mod visibility;
 
 #[cfg(windows)]
+pub(crate) use native::real_desktop;
+#[cfg(windows)]
 pub use native::{start, Manager};
 
 #[tauri::command]

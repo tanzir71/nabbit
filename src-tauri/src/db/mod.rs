@@ -166,6 +166,7 @@ impl Database {
             )?;
         }
         crate::notes::sync_store::migrate(&mut conn)?;
+        crate::sticky::store::migrate(&conn)?;
         Ok(())
     }
 

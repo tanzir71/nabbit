@@ -1,4 +1,4 @@
-use tauri::{AppHandle, Manager};
+use tauri::{AppHandle, Emitter, Manager};
 
 use crate::{
     db::models::{AppSettings, StorageStats},
@@ -106,6 +106,9 @@ pub fn save_settings(
         && !crate::island::acceptance_session()
     {
         crate::apply_runtime_settings(&app, &state, &saved);
+    }
+    if previous.theme != saved.theme {
+        let _ = app.emit("nabbit://theme-preference", &saved.theme);
     }
     Ok(saved)
 }

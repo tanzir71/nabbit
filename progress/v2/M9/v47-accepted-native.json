@@ -1,0 +1,273 @@
+{
+  "passed": true,
+  "png": {
+    "file": "v47-accepted-native.png",
+    "bytes": 10842,
+    "sha256": "c7e5725ca781565cec5e046c327aef56281c250eecb73dbcb1f4b915d542aebe"
+  },
+  "executableSha256": "94c402f4bac5642f56cd960d2807b59f36cc62a636db3c5043ce01b0375da2ca",
+  "buildManifestSha256": "1aae1158834f78885ae30f3a9707fada5bcc3c4bcb44e412bc871cb5c6b0ab27",
+  "checks": [
+    "One native frameless resizable window per scoped card; duplicate open reuses it; default pin and alpha are real HWND attributes; acceptance opening does not steal focus",
+    "Production sticky React entry edits and autosaves through real Tauri IPC and SQLite; completed save clears its checkpoint",
+    "Saving the isolated app theme broadcasts to both real sticky webviews; the prior app preference is restored without changing Windows theme settings",
+    "Pin off restores normal z-order; native alpha60% is153; physical move/resize persists logical per-card profile; closing another card leaves the first open",
+    "Owned process restart restores the open card, body, position, size, unpinned z-order and alpha; explicitly closed card stays closed; restore does not focus",
+    "An old window-instance command is rejected after restart; pin and100% opacity are reversible; explicit close destroys the owned HWND"
+  ],
+  "snapshots": [
+    {
+      "clientInsets": {
+        "bottom": 8,
+        "left": 8,
+        "right": 8,
+        "top": 1
+      },
+      "decorated": false,
+      "label": "sticky-f222b339c3741e067d8681b5c70a95a5b2cff5cb689844b4d446ddcd1039a647",
+      "native": {
+        "alpha": 153,
+        "alphaFlags": 2,
+        "alphaOk": true,
+        "extendedStyle": 786704,
+        "foreground": false,
+        "noActivate": false,
+        "resizable": true,
+        "toolWindow": false,
+        "topmost": false,
+        "windowStyle": 349110272
+      },
+      "rect": {
+        "height": 260,
+        "width": 480,
+        "x": 70,
+        "y": 90
+      },
+      "scale": 1,
+      "snapshot": {
+        "binding": {
+          "cardId": "52ef0cbd-b19c-467b-ab0e-6a497ba90785",
+          "instance": "79b7ca16-7289-4b1b-88a8-0c7dcf9b328e",
+          "scope": null
+        },
+        "content": {
+          "checkpoint": null,
+          "currentScope": null,
+          "note": {
+            "localOnly": true,
+            "scope": null,
+            "value": {
+              "archived": false,
+              "assigneeId": null,
+              "attachmentIds": [],
+              "body": "Saved via actual native IPC — বাংলা",
+              "color": "green",
+              "completed": false,
+              "createdAt": "2026-11-27T12:30:46.386Z",
+              "doneWhen": "",
+              "frontmatter": "",
+              "id": "52ef0cbd-b19c-467b-ab0e-6a497ba90785",
+              "items": [],
+              "kind": "note",
+              "labels": [],
+              "pinned": false,
+              "priority": "inbox",
+              "projectId": null,
+              "rank": "a052ef0cbdb19c467bab0e6a497ba90785V",
+              "ref": "",
+              "revision": 1,
+              "sourceId": null,
+              "title": "Sticky native acceptance",
+              "trashedAt": null,
+              "updatedAt": "2026-11-27T12:30:48.522Z",
+              "url": ""
+            }
+          },
+          "readOnly": false,
+          "status": "ready"
+        },
+        "monitors": [
+          {
+            "bounds": {
+              "height": 1080,
+              "width": 1920,
+              "x": 0,
+              "y": 0
+            },
+            "id": "f9b693a44ada575e",
+            "name": "Generic PnP Monitor",
+            "primary": true,
+            "scaleFactor": 1,
+            "workArea": {
+              "height": 1032,
+              "width": 1920,
+              "x": 0,
+              "y": 0
+            }
+          },
+          {
+            "bounds": {
+              "height": 1080,
+              "width": 1920,
+              "x": -1920,
+              "y": 0
+            },
+            "id": "c4e1dc41d03a548c",
+            "name": "Generic PnP Monitor",
+            "primary": false,
+            "scaleFactor": 1,
+            "workArea": {
+              "height": 1032,
+              "width": 1920,
+              "x": -1920,
+              "y": 0
+            }
+          }
+        ],
+        "nativeOpacity": true,
+        "profile": {
+          "height": 260,
+          "monitor": "f9b693a44ada575e",
+          "opacity": 60,
+          "pinned": false,
+          "width": 480,
+          "x": 70,
+          "y": 90
+        },
+        "theme": "system"
+      },
+      "visible": true
+    },
+    {
+      "clientInsets": {
+        "bottom": 8,
+        "left": 8,
+        "right": 8,
+        "top": 1
+      },
+      "decorated": false,
+      "label": "sticky-f222b339c3741e067d8681b5c70a95a5b2cff5cb689844b4d446ddcd1039a647",
+      "native": {
+        "alpha": 153,
+        "alphaFlags": 2,
+        "alphaOk": true,
+        "extendedStyle": 786704,
+        "foreground": false,
+        "noActivate": false,
+        "resizable": true,
+        "toolWindow": false,
+        "topmost": false,
+        "windowStyle": 349110272
+      },
+      "rect": {
+        "height": 260,
+        "width": 480,
+        "x": 70,
+        "y": 90
+      },
+      "scale": 1,
+      "snapshot": {
+        "binding": {
+          "cardId": "52ef0cbd-b19c-467b-ab0e-6a497ba90785",
+          "instance": "8e070fee-d7fd-4574-bb9d-d045d4db5291",
+          "scope": null
+        },
+        "content": {
+          "checkpoint": null,
+          "currentScope": null,
+          "note": {
+            "localOnly": true,
+            "scope": null,
+            "value": {
+              "archived": false,
+              "assigneeId": null,
+              "attachmentIds": [],
+              "body": "Saved via actual native IPC — বাংলা",
+              "color": "green",
+              "completed": false,
+              "createdAt": "2026-11-27T12:30:46.386Z",
+              "doneWhen": "",
+              "frontmatter": "",
+              "id": "52ef0cbd-b19c-467b-ab0e-6a497ba90785",
+              "items": [],
+              "kind": "note",
+              "labels": [],
+              "pinned": false,
+              "priority": "inbox",
+              "projectId": null,
+              "rank": "a052ef0cbdb19c467bab0e6a497ba90785V",
+              "ref": "",
+              "revision": 1,
+              "sourceId": null,
+              "title": "Sticky native acceptance",
+              "trashedAt": null,
+              "updatedAt": "2026-11-27T12:30:48.522Z",
+              "url": ""
+            }
+          },
+          "readOnly": false,
+          "status": "ready"
+        },
+        "monitors": [
+          {
+            "bounds": {
+              "height": 1080,
+              "width": 1920,
+              "x": 0,
+              "y": 0
+            },
+            "id": "f9b693a44ada575e",
+            "name": "Generic PnP Monitor",
+            "primary": true,
+            "scaleFactor": 1,
+            "workArea": {
+              "height": 1032,
+              "width": 1920,
+              "x": 0,
+              "y": 0
+            }
+          },
+          {
+            "bounds": {
+              "height": 1080,
+              "width": 1920,
+              "x": -1920,
+              "y": 0
+            },
+            "id": "c4e1dc41d03a548c",
+            "name": "Generic PnP Monitor",
+            "primary": false,
+            "scaleFactor": 1,
+            "workArea": {
+              "height": 1032,
+              "width": 1920,
+              "x": -1920,
+              "y": 0
+            }
+          }
+        ],
+        "nativeOpacity": true,
+        "profile": {
+          "height": 260,
+          "monitor": "f9b693a44ada575e",
+          "opacity": 60,
+          "pinned": false,
+          "width": 480,
+          "x": 70,
+          "y": 90
+        },
+        "theme": "system"
+      },
+      "visible": true
+    }
+  ],
+  "isolatedProfiles": true,
+  "realTauriIpc": true,
+  "realWindowsHwnd": true,
+  "osDisplaySettingsChanged": false,
+  "globalInputInjected": false,
+  "realClipboardRead": false,
+  "remoteTackUsed": false,
+  "performanceClaim": false,
+  "omittedOptimisticEditTokens": true
+}

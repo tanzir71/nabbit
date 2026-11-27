@@ -11,7 +11,26 @@ export async function auditFont(page, selector, family) {
     const { root } = await cdp.send("DOM.getDocument");
     const { nodeId } = await cdp.send("DOM.querySelector", { nodeId: root.nodeId, selector });
     assert(nodeId, `Missing font audit node ${selector}`);
-    const { fonts } = await cdp.send("CSS.getPlatformFontsForNode", { nodeId });
+    let { fonts } = await cdp.send("CSS.getPlatformFontsForNode", { nodeId });
+    // Chromium paints form-control glyphs in its user-agent shadow tree.
+    // Inspect those actual nodes instead of accepting a computed family name.
+    if (!fonts.length) {
+      const { node } = await cdp.send("DOM.describeNode", { nodeId, depth: -1, pierce: true });
+      if (["INPUT", "TEXTAREA"].includes(node.nodeName)) {
+        const visit = async (item) => {
+          const { nodeIds } = await cdp.send("DOM.pushNodesByBackendIdsToFrontend", {
+            backendNodeIds: [item.backendNodeId],
+          });
+          const result = await cdp.send("CSS.getPlatformFontsForNode", {
+            nodeId: nodeIds[0],
+          });
+          fonts.push(...result.fonts);
+          for (const child of [...(item.children ?? []), ...(item.shadowRoots ?? [])])
+            await visit(child);
+        };
+        for (const shadow of node.shadowRoots ?? []) await visit(shadow);
+      }
+    }
     assert(fonts.length > 0, `${selector}: no rendered glyphs`);
     for (const font of fonts) {
       assert.equal(font.familyName, family, `${selector}: fallback face`);

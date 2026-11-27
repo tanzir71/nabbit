@@ -104,6 +104,94 @@ fn server_edit(client: &mut Client, id: &str, patch: Value) {
 }
 
 #[test]
+fn sticky_guarded_edits_roundtrip_then_remote_trash_preserves_draft_and_copy_receipt() {
+    use crate::notes::capture::CaptureRequest;
+    use crate::sticky::{geometry::Profile, store::Draft, Binding};
+    let fake = Fake::start();
+    let (db, mut http, context) = connected(&fake);
+    let first = create(&db, &context, "Sticky checklist");
+    let first = edit(
+        &db,
+        &first,
+        json!({"kind":"checklist","items":[{"id":"stable","text":"Verify","checked":false,"future":42}]}),
+    );
+    let binding = Binding {
+        instance: "owned-window".into(),
+        card_id: first.value["id"].as_str().unwrap().into(),
+        scope: Some(context.clone()),
+    };
+    let profile = Profile {
+        monitor: "fixture".into(),
+        x: 32.,
+        y: 64.,
+        width: 280.,
+        height: 200.,
+        pinned: true,
+        opacity: 100,
+    };
+    db.sticky_remember(&binding, &profile, true, Some(&first))
+        .unwrap();
+    let saved=db.sticky_save_bound(&binding,first,json!({"body":"Saved from sticky","items":[{"id":"stable","text":"Verify","checked":true,"future":42}]})).unwrap();
+    sync::cycle(&db, &context, &mut http).unwrap();
+    let acknowledged = db.sticky_content(&binding).unwrap().note.unwrap();
+    assert!(!acknowledged.local_only);
+    assert!(!acknowledged.value["ref"].as_str().unwrap().is_empty());
+    assert_eq!(acknowledged.value["items"], saved.value["items"]);
+    assert!(db.tack_queue(&context).unwrap().is_empty());
+    let mut value = acknowledged.value.clone();
+    value["body"] = json!("Unsaved draft survives remote deletion");
+    let draft = Draft {
+        base: acknowledged.clone(),
+        value: value.clone(),
+        copy_id: Some(uuid::Uuid::new_v4().to_string()),
+        copy_request: None,
+    };
+    db.sticky_checkpoint(&binding, 2, draft.clone()).unwrap();
+    server_edit(
+        &mut other(&fake),
+        &binding.card_id,
+        json!({"trashedAt":"2026-11-27T12:00:00.000Z"}),
+    );
+    sync::cycle(&db, &context, &mut http).unwrap();
+    let removed = db.sticky_content(&binding).unwrap();
+    assert_eq!(removed.status, "gone");
+    assert_eq!(removed.checkpoint.unwrap().draft.value, value);
+    assert!(db
+        .sticky_save_bound(
+            &binding,
+            acknowledged,
+            json!({"body":"must not edit removed card"})
+        )
+        .is_err());
+    let request = CaptureRequest {
+        request_id: draft.copy_id.unwrap(),
+        expected_scope: Some(context.clone()),
+        draft: NoteDraft {
+            title: "Recovered sticky".into(),
+            body: value["body"].as_str().unwrap().into(),
+            kind: Some("checklist".into()),
+            ..Default::default()
+        },
+        patch: json!({"items":value["items"]}),
+        reminders: vec![],
+    };
+    let copied = db.capture_note(request.clone()).unwrap();
+    let retry = db.capture_note(request).unwrap();
+    assert_eq!(copied.value, retry.value);
+    assert_ne!(copied.value["id"], binding.card_id);
+    assert!(copied.value["trashedAt"].is_null());
+    sync::cycle(&db, &context, &mut http).unwrap();
+    let cards = db.list_note_cards().unwrap();
+    let recovered = cards
+        .iter()
+        .find(|c| c.value["id"] == copied.value["id"])
+        .unwrap();
+    assert_eq!(recovered.value["body"], value["body"]);
+    assert_eq!(recovered.value["items"][0]["future"], 42);
+    assert!(db.tack_queue(&context).unwrap().is_empty());
+}
+
+#[test]
 fn create_edit_every_card_property_and_reminder_roundtrip_through_durable_outbox() {
     let fake = Fake::start();
     let (db, mut http, context) = connected(&fake);

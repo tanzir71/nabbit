@@ -1413,7 +1413,7 @@ unsafe extern "system" fn foreground_hook(
         manager.watcher.foreground(process == std::process::id());
     }
 }
-fn real_desktop() -> Desktop {
+pub(crate) fn real_desktop() -> Desktop {
     unsafe extern "system" fn enumerate(
         monitor: HMONITOR,
         _: HDC,
