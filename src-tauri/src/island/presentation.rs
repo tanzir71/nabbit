@@ -226,10 +226,14 @@ fn draw(item: &Item, width: f32) -> Vec<Draw> {
                 },
             ]
         }
-        Event::PowerChanged { percent, charging } => vec![
+        Event::PowerChanged {
+            percent,
+            charging,
+            plugged_in,
+        } => vec![
             icon("iconBatteryCharging", 10.0),
             text(
-                if *charging { "Charging" } else { "Battery low" },
+                crate::power::title(*percent, *charging, *plugged_in),
                 34.0,
                 width - 98.0,
                 false,
@@ -237,7 +241,7 @@ fn draw(item: &Item, width: f32) -> Vec<Draw> {
                 true,
             ),
             text(
-                format!("{percent}%"),
+                percent.map_or_else(|| "—".into(), |p| format!("{p}%")),
                 right - 32.0,
                 32.0,
                 true,

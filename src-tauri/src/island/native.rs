@@ -125,6 +125,7 @@ struct State {
     error: Option<String>,
 }
 pub struct Manager {
+    power_notifications: Mutex<Option<crate::power::windows::Registration>>,
     media_wheel: Mutex<HashMap<isize, crate::media::Wheel>>,
     started: Instant,
     visibility_hooks: Mutex<Vec<isize>>,
@@ -187,7 +188,11 @@ pub fn start(app: &AppHandle, preferences: Preferences) -> Result<(), String> {
         if control.is_null() {
             return Err(std::io::Error::last_os_error().to_string());
         }
+        let power_notifications = crate::power::windows::Registration::new(control);
+        app.state::<Arc<crate::power::Service>>()
+            .notification_error(power_notifications.as_ref().err().cloned());
         let manager = Arc::new(Manager {
+            power_notifications: Mutex::new(power_notifications.ok()),
             media_wheel: Mutex::default(),
             started: Instant::now(),
             visibility_hooks: Mutex::default(),
@@ -553,6 +558,7 @@ impl Manager {
         if self.stopped.swap(true, Ordering::Relaxed) {
             return;
         }
+        lock(&self.power_notifications).take();
         CONTROL.store(0, Ordering::Relaxed);
         self.watcher.stop();
         GEOMETRY_WINDOW.store(0, Ordering::Relaxed);
@@ -1046,6 +1052,7 @@ impl Manager {
                                         let hwnd=lock(&manager.state).hosts.get(&g.label).map(|h|h.hwnd);
                                         hwnd.is_some_and(|hwnd|manager.native_media(hwnd,g.x,g.y,g.delta.map(|d|(d,g.fine))))
                                     });
+                                    if request.power_wake.unwrap_or(false) {unsafe{crate::power::windows::notify(&manager.app,10,0);}}
                                     if request.timer_wake.unwrap_or(false) {manager.app.state::<Arc<crate::timer::Service>>().wake();}
                                     let outcome = preparation.and_then(|()| manager.accept(request.desktop, request.preferences, request.capture, &path));
                                     let response = serde_json::json!({"id":request.id,"snapshot":manager.snapshot(),"media":manager.app.state::<Arc<crate::media::Service>>().snapshot(),"mediaGesture":media_gesture,"result":outcome.as_ref().ok(),"error":outcome.err()});
@@ -1111,6 +1118,8 @@ impl Manager {
 }
 #[derive(Deserialize)]
 struct Request {
+    #[serde(rename = "powerWake")]
+    power_wake: Option<bool>,
     #[serde(rename = "timerWake")]
     timer_wake: Option<bool>,
     #[serde(rename = "mediaGesture")]
@@ -1384,6 +1393,9 @@ unsafe extern "system" fn control_proc(hwnd: HWND, message: u32, w: WPARAM, l: L
                 .state::<Arc<super::activity_bus::Bus>>()
                 .refresh();
             manager.watcher.system_changed();
+            if message == WM_POWERBROADCAST {
+                crate::power::windows::notify(&manager.app, w, l);
+            }
             if message == WM_TIMECHANGE || (message == WM_POWERBROADCAST && w == 18) {
                 manager.app.state::<Arc<crate::timer::Service>>().wake();
             }

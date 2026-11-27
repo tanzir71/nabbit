@@ -1,0 +1,68 @@
+{
+  "passed": true,
+  "checks": [
+    "Actual release establishes a quiet82% battery baseline.100 Tauri cache reads do not sample the provider or create an activity; registered power notifications have no error",
+    "The shared native power-notification handler samples the injected AC/charging change and renders the original battery icon/82% pill. Identical messages neither change revision nor restart expiry; the real Rust scheduler dismisses it after4s and duplicates do not revive it",
+    "Unplugging at82% creates a transient On battery event above the low threshold.21% is quiet,20% triggers the inclusive low warning, and repeated20% does not keep it permanently visible",
+    "The actual pushed power event drives read-only battery Peek through native/WebView ownership. Stable DPR2 capture and the embedded entry/all static stylesheet names match the completed frontend, without freezing or extending the4s policy",
+    "No-battery and provider errors clear stale activity; recovery is a quiet baseline and an unknown percentage stays null. A low event queued under fullscreen silence has zero native alpha, expires while hidden and never reappears when visibility returns. No real power, sleep, settings, input or battery state is changed"
+  ],
+  "captures": [
+    {
+      "role": "charging",
+      "file": "v56-native-b-charging@1x.png",
+      "width": 720,
+      "height": 460,
+      "bytes": 5493,
+      "sha256": "56214ac5bbcb6ed1acba2f5987f9fa22b9b48559c8c5e1e828bc1752b66d10ee"
+    },
+    {
+      "role": "unplugged",
+      "file": "v56-native-b-unplugged@1x.png",
+      "width": 720,
+      "height": 460,
+      "bytes": 5592,
+      "sha256": "fdae87a3538b77389e58adc48e8f53092438edb0916d2529a6972feb79b1b655"
+    },
+    {
+      "role": "low",
+      "file": "v56-native-b-low@1x.png",
+      "width": 720,
+      "height": 460,
+      "bytes": 5746,
+      "sha256": "826c4436c69c022fc9e8ebe02de446b7e64e7f7a7bc05990d4da23246e4b86fb"
+    },
+    {
+      "role": "peek",
+      "file": "v56-native-b-peek@2x.png",
+      "sha256": "ea98272ee82857e783a0c20f28b8f655c58df105201e16f209a5e77bca7f94c8",
+      "bytes": 24122,
+      "width": 1440,
+      "height": 920,
+      "logicalBounds": {
+        "x": 0,
+        "y": 0,
+        "width": 720,
+        "height": 460
+      },
+      "contentBounds": {
+        "x": 160,
+        "y": 6,
+        "width": 400,
+        "height": 60
+      },
+      "scale": 2,
+      "repeatMatches": true
+    }
+  ],
+  "embeddedEntry": "/assets/island-CSMof7E-.js",
+  "embeddedStyles": [
+    "/assets/island-CmuSRvpv.css"
+  ],
+  "executableSha256": "def82359d6545429efd76a2e0098e65244bad3d09807d8f20a97901755cc329e",
+  "buildManifestSha256": "e86dd561545e83c8c73333ce80bbdb19e9b8d35f2af0a7be3b5896cc290cc375",
+  "noUserProfile": true,
+  "noRealPowerChange": true,
+  "noOsSettingChange": true,
+  "scope": "Owned production DirectComposition/WebView2 release, actual Tauri PowerProvider sample seam/service/activity scheduler/native notification handler and pushed Peek. Power/fullscreen/cursor facts are fixtures; notification registration/unregistration is tested on an owned hidden HWND. No real power source, battery, sleep, user profile or OS setting is changed."
+}

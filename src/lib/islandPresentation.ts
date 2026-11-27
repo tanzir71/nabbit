@@ -106,7 +106,15 @@ export function activityTitle(item: ActivityItem) {
     case "privacyChanged":
       return [...new Set([...e.mic, ...e.camera])].join(", ");
     case "powerChanged":
-      return e.charging ? "Charging" : "Battery low";
+      return e.charging
+        ? "Charging"
+        : e.pluggedIn === true
+          ? "Plugged in"
+          : e.percent != null && e.percent <= 20
+            ? "Battery low"
+            : e.pluggedIn === false
+              ? "On battery"
+              : "Battery";
     case "noteSaved":
       return `Saved ${e.destination.startsWith("this PC") ? "on" : "to"} ${e.destination}`;
     case "linkSaved":

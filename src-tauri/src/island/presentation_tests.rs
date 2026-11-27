@@ -82,8 +82,9 @@ fn every_v2_compact_payload_has_visible_drawing_and_bounded_text() {
             camera: vec![],
         },
         ActivityEvent::PowerChanged {
-            percent: 82,
+            percent: Some(82),
             charging: true,
+            plugged_in: Some(true),
         },
         ActivityEvent::NoteSaved {
             card_id: "n".into(),

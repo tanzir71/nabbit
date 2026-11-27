@@ -1,0 +1,85 @@
+{
+  "sessionId": "351415e9-0c67-4569-85db-fd3d5f3753a6",
+  "figmaFile": "tBm7NNhh1Y9aTQPJ3WxY5v",
+  "nodes": [
+    "7:48"
+  ],
+  "asset": {
+    "file": "src/assets/island/775e9.svg",
+    "sha256": "80201025e16e2b42c86fac716ef6a3c876798c0cdfbfd0bfb07d4f34dac2e112",
+    "freshMatchesExisting": true,
+    "width": 16.0,
+    "height": 16.0
+  },
+  "visualComparison": {
+    "report": "v56-power-a-screenshots.json",
+    "reviewed": [
+      "power-charging-light@1x",
+      "power-low-dark@1.5x",
+      "power-unknown-dark@1x",
+      "power-peek-light@1x"
+    ],
+    "matched": "232x32 compact capsule,r16,padx10,gap8,16x16 original battery icon,12/16 regular Geist label and12/16 medium Geist Mono percentage; existing split260+6+32 geometry. No original SVG root dimension/color/path is changed.",
+    "variants": "Handoff behavior adds honest On battery/Plugged in/Battery low labels and an em dash with unavailable tooltip for unknown percentage. Read-only Peek uses the shared shell and actual pushed facts, not a permanent monitor or settings panel.",
+    "accessibility": "All32 light/dark1x/1.5x final captures match repeated bytes; default axe has zero violations and incompletes, no exclusions. Bundled Geist is measured."
+  },
+  "timingDecision": "Four seconds of elapsed time from the change, including while hidden/queued/disabled. Repeated identical samples do not reset or revive the activity. Startup/recovery is a quiet baseline. Meaningful changes are known source change, charging transition and changed low percentage<=20 when AC is not known online; ordinary healthy and known-AC charging percentage drift stays quiet. No permanent low/charging activity.",
+  "apiReferences": [
+    "https://learn.microsoft.com/en-us/windows/win32/api/winbase/ns-winbase-system_power_status",
+    "https://learn.microsoft.com/en-us/windows/win32/api/winuser/nf-winuser-registerpowersettingnotification",
+    "https://learn.microsoft.com/en-us/windows/win32/power/power-setting-guids",
+    "https://learn.microsoft.com/en-us/windows/win32/power/pbt-apmpowerstatuschange"
+  ],
+  "apiBoundary": "GetSystemPowerStatus values are decoded with unknown/no-battery sentinels; registered AC/DC and percentage GUIDs plus status/resume messages trigger one read. The existing native control HWND owns/revokes registrations. Registration failure is retained separately in the cached snapshot, with legacy broadcasts still usable. Real power/sleep/settings changes are not exercised.",
+  "nativeGeometryAudit": [
+    {
+      "file": "v56-native-b-charging@1x.png",
+      "bodyAlpha128Bounds": [
+        244,
+        6,
+        476,
+        38
+      ],
+      "fullShadowAlphaBounds": [
+        219,
+        0,
+        502,
+        78
+      ],
+      "unmodifiedCapture": true
+    },
+    {
+      "file": "v56-native-b-unplugged@1x.png",
+      "bodyAlpha128Bounds": [
+        244,
+        6,
+        476,
+        38
+      ],
+      "fullShadowAlphaBounds": [
+        219,
+        0,
+        502,
+        78
+      ],
+      "unmodifiedCapture": true
+    },
+    {
+      "file": "v56-native-b-low@1x.png",
+      "bodyAlpha128Bounds": [
+        244,
+        6,
+        476,
+        38
+      ],
+      "fullShadowAlphaBounds": [
+        219,
+        0,
+        502,
+        78
+      ],
+      "unmodifiedCapture": true
+    }
+  ],
+  "nativeShadowNote": "Body alpha>=128 separates the antialiased232x32 capsule from its original32%-opacity shadow. Full shadow bounds and all original pixels are retained."
+}

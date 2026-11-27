@@ -2,6 +2,8 @@
 
 Nabbit is local-first.
 
+Battery status is read locally at startup and in response to Windows power notifications. Current charge, power source and charging state stay in memory; Nabbit stores no battery history and does not sync this data. Brief change notifications dismiss automatically, and unknown levels stay unknown. Reading status and registering notifications never change Windows power settings.
+
 The mic/camera indicator watches Windows ConsentStore activity and checks matching running processes, including their executable paths, package identities and creation times, to reject stale entries after a crash. It reads bounded executable description metadata for app names. These checks stay in memory; only current app names and capability state reach the island. Nabbit never opens a microphone/camera, records audio/video, stores a usage history or syncs this data. Detection depends on the activity Windows reports; amber means microphone use and lime means camera use, including virtual cameras.
 
 Now playing subscribes to Windows media-session events. Titles, artists, playback state and bounded 96 px artwork stay in memory on this PC; Nabbit does not fetch artwork URLs, keep listening history or sync this data. Playback, seeking, session selection, mute and system-volume changes happen only through your controls or pill gestures. Scroll changes system volume by two percentage points, or one with Shift; middle-click toggles the selected media session.

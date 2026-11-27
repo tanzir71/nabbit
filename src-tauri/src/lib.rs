@@ -8,6 +8,7 @@ mod island;
 pub mod media;
 mod notes;
 mod pins;
+pub mod power;
 pub mod privacy;
 mod retention;
 pub mod shelf;
@@ -115,6 +116,8 @@ pub fn run() {
             timer::timer_action,
             timer::timer_view,
             timer::timer_fixture,
+            power::power_snapshot,
+            power::power_fixture,
             privacy::privacy_snapshot,
             privacy::privacy_fixture,
             media::media_snapshot,
@@ -284,6 +287,7 @@ pub fn run() {
             ));
             app.manage(media::start(app.handle().clone()));
             app.manage(privacy::start(app.handle().clone()));
+            app.manage(power::start(app.handle().clone()));
             app.manage(timer::start(app.handle().clone(), db.clone())?);
             let downloads =
                 DownloadManager::new(db.clone(), app.handle().clone(), app_data_dir.clone());

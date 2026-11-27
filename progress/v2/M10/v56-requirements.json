@@ -1,0 +1,46 @@
+{
+  "task": "V5.6",
+  "story": "Native power notification -> one PowerProvider sample -> truthful cached status/change detection -> typed PowerChanged -> existing Rust priority/deadline scheduler -> native compact and pushed read-only WebView Peek.",
+  "requirements": [
+    {
+      "requirement": "GetSystemPowerStatus and native notifications",
+      "assertions": "Decode AC online/offline/unknown, charging/no-battery flags and percent0..100/unknown255. Existing native control HWND owns/revokes AC/DC and battery-percentage registrations; filtered status/resume/GUID messages request exactly one sample. Cache reads do not sample. No polling worker, JS interval, database/history or network.",
+      "status": "passed"
+    },
+    {
+      "requirement": "Only meaningful changes and inclusive20% threshold",
+      "assertions": "Startup/recovery establishes a quiet baseline. Known plug/unplug or charging transitions notify; changed low percentages<=20 when AC is not known online notify, healthy/charging percentage drift stays quiet. Full AC100 says Plugged in, healthy unplug says On battery, unknown AC says Battery, unknown percentage is null/em dash. Errors/no-battery/recovery clear stale data without a false transition.",
+      "status": "passed"
+    },
+    {
+      "requirement": "Never permanent",
+      "assertions": "Power activity expires4s from change creation, including while queued/hidden/disabled. Provider and engine dedupe preserve deadlines; repeated state after dismissal never revives it. Existing priority and fullscreen policy are preserved. Production scheduler/native smoke observes actual automatic expiry, with no fake time freeze or user power/sleep change.",
+      "status": "passed"
+    },
+    {
+      "requirement": "Figma and full UI path",
+      "assertions": "Fresh7:48 Charging context/screenshot; original16px icon is byte-identical and232x32 capsule/gaps/type match. Shared compact/bubble/Peek use actual typed data, with read-only details and honest null state.32 exact-repeat light/dark1x/1.5x captures have zero default axe violations/incompletes, Geist and original slot dimensions. Initial island101028/120000 gzip bytes.",
+      "status": "passed"
+    },
+    {
+      "requirement": "Automated acceptance and lifecycle",
+      "assertions": "Nine new power tests cover raw sentinels, baseline/transitions/threshold, duplicate/cache/lifetime, hidden queue/disabled arbitration and failure/recovery. An owned hidden HWND verifies actual registration/unregistration and payload fixtures exercise relevant/invalid messages. Five native checks/four captures use current executable/JS/styles, typed fixture facts, the shared native notification handler,100 cache reads, visible/hidden expiry, threshold20 and pushed Peek. No new package/version/sidecar; existing Windows-sys0.59 Power feature only.",
+      "status": "passed"
+    }
+  ],
+  "evidence": {
+    "checks": "v56-checks.json",
+    "native": "v56-native-b-scene.json",
+    "visual": "v56-power-a-screenshots.json",
+    "design": "v56-design.json",
+    "bundles": "v56-entry-bundles.json",
+    "pngAudit": "v56-png-audit.json"
+  },
+  "platformBoundary": "Windows x64 fixtures, disposable HWND notification registration and owned isolated native release. Actual battery/AC unplug/sleep, Windows10/ARM64 and previous focus/performance limits remain unclaimed. Production GetSystemPowerStatus compiles; acceptance samples recorded raw status.",
+  "dependencies": {
+    "windows-sys": "Existing0.59 adds Win32_System_Power; Cargo.lock unchanged",
+    "newPackages": false,
+    "newSidecar": false
+  },
+  "nextTask": "V5.7"
+}

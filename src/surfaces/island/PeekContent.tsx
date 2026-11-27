@@ -159,6 +159,23 @@ function OtherPeekContent({
 }
 
 export function PeekContent(props: { item: ActivityItem; act: (intent: IslandIntent) => void }) {
+  if (props.item.event.kind === "powerChanged") {
+    const { percent } = props.item.event;
+    return (
+      <section className="island-peek-content" aria-label="Battery status">
+        <h1 className="island-sr-only">Battery status</h1>
+        <div className="island-row island-peek-header">
+          <IslandAsset name="iconBatteryCharging" />
+          <div className="island-text-stack island-spacer">
+            <strong>{activityTitle(props.item)}</strong>
+            <span className="island-muted">
+              {percent == null ? "Battery level unavailable" : `${percent}% battery remaining`}
+            </span>
+          </div>
+        </div>
+      </section>
+    );
+  }
   if (props.item.event.kind === "privacyChanged") {
     const { mic, camera } = props.item.event;
     return (

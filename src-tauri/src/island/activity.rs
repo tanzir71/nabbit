@@ -167,9 +167,12 @@ pub enum ActivityEvent {
         camera: Vec<String>,
     },
     PowerChanged {
-        percent: u8,
+        percent: Option<u8>,
         charging: bool,
+        #[serde(default)]
+        plugged_in: Option<bool>,
     },
+    PowerRemoved,
     NoteSaved {
         card_id: String,
         destination: String,
@@ -448,6 +451,8 @@ impl Engine {
                 entry.item.bubble_only = true;
             }
             entry.remaining != Some(0)
+                && (!matches!(entry.item.event, ActivityEvent::PowerChanged { .. })
+                    || now.mono_ms.saturating_sub(entry.created) < crate::power::DISPLAY_MS)
                 && (!matches!(entry.item.event, ActivityEvent::VolumeChanged { .. })
                     || now.mono_ms.saturating_sub(entry.created) < 1500)
         });
@@ -498,8 +503,8 @@ impl Engine {
                     0.0
                 }
             }
-            ActivityEvent::PowerChanged { percent, .. }
-            | ActivityEvent::VolumeChanged { percent, .. } => *percent = (*percent).min(100),
+            ActivityEvent::PowerChanged { percent, .. } => *percent = percent.map(|p| p.min(100)),
+            ActivityEvent::VolumeChanged { percent, .. } => *percent = (*percent).min(100),
             _ => {}
         }
         match &event {
@@ -636,12 +641,17 @@ impl Engine {
                     );
                 }
             }
-            ActivityEvent::PowerChanged { percent, charging } => {
-                if *percent < 20 || *charging {
+            ActivityEvent::PowerChanged { .. } => {
+                if self
+                    .entries
+                    .get("power")
+                    .is_none_or(|entry| entry.item.event != event)
+                {
                     self.put("power".into(), Kind::Power, event.clone(), false, now, None);
-                } else {
-                    self.entries.remove("power");
                 }
+            }
+            ActivityEvent::PowerRemoved => {
+                self.entries.remove("power");
             }
             ActivityEvent::NoteSaved { card_id, .. } => self.put(
                 format!("note:{card_id}"),
@@ -782,6 +792,18 @@ impl Engine {
             .values()
             .filter(|entry| matches!(entry.item.event, ActivityEvent::VolumeChanged { .. }))
             .map(|entry| 1500u64.saturating_sub(now.mono_ms.saturating_sub(entry.created)));
-        alerts.chain(links).chain(hidden).chain(volume).min()
+        let power = self
+            .entries
+            .values()
+            .filter(|entry| matches!(entry.item.event, ActivityEvent::PowerChanged { .. }))
+            .map(|entry| {
+                crate::power::DISPLAY_MS.saturating_sub(now.mono_ms.saturating_sub(entry.created))
+            });
+        alerts
+            .chain(links)
+            .chain(hidden)
+            .chain(volume)
+            .chain(power)
+            .min()
     }
 }

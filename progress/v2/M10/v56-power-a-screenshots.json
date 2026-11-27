@@ -1,0 +1,6142 @@
+{
+  "milestone": "M10",
+  "prefix": "v56-power-a",
+  "suite": "all",
+  "browser": "159.0.8154.6",
+  "playwright": "1.65.1",
+  "platform": "win32",
+  "node": "v24.22.2",
+  "captureTime": "2026-11-26T09:00:00.000Z",
+  "buildManifestSha256": "e86dd561545e83c8c73333ce80bbdb19e9b8d35f2af0a7be3b5896cc290cc375",
+  "screenshotScale": "device",
+  "pngBudgetBytes": 307200,
+  "isolatedContexts": true,
+  "mockedIpc": true,
+  "osPreferencesChanged": false,
+  "captures": [
+    {
+      "file": "v56-power-a-power-charging-light@1x.png",
+      "scenario": "power-charging",
+      "entry": "island.html",
+      "figmaNode": "7:48",
+      "theme": "light",
+      "resolvedTheme": "dark",
+      "scale": 1,
+      "viewport": {
+        "width": 720,
+        "height": 460
+      },
+      "clip": {
+        "x": 244,
+        "y": 6,
+        "width": 232,
+        "height": 32
+      },
+      "width": 232,
+      "height": 32,
+      "bytes": 2757,
+      "sha256": "bbbd4482c59a4fb8806588dc35dc4ee0ac650f4552ee7340403914be09698a55",
+      "repeatMatches": true,
+      "caret": "hide",
+      "font": [
+        {
+          "familyName": "Geist",
+          "postScriptName": "Geist",
+          "isCustomFont": true,
+          "glyphCount": 8
+        }
+      ],
+      "fixtureSha256": "1949debea9432b501b88a7b544078295ccdd3402e8b77dc0209f1ad449e533f3",
+      "assertions": {
+        "mode": "charging",
+        "accessibility": {
+          "violations": [],
+          "incomplete": []
+        },
+        "geometry": {
+          "morph": {
+            "width": 232,
+            "height": 32,
+            "font": "12px / 16px Geist, \"Segoe UI Variable\", \"Segoe UI\", system-ui, sans-serif",
+            "gap": "normal",
+            "padding": "0px",
+            "text": "Charging82%",
+            "title": ""
+          },
+          "compact": {
+            "width": 232,
+            "height": 32,
+            "font": "12px / 16px Geist, \"Segoe UI Variable\", \"Segoe UI\", system-ui, sans-serif",
+            "gap": "8px",
+            "padding": "0px 10px",
+            "text": "Charging82%",
+            "title": ""
+          },
+          "label": {
+            "width": 49.859375,
+            "height": 16,
+            "font": "12px / 16px Geist, \"Segoe UI Variable\", \"Segoe UI\", system-ui, sans-serif",
+            "gap": "normal",
+            "padding": "0px",
+            "text": "Charging",
+            "title": ""
+          },
+          "digits": {
+            "width": 21.609375,
+            "height": 16,
+            "font": "500 12px / 16px \"Geist Mono\", \"Cascadia Code\", Consolas, monospace",
+            "gap": "normal",
+            "padding": "0px",
+            "text": "82%",
+            "title": ""
+          },
+          "assets": [
+            {
+              "slot": "compact/iconBatteryCharging",
+              "width": 16,
+              "height": 16,
+              "loaded": true
+            }
+          ],
+          "overflow": false
+        },
+        "noRealPowerChange": true
+      },
+      "ipc": [
+        {
+          "command": "plugin:event|listen",
+          "args": {
+            "event": "nabbit://island-visibility",
+            "target": {
+              "kind": "Any"
+            },
+            "handler": 1
+          }
+        },
+        {
+          "command": "plugin:event|listen",
+          "args": {
+            "event": "nabbit://island",
+            "target": {
+              "kind": "Any"
+            },
+            "handler": 3
+          }
+        },
+        {
+          "command": "plugin:event|listen",
+          "args": {
+            "event": "nabbit://island-surface",
+            "target": {
+              "kind": "Any"
+            },
+            "handler": 5
+          }
+        },
+        {
+          "command": "plugin:event|listen",
+          "args": {
+            "event": "tauri://drag-enter",
+            "target": {
+              "kind": "WebviewWindow",
+              "label": "island"
+            },
+            "handler": 7
+          }
+        },
+        {
+          "command": "get_island_snapshot",
+          "args": {}
+        },
+        {
+          "command": "get_activity_snapshot",
+          "args": {}
+        },
+        {
+          "command": "get_island_surface",
+          "args": {}
+        },
+        {
+          "command": "plugin:event|listen",
+          "args": {
+            "event": "tauri://drag-over",
+            "target": {
+              "kind": "WebviewWindow",
+              "label": "island"
+            },
+            "handler": 9
+          }
+        },
+        {
+          "command": "plugin:event|listen",
+          "args": {
+            "event": "tauri://drag-drop",
+            "target": {
+              "kind": "WebviewWindow",
+              "label": "island"
+            },
+            "handler": 11
+          }
+        },
+        {
+          "command": "plugin:event|listen",
+          "args": {
+            "event": "tauri://drag-leave",
+            "target": {
+              "kind": "WebviewWindow",
+              "label": "island"
+            },
+            "handler": 13
+          }
+        },
+        {
+          "command": "island_set_hitrect",
+          "args": {
+            "rect": {
+              "x": 236,
+              "y": -2,
+              "w": 248,
+              "h": 48
+            }
+          }
+        },
+        {
+          "command": "island_surface_ack",
+          "args": {
+            "generation": 1
+          }
+        }
+      ],
+      "unsupported": [],
+      "runtimeAndNetworkProblems": []
+    },
+    {
+      "file": "v56-power-a-power-unplugged-light@1x.png",
+      "scenario": "power-unplugged",
+      "entry": "island.html",
+      "figmaNode": "7:48",
+      "theme": "light",
+      "resolvedTheme": "dark",
+      "scale": 1,
+      "viewport": {
+        "width": 720,
+        "height": 460
+      },
+      "clip": {
+        "x": 244,
+        "y": 6,
+        "width": 232,
+        "height": 32
+      },
+      "width": 232,
+      "height": 32,
+      "bytes": 2881,
+      "sha256": "bf52a7a8eee0adb1755f736de9f6abad295e9eb5f45d9bfb60d772b5637851ed",
+      "repeatMatches": true,
+      "caret": "hide",
+      "font": [
+        {
+          "familyName": "Geist",
+          "postScriptName": "Geist",
+          "isCustomFont": true,
+          "glyphCount": 9
+        }
+      ],
+      "fixtureSha256": "11f8f4aaa2dcdc833419bff9ff4850db73a2199511e2774a485be81be83ad966",
+      "assertions": {
+        "mode": "unplugged",
+        "accessibility": {
+          "violations": [],
+          "incomplete": []
+        },
+        "geometry": {
+          "morph": {
+            "width": 232,
+            "height": 32,
+            "font": "12px / 16px Geist, \"Segoe UI Variable\", \"Segoe UI\", system-ui, sans-serif",
+            "gap": "normal",
+            "padding": "0px",
+            "text": "On battery82%",
+            "title": ""
+          },
+          "compact": {
+            "width": 232,
+            "height": 32,
+            "font": "12px / 16px Geist, \"Segoe UI Variable\", \"Segoe UI\", system-ui, sans-serif",
+            "gap": "8px",
+            "padding": "0px 10px",
+            "text": "On battery82%",
+            "title": ""
+          },
+          "label": {
+            "width": 57.46875,
+            "height": 16,
+            "font": "12px / 16px Geist, \"Segoe UI Variable\", \"Segoe UI\", system-ui, sans-serif",
+            "gap": "normal",
+            "padding": "0px",
+            "text": "On battery",
+            "title": ""
+          },
+          "digits": {
+            "width": 21.609375,
+            "height": 16,
+            "font": "500 12px / 16px \"Geist Mono\", \"Cascadia Code\", Consolas, monospace",
+            "gap": "normal",
+            "padding": "0px",
+            "text": "82%",
+            "title": ""
+          },
+          "assets": [
+            {
+              "slot": "compact/iconBatteryCharging",
+              "width": 16,
+              "height": 16,
+              "loaded": true
+            }
+          ],
+          "overflow": false
+        },
+        "noRealPowerChange": true
+      },
+      "ipc": [
+        {
+          "command": "plugin:event|listen",
+          "args": {
+            "event": "nabbit://island-visibility",
+            "target": {
+              "kind": "Any"
+            },
+            "handler": 1
+          }
+        },
+        {
+          "command": "plugin:event|listen",
+          "args": {
+            "event": "nabbit://island",
+            "target": {
+              "kind": "Any"
+            },
+            "handler": 3
+          }
+        },
+        {
+          "command": "plugin:event|listen",
+          "args": {
+            "event": "nabbit://island-surface",
+            "target": {
+              "kind": "Any"
+            },
+            "handler": 5
+          }
+        },
+        {
+          "command": "plugin:event|listen",
+          "args": {
+            "event": "tauri://drag-enter",
+            "target": {
+              "kind": "WebviewWindow",
+              "label": "island"
+            },
+            "handler": 7
+          }
+        },
+        {
+          "command": "get_island_snapshot",
+          "args": {}
+        },
+        {
+          "command": "get_activity_snapshot",
+          "args": {}
+        },
+        {
+          "command": "get_island_surface",
+          "args": {}
+        },
+        {
+          "command": "plugin:event|listen",
+          "args": {
+            "event": "tauri://drag-over",
+            "target": {
+              "kind": "WebviewWindow",
+              "label": "island"
+            },
+            "handler": 9
+          }
+        },
+        {
+          "command": "plugin:event|listen",
+          "args": {
+            "event": "tauri://drag-drop",
+            "target": {
+              "kind": "WebviewWindow",
+              "label": "island"
+            },
+            "handler": 11
+          }
+        },
+        {
+          "command": "plugin:event|listen",
+          "args": {
+            "event": "tauri://drag-leave",
+            "target": {
+              "kind": "WebviewWindow",
+              "label": "island"
+            },
+            "handler": 13
+          }
+        },
+        {
+          "command": "island_set_hitrect",
+          "args": {
+            "rect": {
+              "x": 236,
+              "y": -2,
+              "w": 248,
+              "h": 48
+            }
+          }
+        },
+        {
+          "command": "island_surface_ack",
+          "args": {
+            "generation": 1
+          }
+        }
+      ],
+      "unsupported": [],
+      "runtimeAndNetworkProblems": []
+    },
+    {
+      "file": "v56-power-a-power-low-light@1x.png",
+      "scenario": "power-low",
+      "entry": "island.html",
+      "figmaNode": "7:48",
+      "theme": "light",
+      "resolvedTheme": "dark",
+      "scale": 1,
+      "viewport": {
+        "width": 720,
+        "height": 460
+      },
+      "clip": {
+        "x": 244,
+        "y": 6,
+        "width": 232,
+        "height": 32
+      },
+      "width": 232,
+      "height": 32,
+      "bytes": 3013,
+      "sha256": "e7e7d91bad2bec1014633ab4bf450a21bbe2328d4e166647597f2ea35960a4c9",
+      "repeatMatches": true,
+      "caret": "hide",
+      "font": [
+        {
+          "familyName": "Geist",
+          "postScriptName": "Geist",
+          "isCustomFont": true,
+          "glyphCount": 10
+        }
+      ],
+      "fixtureSha256": "8934591ac61a9d5b6d548f22ca9f71a9e0036f5a9a06a28d00843c833d88b553",
+      "assertions": {
+        "mode": "low",
+        "accessibility": {
+          "violations": [],
+          "incomplete": []
+        },
+        "geometry": {
+          "morph": {
+            "width": 232,
+            "height": 32,
+            "font": "12px / 16px Geist, \"Segoe UI Variable\", \"Segoe UI\", system-ui, sans-serif",
+            "gap": "normal",
+            "padding": "0px",
+            "text": "Battery low20%",
+            "title": ""
+          },
+          "compact": {
+            "width": 232,
+            "height": 32,
+            "font": "12px / 16px Geist, \"Segoe UI Variable\", \"Segoe UI\", system-ui, sans-serif",
+            "gap": "8px",
+            "padding": "0px 10px",
+            "text": "Battery low20%",
+            "title": ""
+          },
+          "label": {
+            "width": 62.046875,
+            "height": 16,
+            "font": "12px / 16px Geist, \"Segoe UI Variable\", \"Segoe UI\", system-ui, sans-serif",
+            "gap": "normal",
+            "padding": "0px",
+            "text": "Battery low",
+            "title": ""
+          },
+          "digits": {
+            "width": 21.609375,
+            "height": 16,
+            "font": "500 12px / 16px \"Geist Mono\", \"Cascadia Code\", Consolas, monospace",
+            "gap": "normal",
+            "padding": "0px",
+            "text": "20%",
+            "title": ""
+          },
+          "assets": [
+            {
+              "slot": "compact/iconBatteryCharging",
+              "width": 16,
+              "height": 16,
+              "loaded": true
+            }
+          ],
+          "overflow": false
+        },
+        "noRealPowerChange": true
+      },
+      "ipc": [
+        {
+          "command": "plugin:event|listen",
+          "args": {
+            "event": "nabbit://island-visibility",
+            "target": {
+              "kind": "Any"
+            },
+            "handler": 1
+          }
+        },
+        {
+          "command": "plugin:event|listen",
+          "args": {
+            "event": "nabbit://island",
+            "target": {
+              "kind": "Any"
+            },
+            "handler": 3
+          }
+        },
+        {
+          "command": "plugin:event|listen",
+          "args": {
+            "event": "nabbit://island-surface",
+            "target": {
+              "kind": "Any"
+            },
+            "handler": 5
+          }
+        },
+        {
+          "command": "plugin:event|listen",
+          "args": {
+            "event": "tauri://drag-enter",
+            "target": {
+              "kind": "WebviewWindow",
+              "label": "island"
+            },
+            "handler": 7
+          }
+        },
+        {
+          "command": "get_island_snapshot",
+          "args": {}
+        },
+        {
+          "command": "get_activity_snapshot",
+          "args": {}
+        },
+        {
+          "command": "get_island_surface",
+          "args": {}
+        },
+        {
+          "command": "plugin:event|listen",
+          "args": {
+            "event": "tauri://drag-over",
+            "target": {
+              "kind": "WebviewWindow",
+              "label": "island"
+            },
+            "handler": 9
+          }
+        },
+        {
+          "command": "plugin:event|listen",
+          "args": {
+            "event": "tauri://drag-drop",
+            "target": {
+              "kind": "WebviewWindow",
+              "label": "island"
+            },
+            "handler": 11
+          }
+        },
+        {
+          "command": "plugin:event|listen",
+          "args": {
+            "event": "tauri://drag-leave",
+            "target": {
+              "kind": "WebviewWindow",
+              "label": "island"
+            },
+            "handler": 13
+          }
+        },
+        {
+          "command": "island_set_hitrect",
+          "args": {
+            "rect": {
+              "x": 236,
+              "y": -2,
+              "w": 248,
+              "h": 48
+            }
+          }
+        },
+        {
+          "command": "island_surface_ack",
+          "args": {
+            "generation": 1
+          }
+        }
+      ],
+      "unsupported": [],
+      "runtimeAndNetworkProblems": []
+    },
+    {
+      "file": "v56-power-a-power-full-light@1x.png",
+      "scenario": "power-full",
+      "entry": "island.html",
+      "figmaNode": "7:48",
+      "theme": "light",
+      "resolvedTheme": "dark",
+      "scale": 1,
+      "viewport": {
+        "width": 720,
+        "height": 460
+      },
+      "clip": {
+        "x": 244,
+        "y": 6,
+        "width": 232,
+        "height": 32
+      },
+      "width": 232,
+      "height": 32,
+      "bytes": 2516,
+      "sha256": "6b0ec9657a9d23e8eefb85df44041ee9b4a1176d567cddae19f931a861b05220",
+      "repeatMatches": true,
+      "caret": "hide",
+      "font": [
+        {
+          "familyName": "Geist",
+          "postScriptName": "Geist",
+          "isCustomFont": true,
+          "glyphCount": 10
+        }
+      ],
+      "fixtureSha256": "7f89706637c3102cf823af2fb93eaae1f18d6b04a709e44a8e27b5c07aee2cde",
+      "assertions": {
+        "mode": "full",
+        "accessibility": {
+          "violations": [],
+          "incomplete": []
+        },
+        "geometry": {
+          "morph": {
+            "width": 232,
+            "height": 32,
+            "font": "12px / 16px Geist, \"Segoe UI Variable\", \"Segoe UI\", system-ui, sans-serif",
+            "gap": "normal",
+            "padding": "0px",
+            "text": "Plugged in100%",
+            "title": ""
+          },
+          "compact": {
+            "width": 232,
+            "height": 32,
+            "font": "12px / 16px Geist, \"Segoe UI Variable\", \"Segoe UI\", system-ui, sans-serif",
+            "gap": "8px",
+            "padding": "0px 10px",
+            "text": "Plugged in100%",
+            "title": ""
+          },
+          "label": {
+            "width": 58.40625,
+            "height": 16,
+            "font": "12px / 16px Geist, \"Segoe UI Variable\", \"Segoe UI\", system-ui, sans-serif",
+            "gap": "normal",
+            "padding": "0px",
+            "text": "Plugged in",
+            "title": ""
+          },
+          "digits": {
+            "width": 28.8125,
+            "height": 16,
+            "font": "500 12px / 16px \"Geist Mono\", \"Cascadia Code\", Consolas, monospace",
+            "gap": "normal",
+            "padding": "0px",
+            "text": "100%",
+            "title": ""
+          },
+          "assets": [
+            {
+              "slot": "compact/iconBatteryCharging",
+              "width": 16,
+              "height": 16,
+              "loaded": true
+            }
+          ],
+          "overflow": false
+        },
+        "noRealPowerChange": true
+      },
+      "ipc": [
+        {
+          "command": "plugin:event|listen",
+          "args": {
+            "event": "nabbit://island-visibility",
+            "target": {
+              "kind": "Any"
+            },
+            "handler": 1
+          }
+        },
+        {
+          "command": "plugin:event|listen",
+          "args": {
+            "event": "nabbit://island",
+            "target": {
+              "kind": "Any"
+            },
+            "handler": 3
+          }
+        },
+        {
+          "command": "plugin:event|listen",
+          "args": {
+            "event": "nabbit://island-surface",
+            "target": {
+              "kind": "Any"
+            },
+            "handler": 5
+          }
+        },
+        {
+          "command": "plugin:event|listen",
+          "args": {
+            "event": "tauri://drag-enter",
+            "target": {
+              "kind": "WebviewWindow",
+              "label": "island"
+            },
+            "handler": 7
+          }
+        },
+        {
+          "command": "get_island_snapshot",
+          "args": {}
+        },
+        {
+          "command": "get_activity_snapshot",
+          "args": {}
+        },
+        {
+          "command": "get_island_surface",
+          "args": {}
+        },
+        {
+          "command": "plugin:event|listen",
+          "args": {
+            "event": "tauri://drag-over",
+            "target": {
+              "kind": "WebviewWindow",
+              "label": "island"
+            },
+            "handler": 9
+          }
+        },
+        {
+          "command": "plugin:event|listen",
+          "args": {
+            "event": "tauri://drag-drop",
+            "target": {
+              "kind": "WebviewWindow",
+              "label": "island"
+            },
+            "handler": 11
+          }
+        },
+        {
+          "command": "plugin:event|listen",
+          "args": {
+            "event": "tauri://drag-leave",
+            "target": {
+              "kind": "WebviewWindow",
+              "label": "island"
+            },
+            "handler": 13
+          }
+        },
+        {
+          "command": "island_set_hitrect",
+          "args": {
+            "rect": {
+              "x": 236,
+              "y": -2,
+              "w": 248,
+              "h": 48
+            }
+          }
+        },
+        {
+          "command": "island_surface_ack",
+          "args": {
+            "generation": 1
+          }
+        }
+      ],
+      "unsupported": [],
+      "runtimeAndNetworkProblems": []
+    },
+    {
+      "file": "v56-power-a-power-unknown-light@1x.png",
+      "scenario": "power-unknown",
+      "entry": "island.html",
+      "figmaNode": "7:48",
+      "theme": "light",
+      "resolvedTheme": "dark",
+      "scale": 1,
+      "viewport": {
+        "width": 720,
+        "height": 460
+      },
+      "clip": {
+        "x": 244,
+        "y": 6,
+        "width": 232,
+        "height": 32
+      },
+      "width": 232,
+      "height": 32,
+      "bytes": 2228,
+      "sha256": "cf300217a07e946e03abb9282c6ae1ba116908c5c37fce4c9755a7840cf66deb",
+      "repeatMatches": true,
+      "caret": "hide",
+      "font": [
+        {
+          "familyName": "Geist",
+          "postScriptName": "Geist",
+          "isCustomFont": true,
+          "glyphCount": 8
+        }
+      ],
+      "fixtureSha256": "e3c6c102b99925be9aa61f6b194ea02ab5e9c6ba44d1756e50f0cd82d120bcb3",
+      "assertions": {
+        "mode": "unknown",
+        "accessibility": {
+          "violations": [],
+          "incomplete": []
+        },
+        "geometry": {
+          "morph": {
+            "width": 232,
+            "height": 32,
+            "font": "12px / 16px Geist, \"Segoe UI Variable\", \"Segoe UI\", system-ui, sans-serif",
+            "gap": "normal",
+            "padding": "0px",
+            "text": "Charging—",
+            "title": ""
+          },
+          "compact": {
+            "width": 232,
+            "height": 32,
+            "font": "12px / 16px Geist, \"Segoe UI Variable\", \"Segoe UI\", system-ui, sans-serif",
+            "gap": "8px",
+            "padding": "0px 10px",
+            "text": "Charging—",
+            "title": ""
+          },
+          "label": {
+            "width": 49.859375,
+            "height": 16,
+            "font": "12px / 16px Geist, \"Segoe UI Variable\", \"Segoe UI\", system-ui, sans-serif",
+            "gap": "normal",
+            "padding": "0px",
+            "text": "Charging",
+            "title": ""
+          },
+          "digits": {
+            "width": 7.203125,
+            "height": 16,
+            "font": "500 12px / 16px \"Geist Mono\", \"Cascadia Code\", Consolas, monospace",
+            "gap": "normal",
+            "padding": "0px",
+            "text": "—",
+            "title": "Battery level unavailable"
+          },
+          "assets": [
+            {
+              "slot": "compact/iconBatteryCharging",
+              "width": 16,
+              "height": 16,
+              "loaded": true
+            }
+          ],
+          "overflow": false
+        },
+        "noRealPowerChange": true
+      },
+      "ipc": [
+        {
+          "command": "plugin:event|listen",
+          "args": {
+            "event": "nabbit://island-visibility",
+            "target": {
+              "kind": "Any"
+            },
+            "handler": 1
+          }
+        },
+        {
+          "command": "plugin:event|listen",
+          "args": {
+            "event": "nabbit://island",
+            "target": {
+              "kind": "Any"
+            },
+            "handler": 3
+          }
+        },
+        {
+          "command": "plugin:event|listen",
+          "args": {
+            "event": "nabbit://island-surface",
+            "target": {
+              "kind": "Any"
+            },
+            "handler": 5
+          }
+        },
+        {
+          "command": "plugin:event|listen",
+          "args": {
+            "event": "tauri://drag-enter",
+            "target": {
+              "kind": "WebviewWindow",
+              "label": "island"
+            },
+            "handler": 7
+          }
+        },
+        {
+          "command": "get_island_snapshot",
+          "args": {}
+        },
+        {
+          "command": "get_activity_snapshot",
+          "args": {}
+        },
+        {
+          "command": "get_island_surface",
+          "args": {}
+        },
+        {
+          "command": "plugin:event|listen",
+          "args": {
+            "event": "tauri://drag-over",
+            "target": {
+              "kind": "WebviewWindow",
+              "label": "island"
+            },
+            "handler": 9
+          }
+        },
+        {
+          "command": "plugin:event|listen",
+          "args": {
+            "event": "tauri://drag-drop",
+            "target": {
+              "kind": "WebviewWindow",
+              "label": "island"
+            },
+            "handler": 11
+          }
+        },
+        {
+          "command": "plugin:event|listen",
+          "args": {
+            "event": "tauri://drag-leave",
+            "target": {
+              "kind": "WebviewWindow",
+              "label": "island"
+            },
+            "handler": 13
+          }
+        },
+        {
+          "command": "island_set_hitrect",
+          "args": {
+            "rect": {
+              "x": 236,
+              "y": -2,
+              "w": 248,
+              "h": 48
+            }
+          }
+        },
+        {
+          "command": "island_surface_ack",
+          "args": {
+            "generation": 1
+          }
+        }
+      ],
+      "unsupported": [],
+      "runtimeAndNetworkProblems": []
+    },
+    {
+      "file": "v56-power-a-power-peek-light@1x.png",
+      "scenario": "power-peek",
+      "entry": "island.html",
+      "figmaNode": "7:48",
+      "theme": "light",
+      "resolvedTheme": "dark",
+      "scale": 1,
+      "viewport": {
+        "width": 720,
+        "height": 460
+      },
+      "clip": {
+        "x": 160,
+        "y": 6,
+        "width": 400,
+        "height": 60
+      },
+      "width": 400,
+      "height": 60,
+      "bytes": 5119,
+      "sha256": "657383e40c74763ae8855756f0bb030ba9cb8f748ffd3005a37615f44cd5d446",
+      "repeatMatches": true,
+      "caret": "hide",
+      "font": [
+        {
+          "familyName": "Geist",
+          "postScriptName": "Geist",
+          "isCustomFont": true,
+          "glyphCount": 8
+        }
+      ],
+      "fixtureSha256": "e5e70c7441efad5fcb27328473f5a1f43b78b293f861881a1dfea8c5fe5d9ac2",
+      "assertions": {
+        "mode": "peek",
+        "accessibility": {
+          "violations": [],
+          "incomplete": []
+        },
+        "geometry": {
+          "morph": {
+            "width": 400,
+            "height": 60,
+            "font": "12px / 16px Geist, \"Segoe UI Variable\", \"Segoe UI\", system-ui, sans-serif",
+            "gap": "normal",
+            "padding": "0px",
+            "text": "Battery statusCharging82% battery remaining",
+            "title": ""
+          },
+          "compact": null,
+          "label": null,
+          "digits": null,
+          "assets": [
+            {
+              "slot": "compact/iconBatteryCharging",
+              "width": 16,
+              "height": 16,
+              "loaded": true
+            }
+          ],
+          "overflow": false
+        },
+        "noRealPowerChange": true
+      },
+      "ipc": [
+        {
+          "command": "plugin:event|listen",
+          "args": {
+            "event": "nabbit://island-visibility",
+            "target": {
+              "kind": "Any"
+            },
+            "handler": 1
+          }
+        },
+        {
+          "command": "plugin:event|listen",
+          "args": {
+            "event": "nabbit://island",
+            "target": {
+              "kind": "Any"
+            },
+            "handler": 3
+          }
+        },
+        {
+          "command": "plugin:event|listen",
+          "args": {
+            "event": "nabbit://island-surface",
+            "target": {
+              "kind": "Any"
+            },
+            "handler": 5
+          }
+        },
+        {
+          "command": "plugin:event|listen",
+          "args": {
+            "event": "tauri://drag-enter",
+            "target": {
+              "kind": "WebviewWindow",
+              "label": "island"
+            },
+            "handler": 7
+          }
+        },
+        {
+          "command": "get_island_snapshot",
+          "args": {}
+        },
+        {
+          "command": "get_activity_snapshot",
+          "args": {}
+        },
+        {
+          "command": "get_island_surface",
+          "args": {}
+        },
+        {
+          "command": "plugin:event|listen",
+          "args": {
+            "event": "tauri://drag-over",
+            "target": {
+              "kind": "WebviewWindow",
+              "label": "island"
+            },
+            "handler": 9
+          }
+        },
+        {
+          "command": "plugin:event|listen",
+          "args": {
+            "event": "tauri://drag-drop",
+            "target": {
+              "kind": "WebviewWindow",
+              "label": "island"
+            },
+            "handler": 11
+          }
+        },
+        {
+          "command": "plugin:event|listen",
+          "args": {
+            "event": "tauri://drag-leave",
+            "target": {
+              "kind": "WebviewWindow",
+              "label": "island"
+            },
+            "handler": 13
+          }
+        },
+        {
+          "command": "island_set_hitrect",
+          "args": {
+            "rect": {
+              "x": 152,
+              "y": -2,
+              "w": 416,
+              "h": 48
+            }
+          }
+        },
+        {
+          "command": "island_set_hitrect",
+          "args": {
+            "rect": {
+              "x": 152,
+              "y": -2,
+              "w": 416,
+              "h": 76
+            }
+          }
+        },
+        {
+          "command": "island_surface_ack",
+          "args": {
+            "generation": 1
+          }
+        }
+      ],
+      "unsupported": [],
+      "runtimeAndNetworkProblems": []
+    },
+    {
+      "file": "v56-power-a-power-idle-light@1x.png",
+      "scenario": "power-idle",
+      "entry": "island.html",
+      "figmaNode": "7:48",
+      "theme": "light",
+      "resolvedTheme": "dark",
+      "scale": 1,
+      "viewport": {
+        "width": 720,
+        "height": 460
+      },
+      "clip": {
+        "x": 304,
+        "y": 6,
+        "width": 112,
+        "height": 26
+      },
+      "width": 112,
+      "height": 26,
+      "bytes": 611,
+      "sha256": "9b44da37e4613490d14d24fdf991d17024161b89d34e6dfd544b1506731f38d3",
+      "repeatMatches": true,
+      "caret": "hide",
+      "font": null,
+      "fixtureSha256": "eb648ec409eb4f450a8474d5d273d6189ccdaf386d1756d680d960d6e840a3ca",
+      "assertions": {
+        "mode": "idle",
+        "accessibility": {
+          "violations": [],
+          "incomplete": []
+        },
+        "geometry": {
+          "morph": {
+            "width": 112,
+            "height": 26,
+            "font": "12px / 16px Geist, \"Segoe UI Variable\", \"Segoe UI\", system-ui, sans-serif",
+            "gap": "normal",
+            "padding": "0px",
+            "text": "",
+            "title": ""
+          },
+          "compact": {
+            "width": 112,
+            "height": 26,
+            "font": "12px / 16px Geist, \"Segoe UI Variable\", \"Segoe UI\", system-ui, sans-serif",
+            "gap": "8px",
+            "padding": "0px 10px",
+            "text": "",
+            "title": ""
+          },
+          "label": null,
+          "digits": null,
+          "assets": [],
+          "overflow": false
+        },
+        "noRealPowerChange": true
+      },
+      "ipc": [
+        {
+          "command": "plugin:event|listen",
+          "args": {
+            "event": "nabbit://island-visibility",
+            "target": {
+              "kind": "Any"
+            },
+            "handler": 1
+          }
+        },
+        {
+          "command": "plugin:event|listen",
+          "args": {
+            "event": "nabbit://island",
+            "target": {
+              "kind": "Any"
+            },
+            "handler": 3
+          }
+        },
+        {
+          "command": "plugin:event|listen",
+          "args": {
+            "event": "nabbit://island-surface",
+            "target": {
+              "kind": "Any"
+            },
+            "handler": 5
+          }
+        },
+        {
+          "command": "plugin:event|listen",
+          "args": {
+            "event": "tauri://drag-enter",
+            "target": {
+              "kind": "WebviewWindow",
+              "label": "island"
+            },
+            "handler": 7
+          }
+        },
+        {
+          "command": "get_island_snapshot",
+          "args": {}
+        },
+        {
+          "command": "get_activity_snapshot",
+          "args": {}
+        },
+        {
+          "command": "get_island_surface",
+          "args": {}
+        },
+        {
+          "command": "plugin:event|listen",
+          "args": {
+            "event": "tauri://drag-over",
+            "target": {
+              "kind": "WebviewWindow",
+              "label": "island"
+            },
+            "handler": 9
+          }
+        },
+        {
+          "command": "plugin:event|listen",
+          "args": {
+            "event": "tauri://drag-drop",
+            "target": {
+              "kind": "WebviewWindow",
+              "label": "island"
+            },
+            "handler": 11
+          }
+        },
+        {
+          "command": "plugin:event|listen",
+          "args": {
+            "event": "tauri://drag-leave",
+            "target": {
+              "kind": "WebviewWindow",
+              "label": "island"
+            },
+            "handler": 13
+          }
+        },
+        {
+          "command": "island_set_hitrect",
+          "args": {
+            "rect": {
+              "x": 296,
+              "y": -2,
+              "w": 128,
+              "h": 42
+            }
+          }
+        },
+        {
+          "command": "island_surface_ack",
+          "args": {
+            "generation": 1
+          }
+        }
+      ],
+      "unsupported": [],
+      "runtimeAndNetworkProblems": []
+    },
+    {
+      "file": "v56-power-a-power-split-light@1x.png",
+      "scenario": "power-split",
+      "entry": "island.html",
+      "figmaNode": "7:48",
+      "theme": "light",
+      "resolvedTheme": "dark",
+      "scale": 1,
+      "viewport": {
+        "width": 720,
+        "height": 460
+      },
+      "clip": {
+        "x": 211,
+        "y": 6,
+        "width": 298,
+        "height": 32
+      },
+      "width": 298,
+      "height": 32,
+      "bytes": 3855,
+      "sha256": "3464ec1c5b0a64680b03c1656e5b4503fcd7f30a748637b71073ab006bf053e9",
+      "repeatMatches": true,
+      "caret": "hide",
+      "font": [
+        {
+          "familyName": "Geist",
+          "postScriptName": "Geist",
+          "isCustomFont": true,
+          "glyphCount": 8
+        }
+      ],
+      "fixtureSha256": "a58f04ed77a5cfc08badbf79728132309784183c47d80ed0cff2f610c2f94aff",
+      "assertions": {
+        "mode": "split",
+        "accessibility": {
+          "violations": [],
+          "incomplete": []
+        },
+        "geometry": {
+          "morph": {
+            "width": 298,
+            "height": 32,
+            "font": "12px / 16px Geist, \"Segoe UI Variable\", \"Segoe UI\", system-ui, sans-serif",
+            "gap": "normal",
+            "padding": "0px",
+            "text": "Charging82%",
+            "title": ""
+          },
+          "compact": {
+            "width": 260,
+            "height": 32,
+            "font": "12px / 16px Geist, \"Segoe UI Variable\", \"Segoe UI\", system-ui, sans-serif",
+            "gap": "8px",
+            "padding": "0px 10px",
+            "text": "Charging82%",
+            "title": ""
+          },
+          "label": {
+            "width": 49.859375,
+            "height": 16,
+            "font": "12px / 16px Geist, \"Segoe UI Variable\", \"Segoe UI\", system-ui, sans-serif",
+            "gap": "normal",
+            "padding": "0px",
+            "text": "Charging",
+            "title": ""
+          },
+          "digits": {
+            "width": 21.609375,
+            "height": 16,
+            "font": "500 12px / 16px \"Geist Mono\", \"Cascadia Code\", Consolas, monospace",
+            "gap": "normal",
+            "padding": "0px",
+            "text": "82%",
+            "title": ""
+          },
+          "assets": [
+            {
+              "slot": "compact/iconBatteryCharging",
+              "width": 16,
+              "height": 16,
+              "loaded": true
+            },
+            {
+              "slot": "compact/iconTimer1",
+              "width": 15,
+              "height": 15,
+              "loaded": true
+            }
+          ],
+          "overflow": false
+        },
+        "noRealPowerChange": true
+      },
+      "ipc": [
+        {
+          "command": "plugin:event|listen",
+          "args": {
+            "event": "nabbit://island-visibility",
+            "target": {
+              "kind": "Any"
+            },
+            "handler": 1
+          }
+        },
+        {
+          "command": "plugin:event|listen",
+          "args": {
+            "event": "nabbit://island",
+            "target": {
+              "kind": "Any"
+            },
+            "handler": 3
+          }
+        },
+        {
+          "command": "plugin:event|listen",
+          "args": {
+            "event": "nabbit://island-surface",
+            "target": {
+              "kind": "Any"
+            },
+            "handler": 5
+          }
+        },
+        {
+          "command": "plugin:event|listen",
+          "args": {
+            "event": "tauri://drag-enter",
+            "target": {
+              "kind": "WebviewWindow",
+              "label": "island"
+            },
+            "handler": 7
+          }
+        },
+        {
+          "command": "get_island_snapshot",
+          "args": {}
+        },
+        {
+          "command": "get_activity_snapshot",
+          "args": {}
+        },
+        {
+          "command": "get_island_surface",
+          "args": {}
+        },
+        {
+          "command": "plugin:event|listen",
+          "args": {
+            "event": "tauri://drag-over",
+            "target": {
+              "kind": "WebviewWindow",
+              "label": "island"
+            },
+            "handler": 9
+          }
+        },
+        {
+          "command": "plugin:event|listen",
+          "args": {
+            "event": "tauri://drag-drop",
+            "target": {
+              "kind": "WebviewWindow",
+              "label": "island"
+            },
+            "handler": 11
+          }
+        },
+        {
+          "command": "plugin:event|listen",
+          "args": {
+            "event": "tauri://drag-leave",
+            "target": {
+              "kind": "WebviewWindow",
+              "label": "island"
+            },
+            "handler": 13
+          }
+        },
+        {
+          "command": "island_set_hitrect",
+          "args": {
+            "rect": {
+              "x": 203,
+              "y": -2,
+              "w": 314,
+              "h": 48
+            }
+          }
+        },
+        {
+          "command": "island_surface_ack",
+          "args": {
+            "generation": 1
+          }
+        }
+      ],
+      "unsupported": [],
+      "runtimeAndNetworkProblems": []
+    },
+    {
+      "file": "v56-power-a-power-charging-light@1.5x.png",
+      "scenario": "power-charging",
+      "entry": "island.html",
+      "figmaNode": "7:48",
+      "theme": "light",
+      "resolvedTheme": "dark",
+      "scale": 1.5,
+      "viewport": {
+        "width": 720,
+        "height": 460
+      },
+      "clip": {
+        "x": 244,
+        "y": 6,
+        "width": 232,
+        "height": 32
+      },
+      "width": 348,
+      "height": 48,
+      "bytes": 4158,
+      "sha256": "738ba5090874baf045610ea483cfdd7a45eb142ea9d1aee4f3c5a4cc6e094252",
+      "repeatMatches": true,
+      "caret": "hide",
+      "font": [
+        {
+          "familyName": "Geist",
+          "postScriptName": "Geist",
+          "isCustomFont": true,
+          "glyphCount": 8
+        }
+      ],
+      "fixtureSha256": "1949debea9432b501b88a7b544078295ccdd3402e8b77dc0209f1ad449e533f3",
+      "assertions": {
+        "mode": "charging",
+        "accessibility": {
+          "violations": [],
+          "incomplete": []
+        },
+        "geometry": {
+          "morph": {
+            "width": 232,
+            "height": 32,
+            "font": "12px / 16px Geist, \"Segoe UI Variable\", \"Segoe UI\", system-ui, sans-serif",
+            "gap": "normal",
+            "padding": "0px",
+            "text": "Charging82%",
+            "title": ""
+          },
+          "compact": {
+            "width": 232,
+            "height": 32,
+            "font": "12px / 16px Geist, \"Segoe UI Variable\", \"Segoe UI\", system-ui, sans-serif",
+            "gap": "8px",
+            "padding": "0px 10px",
+            "text": "Charging82%",
+            "title": ""
+          },
+          "label": {
+            "width": 49.859375,
+            "height": 16,
+            "font": "12px / 16px Geist, \"Segoe UI Variable\", \"Segoe UI\", system-ui, sans-serif",
+            "gap": "normal",
+            "padding": "0px",
+            "text": "Charging",
+            "title": ""
+          },
+          "digits": {
+            "width": 21.609375,
+            "height": 16,
+            "font": "500 12px / 16px \"Geist Mono\", \"Cascadia Code\", Consolas, monospace",
+            "gap": "normal",
+            "padding": "0px",
+            "text": "82%",
+            "title": ""
+          },
+          "assets": [
+            {
+              "slot": "compact/iconBatteryCharging",
+              "width": 16,
+              "height": 16,
+              "loaded": true
+            }
+          ],
+          "overflow": false
+        },
+        "noRealPowerChange": true
+      },
+      "ipc": [
+        {
+          "command": "plugin:event|listen",
+          "args": {
+            "event": "nabbit://island-visibility",
+            "target": {
+              "kind": "Any"
+            },
+            "handler": 1
+          }
+        },
+        {
+          "command": "plugin:event|listen",
+          "args": {
+            "event": "nabbit://island",
+            "target": {
+              "kind": "Any"
+            },
+            "handler": 3
+          }
+        },
+        {
+          "command": "plugin:event|listen",
+          "args": {
+            "event": "nabbit://island-surface",
+            "target": {
+              "kind": "Any"
+            },
+            "handler": 5
+          }
+        },
+        {
+          "command": "plugin:event|listen",
+          "args": {
+            "event": "tauri://drag-enter",
+            "target": {
+              "kind": "WebviewWindow",
+              "label": "island"
+            },
+            "handler": 7
+          }
+        },
+        {
+          "command": "get_island_snapshot",
+          "args": {}
+        },
+        {
+          "command": "get_activity_snapshot",
+          "args": {}
+        },
+        {
+          "command": "get_island_surface",
+          "args": {}
+        },
+        {
+          "command": "plugin:event|listen",
+          "args": {
+            "event": "tauri://drag-over",
+            "target": {
+              "kind": "WebviewWindow",
+              "label": "island"
+            },
+            "handler": 9
+          }
+        },
+        {
+          "command": "plugin:event|listen",
+          "args": {
+            "event": "tauri://drag-drop",
+            "target": {
+              "kind": "WebviewWindow",
+              "label": "island"
+            },
+            "handler": 11
+          }
+        },
+        {
+          "command": "plugin:event|listen",
+          "args": {
+            "event": "tauri://drag-leave",
+            "target": {
+              "kind": "WebviewWindow",
+              "label": "island"
+            },
+            "handler": 13
+          }
+        },
+        {
+          "command": "island_set_hitrect",
+          "args": {
+            "rect": {
+              "x": 236,
+              "y": -2,
+              "w": 248,
+              "h": 48
+            }
+          }
+        },
+        {
+          "command": "island_surface_ack",
+          "args": {
+            "generation": 1
+          }
+        }
+      ],
+      "unsupported": [],
+      "runtimeAndNetworkProblems": []
+    },
+    {
+      "file": "v56-power-a-power-unplugged-light@1.5x.png",
+      "scenario": "power-unplugged",
+      "entry": "island.html",
+      "figmaNode": "7:48",
+      "theme": "light",
+      "resolvedTheme": "dark",
+      "scale": 1.5,
+      "viewport": {
+        "width": 720,
+        "height": 460
+      },
+      "clip": {
+        "x": 244,
+        "y": 6,
+        "width": 232,
+        "height": 32
+      },
+      "width": 348,
+      "height": 48,
+      "bytes": 4725,
+      "sha256": "dd1fdbda9ab34dbd0710f8d06a74585dc33939ee037dceb5a68ca9fc8754bb92",
+      "repeatMatches": true,
+      "caret": "hide",
+      "font": [
+        {
+          "familyName": "Geist",
+          "postScriptName": "Geist",
+          "isCustomFont": true,
+          "glyphCount": 9
+        }
+      ],
+      "fixtureSha256": "11f8f4aaa2dcdc833419bff9ff4850db73a2199511e2774a485be81be83ad966",
+      "assertions": {
+        "mode": "unplugged",
+        "accessibility": {
+          "violations": [],
+          "incomplete": []
+        },
+        "geometry": {
+          "morph": {
+            "width": 232,
+            "height": 32,
+            "font": "12px / 16px Geist, \"Segoe UI Variable\", \"Segoe UI\", system-ui, sans-serif",
+            "gap": "normal",
+            "padding": "0px",
+            "text": "On battery82%",
+            "title": ""
+          },
+          "compact": {
+            "width": 232,
+            "height": 32,
+            "font": "12px / 16px Geist, \"Segoe UI Variable\", \"Segoe UI\", system-ui, sans-serif",
+            "gap": "8px",
+            "padding": "0px 10px",
+            "text": "On battery82%",
+            "title": ""
+          },
+          "label": {
+            "width": 57.46875,
+            "height": 16,
+            "font": "12px / 16px Geist, \"Segoe UI Variable\", \"Segoe UI\", system-ui, sans-serif",
+            "gap": "normal",
+            "padding": "0px",
+            "text": "On battery",
+            "title": ""
+          },
+          "digits": {
+            "width": 21.609375,
+            "height": 16,
+            "font": "500 12px / 16px \"Geist Mono\", \"Cascadia Code\", Consolas, monospace",
+            "gap": "normal",
+            "padding": "0px",
+            "text": "82%",
+            "title": ""
+          },
+          "assets": [
+            {
+              "slot": "compact/iconBatteryCharging",
+              "width": 16,
+              "height": 16,
+              "loaded": true
+            }
+          ],
+          "overflow": false
+        },
+        "noRealPowerChange": true
+      },
+      "ipc": [
+        {
+          "command": "plugin:event|listen",
+          "args": {
+            "event": "nabbit://island-visibility",
+            "target": {
+              "kind": "Any"
+            },
+            "handler": 1
+          }
+        },
+        {
+          "command": "plugin:event|listen",
+          "args": {
+            "event": "nabbit://island",
+            "target": {
+              "kind": "Any"
+            },
+            "handler": 3
+          }
+        },
+        {
+          "command": "plugin:event|listen",
+          "args": {
+            "event": "nabbit://island-surface",
+            "target": {
+              "kind": "Any"
+            },
+            "handler": 5
+          }
+        },
+        {
+          "command": "plugin:event|listen",
+          "args": {
+            "event": "tauri://drag-enter",
+            "target": {
+              "kind": "WebviewWindow",
+              "label": "island"
+            },
+            "handler": 7
+          }
+        },
+        {
+          "command": "get_island_snapshot",
+          "args": {}
+        },
+        {
+          "command": "get_activity_snapshot",
+          "args": {}
+        },
+        {
+          "command": "get_island_surface",
+          "args": {}
+        },
+        {
+          "command": "plugin:event|listen",
+          "args": {
+            "event": "tauri://drag-over",
+            "target": {
+              "kind": "WebviewWindow",
+              "label": "island"
+            },
+            "handler": 9
+          }
+        },
+        {
+          "command": "plugin:event|listen",
+          "args": {
+            "event": "tauri://drag-drop",
+            "target": {
+              "kind": "WebviewWindow",
+              "label": "island"
+            },
+            "handler": 11
+          }
+        },
+        {
+          "command": "plugin:event|listen",
+          "args": {
+            "event": "tauri://drag-leave",
+            "target": {
+              "kind": "WebviewWindow",
+              "label": "island"
+            },
+            "handler": 13
+          }
+        },
+        {
+          "command": "island_set_hitrect",
+          "args": {
+            "rect": {
+              "x": 236,
+              "y": -2,
+              "w": 248,
+              "h": 48
+            }
+          }
+        },
+        {
+          "command": "island_surface_ack",
+          "args": {
+            "generation": 1
+          }
+        }
+      ],
+      "unsupported": [],
+      "runtimeAndNetworkProblems": []
+    },
+    {
+      "file": "v56-power-a-power-low-light@1.5x.png",
+      "scenario": "power-low",
+      "entry": "island.html",
+      "figmaNode": "7:48",
+      "theme": "light",
+      "resolvedTheme": "dark",
+      "scale": 1.5,
+      "viewport": {
+        "width": 720,
+        "height": 460
+      },
+      "clip": {
+        "x": 244,
+        "y": 6,
+        "width": 232,
+        "height": 32
+      },
+      "width": 348,
+      "height": 48,
+      "bytes": 4936,
+      "sha256": "48215aca74fe98a75a43db8761fb3473fa948bf9929dd93b13b780e6132f458f",
+      "repeatMatches": true,
+      "caret": "hide",
+      "font": [
+        {
+          "familyName": "Geist",
+          "postScriptName": "Geist",
+          "isCustomFont": true,
+          "glyphCount": 10
+        }
+      ],
+      "fixtureSha256": "8934591ac61a9d5b6d548f22ca9f71a9e0036f5a9a06a28d00843c833d88b553",
+      "assertions": {
+        "mode": "low",
+        "accessibility": {
+          "violations": [],
+          "incomplete": []
+        },
+        "geometry": {
+          "morph": {
+            "width": 232,
+            "height": 32,
+            "font": "12px / 16px Geist, \"Segoe UI Variable\", \"Segoe UI\", system-ui, sans-serif",
+            "gap": "normal",
+            "padding": "0px",
+            "text": "Battery low20%",
+            "title": ""
+          },
+          "compact": {
+            "width": 232,
+            "height": 32,
+            "font": "12px / 16px Geist, \"Segoe UI Variable\", \"Segoe UI\", system-ui, sans-serif",
+            "gap": "8px",
+            "padding": "0px 10px",
+            "text": "Battery low20%",
+            "title": ""
+          },
+          "label": {
+            "width": 62.046875,
+            "height": 16,
+            "font": "12px / 16px Geist, \"Segoe UI Variable\", \"Segoe UI\", system-ui, sans-serif",
+            "gap": "normal",
+            "padding": "0px",
+            "text": "Battery low",
+            "title": ""
+          },
+          "digits": {
+            "width": 21.609375,
+            "height": 16,
+            "font": "500 12px / 16px \"Geist Mono\", \"Cascadia Code\", Consolas, monospace",
+            "gap": "normal",
+            "padding": "0px",
+            "text": "20%",
+            "title": ""
+          },
+          "assets": [
+            {
+              "slot": "compact/iconBatteryCharging",
+              "width": 16,
+              "height": 16,
+              "loaded": true
+            }
+          ],
+          "overflow": false
+        },
+        "noRealPowerChange": true
+      },
+      "ipc": [
+        {
+          "command": "plugin:event|listen",
+          "args": {
+            "event": "nabbit://island-visibility",
+            "target": {
+              "kind": "Any"
+            },
+            "handler": 1
+          }
+        },
+        {
+          "command": "plugin:event|listen",
+          "args": {
+            "event": "nabbit://island",
+            "target": {
+              "kind": "Any"
+            },
+            "handler": 3
+          }
+        },
+        {
+          "command": "plugin:event|listen",
+          "args": {
+            "event": "nabbit://island-surface",
+            "target": {
+              "kind": "Any"
+            },
+            "handler": 5
+          }
+        },
+        {
+          "command": "plugin:event|listen",
+          "args": {
+            "event": "tauri://drag-enter",
+            "target": {
+              "kind": "WebviewWindow",
+              "label": "island"
+            },
+            "handler": 7
+          }
+        },
+        {
+          "command": "get_island_snapshot",
+          "args": {}
+        },
+        {
+          "command": "get_activity_snapshot",
+          "args": {}
+        },
+        {
+          "command": "get_island_surface",
+          "args": {}
+        },
+        {
+          "command": "plugin:event|listen",
+          "args": {
+            "event": "tauri://drag-over",
+            "target": {
+              "kind": "WebviewWindow",
+              "label": "island"
+            },
+            "handler": 9
+          }
+        },
+        {
+          "command": "plugin:event|listen",
+          "args": {
+            "event": "tauri://drag-drop",
+            "target": {
+              "kind": "WebviewWindow",
+              "label": "island"
+            },
+            "handler": 11
+          }
+        },
+        {
+          "command": "plugin:event|listen",
+          "args": {
+            "event": "tauri://drag-leave",
+            "target": {
+              "kind": "WebviewWindow",
+              "label": "island"
+            },
+            "handler": 13
+          }
+        },
+        {
+          "command": "island_set_hitrect",
+          "args": {
+            "rect": {
+              "x": 236,
+              "y": -2,
+              "w": 248,
+              "h": 48
+            }
+          }
+        },
+        {
+          "command": "island_surface_ack",
+          "args": {
+            "generation": 1
+          }
+        }
+      ],
+      "unsupported": [],
+      "runtimeAndNetworkProblems": []
+    },
+    {
+      "file": "v56-power-a-power-full-light@1.5x.png",
+      "scenario": "power-full",
+      "entry": "island.html",
+      "figmaNode": "7:48",
+      "theme": "light",
+      "resolvedTheme": "dark",
+      "scale": 1.5,
+      "viewport": {
+        "width": 720,
+        "height": 460
+      },
+      "clip": {
+        "x": 244,
+        "y": 6,
+        "width": 232,
+        "height": 32
+      },
+      "width": 348,
+      "height": 48,
+      "bytes": 4313,
+      "sha256": "12f84d6b9379154dc17bef1bb2f8ba0aa2e8b8d9a96bca24a553854fb17de12f",
+      "repeatMatches": true,
+      "caret": "hide",
+      "font": [
+        {
+          "familyName": "Geist",
+          "postScriptName": "Geist",
+          "isCustomFont": true,
+          "glyphCount": 10
+        }
+      ],
+      "fixtureSha256": "7f89706637c3102cf823af2fb93eaae1f18d6b04a709e44a8e27b5c07aee2cde",
+      "assertions": {
+        "mode": "full",
+        "accessibility": {
+          "violations": [],
+          "incomplete": []
+        },
+        "geometry": {
+          "morph": {
+            "width": 232,
+            "height": 32,
+            "font": "12px / 16px Geist, \"Segoe UI Variable\", \"Segoe UI\", system-ui, sans-serif",
+            "gap": "normal",
+            "padding": "0px",
+            "text": "Plugged in100%",
+            "title": ""
+          },
+          "compact": {
+            "width": 232,
+            "height": 32,
+            "font": "12px / 16px Geist, \"Segoe UI Variable\", \"Segoe UI\", system-ui, sans-serif",
+            "gap": "8px",
+            "padding": "0px 10px",
+            "text": "Plugged in100%",
+            "title": ""
+          },
+          "label": {
+            "width": 58.40625,
+            "height": 16,
+            "font": "12px / 16px Geist, \"Segoe UI Variable\", \"Segoe UI\", system-ui, sans-serif",
+            "gap": "normal",
+            "padding": "0px",
+            "text": "Plugged in",
+            "title": ""
+          },
+          "digits": {
+            "width": 28.8125,
+            "height": 16,
+            "font": "500 12px / 16px \"Geist Mono\", \"Cascadia Code\", Consolas, monospace",
+            "gap": "normal",
+            "padding": "0px",
+            "text": "100%",
+            "title": ""
+          },
+          "assets": [
+            {
+              "slot": "compact/iconBatteryCharging",
+              "width": 16,
+              "height": 16,
+              "loaded": true
+            }
+          ],
+          "overflow": false
+        },
+        "noRealPowerChange": true
+      },
+      "ipc": [
+        {
+          "command": "plugin:event|listen",
+          "args": {
+            "event": "nabbit://island-visibility",
+            "target": {
+              "kind": "Any"
+            },
+            "handler": 1
+          }
+        },
+        {
+          "command": "plugin:event|listen",
+          "args": {
+            "event": "nabbit://island",
+            "target": {
+              "kind": "Any"
+            },
+            "handler": 3
+          }
+        },
+        {
+          "command": "plugin:event|listen",
+          "args": {
+            "event": "nabbit://island-surface",
+            "target": {
+              "kind": "Any"
+            },
+            "handler": 5
+          }
+        },
+        {
+          "command": "plugin:event|listen",
+          "args": {
+            "event": "tauri://drag-enter",
+            "target": {
+              "kind": "WebviewWindow",
+              "label": "island"
+            },
+            "handler": 7
+          }
+        },
+        {
+          "command": "get_island_snapshot",
+          "args": {}
+        },
+        {
+          "command": "get_activity_snapshot",
+          "args": {}
+        },
+        {
+          "command": "get_island_surface",
+          "args": {}
+        },
+        {
+          "command": "plugin:event|listen",
+          "args": {
+            "event": "tauri://drag-over",
+            "target": {
+              "kind": "WebviewWindow",
+              "label": "island"
+            },
+            "handler": 9
+          }
+        },
+        {
+          "command": "plugin:event|listen",
+          "args": {
+            "event": "tauri://drag-drop",
+            "target": {
+              "kind": "WebviewWindow",
+              "label": "island"
+            },
+            "handler": 11
+          }
+        },
+        {
+          "command": "plugin:event|listen",
+          "args": {
+            "event": "tauri://drag-leave",
+            "target": {
+              "kind": "WebviewWindow",
+              "label": "island"
+            },
+            "handler": 13
+          }
+        },
+        {
+          "command": "island_set_hitrect",
+          "args": {
+            "rect": {
+              "x": 236,
+              "y": -2,
+              "w": 248,
+              "h": 48
+            }
+          }
+        },
+        {
+          "command": "island_surface_ack",
+          "args": {
+            "generation": 1
+          }
+        }
+      ],
+      "unsupported": [],
+      "runtimeAndNetworkProblems": []
+    },
+    {
+      "file": "v56-power-a-power-unknown-light@1.5x.png",
+      "scenario": "power-unknown",
+      "entry": "island.html",
+      "figmaNode": "7:48",
+      "theme": "light",
+      "resolvedTheme": "dark",
+      "scale": 1.5,
+      "viewport": {
+        "width": 720,
+        "height": 460
+      },
+      "clip": {
+        "x": 244,
+        "y": 6,
+        "width": 232,
+        "height": 32
+      },
+      "width": 348,
+      "height": 48,
+      "bytes": 3121,
+      "sha256": "d6e0983bfe20f01c65a120209994ac9a19b2f148c9a7a705206c1286ba740d02",
+      "repeatMatches": true,
+      "caret": "hide",
+      "font": [
+        {
+          "familyName": "Geist",
+          "postScriptName": "Geist",
+          "isCustomFont": true,
+          "glyphCount": 8
+        }
+      ],
+      "fixtureSha256": "e3c6c102b99925be9aa61f6b194ea02ab5e9c6ba44d1756e50f0cd82d120bcb3",
+      "assertions": {
+        "mode": "unknown",
+        "accessibility": {
+          "violations": [],
+          "incomplete": []
+        },
+        "geometry": {
+          "morph": {
+            "width": 232,
+            "height": 32,
+            "font": "12px / 16px Geist, \"Segoe UI Variable\", \"Segoe UI\", system-ui, sans-serif",
+            "gap": "normal",
+            "padding": "0px",
+            "text": "Charging—",
+            "title": ""
+          },
+          "compact": {
+            "width": 232,
+            "height": 32,
+            "font": "12px / 16px Geist, \"Segoe UI Variable\", \"Segoe UI\", system-ui, sans-serif",
+            "gap": "8px",
+            "padding": "0px 10px",
+            "text": "Charging—",
+            "title": ""
+          },
+          "label": {
+            "width": 49.859375,
+            "height": 16,
+            "font": "12px / 16px Geist, \"Segoe UI Variable\", \"Segoe UI\", system-ui, sans-serif",
+            "gap": "normal",
+            "padding": "0px",
+            "text": "Charging",
+            "title": ""
+          },
+          "digits": {
+            "width": 7.203125,
+            "height": 16,
+            "font": "500 12px / 16px \"Geist Mono\", \"Cascadia Code\", Consolas, monospace",
+            "gap": "normal",
+            "padding": "0px",
+            "text": "—",
+            "title": "Battery level unavailable"
+          },
+          "assets": [
+            {
+              "slot": "compact/iconBatteryCharging",
+              "width": 16,
+              "height": 16,
+              "loaded": true
+            }
+          ],
+          "overflow": false
+        },
+        "noRealPowerChange": true
+      },
+      "ipc": [
+        {
+          "command": "plugin:event|listen",
+          "args": {
+            "event": "nabbit://island-visibility",
+            "target": {
+              "kind": "Any"
+            },
+            "handler": 1
+          }
+        },
+        {
+          "command": "plugin:event|listen",
+          "args": {
+            "event": "nabbit://island",
+            "target": {
+              "kind": "Any"
+            },
+            "handler": 3
+          }
+        },
+        {
+          "command": "plugin:event|listen",
+          "args": {
+            "event": "nabbit://island-surface",
+            "target": {
+              "kind": "Any"
+            },
+            "handler": 5
+          }
+        },
+        {
+          "command": "plugin:event|listen",
+          "args": {
+            "event": "tauri://drag-enter",
+            "target": {
+              "kind": "WebviewWindow",
+              "label": "island"
+            },
+            "handler": 7
+          }
+        },
+        {
+          "command": "get_island_snapshot",
+          "args": {}
+        },
+        {
+          "command": "get_activity_snapshot",
+          "args": {}
+        },
+        {
+          "command": "get_island_surface",
+          "args": {}
+        },
+        {
+          "command": "plugin:event|listen",
+          "args": {
+            "event": "tauri://drag-over",
+            "target": {
+              "kind": "WebviewWindow",
+              "label": "island"
+            },
+            "handler": 9
+          }
+        },
+        {
+          "command": "plugin:event|listen",
+          "args": {
+            "event": "tauri://drag-drop",
+            "target": {
+              "kind": "WebviewWindow",
+              "label": "island"
+            },
+            "handler": 11
+          }
+        },
+        {
+          "command": "plugin:event|listen",
+          "args": {
+            "event": "tauri://drag-leave",
+            "target": {
+              "kind": "WebviewWindow",
+              "label": "island"
+            },
+            "handler": 13
+          }
+        },
+        {
+          "command": "island_set_hitrect",
+          "args": {
+            "rect": {
+              "x": 236,
+              "y": -2,
+              "w": 248,
+              "h": 48
+            }
+          }
+        },
+        {
+          "command": "island_surface_ack",
+          "args": {
+            "generation": 1
+          }
+        }
+      ],
+      "unsupported": [],
+      "runtimeAndNetworkProblems": []
+    },
+    {
+      "file": "v56-power-a-power-peek-light@1.5x.png",
+      "scenario": "power-peek",
+      "entry": "island.html",
+      "figmaNode": "7:48",
+      "theme": "light",
+      "resolvedTheme": "dark",
+      "scale": 1.5,
+      "viewport": {
+        "width": 720,
+        "height": 460
+      },
+      "clip": {
+        "x": 160,
+        "y": 6,
+        "width": 400,
+        "height": 60
+      },
+      "width": 600,
+      "height": 90,
+      "bytes": 7909,
+      "sha256": "8516c6dfb0d7b3741a1de908d42e1aaf455f1cfca6d9f2404d82bbb8802394b7",
+      "repeatMatches": true,
+      "caret": "hide",
+      "font": [
+        {
+          "familyName": "Geist",
+          "postScriptName": "Geist",
+          "isCustomFont": true,
+          "glyphCount": 8
+        }
+      ],
+      "fixtureSha256": "e5e70c7441efad5fcb27328473f5a1f43b78b293f861881a1dfea8c5fe5d9ac2",
+      "assertions": {
+        "mode": "peek",
+        "accessibility": {
+          "violations": [],
+          "incomplete": []
+        },
+        "geometry": {
+          "morph": {
+            "width": 400,
+            "height": 60,
+            "font": "12px / 16px Geist, \"Segoe UI Variable\", \"Segoe UI\", system-ui, sans-serif",
+            "gap": "normal",
+            "padding": "0px",
+            "text": "Battery statusCharging82% battery remaining",
+            "title": ""
+          },
+          "compact": null,
+          "label": null,
+          "digits": null,
+          "assets": [
+            {
+              "slot": "compact/iconBatteryCharging",
+              "width": 16,
+              "height": 16,
+              "loaded": true
+            }
+          ],
+          "overflow": false
+        },
+        "noRealPowerChange": true
+      },
+      "ipc": [
+        {
+          "command": "plugin:event|listen",
+          "args": {
+            "event": "nabbit://island-visibility",
+            "target": {
+              "kind": "Any"
+            },
+            "handler": 1
+          }
+        },
+        {
+          "command": "plugin:event|listen",
+          "args": {
+            "event": "nabbit://island",
+            "target": {
+              "kind": "Any"
+            },
+            "handler": 3
+          }
+        },
+        {
+          "command": "plugin:event|listen",
+          "args": {
+            "event": "nabbit://island-surface",
+            "target": {
+              "kind": "Any"
+            },
+            "handler": 5
+          }
+        },
+        {
+          "command": "plugin:event|listen",
+          "args": {
+            "event": "tauri://drag-enter",
+            "target": {
+              "kind": "WebviewWindow",
+              "label": "island"
+            },
+            "handler": 7
+          }
+        },
+        {
+          "command": "get_island_snapshot",
+          "args": {}
+        },
+        {
+          "command": "get_activity_snapshot",
+          "args": {}
+        },
+        {
+          "command": "get_island_surface",
+          "args": {}
+        },
+        {
+          "command": "plugin:event|listen",
+          "args": {
+            "event": "tauri://drag-over",
+            "target": {
+              "kind": "WebviewWindow",
+              "label": "island"
+            },
+            "handler": 9
+          }
+        },
+        {
+          "command": "plugin:event|listen",
+          "args": {
+            "event": "tauri://drag-drop",
+            "target": {
+              "kind": "WebviewWindow",
+              "label": "island"
+            },
+            "handler": 11
+          }
+        },
+        {
+          "command": "plugin:event|listen",
+          "args": {
+            "event": "tauri://drag-leave",
+            "target": {
+              "kind": "WebviewWindow",
+              "label": "island"
+            },
+            "handler": 13
+          }
+        },
+        {
+          "command": "island_set_hitrect",
+          "args": {
+            "rect": {
+              "x": 152,
+              "y": -2,
+              "w": 416,
+              "h": 48
+            }
+          }
+        },
+        {
+          "command": "island_set_hitrect",
+          "args": {
+            "rect": {
+              "x": 152,
+              "y": -2,
+              "w": 416,
+              "h": 76
+            }
+          }
+        },
+        {
+          "command": "island_surface_ack",
+          "args": {
+            "generation": 1
+          }
+        }
+      ],
+      "unsupported": [],
+      "runtimeAndNetworkProblems": []
+    },
+    {
+      "file": "v56-power-a-power-idle-light@1.5x.png",
+      "scenario": "power-idle",
+      "entry": "island.html",
+      "figmaNode": "7:48",
+      "theme": "light",
+      "resolvedTheme": "dark",
+      "scale": 1.5,
+      "viewport": {
+        "width": 720,
+        "height": 460
+      },
+      "clip": {
+        "x": 304,
+        "y": 6,
+        "width": 112,
+        "height": 26
+      },
+      "width": 168,
+      "height": 39,
+      "bytes": 969,
+      "sha256": "515b5a06948c20ca6768b22903eeda53f9e436c2c3ed761242724a5b76d2d41b",
+      "repeatMatches": true,
+      "caret": "hide",
+      "font": null,
+      "fixtureSha256": "eb648ec409eb4f450a8474d5d273d6189ccdaf386d1756d680d960d6e840a3ca",
+      "assertions": {
+        "mode": "idle",
+        "accessibility": {
+          "violations": [],
+          "incomplete": []
+        },
+        "geometry": {
+          "morph": {
+            "width": 112,
+            "height": 26,
+            "font": "12px / 16px Geist, \"Segoe UI Variable\", \"Segoe UI\", system-ui, sans-serif",
+            "gap": "normal",
+            "padding": "0px",
+            "text": "",
+            "title": ""
+          },
+          "compact": {
+            "width": 112,
+            "height": 26,
+            "font": "12px / 16px Geist, \"Segoe UI Variable\", \"Segoe UI\", system-ui, sans-serif",
+            "gap": "8px",
+            "padding": "0px 10px",
+            "text": "",
+            "title": ""
+          },
+          "label": null,
+          "digits": null,
+          "assets": [],
+          "overflow": false
+        },
+        "noRealPowerChange": true
+      },
+      "ipc": [
+        {
+          "command": "plugin:event|listen",
+          "args": {
+            "event": "nabbit://island-visibility",
+            "target": {
+              "kind": "Any"
+            },
+            "handler": 1
+          }
+        },
+        {
+          "command": "plugin:event|listen",
+          "args": {
+            "event": "nabbit://island",
+            "target": {
+              "kind": "Any"
+            },
+            "handler": 3
+          }
+        },
+        {
+          "command": "plugin:event|listen",
+          "args": {
+            "event": "nabbit://island-surface",
+            "target": {
+              "kind": "Any"
+            },
+            "handler": 5
+          }
+        },
+        {
+          "command": "plugin:event|listen",
+          "args": {
+            "event": "tauri://drag-enter",
+            "target": {
+              "kind": "WebviewWindow",
+              "label": "island"
+            },
+            "handler": 7
+          }
+        },
+        {
+          "command": "get_island_snapshot",
+          "args": {}
+        },
+        {
+          "command": "get_activity_snapshot",
+          "args": {}
+        },
+        {
+          "command": "get_island_surface",
+          "args": {}
+        },
+        {
+          "command": "plugin:event|listen",
+          "args": {
+            "event": "tauri://drag-over",
+            "target": {
+              "kind": "WebviewWindow",
+              "label": "island"
+            },
+            "handler": 9
+          }
+        },
+        {
+          "command": "plugin:event|listen",
+          "args": {
+            "event": "tauri://drag-drop",
+            "target": {
+              "kind": "WebviewWindow",
+              "label": "island"
+            },
+            "handler": 11
+          }
+        },
+        {
+          "command": "plugin:event|listen",
+          "args": {
+            "event": "tauri://drag-leave",
+            "target": {
+              "kind": "WebviewWindow",
+              "label": "island"
+            },
+            "handler": 13
+          }
+        },
+        {
+          "command": "island_set_hitrect",
+          "args": {
+            "rect": {
+              "x": 296,
+              "y": -2,
+              "w": 128,
+              "h": 42
+            }
+          }
+        },
+        {
+          "command": "island_surface_ack",
+          "args": {
+            "generation": 1
+          }
+        }
+      ],
+      "unsupported": [],
+      "runtimeAndNetworkProblems": []
+    },
+    {
+      "file": "v56-power-a-power-split-light@1.5x.png",
+      "scenario": "power-split",
+      "entry": "island.html",
+      "figmaNode": "7:48",
+      "theme": "light",
+      "resolvedTheme": "dark",
+      "scale": 1.5,
+      "viewport": {
+        "width": 720,
+        "height": 460
+      },
+      "clip": {
+        "x": 211,
+        "y": 6,
+        "width": 298,
+        "height": 32
+      },
+      "width": 447,
+      "height": 48,
+      "bytes": 5889,
+      "sha256": "31e7f397f00a75c58838af7d4b79352c6d507eed67888b68caadc2befb7f9fe1",
+      "repeatMatches": true,
+      "caret": "hide",
+      "font": [
+        {
+          "familyName": "Geist",
+          "postScriptName": "Geist",
+          "isCustomFont": true,
+          "glyphCount": 8
+        }
+      ],
+      "fixtureSha256": "a58f04ed77a5cfc08badbf79728132309784183c47d80ed0cff2f610c2f94aff",
+      "assertions": {
+        "mode": "split",
+        "accessibility": {
+          "violations": [],
+          "incomplete": []
+        },
+        "geometry": {
+          "morph": {
+            "width": 298,
+            "height": 32,
+            "font": "12px / 16px Geist, \"Segoe UI Variable\", \"Segoe UI\", system-ui, sans-serif",
+            "gap": "normal",
+            "padding": "0px",
+            "text": "Charging82%",
+            "title": ""
+          },
+          "compact": {
+            "width": 260,
+            "height": 32,
+            "font": "12px / 16px Geist, \"Segoe UI Variable\", \"Segoe UI\", system-ui, sans-serif",
+            "gap": "8px",
+            "padding": "0px 10px",
+            "text": "Charging82%",
+            "title": ""
+          },
+          "label": {
+            "width": 49.859375,
+            "height": 16,
+            "font": "12px / 16px Geist, \"Segoe UI Variable\", \"Segoe UI\", system-ui, sans-serif",
+            "gap": "normal",
+            "padding": "0px",
+            "text": "Charging",
+            "title": ""
+          },
+          "digits": {
+            "width": 21.609375,
+            "height": 16,
+            "font": "500 12px / 16px \"Geist Mono\", \"Cascadia Code\", Consolas, monospace",
+            "gap": "normal",
+            "padding": "0px",
+            "text": "82%",
+            "title": ""
+          },
+          "assets": [
+            {
+              "slot": "compact/iconBatteryCharging",
+              "width": 16,
+              "height": 16,
+              "loaded": true
+            },
+            {
+              "slot": "compact/iconTimer1",
+              "width": 15,
+              "height": 15,
+              "loaded": true
+            }
+          ],
+          "overflow": false
+        },
+        "noRealPowerChange": true
+      },
+      "ipc": [
+        {
+          "command": "plugin:event|listen",
+          "args": {
+            "event": "nabbit://island-visibility",
+            "target": {
+              "kind": "Any"
+            },
+            "handler": 1
+          }
+        },
+        {
+          "command": "plugin:event|listen",
+          "args": {
+            "event": "nabbit://island",
+            "target": {
+              "kind": "Any"
+            },
+            "handler": 3
+          }
+        },
+        {
+          "command": "plugin:event|listen",
+          "args": {
+            "event": "nabbit://island-surface",
+            "target": {
+              "kind": "Any"
+            },
+            "handler": 5
+          }
+        },
+        {
+          "command": "plugin:event|listen",
+          "args": {
+            "event": "tauri://drag-enter",
+            "target": {
+              "kind": "WebviewWindow",
+              "label": "island"
+            },
+            "handler": 7
+          }
+        },
+        {
+          "command": "get_island_snapshot",
+          "args": {}
+        },
+        {
+          "command": "get_activity_snapshot",
+          "args": {}
+        },
+        {
+          "command": "get_island_surface",
+          "args": {}
+        },
+        {
+          "command": "plugin:event|listen",
+          "args": {
+            "event": "tauri://drag-over",
+            "target": {
+              "kind": "WebviewWindow",
+              "label": "island"
+            },
+            "handler": 9
+          }
+        },
+        {
+          "command": "plugin:event|listen",
+          "args": {
+            "event": "tauri://drag-drop",
+            "target": {
+              "kind": "WebviewWindow",
+              "label": "island"
+            },
+            "handler": 11
+          }
+        },
+        {
+          "command": "plugin:event|listen",
+          "args": {
+            "event": "tauri://drag-leave",
+            "target": {
+              "kind": "WebviewWindow",
+              "label": "island"
+            },
+            "handler": 13
+          }
+        },
+        {
+          "command": "island_set_hitrect",
+          "args": {
+            "rect": {
+              "x": 203,
+              "y": -2,
+              "w": 314,
+              "h": 48
+            }
+          }
+        },
+        {
+          "command": "island_surface_ack",
+          "args": {
+            "generation": 1
+          }
+        }
+      ],
+      "unsupported": [],
+      "runtimeAndNetworkProblems": []
+    },
+    {
+      "file": "v56-power-a-power-charging-dark@1x.png",
+      "scenario": "power-charging",
+      "entry": "island.html",
+      "figmaNode": "7:48",
+      "theme": "dark",
+      "resolvedTheme": "dark",
+      "scale": 1,
+      "viewport": {
+        "width": 720,
+        "height": 460
+      },
+      "clip": {
+        "x": 244,
+        "y": 6,
+        "width": 232,
+        "height": 32
+      },
+      "width": 232,
+      "height": 32,
+      "bytes": 2757,
+      "sha256": "bbbd4482c59a4fb8806588dc35dc4ee0ac650f4552ee7340403914be09698a55",
+      "repeatMatches": true,
+      "caret": "hide",
+      "font": [
+        {
+          "familyName": "Geist",
+          "postScriptName": "Geist",
+          "isCustomFont": true,
+          "glyphCount": 8
+        }
+      ],
+      "fixtureSha256": "0af925765953bcde33a38b94d5d16e1f6a05c9b5b1e3ef2a6e2e37645c5c222b",
+      "assertions": {
+        "mode": "charging",
+        "accessibility": {
+          "violations": [],
+          "incomplete": []
+        },
+        "geometry": {
+          "morph": {
+            "width": 232,
+            "height": 32,
+            "font": "12px / 16px Geist, \"Segoe UI Variable\", \"Segoe UI\", system-ui, sans-serif",
+            "gap": "normal",
+            "padding": "0px",
+            "text": "Charging82%",
+            "title": ""
+          },
+          "compact": {
+            "width": 232,
+            "height": 32,
+            "font": "12px / 16px Geist, \"Segoe UI Variable\", \"Segoe UI\", system-ui, sans-serif",
+            "gap": "8px",
+            "padding": "0px 10px",
+            "text": "Charging82%",
+            "title": ""
+          },
+          "label": {
+            "width": 49.859375,
+            "height": 16,
+            "font": "12px / 16px Geist, \"Segoe UI Variable\", \"Segoe UI\", system-ui, sans-serif",
+            "gap": "normal",
+            "padding": "0px",
+            "text": "Charging",
+            "title": ""
+          },
+          "digits": {
+            "width": 21.609375,
+            "height": 16,
+            "font": "500 12px / 16px \"Geist Mono\", \"Cascadia Code\", Consolas, monospace",
+            "gap": "normal",
+            "padding": "0px",
+            "text": "82%",
+            "title": ""
+          },
+          "assets": [
+            {
+              "slot": "compact/iconBatteryCharging",
+              "width": 16,
+              "height": 16,
+              "loaded": true
+            }
+          ],
+          "overflow": false
+        },
+        "noRealPowerChange": true
+      },
+      "ipc": [
+        {
+          "command": "plugin:event|listen",
+          "args": {
+            "event": "nabbit://island-visibility",
+            "target": {
+              "kind": "Any"
+            },
+            "handler": 1
+          }
+        },
+        {
+          "command": "plugin:event|listen",
+          "args": {
+            "event": "nabbit://island",
+            "target": {
+              "kind": "Any"
+            },
+            "handler": 3
+          }
+        },
+        {
+          "command": "plugin:event|listen",
+          "args": {
+            "event": "nabbit://island-surface",
+            "target": {
+              "kind": "Any"
+            },
+            "handler": 5
+          }
+        },
+        {
+          "command": "plugin:event|listen",
+          "args": {
+            "event": "tauri://drag-enter",
+            "target": {
+              "kind": "WebviewWindow",
+              "label": "island"
+            },
+            "handler": 7
+          }
+        },
+        {
+          "command": "get_island_snapshot",
+          "args": {}
+        },
+        {
+          "command": "get_activity_snapshot",
+          "args": {}
+        },
+        {
+          "command": "get_island_surface",
+          "args": {}
+        },
+        {
+          "command": "plugin:event|listen",
+          "args": {
+            "event": "tauri://drag-over",
+            "target": {
+              "kind": "WebviewWindow",
+              "label": "island"
+            },
+            "handler": 9
+          }
+        },
+        {
+          "command": "plugin:event|listen",
+          "args": {
+            "event": "tauri://drag-drop",
+            "target": {
+              "kind": "WebviewWindow",
+              "label": "island"
+            },
+            "handler": 11
+          }
+        },
+        {
+          "command": "plugin:event|listen",
+          "args": {
+            "event": "tauri://drag-leave",
+            "target": {
+              "kind": "WebviewWindow",
+              "label": "island"
+            },
+            "handler": 13
+          }
+        },
+        {
+          "command": "island_set_hitrect",
+          "args": {
+            "rect": {
+              "x": 236,
+              "y": -2,
+              "w": 248,
+              "h": 48
+            }
+          }
+        },
+        {
+          "command": "island_surface_ack",
+          "args": {
+            "generation": 1
+          }
+        }
+      ],
+      "unsupported": [],
+      "runtimeAndNetworkProblems": []
+    },
+    {
+      "file": "v56-power-a-power-unplugged-dark@1x.png",
+      "scenario": "power-unplugged",
+      "entry": "island.html",
+      "figmaNode": "7:48",
+      "theme": "dark",
+      "resolvedTheme": "dark",
+      "scale": 1,
+      "viewport": {
+        "width": 720,
+        "height": 460
+      },
+      "clip": {
+        "x": 244,
+        "y": 6,
+        "width": 232,
+        "height": 32
+      },
+      "width": 232,
+      "height": 32,
+      "bytes": 2881,
+      "sha256": "bf52a7a8eee0adb1755f736de9f6abad295e9eb5f45d9bfb60d772b5637851ed",
+      "repeatMatches": true,
+      "caret": "hide",
+      "font": [
+        {
+          "familyName": "Geist",
+          "postScriptName": "Geist",
+          "isCustomFont": true,
+          "glyphCount": 9
+        }
+      ],
+      "fixtureSha256": "b580876068a38141e6a25ece9f5239b761a19c9e685b582d67340bdf1b546cdf",
+      "assertions": {
+        "mode": "unplugged",
+        "accessibility": {
+          "violations": [],
+          "incomplete": []
+        },
+        "geometry": {
+          "morph": {
+            "width": 232,
+            "height": 32,
+            "font": "12px / 16px Geist, \"Segoe UI Variable\", \"Segoe UI\", system-ui, sans-serif",
+            "gap": "normal",
+            "padding": "0px",
+            "text": "On battery82%",
+            "title": ""
+          },
+          "compact": {
+            "width": 232,
+            "height": 32,
+            "font": "12px / 16px Geist, \"Segoe UI Variable\", \"Segoe UI\", system-ui, sans-serif",
+            "gap": "8px",
+            "padding": "0px 10px",
+            "text": "On battery82%",
+            "title": ""
+          },
+          "label": {
+            "width": 57.46875,
+            "height": 16,
+            "font": "12px / 16px Geist, \"Segoe UI Variable\", \"Segoe UI\", system-ui, sans-serif",
+            "gap": "normal",
+            "padding": "0px",
+            "text": "On battery",
+            "title": ""
+          },
+          "digits": {
+            "width": 21.609375,
+            "height": 16,
+            "font": "500 12px / 16px \"Geist Mono\", \"Cascadia Code\", Consolas, monospace",
+            "gap": "normal",
+            "padding": "0px",
+            "text": "82%",
+            "title": ""
+          },
+          "assets": [
+            {
+              "slot": "compact/iconBatteryCharging",
+              "width": 16,
+              "height": 16,
+              "loaded": true
+            }
+          ],
+          "overflow": false
+        },
+        "noRealPowerChange": true
+      },
+      "ipc": [
+        {
+          "command": "plugin:event|listen",
+          "args": {
+            "event": "nabbit://island-visibility",
+            "target": {
+              "kind": "Any"
+            },
+            "handler": 1
+          }
+        },
+        {
+          "command": "plugin:event|listen",
+          "args": {
+            "event": "nabbit://island",
+            "target": {
+              "kind": "Any"
+            },
+            "handler": 3
+          }
+        },
+        {
+          "command": "plugin:event|listen",
+          "args": {
+            "event": "nabbit://island-surface",
+            "target": {
+              "kind": "Any"
+            },
+            "handler": 5
+          }
+        },
+        {
+          "command": "plugin:event|listen",
+          "args": {
+            "event": "tauri://drag-enter",
+            "target": {
+              "kind": "WebviewWindow",
+              "label": "island"
+            },
+            "handler": 7
+          }
+        },
+        {
+          "command": "get_island_snapshot",
+          "args": {}
+        },
+        {
+          "command": "get_activity_snapshot",
+          "args": {}
+        },
+        {
+          "command": "get_island_surface",
+          "args": {}
+        },
+        {
+          "command": "plugin:event|listen",
+          "args": {
+            "event": "tauri://drag-over",
+            "target": {
+              "kind": "WebviewWindow",
+              "label": "island"
+            },
+            "handler": 9
+          }
+        },
+        {
+          "command": "plugin:event|listen",
+          "args": {
+            "event": "tauri://drag-drop",
+            "target": {
+              "kind": "WebviewWindow",
+              "label": "island"
+            },
+            "handler": 11
+          }
+        },
+        {
+          "command": "plugin:event|listen",
+          "args": {
+            "event": "tauri://drag-leave",
+            "target": {
+              "kind": "WebviewWindow",
+              "label": "island"
+            },
+            "handler": 13
+          }
+        },
+        {
+          "command": "island_set_hitrect",
+          "args": {
+            "rect": {
+              "x": 236,
+              "y": -2,
+              "w": 248,
+              "h": 48
+            }
+          }
+        },
+        {
+          "command": "island_surface_ack",
+          "args": {
+            "generation": 1
+          }
+        }
+      ],
+      "unsupported": [],
+      "runtimeAndNetworkProblems": []
+    },
+    {
+      "file": "v56-power-a-power-low-dark@1x.png",
+      "scenario": "power-low",
+      "entry": "island.html",
+      "figmaNode": "7:48",
+      "theme": "dark",
+      "resolvedTheme": "dark",
+      "scale": 1,
+      "viewport": {
+        "width": 720,
+        "height": 460
+      },
+      "clip": {
+        "x": 244,
+        "y": 6,
+        "width": 232,
+        "height": 32
+      },
+      "width": 232,
+      "height": 32,
+      "bytes": 3013,
+      "sha256": "e7e7d91bad2bec1014633ab4bf450a21bbe2328d4e166647597f2ea35960a4c9",
+      "repeatMatches": true,
+      "caret": "hide",
+      "font": [
+        {
+          "familyName": "Geist",
+          "postScriptName": "Geist",
+          "isCustomFont": true,
+          "glyphCount": 10
+        }
+      ],
+      "fixtureSha256": "59d1ebb4aa6427fa0c44e5c881951e7648e9a7656f7de87843557629d8e398e5",
+      "assertions": {
+        "mode": "low",
+        "accessibility": {
+          "violations": [],
+          "incomplete": []
+        },
+        "geometry": {
+          "morph": {
+            "width": 232,
+            "height": 32,
+            "font": "12px / 16px Geist, \"Segoe UI Variable\", \"Segoe UI\", system-ui, sans-serif",
+            "gap": "normal",
+            "padding": "0px",
+            "text": "Battery low20%",
+            "title": ""
+          },
+          "compact": {
+            "width": 232,
+            "height": 32,
+            "font": "12px / 16px Geist, \"Segoe UI Variable\", \"Segoe UI\", system-ui, sans-serif",
+            "gap": "8px",
+            "padding": "0px 10px",
+            "text": "Battery low20%",
+            "title": ""
+          },
+          "label": {
+            "width": 62.046875,
+            "height": 16,
+            "font": "12px / 16px Geist, \"Segoe UI Variable\", \"Segoe UI\", system-ui, sans-serif",
+            "gap": "normal",
+            "padding": "0px",
+            "text": "Battery low",
+            "title": ""
+          },
+          "digits": {
+            "width": 21.609375,
+            "height": 16,
+            "font": "500 12px / 16px \"Geist Mono\", \"Cascadia Code\", Consolas, monospace",
+            "gap": "normal",
+            "padding": "0px",
+            "text": "20%",
+            "title": ""
+          },
+          "assets": [
+            {
+              "slot": "compact/iconBatteryCharging",
+              "width": 16,
+              "height": 16,
+              "loaded": true
+            }
+          ],
+          "overflow": false
+        },
+        "noRealPowerChange": true
+      },
+      "ipc": [
+        {
+          "command": "plugin:event|listen",
+          "args": {
+            "event": "nabbit://island-visibility",
+            "target": {
+              "kind": "Any"
+            },
+            "handler": 1
+          }
+        },
+        {
+          "command": "plugin:event|listen",
+          "args": {
+            "event": "nabbit://island",
+            "target": {
+              "kind": "Any"
+            },
+            "handler": 3
+          }
+        },
+        {
+          "command": "plugin:event|listen",
+          "args": {
+            "event": "nabbit://island-surface",
+            "target": {
+              "kind": "Any"
+            },
+            "handler": 5
+          }
+        },
+        {
+          "command": "plugin:event|listen",
+          "args": {
+            "event": "tauri://drag-enter",
+            "target": {
+              "kind": "WebviewWindow",
+              "label": "island"
+            },
+            "handler": 7
+          }
+        },
+        {
+          "command": "get_island_snapshot",
+          "args": {}
+        },
+        {
+          "command": "get_activity_snapshot",
+          "args": {}
+        },
+        {
+          "command": "get_island_surface",
+          "args": {}
+        },
+        {
+          "command": "plugin:event|listen",
+          "args": {
+            "event": "tauri://drag-over",
+            "target": {
+              "kind": "WebviewWindow",
+              "label": "island"
+            },
+            "handler": 9
+          }
+        },
+        {
+          "command": "plugin:event|listen",
+          "args": {
+            "event": "tauri://drag-drop",
+            "target": {
+              "kind": "WebviewWindow",
+              "label": "island"
+            },
+            "handler": 11
+          }
+        },
+        {
+          "command": "plugin:event|listen",
+          "args": {
+            "event": "tauri://drag-leave",
+            "target": {
+              "kind": "WebviewWindow",
+              "label": "island"
+            },
+            "handler": 13
+          }
+        },
+        {
+          "command": "island_set_hitrect",
+          "args": {
+            "rect": {
+              "x": 236,
+              "y": -2,
+              "w": 248,
+              "h": 48
+            }
+          }
+        },
+        {
+          "command": "island_surface_ack",
+          "args": {
+            "generation": 1
+          }
+        }
+      ],
+      "unsupported": [],
+      "runtimeAndNetworkProblems": []
+    },
+    {
+      "file": "v56-power-a-power-full-dark@1x.png",
+      "scenario": "power-full",
+      "entry": "island.html",
+      "figmaNode": "7:48",
+      "theme": "dark",
+      "resolvedTheme": "dark",
+      "scale": 1,
+      "viewport": {
+        "width": 720,
+        "height": 460
+      },
+      "clip": {
+        "x": 244,
+        "y": 6,
+        "width": 232,
+        "height": 32
+      },
+      "width": 232,
+      "height": 32,
+      "bytes": 2516,
+      "sha256": "6b0ec9657a9d23e8eefb85df44041ee9b4a1176d567cddae19f931a861b05220",
+      "repeatMatches": true,
+      "caret": "hide",
+      "font": [
+        {
+          "familyName": "Geist",
+          "postScriptName": "Geist",
+          "isCustomFont": true,
+          "glyphCount": 10
+        }
+      ],
+      "fixtureSha256": "dfec171d7be36e108ece05047b72f8f305f61c170fff28d23fcbf312fa81f58d",
+      "assertions": {
+        "mode": "full",
+        "accessibility": {
+          "violations": [],
+          "incomplete": []
+        },
+        "geometry": {
+          "morph": {
+            "width": 232,
+            "height": 32,
+            "font": "12px / 16px Geist, \"Segoe UI Variable\", \"Segoe UI\", system-ui, sans-serif",
+            "gap": "normal",
+            "padding": "0px",
+            "text": "Plugged in100%",
+            "title": ""
+          },
+          "compact": {
+            "width": 232,
+            "height": 32,
+            "font": "12px / 16px Geist, \"Segoe UI Variable\", \"Segoe UI\", system-ui, sans-serif",
+            "gap": "8px",
+            "padding": "0px 10px",
+            "text": "Plugged in100%",
+            "title": ""
+          },
+          "label": {
+            "width": 58.40625,
+            "height": 16,
+            "font": "12px / 16px Geist, \"Segoe UI Variable\", \"Segoe UI\", system-ui, sans-serif",
+            "gap": "normal",
+            "padding": "0px",
+            "text": "Plugged in",
+            "title": ""
+          },
+          "digits": {
+            "width": 28.8125,
+            "height": 16,
+            "font": "500 12px / 16px \"Geist Mono\", \"Cascadia Code\", Consolas, monospace",
+            "gap": "normal",
+            "padding": "0px",
+            "text": "100%",
+            "title": ""
+          },
+          "assets": [
+            {
+              "slot": "compact/iconBatteryCharging",
+              "width": 16,
+              "height": 16,
+              "loaded": true
+            }
+          ],
+          "overflow": false
+        },
+        "noRealPowerChange": true
+      },
+      "ipc": [
+        {
+          "command": "plugin:event|listen",
+          "args": {
+            "event": "nabbit://island-visibility",
+            "target": {
+              "kind": "Any"
+            },
+            "handler": 1
+          }
+        },
+        {
+          "command": "plugin:event|listen",
+          "args": {
+            "event": "nabbit://island",
+            "target": {
+              "kind": "Any"
+            },
+            "handler": 3
+          }
+        },
+        {
+          "command": "plugin:event|listen",
+          "args": {
+            "event": "nabbit://island-surface",
+            "target": {
+              "kind": "Any"
+            },
+            "handler": 5
+          }
+        },
+        {
+          "command": "plugin:event|listen",
+          "args": {
+            "event": "tauri://drag-enter",
+            "target": {
+              "kind": "WebviewWindow",
+              "label": "island"
+            },
+            "handler": 7
+          }
+        },
+        {
+          "command": "get_island_snapshot",
+          "args": {}
+        },
+        {
+          "command": "get_activity_snapshot",
+          "args": {}
+        },
+        {
+          "command": "get_island_surface",
+          "args": {}
+        },
+        {
+          "command": "plugin:event|listen",
+          "args": {
+            "event": "tauri://drag-over",
+            "target": {
+              "kind": "WebviewWindow",
+              "label": "island"
+            },
+            "handler": 9
+          }
+        },
+        {
+          "command": "plugin:event|listen",
+          "args": {
+            "event": "tauri://drag-drop",
+            "target": {
+              "kind": "WebviewWindow",
+              "label": "island"
+            },
+            "handler": 11
+          }
+        },
+        {
+          "command": "plugin:event|listen",
+          "args": {
+            "event": "tauri://drag-leave",
+            "target": {
+              "kind": "WebviewWindow",
+              "label": "island"
+            },
+            "handler": 13
+          }
+        },
+        {
+          "command": "island_set_hitrect",
+          "args": {
+            "rect": {
+              "x": 236,
+              "y": -2,
+              "w": 248,
+              "h": 48
+            }
+          }
+        },
+        {
+          "command": "island_surface_ack",
+          "args": {
+            "generation": 1
+          }
+        }
+      ],
+      "unsupported": [],
+      "runtimeAndNetworkProblems": []
+    },
+    {
+      "file": "v56-power-a-power-unknown-dark@1x.png",
+      "scenario": "power-unknown",
+      "entry": "island.html",
+      "figmaNode": "7:48",
+      "theme": "dark",
+      "resolvedTheme": "dark",
+      "scale": 1,
+      "viewport": {
+        "width": 720,
+        "height": 460
+      },
+      "clip": {
+        "x": 244,
+        "y": 6,
+        "width": 232,
+        "height": 32
+      },
+      "width": 232,
+      "height": 32,
+      "bytes": 2228,
+      "sha256": "cf300217a07e946e03abb9282c6ae1ba116908c5c37fce4c9755a7840cf66deb",
+      "repeatMatches": true,
+      "caret": "hide",
+      "font": [
+        {
+          "familyName": "Geist",
+          "postScriptName": "Geist",
+          "isCustomFont": true,
+          "glyphCount": 8
+        }
+      ],
+      "fixtureSha256": "380879c6cfa93493178a73b815c95a1af2eb6e8c8c32d149bb3dff7d095b838f",
+      "assertions": {
+        "mode": "unknown",
+        "accessibility": {
+          "violations": [],
+          "incomplete": []
+        },
+        "geometry": {
+          "morph": {
+            "width": 232,
+            "height": 32,
+            "font": "12px / 16px Geist, \"Segoe UI Variable\", \"Segoe UI\", system-ui, sans-serif",
+            "gap": "normal",
+            "padding": "0px",
+            "text": "Charging—",
+            "title": ""
+          },
+          "compact": {
+            "width": 232,
+            "height": 32,
+            "font": "12px / 16px Geist, \"Segoe UI Variable\", \"Segoe UI\", system-ui, sans-serif",
+            "gap": "8px",
+            "padding": "0px 10px",
+            "text": "Charging—",
+            "title": ""
+          },
+          "label": {
+            "width": 49.859375,
+            "height": 16,
+            "font": "12px / 16px Geist, \"Segoe UI Variable\", \"Segoe UI\", system-ui, sans-serif",
+            "gap": "normal",
+            "padding": "0px",
+            "text": "Charging",
+            "title": ""
+          },
+          "digits": {
+            "width": 7.203125,
+            "height": 16,
+            "font": "500 12px / 16px \"Geist Mono\", \"Cascadia Code\", Consolas, monospace",
+            "gap": "normal",
+            "padding": "0px",
+            "text": "—",
+            "title": "Battery level unavailable"
+          },
+          "assets": [
+            {
+              "slot": "compact/iconBatteryCharging",
+              "width": 16,
+              "height": 16,
+              "loaded": true
+            }
+          ],
+          "overflow": false
+        },
+        "noRealPowerChange": true
+      },
+      "ipc": [
+        {
+          "command": "plugin:event|listen",
+          "args": {
+            "event": "nabbit://island-visibility",
+            "target": {
+              "kind": "Any"
+            },
+            "handler": 1
+          }
+        },
+        {
+          "command": "plugin:event|listen",
+          "args": {
+            "event": "nabbit://island",
+            "target": {
+              "kind": "Any"
+            },
+            "handler": 3
+          }
+        },
+        {
+          "command": "plugin:event|listen",
+          "args": {
+            "event": "nabbit://island-surface",
+            "target": {
+              "kind": "Any"
+            },
+            "handler": 5
+          }
+        },
+        {
+          "command": "plugin:event|listen",
+          "args": {
+            "event": "tauri://drag-enter",
+            "target": {
+              "kind": "WebviewWindow",
+              "label": "island"
+            },
+            "handler": 7
+          }
+        },
+        {
+          "command": "get_island_snapshot",
+          "args": {}
+        },
+        {
+          "command": "get_activity_snapshot",
+          "args": {}
+        },
+        {
+          "command": "get_island_surface",
+          "args": {}
+        },
+        {
+          "command": "plugin:event|listen",
+          "args": {
+            "event": "tauri://drag-over",
+            "target": {
+              "kind": "WebviewWindow",
+              "label": "island"
+            },
+            "handler": 9
+          }
+        },
+        {
+          "command": "plugin:event|listen",
+          "args": {
+            "event": "tauri://drag-drop",
+            "target": {
+              "kind": "WebviewWindow",
+              "label": "island"
+            },
+            "handler": 11
+          }
+        },
+        {
+          "command": "plugin:event|listen",
+          "args": {
+            "event": "tauri://drag-leave",
+            "target": {
+              "kind": "WebviewWindow",
+              "label": "island"
+            },
+            "handler": 13
+          }
+        },
+        {
+          "command": "island_set_hitrect",
+          "args": {
+            "rect": {
+              "x": 236,
+              "y": -2,
+              "w": 248,
+              "h": 48
+            }
+          }
+        },
+        {
+          "command": "island_surface_ack",
+          "args": {
+            "generation": 1
+          }
+        }
+      ],
+      "unsupported": [],
+      "runtimeAndNetworkProblems": []
+    },
+    {
+      "file": "v56-power-a-power-peek-dark@1x.png",
+      "scenario": "power-peek",
+      "entry": "island.html",
+      "figmaNode": "7:48",
+      "theme": "dark",
+      "resolvedTheme": "dark",
+      "scale": 1,
+      "viewport": {
+        "width": 720,
+        "height": 460
+      },
+      "clip": {
+        "x": 160,
+        "y": 6,
+        "width": 400,
+        "height": 60
+      },
+      "width": 400,
+      "height": 60,
+      "bytes": 5119,
+      "sha256": "657383e40c74763ae8855756f0bb030ba9cb8f748ffd3005a37615f44cd5d446",
+      "repeatMatches": true,
+      "caret": "hide",
+      "font": [
+        {
+          "familyName": "Geist",
+          "postScriptName": "Geist",
+          "isCustomFont": true,
+          "glyphCount": 8
+        }
+      ],
+      "fixtureSha256": "3b4fcec28997e947cac5ded64c505f5fff3d94e72d4f4244352fa7ad5956adf0",
+      "assertions": {
+        "mode": "peek",
+        "accessibility": {
+          "violations": [],
+          "incomplete": []
+        },
+        "geometry": {
+          "morph": {
+            "width": 400,
+            "height": 60,
+            "font": "12px / 16px Geist, \"Segoe UI Variable\", \"Segoe UI\", system-ui, sans-serif",
+            "gap": "normal",
+            "padding": "0px",
+            "text": "Battery statusCharging82% battery remaining",
+            "title": ""
+          },
+          "compact": null,
+          "label": null,
+          "digits": null,
+          "assets": [
+            {
+              "slot": "compact/iconBatteryCharging",
+              "width": 16,
+              "height": 16,
+              "loaded": true
+            }
+          ],
+          "overflow": false
+        },
+        "noRealPowerChange": true
+      },
+      "ipc": [
+        {
+          "command": "plugin:event|listen",
+          "args": {
+            "event": "nabbit://island-visibility",
+            "target": {
+              "kind": "Any"
+            },
+            "handler": 1
+          }
+        },
+        {
+          "command": "plugin:event|listen",
+          "args": {
+            "event": "nabbit://island",
+            "target": {
+              "kind": "Any"
+            },
+            "handler": 3
+          }
+        },
+        {
+          "command": "plugin:event|listen",
+          "args": {
+            "event": "nabbit://island-surface",
+            "target": {
+              "kind": "Any"
+            },
+            "handler": 5
+          }
+        },
+        {
+          "command": "plugin:event|listen",
+          "args": {
+            "event": "tauri://drag-enter",
+            "target": {
+              "kind": "WebviewWindow",
+              "label": "island"
+            },
+            "handler": 7
+          }
+        },
+        {
+          "command": "get_island_snapshot",
+          "args": {}
+        },
+        {
+          "command": "get_activity_snapshot",
+          "args": {}
+        },
+        {
+          "command": "get_island_surface",
+          "args": {}
+        },
+        {
+          "command": "plugin:event|listen",
+          "args": {
+            "event": "tauri://drag-over",
+            "target": {
+              "kind": "WebviewWindow",
+              "label": "island"
+            },
+            "handler": 9
+          }
+        },
+        {
+          "command": "plugin:event|listen",
+          "args": {
+            "event": "tauri://drag-drop",
+            "target": {
+              "kind": "WebviewWindow",
+              "label": "island"
+            },
+            "handler": 11
+          }
+        },
+        {
+          "command": "plugin:event|listen",
+          "args": {
+            "event": "tauri://drag-leave",
+            "target": {
+              "kind": "WebviewWindow",
+              "label": "island"
+            },
+            "handler": 13
+          }
+        },
+        {
+          "command": "island_set_hitrect",
+          "args": {
+            "rect": {
+              "x": 152,
+              "y": -2,
+              "w": 416,
+              "h": 48
+            }
+          }
+        },
+        {
+          "command": "island_set_hitrect",
+          "args": {
+            "rect": {
+              "x": 152,
+              "y": -2,
+              "w": 416,
+              "h": 76
+            }
+          }
+        },
+        {
+          "command": "island_surface_ack",
+          "args": {
+            "generation": 1
+          }
+        }
+      ],
+      "unsupported": [],
+      "runtimeAndNetworkProblems": []
+    },
+    {
+      "file": "v56-power-a-power-idle-dark@1x.png",
+      "scenario": "power-idle",
+      "entry": "island.html",
+      "figmaNode": "7:48",
+      "theme": "dark",
+      "resolvedTheme": "dark",
+      "scale": 1,
+      "viewport": {
+        "width": 720,
+        "height": 460
+      },
+      "clip": {
+        "x": 304,
+        "y": 6,
+        "width": 112,
+        "height": 26
+      },
+      "width": 112,
+      "height": 26,
+      "bytes": 611,
+      "sha256": "9b44da37e4613490d14d24fdf991d17024161b89d34e6dfd544b1506731f38d3",
+      "repeatMatches": true,
+      "caret": "hide",
+      "font": null,
+      "fixtureSha256": "248ccff2161f5ac8cc5bdce9e318e217fb74ed3304ef601b2f17c847fd56716c",
+      "assertions": {
+        "mode": "idle",
+        "accessibility": {
+          "violations": [],
+          "incomplete": []
+        },
+        "geometry": {
+          "morph": {
+            "width": 112,
+            "height": 26,
+            "font": "12px / 16px Geist, \"Segoe UI Variable\", \"Segoe UI\", system-ui, sans-serif",
+            "gap": "normal",
+            "padding": "0px",
+            "text": "",
+            "title": ""
+          },
+          "compact": {
+            "width": 112,
+            "height": 26,
+            "font": "12px / 16px Geist, \"Segoe UI Variable\", \"Segoe UI\", system-ui, sans-serif",
+            "gap": "8px",
+            "padding": "0px 10px",
+            "text": "",
+            "title": ""
+          },
+          "label": null,
+          "digits": null,
+          "assets": [],
+          "overflow": false
+        },
+        "noRealPowerChange": true
+      },
+      "ipc": [
+        {
+          "command": "plugin:event|listen",
+          "args": {
+            "event": "nabbit://island-visibility",
+            "target": {
+              "kind": "Any"
+            },
+            "handler": 1
+          }
+        },
+        {
+          "command": "plugin:event|listen",
+          "args": {
+            "event": "nabbit://island",
+            "target": {
+              "kind": "Any"
+            },
+            "handler": 3
+          }
+        },
+        {
+          "command": "plugin:event|listen",
+          "args": {
+            "event": "nabbit://island-surface",
+            "target": {
+              "kind": "Any"
+            },
+            "handler": 5
+          }
+        },
+        {
+          "command": "plugin:event|listen",
+          "args": {
+            "event": "tauri://drag-enter",
+            "target": {
+              "kind": "WebviewWindow",
+              "label": "island"
+            },
+            "handler": 7
+          }
+        },
+        {
+          "command": "get_island_snapshot",
+          "args": {}
+        },
+        {
+          "command": "get_activity_snapshot",
+          "args": {}
+        },
+        {
+          "command": "get_island_surface",
+          "args": {}
+        },
+        {
+          "command": "plugin:event|listen",
+          "args": {
+            "event": "tauri://drag-over",
+            "target": {
+              "kind": "WebviewWindow",
+              "label": "island"
+            },
+            "handler": 9
+          }
+        },
+        {
+          "command": "plugin:event|listen",
+          "args": {
+            "event": "tauri://drag-drop",
+            "target": {
+              "kind": "WebviewWindow",
+              "label": "island"
+            },
+            "handler": 11
+          }
+        },
+        {
+          "command": "plugin:event|listen",
+          "args": {
+            "event": "tauri://drag-leave",
+            "target": {
+              "kind": "WebviewWindow",
+              "label": "island"
+            },
+            "handler": 13
+          }
+        },
+        {
+          "command": "island_set_hitrect",
+          "args": {
+            "rect": {
+              "x": 296,
+              "y": -2,
+              "w": 128,
+              "h": 42
+            }
+          }
+        },
+        {
+          "command": "island_surface_ack",
+          "args": {
+            "generation": 1
+          }
+        }
+      ],
+      "unsupported": [],
+      "runtimeAndNetworkProblems": []
+    },
+    {
+      "file": "v56-power-a-power-split-dark@1x.png",
+      "scenario": "power-split",
+      "entry": "island.html",
+      "figmaNode": "7:48",
+      "theme": "dark",
+      "resolvedTheme": "dark",
+      "scale": 1,
+      "viewport": {
+        "width": 720,
+        "height": 460
+      },
+      "clip": {
+        "x": 211,
+        "y": 6,
+        "width": 298,
+        "height": 32
+      },
+      "width": 298,
+      "height": 32,
+      "bytes": 3855,
+      "sha256": "3464ec1c5b0a64680b03c1656e5b4503fcd7f30a748637b71073ab006bf053e9",
+      "repeatMatches": true,
+      "caret": "hide",
+      "font": [
+        {
+          "familyName": "Geist",
+          "postScriptName": "Geist",
+          "isCustomFont": true,
+          "glyphCount": 8
+        }
+      ],
+      "fixtureSha256": "757617deece168d6b3a973808a0965464f014fa0368e43e70d01ccfbf92d0f9a",
+      "assertions": {
+        "mode": "split",
+        "accessibility": {
+          "violations": [],
+          "incomplete": []
+        },
+        "geometry": {
+          "morph": {
+            "width": 298,
+            "height": 32,
+            "font": "12px / 16px Geist, \"Segoe UI Variable\", \"Segoe UI\", system-ui, sans-serif",
+            "gap": "normal",
+            "padding": "0px",
+            "text": "Charging82%",
+            "title": ""
+          },
+          "compact": {
+            "width": 260,
+            "height": 32,
+            "font": "12px / 16px Geist, \"Segoe UI Variable\", \"Segoe UI\", system-ui, sans-serif",
+            "gap": "8px",
+            "padding": "0px 10px",
+            "text": "Charging82%",
+            "title": ""
+          },
+          "label": {
+            "width": 49.859375,
+            "height": 16,
+            "font": "12px / 16px Geist, \"Segoe UI Variable\", \"Segoe UI\", system-ui, sans-serif",
+            "gap": "normal",
+            "padding": "0px",
+            "text": "Charging",
+            "title": ""
+          },
+          "digits": {
+            "width": 21.609375,
+            "height": 16,
+            "font": "500 12px / 16px \"Geist Mono\", \"Cascadia Code\", Consolas, monospace",
+            "gap": "normal",
+            "padding": "0px",
+            "text": "82%",
+            "title": ""
+          },
+          "assets": [
+            {
+              "slot": "compact/iconBatteryCharging",
+              "width": 16,
+              "height": 16,
+              "loaded": true
+            },
+            {
+              "slot": "compact/iconTimer1",
+              "width": 15,
+              "height": 15,
+              "loaded": true
+            }
+          ],
+          "overflow": false
+        },
+        "noRealPowerChange": true
+      },
+      "ipc": [
+        {
+          "command": "plugin:event|listen",
+          "args": {
+            "event": "nabbit://island-visibility",
+            "target": {
+              "kind": "Any"
+            },
+            "handler": 1
+          }
+        },
+        {
+          "command": "plugin:event|listen",
+          "args": {
+            "event": "nabbit://island",
+            "target": {
+              "kind": "Any"
+            },
+            "handler": 3
+          }
+        },
+        {
+          "command": "plugin:event|listen",
+          "args": {
+            "event": "nabbit://island-surface",
+            "target": {
+              "kind": "Any"
+            },
+            "handler": 5
+          }
+        },
+        {
+          "command": "plugin:event|listen",
+          "args": {
+            "event": "tauri://drag-enter",
+            "target": {
+              "kind": "WebviewWindow",
+              "label": "island"
+            },
+            "handler": 7
+          }
+        },
+        {
+          "command": "get_island_snapshot",
+          "args": {}
+        },
+        {
+          "command": "get_activity_snapshot",
+          "args": {}
+        },
+        {
+          "command": "get_island_surface",
+          "args": {}
+        },
+        {
+          "command": "plugin:event|listen",
+          "args": {
+            "event": "tauri://drag-over",
+            "target": {
+              "kind": "WebviewWindow",
+              "label": "island"
+            },
+            "handler": 9
+          }
+        },
+        {
+          "command": "plugin:event|listen",
+          "args": {
+            "event": "tauri://drag-drop",
+            "target": {
+              "kind": "WebviewWindow",
+              "label": "island"
+            },
+            "handler": 11
+          }
+        },
+        {
+          "command": "plugin:event|listen",
+          "args": {
+            "event": "tauri://drag-leave",
+            "target": {
+              "kind": "WebviewWindow",
+              "label": "island"
+            },
+            "handler": 13
+          }
+        },
+        {
+          "command": "island_set_hitrect",
+          "args": {
+            "rect": {
+              "x": 203,
+              "y": -2,
+              "w": 314,
+              "h": 48
+            }
+          }
+        },
+        {
+          "command": "island_surface_ack",
+          "args": {
+            "generation": 1
+          }
+        }
+      ],
+      "unsupported": [],
+      "runtimeAndNetworkProblems": []
+    },
+    {
+      "file": "v56-power-a-power-charging-dark@1.5x.png",
+      "scenario": "power-charging",
+      "entry": "island.html",
+      "figmaNode": "7:48",
+      "theme": "dark",
+      "resolvedTheme": "dark",
+      "scale": 1.5,
+      "viewport": {
+        "width": 720,
+        "height": 460
+      },
+      "clip": {
+        "x": 244,
+        "y": 6,
+        "width": 232,
+        "height": 32
+      },
+      "width": 348,
+      "height": 48,
+      "bytes": 4158,
+      "sha256": "738ba5090874baf045610ea483cfdd7a45eb142ea9d1aee4f3c5a4cc6e094252",
+      "repeatMatches": true,
+      "caret": "hide",
+      "font": [
+        {
+          "familyName": "Geist",
+          "postScriptName": "Geist",
+          "isCustomFont": true,
+          "glyphCount": 8
+        }
+      ],
+      "fixtureSha256": "0af925765953bcde33a38b94d5d16e1f6a05c9b5b1e3ef2a6e2e37645c5c222b",
+      "assertions": {
+        "mode": "charging",
+        "accessibility": {
+          "violations": [],
+          "incomplete": []
+        },
+        "geometry": {
+          "morph": {
+            "width": 232,
+            "height": 32,
+            "font": "12px / 16px Geist, \"Segoe UI Variable\", \"Segoe UI\", system-ui, sans-serif",
+            "gap": "normal",
+            "padding": "0px",
+            "text": "Charging82%",
+            "title": ""
+          },
+          "compact": {
+            "width": 232,
+            "height": 32,
+            "font": "12px / 16px Geist, \"Segoe UI Variable\", \"Segoe UI\", system-ui, sans-serif",
+            "gap": "8px",
+            "padding": "0px 10px",
+            "text": "Charging82%",
+            "title": ""
+          },
+          "label": {
+            "width": 49.859375,
+            "height": 16,
+            "font": "12px / 16px Geist, \"Segoe UI Variable\", \"Segoe UI\", system-ui, sans-serif",
+            "gap": "normal",
+            "padding": "0px",
+            "text": "Charging",
+            "title": ""
+          },
+          "digits": {
+            "width": 21.609375,
+            "height": 16,
+            "font": "500 12px / 16px \"Geist Mono\", \"Cascadia Code\", Consolas, monospace",
+            "gap": "normal",
+            "padding": "0px",
+            "text": "82%",
+            "title": ""
+          },
+          "assets": [
+            {
+              "slot": "compact/iconBatteryCharging",
+              "width": 16,
+              "height": 16,
+              "loaded": true
+            }
+          ],
+          "overflow": false
+        },
+        "noRealPowerChange": true
+      },
+      "ipc": [
+        {
+          "command": "plugin:event|listen",
+          "args": {
+            "event": "nabbit://island-visibility",
+            "target": {
+              "kind": "Any"
+            },
+            "handler": 1
+          }
+        },
+        {
+          "command": "plugin:event|listen",
+          "args": {
+            "event": "nabbit://island",
+            "target": {
+              "kind": "Any"
+            },
+            "handler": 3
+          }
+        },
+        {
+          "command": "plugin:event|listen",
+          "args": {
+            "event": "nabbit://island-surface",
+            "target": {
+              "kind": "Any"
+            },
+            "handler": 5
+          }
+        },
+        {
+          "command": "plugin:event|listen",
+          "args": {
+            "event": "tauri://drag-enter",
+            "target": {
+              "kind": "WebviewWindow",
+              "label": "island"
+            },
+            "handler": 7
+          }
+        },
+        {
+          "command": "get_island_snapshot",
+          "args": {}
+        },
+        {
+          "command": "get_activity_snapshot",
+          "args": {}
+        },
+        {
+          "command": "get_island_surface",
+          "args": {}
+        },
+        {
+          "command": "plugin:event|listen",
+          "args": {
+            "event": "tauri://drag-over",
+            "target": {
+              "kind": "WebviewWindow",
+              "label": "island"
+            },
+            "handler": 9
+          }
+        },
+        {
+          "command": "plugin:event|listen",
+          "args": {
+            "event": "tauri://drag-drop",
+            "target": {
+              "kind": "WebviewWindow",
+              "label": "island"
+            },
+            "handler": 11
+          }
+        },
+        {
+          "command": "plugin:event|listen",
+          "args": {
+            "event": "tauri://drag-leave",
+            "target": {
+              "kind": "WebviewWindow",
+              "label": "island"
+            },
+            "handler": 13
+          }
+        },
+        {
+          "command": "island_set_hitrect",
+          "args": {
+            "rect": {
+              "x": 236,
+              "y": -2,
+              "w": 248,
+              "h": 48
+            }
+          }
+        },
+        {
+          "command": "island_surface_ack",
+          "args": {
+            "generation": 1
+          }
+        }
+      ],
+      "unsupported": [],
+      "runtimeAndNetworkProblems": []
+    },
+    {
+      "file": "v56-power-a-power-unplugged-dark@1.5x.png",
+      "scenario": "power-unplugged",
+      "entry": "island.html",
+      "figmaNode": "7:48",
+      "theme": "dark",
+      "resolvedTheme": "dark",
+      "scale": 1.5,
+      "viewport": {
+        "width": 720,
+        "height": 460
+      },
+      "clip": {
+        "x": 244,
+        "y": 6,
+        "width": 232,
+        "height": 32
+      },
+      "width": 348,
+      "height": 48,
+      "bytes": 4725,
+      "sha256": "dd1fdbda9ab34dbd0710f8d06a74585dc33939ee037dceb5a68ca9fc8754bb92",
+      "repeatMatches": true,
+      "caret": "hide",
+      "font": [
+        {
+          "familyName": "Geist",
+          "postScriptName": "Geist",
+          "isCustomFont": true,
+          "glyphCount": 9
+        }
+      ],
+      "fixtureSha256": "b580876068a38141e6a25ece9f5239b761a19c9e685b582d67340bdf1b546cdf",
+      "assertions": {
+        "mode": "unplugged",
+        "accessibility": {
+          "violations": [],
+          "incomplete": []
+        },
+        "geometry": {
+          "morph": {
+            "width": 232,
+            "height": 32,
+            "font": "12px / 16px Geist, \"Segoe UI Variable\", \"Segoe UI\", system-ui, sans-serif",
+            "gap": "normal",
+            "padding": "0px",
+            "text": "On battery82%",
+            "title": ""
+          },
+          "compact": {
+            "width": 232,
+            "height": 32,
+            "font": "12px / 16px Geist, \"Segoe UI Variable\", \"Segoe UI\", system-ui, sans-serif",
+            "gap": "8px",
+            "padding": "0px 10px",
+            "text": "On battery82%",
+            "title": ""
+          },
+          "label": {
+            "width": 57.46875,
+            "height": 16,
+            "font": "12px / 16px Geist, \"Segoe UI Variable\", \"Segoe UI\", system-ui, sans-serif",
+            "gap": "normal",
+            "padding": "0px",
+            "text": "On battery",
+            "title": ""
+          },
+          "digits": {
+            "width": 21.609375,
+            "height": 16,
+            "font": "500 12px / 16px \"Geist Mono\", \"Cascadia Code\", Consolas, monospace",
+            "gap": "normal",
+            "padding": "0px",
+            "text": "82%",
+            "title": ""
+          },
+          "assets": [
+            {
+              "slot": "compact/iconBatteryCharging",
+              "width": 16,
+              "height": 16,
+              "loaded": true
+            }
+          ],
+          "overflow": false
+        },
+        "noRealPowerChange": true
+      },
+      "ipc": [
+        {
+          "command": "plugin:event|listen",
+          "args": {
+            "event": "nabbit://island-visibility",
+            "target": {
+              "kind": "Any"
+            },
+            "handler": 1
+          }
+        },
+        {
+          "command": "plugin:event|listen",
+          "args": {
+            "event": "nabbit://island",
+            "target": {
+              "kind": "Any"
+            },
+            "handler": 3
+          }
+        },
+        {
+          "command": "plugin:event|listen",
+          "args": {
+            "event": "nabbit://island-surface",
+            "target": {
+              "kind": "Any"
+            },
+            "handler": 5
+          }
+        },
+        {
+          "command": "plugin:event|listen",
+          "args": {
+            "event": "tauri://drag-enter",
+            "target": {
+              "kind": "WebviewWindow",
+              "label": "island"
+            },
+            "handler": 7
+          }
+        },
+        {
+          "command": "get_island_snapshot",
+          "args": {}
+        },
+        {
+          "command": "get_activity_snapshot",
+          "args": {}
+        },
+        {
+          "command": "get_island_surface",
+          "args": {}
+        },
+        {
+          "command": "plugin:event|listen",
+          "args": {
+            "event": "tauri://drag-over",
+            "target": {
+              "kind": "WebviewWindow",
+              "label": "island"
+            },
+            "handler": 9
+          }
+        },
+        {
+          "command": "plugin:event|listen",
+          "args": {
+            "event": "tauri://drag-drop",
+            "target": {
+              "kind": "WebviewWindow",
+              "label": "island"
+            },
+            "handler": 11
+          }
+        },
+        {
+          "command": "plugin:event|listen",
+          "args": {
+            "event": "tauri://drag-leave",
+            "target": {
+              "kind": "WebviewWindow",
+              "label": "island"
+            },
+            "handler": 13
+          }
+        },
+        {
+          "command": "island_set_hitrect",
+          "args": {
+            "rect": {
+              "x": 236,
+              "y": -2,
+              "w": 248,
+              "h": 48
+            }
+          }
+        },
+        {
+          "command": "island_surface_ack",
+          "args": {
+            "generation": 1
+          }
+        }
+      ],
+      "unsupported": [],
+      "runtimeAndNetworkProblems": []
+    },
+    {
+      "file": "v56-power-a-power-low-dark@1.5x.png",
+      "scenario": "power-low",
+      "entry": "island.html",
+      "figmaNode": "7:48",
+      "theme": "dark",
+      "resolvedTheme": "dark",
+      "scale": 1.5,
+      "viewport": {
+        "width": 720,
+        "height": 460
+      },
+      "clip": {
+        "x": 244,
+        "y": 6,
+        "width": 232,
+        "height": 32
+      },
+      "width": 348,
+      "height": 48,
+      "bytes": 4936,
+      "sha256": "48215aca74fe98a75a43db8761fb3473fa948bf9929dd93b13b780e6132f458f",
+      "repeatMatches": true,
+      "caret": "hide",
+      "font": [
+        {
+          "familyName": "Geist",
+          "postScriptName": "Geist",
+          "isCustomFont": true,
+          "glyphCount": 10
+        }
+      ],
+      "fixtureSha256": "59d1ebb4aa6427fa0c44e5c881951e7648e9a7656f7de87843557629d8e398e5",
+      "assertions": {
+        "mode": "low",
+        "accessibility": {
+          "violations": [],
+          "incomplete": []
+        },
+        "geometry": {
+          "morph": {
+            "width": 232,
+            "height": 32,
+            "font": "12px / 16px Geist, \"Segoe UI Variable\", \"Segoe UI\", system-ui, sans-serif",
+            "gap": "normal",
+            "padding": "0px",
+            "text": "Battery low20%",
+            "title": ""
+          },
+          "compact": {
+            "width": 232,
+            "height": 32,
+            "font": "12px / 16px Geist, \"Segoe UI Variable\", \"Segoe UI\", system-ui, sans-serif",
+            "gap": "8px",
+            "padding": "0px 10px",
+            "text": "Battery low20%",
+            "title": ""
+          },
+          "label": {
+            "width": 62.046875,
+            "height": 16,
+            "font": "12px / 16px Geist, \"Segoe UI Variable\", \"Segoe UI\", system-ui, sans-serif",
+            "gap": "normal",
+            "padding": "0px",
+            "text": "Battery low",
+            "title": ""
+          },
+          "digits": {
+            "width": 21.609375,
+            "height": 16,
+            "font": "500 12px / 16px \"Geist Mono\", \"Cascadia Code\", Consolas, monospace",
+            "gap": "normal",
+            "padding": "0px",
+            "text": "20%",
+            "title": ""
+          },
+          "assets": [
+            {
+              "slot": "compact/iconBatteryCharging",
+              "width": 16,
+              "height": 16,
+              "loaded": true
+            }
+          ],
+          "overflow": false
+        },
+        "noRealPowerChange": true
+      },
+      "ipc": [
+        {
+          "command": "plugin:event|listen",
+          "args": {
+            "event": "nabbit://island-visibility",
+            "target": {
+              "kind": "Any"
+            },
+            "handler": 1
+          }
+        },
+        {
+          "command": "plugin:event|listen",
+          "args": {
+            "event": "nabbit://island",
+            "target": {
+              "kind": "Any"
+            },
+            "handler": 3
+          }
+        },
+        {
+          "command": "plugin:event|listen",
+          "args": {
+            "event": "nabbit://island-surface",
+            "target": {
+              "kind": "Any"
+            },
+            "handler": 5
+          }
+        },
+        {
+          "command": "plugin:event|listen",
+          "args": {
+            "event": "tauri://drag-enter",
+            "target": {
+              "kind": "WebviewWindow",
+              "label": "island"
+            },
+            "handler": 7
+          }
+        },
+        {
+          "command": "get_island_snapshot",
+          "args": {}
+        },
+        {
+          "command": "get_activity_snapshot",
+          "args": {}
+        },
+        {
+          "command": "get_island_surface",
+          "args": {}
+        },
+        {
+          "command": "plugin:event|listen",
+          "args": {
+            "event": "tauri://drag-over",
+            "target": {
+              "kind": "WebviewWindow",
+              "label": "island"
+            },
+            "handler": 9
+          }
+        },
+        {
+          "command": "plugin:event|listen",
+          "args": {
+            "event": "tauri://drag-drop",
+            "target": {
+              "kind": "WebviewWindow",
+              "label": "island"
+            },
+            "handler": 11
+          }
+        },
+        {
+          "command": "plugin:event|listen",
+          "args": {
+            "event": "tauri://drag-leave",
+            "target": {
+              "kind": "WebviewWindow",
+              "label": "island"
+            },
+            "handler": 13
+          }
+        },
+        {
+          "command": "island_set_hitrect",
+          "args": {
+            "rect": {
+              "x": 236,
+              "y": -2,
+              "w": 248,
+              "h": 48
+            }
+          }
+        },
+        {
+          "command": "island_surface_ack",
+          "args": {
+            "generation": 1
+          }
+        }
+      ],
+      "unsupported": [],
+      "runtimeAndNetworkProblems": []
+    },
+    {
+      "file": "v56-power-a-power-full-dark@1.5x.png",
+      "scenario": "power-full",
+      "entry": "island.html",
+      "figmaNode": "7:48",
+      "theme": "dark",
+      "resolvedTheme": "dark",
+      "scale": 1.5,
+      "viewport": {
+        "width": 720,
+        "height": 460
+      },
+      "clip": {
+        "x": 244,
+        "y": 6,
+        "width": 232,
+        "height": 32
+      },
+      "width": 348,
+      "height": 48,
+      "bytes": 4313,
+      "sha256": "12f84d6b9379154dc17bef1bb2f8ba0aa2e8b8d9a96bca24a553854fb17de12f",
+      "repeatMatches": true,
+      "caret": "hide",
+      "font": [
+        {
+          "familyName": "Geist",
+          "postScriptName": "Geist",
+          "isCustomFont": true,
+          "glyphCount": 10
+        }
+      ],
+      "fixtureSha256": "dfec171d7be36e108ece05047b72f8f305f61c170fff28d23fcbf312fa81f58d",
+      "assertions": {
+        "mode": "full",
+        "accessibility": {
+          "violations": [],
+          "incomplete": []
+        },
+        "geometry": {
+          "morph": {
+            "width": 232,
+            "height": 32,
+            "font": "12px / 16px Geist, \"Segoe UI Variable\", \"Segoe UI\", system-ui, sans-serif",
+            "gap": "normal",
+            "padding": "0px",
+            "text": "Plugged in100%",
+            "title": ""
+          },
+          "compact": {
+            "width": 232,
+            "height": 32,
+            "font": "12px / 16px Geist, \"Segoe UI Variable\", \"Segoe UI\", system-ui, sans-serif",
+            "gap": "8px",
+            "padding": "0px 10px",
+            "text": "Plugged in100%",
+            "title": ""
+          },
+          "label": {
+            "width": 58.40625,
+            "height": 16,
+            "font": "12px / 16px Geist, \"Segoe UI Variable\", \"Segoe UI\", system-ui, sans-serif",
+            "gap": "normal",
+            "padding": "0px",
+            "text": "Plugged in",
+            "title": ""
+          },
+          "digits": {
+            "width": 28.8125,
+            "height": 16,
+            "font": "500 12px / 16px \"Geist Mono\", \"Cascadia Code\", Consolas, monospace",
+            "gap": "normal",
+            "padding": "0px",
+            "text": "100%",
+            "title": ""
+          },
+          "assets": [
+            {
+              "slot": "compact/iconBatteryCharging",
+              "width": 16,
+              "height": 16,
+              "loaded": true
+            }
+          ],
+          "overflow": false
+        },
+        "noRealPowerChange": true
+      },
+      "ipc": [
+        {
+          "command": "plugin:event|listen",
+          "args": {
+            "event": "nabbit://island-visibility",
+            "target": {
+              "kind": "Any"
+            },
+            "handler": 1
+          }
+        },
+        {
+          "command": "plugin:event|listen",
+          "args": {
+            "event": "nabbit://island",
+            "target": {
+              "kind": "Any"
+            },
+            "handler": 3
+          }
+        },
+        {
+          "command": "plugin:event|listen",
+          "args": {
+            "event": "nabbit://island-surface",
+            "target": {
+              "kind": "Any"
+            },
+            "handler": 5
+          }
+        },
+        {
+          "command": "plugin:event|listen",
+          "args": {
+            "event": "tauri://drag-enter",
+            "target": {
+              "kind": "WebviewWindow",
+              "label": "island"
+            },
+            "handler": 7
+          }
+        },
+        {
+          "command": "get_island_snapshot",
+          "args": {}
+        },
+        {
+          "command": "get_activity_snapshot",
+          "args": {}
+        },
+        {
+          "command": "get_island_surface",
+          "args": {}
+        },
+        {
+          "command": "plugin:event|listen",
+          "args": {
+            "event": "tauri://drag-over",
+            "target": {
+              "kind": "WebviewWindow",
+              "label": "island"
+            },
+            "handler": 9
+          }
+        },
+        {
+          "command": "plugin:event|listen",
+          "args": {
+            "event": "tauri://drag-drop",
+            "target": {
+              "kind": "WebviewWindow",
+              "label": "island"
+            },
+            "handler": 11
+          }
+        },
+        {
+          "command": "plugin:event|listen",
+          "args": {
+            "event": "tauri://drag-leave",
+            "target": {
+              "kind": "WebviewWindow",
+              "label": "island"
+            },
+            "handler": 13
+          }
+        },
+        {
+          "command": "island_set_hitrect",
+          "args": {
+            "rect": {
+              "x": 236,
+              "y": -2,
+              "w": 248,
+              "h": 48
+            }
+          }
+        },
+        {
+          "command": "island_surface_ack",
+          "args": {
+            "generation": 1
+          }
+        }
+      ],
+      "unsupported": [],
+      "runtimeAndNetworkProblems": []
+    },
+    {
+      "file": "v56-power-a-power-unknown-dark@1.5x.png",
+      "scenario": "power-unknown",
+      "entry": "island.html",
+      "figmaNode": "7:48",
+      "theme": "dark",
+      "resolvedTheme": "dark",
+      "scale": 1.5,
+      "viewport": {
+        "width": 720,
+        "height": 460
+      },
+      "clip": {
+        "x": 244,
+        "y": 6,
+        "width": 232,
+        "height": 32
+      },
+      "width": 348,
+      "height": 48,
+      "bytes": 3121,
+      "sha256": "d6e0983bfe20f01c65a120209994ac9a19b2f148c9a7a705206c1286ba740d02",
+      "repeatMatches": true,
+      "caret": "hide",
+      "font": [
+        {
+          "familyName": "Geist",
+          "postScriptName": "Geist",
+          "isCustomFont": true,
+          "glyphCount": 8
+        }
+      ],
+      "fixtureSha256": "380879c6cfa93493178a73b815c95a1af2eb6e8c8c32d149bb3dff7d095b838f",
+      "assertions": {
+        "mode": "unknown",
+        "accessibility": {
+          "violations": [],
+          "incomplete": []
+        },
+        "geometry": {
+          "morph": {
+            "width": 232,
+            "height": 32,
+            "font": "12px / 16px Geist, \"Segoe UI Variable\", \"Segoe UI\", system-ui, sans-serif",
+            "gap": "normal",
+            "padding": "0px",
+            "text": "Charging—",
+            "title": ""
+          },
+          "compact": {
+            "width": 232,
+            "height": 32,
+            "font": "12px / 16px Geist, \"Segoe UI Variable\", \"Segoe UI\", system-ui, sans-serif",
+            "gap": "8px",
+            "padding": "0px 10px",
+            "text": "Charging—",
+            "title": ""
+          },
+          "label": {
+            "width": 49.859375,
+            "height": 16,
+            "font": "12px / 16px Geist, \"Segoe UI Variable\", \"Segoe UI\", system-ui, sans-serif",
+            "gap": "normal",
+            "padding": "0px",
+            "text": "Charging",
+            "title": ""
+          },
+          "digits": {
+            "width": 7.203125,
+            "height": 16,
+            "font": "500 12px / 16px \"Geist Mono\", \"Cascadia Code\", Consolas, monospace",
+            "gap": "normal",
+            "padding": "0px",
+            "text": "—",
+            "title": "Battery level unavailable"
+          },
+          "assets": [
+            {
+              "slot": "compact/iconBatteryCharging",
+              "width": 16,
+              "height": 16,
+              "loaded": true
+            }
+          ],
+          "overflow": false
+        },
+        "noRealPowerChange": true
+      },
+      "ipc": [
+        {
+          "command": "plugin:event|listen",
+          "args": {
+            "event": "nabbit://island-visibility",
+            "target": {
+              "kind": "Any"
+            },
+            "handler": 1
+          }
+        },
+        {
+          "command": "plugin:event|listen",
+          "args": {
+            "event": "nabbit://island",
+            "target": {
+              "kind": "Any"
+            },
+            "handler": 3
+          }
+        },
+        {
+          "command": "plugin:event|listen",
+          "args": {
+            "event": "nabbit://island-surface",
+            "target": {
+              "kind": "Any"
+            },
+            "handler": 5
+          }
+        },
+        {
+          "command": "plugin:event|listen",
+          "args": {
+            "event": "tauri://drag-enter",
+            "target": {
+              "kind": "WebviewWindow",
+              "label": "island"
+            },
+            "handler": 7
+          }
+        },
+        {
+          "command": "get_island_snapshot",
+          "args": {}
+        },
+        {
+          "command": "get_activity_snapshot",
+          "args": {}
+        },
+        {
+          "command": "get_island_surface",
+          "args": {}
+        },
+        {
+          "command": "plugin:event|listen",
+          "args": {
+            "event": "tauri://drag-over",
+            "target": {
+              "kind": "WebviewWindow",
+              "label": "island"
+            },
+            "handler": 9
+          }
+        },
+        {
+          "command": "plugin:event|listen",
+          "args": {
+            "event": "tauri://drag-drop",
+            "target": {
+              "kind": "WebviewWindow",
+              "label": "island"
+            },
+            "handler": 11
+          }
+        },
+        {
+          "command": "plugin:event|listen",
+          "args": {
+            "event": "tauri://drag-leave",
+            "target": {
+              "kind": "WebviewWindow",
+              "label": "island"
+            },
+            "handler": 13
+          }
+        },
+        {
+          "command": "island_set_hitrect",
+          "args": {
+            "rect": {
+              "x": 236,
+              "y": -2,
+              "w": 248,
+              "h": 48
+            }
+          }
+        },
+        {
+          "command": "island_surface_ack",
+          "args": {
+            "generation": 1
+          }
+        }
+      ],
+      "unsupported": [],
+      "runtimeAndNetworkProblems": []
+    },
+    {
+      "file": "v56-power-a-power-peek-dark@1.5x.png",
+      "scenario": "power-peek",
+      "entry": "island.html",
+      "figmaNode": "7:48",
+      "theme": "dark",
+      "resolvedTheme": "dark",
+      "scale": 1.5,
+      "viewport": {
+        "width": 720,
+        "height": 460
+      },
+      "clip": {
+        "x": 160,
+        "y": 6,
+        "width": 400,
+        "height": 60
+      },
+      "width": 600,
+      "height": 90,
+      "bytes": 7909,
+      "sha256": "8516c6dfb0d7b3741a1de908d42e1aaf455f1cfca6d9f2404d82bbb8802394b7",
+      "repeatMatches": true,
+      "caret": "hide",
+      "font": [
+        {
+          "familyName": "Geist",
+          "postScriptName": "Geist",
+          "isCustomFont": true,
+          "glyphCount": 8
+        }
+      ],
+      "fixtureSha256": "3b4fcec28997e947cac5ded64c505f5fff3d94e72d4f4244352fa7ad5956adf0",
+      "assertions": {
+        "mode": "peek",
+        "accessibility": {
+          "violations": [],
+          "incomplete": []
+        },
+        "geometry": {
+          "morph": {
+            "width": 400,
+            "height": 60,
+            "font": "12px / 16px Geist, \"Segoe UI Variable\", \"Segoe UI\", system-ui, sans-serif",
+            "gap": "normal",
+            "padding": "0px",
+            "text": "Battery statusCharging82% battery remaining",
+            "title": ""
+          },
+          "compact": null,
+          "label": null,
+          "digits": null,
+          "assets": [
+            {
+              "slot": "compact/iconBatteryCharging",
+              "width": 16,
+              "height": 16,
+              "loaded": true
+            }
+          ],
+          "overflow": false
+        },
+        "noRealPowerChange": true
+      },
+      "ipc": [
+        {
+          "command": "plugin:event|listen",
+          "args": {
+            "event": "nabbit://island-visibility",
+            "target": {
+              "kind": "Any"
+            },
+            "handler": 1
+          }
+        },
+        {
+          "command": "plugin:event|listen",
+          "args": {
+            "event": "nabbit://island",
+            "target": {
+              "kind": "Any"
+            },
+            "handler": 3
+          }
+        },
+        {
+          "command": "plugin:event|listen",
+          "args": {
+            "event": "nabbit://island-surface",
+            "target": {
+              "kind": "Any"
+            },
+            "handler": 5
+          }
+        },
+        {
+          "command": "plugin:event|listen",
+          "args": {
+            "event": "tauri://drag-enter",
+            "target": {
+              "kind": "WebviewWindow",
+              "label": "island"
+            },
+            "handler": 7
+          }
+        },
+        {
+          "command": "get_island_snapshot",
+          "args": {}
+        },
+        {
+          "command": "get_activity_snapshot",
+          "args": {}
+        },
+        {
+          "command": "get_island_surface",
+          "args": {}
+        },
+        {
+          "command": "plugin:event|listen",
+          "args": {
+            "event": "tauri://drag-over",
+            "target": {
+              "kind": "WebviewWindow",
+              "label": "island"
+            },
+            "handler": 9
+          }
+        },
+        {
+          "command": "plugin:event|listen",
+          "args": {
+            "event": "tauri://drag-drop",
+            "target": {
+              "kind": "WebviewWindow",
+              "label": "island"
+            },
+            "handler": 11
+          }
+        },
+        {
+          "command": "plugin:event|listen",
+          "args": {
+            "event": "tauri://drag-leave",
+            "target": {
+              "kind": "WebviewWindow",
+              "label": "island"
+            },
+            "handler": 13
+          }
+        },
+        {
+          "command": "island_set_hitrect",
+          "args": {
+            "rect": {
+              "x": 152,
+              "y": -2,
+              "w": 416,
+              "h": 48
+            }
+          }
+        },
+        {
+          "command": "island_set_hitrect",
+          "args": {
+            "rect": {
+              "x": 152,
+              "y": -2,
+              "w": 416,
+              "h": 76
+            }
+          }
+        },
+        {
+          "command": "island_surface_ack",
+          "args": {
+            "generation": 1
+          }
+        }
+      ],
+      "unsupported": [],
+      "runtimeAndNetworkProblems": []
+    },
+    {
+      "file": "v56-power-a-power-idle-dark@1.5x.png",
+      "scenario": "power-idle",
+      "entry": "island.html",
+      "figmaNode": "7:48",
+      "theme": "dark",
+      "resolvedTheme": "dark",
+      "scale": 1.5,
+      "viewport": {
+        "width": 720,
+        "height": 460
+      },
+      "clip": {
+        "x": 304,
+        "y": 6,
+        "width": 112,
+        "height": 26
+      },
+      "width": 168,
+      "height": 39,
+      "bytes": 969,
+      "sha256": "515b5a06948c20ca6768b22903eeda53f9e436c2c3ed761242724a5b76d2d41b",
+      "repeatMatches": true,
+      "caret": "hide",
+      "font": null,
+      "fixtureSha256": "248ccff2161f5ac8cc5bdce9e318e217fb74ed3304ef601b2f17c847fd56716c",
+      "assertions": {
+        "mode": "idle",
+        "accessibility": {
+          "violations": [],
+          "incomplete": []
+        },
+        "geometry": {
+          "morph": {
+            "width": 112,
+            "height": 26,
+            "font": "12px / 16px Geist, \"Segoe UI Variable\", \"Segoe UI\", system-ui, sans-serif",
+            "gap": "normal",
+            "padding": "0px",
+            "text": "",
+            "title": ""
+          },
+          "compact": {
+            "width": 112,
+            "height": 26,
+            "font": "12px / 16px Geist, \"Segoe UI Variable\", \"Segoe UI\", system-ui, sans-serif",
+            "gap": "8px",
+            "padding": "0px 10px",
+            "text": "",
+            "title": ""
+          },
+          "label": null,
+          "digits": null,
+          "assets": [],
+          "overflow": false
+        },
+        "noRealPowerChange": true
+      },
+      "ipc": [
+        {
+          "command": "plugin:event|listen",
+          "args": {
+            "event": "nabbit://island-visibility",
+            "target": {
+              "kind": "Any"
+            },
+            "handler": 1
+          }
+        },
+        {
+          "command": "plugin:event|listen",
+          "args": {
+            "event": "nabbit://island",
+            "target": {
+              "kind": "Any"
+            },
+            "handler": 3
+          }
+        },
+        {
+          "command": "plugin:event|listen",
+          "args": {
+            "event": "nabbit://island-surface",
+            "target": {
+              "kind": "Any"
+            },
+            "handler": 5
+          }
+        },
+        {
+          "command": "plugin:event|listen",
+          "args": {
+            "event": "tauri://drag-enter",
+            "target": {
+              "kind": "WebviewWindow",
+              "label": "island"
+            },
+            "handler": 7
+          }
+        },
+        {
+          "command": "get_island_snapshot",
+          "args": {}
+        },
+        {
+          "command": "get_activity_snapshot",
+          "args": {}
+        },
+        {
+          "command": "get_island_surface",
+          "args": {}
+        },
+        {
+          "command": "plugin:event|listen",
+          "args": {
+            "event": "tauri://drag-over",
+            "target": {
+              "kind": "WebviewWindow",
+              "label": "island"
+            },
+            "handler": 9
+          }
+        },
+        {
+          "command": "plugin:event|listen",
+          "args": {
+            "event": "tauri://drag-drop",
+            "target": {
+              "kind": "WebviewWindow",
+              "label": "island"
+            },
+            "handler": 11
+          }
+        },
+        {
+          "command": "plugin:event|listen",
+          "args": {
+            "event": "tauri://drag-leave",
+            "target": {
+              "kind": "WebviewWindow",
+              "label": "island"
+            },
+            "handler": 13
+          }
+        },
+        {
+          "command": "island_set_hitrect",
+          "args": {
+            "rect": {
+              "x": 296,
+              "y": -2,
+              "w": 128,
+              "h": 42
+            }
+          }
+        },
+        {
+          "command": "island_surface_ack",
+          "args": {
+            "generation": 1
+          }
+        }
+      ],
+      "unsupported": [],
+      "runtimeAndNetworkProblems": []
+    },
+    {
+      "file": "v56-power-a-power-split-dark@1.5x.png",
+      "scenario": "power-split",
+      "entry": "island.html",
+      "figmaNode": "7:48",
+      "theme": "dark",
+      "resolvedTheme": "dark",
+      "scale": 1.5,
+      "viewport": {
+        "width": 720,
+        "height": 460
+      },
+      "clip": {
+        "x": 211,
+        "y": 6,
+        "width": 298,
+        "height": 32
+      },
+      "width": 447,
+      "height": 48,
+      "bytes": 5889,
+      "sha256": "31e7f397f00a75c58838af7d4b79352c6d507eed67888b68caadc2befb7f9fe1",
+      "repeatMatches": true,
+      "caret": "hide",
+      "font": [
+        {
+          "familyName": "Geist",
+          "postScriptName": "Geist",
+          "isCustomFont": true,
+          "glyphCount": 8
+        }
+      ],
+      "fixtureSha256": "757617deece168d6b3a973808a0965464f014fa0368e43e70d01ccfbf92d0f9a",
+      "assertions": {
+        "mode": "split",
+        "accessibility": {
+          "violations": [],
+          "incomplete": []
+        },
+        "geometry": {
+          "morph": {
+            "width": 298,
+            "height": 32,
+            "font": "12px / 16px Geist, \"Segoe UI Variable\", \"Segoe UI\", system-ui, sans-serif",
+            "gap": "normal",
+            "padding": "0px",
+            "text": "Charging82%",
+            "title": ""
+          },
+          "compact": {
+            "width": 260,
+            "height": 32,
+            "font": "12px / 16px Geist, \"Segoe UI Variable\", \"Segoe UI\", system-ui, sans-serif",
+            "gap": "8px",
+            "padding": "0px 10px",
+            "text": "Charging82%",
+            "title": ""
+          },
+          "label": {
+            "width": 49.859375,
+            "height": 16,
+            "font": "12px / 16px Geist, \"Segoe UI Variable\", \"Segoe UI\", system-ui, sans-serif",
+            "gap": "normal",
+            "padding": "0px",
+            "text": "Charging",
+            "title": ""
+          },
+          "digits": {
+            "width": 21.609375,
+            "height": 16,
+            "font": "500 12px / 16px \"Geist Mono\", \"Cascadia Code\", Consolas, monospace",
+            "gap": "normal",
+            "padding": "0px",
+            "text": "82%",
+            "title": ""
+          },
+          "assets": [
+            {
+              "slot": "compact/iconBatteryCharging",
+              "width": 16,
+              "height": 16,
+              "loaded": true
+            },
+            {
+              "slot": "compact/iconTimer1",
+              "width": 15,
+              "height": 15,
+              "loaded": true
+            }
+          ],
+          "overflow": false
+        },
+        "noRealPowerChange": true
+      },
+      "ipc": [
+        {
+          "command": "plugin:event|listen",
+          "args": {
+            "event": "nabbit://island-visibility",
+            "target": {
+              "kind": "Any"
+            },
+            "handler": 1
+          }
+        },
+        {
+          "command": "plugin:event|listen",
+          "args": {
+            "event": "nabbit://island",
+            "target": {
+              "kind": "Any"
+            },
+            "handler": 3
+          }
+        },
+        {
+          "command": "plugin:event|listen",
+          "args": {
+            "event": "nabbit://island-surface",
+            "target": {
+              "kind": "Any"
+            },
+            "handler": 5
+          }
+        },
+        {
+          "command": "plugin:event|listen",
+          "args": {
+            "event": "tauri://drag-enter",
+            "target": {
+              "kind": "WebviewWindow",
+              "label": "island"
+            },
+            "handler": 7
+          }
+        },
+        {
+          "command": "get_island_snapshot",
+          "args": {}
+        },
+        {
+          "command": "get_activity_snapshot",
+          "args": {}
+        },
+        {
+          "command": "get_island_surface",
+          "args": {}
+        },
+        {
+          "command": "plugin:event|listen",
+          "args": {
+            "event": "tauri://drag-over",
+            "target": {
+              "kind": "WebviewWindow",
+              "label": "island"
+            },
+            "handler": 9
+          }
+        },
+        {
+          "command": "plugin:event|listen",
+          "args": {
+            "event": "tauri://drag-drop",
+            "target": {
+              "kind": "WebviewWindow",
+              "label": "island"
+            },
+            "handler": 11
+          }
+        },
+        {
+          "command": "plugin:event|listen",
+          "args": {
+            "event": "tauri://drag-leave",
+            "target": {
+              "kind": "WebviewWindow",
+              "label": "island"
+            },
+            "handler": 13
+          }
+        },
+        {
+          "command": "island_set_hitrect",
+          "args": {
+            "rect": {
+              "x": 203,
+              "y": -2,
+              "w": 314,
+              "h": 48
+            }
+          }
+        },
+        {
+          "command": "island_surface_ack",
+          "args": {
+            "generation": 1
+          }
+        }
+      ],
+      "unsupported": [],
+      "runtimeAndNetworkProblems": []
+    }
+  ]
+}

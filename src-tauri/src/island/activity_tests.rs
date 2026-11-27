@@ -76,8 +76,9 @@ fn default_priority_split_and_replacement_cover_all_activity_categories() {
     let mut e = engine(Gate::Visible);
     for event in [
         ActivityEvent::PowerChanged {
-            percent: 10,
+            percent: Some(10),
             charging: false,
+            plugged_in: Some(false),
         },
         ActivityEvent::TimerTick {
             id: "long".into(),
@@ -362,8 +363,9 @@ fn order_disable_fade_and_cleanup_are_deterministic() {
     send(
         &mut e,
         ActivityEvent::PowerChanged {
-            percent: 12,
+            percent: Some(12),
             charging: false,
+            plugged_in: Some(false),
         },
         0,
     );
@@ -376,14 +378,7 @@ fn order_disable_fade_and_cleanup_are_deterministic() {
     assert_eq!(e.preferences.order.len(), ORDER.len());
     assert_eq!(e.preferences.disabled.len(), 1);
     assert_eq!(view(&e).primary.unwrap().category, Kind::Power);
-    send(
-        &mut e,
-        ActivityEvent::PowerChanged {
-            percent: 80,
-            charging: false,
-        },
-        2,
-    );
+    send(&mut e, ActivityEvent::PowerRemoved, 2);
     assert_eq!(view(&e).gate, Gate::Faded);
     send(
         &mut e,

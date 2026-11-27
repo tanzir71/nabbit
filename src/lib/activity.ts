@@ -74,7 +74,8 @@ export type ActivityEvent =
   | { kind: "timerTick"; id: string; remainingS: number; label: string }
   | { kind: "timerEnded"; id: string }
   | { kind: "privacyChanged"; mic: string[]; camera: string[] }
-  | { kind: "powerChanged"; percent: number; charging: boolean }
+  | { kind: "powerChanged"; percent: number | null; charging: boolean; pluggedIn?: boolean | null }
+  | { kind: "powerRemoved" }
   | { kind: "noteSaved"; cardId: string; destination: string }
   | { kind: "syncState"; state: SyncStatus }
   | { kind: "fullscreen" | "maximized"; monitor: string; active: boolean }

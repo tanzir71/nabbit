@@ -165,9 +165,14 @@ export function CompactContent({
       return (
         <>
           {icon("iconBatteryCharging")}
-          <span className="island-muted">{e.charging ? "Charging" : "Battery low"}</span>
+          <span className="island-muted">{activityTitle(item)}</span>
           <span className="island-spacer" />
-          <span className="island-mono">{e.percent}%</span>
+          <span
+            className="island-mono"
+            title={e.percent == null ? "Battery level unavailable" : undefined}
+          >
+            {e.percent == null ? "—" : `${e.percent}%`}
+          </span>
         </>
       );
     case "downloadDone":
@@ -228,14 +233,8 @@ export function CompactContent({
 }
 export function BubbleContent({ item }: { item: ActivityItem }) {
   const kind = compactKind(item);
-  if (kind === "download" || kind === "tool")
-    return (
-      <ProgressRing
-        value={"percent" in item.event ? item.event.percent : 0}
-        size={18}
-        label={activityTitle(item)}
-      />
-    );
+  if (item.event.kind === "downloadProgress" || item.event.kind === "toolJob")
+    return <ProgressRing value={item.event.percent} size={18} label={activityTitle(item)} />;
   const names: Partial<Record<typeof kind, string>> = {
     volume: "iconVolume2",
     timer: "iconTimer1",

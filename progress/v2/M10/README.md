@@ -104,3 +104,25 @@ Authoritative evidence:
 No real ConsentStore, microphone/camera, call, user app/profile/account, hosted Tack, clipboard/global keys, OS setting/clock/power, installer or signing is exercised. Actual registry/process APIs use owned disposable resources; native app facts are recorded fixtures. Detection is best effort; absence does not prove hardware is unused. Prior platform/focus/performance limits remain. See [privacy](../../../PRIVACY.md).
 
 V5.5 is a local skip-ci task commit directly on main. No PR or task push; publication waits for M10. V5.6 Battery/charging is next.
+
+
+## V5.6 — Transient battery and charging notifications
+
+Battery status now comes from GetSystemPowerStatus in response to registered AC/DC and percentage notifications, legacy status changes and resume. The existing native control HWND owns/revokes both registrations. Current charge/source/charging state stays in memory; snapshot reads never sample the provider. Unknown percentages/source and no-battery/error states are preserved honestly.
+
+Startup/recovery establishes a quiet baseline. Confirmed plug/unplug or charging transitions and changed low percentages<=20 when AC is not known online notify briefly. Healthy/known-AC charging percentage drift stays quiet. Charging, Plugged in, On battery, Battery low and Battery labels reflect known facts; an unknown level uses an em dash and unavailable tooltip. Every power activity expires4s from its change, including while hidden/queued/disabled. Duplicates never reset or revive it. There is no permanent battery widget or JavaScript polling loop.
+
+Authoritative evidence:
+
+- [Receipt and exact Git pins](v56-acceptance.json), [requirements/story and limits](v56-requirements.json), [checks and original logs](v56-checks.json).
+- Nine new power tests cover raw status sentinels, quiet baseline, source/charging transitions, inclusive20%, cache/duplicate behavior,4s scheduling, hidden queues/disabled policy, failure/absence/recovery, message filtering and actual registration/unregistration on an owned hidden HWND.
+- [Five native checks/four final captures](v56-native-b-scene.json): current custom-protocol executable and matching embedded JS/styles, actual Tauri provider/service/shared native notification handler,100 cache reads, charging/healthy-unplug/low state, actual automatic visible/hidden expiry, errors/no battery/unknown levels and pushed Peek. [Charging](v56-native-b-charging@1x.png), [unplugged](v56-native-b-unplugged@1x.png), [20% warning](v56-native-b-low@1x.png), [Peek](v56-native-b-peek@2x.png). The normal4s deadline is never frozen or extended.
+- [32 final visual captures](v56-power-a-screenshots.json): charging,unplugged,low20,full,unknown,peek,idle,split in light/dark at1x/1.5x, always-dark island, exact repeats, Geist and default axe zero violations/incompletes. [Fresh Figma export/comparison/native geometry](v56-design.json), [charging](v56-power-a-power-charging-light@1x.png), [low](v56-power-a-power-low-dark@1.5x.png), [unknown](v56-power-a-power-unknown-dark@1x.png). The original16px asset/232x32 capsule/type/gaps are unchanged; native body alpha>=128 separates the capsule from its original shadow, which remains intact.
+- [Independent PNG audit](v56-png-audit.json): all307 retained M10 PNGs decode and stay <=300000 bytes (largest100111). [Entry graph](v56-entry-bundles.json):101028/120000 initial island gzip bytes. Existing Windows-sys0.59 enables Win32_System_Power only; no new package/version, Cargo.lock change or sidecar.
+- [Failure-harness proof](v56-delivery-failure-check.json) and [failed/superseded logs/original archives](v56-earlier-attempts.json). Native-a's three pre-Peek captures remain; the final selector is scoped to Battery status to distinguish the normal outgoing compact layer. Earlier V5.1–V5.5 evidence is unchanged. No accessibility/lint exclusion, secret-scan waiver or production deadline relaxation was added.
+
+`npm run verify` passes466 tests/45 files; final lint, fmt, default+spike all-target Clippy and298 serial Rust tests pass, with three existing opt-in ignores. The previous permanent fixture behavior is replaced with timed change notifications; explicit PowerRemoved also handles recovery/absence/errors.
+
+No actual AC/battery/sleep or OS power-setting change, user profile/account, hosted Tack, real clipboard/global input, installer or signing is used. Production status sampling compiles; acceptance uses raw fixtures, an owned registration HWND and an isolated native release. Prior platform/focus/performance limits remain. See [privacy](../../../PRIVACY.md).
+
+V5.6 is a local skip-ci task commit directly on main. No PR or task push; publication waits for M10. V5.7 Tool registry/presets/job runner/Search/licences/ffmpeg swap is next.
