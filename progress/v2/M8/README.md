@@ -119,3 +119,26 @@ Reproduce the required check commands above, then use fresh prefixes:
 node scripts/verify-tack-flow.mjs v44-local-flow
 node scripts/verify-tack-screenshots.mjs v44-local-captures
 ```
+
+
+## M8 — Tack sync milestone readiness
+
+The milestone collects V4.1–V4.4 without changing app runtime, build helpers or repository workflows. `m8-task-audit.json` independently checks **2,106 original source/artifact pins** against each task's own commit and verifies **106 authoritative app captures** (34 V4.1 including two native, 32 V4.3, 40 V4.4). The current production build manifest exactly matches V4.4's authoritative captures. Only `v44-verified` supplies its complete asset/font/axe audit; prior V4.4 captures remain historical evidence with the narrower recorded checks. V4.3's six non-exact historical comparisons retain their tiny documented differences. The V4.4 browser flow uses an IPC forwarding seam into real Rust service/client/SQLite/fake HTTP, not native Tauri IPC or OS clipboard writes.
+
+Fresh `m8-checks.json`/readiness evidence proves:
+
+- `npm run verify`: **197 tests / 30 files**, assets/tokens/fonts/icons, typecheck, lint, production build and four-entry audit; **90,612/120,000 initial island gzip bytes**.
+- Rust fmt, default and island-spike all-target Clippy with warnings denied, **205 serial tests**, three opt-in ignores and doc-tests. The bridge ignore is separately invoked and passing in V4.4's pinned receipt; the other two are pre-existing opt-in tests.
+- Landing source/asset/meta/HTTP checks, **106 HTTP bodies**, **457,604/500,000 bytes excluding fonts**, unchanged exact OG, eight status browser contexts, eight accessibility contexts and **24 axe scans with zero violations**. Desktop/mobile status captures were visually inspected. Only M8/M9 rows and milestone metadata changed.
+- **274 retained PNGs** independently decoded and SHA-256 pinned, each below **300,000 bytes**; largest **137,967 bytes**. This includes all original task/reference/earlier images and 16 new milestone status/keyboard images. Not every retained image is an authoritative functional capture.
+- Prepublication public repository/main/docs Pages configuration, no releases and repository CI IDs **29048534241, 29225324035** unchanged. Unpublished task history secret scan has zero findings; staged/archive scans follow before the push.
+
+Canonical `.txt` logs remove console-only trailing whitespace; deterministic `.original.txt.gz` files retain raw bytes. The first site check found a new evidence link using the wrong label; restored the existing Screenshots label and reran all site checks. Its failed log remains `m8-initial-site.original.txt.gz`. No assertions were weakened. `m8-readiness.json` pins current app inputs and every retained PNG.
+
+Try locally with `npm run tauri:dev`, then Ctrl+Shift+V → Notes → Connect Tack, or Settings → Notes & Tack. Local-only requires no server. Automated acceptance used only the in-process fake, never a hosted Tack account. Dedicated editor/conflict UI is V4.5, full Notes acceptance/landing screenshot replacement is V4.8, and the optional complete local Tack suite remains unrun. Existing V0/V2.7 native performance/frame/focus limitations are unchanged. This metadata-only milestone makes no new native or performance claim.
+
+Publication uses a fast-forward direct-main push with a skip-ci milestone head. M8 remains unchecked until the built-in Pages run, exact source bodies, nested custom 404 and all public PNG bytes are verified. The follow-up deployment receipt checks the box without amending published history. No PR, tag, release or repository workflow is created.
+
+Final prepublication `m8-final-audit.json` verifies every readiness source/PNG pin against the Git index. Staged milestone and evidence/archive secret scans both passed with zero findings; their canonical logs are retained alongside the history scan. No app/runtime/helper/workflow file changed.
+
+The final index audit caught five text files omitted from the receipt normalizer (three Python helpers, `.gitkeep` and `.gitattributes`). `m8-provenance-correction.json` records every before/after hash and `m8-readiness-initial.original.json.gz` retains the original receipt. Corrected LF pins passed the full audit of **619 source and 274 PNG index blobs**. No runtime input changed; the unpublished milestone commit was corrected before any push.

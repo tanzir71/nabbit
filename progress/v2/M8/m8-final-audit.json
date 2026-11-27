@@ -1,0 +1,24 @@
+{
+  "recordedAtUtc": "2026-11-27T08:15:10.666924+00:00",
+  "milestone": "M8",
+  "readiness": "m8-readiness.json",
+  "indexSourcePinsVerified": 619,
+  "indexPngPinsVerified": 274,
+  "gitleaks": {
+    "unpublishedTaskHistory": {
+      "findings": 0,
+      "file": "m8-history-gitleaks.txt"
+    },
+    "stagedMilestone": {
+      "findings": 0,
+      "file": "m8-staged-gitleaks.txt"
+    },
+    "evidenceIncludingArchives": {
+      "findings": 0,
+      "file": "m8-archives-gitleaks.txt"
+    }
+  },
+  "noAppRuntimeHelperOrWorkflowChanges": true,
+  "branch": "main",
+  "milestoneCheckboxPendingLiveVerification": true
+}

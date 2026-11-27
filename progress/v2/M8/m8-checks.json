@@ -1,0 +1,201 @@
+{
+  "allRequiredChecksPassed": true,
+  "checks": [
+    {
+      "name": "npm",
+      "command": [
+        "npm.cmd",
+        "run",
+        "verify"
+      ],
+      "exitCode": 0,
+      "seconds": 75.93,
+      "file": "m8-npm.txt",
+      "savedSha256": "27ad40dfe909d568e1593baaff81603962f822a358a4fde1da9ebc9b7cc0ee3a",
+      "rawSha256": "e794826b51e0fd238abcfd9e858e2308e99e159d34be1acde8de90cc2cbe8fa3",
+      "originalArchive": "m8-npm.original.txt.gz"
+    },
+    {
+      "name": "fmt",
+      "command": [
+        "cargo",
+        "fmt",
+        "--manifest-path",
+        "src-tauri/Cargo.toml",
+        "--check"
+      ],
+      "exitCode": 0,
+      "seconds": 0.908,
+      "file": "m8-fmt.txt",
+      "savedSha256": "01ba4719c80b6fe911b091a7c05124b64eeece964e09c058ef8f9805daca546b",
+      "rawSha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "originalArchive": "m8-fmt.original.txt.gz"
+    },
+    {
+      "name": "clippy",
+      "command": [
+        "cargo",
+        "clippy",
+        "--manifest-path",
+        "src-tauri/Cargo.toml",
+        "--all-targets",
+        "--",
+        "-D",
+        "warnings"
+      ],
+      "exitCode": 0,
+      "seconds": 2.069,
+      "file": "m8-clippy.txt",
+      "savedSha256": "c65715417640041a6b7d5cca7484725def3a7ebfe69a02fbb4afc43b096625ca",
+      "rawSha256": "847c2445a21e7b24b665a602fa4d725b9a2d2f9dce1dafc0a332d17720869b27",
+      "originalArchive": "m8-clippy.original.txt.gz"
+    },
+    {
+      "name": "spike-clippy",
+      "command": [
+        "cargo",
+        "clippy",
+        "--manifest-path",
+        "src-tauri/Cargo.toml",
+        "--all-targets",
+        "--features",
+        "island-spike",
+        "--",
+        "-D",
+        "warnings"
+      ],
+      "exitCode": 0,
+      "seconds": 1.768,
+      "file": "m8-spike-clippy.txt",
+      "savedSha256": "c0d976ce152dc117c48c6f541cde80a6837a915e5b2fdf1112aa6f6a9a676267",
+      "rawSha256": "9489f44a20008616cc15f27632fb39b5fe7792c37ff432551e93bc1a95eab550",
+      "originalArchive": "m8-spike-clippy.original.txt.gz"
+    },
+    {
+      "name": "rust-tests",
+      "command": [
+        "cargo",
+        "test",
+        "--manifest-path",
+        "src-tauri/Cargo.toml",
+        "--",
+        "--test-threads=1"
+      ],
+      "exitCode": 0,
+      "seconds": 28.068,
+      "file": "m8-rust-tests.txt",
+      "savedSha256": "e6ef6964c06a9708f2157a3f67ee10d1912568ee6af76903560cd2b3ce0fc319",
+      "rawSha256": "31e9631ee34e437afb4eb56279cedd05a15a4ed75ec01851c70de34073aac07f",
+      "originalArchive": "m8-rust-tests.original.txt.gz"
+    },
+    {
+      "name": "site",
+      "command": [
+        "npm.cmd",
+        "run",
+        "verify:site"
+      ],
+      "exitCode": 0,
+      "seconds": 10.865,
+      "file": "m8-site.txt",
+      "savedSha256": "9ad1dec8451099219a129a33b4907e27206bef1e1d9cdee71b9ae6a74646ec27",
+      "rawSha256": "7ae04a5a8de452cf3d70c6ffe5f7083a8089a690c6a9edbbe4393e32e4e57e0c",
+      "originalArchive": "m8-site.original.txt.gz"
+    },
+    {
+      "name": "site-assets",
+      "command": [
+        "node",
+        "scripts/verify-site.mjs",
+        "--report",
+        "progress/v2/M8/m8-site-assets.json"
+      ],
+      "exitCode": 0,
+      "seconds": 2.14,
+      "file": "m8-site-assets.txt",
+      "savedSha256": "6df8f1313f0600bb106c784fb11e4cc2057ed4f99fd25b79b62aaffa1dc7c7d3",
+      "rawSha256": "6df8f1313f0600bb106c784fb11e4cc2057ed4f99fd25b79b62aaffa1dc7c7d3",
+      "originalArchive": "m8-site-assets.original.txt.gz"
+    },
+    {
+      "name": "site-http",
+      "command": [
+        "node",
+        "scripts/verify-site-http.mjs",
+        "--assets",
+        "progress/v2/M8/m8-site-assets.json",
+        "--report",
+        "progress/v2/M8/m8-http-assets.json"
+      ],
+      "exitCode": 0,
+      "seconds": 2.087,
+      "file": "m8-site-http.txt",
+      "savedSha256": "0902c30b2857462f914cc47c03dac552622d8b8b8e8aba5c131e324a3e5e9c5c",
+      "rawSha256": "0902c30b2857462f914cc47c03dac552622d8b8b8e8aba5c131e324a3e5e9c5c",
+      "originalArchive": "m8-site-http.original.txt.gz"
+    },
+    {
+      "name": "status",
+      "command": [
+        "node",
+        "scripts/verify-milestone-status.mjs",
+        "--milestone",
+        "M8",
+        "--previous-ref",
+        "c6d30bf",
+        "--prefix",
+        "m8-status"
+      ],
+      "exitCode": 0,
+      "seconds": 23.225,
+      "file": "m8-status.txt",
+      "savedSha256": "187f0422fe454a8a9041e39eec4c90e137b466752e1ab91afad6b9212fbb2e46",
+      "rawSha256": "187f0422fe454a8a9041e39eec4c90e137b466752e1ab91afad6b9212fbb2e46",
+      "originalArchive": "m8-status.original.txt.gz"
+    },
+    {
+      "name": "accessibility",
+      "command": [
+        "node",
+        "scripts/verify-site-accessibility.mjs",
+        "--milestone",
+        "M8",
+        "--prefix",
+        "m8-final"
+      ],
+      "exitCode": 0,
+      "seconds": 59.744,
+      "file": "m8-accessibility.txt",
+      "savedSha256": "7da11b7bc857599b38bf19d31fec2018546aa5a3daebf4b74aba3c45bd41e35c",
+      "rawSha256": "7da11b7bc857599b38bf19d31fec2018546aa5a3daebf4b74aba3c45bd41e35c",
+      "originalArchive": "m8-accessibility.original.txt.gz"
+    },
+    {
+      "name": "og",
+      "command": [
+        "npm.cmd",
+        "run",
+        "site:og",
+        "--",
+        "--check"
+      ],
+      "exitCode": 0,
+      "seconds": 4.005,
+      "file": "m8-og.txt",
+      "savedSha256": "63be078a347ac96b26ef57e5d6263cd594e6b5dd9931512290e4abed02941bec",
+      "rawSha256": "330aaf2dd04dcf0bf4b6a3ecc4af8936e89855213e4f3a637ba0fe6dd4d1ac61",
+      "originalArchive": "m8-og.original.txt.gz"
+    }
+  ],
+  "earlierAttempt": {
+    "file": "m8-initial-site.original.txt.gz",
+    "exitCode": 1,
+    "reason": "New M8 evidence link used the milestone name; restored the existing Screenshots label and reran all site checks successfully."
+  },
+  "historyGitleaks": {
+    "command": "gitleaks git --log-opts=origin/main..HEAD --redact",
+    "exitCode": 0,
+    "findings": 0,
+    "log": "m8-history-gitleaks.txt"
+  }
+}
