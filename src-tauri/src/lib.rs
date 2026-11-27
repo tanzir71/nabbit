@@ -8,6 +8,7 @@ mod island;
 mod notes;
 mod pins;
 mod retention;
+pub mod tack;
 #[cfg(windows)]
 mod taskbar_theme;
 mod tray_icon;
@@ -80,6 +81,7 @@ pub fn run() {
     };
     tauri::Builder::default()
         .manage(download::sheets::Service::default())
+        .manage(tack::service::Service::default())
         .plugin(tauri_plugin_single_instance::init(|app, args, _cwd| {
             // The plugin's deep-link integration already delivered configured scheme arguments.
             if !args.iter().any(|arg| arg.starts_with("nabbit:")) {
@@ -96,6 +98,12 @@ pub fn run() {
         ))
         .plugin(tauri_plugin_updater::Builder::new().build())
         .invoke_handler(tauri::generate_handler![
+            commands::tack::tack_status,
+            commands::tack::tack_snapshot,
+            commands::tack::tack_login,
+            commands::tack::tack_confirm_recovery,
+            commands::tack::tack_switch_workspace,
+            commands::tack::tack_logout,
             commands::notes::list_note_cards,
             commands::notes::create_note_card,
             commands::notes::update_note_card,

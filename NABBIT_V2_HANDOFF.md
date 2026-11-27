@@ -553,7 +553,7 @@ Island Notes tab and `Ctrl+Alt+N`: one-line field. Port Tack's capture parsing (
 
 ### 8.8 Acceptance (notes, automated)
 
-- [ ] **Fake Tack server** (Rust dev-dependency, in-process on 127.0.0.1) that mirrors `backend/index.php` for the actions Nabbit uses: `status`, `login` (including `recoveryCode`), `recovery-confirm`, `workspace-switch`, `logout`, and `sync` with cursor paging (`more`), the 50-mutation limit, versions, server ref allocation, three-way field merge, conflicts and the 401/403/409/413/428/429 responses. Derive its behaviour from Tack's code and keep request/response fixtures in `src-tauri/tests/fixtures/tack/`.
+- [x] **Fake Tack server** (Rust dev-dependency, in-process on 127.0.0.1) that mirrors `backend/index.php` for the actions Nabbit uses: `status`, `login` (including `recoveryCode`), `recovery-confirm`, `workspace-switch`, `logout`, and `sync` with cursor paging (`more`), the 50-mutation limit, versions, server ref allocation, three-way field merge, conflicts and the 401/403/409/413/428/429 responses. Derive its behaviour from Tack's code and keep request/response fixtures in `src-tauri/tests/fixtures/tack/`.
 - [ ] Against the fake: create, edit, check items, recolour, label, pin, archive, trash, a two-device conflict (both resolutions), offline queue replay, batches above 50 mutations, cursor paging, and every error → `SyncState`.
 - [ ] A new card gets a server-allocated `tck-N` ref that Nabbit reads back; unknown fields added on the server survive a Nabbit edit.
 - [ ] Local-only mode works with no network; "Upload local notes" migrates once with no duplicates.
@@ -780,7 +780,7 @@ Commit after every task (§0.1). Lines marked **MILESTONE** are tasks of their o
 
 ### Phase V4 — Notes · Tack
 - [x] V4.1 Notes store, local-only mode, NoteCard + tray Notes view (`13:242`).
-- [ ] V4.2 Fake Tack server for tests (§8.8), then the Tack client: status/login/recovery-confirm/workspace-switch/logout, Credential Manager session, error → `SyncState`.
+- [x] V4.2 Fake Tack server for tests (§8.8), then the Tack client: status/login/recovery-confirm/workspace-switch/logout, Credential Manager session, error → `SyncState`.
 - [ ] V4.3 Sync loop (§8.4): mirror/outbox/cursor, batching, paging, conflicts; fractional rank port with tests.
 - [ ] V4.4 Connect flow (`19:5`, `19:102`) and settings section, tested end to end against the fake Tack.
 - [ ] **MILESTONE M8 — Tack sync.**

@@ -1,0 +1,350 @@
+{
+  "task": "V4.2",
+  "parentCommit": "b084379f48d83df3752c398c925ec91f81ef816e",
+  "branch": "main",
+  "status": "passed",
+  "checks": {
+    "frontendTests": 184,
+    "frontendFiles": 29,
+    "rustPassed": 175,
+    "rustIgnored": 2,
+    "tackTests": 18,
+    "phpGoldenCases": 100,
+    "nativeCredentialManager": "passed; unique synthetic .invalid entry deleted",
+    "fmt": "passed",
+    "clippyDefault": "passed",
+    "clippySpike": "passed",
+    "initialIslandGzipBytes": 90605,
+    "initialIslandBudget": 120000,
+    "gitleaksStaged": "passed; zero findings",
+    "gitleaksEvidenceArchives": "passed; zero findings at depth 1"
+  },
+  "scope": {
+    "uiChanged": false,
+    "networkOnStartup": false,
+    "productionHttpsOnly": true,
+    "productionVault": "Windows Credential Manager; cookie + CSRF only",
+    "fake": "in-process 127.0.0.1 ephemeral; cfg(test) only",
+    "hostedTackCalled": false,
+    "optionalFullLocalTackSuite": "not run; standalone pinned PHP merge functions verified",
+    "outboxSyncLoop": "V4.3",
+    "connectionUi": "V4.4",
+    "push": "M8 milestone only; no push in this pass"
+  },
+  "sourcePins": [
+    {
+      "path": "src-tauri/Cargo.toml",
+      "bytes": 2734,
+      "sha256": "d1d98927f5020a3174e35d9b859bc9da74259be8ff02f85c43187cf7e2641638",
+      "gitBlob": "71a840b9f83e50168884cb382c795274149deb16"
+    },
+    {
+      "path": "src-tauri/Cargo.lock",
+      "bytes": 170736,
+      "sha256": "5945efdf61110f3e2a6f12802e05d2ef56031749647ebe577ce38ef54584b497",
+      "gitBlob": "d010fa29bdc6a1fdaf5423dd285460fae8f48308"
+    },
+    {
+      "path": "src-tauri/src/lib.rs",
+      "bytes": 30722,
+      "sha256": "5d0da1ed39b92407fb6e285d93e2303a85aaf6a934402b9a2fbe76bb9e8aad3a",
+      "gitBlob": "f30c5a70ef8edbeee2ebca5e55e02a52602fef9c"
+    },
+    {
+      "path": "src-tauri/src/commands/mod.rs",
+      "bytes": 97,
+      "sha256": "ed7da4f8011960000cc777d27b024188e03d48616e90ff2346727b54df932ef1",
+      "gitBlob": "805241d554ac7239435b9dfd1ae062b7a1b89473"
+    },
+    {
+      "path": "src-tauri/src/commands/tack.rs",
+      "bytes": 1763,
+      "sha256": "15f35eafea6516433ca0e060b23ffaa807191945a67c08fafe36c1022b241b10",
+      "gitBlob": "1c9711ef20d72451a9a85cfc22cbfbe05b8c38d2"
+    },
+    {
+      "path": "src/features/notes/tackApi.ts",
+      "bytes": 1606,
+      "sha256": "6e286099f1d411ee524958179efb6996479ff1c4c6eb6cae01a66692547d76f2",
+      "gitBlob": "47116ce058ba5c1f1d6568c7675d01d324093587"
+    },
+    {
+      "path": "scripts/generate-tack-merge-fixtures.py",
+      "bytes": 5908,
+      "sha256": "63b46d9b3ecb06c7bc909a350f0634dd4dd4838fd9e661658dfd87997c5312bd",
+      "gitBlob": "9fad27160163b6161e84ee4af8a5ebfe53cff3c7"
+    },
+    {
+      "path": "src-tauri/src/tack/client.rs",
+      "bytes": 21981,
+      "sha256": "5f5a688438841ffedeed2ad3f987664e89c1c8733d495decb2ec85bb92f32745",
+      "gitBlob": "23eaf35b4ff7e9b0f87b6675e04e2eed681da54d"
+    },
+    {
+      "path": "src-tauri/src/tack/endpoint.rs",
+      "bytes": 1808,
+      "sha256": "3082ee5769702e05a69e109d1166887018c58bab60bc46ca91d70ad21ccc8299",
+      "gitBlob": "8bee325abe998546e371bbc4a760af29de89734e"
+    },
+    {
+      "path": "src-tauri/src/tack/mod.rs",
+      "bytes": 107,
+      "sha256": "434a1afe923f593ab95532e3821a8ea1db4b7b7d7bca6d90df57ce4b937ba9bf",
+      "gitBlob": "97f07c8ec01cdb7cca7742beb6c63a84cc032d27"
+    },
+    {
+      "path": "src-tauri/src/tack/model.rs",
+      "bytes": 4681,
+      "sha256": "f4dfed2b093be35f0edf61c38d2a56abd4cfe2ca41fa657f476b36076caf4421",
+      "gitBlob": "4b08d80f13ac4a9c08491b9302eb886f9f240a1f"
+    },
+    {
+      "path": "src-tauri/src/tack/service.rs",
+      "bytes": 1929,
+      "sha256": "dcdbb64dd7f0c18de612555f4822e08c8d7df750adfd90c60019f7d95d094a4a",
+      "gitBlob": "33e792305c95b98a6d85e1d6dd88b24771c97503"
+    },
+    {
+      "path": "src-tauri/src/tack/session.rs",
+      "bytes": 4546,
+      "sha256": "aba4bd32c9ec21e0260f5fdbb21471dff6d9abaf23a07a6e39d157f7562b47a0",
+      "gitBlob": "5c23ae34c91abe708556078a8e941491e73bbfc6"
+    },
+    {
+      "path": "src-tauri/src/tack/tests/fake.rs",
+      "bytes": 20813,
+      "sha256": "a5dbe913921bda34c163c3b7a3efd1f3f03e62138d0139ab26783056b2d43bb3",
+      "gitBlob": "2cb6e6269b2db04eeab35fe261f6ff92aa8735cd"
+    },
+    {
+      "path": "src-tauri/src/tack/tests/merge.rs",
+      "bytes": 24208,
+      "sha256": "8fda595537359da3cc9409940389e2c1d85745aca4e7c67c6cdd333b744eedba",
+      "gitBlob": "37cf1f451c6792161c4b49d7c13496383a6ab4df"
+    },
+    {
+      "path": "src-tauri/src/tack/tests/mod.rs",
+      "bytes": 22761,
+      "sha256": "6ae4e5e3177df713ce4aa3acd1a484759f04e0cc9b5fd4e0349e65728dc98886",
+      "gitBlob": "e79474edc45838c4c6f7f3140068d19367691ec0"
+    },
+    {
+      "path": "src-tauri/tests/fixtures/tack/auth.json",
+      "bytes": 2362,
+      "sha256": "6954794cda581ddeac20714e32daade0bd6051dfafff348213c8f367368638ab",
+      "gitBlob": "897b1f0ace0541524c9db8ecf2585bc35945e95c"
+    },
+    {
+      "path": "src-tauri/tests/fixtures/tack/merge.json",
+      "bytes": 710419,
+      "sha256": "ceff57aff850d2c290911efe7586e0034255736f2a67eca5223c0583e8b26d67",
+      "gitBlob": "6c9d65dbd52586ec54ec1e992a06d03445243acf"
+    },
+    {
+      "path": "src-tauri/tests/fixtures/tack/README.md",
+      "bytes": 3486,
+      "sha256": "cfd525b3208334465984e1e0800855dc1af7359022a790dd8fecd1e1a97f4553",
+      "gitBlob": "886050e15cf24ab450a739aee2beb994073a89a4"
+    },
+    {
+      "path": "src-tauri/tests/fixtures/tack/source-pins.json",
+      "bytes": 2509,
+      "sha256": "2da3c213d6ae67b526dbeb0287a100c71f92c7ff492d469c9d2228970f1bc7c5",
+      "gitBlob": "27aeba412f3d44ad4f735f0f9f41ec39bf5989cb"
+    },
+    {
+      "path": "NABBIT_V2_HANDOFF.md",
+      "bytes": 101737,
+      "sha256": "d8770e0dbcb7ec70318a81869a9d8816aa3a8312ed0250f4fe4418d3a6d76285",
+      "gitBlob": "f61a30ff92ff4c2c7baaeec3cc91eb5a6619ddd4"
+    },
+    {
+      "path": "PROGRESS.md",
+      "bytes": 132741,
+      "sha256": "107345ea4be68d3aee629c09a72e9947ca21fa1c7d52f9d85f5611d659c8c53e",
+      "gitBlob": "dd27ce651b23930d40192879e5bfe9a5cc0b6c54"
+    },
+    {
+      "path": "progress/v2/M8/README.md",
+      "bytes": 11676,
+      "sha256": "84e907e44d2a5ceeeb3af7e478de2bb6219ef55aac140a3234ddba697ce5a235",
+      "gitBlob": "4cb5ffb05bccf44fc07a4666339fc11bdd6d452d"
+    }
+  ],
+  "artifactPins": [
+    {
+      "path": "progress/v2/M8/v42-npm-verify.log",
+      "bytes": 7449,
+      "sha256": "c046c74969ec346f766e8338cda4eada4393bd3f936a90325b33078192501514",
+      "gitBlob": "271e74392722ecbc67373a660f124778ad6a96ef"
+    },
+    {
+      "path": "progress/v2/M8/v42-npm-verify.original.txt.gz",
+      "bytes": 2664,
+      "sha256": "f4ede40b82f9a94135bb87b107b0157f4611aee70c05674f0d775d277e73144e",
+      "gitBlob": "778b9a2cec56c5b53761627069fdbca4253e0659"
+    },
+    {
+      "path": "progress/v2/M8/v42-fmt.log",
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "gitBlob": "e69de29bb2d1d6434b8b29ae775ad8c2e48c5391"
+    },
+    {
+      "path": "progress/v2/M8/v42-fmt.original.txt.gz",
+      "bytes": 20,
+      "sha256": "9ceffb7310338057cfe71a4ae1e2c98d2c485d81cdef906532a801f457a38d64",
+      "gitBlob": "86e43ea3218b5890302b754bbf8927f94e79f7ee"
+    },
+    {
+      "path": "progress/v2/M8/v42-clippy-default.log",
+      "bytes": 140,
+      "sha256": "ba19a3c0c1210be98465a52f69892eda3990645568dbf9402e9fd4a02acee9a6",
+      "gitBlob": "ca9c508b87afac0e432595b87b5e5df0147f0dad"
+    },
+    {
+      "path": "progress/v2/M8/v42-clippy-default.original.txt.gz",
+      "bytes": 145,
+      "sha256": "504f9d032569d885d2fd68762a4b861e56c952c0496999de04c4110b6f19e807",
+      "gitBlob": "b4ef91e8addad87868998f0f6d02ffb9d82c6054"
+    },
+    {
+      "path": "progress/v2/M8/v42-clippy-spike.log",
+      "bytes": 140,
+      "sha256": "3c0a2adde706412da219c5b8ba3160420cdb91f38e51353305e1838074f2cc8d",
+      "gitBlob": "f847c56e39c95890ce7d1066881cdf9f6a045cd1"
+    },
+    {
+      "path": "progress/v2/M8/v42-clippy-spike.original.txt.gz",
+      "bytes": 145,
+      "sha256": "872ca5ede1503feac1fcc06570be4f97beb9ecf2a4874d170003ccc80f348827",
+      "gitBlob": "f1ddb2a8edaba4219e563b958eec3efdf8fcec3a"
+    },
+    {
+      "path": "progress/v2/M8/v42-rust-tests.log",
+      "bytes": 17545,
+      "sha256": "c272933d0ebedc9882a2585c4b16f2368a588ebebaac4b36ccbf44ad0da232ff",
+      "gitBlob": "577e6c61c6c4b679df495f01b68ac04b54d43ad6"
+    },
+    {
+      "path": "progress/v2/M8/v42-rust-tests.original.txt.gz",
+      "bytes": 5402,
+      "sha256": "d318d506f61b55a2f298f52a893abc6a42477a62a5ebff2fba25a48e63c7c667",
+      "gitBlob": "86be5ddd05725ec9fa4aed5b22a0977e75c31094"
+    },
+    {
+      "path": "progress/v2/M8/v42-php-reference.log",
+      "bytes": 176,
+      "sha256": "a7f4b4834c81dbd8f5d5b4e9625ad311c0906bacea630cc10cb0fc06c96060b6",
+      "gitBlob": "361f36e6f70b7e2ae7a32cb27bef16f43202e09d"
+    },
+    {
+      "path": "progress/v2/M8/v42-php-reference.original.txt.gz",
+      "bytes": 172,
+      "sha256": "941912e6642b3b8a3a31ff0fc9e789e39a566fa3420c7c14a515c0cb38851dcc",
+      "gitBlob": "7ba5191562f84bf3f8d35038b38df330a72bd69e"
+    },
+    {
+      "path": "progress/v2/M8/v42-source-verification.log",
+      "bytes": 2123,
+      "sha256": "97e39795fe67161885c07da918d118a83941563196c7e83e50a04132435a56a5",
+      "gitBlob": "892aaf65d510b6b92330bb52dc8320592ad97d74"
+    },
+    {
+      "path": "progress/v2/M8/v42-source-verification.original.txt.gz",
+      "bytes": 562,
+      "sha256": "38bee9fdff9c4d13fadae30a4caa91311ee3fa197d1682c40e036c6ccb2f5897",
+      "gitBlob": "0578185771d40545c169088f525a50e3f7af4c65"
+    },
+    {
+      "path": "progress/v2/M8/v42-gitleaks-staged.log",
+      "bytes": 113,
+      "sha256": "cfcc3a28422973afc718b30472232e3a33fd1124a5aca3ed70e47409a21e64f0",
+      "gitBlob": "d6f82aa6375ebbda5e0e8e5e70c60da81a95e8e2"
+    },
+    {
+      "path": "progress/v2/M8/v42-gitleaks-staged.original.txt.gz",
+      "bytes": 107,
+      "sha256": "471d0de4648544e17421e7079fcdd74bd15c8e0cb061553770467c8a8b495b0e",
+      "gitBlob": "5153f995727fe6a2c79a44e122fd384e872ca1e4"
+    },
+    {
+      "path": "progress/v2/M8/v42-gitleaks-archives.log",
+      "bytes": 81,
+      "sha256": "be4581e5f7a5091a636cd60283a0aecbf134337dc4190f15731d39c990845edb",
+      "gitBlob": "c0d11bfdf10a4bba1f9c9f4e1dd85b0240b36065"
+    },
+    {
+      "path": "progress/v2/M8/v42-gitleaks-archives.original.txt.gz",
+      "bytes": 94,
+      "sha256": "030e13fc6b6bf9e44aa5510a59c16e5e1825d9d25d3737c2fa6eb116db68bda5",
+      "gitBlob": "aab73a5f838e331db7228b60ea22ef53bf4eeb1c"
+    },
+    {
+      "path": "progress/v2/M8/v42-earlier-check-first.txt.gz",
+      "bytes": 1245,
+      "sha256": "c1839d3200ee714a5d30aef95ba3e62cd5908e27f5a40b45518d2b51ae7a1d50",
+      "gitBlob": "75ad686f442e15b6752d907558a9b5987d6d0227"
+    },
+    {
+      "path": "progress/v2/M8/v42-earlier-check-tests.txt.gz",
+      "bytes": 870,
+      "sha256": "79cfcb84cb1849ff24e50328652f4701c43c632b065391e51f272c46079a39da",
+      "gitBlob": "8ee7591d55fd9311b75cd56cee7ded2d910de74b"
+    },
+    {
+      "path": "progress/v2/M8/v42-earlier-focused-first.txt.gz",
+      "bytes": 1192,
+      "sha256": "3b7a0d9e6c7456803e57d400e1493fcb80963be2cdf93a9453dbe230e50fe8b9",
+      "gitBlob": "e6dafe21320acd829bbe9f2657eda502fd630680"
+    },
+    {
+      "path": "progress/v2/M8/v42-earlier-focused-second.txt.gz",
+      "bytes": 70,
+      "sha256": "1582e15ec1c983e7965465274963374b6e5b23f8d885a1eb0d2497f8949cb092",
+      "gitBlob": "6f71081409e4db66dec0ce30b6d48672c0640953"
+    },
+    {
+      "path": "progress/v2/M8/v42-earlier-focused-third.txt.gz",
+      "bytes": 70,
+      "sha256": "1582e15ec1c983e7965465274963374b6e5b23f8d885a1eb0d2497f8949cb092",
+      "gitBlob": "6f71081409e4db66dec0ce30b6d48672c0640953"
+    },
+    {
+      "path": "progress/v2/M8/v42-earlier-focused-fourth.txt.gz",
+      "bytes": 623,
+      "sha256": "6b2c0e91adb335f6d7ae05c950effde499c84f114153c2a3c747036a460b8560",
+      "gitBlob": "3701466e06cfcd69e1db017013e42cee113cdafb"
+    },
+    {
+      "path": "progress/v2/M8/v42-earlier-clippy-first.txt.gz",
+      "bytes": 702,
+      "sha256": "77d9f67cfd2f3febc63a259441522e2c8224981ee157f957c89c5c767bf6610d",
+      "gitBlob": "a1e554efa359fa94e0821ed55d3cbcab1a89661d"
+    },
+    {
+      "path": "progress/v2/M8/v42-earlier-clippy-second.txt.gz",
+      "bytes": 145,
+      "sha256": "b2ab3a0e67bd76525364f2821943f2d07ffc6eb4c5b1bea23b40a1fb289cd8d5",
+      "gitBlob": "ca6ae4b8c5fe4b4c7d2e16d5ff62e7f4099c28da"
+    },
+    {
+      "path": "progress/v2/M8/v42-earlier-focused-expanded.txt.gz",
+      "bytes": 764,
+      "sha256": "09afddb0521960671d339bc42fe04ace75d62ef1f81807c719b80ccc2afeb71c",
+      "gitBlob": "9f5bacad1eacd89af9df181e0ce001316f88b24d"
+    },
+    {
+      "path": "progress/v2/M8/v42-earlier-rust-pre-paging-guard.txt.gz",
+      "bytes": 5381,
+      "sha256": "83d9cc684cb469cbd8f0dbc5adf58f2f4ad4788f95737b97cd35fcb092cf450e",
+      "gitBlob": "aa249180c1a4d8da9ffeb87f0ad7baf75d25c0a3"
+    },
+    {
+      "path": "progress/v2/M8/v42-earlier-attempts.json",
+      "bytes": 2378,
+      "sha256": "2d3e12070689d4515337c976f1a82f8996604b4b184eca7fdfea9414cb55cdfb",
+      "gitBlob": "30f0076e187e600250205d4afd9dc52f08a82bf8"
+    }
+  ]
+}

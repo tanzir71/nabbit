@@ -34,3 +34,34 @@ node scripts/verify-notes-native.mjs src-tauri/target/release/nabbit.exe v41-loc
 ```
 
 For a bounded frontend worker count, set Vitest's max fork/thread environment variables to 2 and min to 1 for that command, restoring their prior values afterwards. The complete test suite remains selected. Native automation refuses to run if any Nabbit process already exists and cleans up only its owned process tree.
+
+## V4.2 — Fake Tack and connection transport
+
+Implemented the API v4 connection client and its in-process Rust fake, derived from Tack commit `70d6608e4c4a4b9e4dd38b9bf2124187f6285893`. Nine source files are pinned and their Git blob hashes independently verified. Status, login, recovery confirmation, workspace switching and logout use the actual wire shapes; authenticated requests carry account/workspace guards. Typed Tauri commands run serialized blocking workers. The service starts disconnected, and there is no startup request or background polling.
+
+Production accepts HTTPS installation URLs only, refuses redirects, filters cookies to the configured installation's `tack_sid`, requires Secure/HttpOnly, and preserves absolute expiry when restoring a session. Cookie and CSRF are the only fields in a single Windows Credential Manager entry. Separate URL paths/ports have separate scopes. Passwords and recovery codes are request/dialog values with redacted diagnostics and zeroizing wrappers; they are not connection state or vault data. HTTP/network errors map to existing SyncStatus values with fixed client messages. Retry-After supports seconds and HTTP dates and blocks premature calls, including extreme integer values. Offline logout still removes the local session; a secure-storage failure never falls back to a file.
+
+The fake binds an ephemeral `127.0.0.1` port and cleans up its owned server thread. It enforces session/CSRF rotation, recovery and workspace guards, rate limits, mutation uniqueness/50-count bounds, versions, full-JSON field and agent-completion merges, success-body conflicts, stable requested/server references, record/request/storage limits with rollback and cursor paging over hidden/unrelated rows. Reference prefixes follow the first label/tag, with `tck` as fallback. The fake's complete scope and exclusions are in `src-tauri/tests/fixtures/tack/README.md`.
+
+Final checks pass:
+
+- `npm run verify`: **184 tests / 29 files**, type/lint/token/font/icon checks, production build and bundle audit. Four HTML entries; initial island JS remains **90,605/120,000 gzip bytes**.
+- Rust fmt, default and island-spike all-target Clippy with warnings denied, **175 serial tests**, two existing opt-in tests ignored, and doc-tests.
+- **18 Tack tests**, including authentication/restart/logout, both cookie expiry forms, server and client mutation bounds, hidden-row paging, malformed/foreign/no-progress response rejection, merge/conflict/reference behavior, storage rollback, all error states, rate/backoff guards, redirect refusal, failing vault and native Windows Credential Manager roundtrip. The native test writes/reads/deletes only its own unique synthetic `.invalid` entry and verifies the two persisted JSON keys.
+- **100 PHP golden merges** generated with the actual pinned merge/sharing functions on PHP 8.2.30 (`-n`), covering large/high-distance Unicode/text/structured cases and agent completion races. Regeneration checks source blob hashes. The optional complete local Tack/PDO-SQLite suite was not run; no hosted Tack or user account was contacted.
+
+`v42-acceptance.json` pins final source and evidence bytes using Git's LF text representation. Canonical logs trim console-only trailing whitespace; `.original.txt.gz` retains their exact original bytes. `v42-earlier-attempts.json` retains early compiler/Clippy diagnostics, two cancelled redundant lock-waiting cargo processes, and earlier green suites superseded by expanded checks. No assertion or lint was disabled. The final full Rust run includes the last paging/version-zero regression guard.
+
+Staged and evidence-archive Gitleaks scans have zero findings. The staged Git blob audit verifies every source/artifact hash; task logs are explicitly staged despite the repository's general log ignore. Console EOF whitespace is removed only from readable copies, with raw bytes retained in the compressed originals.
+
+This is a backend-only task, so no UI screenshots or native app launch are claimed. Notes remain local-only in the current UI. Transactional mirror/outbox synchronization is V4.3; connection/recovery sheets are V4.4. V4.1 artifacts and all prior V0/V2.7 limitations remain. Commit directly to main with `[skip ci]`; publication waits for M8. No PR, push, tag, release or repository workflow invocation occurred in this pass.
+
+Reproduce checks from the repository root:
+
+```powershell
+npm run verify
+cargo fmt --manifest-path src-tauri/Cargo.toml --check
+cargo clippy --manifest-path src-tauri/Cargo.toml --all-targets -- -D warnings
+cargo clippy --manifest-path src-tauri/Cargo.toml --all-targets --features island-spike -- -D warnings
+cargo test --manifest-path src-tauri/Cargo.toml -- --test-threads=1
+```

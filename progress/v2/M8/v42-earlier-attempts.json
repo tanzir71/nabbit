@@ -1,0 +1,46 @@
+[
+  {
+    "artifact": "progress/v2/M8/v42-earlier-check-first.txt.gz",
+    "resolution": "Early transport scaffolding compiled with expected not-yet-used helpers; superseded by warning-free all-target checks."
+  },
+  {
+    "artifact": "progress/v2/M8/v42-earlier-check-tests.txt.gz",
+    "resolution": "Early fake needed the Read trait imported for the bounded trait-object reader; corrected."
+  },
+  {
+    "artifact": "progress/v2/M8/v42-earlier-focused-first.txt.gz",
+    "resolution": "Early fake header helper needed a static header-name lifetime and an unused fallback argument was renamed; corrected."
+  },
+  {
+    "artifact": "progress/v2/M8/v42-earlier-focused-second.txt.gz",
+    "resolution": "Cancelled a redundant cargo process waiting on the build-directory lock; no test result."
+  },
+  {
+    "artifact": "progress/v2/M8/v42-earlier-focused-third.txt.gz",
+    "resolution": "Cancelled another redundant cargo process waiting on the build-directory lock; no test result."
+  },
+  {
+    "artifact": "progress/v2/M8/v42-earlier-focused-fourth.txt.gz",
+    "resolution": "First 10 focused tests passed, including native credential roundtrip and 97 PHP merge cases; later expanded."
+  },
+  {
+    "artifact": "progress/v2/M8/v42-earlier-clippy-first.txt.gz",
+    "resolution": "Clippy found regex construction in a loop, a manual range check and a sort idiom in test-only code; corrected without allowances."
+  },
+  {
+    "artifact": "progress/v2/M8/v42-earlier-clippy-second.txt.gz",
+    "resolution": "Default all-target Clippy passed before final bounds and paging validation."
+  },
+  {
+    "artifact": "progress/v2/M8/v42-earlier-focused-expanded.txt.gz",
+    "resolution": "Expanded 15-test/100-PHP-case suite passed; superseded by the complete final serial suite."
+  },
+  {
+    "artifact": "progress/v2/M8/v42-earlier-rust-pre-paging-guard.txt.gz",
+    "resolution": "Complete serial suite passed 174 tests with two existing opt-in tests ignored before the last version-zero/paging-progress regression test; rerun on final source."
+  },
+  {
+    "artifact": null,
+    "resolution": "The staged pin audit caught task logs omitted by the global *.log ignore. Force-added only the owned V4.2 logs. Diff check then caught a console-only blank line at EOF; canonical logs now trim EOF whitespace while original byte archives remain intact. Both checks were rerun."
+  }
+]
