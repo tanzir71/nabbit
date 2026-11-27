@@ -1,4 +1,4 @@
-import { useEffect, useRef, useState } from "react";
+import { lazy, Suspense, useEffect, useRef, useState } from "react";
 import { api } from "../lib/ipc";
 import { useNotesStore } from "../store/notesStore";
 import { Button } from "../components/Button";
@@ -21,6 +21,9 @@ import "../features/notes/notes.css";
 const priorities = ["all", "inbox", "now", "next", "later"] as const;
 const colors: NoteColor[] = ["default", "blue", "purple", "green", "pink", "gray"];
 const titleCase = (s: string) => s[0].toUpperCase() + s.slice(1);
+const NoteEditor = lazy(() =>
+  import("../features/notes/NoteEditor").then((module) => ({ default: module.NoteEditor })),
+);
 type Composer = {
   card: StoredNote | null;
   kind: NoteKind;
@@ -64,6 +67,7 @@ export function NotesView() {
   const [draft, setDraft] = useState<Composer>(() => blank());
   const [expanded, setExpanded] = useState(false);
   const [announcement, setAnnouncement] = useState("");
+  const [editing, setEditing] = useState<StoredNote | null>(null);
   const titleRef = useRef<HTMLInputElement>(null);
   const searchRef = useRef<HTMLInputElement>(null);
   const menuRef = useRef<HTMLDetailsElement>(null);
@@ -138,20 +142,7 @@ export function NotesView() {
     }
   };
   const edit = (card: StoredNote) => {
-    const c = card.value;
-    setDraft({
-      card,
-      kind: c.kind,
-      title: c.title,
-      body: c.body,
-      url: c.url,
-      items: c.items.map((item) => ({ ...item })),
-      priority: c.priority,
-      color: c.color,
-      labels: c.labels.join(", "),
-    });
-    setExpanded(true);
-    titleRef.current?.focus();
+    setEditing(card);
   };
   const reset = () => {
     setDraft(blank());
@@ -225,7 +216,7 @@ export function NotesView() {
                             ? (c.status ?? (c.completed ? "done" : "open"))
                             : undefined
                         }
-                        onOpen={readOnly ? undefined : () => edit(note)}
+                        onOpen={() => edit(note)}
                       />
                       <details className="notes-card-menu">
                         <summary
@@ -239,7 +230,7 @@ export function NotesView() {
                             Edit
                           </button>
                           <button
-                            disabled={disabled}
+                            disabled={busy.includes(c.id)}
                             onClick={() => void updateNote(note, { pinned: !c.pinned })}
                           >
                             {c.pinned ? "Unpin" : "Pin"}
@@ -273,7 +264,7 @@ export function NotesView() {
       </section>
     );
   return (
-    <section className="notes-view" aria-label="Notes">
+    <section className="notes-view" aria-label="Notes collection">
       <div className="notes-body">
         {readOnly ? (
           <p className="tack-help" role="status">
@@ -584,9 +575,13 @@ export function NotesView() {
         </span>
       </div>
       <footer className="notes-footer">
-        <NotesIcon name="cloud" />
         <TackSettings compact />
       </footer>
+      {editing ? (
+        <Suspense fallback={<span role="status">Opening note…</span>}>
+          <NoteEditor card={editing} close={() => setEditing(null)} />
+        </Suspense>
+      ) : null}
     </section>
   );
 }

@@ -1,0 +1,67 @@
+{
+  "passed": false,
+  "failure": {
+    "message": "locator.click: Error: strict mode violation: getByRole('button', { name: 'Sign in', exact: true }) resolved to 2 elements:\n    1) <button type=\"button\">Sign in</button> aka getByRole('button', { name: 'Sign in' }).first()\n    2) <button type=\"submit\" class=\"n-button n-button--primary n-button--md\">…</button> aka getByRole('dialog').getByRole('button', { name: 'Sign in' })\n\nCall log:\n\u001b[2m  - waiting for getByRole('button', { name: 'Sign in', exact: true })\u001b[22m\n",
+    "stack": "locator.click: Error: strict mode violation: getByRole('button', { name: 'Sign in', exact: true }) resolved to 2 elements:\n    1) <button type=\"button\">Sign in</button> aka getByRole('button', { name: 'Sign in' }).first()\n    2) <button type=\"submit\" class=\"n-button n-button--primary n-button--md\">…</button> aka getByRole('dialog').getByRole('button', { name: 'Sign in' })\n\nCall log:\n\u001b[2m  - waiting for getByRole('button', { name: 'Sign in', exact: true })\u001b[22m\n\n    at D:\\claude-upgrade-26\\nabbit\\scripts\\verify-note-editor-flow.mjs:233:68",
+    "telemetry": {
+      "headings": [
+        "Nabbit",
+        "Pinned",
+        "Connect your Tack"
+      ],
+      "notes": 1,
+      "footer": "Signed outYour notes and queued changes are kept. Sign in again.Sign inConnect TackOpen TackConnect your Tack1 Server2 Sign in3 WorkspaceTack addressFound Tack · API v4 · HTTPSUsernamePasswordKeep me signed in on this PCTack sessions last 30 days. Nabbit stores the session in Windows Credential Manager and never stores your password.Create account in browserUse local notes onlyBackSign in",
+      "events": 4,
+      "streamError": false,
+      "commands": [
+        "get_notes_state",
+        "tack_snapshot",
+        "tack_profile",
+        "tack_sync_snapshot",
+        "get_note_editor",
+        "tack_snapshot",
+        "tack_profile",
+        "tack_sync_snapshot",
+        "save_note_editor",
+        "tack_snapshot",
+        "tack_profile",
+        "tack_sync_snapshot",
+        "tack_snapshot",
+        "tack_profile",
+        "tack_sync_snapshot",
+        "tack_snapshot",
+        "tack_profile",
+        "tack_sync_snapshot",
+        "get_notes_state",
+        "tack_snapshot",
+        "tack_profile",
+        "tack_sync_snapshot",
+        "get_notes_state",
+        "get_note_editor",
+        "tack_snapshot",
+        "tack_profile",
+        "tack_sync_snapshot",
+        "tack_status",
+        "tack_snapshot",
+        "tack_profile",
+        "tack_sync_snapshot",
+        "tack_snapshot",
+        "tack_profile",
+        "tack_sync_snapshot",
+        "get_notes_state"
+      ]
+    }
+  },
+  "checks": [
+    "Local-only editor saves body, colour, label, pin and reminder atomically through real Rust/SQLite with zero HTTP requests",
+    "Escape and close require an explicit dirty-draft decision; discard does not save"
+  ],
+  "problems": [],
+  "buildManifestSha256": "d530e3786000d57ac0a572f7f7137024c0cb657bac67bdc2049b4ab92efbc5d0",
+  "rustBridgeExitCode": 0,
+  "scope": "Actual browser UI, typed frontend API, test-only IPC forwarding bridge, production Rust Service/client/SQLite and in-process Rust fake. HTTPS .invalid alias maps to the owned loopback fake only in the test bridge. No native Tauri IPC or OS clipboard claim.",
+  "noHostedTack": true,
+  "noUserAccount": true,
+  "noRealClipboard": true,
+  "noExternalNetwork": true
+}

@@ -1,3 +1,4 @@
+pub mod editor;
 pub mod preferences;
 pub(crate) mod rank;
 pub mod store;

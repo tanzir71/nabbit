@@ -5,13 +5,22 @@ import { tackApi, type TackConnection, type TackProfile, type TackSyncSnapshot }
 import { tackError } from "./tackErrors";
 import { TackConnectionSheet } from "./TackConnectionSheet";
 import "./tack.css";
+import { SyncState } from "./SyncState";
+import { ConflictSheet } from "./ConflictSheet";
 
 type Data = { connection: TackConnection; profile: TackProfile; sync: TackSyncSnapshot };
-export function TackSettings({ compact = false }: { compact?: boolean }) {
+export function TackSettings({
+  compact = false,
+  editor = false,
+}: {
+  compact?: boolean;
+  editor?: boolean;
+}) {
   const [data, setData] = useState<Data | null>(null),
     [error, setError] = useState("");
   const [open, setOpen] = useState(false),
     [busy, setBusy] = useState(false);
+  const [review, setReview] = useState(false);
   const generation = useRef(0),
     alive = useRef(true),
     working = useRef(false);
@@ -91,7 +100,6 @@ export function TackSettings({ compact = false }: { compact?: boolean }) {
     }
   };
   const authenticated = !!data?.connection.user && !data.connection.requiresLogin;
-  const active = !!data?.sync.scope;
   const problem = data?.sync.error ?? data?.connection.error;
   const problemCopy =
     data?.connection.recoveryPending && problem?.code === "conflict"
@@ -101,19 +109,48 @@ export function TackSettings({ compact = false }: { compact?: boolean }) {
     setError("");
     setOpen(true);
   };
+  const syncAction = () => {
+    if (data?.sync.state === "conflict") setReview(true);
+    else if (data?.sync.state === "offline") void act(tackApi.syncNow);
+    else if (data?.sync.state === "storageFull") void act(tackApi.open);
+    else openSheet();
+  };
   return (
     <>
       {compact ? (
         <div className="tack-compact">
-          <span>
-            {active ? "Tack · Saved on this device" : "Local only · Saved on this device"}
-          </span>
-          <button type="button" disabled={!data || busy} onClick={openSheet}>
-            {authenticated ? "Tack settings" : "Connect Tack"}
-          </button>
+          {data ? (
+            <SyncState
+              snapshot={data.sync}
+              workspace={data.connection.workspace?.name}
+              compact
+              busy={busy}
+              act={syncAction}
+            />
+          ) : (
+            <span>Loading sync status…</span>
+          )}
+          {!editor ? (
+            <button type="button" disabled={!data || busy} onClick={openSheet}>
+              {authenticated ? "Tack settings" : "Connect Tack"}
+            </button>
+          ) : null}
+          {!editor && data?.connection.checked ? (
+            <button type="button" disabled={busy} onClick={() => void act(tackApi.open)}>
+              Open Tack
+            </button>
+          ) : null}
         </div>
       ) : (
         <div className="tack-settings">
+          {data ? (
+            <SyncState
+              snapshot={data.sync}
+              workspace={data.connection.workspace?.name}
+              busy={busy}
+              act={syncAction}
+            />
+          ) : null}
           <div>
             <strong>
               {authenticated
@@ -187,6 +224,15 @@ export function TackSettings({ compact = false }: { compact?: boolean }) {
           close={() => setOpen(false)}
           complete={() => {
             setOpen(false);
+            void reload.current();
+          }}
+        />
+      ) : null}
+      {review && data?.sync.scope ? (
+        <ConflictSheet
+          scope={data.sync.scope}
+          close={() => {
+            setReview(false);
             void reload.current();
           }}
         />

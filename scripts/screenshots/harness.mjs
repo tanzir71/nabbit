@@ -180,6 +180,17 @@ export async function captureSuite(root, options, cases = scenarios) {
             if (scenario.suite === "foundations") assert.equal(fixture.calls.length, 0);
             else if (scenario.surface === "island") {
               assert(fixture.calls.some(({ command }) => command === "island_set_hitrect"));
+              if (scenario.notesSync) {
+                assert.equal(
+                  await page.locator("main").getAttribute("data-island-state"),
+                  "expanded",
+                );
+                assert.equal(
+                  fixture.calls.filter(({ command }) => command === "tack_sync_snapshot").length,
+                  1,
+                  "Expanded Notes reads one initial snapshot, then uses pushed events",
+                );
+              }
               assert(
                 fixture.calls.every(({ command }) =>
                   [
@@ -204,6 +215,7 @@ export async function captureSuite(root, options, cases = scenarios) {
                     "list_downloads",
                     "get_storage_stats",
                     "resolve_download_preset",
+                    ...(scenario.notesSync ? ["tack_sync_snapshot"] : []),
                     "plugin:event|listen",
                     "plugin:event|unlisten",
                   ].includes(command),

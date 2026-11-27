@@ -29,6 +29,26 @@ pub fn get_notes_state(state: tauri::State<'_, AppState>) -> Result<NotesState> 
 }
 
 #[tauri::command]
+pub fn get_note_editor(
+    state: tauri::State<'_, AppState>,
+    id: String,
+    expected_scope: Option<Context>,
+) -> Result<crate::notes::editor::EditorData> {
+    state.db.note_editor(&id, expected_scope.as_ref())
+}
+
+#[tauri::command]
+pub fn save_note_editor(
+    app: tauri::AppHandle,
+    state: tauri::State<'_, AppState>,
+    request: crate::notes::editor::EditorSave,
+) -> Result<StoredNote> {
+    let note = state.db.save_note_editor(request)?;
+    publish(&app);
+    Ok(note)
+}
+
+#[tauri::command]
 pub fn save_note_reminder(
     app: tauri::AppHandle,
     state: tauri::State<'_, AppState>,

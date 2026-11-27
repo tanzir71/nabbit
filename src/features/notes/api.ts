@@ -2,6 +2,19 @@ import { invoke } from "@tauri-apps/api/core";
 import type { NoteDraft, NotePatch, StoredNote, NotesState, NotesContext } from "./types";
 
 export const notesApi = {
+  editor: (id: string, expectedScope?: NotesContext | null) =>
+    invoke<NoteEditorData>("get_note_editor", { id, expectedScope: expectedScope ?? null }),
+  saveEditor: (card: StoredNote, patch: NotePatch, reminders: ReminderEdit[]) =>
+    invoke<StoredNote>("save_note_editor", {
+      request: {
+        id: card.value.id,
+        expectedRevision: card.value.revision,
+        expectedEditToken: card.editToken,
+        expectedScope: card.scope ?? null,
+        patch,
+        reminders,
+      },
+    }),
   list: () => invoke<StoredNote[]>("list_note_cards"),
   state: () => invoke<NotesState>("get_notes_state"),
   create: (draft: NoteDraft, expectedScope?: NotesContext | null) =>
@@ -21,3 +34,33 @@ export const notesApi = {
       expectedEditToken: expectedEditToken ?? null,
     }),
 };
+
+export interface ReminderValue {
+  id: string;
+  revision: number;
+  entityId: string;
+  entityType: "card";
+  at: string;
+  timeZone: string;
+  repeat: "none" | "daily" | "weekdays" | "weekly" | "monthly";
+  anchorDay: number;
+  snoozedUntil: string | null;
+  lastCompletedAt: string | null;
+  enabled: boolean;
+  [key: string]: unknown;
+}
+export interface StoredReminder {
+  value: ReminderValue;
+  editToken: string;
+}
+export interface ReminderEdit {
+  id: string;
+  expectedToken: string | null;
+  value: ReminderValue | null;
+}
+export interface NoteEditorData {
+  note: StoredNote;
+  reminders: StoredReminder[];
+  attachments: Array<{ id: string; name: string; mime: string; data: string }>;
+  revisions: Array<{ value: Record<string, unknown> | null; reason: string; savedAt: string }>;
+}

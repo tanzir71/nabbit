@@ -299,6 +299,17 @@ impl Database {
         expected_token: Option<&str>,
         patch: Value,
     ) -> Result<StoredNote> {
+        self.update_note_editor_in(id, expected_revision, scope, expected_token, patch, &[])
+    }
+    pub(crate) fn update_note_editor_in(
+        &self,
+        id: &str,
+        expected_revision: u64,
+        scope: Option<&super::sync_store::Context>,
+        expected_token: Option<&str>,
+        patch: Value,
+        reminders: &[super::editor::ReminderEdit],
+    ) -> Result<StoredNote> {
         let patch = patch.as_object().ok_or_else(|| msg("Invalid note edit"))?;
         if patch.is_empty() || patch.keys().any(|k| !EDITABLE.contains(&k.as_str())) {
             return Err(msg("This note edit contains unsupported fields"));
@@ -308,7 +319,7 @@ impl Database {
             .lock()
             .map_err(|_| msg("database lock poisoned"))?;
         let tx = conn.transaction()?;
-        super::sync_store::ensure(&tx, scope)?;
+        super::preferences::writable(&tx, scope)?;
         let key = scope.map_or("", |s| s.key.as_str());
         let (raw, local_only, token): (String, bool, String) = tx
             .query_row(
@@ -347,6 +358,7 @@ impl Database {
         if let Some(context) = scope {
             super::sync_store::queue(&tx, context, "cards", id, &value)?;
         }
+        super::editor::write_reminders(&tx, scope, id, reminders)?;
         super::sync_store::changed(&tx)?;
         tx.commit()?;
         Ok(StoredNote {

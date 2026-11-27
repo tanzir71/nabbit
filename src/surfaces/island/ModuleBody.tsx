@@ -9,6 +9,7 @@ import type { ActivityItem } from "../../lib/activity";
 import type { ClipboardEntry } from "../../lib/types";
 import type { IslandAction, IslandModel } from "../../store/islandStore";
 import { MiniButton, type IslandIntent } from "./CompactContent";
+import { IslandNotesSync } from "../../features/notes/IslandNotesSync";
 interface Props {
   model: IslandModel;
   dispatch: (action: IslandAction) => void;
@@ -190,18 +191,21 @@ export default function ModuleBody(props: Props) {
     timer: ["No focus session", "Your focus session appears here."],
   }[model.tab];
   return (
-    <DraftBody
-      model={model}
-      fallback={
-        <div className="island-module-body">
-          <div className="island-empty">
-            <h2>{empty?.[0]}</h2>
-            <p className="island-muted">{empty?.[1]}</p>
+    <>
+      <DraftBody
+        model={model}
+        fallback={
+          <div className="island-module-body">
+            <div className="island-empty">
+              <h2>{empty?.[0]}</h2>
+              <p className="island-muted">{empty?.[1]}</p>
+            </div>
+            <MiniButton onClick={() => act({ action: "tray" })}>Open Nabbit</MiniButton>
           </div>
-          <MiniButton onClick={() => act({ action: "tray" })}>Open Nabbit</MiniButton>
-        </div>
-      }
-    />
+        }
+      />
+      {model.tab === "notes" ? <IslandNotesSync open={() => act({ action: "tray" })} /> : null}
+    </>
   );
 }
 function DraftBody({ model, fallback }: { model: IslandModel; fallback: React.ReactNode }) {

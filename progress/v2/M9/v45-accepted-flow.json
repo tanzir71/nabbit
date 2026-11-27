@@ -1,0 +1,19 @@
+{
+  "passed": true,
+  "checks": [
+    "Local-only editor saves body, colour, label, pin and reminder atomically through real Rust/SQLite with zero HTTP requests",
+    "Escape and close require an explicit dirty-draft decision; discard does not save",
+    "Explicit first connection uploads the local card and its remapped reminder once; the real fake allocates Tack's Build-label bui reference",
+    "Two actual HTTP clients create text conflicts; both UI resolutions use frozen guards, survive acknowledgement and retain the losing body in note_revisions",
+    "History is readable in the editor; reminder edits round trip through the fake and reload; DB/logs contain neither synthetic password nor recovery code",
+    "Live Rust push events reach the browser without a polling timer; no unknown IPC or external network"
+  ],
+  "problems": [],
+  "buildManifestSha256": "256166772de3247d40d307cacf9bd1713e3ca25686a91aede907055b07cb2153",
+  "rustBridgeExitCode": 0,
+  "scope": "Actual browser UI, typed frontend API, test-only IPC forwarding bridge, production Rust Service/client/SQLite and in-process Rust fake. HTTPS .invalid alias maps to the owned loopback fake only in the test bridge. No native Tauri IPC or OS clipboard claim.",
+  "noHostedTack": true,
+  "noUserAccount": true,
+  "noRealClipboard": true,
+  "noExternalNetwork": true
+}

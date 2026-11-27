@@ -19,7 +19,7 @@ const scenario = {
   ...scenarios[0],
   name: "runtime-failure",
   async ready(page) {
-    await scenarios[0].ready(page);
+    await page.getByRole("heading", { name: "Nabbit", exact: true }).waitFor();
     await page.evaluate(async () => {
       globalThis.console.error("Intentional screenshot-harness failure fixture");
       try {

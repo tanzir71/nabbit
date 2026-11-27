@@ -151,7 +151,7 @@ impl State {
         let mut seq = self.seq;
         let reference_pattern = regex::Regex::new(r"^[a-z]{1,3}-[1-9][0-9]{0,14}$").unwrap();
         for mut m in mutations {
-            if !["cards", "reminders", "settings"].contains(&m.table.as_str())
+            if !["cards", "reminders", "settings", "attachments"].contains(&m.table.as_str())
                 || m.id.is_empty()
                 || m.id.len() > 200
                 || m.id.contains(['\r', '\n'])

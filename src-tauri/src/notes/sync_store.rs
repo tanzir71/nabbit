@@ -96,6 +96,10 @@ pub(crate) fn migrate(conn: &mut Connection) -> Result<()> {
         CREATE TABLE IF NOT EXISTS note_revisions(history_id TEXT PRIMARY KEY,scope TEXT NOT NULL,tbl TEXT NOT NULL,id TEXT NOT NULL,value TEXT NOT NULL,reason TEXT NOT NULL,saved_at TEXT NOT NULL);
         CREATE TABLE IF NOT EXISTS tack_uploads(local_id TEXT PRIMARY KEY,scope TEXT NOT NULL,remote_id TEXT NOT NULL);
         CREATE INDEX IF NOT EXISTS idx_tack_queue ON tack_outbox(scope,queued_at,tbl,id);")?;
+    if meta(&tx, "editor_attachments_v45")?.is_none() {
+        tx.execute("UPDATE tack_scopes SET cursor=0", [])?;
+        set_meta(&tx, "editor_attachments_v45", "true")?;
+    }
     tx.commit()?;
     Ok(())
 }
@@ -611,7 +615,7 @@ impl Database {
             .map(|r| (true, r))
             .chain(reply.conflicts.iter().map(|r| (false, r)))
         {
-            if !["cards", "reminders"].contains(&record.table.as_str())
+            if !["cards", "reminders", "attachments"].contains(&record.table.as_str())
                 && !(record.table == "settings" && record.id == "tack.labels")
             {
                 continue;
@@ -655,7 +659,7 @@ impl Database {
                 return Err(msg("InvalidResponse: Tack record version regressed"));
             }
             tx.execute("INSERT INTO tack_mirror(scope,tbl,id,version,value) VALUES(?1,?2,?3,?4,?5) ON CONFLICT(scope,tbl,id) DO UPDATE SET version=excluded.version,value=excluded.value",params![context.key,record.table,record.id,record.version,record.value.to_string()])?;
-            if record.table == "settings"
+            if ["settings", "attachments"].contains(&record.table.as_str())
                 && old
                     .as_ref()
                     .and_then(|(_, raw)| serde_json::from_str::<Value>(raw).ok())
@@ -871,6 +875,20 @@ impl Database {
                 "INSERT INTO tack_uploads(local_id,scope,remote_id) VALUES(?1,?2,?3)",
                 params![local_id, context.key, id],
             )?;
+            let reminders = tx.prepare("SELECT id,value FROM note_reminders WHERE scope='' AND json_extract(value,'$.entityType')='card' AND json_extract(value,'$.entityId')=?1")?.query_map([&local_id], |r|Ok((r.get::<_,String>(0)?,r.get::<_,String>(1)?)))?.collect::<std::result::Result<Vec<_>,_>>()?;
+            for (local_reminder, raw) in reminders {
+                let reminder_id = Uuid::new_v4().to_string();
+                let mut reminder: Value = serde_json::from_str(&raw)?;
+                reminder["id"] = json!(reminder_id);
+                reminder["entityId"] = json!(id);
+                reminder["revision"] = json!(0);
+                write_value(&tx, context, "reminders", &reminder_id, &reminder)?;
+                queue(&tx, context, "reminders", &reminder_id, &reminder)?;
+                tx.execute(
+                    "DELETE FROM note_reminders WHERE scope='' AND id=?1",
+                    [local_reminder],
+                )?;
+            }
             tx.execute(
                 "DELETE FROM note_cards WHERE scope='' AND id=?1",
                 [local_id],

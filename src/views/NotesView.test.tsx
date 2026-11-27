@@ -7,7 +7,14 @@ import { notesApi } from "../features/notes/api";
 import { visibleNotes, type CardValue, type StoredNote } from "../features/notes/types";
 
 vi.mock("../features/notes/api", () => ({
-  notesApi: { list: vi.fn(), state: vi.fn(), create: vi.fn(), update: vi.fn() },
+  notesApi: {
+    list: vi.fn(),
+    state: vi.fn(),
+    create: vi.fn(),
+    update: vi.fn(),
+    editor: vi.fn(),
+    saveEditor: vi.fn(),
+  },
 }));
 vi.mock("../features/notes/TackSettings", () => ({
   TackSettings: () => <span>Local only · Saved on this device</span>,
@@ -46,6 +53,9 @@ function card(patch: Partial<CardValue> = {}): StoredNote {
 }
 let rows: StoredNote[];
 beforeEach(() => {
+  HTMLDialogElement.prototype.showModal = function () {
+    this.setAttribute("open", "");
+  };
   vi.clearAllMocks();
   rows = [card()];
   useNotesStore.setState({ cards: [], scope: null, loading: true, error: null, busy: [] });
@@ -61,6 +71,15 @@ beforeEach(() => {
     note.value = { ...note.value, ...patch, revision: revision + 1 };
     return structuredClone(note);
   });
+  vi.mocked(notesApi.editor).mockImplementation(async (id) => ({
+    note: structuredClone(rows.find((row) => row.value.id === id)!),
+    reminders: [],
+    attachments: [],
+    revisions: [],
+  }));
+  vi.mocked(notesApi.saveEditor).mockImplementation((card, patch) =>
+    notesApi.update(card.value.id, card.value.revision, patch),
+  );
   vi.mocked(notesApi.create).mockImplementation(async (draft) => {
     const saved = card({
       ...draft,
@@ -160,7 +179,7 @@ describe("local Notes view", () => {
     const user = userEvent.setup();
     render(<NotesView />);
     await user.click(await screen.findByRole("button", { name: "My note" }));
-    await user.click(screen.getByRole("button", { name: "Remove item 1" }));
+    await user.click(await screen.findByRole("button", { name: "Remove item 1" }));
     await user.clear(screen.getByRole("textbox", { name: "Checklist item 1" }));
     await user.type(screen.getByRole("textbox", { name: "Checklist item 1" }), "Edited second row");
     await user.click(screen.getByRole("button", { name: "Save note" }));

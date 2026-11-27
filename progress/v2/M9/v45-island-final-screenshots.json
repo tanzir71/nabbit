@@ -1,0 +1,4021 @@
+{
+  "milestone": "M9",
+  "prefix": "v45-island-final",
+  "suite": "all",
+  "browser": "159.0.8154.6",
+  "playwright": "1.65.1",
+  "platform": "win32",
+  "node": "v24.22.2",
+  "captureTime": "2026-11-26T09:00:00.000Z",
+  "buildManifestSha256": "88d0cec7890369d334d3254a42894835bcfcdcaca3745f6b37ab6b18dd5b3a0b",
+  "screenshotScale": "device",
+  "pngBudgetBytes": 307200,
+  "isolatedContexts": true,
+  "mockedIpc": true,
+  "osPreferencesChanged": false,
+  "captures": [
+    {
+      "file": "v45-island-final-island-notes-offline-light@1x.png",
+      "scenario": "island-notes-offline",
+      "entry": "island.html",
+      "figmaNode": "19:346",
+      "theme": "light",
+      "resolvedTheme": "dark",
+      "scale": 1,
+      "viewport": {
+        "width": 720,
+        "height": 460
+      },
+      "clip": {
+        "x": 20,
+        "y": 6,
+        "width": 680,
+        "height": 281
+      },
+      "width": 680,
+      "height": 281,
+      "bytes": 20212,
+      "sha256": "c7a468a19adb76788c607df72ab2af4b5f5efd363db5b6eef0112c477b0d05b6",
+      "repeatMatches": true,
+      "caret": "hide",
+      "font": [
+        {
+          "familyName": "Geist",
+          "postScriptName": "Geist",
+          "isCustomFont": true,
+          "glyphCount": 6
+        }
+      ],
+      "fixtureSha256": "8575655ccba7f5e74763b745aedb3233b117e810519a5ffe8025b23e18404344",
+      "assertions": {
+        "state": "offline",
+        "assets": [
+          {
+            "file": "notes-editor/a92d4.svg",
+            "width": 16,
+            "height": 16,
+            "naturalWidth": 16,
+            "naturalHeight": 16
+          }
+        ],
+        "accessibility": {
+          "violations": [],
+          "incomplete": []
+        },
+        "expandedOnly": true,
+        "jsPolling": false,
+        "action": "Open full Nabbit",
+        "fixture": "Protocol snapshot; behavior tested by component races and separate Rust flow"
+      },
+      "ipc": [
+        {
+          "command": "plugin:event|listen",
+          "args": {
+            "event": "nabbit://island-visibility",
+            "target": {
+              "kind": "Any"
+            },
+            "handler": 1
+          }
+        },
+        {
+          "command": "plugin:event|listen",
+          "args": {
+            "event": "nabbit://island",
+            "target": {
+              "kind": "Any"
+            },
+            "handler": 3
+          }
+        },
+        {
+          "command": "plugin:event|listen",
+          "args": {
+            "event": "nabbit://island-surface",
+            "target": {
+              "kind": "Any"
+            },
+            "handler": 5
+          }
+        },
+        {
+          "command": "plugin:event|listen",
+          "args": {
+            "event": "tauri://drag-enter",
+            "target": {
+              "kind": "WebviewWindow",
+              "label": "island"
+            },
+            "handler": 7
+          }
+        },
+        {
+          "command": "get_island_snapshot",
+          "args": {}
+        },
+        {
+          "command": "get_activity_snapshot",
+          "args": {}
+        },
+        {
+          "command": "get_island_surface",
+          "args": {}
+        },
+        {
+          "command": "plugin:event|listen",
+          "args": {
+            "event": "tauri://drag-over",
+            "target": {
+              "kind": "WebviewWindow",
+              "label": "island"
+            },
+            "handler": 9
+          }
+        },
+        {
+          "command": "plugin:event|listen",
+          "args": {
+            "event": "tauri://drag-drop",
+            "target": {
+              "kind": "WebviewWindow",
+              "label": "island"
+            },
+            "handler": 11
+          }
+        },
+        {
+          "command": "plugin:event|listen",
+          "args": {
+            "event": "tauri://drag-leave",
+            "target": {
+              "kind": "WebviewWindow",
+              "label": "island"
+            },
+            "handler": 13
+          }
+        },
+        {
+          "command": "island_set_hitrect",
+          "args": {
+            "rect": {
+              "x": 12,
+              "y": -2,
+              "w": 696,
+              "h": 42
+            }
+          }
+        },
+        {
+          "command": "island_set_hitrect",
+          "args": {
+            "rect": {
+              "x": 12,
+              "y": -2,
+              "w": 696,
+              "h": 72
+            }
+          }
+        },
+        {
+          "command": "plugin:event|listen",
+          "args": {
+            "event": "engine:health",
+            "target": {
+              "kind": "Any"
+            },
+            "handler": 15
+          }
+        },
+        {
+          "command": "plugin:event|listen",
+          "args": {
+            "event": "url:detected",
+            "target": {
+              "kind": "Any"
+            },
+            "handler": 17
+          }
+        },
+        {
+          "command": "plugin:event|listen",
+          "args": {
+            "event": "download:updated",
+            "target": {
+              "kind": "Any"
+            },
+            "handler": 19
+          }
+        },
+        {
+          "command": "plugin:event|listen",
+          "args": {
+            "event": "download:cleared",
+            "target": {
+              "kind": "Any"
+            },
+            "handler": 21
+          }
+        },
+        {
+          "command": "plugin:event|listen",
+          "args": {
+            "event": "url:cleared",
+            "target": {
+              "kind": "Any"
+            },
+            "handler": 23
+          }
+        },
+        {
+          "command": "get_settings",
+          "args": {}
+        },
+        {
+          "command": "list_downloads",
+          "args": {}
+        },
+        {
+          "command": "get_captured_link",
+          "args": {}
+        },
+        {
+          "command": "get_engine_status",
+          "args": {}
+        },
+        {
+          "command": "island_set_hitrect",
+          "args": {
+            "rect": {
+              "x": 12,
+              "y": -2,
+              "w": 696,
+              "h": 144
+            }
+          }
+        },
+        {
+          "command": "island_set_hitrect",
+          "args": {
+            "rect": {
+              "x": 12,
+              "y": -2,
+              "w": 696,
+              "h": 217
+            }
+          }
+        },
+        {
+          "command": "island_surface_ack",
+          "args": {
+            "generation": 1
+          }
+        },
+        {
+          "command": "island_keyboard_focus",
+          "args": {
+            "target": "preserve"
+          }
+        },
+        {
+          "command": "get_island_surface",
+          "args": {}
+        },
+        {
+          "command": "plugin:event|unlisten",
+          "args": {
+            "event": "engine:health",
+            "eventId": 16
+          }
+        },
+        {
+          "command": "plugin:event|unlisten",
+          "args": {
+            "event": "url:detected",
+            "eventId": 18
+          }
+        },
+        {
+          "command": "plugin:event|unlisten",
+          "args": {
+            "event": "download:updated",
+            "eventId": 20
+          }
+        },
+        {
+          "command": "plugin:event|unlisten",
+          "args": {
+            "event": "download:cleared",
+            "eventId": 22
+          }
+        },
+        {
+          "command": "plugin:event|unlisten",
+          "args": {
+            "event": "url:cleared",
+            "eventId": 24
+          }
+        },
+        {
+          "command": "get_island_drop",
+          "args": {}
+        },
+        {
+          "command": "plugin:event|listen",
+          "args": {
+            "event": "tack:sync",
+            "target": {
+              "kind": "Any"
+            },
+            "handler": 25
+          }
+        },
+        {
+          "command": "tack_sync_snapshot",
+          "args": {}
+        },
+        {
+          "command": "island_surface_ack",
+          "args": {
+            "generation": 1
+          }
+        },
+        {
+          "command": "island_set_hitrect",
+          "args": {
+            "rect": {
+              "x": 12,
+              "y": -2,
+              "w": 696,
+              "h": 297
+            }
+          }
+        }
+      ],
+      "unsupported": [],
+      "runtimeAndNetworkProblems": []
+    },
+    {
+      "file": "v45-island-final-island-notes-conflict-light@1x.png",
+      "scenario": "island-notes-conflict",
+      "entry": "island.html",
+      "figmaNode": "19:346",
+      "theme": "light",
+      "resolvedTheme": "dark",
+      "scale": 1,
+      "viewport": {
+        "width": 720,
+        "height": 460
+      },
+      "clip": {
+        "x": 20,
+        "y": 6,
+        "width": 680,
+        "height": 281
+      },
+      "width": 680,
+      "height": 281,
+      "bytes": 20245,
+      "sha256": "bb7f5318e790d698f5c1dd7f98c45950aa24990284069c00dd05a3dc8bce5388",
+      "repeatMatches": true,
+      "caret": "hide",
+      "font": [
+        {
+          "familyName": "Geist",
+          "postScriptName": "Geist",
+          "isCustomFont": true,
+          "glyphCount": 7
+        }
+      ],
+      "fixtureSha256": "37ad49c5fe4050ffcee04e58298c3e915c8cbfb8a8c6b5dc39aa23021dcad132",
+      "assertions": {
+        "state": "conflict",
+        "assets": [
+          {
+            "file": "notes-editor/5bc07.svg",
+            "width": 16,
+            "height": 16,
+            "naturalWidth": 16,
+            "naturalHeight": 16
+          }
+        ],
+        "accessibility": {
+          "violations": [],
+          "incomplete": []
+        },
+        "expandedOnly": true,
+        "jsPolling": false,
+        "action": "Open full Nabbit",
+        "fixture": "Protocol snapshot; behavior tested by component races and separate Rust flow"
+      },
+      "ipc": [
+        {
+          "command": "plugin:event|listen",
+          "args": {
+            "event": "nabbit://island-visibility",
+            "target": {
+              "kind": "Any"
+            },
+            "handler": 1
+          }
+        },
+        {
+          "command": "plugin:event|listen",
+          "args": {
+            "event": "nabbit://island",
+            "target": {
+              "kind": "Any"
+            },
+            "handler": 3
+          }
+        },
+        {
+          "command": "plugin:event|listen",
+          "args": {
+            "event": "nabbit://island-surface",
+            "target": {
+              "kind": "Any"
+            },
+            "handler": 5
+          }
+        },
+        {
+          "command": "plugin:event|listen",
+          "args": {
+            "event": "tauri://drag-enter",
+            "target": {
+              "kind": "WebviewWindow",
+              "label": "island"
+            },
+            "handler": 7
+          }
+        },
+        {
+          "command": "get_island_snapshot",
+          "args": {}
+        },
+        {
+          "command": "get_activity_snapshot",
+          "args": {}
+        },
+        {
+          "command": "get_island_surface",
+          "args": {}
+        },
+        {
+          "command": "plugin:event|listen",
+          "args": {
+            "event": "tauri://drag-over",
+            "target": {
+              "kind": "WebviewWindow",
+              "label": "island"
+            },
+            "handler": 9
+          }
+        },
+        {
+          "command": "plugin:event|listen",
+          "args": {
+            "event": "tauri://drag-drop",
+            "target": {
+              "kind": "WebviewWindow",
+              "label": "island"
+            },
+            "handler": 11
+          }
+        },
+        {
+          "command": "plugin:event|listen",
+          "args": {
+            "event": "tauri://drag-leave",
+            "target": {
+              "kind": "WebviewWindow",
+              "label": "island"
+            },
+            "handler": 13
+          }
+        },
+        {
+          "command": "island_set_hitrect",
+          "args": {
+            "rect": {
+              "x": 12,
+              "y": -2,
+              "w": 696,
+              "h": 42
+            }
+          }
+        },
+        {
+          "command": "plugin:event|listen",
+          "args": {
+            "event": "engine:health",
+            "target": {
+              "kind": "Any"
+            },
+            "handler": 15
+          }
+        },
+        {
+          "command": "plugin:event|listen",
+          "args": {
+            "event": "url:detected",
+            "target": {
+              "kind": "Any"
+            },
+            "handler": 17
+          }
+        },
+        {
+          "command": "plugin:event|listen",
+          "args": {
+            "event": "download:updated",
+            "target": {
+              "kind": "Any"
+            },
+            "handler": 19
+          }
+        },
+        {
+          "command": "plugin:event|listen",
+          "args": {
+            "event": "download:cleared",
+            "target": {
+              "kind": "Any"
+            },
+            "handler": 21
+          }
+        },
+        {
+          "command": "plugin:event|listen",
+          "args": {
+            "event": "url:cleared",
+            "target": {
+              "kind": "Any"
+            },
+            "handler": 23
+          }
+        },
+        {
+          "command": "get_settings",
+          "args": {}
+        },
+        {
+          "command": "list_downloads",
+          "args": {}
+        },
+        {
+          "command": "get_captured_link",
+          "args": {}
+        },
+        {
+          "command": "get_engine_status",
+          "args": {}
+        },
+        {
+          "command": "island_set_hitrect",
+          "args": {
+            "rect": {
+              "x": 12,
+              "y": -2,
+              "w": 696,
+              "h": 72
+            }
+          }
+        },
+        {
+          "command": "island_set_hitrect",
+          "args": {
+            "rect": {
+              "x": 12,
+              "y": -2,
+              "w": 696,
+              "h": 217
+            }
+          }
+        },
+        {
+          "command": "island_surface_ack",
+          "args": {
+            "generation": 1
+          }
+        },
+        {
+          "command": "island_keyboard_focus",
+          "args": {
+            "target": "preserve"
+          }
+        },
+        {
+          "command": "get_island_surface",
+          "args": {}
+        },
+        {
+          "command": "plugin:event|unlisten",
+          "args": {
+            "event": "engine:health",
+            "eventId": 16
+          }
+        },
+        {
+          "command": "plugin:event|unlisten",
+          "args": {
+            "event": "url:detected",
+            "eventId": 18
+          }
+        },
+        {
+          "command": "plugin:event|unlisten",
+          "args": {
+            "event": "download:updated",
+            "eventId": 20
+          }
+        },
+        {
+          "command": "plugin:event|unlisten",
+          "args": {
+            "event": "download:cleared",
+            "eventId": 22
+          }
+        },
+        {
+          "command": "plugin:event|unlisten",
+          "args": {
+            "event": "url:cleared",
+            "eventId": 24
+          }
+        },
+        {
+          "command": "get_island_drop",
+          "args": {}
+        },
+        {
+          "command": "plugin:event|listen",
+          "args": {
+            "event": "tack:sync",
+            "target": {
+              "kind": "Any"
+            },
+            "handler": 25
+          }
+        },
+        {
+          "command": "tack_sync_snapshot",
+          "args": {}
+        },
+        {
+          "command": "island_set_hitrect",
+          "args": {
+            "rect": {
+              "x": 12,
+              "y": -2,
+              "w": 696,
+              "h": 297
+            }
+          }
+        },
+        {
+          "command": "island_surface_ack",
+          "args": {
+            "generation": 1
+          }
+        }
+      ],
+      "unsupported": [],
+      "runtimeAndNetworkProblems": []
+    },
+    {
+      "file": "v45-island-final-island-notes-signedout-light@1x.png",
+      "scenario": "island-notes-signedout",
+      "entry": "island.html",
+      "figmaNode": "19:346",
+      "theme": "light",
+      "resolvedTheme": "dark",
+      "scale": 1,
+      "viewport": {
+        "width": 720,
+        "height": 460
+      },
+      "clip": {
+        "x": 20,
+        "y": 6,
+        "width": 680,
+        "height": 281
+      },
+      "width": 680,
+      "height": 281,
+      "bytes": 21685,
+      "sha256": "4d0effd0a459cba1205c7ba672ae421c83af34d6e734b9bdd14893933dae8fcd",
+      "repeatMatches": true,
+      "caret": "hide",
+      "font": [
+        {
+          "familyName": "Geist",
+          "postScriptName": "Geist",
+          "isCustomFont": true,
+          "glyphCount": 10
+        }
+      ],
+      "fixtureSha256": "b4124ae937f3eb30b01f84556a914baed7155439c74ea463bc184b0eb9274489",
+      "assertions": {
+        "state": "signedOut",
+        "assets": [
+          {
+            "file": "notes-editor/41305.svg",
+            "width": 16,
+            "height": 16,
+            "naturalWidth": 16,
+            "naturalHeight": 16
+          }
+        ],
+        "accessibility": {
+          "violations": [],
+          "incomplete": []
+        },
+        "expandedOnly": true,
+        "jsPolling": false,
+        "action": "Open full Nabbit",
+        "fixture": "Protocol snapshot; behavior tested by component races and separate Rust flow"
+      },
+      "ipc": [
+        {
+          "command": "plugin:event|listen",
+          "args": {
+            "event": "nabbit://island-visibility",
+            "target": {
+              "kind": "Any"
+            },
+            "handler": 1
+          }
+        },
+        {
+          "command": "plugin:event|listen",
+          "args": {
+            "event": "nabbit://island",
+            "target": {
+              "kind": "Any"
+            },
+            "handler": 3
+          }
+        },
+        {
+          "command": "plugin:event|listen",
+          "args": {
+            "event": "nabbit://island-surface",
+            "target": {
+              "kind": "Any"
+            },
+            "handler": 5
+          }
+        },
+        {
+          "command": "plugin:event|listen",
+          "args": {
+            "event": "tauri://drag-enter",
+            "target": {
+              "kind": "WebviewWindow",
+              "label": "island"
+            },
+            "handler": 7
+          }
+        },
+        {
+          "command": "get_island_snapshot",
+          "args": {}
+        },
+        {
+          "command": "get_activity_snapshot",
+          "args": {}
+        },
+        {
+          "command": "get_island_surface",
+          "args": {}
+        },
+        {
+          "command": "plugin:event|listen",
+          "args": {
+            "event": "tauri://drag-over",
+            "target": {
+              "kind": "WebviewWindow",
+              "label": "island"
+            },
+            "handler": 9
+          }
+        },
+        {
+          "command": "plugin:event|listen",
+          "args": {
+            "event": "tauri://drag-drop",
+            "target": {
+              "kind": "WebviewWindow",
+              "label": "island"
+            },
+            "handler": 11
+          }
+        },
+        {
+          "command": "plugin:event|listen",
+          "args": {
+            "event": "tauri://drag-leave",
+            "target": {
+              "kind": "WebviewWindow",
+              "label": "island"
+            },
+            "handler": 13
+          }
+        },
+        {
+          "command": "island_set_hitrect",
+          "args": {
+            "rect": {
+              "x": 12,
+              "y": -2,
+              "w": 696,
+              "h": 42
+            }
+          }
+        },
+        {
+          "command": "island_set_hitrect",
+          "args": {
+            "rect": {
+              "x": 12,
+              "y": -2,
+              "w": 696,
+              "h": 72
+            }
+          }
+        },
+        {
+          "command": "plugin:event|listen",
+          "args": {
+            "event": "engine:health",
+            "target": {
+              "kind": "Any"
+            },
+            "handler": 15
+          }
+        },
+        {
+          "command": "plugin:event|listen",
+          "args": {
+            "event": "url:detected",
+            "target": {
+              "kind": "Any"
+            },
+            "handler": 17
+          }
+        },
+        {
+          "command": "plugin:event|listen",
+          "args": {
+            "event": "download:updated",
+            "target": {
+              "kind": "Any"
+            },
+            "handler": 19
+          }
+        },
+        {
+          "command": "plugin:event|listen",
+          "args": {
+            "event": "download:cleared",
+            "target": {
+              "kind": "Any"
+            },
+            "handler": 21
+          }
+        },
+        {
+          "command": "plugin:event|listen",
+          "args": {
+            "event": "url:cleared",
+            "target": {
+              "kind": "Any"
+            },
+            "handler": 23
+          }
+        },
+        {
+          "command": "get_settings",
+          "args": {}
+        },
+        {
+          "command": "list_downloads",
+          "args": {}
+        },
+        {
+          "command": "get_captured_link",
+          "args": {}
+        },
+        {
+          "command": "get_engine_status",
+          "args": {}
+        },
+        {
+          "command": "island_set_hitrect",
+          "args": {
+            "rect": {
+              "x": 12,
+              "y": -2,
+              "w": 696,
+              "h": 144
+            }
+          }
+        },
+        {
+          "command": "island_set_hitrect",
+          "args": {
+            "rect": {
+              "x": 12,
+              "y": -2,
+              "w": 696,
+              "h": 217
+            }
+          }
+        },
+        {
+          "command": "island_surface_ack",
+          "args": {
+            "generation": 1
+          }
+        },
+        {
+          "command": "island_keyboard_focus",
+          "args": {
+            "target": "preserve"
+          }
+        },
+        {
+          "command": "get_island_surface",
+          "args": {}
+        },
+        {
+          "command": "plugin:event|unlisten",
+          "args": {
+            "event": "engine:health",
+            "eventId": 16
+          }
+        },
+        {
+          "command": "plugin:event|unlisten",
+          "args": {
+            "event": "url:detected",
+            "eventId": 18
+          }
+        },
+        {
+          "command": "plugin:event|unlisten",
+          "args": {
+            "event": "download:updated",
+            "eventId": 20
+          }
+        },
+        {
+          "command": "plugin:event|unlisten",
+          "args": {
+            "event": "download:cleared",
+            "eventId": 22
+          }
+        },
+        {
+          "command": "plugin:event|unlisten",
+          "args": {
+            "event": "url:cleared",
+            "eventId": 24
+          }
+        },
+        {
+          "command": "get_island_drop",
+          "args": {}
+        },
+        {
+          "command": "plugin:event|listen",
+          "args": {
+            "event": "tack:sync",
+            "target": {
+              "kind": "Any"
+            },
+            "handler": 25
+          }
+        },
+        {
+          "command": "tack_sync_snapshot",
+          "args": {}
+        },
+        {
+          "command": "island_set_hitrect",
+          "args": {
+            "rect": {
+              "x": 12,
+              "y": -2,
+              "w": 696,
+              "h": 297
+            }
+          }
+        },
+        {
+          "command": "island_surface_ack",
+          "args": {
+            "generation": 1
+          }
+        }
+      ],
+      "unsupported": [],
+      "runtimeAndNetworkProblems": []
+    },
+    {
+      "file": "v45-island-final-island-notes-offline-light@1.5x.png",
+      "scenario": "island-notes-offline",
+      "entry": "island.html",
+      "figmaNode": "19:346",
+      "theme": "light",
+      "resolvedTheme": "dark",
+      "scale": 1.5,
+      "viewport": {
+        "width": 720,
+        "height": 460
+      },
+      "clip": {
+        "x": 20,
+        "y": 6,
+        "width": 680,
+        "height": 281
+      },
+      "width": 1020,
+      "height": 422,
+      "bytes": 32057,
+      "sha256": "a1c9e98256ae3fa966ccf701283534928f34e5464c45fa71b5a2b91bef7f987f",
+      "repeatMatches": true,
+      "caret": "hide",
+      "font": [
+        {
+          "familyName": "Geist",
+          "postScriptName": "Geist",
+          "isCustomFont": true,
+          "glyphCount": 6
+        }
+      ],
+      "fixtureSha256": "8575655ccba7f5e74763b745aedb3233b117e810519a5ffe8025b23e18404344",
+      "assertions": {
+        "state": "offline",
+        "assets": [
+          {
+            "file": "notes-editor/a92d4.svg",
+            "width": 16,
+            "height": 16,
+            "naturalWidth": 16,
+            "naturalHeight": 16
+          }
+        ],
+        "accessibility": {
+          "violations": [],
+          "incomplete": []
+        },
+        "expandedOnly": true,
+        "jsPolling": false,
+        "action": "Open full Nabbit",
+        "fixture": "Protocol snapshot; behavior tested by component races and separate Rust flow"
+      },
+      "ipc": [
+        {
+          "command": "plugin:event|listen",
+          "args": {
+            "event": "nabbit://island-visibility",
+            "target": {
+              "kind": "Any"
+            },
+            "handler": 1
+          }
+        },
+        {
+          "command": "plugin:event|listen",
+          "args": {
+            "event": "nabbit://island",
+            "target": {
+              "kind": "Any"
+            },
+            "handler": 3
+          }
+        },
+        {
+          "command": "plugin:event|listen",
+          "args": {
+            "event": "nabbit://island-surface",
+            "target": {
+              "kind": "Any"
+            },
+            "handler": 5
+          }
+        },
+        {
+          "command": "plugin:event|listen",
+          "args": {
+            "event": "tauri://drag-enter",
+            "target": {
+              "kind": "WebviewWindow",
+              "label": "island"
+            },
+            "handler": 7
+          }
+        },
+        {
+          "command": "get_island_snapshot",
+          "args": {}
+        },
+        {
+          "command": "get_activity_snapshot",
+          "args": {}
+        },
+        {
+          "command": "get_island_surface",
+          "args": {}
+        },
+        {
+          "command": "plugin:event|listen",
+          "args": {
+            "event": "tauri://drag-over",
+            "target": {
+              "kind": "WebviewWindow",
+              "label": "island"
+            },
+            "handler": 9
+          }
+        },
+        {
+          "command": "plugin:event|listen",
+          "args": {
+            "event": "tauri://drag-drop",
+            "target": {
+              "kind": "WebviewWindow",
+              "label": "island"
+            },
+            "handler": 11
+          }
+        },
+        {
+          "command": "plugin:event|listen",
+          "args": {
+            "event": "tauri://drag-leave",
+            "target": {
+              "kind": "WebviewWindow",
+              "label": "island"
+            },
+            "handler": 13
+          }
+        },
+        {
+          "command": "island_set_hitrect",
+          "args": {
+            "rect": {
+              "x": 12,
+              "y": -2,
+              "w": 696,
+              "h": 42
+            }
+          }
+        },
+        {
+          "command": "island_set_hitrect",
+          "args": {
+            "rect": {
+              "x": 12,
+              "y": -2,
+              "w": 696,
+              "h": 72
+            }
+          }
+        },
+        {
+          "command": "plugin:event|listen",
+          "args": {
+            "event": "engine:health",
+            "target": {
+              "kind": "Any"
+            },
+            "handler": 15
+          }
+        },
+        {
+          "command": "plugin:event|listen",
+          "args": {
+            "event": "url:detected",
+            "target": {
+              "kind": "Any"
+            },
+            "handler": 17
+          }
+        },
+        {
+          "command": "plugin:event|listen",
+          "args": {
+            "event": "download:updated",
+            "target": {
+              "kind": "Any"
+            },
+            "handler": 19
+          }
+        },
+        {
+          "command": "plugin:event|listen",
+          "args": {
+            "event": "download:cleared",
+            "target": {
+              "kind": "Any"
+            },
+            "handler": 21
+          }
+        },
+        {
+          "command": "plugin:event|listen",
+          "args": {
+            "event": "url:cleared",
+            "target": {
+              "kind": "Any"
+            },
+            "handler": 23
+          }
+        },
+        {
+          "command": "get_settings",
+          "args": {}
+        },
+        {
+          "command": "list_downloads",
+          "args": {}
+        },
+        {
+          "command": "get_captured_link",
+          "args": {}
+        },
+        {
+          "command": "get_engine_status",
+          "args": {}
+        },
+        {
+          "command": "island_set_hitrect",
+          "args": {
+            "rect": {
+              "x": 12,
+              "y": -2,
+              "w": 696,
+              "h": 217
+            }
+          }
+        },
+        {
+          "command": "island_surface_ack",
+          "args": {
+            "generation": 1
+          }
+        },
+        {
+          "command": "island_keyboard_focus",
+          "args": {
+            "target": "preserve"
+          }
+        },
+        {
+          "command": "get_island_surface",
+          "args": {}
+        },
+        {
+          "command": "plugin:event|unlisten",
+          "args": {
+            "event": "engine:health",
+            "eventId": 16
+          }
+        },
+        {
+          "command": "plugin:event|unlisten",
+          "args": {
+            "event": "url:detected",
+            "eventId": 18
+          }
+        },
+        {
+          "command": "plugin:event|unlisten",
+          "args": {
+            "event": "download:updated",
+            "eventId": 20
+          }
+        },
+        {
+          "command": "plugin:event|unlisten",
+          "args": {
+            "event": "download:cleared",
+            "eventId": 22
+          }
+        },
+        {
+          "command": "plugin:event|unlisten",
+          "args": {
+            "event": "url:cleared",
+            "eventId": 24
+          }
+        },
+        {
+          "command": "get_island_drop",
+          "args": {}
+        },
+        {
+          "command": "plugin:event|listen",
+          "args": {
+            "event": "tack:sync",
+            "target": {
+              "kind": "Any"
+            },
+            "handler": 25
+          }
+        },
+        {
+          "command": "tack_sync_snapshot",
+          "args": {}
+        },
+        {
+          "command": "island_set_hitrect",
+          "args": {
+            "rect": {
+              "x": 12,
+              "y": -2,
+              "w": 696,
+              "h": 297
+            }
+          }
+        },
+        {
+          "command": "island_surface_ack",
+          "args": {
+            "generation": 1
+          }
+        }
+      ],
+      "unsupported": [],
+      "runtimeAndNetworkProblems": []
+    },
+    {
+      "file": "v45-island-final-island-notes-conflict-light@1.5x.png",
+      "scenario": "island-notes-conflict",
+      "entry": "island.html",
+      "figmaNode": "19:346",
+      "theme": "light",
+      "resolvedTheme": "dark",
+      "scale": 1.5,
+      "viewport": {
+        "width": 720,
+        "height": 460
+      },
+      "clip": {
+        "x": 20,
+        "y": 6,
+        "width": 680,
+        "height": 281
+      },
+      "width": 1020,
+      "height": 422,
+      "bytes": 32743,
+      "sha256": "60074cdb44950cb30ed7a37bfa7d4c3b7c9b0dc048e72231777fdac706a528ca",
+      "repeatMatches": true,
+      "caret": "hide",
+      "font": [
+        {
+          "familyName": "Geist",
+          "postScriptName": "Geist",
+          "isCustomFont": true,
+          "glyphCount": 7
+        }
+      ],
+      "fixtureSha256": "37ad49c5fe4050ffcee04e58298c3e915c8cbfb8a8c6b5dc39aa23021dcad132",
+      "assertions": {
+        "state": "conflict",
+        "assets": [
+          {
+            "file": "notes-editor/5bc07.svg",
+            "width": 16,
+            "height": 16,
+            "naturalWidth": 16,
+            "naturalHeight": 16
+          }
+        ],
+        "accessibility": {
+          "violations": [],
+          "incomplete": []
+        },
+        "expandedOnly": true,
+        "jsPolling": false,
+        "action": "Open full Nabbit",
+        "fixture": "Protocol snapshot; behavior tested by component races and separate Rust flow"
+      },
+      "ipc": [
+        {
+          "command": "plugin:event|listen",
+          "args": {
+            "event": "nabbit://island-visibility",
+            "target": {
+              "kind": "Any"
+            },
+            "handler": 1
+          }
+        },
+        {
+          "command": "plugin:event|listen",
+          "args": {
+            "event": "nabbit://island",
+            "target": {
+              "kind": "Any"
+            },
+            "handler": 3
+          }
+        },
+        {
+          "command": "plugin:event|listen",
+          "args": {
+            "event": "nabbit://island-surface",
+            "target": {
+              "kind": "Any"
+            },
+            "handler": 5
+          }
+        },
+        {
+          "command": "plugin:event|listen",
+          "args": {
+            "event": "tauri://drag-enter",
+            "target": {
+              "kind": "WebviewWindow",
+              "label": "island"
+            },
+            "handler": 7
+          }
+        },
+        {
+          "command": "get_island_snapshot",
+          "args": {}
+        },
+        {
+          "command": "get_activity_snapshot",
+          "args": {}
+        },
+        {
+          "command": "get_island_surface",
+          "args": {}
+        },
+        {
+          "command": "plugin:event|listen",
+          "args": {
+            "event": "tauri://drag-over",
+            "target": {
+              "kind": "WebviewWindow",
+              "label": "island"
+            },
+            "handler": 9
+          }
+        },
+        {
+          "command": "plugin:event|listen",
+          "args": {
+            "event": "tauri://drag-drop",
+            "target": {
+              "kind": "WebviewWindow",
+              "label": "island"
+            },
+            "handler": 11
+          }
+        },
+        {
+          "command": "plugin:event|listen",
+          "args": {
+            "event": "tauri://drag-leave",
+            "target": {
+              "kind": "WebviewWindow",
+              "label": "island"
+            },
+            "handler": 13
+          }
+        },
+        {
+          "command": "island_set_hitrect",
+          "args": {
+            "rect": {
+              "x": 12,
+              "y": -2,
+              "w": 696,
+              "h": 42
+            }
+          }
+        },
+        {
+          "command": "plugin:event|listen",
+          "args": {
+            "event": "engine:health",
+            "target": {
+              "kind": "Any"
+            },
+            "handler": 15
+          }
+        },
+        {
+          "command": "plugin:event|listen",
+          "args": {
+            "event": "url:detected",
+            "target": {
+              "kind": "Any"
+            },
+            "handler": 17
+          }
+        },
+        {
+          "command": "plugin:event|listen",
+          "args": {
+            "event": "download:updated",
+            "target": {
+              "kind": "Any"
+            },
+            "handler": 19
+          }
+        },
+        {
+          "command": "plugin:event|listen",
+          "args": {
+            "event": "download:cleared",
+            "target": {
+              "kind": "Any"
+            },
+            "handler": 21
+          }
+        },
+        {
+          "command": "plugin:event|listen",
+          "args": {
+            "event": "url:cleared",
+            "target": {
+              "kind": "Any"
+            },
+            "handler": 23
+          }
+        },
+        {
+          "command": "get_settings",
+          "args": {}
+        },
+        {
+          "command": "list_downloads",
+          "args": {}
+        },
+        {
+          "command": "get_captured_link",
+          "args": {}
+        },
+        {
+          "command": "get_engine_status",
+          "args": {}
+        },
+        {
+          "command": "island_set_hitrect",
+          "args": {
+            "rect": {
+              "x": 12,
+              "y": -2,
+              "w": 696,
+              "h": 72
+            }
+          }
+        },
+        {
+          "command": "island_set_hitrect",
+          "args": {
+            "rect": {
+              "x": 12,
+              "y": -2,
+              "w": 696,
+              "h": 217
+            }
+          }
+        },
+        {
+          "command": "island_surface_ack",
+          "args": {
+            "generation": 1
+          }
+        },
+        {
+          "command": "island_keyboard_focus",
+          "args": {
+            "target": "preserve"
+          }
+        },
+        {
+          "command": "get_island_surface",
+          "args": {}
+        },
+        {
+          "command": "plugin:event|unlisten",
+          "args": {
+            "event": "engine:health",
+            "eventId": 16
+          }
+        },
+        {
+          "command": "plugin:event|unlisten",
+          "args": {
+            "event": "url:detected",
+            "eventId": 18
+          }
+        },
+        {
+          "command": "plugin:event|unlisten",
+          "args": {
+            "event": "download:updated",
+            "eventId": 20
+          }
+        },
+        {
+          "command": "plugin:event|unlisten",
+          "args": {
+            "event": "download:cleared",
+            "eventId": 22
+          }
+        },
+        {
+          "command": "plugin:event|unlisten",
+          "args": {
+            "event": "url:cleared",
+            "eventId": 24
+          }
+        },
+        {
+          "command": "get_island_drop",
+          "args": {}
+        },
+        {
+          "command": "plugin:event|listen",
+          "args": {
+            "event": "tack:sync",
+            "target": {
+              "kind": "Any"
+            },
+            "handler": 25
+          }
+        },
+        {
+          "command": "tack_sync_snapshot",
+          "args": {}
+        },
+        {
+          "command": "island_set_hitrect",
+          "args": {
+            "rect": {
+              "x": 12,
+              "y": -2,
+              "w": 696,
+              "h": 297
+            }
+          }
+        },
+        {
+          "command": "island_surface_ack",
+          "args": {
+            "generation": 1
+          }
+        }
+      ],
+      "unsupported": [],
+      "runtimeAndNetworkProblems": []
+    },
+    {
+      "file": "v45-island-final-island-notes-signedout-light@1.5x.png",
+      "scenario": "island-notes-signedout",
+      "entry": "island.html",
+      "figmaNode": "19:346",
+      "theme": "light",
+      "resolvedTheme": "dark",
+      "scale": 1.5,
+      "viewport": {
+        "width": 720,
+        "height": 460
+      },
+      "clip": {
+        "x": 20,
+        "y": 6,
+        "width": 680,
+        "height": 281
+      },
+      "width": 1020,
+      "height": 422,
+      "bytes": 34717,
+      "sha256": "94db4a78f52fab2ed2a79a376a3c9174acbe7492fde34114b9d48b7f2220cafb",
+      "repeatMatches": true,
+      "caret": "hide",
+      "font": [
+        {
+          "familyName": "Geist",
+          "postScriptName": "Geist",
+          "isCustomFont": true,
+          "glyphCount": 10
+        }
+      ],
+      "fixtureSha256": "b4124ae937f3eb30b01f84556a914baed7155439c74ea463bc184b0eb9274489",
+      "assertions": {
+        "state": "signedOut",
+        "assets": [
+          {
+            "file": "notes-editor/41305.svg",
+            "width": 16,
+            "height": 16,
+            "naturalWidth": 16,
+            "naturalHeight": 16
+          }
+        ],
+        "accessibility": {
+          "violations": [],
+          "incomplete": []
+        },
+        "expandedOnly": true,
+        "jsPolling": false,
+        "action": "Open full Nabbit",
+        "fixture": "Protocol snapshot; behavior tested by component races and separate Rust flow"
+      },
+      "ipc": [
+        {
+          "command": "plugin:event|listen",
+          "args": {
+            "event": "nabbit://island-visibility",
+            "target": {
+              "kind": "Any"
+            },
+            "handler": 1
+          }
+        },
+        {
+          "command": "plugin:event|listen",
+          "args": {
+            "event": "nabbit://island",
+            "target": {
+              "kind": "Any"
+            },
+            "handler": 3
+          }
+        },
+        {
+          "command": "plugin:event|listen",
+          "args": {
+            "event": "nabbit://island-surface",
+            "target": {
+              "kind": "Any"
+            },
+            "handler": 5
+          }
+        },
+        {
+          "command": "plugin:event|listen",
+          "args": {
+            "event": "tauri://drag-enter",
+            "target": {
+              "kind": "WebviewWindow",
+              "label": "island"
+            },
+            "handler": 7
+          }
+        },
+        {
+          "command": "get_island_snapshot",
+          "args": {}
+        },
+        {
+          "command": "get_activity_snapshot",
+          "args": {}
+        },
+        {
+          "command": "get_island_surface",
+          "args": {}
+        },
+        {
+          "command": "plugin:event|listen",
+          "args": {
+            "event": "tauri://drag-over",
+            "target": {
+              "kind": "WebviewWindow",
+              "label": "island"
+            },
+            "handler": 9
+          }
+        },
+        {
+          "command": "plugin:event|listen",
+          "args": {
+            "event": "tauri://drag-drop",
+            "target": {
+              "kind": "WebviewWindow",
+              "label": "island"
+            },
+            "handler": 11
+          }
+        },
+        {
+          "command": "plugin:event|listen",
+          "args": {
+            "event": "tauri://drag-leave",
+            "target": {
+              "kind": "WebviewWindow",
+              "label": "island"
+            },
+            "handler": 13
+          }
+        },
+        {
+          "command": "island_set_hitrect",
+          "args": {
+            "rect": {
+              "x": 12,
+              "y": -2,
+              "w": 696,
+              "h": 42
+            }
+          }
+        },
+        {
+          "command": "island_set_hitrect",
+          "args": {
+            "rect": {
+              "x": 12,
+              "y": -2,
+              "w": 696,
+              "h": 72
+            }
+          }
+        },
+        {
+          "command": "plugin:event|listen",
+          "args": {
+            "event": "engine:health",
+            "target": {
+              "kind": "Any"
+            },
+            "handler": 15
+          }
+        },
+        {
+          "command": "plugin:event|listen",
+          "args": {
+            "event": "url:detected",
+            "target": {
+              "kind": "Any"
+            },
+            "handler": 17
+          }
+        },
+        {
+          "command": "plugin:event|listen",
+          "args": {
+            "event": "download:updated",
+            "target": {
+              "kind": "Any"
+            },
+            "handler": 19
+          }
+        },
+        {
+          "command": "plugin:event|listen",
+          "args": {
+            "event": "download:cleared",
+            "target": {
+              "kind": "Any"
+            },
+            "handler": 21
+          }
+        },
+        {
+          "command": "plugin:event|listen",
+          "args": {
+            "event": "url:cleared",
+            "target": {
+              "kind": "Any"
+            },
+            "handler": 23
+          }
+        },
+        {
+          "command": "get_settings",
+          "args": {}
+        },
+        {
+          "command": "list_downloads",
+          "args": {}
+        },
+        {
+          "command": "get_captured_link",
+          "args": {}
+        },
+        {
+          "command": "get_engine_status",
+          "args": {}
+        },
+        {
+          "command": "island_set_hitrect",
+          "args": {
+            "rect": {
+              "x": 12,
+              "y": -2,
+              "w": 696,
+              "h": 217
+            }
+          }
+        },
+        {
+          "command": "island_surface_ack",
+          "args": {
+            "generation": 1
+          }
+        },
+        {
+          "command": "island_keyboard_focus",
+          "args": {
+            "target": "preserve"
+          }
+        },
+        {
+          "command": "get_island_surface",
+          "args": {}
+        },
+        {
+          "command": "plugin:event|unlisten",
+          "args": {
+            "event": "engine:health",
+            "eventId": 16
+          }
+        },
+        {
+          "command": "plugin:event|unlisten",
+          "args": {
+            "event": "url:detected",
+            "eventId": 18
+          }
+        },
+        {
+          "command": "plugin:event|unlisten",
+          "args": {
+            "event": "download:updated",
+            "eventId": 20
+          }
+        },
+        {
+          "command": "plugin:event|unlisten",
+          "args": {
+            "event": "download:cleared",
+            "eventId": 22
+          }
+        },
+        {
+          "command": "plugin:event|unlisten",
+          "args": {
+            "event": "url:cleared",
+            "eventId": 24
+          }
+        },
+        {
+          "command": "get_island_drop",
+          "args": {}
+        },
+        {
+          "command": "plugin:event|listen",
+          "args": {
+            "event": "tack:sync",
+            "target": {
+              "kind": "Any"
+            },
+            "handler": 25
+          }
+        },
+        {
+          "command": "tack_sync_snapshot",
+          "args": {}
+        },
+        {
+          "command": "island_set_hitrect",
+          "args": {
+            "rect": {
+              "x": 12,
+              "y": -2,
+              "w": 696,
+              "h": 297
+            }
+          }
+        },
+        {
+          "command": "island_surface_ack",
+          "args": {
+            "generation": 1
+          }
+        }
+      ],
+      "unsupported": [],
+      "runtimeAndNetworkProblems": []
+    },
+    {
+      "file": "v45-island-final-island-notes-offline-dark@1x.png",
+      "scenario": "island-notes-offline",
+      "entry": "island.html",
+      "figmaNode": "19:346",
+      "theme": "dark",
+      "resolvedTheme": "dark",
+      "scale": 1,
+      "viewport": {
+        "width": 720,
+        "height": 460
+      },
+      "clip": {
+        "x": 20,
+        "y": 6,
+        "width": 680,
+        "height": 281
+      },
+      "width": 680,
+      "height": 281,
+      "bytes": 20212,
+      "sha256": "c7a468a19adb76788c607df72ab2af4b5f5efd363db5b6eef0112c477b0d05b6",
+      "repeatMatches": true,
+      "caret": "hide",
+      "font": [
+        {
+          "familyName": "Geist",
+          "postScriptName": "Geist",
+          "isCustomFont": true,
+          "glyphCount": 6
+        }
+      ],
+      "fixtureSha256": "aa02be33e0027025320fcde5c39174722ee803f9870e559c4fa9d45361585358",
+      "assertions": {
+        "state": "offline",
+        "assets": [
+          {
+            "file": "notes-editor/a92d4.svg",
+            "width": 16,
+            "height": 16,
+            "naturalWidth": 16,
+            "naturalHeight": 16
+          }
+        ],
+        "accessibility": {
+          "violations": [],
+          "incomplete": []
+        },
+        "expandedOnly": true,
+        "jsPolling": false,
+        "action": "Open full Nabbit",
+        "fixture": "Protocol snapshot; behavior tested by component races and separate Rust flow"
+      },
+      "ipc": [
+        {
+          "command": "plugin:event|listen",
+          "args": {
+            "event": "nabbit://island-visibility",
+            "target": {
+              "kind": "Any"
+            },
+            "handler": 1
+          }
+        },
+        {
+          "command": "plugin:event|listen",
+          "args": {
+            "event": "nabbit://island",
+            "target": {
+              "kind": "Any"
+            },
+            "handler": 3
+          }
+        },
+        {
+          "command": "plugin:event|listen",
+          "args": {
+            "event": "nabbit://island-surface",
+            "target": {
+              "kind": "Any"
+            },
+            "handler": 5
+          }
+        },
+        {
+          "command": "plugin:event|listen",
+          "args": {
+            "event": "tauri://drag-enter",
+            "target": {
+              "kind": "WebviewWindow",
+              "label": "island"
+            },
+            "handler": 7
+          }
+        },
+        {
+          "command": "get_island_snapshot",
+          "args": {}
+        },
+        {
+          "command": "get_activity_snapshot",
+          "args": {}
+        },
+        {
+          "command": "get_island_surface",
+          "args": {}
+        },
+        {
+          "command": "plugin:event|listen",
+          "args": {
+            "event": "tauri://drag-over",
+            "target": {
+              "kind": "WebviewWindow",
+              "label": "island"
+            },
+            "handler": 9
+          }
+        },
+        {
+          "command": "plugin:event|listen",
+          "args": {
+            "event": "tauri://drag-drop",
+            "target": {
+              "kind": "WebviewWindow",
+              "label": "island"
+            },
+            "handler": 11
+          }
+        },
+        {
+          "command": "plugin:event|listen",
+          "args": {
+            "event": "tauri://drag-leave",
+            "target": {
+              "kind": "WebviewWindow",
+              "label": "island"
+            },
+            "handler": 13
+          }
+        },
+        {
+          "command": "island_set_hitrect",
+          "args": {
+            "rect": {
+              "x": 12,
+              "y": -2,
+              "w": 696,
+              "h": 42
+            }
+          }
+        },
+        {
+          "command": "plugin:event|listen",
+          "args": {
+            "event": "engine:health",
+            "target": {
+              "kind": "Any"
+            },
+            "handler": 15
+          }
+        },
+        {
+          "command": "plugin:event|listen",
+          "args": {
+            "event": "url:detected",
+            "target": {
+              "kind": "Any"
+            },
+            "handler": 17
+          }
+        },
+        {
+          "command": "plugin:event|listen",
+          "args": {
+            "event": "download:updated",
+            "target": {
+              "kind": "Any"
+            },
+            "handler": 19
+          }
+        },
+        {
+          "command": "plugin:event|listen",
+          "args": {
+            "event": "download:cleared",
+            "target": {
+              "kind": "Any"
+            },
+            "handler": 21
+          }
+        },
+        {
+          "command": "plugin:event|listen",
+          "args": {
+            "event": "url:cleared",
+            "target": {
+              "kind": "Any"
+            },
+            "handler": 23
+          }
+        },
+        {
+          "command": "get_settings",
+          "args": {}
+        },
+        {
+          "command": "list_downloads",
+          "args": {}
+        },
+        {
+          "command": "get_captured_link",
+          "args": {}
+        },
+        {
+          "command": "get_engine_status",
+          "args": {}
+        },
+        {
+          "command": "island_set_hitrect",
+          "args": {
+            "rect": {
+              "x": 12,
+              "y": -2,
+              "w": 696,
+              "h": 72
+            }
+          }
+        },
+        {
+          "command": "island_set_hitrect",
+          "args": {
+            "rect": {
+              "x": 12,
+              "y": -2,
+              "w": 696,
+              "h": 217
+            }
+          }
+        },
+        {
+          "command": "island_surface_ack",
+          "args": {
+            "generation": 1
+          }
+        },
+        {
+          "command": "island_keyboard_focus",
+          "args": {
+            "target": "preserve"
+          }
+        },
+        {
+          "command": "get_island_surface",
+          "args": {}
+        },
+        {
+          "command": "plugin:event|unlisten",
+          "args": {
+            "event": "engine:health",
+            "eventId": 16
+          }
+        },
+        {
+          "command": "plugin:event|unlisten",
+          "args": {
+            "event": "url:detected",
+            "eventId": 18
+          }
+        },
+        {
+          "command": "plugin:event|unlisten",
+          "args": {
+            "event": "download:updated",
+            "eventId": 20
+          }
+        },
+        {
+          "command": "plugin:event|unlisten",
+          "args": {
+            "event": "download:cleared",
+            "eventId": 22
+          }
+        },
+        {
+          "command": "plugin:event|unlisten",
+          "args": {
+            "event": "url:cleared",
+            "eventId": 24
+          }
+        },
+        {
+          "command": "get_island_drop",
+          "args": {}
+        },
+        {
+          "command": "plugin:event|listen",
+          "args": {
+            "event": "tack:sync",
+            "target": {
+              "kind": "Any"
+            },
+            "handler": 25
+          }
+        },
+        {
+          "command": "tack_sync_snapshot",
+          "args": {}
+        },
+        {
+          "command": "island_set_hitrect",
+          "args": {
+            "rect": {
+              "x": 12,
+              "y": -2,
+              "w": 696,
+              "h": 297
+            }
+          }
+        },
+        {
+          "command": "island_surface_ack",
+          "args": {
+            "generation": 1
+          }
+        }
+      ],
+      "unsupported": [],
+      "runtimeAndNetworkProblems": []
+    },
+    {
+      "file": "v45-island-final-island-notes-conflict-dark@1x.png",
+      "scenario": "island-notes-conflict",
+      "entry": "island.html",
+      "figmaNode": "19:346",
+      "theme": "dark",
+      "resolvedTheme": "dark",
+      "scale": 1,
+      "viewport": {
+        "width": 720,
+        "height": 460
+      },
+      "clip": {
+        "x": 20,
+        "y": 6,
+        "width": 680,
+        "height": 281
+      },
+      "width": 680,
+      "height": 281,
+      "bytes": 20245,
+      "sha256": "bb7f5318e790d698f5c1dd7f98c45950aa24990284069c00dd05a3dc8bce5388",
+      "repeatMatches": true,
+      "caret": "hide",
+      "font": [
+        {
+          "familyName": "Geist",
+          "postScriptName": "Geist",
+          "isCustomFont": true,
+          "glyphCount": 7
+        }
+      ],
+      "fixtureSha256": "4c0007a96891e52cd80429d8ce2fdce0cf0dc638e31319670bab09174f93d220",
+      "assertions": {
+        "state": "conflict",
+        "assets": [
+          {
+            "file": "notes-editor/5bc07.svg",
+            "width": 16,
+            "height": 16,
+            "naturalWidth": 16,
+            "naturalHeight": 16
+          }
+        ],
+        "accessibility": {
+          "violations": [],
+          "incomplete": []
+        },
+        "expandedOnly": true,
+        "jsPolling": false,
+        "action": "Open full Nabbit",
+        "fixture": "Protocol snapshot; behavior tested by component races and separate Rust flow"
+      },
+      "ipc": [
+        {
+          "command": "plugin:event|listen",
+          "args": {
+            "event": "nabbit://island-visibility",
+            "target": {
+              "kind": "Any"
+            },
+            "handler": 1
+          }
+        },
+        {
+          "command": "plugin:event|listen",
+          "args": {
+            "event": "nabbit://island",
+            "target": {
+              "kind": "Any"
+            },
+            "handler": 3
+          }
+        },
+        {
+          "command": "plugin:event|listen",
+          "args": {
+            "event": "nabbit://island-surface",
+            "target": {
+              "kind": "Any"
+            },
+            "handler": 5
+          }
+        },
+        {
+          "command": "plugin:event|listen",
+          "args": {
+            "event": "tauri://drag-enter",
+            "target": {
+              "kind": "WebviewWindow",
+              "label": "island"
+            },
+            "handler": 7
+          }
+        },
+        {
+          "command": "get_island_snapshot",
+          "args": {}
+        },
+        {
+          "command": "get_activity_snapshot",
+          "args": {}
+        },
+        {
+          "command": "get_island_surface",
+          "args": {}
+        },
+        {
+          "command": "plugin:event|listen",
+          "args": {
+            "event": "tauri://drag-over",
+            "target": {
+              "kind": "WebviewWindow",
+              "label": "island"
+            },
+            "handler": 9
+          }
+        },
+        {
+          "command": "plugin:event|listen",
+          "args": {
+            "event": "tauri://drag-drop",
+            "target": {
+              "kind": "WebviewWindow",
+              "label": "island"
+            },
+            "handler": 11
+          }
+        },
+        {
+          "command": "plugin:event|listen",
+          "args": {
+            "event": "tauri://drag-leave",
+            "target": {
+              "kind": "WebviewWindow",
+              "label": "island"
+            },
+            "handler": 13
+          }
+        },
+        {
+          "command": "island_set_hitrect",
+          "args": {
+            "rect": {
+              "x": 12,
+              "y": -2,
+              "w": 696,
+              "h": 42
+            }
+          }
+        },
+        {
+          "command": "plugin:event|listen",
+          "args": {
+            "event": "engine:health",
+            "target": {
+              "kind": "Any"
+            },
+            "handler": 15
+          }
+        },
+        {
+          "command": "plugin:event|listen",
+          "args": {
+            "event": "url:detected",
+            "target": {
+              "kind": "Any"
+            },
+            "handler": 17
+          }
+        },
+        {
+          "command": "plugin:event|listen",
+          "args": {
+            "event": "download:updated",
+            "target": {
+              "kind": "Any"
+            },
+            "handler": 19
+          }
+        },
+        {
+          "command": "plugin:event|listen",
+          "args": {
+            "event": "download:cleared",
+            "target": {
+              "kind": "Any"
+            },
+            "handler": 21
+          }
+        },
+        {
+          "command": "plugin:event|listen",
+          "args": {
+            "event": "url:cleared",
+            "target": {
+              "kind": "Any"
+            },
+            "handler": 23
+          }
+        },
+        {
+          "command": "get_settings",
+          "args": {}
+        },
+        {
+          "command": "list_downloads",
+          "args": {}
+        },
+        {
+          "command": "get_captured_link",
+          "args": {}
+        },
+        {
+          "command": "get_engine_status",
+          "args": {}
+        },
+        {
+          "command": "island_set_hitrect",
+          "args": {
+            "rect": {
+              "x": 12,
+              "y": -2,
+              "w": 696,
+              "h": 72
+            }
+          }
+        },
+        {
+          "command": "island_set_hitrect",
+          "args": {
+            "rect": {
+              "x": 12,
+              "y": -2,
+              "w": 696,
+              "h": 217
+            }
+          }
+        },
+        {
+          "command": "island_surface_ack",
+          "args": {
+            "generation": 1
+          }
+        },
+        {
+          "command": "island_keyboard_focus",
+          "args": {
+            "target": "preserve"
+          }
+        },
+        {
+          "command": "get_island_surface",
+          "args": {}
+        },
+        {
+          "command": "plugin:event|unlisten",
+          "args": {
+            "event": "engine:health",
+            "eventId": 16
+          }
+        },
+        {
+          "command": "plugin:event|unlisten",
+          "args": {
+            "event": "url:detected",
+            "eventId": 18
+          }
+        },
+        {
+          "command": "plugin:event|unlisten",
+          "args": {
+            "event": "download:updated",
+            "eventId": 20
+          }
+        },
+        {
+          "command": "plugin:event|unlisten",
+          "args": {
+            "event": "download:cleared",
+            "eventId": 22
+          }
+        },
+        {
+          "command": "plugin:event|unlisten",
+          "args": {
+            "event": "url:cleared",
+            "eventId": 24
+          }
+        },
+        {
+          "command": "get_island_drop",
+          "args": {}
+        },
+        {
+          "command": "plugin:event|listen",
+          "args": {
+            "event": "tack:sync",
+            "target": {
+              "kind": "Any"
+            },
+            "handler": 25
+          }
+        },
+        {
+          "command": "tack_sync_snapshot",
+          "args": {}
+        },
+        {
+          "command": "island_surface_ack",
+          "args": {
+            "generation": 1
+          }
+        },
+        {
+          "command": "island_set_hitrect",
+          "args": {
+            "rect": {
+              "x": 12,
+              "y": -2,
+              "w": 696,
+              "h": 297
+            }
+          }
+        }
+      ],
+      "unsupported": [],
+      "runtimeAndNetworkProblems": []
+    },
+    {
+      "file": "v45-island-final-island-notes-signedout-dark@1x.png",
+      "scenario": "island-notes-signedout",
+      "entry": "island.html",
+      "figmaNode": "19:346",
+      "theme": "dark",
+      "resolvedTheme": "dark",
+      "scale": 1,
+      "viewport": {
+        "width": 720,
+        "height": 460
+      },
+      "clip": {
+        "x": 20,
+        "y": 6,
+        "width": 680,
+        "height": 281
+      },
+      "width": 680,
+      "height": 281,
+      "bytes": 21685,
+      "sha256": "4d0effd0a459cba1205c7ba672ae421c83af34d6e734b9bdd14893933dae8fcd",
+      "repeatMatches": true,
+      "caret": "hide",
+      "font": [
+        {
+          "familyName": "Geist",
+          "postScriptName": "Geist",
+          "isCustomFont": true,
+          "glyphCount": 10
+        }
+      ],
+      "fixtureSha256": "a0daaa66159f9e86cfcbbad0de60f222277223f691054461260e8eae5e1ada7f",
+      "assertions": {
+        "state": "signedOut",
+        "assets": [
+          {
+            "file": "notes-editor/41305.svg",
+            "width": 16,
+            "height": 16,
+            "naturalWidth": 16,
+            "naturalHeight": 16
+          }
+        ],
+        "accessibility": {
+          "violations": [],
+          "incomplete": []
+        },
+        "expandedOnly": true,
+        "jsPolling": false,
+        "action": "Open full Nabbit",
+        "fixture": "Protocol snapshot; behavior tested by component races and separate Rust flow"
+      },
+      "ipc": [
+        {
+          "command": "plugin:event|listen",
+          "args": {
+            "event": "nabbit://island-visibility",
+            "target": {
+              "kind": "Any"
+            },
+            "handler": 1
+          }
+        },
+        {
+          "command": "plugin:event|listen",
+          "args": {
+            "event": "nabbit://island",
+            "target": {
+              "kind": "Any"
+            },
+            "handler": 3
+          }
+        },
+        {
+          "command": "plugin:event|listen",
+          "args": {
+            "event": "nabbit://island-surface",
+            "target": {
+              "kind": "Any"
+            },
+            "handler": 5
+          }
+        },
+        {
+          "command": "plugin:event|listen",
+          "args": {
+            "event": "tauri://drag-enter",
+            "target": {
+              "kind": "WebviewWindow",
+              "label": "island"
+            },
+            "handler": 7
+          }
+        },
+        {
+          "command": "get_island_snapshot",
+          "args": {}
+        },
+        {
+          "command": "get_activity_snapshot",
+          "args": {}
+        },
+        {
+          "command": "get_island_surface",
+          "args": {}
+        },
+        {
+          "command": "plugin:event|listen",
+          "args": {
+            "event": "tauri://drag-over",
+            "target": {
+              "kind": "WebviewWindow",
+              "label": "island"
+            },
+            "handler": 9
+          }
+        },
+        {
+          "command": "plugin:event|listen",
+          "args": {
+            "event": "tauri://drag-drop",
+            "target": {
+              "kind": "WebviewWindow",
+              "label": "island"
+            },
+            "handler": 11
+          }
+        },
+        {
+          "command": "plugin:event|listen",
+          "args": {
+            "event": "tauri://drag-leave",
+            "target": {
+              "kind": "WebviewWindow",
+              "label": "island"
+            },
+            "handler": 13
+          }
+        },
+        {
+          "command": "island_set_hitrect",
+          "args": {
+            "rect": {
+              "x": 12,
+              "y": -2,
+              "w": 696,
+              "h": 42
+            }
+          }
+        },
+        {
+          "command": "island_set_hitrect",
+          "args": {
+            "rect": {
+              "x": 12,
+              "y": -2,
+              "w": 696,
+              "h": 72
+            }
+          }
+        },
+        {
+          "command": "plugin:event|listen",
+          "args": {
+            "event": "engine:health",
+            "target": {
+              "kind": "Any"
+            },
+            "handler": 15
+          }
+        },
+        {
+          "command": "plugin:event|listen",
+          "args": {
+            "event": "url:detected",
+            "target": {
+              "kind": "Any"
+            },
+            "handler": 17
+          }
+        },
+        {
+          "command": "plugin:event|listen",
+          "args": {
+            "event": "download:updated",
+            "target": {
+              "kind": "Any"
+            },
+            "handler": 19
+          }
+        },
+        {
+          "command": "plugin:event|listen",
+          "args": {
+            "event": "download:cleared",
+            "target": {
+              "kind": "Any"
+            },
+            "handler": 21
+          }
+        },
+        {
+          "command": "plugin:event|listen",
+          "args": {
+            "event": "url:cleared",
+            "target": {
+              "kind": "Any"
+            },
+            "handler": 23
+          }
+        },
+        {
+          "command": "get_settings",
+          "args": {}
+        },
+        {
+          "command": "list_downloads",
+          "args": {}
+        },
+        {
+          "command": "get_captured_link",
+          "args": {}
+        },
+        {
+          "command": "get_engine_status",
+          "args": {}
+        },
+        {
+          "command": "island_set_hitrect",
+          "args": {
+            "rect": {
+              "x": 12,
+              "y": -2,
+              "w": 696,
+              "h": 144
+            }
+          }
+        },
+        {
+          "command": "island_set_hitrect",
+          "args": {
+            "rect": {
+              "x": 12,
+              "y": -2,
+              "w": 696,
+              "h": 217
+            }
+          }
+        },
+        {
+          "command": "island_surface_ack",
+          "args": {
+            "generation": 1
+          }
+        },
+        {
+          "command": "island_keyboard_focus",
+          "args": {
+            "target": "preserve"
+          }
+        },
+        {
+          "command": "get_island_surface",
+          "args": {}
+        },
+        {
+          "command": "plugin:event|unlisten",
+          "args": {
+            "event": "engine:health",
+            "eventId": 16
+          }
+        },
+        {
+          "command": "plugin:event|unlisten",
+          "args": {
+            "event": "url:detected",
+            "eventId": 18
+          }
+        },
+        {
+          "command": "plugin:event|unlisten",
+          "args": {
+            "event": "download:updated",
+            "eventId": 20
+          }
+        },
+        {
+          "command": "plugin:event|unlisten",
+          "args": {
+            "event": "download:cleared",
+            "eventId": 22
+          }
+        },
+        {
+          "command": "plugin:event|unlisten",
+          "args": {
+            "event": "url:cleared",
+            "eventId": 24
+          }
+        },
+        {
+          "command": "get_island_drop",
+          "args": {}
+        },
+        {
+          "command": "plugin:event|listen",
+          "args": {
+            "event": "tack:sync",
+            "target": {
+              "kind": "Any"
+            },
+            "handler": 25
+          }
+        },
+        {
+          "command": "tack_sync_snapshot",
+          "args": {}
+        },
+        {
+          "command": "island_set_hitrect",
+          "args": {
+            "rect": {
+              "x": 12,
+              "y": -2,
+              "w": 696,
+              "h": 297
+            }
+          }
+        },
+        {
+          "command": "island_surface_ack",
+          "args": {
+            "generation": 1
+          }
+        }
+      ],
+      "unsupported": [],
+      "runtimeAndNetworkProblems": []
+    },
+    {
+      "file": "v45-island-final-island-notes-offline-dark@1.5x.png",
+      "scenario": "island-notes-offline",
+      "entry": "island.html",
+      "figmaNode": "19:346",
+      "theme": "dark",
+      "resolvedTheme": "dark",
+      "scale": 1.5,
+      "viewport": {
+        "width": 720,
+        "height": 460
+      },
+      "clip": {
+        "x": 20,
+        "y": 6,
+        "width": 680,
+        "height": 281
+      },
+      "width": 1020,
+      "height": 422,
+      "bytes": 32057,
+      "sha256": "a1c9e98256ae3fa966ccf701283534928f34e5464c45fa71b5a2b91bef7f987f",
+      "repeatMatches": true,
+      "caret": "hide",
+      "font": [
+        {
+          "familyName": "Geist",
+          "postScriptName": "Geist",
+          "isCustomFont": true,
+          "glyphCount": 6
+        }
+      ],
+      "fixtureSha256": "aa02be33e0027025320fcde5c39174722ee803f9870e559c4fa9d45361585358",
+      "assertions": {
+        "state": "offline",
+        "assets": [
+          {
+            "file": "notes-editor/a92d4.svg",
+            "width": 16,
+            "height": 16,
+            "naturalWidth": 16,
+            "naturalHeight": 16
+          }
+        ],
+        "accessibility": {
+          "violations": [],
+          "incomplete": []
+        },
+        "expandedOnly": true,
+        "jsPolling": false,
+        "action": "Open full Nabbit",
+        "fixture": "Protocol snapshot; behavior tested by component races and separate Rust flow"
+      },
+      "ipc": [
+        {
+          "command": "plugin:event|listen",
+          "args": {
+            "event": "nabbit://island-visibility",
+            "target": {
+              "kind": "Any"
+            },
+            "handler": 1
+          }
+        },
+        {
+          "command": "plugin:event|listen",
+          "args": {
+            "event": "nabbit://island",
+            "target": {
+              "kind": "Any"
+            },
+            "handler": 3
+          }
+        },
+        {
+          "command": "plugin:event|listen",
+          "args": {
+            "event": "nabbit://island-surface",
+            "target": {
+              "kind": "Any"
+            },
+            "handler": 5
+          }
+        },
+        {
+          "command": "plugin:event|listen",
+          "args": {
+            "event": "tauri://drag-enter",
+            "target": {
+              "kind": "WebviewWindow",
+              "label": "island"
+            },
+            "handler": 7
+          }
+        },
+        {
+          "command": "get_island_snapshot",
+          "args": {}
+        },
+        {
+          "command": "get_activity_snapshot",
+          "args": {}
+        },
+        {
+          "command": "get_island_surface",
+          "args": {}
+        },
+        {
+          "command": "plugin:event|listen",
+          "args": {
+            "event": "tauri://drag-over",
+            "target": {
+              "kind": "WebviewWindow",
+              "label": "island"
+            },
+            "handler": 9
+          }
+        },
+        {
+          "command": "plugin:event|listen",
+          "args": {
+            "event": "tauri://drag-drop",
+            "target": {
+              "kind": "WebviewWindow",
+              "label": "island"
+            },
+            "handler": 11
+          }
+        },
+        {
+          "command": "plugin:event|listen",
+          "args": {
+            "event": "tauri://drag-leave",
+            "target": {
+              "kind": "WebviewWindow",
+              "label": "island"
+            },
+            "handler": 13
+          }
+        },
+        {
+          "command": "island_set_hitrect",
+          "args": {
+            "rect": {
+              "x": 12,
+              "y": -2,
+              "w": 696,
+              "h": 42
+            }
+          }
+        },
+        {
+          "command": "island_set_hitrect",
+          "args": {
+            "rect": {
+              "x": 12,
+              "y": -2,
+              "w": 696,
+              "h": 72
+            }
+          }
+        },
+        {
+          "command": "island_set_hitrect",
+          "args": {
+            "rect": {
+              "x": 12,
+              "y": -2,
+              "w": 696,
+              "h": 144
+            }
+          }
+        },
+        {
+          "command": "plugin:event|listen",
+          "args": {
+            "event": "engine:health",
+            "target": {
+              "kind": "Any"
+            },
+            "handler": 15
+          }
+        },
+        {
+          "command": "plugin:event|listen",
+          "args": {
+            "event": "url:detected",
+            "target": {
+              "kind": "Any"
+            },
+            "handler": 17
+          }
+        },
+        {
+          "command": "plugin:event|listen",
+          "args": {
+            "event": "download:updated",
+            "target": {
+              "kind": "Any"
+            },
+            "handler": 19
+          }
+        },
+        {
+          "command": "plugin:event|listen",
+          "args": {
+            "event": "download:cleared",
+            "target": {
+              "kind": "Any"
+            },
+            "handler": 21
+          }
+        },
+        {
+          "command": "plugin:event|listen",
+          "args": {
+            "event": "url:cleared",
+            "target": {
+              "kind": "Any"
+            },
+            "handler": 23
+          }
+        },
+        {
+          "command": "get_settings",
+          "args": {}
+        },
+        {
+          "command": "list_downloads",
+          "args": {}
+        },
+        {
+          "command": "get_captured_link",
+          "args": {}
+        },
+        {
+          "command": "get_engine_status",
+          "args": {}
+        },
+        {
+          "command": "island_set_hitrect",
+          "args": {
+            "rect": {
+              "x": 12,
+              "y": -2,
+              "w": 696,
+              "h": 193
+            }
+          }
+        },
+        {
+          "command": "island_set_hitrect",
+          "args": {
+            "rect": {
+              "x": 12,
+              "y": -2,
+              "w": 696,
+              "h": 217
+            }
+          }
+        },
+        {
+          "command": "island_surface_ack",
+          "args": {
+            "generation": 1
+          }
+        },
+        {
+          "command": "island_keyboard_focus",
+          "args": {
+            "target": "preserve"
+          }
+        },
+        {
+          "command": "get_island_surface",
+          "args": {}
+        },
+        {
+          "command": "plugin:event|unlisten",
+          "args": {
+            "event": "engine:health",
+            "eventId": 16
+          }
+        },
+        {
+          "command": "plugin:event|unlisten",
+          "args": {
+            "event": "url:detected",
+            "eventId": 18
+          }
+        },
+        {
+          "command": "plugin:event|unlisten",
+          "args": {
+            "event": "download:updated",
+            "eventId": 20
+          }
+        },
+        {
+          "command": "plugin:event|unlisten",
+          "args": {
+            "event": "download:cleared",
+            "eventId": 22
+          }
+        },
+        {
+          "command": "plugin:event|unlisten",
+          "args": {
+            "event": "url:cleared",
+            "eventId": 24
+          }
+        },
+        {
+          "command": "get_island_drop",
+          "args": {}
+        },
+        {
+          "command": "plugin:event|listen",
+          "args": {
+            "event": "tack:sync",
+            "target": {
+              "kind": "Any"
+            },
+            "handler": 25
+          }
+        },
+        {
+          "command": "tack_sync_snapshot",
+          "args": {}
+        },
+        {
+          "command": "island_surface_ack",
+          "args": {
+            "generation": 1
+          }
+        },
+        {
+          "command": "island_set_hitrect",
+          "args": {
+            "rect": {
+              "x": 12,
+              "y": -2,
+              "w": 696,
+              "h": 297
+            }
+          }
+        }
+      ],
+      "unsupported": [],
+      "runtimeAndNetworkProblems": []
+    },
+    {
+      "file": "v45-island-final-island-notes-conflict-dark@1.5x.png",
+      "scenario": "island-notes-conflict",
+      "entry": "island.html",
+      "figmaNode": "19:346",
+      "theme": "dark",
+      "resolvedTheme": "dark",
+      "scale": 1.5,
+      "viewport": {
+        "width": 720,
+        "height": 460
+      },
+      "clip": {
+        "x": 20,
+        "y": 6,
+        "width": 680,
+        "height": 281
+      },
+      "width": 1020,
+      "height": 422,
+      "bytes": 32743,
+      "sha256": "60074cdb44950cb30ed7a37bfa7d4c3b7c9b0dc048e72231777fdac706a528ca",
+      "repeatMatches": true,
+      "caret": "hide",
+      "font": [
+        {
+          "familyName": "Geist",
+          "postScriptName": "Geist",
+          "isCustomFont": true,
+          "glyphCount": 7
+        }
+      ],
+      "fixtureSha256": "4c0007a96891e52cd80429d8ce2fdce0cf0dc638e31319670bab09174f93d220",
+      "assertions": {
+        "state": "conflict",
+        "assets": [
+          {
+            "file": "notes-editor/5bc07.svg",
+            "width": 16,
+            "height": 16,
+            "naturalWidth": 16,
+            "naturalHeight": 16
+          }
+        ],
+        "accessibility": {
+          "violations": [],
+          "incomplete": []
+        },
+        "expandedOnly": true,
+        "jsPolling": false,
+        "action": "Open full Nabbit",
+        "fixture": "Protocol snapshot; behavior tested by component races and separate Rust flow"
+      },
+      "ipc": [
+        {
+          "command": "plugin:event|listen",
+          "args": {
+            "event": "nabbit://island-visibility",
+            "target": {
+              "kind": "Any"
+            },
+            "handler": 1
+          }
+        },
+        {
+          "command": "plugin:event|listen",
+          "args": {
+            "event": "nabbit://island",
+            "target": {
+              "kind": "Any"
+            },
+            "handler": 3
+          }
+        },
+        {
+          "command": "plugin:event|listen",
+          "args": {
+            "event": "nabbit://island-surface",
+            "target": {
+              "kind": "Any"
+            },
+            "handler": 5
+          }
+        },
+        {
+          "command": "plugin:event|listen",
+          "args": {
+            "event": "tauri://drag-enter",
+            "target": {
+              "kind": "WebviewWindow",
+              "label": "island"
+            },
+            "handler": 7
+          }
+        },
+        {
+          "command": "get_island_snapshot",
+          "args": {}
+        },
+        {
+          "command": "get_activity_snapshot",
+          "args": {}
+        },
+        {
+          "command": "get_island_surface",
+          "args": {}
+        },
+        {
+          "command": "plugin:event|listen",
+          "args": {
+            "event": "tauri://drag-over",
+            "target": {
+              "kind": "WebviewWindow",
+              "label": "island"
+            },
+            "handler": 9
+          }
+        },
+        {
+          "command": "plugin:event|listen",
+          "args": {
+            "event": "tauri://drag-drop",
+            "target": {
+              "kind": "WebviewWindow",
+              "label": "island"
+            },
+            "handler": 11
+          }
+        },
+        {
+          "command": "plugin:event|listen",
+          "args": {
+            "event": "tauri://drag-leave",
+            "target": {
+              "kind": "WebviewWindow",
+              "label": "island"
+            },
+            "handler": 13
+          }
+        },
+        {
+          "command": "island_set_hitrect",
+          "args": {
+            "rect": {
+              "x": 12,
+              "y": -2,
+              "w": 696,
+              "h": 42
+            }
+          }
+        },
+        {
+          "command": "plugin:event|listen",
+          "args": {
+            "event": "engine:health",
+            "target": {
+              "kind": "Any"
+            },
+            "handler": 15
+          }
+        },
+        {
+          "command": "plugin:event|listen",
+          "args": {
+            "event": "url:detected",
+            "target": {
+              "kind": "Any"
+            },
+            "handler": 17
+          }
+        },
+        {
+          "command": "plugin:event|listen",
+          "args": {
+            "event": "download:updated",
+            "target": {
+              "kind": "Any"
+            },
+            "handler": 19
+          }
+        },
+        {
+          "command": "plugin:event|listen",
+          "args": {
+            "event": "download:cleared",
+            "target": {
+              "kind": "Any"
+            },
+            "handler": 21
+          }
+        },
+        {
+          "command": "plugin:event|listen",
+          "args": {
+            "event": "url:cleared",
+            "target": {
+              "kind": "Any"
+            },
+            "handler": 23
+          }
+        },
+        {
+          "command": "get_settings",
+          "args": {}
+        },
+        {
+          "command": "list_downloads",
+          "args": {}
+        },
+        {
+          "command": "get_captured_link",
+          "args": {}
+        },
+        {
+          "command": "get_engine_status",
+          "args": {}
+        },
+        {
+          "command": "island_set_hitrect",
+          "args": {
+            "rect": {
+              "x": 12,
+              "y": -2,
+              "w": 696,
+              "h": 72
+            }
+          }
+        },
+        {
+          "command": "island_set_hitrect",
+          "args": {
+            "rect": {
+              "x": 12,
+              "y": -2,
+              "w": 696,
+              "h": 217
+            }
+          }
+        },
+        {
+          "command": "island_surface_ack",
+          "args": {
+            "generation": 1
+          }
+        },
+        {
+          "command": "island_keyboard_focus",
+          "args": {
+            "target": "preserve"
+          }
+        },
+        {
+          "command": "get_island_surface",
+          "args": {}
+        },
+        {
+          "command": "plugin:event|unlisten",
+          "args": {
+            "event": "engine:health",
+            "eventId": 16
+          }
+        },
+        {
+          "command": "plugin:event|unlisten",
+          "args": {
+            "event": "url:detected",
+            "eventId": 18
+          }
+        },
+        {
+          "command": "plugin:event|unlisten",
+          "args": {
+            "event": "download:updated",
+            "eventId": 20
+          }
+        },
+        {
+          "command": "plugin:event|unlisten",
+          "args": {
+            "event": "download:cleared",
+            "eventId": 22
+          }
+        },
+        {
+          "command": "plugin:event|unlisten",
+          "args": {
+            "event": "url:cleared",
+            "eventId": 24
+          }
+        },
+        {
+          "command": "get_island_drop",
+          "args": {}
+        },
+        {
+          "command": "plugin:event|listen",
+          "args": {
+            "event": "tack:sync",
+            "target": {
+              "kind": "Any"
+            },
+            "handler": 25
+          }
+        },
+        {
+          "command": "tack_sync_snapshot",
+          "args": {}
+        },
+        {
+          "command": "island_surface_ack",
+          "args": {
+            "generation": 1
+          }
+        },
+        {
+          "command": "island_set_hitrect",
+          "args": {
+            "rect": {
+              "x": 12,
+              "y": -2,
+              "w": 696,
+              "h": 297
+            }
+          }
+        }
+      ],
+      "unsupported": [],
+      "runtimeAndNetworkProblems": []
+    },
+    {
+      "file": "v45-island-final-island-notes-signedout-dark@1.5x.png",
+      "scenario": "island-notes-signedout",
+      "entry": "island.html",
+      "figmaNode": "19:346",
+      "theme": "dark",
+      "resolvedTheme": "dark",
+      "scale": 1.5,
+      "viewport": {
+        "width": 720,
+        "height": 460
+      },
+      "clip": {
+        "x": 20,
+        "y": 6,
+        "width": 680,
+        "height": 281
+      },
+      "width": 1020,
+      "height": 422,
+      "bytes": 34717,
+      "sha256": "94db4a78f52fab2ed2a79a376a3c9174acbe7492fde34114b9d48b7f2220cafb",
+      "repeatMatches": true,
+      "caret": "hide",
+      "font": [
+        {
+          "familyName": "Geist",
+          "postScriptName": "Geist",
+          "isCustomFont": true,
+          "glyphCount": 10
+        }
+      ],
+      "fixtureSha256": "a0daaa66159f9e86cfcbbad0de60f222277223f691054461260e8eae5e1ada7f",
+      "assertions": {
+        "state": "signedOut",
+        "assets": [
+          {
+            "file": "notes-editor/41305.svg",
+            "width": 16,
+            "height": 16,
+            "naturalWidth": 16,
+            "naturalHeight": 16
+          }
+        ],
+        "accessibility": {
+          "violations": [],
+          "incomplete": []
+        },
+        "expandedOnly": true,
+        "jsPolling": false,
+        "action": "Open full Nabbit",
+        "fixture": "Protocol snapshot; behavior tested by component races and separate Rust flow"
+      },
+      "ipc": [
+        {
+          "command": "plugin:event|listen",
+          "args": {
+            "event": "nabbit://island-visibility",
+            "target": {
+              "kind": "Any"
+            },
+            "handler": 1
+          }
+        },
+        {
+          "command": "plugin:event|listen",
+          "args": {
+            "event": "nabbit://island",
+            "target": {
+              "kind": "Any"
+            },
+            "handler": 3
+          }
+        },
+        {
+          "command": "plugin:event|listen",
+          "args": {
+            "event": "nabbit://island-surface",
+            "target": {
+              "kind": "Any"
+            },
+            "handler": 5
+          }
+        },
+        {
+          "command": "plugin:event|listen",
+          "args": {
+            "event": "tauri://drag-enter",
+            "target": {
+              "kind": "WebviewWindow",
+              "label": "island"
+            },
+            "handler": 7
+          }
+        },
+        {
+          "command": "get_island_snapshot",
+          "args": {}
+        },
+        {
+          "command": "get_activity_snapshot",
+          "args": {}
+        },
+        {
+          "command": "get_island_surface",
+          "args": {}
+        },
+        {
+          "command": "plugin:event|listen",
+          "args": {
+            "event": "tauri://drag-over",
+            "target": {
+              "kind": "WebviewWindow",
+              "label": "island"
+            },
+            "handler": 9
+          }
+        },
+        {
+          "command": "plugin:event|listen",
+          "args": {
+            "event": "tauri://drag-drop",
+            "target": {
+              "kind": "WebviewWindow",
+              "label": "island"
+            },
+            "handler": 11
+          }
+        },
+        {
+          "command": "plugin:event|listen",
+          "args": {
+            "event": "tauri://drag-leave",
+            "target": {
+              "kind": "WebviewWindow",
+              "label": "island"
+            },
+            "handler": 13
+          }
+        },
+        {
+          "command": "island_set_hitrect",
+          "args": {
+            "rect": {
+              "x": 12,
+              "y": -2,
+              "w": 696,
+              "h": 42
+            }
+          }
+        },
+        {
+          "command": "plugin:event|listen",
+          "args": {
+            "event": "engine:health",
+            "target": {
+              "kind": "Any"
+            },
+            "handler": 15
+          }
+        },
+        {
+          "command": "plugin:event|listen",
+          "args": {
+            "event": "url:detected",
+            "target": {
+              "kind": "Any"
+            },
+            "handler": 17
+          }
+        },
+        {
+          "command": "plugin:event|listen",
+          "args": {
+            "event": "download:updated",
+            "target": {
+              "kind": "Any"
+            },
+            "handler": 19
+          }
+        },
+        {
+          "command": "plugin:event|listen",
+          "args": {
+            "event": "download:cleared",
+            "target": {
+              "kind": "Any"
+            },
+            "handler": 21
+          }
+        },
+        {
+          "command": "plugin:event|listen",
+          "args": {
+            "event": "url:cleared",
+            "target": {
+              "kind": "Any"
+            },
+            "handler": 23
+          }
+        },
+        {
+          "command": "get_settings",
+          "args": {}
+        },
+        {
+          "command": "list_downloads",
+          "args": {}
+        },
+        {
+          "command": "get_captured_link",
+          "args": {}
+        },
+        {
+          "command": "get_engine_status",
+          "args": {}
+        },
+        {
+          "command": "island_set_hitrect",
+          "args": {
+            "rect": {
+              "x": 12,
+              "y": -2,
+              "w": 696,
+              "h": 72
+            }
+          }
+        },
+        {
+          "command": "island_set_hitrect",
+          "args": {
+            "rect": {
+              "x": 12,
+              "y": -2,
+              "w": 696,
+              "h": 217
+            }
+          }
+        },
+        {
+          "command": "island_surface_ack",
+          "args": {
+            "generation": 1
+          }
+        },
+        {
+          "command": "island_keyboard_focus",
+          "args": {
+            "target": "preserve"
+          }
+        },
+        {
+          "command": "get_island_surface",
+          "args": {}
+        },
+        {
+          "command": "plugin:event|unlisten",
+          "args": {
+            "event": "engine:health",
+            "eventId": 16
+          }
+        },
+        {
+          "command": "plugin:event|unlisten",
+          "args": {
+            "event": "url:detected",
+            "eventId": 18
+          }
+        },
+        {
+          "command": "plugin:event|unlisten",
+          "args": {
+            "event": "download:updated",
+            "eventId": 20
+          }
+        },
+        {
+          "command": "plugin:event|unlisten",
+          "args": {
+            "event": "download:cleared",
+            "eventId": 22
+          }
+        },
+        {
+          "command": "plugin:event|unlisten",
+          "args": {
+            "event": "url:cleared",
+            "eventId": 24
+          }
+        },
+        {
+          "command": "get_island_drop",
+          "args": {}
+        },
+        {
+          "command": "plugin:event|listen",
+          "args": {
+            "event": "tack:sync",
+            "target": {
+              "kind": "Any"
+            },
+            "handler": 25
+          }
+        },
+        {
+          "command": "tack_sync_snapshot",
+          "args": {}
+        },
+        {
+          "command": "island_set_hitrect",
+          "args": {
+            "rect": {
+              "x": 12,
+              "y": -2,
+              "w": 696,
+              "h": 297
+            }
+          }
+        },
+        {
+          "command": "island_surface_ack",
+          "args": {
+            "generation": 1
+          }
+        }
+      ],
+      "unsupported": [],
+      "runtimeAndNetworkProblems": []
+    }
+  ]
+}

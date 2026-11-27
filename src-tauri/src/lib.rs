@@ -118,6 +118,8 @@ pub fn run() {
             commands::notes::list_note_cards,
             commands::notes::get_notes_state,
             commands::notes::save_note_reminder,
+            commands::notes::get_note_editor,
+            commands::notes::save_note_editor,
             commands::notes::create_note_card,
             commands::notes::update_note_card,
             download::sheets::open_download_sheet,

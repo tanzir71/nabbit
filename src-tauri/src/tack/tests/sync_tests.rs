@@ -153,6 +153,66 @@ fn create_edit_every_card_property_and_reminder_roundtrip_through_durable_outbox
 }
 
 #[test]
+fn editor_reads_synced_attachments_and_rejects_read_only_writes() {
+    let fake = Fake::start();
+    let (db, mut http, context) = connected(&fake);
+    let created = create(&db, &context, "Image note");
+    let id = created.value["id"].as_str().unwrap();
+    sync::cycle(&db, &context, &mut http).unwrap();
+    let mut device = other(&fake);
+    let image = json!({"id":"img","revision":0,"name":"A picture","mime":"image/png","data":"data:image/png;base64,iVBORw0KGgo=","size":8,"createdAt":"2026-11-27T00:00:00Z"});
+    assert_eq!(
+        device
+            .sync(
+                0,
+                &[Mutation {
+                    table: "attachments".into(),
+                    id: "img".into(),
+                    base_version: 0,
+                    base_value: Value::Null,
+                    value: image.clone()
+                }]
+            )
+            .unwrap_err()
+            .code,
+        ErrorCode::InvalidInput
+    );
+    // A previously uploaded Tack attachment is read over HTTP; Nabbit cannot upload one.
+    fake.state
+        .lock()
+        .unwrap()
+        .seed("attachments", "img", image, true);
+    server_edit(
+        &mut device,
+        id,
+        json!({"attachmentIds":["img"],"future":{"untouched":true}}),
+    );
+    sync::cycle(&db, &context, &mut http).unwrap();
+    let data = db.note_editor(id, Some(&context)).unwrap();
+    assert_eq!(data.attachments.len(), 1);
+    assert_eq!(data.attachments[0]["name"], "A picture");
+    {
+        let conn = db.conn.lock().unwrap();
+        crate::notes::sync_store::set_meta(&conn, &format!("read_only/{}", context.key), "true")
+            .unwrap();
+    }
+    assert!(db
+        .save_note_editor(crate::notes::editor::EditorSave {
+            id: id.into(),
+            expected_revision: data.note.value["revision"].as_u64().unwrap(),
+            expected_scope: Some(context.clone()),
+            expected_edit_token: data.note.edit_token.clone(),
+            patch: json!({"body":"blocked"}),
+            reminders: vec![]
+        })
+        .is_err());
+    assert_eq!(
+        db.note_editor(id, Some(&context)).unwrap().note.value["future"]["untouched"],
+        true
+    );
+}
+
+#[test]
 fn upload_is_atomic_once_only_and_batches_over_fifty() {
     let fake = Fake::start();
     let db = database();
