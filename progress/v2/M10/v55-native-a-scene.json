@@ -1,0 +1,48 @@
+{
+  "passed": false,
+  "failure": {
+    "message": "page.evaluate: Target page, context or browser has been closed",
+    "stack": "page.evaluate: Target page, context or browser has been closed\n    at capture (D:\\claude-upgrade-26\\nabbit\\scripts\\capture-native-privacy.mjs:150:14)\n    at async file:///D:/claude-upgrade-26/nabbit/scripts/capture-native-privacy.mjs:313:3"
+  },
+  "checks": [
+    "Actual release Tauri fixture provider resolves the Teams desktop path, publishes production PrivacyChanged and renders the original16px mic/8px amber dot in the native232x32 pill",
+    "Packaged virtual-camera records produce only the matching live app; native camera state changes the original dot paint to exact signal lime, with no amber pixels"
+  ],
+  "captures": [
+    {
+      "role": "mic",
+      "file": "v55-native-a-mic@1x.png",
+      "width": 720,
+      "height": 460,
+      "bytes": 4662,
+      "sha256": "2dd169f01bb1addfbde1178de15c430a503a5f15840681076e8b7a84a0016da5"
+    },
+    {
+      "role": "camera",
+      "file": "v55-native-a-camera@1x.png",
+      "width": 720,
+      "height": 460,
+      "bytes": 5733,
+      "sha256": "2fd350c14c35df10ae02c3afaea2a1f4518c34e7e95460e41acb30951673d2cd"
+    },
+    {
+      "role": "both",
+      "file": "v55-native-a-both@1x.png",
+      "width": 720,
+      "height": 460,
+      "bytes": 6280,
+      "sha256": "45922fd79e515b4e9f6e66dde36cbb9b23911f808e3a92569e75fea1398c6dd3"
+    }
+  ],
+  "embeddedEntry": "/assets/island-BN6DQBXv.js",
+  "embeddedStyles": [
+    "/assets/island-CmuSRvpv.css"
+  ],
+  "executableSha256": "259df8efa652dd00a62b7b66fbf5c970290955a88fec725ae46a0098ce3bcde0",
+  "buildManifestSha256": "fb16e8e3046fe4ca8fa94527f18bb56f7529e2e110756f3b4c59f2d5cd5365a6",
+  "noUserProfile": true,
+  "noRealDevices": true,
+  "noRealConsentStore": true,
+  "noOsSettingChange": true,
+  "scope": "Owned production DirectComposition/WebView2 release with actual Tauri privacy Service, pure registry resolver and activity arbitration. Registry/process/power/fullscreen facts are fixtures; real registry notification and exit APIs are separately tested using disposable Nabbit HKCU keys and an owned child. No real device or user app/profile is exercised."
+}

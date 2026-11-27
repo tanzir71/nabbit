@@ -2,6 +2,8 @@
 
 Nabbit is local-first.
 
+The mic/camera indicator watches Windows ConsentStore activity and checks matching running processes, including their executable paths, package identities and creation times, to reject stale entries after a crash. It reads bounded executable description metadata for app names. These checks stay in memory; only current app names and capability state reach the island. Nabbit never opens a microphone/camera, records audio/video, stores a usage history or syncs this data. Detection depends on the activity Windows reports; amber means microphone use and lime means camera use, including virtual cameras.
+
 Now playing subscribes to Windows media-session events. Titles, artists, playback state and bounded 96 px artwork stay in memory on this PC; Nabbit does not fetch artwork URLs, keep listening history or sync this data. Playback, seeking, session selection, mute and system-volume changes happen only through your controls or pill gestures. Scroll changes system volume by two percentage points, or one with Shift; middle-click toggles the selected media session.
 
 The focus timer stores its settings, UTC deadline, paused time and session history in local SQLite so it can survive sleep and restarts. An optional card link retains its card ID and workspace identity; the displayed title/reference comes only from the current accessible Notes workspace. Linking or timing does not edit a Tack card or upload time records. Tack time logging remains a future feature.

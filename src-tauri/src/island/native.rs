@@ -1389,6 +1389,7 @@ unsafe extern "system" fn control_proc(hwnd: HWND, message: u32, w: WPARAM, l: L
             }
             if message == WM_POWERBROADCAST && w == 18 {
                 manager.app.state::<Arc<crate::media::Service>>().resume();
+                manager.app.state::<Arc<crate::privacy::Service>>().resume();
             }
         }
     }

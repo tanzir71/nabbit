@@ -82,3 +82,25 @@ Authoritative evidence:
 Clock/power/fullscreen facts are injected. No real OS sleep/timezone/clock/global-key delivery, user profile/account, hosted Tack, clipboard/audio, OS setting, installer or signing is used. The native result proves the production handler/service/SQLite/render path, with prior platform/focus/performance limits retained. See [privacy](../../../PRIVACY.md).
 
 V5.4 is a local skip-ci task commit directly on main. No PR or task push; publication waits for M10. V5.5 Mic/camera dot is next.
+
+
+## V5.5 — Mic/camera indicator
+
+The island follows Windows ConsentStore activity through a subscribed PrivacyProvider. It walks microphone/webcam records, including NonPackaged desktop paths and packaged/nested entries, then checks an exact live executable/package identity and creation time. Process-exit waits remove crash-stale zero-stop entries without polling. The worker refreshes on resume and releases registry/process registrations on stop. Only current app names and capability state reach the UI; no device is opened and no usage history is stored.
+
+The compact pill keeps Figma's232x32 capsule,16px mic,12/16 label and8px original amber dot. Camera use supplies signal lime on the same original silhouette; both capabilities have an accessible label. Long app names use the available width with a full tooltip. Read-only Peek lists each capability separately. Existing priority, disabled-activity and fullscreen-silence policy remains authoritative.
+
+Authoritative evidence:
+
+- [Receipt and exact Git pins](v55-acceptance.json), [requirements/story and limits](v55-requirements.json), [checks and original logs](v55-checks.json).
+- Nine new Rust tests cover packaged/NonPackaged/Teams/virtual-camera snapshots, crash/stopped/relaunched processes, full identity/creation time, timestamp types, bounded names, cache-only reads and arbitration. Disposable Nabbit HKCU keys and an owned child exercise real notification/re-arm/new subtree/deletion, idle read count, resume, process exit and PID-identity validation.
+- [Five native checks/four final captures](v55-native-b-scene.json): current custom-protocol executable and matching embedded JS/styles, actual Tauri provider/service/arbitration, exact amber/lime pixels, pushed Peek,100 cache reads, stale clearing, error recovery, disabled privacy and zero-alpha hidden frame. [Mic](v55-native-b-mic@1x.png), [camera](v55-native-b-camera@1x.png), [both](v55-native-b-both@1x.png), [Peek](v55-native-b-peek@2x.png).
+- [28 final visual captures](v55-privacy-d-screenshots.json): mic,camera,both,long,split,peek,off in light/dark at1x/1.5x, always-dark island, exact repeats, Geist and default axe zero violations/incompletes. [Fresh Figma comparison and independent color/alpha audits](v55-design.json), [mic](v55-privacy-d-privacy-mic-light@1x.png), [camera](v55-privacy-d-privacy-camera-dark@1.5x.png), [long title](v55-privacy-d-privacy-long-dark@1x.png). Native232x32 body bounds use alpha>=128 to separate the capsule from its original32%-opacity shadow; full shadow bounds and untouched pixels are retained.
+- [Independent PNG audit](v55-png-audit.json): all268 retained M10 PNGs decode and stay <=300000 bytes (largest100111). [Entry graph](v55-entry-bundles.json):100889/120000 initial island gzip bytes. Existing Windows-sys0.59 adds Appx/ToolHelp feature gates; no new package/version, lockfile change or sidecar.
+- [Failure-harness proof](v55-delivery-failure-check.json) and [failed/superseded attempts/original archives](v55-earlier-attempts.json). Native-a's three pre-timeout captures and interim privacy-c remain; only the named final reports establish acceptance. No accessibility exclusion, lint allowance or secret-scan waiver was added.
+
+`npm run verify` passes463 tests/44 files; final lint, fmt, default+spike all-target Clippy and289 serial Rust tests pass, with three existing opt-in ignores. The first Peek smoke reached its normal leave deadline; the final smoke holds only its fixture cursor inside the owned Peek. No production policy was relaxed.
+
+No real ConsentStore, microphone/camera, call, user app/profile/account, hosted Tack, clipboard/global keys, OS setting/clock/power, installer or signing is exercised. Actual registry/process APIs use owned disposable resources; native app facts are recorded fixtures. Detection is best effort; absence does not prove hardware is unused. Prior platform/focus/performance limits remain. See [privacy](../../../PRIVACY.md).
+
+V5.5 is a local skip-ci task commit directly on main. No PR or task push; publication waits for M10. V5.6 Battery/charging is next.

@@ -154,6 +154,17 @@ body,
   flex-shrink: 0;
   max-width: none;
 }
+.island-privacy-dot,
+.island-camera-dot {
+  display: block;
+  flex: none;
+  width: 8px;
+  height: 8px;
+}
+.island-camera-dot {
+  background: var(--signal-base);
+  mask-repeat: no-repeat;
+}
 .island-row {
   display: flex;
   align-items: center;

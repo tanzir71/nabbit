@@ -44,6 +44,7 @@ pub enum Draw {
     },
     Dot {
         x: f32,
+        camera: bool,
     },
 }
 #[derive(Clone, Debug, PartialEq, Serialize)]
@@ -219,7 +220,10 @@ fn draw(item: &Item, width: f32) -> Vec<Draw> {
             vec![
                 icon("iconMic", 10.0),
                 text(names.join(", "), 34.0, width - 62.0, false, false, true),
-                Draw::Dot { x: right - 8.0 },
+                Draw::Dot {
+                    x: right - 8.0,
+                    camera: !camera.is_empty(),
+                },
             ]
         }
         Event::PowerChanged { percent, charging } => vec![

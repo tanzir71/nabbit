@@ -285,7 +285,7 @@ impl Painter {
                         );
                     }
                 }
-                Draw::Dot { x } => self.icon(dc, "privacyDot", ox + *x, oy)?,
+                Draw::Dot { x, camera } => self.privacy_dot(dc, ox + *x, oy, *camera)?,
             }
         }
         Ok(())
@@ -350,6 +350,33 @@ impl Painter {
             SHCreateMemStream(Some(bytes)).ok_or_else(windows::core::Error::from_thread)?;
         let svg_dc: ID2D1DeviceContext5 = dc.cast()?;
         let svg = svg_dc.CreateSvgDocument(&stream, D2D_SIZE_F { width, height })?;
+        dc.SetTransform(&translation(x, y + (32.0 - height) / 2.0));
+        svg_dc.DrawSvgDocument(&svg);
+        Ok(())
+    }
+    unsafe fn privacy_dot(
+        &self,
+        dc: &ID2D1DeviceContext,
+        x: f32,
+        y: f32,
+        camera: bool,
+    ) -> Result<()> {
+        if !camera {
+            return self.icon(dc, "privacyDot", x, y);
+        }
+        let (bytes, width, height) =
+            super::assets::icon("privacyDot").expect("original privacy asset");
+        let stream =
+            SHCreateMemStream(Some(bytes)).ok_or_else(windows::core::Error::from_thread)?;
+        let svg_dc: ID2D1DeviceContext5 = dc.cast()?;
+        let svg = svg_dc.CreateSvgDocument(&stream, D2D_SIZE_F { width, height })?;
+        // The original silhouette/viewport is unchanged. Only live camera state
+        // supplies the handoff's lime paint; the mic keeps the original amber.
+        svg.GetRoot()?.GetFirstChild()?.SetAttributeValue3(
+            w!("fill"),
+            D2D1_SVG_ATTRIBUTE_STRING_TYPE_SVG,
+            w!("#C6F24E"),
+        )?;
         dc.SetTransform(&translation(x, y + (32.0 - height) / 2.0));
         svg_dc.DrawSvgDocument(&svg);
         Ok(())

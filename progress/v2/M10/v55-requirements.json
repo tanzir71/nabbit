@@ -1,0 +1,46 @@
+{
+  "task": "V5.5",
+  "story": "Registry/process event -> production guarded resolver/PrivacyProvider -> memory-only typed snapshot and PrivacyChanged -> existing activity arbitration -> native compact and pushed WebView Peek.",
+  "requirements": [
+    {
+      "requirement": "Read-only ConsentStore watcher behind provider trait",
+      "assertions": "PrivacyProvider has subscribe/resume/stop, no poll API. One persistent worker arms RegNotifyChangeKeyValue before reads and exactly once per consumed subtree notification. Walk microphone/webcam, NonPackaged and nested records with bounds. Missing roots use an existing read-only ancestor; errors clear stale state. Production never selects recorded provider outside isolated acceptance. No device, history, database or network use.",
+      "status": "passed"
+    },
+    {
+      "requirement": "Packaged, desktop and Teams identity/liveness",
+      "assertions": "Match full encoded process image or actual GetPackageFamilyName, not a basename. Require typed positive start/zero stop and a live process created no later than this use. Revalidate creation time when opening exit-wait handles to reject PID reuse. Deduplicate/bound display names and read only bounded description metadata for matching executables. Recorded fixtures include packaged, NonPackaged Teams, virtual camera, stopped, dead and relaunched processes.",
+      "status": "passed"
+    },
+    {
+      "requirement": "Stale crash cleanup and lifecycle",
+      "assertions": "One-shot RegisterWaitForSingleObject on matched process handles wakes the same worker without registry writes/polling; UnregisterWaitEx waits for callbacks before releasing contexts/handles. Resume wakes a fresh read; stop joins the worker. Real APIs are tested against disposable Nabbit HKCU keys and an owned child, including notification re-arm/new subtree/deletion, wrong timestamp type, idle read count, explicit wake, process exit and identity mismatch.",
+      "status": "passed"
+    },
+    {
+      "requirement": "Amber mic, lime camera, app names and arbitration",
+      "assertions": "Original16px mic/8px amber dot in232x32 compact pill with actual app names. Camera uses the original dot silhouette and dynamic signal lime; both capability state is accessible. Long labels ellipsize across available width and retain full tooltip; Peek lists each capability. Production PrivacyChanged takes existing top priority, clears on stop/death/failure, respects disabled activity and hidden/fullscreen policy. Actual native pixels/Peek/cache/error recovery are verified.",
+      "status": "passed"
+    },
+    {
+      "requirement": "Figma/accessibility/footprint",
+      "assertions": "Fresh7:103 and7:40 context/screenshots and byte-identical mic/dot exports.28 final exact-repeat light/dark1x/1.5x captures cover mic,camera,both,long,split,peek,off, default axe zero violations/incompletes and Geist. Pixel audits verify exact state colors. Initial island100889/120000 gzip bytes; existing Windows-sys0.59 adds only Appx/ToolHelp feature gates, with no new package/version or sidecar.",
+      "status": "passed"
+    }
+  ],
+  "evidence": {
+    "checks": "v55-checks.json",
+    "native": "v55-native-b-scene.json",
+    "visual": "v55-privacy-d-screenshots.json",
+    "design": "v55-design.json",
+    "bundles": "v55-entry-bundles.json",
+    "pngAudit": "v55-png-audit.json"
+  },
+  "platformBoundary": "Windows x64 automated fixtures, disposable Nabbit HKCU keys, owned child and isolated production native release. Live ConsentStore/real calls/devices, Windows10/ARM64 and prior focus/performance limits remain unclaimed. Absence is not a guarantee that hardware is unused.",
+  "dependencies": {
+    "windows-sys": "Existing0.59 enables Win32_Storage_Packaging_Appx and Win32_System_Diagnostics_ToolHelp; lockfile unchanged",
+    "newPackages": false,
+    "newSidecar": false
+  },
+  "nextTask": "V5.6"
+}

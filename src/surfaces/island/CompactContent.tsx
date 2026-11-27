@@ -10,6 +10,7 @@ import {
 import { ProgressRing } from "../../components/ProgressRing";
 import { Button } from "../../components/Button";
 import { IslandAsset } from "./IslandAsset";
+import { islandAssetUrl } from "./islandAssets";
 export type IslandIntent = {
   action: string;
   item?: ActivityItem;
@@ -133,8 +134,31 @@ export function CompactContent({
       return (
         <>
           {icon("iconMic")}
-          <span className="island-ellipsis island-muted">{activityTitle(item)}</span>
-          {icon("privacyDot")}
+          <span className="island-ellipsis island-muted" title={activityTitle(item)}>
+            {activityTitle(item)}
+          </span>
+          <span
+            className="island-privacy-dot"
+            role="img"
+            aria-label={
+              e.camera.length
+                ? e.mic.length
+                  ? "Microphone and camera in use"
+                  : "Camera in use"
+                : "Microphone in use"
+            }
+          >
+            {e.camera.length ? (
+              <span
+                className="island-camera-dot"
+                style={{
+                  maskImage: `url(${JSON.stringify(islandAssetUrl("compact", "privacyDot"))})`,
+                }}
+              />
+            ) : (
+              icon("privacyDot")
+            )}
+          </span>
         </>
       );
     case "powerChanged":

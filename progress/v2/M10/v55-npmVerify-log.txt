@@ -1,0 +1,205 @@
+> nabbit@0.1.0 verify
+> npm run verify:icons && npm run verify:fonts && npm run verify:tokens && npm run typecheck && npm run lint && npm test -- --run && npm run build
+
+
+> nabbit@0.1.0 verify:icons
+> node scripts/generate-brand-icons.mjs --check
+
+Verified desktop app icons, optical tray glyphs and site favicons.
+
+> nabbit@0.1.0 verify:fonts
+> node scripts/verify-font-assets.mjs
+
+Verified 5 pinned Geist 1.9.2 assets and OFL.
+
+> nabbit@0.1.0 verify:tokens
+> node scripts/generate-tokens.mjs --check
+
+Verified 36 light/dark tokens for app and site.
+
+> nabbit@0.1.0 typecheck
+> tsc -b
+
+
+> nabbit@0.1.0 lint
+> eslint .
+
+
+> nabbit@0.1.0 test
+> vitest --run
+
+
+ RUN  v3.2.7 D:/claude-upgrade-26/nabbit
+
+ ✓ src/views/NotesView.test.tsx (12 tests) 3631ms
+   ✓ local Notes view > consumes a navigation draft without creating or reading a persisted card  544ms
+   ✓ local Notes view > dismisses menus with Escape or outside focus and restores the summary focus  301ms
+   ✓ local Notes view > groups pinned cards and filters by priority, label and search across all card content  1132ms
+   ✓ local Notes view > removing one checklist row does not reassign another row's ID or checked state  725ms
+   ✓ local Notes view > archives and trashes softly and restores through the view menu  783ms
+ ✓ src/features/notes/TackConnectionSheet.test.tsx (10 tests) 5390ms
+   ✓ Tack connection > requires HTTPS and workspace confirmation, clears the password before awaiting, and uploads only by choice  2266ms
+   ✓ Tack connection > requires saved recovery confirmation and keeps the code confined to the mounted dialog  705ms
+   ✓ Tack connection > ignores late workspace preferences and preserves comma-separated label input  539ms
+   ✓ Tack connection > sanitizes untrusted errors and disables repeated actions during Retry-After  421ms
+   ✓ Tack connection > keeps a pending login inside the dialog until it completes  556ms
+   ✓ Tack connection > clears a stale recovery code and returns to a password-free sign-in form  713ms
+ ✓ src/features/notes/NoteEditor.test.tsx (12 tests) 4628ms
+   ✓ Notes editor > opens a clean persisted note in a sticky and closes only after native success  307ms
+   ✓ Notes editor > saves editor changes before popping out and keeps the saved note when creation fails  360ms
+   ✓ Notes editor > leaves a failed editor save open without creating a stale sticky  317ms
+   ✓ Notes editor > submits changed fields with stable checklist IDs and original scope/token  748ms
+   ✓ Notes editor > requires a decision before closing a dirty draft and preserves failed saves  1229ms
+   ✓ Notes editor > saves reminders with all unedited fields and optimistic tokens  348ms
+   ✓ Notes editor > blocks a draft after a workspace switch without overwriting its text  352ms
+   ✓ Notes editor > shows attachment and conflict history text safely and supports task completion  405ms
+ ✓ src/features/clipboard/IslandClipboard.test.tsx (8 tests) 3770ms
+   ✓ Clipboard island > reuses fuzzy search and all six type/pin filters without requesting OS clipboard access  1421ms
+   ✓ Clipboard island > routes bare number pick before global search, then Enter pastes the selected item  551ms
+   ✓ Clipboard island > Ctrl+F focuses search; numeric queries and IME/modifiers never pick an item  414ms
+   ✓ Clipboard island > arrows select within filtered results; Ctrl+C copies, Del removes and pinning updates Pinned  443ms
+   ✓ Clipboard island > StrictMode cleans up each event listener and preserves native image payload limitations  427ms
+ ✓ src/features/notes/LinksPanel.test.tsx (7 tests) 4881ms
+   ✓ Links collection > combines domain search, folder label chips and Later while keeping bookmark addresses  1707ms
+   ✓ Links collection > uses frozen card guards for bulk labels and clears selection only after acknowledgement  1413ms
+   ✓ Links collection > keeps stale selections recoverable after a rejected write and permits read-only open/copy  970ms
+ ✓ src/features/downloads/downloadSheets.test.tsx (22 tests) 4889ms
+   ✓ download sheet workflows > subscribes before reading the initial intent so startup cannot lose an intervening review  655ms
+   ✓ download sheet workflows > reopens remembered custom fields, preserves subtitle output and labels a customized app default accurately  300ms
+   ✓ download sheet workflows > wires every options control, remembered site choice and job-scoped browser into the explicit request  890ms
+   ✓ download sheet workflows > accepts custom subtitle codes and converts embedding to a sidecar for audio  379ms
+   ✓ download sheet workflows > retains a submitted state if closing fails, so another click cannot enqueue twice  343ms
+   ✓ download sheet workflows > clears browser choice and unsaved edits on a new sheet intent  531ms
+   ✓ download sheet workflows > keeps custom options while navigating into trim, unions chapter ranges and passes precise cuts  375ms
+ ✓ src/features/timer/FocusTimer.test.tsx (7 tests) 1663ms
+   ✓ renders actual remaining time and round/link data with functioning Pause/Stop and deferred logging  413ms
+   ✓ custom form preserves empty numeric input and a rejected draft  513ms
+ ✓ src/features/shelf/IslandShelf.test.tsx (8 tests) 1775ms
+   ✓ Shelf island > shows file names, real sizes, an unavailable row and a functional Remove without reading OS clipboard  331ms
+   ✓ Shelf island > selects a subset, copies exactly its IDs, and removes only those references  322ms
+ ✓ src/features/downloads/downloads.test.tsx (17 tests) 1085ms
+ ✓ src/features/notes/BookmarkImportSheet.test.tsx (6 tests) 1251ms
+   ✓ Bookmark import sheet > previews only selected sources, defaults to Later and exposes exactly the files read  500ms
+   ✓ Bookmark import sheet > retries the frozen plan after a lost acknowledgement and keeps one undo group  315ms
+ ✓ src/features/downloads/downloadErrors.test.tsx (25 tests) 515ms
+ ✓ src/components/Components.test.tsx (8 tests) 1121ms
+   ✓ foundation interaction contracts > buttons require an explicit submit type inside a form  323ms
+ ✓ src/features/notes/capture.test.tsx (187 tests) 492ms
+ ✓ src/features/notes/useStickyDraft.test.tsx (16 tests) 1470ms
+ ✓ src/views/IslandSettings.test.tsx (3 tests) 876ms
+   ✓ persists independent shape, size, monitor and enabled changes without overwriting other settings  447ms
+ ✓ src/views/ClipboardList.test.tsx (2 tests) 540ms
+   ✓ ClipboardList acceptance behavior > filters instantly, copies by click, and supports keyboard copy/delete/focus shortcuts  477ms
+ ✓ src/views/EngineHealthCard.test.tsx (6 tests) 272ms
+ ✓ src/features/media/MediaPlayer.test.tsx (4 tests) 553ms
+   ✓ renders recorded metadata, timeline and supported controls and sends exact typed actions  323ms
+ ✓ src/features/notes/IslandNotesSync.test.tsx (2 tests) 179ms
+ ✓ spikes/island/IslandSpike.test.tsx (4 tests) 187ms
+ ✓ src/views/IslandShortcutField.test.tsx (3 tests) 125ms
+ ✓ src/surfaces/island/IslandApp.test.tsx (1 test) 118ms
+ ✓ src/surfaces/island/PrivacyContent.test.tsx (3 tests) 124ms
+ ✓ src/features/media/input.test.ts (3 tests) 67ms
+ ✓ src/lib/islandDrop.test.tsx (4 tests) 52ms
+ ✓ src/lib/islandKeyboard.test.ts (4 tests) 25ms
+ ✓ src/lib/islandMotion.test.ts (2 tests) 15ms
+ ✓ src/lib/islandInput.test.ts (7 tests) 15ms
+ ✓ src/lib/islandVisibility.test.ts (5 tests) 14ms
+ ✓ scripts/entry-bundles.test.js (4 tests) 13ms
+ ✓ src/lib/islandActivity.test.ts (6 tests) 13ms
+ ✓ scripts/island-frame-metrics.test.js (6 tests) 11ms
+ ✓ scripts/screenshots/policy.test.js (2 tests) 12ms
+ ✓ scripts/screenshots/mock-ipc.test.js (5 tests) 15ms
+ ✓ src/lib/downloadPresets.test.ts (5 tests) 10ms
+ ✓ src/lib/islandSurface.test.ts (2 tests) 7ms
+ ✓ src/lib/theme.test.ts (4 tests) 7ms
+ ✓ src/store/islandStore.test.ts (16 tests) 8ms
+ ✓ src/features/shelf/api.test.ts (2 tests) 10ms
+ ✓ src/store/capture.test.ts (4 tests) 6ms
+ ✓ src/store/settingsBootstrap.test.ts (2 tests) 6ms
+ ✓ src/lib/search.test.ts (3 tests) 5ms
+ ✓ spikes/island/drop.test.ts (3 tests) 5ms
+ ✓ src/features/clipboard/model.test.ts (1 test) 2ms
+
+ Test Files  44 passed (44)
+      Tests  463 passed (463)
+   Start at  00:47:34
+   Duration  52.34s (transform 4.10s, setup 4.35s, collect 15.74s, tests 39.85s, environment 29.00s, prepare 4.75s)
+
+
+> nabbit@0.1.0 build
+> npm run tokens && node scripts/generate-island-motion.mjs && tsc -b && vite build && npm run verify:bundles
+
+
+> nabbit@0.1.0 tokens
+> node scripts/generate-tokens.mjs
+
+Generated 36 light/dark tokens for app and site.
+vite v6.4.3 building for production...
+transforming...
+✓ 1896 modules transformed.
+rendering chunks...
+computing gzip size...
+dist/assets/app-32-isMvsoQz.svg                  0.40 kB │ gzip:  0.27 kB
+dist/island.html                                 0.98 kB │ gzip:  0.45 kB
+dist/sticky.html                                 1.34 kB │ gzip:  0.51 kB
+dist/settings.html                               2.00 kB │ gzip:  0.62 kB
+dist/index.html                                  2.03 kB │ gzip:  0.61 kB
+dist/.vite/manifest.json                        15.77 kB │ gzip:  2.07 kB
+dist/assets/Geist-Variable-BNK-hTUD.woff2       69.49 kB
+dist/assets/GeistMono-Variable-BoRIzn25.woff2   71.21 kB
+dist/assets/SettingsPanel-BwpEieea.css           1.28 kB │ gzip:  0.53 kB
+dist/assets/EngineHealthCard-BLKwpQSy.css        1.54 kB │ gzip:  0.56 kB
+dist/assets/QuickCapture-DUXyoEkk.css            2.29 kB │ gzip:  0.69 kB
+dist/assets/TackSettings-BU2DM_3_.css            4.81 kB │ gzip:  1.44 kB
+dist/assets/NotesView-DdI2nrge.css               4.97 kB │ gzip:  1.28 kB
+dist/assets/sticky-Cu7CL-tf.css                  4.99 kB │ gzip:  1.37 kB
+dist/assets/DownloadSheetApp-B4SLn_mm.css        8.08 kB │ gzip:  2.07 kB
+dist/assets/links-CsTph8Fk.css                   8.53 kB │ gzip:  2.02 kB
+dist/assets/ModuleBody-P3bXXQYY.css              9.30 kB │ gzip:  2.02 kB
+dist/assets/downloads-BSTwiXw-.css              10.18 kB │ gzip:  2.32 kB
+dist/assets/SyncState-Co7PbncJ.css              11.39 kB │ gzip:  2.40 kB
+dist/assets/index-CL-WzRjZ.css                  27.80 kB │ gzip:  6.33 kB
+dist/assets/island-CmuSRvpv.css                 35.65 kB │ gzip:  7.56 kB
+dist/assets/Kbd-Bv7x_oMx.js                      0.15 kB │ gzip:  0.14 kB
+dist/assets/Tab-ictT8tNX.js                      0.28 kB │ gzip:  0.22 kB
+dist/assets/DesignIcon-Im6PkWR7.js               0.48 kB │ gzip:  0.31 kB
+dist/assets/index-BssAxRTx.js                    0.49 kB │ gzip:  0.34 kB
+dist/assets/trash-2-DZIZjwhK.js                  0.53 kB │ gzip:  0.35 kB
+dist/assets/previewSheet-BR_f8D6D.js             0.75 kB │ gzip:  0.46 kB
+dist/assets/stickyApi-ywQfV-Nw.js                0.77 kB │ gzip:  0.35 kB
+dist/assets/theme-mEADzzL7.js                    0.83 kB │ gzip:  0.47 kB
+dist/assets/settings-fxmQ7Yoe.js                 1.17 kB │ gzip:  0.66 kB
+dist/assets/notesStore-B_7Mdc2h.js               1.21 kB │ gzip:  0.56 kB
+dist/assets/model-C2x3WR-s.js                    1.35 kB │ gzip:  0.75 kB
+dist/assets/Toggle-DKlUEyxA.js                   1.83 kB │ gzip:  0.87 kB
+dist/assets/NoteCard-CuhWJrZl.js                 1.88 kB │ gzip:  0.85 kB
+dist/assets/islandPresentation-Bovrt6G7.js       2.60 kB │ gzip:  1.14 kB
+dist/assets/SearchContent-DPUjxolh.js            3.07 kB │ gzip:  1.51 kB
+dist/assets/ExpandedShell-EIIUw0u2.js            4.19 kB │ gzip:  1.83 kB
+dist/assets/captureDraft-BB2eCl_2.js             5.29 kB │ gzip:  2.45 kB
+dist/assets/QuickCapture-BOo3vLyC.js             5.42 kB │ gzip:  2.42 kB
+dist/assets/LinksPanel-BPPbG8wQ.js               5.90 kB │ gzip:  2.22 kB
+dist/assets/ipc--If0vO7R.js                      8.30 kB │ gzip:  3.22 kB
+dist/assets/PresetChip-B7E_TVk3.js               8.52 kB │ gzip:  3.64 kB
+dist/assets/NotesView-DMhn23IZ.js                9.47 kB │ gzip:  3.58 kB
+dist/assets/BookmarkImportSheet-CU80adC1.js      9.85 kB │ gzip:  3.56 kB
+dist/assets/SettingsPanel-DbmvtTGk.js           12.61 kB │ gzip:  4.53 kB
+dist/assets/EngineHealthCard-BdU8OlpM.js        12.99 kB │ gzip:  3.91 kB
+dist/assets/NoteEditor-Ce_Q-Zc3.js              14.01 kB │ gzip:  4.91 kB
+dist/assets/links-BKeh6alM.js                   17.28 kB │ gzip:  3.70 kB
+dist/assets/main-BMxohc4u.js                    19.15 kB │ gzip:  6.34 kB
+dist/assets/ModuleBody-DoMPTqyc.js              23.85 kB │ gzip:  8.46 kB
+dist/assets/sticky-BR9Ps1K7.js                  26.79 kB │ gzip:  8.25 kB
+dist/assets/SyncState-YtzwNl59.js               29.28 kB │ gzip:  7.20 kB
+dist/assets/TackSettings-B533_SS6.js            31.25 kB │ gzip:  9.14 kB
+dist/assets/DownloadSheetApp-BiJbPMjN.js        33.55 kB │ gzip: 10.05 kB
+dist/assets/island-BN6DQBXv.js                  57.70 kB │ gzip: 17.76 kB
+dist/assets/downloads-DiG5p9YE.js               94.26 kB │ gzip: 25.51 kB
+dist/assets/ProgressRing-CbnIVcid.js           138.33 kB │ gzip: 25.04 kB
+dist/assets/window-Bm8ZwSUP.js                 174.30 kB │ gzip: 52.45 kB
+✓ built in 4.64s
+
+> nabbit@0.1.0 verify:bundles
+> node scripts/verify-entry-bundles.mjs
+
+Verified four HTML entries. Island initial JS: 100,889 gzip bytes / 120,000; no settings, clipboard list, editor or app store imports.

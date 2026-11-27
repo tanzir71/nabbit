@@ -1,0 +1,161 @@
+{
+  "sessionId": "ca81a8a7-34d5-495f-a4b9-9b1b05c9cae0",
+  "figmaFile": "tBm7NNhh1Y9aTQPJ3WxY5v",
+  "nodes": [
+    "7:103",
+    "7:40"
+  ],
+  "assets": [
+    {
+      "file": "src/assets/island/c9ce9.svg",
+      "sha256": "fda4e6d372ae4bfeff73726044822deaee16e1a6cdaf355107ea2688a0b16fe0",
+      "freshMatchesExisting": true,
+      "width": 16.0,
+      "height": 16.0
+    },
+    {
+      "file": "src/assets/island/3ad41.svg",
+      "sha256": "70c131f3bd72213459e949c2bf694e199bfdccaa5fbdd08c593b37cd350ee95f",
+      "freshMatchesExisting": true,
+      "width": 8.0,
+      "height": 8.0
+    }
+  ],
+  "geometry": "Original mic16x16, dot8x8 in232x32 pill,16px radius,10px horizontal padding,8px gaps and12/16 regular Geist label. Existing split geometry remains260+6+32.",
+  "stateColors": "Mic uses the original amber SVG unchanged. Camera (including simultaneous mic+camera) uses the original dot silhouette/viewport with live signal/base lime paint, as the handoff requires: an SVG mask in CSS and a data-dependent fill on the parsed SVG document in Direct2D. Original SVG files remain byte-identical; no new path or resized asset. Both capabilities are named accessibly.",
+  "longNames": "Use all remaining label width before ellipsis and retain a full title tooltip. Peek lists actual names separately by capability using the existing shell; no new tab or device controls.",
+  "sourceReferences": [
+    "https://learn.microsoft.com/en-gb/windows/win32/api/winreg/nf-winreg-regnotifychangekeyvalue",
+    "https://learn.microsoft.com/windows/win32/api/appmodel/nf-appmodel-getpackagefamilyname",
+    "https://learn.microsoft.com/en-us/windows/win32/sync/unregisterwaitex"
+  ],
+  "referenceScope": "ConsentStore schema follows the supplied handoff and registry fixtures. Win32 documentation establishes notification re-arming, package identity and callback teardown. This is a best-effort activity indicator, not a hardware-security assertion.",
+  "visualComparison": {
+    "authoritative": "v55-privacy-d-screenshots.json",
+    "interim": "v55-privacy-c-screenshots.json",
+    "reviewed": [
+      "privacy-mic-light@1x",
+      "privacy-camera-dark@1.5x",
+      "privacy-long-dark@1x",
+      "privacy-peek-light@1x"
+    ],
+    "matched": "Fresh7:40 reference:232x32 capsule,16px mic,12/16 regular label,8px amber dot,10px padding and8px gaps; camera changes only state paint. Long titles use all remaining width and retain full tooltips. Existing split shell and compact/peek geometry are asserted.",
+    "colorPixelChecks": [
+      {
+        "file": "v55-privacy-d-privacy-mic-light@1x.png",
+        "limePixels": 0,
+        "amberPixels": 36
+      },
+      {
+        "file": "v55-privacy-d-privacy-camera-light@1x.png",
+        "limePixels": 36,
+        "amberPixels": 0
+      },
+      {
+        "file": "v55-privacy-d-privacy-both-light@1x.png",
+        "limePixels": 36,
+        "amberPixels": 0
+      },
+      {
+        "file": "v55-privacy-d-privacy-mic-light@1.5x.png",
+        "limePixels": 0,
+        "amberPixels": 88
+      },
+      {
+        "file": "v55-privacy-d-privacy-camera-light@1.5x.png",
+        "limePixels": 88,
+        "amberPixels": 0
+      },
+      {
+        "file": "v55-privacy-d-privacy-both-light@1.5x.png",
+        "limePixels": 88,
+        "amberPixels": 0
+      },
+      {
+        "file": "v55-privacy-d-privacy-mic-dark@1x.png",
+        "limePixels": 0,
+        "amberPixels": 36
+      },
+      {
+        "file": "v55-privacy-d-privacy-camera-dark@1x.png",
+        "limePixels": 36,
+        "amberPixels": 0
+      },
+      {
+        "file": "v55-privacy-d-privacy-both-dark@1x.png",
+        "limePixels": 36,
+        "amberPixels": 0
+      },
+      {
+        "file": "v55-privacy-d-privacy-mic-dark@1.5x.png",
+        "limePixels": 0,
+        "amberPixels": 88
+      },
+      {
+        "file": "v55-privacy-d-privacy-camera-dark@1.5x.png",
+        "limePixels": 88,
+        "amberPixels": 0
+      },
+      {
+        "file": "v55-privacy-d-privacy-both-dark@1.5x.png",
+        "limePixels": 88,
+        "amberPixels": 0
+      }
+    ],
+    "accessibility": "Default axe zero violations and incompletes across28 final exact-repeat captures. No rule exclusions or capture waivers."
+  },
+  "nativePixelAudit": [
+    {
+      "file": "v55-native-b-mic@1x.png",
+      "bodyAlpha128Bounds": [
+        244,
+        6,
+        476,
+        38
+      ],
+      "fullShadowAlphaBounds": [
+        219,
+        0,
+        502,
+        78
+      ],
+      "limePixels": 0,
+      "amberPixels": 32
+    },
+    {
+      "file": "v55-native-b-camera@1x.png",
+      "bodyAlpha128Bounds": [
+        244,
+        6,
+        476,
+        38
+      ],
+      "fullShadowAlphaBounds": [
+        219,
+        0,
+        502,
+        78
+      ],
+      "limePixels": 32,
+      "amberPixels": 0
+    },
+    {
+      "file": "v55-native-b-both@1x.png",
+      "bodyAlpha128Bounds": [
+        244,
+        6,
+        476,
+        38
+      ],
+      "fullShadowAlphaBounds": [
+        219,
+        0,
+        502,
+        78
+      ],
+      "limePixels": 32,
+      "amberPixels": 0
+    }
+  ],
+  "nativeAlphaMeasurement": "Original32%-opacity shadow extends beyond the232x32 body. Initial nonzero-alpha bounds measured shadow too. The >=128 body bounds separate the opaque/antialiased capsule from that shadow, which remains in the untouched capture; full bounds are also recorded."
+}

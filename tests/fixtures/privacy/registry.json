@@ -1,0 +1,17 @@
+{
+  "entries": [
+    {"capability":"microphone","key":"NonPackaged\\C:#Users#Fixture#AppData#Local#Microsoft#Teams#current#Teams.exe","lastUsedTimeStart":1000,"lastUsedTimeStop":0},
+    {"capability":"microphone","key":"Recorder_family!App","lastUsedTimeStart":1000,"lastUsedTimeStop":0},
+    {"capability":"camera","key":"VirtualCamera_family\\Device\\virtual0","lastUsedTimeStart":1000,"lastUsedTimeStop":0},
+    {"capability":"microphone","key":"NonPackaged\\C:#Apps#Crashed.exe","lastUsedTimeStart":1000,"lastUsedTimeStop":0},
+    {"capability":"camera","key":"NonPackaged\\C:#Apps#Teams.exe","lastUsedTimeStart":1000,"lastUsedTimeStop":0},
+    {"capability":"camera","key":"Recorder_family","lastUsedTimeStart":500,"lastUsedTimeStop":900}
+  ],
+  "processes": [
+    {"pid":42,"image":"C:\\Users\\Fixture\\AppData\\Local\\Microsoft\\Teams\\current\\Teams.exe","packageFamily":null,"displayName":"Microsoft Teams","createdAt":100,"alive":true},
+    {"pid":43,"image":"C:\\Program Files\\WindowsApps\\Recorder\\Recorder.exe","packageFamily":"Recorder_family","displayName":"Recorder","createdAt":100,"alive":true},
+    {"pid":44,"image":"C:\\Apps\\VirtualCamera.exe","packageFamily":"VirtualCamera_family","displayName":"Virtual Camera Host","createdAt":100,"alive":true},
+    {"pid":45,"image":"C:\\Apps\\Crashed.exe","packageFamily":null,"displayName":"Crashed","createdAt":100,"alive":false},
+    {"pid":46,"image":"C:\\Apps\\Teams.exe","packageFamily":null,"displayName":"Relaunched Teams","createdAt":1100,"alive":true}
+  ]
+}

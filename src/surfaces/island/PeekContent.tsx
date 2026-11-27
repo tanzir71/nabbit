@@ -159,6 +159,36 @@ function OtherPeekContent({
 }
 
 export function PeekContent(props: { item: ActivityItem; act: (intent: IslandIntent) => void }) {
+  if (props.item.event.kind === "privacyChanged") {
+    const { mic, camera } = props.item.event;
+    return (
+      <section className="island-peek-content" aria-label="Mic and camera activity">
+        <h1 className="island-sr-only">Mic and camera activity</h1>
+        <div className="island-row island-peek-header">
+          <IslandAsset name="iconMic" />
+          <div className="island-text-stack island-spacer">
+            <strong>
+              {mic.length && camera.length
+                ? "Microphone and camera in use"
+                : camera.length
+                  ? "Camera in use"
+                  : "Microphone in use"}
+            </strong>
+            {mic.length > 0 && (
+              <span className="island-muted" title={mic.join(", ")}>
+                Microphone · {mic.join(", ")}
+              </span>
+            )}
+            {camera.length > 0 && (
+              <span className="island-muted" title={camera.join(", ")}>
+                Camera · {camera.join(", ")}
+              </span>
+            )}
+          </div>
+        </div>
+      </section>
+    );
+  }
   if (["timerTick", "timerPaused", "timerEnded"].includes(props.item.event.kind))
     return <FocusTimer peek />;
   return props.item.event.kind === "mediaChanged" ? (

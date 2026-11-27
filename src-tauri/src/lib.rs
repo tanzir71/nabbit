@@ -8,6 +8,7 @@ mod island;
 pub mod media;
 mod notes;
 mod pins;
+pub mod privacy;
 mod retention;
 pub mod shelf;
 mod sticky;
@@ -114,6 +115,8 @@ pub fn run() {
             timer::timer_action,
             timer::timer_view,
             timer::timer_fixture,
+            privacy::privacy_snapshot,
+            privacy::privacy_fixture,
             media::media_snapshot,
             media::media_select,
             media::media_action,
@@ -280,6 +283,7 @@ pub fn run() {
                 activity_settings,
             ));
             app.manage(media::start(app.handle().clone()));
+            app.manage(privacy::start(app.handle().clone()));
             app.manage(timer::start(app.handle().clone(), db.clone())?);
             let downloads =
                 DownloadManager::new(db.clone(), app.handle().clone(), app_data_dir.clone());
@@ -428,6 +432,9 @@ pub fn run() {
                 }
                 if let Some(timer) = app.try_state::<Arc<timer::Service>>() {
                     timer.stop();
+                }
+                if let Some(privacy) = app.try_state::<Arc<privacy::Service>>() {
+                    privacy.stop();
                 }
                 if let Some(media) = app.try_state::<Arc<media::Service>>() {
                     media.stop();

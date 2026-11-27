@@ -1,0 +1,5722 @@
+{
+  "milestone": "M10",
+  "prefix": "v55-privacy-c",
+  "suite": "all",
+  "browser": "159.0.8154.6",
+  "playwright": "1.65.1",
+  "platform": "win32",
+  "node": "v24.22.2",
+  "captureTime": "2026-11-26T09:00:00.000Z",
+  "buildManifestSha256": "eccf6b1ed6bf63e7ba8c2236a18cd66df8052384cf071b2196a2c163862448a4",
+  "screenshotScale": "device",
+  "pngBudgetBytes": 307200,
+  "isolatedContexts": true,
+  "mockedIpc": true,
+  "osPreferencesChanged": false,
+  "captures": [
+    {
+      "file": "v55-privacy-c-privacy-mic-light@1x.png",
+      "scenario": "privacy-mic",
+      "entry": "island.html",
+      "figmaNode": "7:40",
+      "theme": "light",
+      "resolvedTheme": "dark",
+      "scale": 1,
+      "viewport": {
+        "width": 720,
+        "height": 460
+      },
+      "clip": {
+        "x": 244,
+        "y": 6,
+        "width": 232,
+        "height": 32
+      },
+      "width": 232,
+      "height": 32,
+      "bytes": 1913,
+      "sha256": "fb9c5641e71c6c85cd4d3a7fca65476f0bcc85ea176be1814f1f150473e1b111",
+      "repeatMatches": true,
+      "caret": "hide",
+      "font": [
+        {
+          "familyName": "Geist",
+          "postScriptName": "Geist",
+          "isCustomFont": true,
+          "glyphCount": 5
+        }
+      ],
+      "fixtureSha256": "982dd70a3c136180513c54d515a842a6063484ab5829c8006716fa8eb957796e",
+      "assertions": {
+        "mode": "mic",
+        "accessibility": {
+          "violations": [],
+          "incomplete": []
+        },
+        "geometry": {
+          "morph": {
+            "width": 232,
+            "height": 32,
+            "font": "12px / 16px Geist, \"Segoe UI Variable\", \"Segoe UI\", system-ui, sans-serif",
+            "gap": "normal",
+            "padding": "0px",
+            "bg": "rgb(5, 5, 6)",
+            "mask": "none",
+            "title": "",
+            "scrollWidth": 232
+          },
+          "compact": {
+            "width": 232,
+            "height": 32,
+            "font": "12px / 16px Geist, \"Segoe UI Variable\", \"Segoe UI\", system-ui, sans-serif",
+            "gap": "8px",
+            "padding": "0px 10px",
+            "bg": "rgb(5, 5, 6)",
+            "mask": "none",
+            "title": "",
+            "scrollWidth": 232
+          },
+          "label": {
+            "width": 82,
+            "height": 16,
+            "font": "12px / 16px Geist, \"Segoe UI Variable\", \"Segoe UI\", system-ui, sans-serif",
+            "gap": "normal",
+            "padding": "0px",
+            "bg": "rgba(0, 0, 0, 0)",
+            "mask": "none",
+            "title": "Teams",
+            "scrollWidth": 82
+          },
+          "dot": {
+            "width": 8,
+            "height": 8,
+            "font": "12px / 16px Geist, \"Segoe UI Variable\", \"Segoe UI\", system-ui, sans-serif",
+            "gap": "normal",
+            "padding": "0px",
+            "bg": "rgba(0, 0, 0, 0)",
+            "mask": "none",
+            "title": "",
+            "scrollWidth": 8
+          },
+          "camera": null,
+          "assets": [
+            {
+              "slot": "compact/iconMic",
+              "width": 16,
+              "height": 16,
+              "loaded": true
+            },
+            {
+              "slot": "compact/privacyDot",
+              "width": 8,
+              "height": 8,
+              "loaded": true
+            }
+          ],
+          "overflow": false
+        },
+        "noDevicesOrRealRegistry": true
+      },
+      "ipc": [
+        {
+          "command": "plugin:event|listen",
+          "args": {
+            "event": "nabbit://island-visibility",
+            "target": {
+              "kind": "Any"
+            },
+            "handler": 1
+          }
+        },
+        {
+          "command": "plugin:event|listen",
+          "args": {
+            "event": "nabbit://island",
+            "target": {
+              "kind": "Any"
+            },
+            "handler": 3
+          }
+        },
+        {
+          "command": "plugin:event|listen",
+          "args": {
+            "event": "nabbit://island-surface",
+            "target": {
+              "kind": "Any"
+            },
+            "handler": 5
+          }
+        },
+        {
+          "command": "plugin:event|listen",
+          "args": {
+            "event": "tauri://drag-enter",
+            "target": {
+              "kind": "WebviewWindow",
+              "label": "island"
+            },
+            "handler": 7
+          }
+        },
+        {
+          "command": "get_island_snapshot",
+          "args": {}
+        },
+        {
+          "command": "get_activity_snapshot",
+          "args": {}
+        },
+        {
+          "command": "get_island_surface",
+          "args": {}
+        },
+        {
+          "command": "plugin:event|listen",
+          "args": {
+            "event": "tauri://drag-over",
+            "target": {
+              "kind": "WebviewWindow",
+              "label": "island"
+            },
+            "handler": 9
+          }
+        },
+        {
+          "command": "plugin:event|listen",
+          "args": {
+            "event": "tauri://drag-drop",
+            "target": {
+              "kind": "WebviewWindow",
+              "label": "island"
+            },
+            "handler": 11
+          }
+        },
+        {
+          "command": "plugin:event|listen",
+          "args": {
+            "event": "tauri://drag-leave",
+            "target": {
+              "kind": "WebviewWindow",
+              "label": "island"
+            },
+            "handler": 13
+          }
+        },
+        {
+          "command": "island_set_hitrect",
+          "args": {
+            "rect": {
+              "x": 236,
+              "y": -2,
+              "w": 248,
+              "h": 48
+            }
+          }
+        },
+        {
+          "command": "island_surface_ack",
+          "args": {
+            "generation": 1
+          }
+        }
+      ],
+      "unsupported": [],
+      "runtimeAndNetworkProblems": []
+    },
+    {
+      "file": "v55-privacy-c-privacy-camera-light@1x.png",
+      "scenario": "privacy-camera",
+      "entry": "island.html",
+      "figmaNode": "7:40",
+      "theme": "light",
+      "resolvedTheme": "dark",
+      "scale": 1,
+      "viewport": {
+        "width": 720,
+        "height": 460
+      },
+      "clip": {
+        "x": 244,
+        "y": 6,
+        "width": 232,
+        "height": 32
+      },
+      "width": 232,
+      "height": 32,
+      "bytes": 2404,
+      "sha256": "c0f4891fa5dae4db38883cccc754d5ca90e5a346853ad299eb5450fbe1aeb381",
+      "repeatMatches": true,
+      "caret": "hide",
+      "font": [
+        {
+          "familyName": "Geist",
+          "postScriptName": "Geist",
+          "isCustomFont": true,
+          "glyphCount": 33
+        }
+      ],
+      "fixtureSha256": "d753c8fade967144b1666f1aef9712ceafefc2c808929728286ea09716c2a98c",
+      "assertions": {
+        "mode": "camera",
+        "accessibility": {
+          "violations": [],
+          "incomplete": []
+        },
+        "geometry": {
+          "morph": {
+            "width": 232,
+            "height": 32,
+            "font": "12px / 16px Geist, \"Segoe UI Variable\", \"Segoe UI\", system-ui, sans-serif",
+            "gap": "normal",
+            "padding": "0px",
+            "bg": "rgb(5, 5, 6)",
+            "mask": "none",
+            "title": "",
+            "scrollWidth": 232
+          },
+          "compact": {
+            "width": 232,
+            "height": 32,
+            "font": "12px / 16px Geist, \"Segoe UI Variable\", \"Segoe UI\", system-ui, sans-serif",
+            "gap": "8px",
+            "padding": "0px 10px",
+            "bg": "rgb(5, 5, 6)",
+            "mask": "none",
+            "title": "",
+            "scrollWidth": 232
+          },
+          "label": {
+            "width": 82,
+            "height": 16,
+            "font": "12px / 16px Geist, \"Segoe UI Variable\", \"Segoe UI\", system-ui, sans-serif",
+            "gap": "normal",
+            "padding": "0px",
+            "bg": "rgba(0, 0, 0, 0)",
+            "mask": "none",
+            "title": "Virtual Camera Host",
+            "scrollWidth": 110
+          },
+          "dot": {
+            "width": 8,
+            "height": 8,
+            "font": "12px / 16px Geist, \"Segoe UI Variable\", \"Segoe UI\", system-ui, sans-serif",
+            "gap": "normal",
+            "padding": "0px",
+            "bg": "rgba(0, 0, 0, 0)",
+            "mask": "none",
+            "title": "",
+            "scrollWidth": 8
+          },
+          "camera": {
+            "width": 8,
+            "height": 8,
+            "font": "12px / 16px Geist, \"Segoe UI Variable\", \"Segoe UI\", system-ui, sans-serif",
+            "gap": "normal",
+            "padding": "0px",
+            "bg": "rgb(198, 242, 78)",
+            "mask": "url(\"data:image/svg+xml,%3csvg%20preserveAspectRatio='none'%20overflow='visible'%20style='display:%20block;'%20width='8'%20height='8'%20viewBox='0%200%208%208'%20fill='none'%20xmlns='http://www.w3.org/2000/svg'%3e%3ccircle%20id='Privacy%20dot'%20cx='4'%20cy='4'%20r='4'%20fill='%23A86200'/%3e%3c/svg%3e\")",
+            "title": "",
+            "scrollWidth": 8
+          },
+          "assets": [
+            {
+              "slot": "compact/iconMic",
+              "width": 16,
+              "height": 16,
+              "loaded": true
+            }
+          ],
+          "overflow": false
+        },
+        "noDevicesOrRealRegistry": true
+      },
+      "ipc": [
+        {
+          "command": "plugin:event|listen",
+          "args": {
+            "event": "nabbit://island-visibility",
+            "target": {
+              "kind": "Any"
+            },
+            "handler": 1
+          }
+        },
+        {
+          "command": "plugin:event|listen",
+          "args": {
+            "event": "nabbit://island",
+            "target": {
+              "kind": "Any"
+            },
+            "handler": 3
+          }
+        },
+        {
+          "command": "plugin:event|listen",
+          "args": {
+            "event": "nabbit://island-surface",
+            "target": {
+              "kind": "Any"
+            },
+            "handler": 5
+          }
+        },
+        {
+          "command": "plugin:event|listen",
+          "args": {
+            "event": "tauri://drag-enter",
+            "target": {
+              "kind": "WebviewWindow",
+              "label": "island"
+            },
+            "handler": 7
+          }
+        },
+        {
+          "command": "get_island_snapshot",
+          "args": {}
+        },
+        {
+          "command": "get_activity_snapshot",
+          "args": {}
+        },
+        {
+          "command": "get_island_surface",
+          "args": {}
+        },
+        {
+          "command": "plugin:event|listen",
+          "args": {
+            "event": "tauri://drag-over",
+            "target": {
+              "kind": "WebviewWindow",
+              "label": "island"
+            },
+            "handler": 9
+          }
+        },
+        {
+          "command": "plugin:event|listen",
+          "args": {
+            "event": "tauri://drag-drop",
+            "target": {
+              "kind": "WebviewWindow",
+              "label": "island"
+            },
+            "handler": 11
+          }
+        },
+        {
+          "command": "plugin:event|listen",
+          "args": {
+            "event": "tauri://drag-leave",
+            "target": {
+              "kind": "WebviewWindow",
+              "label": "island"
+            },
+            "handler": 13
+          }
+        },
+        {
+          "command": "island_set_hitrect",
+          "args": {
+            "rect": {
+              "x": 236,
+              "y": -2,
+              "w": 248,
+              "h": 48
+            }
+          }
+        },
+        {
+          "command": "island_surface_ack",
+          "args": {
+            "generation": 1
+          }
+        }
+      ],
+      "unsupported": [],
+      "runtimeAndNetworkProblems": []
+    },
+    {
+      "file": "v55-privacy-c-privacy-both-light@1x.png",
+      "scenario": "privacy-both",
+      "entry": "island.html",
+      "figmaNode": "7:40",
+      "theme": "light",
+      "resolvedTheme": "dark",
+      "scale": 1,
+      "viewport": {
+        "width": 720,
+        "height": 460
+      },
+      "clip": {
+        "x": 244,
+        "y": 6,
+        "width": 232,
+        "height": 32
+      },
+      "width": 232,
+      "height": 32,
+      "bytes": 2579,
+      "sha256": "7597e36211d3e94c6a5d058c003a44751949297654eda07b43b655b73fb0d938",
+      "repeatMatches": true,
+      "caret": "hide",
+      "font": [
+        {
+          "familyName": "Geist",
+          "postScriptName": "Geist",
+          "isCustomFont": true,
+          "glyphCount": 40
+        }
+      ],
+      "fixtureSha256": "d5375b414f649bac98debf4e19ec81b4f56e607aa139230640c9153d8cf9cd49",
+      "assertions": {
+        "mode": "both",
+        "accessibility": {
+          "violations": [],
+          "incomplete": []
+        },
+        "geometry": {
+          "morph": {
+            "width": 232,
+            "height": 32,
+            "font": "12px / 16px Geist, \"Segoe UI Variable\", \"Segoe UI\", system-ui, sans-serif",
+            "gap": "normal",
+            "padding": "0px",
+            "bg": "rgb(5, 5, 6)",
+            "mask": "none",
+            "title": "",
+            "scrollWidth": 232
+          },
+          "compact": {
+            "width": 232,
+            "height": 32,
+            "font": "12px / 16px Geist, \"Segoe UI Variable\", \"Segoe UI\", system-ui, sans-serif",
+            "gap": "8px",
+            "padding": "0px 10px",
+            "bg": "rgb(5, 5, 6)",
+            "mask": "none",
+            "title": "",
+            "scrollWidth": 232
+          },
+          "label": {
+            "width": 82,
+            "height": 16,
+            "font": "12px / 16px Geist, \"Segoe UI Variable\", \"Segoe UI\", system-ui, sans-serif",
+            "gap": "normal",
+            "padding": "0px",
+            "bg": "rgba(0, 0, 0, 0)",
+            "mask": "none",
+            "title": "Teams, Virtual Camera Host",
+            "scrollWidth": 151
+          },
+          "dot": {
+            "width": 8,
+            "height": 8,
+            "font": "12px / 16px Geist, \"Segoe UI Variable\", \"Segoe UI\", system-ui, sans-serif",
+            "gap": "normal",
+            "padding": "0px",
+            "bg": "rgba(0, 0, 0, 0)",
+            "mask": "none",
+            "title": "",
+            "scrollWidth": 8
+          },
+          "camera": {
+            "width": 8,
+            "height": 8,
+            "font": "12px / 16px Geist, \"Segoe UI Variable\", \"Segoe UI\", system-ui, sans-serif",
+            "gap": "normal",
+            "padding": "0px",
+            "bg": "rgb(198, 242, 78)",
+            "mask": "url(\"data:image/svg+xml,%3csvg%20preserveAspectRatio='none'%20overflow='visible'%20style='display:%20block;'%20width='8'%20height='8'%20viewBox='0%200%208%208'%20fill='none'%20xmlns='http://www.w3.org/2000/svg'%3e%3ccircle%20id='Privacy%20dot'%20cx='4'%20cy='4'%20r='4'%20fill='%23A86200'/%3e%3c/svg%3e\")",
+            "title": "",
+            "scrollWidth": 8
+          },
+          "assets": [
+            {
+              "slot": "compact/iconMic",
+              "width": 16,
+              "height": 16,
+              "loaded": true
+            }
+          ],
+          "overflow": false
+        },
+        "noDevicesOrRealRegistry": true
+      },
+      "ipc": [
+        {
+          "command": "plugin:event|listen",
+          "args": {
+            "event": "nabbit://island-visibility",
+            "target": {
+              "kind": "Any"
+            },
+            "handler": 1
+          }
+        },
+        {
+          "command": "plugin:event|listen",
+          "args": {
+            "event": "nabbit://island",
+            "target": {
+              "kind": "Any"
+            },
+            "handler": 3
+          }
+        },
+        {
+          "command": "plugin:event|listen",
+          "args": {
+            "event": "nabbit://island-surface",
+            "target": {
+              "kind": "Any"
+            },
+            "handler": 5
+          }
+        },
+        {
+          "command": "plugin:event|listen",
+          "args": {
+            "event": "tauri://drag-enter",
+            "target": {
+              "kind": "WebviewWindow",
+              "label": "island"
+            },
+            "handler": 7
+          }
+        },
+        {
+          "command": "get_island_snapshot",
+          "args": {}
+        },
+        {
+          "command": "get_activity_snapshot",
+          "args": {}
+        },
+        {
+          "command": "get_island_surface",
+          "args": {}
+        },
+        {
+          "command": "plugin:event|listen",
+          "args": {
+            "event": "tauri://drag-over",
+            "target": {
+              "kind": "WebviewWindow",
+              "label": "island"
+            },
+            "handler": 9
+          }
+        },
+        {
+          "command": "plugin:event|listen",
+          "args": {
+            "event": "tauri://drag-drop",
+            "target": {
+              "kind": "WebviewWindow",
+              "label": "island"
+            },
+            "handler": 11
+          }
+        },
+        {
+          "command": "plugin:event|listen",
+          "args": {
+            "event": "tauri://drag-leave",
+            "target": {
+              "kind": "WebviewWindow",
+              "label": "island"
+            },
+            "handler": 13
+          }
+        },
+        {
+          "command": "island_set_hitrect",
+          "args": {
+            "rect": {
+              "x": 236,
+              "y": -2,
+              "w": 248,
+              "h": 48
+            }
+          }
+        },
+        {
+          "command": "island_surface_ack",
+          "args": {
+            "generation": 1
+          }
+        }
+      ],
+      "unsupported": [],
+      "runtimeAndNetworkProblems": []
+    },
+    {
+      "file": "v55-privacy-c-privacy-long-light@1x.png",
+      "scenario": "privacy-long",
+      "entry": "island.html",
+      "figmaNode": "7:40",
+      "theme": "light",
+      "resolvedTheme": "dark",
+      "scale": 1,
+      "viewport": {
+        "width": 720,
+        "height": 460
+      },
+      "clip": {
+        "x": 244,
+        "y": 6,
+        "width": 232,
+        "height": 32
+      },
+      "width": 232,
+      "height": 32,
+      "bytes": 2472,
+      "sha256": "1a567b9407fb86387efad2490816b883fa9dffe7efd7ccf8e361199b24de96bc",
+      "repeatMatches": true,
+      "caret": "hide",
+      "font": [
+        {
+          "familyName": "Geist",
+          "postScriptName": "Geist",
+          "isCustomFont": true,
+          "glyphCount": 72
+        }
+      ],
+      "fixtureSha256": "d0ab662e170a8395b912121171e23cdf56507ba4f16f9c4b7813b9d987f3333f",
+      "assertions": {
+        "mode": "long",
+        "accessibility": {
+          "violations": [],
+          "incomplete": []
+        },
+        "geometry": {
+          "morph": {
+            "width": 232,
+            "height": 32,
+            "font": "12px / 16px Geist, \"Segoe UI Variable\", \"Segoe UI\", system-ui, sans-serif",
+            "gap": "normal",
+            "padding": "0px",
+            "bg": "rgb(5, 5, 6)",
+            "mask": "none",
+            "title": "",
+            "scrollWidth": 232
+          },
+          "compact": {
+            "width": 232,
+            "height": 32,
+            "font": "12px / 16px Geist, \"Segoe UI Variable\", \"Segoe UI\", system-ui, sans-serif",
+            "gap": "8px",
+            "padding": "0px 10px",
+            "bg": "rgb(5, 5, 6)",
+            "mask": "none",
+            "title": "",
+            "scrollWidth": 232
+          },
+          "label": {
+            "width": 82,
+            "height": 16,
+            "font": "12px / 16px Geist, \"Segoe UI Variable\", \"Segoe UI\", system-ui, sans-serif",
+            "gap": "normal",
+            "padding": "0px",
+            "bg": "rgba(0, 0, 0, 0)",
+            "mask": "none",
+            "title": "An application with a very long descriptive name, Recorder",
+            "scrollWidth": 320
+          },
+          "dot": {
+            "width": 8,
+            "height": 8,
+            "font": "12px / 16px Geist, \"Segoe UI Variable\", \"Segoe UI\", system-ui, sans-serif",
+            "gap": "normal",
+            "padding": "0px",
+            "bg": "rgba(0, 0, 0, 0)",
+            "mask": "none",
+            "title": "",
+            "scrollWidth": 8
+          },
+          "camera": null,
+          "assets": [
+            {
+              "slot": "compact/iconMic",
+              "width": 16,
+              "height": 16,
+              "loaded": true
+            },
+            {
+              "slot": "compact/privacyDot",
+              "width": 8,
+              "height": 8,
+              "loaded": true
+            }
+          ],
+          "overflow": false
+        },
+        "noDevicesOrRealRegistry": true
+      },
+      "ipc": [
+        {
+          "command": "plugin:event|listen",
+          "args": {
+            "event": "nabbit://island-visibility",
+            "target": {
+              "kind": "Any"
+            },
+            "handler": 1
+          }
+        },
+        {
+          "command": "plugin:event|listen",
+          "args": {
+            "event": "nabbit://island",
+            "target": {
+              "kind": "Any"
+            },
+            "handler": 3
+          }
+        },
+        {
+          "command": "plugin:event|listen",
+          "args": {
+            "event": "nabbit://island-surface",
+            "target": {
+              "kind": "Any"
+            },
+            "handler": 5
+          }
+        },
+        {
+          "command": "plugin:event|listen",
+          "args": {
+            "event": "tauri://drag-enter",
+            "target": {
+              "kind": "WebviewWindow",
+              "label": "island"
+            },
+            "handler": 7
+          }
+        },
+        {
+          "command": "get_island_snapshot",
+          "args": {}
+        },
+        {
+          "command": "get_activity_snapshot",
+          "args": {}
+        },
+        {
+          "command": "get_island_surface",
+          "args": {}
+        },
+        {
+          "command": "plugin:event|listen",
+          "args": {
+            "event": "tauri://drag-over",
+            "target": {
+              "kind": "WebviewWindow",
+              "label": "island"
+            },
+            "handler": 9
+          }
+        },
+        {
+          "command": "plugin:event|listen",
+          "args": {
+            "event": "tauri://drag-drop",
+            "target": {
+              "kind": "WebviewWindow",
+              "label": "island"
+            },
+            "handler": 11
+          }
+        },
+        {
+          "command": "plugin:event|listen",
+          "args": {
+            "event": "tauri://drag-leave",
+            "target": {
+              "kind": "WebviewWindow",
+              "label": "island"
+            },
+            "handler": 13
+          }
+        },
+        {
+          "command": "island_set_hitrect",
+          "args": {
+            "rect": {
+              "x": 236,
+              "y": -2,
+              "w": 248,
+              "h": 48
+            }
+          }
+        },
+        {
+          "command": "island_surface_ack",
+          "args": {
+            "generation": 1
+          }
+        }
+      ],
+      "unsupported": [],
+      "runtimeAndNetworkProblems": []
+    },
+    {
+      "file": "v55-privacy-c-privacy-split-light@1x.png",
+      "scenario": "privacy-split",
+      "entry": "island.html",
+      "figmaNode": "7:40",
+      "theme": "light",
+      "resolvedTheme": "dark",
+      "scale": 1,
+      "viewport": {
+        "width": 720,
+        "height": 460
+      },
+      "clip": {
+        "x": 211,
+        "y": 6,
+        "width": 298,
+        "height": 32
+      },
+      "width": 298,
+      "height": 32,
+      "bytes": 3056,
+      "sha256": "b9a8931d60d3bef49dc8288b3644053ed52069d0ffc96631781ff49c6624c40b",
+      "repeatMatches": true,
+      "caret": "hide",
+      "font": [
+        {
+          "familyName": "Geist",
+          "postScriptName": "Geist",
+          "isCustomFont": true,
+          "glyphCount": 5
+        }
+      ],
+      "fixtureSha256": "f69f82da97c9a60c8f45cb2485cb6552c1e2a3e988ed0f672b1955845b2c9a8b",
+      "assertions": {
+        "mode": "split",
+        "accessibility": {
+          "violations": [],
+          "incomplete": []
+        },
+        "geometry": {
+          "morph": {
+            "width": 298,
+            "height": 32,
+            "font": "12px / 16px Geist, \"Segoe UI Variable\", \"Segoe UI\", system-ui, sans-serif",
+            "gap": "normal",
+            "padding": "0px",
+            "bg": "rgba(0, 0, 0, 0)",
+            "mask": "none",
+            "title": "",
+            "scrollWidth": 298
+          },
+          "compact": {
+            "width": 260,
+            "height": 32,
+            "font": "12px / 16px Geist, \"Segoe UI Variable\", \"Segoe UI\", system-ui, sans-serif",
+            "gap": "8px",
+            "padding": "0px 10px",
+            "bg": "rgb(5, 5, 6)",
+            "mask": "none",
+            "title": "",
+            "scrollWidth": 260
+          },
+          "label": {
+            "width": 96,
+            "height": 16,
+            "font": "12px / 16px Geist, \"Segoe UI Variable\", \"Segoe UI\", system-ui, sans-serif",
+            "gap": "normal",
+            "padding": "0px",
+            "bg": "rgba(0, 0, 0, 0)",
+            "mask": "none",
+            "title": "Teams",
+            "scrollWidth": 96
+          },
+          "dot": {
+            "width": 8,
+            "height": 8,
+            "font": "12px / 16px Geist, \"Segoe UI Variable\", \"Segoe UI\", system-ui, sans-serif",
+            "gap": "normal",
+            "padding": "0px",
+            "bg": "rgba(0, 0, 0, 0)",
+            "mask": "none",
+            "title": "",
+            "scrollWidth": 8
+          },
+          "camera": null,
+          "assets": [
+            {
+              "slot": "compact/iconMic",
+              "width": 16,
+              "height": 16,
+              "loaded": true
+            },
+            {
+              "slot": "compact/privacyDot",
+              "width": 8,
+              "height": 8,
+              "loaded": true
+            },
+            {
+              "slot": "compact/iconTimer1",
+              "width": 15,
+              "height": 15,
+              "loaded": true
+            }
+          ],
+          "overflow": false
+        },
+        "noDevicesOrRealRegistry": true
+      },
+      "ipc": [
+        {
+          "command": "plugin:event|listen",
+          "args": {
+            "event": "nabbit://island-visibility",
+            "target": {
+              "kind": "Any"
+            },
+            "handler": 1
+          }
+        },
+        {
+          "command": "plugin:event|listen",
+          "args": {
+            "event": "nabbit://island",
+            "target": {
+              "kind": "Any"
+            },
+            "handler": 3
+          }
+        },
+        {
+          "command": "plugin:event|listen",
+          "args": {
+            "event": "nabbit://island-surface",
+            "target": {
+              "kind": "Any"
+            },
+            "handler": 5
+          }
+        },
+        {
+          "command": "plugin:event|listen",
+          "args": {
+            "event": "tauri://drag-enter",
+            "target": {
+              "kind": "WebviewWindow",
+              "label": "island"
+            },
+            "handler": 7
+          }
+        },
+        {
+          "command": "get_island_snapshot",
+          "args": {}
+        },
+        {
+          "command": "get_activity_snapshot",
+          "args": {}
+        },
+        {
+          "command": "get_island_surface",
+          "args": {}
+        },
+        {
+          "command": "plugin:event|listen",
+          "args": {
+            "event": "tauri://drag-over",
+            "target": {
+              "kind": "WebviewWindow",
+              "label": "island"
+            },
+            "handler": 9
+          }
+        },
+        {
+          "command": "plugin:event|listen",
+          "args": {
+            "event": "tauri://drag-drop",
+            "target": {
+              "kind": "WebviewWindow",
+              "label": "island"
+            },
+            "handler": 11
+          }
+        },
+        {
+          "command": "plugin:event|listen",
+          "args": {
+            "event": "tauri://drag-leave",
+            "target": {
+              "kind": "WebviewWindow",
+              "label": "island"
+            },
+            "handler": 13
+          }
+        },
+        {
+          "command": "island_set_hitrect",
+          "args": {
+            "rect": {
+              "x": 203,
+              "y": -2,
+              "w": 314,
+              "h": 48
+            }
+          }
+        },
+        {
+          "command": "island_surface_ack",
+          "args": {
+            "generation": 1
+          }
+        }
+      ],
+      "unsupported": [],
+      "runtimeAndNetworkProblems": []
+    },
+    {
+      "file": "v55-privacy-c-privacy-peek-light@1x.png",
+      "scenario": "privacy-peek",
+      "entry": "island.html",
+      "figmaNode": "7:40",
+      "theme": "light",
+      "resolvedTheme": "dark",
+      "scale": 1,
+      "viewport": {
+        "width": 720,
+        "height": 460
+      },
+      "clip": {
+        "x": 160,
+        "y": 6,
+        "width": 400,
+        "height": 78
+      },
+      "width": 400,
+      "height": 78,
+      "bytes": 7695,
+      "sha256": "f91bfd76c86751b7b39873293bcb10e64a866f0cdde518bb4bafc8fba7342fcf",
+      "repeatMatches": true,
+      "caret": "hide",
+      "font": [
+        {
+          "familyName": "Geist",
+          "postScriptName": "Geist",
+          "isCustomFont": true,
+          "glyphCount": 28
+        }
+      ],
+      "fixtureSha256": "cd61c921afb418ce007426038af1c4392884e603f19c77387fe3c454e1a52f5d",
+      "assertions": {
+        "mode": "peek",
+        "accessibility": {
+          "violations": [],
+          "incomplete": []
+        },
+        "geometry": {
+          "morph": {
+            "width": 400,
+            "height": 78,
+            "font": "12px / 16px Geist, \"Segoe UI Variable\", \"Segoe UI\", system-ui, sans-serif",
+            "gap": "normal",
+            "padding": "0px",
+            "bg": "rgb(5, 5, 6)",
+            "mask": "none",
+            "title": "",
+            "scrollWidth": 400
+          },
+          "compact": null,
+          "label": null,
+          "dot": null,
+          "camera": null,
+          "assets": [
+            {
+              "slot": "compact/iconMic",
+              "width": 16,
+              "height": 16,
+              "loaded": true
+            }
+          ],
+          "overflow": false
+        },
+        "noDevicesOrRealRegistry": true
+      },
+      "ipc": [
+        {
+          "command": "plugin:event|listen",
+          "args": {
+            "event": "nabbit://island-visibility",
+            "target": {
+              "kind": "Any"
+            },
+            "handler": 1
+          }
+        },
+        {
+          "command": "plugin:event|listen",
+          "args": {
+            "event": "nabbit://island",
+            "target": {
+              "kind": "Any"
+            },
+            "handler": 3
+          }
+        },
+        {
+          "command": "plugin:event|listen",
+          "args": {
+            "event": "nabbit://island-surface",
+            "target": {
+              "kind": "Any"
+            },
+            "handler": 5
+          }
+        },
+        {
+          "command": "plugin:event|listen",
+          "args": {
+            "event": "tauri://drag-enter",
+            "target": {
+              "kind": "WebviewWindow",
+              "label": "island"
+            },
+            "handler": 7
+          }
+        },
+        {
+          "command": "get_island_snapshot",
+          "args": {}
+        },
+        {
+          "command": "get_activity_snapshot",
+          "args": {}
+        },
+        {
+          "command": "get_island_surface",
+          "args": {}
+        },
+        {
+          "command": "plugin:event|listen",
+          "args": {
+            "event": "tauri://drag-over",
+            "target": {
+              "kind": "WebviewWindow",
+              "label": "island"
+            },
+            "handler": 9
+          }
+        },
+        {
+          "command": "plugin:event|listen",
+          "args": {
+            "event": "tauri://drag-drop",
+            "target": {
+              "kind": "WebviewWindow",
+              "label": "island"
+            },
+            "handler": 11
+          }
+        },
+        {
+          "command": "plugin:event|listen",
+          "args": {
+            "event": "tauri://drag-leave",
+            "target": {
+              "kind": "WebviewWindow",
+              "label": "island"
+            },
+            "handler": 13
+          }
+        },
+        {
+          "command": "island_set_hitrect",
+          "args": {
+            "rect": {
+              "x": 152,
+              "y": -2,
+              "w": 416,
+              "h": 48
+            }
+          }
+        },
+        {
+          "command": "island_set_hitrect",
+          "args": {
+            "rect": {
+              "x": 152,
+              "y": -2,
+              "w": 416,
+              "h": 94
+            }
+          }
+        },
+        {
+          "command": "island_surface_ack",
+          "args": {
+            "generation": 1
+          }
+        }
+      ],
+      "unsupported": [],
+      "runtimeAndNetworkProblems": []
+    },
+    {
+      "file": "v55-privacy-c-privacy-off-light@1x.png",
+      "scenario": "privacy-off",
+      "entry": "island.html",
+      "figmaNode": "7:40",
+      "theme": "light",
+      "resolvedTheme": "dark",
+      "scale": 1,
+      "viewport": {
+        "width": 720,
+        "height": 460
+      },
+      "clip": {
+        "x": 304,
+        "y": 6,
+        "width": 112,
+        "height": 26
+      },
+      "width": 112,
+      "height": 26,
+      "bytes": 611,
+      "sha256": "9b44da37e4613490d14d24fdf991d17024161b89d34e6dfd544b1506731f38d3",
+      "repeatMatches": true,
+      "caret": "hide",
+      "font": null,
+      "fixtureSha256": "eb648ec409eb4f450a8474d5d273d6189ccdaf386d1756d680d960d6e840a3ca",
+      "assertions": {
+        "mode": "off",
+        "accessibility": {
+          "violations": [],
+          "incomplete": []
+        },
+        "geometry": {
+          "morph": {
+            "width": 112,
+            "height": 26,
+            "font": "12px / 16px Geist, \"Segoe UI Variable\", \"Segoe UI\", system-ui, sans-serif",
+            "gap": "normal",
+            "padding": "0px",
+            "bg": "rgb(5, 5, 6)",
+            "mask": "none",
+            "title": "",
+            "scrollWidth": 112
+          },
+          "compact": {
+            "width": 112,
+            "height": 26,
+            "font": "12px / 16px Geist, \"Segoe UI Variable\", \"Segoe UI\", system-ui, sans-serif",
+            "gap": "8px",
+            "padding": "0px 10px",
+            "bg": "rgb(5, 5, 6)",
+            "mask": "none",
+            "title": "",
+            "scrollWidth": 112
+          },
+          "label": null,
+          "dot": null,
+          "camera": null,
+          "assets": [],
+          "overflow": false
+        },
+        "noDevicesOrRealRegistry": true
+      },
+      "ipc": [
+        {
+          "command": "plugin:event|listen",
+          "args": {
+            "event": "nabbit://island-visibility",
+            "target": {
+              "kind": "Any"
+            },
+            "handler": 1
+          }
+        },
+        {
+          "command": "plugin:event|listen",
+          "args": {
+            "event": "nabbit://island",
+            "target": {
+              "kind": "Any"
+            },
+            "handler": 3
+          }
+        },
+        {
+          "command": "plugin:event|listen",
+          "args": {
+            "event": "nabbit://island-surface",
+            "target": {
+              "kind": "Any"
+            },
+            "handler": 5
+          }
+        },
+        {
+          "command": "plugin:event|listen",
+          "args": {
+            "event": "tauri://drag-enter",
+            "target": {
+              "kind": "WebviewWindow",
+              "label": "island"
+            },
+            "handler": 7
+          }
+        },
+        {
+          "command": "get_island_snapshot",
+          "args": {}
+        },
+        {
+          "command": "get_activity_snapshot",
+          "args": {}
+        },
+        {
+          "command": "get_island_surface",
+          "args": {}
+        },
+        {
+          "command": "plugin:event|listen",
+          "args": {
+            "event": "tauri://drag-over",
+            "target": {
+              "kind": "WebviewWindow",
+              "label": "island"
+            },
+            "handler": 9
+          }
+        },
+        {
+          "command": "plugin:event|listen",
+          "args": {
+            "event": "tauri://drag-drop",
+            "target": {
+              "kind": "WebviewWindow",
+              "label": "island"
+            },
+            "handler": 11
+          }
+        },
+        {
+          "command": "plugin:event|listen",
+          "args": {
+            "event": "tauri://drag-leave",
+            "target": {
+              "kind": "WebviewWindow",
+              "label": "island"
+            },
+            "handler": 13
+          }
+        },
+        {
+          "command": "island_set_hitrect",
+          "args": {
+            "rect": {
+              "x": 296,
+              "y": -2,
+              "w": 128,
+              "h": 42
+            }
+          }
+        },
+        {
+          "command": "island_surface_ack",
+          "args": {
+            "generation": 1
+          }
+        }
+      ],
+      "unsupported": [],
+      "runtimeAndNetworkProblems": []
+    },
+    {
+      "file": "v55-privacy-c-privacy-mic-light@1.5x.png",
+      "scenario": "privacy-mic",
+      "entry": "island.html",
+      "figmaNode": "7:40",
+      "theme": "light",
+      "resolvedTheme": "dark",
+      "scale": 1.5,
+      "viewport": {
+        "width": 720,
+        "height": 460
+      },
+      "clip": {
+        "x": 244,
+        "y": 6,
+        "width": 232,
+        "height": 32
+      },
+      "width": 348,
+      "height": 48,
+      "bytes": 3150,
+      "sha256": "c42d79ae5790408e0ee19feae7a97f17ef190edab3d327d5410fa603f42a214f",
+      "repeatMatches": true,
+      "caret": "hide",
+      "font": [
+        {
+          "familyName": "Geist",
+          "postScriptName": "Geist",
+          "isCustomFont": true,
+          "glyphCount": 5
+        }
+      ],
+      "fixtureSha256": "982dd70a3c136180513c54d515a842a6063484ab5829c8006716fa8eb957796e",
+      "assertions": {
+        "mode": "mic",
+        "accessibility": {
+          "violations": [],
+          "incomplete": []
+        },
+        "geometry": {
+          "morph": {
+            "width": 232,
+            "height": 32,
+            "font": "12px / 16px Geist, \"Segoe UI Variable\", \"Segoe UI\", system-ui, sans-serif",
+            "gap": "normal",
+            "padding": "0px",
+            "bg": "rgb(5, 5, 6)",
+            "mask": "none",
+            "title": "",
+            "scrollWidth": 232
+          },
+          "compact": {
+            "width": 232,
+            "height": 32,
+            "font": "12px / 16px Geist, \"Segoe UI Variable\", \"Segoe UI\", system-ui, sans-serif",
+            "gap": "8px",
+            "padding": "0px 10px",
+            "bg": "rgb(5, 5, 6)",
+            "mask": "none",
+            "title": "",
+            "scrollWidth": 232
+          },
+          "label": {
+            "width": 82,
+            "height": 16,
+            "font": "12px / 16px Geist, \"Segoe UI Variable\", \"Segoe UI\", system-ui, sans-serif",
+            "gap": "normal",
+            "padding": "0px",
+            "bg": "rgba(0, 0, 0, 0)",
+            "mask": "none",
+            "title": "Teams",
+            "scrollWidth": 82
+          },
+          "dot": {
+            "width": 8,
+            "height": 8,
+            "font": "12px / 16px Geist, \"Segoe UI Variable\", \"Segoe UI\", system-ui, sans-serif",
+            "gap": "normal",
+            "padding": "0px",
+            "bg": "rgba(0, 0, 0, 0)",
+            "mask": "none",
+            "title": "",
+            "scrollWidth": 8
+          },
+          "camera": null,
+          "assets": [
+            {
+              "slot": "compact/iconMic",
+              "width": 16,
+              "height": 16,
+              "loaded": true
+            },
+            {
+              "slot": "compact/privacyDot",
+              "width": 8,
+              "height": 8,
+              "loaded": true
+            }
+          ],
+          "overflow": false
+        },
+        "noDevicesOrRealRegistry": true
+      },
+      "ipc": [
+        {
+          "command": "plugin:event|listen",
+          "args": {
+            "event": "nabbit://island-visibility",
+            "target": {
+              "kind": "Any"
+            },
+            "handler": 1
+          }
+        },
+        {
+          "command": "plugin:event|listen",
+          "args": {
+            "event": "nabbit://island",
+            "target": {
+              "kind": "Any"
+            },
+            "handler": 3
+          }
+        },
+        {
+          "command": "plugin:event|listen",
+          "args": {
+            "event": "nabbit://island-surface",
+            "target": {
+              "kind": "Any"
+            },
+            "handler": 5
+          }
+        },
+        {
+          "command": "plugin:event|listen",
+          "args": {
+            "event": "tauri://drag-enter",
+            "target": {
+              "kind": "WebviewWindow",
+              "label": "island"
+            },
+            "handler": 7
+          }
+        },
+        {
+          "command": "get_island_snapshot",
+          "args": {}
+        },
+        {
+          "command": "get_activity_snapshot",
+          "args": {}
+        },
+        {
+          "command": "get_island_surface",
+          "args": {}
+        },
+        {
+          "command": "plugin:event|listen",
+          "args": {
+            "event": "tauri://drag-over",
+            "target": {
+              "kind": "WebviewWindow",
+              "label": "island"
+            },
+            "handler": 9
+          }
+        },
+        {
+          "command": "plugin:event|listen",
+          "args": {
+            "event": "tauri://drag-drop",
+            "target": {
+              "kind": "WebviewWindow",
+              "label": "island"
+            },
+            "handler": 11
+          }
+        },
+        {
+          "command": "plugin:event|listen",
+          "args": {
+            "event": "tauri://drag-leave",
+            "target": {
+              "kind": "WebviewWindow",
+              "label": "island"
+            },
+            "handler": 13
+          }
+        },
+        {
+          "command": "island_set_hitrect",
+          "args": {
+            "rect": {
+              "x": 236,
+              "y": -2,
+              "w": 248,
+              "h": 48
+            }
+          }
+        },
+        {
+          "command": "island_surface_ack",
+          "args": {
+            "generation": 1
+          }
+        }
+      ],
+      "unsupported": [],
+      "runtimeAndNetworkProblems": []
+    },
+    {
+      "file": "v55-privacy-c-privacy-camera-light@1.5x.png",
+      "scenario": "privacy-camera",
+      "entry": "island.html",
+      "figmaNode": "7:40",
+      "theme": "light",
+      "resolvedTheme": "dark",
+      "scale": 1.5,
+      "viewport": {
+        "width": 720,
+        "height": 460
+      },
+      "clip": {
+        "x": 244,
+        "y": 6,
+        "width": 232,
+        "height": 32
+      },
+      "width": 348,
+      "height": 48,
+      "bytes": 4259,
+      "sha256": "5eba3a5549811bb082a6ccbac39fb24c950bba82ca53f20779cf4acf9fe2d117",
+      "repeatMatches": true,
+      "caret": "hide",
+      "font": [
+        {
+          "familyName": "Geist",
+          "postScriptName": "Geist",
+          "isCustomFont": true,
+          "glyphCount": 33
+        }
+      ],
+      "fixtureSha256": "d753c8fade967144b1666f1aef9712ceafefc2c808929728286ea09716c2a98c",
+      "assertions": {
+        "mode": "camera",
+        "accessibility": {
+          "violations": [],
+          "incomplete": []
+        },
+        "geometry": {
+          "morph": {
+            "width": 232,
+            "height": 32,
+            "font": "12px / 16px Geist, \"Segoe UI Variable\", \"Segoe UI\", system-ui, sans-serif",
+            "gap": "normal",
+            "padding": "0px",
+            "bg": "rgb(5, 5, 6)",
+            "mask": "none",
+            "title": "",
+            "scrollWidth": 232
+          },
+          "compact": {
+            "width": 232,
+            "height": 32,
+            "font": "12px / 16px Geist, \"Segoe UI Variable\", \"Segoe UI\", system-ui, sans-serif",
+            "gap": "8px",
+            "padding": "0px 10px",
+            "bg": "rgb(5, 5, 6)",
+            "mask": "none",
+            "title": "",
+            "scrollWidth": 232
+          },
+          "label": {
+            "width": 82,
+            "height": 16,
+            "font": "12px / 16px Geist, \"Segoe UI Variable\", \"Segoe UI\", system-ui, sans-serif",
+            "gap": "normal",
+            "padding": "0px",
+            "bg": "rgba(0, 0, 0, 0)",
+            "mask": "none",
+            "title": "Virtual Camera Host",
+            "scrollWidth": 110
+          },
+          "dot": {
+            "width": 8,
+            "height": 8,
+            "font": "12px / 16px Geist, \"Segoe UI Variable\", \"Segoe UI\", system-ui, sans-serif",
+            "gap": "normal",
+            "padding": "0px",
+            "bg": "rgba(0, 0, 0, 0)",
+            "mask": "none",
+            "title": "",
+            "scrollWidth": 8
+          },
+          "camera": {
+            "width": 8,
+            "height": 8,
+            "font": "12px / 16px Geist, \"Segoe UI Variable\", \"Segoe UI\", system-ui, sans-serif",
+            "gap": "normal",
+            "padding": "0px",
+            "bg": "rgb(198, 242, 78)",
+            "mask": "url(\"data:image/svg+xml,%3csvg%20preserveAspectRatio='none'%20overflow='visible'%20style='display:%20block;'%20width='8'%20height='8'%20viewBox='0%200%208%208'%20fill='none'%20xmlns='http://www.w3.org/2000/svg'%3e%3ccircle%20id='Privacy%20dot'%20cx='4'%20cy='4'%20r='4'%20fill='%23A86200'/%3e%3c/svg%3e\")",
+            "title": "",
+            "scrollWidth": 8
+          },
+          "assets": [
+            {
+              "slot": "compact/iconMic",
+              "width": 16,
+              "height": 16,
+              "loaded": true
+            }
+          ],
+          "overflow": false
+        },
+        "noDevicesOrRealRegistry": true
+      },
+      "ipc": [
+        {
+          "command": "plugin:event|listen",
+          "args": {
+            "event": "nabbit://island-visibility",
+            "target": {
+              "kind": "Any"
+            },
+            "handler": 1
+          }
+        },
+        {
+          "command": "plugin:event|listen",
+          "args": {
+            "event": "nabbit://island",
+            "target": {
+              "kind": "Any"
+            },
+            "handler": 3
+          }
+        },
+        {
+          "command": "plugin:event|listen",
+          "args": {
+            "event": "nabbit://island-surface",
+            "target": {
+              "kind": "Any"
+            },
+            "handler": 5
+          }
+        },
+        {
+          "command": "plugin:event|listen",
+          "args": {
+            "event": "tauri://drag-enter",
+            "target": {
+              "kind": "WebviewWindow",
+              "label": "island"
+            },
+            "handler": 7
+          }
+        },
+        {
+          "command": "get_island_snapshot",
+          "args": {}
+        },
+        {
+          "command": "get_activity_snapshot",
+          "args": {}
+        },
+        {
+          "command": "get_island_surface",
+          "args": {}
+        },
+        {
+          "command": "plugin:event|listen",
+          "args": {
+            "event": "tauri://drag-over",
+            "target": {
+              "kind": "WebviewWindow",
+              "label": "island"
+            },
+            "handler": 9
+          }
+        },
+        {
+          "command": "plugin:event|listen",
+          "args": {
+            "event": "tauri://drag-drop",
+            "target": {
+              "kind": "WebviewWindow",
+              "label": "island"
+            },
+            "handler": 11
+          }
+        },
+        {
+          "command": "plugin:event|listen",
+          "args": {
+            "event": "tauri://drag-leave",
+            "target": {
+              "kind": "WebviewWindow",
+              "label": "island"
+            },
+            "handler": 13
+          }
+        },
+        {
+          "command": "island_set_hitrect",
+          "args": {
+            "rect": {
+              "x": 236,
+              "y": -2,
+              "w": 248,
+              "h": 48
+            }
+          }
+        },
+        {
+          "command": "island_surface_ack",
+          "args": {
+            "generation": 1
+          }
+        }
+      ],
+      "unsupported": [],
+      "runtimeAndNetworkProblems": []
+    },
+    {
+      "file": "v55-privacy-c-privacy-both-light@1.5x.png",
+      "scenario": "privacy-both",
+      "entry": "island.html",
+      "figmaNode": "7:40",
+      "theme": "light",
+      "resolvedTheme": "dark",
+      "scale": 1.5,
+      "viewport": {
+        "width": 720,
+        "height": 460
+      },
+      "clip": {
+        "x": 244,
+        "y": 6,
+        "width": 232,
+        "height": 32
+      },
+      "width": 348,
+      "height": 48,
+      "bytes": 4161,
+      "sha256": "28c890bfd16ddf224c68712ee13b08e8604566f775564c060c8a287e4f6ea678",
+      "repeatMatches": true,
+      "caret": "hide",
+      "font": [
+        {
+          "familyName": "Geist",
+          "postScriptName": "Geist",
+          "isCustomFont": true,
+          "glyphCount": 40
+        }
+      ],
+      "fixtureSha256": "d5375b414f649bac98debf4e19ec81b4f56e607aa139230640c9153d8cf9cd49",
+      "assertions": {
+        "mode": "both",
+        "accessibility": {
+          "violations": [],
+          "incomplete": []
+        },
+        "geometry": {
+          "morph": {
+            "width": 232,
+            "height": 32,
+            "font": "12px / 16px Geist, \"Segoe UI Variable\", \"Segoe UI\", system-ui, sans-serif",
+            "gap": "normal",
+            "padding": "0px",
+            "bg": "rgb(5, 5, 6)",
+            "mask": "none",
+            "title": "",
+            "scrollWidth": 232
+          },
+          "compact": {
+            "width": 232,
+            "height": 32,
+            "font": "12px / 16px Geist, \"Segoe UI Variable\", \"Segoe UI\", system-ui, sans-serif",
+            "gap": "8px",
+            "padding": "0px 10px",
+            "bg": "rgb(5, 5, 6)",
+            "mask": "none",
+            "title": "",
+            "scrollWidth": 232
+          },
+          "label": {
+            "width": 82,
+            "height": 16,
+            "font": "12px / 16px Geist, \"Segoe UI Variable\", \"Segoe UI\", system-ui, sans-serif",
+            "gap": "normal",
+            "padding": "0px",
+            "bg": "rgba(0, 0, 0, 0)",
+            "mask": "none",
+            "title": "Teams, Virtual Camera Host",
+            "scrollWidth": 151
+          },
+          "dot": {
+            "width": 8,
+            "height": 8,
+            "font": "12px / 16px Geist, \"Segoe UI Variable\", \"Segoe UI\", system-ui, sans-serif",
+            "gap": "normal",
+            "padding": "0px",
+            "bg": "rgba(0, 0, 0, 0)",
+            "mask": "none",
+            "title": "",
+            "scrollWidth": 8
+          },
+          "camera": {
+            "width": 8,
+            "height": 8,
+            "font": "12px / 16px Geist, \"Segoe UI Variable\", \"Segoe UI\", system-ui, sans-serif",
+            "gap": "normal",
+            "padding": "0px",
+            "bg": "rgb(198, 242, 78)",
+            "mask": "url(\"data:image/svg+xml,%3csvg%20preserveAspectRatio='none'%20overflow='visible'%20style='display:%20block;'%20width='8'%20height='8'%20viewBox='0%200%208%208'%20fill='none'%20xmlns='http://www.w3.org/2000/svg'%3e%3ccircle%20id='Privacy%20dot'%20cx='4'%20cy='4'%20r='4'%20fill='%23A86200'/%3e%3c/svg%3e\")",
+            "title": "",
+            "scrollWidth": 8
+          },
+          "assets": [
+            {
+              "slot": "compact/iconMic",
+              "width": 16,
+              "height": 16,
+              "loaded": true
+            }
+          ],
+          "overflow": false
+        },
+        "noDevicesOrRealRegistry": true
+      },
+      "ipc": [
+        {
+          "command": "plugin:event|listen",
+          "args": {
+            "event": "nabbit://island-visibility",
+            "target": {
+              "kind": "Any"
+            },
+            "handler": 1
+          }
+        },
+        {
+          "command": "plugin:event|listen",
+          "args": {
+            "event": "nabbit://island",
+            "target": {
+              "kind": "Any"
+            },
+            "handler": 3
+          }
+        },
+        {
+          "command": "plugin:event|listen",
+          "args": {
+            "event": "nabbit://island-surface",
+            "target": {
+              "kind": "Any"
+            },
+            "handler": 5
+          }
+        },
+        {
+          "command": "plugin:event|listen",
+          "args": {
+            "event": "tauri://drag-enter",
+            "target": {
+              "kind": "WebviewWindow",
+              "label": "island"
+            },
+            "handler": 7
+          }
+        },
+        {
+          "command": "get_island_snapshot",
+          "args": {}
+        },
+        {
+          "command": "get_activity_snapshot",
+          "args": {}
+        },
+        {
+          "command": "get_island_surface",
+          "args": {}
+        },
+        {
+          "command": "plugin:event|listen",
+          "args": {
+            "event": "tauri://drag-over",
+            "target": {
+              "kind": "WebviewWindow",
+              "label": "island"
+            },
+            "handler": 9
+          }
+        },
+        {
+          "command": "plugin:event|listen",
+          "args": {
+            "event": "tauri://drag-drop",
+            "target": {
+              "kind": "WebviewWindow",
+              "label": "island"
+            },
+            "handler": 11
+          }
+        },
+        {
+          "command": "plugin:event|listen",
+          "args": {
+            "event": "tauri://drag-leave",
+            "target": {
+              "kind": "WebviewWindow",
+              "label": "island"
+            },
+            "handler": 13
+          }
+        },
+        {
+          "command": "island_set_hitrect",
+          "args": {
+            "rect": {
+              "x": 236,
+              "y": -2,
+              "w": 248,
+              "h": 48
+            }
+          }
+        },
+        {
+          "command": "island_surface_ack",
+          "args": {
+            "generation": 1
+          }
+        }
+      ],
+      "unsupported": [],
+      "runtimeAndNetworkProblems": []
+    },
+    {
+      "file": "v55-privacy-c-privacy-long-light@1.5x.png",
+      "scenario": "privacy-long",
+      "entry": "island.html",
+      "figmaNode": "7:40",
+      "theme": "light",
+      "resolvedTheme": "dark",
+      "scale": 1.5,
+      "viewport": {
+        "width": 720,
+        "height": 460
+      },
+      "clip": {
+        "x": 244,
+        "y": 6,
+        "width": 232,
+        "height": 32
+      },
+      "width": 348,
+      "height": 48,
+      "bytes": 3995,
+      "sha256": "a2b4abcef9658b818831484d4c9b2179bc19617182689ba1ef1b69d782ecf66c",
+      "repeatMatches": true,
+      "caret": "hide",
+      "font": [
+        {
+          "familyName": "Geist",
+          "postScriptName": "Geist",
+          "isCustomFont": true,
+          "glyphCount": 72
+        }
+      ],
+      "fixtureSha256": "d0ab662e170a8395b912121171e23cdf56507ba4f16f9c4b7813b9d987f3333f",
+      "assertions": {
+        "mode": "long",
+        "accessibility": {
+          "violations": [],
+          "incomplete": []
+        },
+        "geometry": {
+          "morph": {
+            "width": 232,
+            "height": 32,
+            "font": "12px / 16px Geist, \"Segoe UI Variable\", \"Segoe UI\", system-ui, sans-serif",
+            "gap": "normal",
+            "padding": "0px",
+            "bg": "rgb(5, 5, 6)",
+            "mask": "none",
+            "title": "",
+            "scrollWidth": 232
+          },
+          "compact": {
+            "width": 232,
+            "height": 32,
+            "font": "12px / 16px Geist, \"Segoe UI Variable\", \"Segoe UI\", system-ui, sans-serif",
+            "gap": "8px",
+            "padding": "0px 10px",
+            "bg": "rgb(5, 5, 6)",
+            "mask": "none",
+            "title": "",
+            "scrollWidth": 232
+          },
+          "label": {
+            "width": 82,
+            "height": 16,
+            "font": "12px / 16px Geist, \"Segoe UI Variable\", \"Segoe UI\", system-ui, sans-serif",
+            "gap": "normal",
+            "padding": "0px",
+            "bg": "rgba(0, 0, 0, 0)",
+            "mask": "none",
+            "title": "An application with a very long descriptive name, Recorder",
+            "scrollWidth": 320
+          },
+          "dot": {
+            "width": 8,
+            "height": 8,
+            "font": "12px / 16px Geist, \"Segoe UI Variable\", \"Segoe UI\", system-ui, sans-serif",
+            "gap": "normal",
+            "padding": "0px",
+            "bg": "rgba(0, 0, 0, 0)",
+            "mask": "none",
+            "title": "",
+            "scrollWidth": 8
+          },
+          "camera": null,
+          "assets": [
+            {
+              "slot": "compact/iconMic",
+              "width": 16,
+              "height": 16,
+              "loaded": true
+            },
+            {
+              "slot": "compact/privacyDot",
+              "width": 8,
+              "height": 8,
+              "loaded": true
+            }
+          ],
+          "overflow": false
+        },
+        "noDevicesOrRealRegistry": true
+      },
+      "ipc": [
+        {
+          "command": "plugin:event|listen",
+          "args": {
+            "event": "nabbit://island-visibility",
+            "target": {
+              "kind": "Any"
+            },
+            "handler": 1
+          }
+        },
+        {
+          "command": "plugin:event|listen",
+          "args": {
+            "event": "nabbit://island",
+            "target": {
+              "kind": "Any"
+            },
+            "handler": 3
+          }
+        },
+        {
+          "command": "plugin:event|listen",
+          "args": {
+            "event": "nabbit://island-surface",
+            "target": {
+              "kind": "Any"
+            },
+            "handler": 5
+          }
+        },
+        {
+          "command": "plugin:event|listen",
+          "args": {
+            "event": "tauri://drag-enter",
+            "target": {
+              "kind": "WebviewWindow",
+              "label": "island"
+            },
+            "handler": 7
+          }
+        },
+        {
+          "command": "get_island_snapshot",
+          "args": {}
+        },
+        {
+          "command": "get_activity_snapshot",
+          "args": {}
+        },
+        {
+          "command": "get_island_surface",
+          "args": {}
+        },
+        {
+          "command": "plugin:event|listen",
+          "args": {
+            "event": "tauri://drag-over",
+            "target": {
+              "kind": "WebviewWindow",
+              "label": "island"
+            },
+            "handler": 9
+          }
+        },
+        {
+          "command": "plugin:event|listen",
+          "args": {
+            "event": "tauri://drag-drop",
+            "target": {
+              "kind": "WebviewWindow",
+              "label": "island"
+            },
+            "handler": 11
+          }
+        },
+        {
+          "command": "plugin:event|listen",
+          "args": {
+            "event": "tauri://drag-leave",
+            "target": {
+              "kind": "WebviewWindow",
+              "label": "island"
+            },
+            "handler": 13
+          }
+        },
+        {
+          "command": "island_set_hitrect",
+          "args": {
+            "rect": {
+              "x": 236,
+              "y": -2,
+              "w": 248,
+              "h": 48
+            }
+          }
+        },
+        {
+          "command": "island_surface_ack",
+          "args": {
+            "generation": 1
+          }
+        }
+      ],
+      "unsupported": [],
+      "runtimeAndNetworkProblems": []
+    },
+    {
+      "file": "v55-privacy-c-privacy-split-light@1.5x.png",
+      "scenario": "privacy-split",
+      "entry": "island.html",
+      "figmaNode": "7:40",
+      "theme": "light",
+      "resolvedTheme": "dark",
+      "scale": 1.5,
+      "viewport": {
+        "width": 720,
+        "height": 460
+      },
+      "clip": {
+        "x": 211,
+        "y": 6,
+        "width": 298,
+        "height": 32
+      },
+      "width": 447,
+      "height": 48,
+      "bytes": 4917,
+      "sha256": "6006bd871342b0aa02ec473edc66b1c9b89025f9b83482ab7d60636276539360",
+      "repeatMatches": true,
+      "caret": "hide",
+      "font": [
+        {
+          "familyName": "Geist",
+          "postScriptName": "Geist",
+          "isCustomFont": true,
+          "glyphCount": 5
+        }
+      ],
+      "fixtureSha256": "f69f82da97c9a60c8f45cb2485cb6552c1e2a3e988ed0f672b1955845b2c9a8b",
+      "assertions": {
+        "mode": "split",
+        "accessibility": {
+          "violations": [],
+          "incomplete": []
+        },
+        "geometry": {
+          "morph": {
+            "width": 298,
+            "height": 32,
+            "font": "12px / 16px Geist, \"Segoe UI Variable\", \"Segoe UI\", system-ui, sans-serif",
+            "gap": "normal",
+            "padding": "0px",
+            "bg": "rgba(0, 0, 0, 0)",
+            "mask": "none",
+            "title": "",
+            "scrollWidth": 298
+          },
+          "compact": {
+            "width": 260,
+            "height": 32,
+            "font": "12px / 16px Geist, \"Segoe UI Variable\", \"Segoe UI\", system-ui, sans-serif",
+            "gap": "8px",
+            "padding": "0px 10px",
+            "bg": "rgb(5, 5, 6)",
+            "mask": "none",
+            "title": "",
+            "scrollWidth": 260
+          },
+          "label": {
+            "width": 96,
+            "height": 16,
+            "font": "12px / 16px Geist, \"Segoe UI Variable\", \"Segoe UI\", system-ui, sans-serif",
+            "gap": "normal",
+            "padding": "0px",
+            "bg": "rgba(0, 0, 0, 0)",
+            "mask": "none",
+            "title": "Teams",
+            "scrollWidth": 96
+          },
+          "dot": {
+            "width": 8,
+            "height": 8,
+            "font": "12px / 16px Geist, \"Segoe UI Variable\", \"Segoe UI\", system-ui, sans-serif",
+            "gap": "normal",
+            "padding": "0px",
+            "bg": "rgba(0, 0, 0, 0)",
+            "mask": "none",
+            "title": "",
+            "scrollWidth": 8
+          },
+          "camera": null,
+          "assets": [
+            {
+              "slot": "compact/iconMic",
+              "width": 16,
+              "height": 16,
+              "loaded": true
+            },
+            {
+              "slot": "compact/privacyDot",
+              "width": 8,
+              "height": 8,
+              "loaded": true
+            },
+            {
+              "slot": "compact/iconTimer1",
+              "width": 15,
+              "height": 15,
+              "loaded": true
+            }
+          ],
+          "overflow": false
+        },
+        "noDevicesOrRealRegistry": true
+      },
+      "ipc": [
+        {
+          "command": "plugin:event|listen",
+          "args": {
+            "event": "nabbit://island-visibility",
+            "target": {
+              "kind": "Any"
+            },
+            "handler": 1
+          }
+        },
+        {
+          "command": "plugin:event|listen",
+          "args": {
+            "event": "nabbit://island",
+            "target": {
+              "kind": "Any"
+            },
+            "handler": 3
+          }
+        },
+        {
+          "command": "plugin:event|listen",
+          "args": {
+            "event": "nabbit://island-surface",
+            "target": {
+              "kind": "Any"
+            },
+            "handler": 5
+          }
+        },
+        {
+          "command": "plugin:event|listen",
+          "args": {
+            "event": "tauri://drag-enter",
+            "target": {
+              "kind": "WebviewWindow",
+              "label": "island"
+            },
+            "handler": 7
+          }
+        },
+        {
+          "command": "get_island_snapshot",
+          "args": {}
+        },
+        {
+          "command": "get_activity_snapshot",
+          "args": {}
+        },
+        {
+          "command": "get_island_surface",
+          "args": {}
+        },
+        {
+          "command": "plugin:event|listen",
+          "args": {
+            "event": "tauri://drag-over",
+            "target": {
+              "kind": "WebviewWindow",
+              "label": "island"
+            },
+            "handler": 9
+          }
+        },
+        {
+          "command": "plugin:event|listen",
+          "args": {
+            "event": "tauri://drag-drop",
+            "target": {
+              "kind": "WebviewWindow",
+              "label": "island"
+            },
+            "handler": 11
+          }
+        },
+        {
+          "command": "plugin:event|listen",
+          "args": {
+            "event": "tauri://drag-leave",
+            "target": {
+              "kind": "WebviewWindow",
+              "label": "island"
+            },
+            "handler": 13
+          }
+        },
+        {
+          "command": "island_set_hitrect",
+          "args": {
+            "rect": {
+              "x": 203,
+              "y": -2,
+              "w": 314,
+              "h": 48
+            }
+          }
+        },
+        {
+          "command": "island_surface_ack",
+          "args": {
+            "generation": 1
+          }
+        }
+      ],
+      "unsupported": [],
+      "runtimeAndNetworkProblems": []
+    },
+    {
+      "file": "v55-privacy-c-privacy-peek-light@1.5x.png",
+      "scenario": "privacy-peek",
+      "entry": "island.html",
+      "figmaNode": "7:40",
+      "theme": "light",
+      "resolvedTheme": "dark",
+      "scale": 1.5,
+      "viewport": {
+        "width": 720,
+        "height": 460
+      },
+      "clip": {
+        "x": 160,
+        "y": 6,
+        "width": 400,
+        "height": 78
+      },
+      "width": 600,
+      "height": 117,
+      "bytes": 13241,
+      "sha256": "5f405e0e8651b202b11cf64715a9cb99e627e1d210b64eea71951cb4fd2a040b",
+      "repeatMatches": true,
+      "caret": "hide",
+      "font": [
+        {
+          "familyName": "Geist",
+          "postScriptName": "Geist",
+          "isCustomFont": true,
+          "glyphCount": 28
+        }
+      ],
+      "fixtureSha256": "cd61c921afb418ce007426038af1c4392884e603f19c77387fe3c454e1a52f5d",
+      "assertions": {
+        "mode": "peek",
+        "accessibility": {
+          "violations": [],
+          "incomplete": []
+        },
+        "geometry": {
+          "morph": {
+            "width": 400,
+            "height": 78,
+            "font": "12px / 16px Geist, \"Segoe UI Variable\", \"Segoe UI\", system-ui, sans-serif",
+            "gap": "normal",
+            "padding": "0px",
+            "bg": "rgb(5, 5, 6)",
+            "mask": "none",
+            "title": "",
+            "scrollWidth": 400
+          },
+          "compact": null,
+          "label": null,
+          "dot": null,
+          "camera": null,
+          "assets": [
+            {
+              "slot": "compact/iconMic",
+              "width": 16,
+              "height": 16,
+              "loaded": true
+            }
+          ],
+          "overflow": false
+        },
+        "noDevicesOrRealRegistry": true
+      },
+      "ipc": [
+        {
+          "command": "plugin:event|listen",
+          "args": {
+            "event": "nabbit://island-visibility",
+            "target": {
+              "kind": "Any"
+            },
+            "handler": 1
+          }
+        },
+        {
+          "command": "plugin:event|listen",
+          "args": {
+            "event": "nabbit://island",
+            "target": {
+              "kind": "Any"
+            },
+            "handler": 3
+          }
+        },
+        {
+          "command": "plugin:event|listen",
+          "args": {
+            "event": "nabbit://island-surface",
+            "target": {
+              "kind": "Any"
+            },
+            "handler": 5
+          }
+        },
+        {
+          "command": "plugin:event|listen",
+          "args": {
+            "event": "tauri://drag-enter",
+            "target": {
+              "kind": "WebviewWindow",
+              "label": "island"
+            },
+            "handler": 7
+          }
+        },
+        {
+          "command": "get_island_snapshot",
+          "args": {}
+        },
+        {
+          "command": "get_activity_snapshot",
+          "args": {}
+        },
+        {
+          "command": "get_island_surface",
+          "args": {}
+        },
+        {
+          "command": "plugin:event|listen",
+          "args": {
+            "event": "tauri://drag-over",
+            "target": {
+              "kind": "WebviewWindow",
+              "label": "island"
+            },
+            "handler": 9
+          }
+        },
+        {
+          "command": "plugin:event|listen",
+          "args": {
+            "event": "tauri://drag-drop",
+            "target": {
+              "kind": "WebviewWindow",
+              "label": "island"
+            },
+            "handler": 11
+          }
+        },
+        {
+          "command": "plugin:event|listen",
+          "args": {
+            "event": "tauri://drag-leave",
+            "target": {
+              "kind": "WebviewWindow",
+              "label": "island"
+            },
+            "handler": 13
+          }
+        },
+        {
+          "command": "island_set_hitrect",
+          "args": {
+            "rect": {
+              "x": 152,
+              "y": -2,
+              "w": 416,
+              "h": 48
+            }
+          }
+        },
+        {
+          "command": "island_set_hitrect",
+          "args": {
+            "rect": {
+              "x": 152,
+              "y": -2,
+              "w": 416,
+              "h": 94
+            }
+          }
+        },
+        {
+          "command": "island_surface_ack",
+          "args": {
+            "generation": 1
+          }
+        }
+      ],
+      "unsupported": [],
+      "runtimeAndNetworkProblems": []
+    },
+    {
+      "file": "v55-privacy-c-privacy-off-light@1.5x.png",
+      "scenario": "privacy-off",
+      "entry": "island.html",
+      "figmaNode": "7:40",
+      "theme": "light",
+      "resolvedTheme": "dark",
+      "scale": 1.5,
+      "viewport": {
+        "width": 720,
+        "height": 460
+      },
+      "clip": {
+        "x": 304,
+        "y": 6,
+        "width": 112,
+        "height": 26
+      },
+      "width": 168,
+      "height": 39,
+      "bytes": 969,
+      "sha256": "515b5a06948c20ca6768b22903eeda53f9e436c2c3ed761242724a5b76d2d41b",
+      "repeatMatches": true,
+      "caret": "hide",
+      "font": null,
+      "fixtureSha256": "eb648ec409eb4f450a8474d5d273d6189ccdaf386d1756d680d960d6e840a3ca",
+      "assertions": {
+        "mode": "off",
+        "accessibility": {
+          "violations": [],
+          "incomplete": []
+        },
+        "geometry": {
+          "morph": {
+            "width": 112,
+            "height": 26,
+            "font": "12px / 16px Geist, \"Segoe UI Variable\", \"Segoe UI\", system-ui, sans-serif",
+            "gap": "normal",
+            "padding": "0px",
+            "bg": "rgb(5, 5, 6)",
+            "mask": "none",
+            "title": "",
+            "scrollWidth": 112
+          },
+          "compact": {
+            "width": 112,
+            "height": 26,
+            "font": "12px / 16px Geist, \"Segoe UI Variable\", \"Segoe UI\", system-ui, sans-serif",
+            "gap": "8px",
+            "padding": "0px 10px",
+            "bg": "rgb(5, 5, 6)",
+            "mask": "none",
+            "title": "",
+            "scrollWidth": 112
+          },
+          "label": null,
+          "dot": null,
+          "camera": null,
+          "assets": [],
+          "overflow": false
+        },
+        "noDevicesOrRealRegistry": true
+      },
+      "ipc": [
+        {
+          "command": "plugin:event|listen",
+          "args": {
+            "event": "nabbit://island-visibility",
+            "target": {
+              "kind": "Any"
+            },
+            "handler": 1
+          }
+        },
+        {
+          "command": "plugin:event|listen",
+          "args": {
+            "event": "nabbit://island",
+            "target": {
+              "kind": "Any"
+            },
+            "handler": 3
+          }
+        },
+        {
+          "command": "plugin:event|listen",
+          "args": {
+            "event": "nabbit://island-surface",
+            "target": {
+              "kind": "Any"
+            },
+            "handler": 5
+          }
+        },
+        {
+          "command": "plugin:event|listen",
+          "args": {
+            "event": "tauri://drag-enter",
+            "target": {
+              "kind": "WebviewWindow",
+              "label": "island"
+            },
+            "handler": 7
+          }
+        },
+        {
+          "command": "get_island_snapshot",
+          "args": {}
+        },
+        {
+          "command": "get_activity_snapshot",
+          "args": {}
+        },
+        {
+          "command": "get_island_surface",
+          "args": {}
+        },
+        {
+          "command": "plugin:event|listen",
+          "args": {
+            "event": "tauri://drag-over",
+            "target": {
+              "kind": "WebviewWindow",
+              "label": "island"
+            },
+            "handler": 9
+          }
+        },
+        {
+          "command": "plugin:event|listen",
+          "args": {
+            "event": "tauri://drag-drop",
+            "target": {
+              "kind": "WebviewWindow",
+              "label": "island"
+            },
+            "handler": 11
+          }
+        },
+        {
+          "command": "plugin:event|listen",
+          "args": {
+            "event": "tauri://drag-leave",
+            "target": {
+              "kind": "WebviewWindow",
+              "label": "island"
+            },
+            "handler": 13
+          }
+        },
+        {
+          "command": "island_set_hitrect",
+          "args": {
+            "rect": {
+              "x": 296,
+              "y": -2,
+              "w": 128,
+              "h": 42
+            }
+          }
+        },
+        {
+          "command": "island_surface_ack",
+          "args": {
+            "generation": 1
+          }
+        }
+      ],
+      "unsupported": [],
+      "runtimeAndNetworkProblems": []
+    },
+    {
+      "file": "v55-privacy-c-privacy-mic-dark@1x.png",
+      "scenario": "privacy-mic",
+      "entry": "island.html",
+      "figmaNode": "7:40",
+      "theme": "dark",
+      "resolvedTheme": "dark",
+      "scale": 1,
+      "viewport": {
+        "width": 720,
+        "height": 460
+      },
+      "clip": {
+        "x": 244,
+        "y": 6,
+        "width": 232,
+        "height": 32
+      },
+      "width": 232,
+      "height": 32,
+      "bytes": 1913,
+      "sha256": "fb9c5641e71c6c85cd4d3a7fca65476f0bcc85ea176be1814f1f150473e1b111",
+      "repeatMatches": true,
+      "caret": "hide",
+      "font": [
+        {
+          "familyName": "Geist",
+          "postScriptName": "Geist",
+          "isCustomFont": true,
+          "glyphCount": 5
+        }
+      ],
+      "fixtureSha256": "a73b67cf77f3e75833f8c515c104a5352a60967278844795cb067f57996c0670",
+      "assertions": {
+        "mode": "mic",
+        "accessibility": {
+          "violations": [],
+          "incomplete": []
+        },
+        "geometry": {
+          "morph": {
+            "width": 232,
+            "height": 32,
+            "font": "12px / 16px Geist, \"Segoe UI Variable\", \"Segoe UI\", system-ui, sans-serif",
+            "gap": "normal",
+            "padding": "0px",
+            "bg": "rgb(5, 5, 6)",
+            "mask": "none",
+            "title": "",
+            "scrollWidth": 232
+          },
+          "compact": {
+            "width": 232,
+            "height": 32,
+            "font": "12px / 16px Geist, \"Segoe UI Variable\", \"Segoe UI\", system-ui, sans-serif",
+            "gap": "8px",
+            "padding": "0px 10px",
+            "bg": "rgb(5, 5, 6)",
+            "mask": "none",
+            "title": "",
+            "scrollWidth": 232
+          },
+          "label": {
+            "width": 82,
+            "height": 16,
+            "font": "12px / 16px Geist, \"Segoe UI Variable\", \"Segoe UI\", system-ui, sans-serif",
+            "gap": "normal",
+            "padding": "0px",
+            "bg": "rgba(0, 0, 0, 0)",
+            "mask": "none",
+            "title": "Teams",
+            "scrollWidth": 82
+          },
+          "dot": {
+            "width": 8,
+            "height": 8,
+            "font": "12px / 16px Geist, \"Segoe UI Variable\", \"Segoe UI\", system-ui, sans-serif",
+            "gap": "normal",
+            "padding": "0px",
+            "bg": "rgba(0, 0, 0, 0)",
+            "mask": "none",
+            "title": "",
+            "scrollWidth": 8
+          },
+          "camera": null,
+          "assets": [
+            {
+              "slot": "compact/iconMic",
+              "width": 16,
+              "height": 16,
+              "loaded": true
+            },
+            {
+              "slot": "compact/privacyDot",
+              "width": 8,
+              "height": 8,
+              "loaded": true
+            }
+          ],
+          "overflow": false
+        },
+        "noDevicesOrRealRegistry": true
+      },
+      "ipc": [
+        {
+          "command": "plugin:event|listen",
+          "args": {
+            "event": "nabbit://island-visibility",
+            "target": {
+              "kind": "Any"
+            },
+            "handler": 1
+          }
+        },
+        {
+          "command": "plugin:event|listen",
+          "args": {
+            "event": "nabbit://island",
+            "target": {
+              "kind": "Any"
+            },
+            "handler": 3
+          }
+        },
+        {
+          "command": "plugin:event|listen",
+          "args": {
+            "event": "nabbit://island-surface",
+            "target": {
+              "kind": "Any"
+            },
+            "handler": 5
+          }
+        },
+        {
+          "command": "plugin:event|listen",
+          "args": {
+            "event": "tauri://drag-enter",
+            "target": {
+              "kind": "WebviewWindow",
+              "label": "island"
+            },
+            "handler": 7
+          }
+        },
+        {
+          "command": "get_island_snapshot",
+          "args": {}
+        },
+        {
+          "command": "get_activity_snapshot",
+          "args": {}
+        },
+        {
+          "command": "get_island_surface",
+          "args": {}
+        },
+        {
+          "command": "plugin:event|listen",
+          "args": {
+            "event": "tauri://drag-over",
+            "target": {
+              "kind": "WebviewWindow",
+              "label": "island"
+            },
+            "handler": 9
+          }
+        },
+        {
+          "command": "plugin:event|listen",
+          "args": {
+            "event": "tauri://drag-drop",
+            "target": {
+              "kind": "WebviewWindow",
+              "label": "island"
+            },
+            "handler": 11
+          }
+        },
+        {
+          "command": "plugin:event|listen",
+          "args": {
+            "event": "tauri://drag-leave",
+            "target": {
+              "kind": "WebviewWindow",
+              "label": "island"
+            },
+            "handler": 13
+          }
+        },
+        {
+          "command": "island_set_hitrect",
+          "args": {
+            "rect": {
+              "x": 236,
+              "y": -2,
+              "w": 248,
+              "h": 48
+            }
+          }
+        },
+        {
+          "command": "island_surface_ack",
+          "args": {
+            "generation": 1
+          }
+        }
+      ],
+      "unsupported": [],
+      "runtimeAndNetworkProblems": []
+    },
+    {
+      "file": "v55-privacy-c-privacy-camera-dark@1x.png",
+      "scenario": "privacy-camera",
+      "entry": "island.html",
+      "figmaNode": "7:40",
+      "theme": "dark",
+      "resolvedTheme": "dark",
+      "scale": 1,
+      "viewport": {
+        "width": 720,
+        "height": 460
+      },
+      "clip": {
+        "x": 244,
+        "y": 6,
+        "width": 232,
+        "height": 32
+      },
+      "width": 232,
+      "height": 32,
+      "bytes": 2404,
+      "sha256": "c0f4891fa5dae4db38883cccc754d5ca90e5a346853ad299eb5450fbe1aeb381",
+      "repeatMatches": true,
+      "caret": "hide",
+      "font": [
+        {
+          "familyName": "Geist",
+          "postScriptName": "Geist",
+          "isCustomFont": true,
+          "glyphCount": 33
+        }
+      ],
+      "fixtureSha256": "f919aa40b16087f3391a594c7d162ecad65c97edc88e088e1e66d1e96109f306",
+      "assertions": {
+        "mode": "camera",
+        "accessibility": {
+          "violations": [],
+          "incomplete": []
+        },
+        "geometry": {
+          "morph": {
+            "width": 232,
+            "height": 32,
+            "font": "12px / 16px Geist, \"Segoe UI Variable\", \"Segoe UI\", system-ui, sans-serif",
+            "gap": "normal",
+            "padding": "0px",
+            "bg": "rgb(5, 5, 6)",
+            "mask": "none",
+            "title": "",
+            "scrollWidth": 232
+          },
+          "compact": {
+            "width": 232,
+            "height": 32,
+            "font": "12px / 16px Geist, \"Segoe UI Variable\", \"Segoe UI\", system-ui, sans-serif",
+            "gap": "8px",
+            "padding": "0px 10px",
+            "bg": "rgb(5, 5, 6)",
+            "mask": "none",
+            "title": "",
+            "scrollWidth": 232
+          },
+          "label": {
+            "width": 82,
+            "height": 16,
+            "font": "12px / 16px Geist, \"Segoe UI Variable\", \"Segoe UI\", system-ui, sans-serif",
+            "gap": "normal",
+            "padding": "0px",
+            "bg": "rgba(0, 0, 0, 0)",
+            "mask": "none",
+            "title": "Virtual Camera Host",
+            "scrollWidth": 110
+          },
+          "dot": {
+            "width": 8,
+            "height": 8,
+            "font": "12px / 16px Geist, \"Segoe UI Variable\", \"Segoe UI\", system-ui, sans-serif",
+            "gap": "normal",
+            "padding": "0px",
+            "bg": "rgba(0, 0, 0, 0)",
+            "mask": "none",
+            "title": "",
+            "scrollWidth": 8
+          },
+          "camera": {
+            "width": 8,
+            "height": 8,
+            "font": "12px / 16px Geist, \"Segoe UI Variable\", \"Segoe UI\", system-ui, sans-serif",
+            "gap": "normal",
+            "padding": "0px",
+            "bg": "rgb(198, 242, 78)",
+            "mask": "url(\"data:image/svg+xml,%3csvg%20preserveAspectRatio='none'%20overflow='visible'%20style='display:%20block;'%20width='8'%20height='8'%20viewBox='0%200%208%208'%20fill='none'%20xmlns='http://www.w3.org/2000/svg'%3e%3ccircle%20id='Privacy%20dot'%20cx='4'%20cy='4'%20r='4'%20fill='%23A86200'/%3e%3c/svg%3e\")",
+            "title": "",
+            "scrollWidth": 8
+          },
+          "assets": [
+            {
+              "slot": "compact/iconMic",
+              "width": 16,
+              "height": 16,
+              "loaded": true
+            }
+          ],
+          "overflow": false
+        },
+        "noDevicesOrRealRegistry": true
+      },
+      "ipc": [
+        {
+          "command": "plugin:event|listen",
+          "args": {
+            "event": "nabbit://island-visibility",
+            "target": {
+              "kind": "Any"
+            },
+            "handler": 1
+          }
+        },
+        {
+          "command": "plugin:event|listen",
+          "args": {
+            "event": "nabbit://island",
+            "target": {
+              "kind": "Any"
+            },
+            "handler": 3
+          }
+        },
+        {
+          "command": "plugin:event|listen",
+          "args": {
+            "event": "nabbit://island-surface",
+            "target": {
+              "kind": "Any"
+            },
+            "handler": 5
+          }
+        },
+        {
+          "command": "plugin:event|listen",
+          "args": {
+            "event": "tauri://drag-enter",
+            "target": {
+              "kind": "WebviewWindow",
+              "label": "island"
+            },
+            "handler": 7
+          }
+        },
+        {
+          "command": "get_island_snapshot",
+          "args": {}
+        },
+        {
+          "command": "get_activity_snapshot",
+          "args": {}
+        },
+        {
+          "command": "get_island_surface",
+          "args": {}
+        },
+        {
+          "command": "plugin:event|listen",
+          "args": {
+            "event": "tauri://drag-over",
+            "target": {
+              "kind": "WebviewWindow",
+              "label": "island"
+            },
+            "handler": 9
+          }
+        },
+        {
+          "command": "plugin:event|listen",
+          "args": {
+            "event": "tauri://drag-drop",
+            "target": {
+              "kind": "WebviewWindow",
+              "label": "island"
+            },
+            "handler": 11
+          }
+        },
+        {
+          "command": "plugin:event|listen",
+          "args": {
+            "event": "tauri://drag-leave",
+            "target": {
+              "kind": "WebviewWindow",
+              "label": "island"
+            },
+            "handler": 13
+          }
+        },
+        {
+          "command": "island_set_hitrect",
+          "args": {
+            "rect": {
+              "x": 236,
+              "y": -2,
+              "w": 248,
+              "h": 48
+            }
+          }
+        },
+        {
+          "command": "island_surface_ack",
+          "args": {
+            "generation": 1
+          }
+        }
+      ],
+      "unsupported": [],
+      "runtimeAndNetworkProblems": []
+    },
+    {
+      "file": "v55-privacy-c-privacy-both-dark@1x.png",
+      "scenario": "privacy-both",
+      "entry": "island.html",
+      "figmaNode": "7:40",
+      "theme": "dark",
+      "resolvedTheme": "dark",
+      "scale": 1,
+      "viewport": {
+        "width": 720,
+        "height": 460
+      },
+      "clip": {
+        "x": 244,
+        "y": 6,
+        "width": 232,
+        "height": 32
+      },
+      "width": 232,
+      "height": 32,
+      "bytes": 2579,
+      "sha256": "7597e36211d3e94c6a5d058c003a44751949297654eda07b43b655b73fb0d938",
+      "repeatMatches": true,
+      "caret": "hide",
+      "font": [
+        {
+          "familyName": "Geist",
+          "postScriptName": "Geist",
+          "isCustomFont": true,
+          "glyphCount": 40
+        }
+      ],
+      "fixtureSha256": "6a59fbad3d118d6bde8944ee3e1498e8840d04fec2071f9f531084c366e0db61",
+      "assertions": {
+        "mode": "both",
+        "accessibility": {
+          "violations": [],
+          "incomplete": []
+        },
+        "geometry": {
+          "morph": {
+            "width": 232,
+            "height": 32,
+            "font": "12px / 16px Geist, \"Segoe UI Variable\", \"Segoe UI\", system-ui, sans-serif",
+            "gap": "normal",
+            "padding": "0px",
+            "bg": "rgb(5, 5, 6)",
+            "mask": "none",
+            "title": "",
+            "scrollWidth": 232
+          },
+          "compact": {
+            "width": 232,
+            "height": 32,
+            "font": "12px / 16px Geist, \"Segoe UI Variable\", \"Segoe UI\", system-ui, sans-serif",
+            "gap": "8px",
+            "padding": "0px 10px",
+            "bg": "rgb(5, 5, 6)",
+            "mask": "none",
+            "title": "",
+            "scrollWidth": 232
+          },
+          "label": {
+            "width": 82,
+            "height": 16,
+            "font": "12px / 16px Geist, \"Segoe UI Variable\", \"Segoe UI\", system-ui, sans-serif",
+            "gap": "normal",
+            "padding": "0px",
+            "bg": "rgba(0, 0, 0, 0)",
+            "mask": "none",
+            "title": "Teams, Virtual Camera Host",
+            "scrollWidth": 151
+          },
+          "dot": {
+            "width": 8,
+            "height": 8,
+            "font": "12px / 16px Geist, \"Segoe UI Variable\", \"Segoe UI\", system-ui, sans-serif",
+            "gap": "normal",
+            "padding": "0px",
+            "bg": "rgba(0, 0, 0, 0)",
+            "mask": "none",
+            "title": "",
+            "scrollWidth": 8
+          },
+          "camera": {
+            "width": 8,
+            "height": 8,
+            "font": "12px / 16px Geist, \"Segoe UI Variable\", \"Segoe UI\", system-ui, sans-serif",
+            "gap": "normal",
+            "padding": "0px",
+            "bg": "rgb(198, 242, 78)",
+            "mask": "url(\"data:image/svg+xml,%3csvg%20preserveAspectRatio='none'%20overflow='visible'%20style='display:%20block;'%20width='8'%20height='8'%20viewBox='0%200%208%208'%20fill='none'%20xmlns='http://www.w3.org/2000/svg'%3e%3ccircle%20id='Privacy%20dot'%20cx='4'%20cy='4'%20r='4'%20fill='%23A86200'/%3e%3c/svg%3e\")",
+            "title": "",
+            "scrollWidth": 8
+          },
+          "assets": [
+            {
+              "slot": "compact/iconMic",
+              "width": 16,
+              "height": 16,
+              "loaded": true
+            }
+          ],
+          "overflow": false
+        },
+        "noDevicesOrRealRegistry": true
+      },
+      "ipc": [
+        {
+          "command": "plugin:event|listen",
+          "args": {
+            "event": "nabbit://island-visibility",
+            "target": {
+              "kind": "Any"
+            },
+            "handler": 1
+          }
+        },
+        {
+          "command": "plugin:event|listen",
+          "args": {
+            "event": "nabbit://island",
+            "target": {
+              "kind": "Any"
+            },
+            "handler": 3
+          }
+        },
+        {
+          "command": "plugin:event|listen",
+          "args": {
+            "event": "nabbit://island-surface",
+            "target": {
+              "kind": "Any"
+            },
+            "handler": 5
+          }
+        },
+        {
+          "command": "plugin:event|listen",
+          "args": {
+            "event": "tauri://drag-enter",
+            "target": {
+              "kind": "WebviewWindow",
+              "label": "island"
+            },
+            "handler": 7
+          }
+        },
+        {
+          "command": "get_island_snapshot",
+          "args": {}
+        },
+        {
+          "command": "get_activity_snapshot",
+          "args": {}
+        },
+        {
+          "command": "get_island_surface",
+          "args": {}
+        },
+        {
+          "command": "plugin:event|listen",
+          "args": {
+            "event": "tauri://drag-over",
+            "target": {
+              "kind": "WebviewWindow",
+              "label": "island"
+            },
+            "handler": 9
+          }
+        },
+        {
+          "command": "plugin:event|listen",
+          "args": {
+            "event": "tauri://drag-drop",
+            "target": {
+              "kind": "WebviewWindow",
+              "label": "island"
+            },
+            "handler": 11
+          }
+        },
+        {
+          "command": "plugin:event|listen",
+          "args": {
+            "event": "tauri://drag-leave",
+            "target": {
+              "kind": "WebviewWindow",
+              "label": "island"
+            },
+            "handler": 13
+          }
+        },
+        {
+          "command": "island_set_hitrect",
+          "args": {
+            "rect": {
+              "x": 236,
+              "y": -2,
+              "w": 248,
+              "h": 48
+            }
+          }
+        },
+        {
+          "command": "island_surface_ack",
+          "args": {
+            "generation": 1
+          }
+        }
+      ],
+      "unsupported": [],
+      "runtimeAndNetworkProblems": []
+    },
+    {
+      "file": "v55-privacy-c-privacy-long-dark@1x.png",
+      "scenario": "privacy-long",
+      "entry": "island.html",
+      "figmaNode": "7:40",
+      "theme": "dark",
+      "resolvedTheme": "dark",
+      "scale": 1,
+      "viewport": {
+        "width": 720,
+        "height": 460
+      },
+      "clip": {
+        "x": 244,
+        "y": 6,
+        "width": 232,
+        "height": 32
+      },
+      "width": 232,
+      "height": 32,
+      "bytes": 2472,
+      "sha256": "1a567b9407fb86387efad2490816b883fa9dffe7efd7ccf8e361199b24de96bc",
+      "repeatMatches": true,
+      "caret": "hide",
+      "font": [
+        {
+          "familyName": "Geist",
+          "postScriptName": "Geist",
+          "isCustomFont": true,
+          "glyphCount": 72
+        }
+      ],
+      "fixtureSha256": "0461ff56285e2b4e291dd245a519a4c8612365c208eec37653c5df09c86cc4a8",
+      "assertions": {
+        "mode": "long",
+        "accessibility": {
+          "violations": [],
+          "incomplete": []
+        },
+        "geometry": {
+          "morph": {
+            "width": 232,
+            "height": 32,
+            "font": "12px / 16px Geist, \"Segoe UI Variable\", \"Segoe UI\", system-ui, sans-serif",
+            "gap": "normal",
+            "padding": "0px",
+            "bg": "rgb(5, 5, 6)",
+            "mask": "none",
+            "title": "",
+            "scrollWidth": 232
+          },
+          "compact": {
+            "width": 232,
+            "height": 32,
+            "font": "12px / 16px Geist, \"Segoe UI Variable\", \"Segoe UI\", system-ui, sans-serif",
+            "gap": "8px",
+            "padding": "0px 10px",
+            "bg": "rgb(5, 5, 6)",
+            "mask": "none",
+            "title": "",
+            "scrollWidth": 232
+          },
+          "label": {
+            "width": 82,
+            "height": 16,
+            "font": "12px / 16px Geist, \"Segoe UI Variable\", \"Segoe UI\", system-ui, sans-serif",
+            "gap": "normal",
+            "padding": "0px",
+            "bg": "rgba(0, 0, 0, 0)",
+            "mask": "none",
+            "title": "An application with a very long descriptive name, Recorder",
+            "scrollWidth": 320
+          },
+          "dot": {
+            "width": 8,
+            "height": 8,
+            "font": "12px / 16px Geist, \"Segoe UI Variable\", \"Segoe UI\", system-ui, sans-serif",
+            "gap": "normal",
+            "padding": "0px",
+            "bg": "rgba(0, 0, 0, 0)",
+            "mask": "none",
+            "title": "",
+            "scrollWidth": 8
+          },
+          "camera": null,
+          "assets": [
+            {
+              "slot": "compact/iconMic",
+              "width": 16,
+              "height": 16,
+              "loaded": true
+            },
+            {
+              "slot": "compact/privacyDot",
+              "width": 8,
+              "height": 8,
+              "loaded": true
+            }
+          ],
+          "overflow": false
+        },
+        "noDevicesOrRealRegistry": true
+      },
+      "ipc": [
+        {
+          "command": "plugin:event|listen",
+          "args": {
+            "event": "nabbit://island-visibility",
+            "target": {
+              "kind": "Any"
+            },
+            "handler": 1
+          }
+        },
+        {
+          "command": "plugin:event|listen",
+          "args": {
+            "event": "nabbit://island",
+            "target": {
+              "kind": "Any"
+            },
+            "handler": 3
+          }
+        },
+        {
+          "command": "plugin:event|listen",
+          "args": {
+            "event": "nabbit://island-surface",
+            "target": {
+              "kind": "Any"
+            },
+            "handler": 5
+          }
+        },
+        {
+          "command": "plugin:event|listen",
+          "args": {
+            "event": "tauri://drag-enter",
+            "target": {
+              "kind": "WebviewWindow",
+              "label": "island"
+            },
+            "handler": 7
+          }
+        },
+        {
+          "command": "get_island_snapshot",
+          "args": {}
+        },
+        {
+          "command": "get_activity_snapshot",
+          "args": {}
+        },
+        {
+          "command": "get_island_surface",
+          "args": {}
+        },
+        {
+          "command": "plugin:event|listen",
+          "args": {
+            "event": "tauri://drag-over",
+            "target": {
+              "kind": "WebviewWindow",
+              "label": "island"
+            },
+            "handler": 9
+          }
+        },
+        {
+          "command": "plugin:event|listen",
+          "args": {
+            "event": "tauri://drag-drop",
+            "target": {
+              "kind": "WebviewWindow",
+              "label": "island"
+            },
+            "handler": 11
+          }
+        },
+        {
+          "command": "plugin:event|listen",
+          "args": {
+            "event": "tauri://drag-leave",
+            "target": {
+              "kind": "WebviewWindow",
+              "label": "island"
+            },
+            "handler": 13
+          }
+        },
+        {
+          "command": "island_set_hitrect",
+          "args": {
+            "rect": {
+              "x": 236,
+              "y": -2,
+              "w": 248,
+              "h": 48
+            }
+          }
+        },
+        {
+          "command": "island_surface_ack",
+          "args": {
+            "generation": 1
+          }
+        }
+      ],
+      "unsupported": [],
+      "runtimeAndNetworkProblems": []
+    },
+    {
+      "file": "v55-privacy-c-privacy-split-dark@1x.png",
+      "scenario": "privacy-split",
+      "entry": "island.html",
+      "figmaNode": "7:40",
+      "theme": "dark",
+      "resolvedTheme": "dark",
+      "scale": 1,
+      "viewport": {
+        "width": 720,
+        "height": 460
+      },
+      "clip": {
+        "x": 211,
+        "y": 6,
+        "width": 298,
+        "height": 32
+      },
+      "width": 298,
+      "height": 32,
+      "bytes": 3056,
+      "sha256": "b9a8931d60d3bef49dc8288b3644053ed52069d0ffc96631781ff49c6624c40b",
+      "repeatMatches": true,
+      "caret": "hide",
+      "font": [
+        {
+          "familyName": "Geist",
+          "postScriptName": "Geist",
+          "isCustomFont": true,
+          "glyphCount": 5
+        }
+      ],
+      "fixtureSha256": "f03db634f6e1ad97e69f10494b55cafd9d8677b5bffd75f7ee7757bfa01509b2",
+      "assertions": {
+        "mode": "split",
+        "accessibility": {
+          "violations": [],
+          "incomplete": []
+        },
+        "geometry": {
+          "morph": {
+            "width": 298,
+            "height": 32,
+            "font": "12px / 16px Geist, \"Segoe UI Variable\", \"Segoe UI\", system-ui, sans-serif",
+            "gap": "normal",
+            "padding": "0px",
+            "bg": "rgba(0, 0, 0, 0)",
+            "mask": "none",
+            "title": "",
+            "scrollWidth": 298
+          },
+          "compact": {
+            "width": 260,
+            "height": 32,
+            "font": "12px / 16px Geist, \"Segoe UI Variable\", \"Segoe UI\", system-ui, sans-serif",
+            "gap": "8px",
+            "padding": "0px 10px",
+            "bg": "rgb(5, 5, 6)",
+            "mask": "none",
+            "title": "",
+            "scrollWidth": 260
+          },
+          "label": {
+            "width": 96,
+            "height": 16,
+            "font": "12px / 16px Geist, \"Segoe UI Variable\", \"Segoe UI\", system-ui, sans-serif",
+            "gap": "normal",
+            "padding": "0px",
+            "bg": "rgba(0, 0, 0, 0)",
+            "mask": "none",
+            "title": "Teams",
+            "scrollWidth": 96
+          },
+          "dot": {
+            "width": 8,
+            "height": 8,
+            "font": "12px / 16px Geist, \"Segoe UI Variable\", \"Segoe UI\", system-ui, sans-serif",
+            "gap": "normal",
+            "padding": "0px",
+            "bg": "rgba(0, 0, 0, 0)",
+            "mask": "none",
+            "title": "",
+            "scrollWidth": 8
+          },
+          "camera": null,
+          "assets": [
+            {
+              "slot": "compact/iconMic",
+              "width": 16,
+              "height": 16,
+              "loaded": true
+            },
+            {
+              "slot": "compact/privacyDot",
+              "width": 8,
+              "height": 8,
+              "loaded": true
+            },
+            {
+              "slot": "compact/iconTimer1",
+              "width": 15,
+              "height": 15,
+              "loaded": true
+            }
+          ],
+          "overflow": false
+        },
+        "noDevicesOrRealRegistry": true
+      },
+      "ipc": [
+        {
+          "command": "plugin:event|listen",
+          "args": {
+            "event": "nabbit://island-visibility",
+            "target": {
+              "kind": "Any"
+            },
+            "handler": 1
+          }
+        },
+        {
+          "command": "plugin:event|listen",
+          "args": {
+            "event": "nabbit://island",
+            "target": {
+              "kind": "Any"
+            },
+            "handler": 3
+          }
+        },
+        {
+          "command": "plugin:event|listen",
+          "args": {
+            "event": "nabbit://island-surface",
+            "target": {
+              "kind": "Any"
+            },
+            "handler": 5
+          }
+        },
+        {
+          "command": "plugin:event|listen",
+          "args": {
+            "event": "tauri://drag-enter",
+            "target": {
+              "kind": "WebviewWindow",
+              "label": "island"
+            },
+            "handler": 7
+          }
+        },
+        {
+          "command": "get_island_snapshot",
+          "args": {}
+        },
+        {
+          "command": "get_activity_snapshot",
+          "args": {}
+        },
+        {
+          "command": "get_island_surface",
+          "args": {}
+        },
+        {
+          "command": "plugin:event|listen",
+          "args": {
+            "event": "tauri://drag-over",
+            "target": {
+              "kind": "WebviewWindow",
+              "label": "island"
+            },
+            "handler": 9
+          }
+        },
+        {
+          "command": "plugin:event|listen",
+          "args": {
+            "event": "tauri://drag-drop",
+            "target": {
+              "kind": "WebviewWindow",
+              "label": "island"
+            },
+            "handler": 11
+          }
+        },
+        {
+          "command": "plugin:event|listen",
+          "args": {
+            "event": "tauri://drag-leave",
+            "target": {
+              "kind": "WebviewWindow",
+              "label": "island"
+            },
+            "handler": 13
+          }
+        },
+        {
+          "command": "island_set_hitrect",
+          "args": {
+            "rect": {
+              "x": 203,
+              "y": -2,
+              "w": 314,
+              "h": 48
+            }
+          }
+        },
+        {
+          "command": "island_surface_ack",
+          "args": {
+            "generation": 1
+          }
+        }
+      ],
+      "unsupported": [],
+      "runtimeAndNetworkProblems": []
+    },
+    {
+      "file": "v55-privacy-c-privacy-peek-dark@1x.png",
+      "scenario": "privacy-peek",
+      "entry": "island.html",
+      "figmaNode": "7:40",
+      "theme": "dark",
+      "resolvedTheme": "dark",
+      "scale": 1,
+      "viewport": {
+        "width": 720,
+        "height": 460
+      },
+      "clip": {
+        "x": 160,
+        "y": 6,
+        "width": 400,
+        "height": 78
+      },
+      "width": 400,
+      "height": 78,
+      "bytes": 7695,
+      "sha256": "f91bfd76c86751b7b39873293bcb10e64a866f0cdde518bb4bafc8fba7342fcf",
+      "repeatMatches": true,
+      "caret": "hide",
+      "font": [
+        {
+          "familyName": "Geist",
+          "postScriptName": "Geist",
+          "isCustomFont": true,
+          "glyphCount": 28
+        }
+      ],
+      "fixtureSha256": "aeba02fe4c1079a07677307a86637e161b62457a9184a630d484b20a2242dcfa",
+      "assertions": {
+        "mode": "peek",
+        "accessibility": {
+          "violations": [],
+          "incomplete": []
+        },
+        "geometry": {
+          "morph": {
+            "width": 400,
+            "height": 78,
+            "font": "12px / 16px Geist, \"Segoe UI Variable\", \"Segoe UI\", system-ui, sans-serif",
+            "gap": "normal",
+            "padding": "0px",
+            "bg": "rgb(5, 5, 6)",
+            "mask": "none",
+            "title": "",
+            "scrollWidth": 400
+          },
+          "compact": null,
+          "label": null,
+          "dot": null,
+          "camera": null,
+          "assets": [
+            {
+              "slot": "compact/iconMic",
+              "width": 16,
+              "height": 16,
+              "loaded": true
+            }
+          ],
+          "overflow": false
+        },
+        "noDevicesOrRealRegistry": true
+      },
+      "ipc": [
+        {
+          "command": "plugin:event|listen",
+          "args": {
+            "event": "nabbit://island-visibility",
+            "target": {
+              "kind": "Any"
+            },
+            "handler": 1
+          }
+        },
+        {
+          "command": "plugin:event|listen",
+          "args": {
+            "event": "nabbit://island",
+            "target": {
+              "kind": "Any"
+            },
+            "handler": 3
+          }
+        },
+        {
+          "command": "plugin:event|listen",
+          "args": {
+            "event": "nabbit://island-surface",
+            "target": {
+              "kind": "Any"
+            },
+            "handler": 5
+          }
+        },
+        {
+          "command": "plugin:event|listen",
+          "args": {
+            "event": "tauri://drag-enter",
+            "target": {
+              "kind": "WebviewWindow",
+              "label": "island"
+            },
+            "handler": 7
+          }
+        },
+        {
+          "command": "get_island_snapshot",
+          "args": {}
+        },
+        {
+          "command": "get_activity_snapshot",
+          "args": {}
+        },
+        {
+          "command": "get_island_surface",
+          "args": {}
+        },
+        {
+          "command": "plugin:event|listen",
+          "args": {
+            "event": "tauri://drag-over",
+            "target": {
+              "kind": "WebviewWindow",
+              "label": "island"
+            },
+            "handler": 9
+          }
+        },
+        {
+          "command": "plugin:event|listen",
+          "args": {
+            "event": "tauri://drag-drop",
+            "target": {
+              "kind": "WebviewWindow",
+              "label": "island"
+            },
+            "handler": 11
+          }
+        },
+        {
+          "command": "plugin:event|listen",
+          "args": {
+            "event": "tauri://drag-leave",
+            "target": {
+              "kind": "WebviewWindow",
+              "label": "island"
+            },
+            "handler": 13
+          }
+        },
+        {
+          "command": "island_set_hitrect",
+          "args": {
+            "rect": {
+              "x": 152,
+              "y": -2,
+              "w": 416,
+              "h": 48
+            }
+          }
+        },
+        {
+          "command": "island_set_hitrect",
+          "args": {
+            "rect": {
+              "x": 152,
+              "y": -2,
+              "w": 416,
+              "h": 94
+            }
+          }
+        },
+        {
+          "command": "island_surface_ack",
+          "args": {
+            "generation": 1
+          }
+        }
+      ],
+      "unsupported": [],
+      "runtimeAndNetworkProblems": []
+    },
+    {
+      "file": "v55-privacy-c-privacy-off-dark@1x.png",
+      "scenario": "privacy-off",
+      "entry": "island.html",
+      "figmaNode": "7:40",
+      "theme": "dark",
+      "resolvedTheme": "dark",
+      "scale": 1,
+      "viewport": {
+        "width": 720,
+        "height": 460
+      },
+      "clip": {
+        "x": 304,
+        "y": 6,
+        "width": 112,
+        "height": 26
+      },
+      "width": 112,
+      "height": 26,
+      "bytes": 611,
+      "sha256": "9b44da37e4613490d14d24fdf991d17024161b89d34e6dfd544b1506731f38d3",
+      "repeatMatches": true,
+      "caret": "hide",
+      "font": null,
+      "fixtureSha256": "248ccff2161f5ac8cc5bdce9e318e217fb74ed3304ef601b2f17c847fd56716c",
+      "assertions": {
+        "mode": "off",
+        "accessibility": {
+          "violations": [],
+          "incomplete": []
+        },
+        "geometry": {
+          "morph": {
+            "width": 112,
+            "height": 26,
+            "font": "12px / 16px Geist, \"Segoe UI Variable\", \"Segoe UI\", system-ui, sans-serif",
+            "gap": "normal",
+            "padding": "0px",
+            "bg": "rgb(5, 5, 6)",
+            "mask": "none",
+            "title": "",
+            "scrollWidth": 112
+          },
+          "compact": {
+            "width": 112,
+            "height": 26,
+            "font": "12px / 16px Geist, \"Segoe UI Variable\", \"Segoe UI\", system-ui, sans-serif",
+            "gap": "8px",
+            "padding": "0px 10px",
+            "bg": "rgb(5, 5, 6)",
+            "mask": "none",
+            "title": "",
+            "scrollWidth": 112
+          },
+          "label": null,
+          "dot": null,
+          "camera": null,
+          "assets": [],
+          "overflow": false
+        },
+        "noDevicesOrRealRegistry": true
+      },
+      "ipc": [
+        {
+          "command": "plugin:event|listen",
+          "args": {
+            "event": "nabbit://island-visibility",
+            "target": {
+              "kind": "Any"
+            },
+            "handler": 1
+          }
+        },
+        {
+          "command": "plugin:event|listen",
+          "args": {
+            "event": "nabbit://island",
+            "target": {
+              "kind": "Any"
+            },
+            "handler": 3
+          }
+        },
+        {
+          "command": "plugin:event|listen",
+          "args": {
+            "event": "nabbit://island-surface",
+            "target": {
+              "kind": "Any"
+            },
+            "handler": 5
+          }
+        },
+        {
+          "command": "plugin:event|listen",
+          "args": {
+            "event": "tauri://drag-enter",
+            "target": {
+              "kind": "WebviewWindow",
+              "label": "island"
+            },
+            "handler": 7
+          }
+        },
+        {
+          "command": "get_island_snapshot",
+          "args": {}
+        },
+        {
+          "command": "get_activity_snapshot",
+          "args": {}
+        },
+        {
+          "command": "get_island_surface",
+          "args": {}
+        },
+        {
+          "command": "plugin:event|listen",
+          "args": {
+            "event": "tauri://drag-over",
+            "target": {
+              "kind": "WebviewWindow",
+              "label": "island"
+            },
+            "handler": 9
+          }
+        },
+        {
+          "command": "plugin:event|listen",
+          "args": {
+            "event": "tauri://drag-drop",
+            "target": {
+              "kind": "WebviewWindow",
+              "label": "island"
+            },
+            "handler": 11
+          }
+        },
+        {
+          "command": "plugin:event|listen",
+          "args": {
+            "event": "tauri://drag-leave",
+            "target": {
+              "kind": "WebviewWindow",
+              "label": "island"
+            },
+            "handler": 13
+          }
+        },
+        {
+          "command": "island_set_hitrect",
+          "args": {
+            "rect": {
+              "x": 296,
+              "y": -2,
+              "w": 128,
+              "h": 42
+            }
+          }
+        },
+        {
+          "command": "island_surface_ack",
+          "args": {
+            "generation": 1
+          }
+        }
+      ],
+      "unsupported": [],
+      "runtimeAndNetworkProblems": []
+    },
+    {
+      "file": "v55-privacy-c-privacy-mic-dark@1.5x.png",
+      "scenario": "privacy-mic",
+      "entry": "island.html",
+      "figmaNode": "7:40",
+      "theme": "dark",
+      "resolvedTheme": "dark",
+      "scale": 1.5,
+      "viewport": {
+        "width": 720,
+        "height": 460
+      },
+      "clip": {
+        "x": 244,
+        "y": 6,
+        "width": 232,
+        "height": 32
+      },
+      "width": 348,
+      "height": 48,
+      "bytes": 3150,
+      "sha256": "c42d79ae5790408e0ee19feae7a97f17ef190edab3d327d5410fa603f42a214f",
+      "repeatMatches": true,
+      "caret": "hide",
+      "font": [
+        {
+          "familyName": "Geist",
+          "postScriptName": "Geist",
+          "isCustomFont": true,
+          "glyphCount": 5
+        }
+      ],
+      "fixtureSha256": "a73b67cf77f3e75833f8c515c104a5352a60967278844795cb067f57996c0670",
+      "assertions": {
+        "mode": "mic",
+        "accessibility": {
+          "violations": [],
+          "incomplete": []
+        },
+        "geometry": {
+          "morph": {
+            "width": 232,
+            "height": 32,
+            "font": "12px / 16px Geist, \"Segoe UI Variable\", \"Segoe UI\", system-ui, sans-serif",
+            "gap": "normal",
+            "padding": "0px",
+            "bg": "rgb(5, 5, 6)",
+            "mask": "none",
+            "title": "",
+            "scrollWidth": 232
+          },
+          "compact": {
+            "width": 232,
+            "height": 32,
+            "font": "12px / 16px Geist, \"Segoe UI Variable\", \"Segoe UI\", system-ui, sans-serif",
+            "gap": "8px",
+            "padding": "0px 10px",
+            "bg": "rgb(5, 5, 6)",
+            "mask": "none",
+            "title": "",
+            "scrollWidth": 232
+          },
+          "label": {
+            "width": 82,
+            "height": 16,
+            "font": "12px / 16px Geist, \"Segoe UI Variable\", \"Segoe UI\", system-ui, sans-serif",
+            "gap": "normal",
+            "padding": "0px",
+            "bg": "rgba(0, 0, 0, 0)",
+            "mask": "none",
+            "title": "Teams",
+            "scrollWidth": 82
+          },
+          "dot": {
+            "width": 8,
+            "height": 8,
+            "font": "12px / 16px Geist, \"Segoe UI Variable\", \"Segoe UI\", system-ui, sans-serif",
+            "gap": "normal",
+            "padding": "0px",
+            "bg": "rgba(0, 0, 0, 0)",
+            "mask": "none",
+            "title": "",
+            "scrollWidth": 8
+          },
+          "camera": null,
+          "assets": [
+            {
+              "slot": "compact/iconMic",
+              "width": 16,
+              "height": 16,
+              "loaded": true
+            },
+            {
+              "slot": "compact/privacyDot",
+              "width": 8,
+              "height": 8,
+              "loaded": true
+            }
+          ],
+          "overflow": false
+        },
+        "noDevicesOrRealRegistry": true
+      },
+      "ipc": [
+        {
+          "command": "plugin:event|listen",
+          "args": {
+            "event": "nabbit://island-visibility",
+            "target": {
+              "kind": "Any"
+            },
+            "handler": 1
+          }
+        },
+        {
+          "command": "plugin:event|listen",
+          "args": {
+            "event": "nabbit://island",
+            "target": {
+              "kind": "Any"
+            },
+            "handler": 3
+          }
+        },
+        {
+          "command": "plugin:event|listen",
+          "args": {
+            "event": "nabbit://island-surface",
+            "target": {
+              "kind": "Any"
+            },
+            "handler": 5
+          }
+        },
+        {
+          "command": "plugin:event|listen",
+          "args": {
+            "event": "tauri://drag-enter",
+            "target": {
+              "kind": "WebviewWindow",
+              "label": "island"
+            },
+            "handler": 7
+          }
+        },
+        {
+          "command": "get_island_snapshot",
+          "args": {}
+        },
+        {
+          "command": "get_activity_snapshot",
+          "args": {}
+        },
+        {
+          "command": "get_island_surface",
+          "args": {}
+        },
+        {
+          "command": "plugin:event|listen",
+          "args": {
+            "event": "tauri://drag-over",
+            "target": {
+              "kind": "WebviewWindow",
+              "label": "island"
+            },
+            "handler": 9
+          }
+        },
+        {
+          "command": "plugin:event|listen",
+          "args": {
+            "event": "tauri://drag-drop",
+            "target": {
+              "kind": "WebviewWindow",
+              "label": "island"
+            },
+            "handler": 11
+          }
+        },
+        {
+          "command": "plugin:event|listen",
+          "args": {
+            "event": "tauri://drag-leave",
+            "target": {
+              "kind": "WebviewWindow",
+              "label": "island"
+            },
+            "handler": 13
+          }
+        },
+        {
+          "command": "island_set_hitrect",
+          "args": {
+            "rect": {
+              "x": 236,
+              "y": -2,
+              "w": 248,
+              "h": 48
+            }
+          }
+        },
+        {
+          "command": "island_surface_ack",
+          "args": {
+            "generation": 1
+          }
+        }
+      ],
+      "unsupported": [],
+      "runtimeAndNetworkProblems": []
+    },
+    {
+      "file": "v55-privacy-c-privacy-camera-dark@1.5x.png",
+      "scenario": "privacy-camera",
+      "entry": "island.html",
+      "figmaNode": "7:40",
+      "theme": "dark",
+      "resolvedTheme": "dark",
+      "scale": 1.5,
+      "viewport": {
+        "width": 720,
+        "height": 460
+      },
+      "clip": {
+        "x": 244,
+        "y": 6,
+        "width": 232,
+        "height": 32
+      },
+      "width": 348,
+      "height": 48,
+      "bytes": 4259,
+      "sha256": "5eba3a5549811bb082a6ccbac39fb24c950bba82ca53f20779cf4acf9fe2d117",
+      "repeatMatches": true,
+      "caret": "hide",
+      "font": [
+        {
+          "familyName": "Geist",
+          "postScriptName": "Geist",
+          "isCustomFont": true,
+          "glyphCount": 33
+        }
+      ],
+      "fixtureSha256": "f919aa40b16087f3391a594c7d162ecad65c97edc88e088e1e66d1e96109f306",
+      "assertions": {
+        "mode": "camera",
+        "accessibility": {
+          "violations": [],
+          "incomplete": []
+        },
+        "geometry": {
+          "morph": {
+            "width": 232,
+            "height": 32,
+            "font": "12px / 16px Geist, \"Segoe UI Variable\", \"Segoe UI\", system-ui, sans-serif",
+            "gap": "normal",
+            "padding": "0px",
+            "bg": "rgb(5, 5, 6)",
+            "mask": "none",
+            "title": "",
+            "scrollWidth": 232
+          },
+          "compact": {
+            "width": 232,
+            "height": 32,
+            "font": "12px / 16px Geist, \"Segoe UI Variable\", \"Segoe UI\", system-ui, sans-serif",
+            "gap": "8px",
+            "padding": "0px 10px",
+            "bg": "rgb(5, 5, 6)",
+            "mask": "none",
+            "title": "",
+            "scrollWidth": 232
+          },
+          "label": {
+            "width": 82,
+            "height": 16,
+            "font": "12px / 16px Geist, \"Segoe UI Variable\", \"Segoe UI\", system-ui, sans-serif",
+            "gap": "normal",
+            "padding": "0px",
+            "bg": "rgba(0, 0, 0, 0)",
+            "mask": "none",
+            "title": "Virtual Camera Host",
+            "scrollWidth": 110
+          },
+          "dot": {
+            "width": 8,
+            "height": 8,
+            "font": "12px / 16px Geist, \"Segoe UI Variable\", \"Segoe UI\", system-ui, sans-serif",
+            "gap": "normal",
+            "padding": "0px",
+            "bg": "rgba(0, 0, 0, 0)",
+            "mask": "none",
+            "title": "",
+            "scrollWidth": 8
+          },
+          "camera": {
+            "width": 8,
+            "height": 8,
+            "font": "12px / 16px Geist, \"Segoe UI Variable\", \"Segoe UI\", system-ui, sans-serif",
+            "gap": "normal",
+            "padding": "0px",
+            "bg": "rgb(198, 242, 78)",
+            "mask": "url(\"data:image/svg+xml,%3csvg%20preserveAspectRatio='none'%20overflow='visible'%20style='display:%20block;'%20width='8'%20height='8'%20viewBox='0%200%208%208'%20fill='none'%20xmlns='http://www.w3.org/2000/svg'%3e%3ccircle%20id='Privacy%20dot'%20cx='4'%20cy='4'%20r='4'%20fill='%23A86200'/%3e%3c/svg%3e\")",
+            "title": "",
+            "scrollWidth": 8
+          },
+          "assets": [
+            {
+              "slot": "compact/iconMic",
+              "width": 16,
+              "height": 16,
+              "loaded": true
+            }
+          ],
+          "overflow": false
+        },
+        "noDevicesOrRealRegistry": true
+      },
+      "ipc": [
+        {
+          "command": "plugin:event|listen",
+          "args": {
+            "event": "nabbit://island-visibility",
+            "target": {
+              "kind": "Any"
+            },
+            "handler": 1
+          }
+        },
+        {
+          "command": "plugin:event|listen",
+          "args": {
+            "event": "nabbit://island",
+            "target": {
+              "kind": "Any"
+            },
+            "handler": 3
+          }
+        },
+        {
+          "command": "plugin:event|listen",
+          "args": {
+            "event": "nabbit://island-surface",
+            "target": {
+              "kind": "Any"
+            },
+            "handler": 5
+          }
+        },
+        {
+          "command": "plugin:event|listen",
+          "args": {
+            "event": "tauri://drag-enter",
+            "target": {
+              "kind": "WebviewWindow",
+              "label": "island"
+            },
+            "handler": 7
+          }
+        },
+        {
+          "command": "get_island_snapshot",
+          "args": {}
+        },
+        {
+          "command": "get_activity_snapshot",
+          "args": {}
+        },
+        {
+          "command": "get_island_surface",
+          "args": {}
+        },
+        {
+          "command": "plugin:event|listen",
+          "args": {
+            "event": "tauri://drag-over",
+            "target": {
+              "kind": "WebviewWindow",
+              "label": "island"
+            },
+            "handler": 9
+          }
+        },
+        {
+          "command": "plugin:event|listen",
+          "args": {
+            "event": "tauri://drag-drop",
+            "target": {
+              "kind": "WebviewWindow",
+              "label": "island"
+            },
+            "handler": 11
+          }
+        },
+        {
+          "command": "plugin:event|listen",
+          "args": {
+            "event": "tauri://drag-leave",
+            "target": {
+              "kind": "WebviewWindow",
+              "label": "island"
+            },
+            "handler": 13
+          }
+        },
+        {
+          "command": "island_set_hitrect",
+          "args": {
+            "rect": {
+              "x": 236,
+              "y": -2,
+              "w": 248,
+              "h": 48
+            }
+          }
+        },
+        {
+          "command": "island_surface_ack",
+          "args": {
+            "generation": 1
+          }
+        }
+      ],
+      "unsupported": [],
+      "runtimeAndNetworkProblems": []
+    },
+    {
+      "file": "v55-privacy-c-privacy-both-dark@1.5x.png",
+      "scenario": "privacy-both",
+      "entry": "island.html",
+      "figmaNode": "7:40",
+      "theme": "dark",
+      "resolvedTheme": "dark",
+      "scale": 1.5,
+      "viewport": {
+        "width": 720,
+        "height": 460
+      },
+      "clip": {
+        "x": 244,
+        "y": 6,
+        "width": 232,
+        "height": 32
+      },
+      "width": 348,
+      "height": 48,
+      "bytes": 4161,
+      "sha256": "28c890bfd16ddf224c68712ee13b08e8604566f775564c060c8a287e4f6ea678",
+      "repeatMatches": true,
+      "caret": "hide",
+      "font": [
+        {
+          "familyName": "Geist",
+          "postScriptName": "Geist",
+          "isCustomFont": true,
+          "glyphCount": 40
+        }
+      ],
+      "fixtureSha256": "6a59fbad3d118d6bde8944ee3e1498e8840d04fec2071f9f531084c366e0db61",
+      "assertions": {
+        "mode": "both",
+        "accessibility": {
+          "violations": [],
+          "incomplete": []
+        },
+        "geometry": {
+          "morph": {
+            "width": 232,
+            "height": 32,
+            "font": "12px / 16px Geist, \"Segoe UI Variable\", \"Segoe UI\", system-ui, sans-serif",
+            "gap": "normal",
+            "padding": "0px",
+            "bg": "rgb(5, 5, 6)",
+            "mask": "none",
+            "title": "",
+            "scrollWidth": 232
+          },
+          "compact": {
+            "width": 232,
+            "height": 32,
+            "font": "12px / 16px Geist, \"Segoe UI Variable\", \"Segoe UI\", system-ui, sans-serif",
+            "gap": "8px",
+            "padding": "0px 10px",
+            "bg": "rgb(5, 5, 6)",
+            "mask": "none",
+            "title": "",
+            "scrollWidth": 232
+          },
+          "label": {
+            "width": 82,
+            "height": 16,
+            "font": "12px / 16px Geist, \"Segoe UI Variable\", \"Segoe UI\", system-ui, sans-serif",
+            "gap": "normal",
+            "padding": "0px",
+            "bg": "rgba(0, 0, 0, 0)",
+            "mask": "none",
+            "title": "Teams, Virtual Camera Host",
+            "scrollWidth": 151
+          },
+          "dot": {
+            "width": 8,
+            "height": 8,
+            "font": "12px / 16px Geist, \"Segoe UI Variable\", \"Segoe UI\", system-ui, sans-serif",
+            "gap": "normal",
+            "padding": "0px",
+            "bg": "rgba(0, 0, 0, 0)",
+            "mask": "none",
+            "title": "",
+            "scrollWidth": 8
+          },
+          "camera": {
+            "width": 8,
+            "height": 8,
+            "font": "12px / 16px Geist, \"Segoe UI Variable\", \"Segoe UI\", system-ui, sans-serif",
+            "gap": "normal",
+            "padding": "0px",
+            "bg": "rgb(198, 242, 78)",
+            "mask": "url(\"data:image/svg+xml,%3csvg%20preserveAspectRatio='none'%20overflow='visible'%20style='display:%20block;'%20width='8'%20height='8'%20viewBox='0%200%208%208'%20fill='none'%20xmlns='http://www.w3.org/2000/svg'%3e%3ccircle%20id='Privacy%20dot'%20cx='4'%20cy='4'%20r='4'%20fill='%23A86200'/%3e%3c/svg%3e\")",
+            "title": "",
+            "scrollWidth": 8
+          },
+          "assets": [
+            {
+              "slot": "compact/iconMic",
+              "width": 16,
+              "height": 16,
+              "loaded": true
+            }
+          ],
+          "overflow": false
+        },
+        "noDevicesOrRealRegistry": true
+      },
+      "ipc": [
+        {
+          "command": "plugin:event|listen",
+          "args": {
+            "event": "nabbit://island-visibility",
+            "target": {
+              "kind": "Any"
+            },
+            "handler": 1
+          }
+        },
+        {
+          "command": "plugin:event|listen",
+          "args": {
+            "event": "nabbit://island",
+            "target": {
+              "kind": "Any"
+            },
+            "handler": 3
+          }
+        },
+        {
+          "command": "plugin:event|listen",
+          "args": {
+            "event": "nabbit://island-surface",
+            "target": {
+              "kind": "Any"
+            },
+            "handler": 5
+          }
+        },
+        {
+          "command": "plugin:event|listen",
+          "args": {
+            "event": "tauri://drag-enter",
+            "target": {
+              "kind": "WebviewWindow",
+              "label": "island"
+            },
+            "handler": 7
+          }
+        },
+        {
+          "command": "get_island_snapshot",
+          "args": {}
+        },
+        {
+          "command": "get_activity_snapshot",
+          "args": {}
+        },
+        {
+          "command": "get_island_surface",
+          "args": {}
+        },
+        {
+          "command": "plugin:event|listen",
+          "args": {
+            "event": "tauri://drag-over",
+            "target": {
+              "kind": "WebviewWindow",
+              "label": "island"
+            },
+            "handler": 9
+          }
+        },
+        {
+          "command": "plugin:event|listen",
+          "args": {
+            "event": "tauri://drag-drop",
+            "target": {
+              "kind": "WebviewWindow",
+              "label": "island"
+            },
+            "handler": 11
+          }
+        },
+        {
+          "command": "plugin:event|listen",
+          "args": {
+            "event": "tauri://drag-leave",
+            "target": {
+              "kind": "WebviewWindow",
+              "label": "island"
+            },
+            "handler": 13
+          }
+        },
+        {
+          "command": "island_set_hitrect",
+          "args": {
+            "rect": {
+              "x": 236,
+              "y": -2,
+              "w": 248,
+              "h": 48
+            }
+          }
+        },
+        {
+          "command": "island_surface_ack",
+          "args": {
+            "generation": 1
+          }
+        }
+      ],
+      "unsupported": [],
+      "runtimeAndNetworkProblems": []
+    },
+    {
+      "file": "v55-privacy-c-privacy-long-dark@1.5x.png",
+      "scenario": "privacy-long",
+      "entry": "island.html",
+      "figmaNode": "7:40",
+      "theme": "dark",
+      "resolvedTheme": "dark",
+      "scale": 1.5,
+      "viewport": {
+        "width": 720,
+        "height": 460
+      },
+      "clip": {
+        "x": 244,
+        "y": 6,
+        "width": 232,
+        "height": 32
+      },
+      "width": 348,
+      "height": 48,
+      "bytes": 3995,
+      "sha256": "a2b4abcef9658b818831484d4c9b2179bc19617182689ba1ef1b69d782ecf66c",
+      "repeatMatches": true,
+      "caret": "hide",
+      "font": [
+        {
+          "familyName": "Geist",
+          "postScriptName": "Geist",
+          "isCustomFont": true,
+          "glyphCount": 72
+        }
+      ],
+      "fixtureSha256": "0461ff56285e2b4e291dd245a519a4c8612365c208eec37653c5df09c86cc4a8",
+      "assertions": {
+        "mode": "long",
+        "accessibility": {
+          "violations": [],
+          "incomplete": []
+        },
+        "geometry": {
+          "morph": {
+            "width": 232,
+            "height": 32,
+            "font": "12px / 16px Geist, \"Segoe UI Variable\", \"Segoe UI\", system-ui, sans-serif",
+            "gap": "normal",
+            "padding": "0px",
+            "bg": "rgb(5, 5, 6)",
+            "mask": "none",
+            "title": "",
+            "scrollWidth": 232
+          },
+          "compact": {
+            "width": 232,
+            "height": 32,
+            "font": "12px / 16px Geist, \"Segoe UI Variable\", \"Segoe UI\", system-ui, sans-serif",
+            "gap": "8px",
+            "padding": "0px 10px",
+            "bg": "rgb(5, 5, 6)",
+            "mask": "none",
+            "title": "",
+            "scrollWidth": 232
+          },
+          "label": {
+            "width": 82,
+            "height": 16,
+            "font": "12px / 16px Geist, \"Segoe UI Variable\", \"Segoe UI\", system-ui, sans-serif",
+            "gap": "normal",
+            "padding": "0px",
+            "bg": "rgba(0, 0, 0, 0)",
+            "mask": "none",
+            "title": "An application with a very long descriptive name, Recorder",
+            "scrollWidth": 320
+          },
+          "dot": {
+            "width": 8,
+            "height": 8,
+            "font": "12px / 16px Geist, \"Segoe UI Variable\", \"Segoe UI\", system-ui, sans-serif",
+            "gap": "normal",
+            "padding": "0px",
+            "bg": "rgba(0, 0, 0, 0)",
+            "mask": "none",
+            "title": "",
+            "scrollWidth": 8
+          },
+          "camera": null,
+          "assets": [
+            {
+              "slot": "compact/iconMic",
+              "width": 16,
+              "height": 16,
+              "loaded": true
+            },
+            {
+              "slot": "compact/privacyDot",
+              "width": 8,
+              "height": 8,
+              "loaded": true
+            }
+          ],
+          "overflow": false
+        },
+        "noDevicesOrRealRegistry": true
+      },
+      "ipc": [
+        {
+          "command": "plugin:event|listen",
+          "args": {
+            "event": "nabbit://island-visibility",
+            "target": {
+              "kind": "Any"
+            },
+            "handler": 1
+          }
+        },
+        {
+          "command": "plugin:event|listen",
+          "args": {
+            "event": "nabbit://island",
+            "target": {
+              "kind": "Any"
+            },
+            "handler": 3
+          }
+        },
+        {
+          "command": "plugin:event|listen",
+          "args": {
+            "event": "nabbit://island-surface",
+            "target": {
+              "kind": "Any"
+            },
+            "handler": 5
+          }
+        },
+        {
+          "command": "plugin:event|listen",
+          "args": {
+            "event": "tauri://drag-enter",
+            "target": {
+              "kind": "WebviewWindow",
+              "label": "island"
+            },
+            "handler": 7
+          }
+        },
+        {
+          "command": "get_island_snapshot",
+          "args": {}
+        },
+        {
+          "command": "get_activity_snapshot",
+          "args": {}
+        },
+        {
+          "command": "get_island_surface",
+          "args": {}
+        },
+        {
+          "command": "plugin:event|listen",
+          "args": {
+            "event": "tauri://drag-over",
+            "target": {
+              "kind": "WebviewWindow",
+              "label": "island"
+            },
+            "handler": 9
+          }
+        },
+        {
+          "command": "plugin:event|listen",
+          "args": {
+            "event": "tauri://drag-drop",
+            "target": {
+              "kind": "WebviewWindow",
+              "label": "island"
+            },
+            "handler": 11
+          }
+        },
+        {
+          "command": "plugin:event|listen",
+          "args": {
+            "event": "tauri://drag-leave",
+            "target": {
+              "kind": "WebviewWindow",
+              "label": "island"
+            },
+            "handler": 13
+          }
+        },
+        {
+          "command": "island_set_hitrect",
+          "args": {
+            "rect": {
+              "x": 236,
+              "y": -2,
+              "w": 248,
+              "h": 48
+            }
+          }
+        },
+        {
+          "command": "island_surface_ack",
+          "args": {
+            "generation": 1
+          }
+        }
+      ],
+      "unsupported": [],
+      "runtimeAndNetworkProblems": []
+    },
+    {
+      "file": "v55-privacy-c-privacy-split-dark@1.5x.png",
+      "scenario": "privacy-split",
+      "entry": "island.html",
+      "figmaNode": "7:40",
+      "theme": "dark",
+      "resolvedTheme": "dark",
+      "scale": 1.5,
+      "viewport": {
+        "width": 720,
+        "height": 460
+      },
+      "clip": {
+        "x": 211,
+        "y": 6,
+        "width": 298,
+        "height": 32
+      },
+      "width": 447,
+      "height": 48,
+      "bytes": 4917,
+      "sha256": "6006bd871342b0aa02ec473edc66b1c9b89025f9b83482ab7d60636276539360",
+      "repeatMatches": true,
+      "caret": "hide",
+      "font": [
+        {
+          "familyName": "Geist",
+          "postScriptName": "Geist",
+          "isCustomFont": true,
+          "glyphCount": 5
+        }
+      ],
+      "fixtureSha256": "f03db634f6e1ad97e69f10494b55cafd9d8677b5bffd75f7ee7757bfa01509b2",
+      "assertions": {
+        "mode": "split",
+        "accessibility": {
+          "violations": [],
+          "incomplete": []
+        },
+        "geometry": {
+          "morph": {
+            "width": 298,
+            "height": 32,
+            "font": "12px / 16px Geist, \"Segoe UI Variable\", \"Segoe UI\", system-ui, sans-serif",
+            "gap": "normal",
+            "padding": "0px",
+            "bg": "rgba(0, 0, 0, 0)",
+            "mask": "none",
+            "title": "",
+            "scrollWidth": 298
+          },
+          "compact": {
+            "width": 260,
+            "height": 32,
+            "font": "12px / 16px Geist, \"Segoe UI Variable\", \"Segoe UI\", system-ui, sans-serif",
+            "gap": "8px",
+            "padding": "0px 10px",
+            "bg": "rgb(5, 5, 6)",
+            "mask": "none",
+            "title": "",
+            "scrollWidth": 260
+          },
+          "label": {
+            "width": 96,
+            "height": 16,
+            "font": "12px / 16px Geist, \"Segoe UI Variable\", \"Segoe UI\", system-ui, sans-serif",
+            "gap": "normal",
+            "padding": "0px",
+            "bg": "rgba(0, 0, 0, 0)",
+            "mask": "none",
+            "title": "Teams",
+            "scrollWidth": 96
+          },
+          "dot": {
+            "width": 8,
+            "height": 8,
+            "font": "12px / 16px Geist, \"Segoe UI Variable\", \"Segoe UI\", system-ui, sans-serif",
+            "gap": "normal",
+            "padding": "0px",
+            "bg": "rgba(0, 0, 0, 0)",
+            "mask": "none",
+            "title": "",
+            "scrollWidth": 8
+          },
+          "camera": null,
+          "assets": [
+            {
+              "slot": "compact/iconMic",
+              "width": 16,
+              "height": 16,
+              "loaded": true
+            },
+            {
+              "slot": "compact/privacyDot",
+              "width": 8,
+              "height": 8,
+              "loaded": true
+            },
+            {
+              "slot": "compact/iconTimer1",
+              "width": 15,
+              "height": 15,
+              "loaded": true
+            }
+          ],
+          "overflow": false
+        },
+        "noDevicesOrRealRegistry": true
+      },
+      "ipc": [
+        {
+          "command": "plugin:event|listen",
+          "args": {
+            "event": "nabbit://island-visibility",
+            "target": {
+              "kind": "Any"
+            },
+            "handler": 1
+          }
+        },
+        {
+          "command": "plugin:event|listen",
+          "args": {
+            "event": "nabbit://island",
+            "target": {
+              "kind": "Any"
+            },
+            "handler": 3
+          }
+        },
+        {
+          "command": "plugin:event|listen",
+          "args": {
+            "event": "nabbit://island-surface",
+            "target": {
+              "kind": "Any"
+            },
+            "handler": 5
+          }
+        },
+        {
+          "command": "plugin:event|listen",
+          "args": {
+            "event": "tauri://drag-enter",
+            "target": {
+              "kind": "WebviewWindow",
+              "label": "island"
+            },
+            "handler": 7
+          }
+        },
+        {
+          "command": "get_island_snapshot",
+          "args": {}
+        },
+        {
+          "command": "get_activity_snapshot",
+          "args": {}
+        },
+        {
+          "command": "get_island_surface",
+          "args": {}
+        },
+        {
+          "command": "plugin:event|listen",
+          "args": {
+            "event": "tauri://drag-over",
+            "target": {
+              "kind": "WebviewWindow",
+              "label": "island"
+            },
+            "handler": 9
+          }
+        },
+        {
+          "command": "plugin:event|listen",
+          "args": {
+            "event": "tauri://drag-drop",
+            "target": {
+              "kind": "WebviewWindow",
+              "label": "island"
+            },
+            "handler": 11
+          }
+        },
+        {
+          "command": "plugin:event|listen",
+          "args": {
+            "event": "tauri://drag-leave",
+            "target": {
+              "kind": "WebviewWindow",
+              "label": "island"
+            },
+            "handler": 13
+          }
+        },
+        {
+          "command": "island_set_hitrect",
+          "args": {
+            "rect": {
+              "x": 203,
+              "y": -2,
+              "w": 314,
+              "h": 48
+            }
+          }
+        },
+        {
+          "command": "island_surface_ack",
+          "args": {
+            "generation": 1
+          }
+        }
+      ],
+      "unsupported": [],
+      "runtimeAndNetworkProblems": []
+    },
+    {
+      "file": "v55-privacy-c-privacy-peek-dark@1.5x.png",
+      "scenario": "privacy-peek",
+      "entry": "island.html",
+      "figmaNode": "7:40",
+      "theme": "dark",
+      "resolvedTheme": "dark",
+      "scale": 1.5,
+      "viewport": {
+        "width": 720,
+        "height": 460
+      },
+      "clip": {
+        "x": 160,
+        "y": 6,
+        "width": 400,
+        "height": 78
+      },
+      "width": 600,
+      "height": 117,
+      "bytes": 13241,
+      "sha256": "5f405e0e8651b202b11cf64715a9cb99e627e1d210b64eea71951cb4fd2a040b",
+      "repeatMatches": true,
+      "caret": "hide",
+      "font": [
+        {
+          "familyName": "Geist",
+          "postScriptName": "Geist",
+          "isCustomFont": true,
+          "glyphCount": 28
+        }
+      ],
+      "fixtureSha256": "aeba02fe4c1079a07677307a86637e161b62457a9184a630d484b20a2242dcfa",
+      "assertions": {
+        "mode": "peek",
+        "accessibility": {
+          "violations": [],
+          "incomplete": []
+        },
+        "geometry": {
+          "morph": {
+            "width": 400,
+            "height": 78,
+            "font": "12px / 16px Geist, \"Segoe UI Variable\", \"Segoe UI\", system-ui, sans-serif",
+            "gap": "normal",
+            "padding": "0px",
+            "bg": "rgb(5, 5, 6)",
+            "mask": "none",
+            "title": "",
+            "scrollWidth": 400
+          },
+          "compact": null,
+          "label": null,
+          "dot": null,
+          "camera": null,
+          "assets": [
+            {
+              "slot": "compact/iconMic",
+              "width": 16,
+              "height": 16,
+              "loaded": true
+            }
+          ],
+          "overflow": false
+        },
+        "noDevicesOrRealRegistry": true
+      },
+      "ipc": [
+        {
+          "command": "plugin:event|listen",
+          "args": {
+            "event": "nabbit://island-visibility",
+            "target": {
+              "kind": "Any"
+            },
+            "handler": 1
+          }
+        },
+        {
+          "command": "plugin:event|listen",
+          "args": {
+            "event": "nabbit://island",
+            "target": {
+              "kind": "Any"
+            },
+            "handler": 3
+          }
+        },
+        {
+          "command": "plugin:event|listen",
+          "args": {
+            "event": "nabbit://island-surface",
+            "target": {
+              "kind": "Any"
+            },
+            "handler": 5
+          }
+        },
+        {
+          "command": "plugin:event|listen",
+          "args": {
+            "event": "tauri://drag-enter",
+            "target": {
+              "kind": "WebviewWindow",
+              "label": "island"
+            },
+            "handler": 7
+          }
+        },
+        {
+          "command": "get_island_snapshot",
+          "args": {}
+        },
+        {
+          "command": "get_activity_snapshot",
+          "args": {}
+        },
+        {
+          "command": "get_island_surface",
+          "args": {}
+        },
+        {
+          "command": "plugin:event|listen",
+          "args": {
+            "event": "tauri://drag-over",
+            "target": {
+              "kind": "WebviewWindow",
+              "label": "island"
+            },
+            "handler": 9
+          }
+        },
+        {
+          "command": "plugin:event|listen",
+          "args": {
+            "event": "tauri://drag-drop",
+            "target": {
+              "kind": "WebviewWindow",
+              "label": "island"
+            },
+            "handler": 11
+          }
+        },
+        {
+          "command": "plugin:event|listen",
+          "args": {
+            "event": "tauri://drag-leave",
+            "target": {
+              "kind": "WebviewWindow",
+              "label": "island"
+            },
+            "handler": 13
+          }
+        },
+        {
+          "command": "island_set_hitrect",
+          "args": {
+            "rect": {
+              "x": 152,
+              "y": -2,
+              "w": 416,
+              "h": 48
+            }
+          }
+        },
+        {
+          "command": "island_set_hitrect",
+          "args": {
+            "rect": {
+              "x": 152,
+              "y": -2,
+              "w": 416,
+              "h": 94
+            }
+          }
+        },
+        {
+          "command": "island_surface_ack",
+          "args": {
+            "generation": 1
+          }
+        }
+      ],
+      "unsupported": [],
+      "runtimeAndNetworkProblems": []
+    },
+    {
+      "file": "v55-privacy-c-privacy-off-dark@1.5x.png",
+      "scenario": "privacy-off",
+      "entry": "island.html",
+      "figmaNode": "7:40",
+      "theme": "dark",
+      "resolvedTheme": "dark",
+      "scale": 1.5,
+      "viewport": {
+        "width": 720,
+        "height": 460
+      },
+      "clip": {
+        "x": 304,
+        "y": 6,
+        "width": 112,
+        "height": 26
+      },
+      "width": 168,
+      "height": 39,
+      "bytes": 969,
+      "sha256": "515b5a06948c20ca6768b22903eeda53f9e436c2c3ed761242724a5b76d2d41b",
+      "repeatMatches": true,
+      "caret": "hide",
+      "font": null,
+      "fixtureSha256": "248ccff2161f5ac8cc5bdce9e318e217fb74ed3304ef601b2f17c847fd56716c",
+      "assertions": {
+        "mode": "off",
+        "accessibility": {
+          "violations": [],
+          "incomplete": []
+        },
+        "geometry": {
+          "morph": {
+            "width": 112,
+            "height": 26,
+            "font": "12px / 16px Geist, \"Segoe UI Variable\", \"Segoe UI\", system-ui, sans-serif",
+            "gap": "normal",
+            "padding": "0px",
+            "bg": "rgb(5, 5, 6)",
+            "mask": "none",
+            "title": "",
+            "scrollWidth": 112
+          },
+          "compact": {
+            "width": 112,
+            "height": 26,
+            "font": "12px / 16px Geist, \"Segoe UI Variable\", \"Segoe UI\", system-ui, sans-serif",
+            "gap": "8px",
+            "padding": "0px 10px",
+            "bg": "rgb(5, 5, 6)",
+            "mask": "none",
+            "title": "",
+            "scrollWidth": 112
+          },
+          "label": null,
+          "dot": null,
+          "camera": null,
+          "assets": [],
+          "overflow": false
+        },
+        "noDevicesOrRealRegistry": true
+      },
+      "ipc": [
+        {
+          "command": "plugin:event|listen",
+          "args": {
+            "event": "nabbit://island-visibility",
+            "target": {
+              "kind": "Any"
+            },
+            "handler": 1
+          }
+        },
+        {
+          "command": "plugin:event|listen",
+          "args": {
+            "event": "nabbit://island",
+            "target": {
+              "kind": "Any"
+            },
+            "handler": 3
+          }
+        },
+        {
+          "command": "plugin:event|listen",
+          "args": {
+            "event": "nabbit://island-surface",
+            "target": {
+              "kind": "Any"
+            },
+            "handler": 5
+          }
+        },
+        {
+          "command": "plugin:event|listen",
+          "args": {
+            "event": "tauri://drag-enter",
+            "target": {
+              "kind": "WebviewWindow",
+              "label": "island"
+            },
+            "handler": 7
+          }
+        },
+        {
+          "command": "get_island_snapshot",
+          "args": {}
+        },
+        {
+          "command": "get_activity_snapshot",
+          "args": {}
+        },
+        {
+          "command": "get_island_surface",
+          "args": {}
+        },
+        {
+          "command": "plugin:event|listen",
+          "args": {
+            "event": "tauri://drag-over",
+            "target": {
+              "kind": "WebviewWindow",
+              "label": "island"
+            },
+            "handler": 9
+          }
+        },
+        {
+          "command": "plugin:event|listen",
+          "args": {
+            "event": "tauri://drag-drop",
+            "target": {
+              "kind": "WebviewWindow",
+              "label": "island"
+            },
+            "handler": 11
+          }
+        },
+        {
+          "command": "plugin:event|listen",
+          "args": {
+            "event": "tauri://drag-leave",
+            "target": {
+              "kind": "WebviewWindow",
+              "label": "island"
+            },
+            "handler": 13
+          }
+        },
+        {
+          "command": "island_set_hitrect",
+          "args": {
+            "rect": {
+              "x": 296,
+              "y": -2,
+              "w": 128,
+              "h": 42
+            }
+          }
+        },
+        {
+          "command": "island_surface_ack",
+          "args": {
+            "generation": 1
+          }
+        }
+      ],
+      "unsupported": [],
+      "runtimeAndNetworkProblems": []
+    }
+  ]
+}
