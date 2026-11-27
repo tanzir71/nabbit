@@ -1,0 +1,103 @@
+{
+  "passed": false,
+  "failure": {
+    "message": "locator.waitFor: Target page, context or browser has been closed\nCall log:\n\u001b[2m  - waiting for getByRole('region', { name: 'Download saved', exact: true }).getByRole('button', { name: 'Move to Courses', exact: true }) to be visible\u001b[22m\n",
+    "stack": "locator.waitFor: Target page, context or browser has been closed\nCall log:\n\u001b[2m  - waiting for getByRole('region', { name: 'Download saved', exact: true }).getByRole('button', { name: 'Move to Courses', exact: true }) to be visible\u001b[22m\n\n    at D:\\claude-upgrade-26\\nabbit\\scripts\\capture-native-files.mjs:537:77"
+  },
+  "checks": [
+    "Pins are created/edited/removed through real IPC/SQLite without changing the target. Files shows the actual Shelf and pins. A held peek lists six metadata rows, refreshes on a real owned notify event, and closes its owner/token watch.",
+    "An actual owned Shell IShellItemArray/IDataObject invokes the production IDropTarget callbacks, preserving physical hover coordinates and Ctrl. The normal pin UI plans and executes a journalled Copy. The native DirectComposition compact Undo hit path is exercised by one application-only message to a PID/class-verified owned HWND; Undo quarantines the copy through the owned provider.",
+    "Shelf selection → Move to → explicit Invoices destination runs the real UI and journal. The owned conflict provider keeps both files under a numbered output, updates the original Shelf identity, and preserves the existing destination. The visible native Moved result expires on real time at eight seconds (the pure scheduler test pins the exact boundary)."
+  ],
+  "captures": [
+    {
+      "role": "files",
+      "file": "v58-native-e-files@2x.png",
+      "sha256": "2df02a74e0ca026000250998be05180d741b1fb08e45bf838a779d2efb3183d3",
+      "bytes": 78869,
+      "width": 1440,
+      "height": 920,
+      "logicalBounds": {
+        "x": 0,
+        "y": 0,
+        "width": 720,
+        "height": 460
+      },
+      "contentBounds": {
+        "x": 0,
+        "y": 0,
+        "width": 720,
+        "height": 460
+      },
+      "scale": 2,
+      "repeatMatches": true
+    },
+    {
+      "role": "pin-peek",
+      "file": "v58-native-e-pin-peek@2x.png",
+      "sha256": "be5aae722ae2403cc6d42de5d47889c5b55e98d38c0327002cf6ee6eb95d2a70",
+      "bytes": 118357,
+      "width": 1440,
+      "height": 920,
+      "logicalBounds": {
+        "x": 0,
+        "y": 0,
+        "width": 720,
+        "height": 460
+      },
+      "contentBounds": {
+        "x": 0,
+        "y": 0,
+        "width": 720,
+        "height": 460
+      },
+      "scale": 2,
+      "repeatMatches": true
+    },
+    {
+      "role": "drop-copy",
+      "file": "v58-native-e-drop-copy@2x.png",
+      "sha256": "48c14c9f4144dc7c2cf5ad22f121ad9ece00ebad43573389d4aaba29dced5d6f",
+      "bytes": 66819,
+      "width": 1440,
+      "height": 920,
+      "logicalBounds": {
+        "x": 0,
+        "y": 0,
+        "width": 720,
+        "height": 460
+      },
+      "contentBounds": {
+        "x": 0,
+        "y": 0,
+        "width": 720,
+        "height": 460
+      },
+      "scale": 2,
+      "repeatMatches": true
+    },
+    {
+      "role": "copied-compact",
+      "file": "v58-native-e-copied-compact@1x.png",
+      "width": 720,
+      "height": 460,
+      "bytes": 6968,
+      "sha256": "9c7ece46895ae601865e648f6f1d2a902c6dbef547c5892d64812b7a3d11da0f"
+    },
+    {
+      "role": "moved-compact",
+      "file": "v58-native-e-moved-compact@1x.png",
+      "width": 720,
+      "height": 460,
+      "bytes": 6997,
+      "sha256": "7ba52535d136efc0c81db13c1dfcf2fc90f38bb51561f7f7416fb3565f97b968"
+    }
+  ],
+  "embeddedAssetCount": 0,
+  "executableSha256": "94d22e1c1d9dc1fcd16c072edc713109d208d8fd5aaed6caa5de91cd99eaeb9f",
+  "buildManifestSha256": "634c65e2fda586f1b76997b2b6553636510462b3ea6e8253ab9dba715172a603",
+  "noUserProfile": true,
+  "noRealRecycleBinOrExplorer": true,
+  "noOsSettingChange": true,
+  "scope": "Owned production release Files/Pins/Shelf, actual Tauri/SQLite journal, metadata notify, owned Shell IDataObject callbacks and application-only native Undo message. Transfers/conflicts/recycle use the guarded owned provider; real IFileOperation is covered separately by the owned no-dialog Rust test. Download record is seeded locally; no network download. No user profile, clipboard, Explorer, Recycle Bin or OS setting is used."
+}

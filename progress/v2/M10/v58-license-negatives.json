@@ -1,0 +1,51 @@
+{
+  "cargoDeny": "0.22.2",
+  "corePolicyPassed": true,
+  "fixtures": [
+    {
+      "crate": "agpl-fixture",
+      "rejected": true,
+      "source": ".tools/v57-license-fixtures-iOvZ8s/agpl-fixture/diagnostic.txt",
+      "log": "v58-license-negative-agpl-fixture.txt",
+      "canonicalSha256": "ce470e9da1fe1a9bf6a3454a8998ab2bae35f447155b0ae7605f35e8149f3203",
+      "originalArchive": "v58-license-negative-agpl-fixture.txt.original.gz",
+      "originalBytes": 5334,
+      "originalSha256": "b26154035b3875487ac68f18884bfa0508e37ed2a819b02f7b52b969875adc82",
+      "authoritative": false
+    },
+    {
+      "crate": "ffmpeg-next",
+      "rejected": true,
+      "source": ".tools/v57-license-fixtures-iOvZ8s/ffmpeg-next/diagnostic.txt",
+      "log": "v58-license-negative-ffmpeg-next.txt",
+      "canonicalSha256": "91d594cfee5c17bba47d40c108b8e009650566df53af34eae3dca3a9d3ca55b3",
+      "originalArchive": "v58-license-negative-ffmpeg-next.txt.original.gz",
+      "originalBytes": 4876,
+      "originalSha256": "1c47bf717d59e7e497e93d142335547c6e7baf3247f23bbf53fad69b4d819de6",
+      "authoritative": false
+    },
+    {
+      "crate": "gpl-fixture",
+      "rejected": true,
+      "source": ".tools/v57-license-fixtures-iOvZ8s/gpl-fixture/diagnostic.txt",
+      "log": "v58-license-negative-gpl-fixture.txt",
+      "canonicalSha256": "fe69b9b03d47fd04a8b1663c33d4837f2d57326f6521496dacd8960c0f712c30",
+      "originalArchive": "v58-license-negative-gpl-fixture.txt.original.gz",
+      "originalBytes": 5320,
+      "originalSha256": "07c75ec03c4dff90249a814967c6f91116c009356ccef5bfe5c826a6f1c30e9e",
+      "authoritative": false
+    },
+    {
+      "crate": "lgpl-fixture",
+      "rejected": true,
+      "source": ".tools/v57-license-fixtures-iOvZ8s/lgpl-fixture/diagnostic.txt",
+      "log": "v58-license-negative-lgpl-fixture.txt",
+      "canonicalSha256": "3649b06346734ae5bbd6c7085b34511a66a02636a652393c5a629b8805a34fa2",
+      "originalArchive": "v58-license-negative-lgpl-fixture.txt.original.gz",
+      "originalBytes": 5334,
+      "originalSha256": "1a1b4c1cd873b1ab01bcf5df21aaa17cf48663007d40064aca6b2035a62e732f",
+      "authoritative": false
+    }
+  ],
+  "waiversAdded": false
+}

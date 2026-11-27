@@ -1,0 +1,27 @@
+file:///D:/claude-upgrade-26/nabbit/scripts/screenshots/harness.mjs:411
+            throw new Error(`${scenario.name} (${theme}@${scale}x): ${error.message}`, {
+                  ^
+
+Error: files-pin-peek (light@1x): Expected values to be strictly equal:
+
+276 !== 274
+
+    at captureSuite (file:///D:/claude-upgrade-26/nabbit/scripts/screenshots/harness.mjs:411:19)
+    at async file:///D:/claude-upgrade-26/nabbit/scripts/verify-files-screenshots.mjs:28:16 {
+  [cause]: AssertionError [ERR_ASSERTION]: Expected values to be strictly equal:
+
+  276 !== 274
+
+      at Object.ready (file:///D:/claude-upgrade-26/nabbit/scripts/verify-files-screenshots.mjs:218:16)
+      at async captureSuite (file:///D:/claude-upgrade-26/nabbit/scripts/screenshots/harness.mjs:144:33)
+      at async file:///D:/claude-upgrade-26/nabbit/scripts/verify-files-screenshots.mjs:28:16 {
+    generatedMessage: true,
+    code: 'ERR_ASSERTION',
+    actual: 276,
+    expected: 274,
+    operator: 'strictEqual',
+    diff: 'simple'
+  }
+}
+
+Node.js v24.22.2

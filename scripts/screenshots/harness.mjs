@@ -228,7 +228,26 @@ export async function captureSuite(root, options, cases = scenarios) {
                     ...(scenario.noteCapture ? ["notes_open", "capture_note"] : []),
                     ...(scenario.timer ? ["timer_snapshot", "timer_view"] : []),
                     ...(scenario.media ? ["media_snapshot"] : []),
-                    ...(scenario.shelf ? ["shelf_list", "shelf_preview"] : []),
+                    ...(scenario.shelf
+                      ? [
+                          "shelf_list",
+                          "shelf_preview",
+                          "files_pins",
+                          "files_capabilities",
+                          "files_history",
+                        ]
+                      : []),
+                    ...(scenario.files
+                      ? [
+                          "files_peek_open",
+                          "files_peek_items",
+                          "files_peek_close",
+                          "files_suggestions",
+                          "files_hints",
+                          "files_plan",
+                          "files_download_info",
+                        ]
+                      : []),
                     ...(scenario.tools ? ["shelf_list", "get_notes_state"] : []),
                     "plugin:event|listen",
                     "plugin:event|unlisten",

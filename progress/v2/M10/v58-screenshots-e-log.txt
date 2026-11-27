@@ -1,0 +1,614 @@
+file:///D:/claude-upgrade-26/nabbit/scripts/screenshots/harness.mjs:393
+            throw new Error(`${scenario.name} (${theme}@${scale}x): ${error.message}`, {
+                  ^
+
+Error: files-pin-peek (light@1x): Expected values to be strictly deep-equal:
++ actual - expected
+
+  {
++   incomplete: [
++     {
++       id: 'color-contrast',
++       nodes: [
++         {
++           summary: 'Fix any of the following:\n' +
++             "  Element's background color could not be determined because it is overlapped by another element",
++           target: [
++             '.shelf-heading > span:nth-child(1)'
++           ]
++         },
++         {
++           summary: 'Fix any of the following:\n' +
++             "  Element's background color could not be determined because it is overlapped by another element",
++           target: [
++             '.shelf-heading > span:nth-child(2)'
++           ]
++         },
++         {
++           summary: 'Fix any of the following:\n' +
++             "  Element's background color could not be determined because it is overlapped by another element",
++           target: [
++             'button[aria-label="Select hero-mock@2x.png 2.4 MB"] > .shelf-name > span'
++           ]
++         },
++         {
++           summary: 'Fix any of the following:\n' +
++             "  Element's background color could not be determined because it is overlapped by another element",
++           target: [
++             'button[aria-label="Select hero-mock@2x.png 2.4 MB"] > small'
++           ]
++         },
++         {
++           summary: 'Fix any of the following:\n' +
++             "  Element's background color could not be determined because it is overlapped by another element",
++           target: [
++             'button[aria-label="Select demo-island.mp4 18.1 MB"] > .shelf-name > span'
++           ]
++         },
++         {
++           summary: 'Fix any of the following:\n' +
++             "  Element's background color could not be determined because it is overlapped by another element",
++           target: [
++             'button[aria-label="Select demo-island.mp4 18.1 MB"] > small'
++           ]
++         },
++         {
++           summary: 'Fix any of the following:\n' +
++             "  Element's background color could not be determined because it is overlapped by another element",
++           target: [
++             'li[data-shelf-id="document"] > .shelf-item[draggable="true"] > .shelf-name > span'
++           ]
++         },
++         {
++           summary: 'Fix any of the following:\n' +
++             "  Element's background color could not be determined because it is overlapped by another element",
++           target: [
++             'li[data-shelf-id="document"] > .shelf-item[draggable="true"] > small'
++           ]
++         },
++         {
++           summary: 'Fix any of the following:\n' +
++             "  Element's background color could not be determined because it is overlapped by another element",
++           target: [
++             '.shelf-drop > span'
++           ]
++         },
++         {
++           summary: 'Fix any of the following:\n' +
++             "  Element's background color could not be determined because it is overlapped by another element",
++           target: [
++             '.files-heading > span:nth-child(1)'
++           ]
++         },
++         {
++           summary: 'Fix any of the following:\n' +
++             "  Element's background color could not be determined because it is overlapped by another element",
++           target: [
++             '.files-heading > span:nth-child(2)'
++           ]
++         },
++         {
++           summary: 'Fix any of the following:\n' +
++             "  Element's background color could not be determined because it is overlapped by another element",
++           target: [
++             '.files-add'
++           ]
++         },
++         {
++           summary: 'Fix any of the following:\n' +
++             "  Element's background color could not be determined because it is overlapped by another element",
++           target: [
++             'button[aria-description="folder · Alt+1"] > .files-pin-label > span'
++           ]
++         },
++         {
++           summary: 'Fix any of the following:\n' +
++             "  Element's background color could not be determined because it is overlapped by another element",
++           target: [
++             'button[aria-description="folder · Alt+1"] > .files-pin-label > small'
++           ]
++         },
++         {
++           summary: 'Fix any of the following:\n' +
++             '  Element content is too short to determine if it is actual text content',
++           target: [
++             'button[aria-description="folder · Alt+1"] > .files-pin-slot'
++           ]
++         },
++         {
++           summary: 'Fix any of the following:\n' +
++             "  Element's background color could not be determined because it is overlapped by another element",
++           target: [
++             'button[aria-description="folder · Alt+2"] > .files-pin-label > span'
++           ]
++         },
++         {
++           summary: 'Fix any of the following:\n' +
++             "  Element's background color could not be determined because it is overlapped by another element",
++           target: [
++             'button[aria-description="folder · Alt+2"] > .files-pin-label > small'
++           ]
++         },
++         {
++           summary: 'Fix any of the following:\n' +
++             '  Element content is too short to determine if it is actual text content',
++           target: [
++             'button[aria-description="folder · Alt+2"] > .files-pin-slot'
++           ]
++         },
++         {
++           summary: 'Fix any of the following:\n' +
++             "  Element's background color could not be determined because it is overlapped by another element",
++           target: [
++             'button[aria-description="folder · Alt+3"] > .files-pin-label > span'
++           ]
++         },
++         {
++           summary: 'Fix any of the following:\n' +
++             "  Element's background color could not be determined because it is overlapped by another element",
++           target: [
++             'button[aria-description="folder · Alt+3"] > .files-pin-label > small'
++           ]
++         },
++         {
++           summary: 'Fix any of the following:\n' +
++             '  Element content is too short to determine if it is actual text content',
++           target: [
++             'button[aria-description="folder · Alt+3"] > .files-pin-slot'
++           ]
++         },
++         {
++           summary: 'Fix any of the following:\n' +
++             "  Element's background color could not be determined because it is overlapped by another element",
++           target: [
++             'button[aria-description="folder · Alt+4"] > .files-pin-label > span'
++           ]
++         },
++         {
++           summary: 'Fix any of the following:\n' +
++             "  Element's background color could not be determined because it is overlapped by another element",
++           target: [
++             'button[aria-description="folder · Alt+4"] > .files-pin-label > small'
++           ]
++         },
++         {
++           summary: 'Fix any of the following:\n' +
++             '  Element content is too short to determine if it is actual text content',
++           target: [
++             'button[aria-description="folder · Alt+4"] > .files-pin-slot'
++           ]
++         },
++         {
++           summary: 'Fix any of the following:\n' +
++             "  Element's background color could not be determined because it is overlapped by another element",
++           target: [
++             'button[aria-description="file · Alt+5"] > .files-pin-label > span'
++           ]
++         },
++         {
++           summary: 'Fix any of the following:\n' +
++             "  Element's background color could not be determined because it is overlapped by another element",
++           target: [
++             'button[aria-description="file · Alt+5"] > .files-pin-label > small'
++           ]
++         },
++         {
++           summary: 'Fix any of the following:\n' +
++             '  Element content is too short to determine if it is actual text content',
++           target: [
++             'button[aria-description="file · Alt+5"] > .files-pin-slot'
++           ]
++         },
++         {
++           summary: 'Fix any of the following:\n' +
++             "  Element's background color could not be determined because it is overlapped by another element",
++           target: [
++             'button[aria-description="file · Alt+6"] > .files-pin-label > span'
++           ]
++         },
++         {
++           summary: 'Fix any of the following:\n' +
++             "  Element's background color could not be determined because it is overlapped by another element",
++           target: [
++             'button[aria-description="file · Alt+6"] > .files-pin-label > small'
++           ]
++         },
++         {
++           summary: 'Fix any of the following:\n' +
++             '  Element content is too short to determine if it is actual text content',
++           target: [
++             'button[aria-description="file · Alt+6"] > .files-pin-slot'
++           ]
++         },
++         {
++           summary: 'Fix any of the following:\n' +
++             "  Element's background color could not be determined because it is overlapped by another element",
++           target: [
++             'button[aria-description="file · Alt+7"] > .files-pin-label > span'
++           ]
++         },
++         {
++           summary: 'Fix any of the following:\n' +
++             "  Element's background color could not be determined because it is overlapped by another element",
++           target: [
++             'button[aria-description="file · Alt+7"] > .files-pin-label > small'
++           ]
++         },
++         {
++           summary: 'Fix any of the following:\n' +
++             '  Element content is too short to determine if it is actual text content',
++           target: [
++             'button[aria-description="file · Alt+7"] > .files-pin-slot'
++           ]
++         },
++         {
++           summary: 'Fix any of the following:\n' +
++             "  Element's background color could not be determined because it is overlapped by another element",
++           target: [
++             'button[aria-description="file · Alt+8"] > .files-pin-label > span'
++           ]
++         },
++         {
++           summary: 'Fix any of the following:\n' +
++             "  Element's background color could not be determined because it is overlapped by another element",
++           target: [
++             'button[aria-description="file · Alt+8"] > .files-pin-label > small'
++           ]
++         },
++         {
++           summary: 'Fix any of the following:\n' +
++             '  Element content is too short to determine if it is actual text content',
++           target: [
++             'button[aria-description="file · Alt+8"] > .files-pin-slot'
++           ]
++         },
++         {
++           summary: 'Fix any of the following:\n' +
++             "  Element's background color could not be determined because it is overlapped by another element",
++           target: [
++             'footer > span'
++           ]
++         },
++         {
++           summary: 'Fix any of the following:\n' +
++             "  Element's background color could not be determined because it is overlapped by another element",
++           target: [
++             'footer > .n-button.n-button--ghost.n-button--md:nth-child(2)'
++           ]
++         },
++         {
++           summary: 'Fix any of the following:\n' +
++             "  Element's background color could not be determined because it is overlapped by another element",
++           target: [
++             'footer > .n-button.n-button--ghost.n-button--md:nth-child(3)'
++           ]
++         }
++       ]
++     }
++   ],
+-   incomplete: [],
+    violations: []
+  }
+
+    at captureSuite (file:///D:/claude-upgrade-26/nabbit/scripts/screenshots/harness.mjs:393:19)
+    at async file:///D:/claude-upgrade-26/nabbit/scripts/verify-files-screenshots.mjs:28:16 {
+  [cause]: AssertionError [ERR_ASSERTION]: Expected values to be strictly deep-equal:
+  + actual - expected
+
+    {
+  +   incomplete: [
+  +     {
+  +       id: 'color-contrast',
+  +       nodes: [
+  +         {
+  +           summary: 'Fix any of the following:\n' +
+  +             "  Element's background color could not be determined because it is overlapped by another element",
+  +           target: [
+  +             '.shelf-heading > span:nth-child(1)'
+  +           ]
+  +         },
+  +         {
+  +           summary: 'Fix any of the following:\n' +
+  +             "  Element's background color could not be determined because it is overlapped by another element",
+  +           target: [
+  +             '.shelf-heading > span:nth-child(2)'
+  +           ]
+  +         },
+  +         {
+  +           summary: 'Fix any of the following:\n' +
+  +             "  Element's background color could not be determined because it is overlapped by another element",
+  +           target: [
+  +             'button[aria-label="Select hero-mock@2x.png 2.4 MB"] > .shelf-name > span'
+  +           ]
+  +         },
+  +         {
+  +           summary: 'Fix any of the following:\n' +
+  +             "  Element's background color could not be determined because it is overlapped by another element",
+  +           target: [
+  +             'button[aria-label="Select hero-mock@2x.png 2.4 MB"] > small'
+  +           ]
+  +         },
+  +         {
+  +           summary: 'Fix any of the following:\n' +
+  +             "  Element's background color could not be determined because it is overlapped by another element",
+  +           target: [
+  +             'button[aria-label="Select demo-island.mp4 18.1 MB"] > .shelf-name > span'
+  +           ]
+  +         },
+  +         {
+  +           summary: 'Fix any of the following:\n' +
+  +             "  Element's background color could not be determined because it is overlapped by another element",
+  +           target: [
+  +             'button[aria-label="Select demo-island.mp4 18.1 MB"] > small'
+  +           ]
+  +         },
+  +         {
+  +           summary: 'Fix any of the following:\n' +
+  +             "  Element's background color could not be determined because it is overlapped by another element",
+  +           target: [
+  +             'li[data-shelf-id="document"] > .shelf-item[draggable="true"] > .shelf-name > span'
+  +           ]
+  +         },
+  +         {
+  +           summary: 'Fix any of the following:\n' +
+  +             "  Element's background color could not be determined because it is overlapped by another element",
+  +           target: [
+  +             'li[data-shelf-id="document"] > .shelf-item[draggable="true"] > small'
+  +           ]
+  +         },
+  +         {
+  +           summary: 'Fix any of the following:\n' +
+  +             "  Element's background color could not be determined because it is overlapped by another element",
+  +           target: [
+  +             '.shelf-drop > span'
+  +           ]
+  +         },
+  +         {
+  +           summary: 'Fix any of the following:\n' +
+  +             "  Element's background color could not be determined because it is overlapped by another element",
+  +           target: [
+  +             '.files-heading > span:nth-child(1)'
+  +           ]
+  +         },
+  +         {
+  +           summary: 'Fix any of the following:\n' +
+  +             "  Element's background color could not be determined because it is overlapped by another element",
+  +           target: [
+  +             '.files-heading > span:nth-child(2)'
+  +           ]
+  +         },
+  +         {
+  +           summary: 'Fix any of the following:\n' +
+  +             "  Element's background color could not be determined because it is overlapped by another element",
+  +           target: [
+  +             '.files-add'
+  +           ]
+  +         },
+  +         {
+  +           summary: 'Fix any of the following:\n' +
+  +             "  Element's background color could not be determined because it is overlapped by another element",
+  +           target: [
+  +             'button[aria-description="folder · Alt+1"] > .files-pin-label > span'
+  +           ]
+  +         },
+  +         {
+  +           summary: 'Fix any of the following:\n' +
+  +             "  Element's background color could not be determined because it is overlapped by another element",
+  +           target: [
+  +             'button[aria-description="folder · Alt+1"] > .files-pin-label > small'
+  +           ]
+  +         },
+  +         {
+  +           summary: 'Fix any of the following:\n' +
+  +             '  Element content is too short to determine if it is actual text content',
+  +           target: [
+  +             'button[aria-description="folder · Alt+1"] > .files-pin-slot'
+  +           ]
+  +         },
+  +         {
+  +           summary: 'Fix any of the following:\n' +
+  +             "  Element's background color could not be determined because it is overlapped by another element",
+  +           target: [
+  +             'button[aria-description="folder · Alt+2"] > .files-pin-label > span'
+  +           ]
+  +         },
+  +         {
+  +           summary: 'Fix any of the following:\n' +
+  +             "  Element's background color could not be determined because it is overlapped by another element",
+  +           target: [
+  +             'button[aria-description="folder · Alt+2"] > .files-pin-label > small'
+  +           ]
+  +         },
+  +         {
+  +           summary: 'Fix any of the following:\n' +
+  +             '  Element content is too short to determine if it is actual text content',
+  +           target: [
+  +             'button[aria-description="folder · Alt+2"] > .files-pin-slot'
+  +           ]
+  +         },
+  +         {
+  +           summary: 'Fix any of the following:\n' +
+  +             "  Element's background color could not be determined because it is overlapped by another element",
+  +           target: [
+  +             'button[aria-description="folder · Alt+3"] > .files-pin-label > span'
+  +           ]
+  +         },
+  +         {
+  +           summary: 'Fix any of the following:\n' +
+  +             "  Element's background color could not be determined because it is overlapped by another element",
+  +           target: [
+  +             'button[aria-description="folder · Alt+3"] > .files-pin-label > small'
+  +           ]
+  +         },
+  +         {
+  +           summary: 'Fix any of the following:\n' +
+  +             '  Element content is too short to determine if it is actual text content',
+  +           target: [
+  +             'button[aria-description="folder · Alt+3"] > .files-pin-slot'
+  +           ]
+  +         },
+  +         {
+  +           summary: 'Fix any of the following:\n' +
+  +             "  Element's background color could not be determined because it is overlapped by another element",
+  +           target: [
+  +             'button[aria-description="folder · Alt+4"] > .files-pin-label > span'
+  +           ]
+  +         },
+  +         {
+  +           summary: 'Fix any of the following:\n' +
+  +             "  Element's background color could not be determined because it is overlapped by another element",
+  +           target: [
+  +             'button[aria-description="folder · Alt+4"] > .files-pin-label > small'
+  +           ]
+  +         },
+  +         {
+  +           summary: 'Fix any of the following:\n' +
+  +             '  Element content is too short to determine if it is actual text content',
+  +           target: [
+  +             'button[aria-description="folder · Alt+4"] > .files-pin-slot'
+  +           ]
+  +         },
+  +         {
+  +           summary: 'Fix any of the following:\n' +
+  +             "  Element's background color could not be determined because it is overlapped by another element",
+  +           target: [
+  +             'button[aria-description="file · Alt+5"] > .files-pin-label > span'
+  +           ]
+  +         },
+  +         {
+  +           summary: 'Fix any of the following:\n' +
+  +             "  Element's background color could not be determined because it is overlapped by another element",
+  +           target: [
+  +             'button[aria-description="file · Alt+5"] > .files-pin-label > small'
+  +           ]
+  +         },
+  +         {
+  +           summary: 'Fix any of the following:\n' +
+  +             '  Element content is too short to determine if it is actual text content',
+  +           target: [
+  +             'button[aria-description="file · Alt+5"] > .files-pin-slot'
+  +           ]
+  +         },
+  +         {
+  +           summary: 'Fix any of the following:\n' +
+  +             "  Element's background color could not be determined because it is overlapped by another element",
+  +           target: [
+  +             'button[aria-description="file · Alt+6"] > .files-pin-label > span'
+  +           ]
+  +         },
+  +         {
+  +           summary: 'Fix any of the following:\n' +
+  +             "  Element's background color could not be determined because it is overlapped by another element",
+  +           target: [
+  +             'button[aria-description="file · Alt+6"] > .files-pin-label > small'
+  +           ]
+  +         },
+  +         {
+  +           summary: 'Fix any of the following:\n' +
+  +             '  Element content is too short to determine if it is actual text content',
+  +           target: [
+  +             'button[aria-description="file · Alt+6"] > .files-pin-slot'
+  +           ]
+  +         },
+  +         {
+  +           summary: 'Fix any of the following:\n' +
+  +             "  Element's background color could not be determined because it is overlapped by another element",
+  +           target: [
+  +             'button[aria-description="file · Alt+7"] > .files-pin-label > span'
+  +           ]
+  +         },
+  +         {
+  +           summary: 'Fix any of the following:\n' +
+  +             "  Element's background color could not be determined because it is overlapped by another element",
+  +           target: [
+  +             'button[aria-description="file · Alt+7"] > .files-pin-label > small'
+  +           ]
+  +         },
+  +         {
+  +           summary: 'Fix any of the following:\n' +
+  +             '  Element content is too short to determine if it is actual text content',
+  +           target: [
+  +             'button[aria-description="file · Alt+7"] > .files-pin-slot'
+  +           ]
+  +         },
+  +         {
+  +           summary: 'Fix any of the following:\n' +
+  +             "  Element's background color could not be determined because it is overlapped by another element",
+  +           target: [
+  +             'button[aria-description="file · Alt+8"] > .files-pin-label > span'
+  +           ]
+  +         },
+  +         {
+  +           summary: 'Fix any of the following:\n' +
+  +             "  Element's background color could not be determined because it is overlapped by another element",
+  +           target: [
+  +             'button[aria-description="file · Alt+8"] > .files-pin-label > small'
+  +           ]
+  +         },
+  +         {
+  +           summary: 'Fix any of the following:\n' +
+  +             '  Element content is too short to determine if it is actual text content',
+  +           target: [
+  +             'button[aria-description="file · Alt+8"] > .files-pin-slot'
+  +           ]
+  +         },
+  +         {
+  +           summary: 'Fix any of the following:\n' +
+  +             "  Element's background color could not be determined because it is overlapped by another element",
+  +           target: [
+  +             'footer > span'
+  +           ]
+  +         },
+  +         {
+  +           summary: 'Fix any of the following:\n' +
+  +             "  Element's background color could not be determined because it is overlapped by another element",
+  +           target: [
+  +             'footer > .n-button.n-button--ghost.n-button--md:nth-child(2)'
+  +           ]
+  +         },
+  +         {
+  +           summary: 'Fix any of the following:\n' +
+  +             "  Element's background color could not be determined because it is overlapped by another element",
+  +           target: [
+  +             'footer > .n-button.n-button--ghost.n-button--md:nth-child(3)'
+  +           ]
+  +         }
+  +       ]
+  +     }
+  +   ],
+  -   incomplete: [],
+      violations: []
+    }
+
+      at Object.ready (file:///D:/claude-upgrade-26/nabbit/scripts/verify-files-screenshots.mjs:184:14)
+      at async captureSuite (file:///D:/claude-upgrade-26/nabbit/scripts/screenshots/harness.mjs:144:33)
+      at async file:///D:/claude-upgrade-26/nabbit/scripts/verify-files-screenshots.mjs:28:16 {
+    generatedMessage: true,
+    code: 'ERR_ASSERTION',
+    actual: {
+      violations: [],
+      incomplete: [
+        {
+          id: 'color-contrast',
+          nodes: [
+            [Object], [Object], [Object], [Object],
+            [Object], [Object], [Object], [Object],
+            [Object], [Object], [Object], [Object],
+            [Object], [Object], [Object], [Object],
+            [Object], [Object], [Object], [Object],
+            [Object], [Object], [Object], [Object],
+            [Object], [Object], [Object], [Object],
+            [Object], [Object], [Object], [Object],
+            [Object], [Object], [Object], [Object],
+            [Object], [Object], [Object]
+          ]
+        }
+      ]
+    },
+    expected: { violations: [], incomplete: [] },
+    operator: 'deepStrictEqual',
+    diff: 'simple'
+  }
+}
+
+Node.js v24.22.2

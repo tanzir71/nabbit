@@ -1,0 +1,21 @@
+Compiling nabbit v0.1.0 (D:\claude-upgrade-26\nabbit\src-tauri)
+error[E0382]: borrow of moved value: `name`
+   --> src\files\tests.rs:362:49
+    |
+349 |         let name = name.map(str::to_owned).unwrap_or_else(|| {
+    |             ---- move occurs because `name` has type `std::string::String`, which does not implement the `Copy` trait
+...
+356 |         let path = Path::new(destination).join(name);
+    |                                                ---- value moved here
+...
+362 |             .transfer(source, destination, Some(name.as_str()), verb)
+    |                                                 ^^^^ value borrowed here after move
+    |
+help: consider borrowing `name`
+    |
+356 |         let path = Path::new(destination).join(&name);
+    |                                                +
+
+For more information about this error, try `rustc --explain E0382`.
+error: could not compile `nabbit` (lib test) due to 1 previous error
+warning: build failed, waiting for other jobs to finish...

@@ -1,0 +1,38 @@
+> nabbit@0.1.0 verify
+> npm run verify:icons && npm run verify:fonts && npm run verify:tokens && npm run verify:licenses && npm run typecheck && npm run lint && npm test -- --run && npm run build
+
+
+> nabbit@0.1.0 verify:icons
+> node scripts/generate-brand-icons.mjs --check
+
+Verified desktop app icons, optical tray glyphs and site favicons.
+
+> nabbit@0.1.0 verify:fonts
+> node scripts/verify-font-assets.mjs
+
+Verified 5 pinned Geist 1.9.2 assets and OFL.
+
+> nabbit@0.1.0 verify:tokens
+> node scripts/generate-tokens.mjs --check
+
+Verified 36 light/dark tokens for app and site.
+
+> nabbit@0.1.0 verify:licenses
+> node scripts/verify-licenses.mjs
+
+bans ok, licenses ok
+{"cargoDeny":"cargo-deny 0.22.2","generatedNotices":true,"corePolicyPassed":true,"negativeFixtures":[{"name":"gpl-fixture","license":"GPL-3.0-only","rejected":true},{"name":"agpl-fixture","license":"AGPL-3.0-only","rejected":true},{"name":"lgpl-fixture","license":"LGPL-2.1-only","rejected":true},{"name":"ffmpeg-next","license":"MIT","rejected":true}]}
+
+> nabbit@0.1.0 typecheck
+> tsc -b
+
+
+> nabbit@0.1.0 lint
+> eslint .
+
+
+D:\claude-upgrade-26\nabbit\scripts\verify-files-screenshots.mjs
+  129:52  error  'devicePixelRatio' is not defined  no-undef
+  130:53  error  'devicePixelRatio' is not defined  no-undef
+
+✖ 2 problems (2 errors, 0 warnings)

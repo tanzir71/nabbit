@@ -134,6 +134,7 @@ impl Database {
             .collect::<std::result::Result<Vec<_>, _>>()?;
         crate::shelf::migrate(&conn)?;
         crate::tools::store::migrate(&conn)?;
+        crate::files::migrate(&conn)?;
         if !columns.iter().any(|c| c == "options_json") {
             conn.execute("ALTER TABLE downloads ADD COLUMN options_json TEXT", [])?;
         }

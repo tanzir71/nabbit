@@ -1,0 +1,21 @@
+node:internal/modules/run_main:107
+    triggerUncaughtException(
+    ^
+
+AssertionError [ERR_ASSERTION]: Capture must be stable
++ actual - expected
+
++ 'cc228273aa0f2964fa5725e74bb050c1200aefa73d63c6faf7821ee0c0751358'
+- '76b5859e542ff92c2e2e516a1ba91f3f367babfcc61b17936f77228b8a75a555'
+
+    at capture (file:///D:/claude-upgrade-26/nabbit/scripts/capture-native-files.mjs:180:10)
+    at async file:///D:/claude-upgrade-26/nabbit/scripts/capture-native-files.mjs:292:3 {
+  generatedMessage: false,
+  code: 'ERR_ASSERTION',
+  actual: 'cc228273aa0f2964fa5725e74bb050c1200aefa73d63c6faf7821ee0c0751358',
+  expected: '76b5859e542ff92c2e2e516a1ba91f3f367babfcc61b17936f77228b8a75a555',
+  operator: 'strictEqual',
+  diff: 'simple'
+}
+
+Node.js v24.22.2

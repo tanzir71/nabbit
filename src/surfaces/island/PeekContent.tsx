@@ -8,6 +8,8 @@ import { IslandAsset } from "./IslandAsset";
 import { MiniButton, type IslandIntent } from "./CompactContent";
 import { usePreset } from "../../features/downloads/usePreset";
 import { defaultDownloadPresets } from "../../lib/downloadPresets";
+import { lazy, Suspense } from "react";
+const DownloadDonePeek = lazy(() => import("../../features/files/DownloadDonePeek"));
 function OtherPeekContent({
   item,
   act,
@@ -159,6 +161,39 @@ function OtherPeekContent({
 }
 
 export function PeekContent(props: { item: ActivityItem; act: (intent: IslandIntent) => void }) {
+  if (props.item.event.kind === "downloadDone")
+    return (
+      <Suspense fallback={<div className="island-peek-content">Saved download</div>}>
+        <DownloadDonePeek
+          path={props.item.event.path}
+          jobId={props.item.event.jobId}
+          review={(fileReview) => props.act({ action: "fileReview", item: props.item, fileReview })}
+        />
+      </Suspense>
+    );
+  if (props.item.event.kind === "filesMoved") {
+    const event = props.item.event;
+    return (
+      <section className="island-peek-content" aria-label="Files filed">
+        <h1 className="island-sr-only">Files filed</h1>
+        <div className="island-row">
+          <IslandAsset name="iconFolderInput" />
+          <strong>{activityTitle(props.item)}</strong>
+          <span className="island-muted island-mono">{event.count} files</span>
+        </div>
+        <div className="island-row">
+          {event.undoable && (
+            <MiniButton onClick={() => props.act({ action: "undo", item: props.item })}>
+              Undo
+            </MiniButton>
+          )}
+          <MiniButton onClick={() => props.act({ action: "fileReview", item: props.item })}>
+            File history
+          </MiniButton>
+        </div>
+      </section>
+    );
+  }
   if (props.item.event.kind === "toolResult" || props.item.event.kind === "toolJob") {
     const e = props.item.event;
     return (

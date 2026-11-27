@@ -219,6 +219,11 @@ impl Manager {
         })
     }
     pub fn request_surface(&self, label: &str, next: Mode) -> Result<(), String> {
+        if next != Mode::Expanded {
+            if let Some(files) = self.app.try_state::<Arc<crate::files::Service>>() {
+                files.watches.close(label, None);
+            }
+        }
         let mut state = lock(&self.state);
         if !state.hosts.contains_key(label) {
             return Err("Only an active island can request a surface".into());
@@ -230,6 +235,25 @@ impl Manager {
         drop(state);
         self.watcher.wake();
         Ok(())
+    }
+    pub fn file_surface_active(&self, label: &str) -> bool {
+        let state = lock(&self.state);
+        let open = state.surfaces.get(label).is_some_and(|surface| {
+            surface.web_allocated
+                && matches!(surface.state, Mode::Peek | Mode::Expanded | Mode::Drop)
+        });
+        drop(state);
+        open && self
+            .app
+            .state::<Arc<super::super::activity_bus::Bus>>()
+            .snapshot()
+            .views
+            .iter()
+            .any(|view| {
+                view.label == label
+                    && !view.fullscreen
+                    && view.gate != super::super::input::Gate::Hidden
+            })
     }
     pub fn surface_ack(&self, label: &str, generation: u64) -> Result<(), String> {
         let this = current().ok_or("Island manager is unavailable")?;
@@ -348,7 +372,7 @@ impl Manager {
             let registered = self.app.get_webview_window(label).is_some();
             let view = snapshot.views.iter().find(|view| &view.label == label);
             let compact = base(view);
-            let (changed, open, allocated, native_owner, closing) = {
+            let (changed, open, allocated, native_owner, closing, pin_view) = {
                 let mut state = lock(&self.state);
                 let surface = state.surfaces.entry(label.clone()).or_default();
                 let requested = surface.pending.take();
@@ -380,8 +404,14 @@ impl Manager {
                     surface.web_allocated,
                     !surface.web_owner,
                     closing,
+                    desired == Mode::Expanded,
                 )
             };
+            if !pin_view {
+                if let Some(files) = self.app.try_state::<Arc<crate::files::Service>>() {
+                    files.watches.close(label, None);
+                }
+            }
             let scene = presentation::compact(view, host.placement.shape);
             if closing {
                 self.release_keyboard(label);
@@ -533,6 +563,7 @@ impl Manager {
             .set_ignore_cursor_events(true)
             .map_err(|e| e.to_string())?;
         crate::island::files::install(&window).map_err(|e| e.to_string())?;
+        crate::files::drop::install(&window);
         let this = self.clone();
         let label = label.to_owned();
         self.app
@@ -671,6 +702,23 @@ impl Manager {
                 - scene.top;
             let button=scene.primary.iter().any(|draw|matches!(draw,presentation::Draw::Button{x:left,width,..} if (5.0..=27.0).contains(&y)&&x>=*left&&x<=*left+*width));
             if button {
+                if let Some(crate::island::activity::Item {
+                    event: crate::island::activity::ActivityEvent::FilesMoved { op_id, .. },
+                    ..
+                }) = view.and_then(|view| view.primary.as_ref())
+                {
+                    let app = self.app.clone();
+                    let id = op_id.clone();
+                    let owner = host.hwnd;
+                    tauri::async_runtime::spawn_blocking(move || {
+                        if let Err(error) =
+                            crate::files::commands::undo_from_native(app.clone(), id, owner)
+                        {
+                            let _ = app.emit("capture:error", error.to_string());
+                        }
+                    });
+                    return;
+                }
                 if let Some(crate::island::activity::Item {
                     event: crate::island::activity::ActivityEvent::LinkDetected { url, .. },
                     ..

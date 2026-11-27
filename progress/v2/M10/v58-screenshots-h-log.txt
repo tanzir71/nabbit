@@ -1,0 +1,91 @@
+file:///D:/claude-upgrade-26/nabbit/scripts/screenshots/harness.mjs:411
+            throw new Error(`${scenario.name} (${theme}@${scale}x): ${error.message}`, {
+                  ^
+
+Error: files-drop-pin (light@1x): Expected values to be strictly deep-equal:
++ actual - expected
+
+  {
+    incomplete: [],
++   violations: [
++     {
++       id: 'color-contrast',
++       nodes: [
++         {
++           summary: 'Fix any of the following:\n' +
++             '  Element has insufficient color contrast of 4.16 (foreground color: #8c8c92, background color: #2c2c2f, font size: 9.0pt (12px), font weight: normal). Expected contrast ratio of 4.5:1',
++           target: [
++             '.is-over > small'
++           ]
++         }
++       ]
++     },
++     {
++       id: 'page-has-heading-one',
++       nodes: [
++         {
++           summary: 'Fix all of the following:\n  Page must have a level-one heading',
++           target: [
++             'html'
++           ]
++         }
++       ]
++     }
++   ]
+-   violations: []
+  }
+
+    at captureSuite (file:///D:/claude-upgrade-26/nabbit/scripts/screenshots/harness.mjs:411:19)
+    at async file:///D:/claude-upgrade-26/nabbit/scripts/verify-files-screenshots.mjs:28:16 {
+  [cause]: AssertionError [ERR_ASSERTION]: Expected values to be strictly deep-equal:
+  + actual - expected
+
+    {
+      incomplete: [],
+  +   violations: [
+  +     {
+  +       id: 'color-contrast',
+  +       nodes: [
+  +         {
+  +           summary: 'Fix any of the following:\n' +
+  +             '  Element has insufficient color contrast of 4.16 (foreground color: #8c8c92, background color: #2c2c2f, font size: 9.0pt (12px), font weight: normal). Expected contrast ratio of 4.5:1',
+  +           target: [
+  +             '.is-over > small'
+  +           ]
+  +         }
+  +       ]
+  +     },
+  +     {
+  +       id: 'page-has-heading-one',
+  +       nodes: [
+  +         {
+  +           summary: 'Fix all of the following:\n  Page must have a level-one heading',
+  +           target: [
+  +             'html'
+  +           ]
+  +         }
+  +       ]
+  +     }
+  +   ]
+  -   violations: []
+    }
+
+      at Object.ready (file:///D:/claude-upgrade-26/nabbit/scripts/verify-files-screenshots.mjs:192:14)
+      at async captureSuite (file:///D:/claude-upgrade-26/nabbit/scripts/screenshots/harness.mjs:144:33)
+      at async file:///D:/claude-upgrade-26/nabbit/scripts/verify-files-screenshots.mjs:28:16 {
+    generatedMessage: true,
+    code: 'ERR_ASSERTION',
+    actual: {
+      violations: [
+        { id: 'color-contrast', nodes: [ [Object] ] },
+        { id: 'page-has-heading-one', nodes: [ [Object] ] }
+      ],
+      incomplete: []
+    },
+    expected: { violations: [], incomplete: [] },
+    operator: 'deepStrictEqual',
+    diff: 'simple'
+  }
+}
+
+Node.js v24.22.2

@@ -4,6 +4,7 @@ mod commands;
 mod db;
 mod download;
 mod error;
+mod files;
 mod island;
 pub mod media;
 mod notes;
@@ -12,6 +13,7 @@ pub mod power;
 pub mod privacy;
 mod retention;
 pub mod shelf;
+mod shell;
 mod sticky;
 pub mod tack;
 #[cfg(windows)]
@@ -114,6 +116,26 @@ pub fn run() {
         .plugin(tauri_plugin_updater::Builder::new().build())
         .invoke_handler(tauri::generate_handler![
             tools::commands::tool_catalog,
+            files::commands::files_pins,
+            files::commands::files_drop_status,
+            files::commands::files_fixture_drop,
+            files::commands::files_save_pin,
+            files::commands::files_remove_pin,
+            files::commands::files_choose,
+            files::commands::files_capabilities,
+            files::commands::files_download_info,
+            files::commands::files_plan,
+            files::commands::files_hints,
+            files::commands::files_execute,
+            files::commands::files_undo,
+            files::commands::files_history,
+            files::commands::files_suggestions,
+            files::commands::files_peek_open,
+            files::commands::files_peek_items,
+            files::commands::files_peek_close,
+            files::commands::files_pin_action,
+            files::commands::files_drag_plan,
+            files::commands::files_thumbnail,
             tools::commands::tool_pick_input,
             tools::commands::third_party_licenses,
             tools::commands::tool_presets,
@@ -307,6 +329,7 @@ pub fn run() {
                 app.handle().clone(),
                 app_data_dir.clone(),
             )?);
+            app.manage(files::Service::new(db.clone(), app_data_dir.clone())?);
             let downloads =
                 DownloadManager::new(db.clone(), app.handle().clone(), app_data_dir.clone());
             let shutdown = Arc::new(AtomicBool::new(false));
@@ -428,12 +451,20 @@ pub fn run() {
                 if let Some(timer) = app.try_state::<Arc<timer::Service>>() {
                     timer.window_closed(label.clone());
                 }
+                if let Some(files) = app.try_state::<Arc<files::Service>>() {
+                    files.watches.close(label, None);
+                }
+                #[cfg(windows)]
+                files::drop::close(label);
             }
             if let tauri::RunEvent::ExitRequested { api, code, .. } = event {
                 if code.is_some()
-                    && app
+                    && (app
                         .try_state::<Arc<tools::Service>>()
                         .is_some_and(|s| s.active() && !s.quit_confirmed.load(Ordering::Acquire))
+                        || app
+                            .try_state::<Arc<files::Service>>()
+                            .is_some_and(|s| s.active()))
                 {
                     api.prevent_exit();
                     tools::request_quit(app);
@@ -461,6 +492,12 @@ pub fn run() {
                 if let Some(tools) = app.try_state::<Arc<tools::Service>>() {
                     tools.stop();
                 }
+                if let Some(files) = app.try_state::<Arc<files::Service>>() {
+                    files.watches.stop();
+                }
+                #[cfg(windows)]
+                files::drop::stop();
+                shell::stop();
                 if let Some(bus) = app.try_state::<Arc<island::activity_bus::Bus>>() {
                     bus.stop();
                 }

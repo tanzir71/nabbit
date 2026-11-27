@@ -26,6 +26,32 @@ The Shelf stores local file paths and order in SQLite. Adding a file permits pre
 
 Users are responsible for complying with YouTube's Terms of Service and applicable copyright law. Nabbit is intended for content the user has the right to download.
 
+## Pins and file operations
+
+Pins persist local target paths, labels, shortcut slots and move preferences in
+SQLite. Removing a pin never changes its target. Folder peeks list at most six
+recent entries by metadata; a nonrecursive local watcher exists only while the
+peek is visible. Network folders are not watched. Windows known-folder and sync
+root metadata are read locally to respect redirection and explain cloud move-out.
+Browsing and previewing cloud-only placeholders does not read their contents or
+request hydration; cached thumbnails or file icons are used instead.
+
+An explicit drop or destination action permits the requested move/copy through
+Windows Shell. The local `file_ops` journal stores source/destination metadata,
+result paths, content hashes/identities and the affected Shelf/pin/download/tool
+references for Undo. Before a possible replacement, Nabbit stores a complete
+backup of the existing destination in app-data, including supported Windows file
+metadata and alternate streams. Backups and operation records are currently
+retained; unused Keep both/skip backups are retained too. This is additional
+local file content, not just path history. Undo checks the recorded results and
+uses native transfers/Recycle Bin; it refuses edited/replaced results and occupied
+original paths. No file journal or backup is synced or transmitted.
+
+Cloud-root move-out, network destinations and batches over 50 require an extra
+confirmation. An explicit transfer may download a cloud placeholder as part of
+the Windows operation. Shell dialogs, app opening, Copy path and outgoing drag
+follow explicit user actions. No tidy rules or background file moves run.
+
 ## File tool jobs and Search
 
 File tools run only after an explicit action. Inputs are read locally; they are

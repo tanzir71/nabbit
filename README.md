@@ -43,6 +43,38 @@ sidecar pin changes, run `python scripts/generate-licenses.py` to regenerate the
 offline notice catalogue. No installer, administrator access or signing key
 is used for these checks.
 
+## Files and Pins
+
+The Files island tab keeps the Shelf above eight visible file/folder Pins. Search
+finds additional pins; Alt+1–9 opens assigned slots while expanded. Pin actions
+include Open, Reveal, Copy path, Open With, and installed Terminal/VS Code.
+Removing a pin removes its reference. Hover a folder for about 350 ms to see its
+six newest entries; click holds the peek open. Local metadata watches exist only
+while visible; network folders refresh when opened and are never watched.
+
+Drop files on a folder pin or choose **Move to…** from selected Shelf items or a
+finished download. Same-volume operations move, other volumes copy; Shift forces
+move, Ctrl forces copy (Ctrl wins together), and a pin can default to Always move.
+Only cloud-root move-out, network destinations, or batches over 50 ask for an
+extra confirmation. Recent extension/site destinations precede pins and the
+folder picker. Windows handles transfers and conflict dialogs through
+`IFileOperation` on Nabbit's shared Shell STA worker.
+
+The eight-second Moved/Copied pill and File history offer journal-backed Undo,
+including after a restart. Undo checks result identity and content before
+reversing an operation. Existing destination files are backed up inside local
+app-data before native conflict resolution; these backups and operation records
+are currently retained, including unused backups after Keep both/skip. They can
+contain complete file contents. Edited results or occupied original paths produce
+an error rather than an overwrite. Clipboard copies, opening apps, and moving
+files always follow explicit actions.
+
+Known folders respect Windows redirection. Pin browsing reads metadata only;
+cached Shell thumbnails are preferred and cloud-only items use icons without
+hydration. Rust file I/O uses verbatim paths, with an embedded long-path manifest
+and a clear error when Windows long paths are disabled. See the
+[V5.8 evidence](progress/v2/M10/README.md) and [privacy statement](PRIVACY.md).
+
 ## Architecture
 
 ```

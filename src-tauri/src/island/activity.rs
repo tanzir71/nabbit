@@ -686,7 +686,7 @@ impl Engine {
                 event.clone(),
                 true,
                 now,
-                Some(4000),
+                Some(8000),
             ),
             ActivityEvent::ToolJob { job_id, state, .. } => match state {
                 JobState::Queued | JobState::Running | JobState::Failed => self.put(

@@ -1,0 +1,30 @@
+Compiling windows-sys v0.60.2
+   Compiling nabbit v0.1.0 (D:\claude-upgrade-26\nabbit\src-tauri)
+   Compiling notify-types v2.3.1
+   Compiling shared_child v1.1.1
+   Compiling arboard v3.6.1
+   Compiling tauri-plugin-single-instance v2.4.2
+   Compiling notify v8.2.0
+   Compiling tauri-plugin-updater v2.10.1
+   Compiling tauri-plugin-shell v2.3.5
+   Compiling tauri-plugin-clipboard-manager v2.3.2
+    Finished `test` profile [unoptimized + debuginfo] target(s) in 2m 48s
+     Running unittests src\lib.rs (src-tauri\target\debug\deps\nabbit_lib-0a6c78b5bd514df4.exe)
+
+running 8 tests
+test files::tests::confirmation_and_changed_source_are_checked_before_any_file_mutation ... ok
+test files::tests::copy_undo_preserves_original_and_changed_results_are_rejected ... ok
+test files::tests::explorer_volume_rules_and_explicit_modifier_overrides ... ok
+test files::tests::interrupted_operations_never_rerun_and_recorded_results_remain_undoable ... ok
+test files::tests::local_peek_lists_only_six_newest_and_watch_is_revoked ... ok
+test files::tests::owned_backend_rejects_paths_outside_its_canonical_root ... ok
+test files::tests::owned_moves_clashes_dates_restart_undo_and_duplicate_execute ... ok
+test files::tests::pins_edit_swap_slots_dedupe_remove_and_persist_without_touching_files ... ok
+
+test result: ok. 8 passed; 0 failed; 0 ignored; 0 measured; 310 filtered out; finished in 0.48s
+
+     Running unittests src\main.rs (src-tauri\target\debug\deps\nabbit-ba45e522dc9b4c26.exe)
+
+running 0 tests
+
+test result: ok. 0 passed; 0 failed; 0 ignored; 0 measured; 0 filtered out; finished in 0.00s

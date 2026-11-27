@@ -150,6 +150,10 @@ pub fn dates(source: &File, output: &Path) -> Result<()> {
     Ok(())
 }
 pub fn reveal(path: &Path) -> Result<()> {
+    let path = path.to_path_buf();
+    crate::shell::run(move || reveal_inner(&path))
+}
+fn reveal_inner(path: &Path) -> Result<()> {
     #[cfg(windows)]
     {
         use windows::core::HSTRING;
@@ -162,9 +166,14 @@ pub fn reveal(path: &Path) -> Result<()> {
                 .ok()
                 .map_err(|e| msg(e.to_string()))?;
             let mut pidl = std::ptr::null_mut();
-            let result =
-                SHParseDisplayName(&HSTRING::from(path.as_os_str()), None, &mut pidl, 0, None)
-                    .and_then(|_| SHOpenFolderAndSelectItems(pidl, None, 0));
+            let result = SHParseDisplayName(
+                &HSTRING::from(crate::files::paths::display(path)),
+                None,
+                &mut pidl,
+                0,
+                None,
+            )
+            .and_then(|_| SHOpenFolderAndSelectItems(pidl, None, 0));
             if !pidl.is_null() {
                 CoTaskMemFree(Some(pidl.cast()));
             }
@@ -180,6 +189,10 @@ pub fn reveal(path: &Path) -> Result<()> {
     }
 }
 pub fn recycle(path: &Path) -> Result<()> {
+    let path = path.to_path_buf();
+    crate::shell::run(move || recycle_inner(&path))
+}
+fn recycle_inner(path: &Path) -> Result<()> {
     #[cfg(windows)]
     {
         use windows::core::HSTRING;
@@ -199,8 +212,10 @@ pub fn recycle(path: &Path) -> Result<()> {
                         | FOFX_EARLYFAILURE
                         | FOF_SILENT,
                 )?;
-                let item: IShellItem =
-                    SHCreateItemFromParsingName(&HSTRING::from(path.as_os_str()), None)?;
+                let item: IShellItem = SHCreateItemFromParsingName(
+                    &HSTRING::from(crate::files::paths::display(path)),
+                    None,
+                )?;
                 op.DeleteItem(&item, None)?;
                 op.PerformOperations()?;
                 if op.GetAnyOperationsAborted()?.as_bool() {
@@ -226,6 +241,10 @@ pub fn recycle(path: &Path) -> Result<()> {
     }
 }
 pub fn pick(tool: &super::registry::Tool) -> Result<Option<String>> {
+    let tool = tool.clone();
+    crate::shell::run(move || pick_inner(&tool))
+}
+fn pick_inner(tool: &super::registry::Tool) -> Result<Option<String>> {
     #[cfg(windows)]
     {
         use windows::{

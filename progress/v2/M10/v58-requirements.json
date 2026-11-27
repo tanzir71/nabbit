@@ -1,0 +1,53 @@
+{
+  "task": "V5.8",
+  "requirements": [
+    {
+      "requirement": "Shelf plus Pins",
+      "assertions": "Files keeps path-only Shelf above eight mixed file/folder pins in a2x4 grid, type-searches additional entries and preserves expanded-only Alt+1\u20139. Validated canonical CRUD/dedupe/slot swaps and Always move persist. Remove only deletes the reference. Open/Reveal/Copy/OpenWith/installed Terminal/Code and outgoing drag use current validated paths.",
+      "status": "passed"
+    },
+    {
+      "requirement": "Metadata pin peek",
+      "assertions": "Hover350ms opens six newest metadata rows; click holds, Escape/header Close dismisses. Subscribe before read, immediate refresh after watch token, late-response guards and owner/token cleanup. One nonrecursive notify watcher per visible local peek; network destinations refresh on open and never watch. Native collapse/hidden/fullscreen/destroy/stop revokes watches regardless of JavaScript progress.",
+      "status": "passed"
+    },
+    {
+      "requirement": "Explorer transfer rules and native Shell",
+      "assertions": "Same volume moves/cross-volume copies, Shift move/Ctrl copy, Ctrl wins together and overrides Always move. Only cloud-root move-out with logical total, network destination and>50 confirm. Production uses IFileOperation ADDUNDORECORD/NOMINIMIZEBOX with native conflicts and a progress sink capturing the actual renamed result. The normal drop view shows actual metadata-based live verbs. Own-process OLE targets accept absolute files plus Unicode URL/text, carry physical coordinates/modifiers and revoke stale leases.",
+      "status": "passed"
+    },
+    {
+      "requirement": "Durable journal and Undo",
+      "assertions": "Immutable prepared snapshots revalidate source metadata before execute, with idempotent ids and queued/running quit leases. Journal actual outputs, fingerprints, per-entry checkpoints and specific affected Shelf/pin/download/tool IDs transactionally. Back up existing targets before conflict resolution with native CopyFileW metadata/ADS/date preservation. Undo preflights primary-stream hash/file identity and original vacancy, resumes partial backup restore across restart and refuses edits/replacements/occupied paths. Backups including unused Keep both/skip copies and journal rows are currently retained; no comprehensive cleanup or adversarial ADS integrity claim.",
+      "status": "passed"
+    },
+    {
+      "requirement": "Move to and completed download",
+      "assertions": "Shelf selection and DownloadDone offer recent3 extension/site destinations, folder pins, then picker/manual path. A destination click/drop is explicit, StrictMode executes it once. Completed-download metadata is read from SQLite/current file. Review opens expanded Files and survives result expiry; selecting To MP4 does not run. Successful transfers update current download/tool/Shelf/pin locations; native compact/Peek/history Undo shares the journal. Moved/Copied result is8s on actual native clock, with exact hidden/duplicate scheduler boundary tests.",
+      "status": "passed"
+    },
+    {
+      "requirement": "Paths and lifecycle",
+      "assertions": "KFM-aware SHGetKnownFolderPath; read-only system long-path policy with clear disabled error, verbatim Rust file I/O and embedded longPathAware/common-controls manifest independently extracted from the release. Browsing/preview is metadata/cache/icon only for cloud-only placeholders, guarding the actual content-read closure. Shell namespace actions/transfers/picker/thumbnails/new OLE controllers share a sleeping message-pumped STA worker, with owned-window/PID/nonce lifetime checks and no collapsed JS poll.",
+      "status": "passed"
+    },
+    {
+      "requirement": "Automated evidence and Figma",
+      "assertions": "Fresh six Figma contexts/screenshots and47 byte-exact original SVG exports. Final56 light/dark1x/1.5x captures repeat exactly, verify bundled glyphs/asset root dimensions and pass all default axe rules in their declared scope. Six owned release stories/captures cover actual Tauri/SQLite Pins/notify/drop/copy/native Undo/Shelf move/real-time expiry/conversion references/download review/restart. Real no-conflict/no-recycle IFileOperation move+restart Undo passes separately on owned temp files. All embedded manifest entry/CSS hashes and complete1056-notice payload match the current executable/build.",
+      "status": "passed"
+    }
+  ],
+  "evidence": {
+    "checks": "v58-checks.json",
+    "native": "v58-native-i-scene.json",
+    "visual": "v58-files-final3-screenshots.json",
+    "figma": "v58-figma-assets.json",
+    "design": "v58-design.json",
+    "dependencies": "v58-dependencies.json",
+    "manifest": "v58-manifest-canonical.json",
+    "pngs": "v58-png-audit.json"
+  },
+  "nextTask": "V5.9",
+  "publication": "direct local main task commit; milestone-only push at M10",
+  "platformBoundary": "Windows x64 owned files/processes and metadata/provider seams. Real Shell conflicts/cancel/picker/Open With/Explorer/Recycle Bin/quit GUI, user cloud/network files, physical drag, Windows10/ARM64 execution/macOS/Linux/hardware/OS settings/installers/signing not exercised. No new performance claim."
+}

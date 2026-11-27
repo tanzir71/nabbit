@@ -1,5 +1,5 @@
 import { StrictMode } from "react";
-import { act, cleanup, render, waitFor } from "@testing-library/react";
+import { act, cleanup, fireEvent, render, screen, waitFor } from "@testing-library/react";
 import { afterEach, expect, it, vi } from "vitest";
 import { IslandApp } from "./IslandApp";
 import { createIslandStore } from "../../store/islandStore";
@@ -108,7 +108,7 @@ it("does not close an opening native Peek when the activity snapshot initializes
       __NABBIT_CAPTURE__: {
         emit: (event: string, payload: unknown) => void;
         snapshot: () => {
-          calls: Array<{ command: string }>;
+          calls: Array<{ command: string; args?: Record<string, unknown> }>;
           unsupported: string[];
           listenerCount: number;
         };
@@ -137,6 +137,106 @@ it("does not close an opening native Peek when the activity snapshot initializes
   });
   await waitFor(() => expect(store.getState().tab).toBe("files"));
   expect(store.getState().filters.searchOpen).toBe("false");
+  Object.defineProperty(document, "elementFromPoint", {
+    configurable: true,
+    value: () => null,
+  });
+  await act(async () => {
+    fixture.emit("nabbit://native-drop", {
+      kind: "enter",
+      payload: { files: ["D:\\Owned\\memo.txt"] },
+      x: 0,
+      y: 0,
+      shift: false,
+      ctrl: true,
+    });
+    await Promise.resolve();
+  });
+  expect(fixture.snapshot().calls).toContainEqual({
+    command: "island_set_drag",
+    args: { active: true },
+  });
+  expect(store.getState().state).toBe("drop");
+  act(() =>
+    fixture.emit("nabbit://native-drop", {
+      kind: "leave",
+      payload: {},
+      x: 0,
+      y: 0,
+      shift: false,
+      ctrl: false,
+    }),
+  );
+  expect(fixture.snapshot().calls).toContainEqual({
+    command: "island_set_drag",
+    args: { active: false },
+  });
+  const restingState = store.getState().state;
+  await act(async () => {
+    for (const kind of ["enter", "leave"])
+      fixture.emit("nabbit://native-drop", {
+        kind,
+        payload: { files: ["D:\\Owned\\memo.txt"] },
+        x: 0,
+        y: 0,
+        shift: false,
+        ctrl: false,
+      });
+    await Promise.resolve();
+  });
+  expect(store.getState().state).toBe(restingState);
+  act(() => {
+    store.getState().dispatch({
+      type: "filter",
+      name: "fileMove",
+      value: '{"paths":["D:\\\\Owned\\\\memo.txt"]}',
+    });
+    store.getState().dispatch({ type: "collapse" });
+  });
+  await waitFor(() => expect(store.getState().filters.fileMove).toBe(""));
+  const doneSnapshot = {
+    ...snapshot,
+    revision: 1000,
+    views: [
+      {
+        ...snapshot.views[0],
+        primary: {
+          ...snapshot.views[0].primary,
+          event: { kind: "downloadDone", jobId: "d", path: "D:\\Owned\\Lecture.mkv" },
+        },
+      },
+    ],
+  };
+  act(() =>
+    fixture.emit("nabbit://island-surface", {
+      label: "island",
+      generation: 1000,
+      state: "peek",
+      owner: "webview",
+      shape: "island",
+      reducedMotion: true,
+      width: 400,
+      height: 120,
+      snapshot: doneSnapshot,
+    }),
+  );
+  fireEvent.click(await screen.findByRole("button", { name: "Move to…" }));
+  await waitFor(() => expect(store.getState().state).toBe("expanded"));
+  const reviewDraft = store.getState().filters.fileMove;
+  expect(JSON.parse(reviewDraft).paths).toHaveLength(1);
+  act(() =>
+    fixture.emit("nabbit://island", {
+      kind: "dismissed",
+      id: "downloadDone:d",
+      snapshot: {
+        ...doneSnapshot,
+        revision: 1001,
+        views: [{ ...doneSnapshot.views[0], primary: null }],
+      },
+    }),
+  );
+  expect(store.getState().state).toBe("expanded");
+  expect(store.getState().filters.fileMove).toBe(reviewDraft);
   app.unmount();
   await Promise.resolve();
   expect(fixture.snapshot().listenerCount).toBe(0);

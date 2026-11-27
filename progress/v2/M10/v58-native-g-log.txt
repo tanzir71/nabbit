@@ -1,0 +1,15 @@
+node:internal/modules/run_main:107
+    triggerUncaughtException(
+    ^
+
+locator.click: Target page, context or browser has been closed
+Call log:
+  - waiting for getByRole('region', { name: 'Download saved', exact: true }).getByRole('button', { name: 'To MP4', exact: true })
+
+    at D:\claude-upgrade-26\nabbit\scripts\capture-native-files.mjs:561:68 {
+  log: [
+    "  - waiting for getByRole('region', { name: 'Download saved', exact: true }).getByRole('button', { name: 'To MP4', exact: true })"
+  ]
+}
+
+Node.js v24.22.2

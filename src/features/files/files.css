@@ -1,0 +1,322 @@
+.files-pins,
+.files-history,
+.files-move-sheet {
+  display: flex;
+  flex-direction: column;
+  gap: 14px;
+  min-width: 0;
+  font: 400 13px/18px var(--font-sans);
+}
+.files-heading {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 8px;
+  color: var(--island-muted);
+  font: 500 11px/14px var(--font-sans);
+}
+.files-heading > span:last-child {
+  font: 400 12px/16px var(--font-sans);
+  letter-spacing: 0;
+}
+.files-pin-grid {
+  display: grid;
+  grid-template-columns: repeat(4, minmax(0, 1fr));
+  gap: 6px;
+  list-style: none;
+  margin: 0;
+  padding: 0;
+}
+.files-pin {
+  position: relative;
+  display: flex;
+  min-width: 0;
+  border-radius: 10px;
+  background: var(--island-raised);
+}
+.files-pin > button:first-child {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  min-width: 0;
+  width: 100%;
+  padding: 8px 10px;
+  text-align: left;
+  background: none;
+  border: 0;
+  color: var(--island-fg);
+  cursor: pointer;
+  font: 400 13px/18px var(--font-sans);
+}
+.files-pin:hover,
+.files-pin:focus-within {
+  background: var(--island-track);
+}
+.files-pin-label {
+  display: flex;
+  flex-direction: column;
+  gap: 1px;
+  min-width: 0;
+  flex: 1;
+}
+.files-pin-label > span,
+.files-pin-label > small {
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+.files-pin-label > small {
+  font: 400 12px/16px var(--font-sans);
+  color: var(--island-muted);
+}
+.files-pin-slot {
+  font: 500 12px/16px var(--font-mono);
+  color: var(--island-muted);
+}
+.files-pin-menu {
+  position: absolute;
+  right: 2px;
+  top: 2px;
+  opacity: 0;
+  background: var(--island-track);
+  color: var(--island-fg);
+  border: 0;
+  border-radius: 8px;
+  cursor: pointer;
+}
+.files-pin:hover .files-pin-menu,
+.files-pin:focus-within .files-pin-menu {
+  opacity: 1;
+}
+.files-pin.is-missing {
+  color: var(--island-fg);
+}
+.files-add {
+  border: 0;
+  background: none;
+  color: var(--island-fg);
+  font: 400 12px/16px var(--font-sans);
+  padding: 0;
+  white-space: nowrap;
+  cursor: pointer;
+}
+.files-heading > span:nth-child(2) {
+  flex: 1;
+  text-align: right;
+}
+.files-pin-editor,
+.files-pin-actions {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  padding: 14px;
+  background: var(--island-raised);
+  border-radius: 16px;
+}
+.files-pin-editor label,
+.files-move-sheet label {
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+}
+.files-pin-editor input,
+.files-move-sheet input,
+.files-pins > label input {
+  box-sizing: border-box;
+  width: 100%;
+  border: 1px solid var(--island-track);
+  border-radius: 8px;
+  background: var(--island-track);
+  padding: 8px;
+  color: var(--island-fg);
+  font: inherit;
+}
+.files-pin-editor label:has(input[type="checkbox"]) {
+  flex-direction: row;
+  align-items: center;
+}
+.files-pin-editor input[type="checkbox"] {
+  width: auto;
+}
+.files-pin-actions > .island-row {
+  flex-wrap: wrap;
+}
+.files-pins-actions {
+  display: flex;
+  gap: 6px;
+  flex-wrap: wrap;
+}
+.files-pin-peek {
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+  width: 360px;
+  max-width: 100%;
+  padding: 12px 14px;
+  border-radius: 20px;
+  box-sizing: border-box;
+  background: var(--island-bg);
+  box-shadow: var(--shadow-island);
+}
+.files-pin-peek header {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+.files-pin-peek header strong {
+  font: 500 13px/18px var(--font-sans);
+}
+.files-pin-peek header small {
+  font: 500 12px/16px var(--font-mono);
+  color: var(--island-muted);
+  min-width: 0;
+  flex: 1;
+  text-align: right;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+.files-peek-close {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 0;
+  width: 18px;
+  height: 18px;
+  flex: 0 0 18px;
+  border: 0;
+  background: none;
+  cursor: pointer;
+}
+.files-recent {
+  display: flex;
+  flex-direction: column;
+  gap: 2px;
+  list-style: none;
+  margin: 0;
+  padding: 0;
+}
+.files-recent button {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  width: 100%;
+  padding: 6px 8px;
+  border: 0;
+  border-radius: 8px;
+  background: none;
+  color: var(--island-fg);
+  font: 400 13px/18px var(--font-sans);
+  text-align: left;
+  cursor: pointer;
+}
+.files-recent button:hover {
+  background: var(--island-raised);
+}
+.files-recent button > span {
+  min-width: 0;
+  flex: 1;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+.files-recent small {
+  font: 400 12px/16px var(--font-sans);
+  color: var(--island-muted);
+}
+.files-peek-actions {
+  display: flex;
+  gap: 6px;
+  flex-wrap: wrap;
+}
+.files-peek-actions .island-mini {
+  padding: 5px 10px;
+  height: 26px;
+  min-height: 26px;
+  border-radius: 12px;
+  border: 0;
+  font: 400 12px/16px var(--font-sans);
+}
+.files-pin-popover {
+  position: absolute;
+  top: 46px;
+  right: 16px;
+  z-index: 6;
+  max-width: calc(100% - 32px);
+}
+.files-move-sheet h2,
+.files-move-sheet h3 {
+  margin: 0;
+  font: 500 13px/18px var(--font-sans);
+}
+.files-move-sheet p {
+  margin: 0;
+  overflow-wrap: anywhere;
+}
+.files-move-sheet {
+  padding: 0 0 8px;
+}
+.files-destinations {
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+}
+.files-destinations .island-mini {
+  justify-content: flex-start;
+  text-align: left;
+  gap: 8px;
+  min-width: 0;
+}
+.files-move-sheet form {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+  margin-top: 8px;
+}
+.files-history article {
+  background: var(--island-raised);
+  border-radius: 12px;
+  padding: 10px;
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+}
+.files-history article p {
+  margin: 0;
+  overflow-wrap: anywhere;
+}
+.files-drop-pins {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+.files-drop-pins .files-pin-grid {
+  gap: 8px;
+}
+.files-drop-pins .files-pin {
+  padding: 10px 12px;
+  flex-direction: column;
+  gap: 4px;
+  border: 1.5px solid transparent;
+  border-radius: 12px;
+}
+.files-drop-pins .files-pin.is-over {
+  background: var(--island-track);
+  border-color: var(--island-fg);
+}
+.files-drop-pins .files-pin > span {
+  display: flex;
+  gap: 6px;
+  align-items: center;
+}
+.files-drop-pins .files-pin small {
+  font: 400 12px/16px var(--font-sans);
+  color: var(--island-muted);
+}
+.files-drop-pins .files-pin.is-over small {
+  color: var(--island-fg);
+}
+.island-host:has(.files-drop-pins) .island-morph {
+  width: 640px;
+}

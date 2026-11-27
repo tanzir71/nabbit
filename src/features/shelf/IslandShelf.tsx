@@ -7,6 +7,7 @@ import { shelfApi, type ShelfItem } from "./api";
 import { shelfSelection, shelfSize } from "./model";
 import "./shelf.css";
 import { ToolActions } from "../tools/ToolActions";
+import { MoveButton } from "../files/MoveTo";
 
 function ShelfPreview({ item, selectedMode }: { item: ShelfItem; selectedMode: boolean }) {
   const root = useRef<HTMLSpanElement>(null);
@@ -69,9 +70,11 @@ function ShelfPreview({ item, selectedMode }: { item: ShelfItem; selectedMode: b
 export function IslandShelf({
   model,
   dispatch,
+  pins,
 }: {
   model: IslandModel;
   dispatch: (action: IslandAction) => void;
+  pins?: React.ReactNode;
 }) {
   const [items, setItems] = useState<ShelfItem[]>([]),
     [loading, setLoading] = useState(true),
@@ -278,7 +281,10 @@ export function IslandShelf({
                 <span>{item.name}</span>
                 {selected.includes(item.id) && <IslandAsset group="34:897" name="iconCheck" />}
               </span>{" "}
-              <small>{shelfSize(item)}</small>
+              <small>
+                {shelfSize(item)}
+                {item.cloud ? " · Cloud" : ""}
+              </small>
             </button>
             {!item.available && (
               <button
@@ -322,11 +328,17 @@ export function IslandShelf({
         </p>
       )}
       {selectedMode && (
-        <ToolActions
-          key={selected.join()}
-          paths={items.filter((i) => selected.includes(i.id)).map((i) => i.path)}
-        />
+        <>
+          <ToolActions
+            key={selected.join()}
+            paths={items.filter((i) => selected.includes(i.id)).map((i) => i.path)}
+          />
+          <MoveButton
+            paths={items.filter((i) => selected.includes(i.id) && i.available).map((i) => i.path)}
+          />
+        </>
       )}
+      {!selectedMode && pins}
       <footer className="shelf-footer">
         <span>
           {selectedMode

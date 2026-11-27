@@ -41,6 +41,38 @@ fn view(e: &Engine) -> View {
     e.snapshot().views[0].clone()
 }
 #[test]
+fn moved_result_has_eight_seconds_of_visible_undo_and_respects_hidden_policy() {
+    let mut e = engine(Gate::Visible);
+    let event = ActivityEvent::FilesMoved {
+        op_id: "owned".into(),
+        count: 3,
+        destination: "Invoices".into(),
+        verb: MoveVerb::Moved,
+        undoable: true,
+    };
+    send(&mut e, event.clone(), 0);
+    assert_eq!(e.next_wait_ms(at(0)), Some(8000));
+    send(&mut e, event, 2000);
+    e.tick(at(7999));
+    assert!(view(&e).primary.is_some());
+    e.tick(at(8000));
+    assert!(view(&e).primary.is_none());
+    e.monitors(vec![facts("island", Gate::Hidden)], at(9000));
+    send(
+        &mut e,
+        ActivityEvent::FilesMoved {
+            op_id: "hidden".into(),
+            count: 1,
+            destination: "Folder".into(),
+            verb: MoveVerb::Copied,
+            undoable: true,
+        },
+        9000,
+    );
+    assert_eq!(e.next_wait_ms(at(9000)), None);
+    assert_eq!(view(&e).gate, Gate::Hidden);
+}
+#[test]
 fn link_metadata_preserves_age_and_cannot_revive_dismissed_or_replaced_links() {
     let mut e = engine(Gate::Visible);
     let link = |url: &str| ActivityEvent::LinkDetected {

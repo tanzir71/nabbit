@@ -1,0 +1,28 @@
+file:///D:/claude-upgrade-26/nabbit/scripts/screenshots/harness.mjs:411
+            throw new Error(`${scenario.name} (${theme}@${scale}x): ${error.message}`, {
+                  ^
+
+Error: files-drop-pin (light@1x): locator.boundingBox: Error: strict mode violation: locator('[data-drop-zone="pin:pin-2"]') resolved to 2 elements:
+    1) <div class="files-pin" data-drop-zone="pin:pin-2">…</div> aka getByText('Acme · client workMove here')
+    2) <li class="files-pin" data-drop-zone="pin:pin-2">…</li> aka getByText('Acme · client workD:\\Work2···')
+
+Call log:
+  - waiting for locator('[data-drop-zone="pin:pin-2"]')
+
+    at captureSuite (file:///D:/claude-upgrade-26/nabbit/scripts/screenshots/harness.mjs:411:19)
+    at async file:///D:/claude-upgrade-26/nabbit/scripts/verify-files-screenshots.mjs:28:16 {
+  [cause]: locator.boundingBox: Error: strict mode violation: locator('[data-drop-zone="pin:pin-2"]') resolved to 2 elements:
+      1) <div class="files-pin" data-drop-zone="pin:pin-2">…</div> aka getByText('Acme · client workMove here')
+      2) <li class="files-pin" data-drop-zone="pin:pin-2">…</li> aka getByText('Acme · client workD:\\Work2···')
+
+  Call log:
+    - waiting for locator('[data-drop-zone="pin:pin-2"]')
+
+      at Object.ready (D:\claude-upgrade-26\nabbit\scripts\verify-files-screenshots.mjs:127:77)
+      at async captureSuite (D:\claude-upgrade-26\nabbit\scripts\screenshots\harness.mjs:144:33)
+      at async file:///D:/claude-upgrade-26/nabbit/scripts/verify-files-screenshots.mjs:28:16 {
+    log: [ `  - waiting for locator('[data-drop-zone="pin:pin-2"]')` ]
+  }
+}
+
+Node.js v24.22.2

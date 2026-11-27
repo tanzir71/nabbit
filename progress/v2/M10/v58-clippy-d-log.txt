@@ -1,0 +1,30 @@
+Checking nabbit v0.1.0 (D:\claude-upgrade-26\nabbit\src-tauri)
+error: this function has too many arguments (8/7)
+  --> src\files\commands.rs:43:1
+   |
+43 | / pub async fn files_fixture_drop(
+44 | |     app: tauri::AppHandle,
+45 | |     window: tauri::WebviewWindow,
+46 | |     service: tauri::State<'_, Arc<Service>>,
+...  |
+51 | |     modifiers: Modifiers,
+52 | | ) -> Result<()> {
+   | |_______________^
+   |
+   = help: for further information visit https://rust-lang.github.io/rust-clippy/rust-1.97.0/index.html#too_many_arguments
+   = note: `-D clippy::too-many-arguments` implied by `-D warnings`
+   = help: to override `-D warnings` add `#[allow(clippy::too_many_arguments)]`
+
+error: use `std::ptr::eq` when comparing raw pointers
+   --> src\files\drop.rs:231:16
+    |
+231 |             if GetPropW(root, key).0 as usize != Arc::as_ptr(&self.lease) as usize {
+    |                ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^ help: try: `!std::ptr::eq(GetPropW(root, key).0, Arc::as_ptr(&self.lease))`
+    |
+    = help: for further information visit https://rust-lang.github.io/rust-clippy/rust-1.97.0/index.html#ptr_eq
+    = note: `-D clippy::ptr-eq` implied by `-D warnings`
+    = help: to override `-D warnings` add `#[allow(clippy::ptr_eq)]`
+
+error: could not compile `nabbit` (lib) due to 2 previous errors
+warning: build failed, waiting for other jobs to finish...
+error: could not compile `nabbit` (lib test) due to 2 previous errors

@@ -1,5 +1,7 @@
 import { classify, zoneOrder, type Payload, type DropZone } from "../../lib/islandDrop";
 import { IslandAsset } from "./IslandAsset";
+import { lazy, Suspense } from "react";
+const FileDropContent = lazy(() => import("../../features/files/FileDropContent"));
 const zones = {
   download: {
     title: "Download",
@@ -32,6 +34,12 @@ export function DropContent({
   const kind = classify(payload, true),
     order = zoneOrder(kind),
     selected = over ?? order[0];
+  if (kind === "files")
+    return (
+      <Suspense fallback={<div className="island-drop-content">Files ready to file…</div>}>
+        <FileDropContent payload={payload} over={over} setOver={setOver} />
+      </Suspense>
+    );
   return (
     <div className="island-drop-content">
       <div className="island-row">
@@ -43,9 +51,7 @@ export function DropContent({
               ? "Link"
               : kind === "text"
                 ? "Text"
-                : kind === "files"
-                  ? "Files"
-                  : "Files, links or text"}
+                : "Files, links or text"}
         </span>
       </div>
       <div className="island-drop-zones">

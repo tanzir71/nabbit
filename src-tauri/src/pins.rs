@@ -1,4 +1,4 @@
-//! Shared read/open adapter for island keyboard slots. Pin editing is V5.
+//! Shared pin shape and shortcut adapter; browsing and operations live in files/.
 use crate::{
     error::{msg, Result},
     AppState,
@@ -15,12 +15,10 @@ pub struct Pin {
 }
 fn launch_with(pin: &Pin, launch: impl FnOnce(&Pin) -> Result<()>) -> Result<()> {
     let path = std::path::Path::new(&pin.path);
+    let facts = crate::files::paths::facts(&pin.path)?;
     if !path.is_absolute()
-        || !(match pin.kind.as_str() {
-            "folder" => path.is_dir(),
-            "file" => path.is_file(),
-            _ => false,
-        })
+        || !matches!(pin.kind.as_str(), "file" | "folder")
+        || facts.directory != (pin.kind == "folder")
     {
         return Err(msg("This pinned path is unavailable"));
     }
@@ -28,30 +26,7 @@ fn launch_with(pin: &Pin, launch: impl FnOnce(&Pin) -> Result<()>) -> Result<()>
 }
 #[cfg(windows)]
 fn launch(pin: &Pin) -> Result<()> {
-    use windows::Win32::System::Com::{CoInitializeEx, CoUninitialize, COINIT_APARTMENTTHREADED};
-    use windows_sys::Win32::UI::Shell::{
-        ShellExecuteExW, SEE_MASK_FLAG_NO_UI, SEE_MASK_NOASYNC, SHELLEXECUTEINFOW,
-    };
-    let path: Vec<u16> = pin.path.encode_utf16().chain(Some(0)).collect();
-    let verb: Vec<u16> = "open".encode_utf16().chain(Some(0)).collect();
-    unsafe {
-        CoInitializeEx(None, COINIT_APARTMENTTHREADED)
-            .ok()
-            .map_err(|e| msg(e.to_string()))?;
-        let mut info: SHELLEXECUTEINFOW = std::mem::zeroed();
-        info.cbSize = std::mem::size_of_val(&info) as u32;
-        info.fMask = SEE_MASK_NOASYNC | SEE_MASK_FLAG_NO_UI;
-        info.lpVerb = verb.as_ptr();
-        info.lpFile = path.as_ptr();
-        info.nShow = 1;
-        let result = if ShellExecuteExW(&mut info) != 0 {
-            Ok(())
-        } else {
-            Err(std::io::Error::last_os_error().into())
-        };
-        CoUninitialize();
-        result
-    }
+    crate::files::native::action(pin.path.clone(), "open".into())
 }
 #[cfg(not(windows))]
 fn launch(pin: &Pin) -> Result<()> {

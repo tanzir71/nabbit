@@ -1,0 +1,9 @@
+Compiling nabbit v0.1.0 (D:\claude-upgrade-26\nabbit\src-tauri)
+error[E0616]: field `owner` of struct `Instruction` is private
+   --> src\files\drop.rs:263:62
+    |
+263 |                         .is_ok_and(|instruction| instruction.owner == "webview")
+    |                                                              ^^^^^ private field
+
+For more information about this error, try `rustc --explain E0616`.
+error: could not compile `nabbit` (lib) due to 1 previous error

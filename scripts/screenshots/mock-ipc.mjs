@@ -38,6 +38,89 @@ export function installMockIpc(seed) {
       throw typeof failure === "string" ? new Error(failure) : clone(failure);
     }
     switch (command) {
+      case "files_pins":
+        return clone(state.filePins ?? seed.responses?.files_pins ?? []);
+      case "files_capabilities":
+        return clone(
+          seed.responses?.files_capabilities ?? { folders: [], terminal: false, code: false },
+        );
+      case "files_history":
+      case "files_suggestions":
+        return clone(seed.responses?.[command] ?? []);
+      case "files_hints":
+        return clone(seed.responses?.files_hints ?? {});
+      case "files_peek_open":
+        return clone(
+          seed.responses?.files_peek_open ?? {
+            token: "fixture-peek",
+            path: "D:\\Fixture",
+            items: [],
+            watching: true,
+          },
+        );
+      case "files_peek_items":
+        return clone(seed.responses?.files_peek_open?.items ?? []);
+      case "files_peek_close":
+      case "files_pin_action":
+        return null;
+      case "files_choose":
+        return clone(seed.responses?.files_choose ?? null);
+      case "files_drop_status":
+        return 1;
+      case "files_download_info":
+        return clone(
+          seed.responses?.files_download_info ?? {
+            path: "C:\\Fixture\\file.mkv",
+            bytes: 1400000000,
+            site: "example.invalid",
+          },
+        );
+      case "files_remove_pin":
+        state.filePins = clone(state.filePins ?? seed.responses?.files_pins ?? []).filter(
+          (pin) => pin.id !== args.id,
+        );
+        dispatch("pins:changed", null);
+        return null;
+      case "files_plan":
+        return clone(
+          seed.responses?.files_plan ?? {
+            id: "fixture-operation",
+            destination: { path: args.request.destination ?? "D:\\Fixture\\Invoices" },
+            entries: args.request.paths.map((path) => ({
+              source: { path },
+              verb: args.request.modifiers.ctrl ? "copy" : "move",
+              output: null,
+              undone: false,
+            })),
+            reasons: [],
+            bytes: 1200,
+            status: "prepared",
+            error: null,
+          },
+        );
+      case "files_execute":
+        return clone(
+          seed.responses?.files_execute ?? {
+            id: args.id,
+            destination: { path: "D:\\Fixture\\Invoices" },
+            entries: [
+              {
+                source: { path: "D:\\Fixture\\file.pdf" },
+                verb: "move",
+                output: "D:\\Fixture\\Invoices\\file.pdf",
+                fingerprint: {},
+                undone: false,
+              },
+            ],
+            reasons: [],
+            bytes: 1200,
+            status: "completed",
+            error: null,
+          },
+        );
+      case "files_undo":
+        dispatch("files:changed", null);
+        return clone(seed.responses?.files_undo ?? {});
       case "tool_catalog":
       case "tool_jobs":
       case "tool_presets":

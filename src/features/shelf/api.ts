@@ -7,6 +7,7 @@ export interface ShelfItem {
   kind: "image" | "video" | "file";
   size: number | null;
   available: boolean;
+  cloud?: boolean;
 }
 export const shelfApi = {
   list: () => invoke<ShelfItem[]>("shelf_list"),

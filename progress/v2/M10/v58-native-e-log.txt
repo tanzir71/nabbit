@@ -1,0 +1,15 @@
+node:internal/modules/run_main:107
+    triggerUncaughtException(
+    ^
+
+locator.waitFor: Target page, context or browser has been closed
+Call log:
+  - waiting for getByRole('region', { name: 'Download saved', exact: true }).getByRole('button', { name: 'Move to Courses', exact: true }) to be visible
+
+    at D:\claude-upgrade-26\nabbit\scripts\capture-native-files.mjs:537:77 {
+  log: [
+    "  - waiting for getByRole('region', { name: 'Download saved', exact: true }).getByRole('button', { name: 'Move to Courses', exact: true }) to be visible"
+  ]
+}
+
+Node.js v24.22.2

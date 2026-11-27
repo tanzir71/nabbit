@@ -16,21 +16,25 @@ export type IslandIntent = {
   item?: ActivityItem;
   options?: import("../../lib/types").DownloadOptions;
   preset?: import("../../lib/types").DownloadPreset;
+  fileReview?: { path: string; toolId?: string; destination?: string; site?: string | null };
 };
 export function MiniButton({
   children,
   signal,
   disabled,
+  type = "button",
   onClick,
 }: {
   children: React.ReactNode;
   signal?: boolean;
   disabled?: boolean;
+  type?: "button" | "submit";
   onClick: () => void;
 }) {
   return (
     <Button
       variant="ghost"
+      type={type}
       disabled={disabled}
       className={`island-mini${signal ? " is-signal" : ""}`}
       onClick={(e) => {

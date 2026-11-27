@@ -1,0 +1,21 @@
+file:///D:/claude-upgrade-26/nabbit/scripts/screenshots/harness.mjs:392
+            throw new Error(`${scenario.name} (${theme}@${scale}x): ${error.message}`, {
+                  ^
+
+Error: files-files-top (light@1x): .island-morph: no rendered glyphs
+    at captureSuite (file:///D:/claude-upgrade-26/nabbit/scripts/screenshots/harness.mjs:392:19)
+    at async file:///D:/claude-upgrade-26/nabbit/scripts/verify-files-screenshots.mjs:28:16 {
+  [cause]: AssertionError [ERR_ASSERTION]: .island-morph: no rendered glyphs
+      at auditFont (file:///D:/claude-upgrade-26/nabbit/scripts/font-audit.mjs:34:5)
+      at async captureSuite (file:///D:/claude-upgrade-26/nabbit/scripts/screenshots/harness.mjs:159:42)
+      at async file:///D:/claude-upgrade-26/nabbit/scripts/verify-files-screenshots.mjs:28:16 {
+    generatedMessage: false,
+    code: 'ERR_ASSERTION',
+    actual: false,
+    expected: true,
+    operator: '==',
+    diff: 'simple'
+  }
+}
+
+Node.js v24.22.2

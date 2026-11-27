@@ -1,0 +1,10 @@
+progress/v2/M10/v58-manifest-final.xml:1: trailing whitespace.
++ <assembly xmlns="urn:schemas-microsoft-com:asm.v1" manifestVersion="1.0">  <dependency>  <dependentAssembly>  <assemblyIdentity type="win32" name="Microsoft.Windows.Common-Controls" version="6.0.0.0" processorArchitecture="*" publicKeyToken="6595b64144ccf1df" language="*" />  </dependentAssembly>  </dependency>  <application xmlns="urn:schemas-microsoft-com:asm.v3">  <windowsSettings>  <longPathAware xmlns="http://schemas.microsoft.com/SMI/2016/WindowsSettings">true</longPathAware>  </windowsSettings>  </application>  </assembly>
+Traceback (most recent call last):
+  File "D:\claude-upgrade-26\nabbit\.tools\v58-stage.py", line 15, in <module>
+    subprocess.run(['git','diff','--cached','--check'],check=True)
+    ~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Python313\Lib\subprocess.py", line 578, in run
+    raise CalledProcessError(retcode, process.args,
+                             output=stdout, stderr=stderr)
+subprocess.CalledProcessError: Command '['git', 'diff', '--cached', '--check']' returned non-zero exit status 2.

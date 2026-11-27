@@ -1,0 +1,603 @@
+{
+  "passed": false,
+  "failure": {
+    "message": "locator.click: Timeout 30000ms exceeded.\nCall log:\n\u001b[2m  - waiting for getByRole('button', { name: 'Close', exact: true })\u001b[22m\n",
+    "stack": "locator.click: Timeout 30000ms exceeded.\nCall log:\n\u001b[2m  - waiting for getByRole('button', { name: 'Close', exact: true })\u001b[22m\n\n    at D:\\claude-upgrade-26\\nabbit\\scripts\\capture-native-files.mjs:627:66"
+  },
+  "checks": [
+    "Pins are created/edited/removed through real IPC/SQLite without changing the target. Files shows the actual Shelf and pins. A held peek lists six metadata rows, refreshes on a real owned notify event, and closes its owner/token watch.",
+    "An actual owned Shell IShellItemArray/IDataObject invokes the production IDropTarget callbacks, preserving physical hover coordinates and Ctrl. The normal pin UI plans and executes a journalled Copy. The native DirectComposition compact Undo hit path is exercised by one application-only message to a PID/class-verified owned HWND; Undo quarantines the copy through the owned provider.",
+    "Shelf selection → Move to → explicit Invoices destination runs the real UI and journal. The owned conflict provider keeps both files under a numbered output, updates the original Shelf identity, and preserves the existing destination. The visible native Moved result expires on real time at eight seconds (the pure scheduler test pins the exact boundary)."
+  ],
+  "captures": [
+    {
+      "role": "files",
+      "file": "v58-native-h-files@2x.png",
+      "sha256": "2df02a74e0ca026000250998be05180d741b1fb08e45bf838a779d2efb3183d3",
+      "bytes": 78869,
+      "width": 1440,
+      "height": 920,
+      "logicalBounds": {
+        "x": 0,
+        "y": 0,
+        "width": 720,
+        "height": 460
+      },
+      "contentBounds": {
+        "x": 0,
+        "y": 0,
+        "width": 720,
+        "height": 460
+      },
+      "scale": 2,
+      "repeatMatches": true
+    },
+    {
+      "role": "pin-peek",
+      "file": "v58-native-h-pin-peek@2x.png",
+      "sha256": "c16f3e2c050b9cdce4d6b56eb8cb41376bd9e3affcc50101360e65b7d1a4e613",
+      "bytes": 118460,
+      "width": 1440,
+      "height": 920,
+      "logicalBounds": {
+        "x": 0,
+        "y": 0,
+        "width": 720,
+        "height": 460
+      },
+      "contentBounds": {
+        "x": 0,
+        "y": 0,
+        "width": 720,
+        "height": 460
+      },
+      "scale": 2,
+      "repeatMatches": true
+    },
+    {
+      "role": "drop-copy",
+      "file": "v58-native-h-drop-copy@2x.png",
+      "sha256": "48c14c9f4144dc7c2cf5ad22f121ad9ece00ebad43573389d4aaba29dced5d6f",
+      "bytes": 66819,
+      "width": 1440,
+      "height": 920,
+      "logicalBounds": {
+        "x": 0,
+        "y": 0,
+        "width": 720,
+        "height": 460
+      },
+      "contentBounds": {
+        "x": 0,
+        "y": 0,
+        "width": 720,
+        "height": 460
+      },
+      "scale": 2,
+      "repeatMatches": true
+    },
+    {
+      "role": "copied-compact",
+      "file": "v58-native-h-copied-compact@1x.png",
+      "width": 720,
+      "height": 460,
+      "bytes": 6968,
+      "sha256": "9c7ece46895ae601865e648f6f1d2a902c6dbef547c5892d64812b7a3d11da0f"
+    },
+    {
+      "role": "moved-compact",
+      "file": "v58-native-h-moved-compact@1x.png",
+      "width": 720,
+      "height": 460,
+      "bytes": 6997,
+      "sha256": "7ba52535d136efc0c81db13c1dfcf2fc90f38bb51561f7f7416fb3565f97b968"
+    },
+    {
+      "role": "download-done",
+      "file": "v58-native-h-download-done@2x.png",
+      "sha256": "ca52b689461b31fc1315da8f1908044e6c6f445aac82222fb4f1a76a75ebf5e3",
+      "bytes": 37071,
+      "width": 1440,
+      "height": 920,
+      "logicalBounds": {
+        "x": 0,
+        "y": 0,
+        "width": 720,
+        "height": 460
+      },
+      "contentBounds": {
+        "x": 0,
+        "y": 0,
+        "width": 720,
+        "height": 460
+      },
+      "scale": 2,
+      "repeatMatches": true
+    }
+  ],
+  "observations": [
+    {
+      "phase": "before-download-peek",
+      "download": {
+        "bytes": 33,
+        "path": "D:\\claude-upgrade-26\\nabbit\\.tools\\v58-native-h-d1981be7-262d-4f5e-ad4b-a0dd1c5d3b8d\\profile\\Inputs\\Lecture.mkv",
+        "site": "example.invalid"
+      },
+      "suggestions": [
+        "D:\\claude-upgrade-26\\nabbit\\.tools\\v58-native-h-d1981be7-262d-4f5e-ad4b-a0dd1c5d3b8d\\profile\\Courses"
+      ],
+      "snapshot": {
+        "activity": {
+          "preferences": {
+            "disabled": [],
+            "focusMode": false,
+            "hiddenUntilMs": null,
+            "order": [
+              "privacy",
+              "timerEnding",
+              "download",
+              "tool",
+              "link",
+              "result",
+              "media",
+              "timer",
+              "power"
+            ],
+            "showAlertsOverFullscreen": false
+          },
+          "revision": 18,
+          "syncState": "localOnly",
+          "views": [
+            {
+              "bubble": null,
+              "focusMode": false,
+              "fullscreen": false,
+              "gate": "visible",
+              "label": "island",
+              "primary": {
+                "alert": true,
+                "bubbleOnly": false,
+                "category": "result",
+                "event": {
+                  "count": 1,
+                  "destination": "D:\\claude-upgrade-26\\nabbit\\.tools\\v58-native-h-d1981be7-262d-4f5e-ad4b-a0dd1c5d3b8d\\profile\\Courses",
+                  "kind": "filesMoved",
+                  "opId": "af6363fc-ecd7-41fc-9cf7-a0a8c1964d67",
+                  "undoable": true,
+                  "verb": "moved"
+                },
+                "id": "files:af6363fc-ecd7-41fc-9cf7-a0a8c1964d67"
+              },
+              "queue": [],
+              "userHidden": false
+            }
+          ]
+        },
+        "activityScheduler": {
+          "nextDeadlineMs": 7498,
+          "wakeups": 19
+        },
+        "desktop": {
+          "cursor": {
+            "x": 120,
+            "y": 400
+          },
+          "monitors": [
+            {
+              "bounds": {
+                "height": 1080,
+                "width": 1920,
+                "x": 0,
+                "y": 0
+              },
+              "id": "primary",
+              "name": "Fixture primary",
+              "primary": true,
+              "scaleFactor": 1,
+              "workArea": {
+                "height": 1032,
+                "width": 1920,
+                "x": 0,
+                "y": 0
+              }
+            }
+          ],
+          "topTaskbar": null
+        },
+        "foreground": {
+          "cloaked": false,
+          "desktop": false,
+          "maximised": false,
+          "minimised": false,
+          "monitor": null,
+          "notificationState": null,
+          "ownProcess": false,
+          "rect": null,
+          "visible": false,
+          "windowId": 0
+        },
+        "hosts": [
+          {
+            "commits": 14,
+            "hwnd": 8850956,
+            "placement": {
+              "bounds": {
+                "height": 460,
+                "width": 720,
+                "x": 600,
+                "y": 0
+              },
+              "dpiScale": 1,
+              "label": "island",
+              "monitorId": "primary",
+              "renderScale": 1,
+              "shape": "island",
+              "sizeScale": 1
+            },
+            "warp": false
+          }
+        ],
+        "input": [
+          {
+            "decision": {
+              "dragging": false,
+              "hidden": false,
+              "interactive": true,
+              "pollMs": 25
+            },
+            "hitrect": {
+              "h": 434,
+              "w": 696,
+              "x": 12,
+              "y": 0
+            },
+            "interactive": true,
+            "label": "island",
+            "revision": 46,
+            "source": "web"
+          }
+        ],
+        "inputWatcher": {
+          "cursorSamples": 1002,
+          "fixtureReadRetries": 0,
+          "foregroundEvents": 0,
+          "hookInstalled": true,
+          "ownForegroundEvents": 0,
+          "systemSamples": 98
+        },
+        "keyboard": {
+          "acquired": 2,
+          "cancelled": 0,
+          "denied": 0,
+          "injectedFocus": true,
+          "lease": null,
+          "lost": 0,
+          "request": null,
+          "requests": 2,
+          "restoreAttempts": 2,
+          "restored": 2,
+          "shortcutError": null
+        },
+        "lastError": null,
+        "preferences": {
+          "enabled": true,
+          "monitorId": null,
+          "monitorMode": "followMouse",
+          "shape": "island",
+          "size": "standard"
+        },
+        "reconciliations": 45,
+        "renderer": "native",
+        "supported": true,
+        "surfaces": {
+          "island": {
+            "beforeDrag": null,
+            "closeAt": null,
+            "focusTab": null,
+            "generation": 12,
+            "hoverAt": null,
+            "opening": false,
+            "outgoingDrag": false,
+            "pending": null,
+            "state": "expanded",
+            "webAllocated": true,
+            "webHwnd": 68816262,
+            "webOwner": false
+          }
+        },
+        "visibility": [
+          {
+            "base": "visible",
+            "label": "island",
+            "mode": "visible",
+            "opacity": 1,
+            "reason": "none",
+            "revision": 1
+          }
+        ],
+        "webviews": 2,
+        "windowOrder": [
+          {
+            "label": "island",
+            "webAboveNative": true
+          }
+        ]
+      }
+    },
+    {
+      "phase": "download-frame",
+      "frame": {
+        "error": null,
+        "id": "922d9783-0c1c-46fb-b4e3-d4d9071dd2e1",
+        "media": {
+          "error": null,
+          "revision": 0,
+          "selected": null,
+          "sessions": [],
+          "volume": null
+        },
+        "mediaGesture": null,
+        "result": null,
+        "snapshot": {
+          "activity": {
+            "preferences": {
+              "disabled": [],
+              "focusMode": false,
+              "hiddenUntilMs": null,
+              "order": [
+                "privacy",
+                "timerEnding",
+                "download",
+                "tool",
+                "link",
+                "result",
+                "media",
+                "timer",
+                "power"
+              ],
+              "showAlertsOverFullscreen": false
+            },
+            "revision": 20,
+            "syncState": "localOnly",
+            "views": [
+              {
+                "bubble": null,
+                "focusMode": false,
+                "fullscreen": false,
+                "gate": "visible",
+                "label": "island",
+                "primary": {
+                  "alert": true,
+                  "bubbleOnly": false,
+                  "category": "result",
+                  "event": {
+                    "jobId": "owned-completed-download",
+                    "kind": "downloadDone",
+                    "path": "D:\\claude-upgrade-26\\nabbit\\.tools\\v58-native-h-d1981be7-262d-4f5e-ad4b-a0dd1c5d3b8d\\profile\\Inputs\\Lecture.mkv"
+                  },
+                  "id": "downloadDone:owned-completed-download"
+                },
+                "queue": [],
+                "userHidden": false
+              }
+            ]
+          },
+          "activityScheduler": {
+            "nextDeadlineMs": 4000,
+            "wakeups": 21
+          },
+          "desktop": {
+            "cursor": {
+              "x": 960,
+              "y": 30
+            },
+            "monitors": [
+              {
+                "bounds": {
+                  "height": 1080,
+                  "width": 1920,
+                  "x": 0,
+                  "y": 0
+                },
+                "id": "primary",
+                "name": "Fixture primary",
+                "primary": true,
+                "scaleFactor": 1,
+                "workArea": {
+                  "height": 1032,
+                  "width": 1920,
+                  "x": 0,
+                  "y": 0
+                }
+              }
+            ],
+            "topTaskbar": null
+          },
+          "foreground": {
+            "cloaked": false,
+            "desktop": false,
+            "maximised": false,
+            "minimised": false,
+            "monitor": null,
+            "notificationState": null,
+            "ownProcess": false,
+            "rect": null,
+            "visible": false,
+            "windowId": 0
+          },
+          "hosts": [
+            {
+              "commits": 14,
+              "hwnd": 8850956,
+              "placement": {
+                "bounds": {
+                  "height": 460,
+                  "width": 720,
+                  "x": 600,
+                  "y": 0
+                },
+                "dpiScale": 1,
+                "label": "island",
+                "monitorId": "primary",
+                "renderScale": 1,
+                "shape": "island",
+                "sizeScale": 1
+              },
+              "warp": false
+            }
+          ],
+          "input": [
+            {
+              "decision": {
+                "dragging": false,
+                "hidden": false,
+                "interactive": true,
+                "pollMs": 25
+              },
+              "hitrect": {
+                "h": 434,
+                "w": 696,
+                "x": 12,
+                "y": 0
+              },
+              "interactive": true,
+              "label": "island",
+              "revision": 46,
+              "source": "web"
+            }
+          ],
+          "inputWatcher": {
+            "cursorSamples": 1013,
+            "fixtureReadRetries": 0,
+            "foregroundEvents": 0,
+            "hookInstalled": true,
+            "ownForegroundEvents": 0,
+            "systemSamples": 99
+          },
+          "keyboard": {
+            "acquired": 2,
+            "cancelled": 0,
+            "denied": 0,
+            "injectedFocus": true,
+            "lease": null,
+            "lost": 0,
+            "request": null,
+            "requests": 2,
+            "restoreAttempts": 2,
+            "restored": 2,
+            "shortcutError": null
+          },
+          "lastError": null,
+          "preferences": {
+            "enabled": true,
+            "monitorId": null,
+            "monitorMode": "followMouse",
+            "shape": "island",
+            "size": "standard"
+          },
+          "reconciliations": 46,
+          "renderer": "native",
+          "supported": true,
+          "surfaces": {
+            "island": {
+              "beforeDrag": null,
+              "closeAt": null,
+              "focusTab": null,
+              "generation": 12,
+              "hoverAt": null,
+              "opening": false,
+              "outgoingDrag": false,
+              "pending": "peek",
+              "state": "expanded",
+              "webAllocated": true,
+              "webHwnd": 68816262,
+              "webOwner": true
+            }
+          },
+          "visibility": [
+            {
+              "base": "visible",
+              "label": "island",
+              "mode": "visible",
+              "opacity": 1,
+              "reason": "none",
+              "revision": 1
+            }
+          ],
+          "webviews": 2,
+          "windowOrder": [
+            {
+              "label": "island",
+              "webAboveNative": true
+            }
+          ]
+        }
+      }
+    },
+    {
+      "phase": "download-dom",
+      "probe": 0,
+      "snapshot": {
+        "preferences": {
+          "disabled": [],
+          "focusMode": false,
+          "hiddenUntilMs": null,
+          "order": [
+            "privacy",
+            "timerEnding",
+            "download",
+            "tool",
+            "link",
+            "result",
+            "media",
+            "timer",
+            "power"
+          ],
+          "showAlertsOverFullscreen": false
+        },
+        "revision": 20,
+        "syncState": "localOnly",
+        "views": [
+          {
+            "bubble": null,
+            "focusMode": false,
+            "fullscreen": false,
+            "gate": "visible",
+            "label": "island",
+            "primary": {
+              "alert": true,
+              "bubbleOnly": false,
+              "category": "result",
+              "event": {
+                "jobId": "owned-completed-download",
+                "kind": "downloadDone",
+                "path": "D:\\claude-upgrade-26\\nabbit\\.tools\\v58-native-h-d1981be7-262d-4f5e-ad4b-a0dd1c5d3b8d\\profile\\Inputs\\Lecture.mkv"
+              },
+              "id": "downloadDone:owned-completed-download"
+            },
+            "queue": [],
+            "userHidden": false
+          }
+        ]
+      },
+      "dom": {
+        "state": {
+          "theme": "dark",
+          "native": "true",
+          "islandState": "peek",
+          "shape": "island",
+          "islandVisibility": "visible",
+          "reducedMotion": "true"
+        },
+        "text": "Download saved\nSaved to Inputs\nMKV · 0 KB\nLecture.mkv\nTo MP4\nMove to Courses\nMove to…"
+      }
+    }
+  ],
+  "embeddedAssetCount": 0,
+  "executableSha256": "04738898a809d4e749fb5a431d88137c20e520612d8fa3ddf39eeca0c81399a6",
+  "buildManifestSha256": "634c65e2fda586f1b76997b2b6553636510462b3ea6e8253ab9dba715172a603",
+  "noUserProfile": true,
+  "noRealRecycleBinOrExplorer": true,
+  "noOsSettingChange": true,
+  "scope": "Owned production release Files/Pins/Shelf, actual Tauri/SQLite journal, metadata notify, owned Shell IDataObject callbacks and application-only native Undo message. Transfers/conflicts/recycle use the guarded owned provider; real IFileOperation is covered separately by the owned no-dialog Rust test. Download record is seeded locally; no network download. No user profile, clipboard, Explorer, Recycle Bin or OS setting is used."
+}

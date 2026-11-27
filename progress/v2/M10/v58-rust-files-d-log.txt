@@ -1,0 +1,46 @@
+Compiling nabbit v0.1.0 (D:\claude-upgrade-26\nabbit\src-tauri)
+warning: unused import: `core::HSTRING`
+   --> src\files\native.rs:488:17
+    |
+488 |                 core::HSTRING,
+    |                 ^^^^^^^^^^^^^
+    |
+    = note: `#[warn(unused_imports)]` (part of `#[warn(unused)]`) on by default
+
+warning: `nabbit` (lib test) generated 1 warning (1 duplicate)
+warning: `nabbit` (lib) generated 1 warning (run `cargo fix --lib -p nabbit` to apply 1 suggestion)
+    Finished `test` profile [unoptimized + debuginfo] target(s) in 1m 12s
+     Running unittests src\lib.rs (src-tauri\target\debug\deps\nabbit_lib-0a6c78b5bd514df4.exe)
+
+running 23 tests
+test files::drop::tests::owned_sta_window_registers_revokes_and_stale_target_rejects_data ... ok
+test files::drop::tests::owned_unicode_data_objects_keep_links_and_text_without_using_the_clipboard ... ok
+test files::tests::collision_reference_journal_preserves_both_original_shelf_and_pin_identities ... ok
+test files::tests::completed_tool_output_locations_and_identities_follow_move_and_undo ... ok
+test files::tests::confirmation_and_changed_source_are_checked_before_any_file_mutation ... ok
+test files::tests::copy_undo_preserves_original_and_changed_results_are_rejected ... ok
+test files::tests::explorer_volume_rules_and_explicit_modifier_overrides ... ok
+test files::tests::file_work_lease_covers_queued_and_running_work_and_releases_on_error ... ok
+test files::tests::interrupted_operations_never_rerun_and_recorded_results_remain_undoable ... ok
+test files::tests::late_preview_open_cannot_replace_a_newer_watch_for_the_same_surface ... ok
+test files::tests::local_peek_lists_only_six_newest_and_watch_is_revoked ... ok
+test files::tests::mocked_second_volume_executes_a_copy_by_default_and_network_peek_never_watches ... ok
+test files::tests::move_updates_shelf_and_pin_references_and_undo_restores_them ... ok
+test files::tests::over_fifty_files_requires_confirmation_and_preserves_all_inputs ... ok
+test files::tests::owned_backend_rejects_paths_outside_its_canonical_root ... ok
+test files::tests::owned_moves_clashes_dates_restart_undo_and_duplicate_execute ... ok
+test files::tests::owned_ole_data_object_preserves_paths_modifiers_and_never_mutates_the_source ... ok
+test files::tests::owned_shell_move_and_journal_undo_after_restart ... ignored, Runs real IFileOperation only on owned temporary files; no conflict dialog or Recycle Bin
+test files::tests::pins_edit_swap_slots_dedupe_remove_and_persist_without_touching_files ... ok
+test files::tests::placeholder_cloud_move_policy_and_long_paths_do_not_read_file_contents ... ok
+test files::tests::replacement_backup_keeps_dates_attributes_and_alternate_streams_without_overwrite ... ok
+test files::tests::replacement_backups_and_partial_undo_resume_after_restart ... ok
+test files::tests::successful_copy_undo_and_extension_suggestions_use_the_journal ... ok
+
+test result: ok. 22 passed; 0 failed; 1 ignored; 0 measured; 311 filtered out; finished in 1.38s
+
+     Running unittests src\main.rs (src-tauri\target\debug\deps\nabbit-ba45e522dc9b4c26.exe)
+
+running 0 tests
+
+test result: ok. 0 passed; 0 failed; 0 ignored; 0 measured; 0 filtered out; finished in 0.00s

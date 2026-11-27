@@ -1,0 +1,16 @@
+{
+  "passed": false,
+  "failure": {
+    "message": "page.evaluate: Only an active island can request a surface",
+    "stack": "page.evaluate: Only an active island can request a surface\n    at invoke (D:\\claude-upgrade-26\\nabbit\\scripts\\capture-native-files.mjs:131:8)\n    at D:\\claude-upgrade-26\\nabbit\\scripts\\capture-native-files.mjs:254:23"
+  },
+  "checks": [],
+  "captures": [],
+  "embeddedAssetCount": 0,
+  "executableSha256": "eae990f7f9bbdff9c28726785158d2716d9fc2a1faf9b94a73e2c32dadecef82",
+  "buildManifestSha256": "0458a0e5284915601f4f76c62d9e5e182d001ebb4b98d25ee0912b429cd2e35e",
+  "noUserProfile": true,
+  "noRealRecycleBinOrExplorer": true,
+  "noOsSettingChange": true,
+  "scope": "Owned production release Files/Pins/Shelf, actual Tauri/SQLite journal, metadata notify, owned Shell IDataObject callbacks and application-only native Undo message. Transfers/conflicts/recycle use the guarded owned provider; real IFileOperation is covered separately by the owned no-dialog Rust test. Download record is seeded locally; no network download. No user profile, clipboard, Explorer, Recycle Bin or OS setting is used."
+}

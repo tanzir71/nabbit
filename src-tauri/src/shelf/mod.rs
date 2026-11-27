@@ -23,6 +23,7 @@ pub struct Item {
     pub kind: String,
     pub size: Option<u64>,
     pub available: bool,
+    pub cloud: bool,
 }
 #[derive(Serialize)]
 pub struct DragPlan {
@@ -57,16 +58,7 @@ fn file_path(raw: &str) -> Result<String> {
     if !path.is_file() {
         return Err(msg("This file is unavailable"));
     }
-    let canonical = std::fs::canonicalize(path)?;
-    let canonical = canonical
-        .to_str()
-        .ok_or_else(|| msg("This file path cannot be displayed"))?;
-    // Keep ordinary Explorer paths in the database and on the clipboard.
-    Ok(if let Some(unc) = canonical.strip_prefix(r"\\?\UNC\") {
-        format!(r"\\{unc}")
-    } else {
-        canonical.strip_prefix(r"\\?\").unwrap_or(canonical).into()
-    })
+    crate::files::paths::canonical(raw)
 }
 pub fn migrate(conn: &rusqlite::Connection) -> Result<()> {
     conn.execute_batch("CREATE TABLE IF NOT EXISTS shelf_items(id TEXT PRIMARY KEY,path TEXT NOT NULL,path_key TEXT NOT NULL UNIQUE,position INTEGER NOT NULL,added_at TEXT NOT NULL);")?;
@@ -125,6 +117,18 @@ pub fn list(db: &Database) -> Result<Vec<Item>> {
                 kind: kind(file).into(),
                 size: meta.as_ref().map(|m| m.len()),
                 available: meta.is_some(),
+                cloud: meta.as_ref().is_some_and(|meta| {
+                    #[cfg(windows)]
+                    {
+                        use std::os::windows::fs::MetadataExt;
+                        crate::files::paths::cloud_attributes(file, meta.file_attributes())
+                    }
+                    #[cfg(not(windows))]
+                    {
+                        let _ = meta;
+                        false
+                    }
+                }),
                 path,
             }
         })
@@ -199,6 +203,16 @@ pub fn preview(db: &Database, id: &str) -> Result<Option<String>> {
         })
         .optional()?;
     let path = PathBuf::from(path.ok_or_else(|| msg("The Shelf changed"))?);
+    #[cfg(windows)]
+    let facts =
+        crate::files::paths::facts(path.to_str().ok_or_else(|| msg("File path unavailable"))?)?;
+    #[cfg(windows)]
+    {
+        let cached = crate::files::native::thumbnail(facts.path.clone())?;
+        if cached.is_some() {
+            return Ok(cached);
+        }
+    }
     // Decode a bounded on-demand thumbnail in memory; never persist a copy.
     if !matches!(
         path.extension()
@@ -210,7 +224,7 @@ pub fn preview(db: &Database, id: &str) -> Result<Option<String>> {
     ) {
         return Ok(None);
     }
-    let thumb = (|| -> Result<String> {
+    let read = || -> Result<String> {
         let mut bytes = Vec::new();
         std::fs::File::open(path)?
             .take(8_000_001)
@@ -236,6 +250,10 @@ pub fn preview(db: &Database, id: &str) -> Result<Option<String>> {
             "data:image/png;base64,{}",
             base64::engine::general_purpose::STANDARD.encode(out.into_inner())
         ))
-    })();
+    };
+    #[cfg(windows)]
+    let thumb = crate::files::paths::local_only(&facts, read);
+    #[cfg(not(windows))]
+    let thumb = read();
     Ok(thumb.ok())
 }

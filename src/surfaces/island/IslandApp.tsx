@@ -1,6 +1,7 @@
 import { lazy, Suspense, useCallback, useEffect, useLayoutEffect, useRef, useState } from "react";
 import { useStore } from "zustand";
 import { invoke } from "@tauri-apps/api/core";
+import { listen } from "@tauri-apps/api/event";
 import { getCurrentWindow } from "@tauri-apps/api/window";
 import { getCurrentWebviewWindow } from "@tauri-apps/api/webviewWindow";
 import { observeIslandInput } from "../../lib/islandInput";
@@ -43,6 +44,14 @@ export function IslandApp({ suppliedStore }: { suppliedStore?: IslandStore }) {
     seededNativeMorph = useRef(false),
     pendingDropZone = useRef<DropZone>(),
     incomingDrop = useRef<(data: Payload, zone?: DropZone) => Promise<void>>();
+  const dropModifiers = useRef({ shift: false, ctrl: false });
+  const nativeDropRevision = useRef(0);
+  useEffect(() => {
+    if (["idle", "live", "hidden", "faded"].includes(model.state)) {
+      for (const name of ["fileMove", "fileTool"])
+        if (model.filters[name]) store.getState().dispatch({ type: "filter", name, value: "" });
+    }
+  }, [model.state, model.filters.fileMove, model.filters.fileTool, model.filters, store]);
   const [height, setHeight] = useState(26),
     [payload, setPayload] = useState<Payload>({}),
     [over, setOver] = useState<DropZone | null>(null),
@@ -141,6 +150,34 @@ export function IslandApp({ suppliedStore }: { suppliedStore?: IslandStore }) {
   const act = useCallback(
     (intent: IslandIntent) => {
       const e = intent.item?.event;
+      if (intent.fileReview) {
+        const review = intent.fileReview;
+        dispatch({ type: "filter", name: "searchOpen", value: "false" });
+        dispatch({
+          type: "filter",
+          name: "fileTool",
+          value: review.toolId ? JSON.stringify({ id: review.toolId, paths: [review.path] }) : "",
+        });
+        dispatch({
+          type: "filter",
+          name: "fileMove",
+          value: review.toolId
+            ? ""
+            : JSON.stringify({
+                paths: [review.path],
+                pinId: null,
+                destination: review.destination,
+                site: review.site,
+              }),
+        });
+        dispatch({ type: "tab", tab: "files" });
+        dispatch({ type: "open" });
+        return;
+      }
+      if (e?.kind === "filesMoved" && intent.action === "undo") {
+        void invoke("files_undo", { id: e.opId }).catch(fail);
+        return;
+      }
       if (intent.action === "nab" && e?.kind === "linkDetected") {
         void invoke(
           intent.options ? "start_download" : "start_download_with_preset",
@@ -259,9 +296,74 @@ export function IslandApp({ suppliedStore }: { suppliedStore?: IslandStore }) {
         void invoke("island_surface_request", { state: next.state }).catch(fail);
     });
     let offDrop: (() => void) | undefined;
+    let offNativeDrop: (() => void) | undefined;
+    void listen<{
+      kind: string;
+      payload: Payload;
+      x: number;
+      y: number;
+      shift: boolean;
+      ctrl: boolean;
+    }>("nabbit://native-drop", ({ payload: event }) => {
+      if (!active) return;
+      const modifiers = { shift: event.shift, ctrl: event.ctrl };
+      dropModifiers.current = modifiers;
+      const x = event.x / devicePixelRatio,
+        y = event.y / devicePixelRatio;
+      const zone = document.elementFromPoint(x, y)?.closest<HTMLElement>("[data-drop-zone]")
+        ?.dataset.dropZone as DropZone | undefined;
+      if (
+        host.current?.dataset.shelfOutgoing === "true" &&
+        (event.kind !== "drop" || !zone?.startsWith("pin:"))
+      )
+        return;
+      if (event.kind === "enter") {
+        const revision = ++nativeDropRevision.current;
+        setPayload({
+          ...event.payload,
+          modifiers,
+          types: event.payload.files?.length ? ["Files"] : ["text/plain"],
+        });
+        void invoke("island_set_drag", { active: true })
+          .then(() => {
+            if (active && revision === nativeDropRevision.current) dispatch({ type: "dragEnter" });
+          })
+          .catch(fail);
+      }
+      if (event.kind === "over") {
+        setOver(zone ?? null);
+        setPayload((previous) =>
+          previous.modifiers?.shift === modifiers.shift &&
+          previous.modifiers?.ctrl === modifiers.ctrl
+            ? previous
+            : { ...previous, modifiers },
+        );
+      }
+      if (event.kind === "leave") {
+        nativeDropRevision.current++;
+        void invoke("island_set_drag", { active: false }).catch(fail);
+        dispatch({ type: "dragLeave" });
+        setOver(null);
+      }
+      if (event.kind === "drop") {
+        nativeDropRevision.current++;
+        void incomingDrop.current?.({ ...event.payload, modifiers }, zone);
+        void invoke("island_set_drag", { active: false }).catch(fail);
+      }
+    })
+      .then((stop) => {
+        if (active) offNativeDrop = stop;
+        else stop();
+      })
+      .catch(fail);
     void getCurrentWebviewWindow()
       .onDragDropEvent((event) => {
-        if (!active || event.payload.type !== "drop") return;
+        if (!active) return;
+        if (event.payload.type === "enter") {
+          setPayload({ files: event.payload.paths });
+          return;
+        }
+        if (event.payload.type !== "drop") return;
         if (host.current?.dataset.shelfOutgoing === "true") return;
         const x = event.payload.position.x / devicePixelRatio,
           y = event.payload.position.y / devicePixelRatio;
@@ -270,7 +372,10 @@ export function IslandApp({ suppliedStore }: { suppliedStore?: IslandStore }) {
           (document.elementFromPoint(x, y)?.closest<HTMLElement>("[data-drop-zone]")?.dataset
             .dropZone as DropZone | undefined);
         pendingDropZone.current = undefined;
-        void incomingDrop.current?.({ files: event.payload.paths }, zone);
+        void incomingDrop.current?.(
+          { files: event.payload.paths, modifiers: dropModifiers.current },
+          zone,
+        );
         void invoke("island_set_drag", { active: false }).catch(fail);
       })
       .then((stop) => {
@@ -283,11 +388,12 @@ export function IslandApp({ suppliedStore }: { suppliedStore?: IslandStore }) {
       offState();
       active = false;
       offDrop?.();
+      offNativeDrop?.();
       activity.dispose();
       visibility.dispose();
       void input.dispose();
     };
-  }, [store, label, fail]);
+  }, [store, label, fail, dispatch]);
   useLayoutEffect(() => {
     const element = content.current;
     if (!element) return;
@@ -347,7 +453,31 @@ export function IslandApp({ suppliedStore }: { suppliedStore?: IslandStore }) {
       dispatch({ type: "dragLeave" });
       return;
     }
-    if (receipt.zone === "download" && classify(data) === "link") {
+    if (receipt.zone === "move" || receipt.zone.startsWith("pin:")) {
+      store.getState().dispatch({ type: "filter", name: "fileTool", value: "" });
+      store.getState().dispatch({ type: "filter", name: "searchOpen", value: "false" });
+      store.getState().dispatch({
+        type: "filter",
+        name: "fileMove",
+        value: JSON.stringify({
+          paths: data.files ?? [],
+          pinId: receipt.zone.startsWith("pin:") ? receipt.zone.slice(4) : null,
+          modifiers: data.modifiers ?? { shift: false, ctrl: false },
+        }),
+      });
+      store.getState().dispatch({ type: "tab", tab: "files" });
+      dispatch({ type: "open" });
+    } else if (receipt.zone.startsWith("tool:")) {
+      store.getState().dispatch({ type: "filter", name: "fileMove", value: "" });
+      store.getState().dispatch({ type: "filter", name: "searchOpen", value: "false" });
+      store.getState().dispatch({
+        type: "filter",
+        name: "fileTool",
+        value: JSON.stringify({ id: receipt.zone.slice(5), paths: data.files ?? [] }),
+      });
+      store.getState().dispatch({ type: "tab", tab: "files" });
+      dispatch({ type: "open" });
+    } else if (receipt.zone === "download" && classify(data) === "link") {
       const url = data.url || data.text?.trim() || "";
       try {
         await invoke("island_review_url", { url });
@@ -389,6 +519,7 @@ export function IslandApp({ suppliedStore }: { suppliedStore?: IslandStore }) {
   incomingDrop.current = receiveDrop;
   const drop = (event: React.DragEvent) => {
     event.preventDefault();
+    dropModifiers.current = { shift: event.shiftKey, ctrl: event.ctrlKey };
     if (host.current?.dataset.shelfOutgoing === "true") return;
     if (native() && event.dataTransfer.files.length) {
       pendingDropZone.current =
@@ -422,7 +553,7 @@ export function IslandApp({ suppliedStore }: { suppliedStore?: IslandStore }) {
         ? (event.target.closest<HTMLElement>("[data-drop-zone]")?.dataset.dropZone as
             DropZone | undefined)
         : undefined;
-    void receiveDrop(readDrag(event.dataTransfer), zone);
+    void receiveDrop({ ...readDrag(event.dataTransfer), modifiers: dropModifiers.current }, zone);
   };
   const compact = ["idle", "faded", "hidden", "live"].includes(visualState),
     kind = compactKind(model.primary);

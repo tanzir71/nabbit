@@ -1,0 +1,174 @@
+file:///D:/claude-upgrade-26/nabbit/scripts/screenshots/harness.mjs:392
+            throw new Error(`${scenario.name} (${theme}@${scale}x): ${error.message}`, {
+                  ^
+
+Error: files-files-top (light@1x): Expected values to be strictly deep-equal:
++ actual - expected
+
+  {
+    incomplete: [],
++   violations: [
++     {
++       id: 'label-content-name-mismatch',
++       nodes: [
++         {
++           summary: 'Fix any of the following:\n' +
++             '  Text inside the element is not included in the accessible name',
++           target: [
++             'button[aria-label="Invoices folder"]'
++           ]
++         },
++         {
++           summary: 'Fix any of the following:\n' +
++             '  Text inside the element is not included in the accessible name',
++           target: [
++             'button[aria-label="Acme · client work folder"]'
++           ]
++         },
++         {
++           summary: 'Fix any of the following:\n' +
++             '  Text inside the element is not included in the accessible name',
++           target: [
++             'button[aria-label="Screenshots folder"]'
++           ]
++         },
++         {
++           summary: 'Fix any of the following:\n' +
++             '  Text inside the element is not included in the accessible name',
++           target: [
++             'button[aria-label="NAS · Archive folder"]'
++           ]
++         },
++         {
++           summary: 'Fix any of the following:\n' +
++             '  Text inside the element is not included in the accessible name',
++           target: [
++             'button[aria-label="Timesheet 2026.xlsx file"]'
++           ]
++         },
++         {
++           summary: 'Fix any of the following:\n' +
++             '  Text inside the element is not included in the accessible name',
++           target: [
++             'button[aria-label="Contract template.docx file"]'
++           ]
++         },
++         {
++           summary: 'Fix any of the following:\n' +
++             '  Text inside the element is not included in the accessible name',
++           target: [
++             'button[aria-label="Brand kit.pdf file"]'
++           ]
++         },
++         {
++           summary: 'Fix any of the following:\n' +
++             '  Text inside the element is not included in the accessible name',
++           target: [
++             'button[aria-label="deploy-site.ps1 file"]'
++           ]
++         }
++       ]
++     }
++   ]
+-   violations: []
+  }
+
+    at captureSuite (file:///D:/claude-upgrade-26/nabbit/scripts/screenshots/harness.mjs:392:19)
+    at async file:///D:/claude-upgrade-26/nabbit/scripts/verify-files-screenshots.mjs:28:16 {
+  [cause]: AssertionError [ERR_ASSERTION]: Expected values to be strictly deep-equal:
+  + actual - expected
+
+    {
+      incomplete: [],
+  +   violations: [
+  +     {
+  +       id: 'label-content-name-mismatch',
+  +       nodes: [
+  +         {
+  +           summary: 'Fix any of the following:\n' +
+  +             '  Text inside the element is not included in the accessible name',
+  +           target: [
+  +             'button[aria-label="Invoices folder"]'
+  +           ]
+  +         },
+  +         {
+  +           summary: 'Fix any of the following:\n' +
+  +             '  Text inside the element is not included in the accessible name',
+  +           target: [
+  +             'button[aria-label="Acme · client work folder"]'
+  +           ]
+  +         },
+  +         {
+  +           summary: 'Fix any of the following:\n' +
+  +             '  Text inside the element is not included in the accessible name',
+  +           target: [
+  +             'button[aria-label="Screenshots folder"]'
+  +           ]
+  +         },
+  +         {
+  +           summary: 'Fix any of the following:\n' +
+  +             '  Text inside the element is not included in the accessible name',
+  +           target: [
+  +             'button[aria-label="NAS · Archive folder"]'
+  +           ]
+  +         },
+  +         {
+  +           summary: 'Fix any of the following:\n' +
+  +             '  Text inside the element is not included in the accessible name',
+  +           target: [
+  +             'button[aria-label="Timesheet 2026.xlsx file"]'
+  +           ]
+  +         },
+  +         {
+  +           summary: 'Fix any of the following:\n' +
+  +             '  Text inside the element is not included in the accessible name',
+  +           target: [
+  +             'button[aria-label="Contract template.docx file"]'
+  +           ]
+  +         },
+  +         {
+  +           summary: 'Fix any of the following:\n' +
+  +             '  Text inside the element is not included in the accessible name',
+  +           target: [
+  +             'button[aria-label="Brand kit.pdf file"]'
+  +           ]
+  +         },
+  +         {
+  +           summary: 'Fix any of the following:\n' +
+  +             '  Text inside the element is not included in the accessible name',
+  +           target: [
+  +             'button[aria-label="deploy-site.ps1 file"]'
+  +           ]
+  +         }
+  +       ]
+  +     }
+  +   ]
+  -   violations: []
+    }
+
+      at Object.ready (file:///D:/claude-upgrade-26/nabbit/scripts/verify-files-screenshots.mjs:183:14)
+      at async captureSuite (file:///D:/claude-upgrade-26/nabbit/scripts/screenshots/harness.mjs:144:33)
+      at async file:///D:/claude-upgrade-26/nabbit/scripts/verify-files-screenshots.mjs:28:16 {
+    generatedMessage: true,
+    code: 'ERR_ASSERTION',
+    actual: {
+      violations: [
+        {
+          id: 'label-content-name-mismatch',
+          nodes: [
+            [Object], [Object],
+            [Object], [Object],
+            [Object], [Object],
+            [Object], [Object]
+          ]
+        }
+      ],
+      incomplete: []
+    },
+    expected: { violations: [], incomplete: [] },
+    operator: 'deepStrictEqual',
+    diff: 'simple'
+  }
+}
+
+Node.js v24.22.2

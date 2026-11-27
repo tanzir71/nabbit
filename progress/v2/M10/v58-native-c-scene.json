@@ -1,0 +1,63 @@
+{
+  "passed": false,
+  "failure": {
+    "message": "locator.waitFor: Target page, context or browser has been closed\nCall log:\n\u001b[2m  - waiting for getByRole('region', { name: 'Drop on a pin' }) to be visible\u001b[22m\n",
+    "stack": "locator.waitFor: Target page, context or browser has been closed\nCall log:\n\u001b[2m  - waiting for getByRole('region', { name: 'Drop on a pin' }) to be visible\u001b[22m\n\n    at D:\\claude-upgrade-26\\nabbit\\scripts\\capture-native-files.mjs:312:61"
+  },
+  "checks": [
+    "Pins are created/edited/removed through real IPC/SQLite without changing the target. Files shows the actual Shelf and pins. A held peek lists six metadata rows, refreshes on a real owned notify event, and closes its owner/token watch."
+  ],
+  "captures": [
+    {
+      "role": "files",
+      "file": "v58-native-c-files@2x.png",
+      "sha256": "2df02a74e0ca026000250998be05180d741b1fb08e45bf838a779d2efb3183d3",
+      "bytes": 78869,
+      "width": 1440,
+      "height": 920,
+      "logicalBounds": {
+        "x": 0,
+        "y": 0,
+        "width": 720,
+        "height": 460
+      },
+      "contentBounds": {
+        "x": 0,
+        "y": 0,
+        "width": 720,
+        "height": 460
+      },
+      "scale": 2,
+      "repeatMatches": true
+    },
+    {
+      "role": "pin-peek",
+      "file": "v58-native-c-pin-peek@2x.png",
+      "sha256": "b930d64477d910367ed32ddc10ee4569c25011b0c4b14c071247024992da404e",
+      "bytes": 120041,
+      "width": 1440,
+      "height": 920,
+      "logicalBounds": {
+        "x": 0,
+        "y": 0,
+        "width": 720,
+        "height": 460
+      },
+      "contentBounds": {
+        "x": 0,
+        "y": 0,
+        "width": 720,
+        "height": 460
+      },
+      "scale": 2,
+      "repeatMatches": true
+    }
+  ],
+  "embeddedAssetCount": 0,
+  "executableSha256": "eae990f7f9bbdff9c28726785158d2716d9fc2a1faf9b94a73e2c32dadecef82",
+  "buildManifestSha256": "be066c6f40e33ff9592c9c42835c1727b396ec45a6ef790ece209ba62db1aeca",
+  "noUserProfile": true,
+  "noRealRecycleBinOrExplorer": true,
+  "noOsSettingChange": true,
+  "scope": "Owned production release Files/Pins/Shelf, actual Tauri/SQLite journal, metadata notify, owned Shell IDataObject callbacks and application-only native Undo message. Transfers/conflicts/recycle use the guarded owned provider; real IFileOperation is covered separately by the owned no-dialog Rust test. Download record is seeded locally; no network download. No user profile, clipboard, Explorer, Recycle Bin or OS setting is used."
+}

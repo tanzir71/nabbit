@@ -1,5 +1,5 @@
 pub mod commands;
-mod files;
+pub(crate) mod files;
 mod process;
 pub mod registry;
 pub mod store;
@@ -155,6 +155,30 @@ impl Service {
         let mut jobs = state.jobs.values().cloned().collect::<Vec<_>>();
         jobs.sort_by(|a, b| b.created_at.cmp(&a.created_at).then(b.id.cmp(&a.id)));
         Ok(jobs)
+    }
+    pub fn reload_locations(&self) -> Result<Vec<String>> {
+        let rows = self.inner.db.tool_jobs()?;
+        let mut state = self
+            .inner
+            .state
+            .lock()
+            .map_err(|_| msg("Tool queue unavailable"))?;
+        let mut changed = Vec::new();
+        for row in rows {
+            if let Some(job) = state.jobs.get_mut(&row.id) {
+                if job.status == "completed"
+                    && row.status == "completed"
+                    && job.request == row.request
+                    && (job.output != row.output || job.output_identity != row.output_identity)
+                {
+                    job.output = row.output;
+                    job.output_identity = row.output_identity;
+                    job.output_hash = row.output_hash;
+                    changed.push(job.id.clone());
+                }
+            }
+        }
+        Ok(changed)
     }
     pub fn active(&self) -> bool {
         self.inner
@@ -523,6 +547,31 @@ fn quit_requires_confirmation(active: bool, confirmed: bool) -> bool {
     active && !confirmed
 }
 pub fn request_quit(app: &tauri::AppHandle) {
+    if app
+        .try_state::<Arc<crate::files::Service>>()
+        .is_some_and(|files| files.active())
+    {
+        let _ = app.emit("files:quit-blocked", ());
+        #[cfg(windows)]
+        if !crate::island::acceptance_session() {
+            unsafe {
+                use windows_sys::Win32::UI::WindowsAndMessaging::{
+                    MessageBoxW, MB_ICONWARNING, MB_OK,
+                };
+                let text="A file operation is still running. Finish or cancel it in the Windows progress dialog, then quit.\0".encode_utf16().collect::<Vec<_>>();
+                let title = "Files are still being filed\0"
+                    .encode_utf16()
+                    .collect::<Vec<_>>();
+                MessageBoxW(
+                    std::ptr::null_mut(),
+                    text.as_ptr(),
+                    title.as_ptr(),
+                    MB_OK | MB_ICONWARNING,
+                );
+            }
+        }
+        return;
+    }
     if let Some(service) = app.try_state::<Arc<Service>>() {
         if quit_requires_confirmation(
             service.active(),

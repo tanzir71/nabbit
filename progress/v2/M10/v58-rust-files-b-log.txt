@@ -1,0 +1,28 @@
+Compiling nabbit v0.1.0 (D:\claude-upgrade-26\nabbit\src-tauri)
+    Finished `test` profile [unoptimized + debuginfo] target(s) in 1m 36s
+     Running unittests src\lib.rs (src-tauri\target\debug\deps\nabbit_lib-0a6c78b5bd514df4.exe)
+
+running 15 tests
+test files::tests::collision_reference_journal_preserves_both_original_shelf_and_pin_identities ... ok
+test files::tests::confirmation_and_changed_source_are_checked_before_any_file_mutation ... ok
+test files::tests::copy_undo_preserves_original_and_changed_results_are_rejected ... ok
+test files::tests::explorer_volume_rules_and_explicit_modifier_overrides ... ok
+test files::tests::interrupted_operations_never_rerun_and_recorded_results_remain_undoable ... ok
+test files::tests::local_peek_lists_only_six_newest_and_watch_is_revoked ... ok
+test files::tests::mocked_second_volume_executes_a_copy_by_default_and_network_peek_never_watches ... ok
+test files::tests::move_updates_shelf_and_pin_references_and_undo_restores_them ... ok
+test files::tests::over_fifty_files_requires_confirmation_and_preserves_all_inputs ... ok
+test files::tests::owned_backend_rejects_paths_outside_its_canonical_root ... ok
+test files::tests::owned_moves_clashes_dates_restart_undo_and_duplicate_execute ... ok
+test files::tests::pins_edit_swap_slots_dedupe_remove_and_persist_without_touching_files ... ok
+test files::tests::placeholder_cloud_move_policy_and_long_paths_do_not_read_file_contents ... ok
+test files::tests::replacement_backups_and_partial_undo_resume_after_restart ... ok
+test files::tests::successful_copy_undo_and_extension_suggestions_use_the_journal ... ok
+
+test result: ok. 15 passed; 0 failed; 0 ignored; 0 measured; 311 filtered out; finished in 0.95s
+
+     Running unittests src\main.rs (src-tauri\target\debug\deps\nabbit-ba45e522dc9b4c26.exe)
+
+running 0 tests
+
+test result: ok. 0 passed; 0 failed; 0 ignored; 0 measured; 0 filtered out; finished in 0.00s

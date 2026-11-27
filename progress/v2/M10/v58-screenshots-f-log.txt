@@ -1,0 +1,99 @@
+file:///D:/claude-upgrade-26/nabbit/scripts/screenshots/harness.mjs:393
+            throw new Error(`${scenario.name} (${theme}@${scale}x): ${error.message}`, {
+                  ^
+
+Error: files-move-to (light@1x): Expected values to be strictly deep-equal:
++ actual - expected
+
+  {
++   incomplete: [
++     {
++       id: 'aria-prohibited-attr',
++       nodes: [
++         {
++           summary: 'Fix all of the following:\n' +
++             '  aria-label attribute is not well supported on "div" elements with no valid role attribute.',
++           target: [
++             'div[aria-label="File tools"]'
++           ]
++         },
++         {
++           summary: 'Fix all of the following:\n' +
++             '  aria-label attribute is not well supported on "div" elements with no valid role attribute.',
++           target: [
++             'div[aria-label="Suggested folders"]'
++           ]
++         },
++         {
++           summary: 'Fix all of the following:\n' +
++             '  aria-label attribute is not well supported on "div" elements with no valid role attribute.',
++           target: [
++             'div[aria-label="Pinned folders"]'
++           ]
++         }
++       ]
++     }
++   ],
+-   incomplete: [],
+    violations: []
+  }
+
+    at captureSuite (file:///D:/claude-upgrade-26/nabbit/scripts/screenshots/harness.mjs:393:19)
+    at async file:///D:/claude-upgrade-26/nabbit/scripts/verify-files-screenshots.mjs:28:16 {
+  [cause]: AssertionError [ERR_ASSERTION]: Expected values to be strictly deep-equal:
+  + actual - expected
+
+    {
+  +   incomplete: [
+  +     {
+  +       id: 'aria-prohibited-attr',
+  +       nodes: [
+  +         {
+  +           summary: 'Fix all of the following:\n' +
+  +             '  aria-label attribute is not well supported on "div" elements with no valid role attribute.',
+  +           target: [
+  +             'div[aria-label="File tools"]'
+  +           ]
+  +         },
+  +         {
+  +           summary: 'Fix all of the following:\n' +
+  +             '  aria-label attribute is not well supported on "div" elements with no valid role attribute.',
+  +           target: [
+  +             'div[aria-label="Suggested folders"]'
+  +           ]
+  +         },
+  +         {
+  +           summary: 'Fix all of the following:\n' +
+  +             '  aria-label attribute is not well supported on "div" elements with no valid role attribute.',
+  +           target: [
+  +             'div[aria-label="Pinned folders"]'
+  +           ]
+  +         }
+  +       ]
+  +     }
+  +   ],
+  -   incomplete: [],
+      violations: []
+    }
+
+      at Object.ready (file:///D:/claude-upgrade-26/nabbit/scripts/verify-files-screenshots.mjs:184:14)
+      at async captureSuite (file:///D:/claude-upgrade-26/nabbit/scripts/screenshots/harness.mjs:144:33)
+      at async file:///D:/claude-upgrade-26/nabbit/scripts/verify-files-screenshots.mjs:28:16 {
+    generatedMessage: true,
+    code: 'ERR_ASSERTION',
+    actual: {
+      violations: [],
+      incomplete: [
+        {
+          id: 'aria-prohibited-attr',
+          nodes: [ [Object], [Object], [Object] ]
+        }
+      ]
+    },
+    expected: { violations: [], incomplete: [] },
+    operator: 'deepStrictEqual',
+    diff: 'simple'
+  }
+}
+
+Node.js v24.22.2

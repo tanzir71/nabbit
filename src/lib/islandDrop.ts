@@ -1,11 +1,13 @@
 // Shared URL/file/text classification and review routing; no side effects.
-export type DropZone = "download" | "shelf" | "note";
+export type BasicDropZone = "download" | "shelf" | "note";
+export type DropZone = BasicDropZone | "move" | `pin:${string}` | `tool:${string}`;
 export type PayloadKind = "link" | "files" | "text" | "unsupported";
 export interface Payload {
   url?: string;
   text?: string;
   files?: string[];
   types?: readonly string[];
+  modifiers?: { shift: boolean; ctrl: boolean };
 }
 export interface Receipt {
   kind: PayloadKind;
@@ -36,7 +38,7 @@ export function classify(payload: Payload, hover = false): PayloadKind {
   if (hover && payload.types?.includes("text/plain")) return "text";
   return "unsupported";
 }
-export function zoneOrder(kind: PayloadKind): DropZone[] {
+export function zoneOrder(kind: PayloadKind): BasicDropZone[] {
   return kind === "files"
     ? ["shelf", "download", "note"]
     : kind === "text"
@@ -49,11 +51,13 @@ export function routeDrop(payload: Payload, requested?: DropZone): Receipt {
   const imageFiles =
     kind === "files" && payload.files?.every((path) => /\.(png|jpe?g|gif|webp|heic)$/i.test(path));
   const accepted =
-    zone === "download"
-      ? kind === "link"
-      : zone === "shelf"
-        ? kind === "files"
-        : kind === "link" || kind === "text" || imageFiles;
+    zone === "move" || zone.startsWith("pin:") || zone.startsWith("tool:")
+      ? kind === "files"
+      : zone === "download"
+        ? kind === "link"
+        : zone === "shelf"
+          ? kind === "files"
+          : kind === "link" || kind === "text" || imageFiles;
   return {
     kind,
     zone,
