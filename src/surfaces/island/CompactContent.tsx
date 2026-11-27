@@ -97,12 +97,13 @@ export function CompactContent({
     case "mediaChanged":
       return (
         <>
+          <h1 className="island-sr-only">Now playing</h1>
           <span
             className="island-artwork"
             style={e.art ? { backgroundImage: `url(${JSON.stringify(e.art)})` } : undefined}
           />
           <span className="island-spacer" />
-          <span className="island-bars" aria-label={e.playing ? "Playing" : "Paused"}>
+          <span className="island-bars" role="img" aria-label={e.playing ? "Playing" : "Paused"}>
             {[6, 12, 8, 14, 5].map((height, i) => (
               <i key={i} style={{ height: e.playing ? height : 3 }} />
             ))}

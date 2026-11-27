@@ -22,6 +22,7 @@ import { BubbleContent, CompactContent, type IslandIntent } from "./CompactConte
 import { PeekContent } from "./PeekContent";
 import { DropContent } from "./DropContent";
 import { notesApi } from "../../features/notes/api";
+import { connectMediaInput } from "../../features/media/input";
 const Expanded = lazy(() => import("./ExpandedShell"));
 const native = () => "__TAURI_INTERNALS__" in window;
 
@@ -47,6 +48,9 @@ export function IslandApp({ suppliedStore }: { suppliedStore?: IslandStore }) {
     [over, setOver] = useState<DropZone | null>(null),
     [notice, setNotice] = useState("");
   const fail = useCallback((reason: unknown) => setNotice(String(reason)), []);
+  useEffect(() => {
+    if (pill.current) return connectMediaInput(pill.current, store, fail);
+  }, [store, fail]);
   const visualState =
     native() && !instruction
       ? model.gate === "hidden"

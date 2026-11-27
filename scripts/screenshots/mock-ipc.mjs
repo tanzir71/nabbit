@@ -38,6 +38,7 @@ export function installMockIpc(seed) {
       throw typeof failure === "string" ? new Error(failure) : clone(failure);
     }
     switch (command) {
+      case "media_snapshot": return clone(state.media ?? {revision:0,sessions:[],selected:null,volume:null,error:null});
       case "shelf_list":
         return clone(state.shelf ?? []);
       case "shelf_preview":

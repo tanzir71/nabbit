@@ -41,6 +41,7 @@ export type SyncStatus =
   | "conflict";
 export type DragKind = "url" | "file" | "text";
 export type ActivityEvent =
+  | { kind: "mediaRemoved"; sessionId: string }
   | { kind: "volumeChanged"; percent: number; muted: boolean }
   | {
       kind: "linkDetected";

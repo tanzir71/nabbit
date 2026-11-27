@@ -222,6 +222,7 @@ export async function captureSuite(root, options, cases = scenarios) {
                     "resolve_download_preset",
                     ...(scenario.notesSync ? ["tack_sync_snapshot", "get_notes_state"] : []),
                     ...(scenario.noteCapture ? ["notes_open", "capture_note"] : []),
+                    ...(scenario.media ? ["media_snapshot"] : []),
                     ...(scenario.shelf ? ["shelf_list", "shelf_preview"] : []),
                     "plugin:event|listen",
                     "plugin:event|unlisten",

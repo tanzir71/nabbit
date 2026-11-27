@@ -1,0 +1,16 @@
+{
+  "passed": false,
+  "failure": {
+    "message": "page.evaluate: TypeError: Cannot read properties of undefined (reading 'invoke')\n    at eval (eval at evaluate (:370:30), <anonymous>:1:55)\n    at UtilityScript.evaluate (<anonymous>:372:16)\n    at UtilityScript.<anonymous> (<anonymous>:1:44)",
+    "stack": "page.evaluate: TypeError: Cannot read properties of undefined (reading 'invoke')\n    at eval (eval at evaluate (:370:30), <anonymous>:1:55)\n    at UtilityScript.evaluate (<anonymous>:372:16)\n    at UtilityScript.<anonymous> (<anonymous>:1:44)\n    at invoke (D:\\claude-upgrade-26\\nabbit\\scripts\\capture-native-media.mjs:129:8)\n    at D:\\claude-upgrade-26\\nabbit\\scripts\\capture-native-media.mjs:214:9"
+  },
+  "checks": [],
+  "captures": [],
+  "executableSha256": "46b588a5a5a68ca006b271c098ef9da22a5e4b527fd05254be9ce7e5e50d0520",
+  "buildManifestSha256": "8b5187683e49b2beee6d72779dd3f23b1e066af8a042b166a99fd4bb03dd5711",
+  "noUserProfile": true,
+  "noHostedTack": true,
+  "noRealClipboard": true,
+  "noOsDisplayChange": true,
+  "scope": "Owned custom-protocol release DirectComposition and WebView2, actual Tauri media IPC and native gesture handler, production media service with recorded MediaProvider. No live GSMTC/Core Audio, global input, OS display/audio settings, user profile or account."
+}

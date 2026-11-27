@@ -1,0 +1,81 @@
+{
+  "passed": true,
+  "checks": [
+    "The native DirectComposition compact pill renders recorded GSMTC artwork; no WebView or provider polling is needed for the pill",
+    "The production native hit-gated handler accumulates two half-detents, applies +2 / Shift -1, and middle-click pauses the current recorded session",
+    "Transparent corners and fullscreen-hidden native hosts reject media gestures",
+    "Current release WebView2 uses actual Tauri media IPC, playback controls and session chips; paused radio omits its unsupported timeline and skip controls, with exact-repeat DPR2 captures",
+    "Resume replaces the injected subscription; all playback/audio calls are recorded and no real player, audio output or OS input is touched"
+  ],
+  "captures": [
+    {
+      "role": "native-compact",
+      "file": "v53-native-c-compact@1x.png",
+      "width": 720,
+      "height": 460,
+      "bytes": 3959,
+      "sha256": "a37359aa1fa4bc15964f5a16dda9125fd425d9add3d12099d0279f8dbbb7f19e"
+    },
+    {
+      "role": "media",
+      "file": "v53-native-c-media@2x.png",
+      "sha256": "ca6cf720597b43992d8f2c40da3d7ffdc7cc0797b5f85595e804657d4cef3736",
+      "bytes": 63839,
+      "width": 1440,
+      "height": 920,
+      "logicalBounds": {
+        "x": 0,
+        "y": 0,
+        "width": 720,
+        "height": 460
+      },
+      "contentBounds": {
+        "x": 20,
+        "y": 6,
+        "width": 680,
+        "height": 234
+      },
+      "scale": 2,
+      "repeatMatches": true
+    },
+    {
+      "role": "no-timeline",
+      "file": "v53-native-c-no-timeline@2x.png",
+      "sha256": "e843458bd9aa3b0c53b65dff6e4e49f4cf15dc4d6269df90deecc73eb6a88885",
+      "bytes": 78089,
+      "width": 1440,
+      "height": 920,
+      "logicalBounds": {
+        "x": 0,
+        "y": 0,
+        "width": 720,
+        "height": 460
+      },
+      "contentBounds": {
+        "x": 20,
+        "y": 6,
+        "width": 680,
+        "height": 228
+      },
+      "scale": 2,
+      "repeatMatches": true
+    }
+  ],
+  "embeddedEntry": "/assets/island-En3eMvwk.js",
+  "embeddedStyles": [
+    "/assets/island-DqyQjvtv.css",
+    "/assets/EngineHealthCard-BLKwpQSy.css",
+    "/assets/links-CsTph8Fk.css",
+    "/assets/downloads-BSTwiXw-.css",
+    "/assets/QuickCapture-DUXyoEkk.css",
+    "/assets/SyncState-Co7PbncJ.css",
+    "/assets/ModuleBody-P3bXXQYY.css"
+  ],
+  "executableSha256": "328c624af5814d014c950c5e5e594f0a72bcff49caff626a12b52a9bb08f79bc",
+  "buildManifestSha256": "0586dc4377bbbcbff78aef3f7c7864149363e0ca613ab660e19249e3d7ef109a",
+  "noUserProfile": true,
+  "noHostedTack": true,
+  "noRealClipboard": true,
+  "noOsDisplayChange": true,
+  "scope": "Owned custom-protocol release DirectComposition and WebView2, actual Tauri media IPC and native gesture handler, production media service with recorded MediaProvider. No live GSMTC/Core Audio, global input, OS display/audio settings, user profile or account."
+}

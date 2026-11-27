@@ -1,0 +1,22 @@
+{
+  "passed": true,
+  "checks": [
+    "Playback controls invoke production media validation and recorded hardware; pushed snapshots change Pause to Play",
+    "Previous, next and absolute seek reach the selected session; the timeline updates only through pushed state",
+    "Session chips switch Rust selection; paused radio offers Play with disabled skip controls and no fabricated timeline",
+    "Middle-click uses the Rust-selected session and never synthesizes an OS key",
+    "Scroll uses exact +2 and Shift -1 percentage points; mute is confirmed by a provider event",
+    "Mounted player idle time causes no provider reads, IPC polling or timeline timer",
+    "Removed selection falls back to the remaining session and resume replaces the subscription; all hardware effects remain recorded",
+    "Final session removal produces a truthful empty state and clears the media activity",
+    "Verified 23 pushed events with zero unknown IPC, runtime errors or external network"
+  ],
+  "problems": [],
+  "buildManifestSha256": "254b881a669001d366cbcff6b854cadecc306a264cc58c0aad8034fa798b7492",
+  "rustBridgeExitCode": 0,
+  "scope": "Actual media UI and typed API through a test-only loopback bridge to production MediaProvider service, action validation, activity arbitration and recording hardware. No real GSMTC/audio calls, keys, accounts or OS settings.",
+  "noHostedTack": true,
+  "noUserAccount": true,
+  "noRealClipboard": true,
+  "noExternalNetwork": true
+}

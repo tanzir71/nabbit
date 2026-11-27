@@ -125,6 +125,7 @@ struct State {
     error: Option<String>,
 }
 pub struct Manager {
+    media_wheel: Mutex<HashMap<isize, crate::media::Wheel>>,
     started: Instant,
     visibility_hooks: Mutex<Vec<isize>>,
     watcher: Arc<Watcher>,
@@ -187,6 +188,7 @@ pub fn start(app: &AppHandle, preferences: Preferences) -> Result<(), String> {
             return Err(std::io::Error::last_os_error().to_string());
         }
         let manager = Arc::new(Manager {
+            media_wheel: Mutex::default(),
             started: Instant::now(),
             visibility_hooks: Mutex::default(),
             watcher: Arc::default(),
@@ -1028,8 +1030,12 @@ impl Manager {
                                     if let Some(foreground)=request.foreground{let mut state=lock(&manager.state);state.foreground_fixture=Some(foreground.clone());state.foreground=foreground;state.gate_override=None;drop(state);manager.watcher.system_changed();}
                                     if let Some(label)=request.wake{let _=manager.wake_island(&label);}
                                     if let Some(surface)=request.surface{let _=manager.request_surface(&surface.label,surface.state);}
+                                    let media_gesture=request.media_gesture.map(|g| {
+                                        let hwnd=lock(&manager.state).hosts.get(&g.label).map(|h|h.hwnd);
+                                        hwnd.is_some_and(|hwnd|manager.native_media(hwnd,g.x,g.y,g.delta.map(|d|(d,g.fine))))
+                                    });
                                     let outcome = preparation.and_then(|()| manager.accept(request.desktop, request.preferences, request.capture, &path));
-                                    let response = serde_json::json!({"id":request.id,"snapshot":manager.snapshot(),"result":outcome.as_ref().ok(),"error":outcome.err()});
+                                    let response = serde_json::json!({"id":request.id,"snapshot":manager.snapshot(),"media":manager.app.state::<Arc<crate::media::Service>>().snapshot(),"mediaGesture":media_gesture,"result":outcome.as_ref().ok(),"error":outcome.err()});
                                     let _ = std::fs::write(response_path, serde_json::to_vec(&response).unwrap_or_default());
                                     if request.quit.unwrap_or(false) { manager.app.exit(0); }
                                 }
@@ -1092,6 +1098,8 @@ impl Manager {
 }
 #[derive(Deserialize)]
 struct Request {
+    #[serde(rename = "mediaGesture")]
+    media_gesture: Option<MediaGesture>,
     shortcut: Option<String>,
     #[serde(rename = "toggleKeyboard")]
     toggle_keyboard: Option<bool>,
@@ -1118,6 +1126,15 @@ struct Request {
 struct SurfaceRequest {
     label: String,
     state: super::surface::Mode,
+}
+#[derive(Deserialize)]
+struct MediaGesture {
+    label: String,
+    x: f64,
+    y: f64,
+    delta: Option<i16>,
+    #[serde(default)]
+    fine: bool,
 }
 #[derive(Deserialize)]
 struct Capture {
@@ -1301,6 +1318,22 @@ unsafe extern "system" fn host_proc(hwnd: HWND, message: u32, w: WPARAM, l: LPAR
             }
             0
         }
+        WM_MOUSEWHEEL | WM_MBUTTONUP => {
+            if let Some(manager) = current() {
+                let mut point = POINT {
+                    x: l as u16 as i16 as i32,
+                    y: (l as u32 >> 16) as u16 as i16 as i32,
+                };
+                let wheel = if message == WM_MOUSEWHEEL {
+                    ScreenToClient(hwnd, &mut point);
+                    Some(((w >> 16) as u16 as i16, w & 4 != 0))
+                } else {
+                    None
+                };
+                manager.native_media(hwnd as isize, point.x as f64, point.y as f64, wheel);
+            }
+            0
+        }
         _ => DefWindowProcW(hwnd, message, w, l),
     }
 }
@@ -1336,6 +1369,9 @@ unsafe extern "system" fn control_proc(hwnd: HWND, message: u32, w: WPARAM, l: L
                 .state::<Arc<super::activity_bus::Bus>>()
                 .refresh();
             manager.watcher.system_changed();
+            if message == WM_POWERBROADCAST && w == 18 {
+                manager.app.state::<Arc<crate::media::Service>>().resume();
+            }
         }
     }
     DefWindowProcW(hwnd, message, w, l)

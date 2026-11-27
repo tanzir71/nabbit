@@ -5,6 +5,7 @@ mod db;
 mod download;
 mod error;
 mod island;
+pub mod media;
 mod notes;
 mod pins;
 mod retention;
@@ -108,6 +109,11 @@ pub fn run() {
         ))
         .plugin(tauri_plugin_updater::Builder::new().build())
         .invoke_handler(tauri::generate_handler![
+            media::media_snapshot,
+            media::media_select,
+            media::media_action,
+            media::media_toggle,
+            media::media_fixture,
             shelf::commands::shelf_list,
             shelf::commands::shelf_add,
             shelf::commands::shelf_remove,
@@ -268,6 +274,7 @@ pub fn run() {
                 app.handle().clone(),
                 activity_settings,
             ));
+            app.manage(media::start(app.handle().clone()));
             let downloads =
                 DownloadManager::new(db.clone(), app.handle().clone(), app_data_dir.clone());
             let shutdown = Arc::new(AtomicBool::new(false));
@@ -402,6 +409,9 @@ pub fn run() {
                 }
                 if let Some(bus) = app.try_state::<Arc<island::activity_bus::Bus>>() {
                     bus.stop();
+                }
+                if let Some(media) = app.try_state::<Arc<media::Service>>() {
+                    media.stop();
                 }
                 if let Some(sync) = app.try_state::<tack::service::Service>() {
                     sync.stop();

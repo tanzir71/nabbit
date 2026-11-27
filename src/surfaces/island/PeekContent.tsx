@@ -1,3 +1,4 @@
+import { MediaPlayer } from "../../features/media/MediaPlayer";
 import type { ActivityItem } from "../../lib/activity";
 import { activityTitle, basename, duration, percent } from "../../lib/islandPresentation";
 import { PresetChip } from "../../components/PresetChip";
@@ -6,7 +7,7 @@ import { IslandAsset } from "./IslandAsset";
 import { MiniButton, type IslandIntent } from "./CompactContent";
 import { usePreset } from "../../features/downloads/usePreset";
 import { defaultDownloadPresets } from "../../lib/downloadPresets";
-export function PeekContent({
+function OtherPeekContent({
   item,
   act,
 }: {
@@ -153,5 +154,13 @@ export function PeekContent({
         e.kind,
       ) && <MiniButton onClick={() => invoke("review")}>Open details</MiniButton>}
     </div>
+  );
+}
+
+export function PeekContent(props: { item: ActivityItem; act: (intent: IslandIntent) => void }) {
+  return props.item.event.kind === "mediaChanged" ? (
+    <MediaPlayer peek />
+  ) : (
+    <OtherPeekContent {...props} />
   );
 }

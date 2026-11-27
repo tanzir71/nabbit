@@ -586,6 +586,70 @@ impl Manager {
             })
             .map_err(|e| e.to_string())
     }
+    pub(super) fn native_media(
+        &self,
+        hwnd: isize,
+        x: f64,
+        y: f64,
+        wheel: Option<(i16, bool)>,
+    ) -> bool {
+        let state = lock(&self.state);
+        let Some(host) = state.hosts.values().find(|host| host.hwnd == hwnd) else {
+            return false;
+        };
+        let label = &host.placement.label;
+        if state
+            .inputs
+            .get(label)
+            .is_none_or(|input| input.web || input.gate != Gate::Visible)
+        {
+            return false;
+        }
+        let snapshot = self
+            .app
+            .state::<Arc<crate::island::activity_bus::Bus>>()
+            .snapshot();
+        let scene = presentation::compact(
+            snapshot.views.iter().find(|v| &v.label == label),
+            host.placement.shape,
+        );
+        let x = x / host.placement.render_scale - (720.0 - f64::from(scene.width)) / 2.0;
+        let y = y / host.placement.render_scale - f64::from(scene.top);
+        if !crate::media::pill_hit(
+            x,
+            y,
+            f64::from(scene.primary_width),
+            f64::from(scene.height),
+            f64::from(scene.radius),
+        ) {
+            return false;
+        }
+        drop(state);
+        let steps = wheel.map(|(delta, _)| {
+            lock(&self.media_wheel)
+                .entry(hwnd)
+                .or_default()
+                .steps(delta)
+        });
+        let app = self.app.clone();
+        tauri::async_runtime::spawn_blocking(move || {
+            let service = app.state::<Arc<crate::media::Service>>();
+            let result = if let Some(steps) = steps {
+                (0..steps.unsigned_abs()).try_for_each(|_| {
+                    service.perform(crate::media::Action::VolumeStep {
+                        direction: steps.signum() as i8,
+                        fine: wheel.is_some_and(|(_, fine)| fine),
+                    })
+                })
+            } else {
+                service.toggle()
+            };
+            if let Err(error) = result {
+                let _ = app.emit("nabbit://media-error", error);
+            }
+        });
+        true
+    }
     pub(super) fn native_click(&self, hwnd: isize, point: LPARAM) {
         let host = lock(&self.state)
             .hosts

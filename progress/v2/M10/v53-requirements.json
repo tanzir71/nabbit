@@ -1,0 +1,58 @@
+{
+  "task": "V5.3",
+  "requirements": [
+    {
+      "requirement": "GSMTC sessions behind MediaProvider",
+      "assertions": "MTA Windows actor subscribes to manager sessions/current-session and per-session media/playback/timeline changes. Idle waits on recv; no polling API or interval. Cache-only service reads and 1000-read/source-contract tests assert no provider reads. Revoke all registrations on removal/resume/stop; default audio output/volume callbacks are event-driven.",
+      "status": "passed"
+    },
+    {
+      "requirement": "Recorded fixtures map compact/peek/expanded",
+      "assertions": "Shared recorded sessions drive actual production service/arbitration, UI IPC bridge and native release. Selection preference, playing/paused, stale session, removal/fallback, errors, unsupported controls and absent timeline are tested. Session chips remain usable while paused.",
+      "status": "passed"
+    },
+    {
+      "requirement": "96px cached thumbnail stream",
+      "assertions": "Only metadata events reopen a bounded <=4MiB stream. Existing bounded image codec decodes <=4096px/32MiB and emits a 96x96 PNG held in memory. Native/DOM artwork consumes this data URI; invalid inputs are discarded. Expanded Figma slot is112px; no remote artwork URL or persisted listening history.",
+      "status": "passed"
+    },
+    {
+      "requirement": "Playback and session controls",
+      "assertions": "Previous/toggle/next/absolute seek validate session IDs, capabilities, finite/bounded positions and player acknowledgements. Per-command async operations have3s cancellation, queued commands expire and callers have8s reply bounds. No key synthesis. Timeline positions are provider events without renderer/provider polling.",
+      "status": "passed"
+    },
+    {
+      "requirement": "Scroll volume and middle-click",
+      "assertions": "Core Audio scalar steps are exactly +/-2 percentage points or +/-1 with Shift, clamped0..100. Rust handles native WM_MOUSEWHEEL/WM_MBUTTONUP with detent accumulation, scaled rounded-pill hit test and hidden/web-owner gates. DOM listener preserves editors/controls and non-Media expanded list scrolling. Middle-click uses Rust-selected session. Fixture-native and browser tests exercise both paths.",
+      "status": "passed"
+    },
+    {
+      "requirement": "Figma/accessibility/footprint",
+      "assertions": "Fresh contexts/screenshots7:103,8:119,10:341(parent10:519). Reuse shared controls/tokens and17 visible original SVG slots at intrinsic dimensions. Correct234px expanded/94px peek, artwork slots, transparent skip buttons and chip typography.28 final exact-repeat light/dark1x/1.5x captures: default axe zero violations/incompletes, Geist verified. Initial island95636/120000 gzip bytes; no sidecar or new crate version.",
+      "status": "passed"
+    }
+  ],
+  "evidence": {
+    "checks": "v53-checks.json",
+    "flow": "v53-flow-e-flow.json",
+    "native": "v53-native-c-scene.json",
+    "visual": "v53-media-f-screenshots.json",
+    "design": "v53-design.json",
+    "bundles": "v53-entry-bundles.json",
+    "pngAudit": "v53-png-audit.json"
+  },
+  "platformBoundary": "Windows x64 automated fixtures and owned custom-protocol native release. Production Windows API calls compile but no real player/audio device is exercised; OS callback delivery, Windows10/ARM64 and prior focus/performance limits remain unclaimed.",
+  "apiReferences": [
+    "https://learn.microsoft.com/en-us/uwp/api/windows.media.control.globalsystemmediatransportcontrolssessionmanager",
+    "https://learn.microsoft.com/en-us/windows/win32/api/endpointvolume/nf-endpointvolume-iaudioendpointvolume-setmastervolumelevelscalar",
+    "https://learn.microsoft.com/en-us/windows/win32/api/endpointvolume/nf-endpointvolume-iaudioendpointvolume-registercontrolchangenotify"
+  ],
+  "dependencies": {
+    "windows": "0.62.2 existing; Media_Control, Storage_Streams, Win32_Media_Audio_Endpoints features enabled",
+    "windows-core": "0.62.2 existing transitive version now direct for callback macros",
+    "image": "existing0.25.10 PNG/JPEG/WebP codecs",
+    "lucide-react": "existing package for paused Play variant",
+    "newSidecar": false
+  },
+  "nextTask": "V5.4"
+}

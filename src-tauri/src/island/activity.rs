@@ -135,6 +135,9 @@ pub enum ActivityEvent {
         job_id: String,
         error: ErrorKind,
     },
+    MediaRemoved {
+        session_id: String,
+    },
     MediaChanged {
         session_id: String,
         title: String,
@@ -564,6 +567,9 @@ impl Engine {
                 } else {
                     self.remove("media", session_id);
                 }
+            }
+            ActivityEvent::MediaRemoved { session_id } => {
+                self.remove("media", session_id);
             }
             ActivityEvent::TimerTick {
                 id, remaining_s, ..

@@ -2,6 +2,8 @@
 
 Nabbit is local-first.
 
+Now playing subscribes to Windows media-session events. Titles, artists, playback state and bounded 96 px artwork stay in memory on this PC; Nabbit does not fetch artwork URLs, keep listening history or sync this data. Playback, seeking, session selection, mute and system-volume changes happen only through your controls or pill gestures. Scroll changes system volume by two percentage points, or one with Shift; middle-click toggles the selected media session.
+
 The Shelf stores local file paths and order in SQLite. Adding a file permits presence/size checks and a bounded in-memory preview for supported images; previews are not stored as file copies. Copy paths writes path text only after an explicit action. Dragging out hands the selected original paths to the operating system in copy mode. Remove and Clear delete Shelf references, never the original files. Shelf data is not synced or used for telemetry.
 
 - Clipboard history is stored in a SQLite database in the operating system app-data directory.

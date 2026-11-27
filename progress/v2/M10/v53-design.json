@@ -1,0 +1,88 @@
+{
+  "sessionId": "f27c3b3e-72d0-4a42-a7ef-432f636b7839",
+  "nodes": [
+    "7:103",
+    "8:119",
+    "10:341"
+  ],
+  "expandedParent": "10:519",
+  "artwork": {
+    "streamCachePixels": 96,
+    "expandedSlotPixels": 112,
+    "dataSupplied": true
+  },
+  "assets": [
+    {
+      "slot": "10:341/iconSkipBack",
+      "file": "src/assets/island/301e5.svg",
+      "sha256": "985ff9d5b81a96ec9126c767fe255ed5bf3be25681ff01ba40aa6124a91018a0",
+      "width": "17",
+      "height": "17",
+      "matchesExisting": true
+    },
+    {
+      "slot": "10:341/iconPause",
+      "file": "src/assets/island/c5253.svg",
+      "sha256": "5227e0476b4c8c9ecd34d8f71f4c1970cf57de803aef40d3582620cb2ce37acf",
+      "width": "20",
+      "height": "20",
+      "matchesExisting": true
+    },
+    {
+      "slot": "10:341/iconSkipForward",
+      "file": "src/assets/island/82100.svg",
+      "sha256": "3d8a43a7d35c65ab279e54ecaf8c7a9abea23d4e22e54e94a1a906c726e2cfe3",
+      "width": "17",
+      "height": "17",
+      "matchesExisting": true
+    },
+    {
+      "slot": "10:341/iconVolume2",
+      "file": "src/assets/island/53e1c.svg",
+      "sha256": "5ba0d4f5fd07ccfcdf2ba25a396c80536fdb9984a7620aa7c18605badfa2d006",
+      "width": "16",
+      "height": "16",
+      "matchesExisting": true
+    },
+    {
+      "slot": "10:341/iconMonitor",
+      "file": "src/assets/island/191a5.svg",
+      "sha256": "3ba167949d45287232076b446e2a81f585bba5fb93474b6b3836df53b19f1d8d",
+      "width": "15",
+      "height": "15",
+      "matchesExisting": true
+    },
+    {
+      "slot": "peek/iconSkipBack",
+      "file": "src/assets/island/d978d.svg",
+      "sha256": "0289d53590102bd90e9312befa4767cced7be55b8acc7d43ee4c9aa99803ea40",
+      "width": "14",
+      "height": "14",
+      "matchesExisting": true
+    },
+    {
+      "slot": "peek/iconPause1",
+      "file": "src/assets/island/967b2.svg",
+      "sha256": "ffbc6f8fb4ac41a8df12218be68c11097d7a68f22cb8650b23485c63389b6cf9",
+      "width": "16",
+      "height": "16",
+      "matchesExisting": true
+    },
+    {
+      "slot": "peek/iconSkipForward",
+      "file": "src/assets/island/85918.svg",
+      "sha256": "0188716db7847d99195a86d44a2233cdb57cb76c1d833477e9791fd6ed36b205",
+      "width": "14",
+      "height": "14",
+      "matchesExisting": true
+    }
+  ],
+  "comparison": {
+    "expanded": "680x234, radius28, 112px artwork/r18, gap16; 18px/24 semibold title, 13px/18 medium session chips, transparent34px skip and40px primary controls",
+    "peek": "400x94, radius24, 44px artwork/r10; 12px header/control gaps, transparent28px skip and32px primary controls",
+    "compact": "272x32, radius16,20px artwork/r5 and original five bars",
+    "dynamicVariants": "OS title/artist/artwork/progress, capability-dependent controls, paused Play from the existing lucide-react library and no-timeline/empty/unavailable states; no original pause SVG modified",
+    "timeline": "Position/duration reflect actual provider data. The prototype progress width is illustrative; display uses the actual fraction."
+  },
+  "figmaFile": "tBm7NNhh1Y9aTQPJ3WxY5v"
+}

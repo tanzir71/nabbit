@@ -664,3 +664,5 @@ fn tombstone_versions_and_paging_must_make_progress() {
 }
 
 mod links_bridge;
+
+mod media_bridge;

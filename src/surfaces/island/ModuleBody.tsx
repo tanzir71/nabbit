@@ -2,12 +2,13 @@ import { useEffect, useState } from "react";
 import { invoke } from "@tauri-apps/api/core";
 import { IslandNab } from "../../features/downloads/IslandNab";
 import { ProgressRing } from "../../components/ProgressRing";
-import { basename, duration, percent } from "../../lib/islandPresentation";
+import { basename, duration } from "../../lib/islandPresentation";
 import type { ActivityItem } from "../../lib/activity";
 import type { IslandAction, IslandModel } from "../../store/islandStore";
 import { MiniButton, type IslandIntent } from "./CompactContent";
 import { IslandNotes } from "../../features/notes/IslandNotes";
 import { IslandClipboard } from "../../features/clipboard/IslandClipboard";
+import { MediaPlayer } from "../../features/media/MediaPlayer";
 import { IslandShelf } from "../../features/shelf/IslandShelf";
 interface Props {
   model: IslandModel;
@@ -23,6 +24,7 @@ export default function ModuleBody(props: Props) {
   const { model, act } = props;
   if (model.tab === "nab") return <IslandNab model={model} dispatch={props.dispatch} />;
   if (model.tab === "clipboard") return <IslandClipboard model={model} dispatch={props.dispatch} />;
+  if (model.tab === "media") return <MediaPlayer />;
   if (model.tab === "files") return <IslandShelf model={model} dispatch={props.dispatch} />;
   if (model.tab === "notes")
     return (
@@ -32,43 +34,8 @@ export default function ModuleBody(props: Props) {
       </>
     );
   const current = itemsOf(model).find((item) =>
-    model.tab === "media"
-      ? item.category === "media"
-      : model.tab === "timer"
-        ? ["timer", "timerEnding"].includes(item.category)
-        : false,
+    model.tab === "timer" ? ["timer", "timerEnding"].includes(item.category) : false,
   );
-  if (model.tab === "media" && current?.event.kind === "mediaChanged") {
-    const e = current.event;
-    return (
-      <div className="island-module-body">
-        <div className="island-media-body">
-          <div
-            className="island-artwork is-expanded"
-            style={e.art ? { backgroundImage: `url(${JSON.stringify(e.art)})` } : undefined}
-          />
-          <div className="island-spacer island-text-stack">
-            <h2>{e.title}</h2>
-            <p className="island-muted">{e.artist}</p>
-            {e.timeline && (
-              <div className="island-row island-mono island-muted">
-                <span>{duration(e.timeline.positionS)}</span>
-                <div className="island-progress is-media">
-                  <i
-                    style={{
-                      width: `${percent((e.timeline.positionS / Math.max(1, e.timeline.durationS)) * 100)}%`,
-                    }}
-                  />
-                </div>
-                <span>{duration(e.timeline.durationS)}</span>
-              </div>
-            )}
-            <p className="island-muted">{e.playing ? "Playing" : "Paused"}</p>
-          </div>
-        </div>
-      </div>
-    );
-  }
   if (model.tab === "timer" && current?.event.kind === "timerTick") {
     const e = current.event;
     return (
