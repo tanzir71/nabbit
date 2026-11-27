@@ -248,6 +248,7 @@ export function IslandApp({ suppliedStore }: { suppliedStore?: IslandStore }) {
     void getCurrentWebviewWindow()
       .onDragDropEvent((event) => {
         if (!active || event.payload.type !== "drop") return;
+        if (host.current?.dataset.shelfOutgoing === "true") return;
         const x = event.payload.position.x / devicePixelRatio,
           y = event.payload.position.y / devicePixelRatio;
         const zone =
@@ -374,6 +375,7 @@ export function IslandApp({ suppliedStore }: { suppliedStore?: IslandStore }) {
   incomingDrop.current = receiveDrop;
   const drop = (event: React.DragEvent) => {
     event.preventDefault();
+    if (host.current?.dataset.shelfOutgoing === "true") return;
     if (native() && event.dataTransfer.files.length) {
       pendingDropZone.current =
         event.target instanceof Element
@@ -452,6 +454,7 @@ export function IslandApp({ suppliedStore }: { suppliedStore?: IslandStore }) {
           void invoke("island_keyboard_focus", { target: "preserve" }).catch(fail);
       }}
       onDragEnter={(event) => {
+        if (host.current?.dataset.shelfOutgoing === "true") return;
         if (
           [...(event.dataTransfer.types ?? [])].some((type) =>
             ["Files", "text/plain", "text/uri-list"].includes(type),
@@ -467,6 +470,7 @@ export function IslandApp({ suppliedStore }: { suppliedStore?: IslandStore }) {
       }}
       onDragOver={(event) => {
         event.preventDefault();
+        if (host.current?.dataset.shelfOutgoing === "true") return;
         const types = [...event.dataTransfer.types];
         setPayload((previous) =>
           previous.types?.join("|") === types.join("|") ? previous : { types },

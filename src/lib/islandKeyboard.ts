@@ -143,6 +143,14 @@ export function connectIslandKeyboard(
     const current = store.getState();
     if (
       current.state === "expanded" &&
+      current.tab === "files" &&
+      current.filters.searchOpen !== "true"
+    ) {
+      root.dispatchEvent(new CustomEvent("nabbit:island-shelf-key", { detail: event }));
+      if (event.defaultPrevented) return;
+    }
+    if (
+      current.state === "expanded" &&
       current.tab === "clipboard" &&
       current.filters.searchOpen !== "true"
     ) {

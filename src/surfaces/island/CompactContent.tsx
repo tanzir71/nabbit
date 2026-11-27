@@ -19,15 +19,18 @@ export type IslandIntent = {
 export function MiniButton({
   children,
   signal,
+  disabled,
   onClick,
 }: {
   children: React.ReactNode;
   signal?: boolean;
+  disabled?: boolean;
   onClick: () => void;
 }) {
   return (
     <Button
       variant="ghost"
+      disabled={disabled}
       className={`island-mini${signal ? " is-signal" : ""}`}
       onClick={(e) => {
         e.stopPropagation();

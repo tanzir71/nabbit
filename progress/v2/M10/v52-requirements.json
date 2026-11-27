@@ -1,0 +1,56 @@
+{
+  "task": "V5.2",
+  "section": "9 Shelf / 11 V5.2",
+  "requirements": [
+    {
+      "requirement": "Path-only persistence/add/dedupe",
+      "assertions": "shelf_items stores ID/path/key/order/added time only. Complete batches validate before one transaction; canonical aliases and Windows case variants dedupe. Relative/directory/missing/oversized batches and capacity overflow leave prior entries intact. SQLite survives reopen. No source copy is created.",
+      "status": "passed"
+    },
+    {
+      "requirement": "Native drop intake",
+      "assertions": "IslandApp uses the existing owned WebView/native file-drop route. Real island_stage_drop persists Shelf references asynchronously and consumes the old staging draft. Notes/download routes remain separate. Native smoke verifies actual IPC and cross-surface pushed updates.",
+      "status": "passed"
+    },
+    {
+      "requirement": "Copy paths/Remove/Clear",
+      "assertions": "Copy builds exact original canonical paths in Shelf order (CRLF on Windows), supports selected IDs or all, and rejects stale selections before a writer is called. Remove and Clear delete database references only. Rust/browser tests record writes; native smoke verifies text IPC and byte-identical surviving originals.",
+      "status": "passed"
+    },
+    {
+      "requirement": "Missing files and previews",
+      "assertions": "Metadata is checked outside SQLite locks on open/focus/explicit actions. Unavailable files stay grey, un-draggable and removable. Visible image previews read only stored file IDs, with8MB input/64MB decoder allocation/16384px side bounds and320x144 in-memory output. Invalid, unsupported or missing previews use the original type icons; originals are never rewritten.",
+      "status": "passed"
+    },
+    {
+      "requirement": "Drag out",
+      "assertions": "The production drag-plan command validates current selected IDs and availability, retains Shelf order and sends only the selected original paths plus bundled icon in copy mode. The real JS drag plugin binding is exercised with a recording provider. Main-thread native plugin compiles; Windows Shell data-object failures propagate rather than panic via the exact two-site patch. An outgoing source lease keeps the view through held input, releases on drop/cancel, and never overrides hidden policy. No interactive OS drag is a gate.",
+      "status": "passed"
+    },
+    {
+      "requirement": "Selection/keyboard/lifecycle",
+      "assertions": "Cards toggle selection and persist it in island memory. Ctrl+A/C/Delete route before global search; editing/IME/modifiers/repeated actions and single-flight effects are preserved. Pushed changes/focus refresh use listener-before-snapshot and generation guards; removed IDs prune selection; StrictMode/late subscriptions clean up. No collapsed JavaScript polling.",
+      "status": "passed"
+    },
+    {
+      "requirement": "Visual/Figma scope",
+      "assertions": "The Shelf region of10:249 and selected region34:897 reuse shared header/MiniButton/tokens and original SVGs.28 final light/dark1x/1.5x captures are exact-repeat with default axe zero violations/incompletes, bundled Geist and27 visible original slots measured. Pins/full Files layout are V5.8 and registry conversion/Move-to actions are V5.7-V5.10. Current supported Copy/Remove/Deselect actions work; no fake pins or dead tool buttons.",
+      "status": "passed"
+    },
+    {
+      "requirement": "Native/footprint/dependencies",
+      "assertions": "Current custom-protocol release runs four actual Tauri/SQLite checks and two stable DPR2 captures with isolated owned files/WebView2. No real clipboard/global input/user profile/hosted Tack/OS setting is used. Initial island stays under120000 gzip bytes. No sidecar is added. Drag Rust2.1.1/JS2.1.0 and existing image0.25.10 codecs are pinned; published drag archive checksum and all unmodified vendor source/license hashes are verified.",
+      "status": "passed"
+    }
+  ],
+  "browserProof": "v52-delivery-flow.json",
+  "nativeProof": "v52-native-e1-scene.json",
+  "visualProof": "v52-shelf-e2-screenshots.json",
+  "dependencyProof": "v52-dependencies.json",
+  "limits": {
+    "drag": "No interactive drag or receiving application is used. Production plugin compiles and the real JS binding/validated native path plans run through recording providers under section0.2. The Windows Shell error patch is source/compile verified.",
+    "clipboard": "No OS clipboard writes; production text generation/copy decisions run through injected writers. Native acceptance invokes read-only shelf_paths only.",
+    "platforms": "Automated on x64 Windows only; previous V0/V2 focus/performance and external-platform limits remain.",
+    "later": "Pins/full Files and Move-to are V5.8. Registry/conversion tools are V5.7-V5.10. Now playing V5.3 is next."
+  }
+}

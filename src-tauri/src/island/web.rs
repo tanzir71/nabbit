@@ -44,6 +44,20 @@ pub(super) fn reduced_motion() -> bool {
             && std::env::var("NABBIT_ACCEPTANCE_REDUCED_MOTION").as_deref() == Ok("1")
 }
 impl Manager {
+    pub fn outgoing_drag(&self, label: &str, active: bool) -> Result<(), String> {
+        let mut state = lock(&self.state);
+        let surface = state.surfaces.get_mut(label).ok_or("Island was removed")?;
+        if active && (surface.state != Mode::Expanded || !surface.web_allocated) {
+            return Err("Open Files before dragging".into());
+        }
+        surface.outgoing_drag = active;
+        if active {
+            surface.pending = None;
+        }
+        drop(state);
+        self.watcher.wake();
+        Ok(())
+    }
     pub fn open_capture_review(&self) -> Result<bool, String> {
         let snapshot = self
             .app

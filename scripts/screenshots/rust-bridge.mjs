@@ -17,6 +17,9 @@ export function installBridge(info) {
     return result.value;
   };
   globalThis.__TAURI_INTERNALS__.invoke = (command, args) =>
+    (info.shelf &&
+      ((command.startsWith("shelf_") && command !== "shelf_drag_active") ||
+        command === "island_stage_drop")) ||
     command.startsWith("tack_") ||
     command.startsWith("sticky_") ||
     command.startsWith("bookmarks_") ||

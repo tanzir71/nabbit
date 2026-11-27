@@ -1,0 +1,111 @@
+{
+  "upstream": "https://github.com/crabnebula-dev/drag-rs",
+  "issue": "https://github.com/crabnebula-dev/drag-rs/issues/72",
+  "dragCrate": "2.1.1",
+  "publishedCrateChecksum": "7e90b4a25ace5ce0561534b073943594cbcd21af936e64d09aec444568411f8c",
+  "checksumSource": "Cargo sparse registry index record for drag2.1.1; archive SHA256 matches. Direct crates.io API returned403; no authentication or access changes.",
+  "archiveMatchesPublishedChecksum": true,
+  "license": "MIT OR Apache-2.0; original licenses retained in vendor/drag",
+  "patch": "Exactly two Windows Shell data-object Option unwraps become ok_or(Error::FailedToStartDrag)?; no other upstream file changes. Copy-mode binding is unchanged.",
+  "files": [
+    {
+      "file": "src-tauri/vendor/drag/Cargo.toml",
+      "upstreamSha256": "9bfaa4bc4d94812e8044e813d7c54956f370acc56eadc69daa6439025d35544d",
+      "localSha256": "9bfaa4bc4d94812e8044e813d7c54956f370acc56eadc69daa6439025d35544d",
+      "patched": false
+    },
+    {
+      "file": "src-tauri/vendor/drag/LICENSE_APACHE-2.0",
+      "upstreamSha256": "0d542e0c8804e39aa7f37eb00da5a762149dc682d7829451287e11b938e94594",
+      "localSha256": "0d542e0c8804e39aa7f37eb00da5a762149dc682d7829451287e11b938e94594",
+      "patched": false
+    },
+    {
+      "file": "src-tauri/vendor/drag/LICENSE_MIT",
+      "upstreamSha256": "9e17784d32fbb3ac50c6c543c307d0fbcb16969585cb4cee8839b50e774708f9",
+      "localSha256": "9e17784d32fbb3ac50c6c543c307d0fbcb16969585cb4cee8839b50e774708f9",
+      "patched": false
+    },
+    {
+      "file": "src-tauri/vendor/drag/src/lib.rs",
+      "upstreamSha256": "089ba1fe2d72c3ba11502fd7076391cb22462e2d5617173c33f9bc11fe3978ca",
+      "localSha256": "089ba1fe2d72c3ba11502fd7076391cb22462e2d5617173c33f9bc11fe3978ca",
+      "patched": false
+    },
+    {
+      "file": "src-tauri/vendor/drag/src/platform_impl/gtk/mod.rs",
+      "upstreamSha256": "1c3ddfbbef6fcc5c06471d3a3499db5b687328a4de47ae375adb49a38ff95471",
+      "localSha256": "1c3ddfbbef6fcc5c06471d3a3499db5b687328a4de47ae375adb49a38ff95471",
+      "patched": false
+    },
+    {
+      "file": "src-tauri/vendor/drag/src/platform_impl/macos/mod.rs",
+      "upstreamSha256": "b2397bbdc683a3fe54834013d0fbb65d92a94ee7aa59d0c881cad9fcb9ac93c7",
+      "localSha256": "b2397bbdc683a3fe54834013d0fbb65d92a94ee7aa59d0c881cad9fcb9ac93c7",
+      "patched": false
+    },
+    {
+      "file": "src-tauri/vendor/drag/src/platform_impl/mod.rs",
+      "upstreamSha256": "9d90797e14d463fde7c023ad8cb8135ee074208eba4fd799130c7b9be117525d",
+      "localSha256": "9d90797e14d463fde7c023ad8cb8135ee074208eba4fd799130c7b9be117525d",
+      "patched": false
+    },
+    {
+      "file": "src-tauri/vendor/drag/src/platform_impl/windows/image.rs",
+      "upstreamSha256": "a03889ded292a0be51482682a1db31edec9c417d7fdb7587369e958a843292da",
+      "localSha256": "a03889ded292a0be51482682a1db31edec9c417d7fdb7587369e958a843292da",
+      "patched": false
+    },
+    {
+      "file": "src-tauri/vendor/drag/src/platform_impl/windows/mod.rs",
+      "upstreamSha256": "ab3c7784daddacf50bc9fbc094afd47cc4b12c0f17aba5dbfeab47a4f88b8bfa",
+      "localSha256": "7f89d870e8d399fc7a214eda5d40ff8445e0cc9c9724e298f374e323e0c1ffd0",
+      "patched": true
+    }
+  ],
+  "rustPackages": [
+    {
+      "name": "drag",
+      "version": "2.1.1"
+    },
+    {
+      "name": "image",
+      "version": "0.25.10",
+      "source": "registry+https://github.com/rust-lang/crates.io-index",
+      "checksum": "85ab80394333c02fe689eaf900ab500fbd0c2213da414687ebf995a65d5a6104"
+    },
+    {
+      "name": "image-webp",
+      "version": "0.2.4",
+      "source": "registry+https://github.com/rust-lang/crates.io-index",
+      "checksum": "525e9ff3e1a4be2fbea1fdf0e98686a6d98b4d8f937e1bf7402245af1909e8c3"
+    },
+    {
+      "name": "tauri-plugin-drag",
+      "version": "2.1.1",
+      "source": "registry+https://github.com/rust-lang/crates.io-index",
+      "checksum": "729ca0ce4b1169869d3405216d3c09a524f41ea5e2eec89f917cd6623f8a70ca"
+    },
+    {
+      "name": "zune-jpeg",
+      "version": "0.5.15",
+      "source": "registry+https://github.com/rust-lang/crates.io-index",
+      "checksum": "27bc9d5b815bc103f142aa054f561d9187d191692ec7c2d1e2b4737f8dbd7296"
+    }
+  ],
+  "javascript": {
+    "version": "2.1.0",
+    "resolved": "https://registry.npmjs.org/@crabnebula/tauri-plugin-drag/-/tauri-plugin-drag-2.1.0.tgz",
+    "integrity": "sha512-LnUXAZwQt1cdMoGDLJ6ogW9wFCYServCZXlGadS7CA+CZ9eXS7L+Q7QyQW6g/zGw9YI2MwKFqf1aSNBGyWw+OA=="
+  },
+  "previewPolicy": "Only explicit stored file IDs; PNG/JPEG/WebP, source reads <=8MB, decoder allocation <=64MB, max16384px sides, output <=320x144 in memory; no preview file copies.",
+  "research": {
+    "requestedAlias": "claude/nabbit-native-tools-research.md",
+    "resolvedLocalFile": "Claude outputs/Nabbit native file tools.md",
+    "sha256": "8696596c083130d8d1ee0ed4463782c0743e58cd3c2b43be98cda1729edafa38",
+    "sectionsRead": [
+      "v2.0: ten native tools, zero new binaries",
+      "Four licence and platform traps to design around now"
+    ]
+  }
+}

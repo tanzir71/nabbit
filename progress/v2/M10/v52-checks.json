@@ -1,0 +1,147 @@
+{
+  "allRequiredChecksPassed": true,
+  "checks": [
+    {
+      "name": "npm-verify",
+      "command": "npm run verify",
+      "exitCode": 0,
+      "file": "v52-npm-verify.txt",
+      "canonicalSha256": "33560f061a6a30e3d12e6bf85dfc216c028e054a657ee54b5fe8ac39503a6e59",
+      "originalArchive": "v52-npm-verify.original.txt.gz",
+      "originalSha256": "3ff68451edc2fca4a475c75dfe9a643393b426f08bf17a2d42c2015883c6a340"
+    },
+    {
+      "name": "fmt",
+      "command": "cargo fmt --manifest-path src-tauri/Cargo.toml --check",
+      "exitCode": 0,
+      "file": "v52-fmt.txt",
+      "canonicalSha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "originalArchive": "v52-fmt.original.txt.gz",
+      "originalSha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "name": "clippy",
+      "command": "cargo clippy --manifest-path src-tauri/Cargo.toml --all-targets -- -D warnings",
+      "exitCode": 0,
+      "file": "v52-clippy.txt",
+      "canonicalSha256": "29c15cd979a380dc081f9b526f09ce5969219d65c5ff4e6eadb002ad3788f03b",
+      "originalArchive": "v52-clippy.original.txt.gz",
+      "originalSha256": "6a892643cd9f8ab6c61b2554c6bf2c2658cd30529f101aadfd61e90526b4d706"
+    },
+    {
+      "name": "spike-clippy",
+      "command": "cargo clippy --manifest-path src-tauri/Cargo.toml --all-targets --features island-spike -- -D warnings",
+      "exitCode": 0,
+      "file": "v52-spike-clippy.txt",
+      "canonicalSha256": "1586939e9ea2fd2597b72f1645eb346df87cfe79f0fac3db396bf9bcd8e0687a",
+      "originalArchive": "v52-spike-clippy.original.txt.gz",
+      "originalSha256": "537c5152e21c50f3fe0b8c2e3f438df8e18eb5de5a502f6a66f2be99e03eb11f"
+    },
+    {
+      "name": "rust-tests",
+      "command": "cargo test --manifest-path src-tauri/Cargo.toml -- --test-threads=1",
+      "exitCode": 0,
+      "file": "v52-rust-tests.txt",
+      "canonicalSha256": "f3b32fd8adfefe2b7756e123602d85c722c08a9439c9d656940c5f693cd084fd",
+      "originalArchive": "v52-rust-tests.original.txt.gz",
+      "originalSha256": "b3179bb85df5032242ea6bc336baeb5b4f5b9d5d97521901bab2e2ba534742ee"
+    },
+    {
+      "name": "release",
+      "command": "cargo build --manifest-path src-tauri/Cargo.toml --release --features custom-protocol",
+      "exitCode": 0,
+      "file": "v52-release.txt",
+      "canonicalSha256": "edfb77dd43d42026aed69ac424587ec93b4dd0af1927d00af078d2ff3df26586",
+      "originalArchive": "v52-release.original.txt.gz",
+      "originalSha256": "e6ef930e91eeeaa58d7e66809907368c9388c1d5919959be7f54b05dc18def02"
+    },
+    {
+      "name": "screenshots",
+      "command": "node scripts/verify-shelf-screenshots.mjs v52-shelf-e2",
+      "exitCode": 0,
+      "file": "v52-screenshots.txt",
+      "canonicalSha256": "29132ad9e152d20fe868945a1a39491283ddd00bc9589c66227061135c9f31a2",
+      "originalArchive": "v52-screenshots.original.txt.gz",
+      "originalSha256": "5042469954977aa18545e1510d465792835d4a32b3aefa212fb6417dd729bad8"
+    },
+    {
+      "name": "flow",
+      "command": "node scripts/verify-shelf-flow.mjs v52-delivery",
+      "exitCode": 0,
+      "file": "v52-flow.txt",
+      "canonicalSha256": "adfc799e2cde20c9f739e76cc5a245787a143c5614c51517e78544636791259c",
+      "originalArchive": "v52-flow.original.txt.gz",
+      "originalSha256": "0ce83dafdf9d447080bcdfae251c10d1a876341ea0d8d3c05e0d172f0f53737d"
+    },
+    {
+      "name": "native",
+      "command": "node scripts/capture-native-shelf.mjs v52-native-e1",
+      "exitCode": 0,
+      "file": "v52-native.txt",
+      "canonicalSha256": "0813fecbc61a39e16674e29d1d3ce63f6eb16f1afed744c598f1c69ca1db83ef",
+      "originalArchive": "v52-native.original.txt.gz",
+      "originalSha256": "677f950209232b1e5ff2ee5d082d992a35c84d487b19058c0e355f36ba599edf"
+    },
+    {
+      "name": "lint",
+      "command": "npx eslint .",
+      "exitCode": 0,
+      "file": "v52-lint.txt",
+      "canonicalSha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "originalArchive": "v52-lint.original.txt.gz",
+      "originalSha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "name": "negative-harness",
+      "command": "node scripts/screenshots/verify-failures.mjs --milestone M10 --prefix v52-delivery",
+      "exitCode": 0,
+      "file": "v52-negative-harness.txt",
+      "canonicalSha256": "d4c73b693e0c0792965ee71de68d23b0d06d5114b11e6178dbf4dd4d48a21c6b",
+      "originalArchive": "v52-negative-harness.original.txt.gz",
+      "originalSha256": "744efdb66da95ddf2dcdc44aab2c28696f3cb004c2926241bd7e588d960294e8"
+    },
+    {
+      "name": "bundles",
+      "command": "node scripts/verify-entry-bundles.mjs --report progress/v2/M10/v52-entry-bundles.json",
+      "exitCode": 0,
+      "file": "v52-bundles.txt",
+      "canonicalSha256": "86ce20e40505b2f57f46f7d1c6a5a2729f247f4b4b26f4c90363d92c65240e74",
+      "originalArchive": "v52-bundles.original.txt.gz",
+      "originalSha256": "5a8ef283ca5d9e34583737436d8f83ac1b9295e44f5b002b2e0c8e2f6d9a646e"
+    },
+    {
+      "name": "v52-delivery-rust-log",
+      "command": "Owned driver stdout/stderr; see corresponding report",
+      "file": "v52-delivery-rust-log.txt",
+      "canonicalSha256": "727a0dcefaaa2f9b2ac35aa048bab772479a93c917875ab0d7beacd2073a4d8f",
+      "originalArchive": "v52-delivery-rust-log.txt.original.gz",
+      "originalSha256": "da49e347aea54a1d01fdf85f1a217dee1505ec060c25c14bf9551e24030c5130"
+    },
+    {
+      "name": "v52-flow-e1-rust-log",
+      "command": "Owned driver stdout/stderr; see corresponding report",
+      "file": "v52-flow-e1-rust-log.txt",
+      "canonicalSha256": "6f6cd0eb8ec2e5772dc657682f5d7e22a78e70ffa7a8cdac89d724e7e31d4847",
+      "originalArchive": "v52-flow-e1-rust-log.txt.original.gz",
+      "originalSha256": "3ef6058a17ccf80d7359f4535d5bbcd2519aa665047b0bbc23e03072505ec347"
+    },
+    {
+      "name": "v52-native-e1-scene-log",
+      "command": "Owned driver stdout/stderr; see corresponding report",
+      "file": "v52-native-e1-scene-log.txt",
+      "canonicalSha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "originalArchive": "v52-native-e1-scene-log.txt.original.gz",
+      "originalSha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    }
+  ],
+  "frontendTests": 446,
+  "frontendFiles": 40,
+  "rustPassed": 264,
+  "rustIgnored": 3,
+  "browserToRustCases": 8,
+  "nativeCases": 4,
+  "captures": 28,
+  "nativeCaptures": 2,
+  "buildManifestSha256": "1343ea9be4ac629cfcce584d7c232b0eb6cad38c341d4248500cb9067602fe71",
+  "nativeExecutableSha256": "026bd5039f715e0b020f37b9390a5cdc82c2a11d6980d788f9c937fec1100af5"
+}

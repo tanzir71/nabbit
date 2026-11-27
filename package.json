@@ -30,6 +30,7 @@
     "screenshots:install": "playwright install chromium"
   },
   "dependencies": {
+    "@crabnebula/tauri-plugin-drag": "2.1.0",
     "@tauri-apps/api": "^2.12.5",
     "@tauri-apps/plugin-autostart": "^2.3.0",
     "@tauri-apps/plugin-clipboard-manager": "^2.3.0",

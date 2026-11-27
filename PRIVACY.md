@@ -2,6 +2,8 @@
 
 Nabbit is local-first.
 
+The Shelf stores local file paths and order in SQLite. Adding a file permits presence/size checks and a bounded in-memory preview for supported images; previews are not stored as file copies. Copy paths writes path text only after an explicit action. Dragging out hands the selected original paths to the operating system in copy mode. Remove and Clear delete Shelf references, never the original files. Shelf data is not synced or used for telemetry.
+
 - Clipboard history is stored in a SQLite database in the operating system app-data directory.
 - Clipboard history stays on this device and is not synced or used for telemetry. With link auto-detection enabled, a web URL found in accepted clipboard text is staged and sent to yt-dlp to fetch metadata from the site. Excluded apps, protected clipboard formats and enabled sensitive-text filters are checked first. Pause or disable link detection to stop these automatic metadata requests.
 - Nabbit does not include analytics in v1.

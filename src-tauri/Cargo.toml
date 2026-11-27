@@ -21,6 +21,7 @@ chrono = { version = "0.4", features = ["serde", "clock"] }
 clipboard-win = { version = "5.4", features = ["monitor"] }
 directories = "5"
 dom_query = "=0.30.0"
+image = { version = "0.25", default-features = false, features = ["png", "jpeg", "webp"] }
 open = "5"
 regex = "1"
 reqwest = { version = "0.12", default-features = false, features = ["blocking", "json", "rustls-tls", "cookies"] }
@@ -38,6 +39,7 @@ tauri-plugin-global-shortcut = "2"
 tauri-plugin-shell = "2"
 tauri-plugin-single-instance = { version = "2", features = ["deep-link"] }
 tauri-plugin-updater = "2"
+tauri-plugin-drag = "=2.1.1"
 thiserror = "2"
 tokio = { version = "1", features = ["rt-multi-thread", "macros", "process", "sync", "time"] }
 url = "2"
@@ -62,3 +64,7 @@ windows = { version = "0.62.2", features = ["Win32_Graphics_DirectComposition", 
 
 [dev-dependencies]
 tiny_http = "0.12"
+
+[patch.crates-io]
+# Preserve upstream errors instead of panicking on unavailable Shell data objects.
+drag = { path = "vendor/drag" }

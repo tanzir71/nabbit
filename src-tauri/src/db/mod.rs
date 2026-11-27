@@ -132,6 +132,7 @@ impl Database {
             .prepare("PRAGMA table_info(downloads)")?
             .query_map([], |row| row.get::<_, String>(1))?
             .collect::<std::result::Result<Vec<_>, _>>()?;
+        crate::shelf::migrate(&conn)?;
         if !columns.iter().any(|c| c == "options_json") {
             conn.execute("ALTER TABLE downloads ADD COLUMN options_json TEXT", [])?;
         }

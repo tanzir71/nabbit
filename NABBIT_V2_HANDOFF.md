@@ -795,7 +795,7 @@ Commit after every task (§0.1). Lines marked **MILESTONE** are tasks of their o
 
 ### Phase V5 — Modules, file tools and pins
 - [x] V5.1 Clipboard island tab.
-- [ ] V5.2 Shelf (+ drag out).
+- [x] V5.2 Shelf (+ drag out).
 - [ ] V5.3 Now playing (GSMTC) + scroll-volume + middle-click.
 - [ ] V5.4 Focus timer (+ Tack card link).
 - [ ] V5.5 Mic/camera dot.

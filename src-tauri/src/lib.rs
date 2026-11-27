@@ -8,6 +8,7 @@ mod island;
 mod notes;
 mod pins;
 mod retention;
+pub mod shelf;
 mod sticky;
 pub mod tack;
 #[cfg(windows)]
@@ -99,6 +100,7 @@ pub fn run() {
         .plugin(tauri_plugin_deep_link::init())
         .plugin(tauri_plugin_shell::init())
         .plugin(tauri_plugin_clipboard_manager::init())
+        .plugin(tauri_plugin_drag::init())
         .plugin(tauri_plugin_global_shortcut::Builder::new().build())
         .plugin(tauri_plugin_autostart::init(
             tauri_plugin_autostart::MacosLauncher::LaunchAgent,
@@ -106,6 +108,14 @@ pub fn run() {
         ))
         .plugin(tauri_plugin_updater::Builder::new().build())
         .invoke_handler(tauri::generate_handler![
+            shelf::commands::shelf_list,
+            shelf::commands::shelf_add,
+            shelf::commands::shelf_remove,
+            shelf::commands::shelf_paths,
+            shelf::commands::shelf_copy_paths,
+            shelf::commands::shelf_drag_plan,
+            shelf::commands::shelf_preview,
+            island::shelf_drag_active,
             commands::links::save_link,
             commands::links::link_clean,
             commands::links::link_open_url,

@@ -1,0 +1,40 @@
+{
+  "file": "tBm7NNhh1Y9aTQPJ3WxY5v",
+  "nodes": [
+    "10:249",
+    "34:897"
+  ],
+  "freshHighFidelityContext": true,
+  "referenceOnly": true,
+  "originalSvgAssets": "v52-assets.json",
+  "referenceInputs": [
+    {
+      "file": "v52-figma-0.txt",
+      "bytes": 28650,
+      "sha256": "f8ca5da6bffafc0cfe0f5c738a0b71ba029389018342c1cec05f891570dfd9e5",
+      "retention": "ignored high-fidelity Figma context; never runtime imagery"
+    },
+    {
+      "file": "v52-figma-1.txt",
+      "bytes": 18609,
+      "sha256": "5cd14b68188d0e667a5813c6c36c7f5e19df13bdc9ecff2940aef7982fcd07de",
+      "retention": "ignored high-fidelity Figma context; never runtime imagery"
+    }
+  ],
+  "layout": {
+    "width": 680,
+    "maximumPanelHeight": 420,
+    "panelRadius": 28,
+    "outerPadding": "12px 16px 16px",
+    "sectionGap": 14,
+    "shelfHeading": "11/14 Geist500; .2px tracking; right caption12/16",
+    "cards": "four equal columns with10px gap; radius16/padding10/gap8",
+    "preview": "72px normal,56px selected; radius10; bounded dynamic thumbnail or original22px/20px type SVG",
+    "selection": "original12px check;1.5px signal outline; item order remains unchanged",
+    "labels": "Geist40012/16; size Geist Mono50012/16",
+    "footer": "original14px copy/trash;28px high controls, radius14,padding10/12; Geist40012/16"
+  },
+  "scope": "This pass implements the Shelf section of Files and its selection/action bar. Permanent Pins and their full Files layout are V5.8; registry-generated conversion/Move-to actions are V5.7-V5.10. Current selection controls Copy paths/Remove/Deselect work now. No fake pins or inactive conversion buttons are shown. The existing shared header preserves the exact normal and selected source SVG groups.",
+  "comparison": "Inspected normal Shelf and selected HEIC/PNG/video captures against both initial Figma screenshots. Preview rectangles, four-column grid, gutters, rounded corners, caption/body/mono fonts and check outlines match their source regions. File names/counts/sizes/presence are dynamic. Full panel is shorter until the later Pins section exists; the Shelf footer remains functional. Thumbnails are real bounded data from the provider, not Figma screenshot assets.",
+  "inspection": "28 final repeat-exact captures cover files/selection/missing/empty/load error/scrolling/no preview across light/dark at1x/1.5x; island stays dark. Default axe zero violations/incompletes. Every visible source SVG has its original hash, slot, callsite and intrinsic geometry verified; title/action font values are asserted."
+}

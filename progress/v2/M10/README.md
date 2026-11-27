@@ -18,3 +18,26 @@ Authoritative evidence:
 `npm run verify` passes **436 tests/38 files**; fmt/default+spike all-target Clippy and **257 serial Rust tests** pass, with three documented opt-in ignores. No real clipboard/selection/global keys, user browser profile, hosted Tack/account, OS display/theme setting, installer or signing is used. Prior platform/focus/performance limits remain. See [privacy](../../../PRIVACY.md).
 
 V5.1 is a local task commit on main with skip-ci. No PR or task push; publication waits for M10. V5.2 Shelf is next.
+
+
+## V5.2 — Shelf and drag out
+
+The Files island now has a persistent, path-only Shelf with canonical dedupe and input order. Drop files to add them; select cards for Copy paths/Remove or drag a selected group into another app. Clear removes Shelf references. Missing files stay grey and removable. Originals are never rewritten, moved or deleted by Shelf operations. Supported image previews are bounded and live only in memory.
+
+Ctrl+A selects all; Ctrl+C copies selected/all path text; Delete removes selected references. State is remembered, and pushed changes/focus refresh replace polling. Native drag uses the validated current path list in copy mode. The source view stays alive through held input and releases after cancel/drop; hidden/fullscreen policy still wins.
+
+Authoritative evidence:
+
+- [Receipt and exact Git source/artifact pins](v52-acceptance.json), [requirements](v52-requirements.json), [checks and original log archives](v52-checks.json).
+- [Eight browser-to-Rust checks](v52-delivery-flow.json): the actual file-drop router, production Shelf SQLite, canonical dedupe, bounded preview, path copying, selected drag plan, missing-file recovery, keyboard flow and Clear. Clipboard/drag providers record intent; no interactive drag or OS clipboard write.
+- [Four native checks/two captures](v52-native-e1-scene.json): current custom-protocol release, real Tauri drop/add/remove/clear, consumed staging draft, local metadata/preview and exact path/drag-plan IPC. All three available originals remain byte-identical. [Native Shelf](v52-native-e1-shelf@2x.png) and [missing-file state](v52-native-e1-missing@2x.png).
+- [28 final visual captures](v52-shelf-e2-screenshots.json): seven states in light/dark at1x/1.5x, always-dark island, exact repeats, bundled Geist, default axe zero violations/incompletes and27 visible original SVG slots measured. [Figma comparison](v52-figma-reference.json), [fresh exports](v52-assets.json), [normal](v52-shelf-e2-shelf-files-light@1x.png), [selection](v52-shelf-e2-shelf-selected-dark@1.5x.png).
+- [Dependency/source audit](v52-dependencies.json): drag Rust2.1.1/JS2.1.0, the published archive checksum and every vendor file hash. The two Windows Shell data-object unwraps now return the existing failed-drag error; original MIT/Apache licences remain. No new sidecar. [Patch](../../../src-tauri/vendor/drag/NABBIT_PATCH.md).
+- [Independent PNG audit](v52-png-audit.json): all **99 retained M10 PNGs** decode and stay ≤300,000 bytes (largest **100,111**). [Entry graph](v52-entry-bundles.json): initial island JS **93,039/120,000 gzip bytes**.
+- [Failure-harness proof](v52-delivery-failure-check.json) and [failed/superseded attempts](v52-earlier-attempts.json). Original V5.1 evidence is unchanged; only the named V5.2 reports establish current acceptance.
+
+`npm run verify` passes **446 tests/40 files**; fmt/default+spike all-target Clippy and **264 serial Rust tests** pass, with three documented opt-in ignores. No user file/profile/account, hosted Tack, real clipboard/selection/global keys, interactive OS drag, external receiving app, OS setting, installer or signing is used. Prior platform/focus/performance limits remain. The drag plugin compiles; recording providers establish intended payloads, not an observed interactive Windows drop.
+
+This pass matches the Shelf/selection regions. Permanent Pins and the complete Files layout are V5.8; registry-driven conversion and Move-to actions are V5.7–V5.10. Supported Copy/Remove/Deselect controls work now; no fake pins or inactive conversion controls are presented. See [privacy](../../../PRIVACY.md).
+
+V5.2 is a local skip-ci task commit directly on main. No PR or push; publication waits for M10. V5.3 Now playing is next.

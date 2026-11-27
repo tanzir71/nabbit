@@ -38,6 +38,34 @@ export function installMockIpc(seed) {
       throw typeof failure === "string" ? new Error(failure) : clone(failure);
     }
     switch (command) {
+      case "shelf_list":
+        return clone(state.shelf ?? []);
+      case "shelf_preview":
+        return clone(seed.shelfPreview ?? null);
+      case "shelf_drag_active":
+        return null;
+      case "shelf_copy_paths":
+        return null; // Intent only, never OS clipboard.
+      case "shelf_remove":
+        state.shelf =
+          args.ids === null
+            ? []
+            : (state.shelf ?? []).filter((item) => !args.ids.includes(item.id));
+        dispatch("shelf:changed", null);
+        return null;
+      case "shelf_drag_plan": {
+        const rows = (state.shelf ?? []).filter((item) => args.ids.includes(item.id));
+        if (rows.length !== new Set(args.ids).size || rows.some((item) => !item.available))
+          throw Error("Fixture missing file");
+        return {
+          item: rows.map((item) => item.path),
+          icon: seed.shelfPreview ?? "data:image/png;base64,",
+          mode: "copy",
+        };
+      }
+      case "plugin:drag|start_drag":
+        args.onEvent.onmessage({ result: "Cancelled", cursorPos: { x: 0, y: 0 } });
+        return null; // Recording provider only, no interactive drag.
       case "save_link":
       case "capture_note": {
         const request = clone(args.request);

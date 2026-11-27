@@ -294,18 +294,49 @@ pub fn island_surface_ack(
     }
 }
 #[tauri::command]
-pub fn island_stage_drop(
+pub async fn island_stage_drop(
     app: tauri::AppHandle,
     window: tauri::WebviewWindow,
     payload: serde_json::Value,
     zone: String,
 ) -> Result<(), String> {
     #[cfg(windows)]
-    return input_manager(&app)?.stage_drop(window.label(), payload, &zone);
+    {
+        let manager = input_manager(&app)?;
+        let _ = manager.surface_instruction(window.label())?;
+        if zone == "shelf" {
+            use tauri::{Emitter, Manager};
+            let drop: surface::DropPayload =
+                serde_json::from_value(payload).map_err(|_| "Invalid drop payload")?;
+            let db = app.state::<crate::AppState>().db.clone();
+            tauri::async_runtime::spawn_blocking(move || crate::shelf::add(&db, drop.files))
+                .await
+                .map_err(|_| "Shelf task stopped")?
+                .map_err(|e| e.to_string())?;
+            let _ = app.emit("shelf:changed", ());
+        } else {
+            manager.stage_drop(window.label(), payload, &zone)?;
+        }
+        Ok(())
+    }
     #[cfg(not(windows))]
     {
         let _ = (app, window, payload, zone);
         Err("Island surfaces are available on Windows".into())
+    }
+}
+#[tauri::command]
+pub fn shelf_drag_active(
+    app: tauri::AppHandle,
+    window: tauri::WebviewWindow,
+    active: bool,
+) -> Result<(), String> {
+    #[cfg(windows)]
+    return input_manager(&app)?.outgoing_drag(window.label(), active);
+    #[cfg(not(windows))]
+    {
+        let _ = (app, window, active);
+        Ok(())
     }
 }
 #[tauri::command]

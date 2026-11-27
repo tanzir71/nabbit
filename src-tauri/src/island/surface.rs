@@ -75,6 +75,7 @@ impl Mode {
 #[derive(Clone, Debug, Serialize)]
 #[serde(rename_all = "camelCase")]
 pub struct Session {
+    pub outgoing_drag: bool,
     pub state: Mode,
     pub generation: u64,
     pub web_allocated: bool,
@@ -94,6 +95,7 @@ pub struct Session {
 impl Default for Session {
     fn default() -> Self {
         Self {
+            outgoing_drag: false,
             state: Mode::Idle,
             generation: 0,
             web_allocated: false,
@@ -142,6 +144,12 @@ impl Session {
         true
     }
     pub fn sample(&mut self, inside: bool, dragging: bool, left: bool, now: u64, base: Mode) {
+        if self.outgoing_drag {
+            if left && base != Mode::Hidden {
+                return;
+            }
+            self.outgoing_drag = false;
+        }
         if !inside {
             self.hover_armed = true;
         }
@@ -185,6 +193,21 @@ impl Session {
 #[cfg(test)]
 mod tests {
     use super::*;
+    #[test]
+    fn outgoing_drag_keeps_the_source_surface_until_release_but_never_bypasses_hidden_policy() {
+        let mut s = Session::default();
+        s.request(Mode::Expanded);
+        s.outgoing_drag = true;
+        s.sample(false, true, true, 1, Mode::Idle);
+        assert_eq!(s.pending, None);
+        assert!(s.outgoing_drag);
+        s.sample(false, false, false, 2, Mode::Idle);
+        assert!(!s.outgoing_drag);
+        s.outgoing_drag = true;
+        s.sample(true, true, true, 3, Mode::Hidden);
+        assert!(!s.outgoing_drag);
+        assert_eq!(s.pending, Some(Mode::Hidden));
+    }
     #[test]
     fn hover_intent_and_leave_are_finite_and_cancelable() {
         let mut s = Session::default();

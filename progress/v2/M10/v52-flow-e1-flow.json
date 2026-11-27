@@ -1,0 +1,21 @@
+{
+  "passed": true,
+  "checks": [
+    "A native file-drop event passes through the actual IslandApp router and stage command into production Shelf SQLite; only original paths are stored in input order",
+    "Duplicate drops preserve one row per canonical file; pushed events refresh the view and bounded on-demand thumbnail decoding runs on an owned PNG",
+    "Copy paths selects the intended IDs, builds exact ordered Windows path text in production Rust and writes only to a recording clipboard provider",
+    "Dragging a selected card uses the production ordered drag plan and real JS plugin binding with copy mode; the fixture records plugin intent and cancellation, releases the source lease, and keeps all Shelf rows",
+    "Focus refresh probes existing references; a missing file becomes grey/un-draggable and Remove deletes only its database reference",
+    "Ctrl+A/C/Delete route before global search, operate on actual Shelf rows and retain every available original file",
+    "Clear empties production SQLite while all owned originals remain available; no interactive drag, OS clipboard or external application is used",
+    "Verified 6 pushed events with zero unknown IPC, runtime errors or external network"
+  ],
+  "problems": [],
+  "buildManifestSha256": "3b02ff39d0a31cd98d374add284eda8b5ecb761c390e2d297153c276c4237a56",
+  "rustBridgeExitCode": 0,
+  "scope": "Actual Shelf UI/native-drop router and typed API through a test-only bridge to production Shelf SQLite/path/thumbnail/copy/drag-plan functions. Clipboard and drag providers record intent, never OS input or an interactive drag. Native IPC/rendering has a separate owned release smoke.",
+  "noHostedTack": true,
+  "noUserAccount": true,
+  "noRealClipboard": true,
+  "noExternalNetwork": true
+}

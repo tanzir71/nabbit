@@ -8,6 +8,7 @@ import type { IslandAction, IslandModel } from "../../store/islandStore";
 import { MiniButton, type IslandIntent } from "./CompactContent";
 import { IslandNotes } from "../../features/notes/IslandNotes";
 import { IslandClipboard } from "../../features/clipboard/IslandClipboard";
+import { IslandShelf } from "../../features/shelf/IslandShelf";
 interface Props {
   model: IslandModel;
   dispatch: (action: IslandAction) => void;
@@ -22,6 +23,7 @@ export default function ModuleBody(props: Props) {
   const { model, act } = props;
   if (model.tab === "nab") return <IslandNab model={model} dispatch={props.dispatch} />;
   if (model.tab === "clipboard") return <IslandClipboard model={model} dispatch={props.dispatch} />;
+  if (model.tab === "files") return <IslandShelf model={model} dispatch={props.dispatch} />;
   if (model.tab === "notes")
     return (
       <>

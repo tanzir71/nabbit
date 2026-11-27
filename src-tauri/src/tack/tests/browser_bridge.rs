@@ -142,12 +142,26 @@ fn browser_connection_bridge() {
     let sticky = Arc::new(super::sticky_bridge::Windows::default());
     let links = Arc::new(super::links_bridge::Fixture::new(&directory));
     let clipboard = Arc::new(Mutex::new(super::clipboard_bridge::Fixture::default()));
+    let shelf = Arc::new(super::shelf_bridge::Fixture::new(&directory));
     let mut workers = vec![];
     while !stop.load(Ordering::Acquire) {
         let Some(mut request) = server.recv_timeout(Duration::from_millis(100)).unwrap() else {
             continue;
         };
-        let (service, db, fake, stop, events, copied, token, origin, sticky, links, clipboard) = (
+        let (
+            service,
+            db,
+            fake,
+            stop,
+            events,
+            copied,
+            token,
+            origin,
+            sticky,
+            links,
+            clipboard,
+            shelf,
+        ) = (
             service.clone(),
             db.clone(),
             fake.clone(),
@@ -159,6 +173,7 @@ fn browser_connection_bridge() {
             sticky.clone(),
             links.clone(),
             clipboard.clone(),
+            shelf.clone(),
         );
         workers.push(std::thread::spawn(move||{
             let cors=vec![header("Access-Control-Allow-Origin",&origin),header("Vary","Origin"),header("Access-Control-Allow-Headers","Content-Type, X-Nabbit-Test"),header("Access-Control-Allow-Methods","POST, GET, OPTIONS")];
@@ -206,6 +221,7 @@ if !page.more{return Err(Error::new(ErrorCode::InvalidInput));}cursor=page.curso
                     "test.fault"=>{let status=args.get("status").and_then(Value::as_u64).unwrap_or(503)as u16;let headers=if status==429 {vec![("Retry-After".into(),"1".into())]}else{vec![]};let body=if args.get("accessChanged").and_then(Value::as_bool)==Some(true){json!({"workspaceAccessChanged":true,"workspaceId":"elsewhere"})}else{json!({"error":"untrusted fixture response detail"})};fake.fault(status,body,headers);Ok(Value::Null)},
                     "test.stop"=>{stop.store(true,Ordering::Release);Ok(Value::Null)},
                     _ if super::clipboard_bridge::handles(&command) => super::clipboard_bridge::route(&db,&clipboard,&command,args,&events),
+                    _ if super::shelf_bridge::handles(&command) => super::shelf_bridge::route(&db,&shelf,&command,args,&events),
                     _ if super::links_bridge::handles(&command) => super::links_bridge::route(&db,&service,&links,&window_label,&command,args,&events),
                     _=>super::sticky_bridge::route(&db,&service,&sticky,&window_label,&command,args),
                 }

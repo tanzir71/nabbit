@@ -5,6 +5,7 @@ mod clipboard_bridge;
 mod connection_tests;
 mod fake;
 mod merge;
+mod shelf_bridge;
 mod sticky_bridge;
 mod sync_tests;
 

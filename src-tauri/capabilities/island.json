@@ -4,6 +4,7 @@
   "description": "Interaction event subscriptions for local island surfaces.",
   "windows": ["island", "island-*"],
   "permissions": [
+    "drag:allow-start-drag",
     "core:event:allow-listen",
     "core:event:allow-unlisten",
     "clipboard-manager:allow-read-text"

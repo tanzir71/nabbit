@@ -46,6 +46,8 @@ export default function ExpandedShell({
     memory = useRef(model.scroll),
     restoring = useRef(false);
   const searchOpen = model.filters.searchOpen === "true";
+  const group =
+    model.tab === "files" && model.filters.shelfSelection ? "34:897" : groups[model.tab];
   memory.current = model.scroll;
   useLayoutEffect(() => {
     if (searchOpen && scroll.current)
@@ -101,7 +103,7 @@ export default function ExpandedShell({
             }}
             style={{ "--tab-index": index } as React.CSSProperties}
           >
-            <IslandAsset group={searchOpen ? "search" : groups[model.tab]} name={icons[index]} />
+            <IslandAsset group={searchOpen ? "search" : group} name={icons[index]} />
             {!searchOpen && model.tab === tab && labels[tab]}
           </Tab>
         ))}
@@ -117,21 +119,21 @@ export default function ExpandedShell({
             });
           }}
         >
-          <IslandAsset group={groups[model.tab]} name="iconSearch" />
+          <IslandAsset group={group} name="iconSearch" />
         </IconButton>
         <IconButton
           label="Open full app"
           className="island-toolbar-button"
           onClick={() => act({ action: "tray" })}
         >
-          <IslandAsset group={groups[model.tab]} name="iconPanelTop" />
+          <IslandAsset group={group} name="iconPanelTop" />
         </IconButton>
         <IconButton
           label="Settings"
           className="island-toolbar-button"
           onClick={() => act({ action: "settings" })}
         >
-          <IslandAsset group={groups[model.tab]} name="iconSettings" />
+          <IslandAsset group={group} name="iconSettings" />
         </IconButton>
       </nav>
       <div
