@@ -1,4 +1,4 @@
-# M9 — Notes complete (in progress)
+# M9 — Notes complete (publication pending)
 
 ## V4.5 — Notes editor, conflicts and sync states
 
@@ -106,7 +106,7 @@ The full Rust suite passes **231 tests** with three opt-in ignores. Existing syn
 
 Fresh Figma contexts `27:605`, `31:1064`, `13:242` and reference PNGs were reviewed. `v48-assets.json` pins the 30 original landing SVG exports; existing production assets and copy icons retain original bytes/slots. Superseded prototype SVG/composite pins are retired, not deleted. Figma images remain reference-only. `v48-final-site-landing.json` asserts desktop/mobile geometry in light/dark at1x/1.5x and repeats all **12 PNGs** exactly across eight contexts. Desktop copy/visual are separate captures to meet the byte budget; mobile captures the entire section because the copy uses display:contents. Final visual inspection includes the corrected live shadow, truthful local-only footers and no overflow.
 
-`v48-checks.json` records **414 frontend tests/34 files**, fmt/default+spike all-target Clippy, **231 serial Rust tests**, 12 fake browser cases, six native cases, **56 sticky captures** with exact repeats, eight landing contexts, eight accessibility/keyboard contexts/**24 default axe scans**, asset/site/metadata/OG and strict negative-harness checks. The accessibility suite retains conservative explicit proofs for indeterminate contrast; no rules or assertions were disabled. Initial island JavaScript remains **90,892/120,000 gzip bytes**. `v48-png-audit.json` independently decodes **776 retained M9 PNGs**, all ≤300000 bytes (largest258225). `v48-tack-source.json` rechecks five exact upstream Git blobs at ad06dc0fb279357d6e3d82b758ad233239752cce. Staged and archive gitleaks scans and the receipt pin exact staged Git blobs, not Windows working-copy line endings.
+`v48-checks.json` records **414 frontend tests/34 files**, fmt/default+spike all-target Clippy, **231 serial Rust tests**, 12 fake browser cases, six native cases, **56 sticky captures** with exact repeats, eight landing contexts, eight accessibility/keyboard contexts/**24 default axe scans**, asset/site/metadata/OG and strict negative-harness checks. The accessibility suite retains conservative explicit proofs for indeterminate contrast; no rules or assertions were disabled. Initial island JavaScript remains **90,892/120,000 gzip bytes**. `v48-png-audit.json` independently decodes **776 retained M9 PNGs**, all ≤300000 bytes (largest 258,225). `v48-tack-source.json` rechecks five exact upstream Git blobs at ad06dc0fb279357d6e3d82b758ad233239752cce. Staged and archive gitleaks scans and the receipt pin exact staged Git blobs, not Windows working-copy line endings.
 
 **Optional PHP suite: skipped.** `v48-php.json` records installed PHP8.2.30 without pdo_sqlite. No portable runtime was installed; no hosted Tack, user account, real clipboard, global keyboard input or OS display/theme setting was used. This suite never gates acceptance. Existing platform/performance limits remain.
 
@@ -127,3 +127,16 @@ Authoritative evidence:
 - [All 857 retained M9 PNGs](v49-png-audit.json) decode and stay <=300,000 bytes. [Current entry graph](v49-delivery-entry-bundles.json): initial island JS 91,336/120,000 gzip bytes.
 
 Native picker/UIA adapters compile on Windows and use injected sources/policy in acceptance. No real bookmark profile, clipboard, selection, global shortcut, hosted Tack, user account, OS setting or installer is touched. [Privacy](../../../PRIVACY.md) describes the explicit reads/network requests. [Failed and superseded attempts](v49-earlier-attempts.json) remain; only delivery reports share the final manifest/executable. M9 is pending, with no push or PR in this task.
+
+
+## M9 — Notes milestone readiness
+
+This milestone collects V4.5–V4.9. [The independent task audit](m9-task-audit.json) verifies **8,282 original Git source/artifact pins** at each immutable task commit and **302 authoritative PNGs**. All **558 current runtime inputs** match V4.9. Earlier captures prove their recorded original behavior; V4.9's 19 browser cases, eight native cases and 40 complete asset/font/axe captures retain their unchanged build/executable.
+
+Fresh milestone checks cover **427 frontend tests/36 files**, Rust fmt/default+spike Clippy, **251 serial Rust tests** and three documented opt-in ignores, the four-entry graph and **91,336/120,000 initial island gzip bytes**. No app runtime or repository workflow changes. The lossless encoder accepts an explicit receipt; its default is the new [native scene](m9-native-scene.json), with three exact repeated DPR2 captures from the owned production WebView2, real native IPC/SQLite and local-only data. Blue/green pixels remain identical; the island includes All/Links. [The shipped manifest](../../../docs/assets/notes-capture.json) proves decoded RGBA equality.
+
+HTML changes only metadata and M9 Done/M10 In progress, retaining pre-release CTAs, existing Figma layout and original 16px icons. [Eight status contexts](m9-status-checks.json), [eight accessibility/keyboard contexts and 24 axe scans](m9-final-accessibility.json), [eight Notes contexts/12 exact-repeat PNGs](m9-notes-landing.json), source/HTTP/metadata and social checks pass. Indeterminate contrast has explicit conservative proofs; no axe exclusions. Transfer is **419,368/500,000 bytes excluding fonts**. [All 888 retained PNGs](m9-png-audit.json) decode below 300,000 bytes (largest 258,225).
+
+[Prepublication](m9-prepublication.json) confirms public main/docs legacy Pages, five unpushed skip-ci task commits, no releases and unchanged repository workflow IDs. The five-commit secret scan has zero findings. [Checks](m9-checks.json), exact staged source/PNG pins in m9-readiness.json and [earlier schema attempts](m9-earlier-attempts.json) make the boundary reviewable. The earlier audit failures assumed viewport/shared-stage report fields described every landing crop; accepted audit validates original Git PNG bytes/hash and independent decode/dimensions. No original evidence is removed.
+
+M9 remains unchecked until live publication proof. Native picker/clipboard/selection/shell fixture seams, optional PHP skip and existing platform/performance/focus limits remain. No user account, hosted Tack, real clipboard/selection/global keys, installer/signing or OS setting is used.

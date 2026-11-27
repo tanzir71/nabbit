@@ -1,0 +1,220 @@
+{
+  "allRequiredChecksPassed": true,
+  "checks": [
+    {
+      "name": "npm",
+      "command": [
+        "npm.cmd",
+        "run",
+        "verify"
+      ],
+      "exitCode": 0,
+      "seconds": 53.116,
+      "file": "m9-npm.txt",
+      "savedSha256": "93e483e22c14c1f892941099e9aa8b7d49a38f48cc5e02732d4a9efbcc7295f7",
+      "rawSha256": "8db457aabf167105d487e3674f561ef1644860755014685d947239f005c01bb5",
+      "originalArchive": "m9-npm.original.txt.gz"
+    },
+    {
+      "name": "fmt",
+      "command": [
+        "cargo",
+        "fmt",
+        "--manifest-path",
+        "src-tauri/Cargo.toml",
+        "--check"
+      ],
+      "exitCode": 0,
+      "seconds": 1.357,
+      "file": "m9-fmt.txt",
+      "savedSha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "rawSha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "originalArchive": "m9-fmt.original.txt.gz"
+    },
+    {
+      "name": "clippy",
+      "command": [
+        "cargo",
+        "clippy",
+        "--manifest-path",
+        "src-tauri/Cargo.toml",
+        "--all-targets",
+        "--",
+        "-D",
+        "warnings"
+      ],
+      "exitCode": 0,
+      "seconds": 1.514,
+      "file": "m9-clippy.txt",
+      "savedSha256": "3e86d089abdd0cb16a6fdbccf5d761663ddef4797f31e8c59bf172924c46f31c",
+      "rawSha256": "8a6117d39a2f29766f49dcdc102d10b6f10f15c320078ad8de38a01cb33b29fe",
+      "originalArchive": "m9-clippy.original.txt.gz"
+    },
+    {
+      "name": "spike-clippy",
+      "command": [
+        "cargo",
+        "clippy",
+        "--manifest-path",
+        "src-tauri/Cargo.toml",
+        "--all-targets",
+        "--features",
+        "island-spike",
+        "--",
+        "-D",
+        "warnings"
+      ],
+      "exitCode": 0,
+      "seconds": 1.432,
+      "file": "m9-spike-clippy.txt",
+      "savedSha256": "8acba993a279124e37e8e8814dac14fbb7bccb2f4d5df8f8fcb3dc6c32de90ec",
+      "rawSha256": "370f5d3a2d51f092496ed9c4a879fce55c5df2a9ad93e789757bd4887e907aff",
+      "originalArchive": "m9-spike-clippy.original.txt.gz"
+    },
+    {
+      "name": "rust-tests",
+      "command": [
+        "cargo",
+        "test",
+        "--manifest-path",
+        "src-tauri/Cargo.toml",
+        "--",
+        "--test-threads=1"
+      ],
+      "exitCode": 0,
+      "seconds": 36.117,
+      "file": "m9-rust-tests.txt",
+      "savedSha256": "fd5377ab2d93d27ee45eb5f1cd722e4e867aef60538314aa0edb0cb5df231328",
+      "rawSha256": "50fbdded2d9728f2e3cbfe60b7721fc7d161482f50e7300ae54a800d69d830dc",
+      "originalArchive": "m9-rust-tests.original.txt.gz"
+    },
+    {
+      "name": "site",
+      "command": [
+        "npm.cmd",
+        "run",
+        "verify:site"
+      ],
+      "exitCode": 0,
+      "seconds": 6.517,
+      "file": "m9-site.txt",
+      "savedSha256": "64ea549d356d04b0e8354c196a60e893c95d6855fe0131ffd5134ba310cf399d",
+      "rawSha256": "b77dba7dddcba246c90ecd07a836bf3b13728a975a51a5197ad534d692c6230a",
+      "originalArchive": "m9-site.original.txt.gz"
+    },
+    {
+      "name": "site-assets",
+      "command": [
+        "node",
+        "scripts/verify-site.mjs",
+        "--report",
+        "progress/v2/M9/m9-site-assets.json"
+      ],
+      "exitCode": 0,
+      "seconds": 0.983,
+      "file": "m9-site-assets.txt",
+      "savedSha256": "850412512faa963170149a16ffb4eb497d5fb969a778b48fbf67a58b87f77b08",
+      "rawSha256": "850412512faa963170149a16ffb4eb497d5fb969a778b48fbf67a58b87f77b08",
+      "originalArchive": "m9-site-assets.original.txt.gz"
+    },
+    {
+      "name": "site-http",
+      "command": [
+        "node",
+        "scripts/verify-site-http.mjs",
+        "--assets",
+        "progress/v2/M9/m9-site-assets.json",
+        "--report",
+        "progress/v2/M9/m9-http-assets.json"
+      ],
+      "exitCode": 0,
+      "seconds": 1.345,
+      "file": "m9-site-http.txt",
+      "savedSha256": "f1077bd965f24c407e260d9fe5e2dab5252fb2cc268bea748f3929726552bef8",
+      "rawSha256": "f1077bd965f24c407e260d9fe5e2dab5252fb2cc268bea748f3929726552bef8",
+      "originalArchive": "m9-site-http.original.txt.gz"
+    },
+    {
+      "name": "status",
+      "command": [
+        "node",
+        "scripts/verify-milestone-status.mjs",
+        "--milestone",
+        "M9",
+        "--previous-ref",
+        "2cb8c0a",
+        "--prefix",
+        "m9-status"
+      ],
+      "exitCode": 0,
+      "seconds": 19.273,
+      "file": "m9-status.txt",
+      "savedSha256": "751aea92c57ecd733275839fd0c17764d3b1e6f99b675df83fb4a00c862f855b",
+      "rawSha256": "751aea92c57ecd733275839fd0c17764d3b1e6f99b675df83fb4a00c862f855b",
+      "originalArchive": "m9-status.original.txt.gz"
+    },
+    {
+      "name": "accessibility",
+      "command": [
+        "node",
+        "scripts/verify-site-accessibility.mjs",
+        "--milestone",
+        "M9",
+        "--prefix",
+        "m9-final"
+      ],
+      "exitCode": 0,
+      "seconds": 47.355,
+      "file": "m9-accessibility.txt",
+      "savedSha256": "7da11b7bc857599b38bf19d31fec2018546aa5a3daebf4b74aba3c45bd41e35c",
+      "rawSha256": "7da11b7bc857599b38bf19d31fec2018546aa5a3daebf4b74aba3c45bd41e35c",
+      "originalArchive": "m9-accessibility.original.txt.gz"
+    },
+    {
+      "name": "og",
+      "command": [
+        "npm.cmd",
+        "run",
+        "site:og",
+        "--",
+        "--check"
+      ],
+      "exitCode": 0,
+      "seconds": 2.448,
+      "file": "m9-og.txt",
+      "savedSha256": "63be078a347ac96b26ef57e5d6263cd594e6b5dd9931512290e4abed02941bec",
+      "rawSha256": "330aaf2dd04dcf0bf4b6a3ecc4af8936e89855213e4f3a637ba0fe6dd4d1ac61",
+      "originalArchive": "m9-og.original.txt.gz"
+    },
+    {
+      "name": "native-scene",
+      "exitCode": 0,
+      "file": "m9-native-scene.txt",
+      "savedSha256": "a4515aeacf796a710795da0ed42c2dde870596e47b460d0ff2514f39a5adae4a",
+      "rawSha256": "b7df923c15a73120ebf4831ae15da5090ab8ec517fc3a1cbc0e652fc09969e1e",
+      "originalArchive": "m9-native-scene.original.txt.gz"
+    },
+    {
+      "name": "native-encoding",
+      "exitCode": 0,
+      "file": "m9-native-encoding.txt",
+      "savedSha256": "e71e07c421783da97ccf5315923afaa9a6b3c7aa8d2da9c61504eefa53c33bf6",
+      "rawSha256": "dbb7fa12c34ebc9a2c3122157aa558329c8046a6c9bd6c130c9e26d8656dda7f",
+      "originalArchive": "m9-native-encoding.original.txt.gz"
+    },
+    {
+      "name": "notes-landing",
+      "exitCode": 0,
+      "file": "m9-notes-landing.txt",
+      "savedSha256": "4c1d1d2f2b56795f0a946ee582f82e9c1eaf38df264c81509e32707ebbef0acb",
+      "rawSha256": "ede95d6353ad0ff6bf2318cc423afbc1432ce63acba7743739c5dde0a37fc072",
+      "originalArchive": "m9-notes-landing.original.txt.gz"
+    }
+  ],
+  "historyGitleaks": {
+    "command": "gitleaks git --log-opts=origin/main..HEAD --redact",
+    "exitCode": 0,
+    "findings": 0,
+    "log": "m9-history-gitleaks.txt"
+  }
+}

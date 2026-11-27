@@ -1,0 +1,27 @@
+{
+  "milestone": "M9",
+  "applicationCommit": "2cb8c0a5a3894409190db14f1d954ab5d7fbb550",
+  "representation": "Exact Git index source blobs and PNG bytes; checked before commit",
+  "sourcePins": 879,
+  "pngPins": 888,
+  "indexPinsVerified": true,
+  "secretScans": [
+    {
+      "scope": "staged",
+      "findings": 0,
+      "log": "m9-staged-gitleaks.txt",
+      "rawLogSha256": "44c5aac2881b9c5331511dcf17c68dad6323650b9a3085365bf076b54241092b",
+      "archiveDepth": null
+    },
+    {
+      "scope": "archives",
+      "findings": 0,
+      "log": "m9-archives-gitleaks.txt",
+      "rawLogSha256": "e7bfcd25359d84919a81cf797194fb50d9e799c930376efc5296e588d8828f7d",
+      "archiveDepth": 1
+    }
+  ],
+  "history": "m9-history-gitleaks.txt",
+  "noWorkflowEdits": true,
+  "publicationGate": "Checkbox remains pending until push/live proof"
+}

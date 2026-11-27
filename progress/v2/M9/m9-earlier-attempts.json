@@ -1,0 +1,17 @@
+{
+  "attempts": [
+    {
+      "source": ".tools\\m9-task-audit.log",
+      "bytes": 393,
+      "sha256": "ce08cde1cdbfa1809042470919add6b7e46032e09db1ce5a9630e00abda089e3",
+      "archive": "m9-task-audit.earlier.txt.gz"
+    },
+    {
+      "source": ".tools\\m9-task-audit-second.log",
+      "bytes": 478,
+      "sha256": "e1dce700b748a38f2afc3aa515b057a96a1428482a97753c7c8c1533747b4e51",
+      "archive": "m9-task-audit-second.earlier.txt.gz"
+    }
+  ],
+  "resolution": "V4.8 landing reports use viewport width and shared stage geometry for multiple crop roles. The accepted audit validates original Git PNG bytes/hash plus independent decode/dimensions; width/height fields are used only when they describe the PNG. No capture or assertion was waived."
+}

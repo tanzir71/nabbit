@@ -7,7 +7,8 @@ from PIL import Image
 
 root = Path(__file__).resolve().parent.parent
 check = '--check' in sys.argv
-receipt = 'progress/v2/M9/v48-landing-native-scene.json'
+receipt = (sys.argv[sys.argv.index('--receipt') + 1] if '--receipt' in sys.argv
+           else 'progress/v2/M9/m9-native-scene.json')
 report = json.loads((root / receipt).read_text(encoding='utf-8'))
 assert report['passed'] and report['noUserProfile'] and report['noHostedTack']
 manifest = {'figma': {'desktop': '27:605', 'mobile': '31:1064'}, 'captures': []}
