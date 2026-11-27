@@ -18,3 +18,17 @@ The fake models the Nabbit transport surface: account/session rotation, recovery
 This is not a clone of Tack's sharing, role/guest ACLs, attachments, onboarding, agent execution, label-catalog administration or complete activity history. Those APIs are outside Nabbit's V4.2 client. Seeded unrelated/hidden rows test that the transport does not assume every cursor row is a card. Transactional outbox replay and both conflict resolutions are V4.3/V4.8 acceptance, not claimed here. The optional complete local Tack/PDO-SQLite suite was not run in V4.2; standalone PHP merge verification was run.
 
 Production exposes HTTPS installation URLs only. The HTTP loopback constructor, fake credentials, injected memory/failing vaults and fault responses are test-only. Production uses Windows Credential Manager; no plaintext fallback exists. The native roundtrip test creates and deletes only its own unique `.invalid` installation entry.
+
+## V4.3 sync and rank coverage
+
+V4.3 adds the real durable client-side loop against this fake. Sixteen sync tests cover full-card/checklist/reminder edits, both conflict choices with losing-body history, coalescing, 56-card batches, 32 large records with full merge bases and bounded actual request bytes, all cursor pages, hidden/unrelated rows, interrupted paging and lost write acknowledgements across restart. Faults exercise malformed-page and injected SQL rollback, edits arriving during HTTP, stale epochs/tokens and workspace partitions, offline startup reauthentication, streaming signout export, failed-export durable pause, one-time local uploads, a sleeping/stoppable worker and network-free local-only mode. A change-revision regression ensures empty syncs and unrelated pages do not trigger Notes reloads. Four scheduler tests verify debounce, focus/visibility periods, retry floors, network regain and preservation of queued edit/request/retry deadlines across visibility changes. The Windows connectivity registration/cancellation test uses the actual API without changing network state.
+
+`rank-source.json` pins Tack's locked **fractional-indexing 4.0.0** tarball integrity and source SHA-256, and the exact upstream rank wrapper blob at the same Tack commit. `ranks.json` has **515 golden cases executed by the verified npm implementation**. `rank-tack.json` has **36 golden cases executed by the actual pinned Tack TypeScript wrapper**, after mechanically removing type annotations and replacing only its package import. These cover nonce suffixes and IEEE754 legacy numeric ranks, including negative zero and extreme finite values. The Rust port uses the same default alphabet and bounded 4,096-character keys. CC0 attribution is in `licenses/fractional-indexing.txt`; no npm runtime dependency is added.
+
+```powershell
+node scripts/generate-tack-rank-fixtures.mjs <pinned-fractional-indexing-4.0.0.tgz> <pinned-Tack-src-rank.ts>
+cargo test --manifest-path src-tauri/Cargo.toml tack:: -- --test-threads=1
+cargo test --manifest-path src-tauri/Cargo.toml notes:: -- --test-threads=1
+```
+
+Final V4.3 evidence and eight freshly checked upstream blobs are retained in `progress/v2/M8/v43-*`; nine V4.2 source pins remain historical evidence. The complete suite has **39 Tack tests and eight Notes tests**. Connection UI, conflict/editor UI and broad end-to-end Notes acceptance remain V4.4/V4.5/V4.8. The optional complete local Tack/PDO-SQLite suite was not run; the existing 100 actual PHP merge reference cases still pass. No hosted Tack or user account was used.

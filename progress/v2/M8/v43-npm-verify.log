@@ -1,0 +1,137 @@
+
+> nabbit@0.1.0 verify
+> npm run verify:icons && npm run verify:fonts && npm run verify:tokens && npm run typecheck && npm run lint && npm test -- --run && npm run build
+
+
+> nabbit@0.1.0 verify:icons
+> node scripts/generate-brand-icons.mjs --check
+
+Verified desktop app icons, optical tray glyphs and site favicons.
+
+> nabbit@0.1.0 verify:fonts
+> node scripts/verify-font-assets.mjs
+
+Verified 5 pinned Geist 1.9.2 assets and OFL.
+
+> nabbit@0.1.0 verify:tokens
+> node scripts/generate-tokens.mjs --check
+
+Verified 36 light/dark tokens for app and site.
+
+> nabbit@0.1.0 typecheck
+> tsc -b
+
+
+> nabbit@0.1.0 lint
+> eslint .
+
+
+> nabbit@0.1.0 test
+> vitest --run
+
+
+ RUN  v3.2.7 D:/claude-upgrade-26/nabbit
+
+ ✓ src/features/downloads/downloadSheets.test.tsx (22 tests) 1683ms
+ ✓ src/views/NotesView.test.tsx (12 tests) 3741ms
+   ✓ local Notes view > dismisses menus with Escape or outside focus and restores the summary focus  348ms
+   ✓ local Notes view > groups pinned cards and filters by priority, label and search across all card content  866ms
+   ✓ local Notes view > removing one checklist row does not reassign another row's ID or checked state  601ms
+   ✓ local Notes view > keeps a failed creation draft and permits retry with colour, priority and labels  1134ms
+   ✓ local Notes view > archives and trashes softly and restores through the view menu  692ms
+ ✓ src/components/Components.test.tsx (8 tests) 927ms
+ ✓ src/views/IslandSettings.test.tsx (3 tests) 839ms
+   ✓ persists independent shape, size, monitor and enabled changes without overwriting other settings  407ms
+ ✓ src/features/downloads/downloadErrors.test.tsx (25 tests) 601ms
+ ✓ src/features/downloads/downloads.test.tsx (17 tests) 1114ms
+ ✓ src/views/ClipboardList.test.tsx (2 tests) 652ms
+   ✓ ClipboardList acceptance behavior > filters instantly, copies by click, and supports keyboard copy/delete/focus shortcuts  586ms
+ ✓ src/views/EngineHealthCard.test.tsx (6 tests) 537ms
+ ✓ src/surfaces/island/IslandApp.test.tsx (1 test) 105ms
+ ✓ src/views/IslandShortcutField.test.tsx (3 tests) 161ms
+ ✓ spikes/island/IslandSpike.test.tsx (4 tests) 251ms
+ ✓ src/lib/islandDrop.test.tsx (4 tests) 87ms
+ ✓ src/lib/islandVisibility.test.ts (5 tests) 22ms
+ ✓ src/lib/islandKeyboard.test.ts (4 tests) 23ms
+ ✓ scripts/screenshots/policy.test.js (2 tests) 12ms
+ ✓ src/lib/theme.test.ts (4 tests) 7ms
+ ✓ src/lib/islandMotion.test.ts (2 tests) 19ms
+ ✓ src/lib/islandInput.test.ts (7 tests) 16ms
+ ✓ src/lib/islandActivity.test.ts (6 tests) 12ms
+ ✓ scripts/island-frame-metrics.test.js (6 tests) 17ms
+ ✓ scripts/entry-bundles.test.js (4 tests) 13ms
+ ✓ src/store/islandStore.test.ts (16 tests) 13ms
+ ✓ src/lib/islandSurface.test.ts (2 tests) 13ms
+ ✓ src/lib/downloadPresets.test.ts (5 tests) 19ms
+ ✓ scripts/screenshots/mock-ipc.test.js (5 tests) 14ms
+ ✓ src/lib/search.test.ts (3 tests) 9ms
+ ✓ src/store/capture.test.ts (4 tests) 11ms
+ ✓ src/store/settingsBootstrap.test.ts (2 tests) 10ms
+ ✓ spikes/island/drop.test.ts (3 tests) 9ms
+
+ Test Files  29 passed (29)
+      Tests  187 passed (187)
+   Start at  12:13:44
+   Duration  35.09s (transform 20.84s, setup 2.74s, collect 27.44s, tests 10.93s, environment 17.95s, prepare 3.28s)
+
+
+> nabbit@0.1.0 build
+> npm run tokens && node scripts/generate-island-motion.mjs && tsc -b && vite build && npm run verify:bundles
+
+
+> nabbit@0.1.0 tokens
+> node scripts/generate-tokens.mjs
+
+Generated 36 light/dark tokens for app and site.
+vite v6.4.3 building for production...
+transforming...
+✓ 1815 modules transformed.
+rendering chunks...
+computing gzip size...
+dist/assets/app-32-isMvsoQz.svg                  0.40 kB │ gzip:  0.27 kB
+dist/sticky.html                                 0.86 kB │ gzip:  0.41 kB
+dist/island.html                                 0.90 kB │ gzip:  0.43 kB
+dist/settings.html                               1.52 kB │ gzip:  0.53 kB
+dist/index.html                                  1.71 kB │ gzip:  0.55 kB
+dist/.vite/manifest.json                         9.89 kB │ gzip:  1.41 kB
+dist/assets/Geist-Variable-BNK-hTUD.woff2       69.49 kB
+dist/assets/GeistMono-Variable-BoRIzn25.woff2   71.21 kB
+dist/assets/sticky-BrhcL5Fb.css                  0.33 kB │ gzip:  0.24 kB
+dist/assets/SettingsPanel-BwpEieea.css           1.28 kB │ gzip:  0.53 kB
+dist/assets/EngineHealthCard-BLKwpQSy.css        1.54 kB │ gzip:  0.56 kB
+dist/assets/NotesView-DdI2nrge.css               4.97 kB │ gzip:  1.28 kB
+dist/assets/DownloadSheetApp-B4SLn_mm.css        8.08 kB │ gzip:  2.07 kB
+dist/assets/downloads-BSTwiXw-.css              10.18 kB │ gzip:  2.32 kB
+dist/assets/index-Ddi3vSDy.css                  27.76 kB │ gzip:  6.32 kB
+dist/assets/island-C4BZ_58m.css                 29.36 kB │ gzip:  6.46 kB
+dist/assets/Kbd-B6zIFDSa.js                      0.18 kB │ gzip:  0.16 kB
+dist/assets/Tab-BdVml0ZZ.js                      0.32 kB │ gzip:  0.24 kB
+dist/assets/index-D6aKNNE3.js                    0.49 kB │ gzip:  0.34 kB
+dist/assets/sticky-C6Mw7pJZ.js                   0.51 kB │ gzip:  0.34 kB
+dist/assets/previewSheet-DN_PHqfd.js             0.72 kB │ gzip:  0.44 kB
+dist/assets/theme-mEADzzL7.js                    0.83 kB │ gzip:  0.47 kB
+dist/assets/settings-CBIcVYOE.js                 1.04 kB │ gzip:  0.59 kB
+dist/assets/model-C2x3WR-s.js                    1.35 kB │ gzip:  0.75 kB
+dist/assets/Toggle-DHh_SHg-.js                   1.92 kB │ gzip:  0.91 kB
+dist/assets/trash-2-Bu-V5e-O.js                  2.05 kB │ gzip:  0.83 kB
+dist/assets/islandPresentation-BIikK57Y.js       2.52 kB │ gzip:  1.11 kB
+dist/assets/SearchContent-CHxb54a9.js            3.07 kB │ gzip:  1.51 kB
+dist/assets/ExpandedShell-DDO8xN8_.js            3.72 kB │ gzip:  1.60 kB
+dist/assets/ModuleBody-DdzSz1LL.js               6.45 kB │ gzip:  2.38 kB
+dist/assets/PresetChip-DRPocuR2.js               7.55 kB │ gzip:  3.37 kB
+dist/assets/ipc-C7iAkVpd.js                      8.23 kB │ gzip:  3.19 kB
+dist/assets/SettingsPanel-CrNK2U_S.js           12.26 kB │ gzip:  4.40 kB
+dist/assets/NotesView-DffShiLS.js               12.88 kB │ gzip:  4.52 kB
+dist/assets/EngineHealthCard-CdvuhzJE.js        25.57 kB │ gzip:  4.99 kB
+dist/assets/DownloadSheetApp-BcRq65XU.js        33.51 kB │ gzip: 10.04 kB
+dist/assets/island-SQZE7DGt.js                  37.78 kB │ gzip: 12.20 kB
+dist/assets/main-J80Hwqvj.js                    52.97 kB │ gzip: 17.63 kB
+dist/assets/downloads-CrO9gp1v.js               55.87 kB │ gzip: 12.84 kB
+dist/assets/ProgressRing-pSfw90x8.js           127.96 kB │ gzip: 23.85 kB
+dist/assets/window-BJJs6ZFt.js                 159.38 kB │ gzip: 50.08 kB
+✓ built in 18.79s
+
+> nabbit@0.1.0 verify:bundles
+> node scripts/verify-entry-bundles.mjs
+
+Verified four HTML entries. Island initial JS: 90,607 gzip bytes / 120,000; no settings, clipboard list, editor or app store imports.

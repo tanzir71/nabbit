@@ -104,7 +104,15 @@ pub fn run() {
             commands::tack::tack_confirm_recovery,
             commands::tack::tack_switch_workspace,
             commands::tack::tack_logout,
+            commands::tack::tack_sync_snapshot,
+            commands::tack::tack_sync_now,
+            commands::tack::tack_conflicts,
+            commands::tack::tack_resolve_conflict,
+            commands::tack::tack_upload_local_notes,
+            commands::tack::tack_local_mode,
             commands::notes::list_note_cards,
+            commands::notes::get_notes_state,
+            commands::notes::save_note_reminder,
             commands::notes::create_note_card,
             commands::notes::update_note_card,
             download::sheets::open_download_sheet,
@@ -219,6 +227,8 @@ pub fn run() {
                 shutdown: shutdown.clone(),
             };
             app.manage(state.clone());
+            app.state::<tack::service::Service>()
+                .start(db.clone(), app.handle().clone())?;
 
             setup_tray(app.handle())?;
             #[cfg(all(windows, feature = "island-spike"))]
@@ -276,6 +286,16 @@ pub fn run() {
             Ok(())
         })
         .on_window_event(|window, event| {
+            if let Some(sync) = window.app_handle().try_state::<tack::service::Service>() {
+                let open = window.app_handle().webview_windows().values().any(|w| {
+                    !(matches!(
+                        event,
+                        tauri::WindowEvent::Destroyed | tauri::WindowEvent::CloseRequested { .. }
+                    ) && w.label() == window.label())
+                        && w.is_visible().unwrap_or(false)
+                });
+                sync.visibility(open, matches!(event, tauri::WindowEvent::Focused(true)));
+            }
             if window.label() == "download-sheet" && matches!(event, tauri::WindowEvent::Destroyed)
             {
                 if let Some(service) = window.app_handle().try_state::<download::sheets::Service>()
@@ -322,6 +342,9 @@ pub fn run() {
                 }
                 if let Some(bus) = app.try_state::<Arc<island::activity_bus::Bus>>() {
                     bus.stop();
+                }
+                if let Some(sync) = app.try_state::<tack::service::Service>() {
+                    sync.stop();
                 }
                 #[cfg(windows)]
                 if let Some(manager) = app.try_state::<Arc<island::Manager>>() {
@@ -507,6 +530,9 @@ fn reveal_popover(window: &tauri::WebviewWindow) -> Result<()> {
     let _ = window.set_position(PhysicalPosition::new(100, 100));
     window.show()?;
     window.set_focus()?;
+    if let Some(sync) = window.app_handle().try_state::<tack::service::Service>() {
+        sync.visibility(true, true);
+    }
     Ok(())
 }
 
@@ -532,10 +558,22 @@ fn toggle_popover(app: &AppHandle<Wry>) -> Result<()> {
     if let Some(window) = app.get_webview_window("main") {
         if window.is_visible()? {
             window.hide()?;
+            notify_tack_visibility(app);
             return Ok(());
         }
     }
     show_popover(app)
+}
+
+pub(crate) fn notify_tack_visibility(app: &AppHandle<Wry>) {
+    if let Some(sync) = app.try_state::<tack::service::Service>() {
+        sync.visibility(
+            app.webview_windows()
+                .values()
+                .any(|w| w.is_visible().unwrap_or(false)),
+            false,
+        );
+    }
 }
 
 pub fn dispatch_island_shortcut(

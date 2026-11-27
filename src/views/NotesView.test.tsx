@@ -7,7 +7,7 @@ import { notesApi } from "../features/notes/api";
 import { visibleNotes, type CardValue, type StoredNote } from "../features/notes/types";
 
 vi.mock("../features/notes/api", () => ({
-  notesApi: { list: vi.fn(), create: vi.fn(), update: vi.fn() },
+  notesApi: { list: vi.fn(), state: vi.fn(), create: vi.fn(), update: vi.fn() },
 }));
 function card(patch: Partial<CardValue> = {}): StoredNote {
   return {
@@ -45,8 +45,12 @@ let rows: StoredNote[];
 beforeEach(() => {
   vi.clearAllMocks();
   rows = [card()];
-  useNotesStore.setState({ cards: [], loading: true, error: null, busy: [] });
+  useNotesStore.setState({ cards: [], scope: null, loading: true, error: null, busy: [] });
   vi.mocked(notesApi.list).mockImplementation(async () => structuredClone(rows));
+  vi.mocked(notesApi.state).mockImplementation(async () => ({
+    cards: await notesApi.list(),
+    scope: null,
+  }));
   vi.mocked(notesApi.update).mockImplementation(async (id, revision, patch) => {
     const note = rows.find((n) => n.value.id === id)!;
     if (note.value.revision !== revision)
@@ -222,6 +226,74 @@ describe("local Notes view", () => {
 });
 
 describe("Notes state races and filtering", () => {
+  it("keeps the workspace context paired with the latest atomic card snapshot", async () => {
+    const oldScope = { key: "old", epoch: 1 },
+      newScope = { key: "new", epoch: 2 };
+    let finish!: (state: { cards: StoredNote[]; scope: typeof oldScope }) => void;
+    vi.mocked(notesApi.state).mockImplementationOnce(
+      () =>
+        new Promise((resolve) => {
+          finish = resolve;
+        }),
+    );
+    const first = useNotesStore.getState().refresh();
+    vi.mocked(notesApi.state).mockResolvedValueOnce({
+      cards: [card({ title: "New workspace" })],
+      scope: newScope,
+    });
+    await useNotesStore.getState().refresh();
+    finish({ cards: [card({ title: "Old workspace" })], scope: oldScope });
+    await first;
+    expect(useNotesStore.getState().scope).toEqual(newScope);
+    expect(useNotesStore.getState().cards[0].value.title).toBe("New workspace");
+  });
+  it("submits the editor's scope and edit token even after another workspace becomes active", async () => {
+    const oldScope = { key: "old", epoch: 1 },
+      newScope = { key: "new", epoch: 2 };
+    const opened = { ...card(), localOnly: false, scope: oldScope, editToken: "opened-version" };
+    useNotesStore.setState({ scope: newScope, cards: [card({ title: "Current workspace" })] });
+    vi.mocked(notesApi.update).mockRejectedValueOnce(
+      new Error("Workspace changed. Your draft is preserved."),
+    );
+    vi.mocked(notesApi.state).mockResolvedValueOnce({
+      cards: [card({ title: "Current workspace" })],
+      scope: newScope,
+    });
+    expect(await useNotesStore.getState().updateNote(opened, { body: "old draft" })).toBeNull();
+    expect(notesApi.update).toHaveBeenCalledWith(
+      "note-one",
+      0,
+      { body: "old draft" },
+      oldScope,
+      "opened-version",
+    );
+    expect(useNotesStore.getState().scope).toEqual(newScope);
+    expect(useNotesStore.getState().cards[0].value.title).toBe("Current workspace");
+    expect(useNotesStore.getState().error).toContain("draft is preserved");
+  });
+  it("captures creation scope before awaiting IPC and refreshes the current workspace", async () => {
+    const oldScope = { key: "old", epoch: 1 },
+      newScope = { key: "new", epoch: 2 };
+    useNotesStore.setState({ scope: oldScope });
+    let finish!: (card: StoredNote) => void;
+    vi.mocked(notesApi.create).mockImplementationOnce(
+      () =>
+        new Promise((resolve) => {
+          finish = resolve;
+        }),
+    );
+    const pending = useNotesStore.getState().createNote({ title: "saved in old scope" });
+    useNotesStore.setState({ scope: newScope });
+    vi.mocked(notesApi.state).mockResolvedValueOnce({
+      cards: [card({ title: "New scope" })],
+      scope: newScope,
+    });
+    finish({ ...card(), scope: oldScope });
+    await pending;
+    expect(notesApi.create).toHaveBeenCalledWith({ title: "saved in old scope" }, oldScope);
+    expect(useNotesStore.getState().scope).toEqual(newScope);
+    expect(useNotesStore.getState().cards[0].value.title).toBe("New scope");
+  });
   it("a late list cannot overwrite a newer snapshot", async () => {
     let oldResolve!: (value: StoredNote[]) => void;
     vi.mocked(notesApi.list).mockImplementationOnce(

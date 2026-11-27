@@ -47,6 +47,13 @@ pub(super) struct Fault {
 }
 #[derive(Default)]
 pub(super) struct State {
+    pub batches: Vec<usize>,
+    pub cursors: Vec<u64>,
+    pub after_write: Option<Box<dyn FnOnce() + Send>>,
+    pub after_commit_fault: Option<u16>,
+    pub fail_sync_at: Option<(usize, u16)>,
+    pub sync_calls: usize,
+    pub sync_bytes: Vec<usize>,
     sessions: HashMap<String, Session>,
     workspaces: HashMap<String, Workspace>,
     serial: u64,
@@ -72,9 +79,24 @@ impl State {
         self.now += seconds;
     }
     pub fn seed(&mut self, table: &str, id: &str, value: Value, visible: bool) {
+        self.seed_for("personal", table, id, value, visible);
+    }
+    pub fn seed_for(
+        &mut self,
+        workspace: &str,
+        table: &str,
+        id: &str,
+        value: Value,
+        visible: bool,
+    ) {
         self.seq += 1;
+        let version = self
+            .workspaces
+            .get(workspace)
+            .and_then(|w| w.records.get(&(table.into(), id.into())))
+            .map_or(1, |r| r.record.version + 1);
         self.workspaces
-            .entry("personal".into())
+            .entry(workspace.into())
             .or_default()
             .records
             .insert(
@@ -83,7 +105,7 @@ impl State {
                     record: Record {
                         table: table.into(),
                         id: id.into(),
-                        version: 1,
+                        version,
                         value,
                     },
                     seq: self.seq,
@@ -207,6 +229,34 @@ impl State {
             }
             if previous == &m.value {
                 continue;
+            }
+            if let Some(rank) = m.value.get("rank") {
+                let key = if let Some(text) = rank.as_str() {
+                    if crate::notes::rank::validate(text).is_err() {
+                        return error(400);
+                    }
+                    text.to_owned()
+                } else if let Some(number) = rank.as_f64() {
+                    let Ok(key) = crate::notes::rank::legacy(number) else {
+                        return error(400);
+                    };
+                    key
+                } else {
+                    return error(400);
+                };
+                let key = if key.starts_with('k') && key.len() == 12 {
+                    format!(
+                        "{}{}V",
+                        key,
+                        m.id.as_bytes()
+                            .iter()
+                            .map(|b| format!("{b:02x}"))
+                            .collect::<String>()
+                    )
+                } else {
+                    key
+                };
+                m.value["rank"] = json!(key);
             }
             if let Some(object) = m.value.as_object_mut() {
                 object.insert("updatedBy".into(), json!("user-1"));
@@ -441,6 +491,9 @@ fn handle(mut request: Request, state: &mut State) {
             .as_reader()
             .take(8 * 1024 * 1024 + 1)
             .read_to_end(&mut raw);
+        if action == "sync" {
+            state.sync_bytes.push(raw.len());
+        }
         if read.is_err() || raw.len() > 8 * 1024 * 1024 {
             error(413)
         } else if let Ok(input) = serde_json::from_slice::<Value>(&raw) {
@@ -519,7 +572,37 @@ fn handle(mut request: Request, state: &mut State) {
                     )
                 }
             } else if action == "sync" {
-                state.sync(&session, input)
+                state.sync_calls += 1;
+                let writes = input
+                    .get("mutations")
+                    .and_then(Value::as_array)
+                    .map_or(0, Vec::len);
+                state.batches.push(writes);
+                state.cursors.push(
+                    input
+                        .get("cursor")
+                        .and_then(Value::as_u64)
+                        .unwrap_or_default(),
+                );
+                if let Some((at, status)) =
+                    state.fail_sync_at.filter(|(at, _)| *at == state.sync_calls)
+                {
+                    let _ = at;
+                    state.fail_sync_at = None;
+                    error(status)
+                } else {
+                    let result = state.sync(&session, input);
+                    if writes > 0 && result.0 == 200 {
+                        if let Some(hook) = state.after_write.take() {
+                            hook();
+                        }
+                        if let Some(status) = state.after_commit_fault.take() {
+                            respond(request, status, error(status).1, headers);
+                            return;
+                        }
+                    }
+                    result
+                }
             } else {
                 error(404)
             }

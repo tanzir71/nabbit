@@ -1,5 +1,6 @@
 //! The local-only store and future Tack mirror share the same full JSON values.
 //! Patches touch known editable fields; everything else survives untouched.
+#[cfg(test)]
 use chrono::{SecondsFormat, Utc};
 use rusqlite::{params, OptionalExtension};
 use serde::{Deserialize, Serialize};
@@ -16,6 +17,8 @@ use crate::{
 pub struct StoredNote {
     pub value: Value,
     pub local_only: bool,
+    pub scope: Option<super::sync_store::Context>,
+    pub edit_token: String,
 }
 
 #[derive(Debug, Deserialize, Default)]
@@ -46,46 +49,12 @@ const EDITABLE: &[&str] = &[
     "completed",
     "status",
 ];
-const DIGITS: &[u8] = b"0123456789ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz";
-
-// New local cards only need integer predecessors. The generalized between-key
-// port, including arbitrary fractional ranks received from Tack, belongs to V4.3.
+pub(crate) fn editable_equal(a: &Value, b: &Value) -> bool {
+    EDITABLE.iter().all(|key| a.get(*key) == b.get(*key))
+}
+#[cfg(test)]
 fn rank_before(first: Option<&str>) -> Result<String> {
-    let Some(first) = first else {
-        return Ok("a0".into());
-    };
-    let mut key = first.as_bytes().to_vec();
-    let head = *key.first().ok_or_else(|| msg("Invalid note rank"))?;
-    let length = match head {
-        b'a'..=b'z' => (head - b'a') as usize + 2,
-        b'A'..=b'Z' => (b'Z' - head) as usize + 2,
-        _ => return Err(msg("Invalid note rank")),
-    };
-    if key.len() != length || !key[1..].iter().all(|b| DIGITS.contains(b)) {
-        return Err(msg("This note order needs the Tack rank upgrade"));
-    }
-    for i in (1..key.len()).rev() {
-        let digit = DIGITS.iter().position(|b| *b == key[i]).unwrap();
-        if digit > 0 {
-            key[i] = DIGITS[digit - 1];
-            return String::from_utf8(key).map_err(|_| msg("Invalid note rank"));
-        }
-        key[i] = b'z';
-    }
-    match head {
-        b'A' => return Err(msg("This note order needs the Tack rank upgrade")),
-        b'a' => key[0] = b'Z',
-        b'b'..=b'z' => {
-            key[0] -= 1;
-            key.pop();
-        }
-        b'B'..=b'Z' => {
-            key[0] -= 1;
-            key.push(b'z');
-        }
-        _ => unreachable!(),
-    }
-    String::from_utf8(key).map_err(|_| msg("Invalid note rank"))
+    super::rank::between(None, first)
 }
 
 fn text<'a>(value: &'a Value, key: &str, max: usize) -> Result<&'a str> {
@@ -110,7 +79,7 @@ pub fn validate_card(value: &Value) -> Result<()> {
     let body = text(value, "body", 200_000)?;
     text(value, "doneWhen", 200_000)?;
     text(value, "frontmatter", 200_000)?;
-    text(value, "rank", 1024)?;
+    text(value, "rank", 4096)?;
     let kind = text(value, "kind", 20)?;
     if !["note", "checklist", "bookmark", "task"].contains(&kind)
         || !["inbox", "now", "next", "later"].contains(&text(value, "priority", 20)?)
@@ -184,71 +153,147 @@ pub fn validate_card(value: &Value) -> Result<()> {
     Ok(())
 }
 
+#[derive(Debug, Serialize)]
+#[serde(rename_all = "camelCase")]
+pub struct NotesState {
+    pub cards: Vec<StoredNote>,
+    pub scope: Option<super::sync_store::Context>,
+}
+
+pub(crate) fn remote_card(value: &Value) -> Result<Value> {
+    let mut value = value.clone();
+    if let Some(number) = value
+        .get("rank")
+        .and_then(Value::as_f64)
+        .filter(|_| value["rank"].is_number())
+    {
+        value["rank"] = json!(super::rank::legacy(number)?);
+    }
+    let object = value
+        .as_object_mut()
+        .ok_or_else(|| msg("InvalidResponse: Invalid Tack card"))?;
+    for (key, default) in [
+        ("assigneeId", Value::Null),
+        ("priority", json!("inbox")),
+        ("ref", json!("")),
+        ("doneWhen", json!("")),
+        ("frontmatter", json!("")),
+    ] {
+        object.entry(key).or_insert(default);
+    }
+    // Tack permits an empty card. Local capture still requires content.
+    let mut checked = value.clone();
+    if checked["title"].as_str() == Some("")
+        && checked["body"].as_str() == Some("")
+        && checked["items"].as_array().is_some_and(Vec::is_empty)
+        && checked["kind"] != "bookmark"
+    {
+        checked["body"] = json!("validation placeholder");
+    }
+    validate_card(&checked).map_err(|_| {
+        msg("InvalidResponse: This Tack card has an unsupported shape. No page was applied.")
+    })?;
+    super::rank::validate(
+        value["rank"]
+            .as_str()
+            .ok_or_else(|| msg("InvalidResponse: Invalid Tack rank"))?,
+    )
+    .map_err(|_| msg("InvalidResponse: Invalid Tack rank"))?;
+    Ok(value)
+}
+
 impl Database {
-    pub fn list_note_cards(&self) -> Result<Vec<StoredNote>> {
+    pub fn notes_state(&self) -> Result<NotesState> {
         let conn = self
             .conn
             .lock()
             .map_err(|_| msg("database lock poisoned"))?;
-        let mut statement = conn.prepare("SELECT value,local_only FROM note_cards ORDER BY json_extract(value,'$.rank') COLLATE BINARY,id")?;
+        let scope = super::sync_store::current(&conn)?;
+        let key = scope.as_ref().map_or("", |s| s.key.as_str());
+        let mut statement=conn.prepare("SELECT value,local_only,edit_token FROM note_cards WHERE scope=?1 ORDER BY json_extract(value,'$.rank') COLLATE BINARY,id")?;
         let rows = statement
-            .query_map([], |row| {
-                Ok((row.get::<_, String>(0)?, row.get::<_, bool>(1)?))
+            .query_map([key], |row| {
+                Ok((
+                    row.get::<_, String>(0)?,
+                    row.get::<_, bool>(1)?,
+                    row.get::<_, String>(2)?,
+                ))
             })?
             .collect::<std::result::Result<Vec<_>, _>>()?;
-        rows.into_iter()
-            .map(|(raw, local_only)| {
+        let cards = rows
+            .into_iter()
+            .map(|(raw, local_only, edit_token)| {
                 Ok(StoredNote {
                     value: serde_json::from_str(&raw)?,
                     local_only,
+                    scope: scope.clone(),
+                    edit_token,
                 })
             })
-            .collect()
+            .collect::<Result<Vec<_>>>()?;
+        Ok(NotesState { cards, scope })
     }
-
+    pub fn list_note_cards(&self) -> Result<Vec<StoredNote>> {
+        Ok(self.notes_state()?.cards)
+    }
     pub fn create_note_card(&self, draft: NoteDraft) -> Result<StoredNote> {
+        self.create_note_card_in(draft, None)
+    }
+    pub(crate) fn create_note_card_in(
+        &self,
+        draft: NoteDraft,
+        scope: Option<&super::sync_store::Context>,
+    ) -> Result<StoredNote> {
         let mut conn = self
             .conn
             .lock()
             .map_err(|_| msg("database lock poisoned"))?;
         let tx = conn.transaction()?;
-        let first: Option<String> = tx.query_row("SELECT json_extract(value,'$.rank') FROM note_cards ORDER BY json_extract(value,'$.rank') COLLATE BINARY,id LIMIT 1", [], |row| row.get(0)).optional()?;
-        let now = Utc::now().to_rfc3339_opts(SecondsFormat::Millis, true);
+        super::sync_store::ensure(&tx, scope)?;
+        let key = scope.map_or("", |s| s.key.as_str());
+        let first:Option<String>=tx.query_row("SELECT json_extract(value,'$.rank') FROM note_cards WHERE scope=?1 ORDER BY json_extract(value,'$.rank') COLLATE BINARY,id LIMIT 1",[key],|row|row.get(0)).optional()?;
+        let now = super::sync_store::stamp();
         let id = Uuid::new_v4().to_string();
+        let edit_token = Uuid::new_v4().to_string();
         let items: Vec<_> = draft
             .items
             .into_iter()
             .filter(|s| !s.trim().is_empty())
             .map(|s| json!({"id":Uuid::new_v4().to_string(),"text":s,"checked":false}))
             .collect();
-        let value = json!({
-            "id":id,"revision":0,"assigneeId":null,"priority":draft.priority.unwrap_or_else(|| "inbox".into()),
-            "ref":"","doneWhen":"","frontmatter":"","kind":draft.kind.unwrap_or_else(|| "note".into()),
-            "title":draft.title,"body":draft.body,"url":draft.url,"labels":draft.labels,"items":items,
-            "attachmentIds":[],"pinned":false,"archived":false,"trashedAt":null,"completed":false,
-            "color":draft.color.unwrap_or_else(|| "default".into()),"rank":rank_before(first.as_deref())?,
-            "projectId":null,"createdAt":now,"updatedAt":now,"sourceId":null
-        });
+        let value = json!({"id":id,"revision":0,"assigneeId":null,"priority":draft.priority.unwrap_or_else(||"inbox".into()),"ref":"","doneWhen":"","frontmatter":"","kind":draft.kind.unwrap_or_else(||"note".into()),"title":draft.title,"body":draft.body,"url":draft.url,"labels":draft.labels,"items":items,"attachmentIds":[],"pinned":false,"archived":false,"trashedAt":null,"completed":false,"color":draft.color.unwrap_or_else(||"default".into()),"rank":super::rank::with_nonce(None,first.as_deref(),&id)?,"projectId":null,"createdAt":now,"updatedAt":now,"sourceId":null});
         validate_card(&value)?;
-        tx.execute(
-            "INSERT INTO note_cards(id,value,local_only,updated_at) VALUES(?1,?2,1,?3)",
-            params![id, serde_json::to_string(&value)?, now],
-        )?;
+        tx.execute("INSERT INTO note_cards(scope,id,value,local_only,updated_at,edit_token) VALUES(?1,?2,?3,?4,?5,?6)",params![key,id,value.to_string(),scope.is_none(),now,edit_token])?;
+        if let Some(context) = scope {
+            super::sync_store::queue(&tx, context, "cards", &id, &value)?;
+        }
+        super::sync_store::changed(&tx)?;
         tx.commit()?;
         Ok(StoredNote {
             value,
-            local_only: true,
+            local_only: scope.is_none(),
+            scope: scope.cloned(),
+            edit_token,
         })
     }
-
     pub fn update_note_card(
         &self,
         id: &str,
         expected_revision: u64,
         patch: Value,
     ) -> Result<StoredNote> {
+        self.update_note_card_in(id, expected_revision, None, None, patch)
+    }
+    pub(crate) fn update_note_card_in(
+        &self,
+        id: &str,
+        expected_revision: u64,
+        scope: Option<&super::sync_store::Context>,
+        expected_token: Option<&str>,
+        patch: Value,
+    ) -> Result<StoredNote> {
         let patch = patch.as_object().ok_or_else(|| msg("Invalid note edit"))?;
-        if patch.is_empty() || patch.keys().any(|key| !EDITABLE.contains(&key.as_str())) {
+        if patch.is_empty() || patch.keys().any(|k| !EDITABLE.contains(&k.as_str())) {
             return Err(msg("This note edit contains unsupported fields"));
         }
         let mut conn = self
@@ -256,39 +301,53 @@ impl Database {
             .lock()
             .map_err(|_| msg("database lock poisoned"))?;
         let tx = conn.transaction()?;
-        let (raw, local_only): (String, bool) = tx
+        super::sync_store::ensure(&tx, scope)?;
+        let key = scope.map_or("", |s| s.key.as_str());
+        let (raw, local_only, token): (String, bool, String) = tx
             .query_row(
-                "SELECT value,local_only FROM note_cards WHERE id=?1",
-                [id],
-                |row| Ok((row.get(0)?, row.get(1)?)),
+                "SELECT value,local_only,edit_token FROM note_cards WHERE scope=?1 AND id=?2",
+                params![key, id],
+                |r| Ok((r.get(0)?, r.get(1)?, r.get(2)?)),
             )
             .optional()?
             .ok_or_else(|| msg("This note no longer exists"))?;
-        // Connected cards must later be updated with their outbox atomically.
-        if !local_only {
-            return Err(msg("This card needs Tack sync before editing"));
-        }
         let mut value: Value = serde_json::from_str(&raw)?;
-        if value["revision"].as_u64() != Some(expected_revision) {
+        let current_revision = value["revision"]
+            .as_u64()
+            .ok_or_else(|| msg("Invalid note revision"))?;
+        if (expected_token.is_none() && current_revision != expected_revision)
+            || expected_token.is_some_and(|t| t != token)
+            || (scope.is_some() && expected_token.is_none())
+        {
             return Err(msg("This note changed in another window. Your draft is still here; reopen the latest note before saving."));
         }
         value
             .as_object_mut()
             .ok_or_else(|| msg("Invalid stored note"))?
             .extend(patch.clone());
-        value["revision"] = expected_revision
+        value["revision"] = current_revision
             .checked_add(1)
             .ok_or_else(|| msg("Invalid note revision"))?
             .into();
-        let now = Utc::now().to_rfc3339_opts(SecondsFormat::Millis, true);
+        let now = super::sync_store::stamp();
         value["updatedAt"] = now.clone().into();
         validate_card(&value)?;
+        let edit_token = Uuid::new_v4().to_string();
         tx.execute(
-            "UPDATE note_cards SET value=?1,updated_at=?2 WHERE id=?3",
-            params![serde_json::to_string(&value)?, now, id],
+            "UPDATE note_cards SET value=?1,updated_at=?2,edit_token=?3 WHERE scope=?4 AND id=?5",
+            params![value.to_string(), now, edit_token, key, id],
         )?;
+        if let Some(context) = scope {
+            super::sync_store::queue(&tx, context, "cards", id, &value)?;
+        }
+        super::sync_store::changed(&tx)?;
         tx.commit()?;
-        Ok(StoredNote { value, local_only })
+        Ok(StoredNote {
+            value,
+            local_only,
+            scope: scope.cloned(),
+            edit_token,
+        })
     }
 }
 

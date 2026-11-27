@@ -189,6 +189,8 @@ export function installMockIpc(seed) {
         return clone(state.jobs);
       case "list_note_cards":
         return clone(state.notes ?? []);
+      case "get_notes_state":
+        return { cards: clone(state.notes ?? []), scope: null };
       case "create_note_card": {
         const draft = clone(args.draft),
           now = new Date().toISOString();

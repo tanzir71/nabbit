@@ -559,6 +559,7 @@ impl Manager {
                     unsafe {
                         ShowWindow(hwnd as HWND, SW_SHOWNOACTIVATE);
                     }
+                    crate::notify_tack_visibility(&this.app);
                     window
                         .emit("nabbit://island-surface", this.surface_instruction(&label)?)
                         .map_err(|e| e.to_string())?;

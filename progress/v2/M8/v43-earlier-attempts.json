@@ -1,0 +1,90 @@
+[
+  {
+    "artifact": "progress/v2/M8/v43-earlier-check-first.txt.gz",
+    "resolution": "Compiler scaffolding diagnostics: fixture path, MutexGuard coercion, closure Result annotations and shared rank lifetime; corrected."
+  },
+  {
+    "artifact": "progress/v2/M8/v43-earlier-check-second.txt.gz",
+    "resolution": "Cancelled redundant cargo process waiting on the build-directory lock; no check result."
+  },
+  {
+    "artifact": "progress/v2/M8/v43-earlier-check-third.txt.gz",
+    "resolution": "Early compile passed; unused queue inspection became test-only and reminder storage was wired to IPC."
+  },
+  {
+    "artifact": "progress/v2/M8/v43-earlier-notes-tests-first.txt.gz",
+    "resolution": "First seven Notes tests passed before adding the Tack wrapper reference cases."
+  },
+  {
+    "artifact": "progress/v2/M8/v43-earlier-sync-tests-first.txt.gz",
+    "resolution": "First 32 Tack tests passed before offline restart, byte batching and export-failure cases."
+  },
+  {
+    "artifact": "progress/v2/M8/v43-earlier-clippy-first.txt.gz",
+    "resolution": "Clippy command argument count, needless Ok and tuple complexity; fixed without allowances."
+  },
+  {
+    "artifact": "progress/v2/M8/v43-earlier-clippy-second.txt.gz",
+    "resolution": "Native cancellation condition block was bound separately; corrected."
+  },
+  {
+    "artifact": "progress/v2/M8/v43-earlier-clippy-third.txt.gz",
+    "resolution": "All-target default Clippy passed before the Notes change-event filter."
+  },
+  {
+    "artifact": "progress/v2/M8/v43-earlier-npm-verify-first.txt.gz",
+    "resolution": "Generator Node globals needed explicit imports; corrected without lint allowances."
+  },
+  {
+    "artifact": "progress/v2/M8/v43-earlier-frontend-focused.txt.gz",
+    "resolution": "Twelve focused frontend tests passed; retained the live process through a slow environment startup."
+  },
+  {
+    "artifact": "progress/v2/M8/v43-earlier-notes-tests-third.txt.gz",
+    "resolution": "Eight Notes tests passed, including 515 dependency cases and 36 actual Tack wrapper cases."
+  },
+  {
+    "artifact": "progress/v2/M8/v43-earlier-sync-tests-third.txt.gz",
+    "resolution": "Thirty-seven Tack tests passed before change-event and visibility-deadline regression cases."
+  },
+  {
+    "artifact": "progress/v2/M8/v43-earlier-fmt-final.txt.gz",
+    "resolution": "Formatting passed before the last event/deadline changes."
+  },
+  {
+    "artifact": "progress/v2/M8/v43-earlier-clippy-default-final.txt.gz",
+    "resolution": "Default Clippy passed before the last event/deadline changes."
+  },
+  {
+    "artifact": "progress/v2/M8/v43-earlier-clippy-spike-final.txt.gz",
+    "resolution": "Spike Clippy passed before the last event/deadline changes."
+  },
+  {
+    "artifact": "progress/v2/M8/v43-earlier-rust-tests-final.txt.gz",
+    "resolution": "Earlier full serial suite passed 197 tests with two existing ignores; superseded by two new regression cases."
+  },
+  {
+    "artifact": "progress/v2/M8/v43-earlier-fmt-authoritative.txt.gz",
+    "resolution": "Formatting passed before the final visibility-deadline case."
+  },
+  {
+    "artifact": "progress/v2/M8/v43-earlier-clippy-default-authoritative.txt.gz",
+    "resolution": "Default Clippy passed before the final visibility-deadline case."
+  },
+  {
+    "artifact": "progress/v2/M8/v43-earlier-clippy-spike-authoritative.txt.gz",
+    "resolution": "Spike Clippy passed before the final visibility-deadline case."
+  },
+  {
+    "artifact": "progress/v2/M8/v43-earlier-rust-tests-authoritative.txt.gz",
+    "resolution": "197 passed, one new regression failed because its second-device test helper searched only the first page. The helper now follows more/cursor pages; the production paging and change-revision assertions remain intact. Full suite rerun."
+  },
+  {
+    "artifact": null,
+    "resolution": "Review caught visibility changes postponing a queued debounce or retry. Heartbeat deadlines are now distinguished from edit/request/retry deadlines, with a regression test. No assertion or lint rule was relaxed."
+  },
+  {
+    "artifact": "progress/v2/M8/v43-png-audit.json",
+    "resolution": "The first receipt builder assumed exact historical V4.1 pixels and stopped on that optional comparison. All 32 current capture/repeat pairs are exact; the complete historical comparison records 26 exact images and six with at most 25 differing pixels, maximum RGB-channel difference 1/255 and identical alpha. Historical equality is reported explicitly, not claimed or substituted for the unchanged repeat/accessibility/geometry gates."
+  }
+]

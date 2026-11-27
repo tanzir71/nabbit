@@ -42,7 +42,7 @@ const cases = modes.map((mode) => ({
     else await page.getByRole("button", { name: "Launch checklist", exact: true }).waitFor();
     await page.evaluate(() => globalThis.document.fonts.ready);
     const initialCalls = await page.evaluate(() => globalThis.__NABBIT_CAPTURE__.snapshot().calls);
-    assert(initialCalls.some((c) => c.command === "list_note_cards"));
+    assert(initialCalls.some((c) => c.command === "get_notes_state"));
     assert(!initialCalls.some((c) => ["create_note_card", "update_note_card"].includes(c.command)));
     if (mode === "composer") {
       await page.getByRole("button", { name: "Island idea", exact: true }).click();

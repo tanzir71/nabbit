@@ -309,6 +309,9 @@ impl Client {
             return self.fail(e);
         }
         self.connection.error = None;
+        self.connection.ready = self.connection.user.is_some()
+            && !self.connection.recovery_pending
+            && !self.connection.requires_login;
         Ok(value)
     }
     fn status_value(&mut self, value: Value, require_version: bool) -> Result<Connection> {

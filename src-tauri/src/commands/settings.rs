@@ -150,5 +150,6 @@ pub fn hide_main_window(app: AppHandle) -> Result<()> {
     if let Some(window) = app.get_webview_window("main") {
         let _ = window.hide();
     }
+    crate::notify_tack_visibility(&app);
     Ok(())
 }

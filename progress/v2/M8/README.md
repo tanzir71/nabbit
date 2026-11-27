@@ -65,3 +65,30 @@ cargo clippy --manifest-path src-tauri/Cargo.toml --all-targets -- -D warnings
 cargo clippy --manifest-path src-tauri/Cargo.toml --all-targets --features island-spike -- -D warnings
 cargo test --manifest-path src-tauri/Cargo.toml -- --test-threads=1
 ```
+
+## V4.3 — Transactional sync and fractional ranks
+
+Added durable mirrors, coalescing outboxes, cursors and conflicts, scoped by installation, account and workspace. Local card/reminder writes and queue entries share a transaction. Complete response pages and their cursor commit together. Full JSON merge bases preserve future fields; pulling first recognizes lost successful responses. Frozen sent tokens let newer local edits survive an acknowledgement while retaining merged server text, references and unknown fields. Conflicts remain durable and exclude only affected records; either resolution retains the losing full JSON locally. Paired view snapshots, workspace epochs and content tokens reject stale drafts, including same-revision remote edits, while server-owned metadata echoes remain safe to edit over.
+
+The Rust worker sleeps on a condition variable. It implements 1.5-second edit debounce, focus/network-regain wakeups, 60-second visible and five-minute hidden heartbeats, exponential offline backoff and Retry-After floors. Visibility changes alter heartbeat deadlines without postponing a queued save/request/retry. Native Windows connectivity notifications supply network regain without probe traffic or polling. Only an explicitly enabled scope resumes at startup; offline restoration retains its credentials and retries identity/status before uploading. Default local-only mode has no transport. Typed sync events report queue/conflict/error state; Notes refresh events require actual committed data changes, so status-only heartbeats do not reload hidden views.
+
+Mutation batches obey 50-record and serialized-byte bounds, and all response pages drain before proceeding. Uploading local notes is atomic and once-only. Signout persists pause, streams an exclusive unsynced JSON export and flushes it before clearing credentials. Failed export preserves authentication, notes and queues with the durable pause intact. No SQLite transaction spans HTTP. Unknown/unrelated cursor rows advance the cursor without creating cards or a tight retry loop.
+
+The rank port follows Tack's actual locked **fractional-indexing 4.0.0** default alphabet plus its nonce/legacy-rank wrapper. **515** verified npm golden cases and **36** actual Tack wrapper cases pass, including boundary intervals, randomized inserts, nonce collisions and extreme finite numeric encodings. Upstream source hashes, tarball SRI, licensing and regeneration are recorded in the fixture README and `v43-source-verification.log`. Eight source blobs were freshly verified at Tack `70d6608e4c4a4b9e4dd38b9bf2124187f6285893`; the nine V4.2 pins remain historical. Existing **100 PHP merge goldens** still pass. No npm runtime dependency was added.
+
+Final checks:
+
+- `npm run verify`: **187 tests / 29 files**, type/lint/assets checks, build and entry audit. Four entries and **90,607/120,000 initial island gzip bytes** (V4.2: 90,605); no new initial settings/editor/app-store import.
+- Rust fmt, default/spike all-target Clippy with warnings denied, **199 passing serial tests**, two existing opt-in ignores and doc-tests. Includes **39 Tack tests**, **eight Notes tests**, real native connectivity registration/cancellation and the isolated Credential Manager roundtrip.
+- Fake sync tests cover card/reminder round trips, server refs/future fields, 56-card batches, 32 large cards with full merge bases, cursor paging and interruption, lost acknowledgements/restart, both conflict choices/history, newer edits during HTTP, page/SQL rollback, stale workspace/draft guards, offline restore, once-only uploads, export failure, sleeping worker shutdown and network-free local-only mode.
+- **32 Notes browser captures**, light/dark at 1×/1.5×, repeat exactly. Full default axe scans have zero violations, retaining the existing 16 explicit opaque-menu contrast proofs. Independent PNG decoding verifies all images below **300,000 bytes** with 26 images identical to accepted V4.1 pixels. Six historical comparisons differ by at most 25 pixels and 1/255 per RGB channel, with identical alpha. This also exercises the new paired-scope Notes IPC snapshot.
+
+`v43-acceptance.json` pins source and evidence using Git's LF text representation. Canonical logs trim console-only trailing whitespace, while `.original.txt.gz` preserves exact console bytes. Earlier diagnostics and superseded suites remain in `v43-earlier-attempts.json` and its archives. The last new test initially failed because its second-device helper searched only the first page; the helper now follows all pages, with the regression assertions preserved. Review also added the visibility-deadline guard. The optional historical equality assumption initially stopped the receipt builder; the full comparison is now reported explicitly rather than claiming equality. Current repeat, geometry, default accessibility and behavioral assertions remain unchanged, with no lint allowance. Staged/evidence archive secret scans and staged Git blob audits complete the receipt.
+
+No production TSX layout or CSS change, native application launch, new idle-performance claim, hosted Tack call or user account is involved. Existing V0/V2.7 limitations remain. The optional complete local Tack/PDO-SQLite suite remains unrun. V4.4 supplies the connection/recovery UI; V4.5 supplies conflict/editor UI and V4.8 owns broad §8.8 acceptance. Only the V4.3 build-loop box is checked. Commit directly to main with `[skip ci]`; no push, PR, tag, release or repository workflow invocation. Publication waits for M8.
+
+Use the required commands shown above to reproduce the checks, plus a fresh Notes evidence prefix:
+
+```powershell
+node scripts/verify-notes.mjs v43-local-browser
+```

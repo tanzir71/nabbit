@@ -1,5 +1,6 @@
 mod fake;
 mod merge;
+mod sync_tests;
 
 #[test]
 fn field_merge_matches_100_pinned_php_reference_cases() {

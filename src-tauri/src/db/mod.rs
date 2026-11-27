@@ -60,7 +60,7 @@ impl Database {
     }
 
     pub fn migrate(&self) -> Result<()> {
-        let conn = self
+        let mut conn = self
             .conn
             .lock()
             .map_err(|_| msg("database lock poisoned"))?;
@@ -165,6 +165,7 @@ impl Database {
                 [Utc::now().to_rfc3339()],
             )?;
         }
+        crate::notes::sync_store::migrate(&mut conn)?;
         Ok(())
     }
 

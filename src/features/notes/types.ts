@@ -39,6 +39,16 @@ export interface CardValue {
 export interface StoredNote {
   value: CardValue;
   localOnly: boolean;
+  scope?: NotesContext | null;
+  editToken?: string;
+}
+export interface NotesContext {
+  key: string;
+  epoch: number;
+}
+export interface NotesState {
+  cards: StoredNote[];
+  scope: NotesContext | null;
 }
 export interface NoteDraft {
   title: string;
@@ -94,6 +104,10 @@ export function visibleNotes(
         ? -1
         : a.value.rank > b.value.rank
           ? 1
-          : a.value.id.localeCompare(b.value.id),
+          : a.value.id < b.value.id
+            ? -1
+            : a.value.id > b.value.id
+              ? 1
+              : 0,
     );
 }

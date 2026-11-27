@@ -42,6 +42,7 @@ pub enum ErrorCode {
     InvalidResponse,
     InvalidInput,
     SecureStorage,
+    LocalStorage,
     SignedOut,
     WorkspaceChanged,
     StorageFull,
@@ -69,7 +70,9 @@ impl Error {
             ErrorCode::RecoveryPending => SyncStatus::RecoveryPending,
             ErrorCode::RateLimited => SyncStatus::RateLimited,
             ErrorCode::Conflict => SyncStatus::Conflict,
-            ErrorCode::Offline | ErrorCode::InvalidResponse => SyncStatus::Offline,
+            ErrorCode::Offline | ErrorCode::InvalidResponse | ErrorCode::LocalStorage => {
+                SyncStatus::Offline
+            }
         };
         Self {
             code,
@@ -84,6 +87,7 @@ impl Error {
             ErrorCode::InvalidResponse => "This server did not return a supported Tack response.",
             ErrorCode::InvalidInput => "Check the requested Tack action and try again.",
             ErrorCode::SecureStorage => "The Tack session could not be read or saved in secure storage.",
+            ErrorCode::LocalStorage => "Notes could not be saved on this device. Queued changes are preserved; try again.",
             ErrorCode::SignedOut => "Sign in to Tack to continue. Your local notes are preserved.",
             ErrorCode::WorkspaceChanged => "The Tack workspace changed. Check the selected workspace before continuing.",
             ErrorCode::StorageFull => "This Tack workspace is full. Export or remove unused attachments in Tack.",
@@ -101,6 +105,41 @@ impl std::fmt::Display for Error {
 }
 impl std::error::Error for Error {}
 pub type Result<T> = std::result::Result<T, Error>;
+
+impl From<crate::error::NabbitError> for Error {
+    fn from(error: crate::error::NabbitError) -> Self {
+        let code = match &error {
+            crate::error::NabbitError::Message(s) if s.starts_with("WorkspaceChanged:") => {
+                ErrorCode::WorkspaceChanged
+            }
+            crate::error::NabbitError::Message(s) if s.starts_with("InvalidResponse:") => {
+                ErrorCode::InvalidResponse
+            }
+            crate::error::NabbitError::Message(s) if s.starts_with("Conflict:") => {
+                ErrorCode::Conflict
+            }
+            crate::error::NabbitError::Message(s) if s.starts_with("StorageFull:") => {
+                ErrorCode::StorageFull
+            }
+            _ => ErrorCode::LocalStorage,
+        };
+        Self::new(code)
+    }
+}
+pub use crate::notes::sync_store::{Conflict, Context, Identity, Resolution};
+
+#[derive(Clone, Debug, Serialize)]
+#[serde(rename_all = "camelCase")]
+pub struct SyncSnapshot {
+    pub state: SyncStatus,
+    pub scope: Option<Context>,
+    pub pending: u64,
+    pub conflicts: u64,
+    pub reference_issues: u64,
+    pub last_synced: Option<String>,
+    pub error: Option<Error>,
+    pub next_attempt_ms: Option<u64>,
+}
 
 #[derive(Clone, Debug, Deserialize, Serialize, PartialEq)]
 #[serde(rename_all = "camelCase")]

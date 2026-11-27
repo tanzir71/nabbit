@@ -1,9 +1,10 @@
 import { create } from "zustand";
 import { notesApi } from "../features/notes/api";
-import type { NoteDraft, NotePatch, StoredNote } from "../features/notes/types";
+import type { NoteDraft, NotePatch, StoredNote, NotesContext } from "../features/notes/types";
 
 interface NotesStore {
   cards: StoredNote[];
+  scope: NotesContext | null;
   loading: boolean;
   error: string | null;
   busy: string[];
@@ -15,14 +16,16 @@ let loadGeneration = 0;
 const message = (reason: unknown) => (reason instanceof Error ? reason.message : String(reason));
 export const useNotesStore = create<NotesStore>((set, get) => ({
   cards: [],
+  scope: null,
   loading: true,
   error: null,
   busy: [],
   refresh: async () => {
     const generation = ++loadGeneration;
     try {
-      const cards = await notesApi.list();
-      if (generation === loadGeneration) set({ cards, loading: false });
+      const state = await notesApi.state();
+      if (generation === loadGeneration)
+        set({ cards: state.cards, scope: state.scope, loading: false });
     } catch (reason) {
       if (generation === loadGeneration) set({ error: message(reason), loading: false });
     }
@@ -31,7 +34,8 @@ export const useNotesStore = create<NotesStore>((set, get) => ({
     if (get().busy.includes("new")) return null;
     set((s) => ({ busy: [...s.busy, "new"], error: null }));
     try {
-      const card = await notesApi.create(draft);
+      const scope = get().scope;
+      const card = scope ? await notesApi.create(draft, scope) : await notesApi.create(draft);
       await get().refresh();
       return card;
     } catch (reason) {
@@ -46,7 +50,10 @@ export const useNotesStore = create<NotesStore>((set, get) => ({
     if (get().busy.includes(id)) return null;
     set((s) => ({ busy: [...s.busy, id], error: null }));
     try {
-      const saved = await notesApi.update(id, card.value.revision, patch);
+      const saved =
+        card.scope || card.editToken
+          ? await notesApi.update(id, card.value.revision, patch, card.scope, card.editToken)
+          : await notesApi.update(id, card.value.revision, patch);
       await get().refresh();
       return saved;
     } catch (reason) {

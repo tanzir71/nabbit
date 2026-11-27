@@ -1,0 +1,194 @@
+[
+  {
+    "number": "-1.7976931348623157e308",
+    "expected": "k00KcqObyjK4"
+  },
+  {
+    "number": "-1000000000000000",
+    "expected": "k5ERTzMKpzgt"
+  },
+  {
+    "number": "-1.5",
+    "expected": "k5Upsoha1w35"
+  },
+  {
+    "number": "-1",
+    "expected": "k5V0CEtt1Ii7"
+  },
+  {
+    "number": "-0",
+    "expected": "kAzL8n0Y58m7"
+  },
+  {
+    "number": "0",
+    "expected": "kAzL8n0Y58m8"
+  },
+  {
+    "number": "0.0000000001",
+    "expected": "kGIbaneM7Qj5"
+  },
+  {
+    "number": "0.5",
+    "expected": "kGTLSUibAFW4"
+  },
+  {
+    "number": "1",
+    "expected": "kGTg5L7D8yq8"
+  },
+  {
+    "number": "1.5",
+    "expected": "kGTqOlJW8LVA"
+  },
+  {
+    "number": "9007199254740991",
+    "expected": "kGlJI89g3izX"
+  },
+  {
+    "number": "1.7976931348623157e308",
+    "expected": "kLyLejcUBYEB"
+  },
+  {
+    "a": null,
+    "b": null,
+    "nonce": "00000000000000000000000000000001",
+    "expected": "a000000000000000000000000000000001V"
+  },
+  {
+    "a": null,
+    "b": null,
+    "nonce": "ffffffffffffffffffffffffffffffff",
+    "expected": "a0ffffffffffffffffffffffffffffffffV"
+  },
+  {
+    "a": null,
+    "b": null,
+    "nonce": "nonce-with-hyphens",
+    "expected": "a0noncewithhyphensV"
+  },
+  {
+    "a": null,
+    "b": "a0",
+    "nonce": "00000000000000000000000000000001",
+    "expected": "Zz00000000000000000000000000000001V"
+  },
+  {
+    "a": null,
+    "b": "a0",
+    "nonce": "ffffffffffffffffffffffffffffffff",
+    "expected": "ZzffffffffffffffffffffffffffffffffV"
+  },
+  {
+    "a": null,
+    "b": "a0",
+    "nonce": "nonce-with-hyphens",
+    "expected": "ZznoncewithhyphensV"
+  },
+  {
+    "a": "a0",
+    "b": null,
+    "nonce": "00000000000000000000000000000001",
+    "expected": "a100000000000000000000000000000001V"
+  },
+  {
+    "a": "a0",
+    "b": null,
+    "nonce": "ffffffffffffffffffffffffffffffff",
+    "expected": "a1ffffffffffffffffffffffffffffffffV"
+  },
+  {
+    "a": "a0",
+    "b": null,
+    "nonce": "nonce-with-hyphens",
+    "expected": "a1noncewithhyphensV"
+  },
+  {
+    "a": "a0",
+    "b": "a1",
+    "nonce": "00000000000000000000000000000001",
+    "expected": "a0V00000000000000000000000000000001V"
+  },
+  {
+    "a": "a0",
+    "b": "a1",
+    "nonce": "ffffffffffffffffffffffffffffffff",
+    "expected": "a0VffffffffffffffffffffffffffffffffV"
+  },
+  {
+    "a": "a0",
+    "b": "a1",
+    "nonce": "nonce-with-hyphens",
+    "expected": "a0VnoncewithhyphensV"
+  },
+  {
+    "a": "a0",
+    "b": "a0V",
+    "nonce": "00000000000000000000000000000001",
+    "expected": "a0G00000000000000000000000000000001V"
+  },
+  {
+    "a": "a0",
+    "b": "a0V",
+    "nonce": "ffffffffffffffffffffffffffffffff",
+    "expected": "a0GffffffffffffffffffffffffffffffffV"
+  },
+  {
+    "a": "a0",
+    "b": "a0V",
+    "nonce": "nonce-with-hyphens",
+    "expected": "a0GnoncewithhyphensV"
+  },
+  {
+    "a": "a0",
+    "b": "a000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000V",
+    "nonce": "00000000000000000000000000000001",
+    "expected": "a000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000G00000000000000000000000000000001V"
+  },
+  {
+    "a": "a0",
+    "b": "a000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000V",
+    "nonce": "ffffffffffffffffffffffffffffffff",
+    "expected": "a000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000GffffffffffffffffffffffffffffffffV"
+  },
+  {
+    "a": "a0",
+    "b": "a000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000V",
+    "nonce": "nonce-with-hyphens",
+    "expected": "a000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000GnoncewithhyphensV"
+  },
+  {
+    "a": null,
+    "b": "A00000000000000000000000000V",
+    "nonce": "00000000000000000000000000000001",
+    "expected": "A00000000000000000000000000G00000000000000000000000000000001V"
+  },
+  {
+    "a": null,
+    "b": "A00000000000000000000000000V",
+    "nonce": "ffffffffffffffffffffffffffffffff",
+    "expected": "A00000000000000000000000000GffffffffffffffffffffffffffffffffV"
+  },
+  {
+    "a": null,
+    "b": "A00000000000000000000000000V",
+    "nonce": "nonce-with-hyphens",
+    "expected": "A00000000000000000000000000GnoncewithhyphensV"
+  },
+  {
+    "a": "zzzzzzzzzzzzzzzzzzzzzzzzzzz",
+    "b": null,
+    "nonce": "00000000000000000000000000000001",
+    "expected": "zzzzzzzzzzzzzzzzzzzzzzzzzzzV00000000000000000000000000000001V"
+  },
+  {
+    "a": "zzzzzzzzzzzzzzzzzzzzzzzzzzz",
+    "b": null,
+    "nonce": "ffffffffffffffffffffffffffffffff",
+    "expected": "zzzzzzzzzzzzzzzzzzzzzzzzzzzVffffffffffffffffffffffffffffffffV"
+  },
+  {
+    "a": "zzzzzzzzzzzzzzzzzzzzzzzzzzz",
+    "b": null,
+    "nonce": "nonce-with-hyphens",
+    "expected": "zzzzzzzzzzzzzzzzzzzzzzzzzzzVnoncewithhyphensV"
+  }
+]
