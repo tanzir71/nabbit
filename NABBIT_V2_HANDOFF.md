@@ -783,7 +783,7 @@ Commit after every task (§0.1). Lines marked **MILESTONE** are tasks of their o
 - [x] V4.2 Fake Tack server for tests (§8.8), then the Tack client: status/login/recovery-confirm/workspace-switch/logout, Credential Manager session, error → `SyncState`.
 - [x] V4.3 Sync loop (§8.4): mirror/outbox/cursor, batching, paging, conflicts; fractional rank port with tests.
 - [x] V4.4 Connect flow (`19:5`, `19:102`) and settings section, tested end to end against the fake Tack.
-- [ ] **MILESTONE M8 — Tack sync.**
+- [x] **MILESTONE M8 — Tack sync.**
 - [ ] V4.5 Editor (`19:182`), conflict sheet (`19:301`), sync state UI (`19:346`).
 - [ ] V4.6 Quick capture (island Notes tab, Ctrl+Alt+N) with ported Tack parsing.
 - [ ] V4.7 Sticky windows (`14:531`) with persistence per card per monitor.

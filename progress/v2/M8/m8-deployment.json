@@ -1,0 +1,86 @@
+{
+  "checkedAtUtc": "2026-11-27T08:17:23.732807+00:00",
+  "milestone": "M8",
+  "milestoneCommit": "f6272acbb513010cf78e8eadb7526321ebc152e3",
+  "applicationCommit": "c6d30bfa3c18779004fd93a1364850c4567e6904",
+  "pages": {
+    "url": "https://api.github.com/repos/tanzir71/nabbit/pages",
+    "status": "built",
+    "cname": null,
+    "custom_404": false,
+    "html_url": "https://tanzir71.github.io/nabbit/",
+    "build_type": "legacy",
+    "source": {
+      "branch": "main",
+      "path": "/docs"
+    },
+    "public": true,
+    "protected_domain_state": null,
+    "pending_domain_unverified_at": null,
+    "https_enforced": true
+  },
+  "latestBuild": {
+    "url": "https://api.github.com/repos/tanzir71/nabbit/pages/builds/1408032216",
+    "status": "built",
+    "error": {
+      "message": null
+    },
+    "pusher": {
+      "login": "tanzir71",
+      "id": 13024434,
+      "node_id": "MDQ6VXNlcjEzMDI0NDM0",
+      "avatar_url": "https://avatars.githubusercontent.com/u/13024434?v=4",
+      "gravatar_id": "",
+      "url": "https://api.github.com/users/tanzir71",
+      "html_url": "https://github.com/tanzir71",
+      "followers_url": "https://api.github.com/users/tanzir71/followers",
+      "following_url": "https://api.github.com/users/tanzir71/following{/other_user}",
+      "gists_url": "https://api.github.com/users/tanzir71/gists{/gist_id}",
+      "starred_url": "https://api.github.com/users/tanzir71/starred{/owner}{/repo}",
+      "subscriptions_url": "https://api.github.com/users/tanzir71/subscriptions",
+      "organizations_url": "https://api.github.com/users/tanzir71/orgs",
+      "repos_url": "https://api.github.com/users/tanzir71/repos",
+      "events_url": "https://api.github.com/users/tanzir71/events{/privacy}",
+      "received_events_url": "https://api.github.com/users/tanzir71/received_events",
+      "type": "User",
+      "user_view_type": "public",
+      "site_admin": false
+    },
+    "commit": "f6272acbb513010cf78e8eadb7526321ebc152e3",
+    "duration": 26375,
+    "created_at": "2026-11-27T08:16:07Z",
+    "updated_at": "2026-11-27T08:16:33Z"
+  },
+  "deployment": {
+    "id": 45964359173,
+    "head_sha": "f6272acbb513010cf78e8eadb7526321ebc152e3",
+    "path": "dynamic/pages/pages-build-deployment",
+    "event": "dynamic",
+    "status": "completed",
+    "conclusion": "success",
+    "html_url": "https://github.com/tanzir71/nabbit/actions/runs/45964359173"
+  },
+  "repositoryWorkflowIds": [
+    29048534241,
+    29225324035
+  ],
+  "liveSourceAndPublicPngEvidence": "m8-live-check.json",
+  "publishedSourceAssets": 106,
+  "publishedPngs": 274,
+  "publishedTransferBytesExcludingFonts": 457603,
+  "localTransferBytesExcludingFonts": 457604,
+  "transferDifference": "Published Git text uses LF; only text comparisons normalize CRLF to LF. Raster/image bytes are exact.",
+  "milestoneGitSourcePinsVerified": 619,
+  "milestoneGitPngPinsVerified": 274,
+  "onlyBuiltInPagesRunsCreated": true,
+  "singleRebuildRequested": false,
+  "limits": [
+    "Only v44-verified captures explicitly establish the complete extra asset/font/axe audit. Earlier v44 captures are historical geometry/repeat/font evidence.",
+    "V4.1 native captures establish its local Notes cases at its original commit. V4.4 browser-to-Rust uses a forwarding seam, not native Tauri IPC or OS clipboard writes.",
+    "V4.3 historical comparison has 26 exact captures and six with at most 25 RGB pixels differing by 1/255; each current repeated capture is exact.",
+    "No hosted Tack or user account; optional complete local Tack suite was not run. Existing V0/V2.7 native performance/frame/focus limits remain.",
+    "No new native app/performance run is claimed by this metadata-only milestone.",
+    "No real browser profile, global keypress, installer/signing or OS display setting change.",
+    "V4.5 editor/conflict UI and V4.8 full Notes acceptance remain unchecked; pre-release CTAs and existing landing visuals are retained."
+  ]
+}

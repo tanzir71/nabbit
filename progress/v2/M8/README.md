@@ -142,3 +142,10 @@ Publication uses a fast-forward direct-main push with a skip-ci milestone head. 
 Final prepublication `m8-final-audit.json` verifies every readiness source/PNG pin against the Git index. Staged milestone and evidence/archive secret scans both passed with zero findings; their canonical logs are retained alongside the history scan. No app/runtime/helper/workflow file changed.
 
 The final index audit caught five text files omitted from the receipt normalizer (three Python helpers, `.gitkeep` and `.gitattributes`). `m8-provenance-correction.json` records every before/after hash and `m8-readiness-initial.original.json.gz` retains the original receipt. Corrected LF pins passed the full audit of **619 source and 274 PNG index blobs**. No runtime input changed; the unpublished milestone commit was corrected before any push.
+
+
+## Verified M8 publication
+
+Milestone `f6272acbb513010cf78e8eadb7526321ebc152e3` was fast-forward pushed directly to main with `[skip ci]`. GitHub built-in Pages run [45964359173](https://github.com/tanzir71/nabbit/actions/runs/45964359173) succeeded. `m8-live-check.json` proves all **106** published source bodies, M8 Done/M9 In progress and the screenshot link, the nested custom 404 and all **274 public PNG bodies** match the milestone commit. Published transfer is **457,603/500,000 bytes excluding fonts**, versus 457,604 locally. Git text comparisons explicitly normalize CRLF to LF; all image bytes match exactly. Single stale rebuild requested: **False**.
+
+`m8-deployment.json` retains Pages configuration/build plus a second verification of **619 source and 274 PNG pins** against the published commit. Repository workflow IDs remain **29048534241, 29225324035**; every new run is built-in dynamic Pages. M8 is checked only after this live proof, in an append-only skip-ci bookkeeping commit. Published history is not amended. **V4.5** is the next pass; all functional, native/performance and optional-suite limits above remain.
