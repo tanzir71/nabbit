@@ -32,7 +32,7 @@ export const scenarios = [
     viewport: { width: 460, height: 680 },
     font: "h1",
     async ready(page) {
-      await page.getByPlaceholder("Search clipboard").waitFor();
+      await page.getByRole("textbox", { name: "Search clipboard", exact: true }).waitFor();
       await page.getByText("Keep useful things close.", { exact: true }).waitFor();
       assert(await page.getByText("5m", { exact: true }).isVisible());
     },

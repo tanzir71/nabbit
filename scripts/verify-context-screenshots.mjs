@@ -47,7 +47,7 @@ const cases = modes
           : null,
     fixture: () => contextFixture(mode),
     async ready(page) {
-      await page.getByPlaceholder("Search clipboard").waitFor();
+      await page.getByRole("textbox", { name: "Search clipboard", exact: true }).waitFor();
       if (["text-menu", "case", "lines", "encoding"].includes(mode))
         await page.getByRole("button", { name: "Text tools", exact: true }).click();
       if (["case", "lines", "encoding"].includes(mode))

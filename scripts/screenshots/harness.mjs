@@ -307,6 +307,15 @@ export async function captureSuite(root, options, cases = scenarios) {
               await captureSession.send("Emulation.setDefaultBackgroundColorOverride", {
                 color: { r: 0, g: 0, b: 0, a: 0 },
               });
+            if (captureSession && screenshotOptions.caret === "hide") {
+              // Page.captureScreenshot does not apply Playwright's caret option.
+              // Honor the declared still-capture policy without changing focus.
+              await page.addStyleTag({ content: "* { caret-color: transparent !important; }" });
+              await page.evaluate(async () => {
+                await new Promise(globalThis.requestAnimationFrame);
+                await new Promise(globalThis.requestAnimationFrame);
+              });
+            }
             const takeScreenshot = async () =>
               captureSession
                 ? Buffer.from(

@@ -1,5 +1,7 @@
 import { SettingsContext } from "../features/settings/context";
 import { useEffect, useRef, useState } from "react";
+import { invoke, isTauri } from "@tauri-apps/api/core";
+import { listen } from "@tauri-apps/api/event";
 import { IconButton } from "../components/IconButton";
 import { DownloadIcon } from "../features/downloads/DownloadIcon";
 import { useAppStore } from "../store/useAppStore";
@@ -35,6 +37,34 @@ export function SettingsPanel({ onClose }: { onClose: () => void }) {
   const settings = useAppStore((s) => s.settings);
   const save = useAppStore((s) => s.patchSettings);
   const [page, setPage] = useState<Page>("general");
+  useEffect(() => {
+    if (!isTauri()) return;
+    let active = true;
+    let stop: (() => void) | undefined;
+    let pending = Promise.resolve();
+    const consume = () => {
+      pending = pending
+        .then(async () => {
+          const page = await invoke<string | null>("settings_take_page");
+          if (active && (page === "island" || page === "widgets")) setPage(page);
+        })
+        .catch(() => {});
+    };
+    void listen("settings:navigate", consume)
+      .then((unlisten) => {
+        if (!active) {
+          unlisten();
+          return;
+        }
+        stop = unlisten;
+        consume();
+      })
+      .catch(() => {});
+    return () => {
+      active = false;
+      stop?.();
+    };
+  }, []);
   const [busy, setBusy] = useState(false),
     [error, setError] = useState("");
   const pending = useRef(false),

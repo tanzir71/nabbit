@@ -1,0 +1,16 @@
+node:internal/modules/run_main:107
+    triggerUncaughtException(
+    ^
+
+AssertionError [ERR_ASSERTION]: Timed out: owned tray drop-to-pin move
+    at wait (file:///D:/claude-upgrade-26/nabbit/scripts/capture-native-tray.mjs:86:5)
+    at async file:///D:/claude-upgrade-26/nabbit/scripts/capture-native-tray.mjs:571:17 {
+  generatedMessage: false,
+  code: 'ERR_ASSERTION',
+  actual: false,
+  expected: true,
+  operator: '==',
+  diff: 'simple'
+}
+
+Node.js v24.22.2

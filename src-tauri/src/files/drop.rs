@@ -278,6 +278,15 @@ pub fn install(window: &tauri::WebviewWindow) {
             });
             let target = label.clone();
             let callback: Arc<Listener> = Arc::new(move |event| {
+                if target == "main" {
+                    if app
+                        .get_webview_window("main")
+                        .is_some_and(|window| window.is_visible().unwrap_or(false))
+                    {
+                        let _ = app.emit_to("main", "nabbit://native-drop", event);
+                    }
+                    return;
+                }
                 if let Some(manager) = app.try_state::<Arc<crate::island::Manager>>() {
                     if manager.file_surface_active(&target) {
                         let _ = app.emit_to(target.as_str(), "nabbit://native-drop", event);

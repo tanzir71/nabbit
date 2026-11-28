@@ -4,6 +4,7 @@
   "description": "Main Nabbit window permissions.",
   "windows": ["main"],
   "permissions": [
+    "drag:allow-start-drag",
     "core:default",
     "core:window:allow-start-dragging",
     "core:window:allow-show",

@@ -1,0 +1,30 @@
+file:///D:/claude-upgrade-26/nabbit/scripts/screenshots/harness.mjs:417
+            throw new Error(`${scenario.name} (${theme}@${scale}x): ${error.message}`, {
+                  ^
+
+Error: tray-files-search (light@1.5x): Unstable capture: tray-files-search/light/1.5
++ actual - expected
+
++ 'c26670b91f34528fc1ba961e54ae43f051f63a1457369abdc14c0d7fa2aa1637'
+- 'c79c5fcafbd2558d2f06af50750adf04d0c0face31e5fdb0cc5bf9b644eca054'
+
+    at captureSuite (file:///D:/claude-upgrade-26/nabbit/scripts/screenshots/harness.mjs:417:19)
+    at async file:///D:/claude-upgrade-26/nabbit/scripts/capture-tray.mjs:213:3 {
+  [cause]: AssertionError [ERR_ASSERTION]: Unstable capture: tray-files-search/light/1.5
+  + actual - expected
+
+  + 'c26670b91f34528fc1ba961e54ae43f051f63a1457369abdc14c0d7fa2aa1637'
+  - 'c79c5fcafbd2558d2f06af50750adf04d0c0face31e5fdb0cc5bf9b644eca054'
+
+      at captureSuite (file:///D:/claude-upgrade-26/nabbit/scripts/screenshots/harness.mjs:386:22)
+      at async file:///D:/claude-upgrade-26/nabbit/scripts/capture-tray.mjs:213:3 {
+    generatedMessage: false,
+    code: 'ERR_ASSERTION',
+    actual: 'c26670b91f34528fc1ba961e54ae43f051f63a1457369abdc14c0d7fa2aa1637',
+    expected: 'c79c5fcafbd2558d2f06af50750adf04d0c0face31e5fdb0cc5bf9b644eca054',
+    operator: 'strictEqual',
+    diff: 'simple'
+  }
+}
+
+Node.js v24.22.2

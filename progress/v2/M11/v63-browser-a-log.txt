@@ -1,0 +1,17 @@
+node:internal/modules/run_main:107
+    triggerUncaughtException(
+    ^
+
+AssertionError [ERR_ASSERTION]: Unknown screenshot suite
+    at outputOptions (file:///D:/claude-upgrade-26/nabbit/scripts/screenshots/policy.mjs:27:3)
+    at captureSuite (file:///D:/claude-upgrade-26/nabbit/scripts/screenshots/harness.mjs:19:18)
+    at file:///D:/claude-upgrade-26/nabbit/scripts/capture-tray.mjs:157:9 {
+  generatedMessage: false,
+  code: 'ERR_ASSERTION',
+  actual: false,
+  expected: true,
+  operator: '==',
+  diff: 'simple'
+}
+
+Node.js v24.22.2

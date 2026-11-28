@@ -12,9 +12,11 @@ import type { Modifiers } from "./api";
 export function FilesPanel({
   model,
   dispatch,
+  query = "",
 }: {
   model: IslandModel;
   dispatch: (action: IslandAction) => void;
+  query?: string;
 }) {
   const move = useMemo(() => {
     try {
@@ -66,7 +68,7 @@ export function FilesPanel({
     );
   return (
     <>
-      <IslandShelf model={model} dispatch={dispatch} pins={<Pins />} />
+      <IslandShelf model={model} dispatch={dispatch} query={query} pins={<Pins query={query} />} />
       <ToolQueue />
       <FileHistory />
     </>

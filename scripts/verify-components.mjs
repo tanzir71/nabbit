@@ -288,7 +288,7 @@ try {
       const navigation = app.getByRole("group", { name: "Navigation", exact: true });
       await navigation.getByRole("button", { name: "Download", exact: true }).focus();
       await app.keyboard.press("ArrowRight");
-      await app.getByPlaceholder("Search clipboard").waitFor();
+      await app.getByRole("textbox", { name: "Search clipboard", exact: true }).waitFor();
       assert.equal(
         await navigation
           .getByRole("button", { name: "Clipboard", exact: true })

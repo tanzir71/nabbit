@@ -17,6 +17,7 @@ const settings = {
   autoDetectLinks: true,
   showDetectNotification: true,
   pauseAutoDetect: false,
+  pauseClipboardCapture: false,
   launchAtLogin: false,
   startHidden: true,
   showDockIcon: false,

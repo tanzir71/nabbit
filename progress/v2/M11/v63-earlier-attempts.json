@@ -1,0 +1,16 @@
+{
+  "browserA": "Harness rejected an unknown suite before capture.",
+  "browserB": "Default axe found Copy/Nab accessible-name mismatches; fixed through native child text and a visible-label-compatible Nab label.",
+  "browserC": "Combined text still differed from the custom label; Copy now derives its accessible name from rendered text.",
+  "browserD": "A named generic div needed a group role; row action boxes obscured key-hint contrast analysis.",
+  "browserE": "Hidden summaries alone left their parent boxes visible; hiding the parent until hover/focus resolved the overlap.",
+  "browserF": "Four clipboard views passed.",
+  "browserGHIJ": "Historical complete browser suites retained; Files search and focus styling were subsequently completed.",
+  "browserK": "Asset-audited run found a 52-pixel blinking-caret difference at (166,172)-(168,198). Both frames and DOM diagnostics are retained. CDP ignored Playwright caret=hide; the shared capture harness now honors that declared still-capture policy without changing focus or masking elements.",
+  "nativeA": "Owned fixture supplied unsupported pinned in NoteDraft. The strict schema rejected it before captures; corrected the fixture.",
+  "nativeB": "Shelf commands required an active island and rejected the real tray. Fixed authorization for main, preserved active-island restrictions, and enabled scoped drag permissions and normal-window drag handling.",
+  "nativeC": "The fixture kept using DPR2 coordinates after the capture CDP session detached and restored DPR1. Shelf fallback passed but the folder drop missed and created no journal entry. Retained eight captures and failure report; corrected the fixture to use live DPR and verify the actual DOM zone.",
+  "nativeD": "Additional scale assertion confirmed live DPR1, before either drop. Retained eight captures, failure DOM and empty history. The final run records both actual event/zone hits.",
+  "trayContextTheme": "Native visual review caught shared island lime/dark styling in the tray adaptive link card. Scoped tray aliases and ink primary styling now follow light/dark tokens; keyboard browser variant checks this with default axe.",
+  "capturePolicy": "Exact first/repeat comparisons, no element masks, fuzzy thresholds or retry-until-matching."
+}

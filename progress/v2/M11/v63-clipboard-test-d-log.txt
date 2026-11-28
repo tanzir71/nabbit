@@ -1,0 +1,615 @@
+RUN  v3.2.7 D:/claude-upgrade-26/nabbit
+
+ ❯ src/views/ClipboardList.test.tsx (5 tests | 1 failed) 2332ms
+   ✓ ClipboardList acceptance behavior > filters instantly, copies by click, and supports keyboard copy/delete/focus shortcuts  701ms
+   ✓ ClipboardList acceptance behavior > hands video URL rows to the download tab without copying the row 62ms
+   ✓ ClipboardList acceptance behavior > filters every payload type and pinned items without mutating history  338ms
+   ✓ ClipboardList acceptance behavior > preserves keyboard focus and blocks duplicate capture-pause saves 141ms
+   × ClipboardList acceptance behavior > shows a failed copy and lets the user retry 1090ms
+     → Found multiple elements with the role "alert"
+
+Here are the matching elements:
+
+Ignored nodes: comments, script, style
+[36m<p[39m
+  [33mclass[39m=[32m"clipboard-context-message"[39m
+  [33mrole[39m=[32m"alert"[39m
+[36m>[39m
+  [0mLive clipboard context is unavailable.[0m
+  [0m [0m
+  [36m<button[39m
+    [33mtype[39m=[32m"button"[39m
+  [36m>[39m
+    [0mRetry[0m
+  [36m</button>[39m
+[36m</p>[39m
+
+Ignored nodes: comments, script, style
+[36m<p[39m
+  [33mclass[39m=[32m"tray-clipboard-action-error"[39m
+  [33mrole[39m=[32m"alert"[39m
+[36m>[39m
+  [0mError: Owned clipboard busy[0m
+[36m</p>[39m
+
+(If this is intentional, then use the `*AllBy*` variant of the query (like `queryAllByText`, `getAllByText`, or `findAllByText`)).
+
+Ignored nodes: comments, script, style
+[36m<body>[39m
+  [36m<div>[39m
+    [36m<section[39m
+      [33maria-label[39m=[32m"Clipboard history"[39m
+      [33mclass[39m=[32m"tray-clipboard"[39m
+    [36m>[39m
+      [36m<div[39m
+        [33mclass[39m=[32m"tray-clipboard-body"[39m
+      [36m>[39m
+        [36m<label[39m
+          [33mclass[39m=[32m"tray-clipboard-search"[39m
+        [36m>[39m
+          [36m<span[39m
+            [33maria-hidden[39m=[32m"true"[39m
+            [33mclass[39m=[32m"n-asset"[39m
+            [33mstyle[39m=[32m"width: 16px; height: 16px; --asset: url(\"data:image/svg+xml,%3csvg%20preserveAspectRatio='none'%20overflow='visible'%20style='display:%20block;'%20width='16'%20height='16'%20viewBox='0%200%2016%2016'%20fill='none'%20xmlns='http://www.w3.org/2000/svg'%3e%3cg%20id='icon/search'%3e%3cpath%20id='Vector'%20d='M12.6667%207.33333C12.6667%2010.2789%2010.2789%2012.6667%207.33333%2012.6667C4.38781%2012.6667%202%2010.2789%202%207.33333C2%204.38781%204.38781%202%207.33333%202C10.2789%202%2012.6667%204.38781%2012.6667%207.33333Z'%20stroke-width='1.16667'%20stroke-linecap='round'%20stroke-linejoin='round'%20stroke='%236B6B72'/%3e%3cpath%20id='Vector_2'%20d='M14%2014L11.1333%2011.1333'%20stroke-width='1.16667'%20stroke-linecap='round'%20stroke-linejoin='round'%20stroke='%236B6B72'/%3e%3c/g%3e%3c/svg%3e\");"[39m
+          [36m>[39m
+            [36m<img[39m
+              [33malt[39m=[32m""[39m
+              [33mdata-asset[39m=[32m"tray/455ef.svg"[39m
+              [33mdraggable[39m=[32m"false"[39m
+              [33mheight[39m=[32m"16"[39m
+              [33msrc[39m=[32m"data:image/svg+xml,%3csvg%20preserveAspectRatio='none'%20overflow='visible'%20style='display:%20block;'%20width='16'%20height='16'%20viewBox='0%200%2016%2016'%20fill='none'%20xmlns='http://www.w3.org/2000/svg'%3e%3cg%20id='icon/search'%3e%3cpath%20id='Vector'%20d='M12.6667%207.33333C12.6667%2010.2789%2010.2789%2012.6667%207.33333%2012.6667C4.38781%2012.6667%202%2010.2789%202%207.33333C2%204.38781%204.38781%202%207.33333%202C10.2789%202%2012.6667%204.38781%2012.6667%207.33333Z'%20stroke-width='1.16667'%20stroke-linecap='round'%20stroke-linejoin='round'%20stroke='%236B6B72'/%3e%3cpath%20id='Vector_2'%20d='M14%2014L11.1333%2011.1333'%20stroke-width='1.16667'%20stroke-linecap='round'%20stroke-linejoin='round'%20stroke='%236B6B72'/%3e%3c/g%3e%3c/svg%3e"[39m
+              [33mwidth[39m=[32m"16"[39m
+            [36m/>[39m
+          [36m</span>[39m
+          [36m<input[39m
+            [33maria-label[39m=[32m"Search clipboard"[39m
+            [33mplaceholder[39m=[32m"Search 3 items"[39m
+            [33mvalue[39m=[32m""[39m
+          [36m/>[39m
+          [36m<kbd[39m
+            [33mclass[39m=[32m"n-kbd"[39m
+          [36m>[39m
+            [0mCtrl F[0m
+          [36m</kbd>[39m
+        [36m</label>[39m
+        [36m<div[39m
+          [33maria-label[39m=[32m"Clipboard filter"[39m
+          [33mclass[39m=[32m"tray-clipboard-filters"[39m
+          [33mrole[39m=[32m"group"[39m
+        [36m>[39m
+          [36m<button[39m
+            [33maria-pressed[39m=[32m"true"[39m
+            [33mclass[39m=[32m"n-preset n-preset--light is-selected"[39m
+            [33mtype[39m=[32m"button"[39m
+          [36m>[39m
+            [36m<span>[39m
+              [0mAll[0m
+            [36m</span>[39m
+          [36m</button>[39m
+          [36m<button[39m
+            [33maria-pressed[39m=[32m"false"[39m
+            [33mclass[39m=[32m"n-preset n-preset--light"[39m
+            [33mtype[39m=[32m"button"[39m
+          [36m>[39m
+            [36m<span>[39m
+              [0mText[0m
+            [36m</span>[39m
+          [36m</button>[39m
+          [36m<button[39m
+            [33maria-pressed[39m=[32m"false"[39m
+            [33mclass[39m=[32m"n-preset n-preset--light"[39m
+            [33mtype[39m=[32m"button"[39m
+          [36m>[39m
+            [36m<span>[39m
+              [0mLinks[0m
+            [36m</span>[39m
+          [36m</button>[39m
+          [36m<button[39m
+            [33maria-pressed[39m=[32m"false"[39m
+            [33mclass[39m=[32m"n-preset n-preset--light"[39m
+            [33mtype[39m=[32m"button"[39m
+          [36m>[39m
+            [36m<span>[39m
+              [0mImages[0m
+            [36m</span>[39m
+          [36m</button>[39m
+          [36m<button[39m
+            [33maria-pressed[39m=[32m"false"[39m
+            [33mclass[39m=[32m"n-preset n-preset--light"[39m
+            [33mtype[39m=[32m"button"[39m
+          [36m>[39m
+            [36m<span>[39m
+              [0mFiles[0m
+            [36m</span>[39m
+          [36m</button>[39m
+          [36m<button[39m
+            [33maria-pressed[39m=[32m"false"[39m
+            [33mclass[39m=[32m"n-preset n-preset--light"[39m
+            [33mtype[39m=[32m"button"[39m
+          [36m>[39m
+            [36m<span>[39m
+              [0mPinned[0m
+            [36m</span>[39m
+          [36m</button>[39m
+        [36m</div>[39m
+        [36m<div[39m
+          [33maria-label[39m=[32m"Clipboard items"[39m
+          [33mclass[39m=[32m"tray-clipboard-rows"[39m
+        [36m>[39m
+          [36m<p[39m
+            [33mclass[39m=[32m"clipboard-context-message"[39m
+            [33mrole[39m=[32m"alert"[39m
+          [36m>[39m
+            [0mLive clipboard context is unavailable.[0m
+            [0m [0m
+            [36m<button[39m
+              [33mtype[39m=[32m"button"[39m
+            [36m>[39m
+              [0mRetry[0m
+            [36m</button>[39m
+          [36m</p>[39m
+          [36m<article[39m
+            [33mclass[39m=[32m"tray-clipboard-row is-selected"[39m
+            [33mdata-tray-clipboard-id[39m=[32m"alpha"[39m
+          [36m>[39m
+            [36m<button[39m
+              [33maria-disabled[39m=[32m"false"[39m
+              [33maria-label[39m=[32m"Copy quarterly planning notes"[39m
+              [33mclass[39m=[32m"tray-clipboard-copy"[39m
+              [33mdata-copy-entry[39m=[32m"true"[39m
+              [33mtype[39m=[32m"button"[39m
+            [36m>[39m
+              [36m<span[39m
+                [33mclass[39m=[32m"tray-clipboard-type"[39m
+              [36m>[39m
+                [36m<span[39m
+                  [33maria-hidden[39m=[32m"true"[39m
+                  [33mclass[39m=[32m"n-asset"[39m
+                  [33mstyle[39m=[32m"width: 15px; height: 15px; --asset: url(\"data:image/svg+xml,%3csvg%20preserveAspectRatio='none'%20overflow='visible'%20style='display:%20block;'%20width='15'%20height='15'%20viewBox='0%200%2015%2015'%20fill='none'%20xmlns='http://www.w3.org/2000/svg'%3e%3cg%20id='icon/type'%3e%3cpath%20id='Vector'%20d='M2.5%204.375V2.5H12.5V4.375'%20stroke-width='1.09375'%20stroke-linecap='round'%20stroke-linejoin='round'%20stroke='%23A0A0A6'/%3e%3cpath%20id='Vector_2'%20d='...
+
+Ignored nodes: comments, script, style
+[36m<body>[39m
+  [36m<div>[39m
+    [36m<section[39m
+      [33maria-label[39m=[32m"Clipboard history"[39m
+      [33mclass[39m=[32m"tray-clipboard"[39m
+    [36m>[39m
+      [36m<div[39m
+        [33mclass[39m=[32m"tray-clipboard-body"[39m
+      [36m>[39m
+        [36m<label[39m
+          [33mclass[39m=[32m"tray-clipboard-search"[39m
+        [36m>[39m
+          [36m<span[39m
+            [33maria-hidden[39m=[32m"true"[39m
+            [33mclass[39m=[32m"n-asset"[39m
+            [33mstyle[39m=[32m"width: 16px; height: 16px; --asset: url(\"data:image/svg+xml,%3csvg%20preserveAspectRatio='none'%20overflow='visible'%20style='display:%20block;'%20width='16'%20height='16'%20viewBox='0%200%2016%2016'%20fill='none'%20xmlns='http://www.w3.org/2000/svg'%3e%3cg%20id='icon/search'%3e%3cpath%20id='Vector'%20d='M12.6667%207.33333C12.6667%2010.2789%2010.2789%2012.6667%207.33333%2012.6667C4.38781%2012.6667%202%2010.2789%202%207.33333C2%204.38781%204.38781%202%207.33333%202C10.2789%202%2012.6667%204.38781%2012.6667%207.33333Z'%20stroke-width='1.16667'%20stroke-linecap='round'%20stroke-linejoin='round'%20stroke='%236B6B72'/%3e%3cpath%20id='Vector_2'%20d='M14%2014L11.1333%2011.1333'%20stroke-width='1.16667'%20stroke-linecap='round'%20stroke-linejoin='round'%20stroke='%236B6B72'/%3e%3c/g%3e%3c/svg%3e\");"[39m
+          [36m>[39m
+            [36m<img[39m
+              [33malt[39m=[32m""[39m
+              [33mdata-asset[39m=[32m"tray/455ef.svg"[39m
+              [33mdraggable[39m=[32m"false"[39m
+              [33mheight[39m=[32m"16"[39m
+              [33msrc[39m=[32m"data:image/svg+xml,%3csvg%20preserveAspectRatio='none'%20overflow='visible'%20style='display:%20block;'%20width='16'%20height='16'%20viewBox='0%200%2016%2016'%20fill='none'%20xmlns='http://www.w3.org/2000/svg'%3e%3cg%20id='icon/search'%3e%3cpath%20id='Vector'%20d='M12.6667%207.33333C12.6667%2010.2789%2010.2789%2012.6667%207.33333%2012.6667C4.38781%2012.6667%202%2010.2789%202%207.33333C2%204.38781%204.38781%202%207.33333%202C10.2789%202%2012.6667%204.38781%2012.6667%207.33333Z'%20stroke-width='1.16667'%20stroke-linecap='round'%20stroke-linejoin='round'%20stroke='%236B6B72'/%3e%3cpath%20id='Vector_2'%20d='M14%2014L11.1333%2011.1333'%20stroke-width='1.16667'%20stroke-linecap='round'%20stroke-linejoin='round'%20stroke='%236B6B72'/%3e%3c/g%3e%3c/svg%3e"[39m
+              [33mwidth[39m=[32m"16"[39m
+            [36m/>[39m
+          [36m</span>[39m
+          [36m<input[39m
+            [33maria-label[39m=[32m"Search clipboard"[39m
+            [33mplaceholder[39m=[32m"Search 3 items"[39m
+            [33mvalue[39m=[32m""[39m
+          [36m/>[39m
+          [36m<kbd[39m
+            [33mclass[39m=[32m"n-kbd"[39m
+          [36m>[39m
+            [0mCtrl F[0m
+          [36m</kbd>[39m
+        [36m</label>[39m
+        [36m<div[39m
+          [33maria-label[39m=[32m"Clipboard filter"[39m
+          [33mclass[39m=[32m"tray-clipboard-filters"[39m
+          [33mrole[39m=[32m"group"[39m
+        [36m>[39m
+          [36m<button[39m
+            [33maria-pressed[39m=[32m"true"[39m
+            [33mclass[39m=[32m"n-preset n-preset--light is-selected"[39m
+            [33mtype[39m=[32m"button"[39m
+          [36m>[39m
+            [36m<span>[39m
+              [0mAll[0m
+            [36m</span>[39m
+          [36m</button>[39m
+          [36m<button[39m
+            [33maria-pressed[39m=[32m"false"[39m
+            [33mclass[39m=[32m"n-preset n-preset--light"[39m
+            [33mtype[39m=[32m"button"[39m
+          [36m>[39m
+            [36m<span>[39m
+              [0mText[0m
+            [36m</span>[39m
+          [36m</button>[39m
+          [36m<button[39m
+            [33maria-pressed[39m=[32m"false"[39m
+            [33mclass[39m=[32m"n-preset n-preset--light"[39m
+            [33mtype[39m=[32m"button"[39m
+          [36m>[39m
+            [36m<span>[39m
+              [0mLinks[0m
+            [36m</span>[39m
+          [36m</button>[39m
+          [36m<button[39m
+            [33maria-pressed[39m=[32m"false"[39m
+            [33mclass[39m=[32m"n-preset n-preset--light"[39m
+            [33mtype[39m=[32m"button"[39m
+          [36m>[39m
+            [36m<span>[39m
+              [0mImages[0m
+            [36m</span>[39m
+          [36m</button>[39m
+          [36m<button[39m
+            [33maria-pressed[39m=[32m"false"[39m
+            [33mclass[39m=[32m"n-preset n-preset--light"[39m
+            [33mtype[39m=[32m"button"[39m
+          [36m>[39m
+            [36m<span>[39m
+              [0mFiles[0m
+            [36m</span>[39m
+          [36m</button>[39m
+          [36m<button[39m
+            [33maria-pressed[39m=[32m"false"[39m
+            [33mclass[39m=[32m"n-preset n-preset--light"[39m
+            [33mtype[39m=[32m"button"[39m
+          [36m>[39m
+            [36m<span>[39m
+              [0mPinned[0m
+            [36m</span>[39m
+          [36m</button>[39m
+        [36m</div>[39m
+        [36m<div[39m
+          [33maria-label[39m=[32m"Clipboard items"[39m
+          [33mclass[39m=[32m"tray-clipboard-rows"[39m
+        [36m>[39m
+          [36m<p[39m
+            [33mclass[39m=[32m"clipboard-context-message"[39m
+            [33mrole[39m=[32m"alert"[39m
+          [36m>[39m
+            [0mLive clipboard context is unavailable.[0m
+            [0m [0m
+            [36m<button[39m
+              [33mtype[39m=[32m"button"[39m
+            [36m>[39m
+              [0mRetry[0m
+            [36m</button>[39m
+          [36m</p>[39m
+          [36m<article[39m
+            [33mclass[39m=[32m"tray-clipboard-row is-selected"[39m
+            [33mdata-tray-clipboard-id[39m=[32m"alpha"[39m
+          [36m>[39m
+            [36m<button[39m
+              [33maria-disabled[39m=[32m"false"[39m
+              [33maria-label[39m=[32m"Copy quarterly planning notes"[39m
+              [33mclass[39m=[32m"tray-clipboard-copy"[39m
+              [33mdata-copy-entry[39m=[32m"true"[39m
+              [33mtype[39m=[32m"button"[39m
+            [36m>[39m
+              [36m<span[39m
+                [33mclass[39m=[32m"tray-clipboard-type"[39m
+              [36m>[39m
+                [36m<span[39m
+                  [33maria-hidden[39m=[32m"true"[39m
+                  [33mclass[39m=[32m"n-asset"[39m
+                  [33mstyle[39m=[32m"width: 15px; height: 15px; --asset: url(\"data:image/svg+xml,%3csvg%20preserveAspectRatio='none'%20overflow='visible'%20style='display:%20block;'%20width='15'%20height='15'%20viewBox='0%200%2015%2015'%20fill='none'%20xmlns='http://www.w3.org/2000/svg'%3e%3cg%20id='icon/type'%3e%3cpath%20id='Vector'%20d='M2.5%204.375V2.5H12.5V4.375'%20stroke-width='1.09375'%20stroke-linecap='round'%20stroke-linejoin='round'%20stroke='%23A0A0A6'/%3e%3cpath%20id='Vector_2'%20d='...
+
+⎯⎯⎯⎯⎯⎯⎯ Failed Tests 1 ⎯⎯⎯⎯⎯⎯⎯
+
+ FAIL  src/views/ClipboardList.test.tsx > ClipboardList acceptance behavior > shows a failed copy and lets the user retry
+TestingLibraryElementError: Found multiple elements with the role "alert"
+
+Here are the matching elements:
+
+Ignored nodes: comments, script, style
+<p
+  class="clipboard-context-message"
+  role="alert"
+>
+  Live clipboard context is unavailable.
+
+  <button
+    type="button"
+  >
+    Retry
+  </button>
+</p>
+
+Ignored nodes: comments, script, style
+<p
+  class="tray-clipboard-action-error"
+  role="alert"
+>
+  Error: Owned clipboard busy
+</p>
+
+(If this is intentional, then use the `*AllBy*` variant of the query (like `queryAllByText`, `getAllByText`, or `findAllByText`)).
+
+Ignored nodes: comments, script, style
+<body>
+  <div>
+    <section
+      aria-label="Clipboard history"
+      class="tray-clipboard"
+    >
+      <div
+        class="tray-clipboard-body"
+      >
+        <label
+          class="tray-clipboard-search"
+        >
+          <span
+            aria-hidden="true"
+            class="n-asset"
+            style="width: 16px; height: 16px; --asset: url(\"data:image/svg+xml,%3csvg%20preserveAspectRatio='none'%20overflow='visible'%20style='display:%20block;'%20width='16'%20height='16'%20viewBox='0%200%2016%2016'%20fill='none'%20xmlns='http://www.w3.org/2000/svg'%3e%3cg%20id='icon/search'%3e%3cpath%20id='Vector'%20d='M12.6667%207.33333C12.6667%2010.2789%2010.2789%2012.6667%207.33333%2012.6667C4.38781%2012.6667%202%2010.2789%202%207.33333C2%204.38781%204.38781%202%207.33333%202C10.2789%202%2012.6667%204.38781%2012.6667%207.33333Z'%20stroke-width='1.16667'%20stroke-linecap='round'%20stroke-linejoin='round'%20stroke='%236B6B72'/%3e%3cpath%20id='Vector_2'%20d='M14%2014L11.1333%2011.1333'%20stroke-width='1.16667'%20stroke-linecap='round'%20stroke-linejoin='round'%20stroke='%236B6B72'/%3e%3c/g%3e%3c/svg%3e\");"
+          >
+            <img
+              alt=""
+              data-asset="tray/455ef.svg"
+              draggable="false"
+              height="16"
+              src="data:image/svg+xml,%3csvg%20preserveAspectRatio='none'%20overflow='visible'%20style='display:%20block;'%20width='16'%20height='16'%20viewBox='0%200%2016%2016'%20fill='none'%20xmlns='http://www.w3.org/2000/svg'%3e%3cg%20id='icon/search'%3e%3cpath%20id='Vector'%20d='M12.6667%207.33333C12.6667%2010.2789%2010.2789%2012.6667%207.33333%2012.6667C4.38781%2012.6667%202%2010.2789%202%207.33333C2%204.38781%204.38781%202%207.33333%202C10.2789%202%2012.6667%204.38781%2012.6667%207.33333Z'%20stroke-width='1.16667'%20stroke-linecap='round'%20stroke-linejoin='round'%20stroke='%236B6B72'/%3e%3cpath%20id='Vector_2'%20d='M14%2014L11.1333%2011.1333'%20stroke-width='1.16667'%20stroke-linecap='round'%20stroke-linejoin='round'%20stroke='%236B6B72'/%3e%3c/g%3e%3c/svg%3e"
+              width="16"
+            />
+          </span>
+          <input
+            aria-label="Search clipboard"
+            placeholder="Search 3 items"
+            value=""
+          />
+          <kbd
+            class="n-kbd"
+          >
+            Ctrl F
+          </kbd>
+        </label>
+        <div
+          aria-label="Clipboard filter"
+          class="tray-clipboard-filters"
+          role="group"
+        >
+          <button
+            aria-pressed="true"
+            class="n-preset n-preset--light is-selected"
+            type="button"
+          >
+            <span>
+              All
+            </span>
+          </button>
+          <button
+            aria-pressed="false"
+            class="n-preset n-preset--light"
+            type="button"
+          >
+            <span>
+              Text
+            </span>
+          </button>
+          <button
+            aria-pressed="false"
+            class="n-preset n-preset--light"
+            type="button"
+          >
+            <span>
+              Links
+            </span>
+          </button>
+          <button
+            aria-pressed="false"
+            class="n-preset n-preset--light"
+            type="button"
+          >
+            <span>
+              Images
+            </span>
+          </button>
+          <button
+            aria-pressed="false"
+            class="n-preset n-preset--light"
+            type="button"
+          >
+            <span>
+              Files
+            </span>
+          </button>
+          <button
+            aria-pressed="false"
+            class="n-preset n-preset--light"
+            type="button"
+          >
+            <span>
+              Pinned
+            </span>
+          </button>
+        </div>
+        <div
+          aria-label="Clipboard items"
+          class="tray-clipboard-rows"
+        >
+          <p
+            class="clipboard-context-message"
+            role="alert"
+          >
+            Live clipboard context is unavailable.
+
+            <button
+              type="button"
+            >
+              Retry
+            </button>
+          </p>
+          <article
+            class="tray-clipboard-row is-selected"
+            data-tray-clipboard-id="alpha"
+          >
+            <button
+              aria-disabled="false"
+              aria-label="Copy quarterly planning notes"
+              class="tray-clipboard-copy"
+              data-copy-entry="true"
+              type="button"
+            >
+              <span
+                class="tray-clipboard-type"
+              >
+                <span
+                  aria-hidden="true"
+                  class="n-asset"
+                  style="width: 15px; height: 15px; --asset: url(\"data:image/svg+xml,%3csvg%20preserveAspectRatio='none'%20overflow='visible'%20style='display:%20block;'%20width='15'%20height='15'%20viewBox='0%200%2015%2015'%20fill='none'%20xmlns='http://www.w3.org/2000/svg'%3e%3cg%20id='icon/type'%3e%3cpath%20id='Vector'%20d='M2.5%204.375V2.5H12.5V4.375'%20stroke-width='1.09375'%20stroke-linecap='round'%20stroke-linejoin='round'%20stroke='%23A0A0A6'/%3e%3cpath%20id='Vector_2'%20d='...
+
+Ignored nodes: comments, script, style
+<body>
+  <div>
+    <section
+      aria-label="Clipboard history"
+      class="tray-clipboard"
+    >
+      <div
+        class="tray-clipboard-body"
+      >
+        <label
+          class="tray-clipboard-search"
+        >
+          <span
+            aria-hidden="true"
+            class="n-asset"
+            style="width: 16px; height: 16px; --asset: url(\"data:image/svg+xml,%3csvg%20preserveAspectRatio='none'%20overflow='visible'%20style='display:%20block;'%20width='16'%20height='16'%20viewBox='0%200%2016%2016'%20fill='none'%20xmlns='http://www.w3.org/2000/svg'%3e%3cg%20id='icon/search'%3e%3cpath%20id='Vector'%20d='M12.6667%207.33333C12.6667%2010.2789%2010.2789%2012.6667%207.33333%2012.6667C4.38781%2012.6667%202%2010.2789%202%207.33333C2%204.38781%204.38781%202%207.33333%202C10.2789%202%2012.6667%204.38781%2012.6667%207.33333Z'%20stroke-width='1.16667'%20stroke-linecap='round'%20stroke-linejoin='round'%20stroke='%236B6B72'/%3e%3cpath%20id='Vector_2'%20d='M14%2014L11.1333%2011.1333'%20stroke-width='1.16667'%20stroke-linecap='round'%20stroke-linejoin='round'%20stroke='%236B6B72'/%3e%3c/g%3e%3c/svg%3e\");"
+          >
+            <img
+              alt=""
+              data-asset="tray/455ef.svg"
+              draggable="false"
+              height="16"
+              src="data:image/svg+xml,%3csvg%20preserveAspectRatio='none'%20overflow='visible'%20style='display:%20block;'%20width='16'%20height='16'%20viewBox='0%200%2016%2016'%20fill='none'%20xmlns='http://www.w3.org/2000/svg'%3e%3cg%20id='icon/search'%3e%3cpath%20id='Vector'%20d='M12.6667%207.33333C12.6667%2010.2789%2010.2789%2012.6667%207.33333%2012.6667C4.38781%2012.6667%202%2010.2789%202%207.33333C2%204.38781%204.38781%202%207.33333%202C10.2789%202%2012.6667%204.38781%2012.6667%207.33333Z'%20stroke-width='1.16667'%20stroke-linecap='round'%20stroke-linejoin='round'%20stroke='%236B6B72'/%3e%3cpath%20id='Vector_2'%20d='M14%2014L11.1333%2011.1333'%20stroke-width='1.16667'%20stroke-linecap='round'%20stroke-linejoin='round'%20stroke='%236B6B72'/%3e%3c/g%3e%3c/svg%3e"
+              width="16"
+            />
+          </span>
+          <input
+            aria-label="Search clipboard"
+            placeholder="Search 3 items"
+            value=""
+          />
+          <kbd
+            class="n-kbd"
+          >
+            Ctrl F
+          </kbd>
+        </label>
+        <div
+          aria-label="Clipboard filter"
+          class="tray-clipboard-filters"
+          role="group"
+        >
+          <button
+            aria-pressed="true"
+            class="n-preset n-preset--light is-selected"
+            type="button"
+          >
+            <span>
+              All
+            </span>
+          </button>
+          <button
+            aria-pressed="false"
+            class="n-preset n-preset--light"
+            type="button"
+          >
+            <span>
+              Text
+            </span>
+          </button>
+          <button
+            aria-pressed="false"
+            class="n-preset n-preset--light"
+            type="button"
+          >
+            <span>
+              Links
+            </span>
+          </button>
+          <button
+            aria-pressed="false"
+            class="n-preset n-preset--light"
+            type="button"
+          >
+            <span>
+              Images
+            </span>
+          </button>
+          <button
+            aria-pressed="false"
+            class="n-preset n-preset--light"
+            type="button"
+          >
+            <span>
+              Files
+            </span>
+          </button>
+          <button
+            aria-pressed="false"
+            class="n-preset n-preset--light"
+            type="button"
+          >
+            <span>
+              Pinned
+            </span>
+          </button>
+        </div>
+        <div
+          aria-label="Clipboard items"
+          class="tray-clipboard-rows"
+        >
+          <p
+            class="clipboard-context-message"
+            role="alert"
+          >
+            Live clipboard context is unavailable.
+
+            <button
+              type="button"
+            >
+              Retry
+            </button>
+          </p>
+          <article
+            class="tray-clipboard-row is-selected"
+            data-tray-clipboard-id="alpha"
+          >
+            <button
+              aria-disabled="false"
+              aria-label="Copy quarterly planning notes"
+              class="tray-clipboard-copy"
+              data-copy-entry="true"
+              type="button"
+            >
+              <span
+                class="tray-clipboard-type"
+              >
+                <span
+                  aria-hidden="true"
+                  class="n-asset"
+                  style="width: 15px; height: 15px; --asset: url(\"data:image/svg+xml,%3csvg%20preserveAspectRatio='none'%20overflow='visible'%20style='display:%20block;'%20width='15'%20height='15'%20viewBox='0%200%2015%2015'%20fill='none'%20xmlns='http://www.w3.org/2000/svg'%3e%3cg%20id='icon/type'%3e%3cpath%20id='Vector'%20d='M2.5%204.375V2.5H12.5V4.375'%20stroke-width='1.09375'%20stroke-linecap='round'%20stroke-linejoin='round'%20stroke='%23A0A0A6'/%3e%3cpath%20id='Vector_2'%20d='...
+ ❯ waitForWrapper node_modules/@testing-library/dom/dist/wait-for.js:163:27
+ ❯ node_modules/@testing-library/dom/dist/query-helpers.js:86:33
+ ❯ src/views/ClipboardList.test.tsx:144:25
+    142|     const button = screen.getByRole("button", { name: "Copy quarterly …
+    143|     await user.click(button);
+    144|     expect(await screen.findByRole("alert")).toHaveTextContent("Owned …
+       |                         ^
+    145|     await user.click(button);
+    146|     await waitFor(() => expect(screen.queryByRole("alert")).not.toBeIn…
+
+⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯[1/1]⎯
+
+
+ Test Files  1 failed (1)
+      Tests  1 failed | 4 passed (5)
+   Start at  16:06:20
+   Duration  4.18s (transform 416ms, setup 91ms, collect 741ms, tests 2.33s, environment 521ms, prepare 256ms)

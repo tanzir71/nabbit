@@ -1,0 +1,221 @@
+{
+  "beforeCapture": {
+    "active": "<input type=\"search\" aria-label=\"Search Shelf and Pins\" placeholder=\"Search Shelf and Pins\" value=\"Research\">",
+    "focus": true,
+    "visibility": "visible",
+    "nodes": [],
+    "animations": [],
+    "recentIpc": [
+      {
+        "command": "files_capabilities",
+        "args": {}
+      },
+      {
+        "command": "plugin:event|listen",
+        "args": {
+          "event": "shelf:changed",
+          "target": {
+            "kind": "Any"
+          },
+          "handler": 37
+        }
+      },
+      {
+        "command": "plugin:event|listen",
+        "args": {
+          "event": "tauri://focus",
+          "target": {
+            "kind": "Any"
+          },
+          "handler": 39
+        }
+      },
+      {
+        "command": "tool_catalog",
+        "args": {}
+      },
+      {
+        "command": "plugin:event|listen",
+        "args": {
+          "event": "tools:changed",
+          "target": {
+            "kind": "Any"
+          },
+          "handler": 41
+        }
+      },
+      {
+        "command": "plugin:event|listen",
+        "args": {
+          "event": "files:changed",
+          "target": {
+            "kind": "Any"
+          },
+          "handler": 43
+        }
+      },
+      {
+        "command": "tool_jobs",
+        "args": {}
+      },
+      {
+        "command": "files_history",
+        "args": {}
+      },
+      {
+        "command": "files_pins",
+        "args": {}
+      },
+      {
+        "command": "shelf_list",
+        "args": {}
+      }
+    ]
+  },
+  "afterFirst": {
+    "active": "<input type=\"search\" aria-label=\"Search Shelf and Pins\" placeholder=\"Search Shelf and Pins\" value=\"Research\">",
+    "focus": true,
+    "visibility": "visible",
+    "nodes": [],
+    "animations": [],
+    "recentIpc": [
+      {
+        "command": "files_capabilities",
+        "args": {}
+      },
+      {
+        "command": "plugin:event|listen",
+        "args": {
+          "event": "shelf:changed",
+          "target": {
+            "kind": "Any"
+          },
+          "handler": 37
+        }
+      },
+      {
+        "command": "plugin:event|listen",
+        "args": {
+          "event": "tauri://focus",
+          "target": {
+            "kind": "Any"
+          },
+          "handler": 39
+        }
+      },
+      {
+        "command": "tool_catalog",
+        "args": {}
+      },
+      {
+        "command": "plugin:event|listen",
+        "args": {
+          "event": "tools:changed",
+          "target": {
+            "kind": "Any"
+          },
+          "handler": 41
+        }
+      },
+      {
+        "command": "plugin:event|listen",
+        "args": {
+          "event": "files:changed",
+          "target": {
+            "kind": "Any"
+          },
+          "handler": 43
+        }
+      },
+      {
+        "command": "tool_jobs",
+        "args": {}
+      },
+      {
+        "command": "files_history",
+        "args": {}
+      },
+      {
+        "command": "files_pins",
+        "args": {}
+      },
+      {
+        "command": "shelf_list",
+        "args": {}
+      }
+    ]
+  },
+  "afterRepeat": {
+    "active": "<input type=\"search\" aria-label=\"Search Shelf and Pins\" placeholder=\"Search Shelf and Pins\" value=\"Research\">",
+    "focus": true,
+    "visibility": "visible",
+    "nodes": [],
+    "animations": [],
+    "recentIpc": [
+      {
+        "command": "files_capabilities",
+        "args": {}
+      },
+      {
+        "command": "plugin:event|listen",
+        "args": {
+          "event": "shelf:changed",
+          "target": {
+            "kind": "Any"
+          },
+          "handler": 37
+        }
+      },
+      {
+        "command": "plugin:event|listen",
+        "args": {
+          "event": "tauri://focus",
+          "target": {
+            "kind": "Any"
+          },
+          "handler": 39
+        }
+      },
+      {
+        "command": "tool_catalog",
+        "args": {}
+      },
+      {
+        "command": "plugin:event|listen",
+        "args": {
+          "event": "tools:changed",
+          "target": {
+            "kind": "Any"
+          },
+          "handler": 41
+        }
+      },
+      {
+        "command": "plugin:event|listen",
+        "args": {
+          "event": "files:changed",
+          "target": {
+            "kind": "Any"
+          },
+          "handler": 43
+        }
+      },
+      {
+        "command": "tool_jobs",
+        "args": {}
+      },
+      {
+        "command": "files_history",
+        "args": {}
+      },
+      {
+        "command": "files_pins",
+        "args": {}
+      },
+      {
+        "command": "shelf_list",
+        "args": {}
+      }
+    ]
+  }
+}

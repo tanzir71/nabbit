@@ -1,0 +1,1087 @@
+{
+  "milestone": "M11",
+  "prefix": "v63-tray-f",
+  "suite": "surfaces",
+  "browser": "159.0.8154.6",
+  "playwright": "1.65.1",
+  "platform": "win32",
+  "node": "v24.22.2",
+  "captureTime": "2026-11-26T09:00:00.000Z",
+  "buildManifestSha256": "829b0f329c5c7fb87ab3195e370bb6558b0feb56d1fabeba22131c2f9d5011de",
+  "screenshotScale": "device",
+  "renderingFlags": [
+    "--run-all-compositor-stages-before-draw",
+    "--disable-new-content-rendering-timeout",
+    "--disable-threaded-animation",
+    "--disable-threaded-scrolling",
+    "--disable-checker-imaging",
+    "--disable-image-animation-resync",
+    "--disable-partial-raster"
+  ],
+  "pngBudgetBytes": 307200,
+  "isolatedContexts": true,
+  "mockedIpc": true,
+  "osPreferencesChanged": false,
+  "captures": [
+    {
+      "file": "v63-tray-f-tray-clipboard-light@1x.png",
+      "scenario": "tray-clipboard",
+      "entry": "index.html",
+      "figmaNode": null,
+      "theme": "light",
+      "resolvedTheme": "light",
+      "scale": 1,
+      "viewport": {
+        "width": 460,
+        "height": 680
+      },
+      "clip": {
+        "x": 0,
+        "y": 0,
+        "width": 460,
+        "height": 680
+      },
+      "width": 460,
+      "height": 680,
+      "bytes": 44511,
+      "sha256": "2321e2710c9fdf3e25a3add5049742ed1da6e9b76cb32ac9e324274ad6d425ce",
+      "repeatMatches": true,
+      "caret": "hide",
+      "font": [
+        {
+          "familyName": "Geist",
+          "postScriptName": "Geist",
+          "isCustomFont": true,
+          "glyphCount": 6
+        }
+      ],
+      "fixtureSha256": "e09331311b5cd4f2ee6eda94df2f165ee5d324f494db58deae26799687f6af31",
+      "assertions": {
+        "variant": "clipboard",
+        "geometry": {
+          "width": 460,
+          "height": 680,
+          "overflow": false
+        },
+        "axe": {
+          "theme": "light",
+          "scale": 1,
+          "violations": [],
+          "incomplete": [],
+          "passes": 36
+        }
+      },
+      "ipc": [
+        {
+          "command": "plugin:event|listen",
+          "args": {
+            "event": "tray:notice",
+            "target": {
+              "kind": "Any"
+            },
+            "handler": 1
+          }
+        },
+        {
+          "command": "plugin:event|listen",
+          "args": {
+            "event": "nabbit://native-drop",
+            "target": {
+              "kind": "Any"
+            },
+            "handler": 3
+          }
+        },
+        {
+          "command": "plugin:event|listen",
+          "args": {
+            "event": "notes:open",
+            "target": {
+              "kind": "Any"
+            },
+            "handler": 5
+          }
+        },
+        {
+          "command": "plugin:event|listen",
+          "args": {
+            "event": "engine:health",
+            "target": {
+              "kind": "Any"
+            },
+            "handler": 7
+          }
+        },
+        {
+          "command": "plugin:event|listen",
+          "args": {
+            "event": "nabbit://settings-changed",
+            "target": {
+              "kind": "Any"
+            },
+            "handler": 9
+          }
+        },
+        {
+          "command": "plugin:event|listen",
+          "args": {
+            "event": "tauri://theme-changed",
+            "target": {
+              "kind": "Window",
+              "label": "main"
+            },
+            "handler": 11
+          }
+        },
+        {
+          "command": "get_settings",
+          "args": {}
+        },
+        {
+          "command": "list_clipboard_entries",
+          "args": {
+            "query": ""
+          }
+        },
+        {
+          "command": "list_downloads",
+          "args": {}
+        },
+        {
+          "command": "get_engine_status",
+          "args": {}
+        },
+        {
+          "command": "get_storage_stats",
+          "args": {}
+        },
+        {
+          "command": "get_captured_link",
+          "args": {}
+        },
+        {
+          "command": "plugin:event|listen",
+          "args": {
+            "event": "clipboard:new",
+            "target": {
+              "kind": "Any"
+            },
+            "handler": 13
+          }
+        },
+        {
+          "command": "plugin:event|listen",
+          "args": {
+            "event": "clipboard:changed",
+            "target": {
+              "kind": "Any"
+            },
+            "handler": 15
+          }
+        },
+        {
+          "command": "plugin:event|listen",
+          "args": {
+            "event": "url:detected",
+            "target": {
+              "kind": "Any"
+            },
+            "handler": 17
+          }
+        },
+        {
+          "command": "plugin:event|listen",
+          "args": {
+            "event": "capture:review",
+            "target": {
+              "kind": "Any"
+            },
+            "handler": 19
+          }
+        },
+        {
+          "command": "plugin:event|listen",
+          "args": {
+            "event": "capture:error",
+            "target": {
+              "kind": "Any"
+            },
+            "handler": 21
+          }
+        },
+        {
+          "command": "plugin:event|listen",
+          "args": {
+            "event": "download:updated",
+            "target": {
+              "kind": "Any"
+            },
+            "handler": 23
+          }
+        },
+        {
+          "command": "plugin:event|listen",
+          "args": {
+            "event": "download:cleared",
+            "target": {
+              "kind": "Any"
+            },
+            "handler": 25
+          }
+        },
+        {
+          "command": "plugin:event|listen",
+          "args": {
+            "event": "url:cleared",
+            "target": {
+              "kind": "Any"
+            },
+            "handler": 27
+          }
+        },
+        {
+          "command": "plugin:event|listen",
+          "args": {
+            "event": "shortcut:clipboard-search",
+            "target": {
+              "kind": "Any"
+            },
+            "handler": 29
+          }
+        },
+        {
+          "command": "tray_ready",
+          "args": {}
+        },
+        {
+          "command": "tray_take_notice",
+          "args": {}
+        },
+        {
+          "command": "take_notes_intent",
+          "args": {}
+        },
+        {
+          "command": "plugin:event|listen",
+          "args": {
+            "event": "context:changed",
+            "target": {
+              "kind": "Any"
+            },
+            "handler": 31
+          }
+        },
+        {
+          "command": "clipboard_context",
+          "args": {
+            "id": "clipboard-0",
+            "explicit": false
+          }
+        },
+        {
+          "command": "plugin:window|theme",
+          "args": {
+            "label": "main"
+          }
+        }
+      ],
+      "unsupported": [],
+      "runtimeAndNetworkProblems": []
+    },
+    {
+      "file": "v63-tray-f-tray-clipboard-light@1.5x.png",
+      "scenario": "tray-clipboard",
+      "entry": "index.html",
+      "figmaNode": null,
+      "theme": "light",
+      "resolvedTheme": "light",
+      "scale": 1.5,
+      "viewport": {
+        "width": 460,
+        "height": 680
+      },
+      "clip": {
+        "x": 0,
+        "y": 0,
+        "width": 460,
+        "height": 680
+      },
+      "width": 690,
+      "height": 1020,
+      "bytes": 76346,
+      "sha256": "a8567286ae54b74481b8c31ec0b1404d50517f59c183d79cedde4196c2278978",
+      "repeatMatches": true,
+      "caret": "hide",
+      "font": [
+        {
+          "familyName": "Geist",
+          "postScriptName": "Geist",
+          "isCustomFont": true,
+          "glyphCount": 6
+        }
+      ],
+      "fixtureSha256": "e09331311b5cd4f2ee6eda94df2f165ee5d324f494db58deae26799687f6af31",
+      "assertions": {
+        "variant": "clipboard",
+        "geometry": {
+          "width": 460,
+          "height": 680,
+          "overflow": false
+        },
+        "axe": {
+          "theme": "light",
+          "scale": 1.5,
+          "violations": [],
+          "incomplete": [],
+          "passes": 36
+        }
+      },
+      "ipc": [
+        {
+          "command": "plugin:event|listen",
+          "args": {
+            "event": "tray:notice",
+            "target": {
+              "kind": "Any"
+            },
+            "handler": 1
+          }
+        },
+        {
+          "command": "plugin:event|listen",
+          "args": {
+            "event": "nabbit://native-drop",
+            "target": {
+              "kind": "Any"
+            },
+            "handler": 3
+          }
+        },
+        {
+          "command": "plugin:event|listen",
+          "args": {
+            "event": "notes:open",
+            "target": {
+              "kind": "Any"
+            },
+            "handler": 5
+          }
+        },
+        {
+          "command": "plugin:event|listen",
+          "args": {
+            "event": "engine:health",
+            "target": {
+              "kind": "Any"
+            },
+            "handler": 7
+          }
+        },
+        {
+          "command": "plugin:event|listen",
+          "args": {
+            "event": "nabbit://settings-changed",
+            "target": {
+              "kind": "Any"
+            },
+            "handler": 9
+          }
+        },
+        {
+          "command": "plugin:event|listen",
+          "args": {
+            "event": "tauri://theme-changed",
+            "target": {
+              "kind": "Window",
+              "label": "main"
+            },
+            "handler": 11
+          }
+        },
+        {
+          "command": "get_settings",
+          "args": {}
+        },
+        {
+          "command": "list_clipboard_entries",
+          "args": {
+            "query": ""
+          }
+        },
+        {
+          "command": "list_downloads",
+          "args": {}
+        },
+        {
+          "command": "get_engine_status",
+          "args": {}
+        },
+        {
+          "command": "get_storage_stats",
+          "args": {}
+        },
+        {
+          "command": "get_captured_link",
+          "args": {}
+        },
+        {
+          "command": "plugin:event|listen",
+          "args": {
+            "event": "clipboard:new",
+            "target": {
+              "kind": "Any"
+            },
+            "handler": 13
+          }
+        },
+        {
+          "command": "plugin:event|listen",
+          "args": {
+            "event": "clipboard:changed",
+            "target": {
+              "kind": "Any"
+            },
+            "handler": 15
+          }
+        },
+        {
+          "command": "plugin:event|listen",
+          "args": {
+            "event": "url:detected",
+            "target": {
+              "kind": "Any"
+            },
+            "handler": 17
+          }
+        },
+        {
+          "command": "plugin:event|listen",
+          "args": {
+            "event": "capture:review",
+            "target": {
+              "kind": "Any"
+            },
+            "handler": 19
+          }
+        },
+        {
+          "command": "plugin:event|listen",
+          "args": {
+            "event": "capture:error",
+            "target": {
+              "kind": "Any"
+            },
+            "handler": 21
+          }
+        },
+        {
+          "command": "plugin:event|listen",
+          "args": {
+            "event": "download:updated",
+            "target": {
+              "kind": "Any"
+            },
+            "handler": 23
+          }
+        },
+        {
+          "command": "plugin:event|listen",
+          "args": {
+            "event": "download:cleared",
+            "target": {
+              "kind": "Any"
+            },
+            "handler": 25
+          }
+        },
+        {
+          "command": "plugin:event|listen",
+          "args": {
+            "event": "url:cleared",
+            "target": {
+              "kind": "Any"
+            },
+            "handler": 27
+          }
+        },
+        {
+          "command": "plugin:event|listen",
+          "args": {
+            "event": "shortcut:clipboard-search",
+            "target": {
+              "kind": "Any"
+            },
+            "handler": 29
+          }
+        },
+        {
+          "command": "tray_ready",
+          "args": {}
+        },
+        {
+          "command": "tray_take_notice",
+          "args": {}
+        },
+        {
+          "command": "take_notes_intent",
+          "args": {}
+        },
+        {
+          "command": "plugin:event|listen",
+          "args": {
+            "event": "context:changed",
+            "target": {
+              "kind": "Any"
+            },
+            "handler": 31
+          }
+        },
+        {
+          "command": "clipboard_context",
+          "args": {
+            "id": "clipboard-0",
+            "explicit": false
+          }
+        },
+        {
+          "command": "plugin:window|theme",
+          "args": {
+            "label": "main"
+          }
+        }
+      ],
+      "unsupported": [],
+      "runtimeAndNetworkProblems": []
+    },
+    {
+      "file": "v63-tray-f-tray-clipboard-dark@1x.png",
+      "scenario": "tray-clipboard",
+      "entry": "index.html",
+      "figmaNode": null,
+      "theme": "dark",
+      "resolvedTheme": "dark",
+      "scale": 1,
+      "viewport": {
+        "width": 460,
+        "height": 680
+      },
+      "clip": {
+        "x": 0,
+        "y": 0,
+        "width": 460,
+        "height": 680
+      },
+      "width": 460,
+      "height": 680,
+      "bytes": 45417,
+      "sha256": "854c0411c6f205663f33dec11627fbaa797f80a2a7004c2e858957c78a24a7f5",
+      "repeatMatches": true,
+      "caret": "hide",
+      "font": [
+        {
+          "familyName": "Geist",
+          "postScriptName": "Geist",
+          "isCustomFont": true,
+          "glyphCount": 6
+        }
+      ],
+      "fixtureSha256": "71b53bbcb50e6bae926cefd937e893abe9c84b453fa4af21968ada2d3248bd24",
+      "assertions": {
+        "variant": "clipboard",
+        "geometry": {
+          "width": 460,
+          "height": 680,
+          "overflow": false
+        },
+        "axe": {
+          "theme": "dark",
+          "scale": 1,
+          "violations": [],
+          "incomplete": [],
+          "passes": 36
+        }
+      },
+      "ipc": [
+        {
+          "command": "plugin:event|listen",
+          "args": {
+            "event": "tray:notice",
+            "target": {
+              "kind": "Any"
+            },
+            "handler": 1
+          }
+        },
+        {
+          "command": "plugin:event|listen",
+          "args": {
+            "event": "nabbit://native-drop",
+            "target": {
+              "kind": "Any"
+            },
+            "handler": 3
+          }
+        },
+        {
+          "command": "plugin:event|listen",
+          "args": {
+            "event": "notes:open",
+            "target": {
+              "kind": "Any"
+            },
+            "handler": 5
+          }
+        },
+        {
+          "command": "plugin:event|listen",
+          "args": {
+            "event": "engine:health",
+            "target": {
+              "kind": "Any"
+            },
+            "handler": 7
+          }
+        },
+        {
+          "command": "plugin:event|listen",
+          "args": {
+            "event": "nabbit://settings-changed",
+            "target": {
+              "kind": "Any"
+            },
+            "handler": 9
+          }
+        },
+        {
+          "command": "plugin:event|listen",
+          "args": {
+            "event": "tauri://theme-changed",
+            "target": {
+              "kind": "Window",
+              "label": "main"
+            },
+            "handler": 11
+          }
+        },
+        {
+          "command": "get_settings",
+          "args": {}
+        },
+        {
+          "command": "list_clipboard_entries",
+          "args": {
+            "query": ""
+          }
+        },
+        {
+          "command": "list_downloads",
+          "args": {}
+        },
+        {
+          "command": "get_engine_status",
+          "args": {}
+        },
+        {
+          "command": "get_storage_stats",
+          "args": {}
+        },
+        {
+          "command": "get_captured_link",
+          "args": {}
+        },
+        {
+          "command": "plugin:event|listen",
+          "args": {
+            "event": "clipboard:new",
+            "target": {
+              "kind": "Any"
+            },
+            "handler": 13
+          }
+        },
+        {
+          "command": "plugin:event|listen",
+          "args": {
+            "event": "clipboard:changed",
+            "target": {
+              "kind": "Any"
+            },
+            "handler": 15
+          }
+        },
+        {
+          "command": "plugin:event|listen",
+          "args": {
+            "event": "url:detected",
+            "target": {
+              "kind": "Any"
+            },
+            "handler": 17
+          }
+        },
+        {
+          "command": "plugin:event|listen",
+          "args": {
+            "event": "capture:review",
+            "target": {
+              "kind": "Any"
+            },
+            "handler": 19
+          }
+        },
+        {
+          "command": "plugin:event|listen",
+          "args": {
+            "event": "capture:error",
+            "target": {
+              "kind": "Any"
+            },
+            "handler": 21
+          }
+        },
+        {
+          "command": "plugin:event|listen",
+          "args": {
+            "event": "download:updated",
+            "target": {
+              "kind": "Any"
+            },
+            "handler": 23
+          }
+        },
+        {
+          "command": "plugin:event|listen",
+          "args": {
+            "event": "download:cleared",
+            "target": {
+              "kind": "Any"
+            },
+            "handler": 25
+          }
+        },
+        {
+          "command": "plugin:event|listen",
+          "args": {
+            "event": "url:cleared",
+            "target": {
+              "kind": "Any"
+            },
+            "handler": 27
+          }
+        },
+        {
+          "command": "plugin:event|listen",
+          "args": {
+            "event": "shortcut:clipboard-search",
+            "target": {
+              "kind": "Any"
+            },
+            "handler": 29
+          }
+        },
+        {
+          "command": "tray_ready",
+          "args": {}
+        },
+        {
+          "command": "tray_take_notice",
+          "args": {}
+        },
+        {
+          "command": "take_notes_intent",
+          "args": {}
+        },
+        {
+          "command": "plugin:event|listen",
+          "args": {
+            "event": "context:changed",
+            "target": {
+              "kind": "Any"
+            },
+            "handler": 31
+          }
+        },
+        {
+          "command": "clipboard_context",
+          "args": {
+            "id": "clipboard-0",
+            "explicit": false
+          }
+        },
+        {
+          "command": "plugin:window|theme",
+          "args": {
+            "label": "main"
+          }
+        }
+      ],
+      "unsupported": [],
+      "runtimeAndNetworkProblems": []
+    },
+    {
+      "file": "v63-tray-f-tray-clipboard-dark@1.5x.png",
+      "scenario": "tray-clipboard",
+      "entry": "index.html",
+      "figmaNode": null,
+      "theme": "dark",
+      "resolvedTheme": "dark",
+      "scale": 1.5,
+      "viewport": {
+        "width": 460,
+        "height": 680
+      },
+      "clip": {
+        "x": 0,
+        "y": 0,
+        "width": 460,
+        "height": 680
+      },
+      "width": 690,
+      "height": 1020,
+      "bytes": 76905,
+      "sha256": "9667c56b9090b4b47b8f06e3d7ee7743c83df4fc344634379b2e7c563a770b56",
+      "repeatMatches": true,
+      "caret": "hide",
+      "font": [
+        {
+          "familyName": "Geist",
+          "postScriptName": "Geist",
+          "isCustomFont": true,
+          "glyphCount": 6
+        }
+      ],
+      "fixtureSha256": "71b53bbcb50e6bae926cefd937e893abe9c84b453fa4af21968ada2d3248bd24",
+      "assertions": {
+        "variant": "clipboard",
+        "geometry": {
+          "width": 460,
+          "height": 680,
+          "overflow": false
+        },
+        "axe": {
+          "theme": "dark",
+          "scale": 1.5,
+          "violations": [],
+          "incomplete": [],
+          "passes": 36
+        }
+      },
+      "ipc": [
+        {
+          "command": "plugin:event|listen",
+          "args": {
+            "event": "tray:notice",
+            "target": {
+              "kind": "Any"
+            },
+            "handler": 1
+          }
+        },
+        {
+          "command": "plugin:event|listen",
+          "args": {
+            "event": "nabbit://native-drop",
+            "target": {
+              "kind": "Any"
+            },
+            "handler": 3
+          }
+        },
+        {
+          "command": "plugin:event|listen",
+          "args": {
+            "event": "notes:open",
+            "target": {
+              "kind": "Any"
+            },
+            "handler": 5
+          }
+        },
+        {
+          "command": "plugin:event|listen",
+          "args": {
+            "event": "engine:health",
+            "target": {
+              "kind": "Any"
+            },
+            "handler": 7
+          }
+        },
+        {
+          "command": "plugin:event|listen",
+          "args": {
+            "event": "nabbit://settings-changed",
+            "target": {
+              "kind": "Any"
+            },
+            "handler": 9
+          }
+        },
+        {
+          "command": "plugin:event|listen",
+          "args": {
+            "event": "tauri://theme-changed",
+            "target": {
+              "kind": "Window",
+              "label": "main"
+            },
+            "handler": 11
+          }
+        },
+        {
+          "command": "get_settings",
+          "args": {}
+        },
+        {
+          "command": "list_clipboard_entries",
+          "args": {
+            "query": ""
+          }
+        },
+        {
+          "command": "list_downloads",
+          "args": {}
+        },
+        {
+          "command": "get_engine_status",
+          "args": {}
+        },
+        {
+          "command": "get_storage_stats",
+          "args": {}
+        },
+        {
+          "command": "get_captured_link",
+          "args": {}
+        },
+        {
+          "command": "plugin:event|listen",
+          "args": {
+            "event": "clipboard:new",
+            "target": {
+              "kind": "Any"
+            },
+            "handler": 13
+          }
+        },
+        {
+          "command": "plugin:event|listen",
+          "args": {
+            "event": "clipboard:changed",
+            "target": {
+              "kind": "Any"
+            },
+            "handler": 15
+          }
+        },
+        {
+          "command": "plugin:event|listen",
+          "args": {
+            "event": "url:detected",
+            "target": {
+              "kind": "Any"
+            },
+            "handler": 17
+          }
+        },
+        {
+          "command": "plugin:event|listen",
+          "args": {
+            "event": "capture:review",
+            "target": {
+              "kind": "Any"
+            },
+            "handler": 19
+          }
+        },
+        {
+          "command": "plugin:event|listen",
+          "args": {
+            "event": "capture:error",
+            "target": {
+              "kind": "Any"
+            },
+            "handler": 21
+          }
+        },
+        {
+          "command": "plugin:event|listen",
+          "args": {
+            "event": "download:updated",
+            "target": {
+              "kind": "Any"
+            },
+            "handler": 23
+          }
+        },
+        {
+          "command": "plugin:event|listen",
+          "args": {
+            "event": "download:cleared",
+            "target": {
+              "kind": "Any"
+            },
+            "handler": 25
+          }
+        },
+        {
+          "command": "plugin:event|listen",
+          "args": {
+            "event": "url:cleared",
+            "target": {
+              "kind": "Any"
+            },
+            "handler": 27
+          }
+        },
+        {
+          "command": "plugin:event|listen",
+          "args": {
+            "event": "shortcut:clipboard-search",
+            "target": {
+              "kind": "Any"
+            },
+            "handler": 29
+          }
+        },
+        {
+          "command": "tray_ready",
+          "args": {}
+        },
+        {
+          "command": "tray_take_notice",
+          "args": {}
+        },
+        {
+          "command": "take_notes_intent",
+          "args": {}
+        },
+        {
+          "command": "plugin:event|listen",
+          "args": {
+            "event": "context:changed",
+            "target": {
+              "kind": "Any"
+            },
+            "handler": 31
+          }
+        },
+        {
+          "command": "clipboard_context",
+          "args": {
+            "id": "clipboard-0",
+            "explicit": false
+          }
+        },
+        {
+          "command": "plugin:window|theme",
+          "args": {
+            "label": "main"
+          }
+        }
+      ],
+      "unsupported": [],
+      "runtimeAndNetworkProblems": []
+    }
+  ]
+}

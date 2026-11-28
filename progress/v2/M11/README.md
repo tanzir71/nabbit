@@ -51,3 +51,30 @@ Windows notifications use the configured app identifier; installed desktop deliv
 Only owned profiles, generated fake downloads and HWND/provider queries were used. No real clipboard/global input/cursor, user files/profiles/accounts, hosted Tack, shell/autostart/hotkey registration, Store, installer execution/signing or OS/display changes. Other hardware/platforms and fresh performance remain unclaimed. Earlier failures and available captured frames/logs remain; native B retained mismatch digests but did not save its failed pair. Subsequent capture code retains both frames and uses an explicit fixed settle with exact comparison.
 
 V6.3 owns the rest of the tray menu/popover redesign; V6.4 owns shortcut recording/conflicts. This task is a direct local main commit with skip-ci, no PR/tag/push. M11 publication remains after V6.4.
+
+## V6.3 — Tray menu and popover
+
+The native tray now has the specified quick actions, Island/Mode/Widgets/Pins submenus, live numbered pins and capture pause. Native pin IDs remain stable across slot changes; unavailable entries are disabled. Island and Widget settings open the correct page in the real settings window.
+
+The popover has Nab, Notes, Clipboard and Files. Clipboard reuses the existing history and adaptive context actions with six filters, keyboard picks, visible errors and a separate capture pause. Files composes Shelf, Pins, tools and journal history; its header search filters Shelf and Pins. Owned native drops add to Shelf, move to a folder pin and Undo restores the original bytes. A consumed drop is not replayed when its tab remounts.
+
+| Evidence | Result |
+| --- | --- |
+| Frontend / Rust | 574 frontend; 389 Rust passed, 8 existing opt-in ignores |
+| Browser | 36 exact light/dark 1x/1.5x views; whole-document axe 0 violations / 0 incomplete |
+| Native | 8 exact DPR2 views, real menu state/actions, settings page intents, owned drop/move/Undo and restart |
+| Original asset geometry | 504 browser and 114 native checks |
+| Artwork | 26 original SVG exports and 11 lossless intrinsic-size native menu rasters |
+| Island initial JS | 104,165 / 120,000 gzip bytes |
+
+Final proof: [checks](v63-checks.json), [requirements](v63-requirements.json), [flow](v63-flow.json), [design](v63-design.json), [assets](v63-asset-provenance.json), [browser](v63-tray-m-screenshots.json), [axe](v63-tray-m-axe.json), [native](v63-native-e-scene.json), [PNG audit](v63-png-audit.json), [logs](v63-logs.json), [earlier attempts](v63-earlier-attempts.json), [staged-blob receipt](v63-acceptance.json).
+
+| View | Light | Dark |
+| --- | --- | --- |
+| Clipboard | [1x](v63-tray-m-tray-clipboard-light@1x.png) | [1x](v63-tray-m-tray-clipboard-dark@1x.png) |
+| Files | [1x](v63-tray-m-tray-files-light@1x.png) | [1x](v63-tray-m-tray-files-dark@1x.png) |
+| Files search | [1x](v63-tray-m-tray-files-search-light@1x.png) | [1x](v63-tray-m-tray-files-search-dark@1x.png) |
+
+Only owned app/WebView/control profiles and generated file fixtures were used. Native menu handles and original icon inputs are verified; Windows draws its normal menu background, arrows and checkmarks, and no physical OS-menu/Explorer pixels are claimed. Owned HWND drop targets are registered, but shell/autostart/global-hotkey registrations, real clipboard/global input/cursor, real drag-out into another app, hosted Tack/accounts, installer/signing and OS/display-setting changes are excluded. The explicit still-capture caret policy preserves focus rings. Earlier failures and available failed image pairs remain in the evidence.
+
+V6.4 owns shortcut recording/conflicts; V7 owns hardening, whole-surface accessibility, idle performance, packaging and wrap-up. Direct local main task commit with skip-ci, no PR/tag/task push; M11 publication remains after V6.4.

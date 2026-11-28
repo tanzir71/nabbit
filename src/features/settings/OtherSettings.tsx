@@ -119,6 +119,12 @@ export function ClipboardSettings() {
       </SettingsSection>
       <SettingsSection title="Link detection">
         <SettingsToggle
+          label="Pause clipboard capture"
+          help="Stops new history and automatic link detection until resumed"
+          checked={settings.pauseClipboardCapture}
+          change={(pauseClipboardCapture) => ({ pauseClipboardCapture })}
+        />
+        <SettingsToggle
           label="Auto-detect video links"
           checked={settings.autoDetectLinks}
           change={(autoDetectLinks) => ({ autoDetectLinks })}

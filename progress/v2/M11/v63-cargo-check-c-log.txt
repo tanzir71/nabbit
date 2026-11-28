@@ -1,0 +1,27 @@
+Checking nabbit v0.1.0 (D:\claude-upgrade-26\nabbit\src-tauri)
+error[E0277]: `?` couldn't convert the error to `NabbitError`
+   --> src\tray.rs:214:47
+    |
+201 | fn icon(id: &str) -> Result<Option<tauri::image::Image<'static>>> {
+    |                      -------------------------------------------- expected `NabbitError` because of this
+...
+214 |     let image = image::load_from_memory(bytes)?.to_rgba8();
+    |                 ------------------------------^ the trait `std::convert::From<image::ImageError>` is not implemented for `NabbitError`
+    |                 |
+    |                 this can't be annotated with `?` because it has type `Result<_, image::ImageError>`
+    |
+note: `NabbitError` needs to implement `From<image::ImageError>`
+   --> src\error.rs:4:1
+    |
+  4 | pub enum NabbitError {
+    | ^^^^^^^^^^^^^^^^^^^^
+    = note: the question mark operation (`?`) implicitly performs a conversion on the error value using the `From` trait
+    = help: `NabbitError` implements trait `std::convert::From<T>`:
+              std::convert::From<anyhow::Error>
+              std::convert::From<rusqlite::Error>
+              std::convert::From<serde_json::Error>
+              std::convert::From<std::io::Error>
+              std::convert::From<tauri::Error>
+
+For more information about this error, try `rustc --explain E0277`.
+error: could not compile `nabbit` (lib) due to 1 previous error

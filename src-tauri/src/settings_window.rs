@@ -9,12 +9,38 @@ use serde::Serialize;
 use std::sync::Mutex;
 use tauri::{
     window::{Effect, EffectsBuilder},
-    Manager, WebviewWindow,
+    Emitter, Manager, WebviewWindow,
 };
 
 pub const LABEL: &str = "settings";
 #[derive(Default)]
-pub struct Service(Mutex<()>);
+pub struct Service(Mutex<()>, Mutex<Option<String>>);
+
+pub(crate) fn open_page(app: &tauri::AppHandle, page: &str) -> Result<()> {
+    if !matches!(page, "island" | "widgets") {
+        return Err(msg("Unknown settings page"));
+    }
+    *app.state::<Service>()
+        .1
+        .lock()
+        .map_err(|_| msg("Settings are busy"))? = Some(page.into());
+    open(app)?;
+    app.emit_to(LABEL, "settings:navigate", ())?;
+    Ok(())
+}
+#[tauri::command]
+pub fn settings_take_page(app: tauri::AppHandle, window: WebviewWindow) -> Result<Option<String>> {
+    if window.label() != LABEL {
+        return Err(msg("Only settings can consume its navigation"));
+    }
+    let service = app.state::<Service>();
+    let page = service
+        .1
+        .lock()
+        .map_err(|_| msg("Settings are busy"))?
+        .take();
+    Ok(page)
+}
 
 fn theme(preference: ThemePreference) -> Option<tauri::Theme> {
     match preference {

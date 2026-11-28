@@ -38,6 +38,10 @@ export function installMockIpc(seed) {
       throw typeof failure === "string" ? new Error(failure) : clone(failure);
     }
     switch (command) {
+      case "tray_ready":
+      case "tray_take_notice":
+      case "settings_take_page":
+        return clone(seed.responses?.[command] ?? null);
       case "clipboard_context":
         return clone(seed.responses?.clipboard_context ?? null);
       case "context_batch":

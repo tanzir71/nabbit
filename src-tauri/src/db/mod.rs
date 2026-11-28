@@ -693,7 +693,7 @@ fn normalize_settings(mut settings: AppSettings) -> AppSettings {
     }
     settings.image_size_cap_mb = settings.image_size_cap_mb.clamp(1, 50);
     settings.max_concurrent_downloads = settings.max_concurrent_downloads.clamp(1, 6);
-    if !["download", "notes", "clipboard"].contains(&settings.last_tab.as_str()) {
+    if !["download", "notes", "clipboard", "files"].contains(&settings.last_tab.as_str()) {
         settings.last_tab = "download".into();
     }
     settings

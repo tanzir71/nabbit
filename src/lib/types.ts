@@ -101,6 +101,7 @@ export interface AppSettings {
   autoDetectLinks: boolean;
   showDetectNotification: boolean;
   pauseAutoDetect: boolean;
+  pauseClipboardCapture: boolean;
   launchAtLogin: boolean;
   startHidden: boolean;
   showDockIcon: boolean;
@@ -116,7 +117,7 @@ export interface AppSettings {
   revealAfterDownload: boolean;
   engineAutoUpdate: boolean;
   firstRunAcknowledged: boolean;
-  lastTab: "download" | "notes" | "clipboard";
+  lastTab: "download" | "notes" | "clipboard" | "files";
 }
 
 export interface IslandPreferences {

@@ -310,7 +310,7 @@ function PinEditor({
     </form>
   );
 }
-export function Pins() {
+export function Pins({ query: globalQuery = "" }: { query?: string }) {
   const [pins, setPins] = useState<Pin[]>([]),
     [query, setQuery] = useState(""),
     [editor, setEditor] = useState<Pin | null | false>(false),
@@ -390,13 +390,18 @@ export function Pins() {
     held.current = hold;
     setPeek(pin);
   };
+  const matching = pins.filter((pin) =>
+    `${pinName(pin)} ${pin.path}`.toLowerCase().includes(globalQuery.trim().toLowerCase()),
+  );
   const rows = query.trim()
-    ? pins
+    ? matching
         .filter((pin) =>
           `${pinName(pin)} ${pin.path}`.toLowerCase().includes(query.trim().toLowerCase()),
         )
         .slice(0, 32)
-    : pins.slice(0, 8);
+    : globalQuery.trim()
+      ? matching.slice(0, 32)
+      : pins.slice(0, 8);
   return (
     <section
       className="files-pins"
@@ -514,6 +519,7 @@ export function Pins() {
           Pin a file or folder to keep it close. Removing a pin leaves the original unchanged.
         </p>
       )}
+      {pins.length > 0 && !rows.length && <p className="island-muted">No matching pins.</p>}
       {pins.length > 8 && (
         <label>
           Find a pin

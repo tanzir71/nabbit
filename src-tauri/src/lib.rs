@@ -23,6 +23,7 @@ pub mod tack;
 mod taskbar_theme;
 pub mod timer;
 mod tools;
+mod tray;
 mod tray_icon;
 mod util;
 
@@ -50,12 +51,10 @@ use std::{
     time::Duration,
 };
 
-use arboard::Clipboard;
 use db::{models::AppSettings, Database};
 use download::manager::DownloadManager;
 use error::Result;
 use tauri::{
-    menu::{CheckMenuItem, Menu, MenuItem, Submenu},
     tray::{MouseButton, MouseButtonState, TrayIconBuilder, TrayIconEvent},
     AppHandle, Emitter, Manager, PhysicalPosition, Wry,
 };
@@ -292,8 +291,13 @@ pub fn run() {
             commands::settings::patch_settings,
             modes::get_mode_snapshot,
             modes::mode_fixture,
+            tray::tray_ready,
+            tray::tray_take_notice,
+            tray::tray_snapshot,
+            tray::tray_fixture,
             settings_window::open_settings_window,
             settings_window::settings_window_ready,
+            settings_window::settings_take_page,
             commands::settings::acknowledge_first_run,
             commands::settings::get_storage_stats,
             commands::settings::run_retention_gc,
@@ -991,69 +995,9 @@ pub fn apply_runtime_settings(app: &AppHandle<Wry>, state: &AppState, settings: 
 
 fn setup_tray(app: &AppHandle<Wry>) -> Result<()> {
     let mode = app.state::<AppState>().db.get_settings()?.display_mode;
-    let mode_items = [
-        CheckMenuItem::with_id(
-            app,
-            modes::MENU_IDS[0],
-            "Island + tray",
-            true,
-            mode == modes::MODES[0],
-            None::<&str>,
-        )?,
-        CheckMenuItem::with_id(
-            app,
-            modes::MENU_IDS[1],
-            "Tray only",
-            true,
-            mode == modes::MODES[1],
-            None::<&str>,
-        )?,
-        CheckMenuItem::with_id(
-            app,
-            modes::MENU_IDS[2],
-            "Island only",
-            true,
-            mode == modes::MODES[2],
-            None::<&str>,
-        )?,
-    ];
-    let mode_menu = Submenu::with_items(
-        app,
-        "Mode",
-        true,
-        &[&mode_items[0], &mode_items[1], &mode_items[2]],
-    )?;
-    let open = MenuItem::with_id(app, "open", "Open Nabbit", true, None::<&str>)?;
-    let paste_last = MenuItem::with_id(app, "paste_last", "Paste last item", true, None::<&str>)?;
-    let clear = MenuItem::with_id(
-        app,
-        "clear_history",
-        "Clear clipboard history",
-        true,
-        None::<&str>,
-    )?;
-    let downloads = MenuItem::with_id(
-        app,
-        "downloads_folder",
-        "Downloads folder",
-        true,
-        None::<&str>,
-    )?;
-    let pause = MenuItem::with_id(app, "pause_detect", "Pause auto-detect", true, None::<&str>)?;
-    let quit = MenuItem::with_id(app, "quit", "Quit", true, None::<&str>)?;
-    let menu = Menu::with_items(
-        app,
-        &[
-            &open,
-            &mode_menu,
-            &paste_last,
-            &clear,
-            &downloads,
-            &pause,
-            &quit,
-        ],
-    )?;
-
+    let service = tray::Service::start(app)?;
+    let menu = service.menu();
+    app.manage(service);
     let tray = TrayIconBuilder::with_id("main-tray")
         .tooltip("Nabbit")
         .icon(tray_icon::image(
@@ -1074,72 +1018,10 @@ fn setup_tray(app: &AppHandle<Wry>) -> Result<()> {
                 let _ = toggle_popover(app);
             }
         })
-        .on_menu_event(|app, event| {
-            let id = event.id().as_ref();
-            match modes::menu_action(app, id) {
-                Ok(true) => return,
-                Err(error) => {
-                    eprintln!("Mode could not be changed: {error}");
-                    app.state::<Arc<modes::Service>>().refresh();
-                    return;
-                }
-                Ok(false) => {}
-            }
-            match id {
-                "open" => {
-                    let _ = show_popover(app);
-                }
-                "paste_last" => {
-                    if let Some(state) = app.try_state::<AppState>() {
-                        if let Ok(entries) = state.db.list_clipboard_entries(None) {
-                            if let Some(entry) = entries.first() {
-                                if let Ok(mut clipboard) = Clipboard::new() {
-                                    let _ = clipboard.set_text(entry.content.clone());
-                                    let _ = state.db.touch_clipboard_entry(&entry.id);
-                                    let _ = app.emit("clipboard:changed", ());
-                                }
-                            }
-                        }
-                    }
-                }
-                "clear_history" => {
-                    if let Some(state) = app.try_state::<AppState>() {
-                        let _ = state.db.clear_clipboard_history();
-                        let _ = app.emit("clipboard:changed", ());
-                    }
-                }
-                "downloads_folder" => {
-                    if let Some(state) = app.try_state::<AppState>() {
-                        let settings = state.db.get_settings().unwrap_or_default();
-                        let output = if settings.output_dir.trim().is_empty() {
-                            util::default_output_dir()
-                        } else {
-                            settings.output_dir
-                        };
-                        let _ = std::fs::create_dir_all(&output);
-                        let _ = open::that(output);
-                    }
-                }
-                "pause_detect" => {
-                    if let Some(state) = app.try_state::<AppState>() {
-                        if let Ok(mut settings) = state.db.get_settings() {
-                            settings.pause_auto_detect = !settings.pause_auto_detect;
-                            let _ = commands::settings::patch(
-                                app,
-                                &state,
-                                serde_json::json!({"pauseAutoDetect":settings.pause_auto_detect}),
-                            );
-                        }
-                    }
-                }
-                "quit" => tools::request_quit(app),
-                _ => {}
-            }
-        })
+        .on_menu_event(|app, event| tray::dispatch(app, event.id().as_ref()))
         .build(app)?;
     tray.set_visible(mode != db::models::DisplayMode::IslandOnly)?;
-    app.state::<Arc<modes::Service>>()
-        .menu(modes::ModeMenu(mode_items));
+    app.state::<Arc<modes::Service>>().refresh();
     #[cfg(windows)]
     {
         let handle = app.clone();

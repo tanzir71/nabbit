@@ -1,0 +1,22 @@
+{
+  "figmaFile": "tBm7NNhh1Y9aTQPJ3WxY5v",
+  "nodes": {
+    "Nab": "13:2",
+    "Notes": "13:242",
+    "Clipboard": "13:422",
+    "trayMenu": "14:294",
+    "IslandSubmenu": "14:367",
+    "reusedFiles": "10:249"
+  },
+  "implementation": "High-fidelity context/screenshots inspected; existing components, local Geist/tokens and original SVGs reused. Four-tab tray remains 460x680. Current Files behavior includes Shelf and Pins; original Shelf icon slot is retained with the Files name required by section10/V6.3.",
+  "visualReview": [
+    "Light/dark Clipboard and original optical 15/14/16/18/24px glyphs inspected against the frame.",
+    "Notes retains later capture parsing, Links and truthful local-only footer; runtime content is not a fabricated connected Tack workspace.",
+    "Files composes existing Shelf/Pins/tools/history with light/dark token aliases. A doubled search focus ring was removed, and the drop border uses the theme border token. Clipboard adaptive cards use tray light/dark tokens with an ink primary action.",
+    "Windows draws native menu surfaces, arrows and checks. Native item types/state/handlers and original raster inputs are verified; physical popup pixels are not claimed."
+  ],
+  "browser": "v63-tray-m-screenshots.json",
+  "native": "v63-native-e-scene.json",
+  "artwork": "v63-asset-provenance.json",
+  "capturePolicy": "Exact first/repeat captures. CDP explicitly honors declared caret=hide while preserving focus; no element masks, fuzzy thresholds or retry-until-matching."
+}

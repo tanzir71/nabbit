@@ -72,10 +72,12 @@ export function IslandShelf({
   model,
   dispatch,
   pins,
+  query = "",
 }: {
   model: IslandModel;
   dispatch: (action: IslandAction) => void;
   pins?: React.ReactNode;
+  query?: string;
 }) {
   const [items, setItems] = useState<ShelfItem[]>([]),
     [loading, setLoading] = useState(true),
@@ -104,6 +106,9 @@ export function IslandShelf({
       });
   }, [loading, selected, wanted, dispatch]);
   const selectedMode = selected.length > 0;
+  const visibleItems = items.filter((item) =>
+    `${item.name} ${item.path}`.toLowerCase().includes(query.trim().toLowerCase()),
+  );
   const refresh = useCallback(async () => {
     const revision = ++generation.current.value;
     try {
@@ -257,7 +262,7 @@ export function IslandShelf({
         </header>
       )}
       <ul className="shelf-grid" aria-label="Shelf files" aria-busy={loading}>
-        {items.map((item) => (
+        {visibleItems.map((item) => (
           <li
             key={item.id}
             data-shelf-id={item.id}
@@ -315,6 +320,9 @@ export function IslandShelf({
       )}
       {!loading && !items.length && (
         <p className="shelf-status">Drop files here. The originals stay where they are.</p>
+      )}
+      {!loading && items.length > 0 && !visibleItems.length && (
+        <p className="shelf-status">No matching Shelf files.</p>
       )}
       {(error || disconnected) && (
         <p className="shelf-error" role="alert">

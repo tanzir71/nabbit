@@ -1,0 +1,118 @@
+{
+  "task": "V6.3",
+  "requirements": [
+    {
+      "requirement": "Native tray menu and submenus",
+      "result": "Real native item/icon/check/submenu tree includes Open, New note, clipboard download/history, Island, Mode, Widgets, Pins, capture pause, Settings, updates and Quit.",
+      "evidence": [
+        "v63-native-e-scene.json",
+        "src-tauri/src/tray.rs"
+      ],
+      "passed": true
+    },
+    {
+      "requirement": "Pins 1–9",
+      "result": "Numbered pins are ordered by slot, bound to stable IDs, disabled when unavailable, refreshed after rename/reorder/removal; a validated owned pin action is recorded without a shell launch.",
+      "evidence": [
+        "v63-native-e-scene.json",
+        "src-tauri/src/tray.rs"
+      ],
+      "passed": true
+    },
+    {
+      "requirement": "Island controls and modes",
+      "result": "Show island, fullscreen/maximised preferences, shapes and monitor choices persist; all three display modes retain one checked native item and their native presentation requests.",
+      "evidence": [
+        "v63-native-e-scene.json"
+      ],
+      "passed": true
+    },
+    {
+      "requirement": "Normal settings navigation",
+      "result": "Settings and native Island/Widgets settings actions open the real dedicated window; page intents are retained across a cold renderer.",
+      "evidence": [
+        "v63-native-e-scene.json",
+        "src-tauri/src/settings_window.rs"
+      ],
+      "passed": true
+    },
+    {
+      "requirement": "Four real popover tabs",
+      "result": "Nab/Notes/Clipboard/Files share the header; Notes reuses capture, cards, filters and Tack status. Files is persisted and restored after process restart.",
+      "evidence": [
+        "v63-tray-m-screenshots.json",
+        "v63-native-e-scene.json"
+      ],
+      "passed": true
+    },
+    {
+      "requirement": "Clipboard redesign",
+      "result": "Search, All/Text/Links/Images/Files/Pinned, original payload copy/pin/delete, adaptive context actions, visible errors and busy/focus behavior are exercised. Number keys in a search field remain text.",
+      "evidence": [
+        "v63-tray-m-screenshots.json",
+        "v63-verify-final-a-log.txt",
+        "src/views/ClipboardList.test.tsx"
+      ],
+      "passed": true
+    },
+    {
+      "requirement": "Capture pause",
+      "result": "Independent capture pause stops watcher history and automatic URL detection, fails closed on preferences errors and survives restart. Existing pause-auto-detect still stores history.",
+      "evidence": [
+        "v63-native-tests-c-log.txt",
+        "src-tauri/src/clipboard/watcher.rs"
+      ],
+      "passed": true
+    },
+    {
+      "requirement": "Files integration",
+      "result": "The main window is authorized for Shelf commands; other island callers retain active-surface authorization. Drag permissions are scoped to main/settings; OS clipboard effects stay blocked in acceptance.",
+      "evidence": [
+        "v63-native-e-scene.json",
+        "src-tauri/src/shelf/commands.rs",
+        "src-tauri/capabilities/default.json",
+        "src-tauri/capabilities/settings.json"
+      ],
+      "passed": true
+    },
+    {
+      "requirement": "Shelf and Pins search/drop/move",
+      "result": "Header search filters Shelf and Pins, restores header focus on Escape and preserves an open review. Owned native drops add to Shelf and move to a folder pin; Undo restores original bytes and a tab remount does not replay the consumed drop.",
+      "evidence": [
+        "v63-tray-m-screenshots.json",
+        "v63-native-e-scene.json"
+      ],
+      "passed": true
+    },
+    {
+      "requirement": "Original artwork and geometry",
+      "result": "Original Figma SVGs remain local and unchanged; native menu PNGs are intrinsic-size lossless rasterizations. Every captured static asset retains its original effective dimensions.",
+      "evidence": [
+        "v63-asset-provenance.json",
+        "v63-tray-m-screenshots.json",
+        "v63-native-e-scene.json"
+      ],
+      "passed": true
+    },
+    {
+      "requirement": "Verification and ownership",
+      "result": "Frontend/site, format, strict default/spike Clippy, serial Rust tests, release embedding, exact repeats and whole-document axe pass in owned contexts. Failures, raw logs and PNGs remain.",
+      "evidence": [
+        "v63-checks.json",
+        "v63-logs.json",
+        "v63-png-audit.json",
+        "v63-tray-m-axe.json"
+      ],
+      "passed": true
+    }
+  ],
+  "notAutomated": [
+    "Windows native menu/Explorer pixel appearance, actual clipboard/global keys/cursor or drag-out into another app, live updater network effects, external accounts and installer/signing are not executed. Native menu objects/actions, drag plans, owned HWND drop targets and file move/Undo are verified.",
+    "Other platforms/hardware/DPI and a fresh normal idle budget remain V7 work."
+  ],
+  "remaining": [
+    "V6.4 shortcut recorder/conflicts",
+    "M11 publication after V6.4",
+    "V7.1–V7.5 and M12"
+  ]
+}

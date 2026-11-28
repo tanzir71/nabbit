@@ -1,0 +1,109 @@
+.tray-files {
+  --island-fg: var(--text-primary);
+  --island-muted: var(--text-secondary);
+  --island-bg: var(--bg-canvas);
+  --island-raised: var(--bg-surface);
+  --island-track: var(--bg-sunken);
+  display: flex;
+  flex-direction: column;
+  gap: 14px;
+  height: 100%;
+  overflow: auto;
+  padding: 6px 16px 12px;
+  color: var(--text-primary);
+  font: 400 13px/18px var(--font-sans);
+}
+.tray-files .files-pin-grid,
+.tray-files .shelf-grid {
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+}
+.tray-files .files-heading {
+  flex-wrap: wrap;
+}
+.tray-files .files-heading > span:nth-child(2) {
+  order: 3;
+  width: 100%;
+  flex: auto;
+  text-align: left;
+}
+.tray-files .shelf-heading {
+  align-items: center;
+}
+.tray-files .island-asset {
+  flex: none;
+  max-width: none;
+}
+[data-theme="light"] .tray-files .island-asset {
+  filter: brightness(0) opacity(0.8);
+}
+.tray-files .island-mini {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 6px;
+  min-height: 28px;
+  padding: 4px 10px;
+  border: 1px solid var(--border-strong);
+  border-radius: 7px;
+  background: var(--bg-surface);
+  color: var(--text-primary);
+}
+.tray-files .island-mini.is-signal {
+  background: var(--action-primary);
+  color: var(--action-on-primary);
+}
+.tray-files .shelf-card.is-selected {
+  box-shadow: inset 0 0 0 1.5px var(--action-primary);
+}
+.tray-files-search {
+  display: flex;
+  flex: none;
+  align-items: center;
+  gap: 8px;
+  min-height: 38px;
+  padding: 0 12px;
+  border: 1px solid var(--border-strong);
+  border-radius: 10px;
+  background: var(--bg-surface);
+  color: var(--text-secondary);
+}
+.tray-files-search input {
+  width: 100%;
+  min-width: 0;
+  border: 0;
+  padding: 0;
+  color: var(--text-primary);
+  background: transparent;
+  outline: 0;
+  font: 400 13px/18px var(--font-sans);
+}
+.tray-files-search:focus-within {
+  outline: 2px solid var(--text-primary);
+  outline-offset: 2px;
+}
+.tray-files button:focus-visible,
+.tray-files input:focus-visible,
+.tray-files select:focus-visible {
+  outline: 2px solid var(--text-primary);
+  outline-offset: 2px;
+}
+.tray-files .tray-files-search input:focus-visible {
+  outline: 0;
+}
+.tray-files .shelf-drop {
+  border-color: var(--border-subtle);
+  background: var(--bg-surface);
+}
+.tray-files .island-muted {
+  color: var(--text-secondary);
+}
+.tray-files .island-error {
+  color: var(--danger-base);
+}
+.tray-files .island-sr-only {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  overflow: hidden;
+  clip-path: inset(50%);
+}

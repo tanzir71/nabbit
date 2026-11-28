@@ -322,6 +322,11 @@ pub fn shelf_drag_active(
     window: tauri::WebviewWindow,
     active: bool,
 ) -> Result<(), String> {
+    // Normal tray/settings windows have no island hover or activation lease.
+    // Their drag plugin owns the source window for the duration of the drag.
+    if matches!(window.label(), "main" | "settings") {
+        return Ok(());
+    }
     #[cfg(windows)]
     return input_manager(&app)?.outgoing_drag(window.label(), active);
     #[cfg(not(windows))]

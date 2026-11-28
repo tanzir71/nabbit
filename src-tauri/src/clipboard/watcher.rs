@@ -53,6 +53,9 @@ fn spawn_platform_clipboard_watcher(app: AppHandle, db: Database, shutdown: Arc<
                             crate::island::activity::ActivityEvent::ClipboardChanged,
                         );
                         crate::context::observe(&app, None);
+                        if capture_paused(&db) {
+                            continue;
+                        }
                         if crate::context::fallback::active() {
                             continue;
                         }
@@ -195,6 +198,9 @@ fn ingest(
     text: &str,
     source: Option<String>,
 ) -> crate::error::Result<Option<(crate::db::models::ClipboardEntry, Option<String>)>> {
+    if capture_paused(db) {
+        return Ok(None);
+    }
     let Some(entry) = db.add_clipboard_text(text, source)? else {
         return Ok(None);
     };
@@ -203,6 +209,13 @@ fn ingest(
         .then(|| clipboard_url(text).ok())
         .flatten();
     Ok(Some((entry, url)))
+}
+
+// A failed preference read must not turn a paused watcher back on.
+fn capture_paused(db: &Database) -> bool {
+    db.get_settings()
+        .map(|settings| settings.pause_clipboard_capture)
+        .unwrap_or(true)
 }
 
 #[cfg(not(target_os = "windows"))]
@@ -321,5 +334,34 @@ mod tests {
             assert!(db.setting_value("staged_url").unwrap().is_none());
             assert!(db.list_downloads().unwrap().is_empty());
         }
+    }
+    #[test]
+    fn capture_pause_stops_history_and_detection_and_resume_keeps_existing_history() {
+        let root =
+            std::env::temp_dir().join(format!("nabbit-capture-pause-{}", uuid::Uuid::new_v4()));
+        let db = Database::open(&root).unwrap();
+        ingest(&db, "owned prior text", None).unwrap().unwrap();
+        let mut settings = db.get_settings().unwrap();
+        settings.pause_clipboard_capture = true;
+        settings.last_tab = "files".into();
+        db.save_settings(&settings).unwrap();
+        assert!(ingest(&db, "https://youtu.be/paused", None)
+            .unwrap()
+            .is_none());
+        assert!(ingest(&db, "owned paused text", None).unwrap().is_none());
+        assert_eq!(db.list_clipboard_entries(None).unwrap().len(), 1);
+        assert!(db.setting_value("staged_url").unwrap().is_none());
+        assert!(db.list_downloads().unwrap().is_empty());
+        drop(db);
+        let db = Database::open(&root).unwrap();
+        let mut settings = db.get_settings().unwrap();
+        assert!(settings.pause_clipboard_capture);
+        assert_eq!(settings.last_tab, "files");
+        settings.pause_clipboard_capture = false;
+        db.save_settings(&settings).unwrap();
+        assert!(ingest(&db, "owned resumed text", None).unwrap().is_some());
+        assert_eq!(db.list_clipboard_entries(None).unwrap().len(), 2);
+        drop(db);
+        std::fs::remove_dir_all(root).unwrap();
     }
 }

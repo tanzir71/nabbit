@@ -1,6 +1,9 @@
 use super::*;
 use tauri::Emitter;
 fn caller(app: &tauri::AppHandle, window: &tauri::WebviewWindow) -> Result<()> {
+    if window.label() == "main" {
+        return Ok(());
+    }
     #[cfg(windows)]
     {
         use tauri::Manager;
@@ -27,7 +30,7 @@ pub async fn shelf_list(
     state: tauri::State<'_, crate::AppState>,
 ) -> Result<Vec<Item>> {
     // File reviews may choose existing Shelf entries. All mutating Shelf
-    // commands retain the active-island authorization below.
+    // commands retain authorization to the tray or an active island below.
     if window.label() != "media-sheet" {
         caller(&app, &window)?;
     }
