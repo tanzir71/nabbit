@@ -112,7 +112,9 @@ export default function SearchContent({
                 detail:
                   tool.category === "images"
                     ? "Create a new image file"
-                    : "Create a shareable video",
+                    : tool.category === "documents"
+                      ? "Create a new document or image file"
+                      : "Create a shareable media file",
                 icon: tool.icon,
                 keepOpen: true,
                 run: async () => chooseTool(tool),

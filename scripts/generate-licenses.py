@@ -31,6 +31,14 @@ def generate():
             if file.is_file() and not any(n['name']==file.name for n in notices):
                 notices.append({'name':file.name,'text':file.read_text(encoding='utf-8',errors='replace')})
         components.append({'name':f"Rust · {package['name']}", 'version':package['version'], 'license':package['license'] or 'Not declared in the published package', 'repository':package.get('repository') or '', 'texts':notices})
+        if package['name']=='libwebp-sys':
+            # The Rust binding's MIT declaration does not cover its bundled BSD codec.
+            vendor=folder/'vendor'
+            files=['COPYING','PATENTS']
+            if (vendor/'AUTHORS').is_file(): files.append('AUTHORS')
+            for name in files:
+                if not (vendor/name).is_file(): raise ValueError(f'Missing libwebp notice: {name}')
+            components.append({'name':'Native · libwebp','version':f"vendored in libwebp-sys {package['version']}",'license':'BSD-3-Clause','repository':'https://chromium.googlesource.com/webm/libwebp/','texts':[{'name':name,'text':(vendor/name).read_text(encoding='utf-8')} for name in files]})
     lock=json.loads((ROOT/'package-lock.json').read_text(encoding='utf-8'))
     for path, package in sorted(lock['packages'].items()):
         if not path or package.get('link'):

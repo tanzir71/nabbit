@@ -102,6 +102,8 @@ fn owned_quick_media_edges_dates_numbering_and_restart() {
                 input: path.to_string_lossy().into(),
                 preset_id: preset.into(),
                 options,
+                image_options: crate::tools::images::Options::default(),
+                document_options: crate::tools::documents::Options::default(),
             })
             .unwrap();
         let start = Instant::now();

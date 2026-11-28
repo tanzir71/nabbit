@@ -30,6 +30,8 @@ impl Fixture {
             input: path.to_string_lossy().into(),
             preset_id: "jpg".into(),
             options: crate::tools::media::Options::default(),
+            image_options: crate::tools::images::Options::default(),
+            document_options: crate::tools::documents::Options::default(),
         }
     }
 }
@@ -67,11 +69,10 @@ fn registry_and_presets_are_unique_and_match_supported_inputs() {
         for preset in tool.presets {
             assert!(registry::presets().iter().any(|p| p.id == *preset));
         }
-        assert!(tool.accepts_path(Path::new(if tool.id == "to-jpg" {
-            "photo.PNG"
-        } else {
-            "clip.MOV"
-        })));
+        assert!(tool.accepts_path(Path::new(&format!(
+            "fixture.{}",
+            tool.accepts.filetypes[0].to_ascii_uppercase()
+        ))));
         assert!(!tool.accepts_path(Path::new("wrong.exe")));
     }
     for p in registry::presets() {
@@ -87,7 +88,7 @@ fn drop_suggestions_use_saved_cap_and_conversion_priority() {
     assert_eq!(suggest("clip.mp4", 20_000_000, 20), None);
     assert_eq!(suggest("clip.webm", 20_000_001, 25), None);
     assert_eq!(suggest("audio.mp3", 90_000_000, 20), None);
-    assert_eq!(suggest("image.png", 10, 20), Some("to-jpg"));
+    assert_eq!(suggest("image.png", 10, 20), None);
     assert_eq!(suggest("image.pdf", 10, 20), None);
 }
 #[test]
@@ -321,6 +322,8 @@ fn owned_ffmpeg_cancellation_retry_and_typed_progress() {
             }),
             ..media::Options::default()
         },
+        image_options: images::Options::default(),
+        document_options: documents::Options::default(),
     };
     let job = service.submit(request).unwrap();
     let start = Instant::now();

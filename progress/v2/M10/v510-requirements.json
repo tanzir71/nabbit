@@ -1,0 +1,40 @@
+{
+  "task": "V5.10",
+  "requirements": [
+    "11 V5.10",
+    "9b.2 registry/jobs/presets/output safety",
+    "9b.3 images/lossless privacy/PDF/OCR/QR",
+    "9b.7 automated input/output acceptance",
+    "36:410"
+  ],
+  "implemented": [
+    "WIC HEIC decode and fixed Store help links",
+    "PNG/JPG/WebP/AVIF conversion, resize/Make smaller/image size presets",
+    "Default EXIF/capture-date/RGB-profile retention and applied orientation",
+    "Lossless JPEG/PNG/WebP camera/location removal and image-result review chip",
+    "Reorderable Shelf-order PDF merge, per-page/range split, images to PDF, Windows PDF to PNG",
+    "User-language file OCR, blank-text handling, rqrr file decode and qrcode text-file encode",
+    "HEIC and multi-image drop suggestions without advertising PDF compression"
+  ],
+  "limits": [
+    "128-MiB inputs and 64-megapixel still images",
+    "Encrypted PDFs, interactive forms and portfolios require a flat unencrypted export",
+    "Non-RGB ICC profiles require an sRGB export for conversion; lossless stripping does not reinterpret encoded pixels",
+    "PDF split/render queues up to 64 output jobs per review",
+    "Clipboard/context/Send To remains V5.11; the aggregate suite remains V5.12"
+  ],
+  "evidence": {
+    "checks": "v510-checks.json",
+    "native": "v510-native-c-scene.json",
+    "visual": "v510-image-doc-k-screenshots.json",
+    "design": "v510-design.json",
+    "dependencies": "v510-dependencies.json",
+    "figma": "v510-figma-assets.json",
+    "pngs": "v510-png-audit.json",
+    "earlier": "v510-earlier-attempts.json",
+    "negativeHarness": "v510-delivery-failure-check.json"
+  },
+  "nativeScope": "Owned production executable, isolated app-data/WebView/control profiles and generated image/text fixtures plus a local verification-only public HEIC sample. DOM input only; no clipboard, global input, real cursor, native dialog, Store install, user files, hosted Tack, signing or OS changes.",
+  "nextTask": "V5.11",
+  "publication": "local main task commit; no PR/push/tag/workflow mutation; milestone-only publication at M10"
+}

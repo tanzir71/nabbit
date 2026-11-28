@@ -18,6 +18,7 @@ import {
   type MediaPlan,
   type MediaCapabilities,
 } from "./mediaApi";
+import { isImagePath } from "./imageApi";
 import fitIcon from "../../assets/media-tools/cd126.svg?url";
 import advancedIcon from "../../assets/media-tools/c80e9.svg?url";
 import "../downloads/sheets.css";
@@ -57,6 +58,7 @@ export function MediaReview({
   const mounted = useRef(false),
     working = useRef(false);
   const sourceEpoch = useRef(0);
+  const imageReviewIds = useRef(new Map<string, string>());
   const fit = tool.id === "fit-size",
     animated = tool.id === "to-gif" || tool.id === "animated-webp";
   const preset = presets.find((p) => p.id === presetId);
@@ -102,6 +104,25 @@ export function MediaReview({
     if (!acceptsFile(tool, source)) {
       setError("Choose a supported audio or video file.");
       return;
+    }
+    if (["fit-size", "strip-metadata"].includes(tool.id) && isImagePath(source)) {
+      let id = imageReviewIds.current.get(source);
+      if (!id) {
+        id = crypto.randomUUID();
+        imageReviewIds.current.set(source, id);
+      }
+      setLoading(true);
+      void mediaApi
+        .open({ id, toolId: tool.id, input: source, inputs: [source] })
+        .catch((e) => {
+          if (active) setError(message(e));
+        })
+        .finally(() => {
+          if (active) setLoading(false);
+        });
+      return () => {
+        active = false;
+      };
     }
     setLoading(true);
     void mediaApi

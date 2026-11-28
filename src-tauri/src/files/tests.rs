@@ -608,6 +608,8 @@ fn completed_tool_output_locations_and_identities_follow_move_and_undo() {
             input: f.file("input.png"),
             preset_id: "jpg".into(),
             options: crate::tools::media::Options::default(),
+            image_options: crate::tools::images::Options::default(),
+            document_options: crate::tools::documents::Options::default(),
         },
         preset: crate::tools::registry::presets()
             .into_iter()

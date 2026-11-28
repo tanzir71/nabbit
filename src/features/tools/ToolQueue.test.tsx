@@ -2,6 +2,8 @@ import { act, fireEvent, render, screen, waitFor } from "@testing-library/react"
 import { beforeEach, expect, it, vi } from "vitest";
 import { listen } from "@tauri-apps/api/event";
 import { ToolQueue } from "./ToolQueue";
+import { mediaApi } from "./mediaApi";
+vi.mock("./mediaApi", () => ({ mediaApi: { open: vi.fn() } }));
 import { ToolSheet } from "./ToolSheet";
 import { toolsApi, type ToolJob, type Tool } from "./api";
 import { shelfApi } from "../shelf/api";
@@ -9,6 +11,7 @@ vi.mock("./api", async (original) => ({
   ...(await original<object>()),
   toolsApi: {
     jobs: vi.fn(),
+    catalog: vi.fn(),
     action: vi.fn(),
     presets: vi.fn(),
     savePreset: vi.fn(),
@@ -46,6 +49,16 @@ beforeEach(() => {
       error: null,
     },
   ];
+  vi.mocked(mediaApi.open).mockResolvedValue(undefined);
+  vi.mocked(toolsApi.catalog).mockResolvedValue([
+    {
+      ...tool,
+      id: "strip-metadata",
+      name: "Remove location and camera data",
+      accepts: { ...tool.accepts, filetypes: ["jpg", "jpeg", "png", "webp"] },
+      presets: ["strip"],
+    },
+  ]);
   vi.mocked(toolsApi.jobs).mockImplementation(async () => structuredClone(rows));
   vi.mocked(listen).mockImplementation(async (_, callback) => {
     change = () => callback({ event: "tools:changed", id: 0, payload: null });
@@ -81,17 +94,34 @@ it("retains a result when Undo fails", async () => {
   expect(await screen.findByRole("alert")).toHaveTextContent("Output changed");
   expect(screen.getByRole("button", { name: "Undo" })).toBeInTheDocument();
 });
-it("requires a supported input and explicit click before submission", async () => {
+it("opens image review with the selected input without starting a job", async () => {
+  vi.mocked(mediaApi.open).mockResolvedValue(undefined);
   const close = vi.fn();
-  render(<ToolSheet tool={tool} close={close} />);
-  const button = await screen.findByRole("button", { name: "To JPG" });
-  expect(button).toBeDisabled();
+  const input = "C:\\Fixtures\\photo.png";
+  render(<ToolSheet tool={tool} inputs={[input]} close={close} />);
+  await waitFor(() =>
+    expect(mediaApi.open).toHaveBeenCalledWith({
+      id: expect.any(String),
+      toolId: "to-jpg",
+      input,
+      inputs: [input],
+    }),
+  );
   expect(toolsApi.start).not.toHaveBeenCalled();
-  fireEvent.change(screen.getByLabelText("File path"), {
-    target: { value: "C:\\Fixtures\\photo.png" },
-  });
-  await waitFor(() => expect(button).toBeEnabled());
-  fireEvent.click(button);
-  await waitFor(() => expect(toolsApi.start).toHaveBeenCalledWith(tool, "C:\\Fixtures\\photo.png"));
   expect(close).toHaveBeenCalledOnce();
+});
+
+it("opens the registry privacy action on a completed image without auto-running it", async () => {
+  render(<ToolQueue />);
+  fireEvent.click(await screen.findByRole("button", { name: "Remove location and camera data" }));
+  await waitFor(() =>
+    expect(mediaApi.open).toHaveBeenCalledWith(
+      expect.objectContaining({
+        toolId: "strip-metadata",
+        input: rows[0].output,
+        inputs: [rows[0].output],
+      }),
+    ),
+  );
+  expect(toolsApi.start).not.toHaveBeenCalled();
 });

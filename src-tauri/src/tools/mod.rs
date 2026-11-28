@@ -1,6 +1,9 @@
 pub mod commands;
+pub mod documents;
 pub(crate) mod files;
+pub mod images;
 pub mod media;
+pub(crate) mod platform;
 mod process;
 pub mod registry;
 pub mod store;
@@ -32,6 +35,10 @@ pub struct Request {
     pub preset_id: String,
     #[serde(default)]
     pub options: media::Options,
+    #[serde(default)]
+    pub image_options: images::Options,
+    #[serde(default)]
+    pub document_options: documents::Options,
 }
 #[derive(Clone, Debug, Serialize, Deserialize)]
 #[serde(rename_all = "camelCase")]
@@ -226,6 +233,25 @@ impl Service {
         }
         let tool = registry::get(&request.tool_id)?;
         request.options.validate()?;
+        request.image_options.validate()?;
+        request.document_options.validate()?;
+        for extra in &request.document_options.inputs {
+            if !matches!(
+                tool.executor,
+                registry::Executor::Document(documents::Kind::Merge | documents::Kind::ImagesPdf)
+            ) || !tool.accepts_path(Path::new(extra))
+            {
+                return Err(msg("Unsupported extra input"));
+            }
+            let _guard = files::input(Path::new(extra))?;
+        }
+        if let registry::Executor::Document(kind) = tool.executor {
+            if matches!(kind, documents::Kind::Split | documents::Kind::Render)
+                && request.document_options.pages.is_empty()
+            {
+                return Err(msg("Choose PDF pages"));
+            }
+        }
         if !tool.presets.contains(&request.preset_id.as_str())
             || !tool.accepts_path(Path::new(&request.input))
         {
@@ -454,7 +480,20 @@ impl Inner {
         let file = files::input(source)?;
         job.before_bytes = file.metadata()?.len();
         let before = files::hash_with_cancel(source, Some(cancel))?;
-        let executor = registry::get(&job.request.tool_id)?.executor;
+        let mut extra_inputs = Vec::new();
+        let mut total = job.before_bytes;
+        for path in &job.request.document_options.inputs {
+            let path = PathBuf::from(path);
+            let guard = files::input(&path)?;
+            total = total.saturating_add(guard.metadata()?.len());
+            if total > 256 * 1024 * 1024 {
+                return Err(msg("Combined inputs exceed 256 MB"));
+            }
+            let hash = files::hash_with_cancel(&path, Some(cancel))?;
+            extra_inputs.push((path, guard, hash));
+        }
+        job.before_bytes = total;
+        let executor = registry::get(&job.request.tool_id)?.executor_for(source);
         let ffmpeg = if let registry::Executor::Media(_) = executor {
             let ffmpeg = crate::download::ffmpeg::verified(&self.dir)?;
             job.media_info = Some(media::inspect(&ffmpeg, source, cancel)?);
@@ -462,8 +501,44 @@ impl Inner {
         } else {
             None
         };
-        let ext = executor.extension(source, job.media_info.as_ref());
-        let temp = source.with_file_name(format!(".nabbit-{}.{}", job.id, ext));
+        let mut ext = executor.extension(source, job.media_info.as_ref());
+        let mut image_options = job.request.image_options.clone();
+        if matches!(executor, registry::Executor::Image(images::Kind::Convert))
+            && image_options.format == images::Format::Original
+        {
+            image_options.format = match job.request.preset_id.as_str() {
+                "png" => images::Format::Png,
+                "webp" => images::Format::Webp,
+                "avif" => images::Format::Avif,
+                _ => images::Format::Jpg,
+            };
+        }
+        let image_job = matches!(executor, registry::Executor::Image(_));
+        if let registry::Executor::Image(kind) = executor {
+            ext = if kind == images::Kind::Strip {
+                source
+                    .extension()
+                    .unwrap_or_default()
+                    .to_string_lossy()
+                    .into()
+            } else {
+                image_options.format.extension(source).into()
+            };
+        }
+        let destination = if image_job {
+            job.request
+                .image_options
+                .output_dir
+                .as_ref()
+                .map(|dir| Path::new(dir).join(source.file_name().unwrap_or_default()))
+                .unwrap_or_else(|| source.to_path_buf())
+        } else {
+            source.to_path_buf()
+        };
+        if !destination.parent().is_some_and(|p| p.is_dir()) {
+            return Err(msg("Choose an existing output folder"));
+        }
+        let temp = destination.with_file_name(format!(".nabbit-{}.{}", job.id, ext));
         let reserved = std::fs::OpenOptions::new()
             .write(true)
             .create_new(true)
@@ -522,29 +597,32 @@ impl Inner {
                     job.media_report = report;
                     job.media_report = Some(result?);
                 }
-                registry::Executor::Jpg => {
-                    use image::ImageReader;
-                    let mut reader = ImageReader::open(source).map_err(|e| msg(e.to_string()))?;
-                    let mut limits = image::Limits::default();
-                    limits.max_image_width = Some(20000);
-                    limits.max_image_height = Some(20000);
-                    limits.max_alloc = Some(256 * 1024 * 1024);
-                    reader.limits(limits);
-                    let image = reader
-                        .decode()
-                        .map_err(|e| msg(format!("Could not read the image: {e}")))?;
-                    let image = image.to_rgb8();
-                    let mut output = std::fs::OpenOptions::new()
-                        .write(true)
-                        .truncate(true)
-                        .open(&temp)?;
-                    image::codecs::jpeg::JpegEncoder::new_with_quality(
-                        &mut output,
-                        job.preset.quality as u8,
-                    )
-                    .encode_image(&image)
-                    .map_err(|e| msg(format!("Could not write JPG: {e}")))?;
-                    output.sync_all()?;
+                registry::Executor::Document(kind) => {
+                    let engine = crate::download::ffmpeg::verified(&self.dir).unwrap_or_default();
+                    documents::execute(
+                        &engine,
+                        source,
+                        &temp,
+                        kind,
+                        &job.request.document_options,
+                        cancel,
+                    )?;
+                }
+                registry::Executor::Image(kind) => {
+                    let engine = crate::download::ffmpeg::verified(&self.dir).unwrap_or_default();
+                    let report = images::execute(
+                        images::Context {
+                            ffmpeg: &engine,
+                            input: source,
+                            output: &temp,
+                            options: &image_options,
+                            cancel,
+                        },
+                        kind,
+                        job.preset.quality,
+                        job.preset.max_mb,
+                    )?;
+                    job.note = report.warning;
                 }
             }
             if cancel.load(Ordering::Acquire) {
@@ -553,10 +631,16 @@ impl Inner {
             if before != files::hash_with_cancel(source, Some(cancel))? {
                 return Err(msg("The input changed while the tool was running"));
             }
+            for (path, _guard, hash) in &extra_inputs {
+                if *hash != files::hash_with_cancel(path, Some(cancel))? {
+                    return Err(msg("An input changed while the tool was running"));
+                }
+            }
             if std::fs::metadata(&temp)?.len() == 0 {
                 return Err(msg("The tool produced an empty file"));
             }
-            let copied = files::dates(&file, &temp).is_ok();
+            let copied = image_job && !job.request.image_options.keep_dates
+                || files::dates(&file, &temp).is_ok();
             std::fs::OpenOptions::new()
                 .write(true)
                 .open(&temp)?
@@ -573,7 +657,7 @@ impl Inner {
                 return Err(msg("Cancelled"));
             }
             let preset_name = job.preset.name.clone();
-            let output = files::publish(&temp, source, &preset_name, &ext, |path| {
+            let output = files::publish(&temp, &destination, &preset_name, &ext, |path| {
                 job.status = "publishing".into();
                 job.output = Some(path.to_string_lossy().into());
                 self.db.save_tool_job(job)
@@ -583,6 +667,7 @@ impl Inner {
             job.percent = 100.;
             job.note = Some(if copied {
                 match &job.media_report {
+                    _ if image_job && job.note.is_some() => job.note.clone().unwrap_or_default(),
                     Some(report) if report.warning.is_some() => {
                         report.warning.clone().unwrap_or_default()
                     }

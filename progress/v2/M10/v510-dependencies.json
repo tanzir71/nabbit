@@ -1,0 +1,56 @@
+{
+  "added": [
+    "image avif feature (ravif speed8)",
+    "fast_image_resize 6.1.0",
+    "oxipng 10.2.1",
+    "img-parts 0.4.2",
+    "lopdf 0.47.0",
+    "resvg 0.50.0",
+    "rqrr 0.11.0",
+    "qrcode 0.15.0",
+    "webp 0.3.1 / libwebp-sys 0.9.6"
+  ],
+  "windowsFeatures": [
+    "Data_Pdf",
+    "Graphics_Imaging",
+    "Media_Ocr",
+    "Globalization",
+    "Storage",
+    "Foundation_Collections",
+    "Win32_System_WinRT",
+    "Win32_System_WinRT_Pdf"
+  ],
+  "codecBoundary": "Existing hash-pinned ffmpeg process preferred for libwebp; static WebP wrapper fallback honours quality. No new shipped executable or DLL. Bundled libwebp BSD COPYING/PATENTS/AUTHORS are included separately from Rust binding metadata.",
+  "advisoryReview": {
+    "url": "https://rustsec.org/advisories/RUSTSEC-2023-0061.html",
+    "patchedCrateRange": ">=0.9.3",
+    "pinned": "0.9.6",
+    "observation": "Vendored huffman_utils.c contains the backported HuffmanTables allocator; configure.ac still carries the older upstream label. This is a targeted advisory check, not a complete security audit."
+  },
+  "licensePolicy": "cargo-deny licenses/bans and GPL/AGPL/LGPL/ffmpeg-next negative fixtures pass. No new policy waiver.",
+  "generatedNotices": 1148,
+  "heicProbe": {
+    "sourceUrl": "https://github.com/dsoprea/heic-exif-samples/blob/master/image1.heic",
+    "sourceSha256": "335699d7ba7b4b4581aed0d995aefa57ef1e6771b66595719768cd313fa2430c",
+    "fixtureScope": "Local verification-only public sample; no source pixels are redistributed.",
+    "expected": [
+      3992,
+      2992
+    ],
+    "pinnedFfmpegOutput": [
+      512,
+      512
+    ],
+    "fullGridFallbackEnabled": false,
+    "wicPixelsDecoded": [
+      3992,
+      2992
+    ]
+  },
+  "sources": [
+    "https://learn.microsoft.com/en-us/uwp/api/windows.graphics.imaging.bitmapdecoder",
+    "https://learn.microsoft.com/en-us/windows/win32/api/windows.data.pdf.interop/nf-windows-data-pdf-interop-pdfcreaterenderer",
+    "https://learn.microsoft.com/en-us/uwp/api/windows.media.ocr.ocrengine",
+    "https://docs.rs/webp/0.3.1/webp/struct.Encoder.html"
+  ]
+}

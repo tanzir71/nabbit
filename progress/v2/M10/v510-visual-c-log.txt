@@ -1,0 +1,152 @@
+file:///D:/claude-upgrade-26/nabbit/scripts/screenshots/harness.mjs:412
+            throw new Error(`${scenario.name} (${theme}@${scale}x): ${error.message}`, {
+                  ^
+
+Error: file-tools-merge (light@1x): Expected values to be strictly deep-equal:
++ actual - expected
+
+  {
++   incomplete: [
++     {
++       id: 'color-contrast',
++       nodes: [
++         {
++           summary: 'Fix any of the following:\n' +
++             '  Element content contains only non-text characters',
++           target: [
++             'button[aria-label="Move Report.pdf down"]'
++           ]
++         },
++         {
++           summary: 'Fix any of the following:\n' +
++             '  Element content contains only non-text characters',
++           target: [
++             'button[aria-label="Move Appendix.pdf up"]'
++           ]
++         }
++       ]
++     },
++     {
++       id: 'label-content-name-mismatch',
++       nodes: [
++         {
++           summary: 'Fix any of the following:\n' +
++             '  Unable to determine if the visible text is part of the accessible name',
++           target: [
++             'button[aria-label="Move Report.pdf up"]'
++           ]
++         },
++         {
++           summary: 'Fix any of the following:\n' +
++             '  Unable to determine if the visible text is part of the accessible name',
++           target: [
++             'button[aria-label="Move Report.pdf down"]'
++           ]
++         },
++         {
++           summary: 'Fix any of the following:\n' +
++             '  Unable to determine if the visible text is part of the accessible name',
++           target: [
++             'button[aria-label="Move Appendix.pdf up"]'
++           ]
++         },
++         {
++           summary: 'Fix any of the following:\n' +
++             '  Unable to determine if the visible text is part of the accessible name',
++           target: [
++             'button[aria-label="Move Appendix.pdf down"]'
++           ]
++         }
++       ]
++     }
++   ],
+-   incomplete: [],
+    violations: []
+  }
+
+    at captureSuite (file:///D:/claude-upgrade-26/nabbit/scripts/screenshots/harness.mjs:412:19)
+    at async file:///D:/claude-upgrade-26/nabbit/scripts/verify-image-document-screenshots.mjs:24:16 {
+  [cause]: AssertionError [ERR_ASSERTION]: Expected values to be strictly deep-equal:
+  + actual - expected
+
+    {
+  +   incomplete: [
+  +     {
+  +       id: 'color-contrast',
+  +       nodes: [
+  +         {
+  +           summary: 'Fix any of the following:\n' +
+  +             '  Element content contains only non-text characters',
+  +           target: [
+  +             'button[aria-label="Move Report.pdf down"]'
+  +           ]
+  +         },
+  +         {
+  +           summary: 'Fix any of the following:\n' +
+  +             '  Element content contains only non-text characters',
+  +           target: [
+  +             'button[aria-label="Move Appendix.pdf up"]'
+  +           ]
+  +         }
+  +       ]
+  +     },
+  +     {
+  +       id: 'label-content-name-mismatch',
+  +       nodes: [
+  +         {
+  +           summary: 'Fix any of the following:\n' +
+  +             '  Unable to determine if the visible text is part of the accessible name',
+  +           target: [
+  +             'button[aria-label="Move Report.pdf up"]'
+  +           ]
+  +         },
+  +         {
+  +           summary: 'Fix any of the following:\n' +
+  +             '  Unable to determine if the visible text is part of the accessible name',
+  +           target: [
+  +             'button[aria-label="Move Report.pdf down"]'
+  +           ]
+  +         },
+  +         {
+  +           summary: 'Fix any of the following:\n' +
+  +             '  Unable to determine if the visible text is part of the accessible name',
+  +           target: [
+  +             'button[aria-label="Move Appendix.pdf up"]'
+  +           ]
+  +         },
+  +         {
+  +           summary: 'Fix any of the following:\n' +
+  +             '  Unable to determine if the visible text is part of the accessible name',
+  +           target: [
+  +             'button[aria-label="Move Appendix.pdf down"]'
+  +           ]
+  +         }
+  +       ]
+  +     }
+  +   ],
+  -   incomplete: [],
+      violations: []
+    }
+
+      at Object.ready (file:///D:/claude-upgrade-26/nabbit/scripts/verify-image-document-screenshots.mjs:85:14)
+      at async captureSuite (file:///D:/claude-upgrade-26/nabbit/scripts/screenshots/harness.mjs:144:33)
+      at async file:///D:/claude-upgrade-26/nabbit/scripts/verify-image-document-screenshots.mjs:24:16 {
+    generatedMessage: true,
+    code: 'ERR_ASSERTION',
+    actual: {
+      violations: [],
+      incomplete: [
+        { id: 'color-contrast', nodes: [ [Object], [Object] ] },
+        {
+          id: 'label-content-name-mismatch',
+          nodes: [ [Object], [Object], [Object], [Object] ]
+        }
+      ]
+    },
+    expected: { violations: [], incomplete: [] },
+    operator: 'deepStrictEqual',
+    diff: 'simple'
+  }
+}
+
+Node.js v24.22.2

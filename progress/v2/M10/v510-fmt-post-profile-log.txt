@@ -1,0 +1,37 @@
+Diff in \\?\D:\claude-upgrade-26\nabbit\src-tauri\src\tools\images\mod.rs:299:
+     check(cancel)?;
+     // Decoders expand pixels to RGB(A). Attaching a CMYK/gray ICC profile to
+     // those pixels would change their interpretation rather than preserve it.
+-    if meta.icc.as_ref().is_some_and(|icc| icc.get(36..40)==Some(b"acsp") && icc.get(16..20)!=Some(b"RGB ")) {
++    if meta
++        .icc
++        .as_ref()
++        .is_some_and(|icc| icc.get(36..40) == Some(b"acsp") && icc.get(16..20) != Some(b"RGB "))
++    {
+         return Err(msg("This colour profile needs colour-managed conversion. Export an sRGB copy first, or turn off Keep colour profile."));
+     }
+     let mut out = Vec::new();
+Diff in \\?\D:\claude-upgrade-26\nabbit\src-tauri\src\tools\images\tests.rs:214:
+ }
+ #[test]
+ fn non_rgb_profile_is_never_attached_to_rgb_pixels() {
+-    let mut icc=vec![0;128];icc[16..20].copy_from_slice(b"CMYK");icc[36..40].copy_from_slice(b"acsp");
+-    let error=encode(Path::new(""),&pixels(),"png",82,&metadata::Metadata{exif:None,icc:Some(icc)},&AtomicBool::new(false)).unwrap_err();
++    let mut icc = vec![0; 128];
++    icc[16..20].copy_from_slice(b"CMYK");
++    icc[36..40].copy_from_slice(b"acsp");
++    let error = encode(
++        Path::new(""),
++        &pixels(),
++        "png",
++        82,
++        &metadata::Metadata {
++            exif: None,
++            icc: Some(icc),
++        },
++        &AtomicBool::new(false),
++    )
++    .unwrap_err();
+     assert!(error.to_string().contains("colour-managed conversion"));
+ }
+ #[test]

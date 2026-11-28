@@ -26,7 +26,11 @@ pub async fn shelf_list(
     window: tauri::WebviewWindow,
     state: tauri::State<'_, crate::AppState>,
 ) -> Result<Vec<Item>> {
-    caller(&app, &window)?;
+    // File reviews may choose existing Shelf entries. All mutating Shelf
+    // commands retain the active-island authorization below.
+    if window.label() != "media-sheet" {
+        caller(&app, &window)?;
+    }
     let db = state.db.clone();
     blocking(move || list(&db)).await
 }

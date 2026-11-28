@@ -5,6 +5,9 @@ import { useTheme } from "../../lib/useTheme";
 import type { AppSettings } from "../../lib/types";
 import { toolsApi, type Tool } from "./api";
 import { mediaApi, type MediaIntent } from "./mediaApi";
+import { DocumentReview } from "./DocumentReview";
+import { ImageReview } from "./ImageReview";
+import { isImagePath } from "./imageApi";
 import { MediaReview } from "./MediaReview";
 import { desiredReviewHeight } from "./mediaLayout";
 import "./media.css";
@@ -88,14 +91,35 @@ export default function MediaSheetApp() {
   };
   const tool = tools.find((t) => t.id === intent?.toolId);
   return (
-    <main className="media-sheet-host" ref={root}>
+    <main
+      className="media-sheet-host"
+      style={{ width: tool?.category === "images" || isImagePath(intent?.input ?? "") ? 460 : 440 }}
+      ref={root}
+    >
       {error ? (
         <section className="media-review">
           <p role="alert">{error}</p>
           <button onClick={close}>Close</button>
         </section>
       ) : intent && tool ? (
-        <MediaReview key={intent.id} tool={tool} input={intent.input} close={close} />
+        tool.category === "documents" ? (
+          <DocumentReview
+            key={intent.id}
+            tool={tool}
+            inputs={intent.inputs?.length ? intent.inputs : intent.input ? [intent.input] : []}
+            close={close}
+          />
+        ) : tool.category === "images" ||
+          (["fit-size", "strip-metadata"].includes(tool.id) && isImagePath(intent.input)) ? (
+          <ImageReview
+            key={intent.id}
+            tool={tool}
+            inputs={intent.inputs?.length ? intent.inputs : intent.input ? [intent.input] : []}
+            close={close}
+          />
+        ) : (
+          <MediaReview key={intent.id} tool={tool} input={intent.input} close={close} />
+        )
       ) : (
         <div className="media-review" role="status">
           {intent ? "Opening media review…" : "Choose a media tool to begin."}

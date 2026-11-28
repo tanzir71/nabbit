@@ -1,0 +1,329 @@
+Checking nabbit v0.1.0 (D:\claude-upgrade-26\nabbit\src-tauri)
+warning: struct `Frame` is never constructed
+  --> src\tools\images\mod.rs:14:12
+   |
+14 | pub struct Frame {
+   |            ^^^^^
+   |
+   = note: `#[warn(dead_code)]` (part of `#[warn(unused)]`) on by default
+
+warning: function `check` is never used
+  --> src\tools\images\mod.rs:19:8
+   |
+19 | pub fn check(cancel: &AtomicBool) -> Result<()> {
+   |        ^^^^^
+
+warning: function `source` is never used
+  --> src\tools\images\mod.rs:26:8
+   |
+26 | pub fn source(path: &Path, cancel: &AtomicBool) -> Result<Vec<u8>> {
+   |        ^^^^^^
+
+warning: function `reader` is never used
+  --> src\tools\images\mod.rs:40:4
+   |
+40 | fn reader(raw: &[u8]) -> Result<image::ImageReader<Cursor<&[u8]>>> {
+   |    ^^^^^^
+
+warning: function `svg` is never used
+  --> src\tools\images\mod.rs:51:4
+   |
+51 | fn svg(raw: &[u8], pixels: bool) -> Result<(u32, u32, Option<DynamicImage>)> {
+   |    ^^^
+
+warning: function `format` is never used
+  --> src\tools\images\mod.rs:99:4
+   |
+99 | fn format(path: &Path) -> String {
+   |    ^^^^^^
+
+warning: function `animated` is never used
+   --> src\tools\images\mod.rs:105:4
+    |
+105 | fn animated(raw: &[u8]) -> bool {
+    |    ^^^^^^^^
+
+warning: struct `Temporary` is never constructed
+   --> src\tools\images\mod.rs:113:8
+    |
+113 | struct Temporary(PathBuf);
+    |        ^^^^^^^^^
+
+warning: function `fallback` is never used
+   --> src\tools\images\mod.rs:119:4
+    |
+119 | fn fallback(ffmpeg: &Path, path: &Path, raw: &[u8], cancel: &AtomicBool) -> Result<DynamicImage> {
+    |    ^^^^^^^^
+
+warning: function `inspect` is never used
+   --> src\tools\images\mod.rs:172:8
+    |
+172 | pub fn inspect(ffmpeg: &Path, path: &Path, cancel: &AtomicBool) -> Result<Info> {
+    |        ^^^^^^^
+
+warning: function `decode` is never used
+   --> src\tools\images\mod.rs:217:8
+    |
+217 | pub fn decode(ffmpeg: &Path, path: &Path, cancel: &AtomicBool) -> Result<Frame> {
+    |        ^^^^^^
+
+warning: function `resize` is never used
+   --> src\tools\images\mod.rs:260:8
+    |
+260 | pub fn resize(image: &DynamicImage, width: u32, height: u32) -> Result<DynamicImage> {
+    |        ^^^^^^
+
+warning: function `white` is never used
+   --> src\tools\images\mod.rs:276:4
+    |
+276 | fn white(image: &DynamicImage) -> DynamicImage {
+    |    ^^^^^
+
+warning: function `encode` is never used
+   --> src\tools\images\mod.rs:287:8
+    |
+287 | pub fn encode(
+    |        ^^^^^^
+
+warning: function `execute` is never used
+   --> src\tools\images\mod.rs:397:8
+    |
+397 | pub fn execute(
+    |        ^^^^^^^
+
+warning: struct `BoxRef` is never constructed
+ --> src\tools\images\bmff.rs:5:8
+  |
+5 | struct BoxRef {
+  |        ^^^^^^
+
+warning: function `boxes` is never used
+  --> src\tools\images\bmff.rs:11:4
+   |
+11 | fn boxes(raw: &[u8], mut p: usize, end: usize) -> Result<Vec<BoxRef>> {
+   |    ^^^^^
+
+warning: function `find` is never used
+  --> src\tools\images\bmff.rs:63:4
+   |
+63 | fn find(raw: &[u8], p: usize, end: usize, kind: [u8; 4]) -> Result<Option<BoxRef>> {
+   |    ^^^^
+
+warning: function `integer` is never used
+  --> src\tools\images\bmff.rs:66:4
+   |
+66 | fn integer(raw: &[u8], p: &mut usize, n: usize) -> Result<u64> {
+   |    ^^^^^^^
+
+warning: struct `Extent` is never constructed
+  --> src\tools\images\bmff.rs:80:8
+   |
+80 | struct Extent {
+   |        ^^^^^^
+
+warning: struct `Location` is never constructed
+  --> src\tools\images\bmff.rs:86:8
+   |
+86 | struct Location {
+   |        ^^^^^^^^
+
+warning: function `locations` is never used
+  --> src\tools\images\bmff.rs:94:4
+   |
+94 | fn locations(raw: &[u8], b: BoxRef) -> Result<Vec<Location>> {
+   |    ^^^^^^^^^
+
+warning: function `fallback_safe` is never used
+   --> src\tools\images\bmff.rs:160:8
+    |
+160 | pub fn fallback_safe(raw: &[u8]) -> Result<()> {
+    |        ^^^^^^^^^^^^^
+
+warning: function `metadata` is never used
+   --> src\tools\images\bmff.rs:208:8
+    |
+208 | pub fn metadata(raw: &[u8]) -> Result<Metadata> {
+    |        ^^^^^^^^
+
+warning: function `put_integer` is never used
+   --> src\tools\images\bmff.rs:303:4
+    |
+303 | fn put_integer(raw: &mut [u8], p: usize, n: usize, value: u64) -> Result<()> {
+    |    ^^^^^^^^^^^
+
+warning: function `with_icc` is never used
+   --> src\tools\images\bmff.rs:313:8
+    |
+313 | pub fn with_icc(mut raw: Vec<u8>, icc: &[u8]) -> Result<Vec<u8>> {
+    |        ^^^^^^^^
+
+warning: struct `Metadata` is never constructed
+ --> src\tools\images\metadata.rs:4:12
+  |
+4 | pub struct Metadata {
+  |            ^^^^^^^^
+
+warning: function `read` is never used
+ --> src\tools\images\metadata.rs:8:8
+  |
+8 | pub fn read(raw: &[u8]) -> Result<Metadata> {
+  |        ^^^^
+
+warning: function `tiff` is never used
+  --> src\tools\images\metadata.rs:19:4
+   |
+19 | fn tiff(raw: &[u8]) -> Option<(&[u8], usize, bool)> {
+   |    ^^^^
+
+warning: function `u16_at` is never used
+  --> src\tools\images\metadata.rs:29:4
+   |
+29 | fn u16_at(b: &[u8], p: usize, le: bool) -> Option<u16> {
+   |    ^^^^^^
+
+warning: function `u32_at` is never used
+  --> src\tools\images\metadata.rs:37:4
+   |
+37 | fn u32_at(b: &[u8], p: usize, le: bool) -> Option<u32> {
+   |    ^^^^^^
+
+warning: function `orientation` is never used
+  --> src\tools\images\metadata.rs:45:8
+   |
+45 | pub fn orientation(exif: Option<&[u8]>) -> u8 {
+   |        ^^^^^^^^^^^
+
+warning: function `upright` is never used
+  --> src\tools\images\metadata.rs:67:8
+   |
+67 | pub fn upright(exif: &[u8], width: u32, height: u32) -> Vec<u8> {
+   |        ^^^^^^^
+
+warning: function `display_exif` is never used
+   --> src\tools\images\metadata.rs:127:4
+    |
+127 | fn display_exif(orientation: u8) -> Option<Vec<u8>> {
+    |    ^^^^^^^^^^^^
+
+warning: function `attach` is never used
+   --> src\tools\images\metadata.rs:135:8
+    |
+135 | pub fn attach(raw: Vec<u8>, meta: &Metadata) -> Result<Vec<u8>> {
+    |        ^^^^^^
+
+warning: function `strip` is never used
+   --> src\tools\images\metadata.rs:151:8
+    |
+151 | pub fn strip(raw: Vec<u8>, keep_profile: bool) -> Result<Vec<u8>> {
+    |        ^^^^^
+
+warning: constant `MAX_FILE` is never used
+ --> src\tools\images\model.rs:3:11
+  |
+3 | pub const MAX_FILE: u64 = 128 * 1024 * 1024;
+  |           ^^^^^^^^
+
+warning: constant `MAX_PIXELS` is never used
+ --> src\tools\images\model.rs:4:11
+  |
+4 | pub const MAX_PIXELS: u64 = 64_000_000;
+  |           ^^^^^^^^^^
+
+warning: constant `TYPES` is never used
+ --> src\tools\images\model.rs:5:11
+  |
+5 | pub const TYPES: &[&str] = &["jpg", "jpeg", "png", "webp", "avif", "heic", "heif", "svg"];
+  |           ^^^^^
+
+warning: enum `Format` is never used
+ --> src\tools\images\model.rs:8:10
+  |
+8 | pub enum Format {
+  |          ^^^^^^
+
+warning: method `extension` is never used
+  --> src\tools\images\model.rs:17:12
+   |
+16 | impl Format {
+   | ----------- method in this implementation
+17 |     pub fn extension(self, input: &std::path::Path) -> &'static str {
+   |            ^^^^^^^^^
+
+warning: enum `Kind` is never used
+  --> src\tools\images\model.rs:39:10
+   |
+39 | pub enum Kind {
+   |          ^^^^
+
+warning: struct `Options` is never constructed
+  --> src\tools\images\model.rs:47:12
+   |
+47 | pub struct Options {
+   |            ^^^^^^^
+
+warning: method `validate` is never used
+  --> src\tools\images\model.rs:70:12
+   |
+69 | impl Options {
+   | ------------ method in this implementation
+70 |     pub fn validate(&self) -> Result<()> {
+   |            ^^^^^^^^
+
+warning: struct `Info` is never constructed
+  --> src\tools\images\model.rs:84:12
+   |
+84 | pub struct Info {
+   |            ^^^^
+
+warning: struct `Report` is never constructed
+  --> src\tools\images\model.rs:97:12
+   |
+97 | pub struct Report {
+   |            ^^^^^^
+
+warning: function `dimensions` is never used
+   --> src\tools\images\model.rs:106:8
+    |
+106 | pub fn dimensions(width: u32, height: u32) -> Result<()> {
+    |        ^^^^^^^^^^
+
+warning: function `fitted` is never used
+   --> src\tools\images\model.rs:117:8
+    |
+117 | pub fn fitted(width: u32, height: u32, max_width: Option<u32>) -> (u32, u32) {
+    |        ^^^^^^
+
+warning: struct `Bitmap` is never constructed
+ --> src\tools\images\native.rs:2:12
+  |
+2 | pub struct Bitmap {
+  |            ^^^^^^
+
+warning: function `decode` is never used
+ --> src\tools\images\native.rs:8:8
+  |
+8 | pub fn decode(bytes: &[u8], pixels: bool) -> Result<Bitmap> {
+  |        ^^^^^^
+
+warning: struct `Apartment` is never constructed
+ --> src\tools\platform.rs:3:12
+  |
+3 | pub struct Apartment;
+  |            ^^^^^^^^^
+
+warning: associated function `new` is never used
+ --> src\tools\platform.rs:6:12
+  |
+5 | impl Apartment {
+  | -------------- associated function in this implementation
+6 |     pub fn new() -> crate::error::Result<Self> {
+  |            ^^^
+
+warning: function `stream` is never used
+  --> src\tools\platform.rs:23:8
+   |
+23 | pub fn stream(
+   |        ^^^^^^
+
+warning: `nabbit` (lib) generated 53 warnings
+    Finished `dev` profile [unoptimized + debuginfo] target(s) in 17.56s

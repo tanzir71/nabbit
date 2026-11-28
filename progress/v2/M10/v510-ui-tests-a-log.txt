@@ -1,0 +1,88 @@
+> nabbit@0.1.0 test
+> vitest --run src/features/tools/ImageDocumentReview.test.tsx src/features/tools/MediaReview.test.tsx
+
+
+ RUN  v3.2.7 D:/claude-upgrade-26/nabbit
+
+stderr | src/features/tools/ImageDocumentReview.test.tsx > offers both codec pages and keeps Run disabled when HEIC cannot decode
+Error: Uncaught [TypeError: Cannot read properties of undefined (reading 'catch')]
+    at reportException (D:\claude-upgrade-26\nabbit\node_modules\jsdom\lib\jsdom\living\helpers\runtime-script-errors.js:66:24)
+    at innerInvokeEventListeners (D:\claude-upgrade-26\nabbit\node_modules\jsdom\lib\jsdom\living\events\EventTarget-impl.js:353:9)
+    at invokeEventListeners (D:\claude-upgrade-26\nabbit\node_modules\jsdom\lib\jsdom\living\events\EventTarget-impl.js:286:3)
+    at HTMLUnknownElementImpl._dispatch (D:\claude-upgrade-26\nabbit\node_modules\jsdom\lib\jsdom\living\events\EventTarget-impl.js:233:9)
+    at HTMLUnknownElementImpl.dispatchEvent (D:\claude-upgrade-26\nabbit\node_modules\jsdom\lib\jsdom\living\events\EventTarget-impl.js:104:17)
+    at HTMLUnknownElement.dispatchEvent (D:\claude-upgrade-26\nabbit\node_modules\jsdom\lib\jsdom\living\generated\EventTarget.js:241:34)
+    at Object.invokeGuardedCallbackDev (D:\claude-upgrade-26\nabbit\node_modules\react-dom\cjs\react-dom.development.js:4213:16)
+    at invokeGuardedCallback (D:\claude-upgrade-26\nabbit\node_modules\react-dom\cjs\react-dom.development.js:4277:31)
+    at invokeGuardedCallbackAndCatchFirstError (D:\claude-upgrade-26\nabbit\node_modules\react-dom\cjs\react-dom.development.js:4291:25)
+    at executeDispatch (D:\claude-upgrade-26\nabbit\node_modules\react-dom\cjs\react-dom.development.js:9041:3) TypeError: Cannot read properties of undefined (reading 'catch')
+    at onClick (D:\claude-upgrade-26\nabbit\src\features\tools\ImageReview.tsx:191:64)
+    at HTMLUnknownElement.callCallback (D:\claude-upgrade-26\nabbit\node_modules\react-dom\cjs\react-dom.development.js:4164:14)
+    at HTMLUnknownElement.callTheUserObjectsOperation (D:\claude-upgrade-26\nabbit\node_modules\jsdom\lib\jsdom\living\generated\EventListener.js:26:30)
+    at innerInvokeEventListeners (D:\claude-upgrade-26\nabbit\node_modules\jsdom\lib\jsdom\living\events\EventTarget-impl.js:350:25)
+    at invokeEventListeners (D:\claude-upgrade-26\nabbit\node_modules\jsdom\lib\jsdom\living\events\EventTarget-impl.js:286:3)
+    at HTMLUnknownElementImpl._dispatch (D:\claude-upgrade-26\nabbit\node_modules\jsdom\lib\jsdom\living\events\EventTarget-impl.js:233:9)
+    at HTMLUnknownElementImpl.dispatchEvent (D:\claude-upgrade-26\nabbit\node_modules\jsdom\lib\jsdom\living\events\EventTarget-impl.js:104:17)
+    at HTMLUnknownElement.dispatchEvent (D:\claude-upgrade-26\nabbit\node_modules\jsdom\lib\jsdom\living\generated\EventTarget.js:241:34)
+    at Object.invokeGuardedCallbackDev (D:\claude-upgrade-26\nabbit\node_modules\react-dom\cjs\react-dom.development.js:4213:16)
+    at invokeGuardedCallback (D:\claude-upgrade-26\nabbit\node_modules\react-dom\cjs\react-dom.development.js:4277:31)
+Error: Uncaught [TypeError: Cannot read properties of undefined (reading 'catch')]
+    at reportException (D:\claude-upgrade-26\nabbit\node_modules\jsdom\lib\jsdom\living\helpers\runtime-script-errors.js:66:24)
+    at innerInvokeEventListeners (D:\claude-upgrade-26\nabbit\node_modules\jsdom\lib\jsdom\living\events\EventTarget-impl.js:353:9)
+    at invokeEventListeners (D:\claude-upgrade-26\nabbit\node_modules\jsdom\lib\jsdom\living\events\EventTarget-impl.js:286:3)
+    at HTMLButtonElementImpl._dispatch (D:\claude-upgrade-26\nabbit\node_modules\jsdom\lib\jsdom\living\events\EventTarget-impl.js:233:9)
+    at HTMLButtonElementImpl.dispatchEvent (D:\claude-upgrade-26\nabbit\node_modules\jsdom\lib\jsdom\living\events\EventTarget-impl.js:104:17)
+    at HTMLButtonElement.dispatchEvent (D:\claude-upgrade-26\nabbit\node_modules\jsdom\lib\jsdom\living\generated\EventTarget.js:241:34)
+    at D:\claude-upgrade-26\nabbit\node_modules\@testing-library\dom\dist\events.js:19:20
+    at D:\claude-upgrade-26\nabbit\node_modules\@testing-library\react\dist\pure.js:107:16
+    at D:\claude-upgrade-26\nabbit\node_modules\@testing-library\react\dist\act-compat.js:47:24
+    at act (D:\claude-upgrade-26\nabbit\node_modules\react\cjs\react.development.js:2512:16) TypeError: Cannot read properties of undefined (reading 'catch')
+    at onClick (D:\claude-upgrade-26\nabbit\src\features\tools\ImageReview.tsx:191:64)
+    at HTMLUnknownElement.callCallback (D:\claude-upgrade-26\nabbit\node_modules\react-dom\cjs\react-dom.development.js:4164:14)
+    at HTMLUnknownElement.callTheUserObjectsOperation (D:\claude-upgrade-26\nabbit\node_modules\jsdom\lib\jsdom\living\generated\EventListener.js:26:30)
+    at innerInvokeEventListeners (D:\claude-upgrade-26\nabbit\node_modules\jsdom\lib\jsdom\living\events\EventTarget-impl.js:350:25)
+    at invokeEventListeners (D:\claude-upgrade-26\nabbit\node_modules\jsdom\lib\jsdom\living\events\EventTarget-impl.js:286:3)
+    at HTMLUnknownElementImpl._dispatch (D:\claude-upgrade-26\nabbit\node_modules\jsdom\lib\jsdom\living\events\EventTarget-impl.js:233:9)
+    at HTMLUnknownElementImpl.dispatchEvent (D:\claude-upgrade-26\nabbit\node_modules\jsdom\lib\jsdom\living\events\EventTarget-impl.js:104:17)
+    at HTMLUnknownElement.dispatchEvent (D:\claude-upgrade-26\nabbit\node_modules\jsdom\lib\jsdom\living\generated\EventTarget.js:241:34)
+    at Object.invokeGuardedCallbackDev (D:\claude-upgrade-26\nabbit\node_modules\react-dom\cjs\react-dom.development.js:4213:16)
+    at invokeGuardedCallback (D:\claude-upgrade-26\nabbit\node_modules\react-dom\cjs\react-dom.development.js:4277:31)
+
+ ✓ src/features/tools/ImageDocumentReview.test.tsx (4 tests) 350ms
+ ✓ src/features/tools/MediaReview.test.tsx (9 tests) 842ms
+⎯⎯⎯⎯⎯⎯ Unhandled Errors ⎯⎯⎯⎯⎯⎯
+
+Vitest caught 1 unhandled error during the test run.
+This might cause false positive tests. Resolve unhandled errors to make sure your tests are not affected.
+
+⎯⎯⎯⎯⎯ Uncaught Exception ⎯⎯⎯⎯⎯
+TypeError: Cannot read properties of undefined (reading 'catch')
+ ❯ onClick src/features/tools/ImageReview.tsx:191:64
+    189|                     <Button
+    190|                       variant="secondary"
+    191|                       onClick={() => void imageApi.codec("heif").catch…
+       |                                                                ^
+    192|                     >
+    193|                       Get HEIF extension
+ ❯ HTMLUnknownElement.callCallback node_modules/react-dom/cjs/react-dom.development.js:4164:14
+ ❯ HTMLUnknownElement.callTheUserObjectsOperation node_modules/jsdom/lib/jsdom/living/generated/EventListener.js:26:30
+ ❯ innerInvokeEventListeners node_modules/jsdom/lib/jsdom/living/events/EventTarget-impl.js:350:25
+ ❯ invokeEventListeners node_modules/jsdom/lib/jsdom/living/events/EventTarget-impl.js:286:3
+ ❯ HTMLUnknownElementImpl._dispatch node_modules/jsdom/lib/jsdom/living/events/EventTarget-impl.js:233:9
+ ❯ HTMLUnknownElementImpl.dispatchEvent node_modules/jsdom/lib/jsdom/living/events/EventTarget-impl.js:104:17
+ ❯ HTMLUnknownElement.dispatchEvent node_modules/jsdom/lib/jsdom/living/generated/EventTarget.js:241:34
+ ❯ Object.invokeGuardedCallbackDev node_modules/react-dom/cjs/react-dom.development.js:4213:16
+ ❯ invokeGuardedCallback node_modules/react-dom/cjs/react-dom.development.js:4277:31
+
+This error originated in "src/features/tools/ImageDocumentReview.test.tsx" test file. It doesn't mean the error was thrown inside the file itself, but while it was running.
+The latest test that might've caused the error is "offers both codec pages and keeps Run disabled when HEIC cannot decode". It might mean one of the following:
+- The error was thrown, while Vitest was running this test.
+- If the error occurred after the test had been completed, this was the last documented test before it was thrown.
+⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯
+
+
+ Test Files  2 passed (2)
+      Tests  13 passed (13)
+     Errors  1 error
+   Start at  07:20:12
+   Duration  2.96s (transform 658ms, setup 179ms, collect 1.63s, tests 1.19s, environment 961ms, prepare 479ms)

@@ -1,0 +1,6232 @@
+{
+  "milestone": "M10",
+  "prefix": "v510-image-doc-i",
+  "suite": "all",
+  "browser": "159.0.8154.6",
+  "playwright": "1.65.1",
+  "platform": "win32",
+  "node": "v24.22.2",
+  "captureTime": "2026-11-26T09:00:00.000Z",
+  "buildManifestSha256": "bbae6db90b9e1479600d5a8e9e192a81ea854957e7fd442ab49d4b2c08acec13",
+  "screenshotScale": "device",
+  "pngBudgetBytes": 307200,
+  "isolatedContexts": true,
+  "mockedIpc": true,
+  "osPreferencesChanged": false,
+  "captures": [
+    {
+      "file": "v510-image-doc-i-file-tools-convert-light@1x.png",
+      "scenario": "file-tools-convert",
+      "entry": "index.html",
+      "figmaNode": "36:410",
+      "theme": "light",
+      "resolvedTheme": "light",
+      "scale": 1,
+      "viewport": {
+        "width": 640,
+        "height": 840
+      },
+      "clip": {
+        "x": 0,
+        "y": 0,
+        "width": 460,
+        "height": 466
+      },
+      "width": 460,
+      "height": 466,
+      "bytes": 38866,
+      "sha256": "75cc50bc0f825887b7abd0274a7f05532d1d8af29e941bad8273873390f65daf",
+      "repeatMatches": true,
+      "caret": "initial",
+      "font": [
+        {
+          "familyName": "Geist",
+          "postScriptName": "Geist",
+          "isCustomFont": true,
+          "glyphCount": 14
+        }
+      ],
+      "fixtureSha256": "1fdee1739ea1950d8bdbd7c8d8e4f41ee6c9ee6fc615e2e03e4a661820f6790f",
+      "assertions": {
+        "mode": "convert",
+        "accessibility": {
+          "violations": [],
+          "incomplete": []
+        },
+        "geometry": {
+          "x": 0,
+          "y": 0,
+          "width": 460,
+          "height": 466
+        },
+        "noJobStarted": true
+      },
+      "ipc": [
+        {
+          "command": "plugin:event|listen",
+          "args": {
+            "event": "tauri://theme-changed",
+            "target": {
+              "kind": "Window",
+              "label": "media-sheet"
+            },
+            "handler": 1
+          }
+        },
+        {
+          "command": "plugin:event|listen",
+          "args": {
+            "event": "tools:sheet",
+            "target": {
+              "kind": "Any"
+            },
+            "handler": 3
+          }
+        },
+        {
+          "command": "get_settings",
+          "args": {}
+        },
+        {
+          "command": "tool_catalog",
+          "args": {}
+        },
+        {
+          "command": "plugin:window|theme",
+          "args": {
+            "label": "media-sheet"
+          }
+        },
+        {
+          "command": "tool_media_sheet",
+          "args": {}
+        },
+        {
+          "command": "shelf_list",
+          "args": {}
+        },
+        {
+          "command": "tool_presets",
+          "args": {}
+        },
+        {
+          "command": "tool_image_inspect",
+          "args": {
+            "path": "C:\\Fixture\\IMG_4821.HEIC"
+          }
+        },
+        {
+          "command": "tool_image_inspect",
+          "args": {
+            "path": "C:\\Fixture\\IMG_4822.HEIC"
+          }
+        },
+        {
+          "command": "tool_image_inspect",
+          "args": {
+            "path": "C:\\Fixture\\IMG_4830.HEIC"
+          }
+        },
+        {
+          "command": "tool_media_sheet_ready",
+          "args": {
+            "id": "51000000-0000-4000-8000-000000000001",
+            "height": 466
+          }
+        }
+      ],
+      "unsupported": [],
+      "runtimeAndNetworkProblems": []
+    },
+    {
+      "file": "v510-image-doc-i-file-tools-advanced-light@1x.png",
+      "scenario": "file-tools-advanced",
+      "entry": "index.html",
+      "figmaNode": "36:410",
+      "theme": "light",
+      "resolvedTheme": "light",
+      "scale": 1,
+      "viewport": {
+        "width": 640,
+        "height": 840
+      },
+      "clip": {
+        "x": 0,
+        "y": 0,
+        "width": 460,
+        "height": 760
+      },
+      "width": 460,
+      "height": 760,
+      "bytes": 65775,
+      "sha256": "116e0d174550ae46a327554816feea67dd0a5d0dfed0bd43793ab1984b0fd859",
+      "repeatMatches": true,
+      "caret": "initial",
+      "font": [
+        {
+          "familyName": "Geist",
+          "postScriptName": "Geist",
+          "isCustomFont": true,
+          "glyphCount": 14
+        }
+      ],
+      "fixtureSha256": "1fdee1739ea1950d8bdbd7c8d8e4f41ee6c9ee6fc615e2e03e4a661820f6790f",
+      "assertions": {
+        "mode": "advanced",
+        "accessibility": {
+          "violations": [],
+          "incomplete": []
+        },
+        "geometry": {
+          "x": 0,
+          "y": 0,
+          "width": 460,
+          "height": 760
+        },
+        "noJobStarted": true
+      },
+      "ipc": [
+        {
+          "command": "plugin:event|listen",
+          "args": {
+            "event": "tauri://theme-changed",
+            "target": {
+              "kind": "Window",
+              "label": "media-sheet"
+            },
+            "handler": 1
+          }
+        },
+        {
+          "command": "plugin:event|listen",
+          "args": {
+            "event": "tools:sheet",
+            "target": {
+              "kind": "Any"
+            },
+            "handler": 3
+          }
+        },
+        {
+          "command": "get_settings",
+          "args": {}
+        },
+        {
+          "command": "tool_catalog",
+          "args": {}
+        },
+        {
+          "command": "plugin:window|theme",
+          "args": {
+            "label": "media-sheet"
+          }
+        },
+        {
+          "command": "tool_media_sheet",
+          "args": {}
+        },
+        {
+          "command": "shelf_list",
+          "args": {}
+        },
+        {
+          "command": "tool_presets",
+          "args": {}
+        },
+        {
+          "command": "tool_image_inspect",
+          "args": {
+            "path": "C:\\Fixture\\IMG_4821.HEIC"
+          }
+        },
+        {
+          "command": "tool_image_inspect",
+          "args": {
+            "path": "C:\\Fixture\\IMG_4822.HEIC"
+          }
+        },
+        {
+          "command": "tool_image_inspect",
+          "args": {
+            "path": "C:\\Fixture\\IMG_4830.HEIC"
+          }
+        },
+        {
+          "command": "tool_media_sheet_ready",
+          "args": {
+            "id": "51000000-0000-4000-8000-000000000001",
+            "height": 466
+          }
+        },
+        {
+          "command": "tool_media_sheet_ready",
+          "args": {
+            "id": "51000000-0000-4000-8000-000000000001",
+            "height": 466
+          }
+        },
+        {
+          "command": "tool_media_sheet_ready",
+          "args": {
+            "id": "51000000-0000-4000-8000-000000000001",
+            "height": 760
+          }
+        }
+      ],
+      "unsupported": [],
+      "runtimeAndNetworkProblems": []
+    },
+    {
+      "file": "v510-image-doc-i-file-tools-smaller-light@1x.png",
+      "scenario": "file-tools-smaller",
+      "entry": "index.html",
+      "figmaNode": "36:410",
+      "theme": "light",
+      "resolvedTheme": "light",
+      "scale": 1,
+      "viewport": {
+        "width": 640,
+        "height": 840
+      },
+      "clip": {
+        "x": 0,
+        "y": 0,
+        "width": 460,
+        "height": 466
+      },
+      "width": 460,
+      "height": 466,
+      "bytes": 39040,
+      "sha256": "9c32168cd3632c870afdcbc51152adecca4f53298a93e6330818928223f2deda",
+      "repeatMatches": true,
+      "caret": "initial",
+      "font": [
+        {
+          "familyName": "Geist",
+          "postScriptName": "Geist",
+          "isCustomFont": true,
+          "glyphCount": 12
+        }
+      ],
+      "fixtureSha256": "2f2593a0de8c6d6a6129256f6e18ce392d1abe8c9578bb4d42d585c274b8afb2",
+      "assertions": {
+        "mode": "smaller",
+        "accessibility": {
+          "violations": [],
+          "incomplete": []
+        },
+        "geometry": {
+          "x": 0,
+          "y": 0,
+          "width": 460,
+          "height": 466
+        },
+        "noJobStarted": true
+      },
+      "ipc": [
+        {
+          "command": "plugin:event|listen",
+          "args": {
+            "event": "tauri://theme-changed",
+            "target": {
+              "kind": "Window",
+              "label": "media-sheet"
+            },
+            "handler": 1
+          }
+        },
+        {
+          "command": "plugin:event|listen",
+          "args": {
+            "event": "tools:sheet",
+            "target": {
+              "kind": "Any"
+            },
+            "handler": 3
+          }
+        },
+        {
+          "command": "get_settings",
+          "args": {}
+        },
+        {
+          "command": "tool_catalog",
+          "args": {}
+        },
+        {
+          "command": "plugin:window|theme",
+          "args": {
+            "label": "media-sheet"
+          }
+        },
+        {
+          "command": "tool_media_sheet",
+          "args": {}
+        },
+        {
+          "command": "shelf_list",
+          "args": {}
+        },
+        {
+          "command": "tool_presets",
+          "args": {}
+        },
+        {
+          "command": "tool_image_inspect",
+          "args": {
+            "path": "C:\\Fixture\\IMG_4821.HEIC"
+          }
+        },
+        {
+          "command": "tool_image_inspect",
+          "args": {
+            "path": "C:\\Fixture\\IMG_4822.HEIC"
+          }
+        },
+        {
+          "command": "tool_image_inspect",
+          "args": {
+            "path": "C:\\Fixture\\IMG_4830.HEIC"
+          }
+        },
+        {
+          "command": "tool_media_sheet_ready",
+          "args": {
+            "id": "51000000-0000-4000-8000-000000000001",
+            "height": 466
+          }
+        }
+      ],
+      "unsupported": [],
+      "runtimeAndNetworkProblems": []
+    },
+    {
+      "file": "v510-image-doc-i-file-tools-fit-light@1x.png",
+      "scenario": "file-tools-fit",
+      "entry": "index.html",
+      "figmaNode": "36:410",
+      "theme": "light",
+      "resolvedTheme": "light",
+      "scale": 1,
+      "viewport": {
+        "width": 640,
+        "height": 840
+      },
+      "clip": {
+        "x": 0,
+        "y": 0,
+        "width": 460,
+        "height": 640
+      },
+      "width": 460,
+      "height": 640,
+      "bytes": 56356,
+      "sha256": "eae3f51429aedfc52e7893a1ce8d2ce5c5fbdd4a8b24158b29d87162030a213c",
+      "repeatMatches": true,
+      "caret": "initial",
+      "font": [
+        {
+          "familyName": "Geist",
+          "postScriptName": "Geist",
+          "isCustomFont": true,
+          "glyphCount": 16
+        }
+      ],
+      "fixtureSha256": "8ab9cc654cb5f87d28c57963643a7f03a6be1a5626339ae6bc95defc9b1a24fc",
+      "assertions": {
+        "mode": "fit",
+        "accessibility": {
+          "violations": [],
+          "incomplete": []
+        },
+        "geometry": {
+          "x": 0,
+          "y": 0,
+          "width": 460,
+          "height": 640
+        },
+        "noJobStarted": true
+      },
+      "ipc": [
+        {
+          "command": "plugin:event|listen",
+          "args": {
+            "event": "tauri://theme-changed",
+            "target": {
+              "kind": "Window",
+              "label": "media-sheet"
+            },
+            "handler": 1
+          }
+        },
+        {
+          "command": "plugin:event|listen",
+          "args": {
+            "event": "tools:sheet",
+            "target": {
+              "kind": "Any"
+            },
+            "handler": 3
+          }
+        },
+        {
+          "command": "get_settings",
+          "args": {}
+        },
+        {
+          "command": "tool_catalog",
+          "args": {}
+        },
+        {
+          "command": "plugin:window|theme",
+          "args": {
+            "label": "media-sheet"
+          }
+        },
+        {
+          "command": "tool_media_sheet",
+          "args": {}
+        },
+        {
+          "command": "shelf_list",
+          "args": {}
+        },
+        {
+          "command": "tool_presets",
+          "args": {}
+        },
+        {
+          "command": "tool_image_inspect",
+          "args": {
+            "path": "C:\\Fixture\\IMG_4821.HEIC"
+          }
+        },
+        {
+          "command": "tool_image_inspect",
+          "args": {
+            "path": "C:\\Fixture\\IMG_4822.HEIC"
+          }
+        },
+        {
+          "command": "tool_image_inspect",
+          "args": {
+            "path": "C:\\Fixture\\IMG_4830.HEIC"
+          }
+        },
+        {
+          "command": "tool_media_sheet_ready",
+          "args": {
+            "id": "51000000-0000-4000-8000-000000000001",
+            "height": 640
+          }
+        },
+        {
+          "command": "tool_media_sheet_ready",
+          "args": {
+            "id": "51000000-0000-4000-8000-000000000001",
+            "height": 640
+          }
+        }
+      ],
+      "unsupported": [],
+      "runtimeAndNetworkProblems": []
+    },
+    {
+      "file": "v510-image-doc-i-file-tools-codec-light@1x.png",
+      "scenario": "file-tools-codec",
+      "entry": "index.html",
+      "figmaNode": "36:410",
+      "theme": "light",
+      "resolvedTheme": "light",
+      "scale": 1,
+      "viewport": {
+        "width": 640,
+        "height": 840
+      },
+      "clip": {
+        "x": 0,
+        "y": 0,
+        "width": 460,
+        "height": 656
+      },
+      "width": 460,
+      "height": 656,
+      "bytes": 67847,
+      "sha256": "317cd048fdf073980cdb1a7b3ed508b3e4267463732507bf06b8423783dad22e",
+      "repeatMatches": true,
+      "caret": "initial",
+      "font": [
+        {
+          "familyName": "Geist",
+          "postScriptName": "Geist",
+          "isCustomFont": true,
+          "glyphCount": 14
+        }
+      ],
+      "fixtureSha256": "6c6394ca736dc1b0b4d72927ef0e2c42483cf1c98598c80058468a6a9bdd1d22",
+      "assertions": {
+        "mode": "codec",
+        "accessibility": {
+          "violations": [],
+          "incomplete": []
+        },
+        "geometry": {
+          "x": 0,
+          "y": 0,
+          "width": 460,
+          "height": 656
+        },
+        "noJobStarted": true
+      },
+      "ipc": [
+        {
+          "command": "plugin:event|listen",
+          "args": {
+            "event": "tauri://theme-changed",
+            "target": {
+              "kind": "Window",
+              "label": "media-sheet"
+            },
+            "handler": 1
+          }
+        },
+        {
+          "command": "plugin:event|listen",
+          "args": {
+            "event": "tools:sheet",
+            "target": {
+              "kind": "Any"
+            },
+            "handler": 3
+          }
+        },
+        {
+          "command": "get_settings",
+          "args": {}
+        },
+        {
+          "command": "tool_catalog",
+          "args": {}
+        },
+        {
+          "command": "plugin:window|theme",
+          "args": {
+            "label": "media-sheet"
+          }
+        },
+        {
+          "command": "tool_media_sheet",
+          "args": {}
+        },
+        {
+          "command": "shelf_list",
+          "args": {}
+        },
+        {
+          "command": "tool_presets",
+          "args": {}
+        },
+        {
+          "command": "tool_image_inspect",
+          "args": {
+            "path": "C:\\Fixture\\IMG_4821.HEIC"
+          }
+        },
+        {
+          "command": "tool_image_inspect",
+          "args": {
+            "path": "C:\\Fixture\\IMG_4822.HEIC"
+          }
+        },
+        {
+          "command": "tool_image_inspect",
+          "args": {
+            "path": "C:\\Fixture\\IMG_4830.HEIC"
+          }
+        },
+        {
+          "command": "tool_media_sheet_ready",
+          "args": {
+            "id": "51000000-0000-4000-8000-000000000001",
+            "height": 656
+          }
+        }
+      ],
+      "unsupported": [],
+      "runtimeAndNetworkProblems": []
+    },
+    {
+      "file": "v510-image-doc-i-file-tools-choose-light@1x.png",
+      "scenario": "file-tools-choose",
+      "entry": "index.html",
+      "figmaNode": "36:410",
+      "theme": "light",
+      "resolvedTheme": "light",
+      "scale": 1,
+      "viewport": {
+        "width": 640,
+        "height": 840
+      },
+      "clip": {
+        "x": 0,
+        "y": 0,
+        "width": 460,
+        "height": 434
+      },
+      "width": 460,
+      "height": 434,
+      "bytes": 36554,
+      "sha256": "95fce0678388f4c701706ef3fd4d57765c066d2925afdea193399520b327c692",
+      "repeatMatches": true,
+      "caret": "initial",
+      "font": [
+        {
+          "familyName": "Geist",
+          "postScriptName": "Geist",
+          "isCustomFont": true,
+          "glyphCount": 14
+        }
+      ],
+      "fixtureSha256": "da86f29252ef867948b1b3a5ac8bdce7c15022925d6b8ce2532facaba38d904f",
+      "assertions": {
+        "mode": "choose",
+        "accessibility": {
+          "violations": [],
+          "incomplete": []
+        },
+        "geometry": {
+          "x": 0,
+          "y": 0,
+          "width": 460,
+          "height": 434
+        },
+        "noJobStarted": true
+      },
+      "ipc": [
+        {
+          "command": "plugin:event|listen",
+          "args": {
+            "event": "tauri://theme-changed",
+            "target": {
+              "kind": "Window",
+              "label": "media-sheet"
+            },
+            "handler": 1
+          }
+        },
+        {
+          "command": "plugin:event|listen",
+          "args": {
+            "event": "tools:sheet",
+            "target": {
+              "kind": "Any"
+            },
+            "handler": 3
+          }
+        },
+        {
+          "command": "get_settings",
+          "args": {}
+        },
+        {
+          "command": "tool_catalog",
+          "args": {}
+        },
+        {
+          "command": "plugin:window|theme",
+          "args": {
+            "label": "media-sheet"
+          }
+        },
+        {
+          "command": "tool_media_sheet",
+          "args": {}
+        },
+        {
+          "command": "shelf_list",
+          "args": {}
+        },
+        {
+          "command": "tool_presets",
+          "args": {}
+        },
+        {
+          "command": "tool_media_sheet_ready",
+          "args": {
+            "id": "51000000-0000-4000-8000-000000000001",
+            "height": 434
+          }
+        },
+        {
+          "command": "tool_media_sheet_ready",
+          "args": {
+            "id": "51000000-0000-4000-8000-000000000001",
+            "height": 434
+          }
+        }
+      ],
+      "unsupported": [],
+      "runtimeAndNetworkProblems": []
+    },
+    {
+      "file": "v510-image-doc-i-file-tools-merge-light@1x.png",
+      "scenario": "file-tools-merge",
+      "entry": "index.html",
+      "figmaNode": null,
+      "theme": "light",
+      "resolvedTheme": "light",
+      "scale": 1,
+      "viewport": {
+        "width": 640,
+        "height": 840
+      },
+      "clip": {
+        "x": 0,
+        "y": 0,
+        "width": 440,
+        "height": 404
+      },
+      "width": 440,
+      "height": 404,
+      "bytes": 25707,
+      "sha256": "0290584a70edfc36c07165864cb6d3e5fdad845b2882e0502884053dc2ab87fd",
+      "repeatMatches": true,
+      "caret": "initial",
+      "font": [
+        {
+          "familyName": "Geist",
+          "postScriptName": "Geist",
+          "isCustomFont": true,
+          "glyphCount": 10
+        }
+      ],
+      "fixtureSha256": "00909912f4d50d13835ff5b48d2b21d3afb65d9fa5caa77d90f4b57d74954be0",
+      "assertions": {
+        "mode": "merge",
+        "accessibility": {
+          "violations": [],
+          "incomplete": []
+        },
+        "geometry": {
+          "x": 0,
+          "y": 0,
+          "width": 440,
+          "height": 404
+        },
+        "noJobStarted": true
+      },
+      "ipc": [
+        {
+          "command": "plugin:event|listen",
+          "args": {
+            "event": "tauri://theme-changed",
+            "target": {
+              "kind": "Window",
+              "label": "media-sheet"
+            },
+            "handler": 1
+          }
+        },
+        {
+          "command": "plugin:event|listen",
+          "args": {
+            "event": "tools:sheet",
+            "target": {
+              "kind": "Any"
+            },
+            "handler": 3
+          }
+        },
+        {
+          "command": "get_settings",
+          "args": {}
+        },
+        {
+          "command": "tool_catalog",
+          "args": {}
+        },
+        {
+          "command": "plugin:window|theme",
+          "args": {
+            "label": "media-sheet"
+          }
+        },
+        {
+          "command": "tool_media_sheet",
+          "args": {}
+        },
+        {
+          "command": "shelf_list",
+          "args": {}
+        },
+        {
+          "command": "tool_media_sheet_ready",
+          "args": {
+            "id": "51000000-0000-4000-8000-000000000001",
+            "height": 404
+          }
+        },
+        {
+          "command": "tool_media_sheet_ready",
+          "args": {
+            "id": "51000000-0000-4000-8000-000000000001",
+            "height": 404
+          }
+        }
+      ],
+      "unsupported": [],
+      "runtimeAndNetworkProblems": []
+    },
+    {
+      "file": "v510-image-doc-i-file-tools-split-light@1x.png",
+      "scenario": "file-tools-split",
+      "entry": "index.html",
+      "figmaNode": null,
+      "theme": "light",
+      "resolvedTheme": "light",
+      "scale": 1,
+      "viewport": {
+        "width": 640,
+        "height": 840
+      },
+      "clip": {
+        "x": 0,
+        "y": 0,
+        "width": 440,
+        "height": 418
+      },
+      "width": 440,
+      "height": 418,
+      "bytes": 25589,
+      "sha256": "edfb8203f3aa2de6f352dd1644908ae4a0701f1f78b1aac6fcb8a22f01d53741",
+      "repeatMatches": true,
+      "caret": "initial",
+      "font": [
+        {
+          "familyName": "Geist",
+          "postScriptName": "Geist",
+          "isCustomFont": true,
+          "glyphCount": 9
+        }
+      ],
+      "fixtureSha256": "26fc9c235b08db5c32a100578801917694a9f993ce8187db8b26b00bb4705d8e",
+      "assertions": {
+        "mode": "split",
+        "accessibility": {
+          "violations": [],
+          "incomplete": []
+        },
+        "geometry": {
+          "x": 0,
+          "y": 0,
+          "width": 440,
+          "height": 418
+        },
+        "noJobStarted": true
+      },
+      "ipc": [
+        {
+          "command": "plugin:event|listen",
+          "args": {
+            "event": "tauri://theme-changed",
+            "target": {
+              "kind": "Window",
+              "label": "media-sheet"
+            },
+            "handler": 1
+          }
+        },
+        {
+          "command": "plugin:event|listen",
+          "args": {
+            "event": "tools:sheet",
+            "target": {
+              "kind": "Any"
+            },
+            "handler": 3
+          }
+        },
+        {
+          "command": "get_settings",
+          "args": {}
+        },
+        {
+          "command": "tool_catalog",
+          "args": {}
+        },
+        {
+          "command": "plugin:window|theme",
+          "args": {
+            "label": "media-sheet"
+          }
+        },
+        {
+          "command": "tool_media_sheet",
+          "args": {}
+        },
+        {
+          "command": "shelf_list",
+          "args": {}
+        },
+        {
+          "command": "tool_pdf_pages",
+          "args": {
+            "path": "C:\\Fixture\\Report.pdf"
+          }
+        },
+        {
+          "command": "tool_media_sheet_ready",
+          "args": {
+            "id": "51000000-0000-4000-8000-000000000001",
+            "height": 354
+          }
+        },
+        {
+          "command": "tool_media_sheet_ready",
+          "args": {
+            "id": "51000000-0000-4000-8000-000000000001",
+            "height": 354
+          }
+        },
+        {
+          "command": "tool_media_sheet_ready",
+          "args": {
+            "id": "51000000-0000-4000-8000-000000000001",
+            "height": 418
+          }
+        }
+      ],
+      "unsupported": [],
+      "runtimeAndNetworkProblems": []
+    },
+    {
+      "file": "v510-image-doc-i-file-tools-render-light@1x.png",
+      "scenario": "file-tools-render",
+      "entry": "index.html",
+      "figmaNode": null,
+      "theme": "light",
+      "resolvedTheme": "light",
+      "scale": 1,
+      "viewport": {
+        "width": 640,
+        "height": 840
+      },
+      "clip": {
+        "x": 0,
+        "y": 0,
+        "width": 440,
+        "height": 402
+      },
+      "width": 440,
+      "height": 402,
+      "bytes": 24248,
+      "sha256": "c24176c50c56e502c9e43b03d1140f33c89ea30378a80817dc4733a6cec7dc02",
+      "repeatMatches": true,
+      "caret": "initial",
+      "font": [
+        {
+          "familyName": "Geist",
+          "postScriptName": "Geist",
+          "isCustomFont": true,
+          "glyphCount": 10
+        }
+      ],
+      "fixtureSha256": "5ef4f3c1d5bcf67ff4dcd68a4ac266ec2e2417e95cd3a279fd15a5f1b66d0607",
+      "assertions": {
+        "mode": "render",
+        "accessibility": {
+          "violations": [],
+          "incomplete": []
+        },
+        "geometry": {
+          "x": 0,
+          "y": 0,
+          "width": 440,
+          "height": 402
+        },
+        "noJobStarted": true
+      },
+      "ipc": [
+        {
+          "command": "plugin:event|listen",
+          "args": {
+            "event": "tauri://theme-changed",
+            "target": {
+              "kind": "Window",
+              "label": "media-sheet"
+            },
+            "handler": 1
+          }
+        },
+        {
+          "command": "plugin:event|listen",
+          "args": {
+            "event": "tools:sheet",
+            "target": {
+              "kind": "Any"
+            },
+            "handler": 3
+          }
+        },
+        {
+          "command": "get_settings",
+          "args": {}
+        },
+        {
+          "command": "tool_catalog",
+          "args": {}
+        },
+        {
+          "command": "plugin:window|theme",
+          "args": {
+            "label": "media-sheet"
+          }
+        },
+        {
+          "command": "tool_media_sheet",
+          "args": {}
+        },
+        {
+          "command": "shelf_list",
+          "args": {}
+        },
+        {
+          "command": "tool_pdf_pages",
+          "args": {
+            "path": "C:\\Fixture\\Report.pdf"
+          }
+        },
+        {
+          "command": "tool_media_sheet_ready",
+          "args": {
+            "id": "51000000-0000-4000-8000-000000000001",
+            "height": 338
+          }
+        },
+        {
+          "command": "tool_media_sheet_ready",
+          "args": {
+            "id": "51000000-0000-4000-8000-000000000001",
+            "height": 338
+          }
+        },
+        {
+          "command": "tool_media_sheet_ready",
+          "args": {
+            "id": "51000000-0000-4000-8000-000000000001",
+            "height": 402
+          }
+        }
+      ],
+      "unsupported": [],
+      "runtimeAndNetworkProblems": []
+    },
+    {
+      "file": "v510-image-doc-i-file-tools-pdf-light@1x.png",
+      "scenario": "file-tools-pdf",
+      "entry": "index.html",
+      "figmaNode": null,
+      "theme": "light",
+      "resolvedTheme": "light",
+      "scale": 1,
+      "viewport": {
+        "width": 640,
+        "height": 840
+      },
+      "clip": {
+        "x": 0,
+        "y": 0,
+        "width": 440,
+        "height": 447
+      },
+      "width": 440,
+      "height": 447,
+      "bytes": 28062,
+      "sha256": "35d03d74842b1c51ff91f538db55738ffb226610ef83bfdc3a759ca80e7ba056",
+      "repeatMatches": true,
+      "caret": "initial",
+      "font": [
+        {
+          "familyName": "Geist",
+          "postScriptName": "Geist",
+          "isCustomFont": true,
+          "glyphCount": 8
+        }
+      ],
+      "fixtureSha256": "0ab5936f30ad8e1d9bd40b9cfcf5091e99a81ccb1a3dbbec5ebab86fec857c3e",
+      "assertions": {
+        "mode": "pdf",
+        "accessibility": {
+          "violations": [],
+          "incomplete": []
+        },
+        "geometry": {
+          "x": 0,
+          "y": 0,
+          "width": 440,
+          "height": 447
+        },
+        "noJobStarted": true
+      },
+      "ipc": [
+        {
+          "command": "plugin:event|listen",
+          "args": {
+            "event": "tauri://theme-changed",
+            "target": {
+              "kind": "Window",
+              "label": "media-sheet"
+            },
+            "handler": 1
+          }
+        },
+        {
+          "command": "plugin:event|listen",
+          "args": {
+            "event": "tools:sheet",
+            "target": {
+              "kind": "Any"
+            },
+            "handler": 3
+          }
+        },
+        {
+          "command": "get_settings",
+          "args": {}
+        },
+        {
+          "command": "tool_catalog",
+          "args": {}
+        },
+        {
+          "command": "plugin:window|theme",
+          "args": {
+            "label": "media-sheet"
+          }
+        },
+        {
+          "command": "tool_media_sheet",
+          "args": {}
+        },
+        {
+          "command": "shelf_list",
+          "args": {}
+        },
+        {
+          "command": "tool_media_sheet_ready",
+          "args": {
+            "id": "51000000-0000-4000-8000-000000000001",
+            "height": 447
+          }
+        },
+        {
+          "command": "tool_media_sheet_ready",
+          "args": {
+            "id": "51000000-0000-4000-8000-000000000001",
+            "height": 447
+          }
+        }
+      ],
+      "unsupported": [],
+      "runtimeAndNetworkProblems": []
+    },
+    {
+      "file": "v510-image-doc-i-file-tools-ocr-light@1x.png",
+      "scenario": "file-tools-ocr",
+      "entry": "index.html",
+      "figmaNode": null,
+      "theme": "light",
+      "resolvedTheme": "light",
+      "scale": 1,
+      "viewport": {
+        "width": 640,
+        "height": 840
+      },
+      "clip": {
+        "x": 0,
+        "y": 0,
+        "width": 440,
+        "height": 259
+      },
+      "width": 440,
+      "height": 259,
+      "bytes": 20994,
+      "sha256": "6471e0b5898715b70ec563b98e54aa72820ad1205f70238a99c90b8f0fb33f9d",
+      "repeatMatches": true,
+      "caret": "initial",
+      "font": [
+        {
+          "familyName": "Geist",
+          "postScriptName": "Geist",
+          "isCustomFont": true,
+          "glyphCount": 15
+        }
+      ],
+      "fixtureSha256": "291573bafb88b587b6f6ce52dbb4b1eafd0864f835583510a37df53ee76e68e3",
+      "assertions": {
+        "mode": "ocr",
+        "accessibility": {
+          "violations": [],
+          "incomplete": []
+        },
+        "geometry": {
+          "x": 0,
+          "y": 0,
+          "width": 440,
+          "height": 259
+        },
+        "noJobStarted": true
+      },
+      "ipc": [
+        {
+          "command": "plugin:event|listen",
+          "args": {
+            "event": "tauri://theme-changed",
+            "target": {
+              "kind": "Window",
+              "label": "media-sheet"
+            },
+            "handler": 1
+          }
+        },
+        {
+          "command": "plugin:event|listen",
+          "args": {
+            "event": "tools:sheet",
+            "target": {
+              "kind": "Any"
+            },
+            "handler": 3
+          }
+        },
+        {
+          "command": "get_settings",
+          "args": {}
+        },
+        {
+          "command": "tool_catalog",
+          "args": {}
+        },
+        {
+          "command": "plugin:window|theme",
+          "args": {
+            "label": "media-sheet"
+          }
+        },
+        {
+          "command": "tool_media_sheet",
+          "args": {}
+        },
+        {
+          "command": "shelf_list",
+          "args": {}
+        },
+        {
+          "command": "tool_media_sheet_ready",
+          "args": {
+            "id": "51000000-0000-4000-8000-000000000001",
+            "height": 259
+          }
+        },
+        {
+          "command": "tool_media_sheet_ready",
+          "args": {
+            "id": "51000000-0000-4000-8000-000000000001",
+            "height": 259
+          }
+        }
+      ],
+      "unsupported": [],
+      "runtimeAndNetworkProblems": []
+    },
+    {
+      "file": "v510-image-doc-i-file-tools-decode-light@1x.png",
+      "scenario": "file-tools-decode",
+      "entry": "index.html",
+      "figmaNode": null,
+      "theme": "light",
+      "resolvedTheme": "light",
+      "scale": 1,
+      "viewport": {
+        "width": 640,
+        "height": 840
+      },
+      "clip": {
+        "x": 0,
+        "y": 0,
+        "width": 440,
+        "height": 243
+      },
+      "width": 440,
+      "height": 243,
+      "bytes": 18997,
+      "sha256": "a2558fed6929f36f8a7d59943c480fd95d13552df39beecfa778afab9a92d52d",
+      "repeatMatches": true,
+      "caret": "initial",
+      "font": [
+        {
+          "familyName": "Geist",
+          "postScriptName": "Geist",
+          "isCustomFont": true,
+          "glyphCount": 18
+        }
+      ],
+      "fixtureSha256": "32d76a0a4f6b1d686b0a126ab9fe1dab677dd389e2a87555d76178e409bfc759",
+      "assertions": {
+        "mode": "decode",
+        "accessibility": {
+          "violations": [],
+          "incomplete": []
+        },
+        "geometry": {
+          "x": 0,
+          "y": 0,
+          "width": 440,
+          "height": 243
+        },
+        "noJobStarted": true
+      },
+      "ipc": [
+        {
+          "command": "plugin:event|listen",
+          "args": {
+            "event": "tauri://theme-changed",
+            "target": {
+              "kind": "Window",
+              "label": "media-sheet"
+            },
+            "handler": 1
+          }
+        },
+        {
+          "command": "plugin:event|listen",
+          "args": {
+            "event": "tools:sheet",
+            "target": {
+              "kind": "Any"
+            },
+            "handler": 3
+          }
+        },
+        {
+          "command": "get_settings",
+          "args": {}
+        },
+        {
+          "command": "tool_catalog",
+          "args": {}
+        },
+        {
+          "command": "plugin:window|theme",
+          "args": {
+            "label": "media-sheet"
+          }
+        },
+        {
+          "command": "tool_media_sheet",
+          "args": {}
+        },
+        {
+          "command": "shelf_list",
+          "args": {}
+        },
+        {
+          "command": "tool_media_sheet_ready",
+          "args": {
+            "id": "51000000-0000-4000-8000-000000000001",
+            "height": 243
+          }
+        },
+        {
+          "command": "tool_media_sheet_ready",
+          "args": {
+            "id": "51000000-0000-4000-8000-000000000001",
+            "height": 243
+          }
+        }
+      ],
+      "unsupported": [],
+      "runtimeAndNetworkProblems": []
+    },
+    {
+      "file": "v510-image-doc-i-file-tools-encode-light@1x.png",
+      "scenario": "file-tools-encode",
+      "entry": "index.html",
+      "figmaNode": null,
+      "theme": "light",
+      "resolvedTheme": "light",
+      "scale": 1,
+      "viewport": {
+        "width": 640,
+        "height": 840
+      },
+      "clip": {
+        "x": 0,
+        "y": 0,
+        "width": 440,
+        "height": 259
+      },
+      "width": 440,
+      "height": 259,
+      "bytes": 19360,
+      "sha256": "b86e561df88c1145afa0977eff3c7379002153d8de32f7f6da8d5afdf8825536",
+      "repeatMatches": true,
+      "caret": "initial",
+      "font": [
+        {
+          "familyName": "Geist",
+          "postScriptName": "Geist",
+          "isCustomFont": true,
+          "glyphCount": 15
+        }
+      ],
+      "fixtureSha256": "54fda596a0f7ab1a67b02d32c234b1c5cb60336abb6047ba95722b0783927643",
+      "assertions": {
+        "mode": "encode",
+        "accessibility": {
+          "violations": [],
+          "incomplete": []
+        },
+        "geometry": {
+          "x": 0,
+          "y": 0,
+          "width": 440,
+          "height": 259
+        },
+        "noJobStarted": true
+      },
+      "ipc": [
+        {
+          "command": "plugin:event|listen",
+          "args": {
+            "event": "tauri://theme-changed",
+            "target": {
+              "kind": "Window",
+              "label": "media-sheet"
+            },
+            "handler": 1
+          }
+        },
+        {
+          "command": "plugin:event|listen",
+          "args": {
+            "event": "tools:sheet",
+            "target": {
+              "kind": "Any"
+            },
+            "handler": 3
+          }
+        },
+        {
+          "command": "get_settings",
+          "args": {}
+        },
+        {
+          "command": "tool_catalog",
+          "args": {}
+        },
+        {
+          "command": "plugin:window|theme",
+          "args": {
+            "label": "media-sheet"
+          }
+        },
+        {
+          "command": "tool_media_sheet",
+          "args": {}
+        },
+        {
+          "command": "shelf_list",
+          "args": {}
+        },
+        {
+          "command": "tool_media_sheet_ready",
+          "args": {
+            "id": "51000000-0000-4000-8000-000000000001",
+            "height": 259
+          }
+        },
+        {
+          "command": "tool_media_sheet_ready",
+          "args": {
+            "id": "51000000-0000-4000-8000-000000000001",
+            "height": 259
+          }
+        }
+      ],
+      "unsupported": [],
+      "runtimeAndNetworkProblems": []
+    },
+    {
+      "file": "v510-image-doc-i-file-tools-convert-light@1.5x.png",
+      "scenario": "file-tools-convert",
+      "entry": "index.html",
+      "figmaNode": "36:410",
+      "theme": "light",
+      "resolvedTheme": "light",
+      "scale": 1.5,
+      "viewport": {
+        "width": 640,
+        "height": 840
+      },
+      "clip": {
+        "x": 0,
+        "y": 0,
+        "width": 460,
+        "height": 466
+      },
+      "width": 690,
+      "height": 699,
+      "bytes": 65109,
+      "sha256": "9a9b9d96323d5796180f8e726b207ee13c00daa33fab96fdc9dbbf2d0d85bb8a",
+      "repeatMatches": true,
+      "caret": "initial",
+      "font": [
+        {
+          "familyName": "Geist",
+          "postScriptName": "Geist",
+          "isCustomFont": true,
+          "glyphCount": 14
+        }
+      ],
+      "fixtureSha256": "1fdee1739ea1950d8bdbd7c8d8e4f41ee6c9ee6fc615e2e03e4a661820f6790f",
+      "assertions": {
+        "mode": "convert",
+        "accessibility": {
+          "violations": [],
+          "incomplete": []
+        },
+        "geometry": {
+          "x": 0,
+          "y": 0,
+          "width": 460,
+          "height": 466
+        },
+        "noJobStarted": true
+      },
+      "ipc": [
+        {
+          "command": "plugin:event|listen",
+          "args": {
+            "event": "tauri://theme-changed",
+            "target": {
+              "kind": "Window",
+              "label": "media-sheet"
+            },
+            "handler": 1
+          }
+        },
+        {
+          "command": "plugin:event|listen",
+          "args": {
+            "event": "tools:sheet",
+            "target": {
+              "kind": "Any"
+            },
+            "handler": 3
+          }
+        },
+        {
+          "command": "get_settings",
+          "args": {}
+        },
+        {
+          "command": "tool_catalog",
+          "args": {}
+        },
+        {
+          "command": "plugin:window|theme",
+          "args": {
+            "label": "media-sheet"
+          }
+        },
+        {
+          "command": "tool_media_sheet",
+          "args": {}
+        },
+        {
+          "command": "shelf_list",
+          "args": {}
+        },
+        {
+          "command": "tool_presets",
+          "args": {}
+        },
+        {
+          "command": "tool_image_inspect",
+          "args": {
+            "path": "C:\\Fixture\\IMG_4821.HEIC"
+          }
+        },
+        {
+          "command": "tool_image_inspect",
+          "args": {
+            "path": "C:\\Fixture\\IMG_4822.HEIC"
+          }
+        },
+        {
+          "command": "tool_image_inspect",
+          "args": {
+            "path": "C:\\Fixture\\IMG_4830.HEIC"
+          }
+        },
+        {
+          "command": "tool_media_sheet_ready",
+          "args": {
+            "id": "51000000-0000-4000-8000-000000000001",
+            "height": 466
+          }
+        }
+      ],
+      "unsupported": [],
+      "runtimeAndNetworkProblems": []
+    },
+    {
+      "file": "v510-image-doc-i-file-tools-advanced-light@1.5x.png",
+      "scenario": "file-tools-advanced",
+      "entry": "index.html",
+      "figmaNode": "36:410",
+      "theme": "light",
+      "resolvedTheme": "light",
+      "scale": 1.5,
+      "viewport": {
+        "width": 640,
+        "height": 840
+      },
+      "clip": {
+        "x": 0,
+        "y": 0,
+        "width": 460,
+        "height": 760
+      },
+      "width": 690,
+      "height": 1140,
+      "bytes": 111145,
+      "sha256": "b189de07c1f80c35ecc42ec9c6f78da338e91065323497d8638ce1dbab02873d",
+      "repeatMatches": true,
+      "caret": "initial",
+      "font": [
+        {
+          "familyName": "Geist",
+          "postScriptName": "Geist",
+          "isCustomFont": true,
+          "glyphCount": 14
+        }
+      ],
+      "fixtureSha256": "1fdee1739ea1950d8bdbd7c8d8e4f41ee6c9ee6fc615e2e03e4a661820f6790f",
+      "assertions": {
+        "mode": "advanced",
+        "accessibility": {
+          "violations": [],
+          "incomplete": []
+        },
+        "geometry": {
+          "x": 0,
+          "y": 0,
+          "width": 460,
+          "height": 760
+        },
+        "noJobStarted": true
+      },
+      "ipc": [
+        {
+          "command": "plugin:event|listen",
+          "args": {
+            "event": "tauri://theme-changed",
+            "target": {
+              "kind": "Window",
+              "label": "media-sheet"
+            },
+            "handler": 1
+          }
+        },
+        {
+          "command": "plugin:event|listen",
+          "args": {
+            "event": "tools:sheet",
+            "target": {
+              "kind": "Any"
+            },
+            "handler": 3
+          }
+        },
+        {
+          "command": "get_settings",
+          "args": {}
+        },
+        {
+          "command": "tool_catalog",
+          "args": {}
+        },
+        {
+          "command": "plugin:window|theme",
+          "args": {
+            "label": "media-sheet"
+          }
+        },
+        {
+          "command": "tool_media_sheet",
+          "args": {}
+        },
+        {
+          "command": "shelf_list",
+          "args": {}
+        },
+        {
+          "command": "tool_presets",
+          "args": {}
+        },
+        {
+          "command": "tool_image_inspect",
+          "args": {
+            "path": "C:\\Fixture\\IMG_4821.HEIC"
+          }
+        },
+        {
+          "command": "tool_image_inspect",
+          "args": {
+            "path": "C:\\Fixture\\IMG_4822.HEIC"
+          }
+        },
+        {
+          "command": "tool_image_inspect",
+          "args": {
+            "path": "C:\\Fixture\\IMG_4830.HEIC"
+          }
+        },
+        {
+          "command": "tool_media_sheet_ready",
+          "args": {
+            "id": "51000000-0000-4000-8000-000000000001",
+            "height": 466
+          }
+        },
+        {
+          "command": "tool_media_sheet_ready",
+          "args": {
+            "id": "51000000-0000-4000-8000-000000000001",
+            "height": 760
+          }
+        }
+      ],
+      "unsupported": [],
+      "runtimeAndNetworkProblems": []
+    },
+    {
+      "file": "v510-image-doc-i-file-tools-smaller-light@1.5x.png",
+      "scenario": "file-tools-smaller",
+      "entry": "index.html",
+      "figmaNode": "36:410",
+      "theme": "light",
+      "resolvedTheme": "light",
+      "scale": 1.5,
+      "viewport": {
+        "width": 640,
+        "height": 840
+      },
+      "clip": {
+        "x": 0,
+        "y": 0,
+        "width": 460,
+        "height": 466
+      },
+      "width": 690,
+      "height": 699,
+      "bytes": 66222,
+      "sha256": "4cb05b2b6073be8df6daab0df04b30d7768222a6c635b6d60e457c0de6de588e",
+      "repeatMatches": true,
+      "caret": "initial",
+      "font": [
+        {
+          "familyName": "Geist",
+          "postScriptName": "Geist",
+          "isCustomFont": true,
+          "glyphCount": 12
+        }
+      ],
+      "fixtureSha256": "2f2593a0de8c6d6a6129256f6e18ce392d1abe8c9578bb4d42d585c274b8afb2",
+      "assertions": {
+        "mode": "smaller",
+        "accessibility": {
+          "violations": [],
+          "incomplete": []
+        },
+        "geometry": {
+          "x": 0,
+          "y": 0,
+          "width": 460,
+          "height": 466
+        },
+        "noJobStarted": true
+      },
+      "ipc": [
+        {
+          "command": "plugin:event|listen",
+          "args": {
+            "event": "tauri://theme-changed",
+            "target": {
+              "kind": "Window",
+              "label": "media-sheet"
+            },
+            "handler": 1
+          }
+        },
+        {
+          "command": "plugin:event|listen",
+          "args": {
+            "event": "tools:sheet",
+            "target": {
+              "kind": "Any"
+            },
+            "handler": 3
+          }
+        },
+        {
+          "command": "get_settings",
+          "args": {}
+        },
+        {
+          "command": "tool_catalog",
+          "args": {}
+        },
+        {
+          "command": "plugin:window|theme",
+          "args": {
+            "label": "media-sheet"
+          }
+        },
+        {
+          "command": "tool_media_sheet",
+          "args": {}
+        },
+        {
+          "command": "shelf_list",
+          "args": {}
+        },
+        {
+          "command": "tool_presets",
+          "args": {}
+        },
+        {
+          "command": "tool_image_inspect",
+          "args": {
+            "path": "C:\\Fixture\\IMG_4821.HEIC"
+          }
+        },
+        {
+          "command": "tool_image_inspect",
+          "args": {
+            "path": "C:\\Fixture\\IMG_4822.HEIC"
+          }
+        },
+        {
+          "command": "tool_image_inspect",
+          "args": {
+            "path": "C:\\Fixture\\IMG_4830.HEIC"
+          }
+        },
+        {
+          "command": "tool_media_sheet_ready",
+          "args": {
+            "id": "51000000-0000-4000-8000-000000000001",
+            "height": 466
+          }
+        },
+        {
+          "command": "tool_media_sheet_ready",
+          "args": {
+            "id": "51000000-0000-4000-8000-000000000001",
+            "height": 466
+          }
+        }
+      ],
+      "unsupported": [],
+      "runtimeAndNetworkProblems": []
+    },
+    {
+      "file": "v510-image-doc-i-file-tools-fit-light@1.5x.png",
+      "scenario": "file-tools-fit",
+      "entry": "index.html",
+      "figmaNode": "36:410",
+      "theme": "light",
+      "resolvedTheme": "light",
+      "scale": 1.5,
+      "viewport": {
+        "width": 640,
+        "height": 840
+      },
+      "clip": {
+        "x": 0,
+        "y": 0,
+        "width": 460,
+        "height": 640
+      },
+      "width": 690,
+      "height": 960,
+      "bytes": 94982,
+      "sha256": "e446b71db264f003370bafc050cb530af5fd51da03df872553201e41fa9fe9ef",
+      "repeatMatches": true,
+      "caret": "initial",
+      "font": [
+        {
+          "familyName": "Geist",
+          "postScriptName": "Geist",
+          "isCustomFont": true,
+          "glyphCount": 16
+        }
+      ],
+      "fixtureSha256": "8ab9cc654cb5f87d28c57963643a7f03a6be1a5626339ae6bc95defc9b1a24fc",
+      "assertions": {
+        "mode": "fit",
+        "accessibility": {
+          "violations": [],
+          "incomplete": []
+        },
+        "geometry": {
+          "x": 0,
+          "y": 0,
+          "width": 460,
+          "height": 640
+        },
+        "noJobStarted": true
+      },
+      "ipc": [
+        {
+          "command": "plugin:event|listen",
+          "args": {
+            "event": "tauri://theme-changed",
+            "target": {
+              "kind": "Window",
+              "label": "media-sheet"
+            },
+            "handler": 1
+          }
+        },
+        {
+          "command": "plugin:event|listen",
+          "args": {
+            "event": "tools:sheet",
+            "target": {
+              "kind": "Any"
+            },
+            "handler": 3
+          }
+        },
+        {
+          "command": "get_settings",
+          "args": {}
+        },
+        {
+          "command": "tool_catalog",
+          "args": {}
+        },
+        {
+          "command": "plugin:window|theme",
+          "args": {
+            "label": "media-sheet"
+          }
+        },
+        {
+          "command": "tool_media_sheet",
+          "args": {}
+        },
+        {
+          "command": "shelf_list",
+          "args": {}
+        },
+        {
+          "command": "tool_presets",
+          "args": {}
+        },
+        {
+          "command": "tool_image_inspect",
+          "args": {
+            "path": "C:\\Fixture\\IMG_4821.HEIC"
+          }
+        },
+        {
+          "command": "tool_image_inspect",
+          "args": {
+            "path": "C:\\Fixture\\IMG_4822.HEIC"
+          }
+        },
+        {
+          "command": "tool_image_inspect",
+          "args": {
+            "path": "C:\\Fixture\\IMG_4830.HEIC"
+          }
+        },
+        {
+          "command": "tool_media_sheet_ready",
+          "args": {
+            "id": "51000000-0000-4000-8000-000000000001",
+            "height": 640
+          }
+        },
+        {
+          "command": "tool_media_sheet_ready",
+          "args": {
+            "id": "51000000-0000-4000-8000-000000000001",
+            "height": 640
+          }
+        }
+      ],
+      "unsupported": [],
+      "runtimeAndNetworkProblems": []
+    },
+    {
+      "file": "v510-image-doc-i-file-tools-codec-light@1.5x.png",
+      "scenario": "file-tools-codec",
+      "entry": "index.html",
+      "figmaNode": "36:410",
+      "theme": "light",
+      "resolvedTheme": "light",
+      "scale": 1.5,
+      "viewport": {
+        "width": 640,
+        "height": 840
+      },
+      "clip": {
+        "x": 0,
+        "y": 0,
+        "width": 460,
+        "height": 656
+      },
+      "width": 690,
+      "height": 984,
+      "bytes": 115615,
+      "sha256": "fd33ba8dcf6cd3adc0104bed7c8d1d62e4be8ea24dfd44074b805ead8488d752",
+      "repeatMatches": true,
+      "caret": "initial",
+      "font": [
+        {
+          "familyName": "Geist",
+          "postScriptName": "Geist",
+          "isCustomFont": true,
+          "glyphCount": 14
+        }
+      ],
+      "fixtureSha256": "6c6394ca736dc1b0b4d72927ef0e2c42483cf1c98598c80058468a6a9bdd1d22",
+      "assertions": {
+        "mode": "codec",
+        "accessibility": {
+          "violations": [],
+          "incomplete": []
+        },
+        "geometry": {
+          "x": 0,
+          "y": 0,
+          "width": 460,
+          "height": 656
+        },
+        "noJobStarted": true
+      },
+      "ipc": [
+        {
+          "command": "plugin:event|listen",
+          "args": {
+            "event": "tauri://theme-changed",
+            "target": {
+              "kind": "Window",
+              "label": "media-sheet"
+            },
+            "handler": 1
+          }
+        },
+        {
+          "command": "plugin:event|listen",
+          "args": {
+            "event": "tools:sheet",
+            "target": {
+              "kind": "Any"
+            },
+            "handler": 3
+          }
+        },
+        {
+          "command": "get_settings",
+          "args": {}
+        },
+        {
+          "command": "tool_catalog",
+          "args": {}
+        },
+        {
+          "command": "plugin:window|theme",
+          "args": {
+            "label": "media-sheet"
+          }
+        },
+        {
+          "command": "tool_media_sheet",
+          "args": {}
+        },
+        {
+          "command": "shelf_list",
+          "args": {}
+        },
+        {
+          "command": "tool_presets",
+          "args": {}
+        },
+        {
+          "command": "tool_image_inspect",
+          "args": {
+            "path": "C:\\Fixture\\IMG_4821.HEIC"
+          }
+        },
+        {
+          "command": "tool_image_inspect",
+          "args": {
+            "path": "C:\\Fixture\\IMG_4822.HEIC"
+          }
+        },
+        {
+          "command": "tool_image_inspect",
+          "args": {
+            "path": "C:\\Fixture\\IMG_4830.HEIC"
+          }
+        },
+        {
+          "command": "tool_media_sheet_ready",
+          "args": {
+            "id": "51000000-0000-4000-8000-000000000001",
+            "height": 656
+          }
+        },
+        {
+          "command": "tool_media_sheet_ready",
+          "args": {
+            "id": "51000000-0000-4000-8000-000000000001",
+            "height": 656
+          }
+        }
+      ],
+      "unsupported": [],
+      "runtimeAndNetworkProblems": []
+    },
+    {
+      "file": "v510-image-doc-i-file-tools-choose-light@1.5x.png",
+      "scenario": "file-tools-choose",
+      "entry": "index.html",
+      "figmaNode": "36:410",
+      "theme": "light",
+      "resolvedTheme": "light",
+      "scale": 1.5,
+      "viewport": {
+        "width": 640,
+        "height": 840
+      },
+      "clip": {
+        "x": 0,
+        "y": 0,
+        "width": 460,
+        "height": 434
+      },
+      "width": 690,
+      "height": 651,
+      "bytes": 61570,
+      "sha256": "13ceddb62ecb36705449ad922dff8575923c1876fb4cc9cf06a12e7ab48bfc73",
+      "repeatMatches": true,
+      "caret": "initial",
+      "font": [
+        {
+          "familyName": "Geist",
+          "postScriptName": "Geist",
+          "isCustomFont": true,
+          "glyphCount": 14
+        }
+      ],
+      "fixtureSha256": "da86f29252ef867948b1b3a5ac8bdce7c15022925d6b8ce2532facaba38d904f",
+      "assertions": {
+        "mode": "choose",
+        "accessibility": {
+          "violations": [],
+          "incomplete": []
+        },
+        "geometry": {
+          "x": 0,
+          "y": 0,
+          "width": 460,
+          "height": 434
+        },
+        "noJobStarted": true
+      },
+      "ipc": [
+        {
+          "command": "plugin:event|listen",
+          "args": {
+            "event": "tauri://theme-changed",
+            "target": {
+              "kind": "Window",
+              "label": "media-sheet"
+            },
+            "handler": 1
+          }
+        },
+        {
+          "command": "plugin:event|listen",
+          "args": {
+            "event": "tools:sheet",
+            "target": {
+              "kind": "Any"
+            },
+            "handler": 3
+          }
+        },
+        {
+          "command": "get_settings",
+          "args": {}
+        },
+        {
+          "command": "tool_catalog",
+          "args": {}
+        },
+        {
+          "command": "plugin:window|theme",
+          "args": {
+            "label": "media-sheet"
+          }
+        },
+        {
+          "command": "tool_media_sheet",
+          "args": {}
+        },
+        {
+          "command": "shelf_list",
+          "args": {}
+        },
+        {
+          "command": "tool_presets",
+          "args": {}
+        },
+        {
+          "command": "tool_media_sheet_ready",
+          "args": {
+            "id": "51000000-0000-4000-8000-000000000001",
+            "height": 434
+          }
+        },
+        {
+          "command": "tool_media_sheet_ready",
+          "args": {
+            "id": "51000000-0000-4000-8000-000000000001",
+            "height": 434
+          }
+        }
+      ],
+      "unsupported": [],
+      "runtimeAndNetworkProblems": []
+    },
+    {
+      "file": "v510-image-doc-i-file-tools-merge-light@1.5x.png",
+      "scenario": "file-tools-merge",
+      "entry": "index.html",
+      "figmaNode": null,
+      "theme": "light",
+      "resolvedTheme": "light",
+      "scale": 1.5,
+      "viewport": {
+        "width": 640,
+        "height": 840
+      },
+      "clip": {
+        "x": 0,
+        "y": 0,
+        "width": 440,
+        "height": 404
+      },
+      "width": 660,
+      "height": 606,
+      "bytes": 41314,
+      "sha256": "e01ebca39c90a3ec7875689cb1a7cbbec808efd9d672bcb7534e7ee9863542f6",
+      "repeatMatches": true,
+      "caret": "initial",
+      "font": [
+        {
+          "familyName": "Geist",
+          "postScriptName": "Geist",
+          "isCustomFont": true,
+          "glyphCount": 10
+        }
+      ],
+      "fixtureSha256": "00909912f4d50d13835ff5b48d2b21d3afb65d9fa5caa77d90f4b57d74954be0",
+      "assertions": {
+        "mode": "merge",
+        "accessibility": {
+          "violations": [],
+          "incomplete": []
+        },
+        "geometry": {
+          "x": 0,
+          "y": 0,
+          "width": 440,
+          "height": 404
+        },
+        "noJobStarted": true
+      },
+      "ipc": [
+        {
+          "command": "plugin:event|listen",
+          "args": {
+            "event": "tauri://theme-changed",
+            "target": {
+              "kind": "Window",
+              "label": "media-sheet"
+            },
+            "handler": 1
+          }
+        },
+        {
+          "command": "plugin:event|listen",
+          "args": {
+            "event": "tools:sheet",
+            "target": {
+              "kind": "Any"
+            },
+            "handler": 3
+          }
+        },
+        {
+          "command": "get_settings",
+          "args": {}
+        },
+        {
+          "command": "tool_catalog",
+          "args": {}
+        },
+        {
+          "command": "plugin:window|theme",
+          "args": {
+            "label": "media-sheet"
+          }
+        },
+        {
+          "command": "tool_media_sheet",
+          "args": {}
+        },
+        {
+          "command": "shelf_list",
+          "args": {}
+        },
+        {
+          "command": "tool_media_sheet_ready",
+          "args": {
+            "id": "51000000-0000-4000-8000-000000000001",
+            "height": 404
+          }
+        },
+        {
+          "command": "tool_media_sheet_ready",
+          "args": {
+            "id": "51000000-0000-4000-8000-000000000001",
+            "height": 404
+          }
+        }
+      ],
+      "unsupported": [],
+      "runtimeAndNetworkProblems": []
+    },
+    {
+      "file": "v510-image-doc-i-file-tools-split-light@1.5x.png",
+      "scenario": "file-tools-split",
+      "entry": "index.html",
+      "figmaNode": null,
+      "theme": "light",
+      "resolvedTheme": "light",
+      "scale": 1.5,
+      "viewport": {
+        "width": 640,
+        "height": 840
+      },
+      "clip": {
+        "x": 0,
+        "y": 0,
+        "width": 440,
+        "height": 418
+      },
+      "width": 660,
+      "height": 627,
+      "bytes": 42869,
+      "sha256": "6af5083d65d8c4989169d5df95a5901ffeb79f2892a4985ae5488a801d4ceb02",
+      "repeatMatches": true,
+      "caret": "initial",
+      "font": [
+        {
+          "familyName": "Geist",
+          "postScriptName": "Geist",
+          "isCustomFont": true,
+          "glyphCount": 9
+        }
+      ],
+      "fixtureSha256": "26fc9c235b08db5c32a100578801917694a9f993ce8187db8b26b00bb4705d8e",
+      "assertions": {
+        "mode": "split",
+        "accessibility": {
+          "violations": [],
+          "incomplete": []
+        },
+        "geometry": {
+          "x": 0,
+          "y": 0,
+          "width": 440,
+          "height": 418
+        },
+        "noJobStarted": true
+      },
+      "ipc": [
+        {
+          "command": "plugin:event|listen",
+          "args": {
+            "event": "tauri://theme-changed",
+            "target": {
+              "kind": "Window",
+              "label": "media-sheet"
+            },
+            "handler": 1
+          }
+        },
+        {
+          "command": "plugin:event|listen",
+          "args": {
+            "event": "tools:sheet",
+            "target": {
+              "kind": "Any"
+            },
+            "handler": 3
+          }
+        },
+        {
+          "command": "get_settings",
+          "args": {}
+        },
+        {
+          "command": "tool_catalog",
+          "args": {}
+        },
+        {
+          "command": "plugin:window|theme",
+          "args": {
+            "label": "media-sheet"
+          }
+        },
+        {
+          "command": "tool_media_sheet",
+          "args": {}
+        },
+        {
+          "command": "shelf_list",
+          "args": {}
+        },
+        {
+          "command": "tool_pdf_pages",
+          "args": {
+            "path": "C:\\Fixture\\Report.pdf"
+          }
+        },
+        {
+          "command": "tool_media_sheet_ready",
+          "args": {
+            "id": "51000000-0000-4000-8000-000000000001",
+            "height": 354
+          }
+        },
+        {
+          "command": "tool_media_sheet_ready",
+          "args": {
+            "id": "51000000-0000-4000-8000-000000000001",
+            "height": 354
+          }
+        },
+        {
+          "command": "tool_media_sheet_ready",
+          "args": {
+            "id": "51000000-0000-4000-8000-000000000001",
+            "height": 354
+          }
+        },
+        {
+          "command": "tool_media_sheet_ready",
+          "args": {
+            "id": "51000000-0000-4000-8000-000000000001",
+            "height": 418
+          }
+        }
+      ],
+      "unsupported": [],
+      "runtimeAndNetworkProblems": []
+    },
+    {
+      "file": "v510-image-doc-i-file-tools-render-light@1.5x.png",
+      "scenario": "file-tools-render",
+      "entry": "index.html",
+      "figmaNode": null,
+      "theme": "light",
+      "resolvedTheme": "light",
+      "scale": 1.5,
+      "viewport": {
+        "width": 640,
+        "height": 840
+      },
+      "clip": {
+        "x": 0,
+        "y": 0,
+        "width": 440,
+        "height": 402
+      },
+      "width": 660,
+      "height": 603,
+      "bytes": 40453,
+      "sha256": "aa1062bf7ac734ada0edf77bc03fc543da76bf74b16b3232fa5d3448bee7896f",
+      "repeatMatches": true,
+      "caret": "initial",
+      "font": [
+        {
+          "familyName": "Geist",
+          "postScriptName": "Geist",
+          "isCustomFont": true,
+          "glyphCount": 10
+        }
+      ],
+      "fixtureSha256": "5ef4f3c1d5bcf67ff4dcd68a4ac266ec2e2417e95cd3a279fd15a5f1b66d0607",
+      "assertions": {
+        "mode": "render",
+        "accessibility": {
+          "violations": [],
+          "incomplete": []
+        },
+        "geometry": {
+          "x": 0,
+          "y": 0,
+          "width": 440,
+          "height": 402
+        },
+        "noJobStarted": true
+      },
+      "ipc": [
+        {
+          "command": "plugin:event|listen",
+          "args": {
+            "event": "tauri://theme-changed",
+            "target": {
+              "kind": "Window",
+              "label": "media-sheet"
+            },
+            "handler": 1
+          }
+        },
+        {
+          "command": "plugin:event|listen",
+          "args": {
+            "event": "tools:sheet",
+            "target": {
+              "kind": "Any"
+            },
+            "handler": 3
+          }
+        },
+        {
+          "command": "get_settings",
+          "args": {}
+        },
+        {
+          "command": "tool_catalog",
+          "args": {}
+        },
+        {
+          "command": "plugin:window|theme",
+          "args": {
+            "label": "media-sheet"
+          }
+        },
+        {
+          "command": "tool_media_sheet",
+          "args": {}
+        },
+        {
+          "command": "shelf_list",
+          "args": {}
+        },
+        {
+          "command": "tool_pdf_pages",
+          "args": {
+            "path": "C:\\Fixture\\Report.pdf"
+          }
+        },
+        {
+          "command": "tool_media_sheet_ready",
+          "args": {
+            "id": "51000000-0000-4000-8000-000000000001",
+            "height": 338
+          }
+        },
+        {
+          "command": "tool_media_sheet_ready",
+          "args": {
+            "id": "51000000-0000-4000-8000-000000000001",
+            "height": 338
+          }
+        },
+        {
+          "command": "tool_media_sheet_ready",
+          "args": {
+            "id": "51000000-0000-4000-8000-000000000001",
+            "height": 402
+          }
+        },
+        {
+          "command": "tool_media_sheet_ready",
+          "args": {
+            "id": "51000000-0000-4000-8000-000000000001",
+            "height": 402
+          }
+        }
+      ],
+      "unsupported": [],
+      "runtimeAndNetworkProblems": []
+    },
+    {
+      "file": "v510-image-doc-i-file-tools-pdf-light@1.5x.png",
+      "scenario": "file-tools-pdf",
+      "entry": "index.html",
+      "figmaNode": null,
+      "theme": "light",
+      "resolvedTheme": "light",
+      "scale": 1.5,
+      "viewport": {
+        "width": 640,
+        "height": 840
+      },
+      "clip": {
+        "x": 0,
+        "y": 0,
+        "width": 440,
+        "height": 447
+      },
+      "width": 660,
+      "height": 671,
+      "bytes": 45041,
+      "sha256": "df597c1f7a825202f47c0ec4984101354e79d66331531a77a07eb00525281b81",
+      "repeatMatches": true,
+      "caret": "initial",
+      "font": [
+        {
+          "familyName": "Geist",
+          "postScriptName": "Geist",
+          "isCustomFont": true,
+          "glyphCount": 8
+        }
+      ],
+      "fixtureSha256": "0ab5936f30ad8e1d9bd40b9cfcf5091e99a81ccb1a3dbbec5ebab86fec857c3e",
+      "assertions": {
+        "mode": "pdf",
+        "accessibility": {
+          "violations": [],
+          "incomplete": []
+        },
+        "geometry": {
+          "x": 0,
+          "y": 0,
+          "width": 440,
+          "height": 447
+        },
+        "noJobStarted": true
+      },
+      "ipc": [
+        {
+          "command": "plugin:event|listen",
+          "args": {
+            "event": "tauri://theme-changed",
+            "target": {
+              "kind": "Window",
+              "label": "media-sheet"
+            },
+            "handler": 1
+          }
+        },
+        {
+          "command": "plugin:event|listen",
+          "args": {
+            "event": "tools:sheet",
+            "target": {
+              "kind": "Any"
+            },
+            "handler": 3
+          }
+        },
+        {
+          "command": "get_settings",
+          "args": {}
+        },
+        {
+          "command": "tool_catalog",
+          "args": {}
+        },
+        {
+          "command": "plugin:window|theme",
+          "args": {
+            "label": "media-sheet"
+          }
+        },
+        {
+          "command": "tool_media_sheet",
+          "args": {}
+        },
+        {
+          "command": "shelf_list",
+          "args": {}
+        },
+        {
+          "command": "tool_media_sheet_ready",
+          "args": {
+            "id": "51000000-0000-4000-8000-000000000001",
+            "height": 447
+          }
+        }
+      ],
+      "unsupported": [],
+      "runtimeAndNetworkProblems": []
+    },
+    {
+      "file": "v510-image-doc-i-file-tools-ocr-light@1.5x.png",
+      "scenario": "file-tools-ocr",
+      "entry": "index.html",
+      "figmaNode": null,
+      "theme": "light",
+      "resolvedTheme": "light",
+      "scale": 1.5,
+      "viewport": {
+        "width": 640,
+        "height": 840
+      },
+      "clip": {
+        "x": 0,
+        "y": 0,
+        "width": 440,
+        "height": 259
+      },
+      "width": 660,
+      "height": 389,
+      "bytes": 35075,
+      "sha256": "4425eb2f1000b8e72fc730faa73d76698e29a4059f990455932147c679a38858",
+      "repeatMatches": true,
+      "caret": "initial",
+      "font": [
+        {
+          "familyName": "Geist",
+          "postScriptName": "Geist",
+          "isCustomFont": true,
+          "glyphCount": 15
+        }
+      ],
+      "fixtureSha256": "291573bafb88b587b6f6ce52dbb4b1eafd0864f835583510a37df53ee76e68e3",
+      "assertions": {
+        "mode": "ocr",
+        "accessibility": {
+          "violations": [],
+          "incomplete": []
+        },
+        "geometry": {
+          "x": 0,
+          "y": 0,
+          "width": 440,
+          "height": 259
+        },
+        "noJobStarted": true
+      },
+      "ipc": [
+        {
+          "command": "plugin:event|listen",
+          "args": {
+            "event": "tauri://theme-changed",
+            "target": {
+              "kind": "Window",
+              "label": "media-sheet"
+            },
+            "handler": 1
+          }
+        },
+        {
+          "command": "plugin:event|listen",
+          "args": {
+            "event": "tools:sheet",
+            "target": {
+              "kind": "Any"
+            },
+            "handler": 3
+          }
+        },
+        {
+          "command": "get_settings",
+          "args": {}
+        },
+        {
+          "command": "tool_catalog",
+          "args": {}
+        },
+        {
+          "command": "plugin:window|theme",
+          "args": {
+            "label": "media-sheet"
+          }
+        },
+        {
+          "command": "tool_media_sheet",
+          "args": {}
+        },
+        {
+          "command": "shelf_list",
+          "args": {}
+        },
+        {
+          "command": "tool_media_sheet_ready",
+          "args": {
+            "id": "51000000-0000-4000-8000-000000000001",
+            "height": 259
+          }
+        },
+        {
+          "command": "tool_media_sheet_ready",
+          "args": {
+            "id": "51000000-0000-4000-8000-000000000001",
+            "height": 259
+          }
+        }
+      ],
+      "unsupported": [],
+      "runtimeAndNetworkProblems": []
+    },
+    {
+      "file": "v510-image-doc-i-file-tools-decode-light@1.5x.png",
+      "scenario": "file-tools-decode",
+      "entry": "index.html",
+      "figmaNode": null,
+      "theme": "light",
+      "resolvedTheme": "light",
+      "scale": 1.5,
+      "viewport": {
+        "width": 640,
+        "height": 840
+      },
+      "clip": {
+        "x": 0,
+        "y": 0,
+        "width": 440,
+        "height": 243
+      },
+      "width": 660,
+      "height": 365,
+      "bytes": 30200,
+      "sha256": "e12204f116262b3ccaf0b983f46d63fc023ae244bdc5231a63469ef94b5557d8",
+      "repeatMatches": true,
+      "caret": "initial",
+      "font": [
+        {
+          "familyName": "Geist",
+          "postScriptName": "Geist",
+          "isCustomFont": true,
+          "glyphCount": 18
+        }
+      ],
+      "fixtureSha256": "32d76a0a4f6b1d686b0a126ab9fe1dab677dd389e2a87555d76178e409bfc759",
+      "assertions": {
+        "mode": "decode",
+        "accessibility": {
+          "violations": [],
+          "incomplete": []
+        },
+        "geometry": {
+          "x": 0,
+          "y": 0,
+          "width": 440,
+          "height": 243
+        },
+        "noJobStarted": true
+      },
+      "ipc": [
+        {
+          "command": "plugin:event|listen",
+          "args": {
+            "event": "tauri://theme-changed",
+            "target": {
+              "kind": "Window",
+              "label": "media-sheet"
+            },
+            "handler": 1
+          }
+        },
+        {
+          "command": "plugin:event|listen",
+          "args": {
+            "event": "tools:sheet",
+            "target": {
+              "kind": "Any"
+            },
+            "handler": 3
+          }
+        },
+        {
+          "command": "get_settings",
+          "args": {}
+        },
+        {
+          "command": "tool_catalog",
+          "args": {}
+        },
+        {
+          "command": "plugin:window|theme",
+          "args": {
+            "label": "media-sheet"
+          }
+        },
+        {
+          "command": "tool_media_sheet",
+          "args": {}
+        },
+        {
+          "command": "shelf_list",
+          "args": {}
+        },
+        {
+          "command": "tool_media_sheet_ready",
+          "args": {
+            "id": "51000000-0000-4000-8000-000000000001",
+            "height": 243
+          }
+        },
+        {
+          "command": "tool_media_sheet_ready",
+          "args": {
+            "id": "51000000-0000-4000-8000-000000000001",
+            "height": 243
+          }
+        }
+      ],
+      "unsupported": [],
+      "runtimeAndNetworkProblems": []
+    },
+    {
+      "file": "v510-image-doc-i-file-tools-encode-light@1.5x.png",
+      "scenario": "file-tools-encode",
+      "entry": "index.html",
+      "figmaNode": null,
+      "theme": "light",
+      "resolvedTheme": "light",
+      "scale": 1.5,
+      "viewport": {
+        "width": 640,
+        "height": 840
+      },
+      "clip": {
+        "x": 0,
+        "y": 0,
+        "width": 440,
+        "height": 259
+      },
+      "width": 660,
+      "height": 389,
+      "bytes": 32239,
+      "sha256": "37c6b7f25596720e42a2cae5f62c51bd579902ec8b07bcacf4cbc7f109e5346e",
+      "repeatMatches": true,
+      "caret": "initial",
+      "font": [
+        {
+          "familyName": "Geist",
+          "postScriptName": "Geist",
+          "isCustomFont": true,
+          "glyphCount": 15
+        }
+      ],
+      "fixtureSha256": "54fda596a0f7ab1a67b02d32c234b1c5cb60336abb6047ba95722b0783927643",
+      "assertions": {
+        "mode": "encode",
+        "accessibility": {
+          "violations": [],
+          "incomplete": []
+        },
+        "geometry": {
+          "x": 0,
+          "y": 0,
+          "width": 440,
+          "height": 259
+        },
+        "noJobStarted": true
+      },
+      "ipc": [
+        {
+          "command": "plugin:event|listen",
+          "args": {
+            "event": "tauri://theme-changed",
+            "target": {
+              "kind": "Window",
+              "label": "media-sheet"
+            },
+            "handler": 1
+          }
+        },
+        {
+          "command": "plugin:event|listen",
+          "args": {
+            "event": "tools:sheet",
+            "target": {
+              "kind": "Any"
+            },
+            "handler": 3
+          }
+        },
+        {
+          "command": "get_settings",
+          "args": {}
+        },
+        {
+          "command": "tool_catalog",
+          "args": {}
+        },
+        {
+          "command": "plugin:window|theme",
+          "args": {
+            "label": "media-sheet"
+          }
+        },
+        {
+          "command": "tool_media_sheet",
+          "args": {}
+        },
+        {
+          "command": "shelf_list",
+          "args": {}
+        },
+        {
+          "command": "tool_media_sheet_ready",
+          "args": {
+            "id": "51000000-0000-4000-8000-000000000001",
+            "height": 259
+          }
+        },
+        {
+          "command": "tool_media_sheet_ready",
+          "args": {
+            "id": "51000000-0000-4000-8000-000000000001",
+            "height": 259
+          }
+        }
+      ],
+      "unsupported": [],
+      "runtimeAndNetworkProblems": []
+    },
+    {
+      "file": "v510-image-doc-i-file-tools-convert-dark@1x.png",
+      "scenario": "file-tools-convert",
+      "entry": "index.html",
+      "figmaNode": "36:410",
+      "theme": "dark",
+      "resolvedTheme": "dark",
+      "scale": 1,
+      "viewport": {
+        "width": 640,
+        "height": 840
+      },
+      "clip": {
+        "x": 0,
+        "y": 0,
+        "width": 460,
+        "height": 466
+      },
+      "width": 460,
+      "height": 466,
+      "bytes": 39214,
+      "sha256": "386b731295215a703fd76561a3e8b1bf509eee167fdb65a3bfbf87c41cc29f4e",
+      "repeatMatches": true,
+      "caret": "initial",
+      "font": [
+        {
+          "familyName": "Geist",
+          "postScriptName": "Geist",
+          "isCustomFont": true,
+          "glyphCount": 14
+        }
+      ],
+      "fixtureSha256": "45a0e95a772bb899c405a215542d8873745acabfb769719a6bc34500f6efff4c",
+      "assertions": {
+        "mode": "convert",
+        "accessibility": {
+          "violations": [],
+          "incomplete": []
+        },
+        "geometry": {
+          "x": 0,
+          "y": 0,
+          "width": 460,
+          "height": 466
+        },
+        "noJobStarted": true
+      },
+      "ipc": [
+        {
+          "command": "plugin:event|listen",
+          "args": {
+            "event": "tauri://theme-changed",
+            "target": {
+              "kind": "Window",
+              "label": "media-sheet"
+            },
+            "handler": 1
+          }
+        },
+        {
+          "command": "plugin:event|listen",
+          "args": {
+            "event": "tools:sheet",
+            "target": {
+              "kind": "Any"
+            },
+            "handler": 3
+          }
+        },
+        {
+          "command": "get_settings",
+          "args": {}
+        },
+        {
+          "command": "tool_catalog",
+          "args": {}
+        },
+        {
+          "command": "plugin:window|theme",
+          "args": {
+            "label": "media-sheet"
+          }
+        },
+        {
+          "command": "tool_media_sheet",
+          "args": {}
+        },
+        {
+          "command": "shelf_list",
+          "args": {}
+        },
+        {
+          "command": "tool_presets",
+          "args": {}
+        },
+        {
+          "command": "tool_image_inspect",
+          "args": {
+            "path": "C:\\Fixture\\IMG_4821.HEIC"
+          }
+        },
+        {
+          "command": "tool_image_inspect",
+          "args": {
+            "path": "C:\\Fixture\\IMG_4822.HEIC"
+          }
+        },
+        {
+          "command": "tool_image_inspect",
+          "args": {
+            "path": "C:\\Fixture\\IMG_4830.HEIC"
+          }
+        },
+        {
+          "command": "tool_media_sheet_ready",
+          "args": {
+            "id": "51000000-0000-4000-8000-000000000001",
+            "height": 466
+          }
+        },
+        {
+          "command": "tool_media_sheet_ready",
+          "args": {
+            "id": "51000000-0000-4000-8000-000000000001",
+            "height": 466
+          }
+        }
+      ],
+      "unsupported": [],
+      "runtimeAndNetworkProblems": []
+    },
+    {
+      "file": "v510-image-doc-i-file-tools-advanced-dark@1x.png",
+      "scenario": "file-tools-advanced",
+      "entry": "index.html",
+      "figmaNode": "36:410",
+      "theme": "dark",
+      "resolvedTheme": "dark",
+      "scale": 1,
+      "viewport": {
+        "width": 640,
+        "height": 840
+      },
+      "clip": {
+        "x": 0,
+        "y": 0,
+        "width": 460,
+        "height": 760
+      },
+      "width": 460,
+      "height": 760,
+      "bytes": 66074,
+      "sha256": "f0ef0ef1aad7a15ced44f65ed72fe618086081e9ea9c382dd2c6beaf0c74718d",
+      "repeatMatches": true,
+      "caret": "initial",
+      "font": [
+        {
+          "familyName": "Geist",
+          "postScriptName": "Geist",
+          "isCustomFont": true,
+          "glyphCount": 14
+        }
+      ],
+      "fixtureSha256": "45a0e95a772bb899c405a215542d8873745acabfb769719a6bc34500f6efff4c",
+      "assertions": {
+        "mode": "advanced",
+        "accessibility": {
+          "violations": [],
+          "incomplete": []
+        },
+        "geometry": {
+          "x": 0,
+          "y": 0,
+          "width": 460,
+          "height": 760
+        },
+        "noJobStarted": true
+      },
+      "ipc": [
+        {
+          "command": "plugin:event|listen",
+          "args": {
+            "event": "tauri://theme-changed",
+            "target": {
+              "kind": "Window",
+              "label": "media-sheet"
+            },
+            "handler": 1
+          }
+        },
+        {
+          "command": "plugin:event|listen",
+          "args": {
+            "event": "tools:sheet",
+            "target": {
+              "kind": "Any"
+            },
+            "handler": 3
+          }
+        },
+        {
+          "command": "get_settings",
+          "args": {}
+        },
+        {
+          "command": "tool_catalog",
+          "args": {}
+        },
+        {
+          "command": "plugin:window|theme",
+          "args": {
+            "label": "media-sheet"
+          }
+        },
+        {
+          "command": "tool_media_sheet",
+          "args": {}
+        },
+        {
+          "command": "shelf_list",
+          "args": {}
+        },
+        {
+          "command": "tool_presets",
+          "args": {}
+        },
+        {
+          "command": "tool_image_inspect",
+          "args": {
+            "path": "C:\\Fixture\\IMG_4821.HEIC"
+          }
+        },
+        {
+          "command": "tool_image_inspect",
+          "args": {
+            "path": "C:\\Fixture\\IMG_4822.HEIC"
+          }
+        },
+        {
+          "command": "tool_image_inspect",
+          "args": {
+            "path": "C:\\Fixture\\IMG_4830.HEIC"
+          }
+        },
+        {
+          "command": "tool_media_sheet_ready",
+          "args": {
+            "id": "51000000-0000-4000-8000-000000000001",
+            "height": 466
+          }
+        },
+        {
+          "command": "tool_media_sheet_ready",
+          "args": {
+            "id": "51000000-0000-4000-8000-000000000001",
+            "height": 466
+          }
+        },
+        {
+          "command": "tool_media_sheet_ready",
+          "args": {
+            "id": "51000000-0000-4000-8000-000000000001",
+            "height": 466
+          }
+        },
+        {
+          "command": "tool_media_sheet_ready",
+          "args": {
+            "id": "51000000-0000-4000-8000-000000000001",
+            "height": 760
+          }
+        }
+      ],
+      "unsupported": [],
+      "runtimeAndNetworkProblems": []
+    },
+    {
+      "file": "v510-image-doc-i-file-tools-smaller-dark@1x.png",
+      "scenario": "file-tools-smaller",
+      "entry": "index.html",
+      "figmaNode": "36:410",
+      "theme": "dark",
+      "resolvedTheme": "dark",
+      "scale": 1,
+      "viewport": {
+        "width": 640,
+        "height": 840
+      },
+      "clip": {
+        "x": 0,
+        "y": 0,
+        "width": 460,
+        "height": 466
+      },
+      "width": 460,
+      "height": 466,
+      "bytes": 39389,
+      "sha256": "ea8d48490ab78b6e0bee083b0e1263a7b4cb48e4b4f9a51b465f5aff11512512",
+      "repeatMatches": true,
+      "caret": "initial",
+      "font": [
+        {
+          "familyName": "Geist",
+          "postScriptName": "Geist",
+          "isCustomFont": true,
+          "glyphCount": 12
+        }
+      ],
+      "fixtureSha256": "688a9c8e1547e4a196b5d6aba56cd6547bff3c2f2e6d9d978d525ec40041dd12",
+      "assertions": {
+        "mode": "smaller",
+        "accessibility": {
+          "violations": [],
+          "incomplete": []
+        },
+        "geometry": {
+          "x": 0,
+          "y": 0,
+          "width": 460,
+          "height": 466
+        },
+        "noJobStarted": true
+      },
+      "ipc": [
+        {
+          "command": "plugin:event|listen",
+          "args": {
+            "event": "tauri://theme-changed",
+            "target": {
+              "kind": "Window",
+              "label": "media-sheet"
+            },
+            "handler": 1
+          }
+        },
+        {
+          "command": "plugin:event|listen",
+          "args": {
+            "event": "tools:sheet",
+            "target": {
+              "kind": "Any"
+            },
+            "handler": 3
+          }
+        },
+        {
+          "command": "get_settings",
+          "args": {}
+        },
+        {
+          "command": "tool_catalog",
+          "args": {}
+        },
+        {
+          "command": "plugin:window|theme",
+          "args": {
+            "label": "media-sheet"
+          }
+        },
+        {
+          "command": "tool_media_sheet",
+          "args": {}
+        },
+        {
+          "command": "shelf_list",
+          "args": {}
+        },
+        {
+          "command": "tool_presets",
+          "args": {}
+        },
+        {
+          "command": "tool_image_inspect",
+          "args": {
+            "path": "C:\\Fixture\\IMG_4821.HEIC"
+          }
+        },
+        {
+          "command": "tool_image_inspect",
+          "args": {
+            "path": "C:\\Fixture\\IMG_4822.HEIC"
+          }
+        },
+        {
+          "command": "tool_image_inspect",
+          "args": {
+            "path": "C:\\Fixture\\IMG_4830.HEIC"
+          }
+        },
+        {
+          "command": "tool_media_sheet_ready",
+          "args": {
+            "id": "51000000-0000-4000-8000-000000000001",
+            "height": 466
+          }
+        },
+        {
+          "command": "tool_media_sheet_ready",
+          "args": {
+            "id": "51000000-0000-4000-8000-000000000001",
+            "height": 466
+          }
+        }
+      ],
+      "unsupported": [],
+      "runtimeAndNetworkProblems": []
+    },
+    {
+      "file": "v510-image-doc-i-file-tools-fit-dark@1x.png",
+      "scenario": "file-tools-fit",
+      "entry": "index.html",
+      "figmaNode": "36:410",
+      "theme": "dark",
+      "resolvedTheme": "dark",
+      "scale": 1,
+      "viewport": {
+        "width": 640,
+        "height": 840
+      },
+      "clip": {
+        "x": 0,
+        "y": 0,
+        "width": 460,
+        "height": 640
+      },
+      "width": 460,
+      "height": 640,
+      "bytes": 56556,
+      "sha256": "97e39e79d9936ceec186f9013ceda04aa0e2efb1b8430287ea5fa7243b69c261",
+      "repeatMatches": true,
+      "caret": "initial",
+      "font": [
+        {
+          "familyName": "Geist",
+          "postScriptName": "Geist",
+          "isCustomFont": true,
+          "glyphCount": 16
+        }
+      ],
+      "fixtureSha256": "cbec59bf85442ed40ed999de72195588328813cfdb333083ea85d7c37c8e6f03",
+      "assertions": {
+        "mode": "fit",
+        "accessibility": {
+          "violations": [],
+          "incomplete": []
+        },
+        "geometry": {
+          "x": 0,
+          "y": 0,
+          "width": 460,
+          "height": 640
+        },
+        "noJobStarted": true
+      },
+      "ipc": [
+        {
+          "command": "plugin:event|listen",
+          "args": {
+            "event": "tauri://theme-changed",
+            "target": {
+              "kind": "Window",
+              "label": "media-sheet"
+            },
+            "handler": 1
+          }
+        },
+        {
+          "command": "plugin:event|listen",
+          "args": {
+            "event": "tools:sheet",
+            "target": {
+              "kind": "Any"
+            },
+            "handler": 3
+          }
+        },
+        {
+          "command": "get_settings",
+          "args": {}
+        },
+        {
+          "command": "tool_catalog",
+          "args": {}
+        },
+        {
+          "command": "plugin:window|theme",
+          "args": {
+            "label": "media-sheet"
+          }
+        },
+        {
+          "command": "tool_media_sheet",
+          "args": {}
+        },
+        {
+          "command": "shelf_list",
+          "args": {}
+        },
+        {
+          "command": "tool_presets",
+          "args": {}
+        },
+        {
+          "command": "tool_image_inspect",
+          "args": {
+            "path": "C:\\Fixture\\IMG_4821.HEIC"
+          }
+        },
+        {
+          "command": "tool_image_inspect",
+          "args": {
+            "path": "C:\\Fixture\\IMG_4822.HEIC"
+          }
+        },
+        {
+          "command": "tool_image_inspect",
+          "args": {
+            "path": "C:\\Fixture\\IMG_4830.HEIC"
+          }
+        },
+        {
+          "command": "tool_media_sheet_ready",
+          "args": {
+            "id": "51000000-0000-4000-8000-000000000001",
+            "height": 640
+          }
+        },
+        {
+          "command": "tool_media_sheet_ready",
+          "args": {
+            "id": "51000000-0000-4000-8000-000000000001",
+            "height": 640
+          }
+        }
+      ],
+      "unsupported": [],
+      "runtimeAndNetworkProblems": []
+    },
+    {
+      "file": "v510-image-doc-i-file-tools-codec-dark@1x.png",
+      "scenario": "file-tools-codec",
+      "entry": "index.html",
+      "figmaNode": "36:410",
+      "theme": "dark",
+      "resolvedTheme": "dark",
+      "scale": 1,
+      "viewport": {
+        "width": 640,
+        "height": 840
+      },
+      "clip": {
+        "x": 0,
+        "y": 0,
+        "width": 460,
+        "height": 656
+      },
+      "width": 460,
+      "height": 656,
+      "bytes": 67721,
+      "sha256": "3f04cb4cd4aad37f503fd8f4d3002b94aa5ccd66c6ce7149c1f7acc78527e8f0",
+      "repeatMatches": true,
+      "caret": "initial",
+      "font": [
+        {
+          "familyName": "Geist",
+          "postScriptName": "Geist",
+          "isCustomFont": true,
+          "glyphCount": 14
+        }
+      ],
+      "fixtureSha256": "90492f0a3187df5feb0966086343fc1f05c231ef90622b57eb1b63820b49bb09",
+      "assertions": {
+        "mode": "codec",
+        "accessibility": {
+          "violations": [],
+          "incomplete": []
+        },
+        "geometry": {
+          "x": 0,
+          "y": 0,
+          "width": 460,
+          "height": 656
+        },
+        "noJobStarted": true
+      },
+      "ipc": [
+        {
+          "command": "plugin:event|listen",
+          "args": {
+            "event": "tauri://theme-changed",
+            "target": {
+              "kind": "Window",
+              "label": "media-sheet"
+            },
+            "handler": 1
+          }
+        },
+        {
+          "command": "plugin:event|listen",
+          "args": {
+            "event": "tools:sheet",
+            "target": {
+              "kind": "Any"
+            },
+            "handler": 3
+          }
+        },
+        {
+          "command": "get_settings",
+          "args": {}
+        },
+        {
+          "command": "tool_catalog",
+          "args": {}
+        },
+        {
+          "command": "plugin:window|theme",
+          "args": {
+            "label": "media-sheet"
+          }
+        },
+        {
+          "command": "tool_media_sheet",
+          "args": {}
+        },
+        {
+          "command": "shelf_list",
+          "args": {}
+        },
+        {
+          "command": "tool_presets",
+          "args": {}
+        },
+        {
+          "command": "tool_image_inspect",
+          "args": {
+            "path": "C:\\Fixture\\IMG_4821.HEIC"
+          }
+        },
+        {
+          "command": "tool_image_inspect",
+          "args": {
+            "path": "C:\\Fixture\\IMG_4822.HEIC"
+          }
+        },
+        {
+          "command": "tool_image_inspect",
+          "args": {
+            "path": "C:\\Fixture\\IMG_4830.HEIC"
+          }
+        },
+        {
+          "command": "tool_media_sheet_ready",
+          "args": {
+            "id": "51000000-0000-4000-8000-000000000001",
+            "height": 656
+          }
+        },
+        {
+          "command": "tool_media_sheet_ready",
+          "args": {
+            "id": "51000000-0000-4000-8000-000000000001",
+            "height": 656
+          }
+        }
+      ],
+      "unsupported": [],
+      "runtimeAndNetworkProblems": []
+    },
+    {
+      "file": "v510-image-doc-i-file-tools-choose-dark@1x.png",
+      "scenario": "file-tools-choose",
+      "entry": "index.html",
+      "figmaNode": "36:410",
+      "theme": "dark",
+      "resolvedTheme": "dark",
+      "scale": 1,
+      "viewport": {
+        "width": 640,
+        "height": 840
+      },
+      "clip": {
+        "x": 0,
+        "y": 0,
+        "width": 460,
+        "height": 434
+      },
+      "width": 460,
+      "height": 434,
+      "bytes": 36129,
+      "sha256": "056a23c7e756c3098e2537ba67dd2b026e4bc30bdfb47039fed4a9eaac76a592",
+      "repeatMatches": true,
+      "caret": "initial",
+      "font": [
+        {
+          "familyName": "Geist",
+          "postScriptName": "Geist",
+          "isCustomFont": true,
+          "glyphCount": 14
+        }
+      ],
+      "fixtureSha256": "1c6a48b49f261e52836076f9aff647c5ff7d4bb9636f0c3cc2d103bf8397fb00",
+      "assertions": {
+        "mode": "choose",
+        "accessibility": {
+          "violations": [],
+          "incomplete": []
+        },
+        "geometry": {
+          "x": 0,
+          "y": 0,
+          "width": 460,
+          "height": 434
+        },
+        "noJobStarted": true
+      },
+      "ipc": [
+        {
+          "command": "plugin:event|listen",
+          "args": {
+            "event": "tauri://theme-changed",
+            "target": {
+              "kind": "Window",
+              "label": "media-sheet"
+            },
+            "handler": 1
+          }
+        },
+        {
+          "command": "plugin:event|listen",
+          "args": {
+            "event": "tools:sheet",
+            "target": {
+              "kind": "Any"
+            },
+            "handler": 3
+          }
+        },
+        {
+          "command": "get_settings",
+          "args": {}
+        },
+        {
+          "command": "tool_catalog",
+          "args": {}
+        },
+        {
+          "command": "plugin:window|theme",
+          "args": {
+            "label": "media-sheet"
+          }
+        },
+        {
+          "command": "tool_media_sheet",
+          "args": {}
+        },
+        {
+          "command": "shelf_list",
+          "args": {}
+        },
+        {
+          "command": "tool_presets",
+          "args": {}
+        },
+        {
+          "command": "tool_media_sheet_ready",
+          "args": {
+            "id": "51000000-0000-4000-8000-000000000001",
+            "height": 434
+          }
+        },
+        {
+          "command": "tool_media_sheet_ready",
+          "args": {
+            "id": "51000000-0000-4000-8000-000000000001",
+            "height": 434
+          }
+        }
+      ],
+      "unsupported": [],
+      "runtimeAndNetworkProblems": []
+    },
+    {
+      "file": "v510-image-doc-i-file-tools-merge-dark@1x.png",
+      "scenario": "file-tools-merge",
+      "entry": "index.html",
+      "figmaNode": null,
+      "theme": "dark",
+      "resolvedTheme": "dark",
+      "scale": 1,
+      "viewport": {
+        "width": 640,
+        "height": 840
+      },
+      "clip": {
+        "x": 0,
+        "y": 0,
+        "width": 440,
+        "height": 404
+      },
+      "width": 440,
+      "height": 404,
+      "bytes": 25637,
+      "sha256": "239c303052563b0a629e754d04931b9e2ec1075dc9e46ee80f8b18ebd99a2808",
+      "repeatMatches": true,
+      "caret": "initial",
+      "font": [
+        {
+          "familyName": "Geist",
+          "postScriptName": "Geist",
+          "isCustomFont": true,
+          "glyphCount": 10
+        }
+      ],
+      "fixtureSha256": "4fd44365b76333371c18a24d3eb7a67d3f744e2adc348a9355e8dc4b1aaced62",
+      "assertions": {
+        "mode": "merge",
+        "accessibility": {
+          "violations": [],
+          "incomplete": []
+        },
+        "geometry": {
+          "x": 0,
+          "y": 0,
+          "width": 440,
+          "height": 404
+        },
+        "noJobStarted": true
+      },
+      "ipc": [
+        {
+          "command": "plugin:event|listen",
+          "args": {
+            "event": "tauri://theme-changed",
+            "target": {
+              "kind": "Window",
+              "label": "media-sheet"
+            },
+            "handler": 1
+          }
+        },
+        {
+          "command": "plugin:event|listen",
+          "args": {
+            "event": "tools:sheet",
+            "target": {
+              "kind": "Any"
+            },
+            "handler": 3
+          }
+        },
+        {
+          "command": "get_settings",
+          "args": {}
+        },
+        {
+          "command": "tool_catalog",
+          "args": {}
+        },
+        {
+          "command": "plugin:window|theme",
+          "args": {
+            "label": "media-sheet"
+          }
+        },
+        {
+          "command": "tool_media_sheet",
+          "args": {}
+        },
+        {
+          "command": "shelf_list",
+          "args": {}
+        },
+        {
+          "command": "tool_media_sheet_ready",
+          "args": {
+            "id": "51000000-0000-4000-8000-000000000001",
+            "height": 404
+          }
+        },
+        {
+          "command": "tool_media_sheet_ready",
+          "args": {
+            "id": "51000000-0000-4000-8000-000000000001",
+            "height": 404
+          }
+        }
+      ],
+      "unsupported": [],
+      "runtimeAndNetworkProblems": []
+    },
+    {
+      "file": "v510-image-doc-i-file-tools-split-dark@1x.png",
+      "scenario": "file-tools-split",
+      "entry": "index.html",
+      "figmaNode": null,
+      "theme": "dark",
+      "resolvedTheme": "dark",
+      "scale": 1,
+      "viewport": {
+        "width": 640,
+        "height": 840
+      },
+      "clip": {
+        "x": 0,
+        "y": 0,
+        "width": 440,
+        "height": 418
+      },
+      "width": 440,
+      "height": 418,
+      "bytes": 25639,
+      "sha256": "715ad7a13e2ab540d4d5bff265e4e48fce8a3f4783b4632330c98170339cdd58",
+      "repeatMatches": true,
+      "caret": "initial",
+      "font": [
+        {
+          "familyName": "Geist",
+          "postScriptName": "Geist",
+          "isCustomFont": true,
+          "glyphCount": 9
+        }
+      ],
+      "fixtureSha256": "f45bac287ce7375b2731e1e87b9f114f2d84a17b95ca59cf6b12698039c87605",
+      "assertions": {
+        "mode": "split",
+        "accessibility": {
+          "violations": [],
+          "incomplete": []
+        },
+        "geometry": {
+          "x": 0,
+          "y": 0,
+          "width": 440,
+          "height": 418
+        },
+        "noJobStarted": true
+      },
+      "ipc": [
+        {
+          "command": "plugin:event|listen",
+          "args": {
+            "event": "tauri://theme-changed",
+            "target": {
+              "kind": "Window",
+              "label": "media-sheet"
+            },
+            "handler": 1
+          }
+        },
+        {
+          "command": "plugin:event|listen",
+          "args": {
+            "event": "tools:sheet",
+            "target": {
+              "kind": "Any"
+            },
+            "handler": 3
+          }
+        },
+        {
+          "command": "get_settings",
+          "args": {}
+        },
+        {
+          "command": "tool_catalog",
+          "args": {}
+        },
+        {
+          "command": "plugin:window|theme",
+          "args": {
+            "label": "media-sheet"
+          }
+        },
+        {
+          "command": "tool_media_sheet",
+          "args": {}
+        },
+        {
+          "command": "shelf_list",
+          "args": {}
+        },
+        {
+          "command": "tool_pdf_pages",
+          "args": {
+            "path": "C:\\Fixture\\Report.pdf"
+          }
+        },
+        {
+          "command": "tool_media_sheet_ready",
+          "args": {
+            "id": "51000000-0000-4000-8000-000000000001",
+            "height": 354
+          }
+        },
+        {
+          "command": "tool_media_sheet_ready",
+          "args": {
+            "id": "51000000-0000-4000-8000-000000000001",
+            "height": 418
+          }
+        },
+        {
+          "command": "tool_media_sheet_ready",
+          "args": {
+            "id": "51000000-0000-4000-8000-000000000001",
+            "height": 418
+          }
+        }
+      ],
+      "unsupported": [],
+      "runtimeAndNetworkProblems": []
+    },
+    {
+      "file": "v510-image-doc-i-file-tools-render-dark@1x.png",
+      "scenario": "file-tools-render",
+      "entry": "index.html",
+      "figmaNode": null,
+      "theme": "dark",
+      "resolvedTheme": "dark",
+      "scale": 1,
+      "viewport": {
+        "width": 640,
+        "height": 840
+      },
+      "clip": {
+        "x": 0,
+        "y": 0,
+        "width": 440,
+        "height": 402
+      },
+      "width": 440,
+      "height": 402,
+      "bytes": 24342,
+      "sha256": "f2d7faf9b27ea645cee0d577a437ba19478434a1a5bd8af435cda8960fac892d",
+      "repeatMatches": true,
+      "caret": "initial",
+      "font": [
+        {
+          "familyName": "Geist",
+          "postScriptName": "Geist",
+          "isCustomFont": true,
+          "glyphCount": 10
+        }
+      ],
+      "fixtureSha256": "2fddb73e09abd99090279ca3c478fe54191668a5d6b08feb7dc961347baa5da9",
+      "assertions": {
+        "mode": "render",
+        "accessibility": {
+          "violations": [],
+          "incomplete": []
+        },
+        "geometry": {
+          "x": 0,
+          "y": 0,
+          "width": 440,
+          "height": 402
+        },
+        "noJobStarted": true
+      },
+      "ipc": [
+        {
+          "command": "plugin:event|listen",
+          "args": {
+            "event": "tauri://theme-changed",
+            "target": {
+              "kind": "Window",
+              "label": "media-sheet"
+            },
+            "handler": 1
+          }
+        },
+        {
+          "command": "plugin:event|listen",
+          "args": {
+            "event": "tools:sheet",
+            "target": {
+              "kind": "Any"
+            },
+            "handler": 3
+          }
+        },
+        {
+          "command": "get_settings",
+          "args": {}
+        },
+        {
+          "command": "tool_catalog",
+          "args": {}
+        },
+        {
+          "command": "plugin:window|theme",
+          "args": {
+            "label": "media-sheet"
+          }
+        },
+        {
+          "command": "tool_media_sheet",
+          "args": {}
+        },
+        {
+          "command": "shelf_list",
+          "args": {}
+        },
+        {
+          "command": "tool_pdf_pages",
+          "args": {
+            "path": "C:\\Fixture\\Report.pdf"
+          }
+        },
+        {
+          "command": "tool_media_sheet_ready",
+          "args": {
+            "id": "51000000-0000-4000-8000-000000000001",
+            "height": 338
+          }
+        },
+        {
+          "command": "tool_media_sheet_ready",
+          "args": {
+            "id": "51000000-0000-4000-8000-000000000001",
+            "height": 338
+          }
+        },
+        {
+          "command": "tool_media_sheet_ready",
+          "args": {
+            "id": "51000000-0000-4000-8000-000000000001",
+            "height": 402
+          }
+        },
+        {
+          "command": "tool_media_sheet_ready",
+          "args": {
+            "id": "51000000-0000-4000-8000-000000000001",
+            "height": 402
+          }
+        }
+      ],
+      "unsupported": [],
+      "runtimeAndNetworkProblems": []
+    },
+    {
+      "file": "v510-image-doc-i-file-tools-pdf-dark@1x.png",
+      "scenario": "file-tools-pdf",
+      "entry": "index.html",
+      "figmaNode": null,
+      "theme": "dark",
+      "resolvedTheme": "dark",
+      "scale": 1,
+      "viewport": {
+        "width": 640,
+        "height": 840
+      },
+      "clip": {
+        "x": 0,
+        "y": 0,
+        "width": 440,
+        "height": 447
+      },
+      "width": 440,
+      "height": 447,
+      "bytes": 28151,
+      "sha256": "89074f5852286474fc9c7e2d2289fae948888d38654ac06f0da0e94c3c6d81e5",
+      "repeatMatches": true,
+      "caret": "initial",
+      "font": [
+        {
+          "familyName": "Geist",
+          "postScriptName": "Geist",
+          "isCustomFont": true,
+          "glyphCount": 8
+        }
+      ],
+      "fixtureSha256": "cbaf905ef2b1171b6f6f659a786a5fb65db8ecfc2c849b248801e4d447260677",
+      "assertions": {
+        "mode": "pdf",
+        "accessibility": {
+          "violations": [],
+          "incomplete": []
+        },
+        "geometry": {
+          "x": 0,
+          "y": 0,
+          "width": 440,
+          "height": 447
+        },
+        "noJobStarted": true
+      },
+      "ipc": [
+        {
+          "command": "plugin:event|listen",
+          "args": {
+            "event": "tauri://theme-changed",
+            "target": {
+              "kind": "Window",
+              "label": "media-sheet"
+            },
+            "handler": 1
+          }
+        },
+        {
+          "command": "plugin:event|listen",
+          "args": {
+            "event": "tools:sheet",
+            "target": {
+              "kind": "Any"
+            },
+            "handler": 3
+          }
+        },
+        {
+          "command": "get_settings",
+          "args": {}
+        },
+        {
+          "command": "tool_catalog",
+          "args": {}
+        },
+        {
+          "command": "plugin:window|theme",
+          "args": {
+            "label": "media-sheet"
+          }
+        },
+        {
+          "command": "tool_media_sheet",
+          "args": {}
+        },
+        {
+          "command": "shelf_list",
+          "args": {}
+        },
+        {
+          "command": "tool_media_sheet_ready",
+          "args": {
+            "id": "51000000-0000-4000-8000-000000000001",
+            "height": 447
+          }
+        }
+      ],
+      "unsupported": [],
+      "runtimeAndNetworkProblems": []
+    },
+    {
+      "file": "v510-image-doc-i-file-tools-ocr-dark@1x.png",
+      "scenario": "file-tools-ocr",
+      "entry": "index.html",
+      "figmaNode": null,
+      "theme": "dark",
+      "resolvedTheme": "dark",
+      "scale": 1,
+      "viewport": {
+        "width": 640,
+        "height": 840
+      },
+      "clip": {
+        "x": 0,
+        "y": 0,
+        "width": 440,
+        "height": 259
+      },
+      "width": 440,
+      "height": 259,
+      "bytes": 21025,
+      "sha256": "6467bb7956bb68dac08c9bbead268931ecccf706b81f54391d8693d0a306cde6",
+      "repeatMatches": true,
+      "caret": "initial",
+      "font": [
+        {
+          "familyName": "Geist",
+          "postScriptName": "Geist",
+          "isCustomFont": true,
+          "glyphCount": 15
+        }
+      ],
+      "fixtureSha256": "54ebfbaef7e7d3d92ad82727d065a03e3a9faf353d9a4582d7543b1c20162b2e",
+      "assertions": {
+        "mode": "ocr",
+        "accessibility": {
+          "violations": [],
+          "incomplete": []
+        },
+        "geometry": {
+          "x": 0,
+          "y": 0,
+          "width": 440,
+          "height": 259
+        },
+        "noJobStarted": true
+      },
+      "ipc": [
+        {
+          "command": "plugin:event|listen",
+          "args": {
+            "event": "tauri://theme-changed",
+            "target": {
+              "kind": "Window",
+              "label": "media-sheet"
+            },
+            "handler": 1
+          }
+        },
+        {
+          "command": "plugin:event|listen",
+          "args": {
+            "event": "tools:sheet",
+            "target": {
+              "kind": "Any"
+            },
+            "handler": 3
+          }
+        },
+        {
+          "command": "get_settings",
+          "args": {}
+        },
+        {
+          "command": "tool_catalog",
+          "args": {}
+        },
+        {
+          "command": "plugin:window|theme",
+          "args": {
+            "label": "media-sheet"
+          }
+        },
+        {
+          "command": "tool_media_sheet",
+          "args": {}
+        },
+        {
+          "command": "shelf_list",
+          "args": {}
+        },
+        {
+          "command": "tool_media_sheet_ready",
+          "args": {
+            "id": "51000000-0000-4000-8000-000000000001",
+            "height": 259
+          }
+        },
+        {
+          "command": "tool_media_sheet_ready",
+          "args": {
+            "id": "51000000-0000-4000-8000-000000000001",
+            "height": 259
+          }
+        }
+      ],
+      "unsupported": [],
+      "runtimeAndNetworkProblems": []
+    },
+    {
+      "file": "v510-image-doc-i-file-tools-decode-dark@1x.png",
+      "scenario": "file-tools-decode",
+      "entry": "index.html",
+      "figmaNode": null,
+      "theme": "dark",
+      "resolvedTheme": "dark",
+      "scale": 1,
+      "viewport": {
+        "width": 640,
+        "height": 840
+      },
+      "clip": {
+        "x": 0,
+        "y": 0,
+        "width": 440,
+        "height": 243
+      },
+      "width": 440,
+      "height": 243,
+      "bytes": 18996,
+      "sha256": "0182cbc2115331288c337bbd204a883ecc8d5be83a700f25dd36b0070004066c",
+      "repeatMatches": true,
+      "caret": "initial",
+      "font": [
+        {
+          "familyName": "Geist",
+          "postScriptName": "Geist",
+          "isCustomFont": true,
+          "glyphCount": 18
+        }
+      ],
+      "fixtureSha256": "1d460555ff8a8d009b84be82a20ec38708f3f6892466a95e8d95dd2d0c23445a",
+      "assertions": {
+        "mode": "decode",
+        "accessibility": {
+          "violations": [],
+          "incomplete": []
+        },
+        "geometry": {
+          "x": 0,
+          "y": 0,
+          "width": 440,
+          "height": 243
+        },
+        "noJobStarted": true
+      },
+      "ipc": [
+        {
+          "command": "plugin:event|listen",
+          "args": {
+            "event": "tauri://theme-changed",
+            "target": {
+              "kind": "Window",
+              "label": "media-sheet"
+            },
+            "handler": 1
+          }
+        },
+        {
+          "command": "plugin:event|listen",
+          "args": {
+            "event": "tools:sheet",
+            "target": {
+              "kind": "Any"
+            },
+            "handler": 3
+          }
+        },
+        {
+          "command": "get_settings",
+          "args": {}
+        },
+        {
+          "command": "tool_catalog",
+          "args": {}
+        },
+        {
+          "command": "plugin:window|theme",
+          "args": {
+            "label": "media-sheet"
+          }
+        },
+        {
+          "command": "tool_media_sheet",
+          "args": {}
+        },
+        {
+          "command": "shelf_list",
+          "args": {}
+        },
+        {
+          "command": "tool_media_sheet_ready",
+          "args": {
+            "id": "51000000-0000-4000-8000-000000000001",
+            "height": 243
+          }
+        }
+      ],
+      "unsupported": [],
+      "runtimeAndNetworkProblems": []
+    },
+    {
+      "file": "v510-image-doc-i-file-tools-encode-dark@1x.png",
+      "scenario": "file-tools-encode",
+      "entry": "index.html",
+      "figmaNode": null,
+      "theme": "dark",
+      "resolvedTheme": "dark",
+      "scale": 1,
+      "viewport": {
+        "width": 640,
+        "height": 840
+      },
+      "clip": {
+        "x": 0,
+        "y": 0,
+        "width": 440,
+        "height": 259
+      },
+      "width": 440,
+      "height": 259,
+      "bytes": 19291,
+      "sha256": "5e190b57345e6af895bc4665dbb422c0b038fad933f26810362effc2b2d5b813",
+      "repeatMatches": true,
+      "caret": "initial",
+      "font": [
+        {
+          "familyName": "Geist",
+          "postScriptName": "Geist",
+          "isCustomFont": true,
+          "glyphCount": 15
+        }
+      ],
+      "fixtureSha256": "bc96e63e9c922436aca04e8d52ef23201d54d2850a35f96240df161f450eda41",
+      "assertions": {
+        "mode": "encode",
+        "accessibility": {
+          "violations": [],
+          "incomplete": []
+        },
+        "geometry": {
+          "x": 0,
+          "y": 0,
+          "width": 440,
+          "height": 259
+        },
+        "noJobStarted": true
+      },
+      "ipc": [
+        {
+          "command": "plugin:event|listen",
+          "args": {
+            "event": "tauri://theme-changed",
+            "target": {
+              "kind": "Window",
+              "label": "media-sheet"
+            },
+            "handler": 1
+          }
+        },
+        {
+          "command": "plugin:event|listen",
+          "args": {
+            "event": "tools:sheet",
+            "target": {
+              "kind": "Any"
+            },
+            "handler": 3
+          }
+        },
+        {
+          "command": "get_settings",
+          "args": {}
+        },
+        {
+          "command": "tool_catalog",
+          "args": {}
+        },
+        {
+          "command": "plugin:window|theme",
+          "args": {
+            "label": "media-sheet"
+          }
+        },
+        {
+          "command": "tool_media_sheet",
+          "args": {}
+        },
+        {
+          "command": "shelf_list",
+          "args": {}
+        },
+        {
+          "command": "tool_media_sheet_ready",
+          "args": {
+            "id": "51000000-0000-4000-8000-000000000001",
+            "height": 259
+          }
+        }
+      ],
+      "unsupported": [],
+      "runtimeAndNetworkProblems": []
+    },
+    {
+      "file": "v510-image-doc-i-file-tools-convert-dark@1.5x.png",
+      "scenario": "file-tools-convert",
+      "entry": "index.html",
+      "figmaNode": "36:410",
+      "theme": "dark",
+      "resolvedTheme": "dark",
+      "scale": 1.5,
+      "viewport": {
+        "width": 640,
+        "height": 840
+      },
+      "clip": {
+        "x": 0,
+        "y": 0,
+        "width": 460,
+        "height": 466
+      },
+      "width": 690,
+      "height": 699,
+      "bytes": 64985,
+      "sha256": "84e3b1dcd0dc00f89d93512daa88673420e5f5e756d8561ef9d8c421b23721fb",
+      "repeatMatches": true,
+      "caret": "initial",
+      "font": [
+        {
+          "familyName": "Geist",
+          "postScriptName": "Geist",
+          "isCustomFont": true,
+          "glyphCount": 14
+        }
+      ],
+      "fixtureSha256": "45a0e95a772bb899c405a215542d8873745acabfb769719a6bc34500f6efff4c",
+      "assertions": {
+        "mode": "convert",
+        "accessibility": {
+          "violations": [],
+          "incomplete": []
+        },
+        "geometry": {
+          "x": 0,
+          "y": 0,
+          "width": 460,
+          "height": 466
+        },
+        "noJobStarted": true
+      },
+      "ipc": [
+        {
+          "command": "plugin:event|listen",
+          "args": {
+            "event": "tauri://theme-changed",
+            "target": {
+              "kind": "Window",
+              "label": "media-sheet"
+            },
+            "handler": 1
+          }
+        },
+        {
+          "command": "plugin:event|listen",
+          "args": {
+            "event": "tools:sheet",
+            "target": {
+              "kind": "Any"
+            },
+            "handler": 3
+          }
+        },
+        {
+          "command": "get_settings",
+          "args": {}
+        },
+        {
+          "command": "tool_catalog",
+          "args": {}
+        },
+        {
+          "command": "plugin:window|theme",
+          "args": {
+            "label": "media-sheet"
+          }
+        },
+        {
+          "command": "tool_media_sheet",
+          "args": {}
+        },
+        {
+          "command": "shelf_list",
+          "args": {}
+        },
+        {
+          "command": "tool_presets",
+          "args": {}
+        },
+        {
+          "command": "tool_image_inspect",
+          "args": {
+            "path": "C:\\Fixture\\IMG_4821.HEIC"
+          }
+        },
+        {
+          "command": "tool_image_inspect",
+          "args": {
+            "path": "C:\\Fixture\\IMG_4822.HEIC"
+          }
+        },
+        {
+          "command": "tool_image_inspect",
+          "args": {
+            "path": "C:\\Fixture\\IMG_4830.HEIC"
+          }
+        },
+        {
+          "command": "tool_media_sheet_ready",
+          "args": {
+            "id": "51000000-0000-4000-8000-000000000001",
+            "height": 466
+          }
+        },
+        {
+          "command": "tool_media_sheet_ready",
+          "args": {
+            "id": "51000000-0000-4000-8000-000000000001",
+            "height": 466
+          }
+        }
+      ],
+      "unsupported": [],
+      "runtimeAndNetworkProblems": []
+    },
+    {
+      "file": "v510-image-doc-i-file-tools-advanced-dark@1.5x.png",
+      "scenario": "file-tools-advanced",
+      "entry": "index.html",
+      "figmaNode": "36:410",
+      "theme": "dark",
+      "resolvedTheme": "dark",
+      "scale": 1.5,
+      "viewport": {
+        "width": 640,
+        "height": 840
+      },
+      "clip": {
+        "x": 0,
+        "y": 0,
+        "width": 460,
+        "height": 760
+      },
+      "width": 690,
+      "height": 1140,
+      "bytes": 111330,
+      "sha256": "c3ba87cdcfe5b3e5dba887c476ab2ff7517e3cb6c26e9e82fb4597cd2101e3d4",
+      "repeatMatches": true,
+      "caret": "initial",
+      "font": [
+        {
+          "familyName": "Geist",
+          "postScriptName": "Geist",
+          "isCustomFont": true,
+          "glyphCount": 14
+        }
+      ],
+      "fixtureSha256": "45a0e95a772bb899c405a215542d8873745acabfb769719a6bc34500f6efff4c",
+      "assertions": {
+        "mode": "advanced",
+        "accessibility": {
+          "violations": [],
+          "incomplete": []
+        },
+        "geometry": {
+          "x": 0,
+          "y": 0,
+          "width": 460,
+          "height": 760
+        },
+        "noJobStarted": true
+      },
+      "ipc": [
+        {
+          "command": "plugin:event|listen",
+          "args": {
+            "event": "tauri://theme-changed",
+            "target": {
+              "kind": "Window",
+              "label": "media-sheet"
+            },
+            "handler": 1
+          }
+        },
+        {
+          "command": "plugin:event|listen",
+          "args": {
+            "event": "tools:sheet",
+            "target": {
+              "kind": "Any"
+            },
+            "handler": 3
+          }
+        },
+        {
+          "command": "get_settings",
+          "args": {}
+        },
+        {
+          "command": "tool_catalog",
+          "args": {}
+        },
+        {
+          "command": "plugin:window|theme",
+          "args": {
+            "label": "media-sheet"
+          }
+        },
+        {
+          "command": "tool_media_sheet",
+          "args": {}
+        },
+        {
+          "command": "shelf_list",
+          "args": {}
+        },
+        {
+          "command": "tool_presets",
+          "args": {}
+        },
+        {
+          "command": "tool_image_inspect",
+          "args": {
+            "path": "C:\\Fixture\\IMG_4821.HEIC"
+          }
+        },
+        {
+          "command": "tool_image_inspect",
+          "args": {
+            "path": "C:\\Fixture\\IMG_4822.HEIC"
+          }
+        },
+        {
+          "command": "tool_image_inspect",
+          "args": {
+            "path": "C:\\Fixture\\IMG_4830.HEIC"
+          }
+        },
+        {
+          "command": "tool_media_sheet_ready",
+          "args": {
+            "id": "51000000-0000-4000-8000-000000000001",
+            "height": 466
+          }
+        },
+        {
+          "command": "tool_media_sheet_ready",
+          "args": {
+            "id": "51000000-0000-4000-8000-000000000001",
+            "height": 466
+          }
+        },
+        {
+          "command": "tool_media_sheet_ready",
+          "args": {
+            "id": "51000000-0000-4000-8000-000000000001",
+            "height": 760
+          }
+        }
+      ],
+      "unsupported": [],
+      "runtimeAndNetworkProblems": []
+    },
+    {
+      "file": "v510-image-doc-i-file-tools-smaller-dark@1.5x.png",
+      "scenario": "file-tools-smaller",
+      "entry": "index.html",
+      "figmaNode": "36:410",
+      "theme": "dark",
+      "resolvedTheme": "dark",
+      "scale": 1.5,
+      "viewport": {
+        "width": 640,
+        "height": 840
+      },
+      "clip": {
+        "x": 0,
+        "y": 0,
+        "width": 460,
+        "height": 466
+      },
+      "width": 690,
+      "height": 699,
+      "bytes": 66030,
+      "sha256": "64f211914e732fea74e0198f5366abdf6e4f5f27df5af21ee88ea24d81b310d8",
+      "repeatMatches": true,
+      "caret": "initial",
+      "font": [
+        {
+          "familyName": "Geist",
+          "postScriptName": "Geist",
+          "isCustomFont": true,
+          "glyphCount": 12
+        }
+      ],
+      "fixtureSha256": "688a9c8e1547e4a196b5d6aba56cd6547bff3c2f2e6d9d978d525ec40041dd12",
+      "assertions": {
+        "mode": "smaller",
+        "accessibility": {
+          "violations": [],
+          "incomplete": []
+        },
+        "geometry": {
+          "x": 0,
+          "y": 0,
+          "width": 460,
+          "height": 466
+        },
+        "noJobStarted": true
+      },
+      "ipc": [
+        {
+          "command": "plugin:event|listen",
+          "args": {
+            "event": "tauri://theme-changed",
+            "target": {
+              "kind": "Window",
+              "label": "media-sheet"
+            },
+            "handler": 1
+          }
+        },
+        {
+          "command": "plugin:event|listen",
+          "args": {
+            "event": "tools:sheet",
+            "target": {
+              "kind": "Any"
+            },
+            "handler": 3
+          }
+        },
+        {
+          "command": "get_settings",
+          "args": {}
+        },
+        {
+          "command": "tool_catalog",
+          "args": {}
+        },
+        {
+          "command": "plugin:window|theme",
+          "args": {
+            "label": "media-sheet"
+          }
+        },
+        {
+          "command": "tool_media_sheet",
+          "args": {}
+        },
+        {
+          "command": "shelf_list",
+          "args": {}
+        },
+        {
+          "command": "tool_presets",
+          "args": {}
+        },
+        {
+          "command": "tool_image_inspect",
+          "args": {
+            "path": "C:\\Fixture\\IMG_4821.HEIC"
+          }
+        },
+        {
+          "command": "tool_image_inspect",
+          "args": {
+            "path": "C:\\Fixture\\IMG_4822.HEIC"
+          }
+        },
+        {
+          "command": "tool_image_inspect",
+          "args": {
+            "path": "C:\\Fixture\\IMG_4830.HEIC"
+          }
+        },
+        {
+          "command": "tool_media_sheet_ready",
+          "args": {
+            "id": "51000000-0000-4000-8000-000000000001",
+            "height": 466
+          }
+        },
+        {
+          "command": "tool_media_sheet_ready",
+          "args": {
+            "id": "51000000-0000-4000-8000-000000000001",
+            "height": 466
+          }
+        }
+      ],
+      "unsupported": [],
+      "runtimeAndNetworkProblems": []
+    },
+    {
+      "file": "v510-image-doc-i-file-tools-fit-dark@1.5x.png",
+      "scenario": "file-tools-fit",
+      "entry": "index.html",
+      "figmaNode": "36:410",
+      "theme": "dark",
+      "resolvedTheme": "dark",
+      "scale": 1.5,
+      "viewport": {
+        "width": 640,
+        "height": 840
+      },
+      "clip": {
+        "x": 0,
+        "y": 0,
+        "width": 460,
+        "height": 640
+      },
+      "width": 690,
+      "height": 960,
+      "bytes": 94748,
+      "sha256": "7e8f7de3dfc2a1d6afeefe57e7648d9bfdeb26df337f350005c982a1ca99bb39",
+      "repeatMatches": true,
+      "caret": "initial",
+      "font": [
+        {
+          "familyName": "Geist",
+          "postScriptName": "Geist",
+          "isCustomFont": true,
+          "glyphCount": 16
+        }
+      ],
+      "fixtureSha256": "cbec59bf85442ed40ed999de72195588328813cfdb333083ea85d7c37c8e6f03",
+      "assertions": {
+        "mode": "fit",
+        "accessibility": {
+          "violations": [],
+          "incomplete": []
+        },
+        "geometry": {
+          "x": 0,
+          "y": 0,
+          "width": 460,
+          "height": 640
+        },
+        "noJobStarted": true
+      },
+      "ipc": [
+        {
+          "command": "plugin:event|listen",
+          "args": {
+            "event": "tauri://theme-changed",
+            "target": {
+              "kind": "Window",
+              "label": "media-sheet"
+            },
+            "handler": 1
+          }
+        },
+        {
+          "command": "plugin:event|listen",
+          "args": {
+            "event": "tools:sheet",
+            "target": {
+              "kind": "Any"
+            },
+            "handler": 3
+          }
+        },
+        {
+          "command": "get_settings",
+          "args": {}
+        },
+        {
+          "command": "tool_catalog",
+          "args": {}
+        },
+        {
+          "command": "plugin:window|theme",
+          "args": {
+            "label": "media-sheet"
+          }
+        },
+        {
+          "command": "tool_media_sheet",
+          "args": {}
+        },
+        {
+          "command": "shelf_list",
+          "args": {}
+        },
+        {
+          "command": "tool_presets",
+          "args": {}
+        },
+        {
+          "command": "tool_image_inspect",
+          "args": {
+            "path": "C:\\Fixture\\IMG_4821.HEIC"
+          }
+        },
+        {
+          "command": "tool_image_inspect",
+          "args": {
+            "path": "C:\\Fixture\\IMG_4822.HEIC"
+          }
+        },
+        {
+          "command": "tool_image_inspect",
+          "args": {
+            "path": "C:\\Fixture\\IMG_4830.HEIC"
+          }
+        },
+        {
+          "command": "tool_media_sheet_ready",
+          "args": {
+            "id": "51000000-0000-4000-8000-000000000001",
+            "height": 574
+          }
+        },
+        {
+          "command": "tool_media_sheet_ready",
+          "args": {
+            "id": "51000000-0000-4000-8000-000000000001",
+            "height": 640
+          }
+        },
+        {
+          "command": "tool_media_sheet_ready",
+          "args": {
+            "id": "51000000-0000-4000-8000-000000000001",
+            "height": 640
+          }
+        }
+      ],
+      "unsupported": [],
+      "runtimeAndNetworkProblems": []
+    },
+    {
+      "file": "v510-image-doc-i-file-tools-codec-dark@1.5x.png",
+      "scenario": "file-tools-codec",
+      "entry": "index.html",
+      "figmaNode": "36:410",
+      "theme": "dark",
+      "resolvedTheme": "dark",
+      "scale": 1.5,
+      "viewport": {
+        "width": 640,
+        "height": 840
+      },
+      "clip": {
+        "x": 0,
+        "y": 0,
+        "width": 460,
+        "height": 656
+      },
+      "width": 690,
+      "height": 984,
+      "bytes": 115304,
+      "sha256": "e63d37ca207b33b97cfe7c39b7022d95c929b950a3e109c4d7328b3a49c88cdc",
+      "repeatMatches": true,
+      "caret": "initial",
+      "font": [
+        {
+          "familyName": "Geist",
+          "postScriptName": "Geist",
+          "isCustomFont": true,
+          "glyphCount": 14
+        }
+      ],
+      "fixtureSha256": "90492f0a3187df5feb0966086343fc1f05c231ef90622b57eb1b63820b49bb09",
+      "assertions": {
+        "mode": "codec",
+        "accessibility": {
+          "violations": [],
+          "incomplete": []
+        },
+        "geometry": {
+          "x": 0,
+          "y": 0,
+          "width": 460,
+          "height": 656
+        },
+        "noJobStarted": true
+      },
+      "ipc": [
+        {
+          "command": "plugin:event|listen",
+          "args": {
+            "event": "tauri://theme-changed",
+            "target": {
+              "kind": "Window",
+              "label": "media-sheet"
+            },
+            "handler": 1
+          }
+        },
+        {
+          "command": "plugin:event|listen",
+          "args": {
+            "event": "tools:sheet",
+            "target": {
+              "kind": "Any"
+            },
+            "handler": 3
+          }
+        },
+        {
+          "command": "get_settings",
+          "args": {}
+        },
+        {
+          "command": "tool_catalog",
+          "args": {}
+        },
+        {
+          "command": "plugin:window|theme",
+          "args": {
+            "label": "media-sheet"
+          }
+        },
+        {
+          "command": "tool_media_sheet",
+          "args": {}
+        },
+        {
+          "command": "shelf_list",
+          "args": {}
+        },
+        {
+          "command": "tool_presets",
+          "args": {}
+        },
+        {
+          "command": "tool_image_inspect",
+          "args": {
+            "path": "C:\\Fixture\\IMG_4821.HEIC"
+          }
+        },
+        {
+          "command": "tool_image_inspect",
+          "args": {
+            "path": "C:\\Fixture\\IMG_4822.HEIC"
+          }
+        },
+        {
+          "command": "tool_image_inspect",
+          "args": {
+            "path": "C:\\Fixture\\IMG_4830.HEIC"
+          }
+        },
+        {
+          "command": "tool_media_sheet_ready",
+          "args": {
+            "id": "51000000-0000-4000-8000-000000000001",
+            "height": 656
+          }
+        },
+        {
+          "command": "tool_media_sheet_ready",
+          "args": {
+            "id": "51000000-0000-4000-8000-000000000001",
+            "height": 656
+          }
+        }
+      ],
+      "unsupported": [],
+      "runtimeAndNetworkProblems": []
+    },
+    {
+      "file": "v510-image-doc-i-file-tools-choose-dark@1.5x.png",
+      "scenario": "file-tools-choose",
+      "entry": "index.html",
+      "figmaNode": "36:410",
+      "theme": "dark",
+      "resolvedTheme": "dark",
+      "scale": 1.5,
+      "viewport": {
+        "width": 640,
+        "height": 840
+      },
+      "clip": {
+        "x": 0,
+        "y": 0,
+        "width": 460,
+        "height": 434
+      },
+      "width": 690,
+      "height": 651,
+      "bytes": 61018,
+      "sha256": "0c345b3ed1e4843d71b3e47acadc370770ecdbd695318e703a64b4c27801b003",
+      "repeatMatches": true,
+      "caret": "initial",
+      "font": [
+        {
+          "familyName": "Geist",
+          "postScriptName": "Geist",
+          "isCustomFont": true,
+          "glyphCount": 14
+        }
+      ],
+      "fixtureSha256": "1c6a48b49f261e52836076f9aff647c5ff7d4bb9636f0c3cc2d103bf8397fb00",
+      "assertions": {
+        "mode": "choose",
+        "accessibility": {
+          "violations": [],
+          "incomplete": []
+        },
+        "geometry": {
+          "x": 0,
+          "y": 0,
+          "width": 460,
+          "height": 434
+        },
+        "noJobStarted": true
+      },
+      "ipc": [
+        {
+          "command": "plugin:event|listen",
+          "args": {
+            "event": "tauri://theme-changed",
+            "target": {
+              "kind": "Window",
+              "label": "media-sheet"
+            },
+            "handler": 1
+          }
+        },
+        {
+          "command": "plugin:event|listen",
+          "args": {
+            "event": "tools:sheet",
+            "target": {
+              "kind": "Any"
+            },
+            "handler": 3
+          }
+        },
+        {
+          "command": "get_settings",
+          "args": {}
+        },
+        {
+          "command": "tool_catalog",
+          "args": {}
+        },
+        {
+          "command": "plugin:window|theme",
+          "args": {
+            "label": "media-sheet"
+          }
+        },
+        {
+          "command": "tool_media_sheet",
+          "args": {}
+        },
+        {
+          "command": "shelf_list",
+          "args": {}
+        },
+        {
+          "command": "tool_presets",
+          "args": {}
+        },
+        {
+          "command": "tool_media_sheet_ready",
+          "args": {
+            "id": "51000000-0000-4000-8000-000000000001",
+            "height": 434
+          }
+        },
+        {
+          "command": "tool_media_sheet_ready",
+          "args": {
+            "id": "51000000-0000-4000-8000-000000000001",
+            "height": 434
+          }
+        }
+      ],
+      "unsupported": [],
+      "runtimeAndNetworkProblems": []
+    },
+    {
+      "file": "v510-image-doc-i-file-tools-merge-dark@1.5x.png",
+      "scenario": "file-tools-merge",
+      "entry": "index.html",
+      "figmaNode": null,
+      "theme": "dark",
+      "resolvedTheme": "dark",
+      "scale": 1.5,
+      "viewport": {
+        "width": 640,
+        "height": 840
+      },
+      "clip": {
+        "x": 0,
+        "y": 0,
+        "width": 440,
+        "height": 404
+      },
+      "width": 660,
+      "height": 606,
+      "bytes": 41078,
+      "sha256": "28ffeaa69a240e682067e208bd6f4c8a291b087e48df471c7fec616caf4c53f5",
+      "repeatMatches": true,
+      "caret": "initial",
+      "font": [
+        {
+          "familyName": "Geist",
+          "postScriptName": "Geist",
+          "isCustomFont": true,
+          "glyphCount": 10
+        }
+      ],
+      "fixtureSha256": "4fd44365b76333371c18a24d3eb7a67d3f744e2adc348a9355e8dc4b1aaced62",
+      "assertions": {
+        "mode": "merge",
+        "accessibility": {
+          "violations": [],
+          "incomplete": []
+        },
+        "geometry": {
+          "x": 0,
+          "y": 0,
+          "width": 440,
+          "height": 404
+        },
+        "noJobStarted": true
+      },
+      "ipc": [
+        {
+          "command": "plugin:event|listen",
+          "args": {
+            "event": "tauri://theme-changed",
+            "target": {
+              "kind": "Window",
+              "label": "media-sheet"
+            },
+            "handler": 1
+          }
+        },
+        {
+          "command": "plugin:event|listen",
+          "args": {
+            "event": "tools:sheet",
+            "target": {
+              "kind": "Any"
+            },
+            "handler": 3
+          }
+        },
+        {
+          "command": "get_settings",
+          "args": {}
+        },
+        {
+          "command": "tool_catalog",
+          "args": {}
+        },
+        {
+          "command": "plugin:window|theme",
+          "args": {
+            "label": "media-sheet"
+          }
+        },
+        {
+          "command": "tool_media_sheet",
+          "args": {}
+        },
+        {
+          "command": "shelf_list",
+          "args": {}
+        },
+        {
+          "command": "tool_media_sheet_ready",
+          "args": {
+            "id": "51000000-0000-4000-8000-000000000001",
+            "height": 404
+          }
+        },
+        {
+          "command": "tool_media_sheet_ready",
+          "args": {
+            "id": "51000000-0000-4000-8000-000000000001",
+            "height": 404
+          }
+        }
+      ],
+      "unsupported": [],
+      "runtimeAndNetworkProblems": []
+    },
+    {
+      "file": "v510-image-doc-i-file-tools-split-dark@1.5x.png",
+      "scenario": "file-tools-split",
+      "entry": "index.html",
+      "figmaNode": null,
+      "theme": "dark",
+      "resolvedTheme": "dark",
+      "scale": 1.5,
+      "viewport": {
+        "width": 640,
+        "height": 840
+      },
+      "clip": {
+        "x": 0,
+        "y": 0,
+        "width": 440,
+        "height": 418
+      },
+      "width": 660,
+      "height": 627,
+      "bytes": 42685,
+      "sha256": "b4f57902ed9bcd018f8e90e064f56ddf9bdeb3558de0267962ef66833ee25e73",
+      "repeatMatches": true,
+      "caret": "initial",
+      "font": [
+        {
+          "familyName": "Geist",
+          "postScriptName": "Geist",
+          "isCustomFont": true,
+          "glyphCount": 9
+        }
+      ],
+      "fixtureSha256": "f45bac287ce7375b2731e1e87b9f114f2d84a17b95ca59cf6b12698039c87605",
+      "assertions": {
+        "mode": "split",
+        "accessibility": {
+          "violations": [],
+          "incomplete": []
+        },
+        "geometry": {
+          "x": 0,
+          "y": 0,
+          "width": 440,
+          "height": 418
+        },
+        "noJobStarted": true
+      },
+      "ipc": [
+        {
+          "command": "plugin:event|listen",
+          "args": {
+            "event": "tauri://theme-changed",
+            "target": {
+              "kind": "Window",
+              "label": "media-sheet"
+            },
+            "handler": 1
+          }
+        },
+        {
+          "command": "plugin:event|listen",
+          "args": {
+            "event": "tools:sheet",
+            "target": {
+              "kind": "Any"
+            },
+            "handler": 3
+          }
+        },
+        {
+          "command": "get_settings",
+          "args": {}
+        },
+        {
+          "command": "tool_catalog",
+          "args": {}
+        },
+        {
+          "command": "plugin:window|theme",
+          "args": {
+            "label": "media-sheet"
+          }
+        },
+        {
+          "command": "tool_media_sheet",
+          "args": {}
+        },
+        {
+          "command": "shelf_list",
+          "args": {}
+        },
+        {
+          "command": "tool_pdf_pages",
+          "args": {
+            "path": "C:\\Fixture\\Report.pdf"
+          }
+        },
+        {
+          "command": "tool_media_sheet_ready",
+          "args": {
+            "id": "51000000-0000-4000-8000-000000000001",
+            "height": 354
+          }
+        },
+        {
+          "command": "tool_media_sheet_ready",
+          "args": {
+            "id": "51000000-0000-4000-8000-000000000001",
+            "height": 354
+          }
+        },
+        {
+          "command": "tool_media_sheet_ready",
+          "args": {
+            "id": "51000000-0000-4000-8000-000000000001",
+            "height": 418
+          }
+        }
+      ],
+      "unsupported": [],
+      "runtimeAndNetworkProblems": []
+    },
+    {
+      "file": "v510-image-doc-i-file-tools-render-dark@1.5x.png",
+      "scenario": "file-tools-render",
+      "entry": "index.html",
+      "figmaNode": null,
+      "theme": "dark",
+      "resolvedTheme": "dark",
+      "scale": 1.5,
+      "viewport": {
+        "width": 640,
+        "height": 840
+      },
+      "clip": {
+        "x": 0,
+        "y": 0,
+        "width": 440,
+        "height": 402
+      },
+      "width": 660,
+      "height": 603,
+      "bytes": 40386,
+      "sha256": "ff9a82a6e0d2ad1f48847470440b1b6be25ac84167670048c7d7839fc15c81b5",
+      "repeatMatches": true,
+      "caret": "initial",
+      "font": [
+        {
+          "familyName": "Geist",
+          "postScriptName": "Geist",
+          "isCustomFont": true,
+          "glyphCount": 10
+        }
+      ],
+      "fixtureSha256": "2fddb73e09abd99090279ca3c478fe54191668a5d6b08feb7dc961347baa5da9",
+      "assertions": {
+        "mode": "render",
+        "accessibility": {
+          "violations": [],
+          "incomplete": []
+        },
+        "geometry": {
+          "x": 0,
+          "y": 0,
+          "width": 440,
+          "height": 402
+        },
+        "noJobStarted": true
+      },
+      "ipc": [
+        {
+          "command": "plugin:event|listen",
+          "args": {
+            "event": "tauri://theme-changed",
+            "target": {
+              "kind": "Window",
+              "label": "media-sheet"
+            },
+            "handler": 1
+          }
+        },
+        {
+          "command": "plugin:event|listen",
+          "args": {
+            "event": "tools:sheet",
+            "target": {
+              "kind": "Any"
+            },
+            "handler": 3
+          }
+        },
+        {
+          "command": "get_settings",
+          "args": {}
+        },
+        {
+          "command": "tool_catalog",
+          "args": {}
+        },
+        {
+          "command": "plugin:window|theme",
+          "args": {
+            "label": "media-sheet"
+          }
+        },
+        {
+          "command": "tool_media_sheet",
+          "args": {}
+        },
+        {
+          "command": "shelf_list",
+          "args": {}
+        },
+        {
+          "command": "tool_pdf_pages",
+          "args": {
+            "path": "C:\\Fixture\\Report.pdf"
+          }
+        },
+        {
+          "command": "tool_media_sheet_ready",
+          "args": {
+            "id": "51000000-0000-4000-8000-000000000001",
+            "height": 338
+          }
+        },
+        {
+          "command": "tool_media_sheet_ready",
+          "args": {
+            "id": "51000000-0000-4000-8000-000000000001",
+            "height": 338
+          }
+        },
+        {
+          "command": "tool_media_sheet_ready",
+          "args": {
+            "id": "51000000-0000-4000-8000-000000000001",
+            "height": 402
+          }
+        }
+      ],
+      "unsupported": [],
+      "runtimeAndNetworkProblems": []
+    },
+    {
+      "file": "v510-image-doc-i-file-tools-pdf-dark@1.5x.png",
+      "scenario": "file-tools-pdf",
+      "entry": "index.html",
+      "figmaNode": null,
+      "theme": "dark",
+      "resolvedTheme": "dark",
+      "scale": 1.5,
+      "viewport": {
+        "width": 640,
+        "height": 840
+      },
+      "clip": {
+        "x": 0,
+        "y": 0,
+        "width": 440,
+        "height": 447
+      },
+      "width": 660,
+      "height": 671,
+      "bytes": 44870,
+      "sha256": "ed734603ec83805665808117697b55669aec13411909aa139e3f992b81f76882",
+      "repeatMatches": true,
+      "caret": "initial",
+      "font": [
+        {
+          "familyName": "Geist",
+          "postScriptName": "Geist",
+          "isCustomFont": true,
+          "glyphCount": 8
+        }
+      ],
+      "fixtureSha256": "cbaf905ef2b1171b6f6f659a786a5fb65db8ecfc2c849b248801e4d447260677",
+      "assertions": {
+        "mode": "pdf",
+        "accessibility": {
+          "violations": [],
+          "incomplete": []
+        },
+        "geometry": {
+          "x": 0,
+          "y": 0,
+          "width": 440,
+          "height": 447
+        },
+        "noJobStarted": true
+      },
+      "ipc": [
+        {
+          "command": "plugin:event|listen",
+          "args": {
+            "event": "tauri://theme-changed",
+            "target": {
+              "kind": "Window",
+              "label": "media-sheet"
+            },
+            "handler": 1
+          }
+        },
+        {
+          "command": "plugin:event|listen",
+          "args": {
+            "event": "tools:sheet",
+            "target": {
+              "kind": "Any"
+            },
+            "handler": 3
+          }
+        },
+        {
+          "command": "get_settings",
+          "args": {}
+        },
+        {
+          "command": "tool_catalog",
+          "args": {}
+        },
+        {
+          "command": "plugin:window|theme",
+          "args": {
+            "label": "media-sheet"
+          }
+        },
+        {
+          "command": "tool_media_sheet",
+          "args": {}
+        },
+        {
+          "command": "shelf_list",
+          "args": {}
+        },
+        {
+          "command": "tool_media_sheet_ready",
+          "args": {
+            "id": "51000000-0000-4000-8000-000000000001",
+            "height": 447
+          }
+        }
+      ],
+      "unsupported": [],
+      "runtimeAndNetworkProblems": []
+    },
+    {
+      "file": "v510-image-doc-i-file-tools-ocr-dark@1.5x.png",
+      "scenario": "file-tools-ocr",
+      "entry": "index.html",
+      "figmaNode": null,
+      "theme": "dark",
+      "resolvedTheme": "dark",
+      "scale": 1.5,
+      "viewport": {
+        "width": 640,
+        "height": 840
+      },
+      "clip": {
+        "x": 0,
+        "y": 0,
+        "width": 440,
+        "height": 259
+      },
+      "width": 660,
+      "height": 389,
+      "bytes": 34828,
+      "sha256": "ba47cadacd71f18951dbcba0b8b97b8bec019b5269ac511af26b7d26bca199c5",
+      "repeatMatches": true,
+      "caret": "initial",
+      "font": [
+        {
+          "familyName": "Geist",
+          "postScriptName": "Geist",
+          "isCustomFont": true,
+          "glyphCount": 15
+        }
+      ],
+      "fixtureSha256": "54ebfbaef7e7d3d92ad82727d065a03e3a9faf353d9a4582d7543b1c20162b2e",
+      "assertions": {
+        "mode": "ocr",
+        "accessibility": {
+          "violations": [],
+          "incomplete": []
+        },
+        "geometry": {
+          "x": 0,
+          "y": 0,
+          "width": 440,
+          "height": 259
+        },
+        "noJobStarted": true
+      },
+      "ipc": [
+        {
+          "command": "plugin:event|listen",
+          "args": {
+            "event": "tauri://theme-changed",
+            "target": {
+              "kind": "Window",
+              "label": "media-sheet"
+            },
+            "handler": 1
+          }
+        },
+        {
+          "command": "plugin:event|listen",
+          "args": {
+            "event": "tools:sheet",
+            "target": {
+              "kind": "Any"
+            },
+            "handler": 3
+          }
+        },
+        {
+          "command": "get_settings",
+          "args": {}
+        },
+        {
+          "command": "tool_catalog",
+          "args": {}
+        },
+        {
+          "command": "plugin:window|theme",
+          "args": {
+            "label": "media-sheet"
+          }
+        },
+        {
+          "command": "tool_media_sheet",
+          "args": {}
+        },
+        {
+          "command": "shelf_list",
+          "args": {}
+        },
+        {
+          "command": "tool_media_sheet_ready",
+          "args": {
+            "id": "51000000-0000-4000-8000-000000000001",
+            "height": 259
+          }
+        },
+        {
+          "command": "tool_media_sheet_ready",
+          "args": {
+            "id": "51000000-0000-4000-8000-000000000001",
+            "height": 259
+          }
+        }
+      ],
+      "unsupported": [],
+      "runtimeAndNetworkProblems": []
+    },
+    {
+      "file": "v510-image-doc-i-file-tools-decode-dark@1.5x.png",
+      "scenario": "file-tools-decode",
+      "entry": "index.html",
+      "figmaNode": null,
+      "theme": "dark",
+      "resolvedTheme": "dark",
+      "scale": 1.5,
+      "viewport": {
+        "width": 640,
+        "height": 840
+      },
+      "clip": {
+        "x": 0,
+        "y": 0,
+        "width": 440,
+        "height": 243
+      },
+      "width": 660,
+      "height": 365,
+      "bytes": 30382,
+      "sha256": "8b6299b5661bb041d941cfaba3445981e0aded72eff1647bc8d5d4e2aa86acd1",
+      "repeatMatches": true,
+      "caret": "initial",
+      "font": [
+        {
+          "familyName": "Geist",
+          "postScriptName": "Geist",
+          "isCustomFont": true,
+          "glyphCount": 18
+        }
+      ],
+      "fixtureSha256": "1d460555ff8a8d009b84be82a20ec38708f3f6892466a95e8d95dd2d0c23445a",
+      "assertions": {
+        "mode": "decode",
+        "accessibility": {
+          "violations": [],
+          "incomplete": []
+        },
+        "geometry": {
+          "x": 0,
+          "y": 0,
+          "width": 440,
+          "height": 243
+        },
+        "noJobStarted": true
+      },
+      "ipc": [
+        {
+          "command": "plugin:event|listen",
+          "args": {
+            "event": "tauri://theme-changed",
+            "target": {
+              "kind": "Window",
+              "label": "media-sheet"
+            },
+            "handler": 1
+          }
+        },
+        {
+          "command": "plugin:event|listen",
+          "args": {
+            "event": "tools:sheet",
+            "target": {
+              "kind": "Any"
+            },
+            "handler": 3
+          }
+        },
+        {
+          "command": "get_settings",
+          "args": {}
+        },
+        {
+          "command": "tool_catalog",
+          "args": {}
+        },
+        {
+          "command": "plugin:window|theme",
+          "args": {
+            "label": "media-sheet"
+          }
+        },
+        {
+          "command": "tool_media_sheet",
+          "args": {}
+        },
+        {
+          "command": "shelf_list",
+          "args": {}
+        },
+        {
+          "command": "tool_media_sheet_ready",
+          "args": {
+            "id": "51000000-0000-4000-8000-000000000001",
+            "height": 243
+          }
+        }
+      ],
+      "unsupported": [],
+      "runtimeAndNetworkProblems": []
+    },
+    {
+      "file": "v510-image-doc-i-file-tools-encode-dark@1.5x.png",
+      "scenario": "file-tools-encode",
+      "entry": "index.html",
+      "figmaNode": null,
+      "theme": "dark",
+      "resolvedTheme": "dark",
+      "scale": 1.5,
+      "viewport": {
+        "width": 640,
+        "height": 840
+      },
+      "clip": {
+        "x": 0,
+        "y": 0,
+        "width": 440,
+        "height": 259
+      },
+      "width": 660,
+      "height": 389,
+      "bytes": 32015,
+      "sha256": "16a7145899bd5ccf4d4bda9caf96754499e233e53be507b4067ee6b54469c0e8",
+      "repeatMatches": true,
+      "caret": "initial",
+      "font": [
+        {
+          "familyName": "Geist",
+          "postScriptName": "Geist",
+          "isCustomFont": true,
+          "glyphCount": 15
+        }
+      ],
+      "fixtureSha256": "bc96e63e9c922436aca04e8d52ef23201d54d2850a35f96240df161f450eda41",
+      "assertions": {
+        "mode": "encode",
+        "accessibility": {
+          "violations": [],
+          "incomplete": []
+        },
+        "geometry": {
+          "x": 0,
+          "y": 0,
+          "width": 440,
+          "height": 259
+        },
+        "noJobStarted": true
+      },
+      "ipc": [
+        {
+          "command": "plugin:event|listen",
+          "args": {
+            "event": "tauri://theme-changed",
+            "target": {
+              "kind": "Window",
+              "label": "media-sheet"
+            },
+            "handler": 1
+          }
+        },
+        {
+          "command": "plugin:event|listen",
+          "args": {
+            "event": "tools:sheet",
+            "target": {
+              "kind": "Any"
+            },
+            "handler": 3
+          }
+        },
+        {
+          "command": "get_settings",
+          "args": {}
+        },
+        {
+          "command": "tool_catalog",
+          "args": {}
+        },
+        {
+          "command": "plugin:window|theme",
+          "args": {
+            "label": "media-sheet"
+          }
+        },
+        {
+          "command": "tool_media_sheet",
+          "args": {}
+        },
+        {
+          "command": "shelf_list",
+          "args": {}
+        },
+        {
+          "command": "tool_media_sheet_ready",
+          "args": {
+            "id": "51000000-0000-4000-8000-000000000001",
+            "height": 259
+          }
+        },
+        {
+          "command": "tool_media_sheet_ready",
+          "args": {
+            "id": "51000000-0000-4000-8000-000000000001",
+            "height": 259
+          }
+        }
+      ],
+      "unsupported": [],
+      "runtimeAndNetworkProblems": []
+    }
+  ]
+}

@@ -1,0 +1,32 @@
+file:///D:/claude-upgrade-26/nabbit/scripts/screenshots/harness.mjs:412
+            throw new Error(`${scenario.name} (${theme}@${scale}x): ${error.message}`, {
+                  ^
+
+Error: file-tools-codec (light@1x): locator.waitFor: Error: strict mode violation: getByRole('button', { name: 'Get HEIF extension' }) resolved to 3 elements:
+    1) <button type="button" class="n-button n-button--secondary n-button--md">Get HEIF extension</button> aka getByRole('button', { name: 'Get HEIF extension' }).first()
+    2) <button type="button" class="n-button n-button--secondary n-button--md">Get HEIF extension</button> aka getByRole('button', { name: 'Get HEIF extension' }).nth(1)
+    3) <button type="button" class="n-button n-button--secondary n-button--md">Get HEIF extension</button> aka getByRole('button', { name: 'Get HEIF extension' }).nth(2)
+
+Call log:
+  - waiting for getByRole('button', { name: 'Get HEIF extension' }) to be visible
+
+    at captureSuite (file:///D:/claude-upgrade-26/nabbit/scripts/screenshots/harness.mjs:412:19)
+    at async file:///D:/claude-upgrade-26/nabbit/scripts/verify-image-document-screenshots.mjs:24:16 {
+  [cause]: locator.waitFor: Error: strict mode violation: getByRole('button', { name: 'Get HEIF extension' }) resolved to 3 elements:
+      1) <button type="button" class="n-button n-button--secondary n-button--md">Get HEIF extension</button> aka getByRole('button', { name: 'Get HEIF extension' }).first()
+      2) <button type="button" class="n-button n-button--secondary n-button--md">Get HEIF extension</button> aka getByRole('button', { name: 'Get HEIF extension' }).nth(1)
+      3) <button type="button" class="n-button n-button--secondary n-button--md">Get HEIF extension</button> aka getByRole('button', { name: 'Get HEIF extension' }).nth(2)
+
+  Call log:
+    - waiting for getByRole('button', { name: 'Get HEIF extension' }) to be visible
+
+      at Object.ready (D:\claude-upgrade-26\nabbit\scripts\verify-image-document-screenshots.mjs:67:72)
+      at async captureSuite (D:\claude-upgrade-26\nabbit\scripts\screenshots\harness.mjs:144:33)
+      at async file:///D:/claude-upgrade-26/nabbit/scripts/verify-image-document-screenshots.mjs:24:16 {
+    log: [
+      "  - waiting for getByRole('button', { name: 'Get HEIF extension' }) to be visible"
+    ]
+  }
+}
+
+Node.js v24.22.2

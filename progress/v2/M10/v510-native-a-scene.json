@@ -1,0 +1,746 @@
+{
+  "passed": true,
+  "checks": [
+    "Both fixed HEIF/HEVC Store links run through the native acceptance provider; no Store or browser is launched.",
+    "The embedded 1148-component offline notice payload matches the generated source, including vendored libwebp BSD terms and patent grant.",
+    "All 68 embedded manifest assets match this build byte-for-byte.",
+    "Native image review starts no job until Run; batch conversion produces two new JPGs through the durable runner.",
+    "Blank image OCR reports No text found and publishes no output.",
+    "A generated noisy PNG over 1 MB fits the shared custom 1-MB preset as an actual measured JPG output through the durable runner.",
+    "Actual two-page image PDF, range split, ordered three-page merge, 144-DPI Windows PDF software rendering, user-language OCR and file QR encode/decode all complete through Tauri and the shared job store.",
+    "All original image hashes and physical created/modified dates stay unchanged; output dates match. Guarded Undo uses the injected owned quarantine provider.",
+    "Restart retains every completed/undone image/document job and its exact source/options without re-execution."
+  ],
+  "captures": [
+    {
+      "role": "convert",
+      "file": "v510-native-a-convert@2x.png",
+      "sha256": "91255e25035fc7a37caf2b3cc4d4ed4274c5c396923b994e5b9040d1cd312239",
+      "bytes": 84411,
+      "width": 920,
+      "height": 926,
+      "logicalBounds": {
+        "x": 0,
+        "y": 0,
+        "width": 460,
+        "height": 463
+      },
+      "contentBounds": {
+        "x": 0,
+        "y": 0,
+        "width": 460,
+        "height": 463
+      },
+      "scale": 2,
+      "repeatMatches": true
+    },
+    {
+      "role": "make-pdf",
+      "file": "v510-native-a-make-pdf@2x.png",
+      "sha256": "9a677f84350396d590376cb17c863fd0eed288d6f6aa339ba3791fd199d25519",
+      "bytes": 53362,
+      "width": 880,
+      "height": 808,
+      "logicalBounds": {
+        "x": 0,
+        "y": 0,
+        "width": 440,
+        "height": 404
+      },
+      "contentBounds": {
+        "x": 0,
+        "y": 0,
+        "width": 440,
+        "height": 404
+      },
+      "scale": 2,
+      "repeatMatches": true
+    },
+    {
+      "role": "pdf-render",
+      "file": "v510-native-a-pdf-render@2x.png",
+      "sha256": "e3e1078a5a2087c13d07d0a291fe91183b3ec29d2668c5be0088e366308e02d0",
+      "bytes": 56639,
+      "width": 880,
+      "height": 744,
+      "logicalBounds": {
+        "x": 0,
+        "y": 0,
+        "width": 440,
+        "height": 372
+      },
+      "contentBounds": {
+        "x": 0,
+        "y": 0,
+        "width": 440,
+        "height": 372
+      },
+      "scale": 2,
+      "repeatMatches": true
+    }
+  ],
+  "jobs": [
+    {
+      "id": "b8c4e25c-c2b1-4330-a62e-35ef5403a5cd",
+      "request": {
+        "requestId": "b8c4e25c-c2b1-4330-a62e-35ef5403a5cd",
+        "toolId": "to-jpg",
+        "input": "D:\\claude-upgrade-26\\nabbit\\.tools\\v510-native-a-5f9efec9-fa67-41a3-aaf0-a800c12de9ea\\profile\\Photo 2.png",
+        "presetId": "jpg",
+        "options": {
+          "mode": "exact",
+          "maxMb": null,
+          "keepAudio": true,
+          "downscale": true,
+          "audioKbps": null,
+          "maxHeight": 1080,
+          "trim": null,
+          "gifFps": 15,
+          "gifPixels": 720
+        },
+        "imageOptions": {
+          "format": "jpg",
+          "quality": 82,
+          "maxWidth": null,
+          "stripMetadata": false,
+          "keepProfile": true,
+          "keepDates": true,
+          "outputDir": null
+        },
+        "documentOptions": {
+          "inputs": [],
+          "pages": []
+        }
+      },
+      "preset": {
+        "id": "jpg",
+        "name": "To JPG",
+        "maxMb": null,
+        "quality": 85
+      },
+      "status": "completed",
+      "percent": 100,
+      "createdAt": "2026-11-28T02:00:25.962090900+00:00",
+      "output": "D:\\claude-upgrade-26\\nabbit\\.tools\\v510-native-a-5f9efec9-fa67-41a3-aaf0-a800c12de9ea\\profile\\Photo 2 (To JPG).jpg",
+      "beforeBytes": 13939,
+      "afterBytes": 39697,
+      "note": "To JPG",
+      "error": null,
+      "outputHash": "b95fdbe024981d0a78ee9d574c4c4ceb27e19f1196ffd34dd706edbd23bb3527",
+      "outputIdentity": "833977120:196608:2064247",
+      "stagingPath": "D:\\claude-upgrade-26\\nabbit\\.tools\\v510-native-a-5f9efec9-fa67-41a3-aaf0-a800c12de9ea\\profile\\.nabbit-b8c4e25c-c2b1-4330-a62e-35ef5403a5cd.jpg",
+      "attempt": 1,
+      "retryOf": null,
+      "mediaInfo": null,
+      "mediaReport": null
+    },
+    {
+      "id": "6c7cd39b-16cf-4093-81b9-d98719f9ec52",
+      "request": {
+        "requestId": "6c7cd39b-16cf-4093-81b9-d98719f9ec52",
+        "toolId": "to-jpg",
+        "input": "D:\\claude-upgrade-26\\nabbit\\.tools\\v510-native-a-5f9efec9-fa67-41a3-aaf0-a800c12de9ea\\profile\\Photo 1.png",
+        "presetId": "jpg",
+        "options": {
+          "mode": "exact",
+          "maxMb": null,
+          "keepAudio": true,
+          "downscale": true,
+          "audioKbps": null,
+          "maxHeight": 1080,
+          "trim": null,
+          "gifFps": 15,
+          "gifPixels": 720
+        },
+        "imageOptions": {
+          "format": "jpg",
+          "quality": 82,
+          "maxWidth": null,
+          "stripMetadata": false,
+          "keepProfile": true,
+          "keepDates": true,
+          "outputDir": null
+        },
+        "documentOptions": {
+          "inputs": [],
+          "pages": []
+        }
+      },
+      "preset": {
+        "id": "jpg",
+        "name": "To JPG",
+        "maxMb": null,
+        "quality": 85
+      },
+      "status": "completed",
+      "percent": 100,
+      "createdAt": "2026-11-28T02:00:25.723972700+00:00",
+      "output": "D:\\claude-upgrade-26\\nabbit\\.tools\\v510-native-a-5f9efec9-fa67-41a3-aaf0-a800c12de9ea\\profile\\Photo 1 (To JPG).jpg",
+      "beforeBytes": 13939,
+      "afterBytes": 40113,
+      "note": "To JPG",
+      "error": null,
+      "outputHash": "ac7960af7221a8e34fb1546695dd8005054605d30f7c57525ce398e518df1981",
+      "outputIdentity": "833977120:131072:2064254",
+      "stagingPath": "D:\\claude-upgrade-26\\nabbit\\.tools\\v510-native-a-5f9efec9-fa67-41a3-aaf0-a800c12de9ea\\profile\\.nabbit-6c7cd39b-16cf-4093-81b9-d98719f9ec52.jpg",
+      "attempt": 1,
+      "retryOf": null,
+      "mediaInfo": null,
+      "mediaReport": null
+    },
+    {
+      "id": "1da5bf72-dab0-4bce-b024-23589e5d2cfc",
+      "request": {
+        "requestId": "1da5bf72-dab0-4bce-b024-23589e5d2cfc",
+        "toolId": "images-pdf",
+        "input": "D:\\claude-upgrade-26\\nabbit\\.tools\\v510-native-a-5f9efec9-fa67-41a3-aaf0-a800c12de9ea\\profile\\Photo 1.png",
+        "presetId": "pdf",
+        "options": {
+          "mode": "exact",
+          "maxMb": null,
+          "keepAudio": true,
+          "downscale": true,
+          "audioKbps": null,
+          "maxHeight": 1080,
+          "trim": null,
+          "gifFps": 15,
+          "gifPixels": 720
+        },
+        "imageOptions": {
+          "format": "original",
+          "quality": null,
+          "maxWidth": null,
+          "stripMetadata": false,
+          "keepProfile": true,
+          "keepDates": true,
+          "outputDir": null
+        },
+        "documentOptions": {
+          "inputs": [
+            "D:\\claude-upgrade-26\\nabbit\\.tools\\v510-native-a-5f9efec9-fa67-41a3-aaf0-a800c12de9ea\\profile\\Photo 2.png"
+          ],
+          "pages": []
+        }
+      },
+      "preset": {
+        "id": "pdf",
+        "name": "Make PDF",
+        "maxMb": null,
+        "quality": 85
+      },
+      "status": "completed",
+      "percent": 100,
+      "createdAt": "2026-11-28T02:00:32.680767500+00:00",
+      "output": "D:\\claude-upgrade-26\\nabbit\\.tools\\v510-native-a-5f9efec9-fa67-41a3-aaf0-a800c12de9ea\\profile\\Photo 1 (Make PDF).pdf",
+      "beforeBytes": 27878,
+      "afterBytes": 87498,
+      "note": "Make PDF",
+      "error": null,
+      "outputHash": "e5b130bd7c601f70c3eeb4c80f67e682e133026c2739c44a5f593424e9153b70",
+      "outputIdentity": "833977120:2162688:2064243",
+      "stagingPath": "D:\\claude-upgrade-26\\nabbit\\.tools\\v510-native-a-5f9efec9-fa67-41a3-aaf0-a800c12de9ea\\profile\\.nabbit-1da5bf72-dab0-4bce-b024-23589e5d2cfc.pdf",
+      "attempt": 1,
+      "retryOf": null,
+      "mediaInfo": null,
+      "mediaReport": null
+    },
+    {
+      "id": "b86bdcd1-f201-4ec6-a753-fd8a5f601f26",
+      "request": {
+        "requestId": "b86bdcd1-f201-4ec6-a753-fd8a5f601f26",
+        "toolId": "split-pdf",
+        "input": "D:\\claude-upgrade-26\\nabbit\\.tools\\v510-native-a-5f9efec9-fa67-41a3-aaf0-a800c12de9ea\\profile\\Photo 1 (Make PDF).pdf",
+        "presetId": "split",
+        "options": {
+          "mode": "exact",
+          "maxMb": null,
+          "keepAudio": true,
+          "downscale": true,
+          "audioKbps": null,
+          "maxHeight": 1080,
+          "trim": null,
+          "gifFps": 15,
+          "gifPixels": 720
+        },
+        "imageOptions": {
+          "format": "original",
+          "quality": null,
+          "maxWidth": null,
+          "stripMetadata": false,
+          "keepProfile": true,
+          "keepDates": true,
+          "outputDir": null
+        },
+        "documentOptions": {
+          "inputs": [],
+          "pages": [
+            2
+          ]
+        }
+      },
+      "preset": {
+        "id": "split",
+        "name": "Split PDF",
+        "maxMb": null,
+        "quality": 85
+      },
+      "status": "completed",
+      "percent": 100,
+      "createdAt": "2026-11-28T02:00:33.127451200+00:00",
+      "output": "D:\\claude-upgrade-26\\nabbit\\.tools\\v510-native-a-5f9efec9-fa67-41a3-aaf0-a800c12de9ea\\profile\\Photo 1 (Make PDF) (Split PDF).pdf",
+      "beforeBytes": 87498,
+      "afterBytes": 43601,
+      "note": "Split PDF",
+      "error": null,
+      "outputHash": "e21c87b32ebb0a13bcbf34d29d0811976f2e7a403b2f51529ce3bf40327e9a00",
+      "outputIdentity": "833977120:131072:2064260",
+      "stagingPath": "D:\\claude-upgrade-26\\nabbit\\.tools\\v510-native-a-5f9efec9-fa67-41a3-aaf0-a800c12de9ea\\profile\\.nabbit-b86bdcd1-f201-4ec6-a753-fd8a5f601f26.pdf",
+      "attempt": 1,
+      "retryOf": null,
+      "mediaInfo": null,
+      "mediaReport": null
+    },
+    {
+      "id": "36ef611e-54ed-47eb-b4a5-7621ca992d11",
+      "request": {
+        "requestId": "36ef611e-54ed-47eb-b4a5-7621ca992d11",
+        "toolId": "merge-pdf",
+        "input": "D:\\claude-upgrade-26\\nabbit\\.tools\\v510-native-a-5f9efec9-fa67-41a3-aaf0-a800c12de9ea\\profile\\Photo 1 (Make PDF) (Split PDF).pdf",
+        "presetId": "pdf",
+        "options": {
+          "mode": "exact",
+          "maxMb": null,
+          "keepAudio": true,
+          "downscale": true,
+          "audioKbps": null,
+          "maxHeight": 1080,
+          "trim": null,
+          "gifFps": 15,
+          "gifPixels": 720
+        },
+        "imageOptions": {
+          "format": "original",
+          "quality": null,
+          "maxWidth": null,
+          "stripMetadata": false,
+          "keepProfile": true,
+          "keepDates": true,
+          "outputDir": null
+        },
+        "documentOptions": {
+          "inputs": [
+            "D:\\claude-upgrade-26\\nabbit\\.tools\\v510-native-a-5f9efec9-fa67-41a3-aaf0-a800c12de9ea\\profile\\Photo 1 (Make PDF).pdf"
+          ],
+          "pages": []
+        }
+      },
+      "preset": {
+        "id": "pdf",
+        "name": "Make PDF",
+        "maxMb": null,
+        "quality": 85
+      },
+      "status": "completed",
+      "percent": 100,
+      "createdAt": "2026-11-28T02:00:33.898892300+00:00",
+      "output": "D:\\claude-upgrade-26\\nabbit\\.tools\\v510-native-a-5f9efec9-fa67-41a3-aaf0-a800c12de9ea\\profile\\Photo 1 (Make PDF) (Split PDF) (Make PDF).pdf",
+      "beforeBytes": 131099,
+      "afterBytes": 130867,
+      "note": "Make PDF",
+      "error": null,
+      "outputHash": "d6bb1c24dd713cb52f77d238c8c447014ba8e04ba4fa0be660d391de11790913",
+      "outputIdentity": "833977120:131072:2064261",
+      "stagingPath": "D:\\claude-upgrade-26\\nabbit\\.tools\\v510-native-a-5f9efec9-fa67-41a3-aaf0-a800c12de9ea\\profile\\.nabbit-36ef611e-54ed-47eb-b4a5-7621ca992d11.pdf",
+      "attempt": 1,
+      "retryOf": null,
+      "mediaInfo": null,
+      "mediaReport": null
+    },
+    {
+      "id": "865836d8-6367-406f-becd-125ee05287c0",
+      "request": {
+        "requestId": "865836d8-6367-406f-becd-125ee05287c0",
+        "toolId": "pdf-png",
+        "input": "D:\\claude-upgrade-26\\nabbit\\.tools\\v510-native-a-5f9efec9-fa67-41a3-aaf0-a800c12de9ea\\profile\\Photo 1 (Make PDF).pdf",
+        "presetId": "png",
+        "options": {
+          "mode": "exact",
+          "maxMb": null,
+          "keepAudio": true,
+          "downscale": true,
+          "audioKbps": null,
+          "maxHeight": 1080,
+          "trim": null,
+          "gifFps": 15,
+          "gifPixels": 720
+        },
+        "imageOptions": {
+          "format": "original",
+          "quality": null,
+          "maxWidth": null,
+          "stripMetadata": false,
+          "keepProfile": true,
+          "keepDates": true,
+          "outputDir": null
+        },
+        "documentOptions": {
+          "inputs": [],
+          "pages": [
+            2
+          ]
+        }
+      },
+      "preset": {
+        "id": "png",
+        "name": "To PNG",
+        "maxMb": null,
+        "quality": 85
+      },
+      "status": "completed",
+      "percent": 100,
+      "createdAt": "2026-11-28T02:00:38.695167900+00:00",
+      "output": "D:\\claude-upgrade-26\\nabbit\\.tools\\v510-native-a-5f9efec9-fa67-41a3-aaf0-a800c12de9ea\\profile\\Photo 1 (Make PDF) (To PNG).png",
+      "beforeBytes": 87498,
+      "afterBytes": 108174,
+      "note": "To PNG",
+      "error": null,
+      "outputHash": "9135a5cf087dbd94a48ff2eafb90da8bc9a0946a2b5ab88ba9b3af47b7befb96",
+      "outputIdentity": "833977120:131072:2064264",
+      "stagingPath": "D:\\claude-upgrade-26\\nabbit\\.tools\\v510-native-a-5f9efec9-fa67-41a3-aaf0-a800c12de9ea\\profile\\.nabbit-865836d8-6367-406f-becd-125ee05287c0.png",
+      "attempt": 1,
+      "retryOf": null,
+      "mediaInfo": null,
+      "mediaReport": null
+    },
+    {
+      "id": "c70423a5-f2c4-4a31-a755-f08f925824cf",
+      "request": {
+        "requestId": "c70423a5-f2c4-4a31-a755-f08f925824cf",
+        "toolId": "image-text",
+        "input": "D:\\claude-upgrade-26\\nabbit\\.tools\\v510-native-a-5f9efec9-fa67-41a3-aaf0-a800c12de9ea\\profile\\Photo 1.png",
+        "presetId": "text",
+        "options": {
+          "mode": "exact",
+          "maxMb": null,
+          "keepAudio": true,
+          "downscale": true,
+          "audioKbps": null,
+          "maxHeight": 1080,
+          "trim": null,
+          "gifFps": 15,
+          "gifPixels": 720
+        },
+        "imageOptions": {
+          "format": "original",
+          "quality": null,
+          "maxWidth": null,
+          "stripMetadata": false,
+          "keepProfile": true,
+          "keepDates": true,
+          "outputDir": null
+        },
+        "documentOptions": {
+          "inputs": [],
+          "pages": []
+        }
+      },
+      "preset": {
+        "id": "text",
+        "name": "Text",
+        "maxMb": null,
+        "quality": 85
+      },
+      "status": "completed",
+      "percent": 100,
+      "createdAt": "2026-11-28T02:00:39.291960+00:00",
+      "output": "D:\\claude-upgrade-26\\nabbit\\.tools\\v510-native-a-5f9efec9-fa67-41a3-aaf0-a800c12de9ea\\profile\\Photo 1 (Text).txt",
+      "beforeBytes": 13939,
+      "afterBytes": 10,
+      "note": "Text",
+      "error": null,
+      "outputHash": "b134340c80693d185b1210da0694294cc440540cfd74c8ecc5249dccf3d880da",
+      "outputIdentity": "833977120:131072:2064265",
+      "stagingPath": "D:\\claude-upgrade-26\\nabbit\\.tools\\v510-native-a-5f9efec9-fa67-41a3-aaf0-a800c12de9ea\\profile\\.nabbit-c70423a5-f2c4-4a31-a755-f08f925824cf.txt",
+      "attempt": 1,
+      "retryOf": null,
+      "mediaInfo": null,
+      "mediaReport": null
+    },
+    {
+      "id": "9bd922e9-6105-4b58-8434-010ce4aa6d5e",
+      "request": {
+        "requestId": "9bd922e9-6105-4b58-8434-010ce4aa6d5e",
+        "toolId": "image-text",
+        "input": "D:\\claude-upgrade-26\\nabbit\\.tools\\v510-native-a-5f9efec9-fa67-41a3-aaf0-a800c12de9ea\\profile\\Blank.png",
+        "presetId": "text",
+        "options": {
+          "mode": "exact",
+          "maxMb": null,
+          "keepAudio": true,
+          "downscale": true,
+          "audioKbps": null,
+          "maxHeight": 1080,
+          "trim": null,
+          "gifFps": 15,
+          "gifPixels": 720
+        },
+        "imageOptions": {
+          "format": "original",
+          "quality": null,
+          "maxWidth": null,
+          "stripMetadata": false,
+          "keepProfile": true,
+          "keepDates": true,
+          "outputDir": null
+        },
+        "documentOptions": {
+          "inputs": [],
+          "pages": []
+        }
+      },
+      "preset": {
+        "id": "text",
+        "name": "Text",
+        "maxMb": null,
+        "quality": 85
+      },
+      "status": "failed",
+      "percent": 0,
+      "createdAt": "2026-11-28T02:00:39.918445700+00:00",
+      "output": null,
+      "beforeBytes": 738,
+      "afterBytes": 0,
+      "note": null,
+      "error": "No text found",
+      "outputHash": null,
+      "outputIdentity": "833977120:131072:2064267",
+      "stagingPath": null,
+      "attempt": 1,
+      "retryOf": null,
+      "mediaInfo": null,
+      "mediaReport": null
+    },
+    {
+      "id": "edc4b5b6-95ab-4572-80e8-fa137efa5591",
+      "request": {
+        "requestId": "edc4b5b6-95ab-4572-80e8-fa137efa5591",
+        "toolId": "encode-qr",
+        "input": "D:\\claude-upgrade-26\\nabbit\\.tools\\v510-native-a-5f9efec9-fa67-41a3-aaf0-a800c12de9ea\\profile\\QR text.txt",
+        "presetId": "qr",
+        "options": {
+          "mode": "exact",
+          "maxMb": null,
+          "keepAudio": true,
+          "downscale": true,
+          "audioKbps": null,
+          "maxHeight": 1080,
+          "trim": null,
+          "gifFps": 15,
+          "gifPixels": 720
+        },
+        "imageOptions": {
+          "format": "original",
+          "quality": null,
+          "maxWidth": null,
+          "stripMetadata": false,
+          "keepProfile": true,
+          "keepDates": true,
+          "outputDir": null
+        },
+        "documentOptions": {
+          "inputs": [],
+          "pages": []
+        }
+      },
+      "preset": {
+        "id": "qr",
+        "name": "QR",
+        "maxMb": null,
+        "quality": 85
+      },
+      "status": "completed",
+      "percent": 100,
+      "createdAt": "2026-11-28T02:00:40.457399700+00:00",
+      "output": "D:\\claude-upgrade-26\\nabbit\\.tools\\v510-native-a-5f9efec9-fa67-41a3-aaf0-a800c12de9ea\\profile\\QR text (QR).png",
+      "beforeBytes": 36,
+      "afterBytes": 2054,
+      "note": "QR",
+      "error": null,
+      "outputHash": "8188eb2d46e0857ba224e1b3b23a7c54721e01cfe17b49f090c8ce38b0949f80",
+      "outputIdentity": "833977120:131072:2064269",
+      "stagingPath": "D:\\claude-upgrade-26\\nabbit\\.tools\\v510-native-a-5f9efec9-fa67-41a3-aaf0-a800c12de9ea\\profile\\.nabbit-edc4b5b6-95ab-4572-80e8-fa137efa5591.png",
+      "attempt": 1,
+      "retryOf": null,
+      "mediaInfo": null,
+      "mediaReport": null
+    },
+    {
+      "id": "40e94d3d-b0a0-4953-9c36-b3713e1a0613",
+      "request": {
+        "requestId": "40e94d3d-b0a0-4953-9c36-b3713e1a0613",
+        "toolId": "decode-qr",
+        "input": "D:\\claude-upgrade-26\\nabbit\\.tools\\v510-native-a-5f9efec9-fa67-41a3-aaf0-a800c12de9ea\\profile\\QR text (QR).png",
+        "presetId": "text",
+        "options": {
+          "mode": "exact",
+          "maxMb": null,
+          "keepAudio": true,
+          "downscale": true,
+          "audioKbps": null,
+          "maxHeight": 1080,
+          "trim": null,
+          "gifFps": 15,
+          "gifPixels": 720
+        },
+        "imageOptions": {
+          "format": "original",
+          "quality": null,
+          "maxWidth": null,
+          "stripMetadata": false,
+          "keepProfile": true,
+          "keepDates": true,
+          "outputDir": null
+        },
+        "documentOptions": {
+          "inputs": [],
+          "pages": []
+        }
+      },
+      "preset": {
+        "id": "text",
+        "name": "Text",
+        "maxMb": null,
+        "quality": 85
+      },
+      "status": "completed",
+      "percent": 100,
+      "createdAt": "2026-11-28T02:00:41.075474200+00:00",
+      "output": "D:\\claude-upgrade-26\\nabbit\\.tools\\v510-native-a-5f9efec9-fa67-41a3-aaf0-a800c12de9ea\\profile\\QR text (QR) (Text).txt",
+      "beforeBytes": 2054,
+      "afterBytes": 36,
+      "note": "Text",
+      "error": null,
+      "outputHash": "e72b1e836601e1dd79177c93a8ea6910e63ba1e9281a7eb1ff9d8d982fff6316",
+      "outputIdentity": "833977120:196608:2064271",
+      "stagingPath": "D:\\claude-upgrade-26\\nabbit\\.tools\\v510-native-a-5f9efec9-fa67-41a3-aaf0-a800c12de9ea\\profile\\.nabbit-40e94d3d-b0a0-4953-9c36-b3713e1a0613.txt",
+      "attempt": 1,
+      "retryOf": null,
+      "mediaInfo": null,
+      "mediaReport": null
+    },
+    {
+      "id": "d189f1f3-72b0-4e0b-b9ee-269d8cfa56a5",
+      "request": {
+        "requestId": "d189f1f3-72b0-4e0b-b9ee-269d8cfa56a5",
+        "toolId": "fit-size",
+        "input": "D:\\claude-upgrade-26\\nabbit\\.tools\\v510-native-a-5f9efec9-fa67-41a3-aaf0-a800c12de9ea\\profile\\Noise.png",
+        "presetId": "custom-fit",
+        "options": {
+          "mode": "exact",
+          "maxMb": 1,
+          "keepAudio": true,
+          "downscale": true,
+          "audioKbps": null,
+          "maxHeight": 1080,
+          "trim": null,
+          "gifFps": 15,
+          "gifPixels": 720
+        },
+        "imageOptions": {
+          "format": "jpg",
+          "quality": 82,
+          "maxWidth": null,
+          "stripMetadata": false,
+          "keepProfile": true,
+          "keepDates": true,
+          "outputDir": null
+        },
+        "documentOptions": {
+          "inputs": [],
+          "pages": []
+        }
+      },
+      "preset": {
+        "id": "custom-fit",
+        "name": "Fit under a size",
+        "maxMb": 1,
+        "quality": 85
+      },
+      "status": "completed",
+      "percent": 100,
+      "createdAt": "2026-11-28T02:00:41.722062900+00:00",
+      "output": "D:\\claude-upgrade-26\\nabbit\\.tools\\v510-native-a-5f9efec9-fa67-41a3-aaf0-a800c12de9ea\\profile\\Noise (Fit under a size).jpg",
+      "beforeBytes": 2769477,
+      "afterBytes": 487410,
+      "note": "Fit under a size",
+      "error": null,
+      "outputHash": "0481d65545be6e69d4a075fcfcb358066e6cd44b0e97ba0d62621d5cf2404744",
+      "outputIdentity": "833977120:327680:2064268",
+      "stagingPath": "D:\\claude-upgrade-26\\nabbit\\.tools\\v510-native-a-5f9efec9-fa67-41a3-aaf0-a800c12de9ea\\profile\\.nabbit-d189f1f3-72b0-4e0b-b9ee-269d8cfa56a5.jpg",
+      "attempt": 1,
+      "retryOf": null,
+      "mediaInfo": null,
+      "mediaReport": null
+    },
+    {
+      "id": "df9aa52e-c6a3-4b20-8291-7f3f9a136758",
+      "request": {
+        "requestId": "df9aa52e-c6a3-4b20-8291-7f3f9a136758",
+        "toolId": "to-jpg",
+        "input": "D:\\claude-upgrade-26\\nabbit\\.tools\\v510-native-a-5f9efec9-fa67-41a3-aaf0-a800c12de9ea\\profile\\Photo 1.png",
+        "presetId": "webp",
+        "options": {
+          "mode": "exact",
+          "maxMb": null,
+          "keepAudio": true,
+          "downscale": true,
+          "audioKbps": null,
+          "maxHeight": 1080,
+          "trim": null,
+          "gifFps": 15,
+          "gifPixels": 720
+        },
+        "imageOptions": {
+          "format": "webp",
+          "quality": 82,
+          "maxWidth": null,
+          "stripMetadata": false,
+          "keepProfile": true,
+          "keepDates": true,
+          "outputDir": null
+        },
+        "documentOptions": {
+          "inputs": [],
+          "pages": []
+        }
+      },
+      "preset": {
+        "id": "webp",
+        "name": "To WebP",
+        "maxMb": null,
+        "quality": 85
+      },
+      "status": "completed",
+      "percent": 100,
+      "createdAt": "2026-11-28T02:00:42.353550300+00:00",
+      "output": "D:\\claude-upgrade-26\\nabbit\\.tools\\v510-native-a-5f9efec9-fa67-41a3-aaf0-a800c12de9ea\\profile\\Photo 1 (To WebP).webp",
+      "beforeBytes": 13939,
+      "afterBytes": 6018,
+      "note": "To WebP",
+      "error": null,
+      "outputHash": "59b0f974c7ca9a1db3d63bdfac842387f8c0b9b11a49b4a79d98f541d8e301c5",
+      "outputIdentity": "833977120:131072:2064272",
+      "stagingPath": "D:\\claude-upgrade-26\\nabbit\\.tools\\v510-native-a-5f9efec9-fa67-41a3-aaf0-a800c12de9ea\\profile\\.nabbit-df9aa52e-c6a3-4b20-8291-7f3f9a136758.webp",
+      "attempt": 1,
+      "retryOf": null,
+      "mediaInfo": null,
+      "mediaReport": null
+    }
+  ],
+  "executableSha256": "5e50780cf0b4d4e99991ad6deef24e2e9f2348e656dc76e98cc46380682ada58",
+  "buildManifestSha256": "430b5fdc434c34717a155e439114118ead02d858a2e9bff3e355d55739e9d374",
+  "noUserProfile": true,
+  "noRealRecycleBinOrExplorer": true,
+  "noOsSettingChange": true,
+  "scope": "Owned production executable, isolated app-data/WebView/control profiles and generated image/text fixtures plus a local verification-only public HEIC sample. DOM input only; no clipboard, global input, real cursor, native dialog, Store install, user files, hosted Tack, signing or OS changes."
+}

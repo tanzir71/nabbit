@@ -8,16 +8,19 @@ pub struct Intent {
     pub id: String,
     pub tool_id: String,
     pub input: String,
+    #[serde(default)]
+    pub inputs: Vec<String>,
 }
 fn validate(intent: &Intent) -> Result<()> {
     if uuid::Uuid::parse_str(&intent.id).is_err() {
         return Err(msg("Invalid review id"));
     }
-    if !matches!(
-        crate::tools::registry::get(&intent.tool_id)?.executor,
-        crate::tools::registry::Executor::Media(_)
-    ) {
-        return Err(msg("Choose a media tool"));
+    crate::tools::registry::get(&intent.tool_id)?;
+    if intent.inputs.len() > 64 {
+        return Err(msg("Choose at most 64 files"));
+    }
+    for input in &intent.inputs {
+        crate::files::paths::checked(input)?;
     }
     if intent.input.len() > 32760
         || intent.input.contains(['\0', '\n', '\r'])
@@ -65,7 +68,7 @@ pub async fn tool_open_media_sheet(
                 "media-sheet",
                 tauri::WebviewUrl::App("index.html?media-sheet".into()),
             )
-            .title("Nabbit — Media tools")
+            .title("Nabbit — File tools")
             .inner_size(440., 640.)
             .resizable(false)
             .decorations(false)
@@ -122,7 +125,20 @@ pub fn tool_media_sheet_ready(
         .unwrap_or(720)
         .min(840);
     window.set_size(tauri::LogicalSize::new(
-        440.,
+        if service.sheet.lock().ok().is_some_and(|s| {
+            s.as_ref().is_some_and(|i| {
+                registry_image(&i.tool_id)
+                    || matches!(
+                        crate::tools::registry::get(&i.tool_id)
+                            .map(|t| t.executor_for(Path::new(&i.input))),
+                        Ok(crate::tools::registry::Executor::Image(_))
+                    )
+            })
+        }) {
+            460.
+        } else {
+            440.
+        },
         f64::from(height.clamp(200, maximum)),
     ))?;
     window.show()?;
@@ -201,4 +217,8 @@ pub fn tool_media_estimate(
 ) -> Result<Plan> {
     crate::tools::commands::caller(&app, &window)?;
     plan(&info, &options, max_mb, None)
+}
+
+fn registry_image(id: &str) -> bool {
+    crate::tools::registry::get(id).is_ok_and(|t| t.category == "images")
 }

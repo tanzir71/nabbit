@@ -1,0 +1,28 @@
+Compiling nabbit v0.1.0 (D:\claude-upgrade-26\nabbit\src-tauri)
+    Finished `test` profile [unoptimized + debuginfo] target(s) in 29.81s
+     Running unittests src\lib.rs (src-tauri\target\debug\deps\nabbit_lib-6dc633b6abfff527.exe)
+
+running 5 tests
+test tools::documents::tests::encrypted_even_with_empty_password_has_a_clear_error ... ok
+test tools::documents::tests::images_pdf_keeps_order_aspect_and_source_bytes ... ok
+test tools::documents::tests::merge_and_split_preserve_order_inherited_resources_and_page_geometry ... ok
+test tools::documents::tests::qr_roundtrip_preserves_unicode_newlines_and_never_opens_links ... ok
+
+thread 'tools::documents::tests::windows_pdf_render_and_ocr_use_only_owned_files' (14024) panicked at src\tools\documents\tests.rs:150:5:
+assertion `left == right` failed
+  left: (201, 401)
+ right: (200, 400)
+note: run with `RUST_BACKTRACE=1` environment variable to display a backtrace
+test tools::documents::tests::windows_pdf_render_and_ocr_use_only_owned_files ... FAILED
+
+failures:
+
+failures:
+    tools::documents::tests::windows_pdf_render_and_ocr_use_only_owned_files
+
+test result: FAILED. 4 passed; 1 failed; 0 ignored; 0 measured; 349 filtered out; finished in 0.20s
+
+error: test failed, to rerun pass `--lib`
+
+Caused by:
+  process didn't exit successfully: `D:\claude-upgrade-26\nabbit\src-tauri\target\debug\deps\nabbit_lib-6dc633b6abfff527.exe tools::documents::tests --nocapture --test-threads=1` (exit code: 0xc0000005, STATUS_ACCESS_VIOLATION)

@@ -19,13 +19,15 @@ pub struct Tool {
 #[derive(Clone, Copy, Debug)]
 pub enum Executor {
     Media(super::media::Kind),
-    Jpg,
+    Image(super::images::Kind),
+    Document(super::documents::Kind),
 }
 impl Executor {
     pub fn extension(self, input: &std::path::Path, info: Option<&super::media::Info>) -> String {
         match self {
             Self::Media(kind) => kind.extension(input, info),
-            Self::Jpg => "jpg".into(),
+            Self::Document(kind) => kind.extension().into(),
+            Self::Image(_) => super::images::Format::Original.extension(input).into(),
         }
     }
 }
@@ -61,6 +63,9 @@ pub fn presets() -> Vec<Preset> {
         ("whatsapp", "Fit for WhatsApp", Some(100)),
         ("custom-fit", "Fit under a size", Some(20)),
         ("jpg", "To JPG", None),
+        ("png", "To PNG", None),
+        ("webp", "To WebP", None),
+        ("avif", "To AVIF", None),
         ("mp4", "To MP4", None),
         ("trim", "Trimmed", None),
         ("mp3", "Extract audio", None),
@@ -70,6 +75,9 @@ pub fn presets() -> Vec<Preset> {
         ("strip", "Metadata removed", None),
         ("smaller", "Make smaller", None),
         ("pdf", "Make PDF", None),
+        ("split", "Split PDF", None),
+        ("text", "Text", None),
+        ("qr", "QR", None),
     ]
     .into_iter()
     .map(|(id, name, max_mb)| Preset {
@@ -104,7 +112,7 @@ pub fn suggestion(path: &std::path::Path, bytes: u64, discord_mb: u32) -> Option
         && bytes > u64::from(discord_mb) * 1_000_000
     {
         Some("fit-size")
-    } else if get("to-jpg").ok()?.accepts_path(path) {
+    } else if matches!(ext.as_str(), "heic" | "heif") {
         Some("to-jpg")
     } else {
         None
@@ -112,6 +120,61 @@ pub fn suggestion(path: &std::path::Path, bytes: u64, discord_mb: u32) -> Option
 }
 pub fn catalog() -> Vec<Tool> {
     vec![
+        document_tool(
+            super::documents::Kind::Merge,
+            "merge-pdf",
+            "Merge PDFs",
+            &["pdf"],
+            "pdf",
+        ),
+        document_tool(
+            super::documents::Kind::Split,
+            "split-pdf",
+            "Split PDF",
+            &["pdf"],
+            "split",
+        ),
+        document_tool(
+            super::documents::Kind::ImagesPdf,
+            "images-pdf",
+            "Make PDF",
+            super::images::TYPES,
+            "pdf",
+        ),
+        document_tool(
+            super::documents::Kind::Render,
+            "pdf-png",
+            "PDF to PNG",
+            &["pdf"],
+            "png",
+        ),
+        document_tool(
+            super::documents::Kind::Ocr,
+            "image-text",
+            "Text from image",
+            super::images::TYPES,
+            "text",
+        ),
+        document_tool(
+            super::documents::Kind::QrDecode,
+            "decode-qr",
+            "Read QR from image",
+            super::images::TYPES,
+            "text",
+        ),
+        document_tool(
+            super::documents::Kind::QrEncode,
+            "encode-qr",
+            "Text file to QR",
+            &["txt"],
+            "qr",
+        ),
+        image_tool(
+            super::images::Kind::Smaller,
+            "smaller-image",
+            "Make smaller",
+            &["smaller"],
+        ),
         Tool {
             executor: Executor::Media(super::media::Kind::Mp4),
             id: "to-mp4",
@@ -187,19 +250,19 @@ pub fn catalog() -> Vec<Tool> {
             true,
         ),
         Tool {
-            executor: Executor::Jpg,
+            executor: Executor::Image(super::images::Kind::Convert),
             id: "to-jpg",
-            name: "To JPG",
+            name: "Convert images",
             category: "images",
             icon: "iconImage",
             keywords: &["image", "photo", "convert", "jpeg", "png", "webp"],
             accepts: Accepts {
-                filetypes: &["png", "jpg", "jpeg", "webp"],
+                filetypes: super::images::TYPES,
                 text: false,
                 link: false,
                 image: true,
             },
-            presets: &["jpg"],
+            presets: &["jpg", "png", "webp", "avif"],
             form: vec![Field {
                 key: "quality",
                 label: "Quality",
@@ -210,6 +273,68 @@ pub fn catalog() -> Vec<Tool> {
             }],
         },
     ]
+}
+fn document_tool(
+    kind: super::documents::Kind,
+    id: &'static str,
+    name: &'static str,
+    types: &'static [&'static str],
+    preset: &'static str,
+) -> Tool {
+    let presets: &'static [&'static str] = match preset {
+        "split" => &["split"],
+        "png" => &["png"],
+        "text" => &["text"],
+        "qr" => &["qr"],
+        _ => &["pdf"],
+    };
+    Tool {
+        executor: Executor::Document(kind),
+        id,
+        name,
+        category: "documents",
+        icon: "iconFile",
+        keywords: match kind {
+            super::documents::Kind::Merge => &["pdf", "merge", "combine", "pages"],
+            super::documents::Kind::Split => &["pdf", "split", "pages", "ranges"],
+            super::documents::Kind::ImagesPdf => &["image", "photo", "pdf", "combine"],
+            super::documents::Kind::Render => &["pdf", "png", "render", "pages"],
+            super::documents::Kind::Ocr => &["ocr", "text", "image", "extract"],
+            super::documents::Kind::QrDecode => &["qr", "code", "decode", "image"],
+            super::documents::Kind::QrEncode => &["qr", "code", "encode", "text"],
+        },
+        accepts: Accepts {
+            filetypes: types,
+            text: false,
+            link: false,
+            image: types == super::images::TYPES,
+        },
+        presets,
+        form: vec![],
+    }
+}
+fn image_tool(
+    kind: super::images::Kind,
+    id: &'static str,
+    name: &'static str,
+    presets: &'static [&'static str],
+) -> Tool {
+    Tool {
+        executor: Executor::Image(kind),
+        id,
+        name,
+        category: "images",
+        icon: "iconImage",
+        keywords: &["image", "photo", "resize", "compress"],
+        accepts: Accepts {
+            filetypes: super::images::TYPES,
+            text: false,
+            link: false,
+            image: true,
+        },
+        presets,
+        form: vec![],
+    }
 }
 fn media_tool(
     kind: super::media::Kind,
@@ -227,7 +352,18 @@ fn media_tool(
         icon: "iconFile",
         keywords,
         accepts: Accepts {
-            filetypes: if audio {
+            filetypes: if kind == super::media::Kind::Strip {
+                &[
+                    "mp4", "mov", "mkv", "webm", "avi", "m4v", "mp3", "m4a", "wav", "aac", "flac",
+                    "ogg", "opus", "wma", "jpg", "jpeg", "png", "webp",
+                ]
+            } else if kind == super::media::Kind::Fit {
+                &[
+                    "mp4", "mov", "mkv", "webm", "avi", "m4v", "mp3", "m4a", "wav", "aac", "flac",
+                    "ogg", "opus", "wma", "jpg", "jpeg", "png", "webp", "avif", "heic", "heif",
+                    "svg",
+                ]
+            } else if audio {
                 &[
                     "mp4", "mov", "mkv", "webm", "avi", "m4v", "mp3", "m4a", "wav", "aac", "flac",
                     "ogg", "opus", "wma",
@@ -255,6 +391,21 @@ impl Tool {
             return Err(msg("The request belongs to another tool"));
         }
         runner.submit(request)
+    }
+    pub fn executor_for(&self, path: &std::path::Path) -> Executor {
+        let image = path
+            .extension()
+            .and_then(|e| e.to_str())
+            .is_some_and(|e| super::images::TYPES.contains(&e.to_ascii_lowercase().as_str()));
+        match self.executor {
+            Executor::Media(super::media::Kind::Fit) if image => {
+                Executor::Image(super::images::Kind::Fit)
+            }
+            Executor::Media(super::media::Kind::Strip) if image => {
+                Executor::Image(super::images::Kind::Strip)
+            }
+            other => other,
+        }
     }
     pub fn accepts_path(&self, path: &std::path::Path) -> bool {
         path.extension().and_then(|e| e.to_str()).is_some_and(|e| {

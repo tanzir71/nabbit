@@ -55,6 +55,16 @@ pub fn tool_suggest(
     paths: Vec<String>,
 ) -> Result<Option<String>> {
     caller(&app, &window)?;
+    if paths.len() > 1 && paths.len() <= 64 {
+        let tool = registry::get("images-pdf")?;
+        for path in &paths {
+            let facts = crate::files::paths::facts(path)?;
+            if facts.directory || !tool.accepts_path(Path::new(&facts.path)) {
+                return Ok(None);
+            }
+        }
+        return Ok(Some("images-pdf".into()));
+    }
     if paths.len() != 1 {
         return Ok(None);
     }

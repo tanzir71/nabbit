@@ -1,0 +1,27 @@
+file:///D:/claude-upgrade-26/nabbit/scripts/screenshots/harness.mjs:412
+            throw new Error(`${scenario.name} (${theme}@${scale}x): ${error.message}`, {
+                  ^
+
+Error: file-tools-convert (light@1x): Expected values to be strictly equal:
+
+440 !== 460
+
+    at captureSuite (file:///D:/claude-upgrade-26/nabbit/scripts/screenshots/harness.mjs:412:19)
+    at async file:///D:/claude-upgrade-26/nabbit/scripts/verify-image-document-screenshots.mjs:24:16 {
+  [cause]: AssertionError [ERR_ASSERTION]: Expected values to be strictly equal:
+
+  440 !== 460
+
+      at Object.ready (file:///D:/claude-upgrade-26/nabbit/scripts/verify-image-document-screenshots.mjs:87:14)
+      at async captureSuite (file:///D:/claude-upgrade-26/nabbit/scripts/screenshots/harness.mjs:144:33)
+      at async file:///D:/claude-upgrade-26/nabbit/scripts/verify-image-document-screenshots.mjs:24:16 {
+    generatedMessage: true,
+    code: 'ERR_ASSERTION',
+    actual: 440,
+    expected: 460,
+    operator: 'strictEqual',
+    diff: 'simple'
+  }
+}
+
+Node.js v24.22.2

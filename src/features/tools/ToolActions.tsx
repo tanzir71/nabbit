@@ -20,7 +20,13 @@ export function ToolActions({ paths }: { paths: string[] }) {
       active = false;
     };
   }, []);
-  const applicable = paths.length === 1 ? tools.filter((tool) => acceptsFile(tool, paths[0])) : [];
+  const applicable = paths.length
+    ? tools.filter(
+        (tool) =>
+          paths.every((p) => acceptsFile(tool, p)) &&
+          (paths.length === 1 || ["images", "documents"].includes(tool.category)),
+      )
+    : [];
   return (
     <>
       {chosen ? (

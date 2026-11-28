@@ -1,0 +1,55 @@
+Compiling nabbit v0.1.0 (D:\claude-upgrade-26\nabbit\src-tauri)
+    Finished `test` profile [unoptimized + debuginfo] target(s) in 1m 06s
+     Running unittests src\lib.rs (src-tauri\target\debug\deps\nabbit_lib-6dc633b6abfff527.exe)
+
+running 28 tests
+test tools::images::tests::native_heic_and_avif_acceptance ... ignored, Owned public HEIC sample and pinned ffmpeg are acceptance fixtures, not shipped test data
+test tools::media::acceptance::owned_quick_media_edges_dates_numbering_and_restart ... ignored, owned media edge acceptance; pinned ffmpeg, verification-only ffprobe and Pillow
+test tools::images::tests::hostile_container_metadata_never_panics ... ok
+
+thread 'tools::documents::tests::encrypted_even_with_empty_password_has_a_clear_error' (46764) panicked at src\tools\documents\tests.rs:78:10:
+called `Result::unwrap()` on an `Err` value: Decryption(MissingFileID)
+note: run with `RUST_BACKTRACE=1` environment variable to display a backtrace
+test tools::media::tests::budgets_audio_first_step_resolution_without_upscaling_and_validate_trim ... ok
+test tools::documents::tests::encrypted_even_with_empty_password_has_a_clear_error ... FAILED
+test tools::media::tests::owned_media_jobs_and_size_targets ... ignored, owned real ffmpeg/ffprobe media acceptance; requires the pinned setup sidecar and verification-only probe
+test tools::media::tests::gpu_probe_order_requires_a_real_success_and_cache_tracks_driver_and_engine ... ok
+test tools::media::tests::retry_spends_less_and_audio_only_uses_the_same_decimal_cap ... ok
+test tools::tests::drop_suggestions_use_saved_cap_and_conversion_priority ... ok
+test tools::images::tests::cancelled_or_unattainable_size_never_writes_a_result ... ok
+test tools::images::tests::svg_is_bounded_offline_and_alpha_is_composited_for_jpg ... ok
+test tools::tests::owned_ffmpeg_cancellation_retry_and_typed_progress ... ignored, owned ffmpeg process acceptance; requires the pinned setup sidecar
+test tools::media::tests::real_stream_descriptions_ignore_cover_art_and_keep_known_duration ... ok
+test tools::documents::tests::images_pdf_keeps_order_aspect_and_source_bytes ... ok
+test tools::documents::tests::merge_and_split_preserve_order_inherited_resources_and_page_geometry ... ok
+test tools::tests::output_naming_is_atomic_and_never_overwrites ... ok
+test tools::images::tests::lossless_strip_keeps_pixels_and_only_display_orientation ... ok
+test tools::images::tests::make_smaller_resizes_from_original_and_meets_actual_bytes ... ok
+test tools::tests::quit_warning_is_only_for_unconfirmed_active_work ... ok
+test tools::tests::registry_and_presets_are_unique_and_match_supported_inputs ... ok
+test tools::documents::tests::qr_roundtrip_preserves_unicode_newlines_and_never_opens_links ... ok
+test tools::media::encode::retry_tests::retries_reduce_budget_use_original_and_stop_at_three_or_cancel ... ok
+test tools::tests::persisted_presets_validate_numbers_and_survive_restart ... ok
+
+thread 'tools::documents::tests::windows_pdf_render_and_ocr_use_only_owned_files' (30932) panicked at src\tools\documents\tests.rs:143:5:
+assertion `left == right` failed
+  left: (267, 534)
+ right: (200, 400)
+test tools::documents::tests::windows_pdf_render_and_ocr_use_only_owned_files ... FAILED
+test tools::images::tests::roundtrip_formats_keep_exif_profile_and_bake_orientation ... ok
+test tools::tests::recovery_recognizes_its_published_inode_and_never_claims_a_collision ... ok
+test tools::tests::real_job_dates_idempotency_undo_and_restart ... ok
+test tools::tests::edited_output_is_never_removed_and_failures_retry_as_new_jobs ... ok
+
+failures:
+
+failures:
+    tools::documents::tests::encrypted_even_with_empty_password_has_a_clear_error
+    tools::documents::tests::windows_pdf_render_and_ocr_use_only_owned_files
+
+test result: FAILED. 22 passed; 2 failed; 4 ignored; 0 measured; 326 filtered out; finished in 16.62s
+
+error: test failed, to rerun pass `--lib`
+
+Caused by:
+  process didn't exit successfully: `D:\claude-upgrade-26\nabbit\src-tauri\target\debug\deps\nabbit_lib-6dc633b6abfff527.exe tools:: --nocapture` (exit code: 0xc0000005, STATUS_ACCESS_VIOLATION)

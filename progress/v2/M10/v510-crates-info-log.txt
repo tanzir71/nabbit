@@ -1,0 +1,129 @@
+Updating crates.io index
+ Downloading crates ...
+  Downloaded fast_image_resize v6.1.0
+fast_image_resize #image #resize #no_std
+Library for fast image resizing with using of SIMD instructions
+version: 6.1.0 (latest 6.2.0)
+license: MIT OR Apache-2.0
+rust-version: 1.87.0
+documentation: https://docs.rs/fast_image_resize
+repository: https://github.com/cykooz/fast_image_resize
+crates.io: https://crates.io/crates/fast_image_resize/6.1.0
+features:
+ +default     = [std]
+  std         = [thiserror/std, num-traits/std, dep:document-features]
+  bytemuck    = [dep:bytemuck]
+  for_testing = [std, image, image/png, bytemuck]
+  image       = [std, dep:image, dep:bytemuck]
+  no_std      = [num-traits/libm, dep:cpufeatures]
+  only_u8x4   = []
+  rayon       = [std, dep:rayon, resize/rayon, image/rayon]
+oxipng #png #image-compression #optimization #multi-threading #lossless
+A lossless PNG compression optimizer
+version: 10.2.1
+license: MIT
+rust-version: 1.88.0
+documentation: https://docs.rs/oxipng
+homepage: https://github.com/oxipng/oxipng
+repository: https://github.com/oxipng/oxipng
+crates.io: https://crates.io/crates/oxipng/10.2.1
+features:
+ +default           = [binary, parallel, zopfli]
+  binary            = [dep:clap, dep:glob, dep:env_logger, dep:parse-size]
+  parallel          = [dep:rayon, indexmap/rayon]
+  zopfli            = [dep:zopfli]
+  freestanding      = [libdeflater/freestanding]
+  sanity-checks     = [dep:image]
+  system-libdeflate = [libdeflater/dynamic]
+ravif #avif #convert #av1 #rav1f #cav1f
+rav1e-based pure Rust library for encoding images in AVIF format (powers the `cavif` tool)
+version: 0.13.0
+license: BSD-3-Clause
+rust-version: 1.85
+documentation: https://docs.rs/ravif/0.13.0
+homepage: https://lib.rs/crates/ravif
+repository: https://github.com/kornelski/cavif-rs
+crates.io: https://crates.io/crates/ravif/0.13.0
+features:
+ +default   = [asm, threading]
+  asm       = [rav1e/asm]
+  threading = [dep:rayon, rav1e/threading]
+lopdf #pdf #editing #manipulation #merge
+A Rust library for PDF document manipulation.
+version: 0.47.0
+license: MIT
+rust-version: 1.88
+documentation: https://docs.rs/crate/lopdf/
+homepage: https://github.com/J-F-Liu/lopdf
+repository: https://github.com/J-F-Liu/lopdf.git
+crates.io: https://crates.io/crates/lopdf/0.47.0
+features:
+ +default        = [chrono-clock, rayon]
+  chrono         = [dep:chrono]
+  chrono-clock   = [chrono, chrono/clock]
+  rayon          = [dep:rayon]
+  async          = [tokio/rt-multi-thread, tokio/macros]
+  embed_image    = [image]
+  font_embedding = [dep:skrifa]
+  image          = [dep:image]
+  jiff           = [dep:jiff]
+  serde          = [dep:serde]
+  time           = [dep:time]
+  tokio          = [dep:tokio]
+  wasm_js        = [getrandom/wasm_js]
+resvg #svg #render #raster
+An SVG rendering library.
+version: 0.50.0
+license: Apache-2.0 OR MIT
+rust-version: 1.85.0
+documentation: https://docs.rs/resvg/0.50.0
+repository: https://github.com/linebender/resvg
+crates.io: https://crates.io/crates/resvg/0.50.0
+features:
+ +default       = [svgz, text, system-fonts, memmap-fonts, raster-images]
+  gif           = [dep:gif]
+  image-webp    = [dep:image-webp]
+  memmap-fonts  = [usvg/memmap-fonts]
+  raster-images = [gif, image-webp, dep:zune-jpeg]
+  svgz          = [usvg/svgz]
+  system-fonts  = [usvg/system-fonts]
+  text          = [usvg/text]
+rqrr #qrcode #detection
+Detect and read QR codes from any image source
+version: 0.11.0
+license: (MIT OR Apache-2.0) AND ISC
+rust-version: 1.85.1
+documentation: https://docs.rs/rqrr/
+repository: https://github.com/WanzenBug/rqrr
+crates.io: https://crates.io/crates/rqrr/0.11.0
+features:
+ +default = [img]
+  image   = [dep:image]
+  img     = [image]
+qrcode #qrcode
+QR code encoder in Rust
+version: 0.15.0
+license: MIT OR Apache-2.0
+rust-version: 1.85.0
+documentation: http://docs.rs/qrcode
+repository: https://github.com/kennytm/qrcode-rust
+crates.io: https://crates.io/crates/qrcode/0.15.0
+features:
+ +default = [std, image, svg, pic, eps]
+  eps     = []
+  image   = [dep:image, std]
+  pic     = []
+  std     = []
+  svg     = []
+  bench   = []
+img-parts #jpeg #png #icc #exif #no_std
+Low level crate for reading and writing Jpeg, Png and RIFF image containers
+version: 0.4.1 (latest 0.4.2)
+license: MIT OR Apache-2.0
+rust-version: 1.63
+documentation: https://docs.rs/img-parts/0.4.1
+repository: https://github.com/paolobarbolini/img-parts
+crates.io: https://crates.io/crates/img-parts/0.4.1
+features:
+ +default = [std]
+  std     = [bytes/std, crc32fast/std, miniz_oxide/std]

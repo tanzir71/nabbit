@@ -1,0 +1,26 @@
+file:///D:/claude-upgrade-26/nabbit/scripts/screenshots/harness.mjs:412
+            throw new Error(`${scenario.name} (${theme}@${scale}x): ${error.message}`, {
+                  ^
+
+Error: file-tools-split (light@1x): The expression evaluated to a falsy value:
+
+  assert(response?.ok())
+
+    at captureSuite (file:///D:/claude-upgrade-26/nabbit/scripts/screenshots/harness.mjs:412:19)
+    at async file:///D:/claude-upgrade-26/nabbit/scripts/verify-image-document-screenshots.mjs:24:16 {
+  [cause]: AssertionError [ERR_ASSERTION]: The expression evaluated to a falsy value:
+
+    assert(response?.ok())
+
+      at captureSuite (file:///D:/claude-upgrade-26/nabbit/scripts/screenshots/harness.mjs:143:13)
+      at async file:///D:/claude-upgrade-26/nabbit/scripts/verify-image-document-screenshots.mjs:24:16 {
+    generatedMessage: true,
+    code: 'ERR_ASSERTION',
+    actual: false,
+    expected: true,
+    operator: '==',
+    diff: 'simple'
+  }
+}
+
+Node.js v24.22.2

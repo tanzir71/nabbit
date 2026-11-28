@@ -1,0 +1,16 @@
+Updating crates.io index
+ Downloading crates ...
+  Downloaded webp v0.3.1
+webp #image #webp #conversion
+WebP conversion library.
+version: 0.3.1
+license: MIT OR Apache-2.0
+rust-version: unknown
+documentation: https://docs.rs/webp
+homepage: https://github.com/jaredforth/webp
+repository: https://github.com/jaredforth/webp.git
+crates.io: https://crates.io/crates/webp/0.3.1
+features:
+ +default = [img]
+  image   = [dep:image]
+  img     = [image]

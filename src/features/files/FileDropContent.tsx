@@ -23,7 +23,7 @@ export default function FileDropContent({
   useEffect(() => {
     let active = true;
     setSuggestion(null);
-    if (payload.files?.length === 1)
+    if (payload.files?.length)
       void toolsApi
         .suggest(payload.files)
         .then((value) => {

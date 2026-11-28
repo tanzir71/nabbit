@@ -74,6 +74,17 @@ Metadata removal clears container/stream tags and chapters; it does not change
 visible or audible information. Physical created/modified dates remain copied.
 Cloud recall/offline inputs are rejected from metadata before a content open.
 
+Image review reads selected file bytes and dimensions locally. Image conversion
+keeps EXIF, capture dates and RGB colour profiles by default; the removal option
+clears location/camera metadata. Lossless removal retains only any display
+orientation needed to keep the image upright. Original file dates are kept by
+default. PDF, OCR and QR tools process selected files locally and save separate
+outputs. OCR uses the installed Windows user languages; it never captures the
+screen. QR contents are saved as text and links are not opened automatically.
+The HEIF/HEVC extension buttons open fixed Microsoft Store pages only when
+clicked; Nabbit does not install codecs. Review windows can read Shelf choices
+but cannot add, remove, copy or drag Shelf entries.
+
 Search reads the registered tools, accessible active notes/bookmarks in the
 current Tack scope, stored pins, Shelf references and clipboard history. It
 does not scan the filesystem, browser profiles, current selection or current

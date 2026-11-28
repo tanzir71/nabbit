@@ -1,0 +1,71 @@
+Checking windows v0.62.2
+   Compiling nabbit v0.1.0 (D:\claude-upgrade-26\nabbit\src-tauri)
+    Checking tiny_http v0.12.0
+    Checking webview2-com-sys v0.39.1
+    Checking tao v0.37.3
+    Checking webview2-com v0.39.1
+    Checking wry v0.57.4
+    Checking tauri-runtime v2.12.4
+    Checking tauri-runtime-wry v2.12.5
+    Checking tauri v2.12.7
+    Checking tauri-plugin-deep-link v2.4.10
+    Checking tauri-plugin-updater v2.10.1
+    Checking tauri-plugin-autostart v2.5.1
+    Checking tauri-plugin-drag v2.1.1
+    Checking tauri-plugin-global-shortcut v2.3.2
+    Checking tauri-plugin-shell v2.3.5
+    Checking tauri-plugin-clipboard-manager v2.3.2
+    Checking tauri-plugin-single-instance v2.4.2
+error: using `contains()` instead of `iter().any()` is more efficient
+  --> src\tools\documents\mod.rs:41:65
+   |
+41 |         if self.inputs.len() > 63 || self.pages.len() > 1000 || self.pages.iter().any(|n| *n == 0) {
+   |                                                                 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^ help: try: `self.pages.contains(&0)`
+   |
+   = help: for further information visit https://rust-lang.github.io/rust-clippy/rust-1.97.0/index.html#manual_contains
+   = note: `-D clippy::manual-contains` implied by `-D warnings`
+   = help: to override `-D warnings` add `#[allow(clippy::manual_contains)]`
+
+error: manual checked division
+  --> src\tools\images\mod.rs:92:12
+   |
+92 |         if a != 0 {
+   |            ^^^^^^ check performed here
+93 |             for value in &mut p[..3] {
+94 |                 *value = ((u32::from(*value) * 255 + a / 2) / a).min(255) as u8;
+   |                          --------------------------------------- division performed here
+   |
+   = help: consider using `checked_div`
+   = help: for further information visit https://rust-lang.github.io/rust-clippy/rust-1.97.0/index.html#manual_checked_ops
+   = note: `-D clippy::manual-checked-ops` implied by `-D warnings`
+   = help: to override `-D warnings` add `#[allow(clippy::manual_checked_ops)]`
+
+error: this function has too many arguments (8/7)
+   --> src\tools\images\mod.rs:400:1
+    |
+400 | / pub fn execute(
+401 | |     ffmpeg: &Path,
+402 | |     input: &Path,
+403 | |     output: &Path,
+...   |
+408 | |     cancel: &AtomicBool,
+409 | | ) -> Result<Report> {
+    | |___________________^
+    |
+    = help: for further information visit https://rust-lang.github.io/rust-clippy/rust-1.97.0/index.html#too_many_arguments
+    = note: `-D clippy::too-many-arguments` implied by `-D warnings`
+    = help: to override `-D warnings` add `#[allow(clippy::too_many_arguments)]`
+
+error: could not compile `nabbit` (lib) due to 3 previous errors
+warning: build failed, waiting for other jobs to finish...
+error: unnecessary use of `clone` to create a slice from a reference
+  --> src\tools\documents\tests.rs:63:26
+   |
+63 |     let split = assemble(&[path.clone()], &[2], &cancel).unwrap();
+   |                          ^^^^^^^^^^^^^^^ help: try: `std::slice::from_ref(&path)`
+   |
+   = help: for further information visit https://rust-lang.github.io/rust-clippy/rust-1.97.0/index.html#cloned_ref_to_slice_refs
+   = note: `-D clippy::cloned-ref-to-slice-refs` implied by `-D warnings`
+   = help: to override `-D warnings` add `#[allow(clippy::cloned_ref_to_slice_refs)]`
+
+error: could not compile `nabbit` (lib test) due to 4 previous errors

@@ -1,0 +1,16 @@
+> nabbit@0.1.0 test
+> vitest --run src/features/tools src/surfaces/island/SearchContent.test.tsx
+
+
+ RUN  v3.2.7 D:/claude-upgrade-26/nabbit
+
+ ✓ src/features/tools/ToolQueue.test.tsx (4 tests) 216ms
+ ✓ src/surfaces/island/SearchContent.test.tsx (7 tests) 465ms
+ ✓ src/features/tools/ImageDocumentReview.test.tsx (4 tests) 306ms
+ ✓ src/features/tools/MediaReview.test.tsx (9 tests) 892ms
+ ✓ src/features/tools/mediaLayout.test.ts (2 tests) 15ms
+
+ Test Files  5 passed (5)
+      Tests  26 passed (26)
+   Start at  07:30:54
+   Duration  4.42s (transform 732ms, setup 415ms, collect 2.38s, tests 1.89s, environment 2.38s, prepare 703ms)

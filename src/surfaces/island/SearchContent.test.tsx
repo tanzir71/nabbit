@@ -125,7 +125,11 @@ it("searches current notes, saved links, pins, Shelf and clipboard with guarded 
 it("opens a tool's review form without starting a job", async () => {
   render(<View initial="photo" />);
   fireEvent.click(await screen.findByRole("option", { name: /To JPG/ }));
-  expect(await screen.findByRole("region", { name: "To JPG options" })).toBeInTheDocument();
+  await waitFor(() =>
+    expect(invoke).toHaveBeenCalledWith("tool_open_media_sheet", {
+      intent: expect.objectContaining({ toolId: "to-jpg", input: "", inputs: [] }),
+    }),
+  );
   expect(invoke).not.toHaveBeenCalledWith("tool_start", expect.anything());
   expect(collapse).not.toHaveBeenCalled();
 });

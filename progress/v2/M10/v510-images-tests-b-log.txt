@@ -1,0 +1,14 @@
+Compiling nabbit v0.1.0 (D:\claude-upgrade-26\nabbit\src-tauri)
+    Finished `test` profile [unoptimized + debuginfo] target(s) in 24.61s
+     Running unittests src\lib.rs (src-tauri\target\debug\deps\nabbit_lib-6dc633b6abfff527.exe)
+
+running 7 tests
+test tools::images::tests::native_heic_and_avif_acceptance ... ignored, Owned public HEIC sample and pinned ffmpeg are acceptance fixtures, not shipped test data
+test tools::images::tests::hostile_container_metadata_never_panics ... ok
+test tools::images::tests::cancelled_or_unattainable_size_never_writes_a_result ... ok
+test tools::images::tests::svg_is_bounded_offline_and_alpha_is_composited_for_jpg ... ok
+test tools::images::tests::make_smaller_resizes_from_original_and_meets_actual_bytes ... ok
+test tools::images::tests::lossless_strip_keeps_pixels_and_only_display_orientation ... ok
+test tools::images::tests::roundtrip_formats_keep_exif_profile_and_bake_orientation ... ok
+
+test result: ok. 6 passed; 0 failed; 1 ignored; 0 measured; 342 filtered out; finished in 0.65s

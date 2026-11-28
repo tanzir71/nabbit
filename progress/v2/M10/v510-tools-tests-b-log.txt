@@ -1,0 +1,37 @@
+Compiling nabbit v0.1.0 (D:\claude-upgrade-26\nabbit\src-tauri)
+    Finished `test` profile [unoptimized + debuginfo] target(s) in 31.63s
+     Running unittests src\lib.rs (src-tauri\target\debug\deps\nabbit_lib-46e11c3dbf4636dc.exe)
+
+running 29 tests
+test tools::documents::tests::encrypted_even_with_empty_password_has_a_clear_error ... ok
+test tools::documents::tests::images_pdf_keeps_order_aspect_and_source_bytes ... ok
+test tools::documents::tests::merge_and_split_preserve_order_inherited_resources_and_page_geometry ... ok
+test tools::documents::tests::qr_roundtrip_preserves_unicode_newlines_and_never_opens_links ... ok
+test tools::documents::tests::windows_ocr_uses_owned_files ... Windows OCR fixture: NABBIT 510
+ok
+test tools::documents::tests::windows_pdf_render_uses_owned_files ... ok
+test tools::images::tests::cancelled_or_unattainable_size_never_writes_a_result ... ok
+test tools::images::tests::hostile_container_metadata_never_panics ... ok
+test tools::images::tests::lossless_strip_keeps_pixels_and_only_display_orientation ... ok
+test tools::images::tests::make_smaller_resizes_from_original_and_meets_actual_bytes ... ok
+test tools::images::tests::native_heic_and_avif_acceptance ... ignored, Owned public HEIC sample and pinned ffmpeg are acceptance fixtures, not shipped test data
+test tools::images::tests::roundtrip_formats_keep_exif_profile_and_bake_orientation ... ok
+test tools::images::tests::svg_is_bounded_offline_and_alpha_is_composited_for_jpg ... ok
+test tools::media::acceptance::owned_quick_media_edges_dates_numbering_and_restart ... ignored, owned media edge acceptance; pinned ffmpeg, verification-only ffprobe and Pillow
+test tools::media::encode::retry_tests::retries_reduce_budget_use_original_and_stop_at_three_or_cancel ... ok
+test tools::media::tests::budgets_audio_first_step_resolution_without_upscaling_and_validate_trim ... ok
+test tools::media::tests::gpu_probe_order_requires_a_real_success_and_cache_tracks_driver_and_engine ... ok
+test tools::media::tests::owned_media_jobs_and_size_targets ... ignored, owned real ffmpeg/ffprobe media acceptance; requires the pinned setup sidecar and verification-only probe
+test tools::media::tests::real_stream_descriptions_ignore_cover_art_and_keep_known_duration ... ok
+test tools::media::tests::retry_spends_less_and_audio_only_uses_the_same_decimal_cap ... ok
+test tools::tests::drop_suggestions_use_saved_cap_and_conversion_priority ... ok
+test tools::tests::edited_output_is_never_removed_and_failures_retry_as_new_jobs ... ok
+test tools::tests::output_naming_is_atomic_and_never_overwrites ... ok
+test tools::tests::owned_ffmpeg_cancellation_retry_and_typed_progress ... ignored, owned ffmpeg process acceptance; requires the pinned setup sidecar
+test tools::tests::persisted_presets_validate_numbers_and_survive_restart ... ok
+test tools::tests::quit_warning_is_only_for_unconfirmed_active_work ... ok
+test tools::tests::real_job_dates_idempotency_undo_and_restart ... ok
+test tools::tests::recovery_recognizes_its_published_inode_and_never_claims_a_collision ... ok
+test tools::tests::registry_and_presets_are_unique_and_match_supported_inputs ... ok
+
+test result: ok. 25 passed; 0 failed; 4 ignored; 0 measured; 326 filtered out; finished in 40.09s

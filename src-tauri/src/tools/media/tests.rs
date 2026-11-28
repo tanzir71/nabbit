@@ -182,6 +182,8 @@ fn owned_media_jobs_and_size_targets() {
                 tool_id: tool.into(),
                 preset_id: preset.into(),
                 options,
+                image_options: crate::tools::images::Options::default(),
+                document_options: crate::tools::documents::Options::default(),
             })
             .unwrap();
         let start = Instant::now();

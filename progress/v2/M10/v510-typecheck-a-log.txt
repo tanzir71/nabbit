@@ -1,0 +1,10 @@
+> nabbit@0.1.0 typecheck
+> tsc -b
+
+src/features/tools/ImageReview.tsx(252,47): error TS2345: Argument of type '(o: { format: "original" | "jpg"; quality: number | null; maxWidth: number | null; stripMetadata: boolean; keepProfile: boolean; keepDates: boolean; outputDir: string | null; }) => { ...; }' is not assignable to parameter of type 'SetStateAction<{ format: "original" | "jpg"; quality: number | null; maxWidth: number | null; stripMetadata: boolean; keepProfile: boolean; keepDates: boolean; outputDir: string | null; }>'.
+  Type '(o: { format: "original" | "jpg"; quality: number | null; maxWidth: number | null; stripMetadata: boolean; keepProfile: boolean; keepDates: boolean; outputDir: string | null; }) => { ...; }' is not assignable to type '(prevState: { format: "original" | "jpg"; quality: number | null; maxWidth: number | null; stripMetadata: boolean; keepProfile: boolean; keepDates: boolean; outputDir: string | null; }) => { ...; }'.
+    Call signature return types '{ format: "jpg" | "png" | "webp" | "avif"; quality: number | null; maxWidth: number | null; stripMetadata: boolean; keepProfile: boolean; keepDates: boolean; outputDir: string | null; }' and '{ format: "original" | "jpg"; quality: number | null; maxWidth: number | null; stripMetadata: boolean; keepProfile: boolean; keepDates: boolean; outputDir: string | null; }' are incompatible.
+      The types of 'format' are incompatible between these types.
+        Type '"jpg" | "png" | "webp" | "avif"' is not assignable to type '"original" | "jpg"'.
+          Type '"png"' is not assignable to type '"original" | "jpg"'.
+src/features/tools/ImageReview.tsx(269,35): error TS2367: This comparison appears to be unintentional because the types '"original" | "jpg"' and '"png"' have no overlap.

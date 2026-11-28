@@ -1,0 +1,12 @@
+Finished `test` profile [unoptimized + debuginfo] target(s) in 0.94s
+     Running unittests src\lib.rs (src-tauri\target\debug\deps\nabbit_lib-6dc633b6abfff527.exe)
+
+running 1 test
+test tools::documents::tests::windows_pdf_render_uses_owned_files ... ok
+
+test result: ok. 1 passed; 0 failed; 0 ignored; 0 measured; 354 filtered out; finished in 0.10s
+
+error: test failed, to rerun pass `--lib`
+
+Caused by:
+  process didn't exit successfully: `D:\claude-upgrade-26\nabbit\src-tauri\target\debug\deps\nabbit_lib-6dc633b6abfff527.exe windows_pdf_render_uses_owned_files --nocapture` (exit code: 0xc0000005, STATUS_ACCESS_VIOLATION)

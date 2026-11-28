@@ -2,9 +2,13 @@ import { useCallback, useEffect, useRef, useState } from "react";
 import { listen } from "@tauri-apps/api/event";
 import { MiniButton } from "../../surfaces/island/CompactContent";
 import { basename, bytes } from "../../lib/islandPresentation";
-import { toolsApi, type ToolJob } from "./api";
+import { toolsApi, acceptsFile, type Tool, type ToolJob } from "./api";
+import { ToolSheet } from "./ToolSheet";
+import { isImagePath } from "./imageApi";
 import "./tools.css";
 export function ToolQueue() {
+  const [privacyTool, setPrivacyTool] = useState<Tool | null>(null),
+    [review, setReview] = useState<string | null>(null);
   const [jobs, setJobs] = useState<ToolJob[]>([]),
     [error, setError] = useState(""),
     [busy, setBusy] = useState(false);
@@ -28,6 +32,14 @@ export function ToolQueue() {
     const counter = generation.current;
     let active = true;
     let stop: (() => void) | undefined;
+    void toolsApi
+      .catalog()
+      .then((rows) => {
+        if (active) setPrivacyTool(rows.find((t) => t.id === "strip-metadata") ?? null);
+      })
+      .catch((reason) => {
+        if (active) setError(String(reason));
+      });
     void listen("tools:changed", () => {
       if (active) void refresh();
     })
@@ -65,6 +77,8 @@ export function ToolQueue() {
       if (alive.current) setBusy(false);
     }
   };
+  if (review && privacyTool)
+    return <ToolSheet tool={privacyTool} inputs={[review]} close={() => setReview(null)} />;
   return (
     <section className="tool-queue" aria-label="Tool jobs">
       <h2>Tool jobs</h2>
@@ -123,6 +137,18 @@ export function ToolQueue() {
               )
             )}
           </div>
+          {job.status === "completed" &&
+            job.output &&
+            job.request.toolId !== "strip-metadata" &&
+            privacyTool &&
+            isImagePath(job.output) &&
+            acceptsFile(privacyTool, job.output) && (
+              <div className="island-row">
+                <MiniButton disabled={busy} onClick={() => setReview(job.output)}>
+                  Remove location and camera data
+                </MiniButton>
+              </div>
+            )}
           {job.error && <p className="island-muted">{job.error}</p>}
         </article>
       ))}
