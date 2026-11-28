@@ -22,7 +22,9 @@ pub fn preview_text(content: &str) -> String {
 }
 
 pub fn content_type_for_text(content: &str) -> String {
-    if normalize_video_url(content).is_some() || looks_like_url(content) {
+    if crate::context::classify::text(content) == crate::context::classify::Kind::Path {
+        "file".into()
+    } else if normalize_video_url(content).is_some() || looks_like_url(content) {
         "url".into()
     } else {
         "text".into()

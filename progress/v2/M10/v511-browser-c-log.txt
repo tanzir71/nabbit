@@ -1,0 +1,80 @@
+file:///D:/claude-upgrade-26/nabbit/scripts/screenshots/harness.mjs:412
+            throw new Error(`${scenario.name} (${theme}@${scale}x): ${error.message}`, {
+                  ^
+
+Error: context-selection (light@1x): Expected values to be strictly deep-equal:
++ actual - expected
+
+  {
+    incomplete: [],
++   violations: [
++     {
++       id: 'color-contrast',
++       nodes: [
++         {
++           summary: 'Fix any of the following:\n' +
++             '  Element has insufficient color contrast of 1.01 (foreground color: #f5f5f3, background color: #f3f3f1, font size: 9.0pt (12px), font weight: normal). Expected contrast ratio of 4.5:1',
++           target: [
++             '.clipboard-selection-heading > span'
++           ]
++         },
++         {
++           summary: 'Fix any of the following:\n' +
++             '  Element has insufficient color contrast of 1.01 (foreground color: #f5f5f3, background color: #f3f3f1, font size: 9.0pt (12px), font weight: normal). Expected contrast ratio of 4.5:1',
++           target: [
++             '.clipboard-selection-heading > button'
++           ]
++         }
++       ]
++     }
++   ]
+-   violations: []
+  }
+
+    at captureSuite (file:///D:/claude-upgrade-26/nabbit/scripts/screenshots/harness.mjs:412:19)
+    at async file:///D:/claude-upgrade-26/nabbit/scripts/verify-context-screenshots.mjs:120:16 {
+  [cause]: AssertionError [ERR_ASSERTION]: Expected values to be strictly deep-equal:
+  + actual - expected
+
+    {
+      incomplete: [],
+  +   violations: [
+  +     {
+  +       id: 'color-contrast',
+  +       nodes: [
+  +         {
+  +           summary: 'Fix any of the following:\n' +
+  +             '  Element has insufficient color contrast of 1.01 (foreground color: #f5f5f3, background color: #f3f3f1, font size: 9.0pt (12px), font weight: normal). Expected contrast ratio of 4.5:1',
+  +           target: [
+  +             '.clipboard-selection-heading > span'
+  +           ]
+  +         },
+  +         {
+  +           summary: 'Fix any of the following:\n' +
+  +             '  Element has insufficient color contrast of 1.01 (foreground color: #f5f5f3, background color: #f3f3f1, font size: 9.0pt (12px), font weight: normal). Expected contrast ratio of 4.5:1',
+  +           target: [
+  +             '.clipboard-selection-heading > button'
+  +           ]
+  +         }
+  +       ]
+  +     }
+  +   ]
+  -   violations: []
+    }
+
+      at Object.ready (file:///D:/claude-upgrade-26/nabbit/scripts/verify-context-screenshots.mjs:85:14)
+      at async captureSuite (file:///D:/claude-upgrade-26/nabbit/scripts/screenshots/harness.mjs:144:33)
+      at async file:///D:/claude-upgrade-26/nabbit/scripts/verify-context-screenshots.mjs:120:16 {
+    generatedMessage: true,
+    code: 'ERR_ASSERTION',
+    actual: {
+      violations: [ { id: 'color-contrast', nodes: [ [Object], [Object] ] } ],
+      incomplete: []
+    },
+    expected: { violations: [], incomplete: [] },
+    operator: 'deepStrictEqual',
+    diff: 'simple'
+  }
+}
+
+Node.js v24.22.2

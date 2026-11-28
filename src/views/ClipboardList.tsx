@@ -5,7 +5,7 @@ import { filterClipboardEntries, formatRelativeTime, clampIndex } from "../lib/s
 import type { ClipboardEntry } from "../lib/types";
 import { useAppStore } from "../store/useAppStore";
 import { newestClipboardEntry } from "../features/notes/linkPresentation";
-import { ClipboardLinkRow } from "../features/notes/ClipboardLinkRow";
+import { ClipboardContext } from "../features/clipboard/ClipboardContext";
 
 export function ClipboardList() {
   const entries = useAppStore((state) => state.clipboardEntries);
@@ -90,20 +90,21 @@ export function ClipboardList() {
             value={query}
             onChange={(event) => setQuery(event.target.value)}
             placeholder="Search clipboard"
+            aria-label="Search clipboard"
             className="h-10 w-full rounded-lg border border-subtle bg-surface pl-9 pr-3 text-sm outline-none transition focus:border-strong focus:ring-2 focus:ring-action-primary/20"
           />
         </label>
       </div>
       <div className="min-h-0 flex-1 overflow-y-auto p-2">
-        {contextEntry?.contentType === "url" && (
-          <ClipboardLinkRow
+        {
+          <ClipboardContext
             entry={contextEntry}
             download={async (url) => {
               await stageUrl(url);
               await setLastTab("download");
             }}
           />
-        )}
+        }
         {filtered.length === 0 ? (
           <div className="grid h-full place-items-center p-8 text-center">
             <div>

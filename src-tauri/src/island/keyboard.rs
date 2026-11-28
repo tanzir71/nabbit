@@ -19,7 +19,7 @@ pub fn validate_shortcut(settings: &crate::db::models::AppSettings) -> Result<()
         let selected = settings
             .selected_text_shortcut
             .parse::<tauri_plugin_global_shortcut::Shortcut>()
-            .map_err(|_| "Enter a valid selected-link shortcut".to_string())?;
+            .map_err(|_| "Enter a valid selected-text shortcut".to_string())?;
         for other in [
             crate::notes::capture::SHORTCUT,
             &settings.island_shortcut,
@@ -29,7 +29,7 @@ pub fn validate_shortcut(settings: &crate::db::models::AppSettings) -> Result<()
         ] {
             if other.parse::<tauri_plugin_global_shortcut::Shortcut>().ok() == Some(selected) {
                 return Err(
-                    "The selected-link shortcut conflicts with another Nabbit shortcut".into(),
+                    "The selected-text shortcut conflicts with another Nabbit shortcut".into(),
                 );
             }
         }
@@ -83,6 +83,8 @@ pub enum Target {
     Tab,
     Preserve,
     Notes,
+    Clipboard,
+    Files,
 }
 #[derive(Clone, Debug, Serialize)]
 pub struct Hint {

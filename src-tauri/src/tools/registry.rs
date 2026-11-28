@@ -305,8 +305,8 @@ fn document_tool(
         },
         accepts: Accepts {
             filetypes: types,
-            text: false,
-            link: false,
+            text: matches!(kind, super::documents::Kind::QrEncode),
+            link: matches!(kind, super::documents::Kind::QrEncode),
             image: types == super::images::TYPES,
         },
         presets,

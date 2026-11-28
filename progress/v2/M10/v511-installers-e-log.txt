@@ -1,0 +1,178 @@
+MakeNSIS v3.13 - Copyright 1999-2026 Contributors
+See the file COPYING for license details.
+Credits can be found in the Users Manual.
+
+Processing config: C:\Users\tanzir\AppData\Local\tauri\NSIS\nsisconf.nsh
+Processing default plugins: "C:\Users\tanzir\AppData\Local\tauri\NSIS\Plugins\x86-unicode\*.dll"
+ + AdvSplash::show
+ + Banner::destroy
+ + Banner::getWindow
+ + Banner::show
+ + BgImage::AddImage
+ + BgImage::AddText
+ + BgImage::Clear
+ + BgImage::Destroy
+ + BgImage::Redraw
+ + BgImage::SetBg
+ + BgImage::SetReturn
+ + BgImage::Sound
+ + Dialer::AttemptConnect
+ + Dialer::AutodialHangup
+ + Dialer::AutodialOnline
+ + Dialer::AutodialUnattended
+ + Dialer::GetConnectedState
+ + InstallOptions::dialog
+ + InstallOptions::initDialog
+ + InstallOptions::make_unicode
+ + InstallOptions::show
+ + LangDLL::LangDialog
+ + Math::Script
+ + NSISdl::download
+ + NSISdl::download_quiet
+ + Splash::show
+ + StartMenu::Init
+ + StartMenu::Select
+ + StartMenu::Show
+ + System::Alloc
+ + System::Call
+ + System::Copy
+ + System::Free
+ + System::Get
+ + System::Int64Op
+ + System::Store
+ + System::StrAlloc
+ + TypeLib::GetLibVersion
+ + TypeLib::Register
+ + TypeLib::UnRegister
+ + UserInfo::GetAccountType
+ + UserInfo::GetName
+ + UserInfo::GetOriginalAccountType
+ + VPatch::GetFileCRC32
+ + VPatch::GetFileMD5
+ + VPatch::vpatchfile
+ + nsDialogs::Create
+ + nsDialogs::CreateControl
+ + nsDialogs::CreateItem
+ + nsDialogs::CreateTimer
+ + nsDialogs::GetUserData
+ + nsDialogs::KillTimer
+ + nsDialogs::OnBack
+ + nsDialogs::OnChange
+ + nsDialogs::OnClick
+ + nsDialogs::OnNotify
+ + nsDialogs::SelectFileDialog
+ + nsDialogs::SelectFolderDialog
+ + nsDialogs::SetRTL
+ + nsDialogs::SetUserData
+ + nsDialogs::Show
+ + nsExec::Exec
+ + nsExec::ExecToLog
+ + nsExec::ExecToStack
+
+!define: "MUI_INSERT_NSISCONF"=""
+
+Changing directory to: "D:\claude-upgrade-26\nabbit\.tools\v511-installers-e-74ef2902-c045-481c-be56-779d875a6bc8"
+
+Processing script file: "D:\claude-upgrade-26\nabbit\.tools\v511-installers-e-74ef2902-c045-481c-be56-779d875a6bc8\fixture.nsi" (ACP)
+Unicode: true
+Processing default plugins: "C:\Users\tanzir\AppData\Local\tauri\NSIS\Plugins\x86-unicode\*.dll"
+
+!include: "C:\Users\tanzir\AppData\Local\tauri\NSIS\Include\LogicLib.nsh" (UTF8)
+!include: closed: "C:\Users\tanzir\AppData\Local\tauri\NSIS\Include\LogicLib.nsh"
+!include: "C:\Users\tanzir\AppData\Local\tauri\NSIS\Include\FileFunc.nsh" (UTF8)
+!include: closed: "C:\Users\tanzir\AppData\Local\tauri\NSIS\Include\FileFunc.nsh"
+!include: "D:\claude-upgrade-26\nabbit\src-tauri\windows\hooks.nsh" (UTF8)
+!include: closed: "D:\claude-upgrade-26\nabbit\src-tauri\windows\hooks.nsh"
+Name: "Nabbit context compile fixture"
+OutFile: "D:\claude-upgrade-26\nabbit\.tools\v511-installers-e-74ef2902-c045-481c-be56-779d875a6bc8\fixture-setup.exe"
+Var: "UpdateMode"
+Function: "un.onInit"
+StrCpy $UpdateMode "0" () ()
+FunctionEnd
+Section: ""
+WriteUninstaller: "$INSTDIR\uninstall.exe"
+SectionEnd
+Section: "Uninstall"
+!insertmacro: NSIS_HOOK_PREUNINSTALL
+!insertmacro: _If
+!insertmacro: end of _If
+!insertmacro: _If
+!insertmacro: end of _If
+ClearErrors:
+ExecWait: ""$INSTDIR\nabbit.exe" --unregister-context" (->$0)
+!insertmacro: _If
+!insertmacro: end of _If
+Abort: "Nabbit context cleanup could not start. Close Nabbit and retry uninstalling."
+!insertmacro: _EndIf
+!insertmacro: end of _EndIf
+!insertmacro: _If
+!insertmacro: end of _If
+Abort: "Nabbit context cleanup failed. Close Nabbit and retry uninstalling."
+!insertmacro: _EndIf
+!insertmacro: end of _EndIf
+!insertmacro: _EndIf
+!insertmacro: end of _EndIf
+!insertmacro: _EndIf
+!insertmacro: end of _EndIf
+!insertmacro: end of NSIS_HOOK_PREUNINSTALL
+SectionEnd
+
+Processed 1 file, writing output (x86-unicode):
+Processing pages... Done!
+Removing unused resources... Done!
+Generating language tables... Done!
+Generating uninstaller... Done!
+
+Output: "D:\claude-upgrade-26\nabbit\.tools\v511-installers-e-74ef2902-c045-481c-be56-779d875a6bc8\fixture-setup.exe"
+Install: 1 page (64 bytes), 1 section (1 required) (2072 bytes), 2 instructions (56 bytes), 27 strings (756 bytes), 1 language table (194 bytes).
+Uninstall: 1 page (128 bytes), 1 section (2072 bytes), 11 instructions (308 bytes), 36 strings (1190 bytes), 1 language table (194 bytes).
+
+Using zlib compression.
+
+EXE header size:               38400 / 39936 bytes
+Install code:                    558 / 3534 bytes
+Install data:                      0 / 8 bytes
+Uninstall code+data:            1019 / 1519 bytes
+CRC (0xE4AEB307):                  4 / 4 bytes
+
+Total size:                    39981 / 45001 bytes (88.8%)
+fixture.wxs
+context-cleanup.wxs
+{
+  "passed": true,
+  "compiledOnly": true,
+  "installedOrExecuted": false,
+  "nativeRegistrationWrites": false,
+  "nsis": {
+    "updateGuard": true,
+    "cleanupFailureAborts": true,
+    "hookSha256": "a44288fbb80faeb2736882e0d0ed4b3b53101c5d86a7c572174d0dc103264ff9",
+    "compiledSha256": "5ab3fe14a8e1add5d1ad393a5fe5eeb3a6f6ca901565f67556cdebb4a6a314ec"
+  },
+  "msi": {
+    "removeFilesSequence": [
+      {
+        "c1": "RemoveFiles",
+        "c2": "",
+        "c3": "3500"
+      }
+    ],
+    "sequence": [
+      {
+        "c1": "NabbitRemoveUserContext",
+        "c2": "Installed AND REMOVE=\"ALL\" AND NOT UPGRADINGPRODUCTCODE",
+        "c3": "3499"
+      }
+    ],
+    "actions": [
+      {
+        "c1": "NabbitRemoveUserContext",
+        "c2": "18",
+        "c3": "Path",
+        "c4": "--unregister-context"
+      }
+    ],
+    "fragmentSha256": "c97154998174624118354cc629029f7c3924a34e1c07484ab73f367bad2e9c89",
+    "compiledSha256": "a5f41aabe1819ae15c90326f09d263da72352a653461ca5b7b330a57a360c291"
+  }
+}

@@ -18,7 +18,7 @@ export function clipboardRows(entries: ClipboardEntry[], query: string, filter: 
   );
 }
 export function clipboardThumbnail(entry: ClipboardEntry): string | undefined {
-  const source = entry.blobPath;
+  const source = entry.content?.startsWith("data:image/") ? entry.content : entry.blobPath;
   return entry.contentType === "image" &&
     source &&
     source.length < 200000 &&

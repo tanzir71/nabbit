@@ -1,0 +1,20 @@
+file:///D:/claude-upgrade-26/nabbit/scripts/screenshots/harness.mjs:412
+            throw new Error(`${scenario.name} (${theme}@${scale}x): ${error.message}`, {
+                  ^
+
+Error: context-link (light@1x): Initial caret captures require focus outside text controls
+    at captureSuite (file:///D:/claude-upgrade-26/nabbit/scripts/screenshots/harness.mjs:412:19)
+    at async file:///D:/claude-upgrade-26/nabbit/scripts/verify-context-screenshots.mjs:119:16 {
+  [cause]: AssertionError [ERR_ASSERTION]: Initial caret captures require focus outside text controls
+      at captureSuite (file:///D:/claude-upgrade-26/nabbit/scripts/screenshots/harness.mjs:267:15)
+      at async file:///D:/claude-upgrade-26/nabbit/scripts/verify-context-screenshots.mjs:119:16 {
+    generatedMessage: false,
+    code: 'ERR_ASSERTION',
+    actual: false,
+    expected: true,
+    operator: '==',
+    diff: 'simple'
+  }
+}
+
+Node.js v24.22.2

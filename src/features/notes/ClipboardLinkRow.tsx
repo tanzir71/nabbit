@@ -1,5 +1,5 @@
 import { useEffect, useRef, useState } from "react";
-import { writeText } from "@tauri-apps/plugin-clipboard-manager";
+import { contextApi } from "../clipboard/contextApi";
 import type { ClipboardEntry } from "../../lib/types";
 import { formatRelativeTime } from "../../lib/search";
 import { LinkIcon } from "./LinkIcon";
@@ -11,9 +11,11 @@ import "./links.css";
 export function ClipboardLinkRow({
   entry,
   download,
+  preferSave = false,
 }: {
   entry: ClipboardEntry;
   download: (url: string) => Promise<void>;
+  preferSave?: boolean;
 }) {
   const [busy, setBusy] = useState(false),
     [message, setMessage] = useState(""),
@@ -58,6 +60,8 @@ export function ClipboardLinkRow({
     const owner = generation.current;
     return run(async () => {
       const state = await notesApi.state();
+      if (!alive.current || owner !== generation.current)
+        throw new Error("The link changed before saving");
       const cached = packet.current;
       const request: NoteCaptureRequest =
         cached && cached.draft.url === entry.content && sameScope(cached.expectedScope, state.scope)
@@ -92,7 +96,7 @@ export function ClipboardLinkRow({
         <span>{formatRelativeTime(entry.lastUsedAt)}</span>
       </div>
       <div className="clipboard-link-buttons">
-        {isVideo(entry.content) && (
+        {isVideo(entry.content) && !preferSave && (
           <button
             type="button"
             className="is-signal"
@@ -109,25 +113,48 @@ export function ClipboardLinkRow({
         )}
         <button
           type="button"
-          className={!isVideo(entry.content) ? "is-signal" : ""}
+          className={preferSave || !isVideo(entry.content) ? "is-signal" : ""}
           disabled={busy}
           onClick={() => void save()}
         >
           Save link
         </button>
+        {preferSave && isVideo(entry.content) && (
+          <button
+            type="button"
+            disabled={busy}
+            onClick={() =>
+              void run(async () => {
+                await download(entry.content);
+                return "Ready to download";
+              })
+            }
+          >
+            Download
+          </button>
+        )}
         <button
           type="button"
           disabled={busy}
           onClick={() =>
             void run(async () => {
-              await writeText(await linksApi.clean(entry.content));
+              await contextApi.transform(entry.id, "clean-link", crypto.randomUUID());
               return "Clean link copied";
             })
           }
         >
           Clean link
         </button>
-        <button type="button" disabled title="QR codes are coming with clipboard tools">
+        <button
+          type="button"
+          disabled={busy}
+          onClick={() =>
+            void run(async () => {
+              await contextApi.review(entry.id, "encode-qr");
+              return "QR review opened";
+            })
+          }
+        >
           QR code
         </button>
         <button

@@ -1,0 +1,19 @@
+{
+  "addedCrates": [],
+  "cargoLockChanged": false,
+  "packageLockChanged": false,
+  "featureChanges": [
+    "image bmp decoder",
+    "windows-sys Win32_System_DataExchange/Memory/Ole",
+    "windows Win32_Storage_FileSystem/Graphics_Gdi"
+  ],
+  "licensePolicy": "Existing cargo-deny licenses/bans plus GPL/AGPL/LGPL/ffmpeg-next negative fixtures pass; full1148 notices unchanged. No new waiver, shipped executable or DLL.",
+  "sources": [
+    "https://learn.microsoft.com/en-us/windows/win32/dataxchg/clipboard-formats",
+    "https://learn.microsoft.com/en-us/windows/win32/winauto/uiauto-usingtextpattern",
+    "https://learn.microsoft.com/en-us/windows/win32/api/ole2/nf-ole2-oleduplicatedata",
+    "https://learn.microsoft.com/en-us/windows/win32/api/shlobj_core/nf-shlobj_core-shcreatedataobject",
+    "https://learn.microsoft.com/en-us/windows/win32/api/objidl/nf-objidl-idataobject-setdata",
+    "https://raw.githubusercontent.com/tauri-apps/tauri/dev/crates/tauri-bundler/src/bundle/windows/nsis/installer.nsi"
+  ]
+}

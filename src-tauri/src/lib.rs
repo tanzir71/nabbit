@@ -1,6 +1,7 @@
 mod capture;
 mod clipboard;
 mod commands;
+mod context;
 mod db;
 mod download;
 mod error;
@@ -72,6 +73,16 @@ pub struct AppState {
 
 #[cfg_attr(mobile, tauri::mobile_entry_point)]
 pub fn run() {
+    let args = std::env::args().collect::<Vec<_>>();
+    if args.len() == 2 && args[1] == "--unregister-context" {
+        if !context::acceptance() {
+            if let Err(error) = context::registration::uninstall() {
+                eprintln!("Context removal failed: {error}");
+                std::process::exit(1);
+            }
+        }
+        return;
+    }
     let context = tauri::generate_context!();
     #[cfg(windows)]
     let context = {
@@ -89,6 +100,7 @@ pub fn run() {
         context
     };
     let builder = tauri::Builder::default()
+        .manage(context::Service::default())
         .manage(sticky::Service::default())
         .manage(notes::links::service::Service::default())
         .manage(download::sheets::Service::default())
@@ -96,7 +108,10 @@ pub fn run() {
     let builder = if sticky::acceptance_enabled() {
         builder
     } else {
-        builder.plugin(tauri_plugin_single_instance::init(|app, args, _cwd| {
+        builder.plugin(tauri_plugin_single_instance::init(|app, args, cwd| {
+            if context::explorer::intake(app, &args, Path::new(&cwd)) {
+                return;
+            }
             // The plugin's deep-link integration already delivered configured scheme arguments.
             if !args.iter().any(|arg| arg.starts_with("nabbit:")) {
                 let _ = show_popover(app);
@@ -115,6 +130,16 @@ pub fn run() {
         ))
         .plugin(tauri_plugin_updater::Builder::new().build())
         .invoke_handler(tauri::generate_handler![
+            context::acceptance::context_fixture,
+            context::commands::context_preferences,
+            context::commands::save_context_preferences,
+            context::commands::context_batch,
+            context::commands::context_batch_dismiss,
+            context::commands::clipboard_context,
+            context::commands::clipboard_context_dismiss,
+            context::commands::clipboard_transform,
+            context::commands::clipboard_tool_inputs,
+            context::commands::clipboard_context_action,
             tools::commands::tool_catalog,
             tools::images::commands::tool_image_inspect,
             tools::images::commands::tool_image_codec,
@@ -393,7 +418,13 @@ pub fn run() {
                 && !sticky::acceptance_enabled()
             {
                 apply_runtime_settings(app.handle(), &state, &settings);
+                if let Err(error) =
+                    context::registration::preferences(&db).and_then(context::registration::sync)
+                {
+                    eprintln!("Explorer integration could not be restored: {error}");
+                }
             }
+            context::explorer::start(app.handle())?;
             sticky::restore(app.handle());
             if !sticky::acceptance_enabled() {
                 state.engine.start(app.handle().clone());
@@ -490,6 +521,22 @@ pub fn run() {
                 if island_spike::native_session() && code.is_none() {
                     // Closing the last larger webview must leave the native pill/tray alive.
                     api.prevent_exit();
+                    return;
+                }
+                if context::fallback::active() {
+                    api.prevent_exit();
+                    let _ = app.emit(
+                        "capture:error",
+                        "A selected-text copy is finishing. Try Quit again.",
+                    );
+                    return;
+                }
+                if context::fallback::recover().is_err() {
+                    api.prevent_exit();
+                    let _ = app.emit(
+                        "capture:error",
+                        "Clipboard restoration is still pending. Try Quit again.",
+                    );
                     return;
                 }
                 #[cfg(not(all(windows, feature = "island-spike")))]
@@ -841,7 +888,7 @@ pub fn apply_runtime_settings(app: &AppHandle<Wry>, state: &AppState, settings: 
         app.global_shortcut()
             .on_shortcut(settings.selected_text_shortcut.as_str(), |app, _, event| {
                 if event.state == ShortcutState::Pressed {
-                    notes::links::intake::selection_hotkey(app);
+                    context::selection::hotkey(app);
                 }
             })
             .map_err(|_| ())
@@ -853,7 +900,7 @@ pub fn apply_runtime_settings(app: &AppHandle<Wry>, state: &AppState, settings: 
             &conn,
             "notes/selection_shortcut_error",
             if selection_registration.is_err() {
-                "The selected-link shortcut is unavailable. Choose another shortcut in Settings."
+                "The selected-text shortcut is unavailable. Choose another shortcut in Settings."
             } else {
                 ""
             },

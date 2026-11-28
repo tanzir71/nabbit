@@ -1,0 +1,26 @@
+Compiling windows-sys v0.59.0
+   Compiling global-hotkey v0.8.0
+   Compiling tauri-plugin-global-shortcut v2.3.2
+   Compiling nabbit v0.1.0 (D:\claude-upgrade-26\nabbit\src-tauri)
+error[E0599]: no method named `as_wide` found for struct `BSTR` in the current scope
+  --> src\context\selection.rs:43:44
+   |
+43 |         let text = String::from_utf16(text.as_wide())
+   |                                            ^^^^^^^ method not found in `BSTR`
+
+error[E0618]: expected function, found `selection_fixture::Control`
+  --> src\context\selection_fixture.rs:83:20
+   |
+39 | fn control(password: bool) -> Result<Control> {
+   | --------------------------------------------- this function of the same name is available here, but it's shadowed by the local binding
+...
+82 |     let control = control(false)?;
+   |         ------- `control` has type `selection_fixture::Control`
+83 |     let password = control(true)?;
+   |                    ^^^^^^^------
+   |                    |
+   |                    call expression requires function
+
+Some errors have detailed explanations: E0599, E0618.
+For more information about an error, try `rustc --explain E0599`.
+error: could not compile `nabbit` (lib test) due to 2 previous errors

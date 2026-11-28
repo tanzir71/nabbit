@@ -1,0 +1,27 @@
+file:///D:/claude-upgrade-26/nabbit/scripts/screenshots/harness.mjs:412
+            throw new Error(`${scenario.name} (${theme}@${scale}x): ${error.message}`, {
+                  ^
+
+Error: context-link (light@1x): Expected values to be strictly equal:
+
+442 !== 480
+
+    at captureSuite (file:///D:/claude-upgrade-26/nabbit/scripts/screenshots/harness.mjs:412:19)
+    at async file:///D:/claude-upgrade-26/nabbit/scripts/verify-context-screenshots.mjs:118:16 {
+  [cause]: AssertionError [ERR_ASSERTION]: Expected values to be strictly equal:
+
+  442 !== 480
+
+      at Object.ready (file:///D:/claude-upgrade-26/nabbit/scripts/verify-context-screenshots.mjs:96:16)
+      at async captureSuite (file:///D:/claude-upgrade-26/nabbit/scripts/screenshots/harness.mjs:144:33)
+      at async file:///D:/claude-upgrade-26/nabbit/scripts/verify-context-screenshots.mjs:118:16 {
+    generatedMessage: true,
+    code: 'ERR_ASSERTION',
+    actual: 442,
+    expected: 480,
+    operator: 'strictEqual',
+    diff: 'simple'
+  }
+}
+
+Node.js v24.22.2

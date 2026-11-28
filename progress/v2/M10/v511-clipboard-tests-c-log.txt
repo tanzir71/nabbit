@@ -1,0 +1,27 @@
+Finished `test` profile [unoptimized + debuginfo] target(s) in 1.04s
+     Running unittests src\lib.rs (src-tauri\target\debug\deps\nabbit_lib-d7a87f1a44e2969b.exe)
+
+running 21 tests
+test capture::tests::clear_and_clipboard_change_cancel_enrichment_without_changing_a_newer_capture ... ok
+test capture::tests::hotkey_reads_current_clipboard_and_resolves_that_sites_remembered_preset ... ok
+test clipboard::pick::tests::copy_and_missing_focus_lease_never_activate_or_send_input ... ok
+test clipboard::pick::tests::copy_failure_never_touches_history_or_sends_input ... ok
+test clipboard::pick::tests::explicit_paste_writes_touches_restores_sends_once_then_collapses ... ok
+test clipboard::pick::tests::focus_changes_denial_and_blocked_input_fall_back_to_copy_without_collapse ... ok
+test clipboard::pick::tests::image_and_explorer_payloads_use_their_native_ports_without_global_clipboard_access ... ok
+test clipboard::pick::tests::invalid_item_or_stale_target_never_changes_clipboard ... ok
+test clipboard::sensitive::tests::detects_common_sensitive_shapes ... ok
+test clipboard::watcher::tests::disabled_and_paused_detection_store_text_without_staging_or_enqueuing ... ok
+test clipboard::watcher::tests::intake_applies_exclusions_and_sensitive_filter_before_url_capture ... ok
+test clipboard::watcher::tests::protected_clipboard_flags_are_tested_without_reading_or_overwriting_the_os_clipboard ... ok
+test context::clipboard::tests::dib_conversion_checks_extent_orientation_and_allocation_before_decode ... ok
+test db::clipboard_payload::tests::owned_images_and_file_lists_are_deduplicated_and_excluded_before_storage ... ok
+test db::clipboard_payload::tests::retention_and_delete_remove_owned_blobs_preserve_pinned_images_and_never_delete_external_references ... ok
+test db::tests::clear_clipboard_history_removes_blob_files ... ok
+test db::tests::duplicate_clipboard_hash_updates_entry ... ok
+test db::tests::very_large_clipboard_payloads_are_skipped ... ok
+test files::drop::tests::owned_unicode_data_objects_keep_links_and_text_without_using_the_clipboard ... ok
+test island::activity_tests::link_shrinks_at_eight_seconds_and_clipboard_change_removes_its_bubble ... ok
+test tack::recovery_clipboard::tests::recovery_copy_requires_all_privacy_markers_before_the_secret_writer ... ok
+
+test result: ok. 21 passed; 0 failed; 0 ignored; 0 measured; 354 filtered out; finished in 0.80s

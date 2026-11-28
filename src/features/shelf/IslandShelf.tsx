@@ -8,6 +8,7 @@ import { shelfSelection, shelfSize } from "./model";
 import "./shelf.css";
 import { ToolActions } from "../tools/ToolActions";
 import { MoveButton } from "../files/MoveTo";
+import { ExplorerBatch } from "../clipboard/ExplorerBatch";
 
 function ShelfPreview({ item, selectedMode }: { item: ShelfItem; selectedMode: boolean }) {
   const root = useRef<HTMLSpanElement>(null);
@@ -248,6 +249,7 @@ export function IslandShelf({
       onKeyDown={(event) => handleKey(event.nativeEvent)}
     >
       <h1 className="island-sr-only">Files on the Shelf</h1>
+      <ExplorerBatch silent={model.fullscreen} />
       {!selectedMode && (
         <header className="shelf-heading">
           <span>SHELF · {items.length}</span>

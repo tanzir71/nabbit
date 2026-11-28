@@ -198,3 +198,60 @@ it("uses saved preset quality and preserves an explicit quality edit", async () 
     ),
   );
 });
+it("keeps an incoming Explorer format and waits for its saved quality before enabling Run", async () => {
+  let resolve!: (value: Awaited<ReturnType<typeof toolsApi.presets>>) => void;
+  vi.mocked(toolsApi.presets).mockReturnValueOnce(
+    new Promise((done) => {
+      resolve = done;
+    }),
+  );
+  render(<ImageReview tool={tool} inputs={[photo]} initialPreset="webp" close={vi.fn()} />);
+  expect(screen.getByRole("button", { name: "WebP" })).toHaveAttribute("aria-pressed", "true");
+  const run = screen.getByRole("button", { name: "Convert 1 photo" });
+  await screen.findByText("640 × 480", { exact: false });
+  expect(run).toBeDisabled();
+  resolve([{ id: "webp", name: "To WebP", quality: 73, maxMb: null }]);
+  await waitFor(() => expect(run).toBeEnabled());
+  fireEvent.click(run);
+  await waitFor(() =>
+    expect(imageApi.start).toHaveBeenCalledWith(
+      expect.any(String),
+      "to-jpg",
+      photo,
+      "webp",
+      expect.objectContaining({ format: "webp", quality: 73 }),
+      null,
+    ),
+  );
+});
+it("loads the requested size preset while preserving a limit edited before preferences arrive", async () => {
+  let resolve!: (value: Awaited<ReturnType<typeof toolsApi.presets>>) => void;
+  vi.mocked(toolsApi.presets).mockReturnValueOnce(
+    new Promise((done) => {
+      resolve = done;
+    }),
+  );
+  render(
+    <ImageReview
+      tool={{ ...tool, id: "fit-size", name: "Fit under a size", presets: ["discord", "email"] }}
+      inputs={[photo]}
+      initialPreset="email"
+      close={vi.fn()}
+    />,
+  );
+  fireEvent.change(screen.getByLabelText("Maximum MB"), { target: { value: "17" } });
+  resolve([{ id: "email", name: "Fit for email", quality: 78, maxMb: 25 }]);
+  const run = screen.getByRole("button", { name: "Make smaller 1 photo" });
+  await waitFor(() => expect(run).toBeEnabled());
+  fireEvent.click(run);
+  await waitFor(() =>
+    expect(imageApi.start).toHaveBeenCalledWith(
+      expect.any(String),
+      "fit-size",
+      photo,
+      "email",
+      expect.anything(),
+      17,
+    ),
+  );
+});

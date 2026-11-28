@@ -196,9 +196,9 @@ describe("Clipboard island", () => {
     const view = mount();
     await loaded();
     await user.click(screen.getByRole("button", { name: "Nab example.invalid/research" }));
-    expect(invoke).toHaveBeenCalledExactlyOnceWith("island_review_url", {
-      url: "https://example.invalid/research",
-    });
+    expect(vi.mocked(invoke).mock.calls.filter(([name]) => name === "island_review_url")).toEqual([
+      ["island_review_url", { url: "https://example.invalid/research" }],
+    ]);
     expect(view.store.getState().tab).toBe("nab");
     expect(clipboardApi.pick).not.toHaveBeenCalled();
   });
@@ -247,15 +247,16 @@ describe("Clipboard island", () => {
     await act(async () => callbacks.get("clipboard:new")!());
     expect(clipboardApi.snapshot).toHaveBeenCalledTimes(2);
   });
-  it("StrictMode cleans up each event listener and preserves native image payload limitations", async () => {
+  it("StrictMode cleans up each event listener and routes image picks through the native port", async () => {
     const view = mount(true);
     await loaded();
     const user = userEvent.setup();
     await user.click(screen.getByRole("button", { name: "Images" }));
-    expect(screen.getByRole("button", { name: /^Copy Screenshot 1280 × 720 / })).toBeDisabled();
+    expect(screen.getByRole("button", { name: /^Copy Screenshot 1280 × 720 / })).toBeEnabled();
     fireEvent.keyDown(grid(), { key: "Enter" });
-    expect(await screen.findByRole("alert")).toHaveTextContent("Image copying is not available");
-    expect(clipboardApi.pick).not.toHaveBeenCalled();
+    await waitFor(() =>
+      expect(clipboardApi.pick).toHaveBeenCalledExactlyOnceWith("image", "paste"),
+    );
     view.unmount();
     expect(stops.every((stop) => stop.mock.calls.length === 1)).toBe(true);
   });

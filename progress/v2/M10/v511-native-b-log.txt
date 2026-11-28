@@ -1,0 +1,12 @@
+node:internal/modules/run_main:107
+    triggerUncaughtException(
+    ^
+
+page.evaluate: Only an active island can request a surface
+    at invoke (D:\claude-upgrade-26\nabbit\scripts\capture-native-context.mjs:129:8)
+    at D:\claude-upgrade-26\nabbit\scripts\capture-native-context.mjs:439:23 {
+  log: [],
+  name: 'Error'
+}
+
+Node.js v24.22.2

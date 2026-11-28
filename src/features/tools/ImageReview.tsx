@@ -17,26 +17,32 @@ const name = (path: string) => path.split(/[\\/]/).pop() ?? path;
 export function ImageReview({
   tool,
   inputs,
+  initialPreset,
   close,
 }: {
   tool: Tool;
   inputs: string[];
+  initialPreset?: string;
   close: () => void;
 }) {
+  const initial =
+    initialPreset && tool.presets.includes(initialPreset) ? initialPreset : tool.presets[0];
   const [paths, setPaths] = useState(inputs.filter((p) => acceptsFile(tool, p)));
   const [sources, setSources] = useState<string[]>([]);
   const [inspection, setInspection] = useState(0);
   const [info, setInfo] = useState<Record<string, ImageInspection>>({});
   const [options, setOptions] = useState<ImageOptions>(() => ({
     ...defaultImageOptions(),
-    format: tool.id === "to-jpg" ? ("jpg" as const) : ("original" as const),
+    format: tool.id === "to-jpg" ? (initial as ImageOptions["format"]) : ("original" as const),
   }));
   const [presets, setPresets] = useState<ToolPreset[]>([]),
-    [preset, setPreset] = useState("discord"),
+    [preset, setPreset] = useState(initial),
     [cap, setCap] = useState(20);
+  const [presetsReady, setPresetsReady] = useState(false);
   const [busy, setBusy] = useState(false),
     [error, setError] = useState("");
   const qualityEdited = useRef(false);
+  const capEdited = useRef(false);
   const working = useRef(false),
     requests = useRef(new Map<string, string>());
   useEffect(() => {
@@ -52,10 +58,11 @@ export function ImageReview({
             setOptions((o) => ({
               ...o,
               quality:
-                p.find((i) => i.id === (tool.id === "to-jpg" ? o.format : tool.presets[0]))
-                  ?.quality ?? o.quality,
+                p.find((i) => i.id === (tool.id === "to-jpg" ? o.format : initial))?.quality ??
+                o.quality,
             }));
-          setCap(p.find((i) => i.id === "discord")?.maxMb ?? 20);
+          if (!capEdited.current) setCap(p.find((i) => i.id === initial)?.maxMb ?? 20);
+          setPresetsReady(true);
         }
       })
       .catch((e) => {
@@ -64,7 +71,7 @@ export function ImageReview({
     return () => {
       active = false;
     };
-  }, [tool]);
+  }, [tool, initial]);
   useEffect(() => {
     let active = true;
     setInfo({});
@@ -89,7 +96,7 @@ export function ImageReview({
     strip = tool.id === "strip-metadata",
     convert = tool.id === "to-jpg";
   const run = async () => {
-    if (working.current) return;
+    if (working.current || !presetsReady) return;
     working.current = true;
     setBusy(true);
     setError("");
@@ -237,6 +244,7 @@ export function ImageReview({
                     disabled={busy}
                     onClick={() => {
                       setPreset(p.id);
+                      capEdited.current = true;
                       setCap(p.maxMb!);
                       if (!qualityEdited.current) setOptions((o) => ({ ...o, quality: p.quality }));
                     }}
@@ -252,7 +260,10 @@ export function ImageReview({
               max={100000}
               value={cap}
               disabled={busy}
-              onChange={(e) => setCap(Number(e.target.value))}
+              onChange={(e) => {
+                capEdited.current = true;
+                setCap(Number(e.target.value));
+              }}
             />
             <p className="media-caption">
               Up to three attempts, checked against the actual output size.
@@ -418,6 +429,7 @@ export function ImageReview({
           variant="primary"
           disabled={
             busy ||
+            !presetsReady ||
             !paths.length ||
             paths.some((p) => !info[p]?.info) ||
             (fit && (!Number.isInteger(cap) || cap < 1 || cap > 100000))

@@ -8,7 +8,7 @@ import { IslandAsset } from "../../surfaces/island/IslandAsset";
 import type { IslandAction, IslandModel } from "../../store/islandStore";
 import type { ClipboardEntry } from "../../lib/types";
 import { formatRelativeTime } from "../../lib/search";
-import { ClipboardLinkRow } from "../notes/ClipboardLinkRow";
+import { ClipboardContext } from "./ClipboardContext";
 import { newestClipboardEntry } from "../notes/linkPresentation";
 import { clipboardApi, type ClipboardSnapshot, type ClipboardPick } from "./api";
 import { clipboardFilters, clipboardRows, clipboardThumbnail, clipboardTitle } from "./model";
@@ -28,6 +28,7 @@ export function IslandClipboard({
     [busy, setBusy] = useState(false),
     [disconnected, setDisconnected] = useState(false);
   const [selection, setSelection] = useState({ view: "", id: "" });
+  const [menuEntry, setMenuEntry] = useState<ClipboardEntry>();
   const alive = useRef(true),
     working = useRef(false),
     generation = useRef({ value: 0 });
@@ -134,10 +135,6 @@ export function IslandClipboard({
     }
   };
   const pick = (entry: ClipboardEntry, mode: "copy" | "paste") => {
-    if (entry.contentType === "image") {
-      setError("Image copying is not available in this clipboard history yet.");
-      return;
-    }
     choose(entry);
     void run(() => clipboardApi.pick(entry.id, mode), "Copied");
   };
@@ -286,9 +283,15 @@ export function IslandClipboard({
           ))}
         </div>
       </div>
-      {contextEntry?.contentType === "url" && (
-        <ClipboardLinkRow entry={contextEntry} download={download} />
-      )}
+      <ClipboardContext
+        key={menuEntry?.id ?? "context"}
+        entry={menuEntry ?? contextEntry}
+        download={download}
+        silent={model.fullscreen}
+        menu={!!menuEntry}
+        closeMenu={() => setMenuEntry(undefined)}
+        pasted={() => dispatch({ type: "collapse" })}
+      />
       <div
         ref={rowsElement}
         id={resultId}
@@ -319,6 +322,17 @@ export function IslandClipboard({
               role="row"
               aria-selected={active}
               data-clipboard-id={entry.id}
+              onContextMenu={(event) => {
+                event.preventDefault();
+                setMenuEntry(entry);
+              }}
+              onKeyDownCapture={(event) => {
+                if (event.key === "ContextMenu" || (event.shiftKey && event.key === "F10")) {
+                  event.preventDefault();
+                  event.stopPropagation();
+                  setMenuEntry(entry);
+                }
+              }}
               onFocus={() => choose(entry)}
               onPointerMove={() => {
                 if (!working.current) choose(entry);
@@ -366,7 +380,7 @@ export function IslandClipboard({
                   className="island-clipboard-text"
                   tabIndex={active ? 0 : -1}
                   aria-label={"Copy " + title + " " + subtitle}
-                  disabled={busy || entry.contentType === "image"}
+                  disabled={busy}
                   onClick={() => pick(entry, "copy")}
                 >
                   <span className={entry.contentType === "file" ? "is-path" : ""}>{title}</span>{" "}

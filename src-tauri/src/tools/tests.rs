@@ -65,7 +65,8 @@ fn registry_and_presets_are_unique_and_match_supported_inputs() {
         .collect::<std::collections::HashSet<_>>();
     assert_eq!(ids.len(), tools.len());
     for tool in tools {
-        assert!(!tool.accepts.text && !tool.accepts.link);
+        assert_eq!(tool.accepts.text, tool.id == "encode-qr");
+        assert_eq!(tool.accepts.link, tool.id == "encode-qr");
         for preset in tool.presets {
             assert!(registry::presets().iter().any(|p| p.id == *preset));
         }

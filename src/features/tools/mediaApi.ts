@@ -54,6 +54,7 @@ export interface MediaCapabilities {
   cacheable: boolean;
 }
 export interface MediaIntent {
+  presetId?: string;
   inputs?: string[];
   id: string;
   toolId: string;

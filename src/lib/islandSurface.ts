@@ -4,7 +4,7 @@ import type { IslandMode, IslandTab } from "../store/islandStore";
 import type { ActivitySnapshot } from "./activity";
 export interface SurfaceInstruction {
   ready?: boolean;
-  keyboard?: { id: number; target: "tab" | "preserve" | "notes" } | null;
+  keyboard?: { id: number; target: "tab" | "preserve" | "notes" | "clipboard" | "files" } | null;
   focusTab?: IslandTab | null;
   label: string;
   generation: number;

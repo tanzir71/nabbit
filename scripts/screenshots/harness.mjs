@@ -219,6 +219,7 @@ export async function captureSuite(root, options, cases = scenarios) {
                     "get_island_drop",
                     "island_review_url",
                     "list_clipboard_entries",
+                    "clipboard_context",
                     "get_engine_status",
                     "get_settings",
                     "get_captured_link",
@@ -233,6 +234,7 @@ export async function captureSuite(root, options, cases = scenarios) {
                       ? [
                           "shelf_list",
                           "shelf_preview",
+                          "context_batch",
                           "files_pins",
                           "files_capabilities",
                           "files_history",

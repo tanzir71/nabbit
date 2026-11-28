@@ -2,6 +2,7 @@ import { useEffect, useState } from "react";
 import { toolsApi, type ToolPreset } from "./api";
 import { Field } from "../../components/Field";
 import { Button } from "../../components/Button";
+import { ContextSettings } from "../clipboard/ContextSettings";
 export default function FilesSettings() {
   const [presets, setPresets] = useState<ToolPreset[]>([]),
     [error, setError] = useState(""),
@@ -83,6 +84,7 @@ export default function FilesSettings() {
           {error}
         </p>
       )}
+      <ContextSettings />
     </section>
   );
 }

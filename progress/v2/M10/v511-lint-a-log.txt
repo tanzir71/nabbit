@@ -1,0 +1,9 @@
+> nabbit@0.1.0 lint
+> eslint .
+
+
+D:\claude-upgrade-26\nabbit\src\features\clipboard\ClipboardContext.tsx
+  85:18  warning  The ref value 'generation.current' will likely have changed by the time this effect cleanup function runs. If this ref points to a node rendered by React, copy 'generation.current' to a variable inside the effect, and use that variable in the cleanup function          react-hooks/exhaustive-deps
+  86:22  warning  The ref value 'operationOwner.current' will likely have changed by the time this effect cleanup function runs. If this ref points to a node rendered by React, copy 'operationOwner.current' to a variable inside the effect, and use that variable in the cleanup function  react-hooks/exhaustive-deps
+
+✖ 2 problems (0 errors, 2 warnings)

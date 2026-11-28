@@ -1,0 +1,138 @@
+{
+  "passed": false,
+  "failure": {
+    "message": "page.evaluate: Only an active island can request a surface",
+    "stack": "page.evaluate: Only an active island can request a surface\n    at invoke (D:\\claude-upgrade-26\\nabbit\\scripts\\capture-native-context.mjs:129:8)\n    at D:\\claude-upgrade-26\\nabbit\\scripts\\capture-native-context.mjs:439:23"
+  },
+  "checks": [
+    "All 69 embedded manifest assets and 1148 offline notices match this build.",
+    "All three clipboard privacy flags and a default password-manager source suppress context before payload storage.",
+    "The native menu creates a new transformed history item, preserves its original, and a frozen request retries without another copy event.",
+    "Copied images use an owned full PNG and thumbnail; Save never overwrites, and Text opens exact-input review without running a job."
+  ],
+  "captures": [
+    {
+      "role": "link",
+      "raster": {
+        "opaque": 123760,
+        "min": 5,
+        "max": 245
+      },
+      "file": "v511-native-b-link@2x.png",
+      "sha256": "ddcb0a5ae689cb3c29fe39f9202bb50c30619df5c0a0b9621c234527d7aa6ff9",
+      "bytes": 19915,
+      "width": 884,
+      "height": 140,
+      "logicalBounds": {
+        "x": 9,
+        "y": 180,
+        "width": 442,
+        "height": 70
+      },
+      "contentBounds": {
+        "x": 9,
+        "y": 180,
+        "width": 442,
+        "height": 70
+      },
+      "scale": 2,
+      "repeatMatches": true
+    },
+    {
+      "role": "text-menu",
+      "raster": {
+        "opaque": 389760,
+        "min": 12,
+        "max": 242
+      },
+      "file": "v511-native-b-text-menu@2x.png",
+      "sha256": "a543fe7ff59128f25abc4d2d3b2ba095d32a69e169170b95f8e6fbabd069ccd1",
+      "bytes": 43352,
+      "width": 560,
+      "height": 696,
+      "logicalBounds": {
+        "x": 9,
+        "y": 184,
+        "width": 280,
+        "height": 348
+      },
+      "contentBounds": {
+        "x": 9,
+        "y": 184,
+        "width": 280,
+        "height": 348
+      },
+      "scale": 2,
+      "repeatMatches": true
+    },
+    {
+      "role": "case",
+      "raster": {
+        "opaque": 152000,
+        "min": 12,
+        "max": 242
+      },
+      "file": "v511-native-b-case@2x.png",
+      "sha256": "54f170d582e169d26d20637d66c148fc471c1b1ca9ff1718889fa44d6a255579",
+      "bytes": 18400,
+      "width": 400,
+      "height": 380,
+      "logicalBounds": {
+        "x": 9,
+        "y": 184,
+        "width": 200,
+        "height": 190
+      },
+      "contentBounds": {
+        "x": 9,
+        "y": 184,
+        "width": 200,
+        "height": 190
+      },
+      "scale": 2,
+      "repeatMatches": true
+    },
+    {
+      "role": "image",
+      "raster": {
+        "opaque": 174216,
+        "min": 5,
+        "max": 245
+      },
+      "file": "v511-native-b-image@2x.png",
+      "sha256": "3e90369b8d536070e25ec1ffebabc605f68a9a27504c90ccf9d2b8304099c87b",
+      "bytes": 22256,
+      "width": 854,
+      "height": 204,
+      "logicalBounds": {
+        "x": 9,
+        "y": 180,
+        "width": 427,
+        "height": 102
+      },
+      "contentBounds": {
+        "x": 9,
+        "y": 180,
+        "width": 427,
+        "height": 102
+      },
+      "scale": 2,
+      "repeatMatches": true
+    }
+  ],
+  "results": {
+    "text": {
+      "originalId": "a30982d5-a8c0-4757-8008-ec368427767b",
+      "resultId": "f298c9e6-6dd4-4199-867b-dd607f1f59b3",
+      "originalPreserved": true,
+      "retryCopies": 1
+    }
+  },
+  "executableSha256": "2f65bcaabcaf041dd9955e9f132a741a49a71a2be636eee2186d5c0cdc41e9d5",
+  "buildManifestSha256": "504a6fde7a776ebb087e6590420153a0a74c714d2f883380c436b9eb05a4fbed",
+  "noUserProfile": true,
+  "noRealClipboardOrGlobalInput": true,
+  "noNativeRegistration": true,
+  "noOsSettingChange": true,
+  "scope": "Owned production executable and hidden UIA controls, isolated app-data/WebView/control profiles, generated PNG fixtures, native typed IPC and DOM-only input. No real clipboard, cursor, global input, installed integrations, dialogs, account, hosted Tack, Store, signing, installer execution or OS changes."
+}

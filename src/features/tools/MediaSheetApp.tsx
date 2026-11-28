@@ -10,6 +10,7 @@ import { ImageReview } from "./ImageReview";
 import { isImagePath } from "./imageApi";
 import { MediaReview } from "./MediaReview";
 import { desiredReviewHeight } from "./mediaLayout";
+import { Button } from "../../components/Button";
 import "./media.css";
 export default function MediaSheetApp() {
   const [intent, setIntent] = useState<MediaIntent | null>(null),
@@ -90,6 +91,12 @@ export default function MediaSheetApp() {
       .catch((reason) => setError(String(reason)));
   };
   const tool = tools.find((t) => t.id === intent?.toolId);
+  const inputs = intent?.inputs?.length ? intent.inputs : intent?.input ? [intent.input] : [];
+  const images = inputs.length > 0 && inputs.every(isImagePath);
+  const multiple =
+    tool?.category === "images" ||
+    (tool && ["fit-size", "strip-metadata"].includes(tool.id) && images) ||
+    (tool && ["merge-pdf", "images-pdf"].includes(tool.id));
   return (
     <main
       className="media-sheet-host"
@@ -102,23 +109,27 @@ export default function MediaSheetApp() {
           <button onClick={close}>Close</button>
         </section>
       ) : intent && tool ? (
-        tool.category === "documents" ? (
-          <DocumentReview
-            key={intent.id}
-            tool={tool}
-            inputs={intent.inputs?.length ? intent.inputs : intent.input ? [intent.input] : []}
-            close={close}
-          />
+        inputs.length > 1 && !multiple ? (
+          <MediaInputChoice key={intent.id} intent={intent} inputs={inputs} close={close} />
+        ) : tool.category === "documents" ? (
+          <DocumentReview key={intent.id} tool={tool} inputs={inputs} close={close} />
         ) : tool.category === "images" ||
           (["fit-size", "strip-metadata"].includes(tool.id) && isImagePath(intent.input)) ? (
           <ImageReview
             key={intent.id}
             tool={tool}
-            inputs={intent.inputs?.length ? intent.inputs : intent.input ? [intent.input] : []}
+            inputs={inputs}
+            initialPreset={intent.presetId}
             close={close}
           />
         ) : (
-          <MediaReview key={intent.id} tool={tool} input={intent.input} close={close} />
+          <MediaReview
+            key={intent.id}
+            tool={tool}
+            input={intent.input}
+            initialPreset={intent.presetId}
+            close={close}
+          />
         )
       ) : (
         <div className="media-review" role="status">
@@ -126,5 +137,70 @@ export default function MediaSheetApp() {
         </div>
       )}
     </main>
+  );
+}
+export function MediaInputChoice({
+  intent,
+  inputs,
+  close,
+}: {
+  intent: MediaIntent;
+  inputs: string[];
+  close: () => void;
+}) {
+  const [busy, setBusy] = useState(false),
+    [error, setError] = useState("");
+  const alive = useRef(true),
+    working = useRef(false);
+  useEffect(() => {
+    alive.current = true;
+    return () => {
+      alive.current = false;
+    };
+  }, []);
+  return (
+    <section className="media-review">
+      <header className="media-heading">
+        <h1>Choose a file to review</h1>
+      </header>
+      <p>This tool reviews one file at a time. All {inputs.length} files stay in your batch.</p>
+      <div className="media-input-choices">
+        {inputs.map((path, index) => (
+          <Button
+            key={path + index}
+            variant="secondary"
+            title={path}
+            disabled={busy}
+            onClick={async () => {
+              if (working.current) return;
+              working.current = true;
+              setBusy(true);
+              setError("");
+              try {
+                await mediaApi.open({
+                  ...intent,
+                  id: crypto.randomUUID(),
+                  input: path,
+                  inputs: [path],
+                });
+              } catch (reason) {
+                if (alive.current) setError(String(reason));
+              } finally {
+                working.current = false;
+                if (alive.current) setBusy(false);
+              }
+            }}
+          >
+            {path.split(/[\\/]/).pop() ?? path}
+          </Button>
+        ))}
+      </div>
+      {error && <p role="alert">{error}</p>}
+      <footer>
+        <Button variant="ghost" disabled={busy} onClick={close}>
+          Close
+        </Button>
+      </footer>
+    </section>
   );
 }

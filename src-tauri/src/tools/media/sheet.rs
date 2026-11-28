@@ -8,6 +8,8 @@ pub struct Intent {
     pub id: String,
     pub tool_id: String,
     pub input: String,
+    #[serde(default, skip_serializing_if = "Option::is_none")]
+    pub preset_id: Option<String>,
     #[serde(default)]
     pub inputs: Vec<String>,
 }
@@ -15,12 +17,22 @@ fn validate(intent: &Intent) -> Result<()> {
     if uuid::Uuid::parse_str(&intent.id).is_err() {
         return Err(msg("Invalid review id"));
     }
-    crate::tools::registry::get(&intent.tool_id)?;
+    let tool = crate::tools::registry::get(&intent.tool_id)?;
+    if intent
+        .preset_id
+        .as_ref()
+        .is_some_and(|id| !tool.presets.contains(&id.as_str()))
+    {
+        return Err(msg("This preset does not belong to the tool"));
+    }
     if intent.inputs.len() > 64 {
         return Err(msg("Choose at most 64 files"));
     }
     for input in &intent.inputs {
         crate::files::paths::checked(input)?;
+        if !tool.accepts_path(Path::new(input)) {
+            return Err(msg("This tool does not accept every file in the batch"));
+        }
     }
     if intent.input.len() > 32760
         || intent.input.contains(['\0', '\n', '\r'])

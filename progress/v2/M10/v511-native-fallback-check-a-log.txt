@@ -1,0 +1,45 @@
+Checking windows-sys v0.59.0
+   Compiling nabbit v0.1.0 (D:\claude-upgrade-26\nabbit\src-tauri)
+    Checking global-hotkey v0.8.0
+    Checking tauri-plugin-global-shortcut v2.3.2
+error[E0425]: cannot find type `METAFILEPICT` in module `gdi`
+   --> src\context\fallback_win.rs:170:66
+    |
+170 |                 if GlobalSize(source) < std::mem::size_of::<gdi::METAFILEPICT>() {
+    |                                                                  ^^^^^^^^^^^^ not found in `gdi`
+
+error[E0425]: cannot find type `METAFILEPICT` in module `gdi`
+   --> src\context\fallback_win.rs:177:66
+    |
+177 |                 let picture = std::ptr::read(pointer.cast::<gdi::METAFILEPICT>());
+    |                                                                  ^^^^^^^^^^^^ not found in `gdi`
+
+error[E0308]: mismatched types
+   --> src\context\fallback_win.rs:120:17
+    |
+119 |             base = match gdi::GetObjectType(source) {
+    |                          -------------------------- this expression has type `u32`
+120 |                 gdi::OBJ_BITMAP => 2,
+    |                 ^^^^^^^^^^^^^^^ expected `u32`, found `i32`
+
+error[E0308]: mismatched types
+   --> src\context\fallback_win.rs:121:17
+    |
+119 |             base = match gdi::GetObjectType(source) {
+    |                          -------------------------- this expression has type `u32`
+120 |                 gdi::OBJ_BITMAP => 2,
+121 |                 gdi::OBJ_PAL => 9,
+    |                 ^^^^^^^^^^^^ expected `u32`, found `i32`
+
+error[E0308]: mismatched types
+   --> src\context\fallback_win.rs:122:17
+    |
+119 |             base = match gdi::GetObjectType(source) {
+    |                          -------------------------- this expression has type `u32`
+...
+122 |                 gdi::OBJ_ENHMETAFILE => 14,
+    |                 ^^^^^^^^^^^^^^^^^^^^ expected `u32`, found `i32`
+
+Some errors have detailed explanations: E0308, E0425.
+For more information about an error, try `rustc --explain E0308`.
+error: could not compile `nabbit` (lib) due to 5 previous errors

@@ -1,0 +1,18 @@
+running 1 test
+
+thread 'nabbit-shell-sta' (2040) panicked at src\context\fallback_win.rs:672:17:
+assertion `left == right` failed
+  left: 0
+ right: 5
+note: run with `RUST_BACKTRACE=1` environment variable to display a backtrace
+
+thread 'context::fallback::native::tests::native_owned_bitmap_and_enhanced_metafile_clones_keep_pixels_and_records' (6372) panicked at src\context\fallback_win.rs:714:10:
+called `Result::unwrap()` on an `Err` value: Message("Windows file task stopped")
+test context::fallback::native::tests::native_owned_bitmap_and_enhanced_metafile_clones_keep_pixels_and_records ... FAILED
+
+failures:
+
+failures:
+    context::fallback::native::tests::native_owned_bitmap_and_enhanced_metafile_clones_keep_pixels_and_records
+
+test result: FAILED. 0 passed; 1 failed; 0 ignored; 0 measured; 379 filtered out; finished in 0.01s

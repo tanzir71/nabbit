@@ -1,0 +1,22 @@
+> nabbit@0.1.0 test
+> vitest --run src/features/clipboard src/features/notes/LinksPanel.test.tsx
+
+
+ RUN  v3.2.7 D:/claude-upgrade-26/nabbit
+
+ ✓ src/features/notes/LinksPanel.test.tsx (7 tests) 2186ms
+   ✓ Links collection > combines domain search, folder label chips and Later while keeping bookmark addresses  645ms
+   ✓ Links collection > uses frozen card guards for bulk labels and clears selection only after acknowledgement  662ms
+   ✓ Links collection > keeps stale selections recoverable after a rejected write and permits read-only open/copy  342ms
+ ✓ src/features/clipboard/IslandClipboard.test.tsx (8 tests) 2288ms
+   ✓ Clipboard island > reuses fuzzy search and all six type/pin filters without requesting OS clipboard access  802ms
+   ✓ Clipboard island > Ctrl+F focuses search; numeric queries and IME/modifiers never pick an item  342ms
+   ✓ Clipboard island > arrows select within filtered results; Ctrl+C copies, Del removes and pinning updates Pinned  407ms
+ ✓ src/features/clipboard/model.test.ts (1 test) 4ms
+ ✓ src/features/clipboard/context.test.tsx (6 tests) 797ms
+   ✓ clipboard context > does not act until clicked, offers keyboard case navigation and retries the same frozen request  385ms
+
+ Test Files  4 passed (4)
+      Tests  22 passed (22)
+   Start at  09:01:10
+   Duration  5.91s (transform 733ms, setup 353ms, collect 2.15s, tests 5.28s, environment 2.23s, prepare 647ms)

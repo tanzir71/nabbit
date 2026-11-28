@@ -38,6 +38,12 @@ fn copied(message: &str) -> Outcome {
 pub trait Port {
     fn eligible(&self, ticket: Ticket) -> bool;
     fn copy_text(&mut self, text: &str) -> Result<()>;
+    fn copy_image(&mut self, _path: &std::path::Path) -> Result<()> {
+        Err(msg("Image copying is unavailable"))
+    }
+    fn copy_files(&mut self, _paths: &[String]) -> Result<()> {
+        Err(msg("File copying is unavailable"))
+    }
     fn restore(&mut self, ticket: Ticket) -> bool;
     fn paste(&mut self, ticket: Ticket) -> bool;
     fn collapse(&mut self);
@@ -50,7 +56,10 @@ pub fn pick(
     port: &mut dyn Port,
 ) -> Result<Outcome> {
     let entry = db.get_clipboard_entry(id)?;
-    if !matches!(entry.content_type.as_str(), "text" | "url" | "file") {
+    if !matches!(
+        entry.content_type.as_str(),
+        "text" | "url" | "file" | "image"
+    ) {
         return Err(msg(
             "This clipboard item has no supported text or path payload",
         ));
@@ -58,7 +67,13 @@ pub fn pick(
     if mode == Mode::Paste && ticket.is_some_and(|t| !port.eligible(t)) {
         return Err(msg("Focus changed before this clipboard pick"));
     }
-    port.copy_text(&entry.content)?;
+    if entry.content_type == "image" {
+        port.copy_image(&db.clipboard_image_path(id)?)?;
+    } else if entry.content_type == "file" && entry.content.starts_with('[') {
+        port.copy_files(&serde_json::from_str::<Vec<String>>(&entry.content)?)?;
+    } else {
+        port.copy_text(&entry.content)?;
+    }
     if db.touch_clipboard_entry(id).is_err() {
         return Ok(copied("Copied. Clipboard history could not be updated."));
     }
@@ -92,6 +107,15 @@ mod tests {
         change_during_copy: bool,
     }
     impl Port for Fake {
+        fn copy_image(&mut self, path: &std::path::Path) -> Result<()> {
+            assert!(path.is_file());
+            self.calls.push("copy:image".into());
+            Ok(())
+        }
+        fn copy_files(&mut self, paths: &[String]) -> Result<()> {
+            self.calls.push(format!("copy:files:{}", paths.len()));
+            Ok(())
+        }
         fn eligible(&self, _: Ticket) -> bool {
             self.eligible
         }
@@ -156,6 +180,38 @@ mod tests {
                 ..Default::default()
             },
         )
+    }
+    #[test]
+    fn image_and_explorer_payloads_use_their_native_ports_without_global_clipboard_access() {
+        let (db, _, _, mut port) = setup();
+        let mut bytes = std::io::Cursor::new(Vec::new());
+        image::RgbImage::new(8, 5)
+            .write_to(&mut bytes, image::ImageFormat::Png)
+            .unwrap();
+        let image = db
+            .add_clipboard_image(bytes.get_ref(), None)
+            .unwrap()
+            .unwrap();
+        pick(&db, &image.id, Mode::Copy, None, &mut port).unwrap();
+        assert_eq!(port.calls, ["copy:image"]);
+        let files = db
+            .add_clipboard_files(
+                vec![std::env::temp_dir()
+                    .join("never-opened.txt")
+                    .to_string_lossy()
+                    .into()],
+                None,
+            )
+            .unwrap()
+            .unwrap();
+        port.calls.clear();
+        pick(&db, &files.id, Mode::Copy, None, &mut port).unwrap();
+        assert_eq!(port.calls, ["copy:files:1"]);
+        assert!(db
+            .get_clipboard_entry(&image.id)
+            .unwrap()
+            .content
+            .starts_with("data:image/png;base64,"));
     }
     #[test]
     fn explicit_paste_writes_touches_restores_sends_once_then_collapses() {

@@ -29,19 +29,23 @@ const message = (error: unknown) => (error instanceof Error ? error.message : St
 export function MediaReview({
   tool,
   input,
+  initialPreset,
   close,
 }: {
   tool: Tool;
   input: string;
+  initialPreset?: string;
   close: () => void;
 }) {
+  const initial =
+    initialPreset && tool.presets.includes(initialPreset) ? initialPreset : tool.presets[0];
   const [path, setPath] = useState(input),
     [source, setSource] = useState(input);
   const [inspection, setInspection] = useState(0);
   const [info, setInfo] = useState<MediaInfo | null>(null),
     [plan, setPlan] = useState<MediaPlan | null>(null);
   const [presets, setPresets] = useState<ToolPreset[]>([]),
-    [presetId, setPresetId] = useState(tool.presets[0]);
+    [presetId, setPresetId] = useState(initial);
   const [cap, setCap] = useState(20),
     [options, setOptions] = useState(defaultMediaOptions);
   const [caps, setCaps] = useState<MediaCapabilities | null>(null),
@@ -59,6 +63,9 @@ export function MediaReview({
     working = useRef(false);
   const sourceEpoch = useRef(0);
   const imageReviewIds = useRef(new Map<string, string>());
+  const routedPreset = useRef(presetId),
+    capEdited = useRef(false);
+  routedPreset.current = presetId;
   const fit = tool.id === "fit-size",
     animated = tool.id === "to-gif" || tool.id === "animated-webp";
   const preset = presets.find((p) => p.id === presetId);
@@ -75,7 +82,7 @@ export function MediaReview({
       .then((value) => {
         if (active) {
           setPresets(value);
-          setCap(value.find((p) => p.id === tool.presets[0])?.maxMb ?? 20);
+          if (!capEdited.current) setCap(value.find((p) => p.id === initial)?.maxMb ?? 20);
         }
       })
       .catch((e) => {
@@ -93,7 +100,7 @@ export function MediaReview({
     return () => {
       active = false;
     };
-  }, [tool, fit]);
+  }, [tool, fit, initial]);
   useEffect(() => {
     let active = true;
     setInfo(null);
@@ -106,14 +113,21 @@ export function MediaReview({
       return;
     }
     if (["fit-size", "strip-metadata"].includes(tool.id) && isImagePath(source)) {
-      let id = imageReviewIds.current.get(source);
+      const key = JSON.stringify([source, routedPreset.current]);
+      let id = imageReviewIds.current.get(key);
       if (!id) {
         id = crypto.randomUUID();
-        imageReviewIds.current.set(source, id);
+        imageReviewIds.current.set(key, id);
       }
       setLoading(true);
       void mediaApi
-        .open({ id, toolId: tool.id, input: source, inputs: [source] })
+        .open({
+          id,
+          toolId: tool.id,
+          input: source,
+          inputs: [source],
+          presetId: routedPreset.current,
+        })
         .catch((e) => {
           if (active) setError(message(e));
         })
@@ -339,6 +353,7 @@ export function MediaReview({
                       onClick={() => {
                         setPresetId(id);
                         setCap(p?.maxMb ?? 20);
+                        capEdited.current = true;
                       }}
                     >
                       {id === "custom-fit"
@@ -361,7 +376,10 @@ export function MediaReview({
                   max={100000}
                   value={Number.isFinite(cap) ? cap : ""}
                   disabled={busy}
-                  onChange={(e) => setCap(e.target.valueAsNumber)}
+                  onChange={(e) => {
+                    capEdited.current = true;
+                    setCap(e.target.valueAsNumber);
+                  }}
                 />
               )}
             </section>
@@ -490,7 +508,10 @@ export function MediaReview({
                         max={100000}
                         value={Number.isFinite(cap) ? cap : ""}
                         disabled={busy}
-                        onChange={(e) => setCap(e.target.valueAsNumber)}
+                        onChange={(e) => {
+                          capEdited.current = true;
+                          setCap(e.target.valueAsNumber);
+                        }}
                       />
                     )}
                     <Button
@@ -498,6 +519,7 @@ export function MediaReview({
                       onClick={() => {
                         setPresetId("outlook");
                         setCap(presets.find((p) => p.id === "outlook")?.maxMb ?? 10);
+                        capEdited.current = true;
                       }}
                       disabled={busy}
                     >

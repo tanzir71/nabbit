@@ -1,0 +1,26 @@
+Compiling nabbit v0.1.0 (D:\claude-upgrade-26\nabbit\src-tauri)
+    Finished `test` profile [unoptimized + debuginfo] target(s) in 1m 39s
+     Running unittests src\lib.rs (target\debug\deps\nabbit_lib-0297bdcf3f91dea5.exe)
+
+running 19 tests
+test context::classify::tests::classification_is_bounded_and_does_not_read_or_fetch ... ok
+test context::classify::tests::each_privacy_format_and_notification_state_suppresses_context ... ok
+test context::clipboard::tests::dib_conversion_checks_extent_orientation_and_allocation_before_decode ... ok
+test context::commands::tests::registry_context_filters_every_tool_and_text_results_keep_the_original ... ok
+test context::explorer::tests::n_invocations_become_one_ordered_shelf_batch_with_separate_review_intents ... ok
+test context::explorer::tests::parser_keeps_unicode_spaces_and_switch_looking_names_after_the_separator ... ok
+test context::explorer::tests::the_fixed_300ms_window_collects_a_burst_once_and_keeps_a_later_invocation_for_the_next_batch ... ok
+test context::fallback::native::tests::native_owned_all_format_cache_is_independent_and_byte_exact_without_using_the_clipboard ... ok
+test context::fallback::native::tests::native_owned_bitmap_and_enhanced_metafile_clones_keep_pixels_and_records ... ok
+test context::fallback::tests::a_failed_restore_sequence_is_not_captured_and_a_newer_copy_releases_the_suppression ... ok
+test context::fallback::tests::fallback_restores_every_opaque_format_on_success_send_failure_and_read_failure ... ok
+test context::fallback::tests::opt_out_private_targets_and_unpreservable_formats_never_send_copy ... ok
+test context::registration::tests::registration_plan_contains_every_registry_preset_and_only_the_owned_hkcu_subtree ... ok
+test context::registration::tests::toggles_and_uninstall_remove_only_this_executable_owned_registration ... ok
+test context::selection::tests::selected_text_policy_never_reads_password_or_excluded_fields_and_keeps_whitespace ... ok
+test context::selection_fixture::tests::native_owned_uia_selection_and_password_policy_without_global_focus_or_clipboard ... ok
+test context::text::tests::catalog_ids_are_unique_and_all_run_without_side_effects ... ok
+test context::text::tests::json_formatting_preserves_number_lexemes_order_and_escaped_strings ... ok
+test context::text::tests::transforms_cover_unicode_acronyms_lines_and_strict_encodings ... ok
+
+test result: ok. 19 passed; 0 failed; 0 ignored; 0 measured; 361 filtered out; finished in 0.62s

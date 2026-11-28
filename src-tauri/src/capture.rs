@@ -289,10 +289,8 @@ pub fn hotkey(app: &AppHandle) {
         let state = app.state::<crate::AppState>();
         let result = explicit_hotkey(
             || {
-                arboard::Clipboard::new()
-                    .map_err(|e| msg(e.to_string()))?
-                    .get_text()
-                    .map_err(|e| msg(e.to_string()))
+                crate::clipboard::watcher::note_hotkey_text(&state.db)
+                    .ok_or_else(|| msg("The clipboard link is private or unavailable"))
             },
             |url| state.downloads.enqueue_remembered(url),
         );

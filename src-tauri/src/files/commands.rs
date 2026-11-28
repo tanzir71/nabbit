@@ -400,6 +400,9 @@ pub async fn files_suggestions(
     site: Option<String>,
 ) -> Result<Vec<String>> {
     caller(&app, &window)?;
+    if crate::context::silent(&app) {
+        return Ok(vec![]);
+    }
     let service = service.inner().clone();
     blocking(move || service.suggestions(&paths, site.as_deref())).await
 }
@@ -411,6 +414,10 @@ pub async fn files_peek_open(
     id: String,
 ) -> Result<watch::Peek> {
     caller(&app, &window)?;
+    if crate::context::silent(&app) {
+        service.watches.close(window.label(), None);
+        return Err(msg("Folder peeks are quiet during full-screen apps"));
+    }
     let service = service.inner().clone();
     let owner = window.label().to_owned();
     let events = app.clone();
@@ -421,7 +428,9 @@ pub async fn files_peek_open(
             &owner,
             pin.path,
             Arc::new(move |token| {
-                let _ = events.emit_to(target.as_str(), "pins:peek-changed", token);
+                if !crate::context::silent(&events) {
+                    let _ = events.emit_to(target.as_str(), "pins:peek-changed", token);
+                }
             }),
         )
     })
@@ -435,6 +444,10 @@ pub async fn files_peek_items(
     token: String,
 ) -> Result<Vec<watch::Recent>> {
     caller(&app, &window)?;
+    if crate::context::silent(&app) {
+        service.watches.close(window.label(), None);
+        return Ok(vec![]);
+    }
     let service = service.inner().clone();
     let owner = window.label().to_owned();
     blocking(move || service.watches.read(&owner, &token)).await

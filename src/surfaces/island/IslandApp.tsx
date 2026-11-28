@@ -101,12 +101,12 @@ export function IslandApp({ suppliedStore }: { suppliedStore?: IslandStore }) {
       instruction.keyboard.id >= keyboardRequest.current &&
       (!keyboardEntered.current || instruction.keyboard.id > keyboardRequest.current)
     ) {
-      if (
-        instruction.keyboard.target === "notes" &&
-        (model.tab !== "notes" || model.filters.searchOpen === "true")
-      ) {
+      const requestedTab = ["notes", "clipboard", "files"].includes(instruction.keyboard.target)
+        ? (instruction.keyboard.target as "notes" | "clipboard" | "files")
+        : null;
+      if (requestedTab && (model.tab !== requestedTab || model.filters.searchOpen === "true")) {
         store.getState().dispatch({ type: "filter", name: "searchOpen", value: "false" });
-        store.getState().dispatch({ type: "tab", tab: "notes" });
+        store.getState().dispatch({ type: "tab", tab: requestedTab });
         return;
       }
       keyboardRequest.current = instruction.keyboard.id;

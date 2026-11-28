@@ -1,0 +1,62 @@
+node:internal/modules/run_main:107
+    triggerUncaughtException(
+    ^
+
+locator.click: Timeout 30000ms exceeded.
+Call log:
+  - waiting for getByRole('button', { name: 'Clipboard', exact: true })
+    - locator resolved to <button type="button" class="n-tab" aria-pressed="false">…</button>
+  - attempting click action
+    2 × waiting for element to be visible, enabled and stable
+      - element is visible, enabled and stable
+      - scrolling into view if needed
+      - done scrolling
+      - <div class="fixed inset-0 z-30 grid place-items-center bg-island-bg/50 p-4">…</div> intercepts pointer events
+    - retrying click action
+    - waiting 20ms
+    2 × waiting for element to be visible, enabled and stable
+      - element is visible, enabled and stable
+      - scrolling into view if needed
+      - done scrolling
+      - <div class="fixed inset-0 z-30 grid place-items-center bg-island-bg/50 p-4">…</div> intercepts pointer events
+    - retrying click action
+      - waiting 100ms
+    57 × waiting for element to be visible, enabled and stable
+       - element is visible, enabled and stable
+       - scrolling into view if needed
+       - done scrolling
+       - <div class="fixed inset-0 z-30 grid place-items-center bg-island-bg/50 p-4">…</div> intercepts pointer events
+     - retrying click action
+       - waiting 500ms
+
+    at D:\claude-upgrade-26\nabbit\scripts\capture-native-context.mjs:331:70 {
+  log: [
+    "  - waiting for getByRole('button', { name: 'Clipboard', exact: true })",
+    '    - locator resolved to <button type="button" class="n-tab" aria-pressed="false">…</button>',
+    '  - attempting click action',
+    '    2 × waiting for element to be visible, enabled and stable',
+    '      - element is visible, enabled and stable',
+    '      - scrolling into view if needed',
+    '      - done scrolling',
+    '      - <div class="fixed inset-0 z-30 grid place-items-center bg-island-bg/50 p-4">…</div> intercepts pointer events',
+    '    - retrying click action',
+    '    - waiting 20ms',
+    '    2 × waiting for element to be visible, enabled and stable',
+    '      - element is visible, enabled and stable',
+    '      - scrolling into view if needed',
+    '      - done scrolling',
+    '      - <div class="fixed inset-0 z-30 grid place-items-center bg-island-bg/50 p-4">…</div> intercepts pointer events',
+    '    - retrying click action',
+    '      - waiting 100ms',
+    '    57 × waiting for element to be visible, enabled and stable',
+    '       - element is visible, enabled and stable',
+    '       - scrolling into view if needed',
+    '       - done scrolling',
+    '       - <div class="fixed inset-0 z-30 grid place-items-center bg-island-bg/50 p-4">…</div> intercepts pointer events',
+    '     - retrying click action',
+    '       - waiting 500ms'
+  ],
+  name: 'TimeoutError'
+}
+
+Node.js v24.22.2

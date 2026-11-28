@@ -1,0 +1,13 @@
+{
+  "retained": [
+    {
+      "source": ".tools/v511-manifest-b.log",
+      "log": "v511-manifest-b-log.txt",
+      "canonicalSha256": "58c034615da51d0db3ea2cabf0b0444038bde7c863b085af0836214245d3d90d",
+      "originalArchive": "v511-manifest-b-log.txt.original.gz",
+      "originalBytes": 676,
+      "originalSha256": "4c6139764642c496491b0710bc21ccdaf513ed40dc17362bdd50b8e5076f6428"
+    }
+  ],
+  "reason": "A final concurrency review found a check-then-push race during cold startup. enqueue/install_sender now hold incoming then pending through transfer; a barrier test submits128 concurrent invocations plus the earlier cold input, and asserts exactly-once delivery, cold-first order and an empty pending queue. All affected native/Rust gates were rerun. Earlier staged receipt and completed pre-fix evidence remain explicitly superseded."
+}

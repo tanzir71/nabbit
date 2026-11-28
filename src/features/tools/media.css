@@ -185,3 +185,5 @@ html[data-surface="media-sheet"] body {
 .media-review .sheet-footer {
   height: 56px;
 }
+.media-input-choices { display: grid; gap: 6px; max-height: 360px; overflow-y: auto; margin: 12px 0; }
+.media-input-choices .n-button { justify-content: flex-start; overflow-wrap: anywhere; height: auto; min-height: 32px; white-space: normal; }

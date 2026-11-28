@@ -1,0 +1,355 @@
+Checking windows v0.62.2
+    Checking webview2-com-sys v0.39.1
+    Checking tao v0.37.3
+    Checking webview2-com v0.39.1
+    Checking wry v0.57.4
+    Checking tauri-runtime v2.12.4
+    Checking tauri-runtime-wry v2.12.5
+    Checking tauri v2.12.7
+    Checking tauri-plugin-deep-link v2.4.10
+    Checking tauri-plugin-shell v2.3.5
+    Checking tauri-plugin-autostart v2.5.1
+    Checking tauri-plugin-global-shortcut v2.3.2
+    Checking tauri-plugin-updater v2.10.1
+    Checking tauri-plugin-clipboard-manager v2.3.2
+    Checking tauri-plugin-drag v2.1.1
+    Checking tauri-plugin-single-instance v2.4.2
+    Checking nabbit v0.1.0 (D:\claude-upgrade-26\nabbit\src-tauri)
+error[E0277]: `?` couldn't convert the error to `NabbitError`
+  --> src\context\registration_win.rs:33:84
+   |
+33 |             let raw = SHGetKnownFolderPath(&FOLDERID_SendTo, KF_FLAG_DEFAULT, None)?;
+   |                       -------------------------------------------------------------^ the trait `std::convert::From<windows_core::Error>` is not implemented for `NabbitError`
+   |                       |
+   |                       this can't be annotated with `?` because it has type `Result<_, windows_core::Error>`
+   |
+note: `NabbitError` needs to implement `From<windows_core::Error>`
+  --> src\error.rs:4:1
+   |
+ 4 | pub enum NabbitError {
+   | ^^^^^^^^^^^^^^^^^^^^
+   = note: the question mark operation (`?`) implicitly performs a conversion on the error value using the `From` trait
+   = help: `NabbitError` implements trait `std::convert::From<T>`:
+             std::convert::From<anyhow::Error>
+             std::convert::From<rusqlite::Error>
+             std::convert::From<serde_json::Error>
+             std::convert::From<std::io::Error>
+             std::convert::From<tauri::Error>
+
+error[E0277]: `?` couldn't convert the error to `NabbitError`
+  --> src\context\registration_win.rs:36:60
+   |
+36 |             let directory = std::path::PathBuf::from(result?);
+   |                                                      ------^ the trait `std::convert::From<FromUtf16Error>` is not implemented for `NabbitError`
+   |                                                      |
+   |                                                      this can't be annotated with `?` because it has type `Result<_, FromUtf16Error>`
+   |
+note: `NabbitError` needs to implement `From<FromUtf16Error>`
+  --> src\error.rs:4:1
+   |
+ 4 | pub enum NabbitError {
+   | ^^^^^^^^^^^^^^^^^^^^
+   = note: the question mark operation (`?`) implicitly performs a conversion on the error value using the `From` trait
+   = help: `NabbitError` implements trait `std::convert::From<T>`:
+             std::convert::From<anyhow::Error>
+             std::convert::From<rusqlite::Error>
+             std::convert::From<serde_json::Error>
+             std::convert::From<std::io::Error>
+             std::convert::From<tauri::Error>
+
+error[E0277]: `?` couldn't convert the error to `NabbitError`
+   --> src\context\registration_win.rs:161:93
+    |
+161 |             let link: IShellLinkW = CoCreateInstance(&ShellLink, None, CLSCTX_INPROC_SERVER)?;
+    |                                     --------------------------------------------------------^ the trait `std::convert::From<windows_core::Error>` is not implemented for `NabbitError`
+    |                                     |
+    |                                     this can't be annotated with `?` because it has type `Result<_, windows_core::Error>`
+    |
+note: `NabbitError` needs to implement `From<windows_core::Error>`
+   --> src\error.rs:4:1
+    |
+  4 | pub enum NabbitError {
+    | ^^^^^^^^^^^^^^^^^^^^
+    = note: the question mark operation (`?`) implicitly performs a conversion on the error value using the `From` trait
+    = help: `NabbitError` implements trait `std::convert::From<T>`:
+              std::convert::From<anyhow::Error>
+              std::convert::From<rusqlite::Error>
+              std::convert::From<serde_json::Error>
+              std::convert::From<std::io::Error>
+              std::convert::From<tauri::Error>
+
+error[E0277]: `?` couldn't convert the error to `NabbitError`
+   --> src\context\registration_win.rs:162:52
+    |
+162 |             let persist: IPersistFile = link.cast()?;
+    |                                              ------^ the trait `std::convert::From<windows_core::Error>` is not implemented for `NabbitError`
+    |                                              |
+    |                                              this can't be annotated with `?` because it has type `Result<_, windows_core::Error>`
+    |
+note: `NabbitError` needs to implement `From<windows_core::Error>`
+   --> src\error.rs:4:1
+    |
+  4 | pub enum NabbitError {
+    | ^^^^^^^^^^^^^^^^^^^^
+    = note: the question mark operation (`?`) implicitly performs a conversion on the error value using the `From` trait
+    = help: `NabbitError` implements trait `std::convert::From<T>`:
+              std::convert::From<anyhow::Error>
+              std::convert::From<rusqlite::Error>
+              std::convert::From<serde_json::Error>
+              std::convert::From<std::io::Error>
+              std::convert::From<tauri::Error>
+
+error[E0277]: `?` couldn't convert the error to `NabbitError`
+   --> src\context\registration_win.rs:166:14
+    |
+163 |               persist.Load(
+    |  _____________________-
+164 | |                 &HSTRING::from(self.shortcut.to_string_lossy().as_ref()),
+165 | |                 STGM_READ,
+166 | |             )?;
+    | |             -^ the trait `std::convert::From<windows_core::Error>` is not implemented for `NabbitError`
+    | |_____________|
+    |               this can't be annotated with `?` because it has type `Result<_, windows_core::Error>`
+    |
+note: `NabbitError` needs to implement `From<windows_core::Error>`
+   --> src\error.rs:4:1
+    |
+  4 | pub enum NabbitError {
+    | ^^^^^^^^^^^^^^^^^^^^
+    = note: the question mark operation (`?`) implicitly performs a conversion on the error value using the `From` trait
+    = help: `NabbitError` implements trait `std::convert::From<T>`:
+              std::convert::From<anyhow::Error>
+              std::convert::From<rusqlite::Error>
+              std::convert::From<serde_json::Error>
+              std::convert::From<std::io::Error>
+              std::convert::From<tauri::Error>
+
+error[E0277]: `?` couldn't convert the error to `NabbitError`
+   --> src\context\registration_win.rs:170:44
+    |
+170 |             link.GetDescription(&mut owner)?;
+    |                  --------------------------^ the trait `std::convert::From<windows_core::Error>` is not implemented for `NabbitError`
+    |                  |
+    |                  this can't be annotated with `?` because it has type `Result<_, windows_core::Error>`
+    |
+note: `NabbitError` needs to implement `From<windows_core::Error>`
+   --> src\error.rs:4:1
+    |
+  4 | pub enum NabbitError {
+    | ^^^^^^^^^^^^^^^^^^^^
+    = note: the question mark operation (`?`) implicitly performs a conversion on the error value using the `From` trait
+    = help: `NabbitError` implements trait `std::convert::From<T>`:
+              std::convert::From<anyhow::Error>
+              std::convert::From<rusqlite::Error>
+              std::convert::From<serde_json::Error>
+              std::convert::From<std::io::Error>
+              std::convert::From<tauri::Error>
+
+error[E0277]: `?` couldn't convert the error to `NabbitError`
+   --> src\context\registration_win.rs:171:63
+    |
+171 |             link.GetPath(&mut target, std::ptr::null_mut(), 0)?;
+    |                  ---------------------------------------------^ the trait `std::convert::From<windows_core::Error>` is not implemented for `NabbitError`
+    |                  |
+    |                  this can't be annotated with `?` because it has type `Result<_, windows_core::Error>`
+    |
+note: `NabbitError` needs to implement `From<windows_core::Error>`
+   --> src\error.rs:4:1
+    |
+  4 | pub enum NabbitError {
+    | ^^^^^^^^^^^^^^^^^^^^
+    = note: the question mark operation (`?`) implicitly performs a conversion on the error value using the `From` trait
+    = help: `NabbitError` implements trait `std::convert::From<T>`:
+              std::convert::From<anyhow::Error>
+              std::convert::From<rusqlite::Error>
+              std::convert::From<serde_json::Error>
+              std::convert::From<std::io::Error>
+              std::convert::From<tauri::Error>
+
+error[E0277]: `?` couldn't convert the error to `NabbitError`
+   --> src\context\registration_win.rs:172:46
+    |
+172 |             link.GetArguments(&mut arguments)?;
+    |                  ----------------------------^ the trait `std::convert::From<windows_core::Error>` is not implemented for `NabbitError`
+    |                  |
+    |                  this can't be annotated with `?` because it has type `Result<_, windows_core::Error>`
+    |
+note: `NabbitError` needs to implement `From<windows_core::Error>`
+   --> src\error.rs:4:1
+    |
+  4 | pub enum NabbitError {
+    | ^^^^^^^^^^^^^^^^^^^^
+    = note: the question mark operation (`?`) implicitly performs a conversion on the error value using the `From` trait
+    = help: `NabbitError` implements trait `std::convert::From<T>`:
+              std::convert::From<anyhow::Error>
+              std::convert::From<rusqlite::Error>
+              std::convert::From<serde_json::Error>
+              std::convert::From<std::io::Error>
+              std::convert::From<tauri::Error>
+
+error[E0277]: `?` couldn't convert the error to `NabbitError`
+   --> src\context\registration_win.rs:187:93
+    |
+187 |             let link: IShellLinkW = CoCreateInstance(&ShellLink, None, CLSCTX_INPROC_SERVER)?;
+    |                                     --------------------------------------------------------^ the trait `std::convert::From<windows_core::Error>` is not implemented for `NabbitError`
+    |                                     |
+    |                                     this can't be annotated with `?` because it has type `Result<_, windows_core::Error>`
+    |
+note: `NabbitError` needs to implement `From<windows_core::Error>`
+   --> src\error.rs:4:1
+    |
+  4 | pub enum NabbitError {
+    | ^^^^^^^^^^^^^^^^^^^^
+    = note: the question mark operation (`?`) implicitly performs a conversion on the error value using the `From` trait
+    = help: `NabbitError` implements trait `std::convert::From<T>`:
+              std::convert::From<anyhow::Error>
+              std::convert::From<rusqlite::Error>
+              std::convert::From<serde_json::Error>
+              std::convert::From<std::io::Error>
+              std::convert::From<tauri::Error>
+
+error[E0277]: `?` couldn't convert the error to `NabbitError`
+   --> src\context\registration_win.rs:188:56
+    |
+188 |             link.SetPath(&HSTRING::from(&value.target))?;
+    |                  --------------------------------------^ the trait `std::convert::From<windows_core::Error>` is not implemented for `NabbitError`
+    |                  |
+    |                  this can't be annotated with `?` because it has type `Result<_, windows_core::Error>`
+    |
+note: `NabbitError` needs to implement `From<windows_core::Error>`
+   --> src\error.rs:4:1
+    |
+  4 | pub enum NabbitError {
+    | ^^^^^^^^^^^^^^^^^^^^
+    = note: the question mark operation (`?`) implicitly performs a conversion on the error value using the `From` trait
+    = help: `NabbitError` implements trait `std::convert::From<T>`:
+              std::convert::From<anyhow::Error>
+              std::convert::From<rusqlite::Error>
+              std::convert::From<serde_json::Error>
+              std::convert::From<std::io::Error>
+              std::convert::From<tauri::Error>
+
+error[E0277]: `?` couldn't convert the error to `NabbitError`
+   --> src\context\registration_win.rs:189:64
+    |
+189 |             link.SetArguments(&HSTRING::from(&value.arguments))?;
+    |                  ----------------------------------------------^ the trait `std::convert::From<windows_core::Error>` is not implemented for `NabbitError`
+    |                  |
+    |                  this can't be annotated with `?` because it has type `Result<_, windows_core::Error>`
+    |
+note: `NabbitError` needs to implement `From<windows_core::Error>`
+   --> src\error.rs:4:1
+    |
+  4 | pub enum NabbitError {
+    | ^^^^^^^^^^^^^^^^^^^^
+    = note: the question mark operation (`?`) implicitly performs a conversion on the error value using the `From` trait
+    = help: `NabbitError` implements trait `std::convert::From<T>`:
+              std::convert::From<anyhow::Error>
+              std::convert::From<rusqlite::Error>
+              std::convert::From<serde_json::Error>
+              std::convert::From<std::io::Error>
+              std::convert::From<tauri::Error>
+
+error[E0277]: `?` couldn't convert the error to `NabbitError`
+   --> src\context\registration_win.rs:190:62
+    |
+190 |             link.SetDescription(&HSTRING::from(&value.owner))?;
+    |                  --------------------------------------------^ the trait `std::convert::From<windows_core::Error>` is not implemented for `NabbitError`
+    |                  |
+    |                  this can't be annotated with `?` because it has type `Result<_, windows_core::Error>`
+    |
+note: `NabbitError` needs to implement `From<windows_core::Error>`
+   --> src\error.rs:4:1
+    |
+  4 | pub enum NabbitError {
+    | ^^^^^^^^^^^^^^^^^^^^
+    = note: the question mark operation (`?`) implicitly performs a conversion on the error value using the `From` trait
+    = help: `NabbitError` implements trait `std::convert::From<T>`:
+              std::convert::From<anyhow::Error>
+              std::convert::From<rusqlite::Error>
+              std::convert::From<serde_json::Error>
+              std::convert::From<std::io::Error>
+              std::convert::From<tauri::Error>
+
+error[E0277]: `?` couldn't convert the error to `NabbitError`
+   --> src\context\registration_win.rs:191:52
+    |
+191 |             let persist: IPersistFile = link.cast()?;
+    |                                              ------^ the trait `std::convert::From<windows_core::Error>` is not implemented for `NabbitError`
+    |                                              |
+    |                                              this can't be annotated with `?` because it has type `Result<_, windows_core::Error>`
+    |
+note: `NabbitError` needs to implement `From<windows_core::Error>`
+   --> src\error.rs:4:1
+    |
+  4 | pub enum NabbitError {
+    | ^^^^^^^^^^^^^^^^^^^^
+    = note: the question mark operation (`?`) implicitly performs a conversion on the error value using the `From` trait
+    = help: `NabbitError` implements trait `std::convert::From<T>`:
+              std::convert::From<anyhow::Error>
+              std::convert::From<rusqlite::Error>
+              std::convert::From<serde_json::Error>
+              std::convert::From<std::io::Error>
+              std::convert::From<tauri::Error>
+
+error[E0277]: `?` couldn't convert the error to `NabbitError`
+   --> src\context\registration_win.rs:195:14
+    |
+192 |               persist.Save(
+    |  _____________________-
+193 | |                 &HSTRING::from(self.shortcut.to_string_lossy().as_ref()),
+194 | |                 true,
+195 | |             )?;
+    | |             -^ the trait `std::convert::From<windows_core::Error>` is not implemented for `NabbitError`
+    | |_____________|
+    |               this can't be annotated with `?` because it has type `Result<_, windows_core::Error>`
+    |
+note: `NabbitError` needs to implement `From<windows_core::Error>`
+   --> src\error.rs:4:1
+    |
+  4 | pub enum NabbitError {
+    | ^^^^^^^^^^^^^^^^^^^^
+    = note: the question mark operation (`?`) implicitly performs a conversion on the error value using the `From` trait
+    = help: `NabbitError` implements trait `std::convert::From<T>`:
+              std::convert::From<anyhow::Error>
+              std::convert::From<rusqlite::Error>
+              std::convert::From<serde_json::Error>
+              std::convert::From<std::io::Error>
+              std::convert::From<tauri::Error>
+
+error[E0597]: `service` does not live long enough
+  --> src\context\commands.rs:76:16
+   |
+68 |       let service = app.state::<Service>();
+   |           ------- binding `service` declared here
+...
+76 |           batch: service
+   |                  -^^^^^^
+   |                  |
+   |  ________________borrowed value does not live long enough
+   | |
+77 | |             .batch
+78 | |             .lock()
+79 | |             .map_err(|_| msg("Explorer batch is unavailable"))?
+   | |_______________________________________________________________- a temporary with access to the borrow is created here ...
+...
+87 |   }
+   |   -
+   |   |
+   |   `service` dropped here while still borrowed
+   |   ... and the borrow might be used here, when that temporary is dropped and runs the destructor for type `ControlFlow<std::result::Result<Infallible, NabbitError>, std::sync::MutexGuard<'_, std::option::Option<explorer::Batch>>>`
+   |
+   = note: the temporary is part of an expression at the end of a block;
+           consider forcing this temporary to be dropped sooner, before the block's local variables are dropped
+help: for example, you could save the expression's value in a new local variable `x` and then make `x` be the expression at the end of the block
+   |
+75 ~     let x = Ok(BatchSnapshot {
+76 |         batch: service
+...
+85 |             .clone(),
+86 ~     }); x
+   |
+
+Some errors have detailed explanations: E0277, E0597.
+For more information about an error, try `rustc --explain E0277`.
+error: could not compile `nabbit` (lib) due to 15 previous errors

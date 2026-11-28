@@ -1,0 +1,11 @@
+{
+  "figma": "v511-figma-assets.json",
+  "browser": [
+    "v511-context-d-screenshots.json",
+    "v511-integration-b-screenshots.json"
+  ],
+  "native": "v511-native-d-scene.json",
+  "comparison": "Original link16px and chevron14px SVGs, Geist13/18 menu, 280x348 main menu,200x190 six-row case submenu,32px main rows/30px submenu rows,4px padding/1px border/8px radius. Link row480x70 with12x10 padding; existing tray460px constrains it to442px. Selected video offers Save before Download. Files integration follows the existing settings layout without inventing a Figma frame.",
+  "readability": "All default axe rules scan each complete fixture document: zero violations/incompletes; keyboard and focus behavior are covered by frontend tests.",
+  "captureMethod": "Natural motion/font/image settling, neutral DOM pointer and text-control blur, exact browser device-pixel pairs at1x/1.5x and static native WebView2 pairs atDPR2. Existing browser clock fixture is recorded; no product CSS/data/time mutation or OS setting changes."
+}

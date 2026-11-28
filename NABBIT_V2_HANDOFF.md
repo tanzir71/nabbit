@@ -804,7 +804,7 @@ Commit after every task (§0.1). Lines marked **MILESTONE** are tasks of their o
 - [x] V5.8 Files tab (`10:249`): Shelf + Pins, pin peek (`43:755`), IFileOperation moves with the `file_ops` journal and Moved pill (`33:518`), drop target `Over=Pin` (`43:692`), Move to… on Shelf actions (`34:897`) and the download-done peek (`33:580`).
 - [x] V5.9 Media tools: Fit under N MB (`45:282`) with encoder probe and retry loop, To MP4, trim, extract audio, To GIF, metadata strip; Tool running pill (`33:535`).
 - [x] V5.10 Image and document tools: HEIC → JPG via WIC with the Store prompt, convert / Make smaller (`36:410`), PDF basics, text and QR from image files; drop suggestions per file type.
-- [ ] V5.11 Context: clipboard classifier and first row (`45:568`) with privacy formats, text tools menu (`36:505`, `36:539`), act on selected text (Ctrl+Alt+S), Send To + HKCU verbs with single-instance batching, full-screen silence.
+- [x] V5.11 Context: clipboard classifier and first row (`45:568`) with privacy formats, text tools menu (`36:505`, `36:539`), act on selected text (Ctrl+Alt+S), Send To + HKCU verbs with single-instance batching, full-screen silence.
 - [ ] V5.12 Native tools acceptance (§9b.7).
 - [ ] **MILESTONE M10 — Modules, file tools and pins.**
 

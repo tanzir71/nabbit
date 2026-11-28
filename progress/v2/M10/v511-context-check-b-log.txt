@@ -1,0 +1,40 @@
+Checking windows-sys v0.59.0
+   Compiling nabbit v0.1.0 (D:\claude-upgrade-26\nabbit\src-tauri)
+    Checking global-hotkey v0.8.0
+    Checking tauri-plugin-global-shortcut v2.3.2
+error[E0603]: module `pins` is private
+   --> src\context\commands.rs:277:35
+    |
+277 |                     crate::files::pins::save(
+    |                                   ^^^^ private module
+    |
+note: the module `pins` is defined here
+   --> src\files\mod.rs:7:1
+    |
+  7 | mod pins;
+    | ^^^^^^^^^
+help: consider importing this function through its public re-export instead
+    |
+277 -                     crate::files::pins::save(
+277 +                     crate::files::save(
+    |
+
+error[E0603]: module `pins` is private
+   --> src\context\commands.rs:279:39
+    |
+279 |                         crate::files::pins::PinDraft {
+    |                                       ^^^^ private module
+    |
+note: the module `pins` is defined here
+   --> src\files\mod.rs:7:1
+    |
+  7 | mod pins;
+    | ^^^^^^^^^
+help: consider importing this struct through its public re-export instead
+    |
+279 -                         crate::files::pins::PinDraft {
+279 +                         crate::files::PinDraft {
+    |
+
+For more information about this error, try `rustc --explain E0603`.
+error: could not compile `nabbit` (lib) due to 2 previous errors

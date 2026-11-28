@@ -1,0 +1,14 @@
+> nabbit@0.1.0 test
+> vitest --run src/features/clipboard/context.test.tsx src/features/tools/ImageDocumentReview.test.tsx
+
+
+ RUN  v3.2.7 D:/claude-upgrade-26/nabbit
+
+ ✓ src/features/clipboard/context.test.tsx (8 tests) 1034ms
+   ✓ clipboard context > does not act until clicked, offers keyboard case navigation and retries the same frozen request  379ms
+ ✓ src/features/tools/ImageDocumentReview.test.tsx (8 tests) 631ms
+
+ Test Files  2 passed (2)
+      Tests  16 passed (16)
+   Start at  10:16:42
+   Duration  3.14s (transform 867ms, setup 190ms, collect 2.03s, tests 1.66s, environment 1.13s, prepare 515ms)

@@ -1,0 +1,26 @@
+file:///D:/claude-upgrade-26/nabbit/scripts/screenshots/harness.mjs:412
+            throw new Error(`${scenario.name} (${theme}@${scale}x): ${error.message}`, {
+                  ^
+
+Error: context-batch (light@1x): The expression evaluated to a falsy value:
+
+  assert(
+
+    at captureSuite (file:///D:/claude-upgrade-26/nabbit/scripts/screenshots/harness.mjs:412:19)
+    at async file:///D:/claude-upgrade-26/nabbit/scripts/verify-context-integration-screenshots.mjs:115:16 {
+  [cause]: AssertionError [ERR_ASSERTION]: The expression evaluated to a falsy value:
+
+    assert(
+
+      at captureSuite (file:///D:/claude-upgrade-26/nabbit/scripts/screenshots/harness.mjs:200:15)
+      at async file:///D:/claude-upgrade-26/nabbit/scripts/verify-context-integration-screenshots.mjs:115:16 {
+    generatedMessage: true,
+    code: 'ERR_ASSERTION',
+    actual: false,
+    expected: true,
+    operator: '==',
+    diff: 'simple'
+  }
+}
+
+Node.js v24.22.2

@@ -91,6 +91,26 @@ struct ClipboardPort<'a> {
     label: &'a str,
 }
 impl crate::clipboard::pick::Port for ClipboardPort<'_> {
+    fn copy_image(&mut self, path: &std::path::Path) -> crate::error::Result<()> {
+        let _guard = crate::tools::files::input(path)?;
+        let image = image::open(path)
+            .map_err(|_| crate::error::msg("The clipboard image could not be read"))?
+            .to_rgba8();
+        let data = arboard::ImageData {
+            width: image.width() as usize,
+            height: image.height() as usize,
+            bytes: std::borrow::Cow::Owned(image.into_raw()),
+        };
+        arboard::Clipboard::new()
+            .and_then(|mut c| c.set_image(data))
+            .map_err(|_| crate::error::msg("Clipboard image write failed"))
+    }
+    fn copy_files(&mut self, paths: &[String]) -> crate::error::Result<()> {
+        let _lock =
+            clipboard_win::Clipboard::new().map_err(|_| crate::error::msg("Clipboard is busy"))?;
+        clipboard_win::raw::set_file_list(paths)
+            .map_err(|_| crate::error::msg("Clipboard file write failed"))
+    }
     fn eligible(&self, ticket: crate::clipboard::pick::Ticket) -> bool {
         self.manager.clipboard_ticket(self.label) == Some(ticket)
     }
@@ -264,6 +284,9 @@ impl Manager {
         }
     }
     pub fn open_notes_capture(&self) -> Result<bool, String> {
+        self.open_context_capture(Target::Notes)
+    }
+    pub fn open_context_capture(&self, target: Target) -> Result<bool, String> {
         if !self.has_hosts() {
             return Ok(false);
         }
@@ -278,7 +301,7 @@ impl Manager {
                         return Ok(());
                     }
                     this.wake_island(&label)?;
-                    this.begin_keyboard_ui(&label, Target::Notes)?;
+                    this.begin_keyboard_ui(&label, target)?;
                     this.request_surface(&label, Mode::Expanded)
                 })();
                 if let Err(error) = result {

@@ -1,0 +1,23 @@
+{
+  "executableSha256": "2f65bcaabcaf041dd9955e9f132a741a49a71a2be636eee2186d5c0cdc41e9d5",
+  "manifestSha256": "b3fedb47332601c9cd7cebc5c5d35eb466f7039f6174541f8edbae53a5d4d624",
+  "canonicalManifestSha256": "3ffa2a7cf0d6f29ac2f3e06ea6c73eb38c1adab18dbfad1018b2869e203f806a",
+  "originalArchive": "v511-manifest-a.xml.original.gz",
+  "resource": {
+    "type": 24,
+    "id": 1,
+    "bytes": 537
+  },
+  "longPathAware": true,
+  "commonControls": [
+    {
+      "type": "win32",
+      "name": "Microsoft.Windows.Common-Controls",
+      "version": "6.0.0.0",
+      "processorArchitecture": "*",
+      "publicKeyToken": "6595b64144ccf1df",
+      "language": "*"
+    }
+  ],
+  "method": "LoadLibraryExW as data/image resource only; no execution or policy changes"
+}

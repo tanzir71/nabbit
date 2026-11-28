@@ -38,6 +38,18 @@ export function installMockIpc(seed) {
       throw typeof failure === "string" ? new Error(failure) : clone(failure);
     }
     switch (command) {
+      case "clipboard_context":
+        return clone(seed.responses?.clipboard_context ?? null);
+      case "context_batch":
+        return clone(seed.responses?.context_batch ?? { batch: null, error: null });
+      case "context_preferences":
+        return clone(
+          seed.responses?.context_preferences ?? {
+            sendTo: false,
+            contextMenu: false,
+            selectionCopyFallback: false,
+          },
+        );
       case "files_pins":
         return clone(state.filePins ?? seed.responses?.files_pins ?? []);
       case "files_capabilities":

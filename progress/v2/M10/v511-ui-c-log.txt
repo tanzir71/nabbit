@@ -1,0 +1,23 @@
+> nabbit@0.1.0 test
+> vitest --run src/features/clipboard/context.test.tsx src/features/clipboard/explorer.test.tsx src/features/clipboard/IslandClipboard.test.tsx src/features/tools/ImageReview.test.tsx src/features/tools/MediaReview.test.tsx
+
+
+ RUN  v3.2.7 D:/claude-upgrade-26/nabbit
+
+ ✓ src/features/tools/MediaReview.test.tsx (9 tests) 2163ms
+   ✓ defaults to Exact without a GPU test and submits edited limits only after the explicit click  668ms
+   ✓ uses only the encoder returned by a successful lazy GPU probe  417ms
+   ✓ keeps Exact available when every GPU probe fails  403ms
+ ✓ src/features/clipboard/IslandClipboard.test.tsx (8 tests) 3369ms
+   ✓ Clipboard island > reuses fuzzy search and all six type/pin filters without requesting OS clipboard access  1278ms
+   ✓ Clipboard island > Ctrl+F focuses search; numeric queries and IME/modifiers never pick an item  368ms
+   ✓ Clipboard island > arrows select within filtered results; Ctrl+C copies, Del removes and pinning updates Pinned  711ms
+ ✓ src/features/clipboard/context.test.tsx (6 tests) 887ms
+   ✓ clipboard context > does not act until clicked, offers keyboard case navigation and retries the same frozen request  495ms
+ ✓ src/features/clipboard/explorer.test.tsx (4 tests) 578ms
+   ✓ integration options are off by default and change the backend only after Save  428ms
+
+ Test Files  4 passed (4)
+      Tests  27 passed (27)
+   Start at  10:10:31
+   Duration  42.29s (transform 7.07s, setup 14.56s, collect 13.13s, tests 7.00s, environment 35.03s, prepare 9.74s)

@@ -1,3 +1,4 @@
+mod clipboard_payload;
 mod download_presets;
 pub mod models;
 
@@ -449,6 +450,10 @@ impl Database {
             .conn
             .lock()
             .map_err(|_| msg("database lock poisoned"))?;
+        let blob:Option<String>=conn.query_row("SELECT blob_path FROM clipboard_entries WHERE id=?1 AND NOT EXISTS(SELECT 1 FROM clipboard_entries other WHERE other.id<>?1 AND other.blob_path=clipboard_entries.blob_path)",[id],|row|row.get(0)).optional()?.flatten();
+        if let Some(blob) = blob {
+            self.remove_clipboard_blob(&blob)?;
+        }
         conn.execute("DELETE FROM clipboard_entries WHERE id = ?1", params![id])?;
         Ok(())
     }
@@ -494,6 +499,17 @@ impl Database {
                 .join(path)
         };
 
+        let root = self
+            .db_path
+            .parent()
+            .unwrap_or_else(|| Path::new("."))
+            .canonicalize()?;
+        let path = match path.canonicalize() {
+            Ok(path) if path.starts_with(&root) => path,
+            Ok(_) => return Ok(()),
+            Err(e) if e.kind() == std::io::ErrorKind::NotFound => return Ok(()),
+            Err(e) => return Err(e.into()),
+        };
         match fs::remove_file(path) {
             Ok(()) => Ok(()),
             Err(error) if error.kind() == std::io::ErrorKind::NotFound => Ok(()),
@@ -512,6 +528,14 @@ impl Database {
             .conn
             .lock()
             .map_err(|_| msg("database lock poisoned"))?;
+        let paths = {
+            let mut query=conn.prepare("SELECT DISTINCT blob_path FROM clipboard_entries expired WHERE expired.pinned=0 AND expired.created_at<?1 AND expired.blob_path IS NOT NULL AND NOT EXISTS(SELECT 1 FROM clipboard_entries kept WHERE kept.blob_path=expired.blob_path AND (kept.pinned<>0 OR kept.created_at>=?1))")?;
+            let rows = query.query_map([cutoff.to_rfc3339()], |r| r.get::<_, String>(0))?;
+            rows.collect::<std::result::Result<Vec<_>, _>>()?
+        };
+        for path in paths {
+            self.remove_clipboard_blob(&path)?;
+        }
         let count = conn.execute(
             "DELETE FROM clipboard_entries WHERE pinned = 0 AND created_at < ?1",
             params![cutoff.to_rfc3339()],

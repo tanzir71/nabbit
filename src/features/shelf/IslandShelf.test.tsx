@@ -4,6 +4,7 @@ import userEvent from "@testing-library/user-event";
 import { beforeEach, describe, expect, it, vi } from "vitest";
 import { useStore } from "zustand";
 import { listen } from "@tauri-apps/api/event";
+import { invoke } from "@tauri-apps/api/core";
 import { IslandShelf } from "./IslandShelf";
 import { shelfApi, type ShelfItem } from "./api";
 import { createIslandStore } from "../../store/islandStore";
@@ -12,6 +13,7 @@ vi.mock("./api", () => ({
   shelfApi: { list: vi.fn(), preview: vi.fn(), copy: vi.fn(), remove: vi.fn(), drag: vi.fn() },
 }));
 vi.mock("@tauri-apps/api/event", () => ({ listen: vi.fn() }));
+vi.mock("@tauri-apps/api/core", () => ({ invoke: vi.fn() }));
 const fixtures = (): ShelfItem[] => [
   {
     id: "image",
@@ -81,6 +83,12 @@ function mount(strict = false) {
 }
 beforeEach(() => {
   vi.resetAllMocks();
+  vi.mocked(invoke).mockImplementation(async (command) => {
+    if (command === "context_batch") return { batch: null, error: null } as never;
+    if (command === "tool_catalog") return [] as never;
+    if (command === "tool_suggest") return null as never;
+    throw new Error(`Unsupported Shelf fixture command: ${command}`);
+  });
   data = fixtures();
   callbacks = new Map();
   stops = [];

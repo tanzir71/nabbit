@@ -1,6 +1,4 @@
-//! URL-only foundation for explicit note/selection hotkeys. No synthetic keys,
-//! clipboard fallback or background selection collection. General text tools
-//! will use the same native reader in their own phase.
+//! Explicit link intake and the native UI Automation selected-text reader.
 use crate::{
     db::Database,
     error::{msg, Result},
@@ -10,7 +8,6 @@ use crate::{
     },
 };
 use serde_json::json;
-use tauri::{Emitter, Manager};
 
 pub fn url_intent(db: &Database, input: &str) -> Result<NotesIntent> {
     super::parse::web_url(input)?;
@@ -31,22 +28,9 @@ pub fn url_intent(db: &Database, input: &str) -> Result<NotesIntent> {
         }),
     })
 }
-pub fn selection_hotkey(app: &tauri::AppHandle) {
-    let app = app.clone();
-    tauri::async_runtime::spawn_blocking(move || {
-        let db = &app.state::<crate::AppState>().db;
-        match selected_url(db).and_then(|url| url_intent(db, &url)) {
-            Ok(intent) => {
-                let _ = crate::notes::capture::open(&app, intent);
-            }
-            Err(_) => {
-                let _=app.emit("capture:error","Select an http or https link in a text field, then try the selected-link shortcut again.");
-            }
-        }
-    });
-}
 /// Testable selection policy: never call the text reader for private/excluded
 /// elements, and never accept multiple ranges or a non-URL as a link capture.
+#[cfg(test)]
 pub(crate) fn allowed_url(allowed: bool, read: impl FnOnce() -> Result<String>) -> Result<String> {
     if !allowed {
         return Err(msg("This selection cannot be read"));
@@ -56,20 +40,15 @@ pub(crate) fn allowed_url(allowed: bool, read: impl FnOnce() -> Result<String>) 
     Ok(original.trim().to_owned())
 }
 #[cfg(windows)]
-fn selected_url(db: &Database) -> Result<String> {
-    use windows::{
-        core::Interface,
-        Win32::{
-            System::Com::{
-                CoCreateInstance, CoInitializeEx, CoUninitialize, CLSCTX_INPROC_SERVER,
-                COINIT_MULTITHREADED,
-            },
-            UI::{
-                Accessibility::{
-                    CUIAutomation, IUIAutomation, IUIAutomationTextPattern, UIA_TextPatternId,
-                },
-                WindowsAndMessaging::{GetForegroundWindow, GetWindowThreadProcessId},
-            },
+pub(crate) fn selected_text(db: &Database) -> Result<crate::context::selection::Read> {
+    use windows::Win32::{
+        System::Com::{
+            CoCreateInstance, CoInitializeEx, CoUninitialize, CLSCTX_INPROC_SERVER,
+            COINIT_MULTITHREADED,
+        },
+        UI::{
+            Accessibility::{CUIAutomation, IUIAutomation},
+            WindowsAndMessaging::{GetForegroundWindow, GetWindowThreadProcessId},
         },
     };
     unsafe {
@@ -89,16 +68,11 @@ fn selected_url(db: &Database) -> Result<String> {
         let mut process = 0;
         GetWindowThreadProcessId(foreground, Some(&mut process));
         if process == 0 || process == std::process::id() {
-            return Err(msg("Select a link in another app first"));
+            return Err(msg("Select text in another app first"));
         }
-        let system = sysinfo::System::new_all();
-        let source = system
-            .process(sysinfo::Pid::from_u32(process))
-            .map(|p| p.name().to_string_lossy().into_owned());
-        if source
-            .as_deref()
-            .is_some_and(|s| db.is_excluded_app(s).unwrap_or(true))
-        {
+        let source = crate::context::clipboard::process_name(process)
+            .ok_or_else(|| msg("Selection source is unavailable"))?;
+        if !db.clipboard_source_allowed(Some(&source))? {
             return Err(msg("This app is excluded from context capture"));
         }
         let automation: IUIAutomation =
@@ -115,36 +89,29 @@ fn selected_url(db: &Database) -> Result<String> {
                 .CurrentProcessId()
                 .map_err(|_| msg("No readable selection"))? as u32
                 == process;
-        allowed_url(allowed, || {
-            if GetForegroundWindow() != foreground {
-                return Err(msg("The focused app changed"));
+        if !allowed || GetForegroundWindow() != foreground {
+            return Err(msg("This selection cannot be read"));
+        }
+        match crate::context::selection::element_text(&focused)? {
+            Some(text) => {
+                if db.get_settings()?.sensitive_heuristics
+                    && crate::clipboard::sensitive::looks_sensitive(&text)
+                {
+                    return Err(msg("This selection is private"));
+                }
+                Ok(crate::context::selection::Read::Text(text))
             }
-            let pattern = focused
-                .GetCurrentPattern(UIA_TextPatternId)
-                .and_then(|p| p.cast::<IUIAutomationTextPattern>())
-                .map_err(|_| msg("This app does not expose selected text"))?;
-            let ranges = pattern
-                .GetSelection()
-                .map_err(|_| msg("No readable selection"))?;
-            if ranges.Length().map_err(|_| msg("No readable selection"))? != 1 {
-                return Err(msg("Select one web link"));
-            }
-            let text = ranges
-                .GetElement(0)
-                .and_then(|r| r.GetText(16_385))
-                .map_err(|_| msg("No readable selection"))?
-                .to_string();
-            if db.get_settings()?.sensitive_heuristics
-                && crate::clipboard::sensitive::looks_sensitive(&text)
-            {
-                return Err(msg("This selection is private"));
-            }
-            Ok(text)
-        })
+            None => Ok(crate::context::selection::Read::Unsupported(
+                crate::island::keyboard::WindowId {
+                    hwnd: foreground.0 as u64,
+                    process,
+                },
+            )),
+        }
     }
 }
 #[cfg(not(windows))]
-fn selected_url(_db: &Database) -> Result<String> {
+pub(crate) fn selected_text(_db: &Database) -> Result<crate::context::selection::Read> {
     Err(msg("Native selection reading is available on Windows"))
 }
 

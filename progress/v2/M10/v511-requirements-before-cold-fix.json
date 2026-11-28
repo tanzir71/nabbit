@@ -1,0 +1,47 @@
+{
+  "task": "V5.11",
+  "requirements": [
+    "11 V5.11",
+    "9b.5 clipboard/type menu/privacy/selection/Explorer/quiet context",
+    "9b.7 classification/all-format restore/owned UIA/registration/batching/full-screen fixtures",
+    "45:568",
+    "36:505",
+    "36:539"
+  ],
+  "implemented": [
+    "Event-driven clipboard type dispatch and first row; privacy flags and source exclusions precede payload reads",
+    "Unicode text tools and strict encodings/JSON, new result history and frozen request retries",
+    "Owned PNG/thumbnail/file references, native image/files copy ports and bounded cleanup",
+    "UIA selection/password guard and Save-first selected URL; off-by-default complete-format copy fallback",
+    "HKCU-only owned verbs and Send To options, early ownership-checked uninstall cleanup for both bundle types",
+    "Single-instance fixed300ms Shelf batch, exact preset/all-input review, no automatic tool execution",
+    "Full-screen/exclusive/presentation suppression for context, suggestions and peeks"
+  ],
+  "limits": [
+    "UIA accepts one nonempty range up to16384 Unicode scalar values",
+    "Fallback refuses private/excluded/elevated/changed targets or any format that cannot be fully materialized; virtual streams and unsupported formats abort before input",
+    "Fallback all-format transaction uses synthetic formats and owned native handles; real global clipboard/input is never exercised by acceptance",
+    "Installer hooks are compiled/inspected, never installed or executed",
+    "Incoming batch max256 paths; reviews max64 inputs, one-file executors require explicit file choice",
+    "V5.12 aggregate acceptance and V6 settings/tray/shortcut work remain separate"
+  ],
+  "evidence": {
+    "checks": "v511-checks.json",
+    "native": "v511-native-d-scene.json",
+    "visual": [
+      "v511-context-d-screenshots.json",
+      "v511-integration-b-screenshots.json"
+    ],
+    "design": "v511-design.json",
+    "dependencies": "v511-dependencies.json",
+    "figma": "v511-figma-assets.json",
+    "pngs": "v511-png-audit.json",
+    "browserRaster": "v511-browser-raster.json",
+    "installers": "v511-installers-e.json",
+    "earlier": "v511-earlier-attempts.json",
+    "negativeHarness": "v511-delivery-failure-check.json"
+  },
+  "nativeScope": "Owned production executable and hidden UIA controls, isolated app-data/WebView/control profiles, generated PNG fixtures, native typed IPC and DOM-only input. No real clipboard, cursor, global input, installed integrations, dialogs, account, hosted Tack, Store, signing, installer execution or OS changes.",
+  "nextTask": "V5.12",
+  "publication": "local main skip-ci task commit; no PR/push/tag/workflow mutation; milestone publication at M10"
+}

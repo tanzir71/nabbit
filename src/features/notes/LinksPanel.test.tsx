@@ -7,6 +7,7 @@ import { linksApi } from "./linksApi";
 import { notesApi } from "./api";
 import { captureCard } from "./captureDraft";
 import { writeText } from "@tauri-apps/plugin-clipboard-manager";
+import { contextApi } from "../clipboard/contextApi";
 import type { StoredNote } from "./types";
 import type { ClipboardEntry } from "../../lib/types";
 vi.mock("./linksApi", () => ({
@@ -14,6 +15,7 @@ vi.mock("./linksApi", () => ({
 }));
 vi.mock("./api", () => ({ notesApi: { state: vi.fn(), capture: vi.fn() } }));
 vi.mock("@tauri-apps/plugin-clipboard-manager", () => ({ writeText: vi.fn() }));
+vi.mock("../clipboard/contextApi", () => ({ contextApi: { transform: vi.fn(), review: vi.fn() } }));
 const scope = { key: "scope-a", epoch: 1 };
 function card(
   id: string,
@@ -218,7 +220,10 @@ describe("Copied link actions", () => {
     expect(vi.mocked(notesApi.capture).mock.calls[0][0].draft.url).toBe(entry.content);
     expect(vi.mocked(notesApi.capture).mock.calls[0][0].expectedScope).toBeNull();
     await user.click(screen.getByRole("button", { name: "Clean link" }));
-    expect(writeText).toHaveBeenCalledWith("https://example.invalid/docs#part");
+    expect(contextApi.transform).toHaveBeenCalledWith(entry.id, "clean-link", expect.any(String));
+    expect(writeText).not.toHaveBeenCalled();
+    await user.click(screen.getByRole("button", { name: "QR code" }));
+    expect(contextApi.review).toHaveBeenCalledWith(entry.id, "encode-qr");
     expect(screen.getByText("example.invalid/docs?utm_source=x#part")).toBeVisible();
   });
   it("does not apply an old save acknowledgement to a newer clipboard item", async () => {

@@ -1,0 +1,20 @@
+Compiling nabbit v0.1.0 (D:\claude-upgrade-26\nabbit\src-tauri)
+error: unneeded `return` statement
+  --> src\context\mod.rs:49:9
+   |
+49 | /         return windows_sys::Win32::UI::Shell::SHQueryUserNotificationState(&mut state) >= 0
+50 | |             && classify::silent(Some(state));
+   | |____________________________________________^
+   |
+   = help: for further information visit https://rust-lang.github.io/rust-clippy/rust-1.97.0/index.html#needless_return
+   = note: `-D clippy::needless-return` implied by `-D warnings`
+   = help: to override `-D warnings` add `#[allow(clippy::needless_return)]`
+help: remove `return`
+   |
+49 ~         windows_sys::Win32::UI::Shell::SHQueryUserNotificationState(&mut state) >= 0
+50 ~             && classify::silent(Some(state))
+   |
+
+error: could not compile `nabbit` (lib) due to 1 previous error
+warning: build failed, waiting for other jobs to finish...
+error: could not compile `nabbit` (lib test) due to 1 previous error

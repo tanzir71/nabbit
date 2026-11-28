@@ -45,7 +45,14 @@
       "../third-party/ffmpeg/",
       "../third-party/notices.json"
     ],
-    "createUpdaterArtifacts": false
+    "createUpdaterArtifacts": false,
+    "windows": {
+      "nsis": { "installerHooks": "./windows/hooks.nsh" },
+      "wix": {
+        "fragmentPaths": ["./windows/context-cleanup.wxs"],
+        "componentRefs": ["NabbitContextCleanup"]
+      }
+    }
   },
   "plugins": {
     "deep-link": { "desktop": { "schemes": ["nabbit"] } },

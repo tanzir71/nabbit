@@ -1,0 +1,37 @@
+Compiling windows v0.62.2
+   Compiling nabbit v0.1.0 (D:\claude-upgrade-26\nabbit\src-tauri)
+   Compiling webview2-com-sys v0.39.1
+   Compiling tao v0.37.3
+   Compiling webview2-com v0.39.1
+   Compiling tauri-runtime v2.12.4
+   Compiling wry v0.57.4
+   Compiling tauri-runtime-wry v2.12.5
+   Compiling tauri v2.12.7
+   Compiling tauri-plugin-deep-link v2.4.10
+   Compiling tauri-plugin-updater v2.10.1
+   Compiling tauri-plugin-shell v2.3.5
+   Compiling tauri-plugin-global-shortcut v2.3.2
+   Compiling tauri-plugin-autostart v2.5.1
+   Compiling tauri-plugin-clipboard-manager v2.3.2
+   Compiling tauri-plugin-drag v2.1.1
+   Compiling tauri-plugin-single-instance v2.4.2
+    Finished `test` profile [unoptimized + debuginfo] target(s) in 3m 18s
+     Running unittests src\lib.rs (src-tauri\target\debug\deps\nabbit_lib-d7a87f1a44e2969b.exe)
+
+running 14 tests
+test context::classify::tests::classification_is_bounded_and_does_not_read_or_fetch ... ok
+test context::classify::tests::each_privacy_format_and_notification_state_suppresses_context ... ok
+test context::clipboard::tests::dib_conversion_checks_extent_orientation_and_allocation_before_decode ... ok
+test context::commands::tests::registry_context_filters_every_tool_and_text_results_keep_the_original ... ok
+test context::explorer::tests::n_invocations_become_one_ordered_shelf_batch_with_separate_review_intents ... ok
+test context::explorer::tests::parser_keeps_unicode_spaces_and_switch_looking_names_after_the_separator ... ok
+test context::fallback::tests::fallback_restores_every_opaque_format_on_success_send_failure_and_read_failure ... ok
+test context::fallback::tests::opt_out_private_targets_and_unpreservable_formats_never_send_copy ... ok
+test context::registration::tests::registration_plan_contains_every_registry_preset_and_only_the_owned_hkcu_subtree ... ok
+test context::registration::tests::toggles_and_uninstall_remove_only_this_executable_owned_registration ... ok
+test context::selection::tests::selected_text_policy_never_reads_password_or_excluded_fields_and_keeps_whitespace ... ok
+test context::text::tests::catalog_ids_are_unique_and_all_run_without_side_effects ... ok
+test context::text::tests::json_formatting_preserves_number_lexemes_order_and_escaped_strings ... ok
+test context::text::tests::transforms_cover_unicode_acronyms_lines_and_strict_encodings ... ok
+
+test result: ok. 14 passed; 0 failed; 0 ignored; 0 measured; 361 filtered out; finished in 0.06s

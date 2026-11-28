@@ -1,0 +1,138 @@
+> nabbit@0.1.0 test
+> vitest --run src/features/clipboard/context.test.tsx src/features/tools/ImageDocumentReview.test.tsx
+
+
+ RUN  v3.2.7 D:/claude-upgrade-26/nabbit
+
+ ❯ src/features/clipboard/context.test.tsx (8 tests | 1 failed) 1031ms
+   ✓ clipboard context > does not act until clicked, offers keyboard case navigation and retries the same frozen request  432ms
+   ✓ clipboard context > uses the registry image tools and requests review before a job can run 104ms
+   ✓ clipboard context > opens selected text tools with the selection intact, and can dismiss without copying 95ms
+   ✓ clipboard context > offers Save link first for a selected video URL without starting a download 23ms
+   × clipboard context > restores the trigger after Escape and closes on an outside pointer 125ms
+     → expect(element).toHaveFocus()
+
+Expected element with focus:
+  <button
+  class="is-signal"
+  data-text-trigger=""
+  type="button"
+>
+  Text tools
+</button>
+Received element with focus:
+  <body>
+  <div>
+    <button
+      type="button"
+    >
+      Outside
+    </button>
+    <div
+      class="clipboard-context"
+      data-context-kind="text"
+    >
+      <section
+        aria-label="Clipboard context actions"
+        class="clipboard-link-context"
+      >
+        <div
+          class="clipboard-link-heading"
+        >
+          <code>
+            Original বাংলা
+          </code>
+          <span>
+            4h
+          </span>
+        </div>
+        <div
+          class="clipboard-link-buttons"
+        >
+          <button
+            class="is-signal"
+            data-text-trigger=""
+            type="button"
+          >
+            Text tools
+          </button>
+        </div>
+      </section>
+    </div>
+  </div>
+</body>
+   ✓ clipboard context > privacy suppression does not fall back to the old copied link and full-screen makes no context read 5ms
+   ✓ clipboard context > ignores an older snapshot after the requested clipboard item changes 31ms
+   ✓ keeps the approved menu order, disabled future snippet action and submenu keyboard return 211ms
+ ✓ src/features/tools/ImageDocumentReview.test.tsx (8 tests) 872ms
+   ✓ keeps defaults and reuses request IDs after partial batch submission fails  322ms
+
+⎯⎯⎯⎯⎯⎯⎯ Failed Tests 1 ⎯⎯⎯⎯⎯⎯⎯
+
+ FAIL  src/features/clipboard/context.test.tsx > clipboard context > restores the trigger after Escape and closes on an outside pointer
+Error: expect(element).toHaveFocus()
+
+Expected element with focus:
+  <button
+  class="is-signal"
+  data-text-trigger=""
+  type="button"
+>
+  Text tools
+</button>
+Received element with focus:
+  <body>
+  <div>
+    <button
+      type="button"
+    >
+      Outside
+    </button>
+    <div
+      class="clipboard-context"
+      data-context-kind="text"
+    >
+      <section
+        aria-label="Clipboard context actions"
+        class="clipboard-link-context"
+      >
+        <div
+          class="clipboard-link-heading"
+        >
+          <code>
+            Original বাংলা
+          </code>
+          <span>
+            4h
+          </span>
+        </div>
+        <div
+          class="clipboard-link-buttons"
+        >
+          <button
+            class="is-signal"
+            data-text-trigger=""
+            type="button"
+          >
+            Text tools
+          </button>
+        </div>
+      </section>
+    </div>
+  </div>
+</body>
+ ❯ src/features/clipboard/context.test.tsx:136:21
+    134|     await user.click(trigger);
+    135|     await user.keyboard("{Escape}");
+    136|     expect(trigger).toHaveFocus();
+       |                     ^
+    137|     await user.click(trigger);
+    138|     await user.click(screen.getByRole("button", { name: "Outside" }));
+
+⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯[1/1]⎯
+
+
+ Test Files  1 failed | 1 passed (2)
+      Tests  1 failed | 15 passed (16)
+   Start at  10:16:15
+   Duration  4.38s (transform 1.53s, setup 268ms, collect 3.08s, tests 1.90s, environment 1.76s, prepare 358ms)
