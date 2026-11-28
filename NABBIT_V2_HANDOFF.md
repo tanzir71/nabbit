@@ -806,7 +806,7 @@ Commit after every task (§0.1). Lines marked **MILESTONE** are tasks of their o
 - [x] V5.10 Image and document tools: HEIC → JPG via WIC with the Store prompt, convert / Make smaller (`36:410`), PDF basics, text and QR from image files; drop suggestions per file type.
 - [x] V5.11 Context: clipboard classifier and first row (`45:568`) with privacy formats, text tools menu (`36:505`, `36:539`), act on selected text (Ctrl+Alt+S), Send To + HKCU verbs with single-instance batching, full-screen silence.
 - [x] V5.12 Native tools acceptance (§9b.7).
-- [ ] **MILESTONE M10 — Modules, file tools and pins.**
+- [x] **MILESTONE M10 — Modules, file tools and pins.**
 
 ### Phase V6 — Modes, tray, settings
 - [ ] V6.1 Settings window (Mica on 11) with all sections; migrate v0.1 settings.
