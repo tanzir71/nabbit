@@ -813,7 +813,7 @@ Commit after every task (§0.1). Lines marked **MILESTONE** are tasks of their o
 - [x] V6.2 Mode switch (island+tray / tray only / island only) incl. tray badge + toasts in tray-only.
 - [x] V6.3 Tray menu + submenus (add Pins ▸ listing pins 1–9); tray popover redesign for Notes/Clipboard/Files tabs.
 - [x] V6.4 Shortcut recorder with conflict detection.
-- [ ] **MILESTONE M11 — Modes, tray and settings.**
+- [x] **MILESTONE M11 — Modes, tray and settings.**
 
 ### Phase V7 — Hardening and wrap-up
 - [ ] V7.1 Edge cases (§12) covered by automated tests; anything that cannot be automated goes under `## v2 Not automated`.
