@@ -1,0 +1,27 @@
+file:///D:/claude-upgrade-26/nabbit/scripts/screenshots/harness.mjs:417
+            throw new Error(`${scenario.name} (${theme}@${scale}x): ${error.message}`, {
+                  ^
+
+Error: settings-files-integrations (light@1x): Whole-document default axe incomplete: [{"id":"color-contrast","impact":"serious","targets":[[".files-heading > span:nth-child(1)"],[".files-heading > span:nth-child(2)"],[".files-add"]],"nodes":[{"target":[".files-heading > span:nth-child(1)"],"failureSummary":"Fix any of the following:\n  Element's background color could not be determined because it's partially obscured by another element","any":[{"id":"color-contrast","data":{"contrastRatio":0,"fontSize":"8.3pt (11px)","fontWeight":"normal","messageKey":"elmPartiallyObscured","expectedContrastRatio":"4.5:1"},"relatedNodes":[{"html":"<div class=\"settings-content\">","target":[".settings-content"]}],"impact":"serious","message":"Element's background color could not be determined because it's partially obscured by another element"}],"all":[],"none":[]},{"target":[".files-heading > span:nth-child(2)"],"failureSummary":"Fix any of the following:\n  Element's background color could not be determined because it's partially obscured by another element","any":[{"id":"color-contrast","data":{"contrastRatio":0,"fontSize":"8.3pt (11px)","fontWeight":"normal","messageKey":"elmPartiallyObscured","expectedContrastRatio":"4.5:1"},"relatedNodes":[{"html":"<div class=\"settings-content\">","target":[".settings-content"]}],"impact":"serious","message":"Element's background color could not be determined because it's partially obscured by another element"}],"all":[],"none":[]},{"target":[".files-add"],"failureSummary":"Fix any of the following:\n  Element's background color could not be determined because it's partially obscured by another element","any":[{"id":"color-contrast","data":{"contrastRatio":0,"fontSize":"9.0pt (12px)","fontWeight":"normal","messageKey":"elmPartiallyObscured","expectedContrastRatio":"4.5:1"},"relatedNodes":[{"html":"<div class=\"settings-content\">","target":[".settings-content"]}],"impact":"serious","message":"Element's background color could not be determined because it's partially obscured by another element"}],"all":[],"none":[]}]}]
+
+1 !== 0
+
+    at captureSuite (file:///D:/claude-upgrade-26/nabbit/scripts/screenshots/harness.mjs:417:19)
+    at async file:///D:/claude-upgrade-26/nabbit/scripts/capture-settings.mjs:63:3 {
+  [cause]: AssertionError [ERR_ASSERTION]: Whole-document default axe incomplete: [{"id":"color-contrast","impact":"serious","targets":[[".files-heading > span:nth-child(1)"],[".files-heading > span:nth-child(2)"],[".files-add"]],"nodes":[{"target":[".files-heading > span:nth-child(1)"],"failureSummary":"Fix any of the following:\n  Element's background color could not be determined because it's partially obscured by another element","any":[{"id":"color-contrast","data":{"contrastRatio":0,"fontSize":"8.3pt (11px)","fontWeight":"normal","messageKey":"elmPartiallyObscured","expectedContrastRatio":"4.5:1"},"relatedNodes":[{"html":"<div class=\"settings-content\">","target":[".settings-content"]}],"impact":"serious","message":"Element's background color could not be determined because it's partially obscured by another element"}],"all":[],"none":[]},{"target":[".files-heading > span:nth-child(2)"],"failureSummary":"Fix any of the following:\n  Element's background color could not be determined because it's partially obscured by another element","any":[{"id":"color-contrast","data":{"contrastRatio":0,"fontSize":"8.3pt (11px)","fontWeight":"normal","messageKey":"elmPartiallyObscured","expectedContrastRatio":"4.5:1"},"relatedNodes":[{"html":"<div class=\"settings-content\">","target":[".settings-content"]}],"impact":"serious","message":"Element's background color could not be determined because it's partially obscured by another element"}],"all":[],"none":[]},{"target":[".files-add"],"failureSummary":"Fix any of the following:\n  Element's background color could not be determined because it's partially obscured by another element","any":[{"id":"color-contrast","data":{"contrastRatio":0,"fontSize":"9.0pt (12px)","fontWeight":"normal","messageKey":"elmPartiallyObscured","expectedContrastRatio":"4.5:1"},"relatedNodes":[{"html":"<div class=\"settings-content\">","target":[".settings-content"]}],"impact":"serious","message":"Element's background color could not be determined because it's partially obscured by another element"}],"all":[],"none":[]}]}]
+
+  1 !== 0
+
+      at Object.ready (file:///D:/claude-upgrade-26/nabbit/scripts/capture-settings.mjs:54:12)
+      at async captureSuite (file:///D:/claude-upgrade-26/nabbit/scripts/screenshots/harness.mjs:147:33)
+      at async file:///D:/claude-upgrade-26/nabbit/scripts/capture-settings.mjs:63:3 {
+    generatedMessage: false,
+    code: 'ERR_ASSERTION',
+    actual: 1,
+    expected: 0,
+    operator: 'strictEqual',
+    diff: 'simple'
+  }
+}
+
+Node.js v24.22.2

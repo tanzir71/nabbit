@@ -1,0 +1,30 @@
+file:///D:/claude-upgrade-26/nabbit/scripts/screenshots/harness.mjs:417
+            throw new Error(`${scenario.name} (${theme}@${scale}x): ${error.message}`, {
+                  ^
+
+Error: settings-island (light@1x): Unstable capture: settings-island/light/1
++ actual - expected
+
++ '4fd789b22cfff4767ec0ba01a3c19a81408e6c5464157d4695b8b6068b1f5cf3'
+- 'b2a1ddbb30b42c889bf1917c6cf8149cf98fd45ff7d319cabaa2bb5959afb506'
+
+    at captureSuite (file:///D:/claude-upgrade-26/nabbit/scripts/screenshots/harness.mjs:417:19)
+    at async file:///D:/claude-upgrade-26/nabbit/scripts/capture-settings.mjs:51:3 {
+  [cause]: AssertionError [ERR_ASSERTION]: Unstable capture: settings-island/light/1
+  + actual - expected
+
+  + '4fd789b22cfff4767ec0ba01a3c19a81408e6c5464157d4695b8b6068b1f5cf3'
+  - 'b2a1ddbb30b42c889bf1917c6cf8149cf98fd45ff7d319cabaa2bb5959afb506'
+
+      at captureSuite (file:///D:/claude-upgrade-26/nabbit/scripts/screenshots/harness.mjs:386:22)
+      at async file:///D:/claude-upgrade-26/nabbit/scripts/capture-settings.mjs:51:3 {
+    generatedMessage: false,
+    code: 'ERR_ASSERTION',
+    actual: '4fd789b22cfff4767ec0ba01a3c19a81408e6c5464157d4695b8b6068b1f5cf3',
+    expected: 'b2a1ddbb30b42c889bf1917c6cf8149cf98fd45ff7d319cabaa2bb5959afb506',
+    operator: 'strictEqual',
+    diff: 'simple'
+  }
+}
+
+Node.js v24.22.2

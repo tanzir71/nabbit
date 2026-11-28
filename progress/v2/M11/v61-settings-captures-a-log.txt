@@ -1,0 +1,25 @@
+file:///D:/claude-upgrade-26/nabbit/scripts/screenshots/harness.mjs:414
+            throw new Error(`${scenario.name} (${theme}@${scale}x): ${error.message}`, {
+                  ^
+
+Error: settings-notes (light@1x): locator.waitFor: Timeout 10000ms exceeded.
+Call log:
+  - waiting for getByRole('button', { name: 'Import bookmarks…' }) to be visible
+
+    at captureSuite (file:///D:/claude-upgrade-26/nabbit/scripts/screenshots/harness.mjs:414:19)
+    at async file:///D:/claude-upgrade-26/nabbit/scripts/capture-settings.mjs:5:1 {
+  [cause]: locator.waitFor: Timeout 10000ms exceeded.
+  Call log:
+    - waiting for getByRole('button', { name: 'Import bookmarks…' }) to be visible
+
+      at Object.ready (D:\claude-upgrade-26\nabbit\scripts\screenshots\settings-fixtures.mjs:88:69)
+      at async captureSuite (D:\claude-upgrade-26\nabbit\scripts\screenshots\harness.mjs:144:33)
+      at async file:///D:/claude-upgrade-26/nabbit/scripts/capture-settings.mjs:5:1 {
+    log: [
+      "  - waiting for getByRole('button', { name: 'Import bookmarks…' }) to be visible"
+    ],
+    name: 'TimeoutError'
+  }
+}
+
+Node.js v24.22.2

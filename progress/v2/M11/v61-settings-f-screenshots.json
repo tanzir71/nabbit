@@ -1,0 +1,5234 @@
+{
+  "milestone": "M11",
+  "prefix": "v61-settings-f",
+  "suite": "surfaces",
+  "browser": "159.0.8154.6",
+  "playwright": "1.65.1",
+  "platform": "win32",
+  "node": "v24.22.2",
+  "captureTime": "2026-11-26T09:00:00.000Z",
+  "buildManifestSha256": "64d15a80e749381770ea2f690510a9f38a3b40c66eea1d4ff8a3ea479cc67038",
+  "screenshotScale": "device",
+  "pngBudgetBytes": 307200,
+  "isolatedContexts": true,
+  "mockedIpc": true,
+  "osPreferencesChanged": false,
+  "captures": [
+    {
+      "file": "v61-settings-f-settings-general-light@1x.png",
+      "scenario": "settings-general",
+      "entry": "settings.html",
+      "figmaNode": null,
+      "theme": "light",
+      "resolvedTheme": "light",
+      "scale": 1,
+      "viewport": {
+        "width": 980,
+        "height": 720
+      },
+      "clip": {
+        "x": 0,
+        "y": 0,
+        "width": 980,
+        "height": 720
+      },
+      "width": 980,
+      "height": 720,
+      "bytes": 62392,
+      "sha256": "257d31f41b0d3014a8a2140c7fb62207c498862b88578ebd5ed4fa68d43fa908",
+      "repeatMatches": true,
+      "caret": "hide",
+      "font": [
+        {
+          "familyName": "Geist",
+          "postScriptName": "Geist",
+          "isCustomFont": true,
+          "glyphCount": 7
+        }
+      ],
+      "fixtureSha256": "e20959f6505d8e2c0e0d9a2aefb75d10d7b1b31a69b77799b22e728e1d6619aa",
+      "assertions": {
+        "page": "General",
+        "sidebarWidth": 232,
+        "axe": {
+          "version": "4.14.1",
+          "url": "/settings.html",
+          "theme": "light",
+          "scale": 1,
+          "violations": [],
+          "incomplete": [],
+          "passes": 33
+        }
+      },
+      "ipc": [
+        {
+          "command": "plugin:event|listen",
+          "args": {
+            "event": "engine:health",
+            "target": {
+              "kind": "Any"
+            },
+            "handler": 1
+          }
+        },
+        {
+          "command": "plugin:event|listen",
+          "args": {
+            "event": "nabbit://settings-changed",
+            "target": {
+              "kind": "Any"
+            },
+            "handler": 3
+          }
+        },
+        {
+          "command": "plugin:event|listen",
+          "args": {
+            "event": "tauri://theme-changed",
+            "target": {
+              "kind": "Window",
+              "label": "settings"
+            },
+            "handler": 5
+          }
+        },
+        {
+          "command": "settings_window_ready",
+          "args": {}
+        },
+        {
+          "command": "get_settings",
+          "args": {}
+        },
+        {
+          "command": "get_engine_status",
+          "args": {}
+        },
+        {
+          "command": "get_storage_stats",
+          "args": {}
+        },
+        {
+          "command": "plugin:window|theme",
+          "args": {
+            "label": "settings"
+          }
+        }
+      ],
+      "unsupported": [],
+      "runtimeAndNetworkProblems": []
+    },
+    {
+      "file": "v61-settings-f-settings-island-light@1x.png",
+      "scenario": "settings-island",
+      "entry": "settings.html",
+      "figmaNode": null,
+      "theme": "light",
+      "resolvedTheme": "light",
+      "scale": 1,
+      "viewport": {
+        "width": 980,
+        "height": 720
+      },
+      "clip": {
+        "x": 0,
+        "y": 0,
+        "width": 980,
+        "height": 720
+      },
+      "width": 980,
+      "height": 720,
+      "bytes": 66699,
+      "sha256": "99ccb68d32a4d9d712789a4efb1b73f269d4f32b060ea8389142f6254dd4bfdf",
+      "repeatMatches": true,
+      "caret": "hide",
+      "font": [
+        {
+          "familyName": "Geist",
+          "postScriptName": "Geist",
+          "isCustomFont": true,
+          "glyphCount": 6
+        }
+      ],
+      "fixtureSha256": "e20959f6505d8e2c0e0d9a2aefb75d10d7b1b31a69b77799b22e728e1d6619aa",
+      "assertions": {
+        "page": "Island",
+        "sidebarWidth": 232,
+        "axe": {
+          "version": "4.14.1",
+          "url": "/settings.html",
+          "theme": "light",
+          "scale": 1,
+          "violations": [],
+          "incomplete": [],
+          "passes": 38
+        }
+      },
+      "ipc": [
+        {
+          "command": "plugin:event|listen",
+          "args": {
+            "event": "engine:health",
+            "target": {
+              "kind": "Any"
+            },
+            "handler": 1
+          }
+        },
+        {
+          "command": "plugin:event|listen",
+          "args": {
+            "event": "nabbit://settings-changed",
+            "target": {
+              "kind": "Any"
+            },
+            "handler": 3
+          }
+        },
+        {
+          "command": "plugin:event|listen",
+          "args": {
+            "event": "tauri://theme-changed",
+            "target": {
+              "kind": "Window",
+              "label": "settings"
+            },
+            "handler": 5
+          }
+        },
+        {
+          "command": "settings_window_ready",
+          "args": {}
+        },
+        {
+          "command": "get_settings",
+          "args": {}
+        },
+        {
+          "command": "get_engine_status",
+          "args": {}
+        },
+        {
+          "command": "get_storage_stats",
+          "args": {}
+        },
+        {
+          "command": "plugin:window|theme",
+          "args": {
+            "label": "settings"
+          }
+        },
+        {
+          "command": "plugin:event|listen",
+          "args": {
+            "event": "nabbit://island-config",
+            "target": {
+              "kind": "Any"
+            },
+            "handler": 7
+          }
+        },
+        {
+          "command": "get_island_snapshot",
+          "args": {}
+        }
+      ],
+      "unsupported": [],
+      "runtimeAndNetworkProblems": []
+    },
+    {
+      "file": "v61-settings-f-settings-widgets-light@1x.png",
+      "scenario": "settings-widgets",
+      "entry": "settings.html",
+      "figmaNode": null,
+      "theme": "light",
+      "resolvedTheme": "light",
+      "scale": 1,
+      "viewport": {
+        "width": 980,
+        "height": 720
+      },
+      "clip": {
+        "x": 0,
+        "y": 0,
+        "width": 980,
+        "height": 720
+      },
+      "width": 980,
+      "height": 720,
+      "bytes": 39497,
+      "sha256": "00e91d94469e27ab772e2b4f61be2c623dac072b5038e69d82ce57451864bf07",
+      "repeatMatches": true,
+      "caret": "hide",
+      "font": [
+        {
+          "familyName": "Geist",
+          "postScriptName": "Geist",
+          "isCustomFont": true,
+          "glyphCount": 7
+        }
+      ],
+      "fixtureSha256": "e20959f6505d8e2c0e0d9a2aefb75d10d7b1b31a69b77799b22e728e1d6619aa",
+      "assertions": {
+        "page": "Widgets",
+        "sidebarWidth": 232,
+        "axe": {
+          "version": "4.14.1",
+          "url": "/settings.html",
+          "theme": "light",
+          "scale": 1,
+          "violations": [],
+          "incomplete": [],
+          "passes": 33
+        }
+      },
+      "ipc": [
+        {
+          "command": "plugin:event|listen",
+          "args": {
+            "event": "engine:health",
+            "target": {
+              "kind": "Any"
+            },
+            "handler": 1
+          }
+        },
+        {
+          "command": "plugin:event|listen",
+          "args": {
+            "event": "nabbit://settings-changed",
+            "target": {
+              "kind": "Any"
+            },
+            "handler": 3
+          }
+        },
+        {
+          "command": "plugin:event|listen",
+          "args": {
+            "event": "tauri://theme-changed",
+            "target": {
+              "kind": "Window",
+              "label": "settings"
+            },
+            "handler": 5
+          }
+        },
+        {
+          "command": "settings_window_ready",
+          "args": {}
+        },
+        {
+          "command": "get_settings",
+          "args": {}
+        },
+        {
+          "command": "get_engine_status",
+          "args": {}
+        },
+        {
+          "command": "get_storage_stats",
+          "args": {}
+        },
+        {
+          "command": "plugin:window|theme",
+          "args": {
+            "label": "settings"
+          }
+        }
+      ],
+      "unsupported": [],
+      "runtimeAndNetworkProblems": []
+    },
+    {
+      "file": "v61-settings-f-settings-downloads-light@1x.png",
+      "scenario": "settings-downloads",
+      "entry": "settings.html",
+      "figmaNode": null,
+      "theme": "light",
+      "resolvedTheme": "light",
+      "scale": 1,
+      "viewport": {
+        "width": 980,
+        "height": 720
+      },
+      "clip": {
+        "x": 0,
+        "y": 0,
+        "width": 980,
+        "height": 720
+      },
+      "width": 980,
+      "height": 720,
+      "bytes": 72756,
+      "sha256": "8b04e72f858b5d70c2493bd9263385c06a1dc39841df38ee18c539849364a588",
+      "repeatMatches": true,
+      "caret": "hide",
+      "font": [
+        {
+          "familyName": "Geist",
+          "postScriptName": "Geist",
+          "isCustomFont": true,
+          "glyphCount": 9
+        }
+      ],
+      "fixtureSha256": "e20959f6505d8e2c0e0d9a2aefb75d10d7b1b31a69b77799b22e728e1d6619aa",
+      "assertions": {
+        "page": "Downloads",
+        "sidebarWidth": 232,
+        "axe": {
+          "version": "4.14.1",
+          "url": "/settings.html",
+          "theme": "light",
+          "scale": 1,
+          "violations": [],
+          "incomplete": [],
+          "passes": 37
+        }
+      },
+      "ipc": [
+        {
+          "command": "plugin:event|listen",
+          "args": {
+            "event": "engine:health",
+            "target": {
+              "kind": "Any"
+            },
+            "handler": 1
+          }
+        },
+        {
+          "command": "plugin:event|listen",
+          "args": {
+            "event": "nabbit://settings-changed",
+            "target": {
+              "kind": "Any"
+            },
+            "handler": 3
+          }
+        },
+        {
+          "command": "plugin:event|listen",
+          "args": {
+            "event": "tauri://theme-changed",
+            "target": {
+              "kind": "Window",
+              "label": "settings"
+            },
+            "handler": 5
+          }
+        },
+        {
+          "command": "settings_window_ready",
+          "args": {}
+        },
+        {
+          "command": "get_settings",
+          "args": {}
+        },
+        {
+          "command": "get_engine_status",
+          "args": {}
+        },
+        {
+          "command": "get_storage_stats",
+          "args": {}
+        },
+        {
+          "command": "plugin:window|theme",
+          "args": {
+            "label": "settings"
+          }
+        },
+        {
+          "command": "plugin:event|listen",
+          "args": {
+            "event": "engine:health",
+            "target": {
+              "kind": "Any"
+            },
+            "handler": 7
+          }
+        },
+        {
+          "command": "get_engine_status",
+          "args": {}
+        }
+      ],
+      "unsupported": [],
+      "runtimeAndNetworkProblems": []
+    },
+    {
+      "file": "v61-settings-f-settings-notes-light@1x.png",
+      "scenario": "settings-notes",
+      "entry": "settings.html",
+      "figmaNode": null,
+      "theme": "light",
+      "resolvedTheme": "light",
+      "scale": 1,
+      "viewport": {
+        "width": 980,
+        "height": 720
+      },
+      "clip": {
+        "x": 0,
+        "y": 0,
+        "width": 980,
+        "height": 720
+      },
+      "width": 980,
+      "height": 720,
+      "bytes": 43757,
+      "sha256": "e92ff85af89efca83486ae92fafe60912f3c1b3f3a3e139f95cec9fabd592e26",
+      "repeatMatches": true,
+      "caret": "hide",
+      "font": [
+        {
+          "familyName": "Geist",
+          "postScriptName": "Geist",
+          "isCustomFont": true,
+          "glyphCount": 12
+        }
+      ],
+      "fixtureSha256": "e20959f6505d8e2c0e0d9a2aefb75d10d7b1b31a69b77799b22e728e1d6619aa",
+      "assertions": {
+        "page": "Notes & Tack",
+        "sidebarWidth": 232,
+        "axe": {
+          "version": "4.14.1",
+          "url": "/settings.html",
+          "theme": "light",
+          "scale": 1,
+          "violations": [],
+          "incomplete": [],
+          "passes": 33
+        }
+      },
+      "ipc": [
+        {
+          "command": "plugin:event|listen",
+          "args": {
+            "event": "engine:health",
+            "target": {
+              "kind": "Any"
+            },
+            "handler": 1
+          }
+        },
+        {
+          "command": "plugin:event|listen",
+          "args": {
+            "event": "nabbit://settings-changed",
+            "target": {
+              "kind": "Any"
+            },
+            "handler": 3
+          }
+        },
+        {
+          "command": "plugin:event|listen",
+          "args": {
+            "event": "tauri://theme-changed",
+            "target": {
+              "kind": "Window",
+              "label": "settings"
+            },
+            "handler": 5
+          }
+        },
+        {
+          "command": "settings_window_ready",
+          "args": {}
+        },
+        {
+          "command": "get_settings",
+          "args": {}
+        },
+        {
+          "command": "get_engine_status",
+          "args": {}
+        },
+        {
+          "command": "get_storage_stats",
+          "args": {}
+        },
+        {
+          "command": "plugin:window|theme",
+          "args": {
+            "label": "settings"
+          }
+        },
+        {
+          "command": "plugin:event|listen",
+          "args": {
+            "event": "tack:sync",
+            "target": {
+              "kind": "Any"
+            },
+            "handler": 7
+          }
+        },
+        {
+          "command": "plugin:event|listen",
+          "args": {
+            "event": "notes:updated",
+            "target": {
+              "kind": "Any"
+            },
+            "handler": 9
+          }
+        },
+        {
+          "command": "tack_snapshot",
+          "args": {}
+        },
+        {
+          "command": "tack_profile",
+          "args": {}
+        },
+        {
+          "command": "tack_sync_snapshot",
+          "args": {}
+        }
+      ],
+      "unsupported": [],
+      "runtimeAndNetworkProblems": []
+    },
+    {
+      "file": "v61-settings-f-settings-clipboard-light@1x.png",
+      "scenario": "settings-clipboard",
+      "entry": "settings.html",
+      "figmaNode": null,
+      "theme": "light",
+      "resolvedTheme": "light",
+      "scale": 1,
+      "viewport": {
+        "width": 980,
+        "height": 720
+      },
+      "clip": {
+        "x": 0,
+        "y": 0,
+        "width": 980,
+        "height": 720
+      },
+      "width": 980,
+      "height": 720,
+      "bytes": 61236,
+      "sha256": "2025506877eeee3dce4365788532f33b581fb5c3fc9efe6a03cb67c58e206d86",
+      "repeatMatches": true,
+      "caret": "hide",
+      "font": [
+        {
+          "familyName": "Geist",
+          "postScriptName": "Geist",
+          "isCustomFont": true,
+          "glyphCount": 9
+        }
+      ],
+      "fixtureSha256": "e20959f6505d8e2c0e0d9a2aefb75d10d7b1b31a69b77799b22e728e1d6619aa",
+      "assertions": {
+        "page": "Clipboard",
+        "sidebarWidth": 232,
+        "axe": {
+          "version": "4.14.1",
+          "url": "/settings.html",
+          "theme": "light",
+          "scale": 1,
+          "violations": [],
+          "incomplete": [],
+          "passes": 36
+        }
+      },
+      "ipc": [
+        {
+          "command": "plugin:event|listen",
+          "args": {
+            "event": "engine:health",
+            "target": {
+              "kind": "Any"
+            },
+            "handler": 1
+          }
+        },
+        {
+          "command": "plugin:event|listen",
+          "args": {
+            "event": "nabbit://settings-changed",
+            "target": {
+              "kind": "Any"
+            },
+            "handler": 3
+          }
+        },
+        {
+          "command": "plugin:event|listen",
+          "args": {
+            "event": "tauri://theme-changed",
+            "target": {
+              "kind": "Window",
+              "label": "settings"
+            },
+            "handler": 5
+          }
+        },
+        {
+          "command": "settings_window_ready",
+          "args": {}
+        },
+        {
+          "command": "get_settings",
+          "args": {}
+        },
+        {
+          "command": "get_engine_status",
+          "args": {}
+        },
+        {
+          "command": "get_storage_stats",
+          "args": {}
+        },
+        {
+          "command": "plugin:window|theme",
+          "args": {
+            "label": "settings"
+          }
+        }
+      ],
+      "unsupported": [],
+      "runtimeAndNetworkProblems": []
+    },
+    {
+      "file": "v61-settings-f-settings-files-light@1x.png",
+      "scenario": "settings-files",
+      "entry": "settings.html",
+      "figmaNode": null,
+      "theme": "light",
+      "resolvedTheme": "light",
+      "scale": 1,
+      "viewport": {
+        "width": 980,
+        "height": 720
+      },
+      "clip": {
+        "x": 0,
+        "y": 0,
+        "width": 980,
+        "height": 720
+      },
+      "width": 980,
+      "height": 720,
+      "bytes": 64372,
+      "sha256": "ccc32a1e0d8cc6a51333530325fe930e149d9259cd7baf501ad64b2c5ef98451",
+      "repeatMatches": true,
+      "caret": "hide",
+      "font": [
+        {
+          "familyName": "Geist",
+          "postScriptName": "Geist",
+          "isCustomFont": true,
+          "glyphCount": 5
+        }
+      ],
+      "fixtureSha256": "e20959f6505d8e2c0e0d9a2aefb75d10d7b1b31a69b77799b22e728e1d6619aa",
+      "assertions": {
+        "page": "Files",
+        "sidebarWidth": 232,
+        "axe": {
+          "version": "4.14.1",
+          "url": "/settings.html",
+          "theme": "light",
+          "scale": 1,
+          "violations": [],
+          "incomplete": [],
+          "passes": 38
+        }
+      },
+      "ipc": [
+        {
+          "command": "plugin:event|listen",
+          "args": {
+            "event": "engine:health",
+            "target": {
+              "kind": "Any"
+            },
+            "handler": 1
+          }
+        },
+        {
+          "command": "plugin:event|listen",
+          "args": {
+            "event": "nabbit://settings-changed",
+            "target": {
+              "kind": "Any"
+            },
+            "handler": 3
+          }
+        },
+        {
+          "command": "plugin:event|listen",
+          "args": {
+            "event": "tauri://theme-changed",
+            "target": {
+              "kind": "Window",
+              "label": "settings"
+            },
+            "handler": 5
+          }
+        },
+        {
+          "command": "settings_window_ready",
+          "args": {}
+        },
+        {
+          "command": "get_settings",
+          "args": {}
+        },
+        {
+          "command": "get_engine_status",
+          "args": {}
+        },
+        {
+          "command": "get_storage_stats",
+          "args": {}
+        },
+        {
+          "command": "plugin:window|theme",
+          "args": {
+            "label": "settings"
+          }
+        },
+        {
+          "command": "plugin:event|listen",
+          "args": {
+            "event": "pins:changed",
+            "target": {
+              "kind": "Any"
+            },
+            "handler": 7
+          }
+        },
+        {
+          "command": "plugin:event|listen",
+          "args": {
+            "event": "tauri://focus",
+            "target": {
+              "kind": "Any"
+            },
+            "handler": 9
+          }
+        },
+        {
+          "command": "files_capabilities",
+          "args": {}
+        },
+        {
+          "command": "files_pins",
+          "args": {}
+        },
+        {
+          "command": "context_preferences",
+          "args": {}
+        },
+        {
+          "command": "tool_presets",
+          "args": {}
+        }
+      ],
+      "unsupported": [],
+      "runtimeAndNetworkProblems": []
+    },
+    {
+      "file": "v61-settings-f-settings-shortcuts-light@1x.png",
+      "scenario": "settings-shortcuts",
+      "entry": "settings.html",
+      "figmaNode": null,
+      "theme": "light",
+      "resolvedTheme": "light",
+      "scale": 1,
+      "viewport": {
+        "width": 980,
+        "height": 720
+      },
+      "clip": {
+        "x": 0,
+        "y": 0,
+        "width": 980,
+        "height": 720
+      },
+      "width": 980,
+      "height": 720,
+      "bytes": 59033,
+      "sha256": "661654cc58cacce94a578bfb864e2c8fd55e2a21084d521a59414e9d7f6d9936",
+      "repeatMatches": true,
+      "caret": "hide",
+      "font": [
+        {
+          "familyName": "Geist",
+          "postScriptName": "Geist",
+          "isCustomFont": true,
+          "glyphCount": 9
+        }
+      ],
+      "fixtureSha256": "e20959f6505d8e2c0e0d9a2aefb75d10d7b1b31a69b77799b22e728e1d6619aa",
+      "assertions": {
+        "page": "Shortcuts",
+        "sidebarWidth": 232,
+        "axe": {
+          "version": "4.14.1",
+          "url": "/settings.html",
+          "theme": "light",
+          "scale": 1,
+          "violations": [],
+          "incomplete": [
+            {
+              "id": "aria-prohibited-attr",
+              "impact": "serious",
+              "targets": [
+                [
+                  "span[aria-label=\"Ctrl + Alt + N\"]"
+                ],
+                [
+                  "span[aria-label=\"Ctrl + Alt + T\"]"
+                ],
+                [
+                  "span[aria-label=\"Ctrl + 1–6\"]"
+                ],
+                [
+                  "span[aria-label=\"Alt + 1–9\"]"
+                ],
+                [
+                  "span[aria-label=\"Esc\"]"
+                ],
+                [
+                  "span[aria-label=\"Enter\"]"
+                ],
+                [
+                  "span[aria-label=\"Ctrl + Enter\"]"
+                ]
+              ]
+            }
+          ],
+          "passes": 33
+        }
+      },
+      "ipc": [
+        {
+          "command": "plugin:event|listen",
+          "args": {
+            "event": "engine:health",
+            "target": {
+              "kind": "Any"
+            },
+            "handler": 1
+          }
+        },
+        {
+          "command": "plugin:event|listen",
+          "args": {
+            "event": "nabbit://settings-changed",
+            "target": {
+              "kind": "Any"
+            },
+            "handler": 3
+          }
+        },
+        {
+          "command": "plugin:event|listen",
+          "args": {
+            "event": "tauri://theme-changed",
+            "target": {
+              "kind": "Window",
+              "label": "settings"
+            },
+            "handler": 5
+          }
+        },
+        {
+          "command": "settings_window_ready",
+          "args": {}
+        },
+        {
+          "command": "get_settings",
+          "args": {}
+        },
+        {
+          "command": "get_engine_status",
+          "args": {}
+        },
+        {
+          "command": "get_storage_stats",
+          "args": {}
+        },
+        {
+          "command": "plugin:window|theme",
+          "args": {
+            "label": "settings"
+          }
+        },
+        {
+          "command": "get_island_snapshot",
+          "args": {}
+        }
+      ],
+      "unsupported": [],
+      "runtimeAndNetworkProblems": []
+    },
+    {
+      "file": "v61-settings-f-settings-privacy-light@1x.png",
+      "scenario": "settings-privacy",
+      "entry": "settings.html",
+      "figmaNode": null,
+      "theme": "light",
+      "resolvedTheme": "light",
+      "scale": 1,
+      "viewport": {
+        "width": 980,
+        "height": 720
+      },
+      "clip": {
+        "x": 0,
+        "y": 0,
+        "width": 980,
+        "height": 720
+      },
+      "width": 980,
+      "height": 720,
+      "bytes": 44506,
+      "sha256": "d680898dcca5431a01c8d26fe410dd9fd12eca00b63e20c2d3f7a479e488c4d8",
+      "repeatMatches": true,
+      "caret": "hide",
+      "font": [
+        {
+          "familyName": "Geist",
+          "postScriptName": "Geist",
+          "isCustomFont": true,
+          "glyphCount": 15
+        }
+      ],
+      "fixtureSha256": "e20959f6505d8e2c0e0d9a2aefb75d10d7b1b31a69b77799b22e728e1d6619aa",
+      "assertions": {
+        "page": "Privacy & about",
+        "sidebarWidth": 232,
+        "axe": {
+          "version": "4.14.1",
+          "url": "/settings.html",
+          "theme": "light",
+          "scale": 1,
+          "violations": [],
+          "incomplete": [],
+          "passes": 30
+        }
+      },
+      "ipc": [
+        {
+          "command": "plugin:event|listen",
+          "args": {
+            "event": "engine:health",
+            "target": {
+              "kind": "Any"
+            },
+            "handler": 1
+          }
+        },
+        {
+          "command": "plugin:event|listen",
+          "args": {
+            "event": "nabbit://settings-changed",
+            "target": {
+              "kind": "Any"
+            },
+            "handler": 3
+          }
+        },
+        {
+          "command": "plugin:event|listen",
+          "args": {
+            "event": "tauri://theme-changed",
+            "target": {
+              "kind": "Window",
+              "label": "settings"
+            },
+            "handler": 5
+          }
+        },
+        {
+          "command": "settings_window_ready",
+          "args": {}
+        },
+        {
+          "command": "get_settings",
+          "args": {}
+        },
+        {
+          "command": "get_engine_status",
+          "args": {}
+        },
+        {
+          "command": "get_storage_stats",
+          "args": {}
+        },
+        {
+          "command": "plugin:window|theme",
+          "args": {
+            "label": "settings"
+          }
+        }
+      ],
+      "unsupported": [],
+      "runtimeAndNetworkProblems": []
+    },
+    {
+      "file": "v61-settings-f-settings-activities-light@1x.png",
+      "scenario": "settings-activities",
+      "entry": "settings.html",
+      "figmaNode": null,
+      "theme": "light",
+      "resolvedTheme": "light",
+      "scale": 1,
+      "viewport": {
+        "width": 980,
+        "height": 720
+      },
+      "clip": {
+        "x": 0,
+        "y": 0,
+        "width": 980,
+        "height": 720
+      },
+      "width": 980,
+      "height": 720,
+      "bytes": 68849,
+      "sha256": "71b888c10ad30bd6c3f1d729e7427a283cda4935fe44a073b5a1a34b2c5a106b",
+      "repeatMatches": true,
+      "caret": "hide",
+      "font": [
+        {
+          "familyName": "Geist",
+          "postScriptName": "Geist",
+          "isCustomFont": true,
+          "glyphCount": 15
+        }
+      ],
+      "fixtureSha256": "e20959f6505d8e2c0e0d9a2aefb75d10d7b1b31a69b77799b22e728e1d6619aa",
+      "assertions": {
+        "page": "Live activities",
+        "sidebarWidth": 232,
+        "axe": {
+          "version": "4.14.1",
+          "url": "/settings.html",
+          "theme": "light",
+          "scale": 1,
+          "violations": [],
+          "incomplete": [
+            {
+              "id": "color-contrast",
+              "impact": "serious",
+              "targets": [
+                [
+                  "button[aria-label=\"Move Mic / camera down\"]"
+                ],
+                [
+                  "button[aria-label=\"Move Timers / focus ending up\"]"
+                ],
+                [
+                  ".settings-activity[role=\"listitem\"]:nth-child(2) > .settings-reorder > button:nth-child(2)"
+                ],
+                [
+                  "button[aria-label=\"Move Downloads up\"]"
+                ],
+                [
+                  "button[aria-label=\"Move Downloads down\"]"
+                ],
+                [
+                  "button[aria-label=\"Move File tools up\"]"
+                ],
+                [
+                  "button[aria-label=\"Move File tools down\"]"
+                ],
+                [
+                  "button[aria-label=\"Move Link detected up\"]"
+                ],
+                [
+                  "button[aria-label=\"Move Link detected down\"]"
+                ],
+                [
+                  ".settings-activity[role=\"listitem\"]:nth-child(6) > .settings-reorder > button:nth-child(1)"
+                ],
+                [
+                  ".settings-activity[role=\"listitem\"]:nth-child(6) > .settings-reorder > button:nth-child(2)"
+                ],
+                [
+                  "button[aria-label=\"Move Now playing up\"]"
+                ],
+                [
+                  "button[aria-label=\"Move Now playing down\"]"
+                ],
+                [
+                  "button[aria-label=\"Move Focus timer up\"]"
+                ],
+                [
+                  "button[aria-label=\"Move Focus timer down\"]"
+                ],
+                [
+                  "button[aria-label=\"Move Power up\"]"
+                ]
+              ]
+            },
+            {
+              "id": "label-content-name-mismatch",
+              "impact": "serious",
+              "targets": [
+                [
+                  "button[aria-label=\"Move Mic / camera up\"]"
+                ],
+                [
+                  "button[aria-label=\"Move Mic / camera down\"]"
+                ],
+                [
+                  "button[aria-label=\"Move Timers / focus ending up\"]"
+                ],
+                [
+                  ".settings-activity[role=\"listitem\"]:nth-child(2) > .settings-reorder > button:nth-child(2)"
+                ],
+                [
+                  "button[aria-label=\"Move Downloads up\"]"
+                ],
+                [
+                  "button[aria-label=\"Move Downloads down\"]"
+                ],
+                [
+                  "button[aria-label=\"Move File tools up\"]"
+                ],
+                [
+                  "button[aria-label=\"Move File tools down\"]"
+                ],
+                [
+                  "button[aria-label=\"Move Link detected up\"]"
+                ],
+                [
+                  "button[aria-label=\"Move Link detected down\"]"
+                ],
+                [
+                  ".settings-activity[role=\"listitem\"]:nth-child(6) > .settings-reorder > button:nth-child(1)"
+                ],
+                [
+                  ".settings-activity[role=\"listitem\"]:nth-child(6) > .settings-reorder > button:nth-child(2)"
+                ],
+                [
+                  "button[aria-label=\"Move Now playing up\"]"
+                ],
+                [
+                  "button[aria-label=\"Move Now playing down\"]"
+                ],
+                [
+                  "button[aria-label=\"Move Focus timer up\"]"
+                ],
+                [
+                  "button[aria-label=\"Move Focus timer down\"]"
+                ],
+                [
+                  "button[aria-label=\"Move Power up\"]"
+                ],
+                [
+                  "button[aria-label=\"Move Power down\"]"
+                ]
+              ]
+            }
+          ],
+          "passes": 34
+        }
+      },
+      "ipc": [
+        {
+          "command": "plugin:event|listen",
+          "args": {
+            "event": "engine:health",
+            "target": {
+              "kind": "Any"
+            },
+            "handler": 1
+          }
+        },
+        {
+          "command": "plugin:event|listen",
+          "args": {
+            "event": "nabbit://settings-changed",
+            "target": {
+              "kind": "Any"
+            },
+            "handler": 3
+          }
+        },
+        {
+          "command": "plugin:event|listen",
+          "args": {
+            "event": "tauri://theme-changed",
+            "target": {
+              "kind": "Window",
+              "label": "settings"
+            },
+            "handler": 5
+          }
+        },
+        {
+          "command": "settings_window_ready",
+          "args": {}
+        },
+        {
+          "command": "get_settings",
+          "args": {}
+        },
+        {
+          "command": "get_engine_status",
+          "args": {}
+        },
+        {
+          "command": "get_storage_stats",
+          "args": {}
+        },
+        {
+          "command": "plugin:window|theme",
+          "args": {
+            "label": "settings"
+          }
+        },
+        {
+          "command": "plugin:event|listen",
+          "args": {
+            "event": "nabbit://island-config",
+            "target": {
+              "kind": "Any"
+            },
+            "handler": 7
+          }
+        },
+        {
+          "command": "get_island_snapshot",
+          "args": {}
+        },
+        {
+          "command": "plugin:event|unlisten",
+          "args": {
+            "event": "nabbit://island-config",
+            "eventId": 8
+          }
+        }
+      ],
+      "unsupported": [],
+      "runtimeAndNetworkProblems": []
+    },
+    {
+      "file": "v61-settings-f-settings-general-light@1.5x.png",
+      "scenario": "settings-general",
+      "entry": "settings.html",
+      "figmaNode": null,
+      "theme": "light",
+      "resolvedTheme": "light",
+      "scale": 1.5,
+      "viewport": {
+        "width": 980,
+        "height": 720
+      },
+      "clip": {
+        "x": 0,
+        "y": 0,
+        "width": 980,
+        "height": 720
+      },
+      "width": 1470,
+      "height": 1080,
+      "bytes": 107708,
+      "sha256": "ec0024036a16bf39c25a713a16a2da665fc47c93d7cd8ddbbdf88367cf26ea98",
+      "repeatMatches": true,
+      "caret": "hide",
+      "font": [
+        {
+          "familyName": "Geist",
+          "postScriptName": "Geist",
+          "isCustomFont": true,
+          "glyphCount": 7
+        }
+      ],
+      "fixtureSha256": "e20959f6505d8e2c0e0d9a2aefb75d10d7b1b31a69b77799b22e728e1d6619aa",
+      "assertions": {
+        "page": "General",
+        "sidebarWidth": 232,
+        "axe": {
+          "version": "4.14.1",
+          "url": "/settings.html",
+          "theme": "light",
+          "scale": 1.5,
+          "violations": [],
+          "incomplete": [],
+          "passes": 33
+        }
+      },
+      "ipc": [
+        {
+          "command": "plugin:event|listen",
+          "args": {
+            "event": "engine:health",
+            "target": {
+              "kind": "Any"
+            },
+            "handler": 1
+          }
+        },
+        {
+          "command": "plugin:event|listen",
+          "args": {
+            "event": "nabbit://settings-changed",
+            "target": {
+              "kind": "Any"
+            },
+            "handler": 3
+          }
+        },
+        {
+          "command": "plugin:event|listen",
+          "args": {
+            "event": "tauri://theme-changed",
+            "target": {
+              "kind": "Window",
+              "label": "settings"
+            },
+            "handler": 5
+          }
+        },
+        {
+          "command": "settings_window_ready",
+          "args": {}
+        },
+        {
+          "command": "get_settings",
+          "args": {}
+        },
+        {
+          "command": "get_engine_status",
+          "args": {}
+        },
+        {
+          "command": "get_storage_stats",
+          "args": {}
+        },
+        {
+          "command": "plugin:window|theme",
+          "args": {
+            "label": "settings"
+          }
+        }
+      ],
+      "unsupported": [],
+      "runtimeAndNetworkProblems": []
+    },
+    {
+      "file": "v61-settings-f-settings-island-light@1.5x.png",
+      "scenario": "settings-island",
+      "entry": "settings.html",
+      "figmaNode": null,
+      "theme": "light",
+      "resolvedTheme": "light",
+      "scale": 1.5,
+      "viewport": {
+        "width": 980,
+        "height": 720
+      },
+      "clip": {
+        "x": 0,
+        "y": 0,
+        "width": 980,
+        "height": 720
+      },
+      "width": 1470,
+      "height": 1080,
+      "bytes": 117280,
+      "sha256": "5f82153c0d9825f0bc1983aede52dabeb4fde33cd55390bbf9a0198e93928ee6",
+      "repeatMatches": true,
+      "caret": "hide",
+      "font": [
+        {
+          "familyName": "Geist",
+          "postScriptName": "Geist",
+          "isCustomFont": true,
+          "glyphCount": 6
+        }
+      ],
+      "fixtureSha256": "e20959f6505d8e2c0e0d9a2aefb75d10d7b1b31a69b77799b22e728e1d6619aa",
+      "assertions": {
+        "page": "Island",
+        "sidebarWidth": 232,
+        "axe": {
+          "version": "4.14.1",
+          "url": "/settings.html",
+          "theme": "light",
+          "scale": 1.5,
+          "violations": [],
+          "incomplete": [],
+          "passes": 38
+        }
+      },
+      "ipc": [
+        {
+          "command": "plugin:event|listen",
+          "args": {
+            "event": "engine:health",
+            "target": {
+              "kind": "Any"
+            },
+            "handler": 1
+          }
+        },
+        {
+          "command": "plugin:event|listen",
+          "args": {
+            "event": "nabbit://settings-changed",
+            "target": {
+              "kind": "Any"
+            },
+            "handler": 3
+          }
+        },
+        {
+          "command": "plugin:event|listen",
+          "args": {
+            "event": "tauri://theme-changed",
+            "target": {
+              "kind": "Window",
+              "label": "settings"
+            },
+            "handler": 5
+          }
+        },
+        {
+          "command": "settings_window_ready",
+          "args": {}
+        },
+        {
+          "command": "get_settings",
+          "args": {}
+        },
+        {
+          "command": "get_engine_status",
+          "args": {}
+        },
+        {
+          "command": "get_storage_stats",
+          "args": {}
+        },
+        {
+          "command": "plugin:window|theme",
+          "args": {
+            "label": "settings"
+          }
+        },
+        {
+          "command": "plugin:event|listen",
+          "args": {
+            "event": "nabbit://island-config",
+            "target": {
+              "kind": "Any"
+            },
+            "handler": 7
+          }
+        },
+        {
+          "command": "get_island_snapshot",
+          "args": {}
+        }
+      ],
+      "unsupported": [],
+      "runtimeAndNetworkProblems": []
+    },
+    {
+      "file": "v61-settings-f-settings-widgets-light@1.5x.png",
+      "scenario": "settings-widgets",
+      "entry": "settings.html",
+      "figmaNode": null,
+      "theme": "light",
+      "resolvedTheme": "light",
+      "scale": 1.5,
+      "viewport": {
+        "width": 980,
+        "height": 720
+      },
+      "clip": {
+        "x": 0,
+        "y": 0,
+        "width": 980,
+        "height": 720
+      },
+      "width": 1470,
+      "height": 1080,
+      "bytes": 66958,
+      "sha256": "b78f4f8205fcecc250a12540ec32b6b0f60ad4a6d46081aad2e58595ca882685",
+      "repeatMatches": true,
+      "caret": "hide",
+      "font": [
+        {
+          "familyName": "Geist",
+          "postScriptName": "Geist",
+          "isCustomFont": true,
+          "glyphCount": 7
+        }
+      ],
+      "fixtureSha256": "e20959f6505d8e2c0e0d9a2aefb75d10d7b1b31a69b77799b22e728e1d6619aa",
+      "assertions": {
+        "page": "Widgets",
+        "sidebarWidth": 232,
+        "axe": {
+          "version": "4.14.1",
+          "url": "/settings.html",
+          "theme": "light",
+          "scale": 1.5,
+          "violations": [],
+          "incomplete": [],
+          "passes": 33
+        }
+      },
+      "ipc": [
+        {
+          "command": "plugin:event|listen",
+          "args": {
+            "event": "engine:health",
+            "target": {
+              "kind": "Any"
+            },
+            "handler": 1
+          }
+        },
+        {
+          "command": "plugin:event|listen",
+          "args": {
+            "event": "nabbit://settings-changed",
+            "target": {
+              "kind": "Any"
+            },
+            "handler": 3
+          }
+        },
+        {
+          "command": "plugin:event|listen",
+          "args": {
+            "event": "tauri://theme-changed",
+            "target": {
+              "kind": "Window",
+              "label": "settings"
+            },
+            "handler": 5
+          }
+        },
+        {
+          "command": "settings_window_ready",
+          "args": {}
+        },
+        {
+          "command": "get_settings",
+          "args": {}
+        },
+        {
+          "command": "get_engine_status",
+          "args": {}
+        },
+        {
+          "command": "get_storage_stats",
+          "args": {}
+        },
+        {
+          "command": "plugin:window|theme",
+          "args": {
+            "label": "settings"
+          }
+        }
+      ],
+      "unsupported": [],
+      "runtimeAndNetworkProblems": []
+    },
+    {
+      "file": "v61-settings-f-settings-downloads-light@1.5x.png",
+      "scenario": "settings-downloads",
+      "entry": "settings.html",
+      "figmaNode": null,
+      "theme": "light",
+      "resolvedTheme": "light",
+      "scale": 1.5,
+      "viewport": {
+        "width": 980,
+        "height": 720
+      },
+      "clip": {
+        "x": 0,
+        "y": 0,
+        "width": 980,
+        "height": 720
+      },
+      "width": 1470,
+      "height": 1080,
+      "bytes": 127169,
+      "sha256": "6762e0ab4fc8a0860b65f5b48770adab902bd80ee00b6c741721c1c66f751954",
+      "repeatMatches": true,
+      "caret": "hide",
+      "font": [
+        {
+          "familyName": "Geist",
+          "postScriptName": "Geist",
+          "isCustomFont": true,
+          "glyphCount": 9
+        }
+      ],
+      "fixtureSha256": "e20959f6505d8e2c0e0d9a2aefb75d10d7b1b31a69b77799b22e728e1d6619aa",
+      "assertions": {
+        "page": "Downloads",
+        "sidebarWidth": 232,
+        "axe": {
+          "version": "4.14.1",
+          "url": "/settings.html",
+          "theme": "light",
+          "scale": 1.5,
+          "violations": [],
+          "incomplete": [],
+          "passes": 37
+        }
+      },
+      "ipc": [
+        {
+          "command": "plugin:event|listen",
+          "args": {
+            "event": "engine:health",
+            "target": {
+              "kind": "Any"
+            },
+            "handler": 1
+          }
+        },
+        {
+          "command": "plugin:event|listen",
+          "args": {
+            "event": "nabbit://settings-changed",
+            "target": {
+              "kind": "Any"
+            },
+            "handler": 3
+          }
+        },
+        {
+          "command": "plugin:event|listen",
+          "args": {
+            "event": "tauri://theme-changed",
+            "target": {
+              "kind": "Window",
+              "label": "settings"
+            },
+            "handler": 5
+          }
+        },
+        {
+          "command": "settings_window_ready",
+          "args": {}
+        },
+        {
+          "command": "get_settings",
+          "args": {}
+        },
+        {
+          "command": "get_engine_status",
+          "args": {}
+        },
+        {
+          "command": "get_storage_stats",
+          "args": {}
+        },
+        {
+          "command": "plugin:window|theme",
+          "args": {
+            "label": "settings"
+          }
+        },
+        {
+          "command": "plugin:event|listen",
+          "args": {
+            "event": "engine:health",
+            "target": {
+              "kind": "Any"
+            },
+            "handler": 7
+          }
+        },
+        {
+          "command": "get_engine_status",
+          "args": {}
+        }
+      ],
+      "unsupported": [],
+      "runtimeAndNetworkProblems": []
+    },
+    {
+      "file": "v61-settings-f-settings-notes-light@1.5x.png",
+      "scenario": "settings-notes",
+      "entry": "settings.html",
+      "figmaNode": null,
+      "theme": "light",
+      "resolvedTheme": "light",
+      "scale": 1.5,
+      "viewport": {
+        "width": 980,
+        "height": 720
+      },
+      "clip": {
+        "x": 0,
+        "y": 0,
+        "width": 980,
+        "height": 720
+      },
+      "width": 1470,
+      "height": 1080,
+      "bytes": 74426,
+      "sha256": "0843ca84f463bd51385df30412510992fe5b59c9be2931488ca55ee1b7779340",
+      "repeatMatches": true,
+      "caret": "hide",
+      "font": [
+        {
+          "familyName": "Geist",
+          "postScriptName": "Geist",
+          "isCustomFont": true,
+          "glyphCount": 12
+        }
+      ],
+      "fixtureSha256": "e20959f6505d8e2c0e0d9a2aefb75d10d7b1b31a69b77799b22e728e1d6619aa",
+      "assertions": {
+        "page": "Notes & Tack",
+        "sidebarWidth": 232,
+        "axe": {
+          "version": "4.14.1",
+          "url": "/settings.html",
+          "theme": "light",
+          "scale": 1.5,
+          "violations": [],
+          "incomplete": [],
+          "passes": 33
+        }
+      },
+      "ipc": [
+        {
+          "command": "plugin:event|listen",
+          "args": {
+            "event": "engine:health",
+            "target": {
+              "kind": "Any"
+            },
+            "handler": 1
+          }
+        },
+        {
+          "command": "plugin:event|listen",
+          "args": {
+            "event": "nabbit://settings-changed",
+            "target": {
+              "kind": "Any"
+            },
+            "handler": 3
+          }
+        },
+        {
+          "command": "plugin:event|listen",
+          "args": {
+            "event": "tauri://theme-changed",
+            "target": {
+              "kind": "Window",
+              "label": "settings"
+            },
+            "handler": 5
+          }
+        },
+        {
+          "command": "settings_window_ready",
+          "args": {}
+        },
+        {
+          "command": "get_settings",
+          "args": {}
+        },
+        {
+          "command": "get_engine_status",
+          "args": {}
+        },
+        {
+          "command": "get_storage_stats",
+          "args": {}
+        },
+        {
+          "command": "plugin:window|theme",
+          "args": {
+            "label": "settings"
+          }
+        },
+        {
+          "command": "plugin:event|listen",
+          "args": {
+            "event": "tack:sync",
+            "target": {
+              "kind": "Any"
+            },
+            "handler": 7
+          }
+        },
+        {
+          "command": "plugin:event|listen",
+          "args": {
+            "event": "notes:updated",
+            "target": {
+              "kind": "Any"
+            },
+            "handler": 9
+          }
+        },
+        {
+          "command": "tack_snapshot",
+          "args": {}
+        },
+        {
+          "command": "tack_profile",
+          "args": {}
+        },
+        {
+          "command": "tack_sync_snapshot",
+          "args": {}
+        }
+      ],
+      "unsupported": [],
+      "runtimeAndNetworkProblems": []
+    },
+    {
+      "file": "v61-settings-f-settings-clipboard-light@1.5x.png",
+      "scenario": "settings-clipboard",
+      "entry": "settings.html",
+      "figmaNode": null,
+      "theme": "light",
+      "resolvedTheme": "light",
+      "scale": 1.5,
+      "viewport": {
+        "width": 980,
+        "height": 720
+      },
+      "clip": {
+        "x": 0,
+        "y": 0,
+        "width": 980,
+        "height": 720
+      },
+      "width": 1470,
+      "height": 1080,
+      "bytes": 107905,
+      "sha256": "53799d32a123bca3c11692a5739aaf00426c43bcce355ccbae5dbf3bbb4f78f3",
+      "repeatMatches": true,
+      "caret": "hide",
+      "font": [
+        {
+          "familyName": "Geist",
+          "postScriptName": "Geist",
+          "isCustomFont": true,
+          "glyphCount": 9
+        }
+      ],
+      "fixtureSha256": "e20959f6505d8e2c0e0d9a2aefb75d10d7b1b31a69b77799b22e728e1d6619aa",
+      "assertions": {
+        "page": "Clipboard",
+        "sidebarWidth": 232,
+        "axe": {
+          "version": "4.14.1",
+          "url": "/settings.html",
+          "theme": "light",
+          "scale": 1.5,
+          "violations": [],
+          "incomplete": [],
+          "passes": 36
+        }
+      },
+      "ipc": [
+        {
+          "command": "plugin:event|listen",
+          "args": {
+            "event": "engine:health",
+            "target": {
+              "kind": "Any"
+            },
+            "handler": 1
+          }
+        },
+        {
+          "command": "plugin:event|listen",
+          "args": {
+            "event": "nabbit://settings-changed",
+            "target": {
+              "kind": "Any"
+            },
+            "handler": 3
+          }
+        },
+        {
+          "command": "plugin:event|listen",
+          "args": {
+            "event": "tauri://theme-changed",
+            "target": {
+              "kind": "Window",
+              "label": "settings"
+            },
+            "handler": 5
+          }
+        },
+        {
+          "command": "settings_window_ready",
+          "args": {}
+        },
+        {
+          "command": "get_settings",
+          "args": {}
+        },
+        {
+          "command": "get_engine_status",
+          "args": {}
+        },
+        {
+          "command": "get_storage_stats",
+          "args": {}
+        },
+        {
+          "command": "plugin:window|theme",
+          "args": {
+            "label": "settings"
+          }
+        }
+      ],
+      "unsupported": [],
+      "runtimeAndNetworkProblems": []
+    },
+    {
+      "file": "v61-settings-f-settings-files-light@1.5x.png",
+      "scenario": "settings-files",
+      "entry": "settings.html",
+      "figmaNode": null,
+      "theme": "light",
+      "resolvedTheme": "light",
+      "scale": 1.5,
+      "viewport": {
+        "width": 980,
+        "height": 720
+      },
+      "clip": {
+        "x": 0,
+        "y": 0,
+        "width": 980,
+        "height": 720
+      },
+      "width": 1470,
+      "height": 1080,
+      "bytes": 107315,
+      "sha256": "a1e6eece3257c72580ebed1792ead8c19d4e4bea9d3fafb0e8bdf9e85c9ec519",
+      "repeatMatches": true,
+      "caret": "hide",
+      "font": [
+        {
+          "familyName": "Geist",
+          "postScriptName": "Geist",
+          "isCustomFont": true,
+          "glyphCount": 5
+        }
+      ],
+      "fixtureSha256": "e20959f6505d8e2c0e0d9a2aefb75d10d7b1b31a69b77799b22e728e1d6619aa",
+      "assertions": {
+        "page": "Files",
+        "sidebarWidth": 232,
+        "axe": {
+          "version": "4.14.1",
+          "url": "/settings.html",
+          "theme": "light",
+          "scale": 1.5,
+          "violations": [],
+          "incomplete": [],
+          "passes": 38
+        }
+      },
+      "ipc": [
+        {
+          "command": "plugin:event|listen",
+          "args": {
+            "event": "engine:health",
+            "target": {
+              "kind": "Any"
+            },
+            "handler": 1
+          }
+        },
+        {
+          "command": "plugin:event|listen",
+          "args": {
+            "event": "nabbit://settings-changed",
+            "target": {
+              "kind": "Any"
+            },
+            "handler": 3
+          }
+        },
+        {
+          "command": "plugin:event|listen",
+          "args": {
+            "event": "tauri://theme-changed",
+            "target": {
+              "kind": "Window",
+              "label": "settings"
+            },
+            "handler": 5
+          }
+        },
+        {
+          "command": "settings_window_ready",
+          "args": {}
+        },
+        {
+          "command": "get_settings",
+          "args": {}
+        },
+        {
+          "command": "get_engine_status",
+          "args": {}
+        },
+        {
+          "command": "get_storage_stats",
+          "args": {}
+        },
+        {
+          "command": "plugin:window|theme",
+          "args": {
+            "label": "settings"
+          }
+        },
+        {
+          "command": "plugin:event|listen",
+          "args": {
+            "event": "pins:changed",
+            "target": {
+              "kind": "Any"
+            },
+            "handler": 7
+          }
+        },
+        {
+          "command": "plugin:event|listen",
+          "args": {
+            "event": "tauri://focus",
+            "target": {
+              "kind": "Any"
+            },
+            "handler": 9
+          }
+        },
+        {
+          "command": "files_capabilities",
+          "args": {}
+        },
+        {
+          "command": "files_pins",
+          "args": {}
+        },
+        {
+          "command": "context_preferences",
+          "args": {}
+        },
+        {
+          "command": "tool_presets",
+          "args": {}
+        }
+      ],
+      "unsupported": [],
+      "runtimeAndNetworkProblems": []
+    },
+    {
+      "file": "v61-settings-f-settings-shortcuts-light@1.5x.png",
+      "scenario": "settings-shortcuts",
+      "entry": "settings.html",
+      "figmaNode": null,
+      "theme": "light",
+      "resolvedTheme": "light",
+      "scale": 1.5,
+      "viewport": {
+        "width": 980,
+        "height": 720
+      },
+      "clip": {
+        "x": 0,
+        "y": 0,
+        "width": 980,
+        "height": 720
+      },
+      "width": 1470,
+      "height": 1080,
+      "bytes": 103295,
+      "sha256": "d120f13705a9e67d5cc2fcb2625991058d28c1865d0aa642f4cb37e9dda0cc98",
+      "repeatMatches": true,
+      "caret": "hide",
+      "font": [
+        {
+          "familyName": "Geist",
+          "postScriptName": "Geist",
+          "isCustomFont": true,
+          "glyphCount": 9
+        }
+      ],
+      "fixtureSha256": "e20959f6505d8e2c0e0d9a2aefb75d10d7b1b31a69b77799b22e728e1d6619aa",
+      "assertions": {
+        "page": "Shortcuts",
+        "sidebarWidth": 232,
+        "axe": {
+          "version": "4.14.1",
+          "url": "/settings.html",
+          "theme": "light",
+          "scale": 1.5,
+          "violations": [],
+          "incomplete": [
+            {
+              "id": "aria-prohibited-attr",
+              "impact": "serious",
+              "targets": [
+                [
+                  "span[aria-label=\"Ctrl + Alt + N\"]"
+                ],
+                [
+                  "span[aria-label=\"Ctrl + Alt + T\"]"
+                ],
+                [
+                  "span[aria-label=\"Ctrl + 1–6\"]"
+                ],
+                [
+                  "span[aria-label=\"Alt + 1–9\"]"
+                ],
+                [
+                  "span[aria-label=\"Esc\"]"
+                ],
+                [
+                  "span[aria-label=\"Enter\"]"
+                ],
+                [
+                  "span[aria-label=\"Ctrl + Enter\"]"
+                ]
+              ]
+            }
+          ],
+          "passes": 33
+        }
+      },
+      "ipc": [
+        {
+          "command": "plugin:event|listen",
+          "args": {
+            "event": "engine:health",
+            "target": {
+              "kind": "Any"
+            },
+            "handler": 1
+          }
+        },
+        {
+          "command": "plugin:event|listen",
+          "args": {
+            "event": "nabbit://settings-changed",
+            "target": {
+              "kind": "Any"
+            },
+            "handler": 3
+          }
+        },
+        {
+          "command": "plugin:event|listen",
+          "args": {
+            "event": "tauri://theme-changed",
+            "target": {
+              "kind": "Window",
+              "label": "settings"
+            },
+            "handler": 5
+          }
+        },
+        {
+          "command": "settings_window_ready",
+          "args": {}
+        },
+        {
+          "command": "get_settings",
+          "args": {}
+        },
+        {
+          "command": "get_engine_status",
+          "args": {}
+        },
+        {
+          "command": "get_storage_stats",
+          "args": {}
+        },
+        {
+          "command": "plugin:window|theme",
+          "args": {
+            "label": "settings"
+          }
+        },
+        {
+          "command": "get_island_snapshot",
+          "args": {}
+        }
+      ],
+      "unsupported": [],
+      "runtimeAndNetworkProblems": []
+    },
+    {
+      "file": "v61-settings-f-settings-privacy-light@1.5x.png",
+      "scenario": "settings-privacy",
+      "entry": "settings.html",
+      "figmaNode": null,
+      "theme": "light",
+      "resolvedTheme": "light",
+      "scale": 1.5,
+      "viewport": {
+        "width": 980,
+        "height": 720
+      },
+      "clip": {
+        "x": 0,
+        "y": 0,
+        "width": 980,
+        "height": 720
+      },
+      "width": 1470,
+      "height": 1080,
+      "bytes": 76326,
+      "sha256": "85a43eac9c4dc119859b77df136236e7c09fe40023ee5a270bea2c056432b0db",
+      "repeatMatches": true,
+      "caret": "hide",
+      "font": [
+        {
+          "familyName": "Geist",
+          "postScriptName": "Geist",
+          "isCustomFont": true,
+          "glyphCount": 15
+        }
+      ],
+      "fixtureSha256": "e20959f6505d8e2c0e0d9a2aefb75d10d7b1b31a69b77799b22e728e1d6619aa",
+      "assertions": {
+        "page": "Privacy & about",
+        "sidebarWidth": 232,
+        "axe": {
+          "version": "4.14.1",
+          "url": "/settings.html",
+          "theme": "light",
+          "scale": 1.5,
+          "violations": [],
+          "incomplete": [],
+          "passes": 30
+        }
+      },
+      "ipc": [
+        {
+          "command": "plugin:event|listen",
+          "args": {
+            "event": "engine:health",
+            "target": {
+              "kind": "Any"
+            },
+            "handler": 1
+          }
+        },
+        {
+          "command": "plugin:event|listen",
+          "args": {
+            "event": "nabbit://settings-changed",
+            "target": {
+              "kind": "Any"
+            },
+            "handler": 3
+          }
+        },
+        {
+          "command": "plugin:event|listen",
+          "args": {
+            "event": "tauri://theme-changed",
+            "target": {
+              "kind": "Window",
+              "label": "settings"
+            },
+            "handler": 5
+          }
+        },
+        {
+          "command": "settings_window_ready",
+          "args": {}
+        },
+        {
+          "command": "get_settings",
+          "args": {}
+        },
+        {
+          "command": "get_engine_status",
+          "args": {}
+        },
+        {
+          "command": "get_storage_stats",
+          "args": {}
+        },
+        {
+          "command": "plugin:window|theme",
+          "args": {
+            "label": "settings"
+          }
+        }
+      ],
+      "unsupported": [],
+      "runtimeAndNetworkProblems": []
+    },
+    {
+      "file": "v61-settings-f-settings-activities-light@1.5x.png",
+      "scenario": "settings-activities",
+      "entry": "settings.html",
+      "figmaNode": null,
+      "theme": "light",
+      "resolvedTheme": "light",
+      "scale": 1.5,
+      "viewport": {
+        "width": 980,
+        "height": 720
+      },
+      "clip": {
+        "x": 0,
+        "y": 0,
+        "width": 980,
+        "height": 720
+      },
+      "width": 1470,
+      "height": 1080,
+      "bytes": 115211,
+      "sha256": "cc038ab1d0e590362055cf10911408d30a8e85fd7ed66e163088a736f180d40b",
+      "repeatMatches": true,
+      "caret": "hide",
+      "font": [
+        {
+          "familyName": "Geist",
+          "postScriptName": "Geist",
+          "isCustomFont": true,
+          "glyphCount": 15
+        }
+      ],
+      "fixtureSha256": "e20959f6505d8e2c0e0d9a2aefb75d10d7b1b31a69b77799b22e728e1d6619aa",
+      "assertions": {
+        "page": "Live activities",
+        "sidebarWidth": 232,
+        "axe": {
+          "version": "4.14.1",
+          "url": "/settings.html",
+          "theme": "light",
+          "scale": 1.5,
+          "violations": [],
+          "incomplete": [
+            {
+              "id": "color-contrast",
+              "impact": "serious",
+              "targets": [
+                [
+                  "button[aria-label=\"Move Mic / camera down\"]"
+                ],
+                [
+                  "button[aria-label=\"Move Timers / focus ending up\"]"
+                ],
+                [
+                  ".settings-activity[role=\"listitem\"]:nth-child(2) > .settings-reorder > button:nth-child(2)"
+                ],
+                [
+                  "button[aria-label=\"Move Downloads up\"]"
+                ],
+                [
+                  "button[aria-label=\"Move Downloads down\"]"
+                ],
+                [
+                  "button[aria-label=\"Move File tools up\"]"
+                ],
+                [
+                  "button[aria-label=\"Move File tools down\"]"
+                ],
+                [
+                  "button[aria-label=\"Move Link detected up\"]"
+                ],
+                [
+                  "button[aria-label=\"Move Link detected down\"]"
+                ],
+                [
+                  ".settings-activity[role=\"listitem\"]:nth-child(6) > .settings-reorder > button:nth-child(1)"
+                ],
+                [
+                  ".settings-activity[role=\"listitem\"]:nth-child(6) > .settings-reorder > button:nth-child(2)"
+                ],
+                [
+                  "button[aria-label=\"Move Now playing up\"]"
+                ],
+                [
+                  "button[aria-label=\"Move Now playing down\"]"
+                ],
+                [
+                  "button[aria-label=\"Move Focus timer up\"]"
+                ],
+                [
+                  "button[aria-label=\"Move Focus timer down\"]"
+                ],
+                [
+                  "button[aria-label=\"Move Power up\"]"
+                ]
+              ]
+            },
+            {
+              "id": "label-content-name-mismatch",
+              "impact": "serious",
+              "targets": [
+                [
+                  "button[aria-label=\"Move Mic / camera up\"]"
+                ],
+                [
+                  "button[aria-label=\"Move Mic / camera down\"]"
+                ],
+                [
+                  "button[aria-label=\"Move Timers / focus ending up\"]"
+                ],
+                [
+                  ".settings-activity[role=\"listitem\"]:nth-child(2) > .settings-reorder > button:nth-child(2)"
+                ],
+                [
+                  "button[aria-label=\"Move Downloads up\"]"
+                ],
+                [
+                  "button[aria-label=\"Move Downloads down\"]"
+                ],
+                [
+                  "button[aria-label=\"Move File tools up\"]"
+                ],
+                [
+                  "button[aria-label=\"Move File tools down\"]"
+                ],
+                [
+                  "button[aria-label=\"Move Link detected up\"]"
+                ],
+                [
+                  "button[aria-label=\"Move Link detected down\"]"
+                ],
+                [
+                  ".settings-activity[role=\"listitem\"]:nth-child(6) > .settings-reorder > button:nth-child(1)"
+                ],
+                [
+                  ".settings-activity[role=\"listitem\"]:nth-child(6) > .settings-reorder > button:nth-child(2)"
+                ],
+                [
+                  "button[aria-label=\"Move Now playing up\"]"
+                ],
+                [
+                  "button[aria-label=\"Move Now playing down\"]"
+                ],
+                [
+                  "button[aria-label=\"Move Focus timer up\"]"
+                ],
+                [
+                  "button[aria-label=\"Move Focus timer down\"]"
+                ],
+                [
+                  "button[aria-label=\"Move Power up\"]"
+                ],
+                [
+                  "button[aria-label=\"Move Power down\"]"
+                ]
+              ]
+            }
+          ],
+          "passes": 34
+        }
+      },
+      "ipc": [
+        {
+          "command": "plugin:event|listen",
+          "args": {
+            "event": "engine:health",
+            "target": {
+              "kind": "Any"
+            },
+            "handler": 1
+          }
+        },
+        {
+          "command": "plugin:event|listen",
+          "args": {
+            "event": "nabbit://settings-changed",
+            "target": {
+              "kind": "Any"
+            },
+            "handler": 3
+          }
+        },
+        {
+          "command": "plugin:event|listen",
+          "args": {
+            "event": "tauri://theme-changed",
+            "target": {
+              "kind": "Window",
+              "label": "settings"
+            },
+            "handler": 5
+          }
+        },
+        {
+          "command": "settings_window_ready",
+          "args": {}
+        },
+        {
+          "command": "get_settings",
+          "args": {}
+        },
+        {
+          "command": "get_engine_status",
+          "args": {}
+        },
+        {
+          "command": "get_storage_stats",
+          "args": {}
+        },
+        {
+          "command": "plugin:window|theme",
+          "args": {
+            "label": "settings"
+          }
+        },
+        {
+          "command": "plugin:event|listen",
+          "args": {
+            "event": "nabbit://island-config",
+            "target": {
+              "kind": "Any"
+            },
+            "handler": 7
+          }
+        },
+        {
+          "command": "get_island_snapshot",
+          "args": {}
+        },
+        {
+          "command": "plugin:event|unlisten",
+          "args": {
+            "event": "nabbit://island-config",
+            "eventId": 8
+          }
+        }
+      ],
+      "unsupported": [],
+      "runtimeAndNetworkProblems": []
+    },
+    {
+      "file": "v61-settings-f-settings-general-dark@1x.png",
+      "scenario": "settings-general",
+      "entry": "settings.html",
+      "figmaNode": null,
+      "theme": "dark",
+      "resolvedTheme": "dark",
+      "scale": 1,
+      "viewport": {
+        "width": 980,
+        "height": 720
+      },
+      "clip": {
+        "x": 0,
+        "y": 0,
+        "width": 980,
+        "height": 720
+      },
+      "width": 980,
+      "height": 720,
+      "bytes": 63787,
+      "sha256": "90a5296254918c9a946e6f57643a2dc95a77a92ccc8b6b2f6b49420fbc90fe6f",
+      "repeatMatches": true,
+      "caret": "hide",
+      "font": [
+        {
+          "familyName": "Geist",
+          "postScriptName": "Geist",
+          "isCustomFont": true,
+          "glyphCount": 7
+        }
+      ],
+      "fixtureSha256": "4b1b60aa936c43c9b0b51be85f1d91152eb23c3ec27c6e7f2bd75e925851436c",
+      "assertions": {
+        "page": "General",
+        "sidebarWidth": 232,
+        "axe": {
+          "version": "4.14.1",
+          "url": "/settings.html",
+          "theme": "dark",
+          "scale": 1,
+          "violations": [],
+          "incomplete": [],
+          "passes": 33
+        }
+      },
+      "ipc": [
+        {
+          "command": "plugin:event|listen",
+          "args": {
+            "event": "engine:health",
+            "target": {
+              "kind": "Any"
+            },
+            "handler": 1
+          }
+        },
+        {
+          "command": "plugin:event|listen",
+          "args": {
+            "event": "nabbit://settings-changed",
+            "target": {
+              "kind": "Any"
+            },
+            "handler": 3
+          }
+        },
+        {
+          "command": "plugin:event|listen",
+          "args": {
+            "event": "tauri://theme-changed",
+            "target": {
+              "kind": "Window",
+              "label": "settings"
+            },
+            "handler": 5
+          }
+        },
+        {
+          "command": "settings_window_ready",
+          "args": {}
+        },
+        {
+          "command": "get_settings",
+          "args": {}
+        },
+        {
+          "command": "get_engine_status",
+          "args": {}
+        },
+        {
+          "command": "get_storage_stats",
+          "args": {}
+        },
+        {
+          "command": "plugin:window|theme",
+          "args": {
+            "label": "settings"
+          }
+        }
+      ],
+      "unsupported": [],
+      "runtimeAndNetworkProblems": []
+    },
+    {
+      "file": "v61-settings-f-settings-island-dark@1x.png",
+      "scenario": "settings-island",
+      "entry": "settings.html",
+      "figmaNode": null,
+      "theme": "dark",
+      "resolvedTheme": "dark",
+      "scale": 1,
+      "viewport": {
+        "width": 980,
+        "height": 720
+      },
+      "clip": {
+        "x": 0,
+        "y": 0,
+        "width": 980,
+        "height": 720
+      },
+      "width": 980,
+      "height": 720,
+      "bytes": 68215,
+      "sha256": "8f33771f4f6c3c8a894d383bc73ee942682d38c73ec89dfa431e4a33ea7ce1a5",
+      "repeatMatches": true,
+      "caret": "hide",
+      "font": [
+        {
+          "familyName": "Geist",
+          "postScriptName": "Geist",
+          "isCustomFont": true,
+          "glyphCount": 6
+        }
+      ],
+      "fixtureSha256": "4b1b60aa936c43c9b0b51be85f1d91152eb23c3ec27c6e7f2bd75e925851436c",
+      "assertions": {
+        "page": "Island",
+        "sidebarWidth": 232,
+        "axe": {
+          "version": "4.14.1",
+          "url": "/settings.html",
+          "theme": "dark",
+          "scale": 1,
+          "violations": [],
+          "incomplete": [],
+          "passes": 38
+        }
+      },
+      "ipc": [
+        {
+          "command": "plugin:event|listen",
+          "args": {
+            "event": "engine:health",
+            "target": {
+              "kind": "Any"
+            },
+            "handler": 1
+          }
+        },
+        {
+          "command": "plugin:event|listen",
+          "args": {
+            "event": "nabbit://settings-changed",
+            "target": {
+              "kind": "Any"
+            },
+            "handler": 3
+          }
+        },
+        {
+          "command": "plugin:event|listen",
+          "args": {
+            "event": "tauri://theme-changed",
+            "target": {
+              "kind": "Window",
+              "label": "settings"
+            },
+            "handler": 5
+          }
+        },
+        {
+          "command": "settings_window_ready",
+          "args": {}
+        },
+        {
+          "command": "get_settings",
+          "args": {}
+        },
+        {
+          "command": "get_engine_status",
+          "args": {}
+        },
+        {
+          "command": "get_storage_stats",
+          "args": {}
+        },
+        {
+          "command": "plugin:window|theme",
+          "args": {
+            "label": "settings"
+          }
+        },
+        {
+          "command": "plugin:event|listen",
+          "args": {
+            "event": "nabbit://island-config",
+            "target": {
+              "kind": "Any"
+            },
+            "handler": 7
+          }
+        },
+        {
+          "command": "get_island_snapshot",
+          "args": {}
+        }
+      ],
+      "unsupported": [],
+      "runtimeAndNetworkProblems": []
+    },
+    {
+      "file": "v61-settings-f-settings-widgets-dark@1x.png",
+      "scenario": "settings-widgets",
+      "entry": "settings.html",
+      "figmaNode": null,
+      "theme": "dark",
+      "resolvedTheme": "dark",
+      "scale": 1,
+      "viewport": {
+        "width": 980,
+        "height": 720
+      },
+      "clip": {
+        "x": 0,
+        "y": 0,
+        "width": 980,
+        "height": 720
+      },
+      "width": 980,
+      "height": 720,
+      "bytes": 40442,
+      "sha256": "79acb2d2f9ad001fabaa963a033abd9b8f3fef37364d4727a24737d4b3086b2a",
+      "repeatMatches": true,
+      "caret": "hide",
+      "font": [
+        {
+          "familyName": "Geist",
+          "postScriptName": "Geist",
+          "isCustomFont": true,
+          "glyphCount": 7
+        }
+      ],
+      "fixtureSha256": "4b1b60aa936c43c9b0b51be85f1d91152eb23c3ec27c6e7f2bd75e925851436c",
+      "assertions": {
+        "page": "Widgets",
+        "sidebarWidth": 232,
+        "axe": {
+          "version": "4.14.1",
+          "url": "/settings.html",
+          "theme": "dark",
+          "scale": 1,
+          "violations": [],
+          "incomplete": [],
+          "passes": 33
+        }
+      },
+      "ipc": [
+        {
+          "command": "plugin:event|listen",
+          "args": {
+            "event": "engine:health",
+            "target": {
+              "kind": "Any"
+            },
+            "handler": 1
+          }
+        },
+        {
+          "command": "plugin:event|listen",
+          "args": {
+            "event": "nabbit://settings-changed",
+            "target": {
+              "kind": "Any"
+            },
+            "handler": 3
+          }
+        },
+        {
+          "command": "plugin:event|listen",
+          "args": {
+            "event": "tauri://theme-changed",
+            "target": {
+              "kind": "Window",
+              "label": "settings"
+            },
+            "handler": 5
+          }
+        },
+        {
+          "command": "settings_window_ready",
+          "args": {}
+        },
+        {
+          "command": "get_settings",
+          "args": {}
+        },
+        {
+          "command": "get_engine_status",
+          "args": {}
+        },
+        {
+          "command": "get_storage_stats",
+          "args": {}
+        },
+        {
+          "command": "plugin:window|theme",
+          "args": {
+            "label": "settings"
+          }
+        }
+      ],
+      "unsupported": [],
+      "runtimeAndNetworkProblems": []
+    },
+    {
+      "file": "v61-settings-f-settings-downloads-dark@1x.png",
+      "scenario": "settings-downloads",
+      "entry": "settings.html",
+      "figmaNode": null,
+      "theme": "dark",
+      "resolvedTheme": "dark",
+      "scale": 1,
+      "viewport": {
+        "width": 980,
+        "height": 720
+      },
+      "clip": {
+        "x": 0,
+        "y": 0,
+        "width": 980,
+        "height": 720
+      },
+      "width": 980,
+      "height": 720,
+      "bytes": 75030,
+      "sha256": "3761b9fb55b145d8b01c24ef888a1283069e3af00ec41da31281b61a2b765b87",
+      "repeatMatches": true,
+      "caret": "hide",
+      "font": [
+        {
+          "familyName": "Geist",
+          "postScriptName": "Geist",
+          "isCustomFont": true,
+          "glyphCount": 9
+        }
+      ],
+      "fixtureSha256": "4b1b60aa936c43c9b0b51be85f1d91152eb23c3ec27c6e7f2bd75e925851436c",
+      "assertions": {
+        "page": "Downloads",
+        "sidebarWidth": 232,
+        "axe": {
+          "version": "4.14.1",
+          "url": "/settings.html",
+          "theme": "dark",
+          "scale": 1,
+          "violations": [],
+          "incomplete": [],
+          "passes": 37
+        }
+      },
+      "ipc": [
+        {
+          "command": "plugin:event|listen",
+          "args": {
+            "event": "engine:health",
+            "target": {
+              "kind": "Any"
+            },
+            "handler": 1
+          }
+        },
+        {
+          "command": "plugin:event|listen",
+          "args": {
+            "event": "nabbit://settings-changed",
+            "target": {
+              "kind": "Any"
+            },
+            "handler": 3
+          }
+        },
+        {
+          "command": "plugin:event|listen",
+          "args": {
+            "event": "tauri://theme-changed",
+            "target": {
+              "kind": "Window",
+              "label": "settings"
+            },
+            "handler": 5
+          }
+        },
+        {
+          "command": "settings_window_ready",
+          "args": {}
+        },
+        {
+          "command": "get_settings",
+          "args": {}
+        },
+        {
+          "command": "get_engine_status",
+          "args": {}
+        },
+        {
+          "command": "get_storage_stats",
+          "args": {}
+        },
+        {
+          "command": "plugin:window|theme",
+          "args": {
+            "label": "settings"
+          }
+        },
+        {
+          "command": "plugin:event|listen",
+          "args": {
+            "event": "engine:health",
+            "target": {
+              "kind": "Any"
+            },
+            "handler": 7
+          }
+        },
+        {
+          "command": "get_engine_status",
+          "args": {}
+        }
+      ],
+      "unsupported": [],
+      "runtimeAndNetworkProblems": []
+    },
+    {
+      "file": "v61-settings-f-settings-notes-dark@1x.png",
+      "scenario": "settings-notes",
+      "entry": "settings.html",
+      "figmaNode": null,
+      "theme": "dark",
+      "resolvedTheme": "dark",
+      "scale": 1,
+      "viewport": {
+        "width": 980,
+        "height": 720
+      },
+      "clip": {
+        "x": 0,
+        "y": 0,
+        "width": 980,
+        "height": 720
+      },
+      "width": 980,
+      "height": 720,
+      "bytes": 44289,
+      "sha256": "c6d22c2acde9193c35689dac1e5e7666944871e807d6cab7e4fc182502167d9a",
+      "repeatMatches": true,
+      "caret": "hide",
+      "font": [
+        {
+          "familyName": "Geist",
+          "postScriptName": "Geist",
+          "isCustomFont": true,
+          "glyphCount": 12
+        }
+      ],
+      "fixtureSha256": "4b1b60aa936c43c9b0b51be85f1d91152eb23c3ec27c6e7f2bd75e925851436c",
+      "assertions": {
+        "page": "Notes & Tack",
+        "sidebarWidth": 232,
+        "axe": {
+          "version": "4.14.1",
+          "url": "/settings.html",
+          "theme": "dark",
+          "scale": 1,
+          "violations": [],
+          "incomplete": [],
+          "passes": 33
+        }
+      },
+      "ipc": [
+        {
+          "command": "plugin:event|listen",
+          "args": {
+            "event": "engine:health",
+            "target": {
+              "kind": "Any"
+            },
+            "handler": 1
+          }
+        },
+        {
+          "command": "plugin:event|listen",
+          "args": {
+            "event": "nabbit://settings-changed",
+            "target": {
+              "kind": "Any"
+            },
+            "handler": 3
+          }
+        },
+        {
+          "command": "plugin:event|listen",
+          "args": {
+            "event": "tauri://theme-changed",
+            "target": {
+              "kind": "Window",
+              "label": "settings"
+            },
+            "handler": 5
+          }
+        },
+        {
+          "command": "settings_window_ready",
+          "args": {}
+        },
+        {
+          "command": "get_settings",
+          "args": {}
+        },
+        {
+          "command": "get_engine_status",
+          "args": {}
+        },
+        {
+          "command": "get_storage_stats",
+          "args": {}
+        },
+        {
+          "command": "plugin:window|theme",
+          "args": {
+            "label": "settings"
+          }
+        },
+        {
+          "command": "plugin:event|listen",
+          "args": {
+            "event": "tack:sync",
+            "target": {
+              "kind": "Any"
+            },
+            "handler": 7
+          }
+        },
+        {
+          "command": "plugin:event|listen",
+          "args": {
+            "event": "notes:updated",
+            "target": {
+              "kind": "Any"
+            },
+            "handler": 9
+          }
+        },
+        {
+          "command": "tack_snapshot",
+          "args": {}
+        },
+        {
+          "command": "tack_profile",
+          "args": {}
+        },
+        {
+          "command": "tack_sync_snapshot",
+          "args": {}
+        }
+      ],
+      "unsupported": [],
+      "runtimeAndNetworkProblems": []
+    },
+    {
+      "file": "v61-settings-f-settings-clipboard-dark@1x.png",
+      "scenario": "settings-clipboard",
+      "entry": "settings.html",
+      "figmaNode": null,
+      "theme": "dark",
+      "resolvedTheme": "dark",
+      "scale": 1,
+      "viewport": {
+        "width": 980,
+        "height": 720
+      },
+      "clip": {
+        "x": 0,
+        "y": 0,
+        "width": 980,
+        "height": 720
+      },
+      "width": 980,
+      "height": 720,
+      "bytes": 62974,
+      "sha256": "0de07f9188f8ac2ed74d7645f54d945f658f2f52f144fcf70f5734c947f3b964",
+      "repeatMatches": true,
+      "caret": "hide",
+      "font": [
+        {
+          "familyName": "Geist",
+          "postScriptName": "Geist",
+          "isCustomFont": true,
+          "glyphCount": 9
+        }
+      ],
+      "fixtureSha256": "4b1b60aa936c43c9b0b51be85f1d91152eb23c3ec27c6e7f2bd75e925851436c",
+      "assertions": {
+        "page": "Clipboard",
+        "sidebarWidth": 232,
+        "axe": {
+          "version": "4.14.1",
+          "url": "/settings.html",
+          "theme": "dark",
+          "scale": 1,
+          "violations": [],
+          "incomplete": [],
+          "passes": 36
+        }
+      },
+      "ipc": [
+        {
+          "command": "plugin:event|listen",
+          "args": {
+            "event": "engine:health",
+            "target": {
+              "kind": "Any"
+            },
+            "handler": 1
+          }
+        },
+        {
+          "command": "plugin:event|listen",
+          "args": {
+            "event": "nabbit://settings-changed",
+            "target": {
+              "kind": "Any"
+            },
+            "handler": 3
+          }
+        },
+        {
+          "command": "plugin:event|listen",
+          "args": {
+            "event": "tauri://theme-changed",
+            "target": {
+              "kind": "Window",
+              "label": "settings"
+            },
+            "handler": 5
+          }
+        },
+        {
+          "command": "settings_window_ready",
+          "args": {}
+        },
+        {
+          "command": "get_settings",
+          "args": {}
+        },
+        {
+          "command": "get_engine_status",
+          "args": {}
+        },
+        {
+          "command": "get_storage_stats",
+          "args": {}
+        },
+        {
+          "command": "plugin:window|theme",
+          "args": {
+            "label": "settings"
+          }
+        }
+      ],
+      "unsupported": [],
+      "runtimeAndNetworkProblems": []
+    },
+    {
+      "file": "v61-settings-f-settings-files-dark@1x.png",
+      "scenario": "settings-files",
+      "entry": "settings.html",
+      "figmaNode": null,
+      "theme": "dark",
+      "resolvedTheme": "dark",
+      "scale": 1,
+      "viewport": {
+        "width": 980,
+        "height": 720
+      },
+      "clip": {
+        "x": 0,
+        "y": 0,
+        "width": 980,
+        "height": 720
+      },
+      "width": 980,
+      "height": 720,
+      "bytes": 64981,
+      "sha256": "525237ad8955f6ecaed9f0d9690ce454aaf57755ec7a38df951e798807a4dee3",
+      "repeatMatches": true,
+      "caret": "hide",
+      "font": [
+        {
+          "familyName": "Geist",
+          "postScriptName": "Geist",
+          "isCustomFont": true,
+          "glyphCount": 5
+        }
+      ],
+      "fixtureSha256": "4b1b60aa936c43c9b0b51be85f1d91152eb23c3ec27c6e7f2bd75e925851436c",
+      "assertions": {
+        "page": "Files",
+        "sidebarWidth": 232,
+        "axe": {
+          "version": "4.14.1",
+          "url": "/settings.html",
+          "theme": "dark",
+          "scale": 1,
+          "violations": [],
+          "incomplete": [],
+          "passes": 38
+        }
+      },
+      "ipc": [
+        {
+          "command": "plugin:event|listen",
+          "args": {
+            "event": "engine:health",
+            "target": {
+              "kind": "Any"
+            },
+            "handler": 1
+          }
+        },
+        {
+          "command": "plugin:event|listen",
+          "args": {
+            "event": "nabbit://settings-changed",
+            "target": {
+              "kind": "Any"
+            },
+            "handler": 3
+          }
+        },
+        {
+          "command": "plugin:event|listen",
+          "args": {
+            "event": "tauri://theme-changed",
+            "target": {
+              "kind": "Window",
+              "label": "settings"
+            },
+            "handler": 5
+          }
+        },
+        {
+          "command": "settings_window_ready",
+          "args": {}
+        },
+        {
+          "command": "get_settings",
+          "args": {}
+        },
+        {
+          "command": "get_engine_status",
+          "args": {}
+        },
+        {
+          "command": "get_storage_stats",
+          "args": {}
+        },
+        {
+          "command": "plugin:window|theme",
+          "args": {
+            "label": "settings"
+          }
+        },
+        {
+          "command": "context_preferences",
+          "args": {}
+        },
+        {
+          "command": "tool_presets",
+          "args": {}
+        },
+        {
+          "command": "plugin:event|listen",
+          "args": {
+            "event": "pins:changed",
+            "target": {
+              "kind": "Any"
+            },
+            "handler": 7
+          }
+        },
+        {
+          "command": "plugin:event|listen",
+          "args": {
+            "event": "tauri://focus",
+            "target": {
+              "kind": "Any"
+            },
+            "handler": 9
+          }
+        },
+        {
+          "command": "files_capabilities",
+          "args": {}
+        },
+        {
+          "command": "files_pins",
+          "args": {}
+        }
+      ],
+      "unsupported": [],
+      "runtimeAndNetworkProblems": []
+    },
+    {
+      "file": "v61-settings-f-settings-shortcuts-dark@1x.png",
+      "scenario": "settings-shortcuts",
+      "entry": "settings.html",
+      "figmaNode": null,
+      "theme": "dark",
+      "resolvedTheme": "dark",
+      "scale": 1,
+      "viewport": {
+        "width": 980,
+        "height": 720
+      },
+      "clip": {
+        "x": 0,
+        "y": 0,
+        "width": 980,
+        "height": 720
+      },
+      "width": 980,
+      "height": 720,
+      "bytes": 60486,
+      "sha256": "922e658bd855ffd3fa1a9723f988dcfd9e53b578652b36f795e5d86acfa03886",
+      "repeatMatches": true,
+      "caret": "hide",
+      "font": [
+        {
+          "familyName": "Geist",
+          "postScriptName": "Geist",
+          "isCustomFont": true,
+          "glyphCount": 9
+        }
+      ],
+      "fixtureSha256": "4b1b60aa936c43c9b0b51be85f1d91152eb23c3ec27c6e7f2bd75e925851436c",
+      "assertions": {
+        "page": "Shortcuts",
+        "sidebarWidth": 232,
+        "axe": {
+          "version": "4.14.1",
+          "url": "/settings.html",
+          "theme": "dark",
+          "scale": 1,
+          "violations": [],
+          "incomplete": [
+            {
+              "id": "aria-prohibited-attr",
+              "impact": "serious",
+              "targets": [
+                [
+                  "span[aria-label=\"Ctrl + Alt + N\"]"
+                ],
+                [
+                  "span[aria-label=\"Ctrl + Alt + T\"]"
+                ],
+                [
+                  "span[aria-label=\"Ctrl + 1–6\"]"
+                ],
+                [
+                  "span[aria-label=\"Alt + 1–9\"]"
+                ],
+                [
+                  "span[aria-label=\"Esc\"]"
+                ],
+                [
+                  "span[aria-label=\"Enter\"]"
+                ],
+                [
+                  "span[aria-label=\"Ctrl + Enter\"]"
+                ]
+              ]
+            }
+          ],
+          "passes": 33
+        }
+      },
+      "ipc": [
+        {
+          "command": "plugin:event|listen",
+          "args": {
+            "event": "engine:health",
+            "target": {
+              "kind": "Any"
+            },
+            "handler": 1
+          }
+        },
+        {
+          "command": "plugin:event|listen",
+          "args": {
+            "event": "nabbit://settings-changed",
+            "target": {
+              "kind": "Any"
+            },
+            "handler": 3
+          }
+        },
+        {
+          "command": "plugin:event|listen",
+          "args": {
+            "event": "tauri://theme-changed",
+            "target": {
+              "kind": "Window",
+              "label": "settings"
+            },
+            "handler": 5
+          }
+        },
+        {
+          "command": "settings_window_ready",
+          "args": {}
+        },
+        {
+          "command": "get_settings",
+          "args": {}
+        },
+        {
+          "command": "get_engine_status",
+          "args": {}
+        },
+        {
+          "command": "get_storage_stats",
+          "args": {}
+        },
+        {
+          "command": "plugin:window|theme",
+          "args": {
+            "label": "settings"
+          }
+        },
+        {
+          "command": "get_island_snapshot",
+          "args": {}
+        }
+      ],
+      "unsupported": [],
+      "runtimeAndNetworkProblems": []
+    },
+    {
+      "file": "v61-settings-f-settings-privacy-dark@1x.png",
+      "scenario": "settings-privacy",
+      "entry": "settings.html",
+      "figmaNode": null,
+      "theme": "dark",
+      "resolvedTheme": "dark",
+      "scale": 1,
+      "viewport": {
+        "width": 980,
+        "height": 720
+      },
+      "clip": {
+        "x": 0,
+        "y": 0,
+        "width": 980,
+        "height": 720
+      },
+      "width": 980,
+      "height": 720,
+      "bytes": 45368,
+      "sha256": "b887055c0fd3c02bf53ac14e69f88e7b24f8993ee5ca43bf58b22ddecaa2b6a8",
+      "repeatMatches": true,
+      "caret": "hide",
+      "font": [
+        {
+          "familyName": "Geist",
+          "postScriptName": "Geist",
+          "isCustomFont": true,
+          "glyphCount": 15
+        }
+      ],
+      "fixtureSha256": "4b1b60aa936c43c9b0b51be85f1d91152eb23c3ec27c6e7f2bd75e925851436c",
+      "assertions": {
+        "page": "Privacy & about",
+        "sidebarWidth": 232,
+        "axe": {
+          "version": "4.14.1",
+          "url": "/settings.html",
+          "theme": "dark",
+          "scale": 1,
+          "violations": [],
+          "incomplete": [],
+          "passes": 30
+        }
+      },
+      "ipc": [
+        {
+          "command": "plugin:event|listen",
+          "args": {
+            "event": "engine:health",
+            "target": {
+              "kind": "Any"
+            },
+            "handler": 1
+          }
+        },
+        {
+          "command": "plugin:event|listen",
+          "args": {
+            "event": "nabbit://settings-changed",
+            "target": {
+              "kind": "Any"
+            },
+            "handler": 3
+          }
+        },
+        {
+          "command": "plugin:event|listen",
+          "args": {
+            "event": "tauri://theme-changed",
+            "target": {
+              "kind": "Window",
+              "label": "settings"
+            },
+            "handler": 5
+          }
+        },
+        {
+          "command": "settings_window_ready",
+          "args": {}
+        },
+        {
+          "command": "get_settings",
+          "args": {}
+        },
+        {
+          "command": "get_engine_status",
+          "args": {}
+        },
+        {
+          "command": "get_storage_stats",
+          "args": {}
+        },
+        {
+          "command": "plugin:window|theme",
+          "args": {
+            "label": "settings"
+          }
+        }
+      ],
+      "unsupported": [],
+      "runtimeAndNetworkProblems": []
+    },
+    {
+      "file": "v61-settings-f-settings-activities-dark@1x.png",
+      "scenario": "settings-activities",
+      "entry": "settings.html",
+      "figmaNode": null,
+      "theme": "dark",
+      "resolvedTheme": "dark",
+      "scale": 1,
+      "viewport": {
+        "width": 980,
+        "height": 720
+      },
+      "clip": {
+        "x": 0,
+        "y": 0,
+        "width": 980,
+        "height": 720
+      },
+      "width": 980,
+      "height": 720,
+      "bytes": 68409,
+      "sha256": "507469626b24a78f481e31acb5aeb06ba7083eab18a93de8500c27406536bc54",
+      "repeatMatches": true,
+      "caret": "hide",
+      "font": [
+        {
+          "familyName": "Geist",
+          "postScriptName": "Geist",
+          "isCustomFont": true,
+          "glyphCount": 15
+        }
+      ],
+      "fixtureSha256": "4b1b60aa936c43c9b0b51be85f1d91152eb23c3ec27c6e7f2bd75e925851436c",
+      "assertions": {
+        "page": "Live activities",
+        "sidebarWidth": 232,
+        "axe": {
+          "version": "4.14.1",
+          "url": "/settings.html",
+          "theme": "dark",
+          "scale": 1,
+          "violations": [],
+          "incomplete": [
+            {
+              "id": "color-contrast",
+              "impact": "serious",
+              "targets": [
+                [
+                  "button[aria-label=\"Move Mic / camera down\"]"
+                ],
+                [
+                  "button[aria-label=\"Move Timers / focus ending up\"]"
+                ],
+                [
+                  ".settings-activity[role=\"listitem\"]:nth-child(2) > .settings-reorder > button:nth-child(2)"
+                ],
+                [
+                  "button[aria-label=\"Move Downloads up\"]"
+                ],
+                [
+                  "button[aria-label=\"Move Downloads down\"]"
+                ],
+                [
+                  "button[aria-label=\"Move File tools up\"]"
+                ],
+                [
+                  "button[aria-label=\"Move File tools down\"]"
+                ],
+                [
+                  "button[aria-label=\"Move Link detected up\"]"
+                ],
+                [
+                  "button[aria-label=\"Move Link detected down\"]"
+                ],
+                [
+                  ".settings-activity[role=\"listitem\"]:nth-child(6) > .settings-reorder > button:nth-child(1)"
+                ],
+                [
+                  ".settings-activity[role=\"listitem\"]:nth-child(6) > .settings-reorder > button:nth-child(2)"
+                ],
+                [
+                  "button[aria-label=\"Move Now playing up\"]"
+                ],
+                [
+                  "button[aria-label=\"Move Now playing down\"]"
+                ],
+                [
+                  "button[aria-label=\"Move Focus timer up\"]"
+                ],
+                [
+                  "button[aria-label=\"Move Focus timer down\"]"
+                ],
+                [
+                  "button[aria-label=\"Move Power up\"]"
+                ]
+              ]
+            },
+            {
+              "id": "label-content-name-mismatch",
+              "impact": "serious",
+              "targets": [
+                [
+                  "button[aria-label=\"Move Mic / camera up\"]"
+                ],
+                [
+                  "button[aria-label=\"Move Mic / camera down\"]"
+                ],
+                [
+                  "button[aria-label=\"Move Timers / focus ending up\"]"
+                ],
+                [
+                  ".settings-activity[role=\"listitem\"]:nth-child(2) > .settings-reorder > button:nth-child(2)"
+                ],
+                [
+                  "button[aria-label=\"Move Downloads up\"]"
+                ],
+                [
+                  "button[aria-label=\"Move Downloads down\"]"
+                ],
+                [
+                  "button[aria-label=\"Move File tools up\"]"
+                ],
+                [
+                  "button[aria-label=\"Move File tools down\"]"
+                ],
+                [
+                  "button[aria-label=\"Move Link detected up\"]"
+                ],
+                [
+                  "button[aria-label=\"Move Link detected down\"]"
+                ],
+                [
+                  ".settings-activity[role=\"listitem\"]:nth-child(6) > .settings-reorder > button:nth-child(1)"
+                ],
+                [
+                  ".settings-activity[role=\"listitem\"]:nth-child(6) > .settings-reorder > button:nth-child(2)"
+                ],
+                [
+                  "button[aria-label=\"Move Now playing up\"]"
+                ],
+                [
+                  "button[aria-label=\"Move Now playing down\"]"
+                ],
+                [
+                  "button[aria-label=\"Move Focus timer up\"]"
+                ],
+                [
+                  "button[aria-label=\"Move Focus timer down\"]"
+                ],
+                [
+                  "button[aria-label=\"Move Power up\"]"
+                ],
+                [
+                  "button[aria-label=\"Move Power down\"]"
+                ]
+              ]
+            }
+          ],
+          "passes": 34
+        }
+      },
+      "ipc": [
+        {
+          "command": "plugin:event|listen",
+          "args": {
+            "event": "engine:health",
+            "target": {
+              "kind": "Any"
+            },
+            "handler": 1
+          }
+        },
+        {
+          "command": "plugin:event|listen",
+          "args": {
+            "event": "nabbit://settings-changed",
+            "target": {
+              "kind": "Any"
+            },
+            "handler": 3
+          }
+        },
+        {
+          "command": "plugin:event|listen",
+          "args": {
+            "event": "tauri://theme-changed",
+            "target": {
+              "kind": "Window",
+              "label": "settings"
+            },
+            "handler": 5
+          }
+        },
+        {
+          "command": "settings_window_ready",
+          "args": {}
+        },
+        {
+          "command": "get_settings",
+          "args": {}
+        },
+        {
+          "command": "get_engine_status",
+          "args": {}
+        },
+        {
+          "command": "get_storage_stats",
+          "args": {}
+        },
+        {
+          "command": "plugin:window|theme",
+          "args": {
+            "label": "settings"
+          }
+        },
+        {
+          "command": "plugin:event|listen",
+          "args": {
+            "event": "nabbit://island-config",
+            "target": {
+              "kind": "Any"
+            },
+            "handler": 7
+          }
+        },
+        {
+          "command": "get_island_snapshot",
+          "args": {}
+        },
+        {
+          "command": "plugin:event|unlisten",
+          "args": {
+            "event": "nabbit://island-config",
+            "eventId": 8
+          }
+        }
+      ],
+      "unsupported": [],
+      "runtimeAndNetworkProblems": []
+    },
+    {
+      "file": "v61-settings-f-settings-general-dark@1.5x.png",
+      "scenario": "settings-general",
+      "entry": "settings.html",
+      "figmaNode": null,
+      "theme": "dark",
+      "resolvedTheme": "dark",
+      "scale": 1.5,
+      "viewport": {
+        "width": 980,
+        "height": 720
+      },
+      "clip": {
+        "x": 0,
+        "y": 0,
+        "width": 980,
+        "height": 720
+      },
+      "width": 1470,
+      "height": 1080,
+      "bytes": 108484,
+      "sha256": "cbe8bf38e95c621427e4dc143a7c4debf0aad825bdd063646f78711c92c54157",
+      "repeatMatches": true,
+      "caret": "hide",
+      "font": [
+        {
+          "familyName": "Geist",
+          "postScriptName": "Geist",
+          "isCustomFont": true,
+          "glyphCount": 7
+        }
+      ],
+      "fixtureSha256": "4b1b60aa936c43c9b0b51be85f1d91152eb23c3ec27c6e7f2bd75e925851436c",
+      "assertions": {
+        "page": "General",
+        "sidebarWidth": 232,
+        "axe": {
+          "version": "4.14.1",
+          "url": "/settings.html",
+          "theme": "dark",
+          "scale": 1.5,
+          "violations": [],
+          "incomplete": [],
+          "passes": 33
+        }
+      },
+      "ipc": [
+        {
+          "command": "plugin:event|listen",
+          "args": {
+            "event": "engine:health",
+            "target": {
+              "kind": "Any"
+            },
+            "handler": 1
+          }
+        },
+        {
+          "command": "plugin:event|listen",
+          "args": {
+            "event": "nabbit://settings-changed",
+            "target": {
+              "kind": "Any"
+            },
+            "handler": 3
+          }
+        },
+        {
+          "command": "plugin:event|listen",
+          "args": {
+            "event": "tauri://theme-changed",
+            "target": {
+              "kind": "Window",
+              "label": "settings"
+            },
+            "handler": 5
+          }
+        },
+        {
+          "command": "settings_window_ready",
+          "args": {}
+        },
+        {
+          "command": "get_settings",
+          "args": {}
+        },
+        {
+          "command": "get_engine_status",
+          "args": {}
+        },
+        {
+          "command": "get_storage_stats",
+          "args": {}
+        },
+        {
+          "command": "plugin:window|theme",
+          "args": {
+            "label": "settings"
+          }
+        }
+      ],
+      "unsupported": [],
+      "runtimeAndNetworkProblems": []
+    },
+    {
+      "file": "v61-settings-f-settings-island-dark@1.5x.png",
+      "scenario": "settings-island",
+      "entry": "settings.html",
+      "figmaNode": null,
+      "theme": "dark",
+      "resolvedTheme": "dark",
+      "scale": 1.5,
+      "viewport": {
+        "width": 980,
+        "height": 720
+      },
+      "clip": {
+        "x": 0,
+        "y": 0,
+        "width": 980,
+        "height": 720
+      },
+      "width": 1470,
+      "height": 1080,
+      "bytes": 119452,
+      "sha256": "e2f1f7bcb5405877bd187a9e6cbf6ed3266632264ec7c21f8b8911cc0bdbe97f",
+      "repeatMatches": true,
+      "caret": "hide",
+      "font": [
+        {
+          "familyName": "Geist",
+          "postScriptName": "Geist",
+          "isCustomFont": true,
+          "glyphCount": 6
+        }
+      ],
+      "fixtureSha256": "4b1b60aa936c43c9b0b51be85f1d91152eb23c3ec27c6e7f2bd75e925851436c",
+      "assertions": {
+        "page": "Island",
+        "sidebarWidth": 232,
+        "axe": {
+          "version": "4.14.1",
+          "url": "/settings.html",
+          "theme": "dark",
+          "scale": 1.5,
+          "violations": [],
+          "incomplete": [],
+          "passes": 38
+        }
+      },
+      "ipc": [
+        {
+          "command": "plugin:event|listen",
+          "args": {
+            "event": "engine:health",
+            "target": {
+              "kind": "Any"
+            },
+            "handler": 1
+          }
+        },
+        {
+          "command": "plugin:event|listen",
+          "args": {
+            "event": "nabbit://settings-changed",
+            "target": {
+              "kind": "Any"
+            },
+            "handler": 3
+          }
+        },
+        {
+          "command": "plugin:event|listen",
+          "args": {
+            "event": "tauri://theme-changed",
+            "target": {
+              "kind": "Window",
+              "label": "settings"
+            },
+            "handler": 5
+          }
+        },
+        {
+          "command": "settings_window_ready",
+          "args": {}
+        },
+        {
+          "command": "get_settings",
+          "args": {}
+        },
+        {
+          "command": "get_engine_status",
+          "args": {}
+        },
+        {
+          "command": "get_storage_stats",
+          "args": {}
+        },
+        {
+          "command": "plugin:window|theme",
+          "args": {
+            "label": "settings"
+          }
+        },
+        {
+          "command": "plugin:event|listen",
+          "args": {
+            "event": "nabbit://island-config",
+            "target": {
+              "kind": "Any"
+            },
+            "handler": 7
+          }
+        },
+        {
+          "command": "get_island_snapshot",
+          "args": {}
+        }
+      ],
+      "unsupported": [],
+      "runtimeAndNetworkProblems": []
+    },
+    {
+      "file": "v61-settings-f-settings-widgets-dark@1.5x.png",
+      "scenario": "settings-widgets",
+      "entry": "settings.html",
+      "figmaNode": null,
+      "theme": "dark",
+      "resolvedTheme": "dark",
+      "scale": 1.5,
+      "viewport": {
+        "width": 980,
+        "height": 720
+      },
+      "clip": {
+        "x": 0,
+        "y": 0,
+        "width": 980,
+        "height": 720
+      },
+      "width": 1470,
+      "height": 1080,
+      "bytes": 67929,
+      "sha256": "eaa15b12e42ad81e86ad8ae566180581aa3701af899f7f05bd322936942c5e1b",
+      "repeatMatches": true,
+      "caret": "hide",
+      "font": [
+        {
+          "familyName": "Geist",
+          "postScriptName": "Geist",
+          "isCustomFont": true,
+          "glyphCount": 7
+        }
+      ],
+      "fixtureSha256": "4b1b60aa936c43c9b0b51be85f1d91152eb23c3ec27c6e7f2bd75e925851436c",
+      "assertions": {
+        "page": "Widgets",
+        "sidebarWidth": 232,
+        "axe": {
+          "version": "4.14.1",
+          "url": "/settings.html",
+          "theme": "dark",
+          "scale": 1.5,
+          "violations": [],
+          "incomplete": [],
+          "passes": 33
+        }
+      },
+      "ipc": [
+        {
+          "command": "plugin:event|listen",
+          "args": {
+            "event": "engine:health",
+            "target": {
+              "kind": "Any"
+            },
+            "handler": 1
+          }
+        },
+        {
+          "command": "plugin:event|listen",
+          "args": {
+            "event": "nabbit://settings-changed",
+            "target": {
+              "kind": "Any"
+            },
+            "handler": 3
+          }
+        },
+        {
+          "command": "plugin:event|listen",
+          "args": {
+            "event": "tauri://theme-changed",
+            "target": {
+              "kind": "Window",
+              "label": "settings"
+            },
+            "handler": 5
+          }
+        },
+        {
+          "command": "settings_window_ready",
+          "args": {}
+        },
+        {
+          "command": "get_settings",
+          "args": {}
+        },
+        {
+          "command": "get_engine_status",
+          "args": {}
+        },
+        {
+          "command": "get_storage_stats",
+          "args": {}
+        },
+        {
+          "command": "plugin:window|theme",
+          "args": {
+            "label": "settings"
+          }
+        }
+      ],
+      "unsupported": [],
+      "runtimeAndNetworkProblems": []
+    },
+    {
+      "file": "v61-settings-f-settings-downloads-dark@1.5x.png",
+      "scenario": "settings-downloads",
+      "entry": "settings.html",
+      "figmaNode": null,
+      "theme": "dark",
+      "resolvedTheme": "dark",
+      "scale": 1.5,
+      "viewport": {
+        "width": 980,
+        "height": 720
+      },
+      "clip": {
+        "x": 0,
+        "y": 0,
+        "width": 980,
+        "height": 720
+      },
+      "width": 1470,
+      "height": 1080,
+      "bytes": 128857,
+      "sha256": "5fb34e3d90d074d5b97ccc8f6d0142481121e2ee38d15452acf0404eabca3e5c",
+      "repeatMatches": true,
+      "caret": "hide",
+      "font": [
+        {
+          "familyName": "Geist",
+          "postScriptName": "Geist",
+          "isCustomFont": true,
+          "glyphCount": 9
+        }
+      ],
+      "fixtureSha256": "4b1b60aa936c43c9b0b51be85f1d91152eb23c3ec27c6e7f2bd75e925851436c",
+      "assertions": {
+        "page": "Downloads",
+        "sidebarWidth": 232,
+        "axe": {
+          "version": "4.14.1",
+          "url": "/settings.html",
+          "theme": "dark",
+          "scale": 1.5,
+          "violations": [],
+          "incomplete": [],
+          "passes": 37
+        }
+      },
+      "ipc": [
+        {
+          "command": "plugin:event|listen",
+          "args": {
+            "event": "engine:health",
+            "target": {
+              "kind": "Any"
+            },
+            "handler": 1
+          }
+        },
+        {
+          "command": "plugin:event|listen",
+          "args": {
+            "event": "nabbit://settings-changed",
+            "target": {
+              "kind": "Any"
+            },
+            "handler": 3
+          }
+        },
+        {
+          "command": "plugin:event|listen",
+          "args": {
+            "event": "tauri://theme-changed",
+            "target": {
+              "kind": "Window",
+              "label": "settings"
+            },
+            "handler": 5
+          }
+        },
+        {
+          "command": "settings_window_ready",
+          "args": {}
+        },
+        {
+          "command": "get_settings",
+          "args": {}
+        },
+        {
+          "command": "get_engine_status",
+          "args": {}
+        },
+        {
+          "command": "get_storage_stats",
+          "args": {}
+        },
+        {
+          "command": "plugin:window|theme",
+          "args": {
+            "label": "settings"
+          }
+        },
+        {
+          "command": "plugin:event|listen",
+          "args": {
+            "event": "engine:health",
+            "target": {
+              "kind": "Any"
+            },
+            "handler": 7
+          }
+        },
+        {
+          "command": "get_engine_status",
+          "args": {}
+        }
+      ],
+      "unsupported": [],
+      "runtimeAndNetworkProblems": []
+    },
+    {
+      "file": "v61-settings-f-settings-notes-dark@1.5x.png",
+      "scenario": "settings-notes",
+      "entry": "settings.html",
+      "figmaNode": null,
+      "theme": "dark",
+      "resolvedTheme": "dark",
+      "scale": 1.5,
+      "viewport": {
+        "width": 980,
+        "height": 720
+      },
+      "clip": {
+        "x": 0,
+        "y": 0,
+        "width": 980,
+        "height": 720
+      },
+      "width": 1470,
+      "height": 1080,
+      "bytes": 74611,
+      "sha256": "52a2ccb226d2afd78359ef8429f2daddbecd7a72c060b434efea8070d0f6e300",
+      "repeatMatches": true,
+      "caret": "hide",
+      "font": [
+        {
+          "familyName": "Geist",
+          "postScriptName": "Geist",
+          "isCustomFont": true,
+          "glyphCount": 12
+        }
+      ],
+      "fixtureSha256": "4b1b60aa936c43c9b0b51be85f1d91152eb23c3ec27c6e7f2bd75e925851436c",
+      "assertions": {
+        "page": "Notes & Tack",
+        "sidebarWidth": 232,
+        "axe": {
+          "version": "4.14.1",
+          "url": "/settings.html",
+          "theme": "dark",
+          "scale": 1.5,
+          "violations": [],
+          "incomplete": [],
+          "passes": 33
+        }
+      },
+      "ipc": [
+        {
+          "command": "plugin:event|listen",
+          "args": {
+            "event": "engine:health",
+            "target": {
+              "kind": "Any"
+            },
+            "handler": 1
+          }
+        },
+        {
+          "command": "plugin:event|listen",
+          "args": {
+            "event": "nabbit://settings-changed",
+            "target": {
+              "kind": "Any"
+            },
+            "handler": 3
+          }
+        },
+        {
+          "command": "plugin:event|listen",
+          "args": {
+            "event": "tauri://theme-changed",
+            "target": {
+              "kind": "Window",
+              "label": "settings"
+            },
+            "handler": 5
+          }
+        },
+        {
+          "command": "settings_window_ready",
+          "args": {}
+        },
+        {
+          "command": "get_settings",
+          "args": {}
+        },
+        {
+          "command": "get_engine_status",
+          "args": {}
+        },
+        {
+          "command": "get_storage_stats",
+          "args": {}
+        },
+        {
+          "command": "plugin:window|theme",
+          "args": {
+            "label": "settings"
+          }
+        },
+        {
+          "command": "plugin:event|listen",
+          "args": {
+            "event": "tack:sync",
+            "target": {
+              "kind": "Any"
+            },
+            "handler": 7
+          }
+        },
+        {
+          "command": "plugin:event|listen",
+          "args": {
+            "event": "notes:updated",
+            "target": {
+              "kind": "Any"
+            },
+            "handler": 9
+          }
+        },
+        {
+          "command": "tack_snapshot",
+          "args": {}
+        },
+        {
+          "command": "tack_profile",
+          "args": {}
+        },
+        {
+          "command": "tack_sync_snapshot",
+          "args": {}
+        }
+      ],
+      "unsupported": [],
+      "runtimeAndNetworkProblems": []
+    },
+    {
+      "file": "v61-settings-f-settings-clipboard-dark@1.5x.png",
+      "scenario": "settings-clipboard",
+      "entry": "settings.html",
+      "figmaNode": null,
+      "theme": "dark",
+      "resolvedTheme": "dark",
+      "scale": 1.5,
+      "viewport": {
+        "width": 980,
+        "height": 720
+      },
+      "clip": {
+        "x": 0,
+        "y": 0,
+        "width": 980,
+        "height": 720
+      },
+      "width": 1470,
+      "height": 1080,
+      "bytes": 110067,
+      "sha256": "11f6e03c354b91de93b98985e2489a6080dd059127977184de85ac38192f5d57",
+      "repeatMatches": true,
+      "caret": "hide",
+      "font": [
+        {
+          "familyName": "Geist",
+          "postScriptName": "Geist",
+          "isCustomFont": true,
+          "glyphCount": 9
+        }
+      ],
+      "fixtureSha256": "4b1b60aa936c43c9b0b51be85f1d91152eb23c3ec27c6e7f2bd75e925851436c",
+      "assertions": {
+        "page": "Clipboard",
+        "sidebarWidth": 232,
+        "axe": {
+          "version": "4.14.1",
+          "url": "/settings.html",
+          "theme": "dark",
+          "scale": 1.5,
+          "violations": [],
+          "incomplete": [],
+          "passes": 36
+        }
+      },
+      "ipc": [
+        {
+          "command": "plugin:event|listen",
+          "args": {
+            "event": "engine:health",
+            "target": {
+              "kind": "Any"
+            },
+            "handler": 1
+          }
+        },
+        {
+          "command": "plugin:event|listen",
+          "args": {
+            "event": "nabbit://settings-changed",
+            "target": {
+              "kind": "Any"
+            },
+            "handler": 3
+          }
+        },
+        {
+          "command": "plugin:event|listen",
+          "args": {
+            "event": "tauri://theme-changed",
+            "target": {
+              "kind": "Window",
+              "label": "settings"
+            },
+            "handler": 5
+          }
+        },
+        {
+          "command": "settings_window_ready",
+          "args": {}
+        },
+        {
+          "command": "get_settings",
+          "args": {}
+        },
+        {
+          "command": "get_engine_status",
+          "args": {}
+        },
+        {
+          "command": "get_storage_stats",
+          "args": {}
+        },
+        {
+          "command": "plugin:window|theme",
+          "args": {
+            "label": "settings"
+          }
+        }
+      ],
+      "unsupported": [],
+      "runtimeAndNetworkProblems": []
+    },
+    {
+      "file": "v61-settings-f-settings-files-dark@1.5x.png",
+      "scenario": "settings-files",
+      "entry": "settings.html",
+      "figmaNode": null,
+      "theme": "dark",
+      "resolvedTheme": "dark",
+      "scale": 1.5,
+      "viewport": {
+        "width": 980,
+        "height": 720
+      },
+      "clip": {
+        "x": 0,
+        "y": 0,
+        "width": 980,
+        "height": 720
+      },
+      "width": 1470,
+      "height": 1080,
+      "bytes": 107945,
+      "sha256": "5c4f16d6161ca1bb2ca4c6c3bfdec4c89f2bcc1ed37cded776f3d54fa49f8b0a",
+      "repeatMatches": true,
+      "caret": "hide",
+      "font": [
+        {
+          "familyName": "Geist",
+          "postScriptName": "Geist",
+          "isCustomFont": true,
+          "glyphCount": 5
+        }
+      ],
+      "fixtureSha256": "4b1b60aa936c43c9b0b51be85f1d91152eb23c3ec27c6e7f2bd75e925851436c",
+      "assertions": {
+        "page": "Files",
+        "sidebarWidth": 232,
+        "axe": {
+          "version": "4.14.1",
+          "url": "/settings.html",
+          "theme": "dark",
+          "scale": 1.5,
+          "violations": [],
+          "incomplete": [],
+          "passes": 38
+        }
+      },
+      "ipc": [
+        {
+          "command": "plugin:event|listen",
+          "args": {
+            "event": "engine:health",
+            "target": {
+              "kind": "Any"
+            },
+            "handler": 1
+          }
+        },
+        {
+          "command": "plugin:event|listen",
+          "args": {
+            "event": "nabbit://settings-changed",
+            "target": {
+              "kind": "Any"
+            },
+            "handler": 3
+          }
+        },
+        {
+          "command": "plugin:event|listen",
+          "args": {
+            "event": "tauri://theme-changed",
+            "target": {
+              "kind": "Window",
+              "label": "settings"
+            },
+            "handler": 5
+          }
+        },
+        {
+          "command": "settings_window_ready",
+          "args": {}
+        },
+        {
+          "command": "get_settings",
+          "args": {}
+        },
+        {
+          "command": "get_engine_status",
+          "args": {}
+        },
+        {
+          "command": "get_storage_stats",
+          "args": {}
+        },
+        {
+          "command": "plugin:window|theme",
+          "args": {
+            "label": "settings"
+          }
+        },
+        {
+          "command": "plugin:event|listen",
+          "args": {
+            "event": "pins:changed",
+            "target": {
+              "kind": "Any"
+            },
+            "handler": 7
+          }
+        },
+        {
+          "command": "plugin:event|listen",
+          "args": {
+            "event": "tauri://focus",
+            "target": {
+              "kind": "Any"
+            },
+            "handler": 9
+          }
+        },
+        {
+          "command": "files_capabilities",
+          "args": {}
+        },
+        {
+          "command": "context_preferences",
+          "args": {}
+        },
+        {
+          "command": "tool_presets",
+          "args": {}
+        },
+        {
+          "command": "files_pins",
+          "args": {}
+        }
+      ],
+      "unsupported": [],
+      "runtimeAndNetworkProblems": []
+    },
+    {
+      "file": "v61-settings-f-settings-shortcuts-dark@1.5x.png",
+      "scenario": "settings-shortcuts",
+      "entry": "settings.html",
+      "figmaNode": null,
+      "theme": "dark",
+      "resolvedTheme": "dark",
+      "scale": 1.5,
+      "viewport": {
+        "width": 980,
+        "height": 720
+      },
+      "clip": {
+        "x": 0,
+        "y": 0,
+        "width": 980,
+        "height": 720
+      },
+      "width": 1470,
+      "height": 1080,
+      "bytes": 104720,
+      "sha256": "dd836e157617f42f272261b34e0395ff8d5cf435b60acf46f2457cb2adb73dad",
+      "repeatMatches": true,
+      "caret": "hide",
+      "font": [
+        {
+          "familyName": "Geist",
+          "postScriptName": "Geist",
+          "isCustomFont": true,
+          "glyphCount": 9
+        }
+      ],
+      "fixtureSha256": "4b1b60aa936c43c9b0b51be85f1d91152eb23c3ec27c6e7f2bd75e925851436c",
+      "assertions": {
+        "page": "Shortcuts",
+        "sidebarWidth": 232,
+        "axe": {
+          "version": "4.14.1",
+          "url": "/settings.html",
+          "theme": "dark",
+          "scale": 1.5,
+          "violations": [],
+          "incomplete": [
+            {
+              "id": "aria-prohibited-attr",
+              "impact": "serious",
+              "targets": [
+                [
+                  "span[aria-label=\"Ctrl + Alt + N\"]"
+                ],
+                [
+                  "span[aria-label=\"Ctrl + Alt + T\"]"
+                ],
+                [
+                  "span[aria-label=\"Ctrl + 1–6\"]"
+                ],
+                [
+                  "span[aria-label=\"Alt + 1–9\"]"
+                ],
+                [
+                  "span[aria-label=\"Esc\"]"
+                ],
+                [
+                  "span[aria-label=\"Enter\"]"
+                ],
+                [
+                  "span[aria-label=\"Ctrl + Enter\"]"
+                ]
+              ]
+            }
+          ],
+          "passes": 33
+        }
+      },
+      "ipc": [
+        {
+          "command": "plugin:event|listen",
+          "args": {
+            "event": "engine:health",
+            "target": {
+              "kind": "Any"
+            },
+            "handler": 1
+          }
+        },
+        {
+          "command": "plugin:event|listen",
+          "args": {
+            "event": "nabbit://settings-changed",
+            "target": {
+              "kind": "Any"
+            },
+            "handler": 3
+          }
+        },
+        {
+          "command": "plugin:event|listen",
+          "args": {
+            "event": "tauri://theme-changed",
+            "target": {
+              "kind": "Window",
+              "label": "settings"
+            },
+            "handler": 5
+          }
+        },
+        {
+          "command": "settings_window_ready",
+          "args": {}
+        },
+        {
+          "command": "get_settings",
+          "args": {}
+        },
+        {
+          "command": "get_engine_status",
+          "args": {}
+        },
+        {
+          "command": "get_storage_stats",
+          "args": {}
+        },
+        {
+          "command": "plugin:window|theme",
+          "args": {
+            "label": "settings"
+          }
+        },
+        {
+          "command": "get_island_snapshot",
+          "args": {}
+        }
+      ],
+      "unsupported": [],
+      "runtimeAndNetworkProblems": []
+    },
+    {
+      "file": "v61-settings-f-settings-privacy-dark@1.5x.png",
+      "scenario": "settings-privacy",
+      "entry": "settings.html",
+      "figmaNode": null,
+      "theme": "dark",
+      "resolvedTheme": "dark",
+      "scale": 1.5,
+      "viewport": {
+        "width": 980,
+        "height": 720
+      },
+      "clip": {
+        "x": 0,
+        "y": 0,
+        "width": 980,
+        "height": 720
+      },
+      "width": 1470,
+      "height": 1080,
+      "bytes": 77169,
+      "sha256": "cf263627225ce87dd04623878cff898b91bce6136ebb1e55859a3ad0fb6b20aa",
+      "repeatMatches": true,
+      "caret": "hide",
+      "font": [
+        {
+          "familyName": "Geist",
+          "postScriptName": "Geist",
+          "isCustomFont": true,
+          "glyphCount": 15
+        }
+      ],
+      "fixtureSha256": "4b1b60aa936c43c9b0b51be85f1d91152eb23c3ec27c6e7f2bd75e925851436c",
+      "assertions": {
+        "page": "Privacy & about",
+        "sidebarWidth": 232,
+        "axe": {
+          "version": "4.14.1",
+          "url": "/settings.html",
+          "theme": "dark",
+          "scale": 1.5,
+          "violations": [],
+          "incomplete": [],
+          "passes": 30
+        }
+      },
+      "ipc": [
+        {
+          "command": "plugin:event|listen",
+          "args": {
+            "event": "engine:health",
+            "target": {
+              "kind": "Any"
+            },
+            "handler": 1
+          }
+        },
+        {
+          "command": "plugin:event|listen",
+          "args": {
+            "event": "nabbit://settings-changed",
+            "target": {
+              "kind": "Any"
+            },
+            "handler": 3
+          }
+        },
+        {
+          "command": "plugin:event|listen",
+          "args": {
+            "event": "tauri://theme-changed",
+            "target": {
+              "kind": "Window",
+              "label": "settings"
+            },
+            "handler": 5
+          }
+        },
+        {
+          "command": "settings_window_ready",
+          "args": {}
+        },
+        {
+          "command": "get_settings",
+          "args": {}
+        },
+        {
+          "command": "get_engine_status",
+          "args": {}
+        },
+        {
+          "command": "get_storage_stats",
+          "args": {}
+        },
+        {
+          "command": "plugin:window|theme",
+          "args": {
+            "label": "settings"
+          }
+        }
+      ],
+      "unsupported": [],
+      "runtimeAndNetworkProblems": []
+    },
+    {
+      "file": "v61-settings-f-settings-activities-dark@1.5x.png",
+      "scenario": "settings-activities",
+      "entry": "settings.html",
+      "figmaNode": null,
+      "theme": "dark",
+      "resolvedTheme": "dark",
+      "scale": 1.5,
+      "viewport": {
+        "width": 980,
+        "height": 720
+      },
+      "clip": {
+        "x": 0,
+        "y": 0,
+        "width": 980,
+        "height": 720
+      },
+      "width": 1470,
+      "height": 1080,
+      "bytes": 112865,
+      "sha256": "042a13ff97ab78c9ac9baa1e93891fd47cf080a29d1c8a3280505248d01a13c6",
+      "repeatMatches": true,
+      "caret": "hide",
+      "font": [
+        {
+          "familyName": "Geist",
+          "postScriptName": "Geist",
+          "isCustomFont": true,
+          "glyphCount": 15
+        }
+      ],
+      "fixtureSha256": "4b1b60aa936c43c9b0b51be85f1d91152eb23c3ec27c6e7f2bd75e925851436c",
+      "assertions": {
+        "page": "Live activities",
+        "sidebarWidth": 232,
+        "axe": {
+          "version": "4.14.1",
+          "url": "/settings.html",
+          "theme": "dark",
+          "scale": 1.5,
+          "violations": [],
+          "incomplete": [
+            {
+              "id": "color-contrast",
+              "impact": "serious",
+              "targets": [
+                [
+                  "button[aria-label=\"Move Mic / camera down\"]"
+                ],
+                [
+                  "button[aria-label=\"Move Timers / focus ending up\"]"
+                ],
+                [
+                  ".settings-activity[role=\"listitem\"]:nth-child(2) > .settings-reorder > button:nth-child(2)"
+                ],
+                [
+                  "button[aria-label=\"Move Downloads up\"]"
+                ],
+                [
+                  "button[aria-label=\"Move Downloads down\"]"
+                ],
+                [
+                  "button[aria-label=\"Move File tools up\"]"
+                ],
+                [
+                  "button[aria-label=\"Move File tools down\"]"
+                ],
+                [
+                  "button[aria-label=\"Move Link detected up\"]"
+                ],
+                [
+                  "button[aria-label=\"Move Link detected down\"]"
+                ],
+                [
+                  ".settings-activity[role=\"listitem\"]:nth-child(6) > .settings-reorder > button:nth-child(1)"
+                ],
+                [
+                  ".settings-activity[role=\"listitem\"]:nth-child(6) > .settings-reorder > button:nth-child(2)"
+                ],
+                [
+                  "button[aria-label=\"Move Now playing up\"]"
+                ],
+                [
+                  "button[aria-label=\"Move Now playing down\"]"
+                ],
+                [
+                  "button[aria-label=\"Move Focus timer up\"]"
+                ],
+                [
+                  "button[aria-label=\"Move Focus timer down\"]"
+                ],
+                [
+                  "button[aria-label=\"Move Power up\"]"
+                ]
+              ]
+            },
+            {
+              "id": "label-content-name-mismatch",
+              "impact": "serious",
+              "targets": [
+                [
+                  "button[aria-label=\"Move Mic / camera up\"]"
+                ],
+                [
+                  "button[aria-label=\"Move Mic / camera down\"]"
+                ],
+                [
+                  "button[aria-label=\"Move Timers / focus ending up\"]"
+                ],
+                [
+                  ".settings-activity[role=\"listitem\"]:nth-child(2) > .settings-reorder > button:nth-child(2)"
+                ],
+                [
+                  "button[aria-label=\"Move Downloads up\"]"
+                ],
+                [
+                  "button[aria-label=\"Move Downloads down\"]"
+                ],
+                [
+                  "button[aria-label=\"Move File tools up\"]"
+                ],
+                [
+                  "button[aria-label=\"Move File tools down\"]"
+                ],
+                [
+                  "button[aria-label=\"Move Link detected up\"]"
+                ],
+                [
+                  "button[aria-label=\"Move Link detected down\"]"
+                ],
+                [
+                  ".settings-activity[role=\"listitem\"]:nth-child(6) > .settings-reorder > button:nth-child(1)"
+                ],
+                [
+                  ".settings-activity[role=\"listitem\"]:nth-child(6) > .settings-reorder > button:nth-child(2)"
+                ],
+                [
+                  "button[aria-label=\"Move Now playing up\"]"
+                ],
+                [
+                  "button[aria-label=\"Move Now playing down\"]"
+                ],
+                [
+                  "button[aria-label=\"Move Focus timer up\"]"
+                ],
+                [
+                  "button[aria-label=\"Move Focus timer down\"]"
+                ],
+                [
+                  "button[aria-label=\"Move Power up\"]"
+                ],
+                [
+                  "button[aria-label=\"Move Power down\"]"
+                ]
+              ]
+            }
+          ],
+          "passes": 34
+        }
+      },
+      "ipc": [
+        {
+          "command": "plugin:event|listen",
+          "args": {
+            "event": "engine:health",
+            "target": {
+              "kind": "Any"
+            },
+            "handler": 1
+          }
+        },
+        {
+          "command": "plugin:event|listen",
+          "args": {
+            "event": "nabbit://settings-changed",
+            "target": {
+              "kind": "Any"
+            },
+            "handler": 3
+          }
+        },
+        {
+          "command": "plugin:event|listen",
+          "args": {
+            "event": "tauri://theme-changed",
+            "target": {
+              "kind": "Window",
+              "label": "settings"
+            },
+            "handler": 5
+          }
+        },
+        {
+          "command": "settings_window_ready",
+          "args": {}
+        },
+        {
+          "command": "get_settings",
+          "args": {}
+        },
+        {
+          "command": "get_engine_status",
+          "args": {}
+        },
+        {
+          "command": "get_storage_stats",
+          "args": {}
+        },
+        {
+          "command": "plugin:window|theme",
+          "args": {
+            "label": "settings"
+          }
+        },
+        {
+          "command": "plugin:event|listen",
+          "args": {
+            "event": "nabbit://island-config",
+            "target": {
+              "kind": "Any"
+            },
+            "handler": 7
+          }
+        },
+        {
+          "command": "get_island_snapshot",
+          "args": {}
+        },
+        {
+          "command": "plugin:event|unlisten",
+          "args": {
+            "event": "nabbit://island-config",
+            "eventId": 8
+          }
+        }
+      ],
+      "unsupported": [],
+      "runtimeAndNetworkProblems": []
+    }
+  ]
+}

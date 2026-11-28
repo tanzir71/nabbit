@@ -28,26 +28,28 @@ export default function FilesSettings() {
       <p className="text-sm text-secondary">
         Share limits in MB. Outlook is an alternative to the email preset.
       </p>
-      {presets
-        .filter((p) => p.maxMb !== null)
-        .map((p) => (
-          <Field
-            key={p.id}
-            type="number"
-            label={p.name}
-            min={1}
-            max={100000}
-            value={p.maxMb ?? ""}
-            onChange={(e) => {
-              setSaved(false);
-              setPresets((old) =>
-                old.map((row) =>
-                  row.id === p.id ? { ...row, maxMb: Number(e.target.value) } : row,
-                ),
-              );
-            }}
-          />
-        ))}
+      <div className="settings-file-presets">
+        {presets
+          .filter((p) => p.maxMb !== null)
+          .map((p) => (
+            <Field
+              key={p.id}
+              type="number"
+              label={p.name}
+              min={1}
+              max={100000}
+              value={p.maxMb ?? ""}
+              onChange={(e) => {
+                setSaved(false);
+                setPresets((old) =>
+                  old.map((row) =>
+                    row.id === p.id ? { ...row, maxMb: Number(e.target.value) } : row,
+                  ),
+                );
+              }}
+            />
+          ))}
+      </div>
       <Button
         variant="secondary"
         disabled={

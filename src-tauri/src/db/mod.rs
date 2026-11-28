@@ -1,6 +1,7 @@
 mod clipboard_payload;
 mod download_presets;
 pub mod models;
+pub(crate) mod settings_schema;
 
 use std::{
     fs,
@@ -169,6 +170,7 @@ impl Database {
                 [Utc::now().to_rfc3339()],
             )?;
         }
+        settings_schema::migrate(&mut conn)?;
         crate::notes::sync_store::migrate(&mut conn)?;
         crate::sticky::store::migrate(&conn)?;
         crate::timer::store::migrate(&conn)?;
@@ -269,11 +271,18 @@ impl Database {
 
     pub fn save_settings(&self, settings: &AppSettings) -> Result<AppSettings> {
         let normalized = normalize_settings(settings.clone());
-        let value = serde_json::to_string(&normalized)?;
         let conn = self
             .conn
             .lock()
             .map_err(|_| msg("database lock poisoned"))?;
+        let previous: Option<String> = conn
+            .query_row(
+                "SELECT value FROM settings WHERE key = 'app_settings'",
+                [],
+                |row| row.get(0),
+            )
+            .optional()?;
+        let value = settings_schema::preserve_unknown(previous.as_deref(), &normalized)?;
         conn.execute(
             "INSERT INTO settings(key, value, updated_at) VALUES ('app_settings', ?1, ?2)
              ON CONFLICT(key) DO UPDATE SET value = excluded.value, updated_at = excluded.updated_at",
@@ -668,6 +677,10 @@ fn backup_corrupt_db(app_data_dir: &Path, db_path: &Path) {
 }
 
 fn normalize_settings(mut settings: AppSettings) -> AppSettings {
+    settings.island.peek_on_hover_ms = settings
+        .island
+        .peek_on_hover_ms
+        .map(|ms| ms.clamp(100, 2_000));
     settings.island_shortcut = settings.island_shortcut.trim().to_owned();
     settings.island_activity = settings.island_activity.normalized();
     settings.island.monitor_id = settings
@@ -872,6 +885,7 @@ mod tests {
             size: Size::Large,
             monitor_mode: MonitorMode::Specific,
             monitor_id: Some("  unplugged-display  ".into()),
+            ..Preferences::default()
         };
         let saved = db.save_settings(&settings).unwrap();
         drop(db);

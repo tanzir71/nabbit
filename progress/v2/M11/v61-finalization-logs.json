@@ -1,0 +1,21 @@
+{
+  "logs": [
+    {
+      "source": ".tools/v61-staged-gitleaks.log",
+      "log": "v61-staged-gitleaks-a-log.txt",
+      "canonicalSha256": "47b3a2399a771e7733508befa6c4f777b0b23f5ddc20aef0d929a1a56d34b941",
+      "originalArchive": "v61-staged-gitleaks-a-log.txt.original.gz",
+      "originalSha256": "a7a6447caab114fe27028c1dc7318577e05954958d33a713cd1e18f123d24c29",
+      "originalBytes": 81
+    },
+    {
+      "source": ".tools/v61-staged-gitleaks.json",
+      "log": "v61-staged-gitleaks-a-report.json",
+      "canonicalSha256": "7d501cec59bb14e6c93af7ba31c28740050c216c479f0e69d10572705ffc4ad9",
+      "originalArchive": "v61-staged-gitleaks-a-report.json.original.gz",
+      "originalSha256": "7d501cec59bb14e6c93af7ba31c28740050c216c479f0e69d10572705ffc4ad9",
+      "originalBytes": 730
+    }
+  ],
+  "finding": "The public Figma design identifier was flagged by the generic API key rule because of its field name. The reference is now a design URL. No secret and no new waiver."
+}

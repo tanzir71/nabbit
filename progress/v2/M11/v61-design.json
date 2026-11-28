@@ -1,0 +1,25 @@
+{
+  "frames": {
+    "general": "22:2",
+    "island": "22:146",
+    "activities": "22:287",
+    "shortcuts": "22:474"
+  },
+  "designUrl": "https://www.figma.com/design/tBm7NNhh1Y9aTQPJ3WxY5v/Nabbit",
+  "assets": "src/assets/settings/manifest.json",
+  "exports": 27,
+  "newUnmodifiedSvgExports": 18,
+  "adaptations": [
+    "Files navigation uses the existing island drop folder export; Files has no separate frame and follows the settings layout. Preset limits use two columns at desktop widths so all integration controls remain visible.",
+    "Help uses the secondary text token where tertiary contrast is insufficient. Activity priority has accessible Up/Down controls and Alt+Arrow keys on the original drag grip.",
+    "Version is read from package metadata. v0.1 custom/empty shortcuts and preferences are preserved. Shortcut editing remains functional through existing fields; V6.4 owns the recorder/conflict interaction and final shortcut-row treatment.",
+    "The native window uses OS decorations and taskbar presence. Close is also available in the content header for preview and keyboard access."
+  ],
+  "rendering": {
+    "scope": "Owned headless browsers and acceptance WebViews only; no user/browser/OS setting is changed.",
+    "method": "Raw CDP captures at requested device scale with reduced motion, all images/fonts loaded and exact repeated PNG hashes.",
+    "documentation": "https://github.com/GoogleChrome/chrome-launcher/blob/main/docs/chrome-flags-for-tools.md#rendering--gpu",
+    "diagnostic": "v61-raster-c.json records six consecutive identical readbacks for both affected pages after compositor scheduling was made deterministic. Previous failed runs and originals are retained.",
+    "native": "Native PNGs contain owned WebView pixels, including transparency. DWM Mica is independently read on the owned HWND; no wallpaper/desktop screenshot is taken."
+  }
+}

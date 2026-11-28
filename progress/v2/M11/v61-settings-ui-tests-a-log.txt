@@ -1,0 +1,19 @@
+> nabbit@0.1.0 test
+> vitest --run src/features/settings/SettingsPanel.test.tsx src/views/IslandSettings.test.tsx src/store/settingsBootstrap.test.ts
+
+
+ RUN  v3.2.7 D:/claude-upgrade-26/nabbit
+
+ ✓ src/views/IslandSettings.test.tsx (3 tests) 868ms
+   ✓ persists independent shape, size, monitor and enabled changes without overwriting other settings  475ms
+ ✓ src/store/settingsBootstrap.test.ts (2 tests) 6ms
+ ✓ src/features/settings/SettingsPanel.test.tsx (5 tests) 2354ms
+   ✓ navigates all nine sections and returns keyboard focus to the page heading  870ms
+   ✓ edits a complete path before saving and preserves an unrelated concurrent preference  635ms
+   ✓ reorders and disables activities through independent nested patches  325ms
+   ✓ requires an explicit confirmation before clearing clipboard history  354ms
+
+ Test Files  3 passed (3)
+      Tests  10 passed (10)
+   Start at  12:44:54
+   Duration  4.80s (transform 676ms, setup 665ms, collect 1.70s, tests 3.23s, environment 1.89s, prepare 643ms)

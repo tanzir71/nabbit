@@ -16,6 +16,7 @@ pub struct Instruction {
     state: Mode,
     owner: &'static str,
     shape: Shape,
+    preferences: Preferences,
     reduced_motion: bool,
     width: f32,
     height: f32,
@@ -212,6 +213,7 @@ impl Manager {
                 "webview"
             },
             shape: host.placement.shape,
+            preferences: state.preferences.clone(),
             reduced_motion: reduced_motion(),
             width: scene.width,
             height: scene.height,
@@ -354,7 +356,14 @@ impl Manager {
     ) -> bool {
         let mode = base(view);
         let surface = state.surfaces.entry(label.into()).or_default();
-        surface.sample(inside, dragging, left, now, mode);
+        surface.sample_with_hover(
+            inside,
+            dragging,
+            left,
+            now,
+            mode,
+            state.preferences.peek_on_hover_ms,
+        );
         if view.is_some_and(|view| view.fullscreen) && !surface.state.compact() {
             surface.pending = Some(mode);
         }
@@ -625,6 +634,9 @@ impl Manager {
         wheel: Option<(i16, bool)>,
     ) -> bool {
         let state = lock(&self.state);
+        if wheel.is_some() && !state.preferences.scroll_to_change_volume {
+            return false;
+        }
         let Some(host) = state.hosts.values().find(|host| host.hwnd == hwnd) else {
             return false;
         };

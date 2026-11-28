@@ -5,6 +5,18 @@ import { Buffer } from "node:buffer";
 export const themes = ["light", "dark"];
 export const scales = [1, 1.5];
 export const pngBudget = 300 * 1024;
+// Chrome's tooling guidance: finish compositor work before readback so rounded
+// edge coverage is stable. Only owned screenshot browsers/WebViews opt in.
+// https://github.com/GoogleChrome/chrome-launcher/blob/main/docs/chrome-flags-for-tools.md#rendering--gpu
+export const deterministicRenderingFlags = Object.freeze([
+  "--run-all-compositor-stages-before-draw",
+  "--disable-new-content-rendering-timeout",
+  "--disable-threaded-animation",
+  "--disable-threaded-scrolling",
+  "--disable-checker-imaging",
+  "--disable-image-animation-resync",
+  "--disable-partial-raster",
+]);
 
 export function outputOptions(root, { milestone, prefix, suite = "all" }) {
   assert(/^M(?:[0-9]|1[0-2])$/.test(milestone ?? ""), "Use --milestone M0 through M12");

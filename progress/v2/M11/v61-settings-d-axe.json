@@ -1,0 +1,78 @@
+{
+  "scope": "Whole-document axe.run() with defaults; no exclusions, tags or disabled rules",
+  "scans": [
+    {
+      "scenario": "settings-general",
+      "version": "4.14.1",
+      "url": "/settings.html",
+      "theme": "light",
+      "scale": 1,
+      "violations": [],
+      "incomplete": [],
+      "passes": 33
+    },
+    {
+      "scenario": "settings-island",
+      "version": "4.14.1",
+      "url": "/settings.html",
+      "theme": "light",
+      "scale": 1,
+      "violations": [],
+      "incomplete": [],
+      "passes": 38
+    },
+    {
+      "scenario": "settings-widgets",
+      "version": "4.14.1",
+      "url": "/settings.html",
+      "theme": "light",
+      "scale": 1,
+      "violations": [],
+      "incomplete": [],
+      "passes": 33
+    },
+    {
+      "scenario": "settings-downloads",
+      "version": "4.14.1",
+      "url": "/settings.html",
+      "theme": "light",
+      "scale": 1,
+      "violations": [],
+      "incomplete": [],
+      "passes": 37
+    },
+    {
+      "scenario": "settings-notes",
+      "version": "4.14.1",
+      "url": "/settings.html",
+      "theme": "light",
+      "scale": 1,
+      "violations": [],
+      "incomplete": [],
+      "passes": 33
+    },
+    {
+      "scenario": "settings-clipboard",
+      "version": "4.14.1",
+      "url": "/settings.html",
+      "theme": "light",
+      "scale": 1,
+      "violations": [
+        {
+          "id": "color-contrast",
+          "impact": "serious",
+          "nodes": [
+            {
+              "target": [
+                ".n-button"
+              ],
+              "failureSummary": "Fix any of the following:\n  Element has insufficient color contrast of 3.88 (foreground color: #d93f3f, background color: #fdecec, font size: 9.8pt (13px), font weight: normal). Expected contrast ratio of 4.5:1"
+            }
+          ]
+        }
+      ],
+      "incomplete": [],
+      "passes": 36
+    }
+  ]
+}

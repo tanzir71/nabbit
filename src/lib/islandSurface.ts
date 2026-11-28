@@ -3,6 +3,7 @@ import { listen } from "@tauri-apps/api/event";
 import type { IslandMode, IslandTab } from "../store/islandStore";
 import type { ActivitySnapshot } from "./activity";
 export interface SurfaceInstruction {
+  preferences?: import("./types").IslandPreferences;
   ready?: boolean;
   keyboard?: { id: number; target: "tab" | "preserve" | "notes" | "clipboard" | "files" } | null;
   focusTab?: IslandTab | null;

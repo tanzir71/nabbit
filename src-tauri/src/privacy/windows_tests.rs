@@ -74,7 +74,10 @@ struct Running {
 impl Drop for Running {
     fn drop(&mut self) {
         unsafe { SetEvent(self.stop.as_raw_handle()) };
-        assert!(self.join.take().unwrap().join().unwrap().is_ok());
+        let joined = self.join.take().unwrap().join();
+        if !std::thread::panicking() {
+            assert!(joined.unwrap().is_ok());
+        }
     }
 }
 fn next(
@@ -105,7 +108,8 @@ fn native_registry_subtree_notifications_rearm_and_idle_without_reads() {
     let read_root = root.clone();
     let read: Read = Box::new(move || {
         count.fetch_add(1, Ordering::SeqCst);
-        let entries = entries(&read_root)?;
+        let entries = entries(&read_root)
+            .inspect_err(|error| eprintln!("Owned registry read failed: {error:?}"))?;
         let processes = process(std::process::id(), &entries).into_iter().collect();
         Ok(RegistrySnapshot { entries, processes })
     });
@@ -163,6 +167,18 @@ fn native_registry_subtree_notifications_rearm_and_idle_without_reads() {
     next(&rx, |_| true);
     assert!(reads.load(Ordering::SeqCst) > before);
     drop(running);
+}
+#[test]
+fn deleted_open_subtree_is_empty_and_can_be_skipped_during_a_notification() {
+    let fixture = Fixture::new();
+    let key = fixture.usage("webcam", "C:\\Fixture\\Host.exe");
+    assert_eq!(
+        unsafe { RegDeleteTreeW(fixture.key.0, w!("webcam")) },
+        ERROR_SUCCESS
+    );
+    assert!(key.children().unwrap().is_empty());
+    assert!(optional(key.0, "gone").unwrap().is_none());
+    assert!(entries(&fixture.path).unwrap().is_empty());
 }
 #[test]
 fn native_timestamp_type_and_deleted_root_are_safe() {

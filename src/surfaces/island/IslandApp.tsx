@@ -147,6 +147,20 @@ export function IslandApp({ suppliedStore }: { suppliedStore?: IslandStore }) {
     (action: IslandAction) => store.getState().dispatch(action),
     [store],
   );
+  useEffect(() => {
+    if (!native()) return;
+    let active = true;
+    const stop = listen<{ island: import("../../lib/types").IslandPreferences }>(
+      "nabbit://settings-changed",
+      ({ payload }) => {
+        if (active) dispatch({ type: "preferences", preferences: payload.island });
+      },
+    );
+    return () => {
+      active = false;
+      void stop.then((unlisten) => unlisten()).catch(fail);
+    };
+  }, [dispatch, fail]);
   const act = useCallback(
     (intent: IslandIntent) => {
       const e = intent.item?.event;
@@ -251,6 +265,7 @@ export function IslandApp({ suppliedStore }: { suppliedStore?: IslandStore }) {
           focusedGeneration.current = value.generation;
         }
         setInstruction(value);
+        if (value.preferences) dispatch({ type: "preferences", preferences: value.preferences });
         surfaceReady.current = true;
         receiving.current = false;
       },

@@ -1,0 +1,15 @@
+node:internal/fs/promises:1345
+  return new FileHandle(await PromisePrototypeThen(
+                        ^
+
+Error: ENOENT: no such file or directory, open 'D:\claude-upgrade-26\nabbit\progress\v2\M11\v61-settings-b-axe.json'
+    at async open (node:internal/fs/promises:1345:25)
+    at async writeFile (node:internal/fs/promises:1972:14)
+    at async file:///D:/claude-upgrade-26/nabbit/scripts/capture-settings.mjs:56:3 {
+  errno: -4058,
+  code: 'ENOENT',
+  syscall: 'open',
+  path: 'D:\\claude-upgrade-26\\nabbit\\progress\\v2\\M11\\v61-settings-b-axe.json'
+}
+
+Node.js v24.22.2

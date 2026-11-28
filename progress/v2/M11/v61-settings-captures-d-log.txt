@@ -1,0 +1,27 @@
+file:///D:/claude-upgrade-26/nabbit/scripts/screenshots/harness.mjs:414
+            throw new Error(`${scenario.name} (${theme}@${scale}x): ${error.message}`, {
+                  ^
+
+Error: settings-clipboard (light@1x): Whole-document default axe: [{"id":"color-contrast","impact":"serious","nodes":[{"target":[".n-button"],"failureSummary":"Fix any of the following:\n  Element has insufficient color contrast of 3.88 (foreground color: #d93f3f, background color: #fdecec, font size: 9.8pt (13px), font weight: normal). Expected contrast ratio of 4.5:1"}]}]
+
+1 !== 0
+
+    at captureSuite (file:///D:/claude-upgrade-26/nabbit/scripts/screenshots/harness.mjs:414:19)
+    at async file:///D:/claude-upgrade-26/nabbit/scripts/capture-settings.mjs:51:3 {
+  [cause]: AssertionError [ERR_ASSERTION]: Whole-document default axe: [{"id":"color-contrast","impact":"serious","nodes":[{"target":[".n-button"],"failureSummary":"Fix any of the following:\n  Element has insufficient color contrast of 3.88 (foreground color: #d93f3f, background color: #fdecec, font size: 9.8pt (13px), font weight: normal). Expected contrast ratio of 4.5:1"}]}]
+
+  1 !== 0
+
+      at Object.ready (file:///D:/claude-upgrade-26/nabbit/scripts/capture-settings.mjs:42:12)
+      at async captureSuite (file:///D:/claude-upgrade-26/nabbit/scripts/screenshots/harness.mjs:144:33)
+      at async file:///D:/claude-upgrade-26/nabbit/scripts/capture-settings.mjs:51:3 {
+    generatedMessage: false,
+    code: 'ERR_ASSERTION',
+    actual: 1,
+    expected: 0,
+    operator: 'strictEqual',
+    diff: 'simple'
+  }
+}
+
+Node.js v24.22.2

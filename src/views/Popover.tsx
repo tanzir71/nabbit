@@ -1,5 +1,5 @@
 import { lazy, Suspense, useEffect, useState } from "react";
-import { invoke } from "@tauri-apps/api/core";
+import { api } from "../lib/ipc";
 import { listen } from "@tauri-apps/api/event";
 import { notesApi, type NotesNavigation } from "../features/notes/api";
 import { Tab } from "../components/Tab";
@@ -12,9 +12,6 @@ import { IconButton } from "../components/IconButton";
 import { useAppStore } from "../store/useAppStore";
 import { ClipboardList } from "./ClipboardList";
 import { DownloadPanel } from "./DownloadPanel";
-const SettingsPanel = lazy(() =>
-  import("./SettingsPanel").then((module) => ({ default: module.SettingsPanel })),
-);
 const NotesView = lazy(() =>
   import("./NotesView").then((module) => ({ default: module.NotesView })),
 );
@@ -25,7 +22,6 @@ export function Popover() {
   const error = useAppStore((state) => state.error);
   const engine = useAppStore((state) => state.engine);
   const setLastTab = useAppStore((state) => state.setLastTab);
-  const [showSettings, setShowSettings] = useState(false);
   const [notesNavigation, setNotesNavigation] = useState<NotesNavigation | null>(null);
   useEffect(() => {
     if (!("__TAURI_INTERNALS__" in window)) return;
@@ -39,7 +35,6 @@ export function Popover() {
         if (reply.shortcutError) useAppStore.setState({ error: reply.shortcutError });
         if (reply.navigation) {
           setNotesNavigation(reply.navigation);
-          setShowSettings(false);
           useAppStore.setState((s) => ({
             settings: s.settings ? { ...s.settings, lastTab: "notes" } : s.settings,
           }));
@@ -74,38 +69,6 @@ export function Popover() {
       stop?.();
     };
   }, []);
-  useEffect(() => {
-    if (!("__TAURI_INTERNALS__" in window)) return;
-    let active = true,
-      stop: (() => void) | undefined;
-    const consume = async () => {
-      try {
-        const wanted = await invoke<boolean>("consume_island_settings_intent");
-        if (active && wanted) setShowSettings(true);
-      } catch (reason) {
-        if (active) useAppStore.setState({ error: String(reason) });
-      }
-    };
-    void listen("nabbit://open-settings", () => {
-      void consume();
-    })
-      .then((unlisten) => {
-        if (!active) {
-          unlisten();
-          return;
-        }
-        stop = unlisten;
-        void consume();
-      })
-      .catch((reason) => {
-        if (active) useAppStore.setState({ error: String(reason) });
-      });
-    return () => {
-      active = false;
-      stop?.();
-    };
-  }, []);
-
   const activeTab = notesNavigation ? "notes" : (settings?.lastTab ?? "download");
 
   if (loading || !settings) {
@@ -145,7 +108,14 @@ export function Popover() {
         >
           <DownloadIcon name="search" />
         </IconButton>
-        <IconButton label="Settings" onClick={() => setShowSettings(true)}>
+        <IconButton
+          label="Settings"
+          onClick={() =>
+            void api
+              .openSettingsWindow()
+              .catch((reason: unknown) => useAppStore.setState({ error: String(reason) }))
+          }
+        >
           <DownloadIcon name="settings" />
         </IconButton>
         <IconButton
@@ -196,7 +166,7 @@ export function Popover() {
 
       <div className="tray-content">
         {activeTab === "download" ? (
-          <DownloadPanel active={!showSettings} />
+          <DownloadPanel active />
         ) : activeTab === "notes" ? (
           <Suspense
             fallback={
@@ -236,17 +206,6 @@ export function Popover() {
           </button>
         </footer>
       )}
-      {showSettings ? (
-        <Suspense
-          fallback={
-            <p role="status" className="p-4 text-sm text-secondary">
-              Opening settings...
-            </p>
-          }
-        >
-          <SettingsPanel onClose={() => setShowSettings(false)} />
-        </Suspense>
-      ) : null}
     </section>
   );
 }

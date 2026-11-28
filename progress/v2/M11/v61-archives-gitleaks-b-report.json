@@ -1,0 +1,22 @@
+[
+ {
+  "RuleID": "stripe-access-token",
+  "Description": "Found a Stripe Access Token, posing a risk to payment processing services and sensitive financial data.",
+  "StartLine": 76,
+  "EndLine": 76,
+  "StartColumn": 35,
+  "EndColumn": 64,
+  "Match": "REDACTED\"",
+  "Secret": "REDACTED",
+  "File": "D:/claude-upgrade-26/nabbit/.tools/v61-archives-secrets-3d29092d-cb74-478a-a7d9-09bd8435a488/src-tauri/src/clipboard/sensitive.rs",
+  "SymlinkFile": "",
+  "Commit": "",
+  "Entropy": 4.6510844,
+  "Author": "",
+  "Email": "",
+  "Date": "",
+  "Message": "",
+  "Tags": [],
+  "Fingerprint": "D:/claude-upgrade-26/nabbit/.tools/v61-archives-secrets-3d29092d-cb74-478a-a7d9-09bd8435a488/src-tauri/src/clipboard/sensitive.rs:stripe-access-token:76"
+ }
+]

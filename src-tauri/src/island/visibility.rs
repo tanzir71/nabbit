@@ -98,13 +98,41 @@ impl Visibility {
         now_ms: u64,
         override_gate: Option<Gate>,
     ) -> bool {
+        self.step_with_preferences(
+            fg,
+            monitor,
+            (in_band, in_rect),
+            now_ms,
+            override_gate,
+            &super::model::Preferences::default(),
+        )
+    }
+    pub fn step_with_preferences(
+        &mut self,
+        fg: &Foreground,
+        monitor: Rect,
+        pointer: (bool, bool),
+        now_ms: u64,
+        override_gate: Option<Gate>,
+        preferences: &super::model::Preferences,
+    ) -> bool {
+        let (in_band, in_rect) = pointer;
         if self.foreground != fg.window_id {
             self.release();
             self.foreground = fg.window_id;
         }
         let (base, reason) = override_gate
             .map(|gate| (gate, Reason::None))
-            .unwrap_or_else(|| classify(fg, monitor));
+            .unwrap_or_else(|| {
+                let (base, reason) = classify(fg, monitor);
+                if (base == Gate::Faded && !preferences.fade_over_maximized)
+                    || (base == Gate::Hidden && !preferences.hide_over_fullscreen)
+                {
+                    (Gate::Visible, Reason::None)
+                } else {
+                    (base, reason)
+                }
+            });
         // The V2.2 acceptance seam forces input gates; it must not hover-wake.
         let mode = if override_gate.is_some() {
             self.release();
@@ -165,6 +193,33 @@ impl Visibility {
 #[cfg(test)]
 mod tests {
     use super::*;
+    #[test]
+    fn saved_preferences_control_fade_and_fullscreen_without_overriding_acceptance_gates() {
+        let mut prefs = super::super::model::Preferences::default();
+        let mut fg = foreground();
+        fg.maximised = true;
+        let mut visibility = Visibility::default();
+        visibility.step_with_preferences(&fg, monitor(), (false, false), 0, None, &prefs);
+        assert_eq!(visibility.base, Gate::Faded);
+        prefs.fade_over_maximized = false;
+        visibility.step_with_preferences(&fg, monitor(), (false, false), 1, None, &prefs);
+        assert_eq!(visibility.base, Gate::Visible);
+        fg.notification_state = Some(2);
+        visibility.step_with_preferences(&fg, monitor(), (false, false), 2, None, &prefs);
+        assert_eq!(visibility.base, Gate::Hidden);
+        prefs.hide_over_fullscreen = false;
+        visibility.step_with_preferences(&fg, monitor(), (false, false), 3, None, &prefs);
+        assert_eq!(visibility.base, Gate::Visible);
+        visibility.step_with_preferences(
+            &fg,
+            monitor(),
+            (true, true),
+            4,
+            Some(Gate::Hidden),
+            &prefs,
+        );
+        assert_eq!(visibility.mode, Gate::Hidden);
+    }
     fn monitor() -> Rect {
         Rect {
             x: -1920,

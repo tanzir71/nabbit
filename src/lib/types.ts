@@ -88,6 +88,8 @@ export interface DownloadJob {
 }
 
 export interface AppSettings {
+  displayMode?: "islandAndTray" | "trayOnly" | "islandOnly";
+  restoreStickyNotes?: boolean;
   islandActivity?: import("./activity").ActivityPreferences;
   island: IslandPreferences;
   theme: import("./theme").ThemePreference;
@@ -123,7 +125,15 @@ export interface IslandPreferences {
   size: "small" | "standard" | "large";
   monitorMode: "primary" | "followMouse" | "all" | "specific";
   monitorId: string | null;
+  peekOnHoverMs?: number | null;
+  fadeOverMaximized?: boolean;
+  hideOverFullscreen?: boolean;
+  scrollToChangeVolume?: boolean;
 }
+export type SettingsPatch = Omit<Partial<AppSettings>, "island" | "islandActivity"> & {
+  island?: Partial<IslandPreferences>;
+  islandActivity?: Partial<import("./activity").ActivityPreferences>;
+};
 export interface IslandSnapshot {
   supported: boolean;
   desktop: { monitors: Array<{ id: string; name: string; primary: boolean; scaleFactor: number }> };

@@ -6,9 +6,11 @@ import { useAppStore } from "./store/useAppStore";
 import { FirstRunNotice } from "./views/FirstRunNotice";
 import { Popover } from "./views/Popover";
 import { useTheme } from "./lib/useTheme";
+import { useSettingsEvents } from "./lib/useSettingsEvents";
 
 export default function App() {
   useEngineEvents();
+  useSettingsEvents();
   const loadInitialData = useAppStore((state) => state.loadInitialData);
   const refreshClipboard = useAppStore((state) => state.refreshClipboard);
   const refreshDownloads = useAppStore((state) => state.refreshDownloads);

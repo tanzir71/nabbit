@@ -7,7 +7,13 @@ import type { IslandPreferences, IslandSnapshot } from "../lib/types";
 import { useAppStore } from "../store/useAppStore";
 import "./island-settings.css";
 
-export function IslandSettings({ value }: { value: IslandPreferences }) {
+export function IslandSettings({
+  value,
+  saveChange,
+}: {
+  value: IslandPreferences;
+  saveChange?: (change: Partial<IslandPreferences>) => Promise<void>;
+}) {
   const [snapshot, setSnapshot] = useState<IslandSnapshot | null>(null);
   const [saving, setSaving] = useState(false);
   const [error, setError] = useState<string | null>(null);
@@ -40,8 +46,11 @@ export function IslandSettings({ value }: { value: IslandPreferences }) {
     setSaving(true);
     setError(null);
     try {
-      const saved = await api.saveIslandPreferences({ ...value, ...change });
-      useAppStore.setState({ settings: saved });
+      if (saveChange) await saveChange(change);
+      else {
+        const saved = await api.saveIslandPreferences({ ...value, ...change });
+        useAppStore.setState({ settings: saved });
+      }
     } catch (reason) {
       setError(String(reason));
     } finally {
@@ -51,22 +60,25 @@ export function IslandSettings({ value }: { value: IslandPreferences }) {
   };
   const monitors = snapshot?.desktop.monitors ?? [];
   const missing = value.monitorId && !monitors.some((monitor) => monitor.id === value.monitorId);
+  const Heading = saveChange ? "h2" : "h3";
   return (
     <section className="island-settings" aria-labelledby="island-settings-title">
-      <h3 id="island-settings-title">Shape and place</h3>
+      <Heading id="island-settings-title">Shape and place</Heading>
       <fieldset
         className="island-settings-card"
         disabled={saving || snapshot?.supported === false}
         aria-busy={saving}
       >
         <legend className="sr-only">Island settings</legend>
-        <div className="island-setting-row">
-          <Toggle
-            label="Show island"
-            checked={value.enabled}
-            onChange={(enabled) => void patch({ enabled })}
-          />
-        </div>
+        {!saveChange && (
+          <div className="island-setting-row">
+            <Toggle
+              label="Show island"
+              checked={value.enabled}
+              onChange={(enabled) => void patch({ enabled })}
+            />
+          </div>
+        )}
         <div className="island-setting-row">
           <div>
             <p id="island-shape-label">Shape</p>

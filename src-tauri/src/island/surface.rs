@@ -91,6 +91,8 @@ pub struct Session {
     previous_left: bool,
     #[serde(skip)]
     hover_armed: bool,
+    #[serde(skip)]
+    hover_delay_ms: Option<u64>,
 }
 impl Default for Session {
     fn default() -> Self {
@@ -109,6 +111,7 @@ impl Default for Session {
             before_drag: None,
             previous_left: false,
             hover_armed: true,
+            hover_delay_ms: Some(180),
         }
     }
 }
@@ -143,7 +146,26 @@ impl Session {
         }
         true
     }
+    #[cfg(test)]
     pub fn sample(&mut self, inside: bool, dragging: bool, left: bool, now: u64, base: Mode) {
+        self.sample_with_hover(inside, dragging, left, now, base, Some(180));
+    }
+    pub fn sample_with_hover(
+        &mut self,
+        inside: bool,
+        dragging: bool,
+        left: bool,
+        now: u64,
+        base: Mode,
+        hover_ms: Option<u64>,
+    ) {
+        if self.hover_delay_ms != hover_ms {
+            self.hover_delay_ms = hover_ms;
+            self.hover_at = None;
+            if self.pending == Some(Mode::Peek) {
+                self.pending = None;
+            }
+        }
         if self.outgoing_drag {
             if left && base != Mode::Hidden {
                 return;
@@ -167,8 +189,13 @@ impl Session {
             }
         } else if self.state == Mode::Drop {
             self.pending = Some(self.before_drag.take().unwrap_or(base));
-        } else if self.state == Mode::Live && inside && !left && self.hover_armed {
-            let due = *self.hover_at.get_or_insert(now + 180);
+        } else if self.state == Mode::Live
+            && inside
+            && !left
+            && self.hover_armed
+            && hover_ms.is_some()
+        {
+            let due = *self.hover_at.get_or_insert(now + hover_ms.unwrap_or(180));
             if now >= due {
                 self.pending = Some(Mode::Peek);
             }
@@ -193,6 +220,24 @@ impl Session {
 #[cfg(test)]
 mod tests {
     use super::*;
+    #[test]
+    fn configured_hover_delay_and_off_leave_drag_and_explicit_open_working() {
+        let mut s = Session::default();
+        s.request(Mode::Live);
+        s.sample_with_hover(true, false, false, 0, Mode::Live, Some(500));
+        s.sample_with_hover(true, false, false, 499, Mode::Live, Some(500));
+        assert_eq!(s.pending, None);
+        s.sample_with_hover(true, false, false, 500, Mode::Live, Some(500));
+        assert_eq!(s.pending, Some(Mode::Peek));
+        s.request(Mode::Live);
+        s.sample_with_hover(true, false, false, 1_000, Mode::Live, None);
+        assert_eq!(s.pending, None);
+        assert_eq!(s.hover_at, None);
+        s.sample_with_hover(true, true, true, 1_001, Mode::Live, None);
+        assert_eq!(s.pending, Some(Mode::Drop));
+        s.request(Mode::Expanded);
+        assert_eq!(s.state, Mode::Expanded);
+    }
     #[test]
     fn outgoing_drag_keeps_the_source_surface_until_release_but_never_bypasses_hidden_policy() {
         let mut s = Session::default();

@@ -1,0 +1,148 @@
+Finished `test` profile [unoptimized + debuginfo] target(s) in 1.14s
+     Running unittests src\lib.rs (src-tauri\target\debug\deps\nabbit_lib-0297bdcf3f91dea5.exe)
+
+running 1 test
+
+thread '<unnamed>' (14332) panicked at src\privacy\windows_tests.rs:121:43:
+called `Result::unwrap()` on an `Err` value: "Mic/camera activity is unavailable."
+note: run with `RUST_BACKTRACE=1` environment variable to display a backtrace
+
+thread 'privacy::windows::tests::native_registry_subtree_notifications_rearm_and_idle_without_reads' (15676) panicked at src\privacy\windows_tests.rs:85:57:
+called `Result::unwrap()` on an `Err` value: Disconnected
+
+thread 'privacy::windows::tests::native_registry_subtree_notifications_rearm_and_idle_without_reads' (15676) panicked at src\privacy\windows_tests.rs:77:50:
+called `Result::unwrap()` on an `Err` value: Any { .. }
+stack backtrace:
+   0:     0x7ff6e4b16a5e - std::backtrace_rs::backtrace::win64::trace
+                               at /rustc/2d8144b7880597b6e6d3dfd63a9a9efae3f533d3/library\std\src\..\..\backtrace\src\backtrace\win64.rs:85
+   1:     0x7ff6e4b16a5e - std::backtrace_rs::backtrace::trace_unsynchronized
+                               at /rustc/2d8144b7880597b6e6d3dfd63a9a9efae3f533d3/library\std\src\..\..\backtrace\src\backtrace\mod.rs:66
+   2:     0x7ff6e4b16a5e - std::sys::backtrace::_print_fmt
+                               at /rustc/2d8144b7880597b6e6d3dfd63a9a9efae3f533d3/library\std\src\sys\backtrace.rs:74
+   3:     0x7ff6e4b16a5e - std::sys::backtrace::impl$0::print::impl$0::fmt
+                               at /rustc/2d8144b7880597b6e6d3dfd63a9a9efae3f533d3/library\std\src\sys\backtrace.rs:44
+   4:     0x7ff6e4b2caf1 - core::fmt::write
+                               at /rustc/2d8144b7880597b6e6d3dfd63a9a9efae3f533d3/library\core\src\fmt\mod.rs:0
+   5:     0x7ff6e4b1d484 - std::io::default_write_fmt
+                               at /rustc/2d8144b7880597b6e6d3dfd63a9a9efae3f533d3/library\std\src\io\mod.rs:622
+   6:     0x7ff6e4b1d484 - std::io::Write::write_fmt<std::sys::stdio::windows::Stderr>
+                               at /rustc/2d8144b7880597b6e6d3dfd63a9a9efae3f533d3/library\std\src\io\mod.rs:1977
+   7:     0x7ff6e4af9269 - std::sys::backtrace::BacktraceLock::print
+                               at /rustc/2d8144b7880597b6e6d3dfd63a9a9efae3f533d3/library\std\src\sys\backtrace.rs:47
+   8:     0x7ff6e4af9269 - std::panicking::default_hook::closure$0
+                               at /rustc/2d8144b7880597b6e6d3dfd63a9a9efae3f533d3/library\std\src\panicking.rs:292
+   9:     0x7ff6e4b0d3c8 - std::panicking::default_hook
+                               at /rustc/2d8144b7880597b6e6d3dfd63a9a9efae3f533d3/library\std\src\panicking.rs:319
+  10:     0x7ff6e4b0d683 - std::panicking::panic_with_hook
+                               at /rustc/2d8144b7880597b6e6d3dfd63a9a9efae3f533d3/library\std\src\panicking.rs:825
+  11:     0x7ff6e4af933e - std::panicking::panic_handler::closure$0
+                               at /rustc/2d8144b7880597b6e6d3dfd63a9a9efae3f533d3/library\std\src\panicking.rs:698
+  12:     0x7ff6e4af6bef - std::sys::backtrace::__rust_end_short_backtrace<std::panicking::panic_handler::closure_env$0,never$>
+                               at /rustc/2d8144b7880597b6e6d3dfd63a9a9efae3f533d3/library\std\src\sys\backtrace.rs:182
+  13:     0x7ff6e4af9d0e - std::panicking::panic_handler
+                               at /rustc/2d8144b7880597b6e6d3dfd63a9a9efae3f533d3/library\std\src\panicking.rs:689
+  14:     0x7ff6e4d6808d - core::panicking::panic_fmt
+                               at /rustc/2d8144b7880597b6e6d3dfd63a9a9efae3f533d3/library\core\src\panicking.rs:80
+  15:     0x7ff6e4d67db7 - core::result::unwrap_failed
+                               at /rustc/2d8144b7880597b6e6d3dfd63a9a9efae3f533d3/library\core\src\result.rs:1867
+  16:     0x7ff6e28b4f2a - enum2$<core::result::Result<enum2$<core::result::Result<tuple$<>,std::io::error::Error> >,alloc::boxed::Box<dyn$<core::any::Any,core::marker::Send>,alloc::alloc::Global> > >::unwrap
+                               at /rustc/2d8144b7880597b6e6d3dfd63a9a9efae3f533d3/library\core\src\result.rs:1233
+  17:     0x7ff6e28b4f2a - nabbit_lib::privacy::windows::tests::impl$2::drop
+                               at D:\claude-upgrade-26\nabbit\src-tauri\src\privacy\windows_tests.rs:77
+  18:     0x7ff6e28a71df - core::ptr::drop_glue<nabbit_lib::privacy::windows::tests::Running>
+                               at /rustc/2d8144b7880597b6e6d3dfd63a9a9efae3f533d3/library\core\src\ptr\mod.rs:825
+  19:     0x7ff6e2d6d88e - nabbit_lib::privacy::windows::tests::native_registry_subtree_notifications_rearm_and_idle_without_reads
+                               at D:\claude-upgrade-26\nabbit\src-tauri\src\privacy\windows_tests.rs:166
+  20:     0x7ff6e4d63440 - _CallSettingFrame
+                               at D:\a\_work\1\s\src\vctools\crt\vcruntime\src\eh\amd64\handlers.asm:49
+  21:     0x7ff6e4d62d39 - __FrameHandler3::FrameUnwindToState
+                               at D:\a\_work\1\s\src\vctools\crt\vcruntime\src\eh\frame.cpp:1222
+  22:     0x7ff6e4d60cb0 - __FrameHandler3::FrameUnwindToEmptyState
+                               at D:\a\_work\1\s\src\vctools\crt\vcruntime\src\eh\risctrnsctrl.cpp:255
+  23:     0x7ff6e4d627cd - __InternalCxxFrameHandler<__FrameHandler3>
+                               at D:\a\_work\1\s\src\vctools\crt\vcruntime\src\eh\frame.cpp:355
+  24:     0x7ff6e4d6113d - __CxxFrameHandler3
+                               at D:\a\_work\1\s\src\vctools\crt\vcruntime\src\eh\risctrnsctrl.cpp:281
+  25:     0x7ffa767babbf - _chkstk
+  26:     0x7ffa7666dd30 - RtlUnwindEx
+  27:     0x7ff6e4d60fce - __FrameHandler3::UnwindNestedFrames
+                               at D:\a\_work\1\s\src\vctools\crt\vcruntime\src\eh\risctrnsctrl.cpp:759
+  28:     0x7ff6e4d61e26 - CatchIt<__FrameHandler3>
+                               at D:\a\_work\1\s\src\vctools\crt\vcruntime\src\eh\frame.cpp:1326
+  29:     0x7ff6e4d6218e - FindHandler<__FrameHandler3>
+                               at D:\a\_work\1\s\src\vctools\crt\vcruntime\src\eh\frame.cpp:670
+  30:     0x7ff6e4d628bc - __InternalCxxFrameHandler<__FrameHandler3>
+                               at D:\a\_work\1\s\src\vctools\crt\vcruntime\src\eh\frame.cpp:396
+  31:     0x7ff6e4d6113d - __CxxFrameHandler3
+                               at D:\a\_work\1\s\src\vctools\crt\vcruntime\src\eh\risctrnsctrl.cpp:281
+  32:     0x7ffa767bab3f - _chkstk
+  33:     0x7ffa76716985 - RtlWow64GetCurrentMachine
+  34:     0x7ffa76669f3d - RtlRaiseException
+  35:     0x7ffa73e0569a - RaiseException
+  36:     0x7ff6e4d615bf - _CxxThrowException
+                               at D:\a\_work\1\s\src\vctools\crt\vcruntime\src\eh\throw.cpp:79
+  37:     0x7ff6e4b1d72d - panic_unwind::imp::throw_exception
+                               at /rustc/2d8144b7880597b6e6d3dfd63a9a9efae3f533d3/library\panic_unwind\src\seh.rs:368
+  38:     0x7ff6e4b1d605 - panic_unwind::imp::panic
+                               at /rustc/2d8144b7880597b6e6d3dfd63a9a9efae3f533d3/library\panic_unwind\src\seh.rs:302
+  39:     0x7ff6e4b1d605 - panic_unwind::__rust_start_panic
+                               at /rustc/2d8144b7880597b6e6d3dfd63a9a9efae3f533d3/library\panic_unwind\src\lib.rs:108
+  40:     0x7ff6e4af9a1f - std::panicking::rust_panic
+                               at /rustc/2d8144b7880597b6e6d3dfd63a9a9efae3f533d3/library\std\src\panicking.rs:886
+  41:     0x7ff6e4b0d6fe - std::panicking::panic_with_hook
+                               at /rustc/2d8144b7880597b6e6d3dfd63a9a9efae3f533d3/library\std\src\panicking.rs:850
+  42:     0x7ff6e4af933e - std::panicking::panic_handler::closure$0
+                               at /rustc/2d8144b7880597b6e6d3dfd63a9a9efae3f533d3/library\std\src\panicking.rs:698
+  43:     0x7ff6e4af6bef - std::sys::backtrace::__rust_end_short_backtrace<std::panicking::panic_handler::closure_env$0,never$>
+                               at /rustc/2d8144b7880597b6e6d3dfd63a9a9efae3f533d3/library\std\src\sys\backtrace.rs:182
+  44:     0x7ff6e4af9d0e - std::panicking::panic_handler
+                               at /rustc/2d8144b7880597b6e6d3dfd63a9a9efae3f533d3/library\std\src\panicking.rs:689
+  45:     0x7ff6e4d6808d - core::panicking::panic_fmt
+                               at /rustc/2d8144b7880597b6e6d3dfd63a9a9efae3f533d3/library\core\src\panicking.rs:80
+  46:     0x7ff6e4d67db7 - core::result::unwrap_failed
+                               at /rustc/2d8144b7880597b6e6d3dfd63a9a9efae3f533d3/library\core\src\result.rs:1867
+  47:     0x7ff6e19d8ada - enum2$<core::result::Result<nabbit_lib::privacy::model::Active,std::sync::mpsc::RecvTimeoutError> >::unwrap
+                               at /rustc/2d8144b7880597b6e6d3dfd63a9a9efae3f533d3/library\core\src\result.rs:1233
+  48:     0x7ff6e19d8ada - nabbit_lib::privacy::windows::tests::next<nabbit_lib::privacy::windows::tests::native_registry_subtree_notifications_rearm_and_idle_without_reads::closure_env$5>
+                               at D:\claude-upgrade-26\nabbit\src-tauri\src\privacy\windows_tests.rs:85
+  49:     0x7ff6e2d6d210 - nabbit_lib::privacy::windows::tests::native_registry_subtree_notifications_rearm_and_idle_without_reads
+                               at D:\claude-upgrade-26\nabbit\src-tauri\src\privacy\windows_tests.rs:151
+  50:     0x7ff6e19db1c8 - nabbit_lib::privacy::windows::tests::native_registry_subtree_notifications_rearm_and_idle_without_reads::closure$0
+                               at D:\claude-upgrade-26\nabbit\src-tauri\src\privacy\windows_tests.rs:93
+  51:     0x7ff6e2910722 - core::ops::function::FnOnce::call_once<nabbit_lib::privacy::windows::tests::native_registry_subtree_notifications_rearm_and_idle_without_reads::closure_env$0,tuple$<> >
+                               at /rustc/2d8144b7880597b6e6d3dfd63a9a9efae3f533d3/library\core\src\ops\function.rs:250
+  52:     0x7ff6e35de470 - core::ops::function::FnOnce::call_once
+                               at /rustc/2d8144b7880597b6e6d3dfd63a9a9efae3f533d3/library\core\src\ops\function.rs:250
+  53:     0x7ff6e35de470 - test::__rust_begin_short_backtrace<enum2$<core::result::Result<tuple$<>,alloc::string::String> >,enum2$<core::result::Result<tuple$<>,alloc::string::String> > (*)()>
+                               at /rustc/2d8144b7880597b6e6d3dfd63a9a9efae3f533d3/library\test\src\lib.rs:724
+  54:     0x7ff6e35ec4ab - test::run_test_in_process
+                               at /rustc/2d8144b7880597b6e6d3dfd63a9a9efae3f533d3/library\test\src\lib.rs:747
+  55:     0x7ff6e35ec4ab - test::run_test::closure$0
+                               at /rustc/2d8144b7880597b6e6d3dfd63a9a9efae3f533d3/library\test\src\lib.rs:668
+  56:     0x7ff6e35e5dcd - test::run_test::closure$1
+                               at /rustc/2d8144b7880597b6e6d3dfd63a9a9efae3f533d3/library\test\src\lib.rs:698
+  57:     0x7ff6e35e5dcd - std::sys::backtrace::__rust_begin_short_backtrace<test::run_test::closure_env$1,tuple$<> >
+                               at /rustc/2d8144b7880597b6e6d3dfd63a9a9efae3f533d3/library\std\src\sys\backtrace.rs:166
+  58:     0x7ff6e35f0773 - std::thread::lifecycle::spawn_unchecked::closure$1::closure$0
+                               at /rustc/2d8144b7880597b6e6d3dfd63a9a9efae3f533d3/library\std\src\thread\lifecycle.rs:70
+  59:     0x7ff6e35f0773 - core::panic::unwind_safe::impl$25::call_once
+                               at /rustc/2d8144b7880597b6e6d3dfd63a9a9efae3f533d3/library\core\src\panic\unwind_safe.rs:275
+  60:     0x7ff6e35f0773 - std::panicking::catch_unwind::do_call
+                               at /rustc/2d8144b7880597b6e6d3dfd63a9a9efae3f533d3/library\std\src\panicking.rs:581
+  61:     0x7ff6e35f0773 - std::panicking::catch_unwind
+                               at /rustc/2d8144b7880597b6e6d3dfd63a9a9efae3f533d3/library\std\src\panicking.rs:544
+  62:     0x7ff6e35f0773 - std::panic::catch_unwind
+                               at /rustc/2d8144b7880597b6e6d3dfd63a9a9efae3f533d3/library\std\src\panic.rs:359
+  63:     0x7ff6e35f0773 - std::thread::lifecycle::spawn_unchecked::closure$1
+                               at /rustc/2d8144b7880597b6e6d3dfd63a9a9efae3f533d3/library\std\src\thread\lifecycle.rs:68
+  64:     0x7ff6e35f0773 - core::ops::function::FnOnce::call_once<std::thread::lifecycle::spawn_unchecked::closure_env$1<test::run_test::closure_env$1,tuple$<> >,tuple$<> >
+                               at /rustc/2d8144b7880597b6e6d3dfd63a9a9efae3f533d3/library\core\src\ops\function.rs:250
+  65:     0x7ff6e4b1529a - std::sys::thread::windows::impl$0::new::thread_start
+                               at /rustc/2d8144b7880597b6e6d3dfd63a9a9efae3f533d3/library\std\src\sys\thread\windows.rs:58
+  66:     0x7ffa74c3dda7 - BaseThreadInitThunk
+  67:     0x7ffa76719c5c - RtlUserThreadStart
+error: test failed, to rerun pass `--lib`
+
+Caused by:
+  process didn't exit successfully: `D:\claude-upgrade-26\nabbit\src-tauri\target\debug\deps\nabbit_lib-0297bdcf3f91dea5.exe privacy::windows::tests::native_registry_subtree_notifications_rearm_and_idle_without_reads --nocapture --test-threads=1` (exit code: 0xc0000409, STATUS_STACK_BUFFER_OVERRUN)
+test privacy::windows::tests::native_registry_subtree_notifications_rearm_and_idle_without_reads ...

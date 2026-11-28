@@ -129,8 +129,10 @@ pub enum ThemePreference {
 }
 
 #[derive(Debug, Clone, Serialize, Deserialize)]
-#[serde(rename_all = "camelCase")]
+#[serde(rename_all = "camelCase", default)]
 pub struct AppSettings {
+    pub display_mode: DisplayMode,
+    pub restore_sticky_notes: bool,
     #[serde(default)]
     pub island_activity: crate::island::activity::Preferences,
     #[serde(default)]
@@ -165,6 +167,16 @@ pub struct AppSettings {
     pub last_tab: String,
 }
 
+#[derive(Debug, Clone, Copy, Default, Serialize, Deserialize, PartialEq, Eq)]
+#[serde(rename_all = "camelCase")]
+pub enum DisplayMode {
+    TrayOnly,
+    IslandOnly,
+    #[default]
+    #[serde(other)]
+    IslandAndTray,
+}
+
 fn default_island_shortcut() -> String {
     if cfg!(windows) {
         "Alt+Space".into()
@@ -175,6 +187,8 @@ fn default_island_shortcut() -> String {
 impl Default for AppSettings {
     fn default() -> Self {
         Self {
+            display_mode: DisplayMode::default(),
+            restore_sticky_notes: true,
             island_activity: crate::island::activity::Preferences::default(),
             island: crate::island::model::Preferences::default(),
             theme: ThemePreference::System,
@@ -192,7 +206,7 @@ impl Default for AppSettings {
             toggle_popover_shortcut: "CmdOrCtrl+Shift+V".into(),
             island_shortcut: default_island_shortcut(),
             quick_download_shortcut: "Ctrl+Alt+D".into(),
-            clipboard_search_shortcut: "CmdOrCtrl+Shift+C".into(),
+            clipboard_search_shortcut: "Ctrl+Alt+V".into(),
             selected_text_shortcut: default_selection_shortcut(),
             default_quality: "1080p".into(),
             output_dir: String::new(),

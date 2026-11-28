@@ -1,0 +1,564 @@
+{
+  "passed": false,
+  "failure": {
+    "message": "Timed out: island WebView",
+    "stack": "AssertionError [ERR_ASSERTION]: Timed out: island WebView\n    at wait (file:///D:/claude-upgrade-26/nabbit/scripts/capture-native-settings.mjs:81:5)\n    at async file:///D:/claude-upgrade-26/nabbit/scripts/capture-native-settings.mjs:377:22"
+  },
+  "checks": [
+    "Tray gear opens one decorated, resizable, non-topmost taskbar settings window; repeated/concurrent opens reuse it; native min-track size is at least 820x600 at its own DPI; acceptance did not take focus; Windows 11 Mica is read on the owned HWND.",
+    "Every embedded manifest asset and offline notice matches the current build; independent native patches from tray and settings retain both changes and existing shortcuts.",
+    "Real settings controls update the native island policy; close destroys the settings WebView and reopening creates a fresh window while preserving preferences; both native themes and four Figma pages have exact DPR-2 repeat captures.",
+    "An owned process restart preserves all changed fields, shape/behaviour preferences and original shortcut settings in the same SQLite file."
+  ],
+  "captures": [
+    {
+      "file": "v61-native-b-general-light@2x.png",
+      "sha256": "fa28e835feebdf6ea1cf03510f3f45f33c79c58de8271a58ffde4b77baec5c25",
+      "bytes": 159621,
+      "width": 1960,
+      "height": 1440,
+      "repeatMatches": true,
+      "scope": "Owned WebView pixels; DWM material independently queried on its HWND"
+    },
+    {
+      "file": "v61-native-b-island-light@2x.png",
+      "sha256": "7e4dec697823a38c197dc284192604bf2449cef37ee11b0b56f839750235bc9d",
+      "bytes": 178586,
+      "width": 1960,
+      "height": 1440,
+      "repeatMatches": true,
+      "scope": "Owned WebView pixels; DWM material independently queried on its HWND"
+    },
+    {
+      "file": "v61-native-b-activities-light@2x.png",
+      "sha256": "35bd8b3c7f12e8cb9ffee73b3e224114f867fa449d9042ef57f5533ddfb0af8a",
+      "bytes": 184570,
+      "width": 1960,
+      "height": 1440,
+      "repeatMatches": true,
+      "scope": "Owned WebView pixels; DWM material independently queried on its HWND"
+    },
+    {
+      "file": "v61-native-b-shortcuts-light@2x.png",
+      "sha256": "21832949408e9aaed4a9bb81b6cefc21b3e4edbfbc76602b4a93cacf87c80161",
+      "bytes": 159560,
+      "width": 1960,
+      "height": 1440,
+      "repeatMatches": true,
+      "scope": "Owned WebView pixels; DWM material independently queried on its HWND"
+    },
+    {
+      "file": "v61-native-b-general-dark@2x.png",
+      "sha256": "2fe8e24dfae3697cc55ce93ff9713d91c81a37363441e530a66cb54f79860e9c",
+      "bytes": 157423,
+      "width": 1960,
+      "height": 1440,
+      "repeatMatches": true,
+      "scope": "Owned WebView pixels; DWM material independently queried on its HWND"
+    },
+    {
+      "file": "v61-native-b-island-dark@2x.png",
+      "sha256": "b62d71d4d43711315f9cde94b006849fc6100e14824fb3aeb704d781db6e1f42",
+      "bytes": 177177,
+      "width": 1960,
+      "height": 1440,
+      "repeatMatches": true,
+      "scope": "Owned WebView pixels; DWM material independently queried on its HWND"
+    },
+    {
+      "file": "v61-native-b-activities-dark@2x.png",
+      "sha256": "3d69bcf34c86eaa637431c7cab70258eec228c0ed2f1e43e1a876473894abde1",
+      "bytes": 181857,
+      "width": 1960,
+      "height": 1440,
+      "repeatMatches": true,
+      "scope": "Owned WebView pixels; DWM material independently queried on its HWND"
+    },
+    {
+      "file": "v61-native-b-shortcuts-dark@2x.png",
+      "sha256": "cfa476513df5df3d6564f00370a4ef352aaa06521536f8c1ea774e7f642adb52",
+      "bytes": 158170,
+      "width": 1960,
+      "height": 1440,
+      "repeatMatches": true,
+      "scope": "Owned WebView pixels; DWM material independently queried on its HWND"
+    }
+  ],
+  "results": {
+    "webViewVersion": "158.0.4370.45",
+    "window": {
+      "ownedProcessId": 18080,
+      "hwnd": 49352616,
+      "visible": true,
+      "style": 349110272,
+      "exStyle": 134480144,
+      "dpi": 96,
+      "clientWidth": 980,
+      "clientHeight": 720,
+      "minimumWidth": 836,
+      "minimumHeight": 639,
+      "backdrop": 2,
+      "backdropHresult": 0,
+      "darkCaption": 1,
+      "darkHresult": 0,
+      "foregroundProcessId": 30244,
+      "osBuild": 26300
+    },
+    "appearance": {
+      "mica": true
+    },
+    "assets": [
+      {
+        "file": "assets/CompactContent-2AV3KHLk.js",
+        "ok": true,
+        "sha256": "0f038e2d5f0154db46a03254aaf19bf3936ee470ed21397d4d3fea34af4ef839"
+      },
+      {
+        "file": "assets/DesignIcon-Do1hiVWl.js",
+        "ok": true,
+        "sha256": "4d74a71ab25d95ceb01fecc01b2c455c6199a79b470261de2126ef99c1975bf3"
+      },
+      {
+        "file": "assets/EngineHealthCard-BLKwpQSy.css",
+        "ok": true,
+        "sha256": "941e32f7992987d2639217825bc3b04c3c7ee54c7e0584a9ea9e24db2b98ae50"
+      },
+      {
+        "file": "assets/EngineHealthCard-BbjG-a4I.js",
+        "ok": true,
+        "sha256": "ac56bd82c49d19b7bc553b02741e7937a13c5646d66cb174beccf87cc87d26b0"
+      },
+      {
+        "file": "assets/Kbd-Bs5V7GUf.js",
+        "ok": true,
+        "sha256": "7f8d87f504d07cb256e58355c3cd92f78f2671408653b6c76d43a38b3bddccdb"
+      },
+      {
+        "file": "assets/NoteCard-Cv2281al.js",
+        "ok": true,
+        "sha256": "159741362e150b780cce8ea621f6daa4f55ada5e4991766730e285912d63a841"
+      },
+      {
+        "file": "assets/PresetChip-DDTCKo6J.js",
+        "ok": true,
+        "sha256": "faf688bd6a753410e2f4612aaef7e2fd35647bf8126603bd7c5e93020a1eb6df"
+      },
+      {
+        "file": "assets/ProgressRing-zprwI_bR.js",
+        "ok": true,
+        "sha256": "a91246549be8571f1a4e1d6defb37f71f2117fd4ded9699c0c8cd8c721815f5c"
+      },
+      {
+        "file": "assets/QuickCapture-CpIdMcef.js",
+        "ok": true,
+        "sha256": "ea3172ed59f926c9c2e7b954cb40f2df5c5406738bdda9e993e01f6e8f2d26a3"
+      },
+      {
+        "file": "assets/QuickCapture-DUXyoEkk.css",
+        "ok": true,
+        "sha256": "98ef2657e829c422b3b3ccb05d8a7a47591e0fbd8384da676de2b88e36141cdd"
+      },
+      {
+        "file": "assets/SyncState-Co7PbncJ.css",
+        "ok": true,
+        "sha256": "f31fd684140b53925045c458a75ddba61778f1b9670f2227ff200c4831fcc565"
+      },
+      {
+        "file": "assets/SyncState-NS2Cv3La.js",
+        "ok": true,
+        "sha256": "ccacf188b4ce17de950690de9b67eeb9d70a56cbd31c865a25c966a590dfdecf"
+      },
+      {
+        "file": "assets/Tab-C6DqbK0O.js",
+        "ok": true,
+        "sha256": "829bd967b6620d0f69f9e6d8ce08f51492d23bf883579b0858fcf1192098d5a9"
+      },
+      {
+        "file": "assets/TackSettings-BU2DM_3_.css",
+        "ok": true,
+        "sha256": "b77fd00a3460828a06b18c45f8311e174a10f1eed1ad17f66231c1e91435f271"
+      },
+      {
+        "file": "assets/TackSettings-yoL2OBVt.js",
+        "ok": true,
+        "sha256": "9a030dfbd237b20764df4422fb7c823c4a1e6e4646bc34bc4475dc1636a7f305"
+      },
+      {
+        "file": "assets/Toggle-C5Fjlujo.js",
+        "ok": true,
+        "sha256": "943956ee2af918bafb0c0e6813190120acd4660c8e480383234490cbd9d6390c"
+      },
+      {
+        "file": "assets/ToolSheet-CMo69nXv.js",
+        "ok": true,
+        "sha256": "d28116854d9ccf8bb1cf9ca42cc1939327356996a23c3fb22261c0db5fa735f2"
+      },
+      {
+        "file": "assets/ToolSheet-CThX_Nlf.css",
+        "ok": true,
+        "sha256": "b04094017059fe739ed6cc69e62d7d19d178e3b1538187581f8e94c039895d0d"
+      },
+      {
+        "file": "assets/api-0tSUAyAS.js",
+        "ok": true,
+        "sha256": "0a761cbb9b7c433eb34bb8e3f069ef6479bd786d002a33ab90165f2916ede28b"
+      },
+      {
+        "file": "assets/api-BMa-12vy.js",
+        "ok": true,
+        "sha256": "8364bd2f75278c57ffe4fe63ddc5aa793064cbfd9db35afc6097e97362f22278"
+      },
+      {
+        "file": "assets/api-CbFTDL9c.js",
+        "ok": true,
+        "sha256": "9eab2b2b450de44c332bff7a829aaf2130c42e339322d50d841b9d4ef058708d"
+      },
+      {
+        "file": "assets/api-W8AcLuXX.js",
+        "ok": true,
+        "sha256": "8f3dd0f8a13bb7a6ef02f543b84e737d3c7b1ab34528ae6578ba1a0fa872f151"
+      },
+      {
+        "file": "assets/captureDraft-BB2eCl_2.js",
+        "ok": true,
+        "sha256": "0cd3953348e5c977a4055ae7954b432264b57f6bf3585ebd257ee8e6c4581cca"
+      },
+      {
+        "file": "assets/downloads-BPOOceyN.js",
+        "ok": true,
+        "sha256": "fc379928e7e00b703419738999a67d4ecc431f16d49668f60fa12a2cd1f1f7fe"
+      },
+      {
+        "file": "assets/downloads-CPq52vKe.css",
+        "ok": true,
+        "sha256": "a876332d1b3882d2b767dd15cde4b69b14218ecf7de49141776d5752fb802258"
+      },
+      {
+        "file": "assets/files-DEHWzxOL.css",
+        "ok": true,
+        "sha256": "2e59d383eb3f1978ded9d8a685c17fe02b691ac7eb308e26ad3211bd822c6fbe"
+      },
+      {
+        "file": "assets/imageApi-CiiosFnW.js",
+        "ok": true,
+        "sha256": "e2868d497b5e9a273ea5f107d67b1418b75df85a28647641ee935c1fb3aa2a07"
+      },
+      {
+        "file": "assets/index-BHhQR3M2.js",
+        "ok": true,
+        "sha256": "ff230ab109ad48af86dbd58a83e133a08423ac224db207e813df6ca38cd2b3e4"
+      },
+      {
+        "file": "assets/index-DsWrEh28.css",
+        "ok": true,
+        "sha256": "c19bb82937e64c9d9890c7c9f5f5e8d1c066f19258eed255fb1cc9a0c29a3cfd"
+      },
+      {
+        "file": "assets/index-_FASZGC8.js",
+        "ok": true,
+        "sha256": "59251997a84e26341888cec8676da27feac1b9e281f2ea224fa2fb0d8b9a0055"
+      },
+      {
+        "file": "assets/Geist-Variable-BNK-hTUD.woff2",
+        "ok": true,
+        "sha256": "3626eba547294501c8a4d662c7d9ea3b49734409a4c5a1ccf12fa86429b1687e"
+      },
+      {
+        "file": "assets/GeistMono-Variable-BoRIzn25.woff2",
+        "ok": true,
+        "sha256": "5d93ee62680bbec1abc5405c2658311f9396f6f9a821ef8551ec463887e600d4"
+      },
+      {
+        "file": "assets/islandPresentation-D9iM9goe.js",
+        "ok": true,
+        "sha256": "96e00de6db47606b5220fe15431401d9eb20abd37fb05f082a1d3324d10ce669"
+      },
+      {
+        "file": "assets/links-CsTph8Fk.css",
+        "ok": true,
+        "sha256": "e04be3fe00820037941cd749bc53b5ebebdf7e28aa499d06da72bb19a3f15e12"
+      },
+      {
+        "file": "assets/links-DsB-cXAj.js",
+        "ok": true,
+        "sha256": "79193fa2fb181bfbceaf20d7e719fc41c092876b170ba869c19bd53ea7c8ded8"
+      },
+      {
+        "file": "assets/model-C2x3WR-s.js",
+        "ok": true,
+        "sha256": "206802447e27deda16791cc6e8d2f7008d081d8db224dadb58c806fcb4dcddd2"
+      },
+      {
+        "file": "assets/notesStore-CdZEzZoM.js",
+        "ok": true,
+        "sha256": "d216ce918c8ff028b16e0faf44b3df1178cbc9de71dcb39870942a9a07ca56ce"
+      },
+      {
+        "file": "assets/sheets-B4SLn_mm.css",
+        "ok": true,
+        "sha256": "92637f7803be3e3e878a59d37f9adb3b7dfb1b1f9ba1bbbd3bd9f19a37f52d74"
+      },
+      {
+        "file": "assets/sheets-D7PVebWZ.js",
+        "ok": true,
+        "sha256": "c578b885963eaf3b4b0ef57300677eca9178ebeaedc3145284e59920f61da62c"
+      },
+      {
+        "file": "assets/stickyApi-C7tRMfM8.js",
+        "ok": true,
+        "sha256": "d02afd0adb1904bfb59ee3d0b3bc0fc8c3eda6e04ee9c60eb7eeb8e12c98771b"
+      },
+      {
+        "file": "assets/theme-mEADzzL7.js",
+        "ok": true,
+        "sha256": "4a7592058f55741324edc7cb51698bf4e357a99704e3ae3878e4de8a1eed814a"
+      },
+      {
+        "file": "assets/types-BvpWR8LG.js",
+        "ok": true,
+        "sha256": "ac631ae6d0e5b48f3df98b7832e83e5c53b341095c56218d6f5cd1ccd5298393"
+      },
+      {
+        "file": "assets/usePreset-DNa_8QEZ.js",
+        "ok": true,
+        "sha256": "92db764de7fafaacdec97b5beeffc0bf9591a1f6942012549766524e2676d07f"
+      },
+      {
+        "file": "assets/useSettingsEvents-CnTaPF0L.js",
+        "ok": true,
+        "sha256": "f644b114b939c5c08a527cd5178ded65ff889449e18e552ad75715d5b882233a"
+      },
+      {
+        "file": "assets/window-Cate1zIV.js",
+        "ok": true,
+        "sha256": "de754a6693c4aa2e78d5e4834cec4fb0b44c079be79bb25448d0dbf4f20fba8e"
+      },
+      {
+        "file": "assets/main-CRCZeCXi.js",
+        "ok": true,
+        "sha256": "f1c5e46dfffa7d12b7cde8580ad9ac387be75dce69ae8a36083fbdaa592fee1b"
+      },
+      {
+        "file": "assets/app-32-isMvsoQz.svg",
+        "ok": true,
+        "sha256": "6a4114cac4d1d291a70e0cbc8e804924e89932c7a9c15410f3387c32f5cef5bd"
+      },
+      {
+        "file": "assets/island-YUsherXE.js",
+        "ok": true,
+        "sha256": "8338ee1e96c4203cfa2eff17abb2b8f0b0dee00e86d0683c4cac117849da3716"
+      },
+      {
+        "file": "assets/island-CmuSRvpv.css",
+        "ok": true,
+        "sha256": "3a92cf3c731abb48d7cd7097ed6cb5f0f8aa3e7985e23314c056ad254761adcd"
+      },
+      {
+        "file": "assets/settings-CDwZyVG9.js",
+        "ok": true,
+        "sha256": "7070a72f209d3b0703815f8813766bd3d42c98877f560074f2f9a0c0c0a3ee93"
+      },
+      {
+        "file": "assets/settings-Cfd-klfG.css",
+        "ok": true,
+        "sha256": "eb425bbfc796050cef23bc2e153a0332ea72a90aa4192b36a7d28a354a17ffa1"
+      },
+      {
+        "file": "assets/DownloadSheetApp-CvFovBe5.js",
+        "ok": true,
+        "sha256": "be381c8fe1cfced120ca6c07b7a5e6b4ac5484c05db0dca81275fb0c7a59c625"
+      },
+      {
+        "file": "assets/previewSheet-CW1_MjG8.js",
+        "ok": true,
+        "sha256": "dcfb4a83571402d9eedd8e5937fb621aba235cb883b5e7a2f90a6d5e21f5bf34"
+      },
+      {
+        "file": "assets/DownloadDonePeek-DDHGBP2v.js",
+        "ok": true,
+        "sha256": "16a60c3bce849674a8d555770f9757b7ebf0ddcc015990dadeb0546cce4d5a02"
+      },
+      {
+        "file": "assets/FileDropContent-BLfu5BFl.js",
+        "ok": true,
+        "sha256": "19cb961216cd4223ec0203048f33c8fe6f62839a0e0c7f888bf4859ba48d0f23"
+      },
+      {
+        "file": "assets/Pins-BnePI9iH.js",
+        "ok": true,
+        "sha256": "6100b338e735ad1873a498b444714b4e7b72de38106efcca3e29a73b1b18474e"
+      },
+      {
+        "file": "assets/BookmarkImportSheet-Cz0ITWvd.js",
+        "ok": true,
+        "sha256": "d31c7dc93a3b2ca19bc17da96f7431698a8e13620c9fbad025f04e75d36a09f2"
+      },
+      {
+        "file": "assets/LinksPanel-D1FFDUpL.js",
+        "ok": true,
+        "sha256": "110cd7bcb91ab1ad6c7eeac0d586c76987c5177e1d5c6fa33bf7d1b778542917"
+      },
+      {
+        "file": "assets/NoteEditor-BT7uQu3f.js",
+        "ok": true,
+        "sha256": "7e0951e2942fcfac598ac5b36f9aa3573175314e4e64214b63ceeef655edb3ca"
+      },
+      {
+        "file": "assets/FilesSettings-DtIEeo06.js",
+        "ok": true,
+        "sha256": "7f6131248de0657cebaf66b2719051f443e20cf921dc593e047888b15f8c97b3"
+      },
+      {
+        "file": "assets/Licenses-v_286zkK.js",
+        "ok": true,
+        "sha256": "ac630099b1916ababea0afc695d6fe89e2386036a59e88845a2916934b151bf7"
+      },
+      {
+        "file": "assets/MediaSheetApp-BWvwp7NO.js",
+        "ok": true,
+        "sha256": "f1bff4d1b5e37128cd1629eb0eb8c6c710dbbbd30b1f77bef619bca6bdf12315"
+      },
+      {
+        "file": "assets/MediaSheetApp-BEbePeBu.css",
+        "ok": true,
+        "sha256": "25c31072340e98242083cce69fdaebaf520fcca57ba7da935aeab423e7e47b23"
+      },
+      {
+        "file": "assets/ipc-Pn4lmvyl.js",
+        "ok": true,
+        "sha256": "efb4dc5606288b4b78bf3d6ba718c42a7c3e4de0812bddd76024613145815b28"
+      },
+      {
+        "file": "assets/ExpandedShell-Cl_Mr2Bj.js",
+        "ok": true,
+        "sha256": "964ee080ebc06c752db463817f30ac9d583e30a99a1bda79126d29195d4393cb"
+      },
+      {
+        "file": "assets/ModuleBody-BhAyLrA6.js",
+        "ok": true,
+        "sha256": "7146fcce85825f39416f403ea25217523a860111327f50a4637ec2c80ea74de9"
+      },
+      {
+        "file": "assets/ModuleBody-P3bXXQYY.css",
+        "ok": true,
+        "sha256": "2ab466f2306c16031b24df829e0fbab26ab78e2762aed09a7f7165d9de3fe0c0"
+      },
+      {
+        "file": "assets/SearchContent-CYz69JDK.js",
+        "ok": true,
+        "sha256": "4bcfe51189fecf7dcfb0946e60d07f91ef87646966081a36e88d46266929c2da"
+      },
+      {
+        "file": "assets/NotesView-D0df1NTR.js",
+        "ok": true,
+        "sha256": "d8556fbb1dd3ca601a613565ce9082a5c0894ac72d58be47559867223966fc21"
+      },
+      {
+        "file": "assets/NotesView-DdI2nrge.css",
+        "ok": true,
+        "sha256": "4264c75cf364a36ade2db1d76d66fc1a8548e566abd4c0a3c5872e3166745797"
+      },
+      {
+        "file": "assets/sticky-79Kh7SZH.js",
+        "ok": true,
+        "sha256": "8007de3eb7e090fa50b579bf46622101e4329a6f6b57699f64cda014ed2e72d6"
+      },
+      {
+        "file": "assets/sticky-Cu7CL-tf.css",
+        "ok": true,
+        "sha256": "65198e1df866aab57c0ec7bb17feab899d6408490e31a5adada050adc1dad642"
+      }
+    ],
+    "reopenedWindow": {
+      "ownedProcessId": 18080,
+      "hwnd": 49418152,
+      "visible": true,
+      "style": 349110272,
+      "exStyle": 134480144,
+      "dpi": 96,
+      "clientWidth": 980,
+      "clientHeight": 720,
+      "minimumWidth": 836,
+      "minimumHeight": 639,
+      "backdrop": 2,
+      "backdropHresult": 0,
+      "darkCaption": 1,
+      "darkHresult": 0,
+      "foregroundProcessId": 22276,
+      "osBuild": 26300
+    },
+    "restarted": {
+      "displayMode": "islandAndTray",
+      "restoreStickyNotes": true,
+      "islandActivity": {
+        "order": [
+          "privacy",
+          "timerEnding",
+          "download",
+          "tool",
+          "link",
+          "result",
+          "media",
+          "timer",
+          "power"
+        ],
+        "disabled": [],
+        "showAlertsOverFullscreen": false,
+        "focusMode": false,
+        "hiddenUntilMs": null
+      },
+      "island": {
+        "enabled": true,
+        "shape": "island",
+        "size": "standard",
+        "monitorMode": "followMouse",
+        "monitorId": null,
+        "peekOnHoverMs": null,
+        "fadeOverMaximized": true,
+        "hideOverFullscreen": true,
+        "scrollToChangeVolume": false
+      },
+      "theme": "dark",
+      "retentionDays": 90,
+      "captureImages": true,
+      "imageSizeCapMb": 10,
+      "pasteOnSelect": false,
+      "sensitiveHeuristics": false,
+      "autoDetectLinks": true,
+      "showDetectNotification": true,
+      "pauseAutoDetect": false,
+      "launchAtLogin": false,
+      "startHidden": true,
+      "showDockIcon": false,
+      "togglePopoverShortcut": "CmdOrCtrl+Shift+V",
+      "islandShortcut": "Alt+Space",
+      "quickDownloadShortcut": "Ctrl+Alt+D",
+      "clipboardSearchShortcut": "Ctrl+Alt+V",
+      "selectedTextShortcut": "Ctrl+Alt+S",
+      "defaultQuality": "1080p",
+      "outputDir": "D:\\claude-upgrade-26\\nabbit\\.tools\\v61-native-b-ec8b2d84-a3a2-4446-8731-17449c42f16c\\Owned downloads",
+      "filenameTemplate": "%(title)s [%(id)s].%(ext)s",
+      "maxConcurrentDownloads": 2,
+      "revealAfterDownload": false,
+      "engineAutoUpdate": true,
+      "firstRunAcknowledged": true,
+      "lastTab": "download"
+    }
+  },
+  "executableSha256": "979cb7b261a2fbe0005452ce61ec592a5675dfa20ec10b13555cbb18c2709e20",
+  "buildManifestSha256": "a02c98b51e52c6d2d18fe0b27ca9e8dbe42f8a2b36480e8499c34c93ae2b41e3",
+  "renderingFlags": [
+    "--run-all-compositor-stages-before-draw",
+    "--disable-new-content-rendering-timeout",
+    "--disable-threaded-animation",
+    "--disable-threaded-scrolling",
+    "--disable-checker-imaging",
+    "--disable-image-animation-resync",
+    "--disable-partial-raster"
+  ],
+  "noUserProfile": true,
+  "noRealClipboardOrGlobalInput": true,
+  "noNativeRegistration": true,
+  "noOsSettingChange": true,
+  "scope": "Owned executable, app-data/WebView/control profiles and HWND queries; DOM-only input and per-WebView DPR emulation; no real clipboard/cursor/global keys, hosted Tack/account, Explorer registration, dialogs, Store, signing or installer execution."
+}

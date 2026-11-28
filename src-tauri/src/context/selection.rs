@@ -128,9 +128,7 @@ pub(crate) fn open(app: &tauri::AppHandle, text: String) -> Result<()> {
         }
     }
     let state = app.state::<crate::AppState>();
-    let mut settings = state.db.get_settings()?;
-    settings.last_tab = "clipboard".into();
-    state.db.save_settings(&settings)?;
+    crate::commands::settings::patch(app, &state, serde_json::json!({"lastTab":"clipboard"}))?;
     crate::show_popover(app)?;
     app.emit("shortcut:clipboard-search", ())?;
     app.emit("context:changed", ())?;

@@ -1,0 +1,18 @@
+> nabbit@0.1.0 test
+> vitest --run src/features/settings/SettingsPanel.test.tsx src/store/settingsBootstrap.test.ts
+
+
+ RUN  v3.2.7 D:/claude-upgrade-26/nabbit
+
+ ✓ src/store/settingsBootstrap.test.ts (3 tests) 6ms
+ ✓ src/features/settings/SettingsPanel.test.tsx (6 tests) 3441ms
+   ✓ navigates all nine sections and returns keyboard focus to the page heading  773ms
+   ✓ edits a complete path before saving and preserves an unrelated concurrent preference  558ms
+   ✓ reorders and disables activities through independent nested patches  312ms
+   ✓ cancels a dirty field with Escape and keeps a failed edit available for retry  1241ms
+   ✓ requires an explicit confirmation before clearing clipboard history  419ms
+
+ Test Files  2 passed (2)
+      Tests  9 passed (9)
+   Start at  13:03:42
+   Duration  5.27s (transform 462ms, setup 177ms, collect 879ms, tests 3.45s, environment 1.01s, prepare 458ms)

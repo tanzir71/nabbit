@@ -268,9 +268,7 @@ pub fn open_deep_link(app: &AppHandle, input: &str) -> Result<()> {
         }
     }
     let state = app.state::<crate::AppState>();
-    let mut settings = state.db.get_settings()?;
-    settings.last_tab = "download".into();
-    state.db.save_settings(&settings)?;
+    crate::commands::settings::patch(app, &state, serde_json::json!({"lastTab":"download"}))?;
     let _ = app.emit("capture:review", ());
     crate::show_popover(app)?;
     Ok(())

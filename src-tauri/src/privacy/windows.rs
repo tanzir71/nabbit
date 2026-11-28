@@ -12,8 +12,9 @@ use windows_sys::{
     core::w,
     Win32::{
         Foundation::{
-            ERROR_FILE_NOT_FOUND, ERROR_INSUFFICIENT_BUFFER, ERROR_NO_MORE_ITEMS,
-            ERROR_PATH_NOT_FOUND, ERROR_SUCCESS, FILETIME, INVALID_HANDLE_VALUE, WAIT_OBJECT_0,
+            ERROR_FILE_NOT_FOUND, ERROR_INSUFFICIENT_BUFFER, ERROR_KEY_DELETED,
+            ERROR_NO_MORE_ITEMS, ERROR_PATH_NOT_FOUND, ERROR_SUCCESS, FILETIME,
+            INVALID_HANDLE_VALUE, WAIT_OBJECT_0,
         },
         Storage::{
             FileSystem::{GetFileVersionInfoSizeW, GetFileVersionInfoW, VerQueryValueW},
@@ -98,6 +99,11 @@ impl Key {
             if status == ERROR_NO_MORE_ITEMS {
                 return Ok(names);
             }
+            // A notification can delete this subtree after we opened it. Its
+            // tombstoned handle is an empty subtree, not a failed provider.
+            if status == ERROR_KEY_DELETED {
+                return Ok(Vec::new());
+            }
             if status != ERROR_SUCCESS {
                 return Err(error(status));
             }
@@ -127,7 +133,7 @@ impl Key {
 fn optional(parent: HKEY, path: &str) -> io::Result<Option<Key>> {
     match Key::open(parent, path) {
         Ok(k) => Ok(Some(k)),
-        Err(e) if matches!(e.raw_os_error(),Some(n) if n==ERROR_FILE_NOT_FOUND as i32 || n==ERROR_PATH_NOT_FOUND as i32) => {
+        Err(e) if matches!(e.raw_os_error(),Some(n) if n==ERROR_FILE_NOT_FOUND as i32 || n==ERROR_PATH_NOT_FOUND as i32 || n==ERROR_KEY_DELETED as i32) => {
             Ok(None)
         }
         Err(e) => Err(e),

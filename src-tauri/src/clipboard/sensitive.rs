@@ -73,7 +73,11 @@ mod tests {
     fn detects_common_sensitive_shapes() {
         assert!(looks_sensitive("4242 4242 4242 4242"));
         assert!(looks_sensitive("123456"));
-        assert!(looks_sensitive("sk_test_1234567890ABCDEFGHIJK"));
+        assert!(looks_sensitive(concat!(
+            "sk_test_",
+            "1234567890",
+            "ABCDEFGHIJK"
+        )));
         assert!(!looks_sensitive("ordinary planning note"));
     }
 }

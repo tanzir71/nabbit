@@ -17,9 +17,30 @@ pub fn save_island_preferences(
     state: tauri::State<'_, AppState>,
     preferences: crate::island::model::Preferences,
 ) -> Result<AppSettings> {
-    let mut settings = state.db.get_settings()?;
-    settings.island = preferences;
-    save_settings(app, state, settings)
+    patch_settings(app, state, serde_json::json!({"island": preferences}))
+}
+
+#[tauri::command]
+pub fn patch_settings(
+    app: AppHandle,
+    state: tauri::State<'_, AppState>,
+    change: serde_json::Value,
+) -> Result<AppSettings> {
+    patch(&app, &state, change)
+}
+
+pub(crate) fn patch(
+    app: &AppHandle,
+    state: &AppState,
+    change: serde_json::Value,
+) -> Result<AppSettings> {
+    let _write = state
+        .settings_write
+        .lock()
+        .map_err(|_| crate::error::msg("Settings are busy"))?;
+    let previous = state.db.get_settings()?;
+    let settings = crate::db::settings_schema::patch(&previous, change)?;
+    apply_settings(app, state, previous, settings)
 }
 
 #[tauri::command]
@@ -28,11 +49,34 @@ pub fn save_settings(
     state: tauri::State<'_, AppState>,
     settings: AppSettings,
 ) -> Result<AppSettings> {
+    let _write = state
+        .settings_write
+        .lock()
+        .map_err(|_| crate::error::msg("Settings are busy"))?;
     let previous = state.db.get_settings()?;
+    apply_settings(&app, &state, previous, settings)
+}
+
+fn apply_settings(
+    app: &AppHandle,
+    state: &AppState,
+    previous: AppSettings,
+    mut settings: AppSettings,
+) -> Result<AppSettings> {
+    if previous.display_mode != settings.display_mode {
+        settings.island.enabled = settings.display_mode != crate::db::models::DisplayMode::TrayOnly;
+    } else if previous.island.enabled != settings.island.enabled {
+        settings.display_mode = if settings.island.enabled {
+            crate::db::models::DisplayMode::IslandAndTray
+        } else {
+            crate::db::models::DisplayMode::TrayOnly
+        };
+    }
     let island_key_changed = previous.island_shortcut.trim() != settings.island_shortcut.trim();
     let legacy_keys_changed = previous.toggle_popover_shortcut != settings.toggle_popover_shortcut
         || previous.quick_download_shortcut != settings.quick_download_shortcut
-        || previous.clipboard_search_shortcut != settings.clipboard_search_shortcut;
+        || previous.clipboard_search_shortcut != settings.clipboard_search_shortcut
+        || previous.selected_text_shortcut != settings.selected_text_shortcut;
     if island_key_changed || legacy_keys_changed {
         crate::island::keyboard::validate_shortcut(&settings).map_err(crate::error::msg)?;
     }
@@ -50,7 +94,7 @@ pub fn save_settings(
         && !settings.island_shortcut.trim().is_empty()
         && !crate::island::acceptance_session();
     if prebind {
-        crate::register_island_shortcut(&app, &settings.island_shortcut)
+        crate::register_island_shortcut(app, &settings.island_shortcut)
             .map_err(crate::error::msg)?;
     }
     let saved = match state.db.save_settings(&settings) {
@@ -84,7 +128,7 @@ pub fn save_settings(
     }
     if previous.island_activity != saved.island_activity {
         crate::island::activity_bus::publish(
-            &app,
+            app,
             crate::island::activity::ActivityEvent::PreferencesChanged {
                 preferences: saved.island_activity.clone(),
             },
@@ -103,14 +147,23 @@ pub fn save_settings(
     if (previous.launch_at_login != saved.launch_at_login
         || previous.toggle_popover_shortcut != saved.toggle_popover_shortcut
         || previous.quick_download_shortcut != saved.quick_download_shortcut
-        || previous.clipboard_search_shortcut != saved.clipboard_search_shortcut)
+        || previous.clipboard_search_shortcut != saved.clipboard_search_shortcut
+        || previous.selected_text_shortcut != saved.selected_text_shortcut)
         && !crate::island::acceptance_session()
     {
-        crate::apply_runtime_settings(&app, &state, &saved);
+        crate::apply_runtime_settings(app, state, &saved);
     }
     if previous.theme != saved.theme {
         let _ = app.emit("nabbit://theme-preference", &saved.theme);
+        crate::settings_window::apply_theme(app, saved.theme);
     }
+    if previous.display_mode != saved.display_mode {
+        if let Some(tray) = app.tray_by_id("main-tray") {
+            let _ =
+                tray.set_visible(saved.display_mode != crate::db::models::DisplayMode::IslandOnly);
+        }
+    }
+    let _ = app.emit("nabbit://settings-changed", &saved);
     Ok(saved)
 }
 
@@ -129,9 +182,11 @@ pub fn acknowledge_first_run(
     app: AppHandle,
     state: tauri::State<'_, AppState>,
 ) -> Result<AppSettings> {
-    let mut settings = state.db.get_settings()?;
-    settings.first_run_acknowledged = true;
-    save_settings(app, state, settings)
+    patch_settings(
+        app,
+        state,
+        serde_json::json!({"firstRunAcknowledged": true}),
+    )
 }
 
 #[tauri::command]

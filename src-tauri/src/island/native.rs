@@ -663,6 +663,7 @@ impl Manager {
         let mut domain = vec![];
         let foreground = state.foreground.clone();
         let gate_override = state.gate_override;
+        let preferences = state.preferences.clone();
         let now = self.started.elapsed().as_millis() as u64;
         for placement in &placements {
             let geometry = state
@@ -705,7 +706,14 @@ impl Manager {
                     .map(|v| v.base)
                     .unwrap_or_default();
                 let visibility = state.visibility.entry(placement.label.clone()).or_default();
-                visibility.step(&foreground, monitor, band, inside, now, gate_override);
+                visibility.step_with_preferences(
+                    &foreground,
+                    monitor,
+                    (band, inside),
+                    now,
+                    gate_override,
+                    &preferences,
+                );
                 for (before, after, fullscreen) in [
                     (
                         previous == Gate::Hidden,

@@ -1,0 +1,15 @@
+Compiling nabbit v0.1.0 (D:\claude-upgrade-26\nabbit\src-tauri)
+    Finished `test` profile [unoptimized + debuginfo] target(s) in 1m 42s
+     Running unittests src\lib.rs (src-tauri\target\debug\deps\nabbit_lib-0297bdcf3f91dea5.exe)
+
+running 2 tests
+test db::settings_schema::tests::invalid_preferences_never_replace_or_backup_the_history_database ... ok
+test db::settings_schema::tests::v01_partial_preferences_history_custom_and_disabled_keys_survive_reopen_and_save ... ok
+
+test result: ok. 2 passed; 0 failed; 0 ignored; 0 measured; 382 filtered out; finished in 0.20s
+
+     Running unittests src\main.rs (src-tauri\target\debug\deps\nabbit-788f5c0796a6fc82.exe)
+
+running 0 tests
+
+test result: ok. 0 passed; 0 failed; 0 ignored; 0 measured; 0 filtered out; finished in 0.00s

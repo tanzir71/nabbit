@@ -2,6 +2,7 @@ import { create } from "zustand";
 import { api } from "../lib/ipc";
 import type {
   AppSettings,
+  SettingsPatch,
   ClipboardEntry,
   DownloadJob,
   DownloadMetadata,
@@ -24,6 +25,8 @@ interface AppStore {
   loadDownloadData: () => Promise<void>;
   loadSettingsData: () => Promise<void>;
   saveSettings: (settings: AppSettings) => Promise<void>;
+  patchSettings: (change: SettingsPatch) => Promise<void>;
+  acceptSettings: (settings: AppSettings) => void;
   acknowledgeFirstRun: () => Promise<void>;
   setLastTab: (lastTab: AppSettings["lastTab"]) => Promise<void>;
   refreshClipboard: () => Promise<void>;
@@ -47,6 +50,8 @@ interface AppStore {
 
 let settingsLoad: Promise<void> | null = null;
 let captureRevision = 0;
+let settingsSave: Promise<void> = Promise.resolve();
+let settingsRevision = 0;
 
 export const useAppStore = create<AppStore>((set, get) => ({
   settings: null,
@@ -60,6 +65,7 @@ export const useAppStore = create<AppStore>((set, get) => ({
   error: null,
   loadDownloadData: async () => {
     const revision = captureRevision;
+    const preferencesRevision = settingsRevision;
     const [settings, downloads, metadata, engine] = await Promise.all([
       api.getSettings(),
       api.listDownloads(),
@@ -67,7 +73,7 @@ export const useAppStore = create<AppStore>((set, get) => ({
       api.getEngineStatus(),
     ]);
     set({
-      settings,
+      ...(preferencesRevision === settingsRevision ? { settings } : {}),
       downloads,
       engine,
       ...(revision === captureRevision
@@ -78,6 +84,7 @@ export const useAppStore = create<AppStore>((set, get) => ({
   loadSettingsData: () => {
     if (settingsLoad) return settingsLoad;
     set({ loading: true, error: null });
+    const preferencesRevision = settingsRevision;
     const pending = Promise.resolve().then(async () => {
       try {
         const [settings, engine, stats] = await Promise.all([
@@ -85,7 +92,12 @@ export const useAppStore = create<AppStore>((set, get) => ({
           api.getEngineStatus(),
           api.getStorageStats(),
         ]);
-        set({ settings, engine, stats, loading: false });
+        set({
+          ...(preferencesRevision === settingsRevision ? { settings } : {}),
+          engine,
+          stats,
+          loading: false,
+        });
       } catch (error) {
         set({ error: error instanceof Error ? error.message : String(error), loading: false });
       }
@@ -98,6 +110,7 @@ export const useAppStore = create<AppStore>((set, get) => ({
   },
   loadInitialData: async () => {
     const revision = captureRevision;
+    const preferencesRevision = settingsRevision;
     set({ loading: true, error: null });
     try {
       const [settings, clipboardEntries, downloads, engine, stats, metadata] = await Promise.all([
@@ -109,7 +122,7 @@ export const useAppStore = create<AppStore>((set, get) => ({
         api.getCapturedLink(),
       ]);
       set({
-        settings,
+        ...(preferencesRevision === settingsRevision ? { settings } : {}),
         clipboardEntries,
         downloads,
         engine,
@@ -124,17 +137,32 @@ export const useAppStore = create<AppStore>((set, get) => ({
     }
   },
   saveSettings: async (settings) => {
+    const preferencesRevision = settingsRevision;
     const saved = await api.saveSettings(settings);
-    set({ settings: saved });
+    if (preferencesRevision === settingsRevision) set({ settings: saved });
+  },
+  patchSettings: (change) => {
+    const pending = settingsSave.then(async () => {
+      const preferencesRevision = settingsRevision;
+      const saved = await api.patchSettings(change);
+      if (preferencesRevision === settingsRevision) set({ settings: saved });
+    });
+    settingsSave = pending.catch(() => {});
+    return pending;
+  },
+  acceptSettings: (settings) => {
+    settingsRevision++;
+    set({ settings });
   },
   acknowledgeFirstRun: async () => {
+    const preferencesRevision = settingsRevision;
     const settings = await api.acknowledgeFirstRun();
-    set({ settings });
+    if (preferencesRevision === settingsRevision) set({ settings });
   },
   setLastTab: async (lastTab) => {
     const settings = get().settings;
     if (!settings || settings.lastTab === lastTab) return;
-    await get().saveSettings({ ...settings, lastTab });
+    await get().patchSettings({ lastTab });
   },
   refreshClipboard: async () => {
     set({ clipboardEntries: await api.listClipboard(), stats: await api.getStorageStats() });

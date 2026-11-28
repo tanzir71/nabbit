@@ -1,0 +1,45 @@
+> nabbit@0.1.0 test
+> vitest --run src/features/settings/SettingsPanel.test.tsx src/store/settingsBootstrap.test.ts
+
+
+ RUN  v3.2.7 D:/claude-upgrade-26/nabbit
+
+ ✓ src/store/settingsBootstrap.test.ts (3 tests) 6ms
+ ❯ src/features/settings/SettingsPanel.test.tsx (6 tests | 1 failed) 3401ms
+   ✓ navigates all nine sections and returns keyboard focus to the page heading  798ms
+   ✓ sends only changed fields and exposes a failed save before a successful retry 155ms
+   ✓ edits a complete path before saving and preserves an unrelated concurrent preference  637ms
+   ✓ reorders and disables activities through independent nested patches  322ms
+   × cancels a dirty field with Escape and keeps a failed edit available for retry 1135ms
+     → expect(element).toHaveValue(D:\Owned fixtures\Retry)
+
+Expected the element to have value:
+  D:\Owned fixtures\Retry
+Received:
+
+   ✓ requires an explicit confirmation before clearing clipboard history  351ms
+
+⎯⎯⎯⎯⎯⎯⎯ Failed Tests 1 ⎯⎯⎯⎯⎯⎯⎯
+
+ FAIL  src/features/settings/SettingsPanel.test.tsx > cancels a dirty field with Escape and keeps a failed edit available for retry
+Error: expect(element).toHaveValue(D:\Owned fixtures\Retry)
+
+Expected the element to have value:
+  D:\Owned fixtures\Retry
+Received:
+
+ ❯ src/features/settings/SettingsPanel.test.tsx:142:17
+    140|   await user.tab();
+    141|   await screen.findByRole("alert");
+    142|   expect(input).toHaveValue("D:\\Owned fixtures\\Retry");
+       |                 ^
+    143|   await user.click(input);
+    144|   await user.tab();
+
+⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯[1/1]⎯
+
+
+ Test Files  1 failed | 1 passed (2)
+      Tests  1 failed | 8 passed (9)
+   Start at  13:03:20
+   Duration  5.30s (transform 454ms, setup 165ms, collect 864ms, tests 3.41s, environment 974ms, prepare 179ms)

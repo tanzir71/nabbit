@@ -153,6 +153,27 @@ export const api = {
       error: "Desktop updater is available only in the packaged app.",
     })),
   getSettings: () => call<AppSettings>("get_settings", undefined, () => browserSettings),
+  openSettingsWindow: () =>
+    call<void>("open_settings_window", undefined, () => {
+      window.location.assign("./settings.html");
+    }),
+  settingsWindowReady: () =>
+    call<{ mica: boolean }>("settings_window_ready", undefined, () => ({ mica: false })),
+  patchSettings: (change: import("./types").SettingsPatch) =>
+    call<AppSettings>("patch_settings", { change }, () => {
+      browserSettings = {
+        ...browserSettings,
+        ...change,
+        island: { ...browserSettings.island, ...change.island },
+        islandActivity: change.islandActivity
+          ? ({
+              ...browserSettings.islandActivity,
+              ...change.islandActivity,
+            } as import("./activity").ActivityPreferences)
+          : browserSettings.islandActivity,
+      };
+      return browserSettings;
+    }),
   saveSettings: (settings: AppSettings) =>
     call<AppSettings>("save_settings", { settings }, () => {
       browserSettings = { ...settings };

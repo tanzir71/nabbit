@@ -1,0 +1,10 @@
+> nabbit@0.1.0 typecheck
+> tsc -b
+
+src/lib/ipc.ts(162,7): error TS2322: Type '{ islandActivity?: Partial<ActivityPreferences> | undefined; island: { enabled: boolean; shape: "island" | "notch"; size: "small" | "standard" | "large"; ... 5 more ...; scrollToChangeVolume?: boolean; }; ... 26 more ...; lastTab: "download" | "notes" | "clipboard"; }' is not assignable to type '{ theme: ThemePreference; displayMode?: "islandAndTray" | "trayOnly" | "islandOnly"; restoreStickyNotes?: boolean; islandActivity?: import("D:/claude-upgrade-26/nabbit/src/lib/activity").ActivityPreferences; ... 24 more ...; lastTab: "download" | "notes" | "clipboard"; }'.
+  Types of property 'islandActivity' are incompatible.
+    Type 'Partial<ActivityPreferences> | undefined' is not assignable to type 'ActivityPreferences | undefined'.
+      Type 'Partial<ActivityPreferences>' is not assignable to type 'ActivityPreferences'.
+        Types of property 'order' are incompatible.
+          Type 'ActivityKind[] | undefined' is not assignable to type 'ActivityKind[]'.
+            Type 'undefined' is not assignable to type 'ActivityKind[]'.

@@ -1,0 +1,22 @@
+[
+ {
+  "RuleID": "generic-api-key",
+  "Description": "Detected a Generic API Key, potentially exposing access to various services and sensitive operations.",
+  "StartLine": 8,
+  "EndLine": 8,
+  "StartColumn": 5,
+  "EndColumn": 38,
+  "Match": "fileKey\": \"REDACTED\"",
+  "Secret": "REDACTED",
+  "File": "D:/claude-upgrade-26/nabbit/.tools/v61-staged-secrets-762e5666-2fb7-44ac-8841-84e5041c88f3/progress/v2/M11/v61-design.json",
+  "SymlinkFile": "",
+  "Commit": "",
+  "Entropy": 4.186704,
+  "Author": "",
+  "Email": "",
+  "Date": "",
+  "Message": "",
+  "Tags": [],
+  "Fingerprint": "D:/claude-upgrade-26/nabbit/.tools/v61-staged-secrets-762e5666-2fb7-44ac-8841-84e5041c88f3/progress/v2/M11/v61-design.json:generic-api-key:8"
+ }
+]

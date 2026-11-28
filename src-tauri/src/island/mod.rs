@@ -212,21 +212,12 @@ pub fn acceptance_session() -> bool {
         && std::env::var_os("NABBIT_APP_DATA_DIR").is_some()
 }
 #[tauri::command]
-pub fn island_open_settings(
+pub async fn island_open_settings(
     app: tauri::AppHandle,
     window: tauri::WebviewWindow,
 ) -> Result<(), String> {
-    #[cfg(windows)]
-    {
-        let manager = input_manager(&app)?;
-        let _ = manager.surface_instruction(window.label())?;
-        manager.settings_intent(true);
-    }
-    #[cfg(not(windows))]
-    let _ = window;
-    crate::show_popover(&app).map_err(|e| e.to_string())?;
-    use tauri::Emitter;
-    app.emit("nabbit://open-settings", ())
+    crate::settings_window::open_settings_window(app, window)
+        .await
         .map_err(|e| e.to_string())
 }
 #[tauri::command]

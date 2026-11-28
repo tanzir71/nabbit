@@ -1,0 +1,73 @@
+{
+  "task": "V6.1",
+  "requirements": [
+    {
+      "id": "settings-window",
+      "requirement": "On-demand settings.html / settings label, 980x720 client, min 820x600, decorated/resizable/taskbar/non-topmost, Mica on Windows11 and solid CSS fallback.",
+      "evidence": "v61-native-e-scene.json",
+      "passed": true
+    },
+    {
+      "id": "window-lifecycle",
+      "requirement": "Tray and island gears open/reuse one window. Close destroys it. Closing the last Tauri WebView preserves the background app. Island gear works without a tray WebView; ready accepts settings callers only.",
+      "evidence": "v61-native-e-scene.json",
+      "passed": true
+    },
+    {
+      "id": "sections",
+      "requirement": "General, Island, Widgets, Downloads, Notes & Tack/import bookmarks, Clipboard, Files/pins/presets/Explorer, Shortcuts, Privacy & about. Existing engine/update/licence and clipboard operations remain available.",
+      "evidence": "v61-native-e-scene.json",
+      "passed": true
+    },
+    {
+      "id": "migration",
+      "requirement": "Same SQLite file/history; valid v0.1 partial preferences, custom and disabled shortcuts, unknown fields and repeat migration survive. Invalid preference JSON never triggers DB replacement/backup. Shipped clipboard-search default moves to Ctrl+Alt+V.",
+      "evidence": "v61-native-tests-e-log.txt",
+      "passed": true
+    },
+    {
+      "id": "safe-saves",
+      "requirement": "Known field-level nested patches, serialized native writes, rollback/error handling, preservation of independent updates across windows, late replies cannot replace newer events, Escape cancels and failed text remains retryable.",
+      "evidence": "v61-verify-f-log.txt",
+      "passed": true
+    },
+    {
+      "id": "island-preferences",
+      "requirement": "Shape/monitor/size, hover delay/off, maximized/fullscreen visibility and scroll-volume preferences reach native policy. Activities can be enabled/disabled/reordered with drag and keyboard/buttons.",
+      "evidence": "v61-native-tests-e-log.txt",
+      "passed": true
+    },
+    {
+      "id": "themes-and-persistence",
+      "requirement": "System/light/dark preference and correct native caption/Mica theme. Restored fields survive a process restart; sticky-restore preference controls startup. All settings change events keep open surfaces current.",
+      "evidence": "v61-native-e-scene.json",
+      "passed": true
+    },
+    {
+      "id": "accessibility-and-visuals",
+      "requirement": "96 default whole-document axe scans: zero violations and incomplete checks; light/dark, scale1/1.5, minimum windows, failures, custom/disconnected preferences, pin editor and keyboard focus. Native DPR2 pairs cover four settings pages.",
+      "evidence": "v61-settings-n-axe.json",
+      "passed": true
+    },
+    {
+      "id": "required-gates",
+      "requirement": "Frontend verify, site verify, format, strict default/spike Clippy, serial Rust tests, licences/bans, current release embedding and strict all-M11 PNG decode/budget pass.",
+      "evidence": "v61-checks-current.json",
+      "passed": true
+    },
+    {
+      "id": "privacy-regression",
+      "requirement": "Observed ERROR_KEY_DELETED race is handled as a vanished subtree, with a deterministic owned-key regression, failure-safe teardown and 30 repeated watcher passes.",
+      "evidence": "v61-native-privacy-repetitions-c-log.txt",
+      "passed": true
+    }
+  ],
+  "laterTasks": [
+    "V6.2 mode lifecycle/badges/toasts",
+    "V6.3 tray menu and popover redesign",
+    "V6.4 shortcut recorder/conflicts",
+    "V7 hardening, performance, unsigned packaging and final docs"
+  ],
+  "scope": "Owned data/WebView/control profiles and HWNDs; generated fixtures and isolated registry test subtrees. No real clipboard/global input/cursor, user files/accounts/profiles, hosted Tack, shell/autostart/hotkey registration, Store, installer or signing; no OS/display-setting change. No new performance/other-platform claim.",
+  "secretFixture": "The synthetic secret-detection input is unchanged; concat! assembles the fixed fake shape for whole-snapshot scanning without new waivers."
+}

@@ -393,6 +393,37 @@ export function installMockIpc(seed) {
       case "save_island_preferences":
         state.settings.island = clone(args.preferences);
         return clone(state.settings);
+      case "settings_window_ready":
+        return { mica: false };
+      case "patch_settings": {
+        const { island, islandActivity, ...fields } = args.change;
+        state.settings = {
+          ...state.settings,
+          ...clone(fields),
+          island: { ...state.settings.island, ...clone(island ?? {}) },
+          islandActivity: {
+            order: [
+              "privacy",
+              "timerEnding",
+              "download",
+              "tool",
+              "link",
+              "result",
+              "media",
+              "timer",
+              "power",
+            ],
+            disabled: [],
+            showAlertsOverFullscreen: false,
+            focusMode: false,
+            hiddenUntilMs: null,
+            ...state.settings.islandActivity,
+            ...clone(islandActivity ?? {}),
+          },
+        };
+        dispatch("nabbit://settings-changed", clone(state.settings));
+        return clone(state.settings);
+      }
       case "save_settings":
         state.settings = clone(args.settings);
         return clone(state.settings);

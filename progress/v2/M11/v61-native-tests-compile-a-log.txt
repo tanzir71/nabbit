@@ -1,0 +1,10 @@
+Compiling nabbit v0.1.0 (D:\claude-upgrade-26\nabbit\src-tauri)
+error[E0063]: missing fields `fade_over_maximized`, `hide_over_fullscreen`, `peek_on_hover_ms` and 1 other field in initializer of `island::model::Preferences`
+   --> src\db\mod.rs:878:27
+    |
+878 |         settings.island = Preferences {
+    |                           ^^^^^^^^^^^ missing `fade_over_maximized`, `hide_over_fullscreen`, `peek_on_hover_ms` and 1 other field
+
+For more information about this error, try `rustc --explain E0063`.
+error: could not compile `nabbit` (lib test) due to 1 previous error
+warning: build failed, waiting for other jobs to finish...

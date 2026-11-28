@@ -1,0 +1,16 @@
+node:internal/modules/run_main:107
+    triggerUncaughtException(
+    ^
+
+AssertionError [ERR_ASSERTION]: Timed out: island WebView
+    at wait (file:///D:/claude-upgrade-26/nabbit/scripts/capture-native-settings.mjs:81:5)
+    at async file:///D:/claude-upgrade-26/nabbit/scripts/capture-native-settings.mjs:377:22 {
+  generatedMessage: false,
+  code: 'ERR_ASSERTION',
+  actual: false,
+  expected: true,
+  operator: '==',
+  diff: 'simple'
+}
+
+Node.js v24.22.2

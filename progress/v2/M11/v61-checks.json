@@ -1,0 +1,34 @@
+{
+  "allRequiredChecksPassed": true,
+  "counts": {
+    "frontend": 570,
+    "rust": 380,
+    "rustIgnoredOptIn": 8,
+    "browserViews": 96,
+    "nativeViews": 8,
+    "axeViolations": 0,
+    "axeIncomplete": 0,
+    "exactRepeatCaptures": 104,
+    "figmaExports": 27,
+    "newSvgExports": 18
+  },
+  "initialIslandGzipBytes": 103826,
+  "buildManifestSha256": "a02c98b51e52c6d2d18fe0b27ca9e8dbe42f8a2b36480e8499c34c93ae2b41e3",
+  "nativeExecutableSha256": "979cb7b261a2fbe0005452ce61ec592a5675dfa20ec10b13555cbb18c2709e20",
+  "browserEvidence": "v61-settings-n-screenshots.json",
+  "axeEvidence": "v61-settings-n-axe.json",
+  "nativeEvidence": "v61-native-c-scene.json",
+  "osBuild": 26300,
+  "nativeDpi": 96,
+  "mica": true,
+  "gates": {
+    "frontend": "v61-verify-f-log.txt",
+    "site": "v61-site-a-log.txt",
+    "rust": "v61-native-tests-c-log.txt",
+    "clippy": "v61-clippy-b-log.txt",
+    "clippySpike": "v61-clippy-spike-a-log.txt",
+    "format": "v61-fmt-a-log.txt",
+    "release": "v61-release-b-log.txt"
+  },
+  "scope": "Owned data/WebView/control profiles and HWNDs; generated fixtures and isolated registry test subtrees. No real clipboard/global input/cursor, user files/accounts/profiles, hosted Tack, shell/autostart/hotkey registration, Store, installer or signing; no OS/display-setting change. No new performance/other-platform claim."
+}

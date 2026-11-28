@@ -1,0 +1,27 @@
+file:///D:/claude-upgrade-26/nabbit/scripts/screenshots/harness.mjs:414
+            throw new Error(`${scenario.name} (${theme}@${scale}x): ${error.message}`, {
+                  ^
+
+Error: settings-island (light@1x): Whole-document default axe: [{"id":"aria-prohibited-attr","impact":"serious","nodes":[{"target":[".settings-island-preview"],"failureSummary":"Fix all of the following:\n  aria-label attribute cannot be used on \"div\" elements with no valid role attribute."}]},{"id":"heading-order","impact":"moderate","nodes":[{"target":["#island-settings-title"],"failureSummary":"Fix any of the following:\n  Heading order invalid"}]}]
+
+2 !== 0
+
+    at captureSuite (file:///D:/claude-upgrade-26/nabbit/scripts/screenshots/harness.mjs:414:19)
+    at async file:///D:/claude-upgrade-26/nabbit/scripts/capture-settings.mjs:51:3 {
+  [cause]: AssertionError [ERR_ASSERTION]: Whole-document default axe: [{"id":"aria-prohibited-attr","impact":"serious","nodes":[{"target":[".settings-island-preview"],"failureSummary":"Fix all of the following:\n  aria-label attribute cannot be used on \"div\" elements with no valid role attribute."}]},{"id":"heading-order","impact":"moderate","nodes":[{"target":["#island-settings-title"],"failureSummary":"Fix any of the following:\n  Heading order invalid"}]}]
+
+  2 !== 0
+
+      at Object.ready (file:///D:/claude-upgrade-26/nabbit/scripts/capture-settings.mjs:42:12)
+      at async captureSuite (file:///D:/claude-upgrade-26/nabbit/scripts/screenshots/harness.mjs:144:33)
+      at async file:///D:/claude-upgrade-26/nabbit/scripts/capture-settings.mjs:51:3 {
+    generatedMessage: false,
+    code: 'ERR_ASSERTION',
+    actual: 2,
+    expected: 0,
+    operator: 'strictEqual',
+    diff: 'simple'
+  }
+}
+
+Node.js v24.22.2

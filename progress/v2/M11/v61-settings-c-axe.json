@@ -1,0 +1,50 @@
+{
+  "scope": "Whole-document axe.run() with defaults; no exclusions, tags or disabled rules",
+  "scans": [
+    {
+      "scenario": "settings-general",
+      "version": "4.14.1",
+      "url": "/settings.html",
+      "theme": "light",
+      "scale": 1,
+      "violations": [],
+      "incomplete": [],
+      "passes": 33
+    },
+    {
+      "scenario": "settings-island",
+      "version": "4.14.1",
+      "url": "/settings.html",
+      "theme": "light",
+      "scale": 1,
+      "violations": [
+        {
+          "id": "aria-prohibited-attr",
+          "impact": "serious",
+          "nodes": [
+            {
+              "target": [
+                ".settings-island-preview"
+              ],
+              "failureSummary": "Fix all of the following:\n  aria-label attribute cannot be used on \"div\" elements with no valid role attribute."
+            }
+          ]
+        },
+        {
+          "id": "heading-order",
+          "impact": "moderate",
+          "nodes": [
+            {
+              "target": [
+                "#island-settings-title"
+              ],
+              "failureSummary": "Fix any of the following:\n  Heading order invalid"
+            }
+          ]
+        }
+      ],
+      "incomplete": [],
+      "passes": 37
+    }
+  ]
+}

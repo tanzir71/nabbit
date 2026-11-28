@@ -1,0 +1,37 @@
+{
+  "logs": [
+    {
+      "source": ".tools/v61-staged-gitleaks-b.log",
+      "log": "v61-staged-gitleaks-b-log.txt",
+      "canonicalSha256": "5e22a165d8a25c29f1b329f499bdfeb82f5328144de09c633b43a505e5fb656e",
+      "originalArchive": "v61-staged-gitleaks-b-log.txt.original.gz",
+      "originalSha256": "eeb412de71ac08093addbdd8f78c0b5eb6942c0d46cb274b09109ec8a502b5e9",
+      "originalBytes": 81
+    },
+    {
+      "source": ".tools/v61-staged-gitleaks-b.json",
+      "log": "v61-staged-gitleaks-b-report.json",
+      "canonicalSha256": "37517e5f3dc66819f61f5a7bb8ace1921282415f10551d2defa5c3eb0985b570",
+      "originalArchive": "v61-staged-gitleaks-b-report.json.original.gz",
+      "originalSha256": "37517e5f3dc66819f61f5a7bb8ace1921282415f10551d2defa5c3eb0985b570",
+      "originalBytes": 3
+    },
+    {
+      "source": ".tools/v61-archives-gitleaks-b.log",
+      "log": "v61-archives-gitleaks-b-log.txt",
+      "canonicalSha256": "f237e52cdea6a26c7bada80c1b7f81e9b352c52e7793223bd46a3326331ac6b9",
+      "originalArchive": "v61-archives-gitleaks-b-log.txt.original.gz",
+      "originalSha256": "2e8e7d0ff99becaf1841ac19a62752552a7c3dfb89714a56f7ea7aba3c949ac0",
+      "originalBytes": 85
+    },
+    {
+      "source": ".tools/v61-archives-gitleaks-b.json",
+      "log": "v61-archives-gitleaks-b-report.json",
+      "canonicalSha256": "69377d302c4b3ad6fad6c2e205504ced98d917407610988fcae029a24d18a569",
+      "originalArchive": "v61-archives-gitleaks-b-report.json.original.gz",
+      "originalSha256": "69377d302c4b3ad6fad6c2e205504ced98d917407610988fcae029a24d18a569",
+      "originalBytes": 746
+    }
+  ],
+  "finding": "Whole-snapshot scan found the existing sequential synthetic Stripe-shaped unit-test fixture. The identical input is now assembled at compile time from fixed parts; runtime code and tested bytes are unchanged. No new waiver."
+}

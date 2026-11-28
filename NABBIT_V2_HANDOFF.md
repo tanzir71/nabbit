@@ -809,7 +809,7 @@ Commit after every task (§0.1). Lines marked **MILESTONE** are tasks of their o
 - [x] **MILESTONE M10 — Modules, file tools and pins.**
 
 ### Phase V6 — Modes, tray, settings
-- [ ] V6.1 Settings window (Mica on 11) with all sections; migrate v0.1 settings.
+- [x] V6.1 Settings window (Mica on 11) with all sections; migrate v0.1 settings.
 - [ ] V6.2 Mode switch (island+tray / tray only / island only) incl. tray badge + toasts in tray-only.
 - [ ] V6.3 Tray menu + submenus (add Pins ▸ listing pins 1–9); tray popover redesign for Notes/Clipboard/Files tabs.
 - [ ] V6.4 Shortcut recorder with conflict detection.

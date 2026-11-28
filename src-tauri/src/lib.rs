@@ -13,6 +13,7 @@ mod pins;
 pub mod power;
 pub mod privacy;
 mod retention;
+mod settings_window;
 pub mod shelf;
 mod shell;
 mod sticky;
@@ -69,6 +70,7 @@ pub struct AppState {
     pub engine: Arc<download::engine::Service>,
     pub app_data_dir: PathBuf,
     pub shutdown: Arc<AtomicBool>,
+    pub settings_write: Arc<std::sync::Mutex<()>>,
 }
 
 #[cfg_attr(mobile, tauri::mobile_entry_point)]
@@ -286,6 +288,9 @@ pub fn run() {
             island::activity_bus::island_activity_action,
             commands::settings::save_island_preferences,
             commands::settings::save_settings,
+            commands::settings::patch_settings,
+            settings_window::open_settings_window,
+            settings_window::settings_window_ready,
             commands::settings::acknowledge_first_run,
             commands::settings::get_storage_stats,
             commands::settings::run_retention_gc,
@@ -376,8 +381,10 @@ pub fn run() {
                 engine: download::engine::Service::new(db.clone(), app_data_dir.clone()),
                 app_data_dir,
                 shutdown: shutdown.clone(),
+                settings_write: Arc::default(),
             };
             app.manage(state.clone());
+            app.manage(settings_window::Service::default());
             app.state::<tack::service::Service>()
                 .start(db.clone(), app.handle().clone())?;
 
@@ -397,6 +404,10 @@ pub fn run() {
             retention::spawn_retention_gc(app.handle().clone(), db.clone(), shutdown.clone());
             spawn_acceptance_automation(app.handle().clone(), state.clone());
             let settings = db.get_settings()?;
+            if let Some(tray) = app.tray_by_id("main-tray") {
+                let _ =
+                    tray.set_visible(settings.display_mode != db::models::DisplayMode::IslandOnly);
+            }
             #[cfg(windows)]
             if island::production_session() {
                 island::start(app.handle(), settings.island.clone())
@@ -425,7 +436,9 @@ pub fn run() {
                 }
             }
             context::explorer::start(app.handle())?;
-            sticky::restore(app.handle());
+            if settings.restore_sticky_notes {
+                sticky::restore(app.handle());
+            }
             if !sticky::acceptance_enabled() {
                 state.engine.start(app.handle().clone());
                 state.downloads.start_deferred();
@@ -943,10 +956,11 @@ pub fn apply_runtime_settings(app: &AppHandle<Wry>, state: &AppState, settings: 
             |app, _shortcut, event| {
                 if event.state == ShortcutState::Pressed {
                     if let Some(state) = app.try_state::<AppState>() {
-                        if let Ok(mut settings) = state.db.get_settings() {
-                            settings.last_tab = "clipboard".into();
-                            let _ = state.db.save_settings(&settings);
-                        }
+                        let _ = commands::settings::patch(
+                            app,
+                            &state,
+                            serde_json::json!({"lastTab":"clipboard"}),
+                        );
                     }
                     let _ = show_popover(app);
                     let _ = app.emit("shortcut:clipboard-search", ());
@@ -1050,7 +1064,11 @@ fn setup_tray(app: &AppHandle<Wry>) -> Result<()> {
                     if let Some(state) = app.try_state::<AppState>() {
                         if let Ok(mut settings) = state.db.get_settings() {
                             settings.pause_auto_detect = !settings.pause_auto_detect;
-                            let _ = state.db.save_settings(&settings);
+                            let _ = commands::settings::patch(
+                                app,
+                                &state,
+                                serde_json::json!({"pauseAutoDetect":settings.pause_auto_detect}),
+                            );
                         }
                     }
                 }

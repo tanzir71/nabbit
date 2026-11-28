@@ -10,7 +10,7 @@ import { preview } from "vite";
 import { auditFont } from "../font-audit.mjs";
 import { fixtureData, captureTime } from "./fixtures.mjs";
 import { installMockIpc } from "./mock-ipc.mjs";
-import { outputOptions, pngInfo, themes, scales } from "./policy.mjs";
+import { deterministicRenderingFlags, outputOptions, pngInfo, themes, scales } from "./policy.mjs";
 import { scenarios } from "./scenarios.mjs";
 
 const hash = (bytes) => createHash("sha256").update(bytes).digest("hex");
@@ -75,7 +75,10 @@ export async function captureSuite(root, options, cases = scenarios) {
       logLevel: "error",
     });
     const base = `http://127.0.0.1:${server.httpServer.address().port}`;
-    browser = await chromium.launch({ headless: true });
+    browser = await chromium.launch({
+      headless: true,
+      ...(options.deterministicCompositor ? { args: [...deterministicRenderingFlags] } : {}),
+    });
     for (const theme of themes)
       for (const scale of scales)
         for (const scenario of selected) {
@@ -432,6 +435,7 @@ export async function captureSuite(root, options, cases = scenarios) {
       captureTime,
       buildManifestSha256: hash(manifest),
       screenshotScale: "device",
+      renderingFlags: options.deterministicCompositor ? deterministicRenderingFlags : [],
       pngBudgetBytes: 300 * 1024,
       isolatedContexts: true,
       mockedIpc: true,

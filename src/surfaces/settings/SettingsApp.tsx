@@ -6,9 +6,12 @@ import { Button } from "../../components/Button";
 import { useTheme } from "../../lib/useTheme";
 import { useAppStore } from "../../store/useAppStore";
 import { SettingsPanel } from "../../views/SettingsPanel";
+import { api } from "../../lib/ipc";
+import { useSettingsEvents } from "../../lib/useSettingsEvents";
 
 export function SettingsApp() {
   useEngineEvents();
+  useSettingsEvents();
   const settings = useAppStore((state) => state.settings);
   const loading = useAppStore((state) => state.loading);
   const error = useAppStore((state) => state.error);
@@ -17,6 +20,21 @@ export function SettingsApp() {
   useEffect(() => {
     void load();
   }, [load]);
+  useEffect(() => {
+    let active = true;
+    void api
+      .settingsWindowReady()
+      .then(({ mica }) => {
+        if (active) document.documentElement.dataset.settingsBackdrop = mica ? "mica" : "solid";
+      })
+      .catch((reason: unknown) => {
+        if (active) useAppStore.setState({ error: String(reason) });
+      });
+    return () => {
+      active = false;
+      delete document.documentElement.dataset.settingsBackdrop;
+    };
+  }, []);
   if (loading)
     return (
       <main className="p-4">
@@ -34,7 +52,7 @@ export function SettingsApp() {
     <main>
       <SettingsPanel
         onClose={() => {
-          if (isTauri()) void getCurrentWindow().hide();
+          if (isTauri()) void getCurrentWindow().close();
           else window.location.assign("./index.html");
         }}
       />

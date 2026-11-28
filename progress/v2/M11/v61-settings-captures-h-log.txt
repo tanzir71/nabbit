@@ -1,0 +1,30 @@
+file:///D:/claude-upgrade-26/nabbit/scripts/screenshots/harness.mjs:414
+            throw new Error(`${scenario.name} (${theme}@${scale}x): ${error.message}`, {
+                  ^
+
+Error: settings-downloads (light@1x): Unstable capture: settings-downloads/light/1
++ actual - expected
+
++ '814f7935f19ba3c2cba8cf13021cce581ae73381e8a283a2987711b330be6b68'
+- 'bf66a63568c2314f06fa83f2839f42c099c02d887249ba8190e151f244f09902'
+
+    at captureSuite (file:///D:/claude-upgrade-26/nabbit/scripts/screenshots/harness.mjs:414:19)
+    at async file:///D:/claude-upgrade-26/nabbit/scripts/capture-settings.mjs:51:3 {
+  [cause]: AssertionError [ERR_ASSERTION]: Unstable capture: settings-downloads/light/1
+  + actual - expected
+
+  + '814f7935f19ba3c2cba8cf13021cce581ae73381e8a283a2987711b330be6b68'
+  - 'bf66a63568c2314f06fa83f2839f42c099c02d887249ba8190e151f244f09902'
+
+      at captureSuite (file:///D:/claude-upgrade-26/nabbit/scripts/screenshots/harness.mjs:383:22)
+      at async file:///D:/claude-upgrade-26/nabbit/scripts/capture-settings.mjs:51:3 {
+    generatedMessage: false,
+    code: 'ERR_ASSERTION',
+    actual: '814f7935f19ba3c2cba8cf13021cce581ae73381e8a283a2987711b330be6b68',
+    expected: 'bf66a63568c2314f06fa83f2839f42c099c02d887249ba8190e151f244f09902',
+    operator: 'strictEqual',
+    diff: 'simple'
+  }
+}
+
+Node.js v24.22.2

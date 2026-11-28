@@ -1,0 +1,518 @@
+.settings-window {
+  display: flex;
+  height: 100dvh;
+  min-height: 0;
+  color: var(--text-primary);
+  background: var(--bg-canvas);
+  border: 1px solid var(--border-subtle);
+  border-radius: 10px;
+  overflow: hidden;
+  font-size: 13px;
+  line-height: 18px;
+}
+.settings-sidebar {
+  width: 232px;
+  flex: 0 0 232px;
+  padding: 16px 10px;
+}
+.settings-brand {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  padding: 0 8px;
+  margin-bottom: 14px;
+  font-size: 14px;
+  line-height: 20px;
+  font-weight: 600;
+  white-space: nowrap;
+}
+.settings-sidebar nav {
+  display: grid;
+  gap: 2px;
+}
+.settings-sidebar nav img {
+  width: 16px;
+  height: 16px;
+}
+.settings-sidebar img[data-settings-asset$="4ebe2.svg"] {
+  filter: brightness(0);
+  opacity: 0.65;
+}
+.settings-content .files-pins {
+  --island-fg: var(--text-primary);
+  --island-muted: var(--text-secondary);
+  --island-raised: var(--bg-surface);
+  --island-track: var(--border-subtle);
+  --island-bg: var(--bg-canvas);
+}
+.settings-sidebar nav button {
+  position: relative;
+  display: flex;
+  gap: 10px;
+  align-items: center;
+  height: 36px;
+  padding: 0 10px;
+  border: 0;
+  border-radius: 6px;
+  background: transparent;
+  color: var(--text-secondary);
+  text-align: left;
+}
+.settings-sidebar nav button[aria-current] {
+  color: var(--text-primary);
+  font-weight: 500;
+  background: var(--bg-raised);
+}
+.settings-sidebar nav button[aria-current]::before {
+  content: "";
+  position: absolute;
+  width: 3px;
+  height: 16px;
+  left: 0;
+  border-radius: 2px;
+  background: var(--action-primary);
+}
+.settings-content {
+  display: flex;
+  flex: 1;
+  min-width: 0;
+  flex-direction: column;
+  align-items: stretch;
+  gap: 16px;
+  padding: 24px 28px;
+  overflow: auto;
+  background: var(--bg-sunken);
+}
+.settings-page-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  min-height: 24px;
+}
+.settings-page-header h1 {
+  font-size: 18px;
+  line-height: 24px;
+  letter-spacing: -0.2px;
+  font-weight: 600;
+  margin: 0;
+  outline-offset: 4px;
+}
+.settings-page-header .n-icon-button {
+  width: 24px;
+  height: 24px;
+}
+.settings-section {
+  display: grid;
+  gap: 8px;
+}
+.settings-section > h2 {
+  margin: 0;
+  color: var(--text-secondary);
+  font-size: 11px;
+  line-height: 14px;
+  letter-spacing: 0.2px;
+  text-transform: uppercase;
+  font-weight: 500;
+}
+.settings-card {
+  min-width: 0;
+  border: 1px solid var(--border-subtle);
+  border-radius: 10px;
+  background: var(--bg-surface);
+  overflow: clip;
+}
+.settings-row {
+  display: flex;
+  gap: 12px;
+  align-items: center;
+  justify-content: space-between;
+  padding: 12px 16px;
+}
+.settings-card > * + * {
+  border-top: 1px solid var(--border-subtle);
+}
+.settings-row-copy {
+  display: grid;
+  gap: 2px;
+  flex: 1;
+  min-width: 0;
+}
+.settings-row p {
+  margin: 0;
+}
+.settings-row-copy > span,
+.settings-help {
+  font-size: 12px;
+  line-height: 16px;
+  color: var(--text-secondary);
+}
+.settings-row > .n-toggle {
+  flex: 0 0 auto;
+}
+.settings-choices {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 4px;
+}
+.settings-choices .n-preset {
+  height: 30px;
+}
+.settings-field-row {
+  padding: 12px 16px;
+}
+.settings-file-presets {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 12px;
+}
+.settings-field-row .n-field {
+  grid-template-columns: minmax(130px, 1fr) minmax(130px, 1.1fr);
+  align-items: center;
+  gap: 4px 12px;
+}
+.settings-field-row .n-help {
+  grid-column: 1/-1;
+}
+.settings-field-row .n-field-label {
+  color: var(--text-primary);
+  font-weight: 400;
+  font-size: 13px;
+}
+.settings-field-row .n-input {
+  min-width: 0;
+  height: 32px;
+  font-family: var(--font-mono);
+  font-size: 12px;
+}
+.settings-mode-options {
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: 12px;
+}
+.settings-mode {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  min-width: 0;
+  align-items: stretch;
+  text-align: left;
+  padding: 12px;
+  border: 1px solid var(--border-subtle);
+  border-radius: 12px;
+  background: var(--bg-surface);
+  color: var(--text-primary);
+}
+.settings-mode[aria-pressed="true"] {
+  border: 2px solid var(--action-primary);
+  padding: 11px;
+}
+.settings-mode-preview {
+  position: relative;
+  display: block;
+  height: 96px;
+  border-radius: 8px;
+  overflow: hidden;
+  background: var(--desktop-wall, #c9cdd4);
+}
+.settings-mode-pill {
+  position: absolute;
+  width: 52px;
+  height: 10px;
+  border-radius: 5px;
+  left: calc(50% - 26px);
+  top: 6px;
+  background: var(--island-bg, #050506);
+}
+.settings-mode-taskbar {
+  position: absolute;
+  top: 84px;
+  height: 12px;
+  left: 0;
+  width: 100%;
+  background: var(--bg-surface);
+}
+.settings-mode-popover {
+  position: absolute;
+  width: 46px;
+  height: 58px;
+  top: 22px;
+  right: 6px;
+  border: 1px solid var(--border-strong);
+  border-radius: 4px;
+  background: var(--bg-surface);
+}
+.settings-mode-tray {
+  position: absolute;
+  width: 6px;
+  height: 6px;
+  top: 87px;
+  right: 26px;
+  border-radius: 2px;
+  background: var(--action-primary);
+}
+.settings-mode-title {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  font-weight: 500;
+}
+.settings-mode-help {
+  font-size: 12px;
+  line-height: 16px;
+  color: var(--text-secondary);
+}
+.settings-island-preview {
+  height: 96px;
+  flex: 0 0 96px;
+  background: var(--desktop-wall, #c9cdd4);
+  border-radius: 12px;
+  position: relative;
+}
+.settings-live-preview {
+  position: absolute;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  width: 272px;
+  height: 32px;
+  top: 10px;
+  left: calc(50% - 136px);
+  padding: 6px 12px 6px 8px;
+  border-radius: 16px;
+  background: #050506;
+}
+.settings-live-preview.is-notch {
+  top: 0;
+  border-radius: 0 0 16px 16px;
+}
+.settings-preview-art {
+  height: 20px;
+  width: 20px;
+  border-radius: 4px;
+  background: linear-gradient(135deg, #f79041, #9b6af0);
+}
+.settings-preview-bars {
+  display: flex;
+  align-items: center;
+  gap: 2px;
+}
+.settings-preview-bars i {
+  display: block;
+  width: 3px;
+  border-radius: 2px;
+  background: #ddd;
+}
+.settings-content .island-settings {
+  margin: 0;
+}
+.settings-content .island-setting-help {
+  color: var(--text-secondary);
+}
+.settings-hover-row {
+  padding: 12px 16px;
+}
+.settings-hover-row .n-field {
+  grid-template-columns: 1fr 120px;
+  align-items: center;
+  gap: 2px 12px;
+}
+.settings-hover-row .n-select-wrap {
+  grid-column: 2;
+  grid-row: 1/3;
+}
+.settings-hover-row .n-help {
+  grid-column: 1;
+}
+.settings-hover-row .n-field-label {
+  color: var(--text-primary);
+  font-weight: 400;
+  font-size: 13px;
+}
+.settings-hover-row .n-select {
+  height: 32px;
+}
+.settings-message {
+  padding: 12px 16px;
+  margin: 0;
+  color: var(--text-secondary);
+  font-size: 12px;
+  line-height: 18px;
+}
+.settings-error {
+  margin: 0;
+  padding: 10px 12px;
+  border: 1px solid var(--danger-base);
+  border-radius: 8px;
+  color: color-mix(in srgb, var(--danger-base), var(--text-primary) 25%);
+  background: var(--danger-soft);
+}
+.settings-window .n-button--danger,
+.settings-window .n-field-error {
+  color: color-mix(in srgb, var(--danger-base), var(--text-primary) 25%);
+}
+.settings-activity {
+  display: flex;
+  gap: 12px;
+  align-items: center;
+  padding: 12px 16px;
+}
+.settings-grip {
+  display: flex;
+  border: 0;
+  padding: 0;
+  background: transparent;
+  cursor: grab;
+}
+.settings-activity-copy {
+  display: grid;
+  gap: 2px;
+  flex: 1;
+}
+.settings-activity-copy > span + span {
+  color: var(--text-secondary);
+  font-size: 12px;
+  line-height: 16px;
+}
+.settings-activity-icon {
+  flex: 0 0 18px;
+}
+.settings-reorder {
+  display: flex;
+  gap: 2px;
+}
+.settings-reorder button {
+  min-width: 32px;
+  height: 24px;
+  border: 0;
+  border-radius: 4px;
+  color: var(--text-secondary);
+  background: transparent;
+  padding: 0 4px;
+  font-size: 11px;
+}
+.settings-reorder button:disabled {
+  opacity: 0.4;
+}
+.settings-keycaps {
+  display: flex;
+  gap: 4px;
+}
+.settings-keycaps kbd {
+  padding: 1px 6px;
+  height: 20px;
+  border-radius: 5px;
+  border: 1px solid var(--border-subtle);
+  background: var(--bg-raised);
+  color: var(--text-secondary);
+  font: 11px/16px var(--font-mono);
+}
+.settings-shortcut-island {
+  padding: 12px 16px;
+}
+.settings-confirm {
+  padding: 12px 16px;
+}
+.settings-confirm p {
+  margin: 0 0 10px;
+}
+.settings-confirm button + button {
+  margin-left: 8px;
+}
+.settings-privacy {
+  padding: 0 16px 12px;
+  color: var(--text-secondary);
+}
+.settings-privacy summary {
+  cursor: pointer;
+  padding: 10px 0;
+}
+.settings-privacy pre {
+  font: 12px/18px var(--font-sans);
+  white-space: pre-wrap;
+  overflow-wrap: anywhere;
+  max-height: 320px;
+  overflow: auto;
+}
+[data-settings-backdrop="mica"],
+[data-settings-backdrop="mica"] body,
+[data-settings-backdrop="mica"] #root,
+[data-settings-backdrop="mica"] .settings-window {
+  background: transparent;
+}
+[data-theme="dark"] .settings-sidebar img:not([data-settings-asset$="09016.svg"]),
+[data-theme="dark"] .settings-activity > img,
+[data-theme="dark"] .settings-grip img,
+[data-theme="dark"] .settings-row .n-button img {
+  filter: brightness(0) invert(0.8);
+}
+@media (max-width: 819px) {
+  .settings-sidebar {
+    width: 184px;
+    flex-basis: 184px;
+  }
+  .settings-content {
+    padding: 20px;
+  }
+  .settings-mode-options {
+    gap: 8px;
+  }
+  .settings-mode {
+    padding: 8px;
+  }
+  .settings-mode[aria-pressed="true"] {
+    padding: 7px;
+  }
+  .settings-mode-help {
+    font-size: 11px;
+  }
+}
+@media (max-width: 600px) {
+  .settings-file-presets {
+    grid-template-columns: 1fr;
+  }
+  .settings-sidebar {
+    width: 156px;
+    flex-basis: 156px;
+    padding: 16px 6px;
+  }
+  .settings-brand {
+    gap: 6px;
+    font-size: 12px;
+    padding: 0 4px;
+  }
+  .settings-content {
+    padding: 16px;
+  }
+  .settings-mode-options {
+    grid-template-columns: 1fr;
+  }
+  .settings-mode-preview {
+    height: 60px;
+  }
+  .settings-mode-taskbar {
+    top: 48px;
+  }
+  .settings-mode-popover {
+    height: 32px;
+    top: 10px;
+  }
+  .settings-mode-tray {
+    top: 51px;
+  }
+  .settings-row:has(.settings-choices) {
+    align-items: flex-start;
+    flex-direction: column;
+    gap: 8px;
+  }
+  .settings-field-row .n-field {
+    grid-template-columns: 1fr;
+  }
+}
+@media (prefers-reduced-motion: reduce) {
+  .settings-window *,
+  .settings-window *::before,
+  .settings-window *::after {
+    transition: none !important;
+    animation: none !important;
+  }
+}

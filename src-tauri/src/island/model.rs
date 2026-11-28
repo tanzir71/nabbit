@@ -48,6 +48,10 @@ pub struct Preferences {
     pub size: Size,
     pub monitor_mode: MonitorMode,
     pub monitor_id: Option<String>,
+    pub peek_on_hover_ms: Option<u64>,
+    pub fade_over_maximized: bool,
+    pub hide_over_fullscreen: bool,
+    pub scroll_to_change_volume: bool,
 }
 impl Default for Preferences {
     fn default() -> Self {
@@ -57,6 +61,10 @@ impl Default for Preferences {
             size: Size::Standard,
             monitor_mode: MonitorMode::FollowMouse,
             monitor_id: None,
+            peek_on_hover_ms: Some(180),
+            fade_over_maximized: true,
+            hide_over_fullscreen: true,
+            scroll_to_change_volume: true,
         }
     }
 }

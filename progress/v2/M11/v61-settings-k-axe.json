@@ -1,0 +1,590 @@
+{
+  "scope": "Whole-document axe.run() with defaults; no exclusions, tags or disabled rules",
+  "scans": [
+    {
+      "scenario": "settings-general",
+      "version": "4.14.1",
+      "url": "/settings.html",
+      "theme": "light",
+      "scale": 1,
+      "violations": [],
+      "incomplete": [],
+      "passes": 33
+    },
+    {
+      "scenario": "settings-island",
+      "version": "4.14.1",
+      "url": "/settings.html",
+      "theme": "light",
+      "scale": 1,
+      "violations": [],
+      "incomplete": [],
+      "passes": 38
+    },
+    {
+      "scenario": "settings-widgets",
+      "version": "4.14.1",
+      "url": "/settings.html",
+      "theme": "light",
+      "scale": 1,
+      "violations": [],
+      "incomplete": [],
+      "passes": 33
+    },
+    {
+      "scenario": "settings-downloads",
+      "version": "4.14.1",
+      "url": "/settings.html",
+      "theme": "light",
+      "scale": 1,
+      "violations": [],
+      "incomplete": [],
+      "passes": 37
+    },
+    {
+      "scenario": "settings-notes",
+      "version": "4.14.1",
+      "url": "/settings.html",
+      "theme": "light",
+      "scale": 1,
+      "violations": [],
+      "incomplete": [],
+      "passes": 33
+    },
+    {
+      "scenario": "settings-clipboard",
+      "version": "4.14.1",
+      "url": "/settings.html",
+      "theme": "light",
+      "scale": 1,
+      "violations": [],
+      "incomplete": [],
+      "passes": 36
+    },
+    {
+      "scenario": "settings-files",
+      "version": "4.14.1",
+      "url": "/settings.html",
+      "theme": "light",
+      "scale": 1,
+      "violations": [],
+      "incomplete": [],
+      "passes": 38
+    },
+    {
+      "scenario": "settings-shortcuts",
+      "version": "4.14.1",
+      "url": "/settings.html",
+      "theme": "light",
+      "scale": 1,
+      "violations": [],
+      "incomplete": [
+        {
+          "id": "aria-prohibited-attr",
+          "impact": "serious",
+          "targets": [
+            [
+              "span[aria-label=\"Ctrl + Alt + N\"]"
+            ],
+            [
+              "span[aria-label=\"Ctrl + Alt + T\"]"
+            ],
+            [
+              "span[aria-label=\"Ctrl + 1–6\"]"
+            ],
+            [
+              "span[aria-label=\"Alt + 1–9\"]"
+            ],
+            [
+              "span[aria-label=\"Esc\"]"
+            ],
+            [
+              "span[aria-label=\"Enter\"]"
+            ],
+            [
+              "span[aria-label=\"Ctrl + Enter\"]"
+            ]
+          ]
+        }
+      ],
+      "passes": 33
+    },
+    {
+      "scenario": "settings-privacy",
+      "version": "4.14.1",
+      "url": "/settings.html",
+      "theme": "light",
+      "scale": 1,
+      "violations": [],
+      "incomplete": [],
+      "passes": 30
+    },
+    {
+      "scenario": "settings-activities",
+      "version": "4.14.1",
+      "url": "/settings.html",
+      "theme": "light",
+      "scale": 1,
+      "violations": [],
+      "incomplete": [
+        {
+          "id": "color-contrast",
+          "impact": "serious",
+          "targets": [
+            [
+              "button[aria-label=\"Move Mic / camera down\"]"
+            ],
+            [
+              "button[aria-label=\"Move Timers / focus ending up\"]"
+            ],
+            [
+              ".settings-activity[role=\"listitem\"]:nth-child(2) > .settings-reorder > button:nth-child(2)"
+            ],
+            [
+              "button[aria-label=\"Move Downloads up\"]"
+            ],
+            [
+              "button[aria-label=\"Move Downloads down\"]"
+            ],
+            [
+              "button[aria-label=\"Move File tools up\"]"
+            ],
+            [
+              "button[aria-label=\"Move File tools down\"]"
+            ],
+            [
+              "button[aria-label=\"Move Link detected up\"]"
+            ],
+            [
+              "button[aria-label=\"Move Link detected down\"]"
+            ],
+            [
+              ".settings-activity[role=\"listitem\"]:nth-child(6) > .settings-reorder > button:nth-child(1)"
+            ],
+            [
+              ".settings-activity[role=\"listitem\"]:nth-child(6) > .settings-reorder > button:nth-child(2)"
+            ],
+            [
+              "button[aria-label=\"Move Now playing up\"]"
+            ],
+            [
+              "button[aria-label=\"Move Now playing down\"]"
+            ],
+            [
+              "button[aria-label=\"Move Focus timer up\"]"
+            ],
+            [
+              "button[aria-label=\"Move Focus timer down\"]"
+            ],
+            [
+              "button[aria-label=\"Move Power up\"]"
+            ]
+          ]
+        },
+        {
+          "id": "label-content-name-mismatch",
+          "impact": "serious",
+          "targets": [
+            [
+              "button[aria-label=\"Move Mic / camera up\"]"
+            ],
+            [
+              "button[aria-label=\"Move Mic / camera down\"]"
+            ],
+            [
+              "button[aria-label=\"Move Timers / focus ending up\"]"
+            ],
+            [
+              ".settings-activity[role=\"listitem\"]:nth-child(2) > .settings-reorder > button:nth-child(2)"
+            ],
+            [
+              "button[aria-label=\"Move Downloads up\"]"
+            ],
+            [
+              "button[aria-label=\"Move Downloads down\"]"
+            ],
+            [
+              "button[aria-label=\"Move File tools up\"]"
+            ],
+            [
+              "button[aria-label=\"Move File tools down\"]"
+            ],
+            [
+              "button[aria-label=\"Move Link detected up\"]"
+            ],
+            [
+              "button[aria-label=\"Move Link detected down\"]"
+            ],
+            [
+              ".settings-activity[role=\"listitem\"]:nth-child(6) > .settings-reorder > button:nth-child(1)"
+            ],
+            [
+              ".settings-activity[role=\"listitem\"]:nth-child(6) > .settings-reorder > button:nth-child(2)"
+            ],
+            [
+              "button[aria-label=\"Move Now playing up\"]"
+            ],
+            [
+              "button[aria-label=\"Move Now playing down\"]"
+            ],
+            [
+              "button[aria-label=\"Move Focus timer up\"]"
+            ],
+            [
+              "button[aria-label=\"Move Focus timer down\"]"
+            ],
+            [
+              "button[aria-label=\"Move Power up\"]"
+            ],
+            [
+              "button[aria-label=\"Move Power down\"]"
+            ]
+          ]
+        }
+      ],
+      "passes": 34
+    },
+    {
+      "scenario": "settings-general-minimum",
+      "version": "4.14.1",
+      "url": "/settings.html",
+      "theme": "light",
+      "scale": 1,
+      "violations": [],
+      "incomplete": [],
+      "passes": 34
+    },
+    {
+      "scenario": "settings-island-minimum",
+      "version": "4.14.1",
+      "url": "/settings.html",
+      "theme": "light",
+      "scale": 1,
+      "violations": [],
+      "incomplete": [],
+      "passes": 38
+    },
+    {
+      "scenario": "settings-shortcuts-minimum",
+      "version": "4.14.1",
+      "url": "/settings.html",
+      "theme": "light",
+      "scale": 1,
+      "violations": [],
+      "incomplete": [
+        {
+          "id": "aria-prohibited-attr",
+          "impact": "serious",
+          "targets": [
+            [
+              "span[aria-label=\"Ctrl + Alt + N\"]"
+            ],
+            [
+              "span[aria-label=\"Ctrl + Alt + T\"]"
+            ],
+            [
+              "span[aria-label=\"Ctrl + 1–6\"]"
+            ],
+            [
+              "span[aria-label=\"Alt + 1–9\"]"
+            ],
+            [
+              "span[aria-label=\"Esc\"]"
+            ],
+            [
+              "span[aria-label=\"Enter\"]"
+            ],
+            [
+              "span[aria-label=\"Ctrl + Enter\"]"
+            ]
+          ]
+        }
+      ],
+      "passes": 33
+    },
+    {
+      "scenario": "settings-shortcuts-migrated",
+      "version": "4.14.1",
+      "url": "/settings.html",
+      "theme": "light",
+      "scale": 1,
+      "violations": [],
+      "incomplete": [
+        {
+          "id": "aria-prohibited-attr",
+          "impact": "serious",
+          "targets": [
+            [
+              "span[aria-label=\"Ctrl + Alt + N\"]"
+            ],
+            [
+              "span[aria-label=\"Ctrl + Alt + T\"]"
+            ],
+            [
+              "span[aria-label=\"Ctrl + 1–6\"]"
+            ],
+            [
+              "span[aria-label=\"Alt + 1–9\"]"
+            ],
+            [
+              "span[aria-label=\"Esc\"]"
+            ],
+            [
+              "span[aria-label=\"Enter\"]"
+            ],
+            [
+              "span[aria-label=\"Ctrl + Enter\"]"
+            ]
+          ]
+        }
+      ],
+      "passes": 33
+    },
+    {
+      "scenario": "settings-island-disconnected",
+      "version": "4.14.1",
+      "url": "/settings.html",
+      "theme": "light",
+      "scale": 1,
+      "violations": [],
+      "incomplete": [],
+      "passes": 38
+    },
+    {
+      "scenario": "settings-island-behaviour-off",
+      "version": "4.14.1",
+      "url": "/settings.html",
+      "theme": "light",
+      "scale": 1,
+      "violations": [],
+      "incomplete": [],
+      "passes": 38
+    },
+    {
+      "scenario": "settings-activities-custom-priority",
+      "version": "4.14.1",
+      "url": "/settings.html",
+      "theme": "light",
+      "scale": 1,
+      "violations": [],
+      "incomplete": [
+        {
+          "id": "color-contrast",
+          "impact": "serious",
+          "targets": [
+            [
+              "button[aria-label=\"Move Mic / camera down\"]"
+            ],
+            [
+              "button[aria-label=\"Move Downloads up\"]"
+            ],
+            [
+              "button[aria-label=\"Move Downloads down\"]"
+            ],
+            [
+              "button[aria-label=\"Move Timers / focus ending up\"]"
+            ],
+            [
+              ".settings-activity[role=\"listitem\"]:nth-child(3) > .settings-reorder > button:nth-child(2)"
+            ],
+            [
+              "button[aria-label=\"Move File tools up\"]"
+            ],
+            [
+              "button[aria-label=\"Move File tools down\"]"
+            ],
+            [
+              "button[aria-label=\"Move Link detected up\"]"
+            ],
+            [
+              "button[aria-label=\"Move Link detected down\"]"
+            ],
+            [
+              ".settings-activity[role=\"listitem\"]:nth-child(6) > .settings-reorder > button:nth-child(1)"
+            ],
+            [
+              ".settings-activity[role=\"listitem\"]:nth-child(6) > .settings-reorder > button:nth-child(2)"
+            ],
+            [
+              "button[aria-label=\"Move Now playing up\"]"
+            ],
+            [
+              "button[aria-label=\"Move Now playing down\"]"
+            ],
+            [
+              "button[aria-label=\"Move Focus timer up\"]"
+            ],
+            [
+              "button[aria-label=\"Move Focus timer down\"]"
+            ],
+            [
+              "button[aria-label=\"Move Power up\"]"
+            ]
+          ]
+        },
+        {
+          "id": "label-content-name-mismatch",
+          "impact": "serious",
+          "targets": [
+            [
+              "button[aria-label=\"Move Mic / camera up\"]"
+            ],
+            [
+              "button[aria-label=\"Move Mic / camera down\"]"
+            ],
+            [
+              "button[aria-label=\"Move Downloads up\"]"
+            ],
+            [
+              "button[aria-label=\"Move Downloads down\"]"
+            ],
+            [
+              "button[aria-label=\"Move Timers / focus ending up\"]"
+            ],
+            [
+              ".settings-activity[role=\"listitem\"]:nth-child(3) > .settings-reorder > button:nth-child(2)"
+            ],
+            [
+              "button[aria-label=\"Move File tools up\"]"
+            ],
+            [
+              "button[aria-label=\"Move File tools down\"]"
+            ],
+            [
+              "button[aria-label=\"Move Link detected up\"]"
+            ],
+            [
+              "button[aria-label=\"Move Link detected down\"]"
+            ],
+            [
+              ".settings-activity[role=\"listitem\"]:nth-child(6) > .settings-reorder > button:nth-child(1)"
+            ],
+            [
+              ".settings-activity[role=\"listitem\"]:nth-child(6) > .settings-reorder > button:nth-child(2)"
+            ],
+            [
+              "button[aria-label=\"Move Now playing up\"]"
+            ],
+            [
+              "button[aria-label=\"Move Now playing down\"]"
+            ],
+            [
+              "button[aria-label=\"Move Focus timer up\"]"
+            ],
+            [
+              "button[aria-label=\"Move Focus timer down\"]"
+            ],
+            [
+              "button[aria-label=\"Move Power up\"]"
+            ],
+            [
+              "button[aria-label=\"Move Power down\"]"
+            ]
+          ]
+        }
+      ],
+      "passes": 34
+    },
+    {
+      "scenario": "settings-downloads-save-failed",
+      "version": "4.14.1",
+      "url": "/settings.html",
+      "theme": "light",
+      "scale": 1,
+      "violations": [],
+      "incomplete": [],
+      "passes": 37
+    },
+    {
+      "scenario": "settings-clipboard-clear-confirmation",
+      "version": "4.14.1",
+      "url": "/settings.html",
+      "theme": "light",
+      "scale": 1,
+      "violations": [],
+      "incomplete": [],
+      "passes": 36
+    },
+    {
+      "scenario": "settings-files-bottom",
+      "version": "4.14.1",
+      "url": "/settings.html",
+      "theme": "light",
+      "scale": 1,
+      "violations": [],
+      "incomplete": [
+        {
+          "id": "color-contrast",
+          "impact": "serious",
+          "targets": [
+            [
+              ".island-muted"
+            ]
+          ]
+        }
+      ],
+      "passes": 38
+    },
+    {
+      "scenario": "settings-shortcuts-bottom",
+      "version": "4.14.1",
+      "url": "/settings.html",
+      "theme": "light",
+      "scale": 1,
+      "violations": [],
+      "incomplete": [
+        {
+          "id": "aria-prohibited-attr",
+          "impact": "serious",
+          "targets": [
+            [
+              "span[aria-label=\"Ctrl + Alt + N\"]"
+            ],
+            [
+              "span[aria-label=\"Ctrl + Alt + T\"]"
+            ],
+            [
+              "span[aria-label=\"Ctrl + 1–6\"]"
+            ],
+            [
+              "span[aria-label=\"Alt + 1–9\"]"
+            ],
+            [
+              "span[aria-label=\"Esc\"]"
+            ],
+            [
+              "span[aria-label=\"Enter\"]"
+            ],
+            [
+              "span[aria-label=\"Ctrl + Enter\"]"
+            ]
+          ]
+        }
+      ],
+      "passes": 33
+    },
+    {
+      "scenario": "settings-privacy-statement",
+      "version": "4.14.1",
+      "url": "/settings.html",
+      "theme": "light",
+      "scale": 1,
+      "violations": [
+        {
+          "id": "scrollable-region-focusable",
+          "impact": "serious",
+          "nodes": [
+            {
+              "target": [
+                "pre"
+              ],
+              "failureSummary": "Fix any of the following:\n  Element should have focusable content\n  Element should be focusable"
+            }
+          ]
+        }
+      ],
+      "incomplete": [],
+      "passes": 31
+    }
+  ]
+}

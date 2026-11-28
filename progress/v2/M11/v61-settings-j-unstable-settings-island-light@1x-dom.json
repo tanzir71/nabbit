@@ -1,0 +1,230 @@
+{
+  "beforeCapture": {
+    "active": "<h1 tabindex=\"-1\">Island</h1>",
+    "focus": true,
+    "visibility": "visible",
+    "nodes": [],
+    "animations": [],
+    "recentIpc": [
+      {
+        "command": "plugin:event|listen",
+        "args": {
+          "event": "engine:health",
+          "target": {
+            "kind": "Any"
+          },
+          "handler": 1
+        }
+      },
+      {
+        "command": "plugin:event|listen",
+        "args": {
+          "event": "nabbit://settings-changed",
+          "target": {
+            "kind": "Any"
+          },
+          "handler": 3
+        }
+      },
+      {
+        "command": "plugin:event|listen",
+        "args": {
+          "event": "tauri://theme-changed",
+          "target": {
+            "kind": "Window",
+            "label": "settings"
+          },
+          "handler": 5
+        }
+      },
+      {
+        "command": "settings_window_ready",
+        "args": {}
+      },
+      {
+        "command": "get_settings",
+        "args": {}
+      },
+      {
+        "command": "get_engine_status",
+        "args": {}
+      },
+      {
+        "command": "get_storage_stats",
+        "args": {}
+      },
+      {
+        "command": "plugin:window|theme",
+        "args": {
+          "label": "settings"
+        }
+      },
+      {
+        "command": "plugin:event|listen",
+        "args": {
+          "event": "nabbit://island-config",
+          "target": {
+            "kind": "Any"
+          },
+          "handler": 7
+        }
+      },
+      {
+        "command": "get_island_snapshot",
+        "args": {}
+      }
+    ]
+  },
+  "afterFirst": {
+    "active": "<h1 tabindex=\"-1\">Island</h1>",
+    "focus": true,
+    "visibility": "visible",
+    "nodes": [],
+    "animations": [],
+    "recentIpc": [
+      {
+        "command": "plugin:event|listen",
+        "args": {
+          "event": "engine:health",
+          "target": {
+            "kind": "Any"
+          },
+          "handler": 1
+        }
+      },
+      {
+        "command": "plugin:event|listen",
+        "args": {
+          "event": "nabbit://settings-changed",
+          "target": {
+            "kind": "Any"
+          },
+          "handler": 3
+        }
+      },
+      {
+        "command": "plugin:event|listen",
+        "args": {
+          "event": "tauri://theme-changed",
+          "target": {
+            "kind": "Window",
+            "label": "settings"
+          },
+          "handler": 5
+        }
+      },
+      {
+        "command": "settings_window_ready",
+        "args": {}
+      },
+      {
+        "command": "get_settings",
+        "args": {}
+      },
+      {
+        "command": "get_engine_status",
+        "args": {}
+      },
+      {
+        "command": "get_storage_stats",
+        "args": {}
+      },
+      {
+        "command": "plugin:window|theme",
+        "args": {
+          "label": "settings"
+        }
+      },
+      {
+        "command": "plugin:event|listen",
+        "args": {
+          "event": "nabbit://island-config",
+          "target": {
+            "kind": "Any"
+          },
+          "handler": 7
+        }
+      },
+      {
+        "command": "get_island_snapshot",
+        "args": {}
+      }
+    ]
+  },
+  "afterRepeat": {
+    "active": "<h1 tabindex=\"-1\">Island</h1>",
+    "focus": true,
+    "visibility": "visible",
+    "nodes": [],
+    "animations": [],
+    "recentIpc": [
+      {
+        "command": "plugin:event|listen",
+        "args": {
+          "event": "engine:health",
+          "target": {
+            "kind": "Any"
+          },
+          "handler": 1
+        }
+      },
+      {
+        "command": "plugin:event|listen",
+        "args": {
+          "event": "nabbit://settings-changed",
+          "target": {
+            "kind": "Any"
+          },
+          "handler": 3
+        }
+      },
+      {
+        "command": "plugin:event|listen",
+        "args": {
+          "event": "tauri://theme-changed",
+          "target": {
+            "kind": "Window",
+            "label": "settings"
+          },
+          "handler": 5
+        }
+      },
+      {
+        "command": "settings_window_ready",
+        "args": {}
+      },
+      {
+        "command": "get_settings",
+        "args": {}
+      },
+      {
+        "command": "get_engine_status",
+        "args": {}
+      },
+      {
+        "command": "get_storage_stats",
+        "args": {}
+      },
+      {
+        "command": "plugin:window|theme",
+        "args": {
+          "label": "settings"
+        }
+      },
+      {
+        "command": "plugin:event|listen",
+        "args": {
+          "event": "nabbit://island-config",
+          "target": {
+            "kind": "Any"
+          },
+          "handler": 7
+        }
+      },
+      {
+        "command": "get_island_snapshot",
+        "args": {}
+      }
+    ]
+  }
+}

@@ -21,6 +21,7 @@ export function connectMediaInput(
   };
   const wheel = (event: WheelEvent) => {
     if (
+      !store.getState().scrollToChangeVolume ||
       !eligible(event.target) ||
       !Number.isFinite(event.deltaY) ||
       event.deltaY === 0 ||

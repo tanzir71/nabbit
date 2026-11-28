@@ -1,0 +1,27 @@
+file:///D:/claude-upgrade-26/nabbit/scripts/screenshots/harness.mjs:417
+            throw new Error(`${scenario.name} (${theme}@${scale}x): ${error.message}`, {
+                  ^
+
+Error: settings-privacy-statement (light@1x): Whole-document default axe: [{"id":"scrollable-region-focusable","impact":"serious","nodes":[{"target":["pre"],"failureSummary":"Fix any of the following:\n  Element should have focusable content\n  Element should be focusable"}]}]
+
+1 !== 0
+
+    at captureSuite (file:///D:/claude-upgrade-26/nabbit/scripts/screenshots/harness.mjs:417:19)
+    at async file:///D:/claude-upgrade-26/nabbit/scripts/capture-settings.mjs:51:3 {
+  [cause]: AssertionError [ERR_ASSERTION]: Whole-document default axe: [{"id":"scrollable-region-focusable","impact":"serious","nodes":[{"target":["pre"],"failureSummary":"Fix any of the following:\n  Element should have focusable content\n  Element should be focusable"}]}]
+
+  1 !== 0
+
+      at Object.ready (file:///D:/claude-upgrade-26/nabbit/scripts/capture-settings.mjs:42:12)
+      at async captureSuite (file:///D:/claude-upgrade-26/nabbit/scripts/screenshots/harness.mjs:147:33)
+      at async file:///D:/claude-upgrade-26/nabbit/scripts/capture-settings.mjs:51:3 {
+    generatedMessage: false,
+    code: 'ERR_ASSERTION',
+    actual: 1,
+    expected: 0,
+    operator: 'strictEqual',
+    diff: 'simple'
+  }
+}
+
+Node.js v24.22.2

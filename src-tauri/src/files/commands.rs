@@ -1,7 +1,7 @@
 use super::*;
 use tauri::{Emitter, Manager};
 fn caller(app: &tauri::AppHandle, window: &tauri::WebviewWindow) -> Result<()> {
-    if window.label() == "main" {
+    if matches!(window.label(), "main" | "settings") {
         return Ok(());
     }
     #[cfg(windows)]

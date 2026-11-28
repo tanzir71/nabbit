@@ -16,6 +16,8 @@ export interface IslandMemory {
   scroll: Partial<Record<IslandTab, number>>;
 }
 export interface IslandModel extends IslandMemory {
+  hoverDelayMs: number | null;
+  scrollToChangeVolume: boolean;
   label: string;
   state: IslandMode;
   primary: ActivityItem | null;
@@ -30,6 +32,7 @@ export interface IslandModel extends IslandMemory {
   dropReturn: IslandMode | null;
 }
 export type IslandAction =
+  | { type: "preferences"; preferences: import("../lib/types").IslandPreferences }
   | { type: "present"; state: IslandMode }
   | { type: "backend"; snapshot: ActivitySnapshot; event?: ActivityMessage }
   | { type: "enter" | "leave" | "clock"; now: number }
@@ -46,6 +49,8 @@ export const emptyMemory = (): IslandMemory => ({
 });
 export function initialIsland(label: string, memory: IslandMemory = emptyMemory()): IslandModel {
   return {
+    hoverDelayMs: 180,
+    scrollToChangeVolume: true,
     ...memory,
     label,
     state: "hidden",
@@ -115,6 +120,22 @@ function backend(
 }
 export function islandReducer(model: IslandModel, action: IslandAction): IslandModel {
   switch (action.type) {
+    case "preferences": {
+      const hoverDelayMs =
+        action.preferences.peekOnHoverMs === undefined ? 180 : action.preferences.peekOnHoverMs;
+      const scrollToChangeVolume = action.preferences.scrollToChangeVolume ?? true;
+      if (
+        model.hoverDelayMs === hoverDelayMs &&
+        model.scrollToChangeVolume === scrollToChangeVolume
+      )
+        return model;
+      return {
+        ...model,
+        hoverDelayMs,
+        scrollToChangeVolume,
+        peekAt: null,
+      };
+    }
     case "present":
       if (
         model.gate === "hidden" ||
@@ -152,8 +173,8 @@ export function islandReducer(model: IslandModel, action: IslandAction): IslandM
         ? model
         : model.state === "peek"
           ? { ...model, closeAt: null }
-          : model.state === "live" && model.peekAt === null
-            ? { ...model, peekAt: action.now + 180 }
+          : model.state === "live" && model.peekAt === null && model.hoverDelayMs !== null
+            ? { ...model, peekAt: action.now + model.hoverDelayMs }
             : model;
     case "leave":
       return { ...model, peekAt: null, closeAt: model.state === "peek" ? action.now + 300 : null };

@@ -1,0 +1,45 @@
+{
+  "scope": "Whole-document axe.run() with defaults; no exclusions, tags or disabled rules",
+  "scans": [
+    {
+      "scenario": "settings-general",
+      "version": "4.14.1",
+      "url": "/settings.html",
+      "theme": "light",
+      "scale": 1,
+      "violations": [],
+      "incomplete": [],
+      "passes": 33
+    },
+    {
+      "scenario": "settings-island",
+      "version": "4.14.1",
+      "url": "/settings.html",
+      "theme": "light",
+      "scale": 1,
+      "violations": [],
+      "incomplete": [],
+      "passes": 38
+    },
+    {
+      "scenario": "settings-widgets",
+      "version": "4.14.1",
+      "url": "/settings.html",
+      "theme": "light",
+      "scale": 1,
+      "violations": [],
+      "incomplete": [],
+      "passes": 33
+    },
+    {
+      "scenario": "settings-downloads",
+      "version": "4.14.1",
+      "url": "/settings.html",
+      "theme": "light",
+      "scale": 1,
+      "violations": [],
+      "incomplete": [],
+      "passes": 37
+    }
+  ]
+}

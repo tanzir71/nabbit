@@ -4,6 +4,23 @@ import { useAppStore } from "./useAppStore";
 
 afterEach(() => vi.restoreAllMocks());
 describe("standalone settings bootstrap", () => {
+  it("keeps a newer pushed preference when an earlier save reply arrives late", async () => {
+    const initial = await api.getSettings();
+    useAppStore.setState({ settings: initial });
+    let release!: (settings: typeof initial) => void;
+    vi.spyOn(api, "patchSettings").mockReturnValue(
+      new Promise((resolve) => {
+        release = resolve;
+      }),
+    );
+    const pending = useAppStore.getState().patchSettings({ theme: "dark" });
+    await Promise.resolve();
+    const newer = { ...initial, theme: "dark" as const, retentionDays: 90 as const };
+    useAppStore.getState().acceptSettings(newer);
+    release({ ...initial, theme: "dark" });
+    await pending;
+    expect(useAppStore.getState().settings).toEqual(newer);
+  });
   it("coalesces concurrent mounts and reads settings, engine and counts only", async () => {
     const settings = await api.getSettings();
     let release!: (value: typeof settings) => void;

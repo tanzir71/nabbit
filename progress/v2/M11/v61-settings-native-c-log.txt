@@ -1,0 +1,14 @@
+Checking nabbit v0.1.0 (D:\claude-upgrade-26\nabbit\src-tauri)
+warning: method `sample` is never used
+   --> src\island\surface.rs:146:12
+    |
+115 | impl Session {
+    | ------------ method in this implementation
+...
+146 |     pub fn sample(&mut self, inside: bool, dragging: bool, left: bool, now: u64, base: Mode) {
+    |            ^^^^^^
+    |
+    = note: `#[warn(dead_code)]` (part of `#[warn(unused)]`) on by default
+
+warning: `nabbit` (lib) generated 1 warning
+    Finished `dev` profile [unoptimized + debuginfo] target(s) in 22.37s
