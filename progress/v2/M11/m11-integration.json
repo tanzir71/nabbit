@@ -1,0 +1,51 @@
+{
+  "applicationCommit": "d0b1d71286a0082e7b2d5f5ccf8ecac24be0518e",
+  "currentNativeFlows": [
+    {
+      "surface": "settings",
+      "report": "m11-native-settings-current-scene.json",
+      "captures": 8,
+      "passed": true,
+      "executableSha256": "7902b6d0cf718360a53d5bd02d578948db82129b1130152a4ea7c736607752ef",
+      "buildManifestSha256": "35c8cf7110187c19e134b477ecb18d3872c198301948dc9ba197ba1733dd9992"
+    },
+    {
+      "surface": "modes",
+      "report": "m11-native-modes-current-scene.json",
+      "captures": 6,
+      "passed": true,
+      "executableSha256": "7902b6d0cf718360a53d5bd02d578948db82129b1130152a4ea7c736607752ef",
+      "buildManifestSha256": "35c8cf7110187c19e134b477ecb18d3872c198301948dc9ba197ba1733dd9992"
+    },
+    {
+      "surface": "tray",
+      "report": "m11-native-tray-a-scene.json",
+      "captures": 8,
+      "passed": true,
+      "executableSha256": "7902b6d0cf718360a53d5bd02d578948db82129b1130152a4ea7c736607752ef",
+      "buildManifestSha256": "35c8cf7110187c19e134b477ecb18d3872c198301948dc9ba197ba1733dd9992"
+    }
+  ],
+  "totalCurrentNativeViews": 22,
+  "shortcutEvidence": "v64-native-b-scene.json",
+  "shortcutEvidenceMatchesCurrentBuild": true,
+  "scopeCorrections": [
+    {
+      "sourceReport": "m11-native-settings-a-scene.json",
+      "originalSha256": "92c0441b643bbacb8794017f75e79dbd3a32111d1d59a7f51bf4161315e34cc8",
+      "canonicalReport": "m11-native-settings-current-scene.json",
+      "canonicalSha256": "aad7b8862af9b2780fb80cf24abaf8bccf91840a89b92be51c4173201947603f",
+      "script": "scripts/capture-native-settings.mjs",
+      "onlyScopeMetadataChanged": true
+    },
+    {
+      "sourceReport": "m11-native-modes-a-scene.json",
+      "originalSha256": "37982c645802ff26f84bfd7b92843289b4b679eb857976d7896b0816057b6743",
+      "canonicalReport": "m11-native-modes-current-scene.json",
+      "canonicalSha256": "1d0e2c06ce1f23d8f32f946d3f90442a6ec103e76eb7afdd9da6c18e7ece3864",
+      "script": "scripts/capture-native-modes.mjs",
+      "onlyScopeMetadataChanged": true
+    }
+  ],
+  "scope": "Owned executable/app-data/WebView/control fixtures only. Existing HWND drop targets may register/unregister. No real clipboard/cursor/global keys, hosted accounts, shell/autostart/global-hotkey/notification registration, installer execution/signing or OS setting changes. Actual global key ownership, physical Windows notification/Explorer delivery and fresh performance remain unclaimed."
+}

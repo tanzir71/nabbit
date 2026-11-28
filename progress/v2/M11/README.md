@@ -106,3 +106,13 @@ Proof: [requirements](v64-requirements.json), [flow](v64-flow.json), [design](v6
 Only owned app/WebView/data fixtures and DOM input were used. Native registration outcomes and focus for recorder delivery are injected through the production transaction/recorder paths. No actual global shortcut registration/input, real clipboard/cursor, external accounts/profiles, shell/autostart/notification registration, installers/signing or OS/display changes. No physical desktop-key ownership, other-platform/hardware or new idle-performance claim.
 
 Direct local main task commit with skip-ci, no PR/tag/task push. M11 publication is next; V7/M12 remain.
+
+## M11 publication readiness
+
+All four V6 tasks are implemented. [Task audit](m11-task-audit.json) verifies 8,949 original source/artifact blobs and 817 unchanged current runtime inputs. The manifest and executable match V6.4. [Required checks](m11-checks.json), [readiness receipt](m11-readiness.json) and [all 740 PNGs](m11-png-audit.json) record the delivery boundary.
+
+[Current native integration](m11-integration.json) passes settings, modes and tray flows with 22 repeat captures; eight shortcut captures use the same build. Two capture scripts correct only legacy scope metadata, explicitly allowing owned HWND drop-target registration; original reports are retained alongside canonical corrected copies. No assertions or pixels changed.
+
+The landing changes only M11 metadata/Done/link and M12 In progress. [Eight status captures](m11-status-a-checks.json) repeat exactly and preserve page/icon/font geometry. [Keyboard and accessibility](m11-final-a-accessibility.json) includes eight contexts and 24 default axe scans with zero violations; gradient indeterminates retain conservative proofs without excluding rules. [Source assets](m11-site-assets.json) and [local HTTP bodies](m11-site-http.json) pass at 419,647/500,000 bytes excluding fonts.
+
+[Prepublication state](m11-prepublication.json) confirms public main/docs Pages, four unpublished skip-ci task commits, no releases and unchanged repository workflow IDs. Publication proof and the milestone checkbox remain pending until live checks pass. Application runtime, dependency/sidecar pins, workflows and historical evidence are unchanged. Tests use owned executable/data/WebView/control fixtures; actual global input, shell registration, hosted accounts and installer execution remain outside these checks. No new platform or performance claim is made; V7.1 follows M11.

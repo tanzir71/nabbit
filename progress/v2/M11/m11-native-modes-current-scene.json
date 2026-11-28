@@ -1,0 +1,3419 @@
+{
+  "passed": true,
+  "failure": null,
+  "checks": [
+    "All three real General mode controls apply and render in both themes; actual tray menu checkmarks follow settings, native HWND visibility is observed, and every embedded manifest asset matches the current frontend build.",
+    "Tray only destroys an already expanded island WebView and its native host; owned Win32 enumeration finds no island host and its adaptive worker stops sampling.",
+    "Injected Alt+Space toggles the owned tray popover in tray-only mode without registering or pressing a global shortcut and without taking foreground focus.",
+    "Real queued/running/paused/cancelled/resumed fake downloads drive native progress, pause and idle icons. Both taskbar themes and 16/24px seams preserve exact icon RGBA. Completion reaches the real WinRT XML/notification constructor once; no system toast is shown.",
+    "Notification activation opens Downloads without adding or probing a job. Completions in island+tray and island-only modes retain the island flow and do not create duplicate Windows notifications.",
+    "Both tray-only and island-only survive process restart with silent completed history; every tray-menu mode handler persists the mode. Injected Alt+Space opens the actual island-only view without a tray WebView or foreground focus, its gear opens settings, and reapplication retains the hidden tray and checked menu."
+  ],
+  "captures": [
+    {
+      "file": "m11-native-modes-a-island-and-tray-light@2x.png",
+      "sha256": "f2ee24d93a2cfcd574c12b8aa7ad42136baa0435dadf8eeae716d943218cfcff",
+      "bytes": 159162,
+      "width": 1960,
+      "height": 1440,
+      "repeatMatches": true,
+      "staticAssets": [
+        {
+          "file": "src/assets/downloads/tray-09016.svg",
+          "naturalWidth": 24,
+          "naturalHeight": 24,
+          "x": 19,
+          "y": 17,
+          "width": 24,
+          "height": 24
+        },
+        {
+          "file": "src/assets/settings/57372.svg",
+          "naturalWidth": 16,
+          "naturalHeight": 16,
+          "x": 21,
+          "y": 65,
+          "width": 16,
+          "height": 16
+        },
+        {
+          "file": "src/assets/settings/d64a9.svg",
+          "naturalWidth": 16,
+          "naturalHeight": 16,
+          "x": 21,
+          "y": 103,
+          "width": 16,
+          "height": 16
+        },
+        {
+          "file": "src/assets/settings/27a2e.svg",
+          "naturalWidth": 16,
+          "naturalHeight": 16,
+          "x": 21,
+          "y": 141,
+          "width": 16,
+          "height": 16
+        },
+        {
+          "file": "src/assets/downloads/tray-403ff.svg",
+          "naturalWidth": 16,
+          "naturalHeight": 16,
+          "x": 21,
+          "y": 179,
+          "width": 16,
+          "height": 16
+        },
+        {
+          "file": "src/assets/settings/4fac6.svg",
+          "naturalWidth": 16,
+          "naturalHeight": 16,
+          "x": 21,
+          "y": 217,
+          "width": 16,
+          "height": 16
+        },
+        {
+          "file": "src/assets/settings/15f08.svg",
+          "naturalWidth": 16,
+          "naturalHeight": 16,
+          "x": 21,
+          "y": 255,
+          "width": 16,
+          "height": 16
+        },
+        {
+          "file": "src/assets/island/4ebe2.svg",
+          "naturalWidth": 16,
+          "naturalHeight": 16,
+          "x": 21,
+          "y": 293,
+          "width": 16,
+          "height": 16
+        },
+        {
+          "file": "src/assets/settings/fac14.svg",
+          "naturalWidth": 16,
+          "naturalHeight": 16,
+          "x": 21,
+          "y": 331,
+          "width": 16,
+          "height": 16
+        },
+        {
+          "file": "src/assets/settings/33b6a.svg",
+          "naturalWidth": 16,
+          "naturalHeight": 16,
+          "x": 21,
+          "y": 369,
+          "width": 16,
+          "height": 16
+        },
+        {
+          "file": "src/assets/tack/fd956.svg",
+          "naturalWidth": 14,
+          "naturalHeight": 14,
+          "x": 274,
+          "y": 208,
+          "width": 14,
+          "height": 14
+        },
+        {
+          "file": "src/assets/tack/ef790.svg",
+          "naturalWidth": 14,
+          "naturalHeight": 14,
+          "x": 508,
+          "y": 208,
+          "width": 14,
+          "height": 14
+        },
+        {
+          "file": "src/assets/tack/ef790.svg",
+          "naturalWidth": 14,
+          "naturalHeight": 14,
+          "x": 742,
+          "y": 208,
+          "width": 14,
+          "height": 14
+        },
+        {
+          "file": "src/assets/engine/refresh.svg",
+          "naturalWidth": 16,
+          "naturalHeight": 16,
+          "x": 788.640625,
+          "y": 585,
+          "width": 16,
+          "height": 16
+        }
+      ],
+      "paintState": {
+        "theme": "light",
+        "reducedMotion": true,
+        "animations": []
+      },
+      "scope": "Owned WebView pixels; DWM material independently queried on its HWND"
+    },
+    {
+      "file": "m11-native-modes-a-tray-only-light@2x.png",
+      "sha256": "c9c8e87080afb2803f7dd13f3163f2931543af16b8de07dee5903b54f8503d16",
+      "bytes": 159185,
+      "width": 1960,
+      "height": 1440,
+      "repeatMatches": true,
+      "staticAssets": [
+        {
+          "file": "src/assets/downloads/tray-09016.svg",
+          "naturalWidth": 24,
+          "naturalHeight": 24,
+          "x": 19,
+          "y": 17,
+          "width": 24,
+          "height": 24
+        },
+        {
+          "file": "src/assets/settings/57372.svg",
+          "naturalWidth": 16,
+          "naturalHeight": 16,
+          "x": 21,
+          "y": 65,
+          "width": 16,
+          "height": 16
+        },
+        {
+          "file": "src/assets/settings/d64a9.svg",
+          "naturalWidth": 16,
+          "naturalHeight": 16,
+          "x": 21,
+          "y": 103,
+          "width": 16,
+          "height": 16
+        },
+        {
+          "file": "src/assets/settings/27a2e.svg",
+          "naturalWidth": 16,
+          "naturalHeight": 16,
+          "x": 21,
+          "y": 141,
+          "width": 16,
+          "height": 16
+        },
+        {
+          "file": "src/assets/downloads/tray-403ff.svg",
+          "naturalWidth": 16,
+          "naturalHeight": 16,
+          "x": 21,
+          "y": 179,
+          "width": 16,
+          "height": 16
+        },
+        {
+          "file": "src/assets/settings/4fac6.svg",
+          "naturalWidth": 16,
+          "naturalHeight": 16,
+          "x": 21,
+          "y": 217,
+          "width": 16,
+          "height": 16
+        },
+        {
+          "file": "src/assets/settings/15f08.svg",
+          "naturalWidth": 16,
+          "naturalHeight": 16,
+          "x": 21,
+          "y": 255,
+          "width": 16,
+          "height": 16
+        },
+        {
+          "file": "src/assets/island/4ebe2.svg",
+          "naturalWidth": 16,
+          "naturalHeight": 16,
+          "x": 21,
+          "y": 293,
+          "width": 16,
+          "height": 16
+        },
+        {
+          "file": "src/assets/settings/fac14.svg",
+          "naturalWidth": 16,
+          "naturalHeight": 16,
+          "x": 21,
+          "y": 331,
+          "width": 16,
+          "height": 16
+        },
+        {
+          "file": "src/assets/settings/33b6a.svg",
+          "naturalWidth": 16,
+          "naturalHeight": 16,
+          "x": 21,
+          "y": 369,
+          "width": 16,
+          "height": 16
+        },
+        {
+          "file": "src/assets/tack/ef790.svg",
+          "naturalWidth": 14,
+          "naturalHeight": 14,
+          "x": 274,
+          "y": 208,
+          "width": 14,
+          "height": 14
+        },
+        {
+          "file": "src/assets/tack/fd956.svg",
+          "naturalWidth": 14,
+          "naturalHeight": 14,
+          "x": 508,
+          "y": 208,
+          "width": 14,
+          "height": 14
+        },
+        {
+          "file": "src/assets/tack/ef790.svg",
+          "naturalWidth": 14,
+          "naturalHeight": 14,
+          "x": 742,
+          "y": 208,
+          "width": 14,
+          "height": 14
+        },
+        {
+          "file": "src/assets/engine/refresh.svg",
+          "naturalWidth": 16,
+          "naturalHeight": 16,
+          "x": 788.640625,
+          "y": 585,
+          "width": 16,
+          "height": 16
+        }
+      ],
+      "paintState": {
+        "theme": "light",
+        "reducedMotion": true,
+        "animations": []
+      },
+      "scope": "Owned WebView pixels; DWM material independently queried on its HWND"
+    },
+    {
+      "file": "m11-native-modes-a-island-only-light@2x.png",
+      "sha256": "439a44ca2c8998d8edc12f73efb5bc4788fe576bc093b23715035f2adabbcc4b",
+      "bytes": 159095,
+      "width": 1960,
+      "height": 1440,
+      "repeatMatches": true,
+      "staticAssets": [
+        {
+          "file": "src/assets/downloads/tray-09016.svg",
+          "naturalWidth": 24,
+          "naturalHeight": 24,
+          "x": 19,
+          "y": 17,
+          "width": 24,
+          "height": 24
+        },
+        {
+          "file": "src/assets/settings/57372.svg",
+          "naturalWidth": 16,
+          "naturalHeight": 16,
+          "x": 21,
+          "y": 65,
+          "width": 16,
+          "height": 16
+        },
+        {
+          "file": "src/assets/settings/d64a9.svg",
+          "naturalWidth": 16,
+          "naturalHeight": 16,
+          "x": 21,
+          "y": 103,
+          "width": 16,
+          "height": 16
+        },
+        {
+          "file": "src/assets/settings/27a2e.svg",
+          "naturalWidth": 16,
+          "naturalHeight": 16,
+          "x": 21,
+          "y": 141,
+          "width": 16,
+          "height": 16
+        },
+        {
+          "file": "src/assets/downloads/tray-403ff.svg",
+          "naturalWidth": 16,
+          "naturalHeight": 16,
+          "x": 21,
+          "y": 179,
+          "width": 16,
+          "height": 16
+        },
+        {
+          "file": "src/assets/settings/4fac6.svg",
+          "naturalWidth": 16,
+          "naturalHeight": 16,
+          "x": 21,
+          "y": 217,
+          "width": 16,
+          "height": 16
+        },
+        {
+          "file": "src/assets/settings/15f08.svg",
+          "naturalWidth": 16,
+          "naturalHeight": 16,
+          "x": 21,
+          "y": 255,
+          "width": 16,
+          "height": 16
+        },
+        {
+          "file": "src/assets/island/4ebe2.svg",
+          "naturalWidth": 16,
+          "naturalHeight": 16,
+          "x": 21,
+          "y": 293,
+          "width": 16,
+          "height": 16
+        },
+        {
+          "file": "src/assets/settings/fac14.svg",
+          "naturalWidth": 16,
+          "naturalHeight": 16,
+          "x": 21,
+          "y": 331,
+          "width": 16,
+          "height": 16
+        },
+        {
+          "file": "src/assets/settings/33b6a.svg",
+          "naturalWidth": 16,
+          "naturalHeight": 16,
+          "x": 21,
+          "y": 369,
+          "width": 16,
+          "height": 16
+        },
+        {
+          "file": "src/assets/tack/ef790.svg",
+          "naturalWidth": 14,
+          "naturalHeight": 14,
+          "x": 274,
+          "y": 208,
+          "width": 14,
+          "height": 14
+        },
+        {
+          "file": "src/assets/tack/ef790.svg",
+          "naturalWidth": 14,
+          "naturalHeight": 14,
+          "x": 508,
+          "y": 208,
+          "width": 14,
+          "height": 14
+        },
+        {
+          "file": "src/assets/tack/fd956.svg",
+          "naturalWidth": 14,
+          "naturalHeight": 14,
+          "x": 742,
+          "y": 208,
+          "width": 14,
+          "height": 14
+        },
+        {
+          "file": "src/assets/engine/refresh.svg",
+          "naturalWidth": 16,
+          "naturalHeight": 16,
+          "x": 788.640625,
+          "y": 585,
+          "width": 16,
+          "height": 16
+        }
+      ],
+      "paintState": {
+        "theme": "light",
+        "reducedMotion": true,
+        "animations": []
+      },
+      "scope": "Owned WebView pixels; DWM material independently queried on its HWND"
+    },
+    {
+      "file": "m11-native-modes-a-island-and-tray-dark@2x.png",
+      "sha256": "2ab0ffaf1a50a6ca8b2b18b79d3af6785db2181990d937821ee644a9ff5434eb",
+      "bytes": 157191,
+      "width": 1960,
+      "height": 1440,
+      "repeatMatches": true,
+      "staticAssets": [
+        {
+          "file": "src/assets/downloads/tray-09016.svg",
+          "naturalWidth": 24,
+          "naturalHeight": 24,
+          "x": 19,
+          "y": 17,
+          "width": 24,
+          "height": 24
+        },
+        {
+          "file": "src/assets/settings/57372.svg",
+          "naturalWidth": 16,
+          "naturalHeight": 16,
+          "x": 21,
+          "y": 65,
+          "width": 16,
+          "height": 16
+        },
+        {
+          "file": "src/assets/settings/d64a9.svg",
+          "naturalWidth": 16,
+          "naturalHeight": 16,
+          "x": 21,
+          "y": 103,
+          "width": 16,
+          "height": 16
+        },
+        {
+          "file": "src/assets/settings/27a2e.svg",
+          "naturalWidth": 16,
+          "naturalHeight": 16,
+          "x": 21,
+          "y": 141,
+          "width": 16,
+          "height": 16
+        },
+        {
+          "file": "src/assets/downloads/tray-403ff.svg",
+          "naturalWidth": 16,
+          "naturalHeight": 16,
+          "x": 21,
+          "y": 179,
+          "width": 16,
+          "height": 16
+        },
+        {
+          "file": "src/assets/settings/4fac6.svg",
+          "naturalWidth": 16,
+          "naturalHeight": 16,
+          "x": 21,
+          "y": 217,
+          "width": 16,
+          "height": 16
+        },
+        {
+          "file": "src/assets/settings/15f08.svg",
+          "naturalWidth": 16,
+          "naturalHeight": 16,
+          "x": 21,
+          "y": 255,
+          "width": 16,
+          "height": 16
+        },
+        {
+          "file": "src/assets/island/4ebe2.svg",
+          "naturalWidth": 16,
+          "naturalHeight": 16,
+          "x": 21,
+          "y": 293,
+          "width": 16,
+          "height": 16
+        },
+        {
+          "file": "src/assets/settings/fac14.svg",
+          "naturalWidth": 16,
+          "naturalHeight": 16,
+          "x": 21,
+          "y": 331,
+          "width": 16,
+          "height": 16
+        },
+        {
+          "file": "src/assets/settings/33b6a.svg",
+          "naturalWidth": 16,
+          "naturalHeight": 16,
+          "x": 21,
+          "y": 369,
+          "width": 16,
+          "height": 16
+        },
+        {
+          "file": "src/assets/tack/fd956.svg",
+          "naturalWidth": 14,
+          "naturalHeight": 14,
+          "x": 274,
+          "y": 208,
+          "width": 14,
+          "height": 14
+        },
+        {
+          "file": "src/assets/tack/ef790.svg",
+          "naturalWidth": 14,
+          "naturalHeight": 14,
+          "x": 508,
+          "y": 208,
+          "width": 14,
+          "height": 14
+        },
+        {
+          "file": "src/assets/tack/ef790.svg",
+          "naturalWidth": 14,
+          "naturalHeight": 14,
+          "x": 742,
+          "y": 208,
+          "width": 14,
+          "height": 14
+        },
+        {
+          "file": "src/assets/engine/refresh.svg",
+          "naturalWidth": 16,
+          "naturalHeight": 16,
+          "x": 788.640625,
+          "y": 585,
+          "width": 16,
+          "height": 16
+        }
+      ],
+      "paintState": {
+        "theme": "dark",
+        "reducedMotion": true,
+        "animations": []
+      },
+      "scope": "Owned WebView pixels; DWM material independently queried on its HWND"
+    },
+    {
+      "file": "m11-native-modes-a-tray-only-dark@2x.png",
+      "sha256": "6c6a69bfd067d1e3d41aa2599353b8adb951f040c25669e234d80cb17158f983",
+      "bytes": 157184,
+      "width": 1960,
+      "height": 1440,
+      "repeatMatches": true,
+      "staticAssets": [
+        {
+          "file": "src/assets/downloads/tray-09016.svg",
+          "naturalWidth": 24,
+          "naturalHeight": 24,
+          "x": 19,
+          "y": 17,
+          "width": 24,
+          "height": 24
+        },
+        {
+          "file": "src/assets/settings/57372.svg",
+          "naturalWidth": 16,
+          "naturalHeight": 16,
+          "x": 21,
+          "y": 65,
+          "width": 16,
+          "height": 16
+        },
+        {
+          "file": "src/assets/settings/d64a9.svg",
+          "naturalWidth": 16,
+          "naturalHeight": 16,
+          "x": 21,
+          "y": 103,
+          "width": 16,
+          "height": 16
+        },
+        {
+          "file": "src/assets/settings/27a2e.svg",
+          "naturalWidth": 16,
+          "naturalHeight": 16,
+          "x": 21,
+          "y": 141,
+          "width": 16,
+          "height": 16
+        },
+        {
+          "file": "src/assets/downloads/tray-403ff.svg",
+          "naturalWidth": 16,
+          "naturalHeight": 16,
+          "x": 21,
+          "y": 179,
+          "width": 16,
+          "height": 16
+        },
+        {
+          "file": "src/assets/settings/4fac6.svg",
+          "naturalWidth": 16,
+          "naturalHeight": 16,
+          "x": 21,
+          "y": 217,
+          "width": 16,
+          "height": 16
+        },
+        {
+          "file": "src/assets/settings/15f08.svg",
+          "naturalWidth": 16,
+          "naturalHeight": 16,
+          "x": 21,
+          "y": 255,
+          "width": 16,
+          "height": 16
+        },
+        {
+          "file": "src/assets/island/4ebe2.svg",
+          "naturalWidth": 16,
+          "naturalHeight": 16,
+          "x": 21,
+          "y": 293,
+          "width": 16,
+          "height": 16
+        },
+        {
+          "file": "src/assets/settings/fac14.svg",
+          "naturalWidth": 16,
+          "naturalHeight": 16,
+          "x": 21,
+          "y": 331,
+          "width": 16,
+          "height": 16
+        },
+        {
+          "file": "src/assets/settings/33b6a.svg",
+          "naturalWidth": 16,
+          "naturalHeight": 16,
+          "x": 21,
+          "y": 369,
+          "width": 16,
+          "height": 16
+        },
+        {
+          "file": "src/assets/tack/ef790.svg",
+          "naturalWidth": 14,
+          "naturalHeight": 14,
+          "x": 274,
+          "y": 208,
+          "width": 14,
+          "height": 14
+        },
+        {
+          "file": "src/assets/tack/fd956.svg",
+          "naturalWidth": 14,
+          "naturalHeight": 14,
+          "x": 508,
+          "y": 208,
+          "width": 14,
+          "height": 14
+        },
+        {
+          "file": "src/assets/tack/ef790.svg",
+          "naturalWidth": 14,
+          "naturalHeight": 14,
+          "x": 742,
+          "y": 208,
+          "width": 14,
+          "height": 14
+        },
+        {
+          "file": "src/assets/engine/refresh.svg",
+          "naturalWidth": 16,
+          "naturalHeight": 16,
+          "x": 788.640625,
+          "y": 585,
+          "width": 16,
+          "height": 16
+        }
+      ],
+      "paintState": {
+        "theme": "dark",
+        "reducedMotion": true,
+        "animations": []
+      },
+      "scope": "Owned WebView pixels; DWM material independently queried on its HWND"
+    },
+    {
+      "file": "m11-native-modes-a-island-only-dark@2x.png",
+      "sha256": "e99c06c2076274c704a8cf9a07dc87e0e8767d588446c36b5d22e7bc0813e903",
+      "bytes": 157127,
+      "width": 1960,
+      "height": 1440,
+      "repeatMatches": true,
+      "staticAssets": [
+        {
+          "file": "src/assets/downloads/tray-09016.svg",
+          "naturalWidth": 24,
+          "naturalHeight": 24,
+          "x": 19,
+          "y": 17,
+          "width": 24,
+          "height": 24
+        },
+        {
+          "file": "src/assets/settings/57372.svg",
+          "naturalWidth": 16,
+          "naturalHeight": 16,
+          "x": 21,
+          "y": 65,
+          "width": 16,
+          "height": 16
+        },
+        {
+          "file": "src/assets/settings/d64a9.svg",
+          "naturalWidth": 16,
+          "naturalHeight": 16,
+          "x": 21,
+          "y": 103,
+          "width": 16,
+          "height": 16
+        },
+        {
+          "file": "src/assets/settings/27a2e.svg",
+          "naturalWidth": 16,
+          "naturalHeight": 16,
+          "x": 21,
+          "y": 141,
+          "width": 16,
+          "height": 16
+        },
+        {
+          "file": "src/assets/downloads/tray-403ff.svg",
+          "naturalWidth": 16,
+          "naturalHeight": 16,
+          "x": 21,
+          "y": 179,
+          "width": 16,
+          "height": 16
+        },
+        {
+          "file": "src/assets/settings/4fac6.svg",
+          "naturalWidth": 16,
+          "naturalHeight": 16,
+          "x": 21,
+          "y": 217,
+          "width": 16,
+          "height": 16
+        },
+        {
+          "file": "src/assets/settings/15f08.svg",
+          "naturalWidth": 16,
+          "naturalHeight": 16,
+          "x": 21,
+          "y": 255,
+          "width": 16,
+          "height": 16
+        },
+        {
+          "file": "src/assets/island/4ebe2.svg",
+          "naturalWidth": 16,
+          "naturalHeight": 16,
+          "x": 21,
+          "y": 293,
+          "width": 16,
+          "height": 16
+        },
+        {
+          "file": "src/assets/settings/fac14.svg",
+          "naturalWidth": 16,
+          "naturalHeight": 16,
+          "x": 21,
+          "y": 331,
+          "width": 16,
+          "height": 16
+        },
+        {
+          "file": "src/assets/settings/33b6a.svg",
+          "naturalWidth": 16,
+          "naturalHeight": 16,
+          "x": 21,
+          "y": 369,
+          "width": 16,
+          "height": 16
+        },
+        {
+          "file": "src/assets/tack/ef790.svg",
+          "naturalWidth": 14,
+          "naturalHeight": 14,
+          "x": 274,
+          "y": 208,
+          "width": 14,
+          "height": 14
+        },
+        {
+          "file": "src/assets/tack/ef790.svg",
+          "naturalWidth": 14,
+          "naturalHeight": 14,
+          "x": 508,
+          "y": 208,
+          "width": 14,
+          "height": 14
+        },
+        {
+          "file": "src/assets/tack/fd956.svg",
+          "naturalWidth": 14,
+          "naturalHeight": 14,
+          "x": 742,
+          "y": 208,
+          "width": 14,
+          "height": 14
+        },
+        {
+          "file": "src/assets/engine/refresh.svg",
+          "naturalWidth": 16,
+          "naturalHeight": 16,
+          "x": 788.640625,
+          "y": 585,
+          "width": 16,
+          "height": 16
+        }
+      ],
+      "paintState": {
+        "theme": "dark",
+        "reducedMotion": true,
+        "animations": []
+      },
+      "scope": "Owned WebView pixels; DWM material independently queried on its HWND"
+    }
+  ],
+  "results": {
+    "window": {
+      "ownedProcessId": 46996,
+      "hwnd": 61411240,
+      "visible": true,
+      "style": 349110272,
+      "exStyle": 134480144,
+      "dpi": 96,
+      "clientWidth": 980,
+      "clientHeight": 720,
+      "minimumWidth": 836,
+      "minimumHeight": 639,
+      "backdrop": 2,
+      "backdropHresult": 0,
+      "darkCaption": 1,
+      "darkHresult": 0,
+      "foregroundProcessId": 30244,
+      "osBuild": 26300
+    },
+    "webViewVersion": "158.0.4370.45",
+    "assets": [
+      {
+        "file": "assets/CompactContent-2AV3KHLk.js",
+        "ok": true,
+        "sha256": "0f038e2d5f0154db46a03254aaf19bf3936ee470ed21397d4d3fea34af4ef839"
+      },
+      {
+        "file": "assets/DesignIcon-Do1hiVWl.js",
+        "ok": true,
+        "sha256": "4d74a71ab25d95ceb01fecc01b2c455c6199a79b470261de2126ef99c1975bf3"
+      },
+      {
+        "file": "assets/EngineHealthCard-BLKwpQSy.css",
+        "ok": true,
+        "sha256": "941e32f7992987d2639217825bc3b04c3c7ee54c7e0584a9ea9e24db2b98ae50"
+      },
+      {
+        "file": "assets/EngineHealthCard-D5AQUPgE.js",
+        "ok": true,
+        "sha256": "06a33b961b8852f7187bb1ee500918d991b26de7da46384c15c7f4e7f8b0e85c"
+      },
+      {
+        "file": "assets/FilesPanel-CIJuZuCc.js",
+        "ok": true,
+        "sha256": "407070051e8c7c4e15aa872e4a78637fb7d962ac93a42a0ed22cc3bb82705d64"
+      },
+      {
+        "file": "assets/FilesPanel-_QETtGwA.css",
+        "ok": true,
+        "sha256": "ea84a8c713de45e44ac7da97094dff2c96f175cf27dd10979360ffc53c9291b3"
+      },
+      {
+        "file": "assets/files-DEHWzxOL.css",
+        "ok": true,
+        "sha256": "2e59d383eb3f1978ded9d8a685c17fe02b691ac7eb308e26ad3211bd822c6fbe"
+      },
+      {
+        "file": "assets/NoteCard-Cv2281al.js",
+        "ok": true,
+        "sha256": "159741362e150b780cce8ea621f6daa4f55ada5e4991766730e285912d63a841"
+      },
+      {
+        "file": "assets/PresetChip-DDTCKo6J.js",
+        "ok": true,
+        "sha256": "faf688bd6a753410e2f4612aaef7e2fd35647bf8126603bd7c5e93020a1eb6df"
+      },
+      {
+        "file": "assets/ProgressRing-zprwI_bR.js",
+        "ok": true,
+        "sha256": "a91246549be8571f1a4e1d6defb37f71f2117fd4ded9699c0c8cd8c721815f5c"
+      },
+      {
+        "file": "assets/QuickCapture-DUXyoEkk.css",
+        "ok": true,
+        "sha256": "98ef2657e829c422b3b3ccb05d8a7a47591e0fbd8384da676de2b88e36141cdd"
+      },
+      {
+        "file": "assets/QuickCapture-IZf24UdS.js",
+        "ok": true,
+        "sha256": "89f0f2a36c7903169106a0a8fefa6826a0be87fa809e33f2c9aecb41d333a4a9"
+      },
+      {
+        "file": "assets/SyncState-Co7PbncJ.css",
+        "ok": true,
+        "sha256": "f31fd684140b53925045c458a75ddba61778f1b9670f2227ff200c4831fcc565"
+      },
+      {
+        "file": "assets/SyncState-NS2Cv3La.js",
+        "ok": true,
+        "sha256": "ccacf188b4ce17de950690de9b67eeb9d70a56cbd31c865a25c966a590dfdecf"
+      },
+      {
+        "file": "assets/Tab-C6DqbK0O.js",
+        "ok": true,
+        "sha256": "829bd967b6620d0f69f9e6d8ce08f51492d23bf883579b0858fcf1192098d5a9"
+      },
+      {
+        "file": "assets/TackSettings-BU2DM_3_.css",
+        "ok": true,
+        "sha256": "b77fd00a3460828a06b18c45f8311e174a10f1eed1ad17f66231c1e91435f271"
+      },
+      {
+        "file": "assets/TackSettings-DFKV6okC.js",
+        "ok": true,
+        "sha256": "9cd1f5fc52f3f6721cf58ce4431831cff920bf20e455c689507772f6ae3ad227"
+      },
+      {
+        "file": "assets/Toggle-C5Fjlujo.js",
+        "ok": true,
+        "sha256": "943956ee2af918bafb0c0e6813190120acd4660c8e480383234490cbd9d6390c"
+      },
+      {
+        "file": "assets/ToolSheet-CThX_Nlf.css",
+        "ok": true,
+        "sha256": "b04094017059fe739ed6cc69e62d7d19d178e3b1538187581f8e94c039895d0d"
+      },
+      {
+        "file": "assets/ToolSheet-DLX6G7EQ.js",
+        "ok": true,
+        "sha256": "cfc6f0ec97d6da5f5ab10a5a23aebeddb6d0d3c4a19cd9ab4fdbb7435a977a82"
+      },
+      {
+        "file": "assets/api-0tSUAyAS.js",
+        "ok": true,
+        "sha256": "0a761cbb9b7c433eb34bb8e3f069ef6479bd786d002a33ab90165f2916ede28b"
+      },
+      {
+        "file": "assets/api-BMa-12vy.js",
+        "ok": true,
+        "sha256": "8364bd2f75278c57ffe4fe63ddc5aa793064cbfd9db35afc6097e97362f22278"
+      },
+      {
+        "file": "assets/api-CbFTDL9c.js",
+        "ok": true,
+        "sha256": "9eab2b2b450de44c332bff7a829aaf2130c42e339322d50d841b9d4ef058708d"
+      },
+      {
+        "file": "assets/api-W8AcLuXX.js",
+        "ok": true,
+        "sha256": "8f3dd0f8a13bb7a6ef02f543b84e737d3c7b1ab34528ae6578ba1a0fa872f151"
+      },
+      {
+        "file": "assets/captureDraft-BB2eCl_2.js",
+        "ok": true,
+        "sha256": "0cd3953348e5c977a4055ae7954b432264b57f6bf3585ebd257ee8e6c4581cca"
+      },
+      {
+        "file": "assets/downloads-C-Cmn6a8.css",
+        "ok": true,
+        "sha256": "2b1179f0347c39737add990719c4c400aa1d0f65045a6a9c4a0af3a312c747a7"
+      },
+      {
+        "file": "assets/downloads-CkNStdka.js",
+        "ok": true,
+        "sha256": "bbc6c703d0abd2049600e471cdb8f5b0f00700a842c1da7ad3fc0e44a0ae0dce"
+      },
+      {
+        "file": "assets/imageApi-CiiosFnW.js",
+        "ok": true,
+        "sha256": "e2868d497b5e9a273ea5f107d67b1418b75df85a28647641ee935c1fb3aa2a07"
+      },
+      {
+        "file": "assets/index-BHhQR3M2.js",
+        "ok": true,
+        "sha256": "ff230ab109ad48af86dbd58a83e133a08423ac224db207e813df6ca38cd2b3e4"
+      },
+      {
+        "file": "assets/index-CkafMRW9.css",
+        "ok": true,
+        "sha256": "1d84a25cc59e94ab633d010245d128bfb991a8594cff23dd608afdfa377af3e7"
+      },
+      {
+        "file": "assets/index-YHT5WoQl.js",
+        "ok": true,
+        "sha256": "59251997a84e26341888cec8676da27feac1b9e281f2ea224fa2fb0d8b9a0055"
+      },
+      {
+        "file": "assets/Geist-Variable-BNK-hTUD.woff2",
+        "ok": true,
+        "sha256": "3626eba547294501c8a4d662c7d9ea3b49734409a4c5a1ccf12fa86429b1687e"
+      },
+      {
+        "file": "assets/GeistMono-Variable-BoRIzn25.woff2",
+        "ok": true,
+        "sha256": "5d93ee62680bbec1abc5405c2658311f9396f6f9a821ef8551ec463887e600d4"
+      },
+      {
+        "file": "assets/islandPresentation-D9iM9goe.js",
+        "ok": true,
+        "sha256": "96e00de6db47606b5220fe15431401d9eb20abd37fb05f082a1d3324d10ce669"
+      },
+      {
+        "file": "assets/islandStore-yqG0HyV6.js",
+        "ok": true,
+        "sha256": "04345b7761811be24029a46c8535df02bd978f420d2c4d960ecd2e95138c3ea3"
+      },
+      {
+        "file": "assets/links-BEXBM4BP.js",
+        "ok": true,
+        "sha256": "df4261b88766b3c98d2a0b21184e51887f58fb8ac2f2b07adcb8e1641cf605fb"
+      },
+      {
+        "file": "assets/links-CsTph8Fk.css",
+        "ok": true,
+        "sha256": "e04be3fe00820037941cd749bc53b5ebebdf7e28aa499d06da72bb19a3f15e12"
+      },
+      {
+        "file": "assets/mediaApi-C97IoXkM.js",
+        "ok": true,
+        "sha256": "7352f1c84fdcb1a04f91090bb0a662a9eebe18704cb369da8dc0582e85b0607e"
+      },
+      {
+        "file": "assets/model-C2x3WR-s.js",
+        "ok": true,
+        "sha256": "206802447e27deda16791cc6e8d2f7008d081d8db224dadb58c806fcb4dcddd2"
+      },
+      {
+        "file": "assets/notesStore-CdZEzZoM.js",
+        "ok": true,
+        "sha256": "d216ce918c8ff028b16e0faf44b3df1178cbc9de71dcb39870942a9a07ca56ce"
+      },
+      {
+        "file": "assets/sheets-6iMzT9dT.js",
+        "ok": true,
+        "sha256": "c13bd2a4e95fac517ffb7bf6c86d413b80b1a85cdaf065c38ed67dda0933824a"
+      },
+      {
+        "file": "assets/sheets-B4SLn_mm.css",
+        "ok": true,
+        "sha256": "92637f7803be3e3e878a59d37f9adb3b7dfb1b1f9ba1bbbd3bd9f19a37f52d74"
+      },
+      {
+        "file": "assets/stickyApi-C7tRMfM8.js",
+        "ok": true,
+        "sha256": "d02afd0adb1904bfb59ee3d0b3bc0fc8c3eda6e04ee9c60eb7eeb8e12c98771b"
+      },
+      {
+        "file": "assets/theme-mEADzzL7.js",
+        "ok": true,
+        "sha256": "4a7592058f55741324edc7cb51698bf4e357a99704e3ae3878e4de8a1eed814a"
+      },
+      {
+        "file": "assets/types-BvpWR8LG.js",
+        "ok": true,
+        "sha256": "ac631ae6d0e5b48f3df98b7832e83e5c53b341095c56218d6f5cd1ccd5298393"
+      },
+      {
+        "file": "assets/usePreset-B_oL2Fc0.js",
+        "ok": true,
+        "sha256": "10b4ed85f471b6253e069dcea882468cbdadb204d738bce1035713dd23af0ebc"
+      },
+      {
+        "file": "assets/useSettingsEvents-C8Bv9fLv.js",
+        "ok": true,
+        "sha256": "f7a57b860d7cac35007192950e757cff937eff190e4fb08685dc0c693147d5e3"
+      },
+      {
+        "file": "assets/window-Cate1zIV.js",
+        "ok": true,
+        "sha256": "de754a6693c4aa2e78d5e4834cec4fb0b44c079be79bb25448d0dbf4f20fba8e"
+      },
+      {
+        "file": "assets/main-WEWrXLFh.js",
+        "ok": true,
+        "sha256": "4812c75229c2564b9669b048f3c6ec1e5e822e529b0df85c6503dd8a7f8d7ec2"
+      },
+      {
+        "file": "assets/main-Dq_MxnT8.css",
+        "ok": true,
+        "sha256": "59a7a26be9c03882b0234c57b840232d30fccb07e0fe2fa5ec1899a42a2ffc49"
+      },
+      {
+        "file": "assets/app-32-isMvsoQz.svg",
+        "ok": true,
+        "sha256": "6a4114cac4d1d291a70e0cbc8e804924e89932c7a9c15410f3387c32f5cef5bd"
+      },
+      {
+        "file": "assets/island-CH9Q2Xl0.js",
+        "ok": true,
+        "sha256": "56046036b771197d9a8a47d90c83c75bd8af4b9dd3f40872e34f83ad3c09edc5"
+      },
+      {
+        "file": "assets/island-CmuSRvpv.css",
+        "ok": true,
+        "sha256": "3a92cf3c731abb48d7cd7097ed6cb5f0f8aa3e7985e23314c056ad254761adcd"
+      },
+      {
+        "file": "assets/settings-DMjLqBj9.js",
+        "ok": true,
+        "sha256": "0a271a0ce9ce3d8eac239aee61c4c3a349b447dc821db1513800f962437cecc2"
+      },
+      {
+        "file": "assets/settings-UFg12s-g.css",
+        "ok": true,
+        "sha256": "e09feb0440fa742eeacfe6115974076c7883f83d3a4fbce037a292eca3be52b6"
+      },
+      {
+        "file": "assets/DownloadSheetApp-KLBjFuV4.js",
+        "ok": true,
+        "sha256": "84f99782cf35607787d9d0651825d34042b0a287259da408dc74e0419b9d1a96"
+      },
+      {
+        "file": "assets/previewSheet-B6wuwZXX.js",
+        "ok": true,
+        "sha256": "5e9035f10bd6beeaa15f4d3ad546e8adcc1c4e1335b1b3927d3dcb36e3cd9b93"
+      },
+      {
+        "file": "assets/DownloadDonePeek-DDHGBP2v.js",
+        "ok": true,
+        "sha256": "16a60c3bce849674a8d555770f9757b7ebf0ddcc015990dadeb0546cce4d5a02"
+      },
+      {
+        "file": "assets/FileDropContent-BLfu5BFl.js",
+        "ok": true,
+        "sha256": "19cb961216cd4223ec0203048f33c8fe6f62839a0e0c7f888bf4859ba48d0f23"
+      },
+      {
+        "file": "assets/Pins-CAvoYZC7.js",
+        "ok": true,
+        "sha256": "cd394196b3a8c80b0f9d7787492ff97e4a6c71c16ac1d0138ffa7cedc9ca4f06"
+      },
+      {
+        "file": "assets/BookmarkImportSheet-BlYnwZIK.js",
+        "ok": true,
+        "sha256": "32ca7a22eb1288ce39d5a1708e7d73f37df657eced3549c9a19d966ed478ffd8"
+      },
+      {
+        "file": "assets/LinksPanel-Cuy4-uv5.js",
+        "ok": true,
+        "sha256": "e44d173c276d2fe49350f6d0e7b6119bf5bd748bb15613b768227c197dcbbb34"
+      },
+      {
+        "file": "assets/NoteEditor-sL5Q4kli.js",
+        "ok": true,
+        "sha256": "f91b4b5ac86fdd94b925f6c4953e794b83ba06273e43a0251845542f2f5560b3"
+      },
+      {
+        "file": "assets/FilesSettings-BE44DH2F.js",
+        "ok": true,
+        "sha256": "3422c28f4e42d509e1bf705a0b628845ced9aac7225ef4ac2a2dea7167988ab4"
+      },
+      {
+        "file": "assets/Licenses-v_286zkK.js",
+        "ok": true,
+        "sha256": "ac630099b1916ababea0afc695d6fe89e2386036a59e88845a2916934b151bf7"
+      },
+      {
+        "file": "assets/MediaSheetApp-So3AUomt.js",
+        "ok": true,
+        "sha256": "6a7304f54df4efc42aca5e0ec68d2cce95eb834c2a849026c0babb9f88718fbf"
+      },
+      {
+        "file": "assets/MediaSheetApp-BEbePeBu.css",
+        "ok": true,
+        "sha256": "25c31072340e98242083cce69fdaebaf520fcca57ba7da935aeab423e7e47b23"
+      },
+      {
+        "file": "assets/ipc--TE2Bj6W.js",
+        "ok": true,
+        "sha256": "48818b06c6edae76fa93acd258cbac7c2564669bd9bd83d657555022fa16e348"
+      },
+      {
+        "file": "assets/ExpandedShell-CIJWuboT.js",
+        "ok": true,
+        "sha256": "c034bbb02a098601418ca7b6636ce780684f33060f4fc72fc89db39bbf94ab0c"
+      },
+      {
+        "file": "assets/ModuleBody-CsNpfkcJ.js",
+        "ok": true,
+        "sha256": "0059a757be541a7c74e4db06e99dcde0d9663856457bb7b1bbe73fd2df50daaf"
+      },
+      {
+        "file": "assets/ModuleBody-Bkv6Rrgy.css",
+        "ok": true,
+        "sha256": "06109fa4a1cbd4e6137e575f5799cdd8aa4bde13915b12c9d74e72f338084917"
+      },
+      {
+        "file": "assets/SearchContent-C2EKBApQ.js",
+        "ok": true,
+        "sha256": "303f08e92026b37b292b0c7e26a58294f1e4cf60411c61ffb2e4099d7efe4b9e"
+      },
+      {
+        "file": "assets/NotesView-BfEaFXOl.js",
+        "ok": true,
+        "sha256": "4312987fe81a044ae2807dfd7faf6dfe18d58509e8cec953720bcbcd40243307"
+      },
+      {
+        "file": "assets/NotesView-DdI2nrge.css",
+        "ok": true,
+        "sha256": "4264c75cf364a36ade2db1d76d66fc1a8548e566abd4c0a3c5872e3166745797"
+      },
+      {
+        "file": "assets/TrayFiles-lNg1SclS.js",
+        "ok": true,
+        "sha256": "dffe0f1c7619b672eaaadf2099cba1f11393b680cd5d14c64c7d24b1f2abf7a6"
+      },
+      {
+        "file": "assets/TrayFiles-CdMcKgKQ.css",
+        "ok": true,
+        "sha256": "d5fb5e8c8143ca9dd476ca92461e23ee3255f4a335ab7f9f045b98a428c2fa17"
+      },
+      {
+        "file": "assets/sticky-B1nVYYRi.js",
+        "ok": true,
+        "sha256": "fb49cdd4b50390b979f3e9e933bbdaf9e2c3d9497b76e304022859cf0ef447d3"
+      },
+      {
+        "file": "assets/sticky-Cu7CL-tf.css",
+        "ok": true,
+        "sha256": "65198e1df866aab57c0ec7bb17feab899d6408490e31a5adada050adc1dad642"
+      }
+    ],
+    "modes": [
+      {
+        "theme": "light",
+        "snapshot": {
+          "desired": {
+            "mode": "islandAndTray",
+            "visible": true,
+            "badge": {
+              "kind": "none"
+            },
+            "running": 0,
+            "queued": 0,
+            "paused": 0,
+            "tooltip": "Nabbit"
+          },
+          "revision": 7,
+          "applied": {
+            "revision": 7,
+            "presentation": {
+              "mode": "islandAndTray",
+              "visible": true,
+              "badge": {
+                "kind": "none"
+              },
+              "running": 0,
+              "queued": 0,
+              "paused": 0,
+              "tooltip": "Nabbit"
+            },
+            "theme": "dark",
+            "width": 16,
+            "height": 16,
+            "rgbaSha256": "39ff0931f2634eb4d8e21b49ebe455f2fb7ccdfd4bc27df882cd6aba3af99f3e",
+            "checked": [
+              true,
+              false,
+              false
+            ],
+            "rect": {
+              "position": {
+                "Physical": {
+                  "x": 1706,
+                  "y": 1032
+                }
+              },
+              "size": {
+                "Physical": {
+                  "width": 32,
+                  "height": 48
+                }
+              }
+            },
+            "rgbaBase64": "////AP///wD///8A////AP///wD///8A////AP///wD///8A////AP///wD///8A////AP///wD///8A////AP///wD///8A////AP///wD///8A////AP///wD///8A////AP///wD///8A////AP///wD///8A////AP///wD///8A////AP///wD///8A////AP///wD///8A////AP///wD///8A////AP///wD///8A////AP///wD///8A////AP///wD///8A////AP///wD///8A////AP///wD///8A////AP///wD///8A////AP///wD///8A////AP///wD///8A////AP///wD///8A////AP///wD///8A////AP///wD///8A////AP///wD///8A////AP///wD///8A////AP///wD///8A////AP///wD///8A////AP///wD///8A////AP///wD///8A////AP///wD///8A////AP///wD///8A////QP///9/////////////////////////////////////f////QP///wD///8A////AP///wD///8A////AP///9///////////////////////////////////////////////9////8A////AP///wD///8A////AP///wD////w///////////////////////////////////////////////g////AP///wD///8A////AP///wD///8A////QP///+D////////////////////////////////////g////QP///wD///8A////AP///wD///8A////AP///wD///8A////AP///wD///8A////AP///wD///8A////AP///wD///8A////AP///wD///8A////AP///wD///8A////AP///wD///8A////AP///wD///8A////AP///wD///8A////AP///wD///8A////AP///wD///8A////AP///wD///8A////AP///wD///8A////AP///wD///8A////AP///wD///8A////AP///wD///8A////AP///wD///8A////AP///wD///8A////AP///wD///8A////AP///wD///8A////AP///wD///8A////AP///wD///8A////AP///wD///8A////AP///wD///8A////AP///wD///8A////AP///wD///8A////AP///wD///8A////AP///wD///8A////AP///wD///8A////AP///wD///8A////AP///wD///8A////AA=="
+          },
+          "trayError": null,
+          "notificationError": null,
+          "notifications": []
+        },
+        "windows": {
+          "processId": 46996,
+          "foregroundProcessId": 30244,
+          "windows": [
+            {
+              "hwnd": 70258394,
+              "title": "Nabbit",
+              "className": "Tauri Window",
+              "visible": false
+            },
+            {
+              "hwnd": 27723016,
+              "title": "Nabbit island \ufffd island",
+              "className": "NabbitIslandHost",
+              "visible": true
+            },
+            {
+              "hwnd": 27794646,
+              "title": "",
+              "className": "global_hotkey_app",
+              "visible": false
+            },
+            {
+              "hwnd": 59249262,
+              "title": "",
+              "className": "tray_icon_app",
+              "visible": false
+            },
+            {
+              "hwnd": 39916436,
+              "title": "Nabbit Island Events",
+              "className": "NabbitIslandEvents",
+              "visible": false
+            },
+            {
+              "hwnd": 61411240,
+              "title": "Nabbit settings",
+              "className": "Tauri Window",
+              "visible": true
+            },
+            {
+              "hwnd": 17828588,
+              "title": "",
+              "className": "Tao Thread Event Target",
+              "visible": true
+            },
+            {
+              "hwnd": 34932428,
+              "title": "Default IME",
+              "className": "IME",
+              "visible": false
+            },
+            {
+              "hwnd": 67443890,
+              "title": "MSCTFIME UI",
+              "className": "MSCTFIME UI",
+              "visible": false
+            }
+          ]
+        }
+      },
+      {
+        "theme": "light",
+        "snapshot": {
+          "desired": {
+            "mode": "trayOnly",
+            "visible": true,
+            "badge": {
+              "kind": "none"
+            },
+            "running": 0,
+            "queued": 0,
+            "paused": 0,
+            "tooltip": "Nabbit"
+          },
+          "revision": 9,
+          "applied": {
+            "revision": 9,
+            "presentation": {
+              "mode": "trayOnly",
+              "visible": true,
+              "badge": {
+                "kind": "none"
+              },
+              "running": 0,
+              "queued": 0,
+              "paused": 0,
+              "tooltip": "Nabbit"
+            },
+            "theme": "dark",
+            "width": 16,
+            "height": 16,
+            "rgbaSha256": "39ff0931f2634eb4d8e21b49ebe455f2fb7ccdfd4bc27df882cd6aba3af99f3e",
+            "checked": [
+              false,
+              true,
+              false
+            ],
+            "rect": {
+              "position": {
+                "Physical": {
+                  "x": 1706,
+                  "y": 1032
+                }
+              },
+              "size": {
+                "Physical": {
+                  "width": 32,
+                  "height": 48
+                }
+              }
+            },
+            "rgbaBase64": "////AP///wD///8A////AP///wD///8A////AP///wD///8A////AP///wD///8A////AP///wD///8A////AP///wD///8A////AP///wD///8A////AP///wD///8A////AP///wD///8A////AP///wD///8A////AP///wD///8A////AP///wD///8A////AP///wD///8A////AP///wD///8A////AP///wD///8A////AP///wD///8A////AP///wD///8A////AP///wD///8A////AP///wD///8A////AP///wD///8A////AP///wD///8A////AP///wD///8A////AP///wD///8A////AP///wD///8A////AP///wD///8A////AP///wD///8A////AP///wD///8A////AP///wD///8A////AP///wD///8A////AP///wD///8A////AP///wD///8A////AP///wD///8A////AP///wD///8A////QP///9/////////////////////////////////////f////QP///wD///8A////AP///wD///8A////AP///9///////////////////////////////////////////////9////8A////AP///wD///8A////AP///wD////w///////////////////////////////////////////////g////AP///wD///8A////AP///wD///8A////QP///+D////////////////////////////////////g////QP///wD///8A////AP///wD///8A////AP///wD///8A////AP///wD///8A////AP///wD///8A////AP///wD///8A////AP///wD///8A////AP///wD///8A////AP///wD///8A////AP///wD///8A////AP///wD///8A////AP///wD///8A////AP///wD///8A////AP///wD///8A////AP///wD///8A////AP///wD///8A////AP///wD///8A////AP///wD///8A////AP///wD///8A////AP///wD///8A////AP///wD///8A////AP///wD///8A////AP///wD///8A////AP///wD///8A////AP///wD///8A////AP///wD///8A////AP///wD///8A////AP///wD///8A////AP///wD///8A////AP///wD///8A////AP///wD///8A////AP///wD///8A////AP///wD///8A////AA=="
+          },
+          "trayError": null,
+          "notificationError": null,
+          "notifications": []
+        },
+        "windows": {
+          "processId": 46996,
+          "foregroundProcessId": 30244,
+          "windows": [
+            {
+              "hwnd": 70258394,
+              "title": "Nabbit",
+              "className": "Tauri Window",
+              "visible": false
+            },
+            {
+              "hwnd": 27794646,
+              "title": "",
+              "className": "global_hotkey_app",
+              "visible": false
+            },
+            {
+              "hwnd": 59249262,
+              "title": "",
+              "className": "tray_icon_app",
+              "visible": false
+            },
+            {
+              "hwnd": 39916436,
+              "title": "Nabbit Island Events",
+              "className": "NabbitIslandEvents",
+              "visible": false
+            },
+            {
+              "hwnd": 61411240,
+              "title": "Nabbit settings",
+              "className": "Tauri Window",
+              "visible": true
+            },
+            {
+              "hwnd": 17828588,
+              "title": "",
+              "className": "Tao Thread Event Target",
+              "visible": true
+            },
+            {
+              "hwnd": 34932428,
+              "title": "Default IME",
+              "className": "IME",
+              "visible": false
+            },
+            {
+              "hwnd": 67443890,
+              "title": "MSCTFIME UI",
+              "className": "MSCTFIME UI",
+              "visible": false
+            }
+          ]
+        }
+      },
+      {
+        "theme": "light",
+        "snapshot": {
+          "desired": {
+            "mode": "islandOnly",
+            "visible": false,
+            "badge": {
+              "kind": "none"
+            },
+            "running": 0,
+            "queued": 0,
+            "paused": 0,
+            "tooltip": "Nabbit"
+          },
+          "revision": 11,
+          "applied": {
+            "revision": 11,
+            "presentation": {
+              "mode": "islandOnly",
+              "visible": false,
+              "badge": {
+                "kind": "none"
+              },
+              "running": 0,
+              "queued": 0,
+              "paused": 0,
+              "tooltip": "Nabbit"
+            },
+            "theme": "dark",
+            "width": 16,
+            "height": 16,
+            "rgbaSha256": "39ff0931f2634eb4d8e21b49ebe455f2fb7ccdfd4bc27df882cd6aba3af99f3e",
+            "checked": [
+              false,
+              false,
+              true
+            ],
+            "rect": null,
+            "rgbaBase64": "////AP///wD///8A////AP///wD///8A////AP///wD///8A////AP///wD///8A////AP///wD///8A////AP///wD///8A////AP///wD///8A////AP///wD///8A////AP///wD///8A////AP///wD///8A////AP///wD///8A////AP///wD///8A////AP///wD///8A////AP///wD///8A////AP///wD///8A////AP///wD///8A////AP///wD///8A////AP///wD///8A////AP///wD///8A////AP///wD///8A////AP///wD///8A////AP///wD///8A////AP///wD///8A////AP///wD///8A////AP///wD///8A////AP///wD///8A////AP///wD///8A////AP///wD///8A////AP///wD///8A////AP///wD///8A////AP///wD///8A////AP///wD///8A////AP///wD///8A////QP///9/////////////////////////////////////f////QP///wD///8A////AP///wD///8A////AP///9///////////////////////////////////////////////9////8A////AP///wD///8A////AP///wD////w///////////////////////////////////////////////g////AP///wD///8A////AP///wD///8A////QP///+D////////////////////////////////////g////QP///wD///8A////AP///wD///8A////AP///wD///8A////AP///wD///8A////AP///wD///8A////AP///wD///8A////AP///wD///8A////AP///wD///8A////AP///wD///8A////AP///wD///8A////AP///wD///8A////AP///wD///8A////AP///wD///8A////AP///wD///8A////AP///wD///8A////AP///wD///8A////AP///wD///8A////AP///wD///8A////AP///wD///8A////AP///wD///8A////AP///wD///8A////AP///wD///8A////AP///wD///8A////AP///wD///8A////AP///wD///8A////AP///wD///8A////AP///wD///8A////AP///wD///8A////AP///wD///8A////AP///wD///8A////AP///wD///8A////AP///wD///8A////AP///wD///8A////AA=="
+          },
+          "trayError": null,
+          "notificationError": null,
+          "notifications": []
+        },
+        "windows": {
+          "processId": 46996,
+          "foregroundProcessId": 30244,
+          "windows": [
+            {
+              "hwnd": 27854088,
+              "title": "Nabbit island \ufffd island",
+              "className": "NabbitIslandHost",
+              "visible": true
+            },
+            {
+              "hwnd": 70258394,
+              "title": "Nabbit",
+              "className": "Tauri Window",
+              "visible": false
+            },
+            {
+              "hwnd": 27794646,
+              "title": "",
+              "className": "global_hotkey_app",
+              "visible": false
+            },
+            {
+              "hwnd": 59249262,
+              "title": "",
+              "className": "tray_icon_app",
+              "visible": false
+            },
+            {
+              "hwnd": 39916436,
+              "title": "Nabbit Island Events",
+              "className": "NabbitIslandEvents",
+              "visible": false
+            },
+            {
+              "hwnd": 61411240,
+              "title": "Nabbit settings",
+              "className": "Tauri Window",
+              "visible": true
+            },
+            {
+              "hwnd": 17828588,
+              "title": "",
+              "className": "Tao Thread Event Target",
+              "visible": true
+            },
+            {
+              "hwnd": 34932428,
+              "title": "Default IME",
+              "className": "IME",
+              "visible": false
+            },
+            {
+              "hwnd": 67443890,
+              "title": "MSCTFIME UI",
+              "className": "MSCTFIME UI",
+              "visible": false
+            }
+          ]
+        }
+      },
+      {
+        "theme": "dark",
+        "snapshot": {
+          "desired": {
+            "mode": "islandAndTray",
+            "visible": true,
+            "badge": {
+              "kind": "none"
+            },
+            "running": 0,
+            "queued": 0,
+            "paused": 0,
+            "tooltip": "Nabbit"
+          },
+          "revision": 14,
+          "applied": {
+            "revision": 14,
+            "presentation": {
+              "mode": "islandAndTray",
+              "visible": true,
+              "badge": {
+                "kind": "none"
+              },
+              "running": 0,
+              "queued": 0,
+              "paused": 0,
+              "tooltip": "Nabbit"
+            },
+            "theme": "dark",
+            "width": 16,
+            "height": 16,
+            "rgbaSha256": "39ff0931f2634eb4d8e21b49ebe455f2fb7ccdfd4bc27df882cd6aba3af99f3e",
+            "checked": [
+              true,
+              false,
+              false
+            ],
+            "rect": {
+              "position": {
+                "Physical": {
+                  "x": 1706,
+                  "y": 1032
+                }
+              },
+              "size": {
+                "Physical": {
+                  "width": 32,
+                  "height": 48
+                }
+              }
+            },
+            "rgbaBase64": "////AP///wD///8A////AP///wD///8A////AP///wD///8A////AP///wD///8A////AP///wD///8A////AP///wD///8A////AP///wD///8A////AP///wD///8A////AP///wD///8A////AP///wD///8A////AP///wD///8A////AP///wD///8A////AP///wD///8A////AP///wD///8A////AP///wD///8A////AP///wD///8A////AP///wD///8A////AP///wD///8A////AP///wD///8A////AP///wD///8A////AP///wD///8A////AP///wD///8A////AP///wD///8A////AP///wD///8A////AP///wD///8A////AP///wD///8A////AP///wD///8A////AP///wD///8A////AP///wD///8A////AP///wD///8A////AP///wD///8A////AP///wD///8A////AP///wD///8A////QP///9/////////////////////////////////////f////QP///wD///8A////AP///wD///8A////AP///9///////////////////////////////////////////////9////8A////AP///wD///8A////AP///wD////w///////////////////////////////////////////////g////AP///wD///8A////AP///wD///8A////QP///+D////////////////////////////////////g////QP///wD///8A////AP///wD///8A////AP///wD///8A////AP///wD///8A////AP///wD///8A////AP///wD///8A////AP///wD///8A////AP///wD///8A////AP///wD///8A////AP///wD///8A////AP///wD///8A////AP///wD///8A////AP///wD///8A////AP///wD///8A////AP///wD///8A////AP///wD///8A////AP///wD///8A////AP///wD///8A////AP///wD///8A////AP///wD///8A////AP///wD///8A////AP///wD///8A////AP///wD///8A////AP///wD///8A////AP///wD///8A////AP///wD///8A////AP///wD///8A////AP///wD///8A////AP///wD///8A////AP///wD///8A////AP///wD///8A////AP///wD///8A////AP///wD///8A////AA=="
+          },
+          "trayError": null,
+          "notificationError": null,
+          "notifications": []
+        },
+        "windows": {
+          "processId": 46996,
+          "foregroundProcessId": 30244,
+          "windows": [
+            {
+              "hwnd": 27854088,
+              "title": "Nabbit island \ufffd island",
+              "className": "NabbitIslandHost",
+              "visible": true
+            },
+            {
+              "hwnd": 70258394,
+              "title": "Nabbit",
+              "className": "Tauri Window",
+              "visible": false
+            },
+            {
+              "hwnd": 27794646,
+              "title": "",
+              "className": "global_hotkey_app",
+              "visible": false
+            },
+            {
+              "hwnd": 59249262,
+              "title": "",
+              "className": "tray_icon_app",
+              "visible": false
+            },
+            {
+              "hwnd": 39916436,
+              "title": "Nabbit Island Events",
+              "className": "NabbitIslandEvents",
+              "visible": false
+            },
+            {
+              "hwnd": 61411240,
+              "title": "Nabbit settings",
+              "className": "Tauri Window",
+              "visible": true
+            },
+            {
+              "hwnd": 17828588,
+              "title": "",
+              "className": "Tao Thread Event Target",
+              "visible": true
+            },
+            {
+              "hwnd": 34932428,
+              "title": "Default IME",
+              "className": "IME",
+              "visible": false
+            },
+            {
+              "hwnd": 67443890,
+              "title": "MSCTFIME UI",
+              "className": "MSCTFIME UI",
+              "visible": false
+            }
+          ]
+        }
+      },
+      {
+        "theme": "dark",
+        "snapshot": {
+          "desired": {
+            "mode": "trayOnly",
+            "visible": true,
+            "badge": {
+              "kind": "none"
+            },
+            "running": 0,
+            "queued": 0,
+            "paused": 0,
+            "tooltip": "Nabbit"
+          },
+          "revision": 16,
+          "applied": {
+            "revision": 16,
+            "presentation": {
+              "mode": "trayOnly",
+              "visible": true,
+              "badge": {
+                "kind": "none"
+              },
+              "running": 0,
+              "queued": 0,
+              "paused": 0,
+              "tooltip": "Nabbit"
+            },
+            "theme": "dark",
+            "width": 16,
+            "height": 16,
+            "rgbaSha256": "39ff0931f2634eb4d8e21b49ebe455f2fb7ccdfd4bc27df882cd6aba3af99f3e",
+            "checked": [
+              false,
+              true,
+              false
+            ],
+            "rect": {
+              "position": {
+                "Physical": {
+                  "x": 1706,
+                  "y": 1032
+                }
+              },
+              "size": {
+                "Physical": {
+                  "width": 32,
+                  "height": 48
+                }
+              }
+            },
+            "rgbaBase64": "////AP///wD///8A////AP///wD///8A////AP///wD///8A////AP///wD///8A////AP///wD///8A////AP///wD///8A////AP///wD///8A////AP///wD///8A////AP///wD///8A////AP///wD///8A////AP///wD///8A////AP///wD///8A////AP///wD///8A////AP///wD///8A////AP///wD///8A////AP///wD///8A////AP///wD///8A////AP///wD///8A////AP///wD///8A////AP///wD///8A////AP///wD///8A////AP///wD///8A////AP///wD///8A////AP///wD///8A////AP///wD///8A////AP///wD///8A////AP///wD///8A////AP///wD///8A////AP///wD///8A////AP///wD///8A////AP///wD///8A////AP///wD///8A////AP///wD///8A////QP///9/////////////////////////////////////f////QP///wD///8A////AP///wD///8A////AP///9///////////////////////////////////////////////9////8A////AP///wD///8A////AP///wD////w///////////////////////////////////////////////g////AP///wD///8A////AP///wD///8A////QP///+D////////////////////////////////////g////QP///wD///8A////AP///wD///8A////AP///wD///8A////AP///wD///8A////AP///wD///8A////AP///wD///8A////AP///wD///8A////AP///wD///8A////AP///wD///8A////AP///wD///8A////AP///wD///8A////AP///wD///8A////AP///wD///8A////AP///wD///8A////AP///wD///8A////AP///wD///8A////AP///wD///8A////AP///wD///8A////AP///wD///8A////AP///wD///8A////AP///wD///8A////AP///wD///8A////AP///wD///8A////AP///wD///8A////AP///wD///8A////AP///wD///8A////AP///wD///8A////AP///wD///8A////AP///wD///8A////AP///wD///8A////AP///wD///8A////AP///wD///8A////AP///wD///8A////AA=="
+          },
+          "trayError": null,
+          "notificationError": null,
+          "notifications": []
+        },
+        "windows": {
+          "processId": 46996,
+          "foregroundProcessId": 30244,
+          "windows": [
+            {
+              "hwnd": 70258394,
+              "title": "Nabbit",
+              "className": "Tauri Window",
+              "visible": false
+            },
+            {
+              "hwnd": 27794646,
+              "title": "",
+              "className": "global_hotkey_app",
+              "visible": false
+            },
+            {
+              "hwnd": 59249262,
+              "title": "",
+              "className": "tray_icon_app",
+              "visible": false
+            },
+            {
+              "hwnd": 39916436,
+              "title": "Nabbit Island Events",
+              "className": "NabbitIslandEvents",
+              "visible": false
+            },
+            {
+              "hwnd": 61411240,
+              "title": "Nabbit settings",
+              "className": "Tauri Window",
+              "visible": true
+            },
+            {
+              "hwnd": 17828588,
+              "title": "",
+              "className": "Tao Thread Event Target",
+              "visible": true
+            },
+            {
+              "hwnd": 34932428,
+              "title": "Default IME",
+              "className": "IME",
+              "visible": false
+            },
+            {
+              "hwnd": 67443890,
+              "title": "MSCTFIME UI",
+              "className": "MSCTFIME UI",
+              "visible": false
+            }
+          ]
+        }
+      },
+      {
+        "theme": "dark",
+        "snapshot": {
+          "desired": {
+            "mode": "islandOnly",
+            "visible": false,
+            "badge": {
+              "kind": "none"
+            },
+            "running": 0,
+            "queued": 0,
+            "paused": 0,
+            "tooltip": "Nabbit"
+          },
+          "revision": 18,
+          "applied": {
+            "revision": 18,
+            "presentation": {
+              "mode": "islandOnly",
+              "visible": false,
+              "badge": {
+                "kind": "none"
+              },
+              "running": 0,
+              "queued": 0,
+              "paused": 0,
+              "tooltip": "Nabbit"
+            },
+            "theme": "dark",
+            "width": 16,
+            "height": 16,
+            "rgbaSha256": "39ff0931f2634eb4d8e21b49ebe455f2fb7ccdfd4bc27df882cd6aba3af99f3e",
+            "checked": [
+              false,
+              false,
+              true
+            ],
+            "rect": null,
+            "rgbaBase64": "////AP///wD///8A////AP///wD///8A////AP///wD///8A////AP///wD///8A////AP///wD///8A////AP///wD///8A////AP///wD///8A////AP///wD///8A////AP///wD///8A////AP///wD///8A////AP///wD///8A////AP///wD///8A////AP///wD///8A////AP///wD///8A////AP///wD///8A////AP///wD///8A////AP///wD///8A////AP///wD///8A////AP///wD///8A////AP///wD///8A////AP///wD///8A////AP///wD///8A////AP///wD///8A////AP///wD///8A////AP///wD///8A////AP///wD///8A////AP///wD///8A////AP///wD///8A////AP///wD///8A////AP///wD///8A////AP///wD///8A////AP///wD///8A////AP///wD///8A////QP///9/////////////////////////////////////f////QP///wD///8A////AP///wD///8A////AP///9///////////////////////////////////////////////9////8A////AP///wD///8A////AP///wD////w///////////////////////////////////////////////g////AP///wD///8A////AP///wD///8A////QP///+D////////////////////////////////////g////QP///wD///8A////AP///wD///8A////AP///wD///8A////AP///wD///8A////AP///wD///8A////AP///wD///8A////AP///wD///8A////AP///wD///8A////AP///wD///8A////AP///wD///8A////AP///wD///8A////AP///wD///8A////AP///wD///8A////AP///wD///8A////AP///wD///8A////AP///wD///8A////AP///wD///8A////AP///wD///8A////AP///wD///8A////AP///wD///8A////AP///wD///8A////AP///wD///8A////AP///wD///8A////AP///wD///8A////AP///wD///8A////AP///wD///8A////AP///wD///8A////AP///wD///8A////AP///wD///8A////AP///wD///8A////AP///wD///8A////AP///wD///8A////AP///wD///8A////AA=="
+          },
+          "trayError": null,
+          "notificationError": null,
+          "notifications": []
+        },
+        "windows": {
+          "processId": 46996,
+          "foregroundProcessId": 30244,
+          "windows": [
+            {
+              "hwnd": 27985160,
+              "title": "Nabbit island \ufffd island",
+              "className": "NabbitIslandHost",
+              "visible": true
+            },
+            {
+              "hwnd": 70258394,
+              "title": "Nabbit",
+              "className": "Tauri Window",
+              "visible": false
+            },
+            {
+              "hwnd": 27794646,
+              "title": "",
+              "className": "global_hotkey_app",
+              "visible": false
+            },
+            {
+              "hwnd": 59249262,
+              "title": "",
+              "className": "tray_icon_app",
+              "visible": false
+            },
+            {
+              "hwnd": 39916436,
+              "title": "Nabbit Island Events",
+              "className": "NabbitIslandEvents",
+              "visible": false
+            },
+            {
+              "hwnd": 61411240,
+              "title": "Nabbit settings",
+              "className": "Tauri Window",
+              "visible": true
+            },
+            {
+              "hwnd": 17828588,
+              "title": "",
+              "className": "Tao Thread Event Target",
+              "visible": true
+            },
+            {
+              "hwnd": 34932428,
+              "title": "Default IME",
+              "className": "IME",
+              "visible": false
+            },
+            {
+              "hwnd": 67443890,
+              "title": "MSCTFIME UI",
+              "className": "MSCTFIME UI",
+              "visible": false
+            }
+          ]
+        }
+      }
+    ],
+    "lastLifecycle": {
+      "mode": "islandOnly",
+      "snapshot": {
+        "activity": {
+          "preferences": {
+            "disabled": [],
+            "focusMode": false,
+            "hiddenUntilMs": null,
+            "order": [
+              "privacy",
+              "timerEnding",
+              "download",
+              "tool",
+              "link",
+              "result",
+              "media",
+              "timer",
+              "power"
+            ],
+            "showAlertsOverFullscreen": false
+          },
+          "revision": 37,
+          "syncState": "localOnly",
+          "views": [
+            {
+              "bubble": {
+                "alert": true,
+                "bubbleOnly": false,
+                "category": "result",
+                "event": {
+                  "jobId": "62ab373b-60cb-4101-b20e-1e1a0bfa63c1",
+                  "kind": "downloadDone",
+                  "path": "D:\\claude-upgrade-26\\nabbit\\.tools\\m11-native-modes-a-46859572-dedf-4318-a396-40e103be66be\\profile\\owned-downloads\\nabbit-acceptance-62ab373b-60cb-4101-b20e-1e1a0bfa63c1.mp4"
+                },
+                "id": "downloadDone:62ab373b-60cb-4101-b20e-1e1a0bfa63c1"
+              },
+              "focusMode": false,
+              "fullscreen": false,
+              "gate": "visible",
+              "label": "island",
+              "primary": {
+                "alert": true,
+                "bubbleOnly": false,
+                "category": "result",
+                "event": {
+                  "jobId": "704c884c-b786-42d2-9f2d-6e455924db3f",
+                  "kind": "downloadDone",
+                  "path": "D:\\claude-upgrade-26\\nabbit\\.tools\\m11-native-modes-a-46859572-dedf-4318-a396-40e103be66be\\profile\\owned-downloads\\nabbit-acceptance-704c884c-b786-42d2-9f2d-6e455924db3f.mp4"
+                },
+                "id": "downloadDone:704c884c-b786-42d2-9f2d-6e455924db3f"
+              },
+              "queue": [],
+              "userHidden": false
+            }
+          ]
+        },
+        "activityScheduler": {
+          "nextDeadlineMs": 1771,
+          "wakeups": 38
+        },
+        "desktop": {
+          "cursor": {
+            "x": 1000,
+            "y": 700
+          },
+          "monitors": [
+            {
+              "bounds": {
+                "height": 1080,
+                "width": 1920,
+                "x": 0,
+                "y": 0
+              },
+              "id": "primary",
+              "name": "Owned fixture display",
+              "primary": true,
+              "scaleFactor": 1,
+              "workArea": {
+                "height": 1032,
+                "width": 1920,
+                "x": 0,
+                "y": 0
+              }
+            }
+          ],
+          "topTaskbar": null
+        },
+        "foreground": {
+          "cloaked": false,
+          "desktop": false,
+          "maximised": false,
+          "minimised": false,
+          "monitor": null,
+          "notificationState": null,
+          "ownProcess": false,
+          "rect": null,
+          "visible": false,
+          "windowId": 0
+        },
+        "hosts": [
+          {
+            "commits": 9,
+            "hwnd": 54596342,
+            "placement": {
+              "bounds": {
+                "height": 460,
+                "width": 720,
+                "x": 600,
+                "y": 0
+              },
+              "dpiScale": 1,
+              "label": "island",
+              "monitorId": "primary",
+              "renderScale": 1,
+              "shape": "island",
+              "sizeScale": 1
+            },
+            "warp": false
+          }
+        ],
+        "input": [
+          {
+            "decision": {
+              "dragging": false,
+              "hidden": false,
+              "interactive": false,
+              "pollMs": 500
+            },
+            "hitrect": {
+              "h": 48,
+              "w": 314,
+              "x": 203,
+              "y": -2
+            },
+            "interactive": false,
+            "label": "island",
+            "revision": 9,
+            "source": "native"
+          }
+        ],
+        "inputWatcher": {
+          "cursorSamples": 65,
+          "fixtureReadRetries": 0,
+          "foregroundEvents": 2,
+          "hookInstalled": true,
+          "ownForegroundEvents": 2,
+          "systemSamples": 56
+        },
+        "keyboard": {
+          "acquired": 0,
+          "cancelled": 0,
+          "denied": 0,
+          "injectedFocus": true,
+          "lease": null,
+          "lost": 0,
+          "request": null,
+          "requests": 0,
+          "restoreAttempts": 0,
+          "restored": 0,
+          "shortcutError": null
+        },
+        "lastError": null,
+        "preferences": {
+          "enabled": true,
+          "fadeOverMaximized": true,
+          "hideOverFullscreen": true,
+          "monitorId": null,
+          "monitorMode": "followMouse",
+          "peekOnHoverMs": 180,
+          "scrollToChangeVolume": true,
+          "shape": "island",
+          "size": "standard"
+        },
+        "reconciliations": 11,
+        "renderer": "native",
+        "supported": true,
+        "surfaces": {
+          "island": {
+            "beforeDrag": null,
+            "closeAt": null,
+            "focusTab": null,
+            "generation": 1,
+            "hoverAt": null,
+            "opening": false,
+            "outgoingDrag": false,
+            "pending": null,
+            "state": "live",
+            "webAllocated": false,
+            "webHwnd": 0,
+            "webOwner": false
+          }
+        },
+        "visibility": [
+          {
+            "base": "visible",
+            "label": "island",
+            "mode": "visible",
+            "opacity": 1,
+            "reason": "none",
+            "revision": 4
+          }
+        ],
+        "webviews": 2,
+        "windowOrder": [
+          {
+            "label": "island",
+            "webAboveNative": null
+          }
+        ]
+      },
+      "islandViews": []
+    },
+    "reselectedModeMenu": {
+      "desired": {
+        "mode": "islandAndTray",
+        "visible": true,
+        "badge": {
+          "kind": "none"
+        },
+        "running": 0,
+        "queued": 0,
+        "paused": 0,
+        "tooltip": "Nabbit"
+      },
+      "revision": 22,
+      "applied": {
+        "revision": 22,
+        "presentation": {
+          "mode": "islandAndTray",
+          "visible": true,
+          "badge": {
+            "kind": "none"
+          },
+          "running": 0,
+          "queued": 0,
+          "paused": 0,
+          "tooltip": "Nabbit"
+        },
+        "theme": "dark",
+        "width": 16,
+        "height": 16,
+        "rgbaSha256": "39ff0931f2634eb4d8e21b49ebe455f2fb7ccdfd4bc27df882cd6aba3af99f3e",
+        "checked": [
+          true,
+          false,
+          false
+        ],
+        "rect": {
+          "position": {
+            "Physical": {
+              "x": 1706,
+              "y": 1032
+            }
+          },
+          "size": {
+            "Physical": {
+              "width": 32,
+              "height": 48
+            }
+          }
+        },
+        "rgbaBase64": "////AP///wD///8A////AP///wD///8A////AP///wD///8A////AP///wD///8A////AP///wD///8A////AP///wD///8A////AP///wD///8A////AP///wD///8A////AP///wD///8A////AP///wD///8A////AP///wD///8A////AP///wD///8A////AP///wD///8A////AP///wD///8A////AP///wD///8A////AP///wD///8A////AP///wD///8A////AP///wD///8A////AP///wD///8A////AP///wD///8A////AP///wD///8A////AP///wD///8A////AP///wD///8A////AP///wD///8A////AP///wD///8A////AP///wD///8A////AP///wD///8A////AP///wD///8A////AP///wD///8A////AP///wD///8A////AP///wD///8A////AP///wD///8A////AP///wD///8A////QP///9/////////////////////////////////////f////QP///wD///8A////AP///wD///8A////AP///9///////////////////////////////////////////////9////8A////AP///wD///8A////AP///wD////w///////////////////////////////////////////////g////AP///wD///8A////AP///wD///8A////QP///+D////////////////////////////////////g////QP///wD///8A////AP///wD///8A////AP///wD///8A////AP///wD///8A////AP///wD///8A////AP///wD///8A////AP///wD///8A////AP///wD///8A////AP///wD///8A////AP///wD///8A////AP///wD///8A////AP///wD///8A////AP///wD///8A////AP///wD///8A////AP///wD///8A////AP///wD///8A////AP///wD///8A////AP///wD///8A////AP///wD///8A////AP///wD///8A////AP///wD///8A////AP///wD///8A////AP///wD///8A////AP///wD///8A////AP///wD///8A////AP///wD///8A////AP///wD///8A////AP///wD///8A////AP///wD///8A////AP///wD///8A////AP///wD///8A////AP///wD///8A////AP///wD///8A////AA=="
+      },
+      "trayError": null,
+      "notificationError": null,
+      "notifications": []
+    },
+    "trayOnlyWindows": {
+      "processId": 46996,
+      "foregroundProcessId": 30244,
+      "windows": [
+        {
+          "hwnd": 70258394,
+          "title": "Nabbit",
+          "className": "Tauri Window",
+          "visible": false
+        },
+        {
+          "hwnd": 27794646,
+          "title": "",
+          "className": "global_hotkey_app",
+          "visible": false
+        },
+        {
+          "hwnd": 59249262,
+          "title": "",
+          "className": "tray_icon_app",
+          "visible": false
+        },
+        {
+          "hwnd": 39916436,
+          "title": "Nabbit Island Events",
+          "className": "NabbitIslandEvents",
+          "visible": false
+        },
+        {
+          "hwnd": 61411240,
+          "title": "Nabbit settings",
+          "className": "Tauri Window",
+          "visible": true
+        },
+        {
+          "hwnd": 17828588,
+          "title": "",
+          "className": "Tao Thread Event Target",
+          "visible": true
+        },
+        {
+          "hwnd": 34932428,
+          "title": "Default IME",
+          "className": "IME",
+          "visible": false
+        },
+        {
+          "hwnd": 67443890,
+          "title": "MSCTFIME UI",
+          "className": "MSCTFIME UI",
+          "visible": false
+        }
+      ]
+    },
+    "shortcutBefore": {
+      "processId": 46996,
+      "foregroundProcessId": 30244,
+      "windows": [
+        {
+          "hwnd": 70258394,
+          "title": "Nabbit",
+          "className": "Tauri Window",
+          "visible": false
+        },
+        {
+          "hwnd": 27794646,
+          "title": "",
+          "className": "global_hotkey_app",
+          "visible": false
+        },
+        {
+          "hwnd": 59249262,
+          "title": "",
+          "className": "tray_icon_app",
+          "visible": false
+        },
+        {
+          "hwnd": 39916436,
+          "title": "Nabbit Island Events",
+          "className": "NabbitIslandEvents",
+          "visible": false
+        },
+        {
+          "hwnd": 61411240,
+          "title": "Nabbit settings",
+          "className": "Tauri Window",
+          "visible": true
+        },
+        {
+          "hwnd": 17828588,
+          "title": "",
+          "className": "Tao Thread Event Target",
+          "visible": true
+        },
+        {
+          "hwnd": 34932428,
+          "title": "Default IME",
+          "className": "IME",
+          "visible": false
+        },
+        {
+          "hwnd": 67443890,
+          "title": "MSCTFIME UI",
+          "className": "MSCTFIME UI",
+          "visible": false
+        }
+      ]
+    },
+    "shortcutOpen": {
+      "processId": 46996,
+      "foregroundProcessId": 30244,
+      "windows": [
+        {
+          "hwnd": 70258394,
+          "title": "Nabbit",
+          "className": "Tauri Window",
+          "visible": true
+        },
+        {
+          "hwnd": 27794646,
+          "title": "",
+          "className": "global_hotkey_app",
+          "visible": false
+        },
+        {
+          "hwnd": 59249262,
+          "title": "",
+          "className": "tray_icon_app",
+          "visible": false
+        },
+        {
+          "hwnd": 39916436,
+          "title": "Nabbit Island Events",
+          "className": "NabbitIslandEvents",
+          "visible": false
+        },
+        {
+          "hwnd": 61411240,
+          "title": "Nabbit settings",
+          "className": "Tauri Window",
+          "visible": true
+        },
+        {
+          "hwnd": 17828588,
+          "title": "",
+          "className": "Tao Thread Event Target",
+          "visible": true
+        },
+        {
+          "hwnd": 34932428,
+          "title": "Default IME",
+          "className": "IME",
+          "visible": false
+        },
+        {
+          "hwnd": 67443890,
+          "title": "MSCTFIME UI",
+          "className": "MSCTFIME UI",
+          "visible": false
+        }
+      ]
+    },
+    "lastDownloadWait": {
+      "snapshot": {
+        "desired": {
+          "mode": "trayOnly",
+          "visible": true,
+          "badge": {
+            "kind": "progress",
+            "percent": 62
+          },
+          "running": 1,
+          "queued": 1,
+          "paused": 0,
+          "tooltip": "Nabbit \u2014 1 downloading \u00b7 62% \u00b7 1 queued"
+        },
+        "revision": 31,
+        "applied": {
+          "revision": 31,
+          "presentation": {
+            "mode": "trayOnly",
+            "visible": true,
+            "badge": {
+              "kind": "progress",
+              "percent": 62
+            },
+            "running": 1,
+            "queued": 1,
+            "paused": 0,
+            "tooltip": "Nabbit \u2014 1 downloading \u00b7 62% \u00b7 1 queued"
+          },
+          "theme": "dark",
+          "width": 16,
+          "height": 16,
+          "rgbaSha256": "bc6787560dbcd85853c794d4482c98f877dd7a6153ab7520db44b6c3651875e3",
+          "checked": [
+            false,
+            true,
+            false
+          ],
+          "rect": {
+            "position": {
+              "Physical": {
+                "x": 1706,
+                "y": 1032
+              }
+            },
+            "size": {
+              "Physical": {
+                "width": 32,
+                "height": 48
+              }
+            }
+          },
+          "rgbaBase64": "////AP///wD///8A////AP///wD///8A////AP///wD///8A////AP///wD///8A////AP///wD///8A////AP///wD///8A////AP///wD///8A////AP///wD///8A////AP///wD///8A////AP///wD///8A////AP///wD///8A////AP///wD///8A////AP///wD///8A////AP///wD///8A////AP///wD///8A////AP///wD///8A////AP///wD///8A////AP///wD///8A////AP///wD///8A////AP///wD///8A////AP///wD///8A////AP///wD///8A////AP///wD///8A////AP///wD///8A////AP///wD///8A////AP///wD///8A////AP///wD///8A////AP///wD///8A////AP///wD///8A////AP///wD///8A////AP///wD///8A////AP///wD///8A////AP///wD///8A////QP///9/////////////////////////////////////f////QP///wD///8A////AP///wD///8A////AP///9///////////////////////////////////////////////9////8A////AP///wD///8A////AP///wD////w///////////////////////////////////////////////g////AP///wD///8A////AP///wD///8A////QP///+D////////////////////////////////////g////QP///wD///8A////AP///wD///8A////AP///wD///8A////AP///wD///8A////AP///wD///8A////AP///wD///8A////AP///wD///8A////AP///wD///8A////AP///wD///8A////AP///wD///8A////AP///wD///8A////AP///wD///8A////AP///wD///8A////AP///wD///8A////AP///wD///8A////AP///wD///8A////AP///wD///8A////AP///wD///8A////AP///wD///8A////AP///wD///8A////AP///wD///8A////AP///wD///8A////AP///wD///8A////AP////////////////////////////////////////9A////QP///0D///9A////QP///wD///8A////AP///wD/////////////////////////////////////////QP///0D///9A////QP///0D///8A////AA=="
+        },
+        "trayError": null,
+        "notificationError": null,
+        "notifications": []
+      },
+      "jobs": [
+        {
+          "id": "704c884c-b786-42d2-9f2d-6e455924db3f",
+          "url": "https://example.test/mode-a",
+          "title": "Owned <download 1> & fixture",
+          "thumbnail": null,
+          "status": "running",
+          "progress": 62,
+          "speed": "1.0MiB/s",
+          "eta": "00:02",
+          "outputPath": "D:\\claude-upgrade-26\\nabbit\\.tools\\m11-native-modes-a-46859572-dedf-4318-a396-40e103be66be\\profile\\owned-downloads\\nabbit-acceptance-704c884c-b786-42d2-9f2d-6e455924db3f.mp4",
+          "error": null,
+          "failure": null,
+          "quality": "1080p",
+          "options": {
+            "format": "mp4",
+            "height": 1080,
+            "subtitles": null,
+            "chapters": "off",
+            "sponsorBlock": "off",
+            "embedThumbnail": false,
+            "embedMetadata": false,
+            "filenameTemplate": "%(title)s [%(id)s].%(ext)s",
+            "outputDir": "D:\\claude-upgrade-26\\nabbit\\.tools\\m11-native-modes-a-46859572-dedf-4318-a396-40e103be66be\\profile\\owned-downloads",
+            "sections": [],
+            "preciseCuts": false,
+            "playlistMode": "video",
+            "playlistItems": null,
+            "speedLimit": null,
+            "waitForVideo": false
+          },
+          "playlistMode": "video",
+          "playlistRange": null,
+          "createdAt": "2026-11-28T12:12:35.917829300Z",
+          "updatedAt": "2026-11-28T12:12:36.687839900Z"
+        },
+        {
+          "id": "ea73106f-ea5c-4d98-97e6-78fd45555b9a",
+          "url": "https://example.test/mode-b",
+          "title": "Owned <download 2> & fixture",
+          "thumbnail": null,
+          "status": "queued",
+          "progress": 0,
+          "speed": null,
+          "eta": null,
+          "outputPath": null,
+          "error": null,
+          "failure": null,
+          "quality": "1080p",
+          "options": {
+            "format": "mp4",
+            "height": 1080,
+            "subtitles": null,
+            "chapters": "off",
+            "sponsorBlock": "off",
+            "embedThumbnail": false,
+            "embedMetadata": false,
+            "filenameTemplate": "%(title)s [%(id)s].%(ext)s",
+            "outputDir": "D:\\claude-upgrade-26\\nabbit\\.tools\\m11-native-modes-a-46859572-dedf-4318-a396-40e103be66be\\profile\\owned-downloads",
+            "sections": [],
+            "preciseCuts": false,
+            "playlistMode": "video",
+            "playlistItems": null,
+            "speedLimit": null,
+            "waitForVideo": false
+          },
+          "playlistMode": "video",
+          "playlistRange": null,
+          "createdAt": "2026-11-28T12:12:36.031399Z",
+          "updatedAt": "2026-11-28T12:12:36.031399Z"
+        }
+      ]
+    },
+    "progressIcons": [
+      {
+        "file": "m11-native-modes-a-tray-progress-62-light@1x.png",
+        "bytes": 213,
+        "sha256": "654a0a099a82306be791e5ddfd4748110025cbe3cf4358dd2b3eab826416982d",
+        "icon": {
+          "revision": 32,
+          "presentation": {
+            "mode": "trayOnly",
+            "visible": true,
+            "badge": {
+              "kind": "progress",
+              "percent": 62
+            },
+            "running": 1,
+            "queued": 1,
+            "paused": 0,
+            "tooltip": "Nabbit \u2014 1 downloading \u00b7 62% \u00b7 1 queued"
+          },
+          "theme": "light",
+          "width": 16,
+          "height": 16,
+          "rgbaSha256": "306d3a94dd624b377197206626e54190e5009963a8649582902aa4af6c1f6ecb",
+          "checked": [
+            false,
+            true,
+            false
+          ],
+          "rect": {
+            "position": {
+              "Physical": {
+                "x": 1706,
+                "y": 1032
+              }
+            },
+            "size": {
+              "Physical": {
+                "width": 32,
+                "height": 48
+              }
+            }
+          },
+          "rgbaBase64": "FxcaABcXGgAXFxoAFxcaABcXGgAXFxoAFxcaABcXGgAXFxoAFxcaABcXGgAXFxoAFxcaABcXGgAXFxoAFxcaABcXGgAXFxoAFxcaABcXGgAXFxoAFxcaABcXGgAXFxoAFxcaABcXGgAXFxoAFxcaABcXGgAXFxoAFxcaABcXGgAXFxoAFxcaABcXGgAXFxoAFxcaABcXGgAXFxoAFxcaABcXGgAXFxoAFxcaABcXGgAXFxoAFxcaABcXGgAXFxoAFxcaABcXGgAXFxoAFxcaABcXGgAXFxoAFxcaABcXGgAXFxoAFxcaABcXGgAXFxoAFxcaABcXGgAXFxoAFxcaABcXGgAXFxoAFxcaABcXGgAXFxoAFxcaABcXGgAXFxoAFxcaABcXGgAXFxoAFxcaABcXGgAXFxoAFxcaABcXGgAXFxoAFxcaABcXGgAXFxoAFxcaABcXGgAXFxoAFxcaABcXGgAXFxoAFxcaABcXGgAXFxoAFxcaABcXGgAXFxoAFxcaABcXGgAXFxoAFxcaQBcXGt8XFxr/Fxca/xcXGv8XFxr/Fxca/xcXGv8XFxrfFxcaQBcXGgAXFxoAFxcaABcXGgAXFxoAFxcaABcXGt8XFxr/Fxca/xcXGv8XFxr/Fxca/xcXGv8XFxr/Fxca/xcXGt8XFxoAFxcaABcXGgAXFxoAFxcaABcXGgAXFxrwFxca/xcXGv8XFxr/Fxca/xcXGv8XFxr/Fxca/xcXGv8XFxrgFxcaABcXGgAXFxoAFxcaABcXGgAXFxoAFxcaQBcXGuAXFxr/Fxca/xcXGv8XFxr/Fxca/xcXGv8XFxrgFxcaQBcXGgAXFxoAFxcaABcXGgAXFxoAFxcaABcXGgAXFxoAFxcaABcXGgAXFxoAFxcaABcXGgAXFxoAFxcaABcXGgAXFxoAFxcaABcXGgAXFxoAFxcaABcXGgAXFxoAFxcaABcXGgAXFxoAFxcaABcXGgAXFxoAFxcaABcXGgAXFxoAFxcaABcXGgAXFxoAFxcaABcXGgAXFxoAFxcaABcXGgAXFxoAFxcaABcXGgAXFxoAFxcaABcXGgAXFxoAFxcaABcXGgAXFxoAFxcaABcXGgAXFxoAFxcaABcXGgAXFxoAFxcaABcXGgAXFxoAFxcaABcXGgAXFxoAFxcaABcXGgAXFxoAFxcaABcXGgAXFxoAFxcaABcXGv8XFxr/Fxca/xcXGv8XFxr/Fxca/xcXGv8XFxpAFxcaQBcXGkAXFxpAFxcaQBcXGgAXFxoAFxcaABcXGgAXFxr/Fxca/xcXGv8XFxr/Fxca/xcXGv8XFxr/FxcaQBcXGkAXFxpAFxcaQBcXGkAXFxoAFxcaAA=="
+        },
+        "scope": "Exact RGBA passed to the owned native tray, exported through an offscreen canvas; 16/24px DPI seam, no Windows display change"
+      },
+      {
+        "file": "m11-native-modes-a-tray-progress-62-light@1.5x.png",
+        "bytes": 279,
+        "sha256": "23b62d0419757bae601159ddc88a2ccc5dc1893027262ad8f7d4d66519045943",
+        "icon": {
+          "revision": 33,
+          "presentation": {
+            "mode": "trayOnly",
+            "visible": true,
+            "badge": {
+              "kind": "progress",
+              "percent": 62
+            },
+            "running": 1,
+            "queued": 1,
+            "paused": 0,
+            "tooltip": "Nabbit \u2014 1 downloading \u00b7 62% \u00b7 1 queued"
+          },
+          "theme": "light",
+          "width": 24,
+          "height": 24,
+          "rgbaSha256": "5bbeb353654aa64f63b3a8f48c3c86c462a82f292377775f338a5b66e5b9d4a9",
+          "checked": [
+            false,
+            true,
+            false
+          ],
+          "rect": {
+            "position": {
+              "Physical": {
+                "x": 1706,
+                "y": 1032
+              }
+            },
+            "size": {
+              "Physical": {
+                "width": 32,
+                "height": 48
+              }
+            }
+          },
+          "rgbaBase64": "FxcaABcXGgAXFxoAFxcaABcXGgAXFxoAFxcaABcXGgAXFxoAFxcaABcXGgAXFxoAFxcaABcXGgAXFxoAFxcaABcXGgAXFxoAFxcaABcXGgAXFxoAFxcaABcXGgAXFxoAFxcaABcXGgAXFxoAFxcaABcXGgAXFxoAFxcaABcXGgAXFxoAFxcaABcXGgAXFxoAFxcaABcXGgAXFxoAFxcaABcXGgAXFxoAFxcaABcXGgAXFxoAFxcaABcXGgAXFxoAFxcaABcXGgAXFxoAFxcaABcXGgAXFxoAFxcaABcXGgAXFxoAFxcaABcXGgAXFxoAFxcaABcXGgAXFxoAFxcaABcXGgAXFxoAFxcaABcXGgAXFxoAFxcaABcXGgAXFxoAFxcaABcXGgAXFxoAFxcaABcXGgAXFxoAFxcaABcXGgAXFxoAFxcaABcXGgAXFxoAFxcaABcXGgAXFxoAFxcaABcXGgAXFxoAFxcaABcXGgAXFxoAFxcaABcXGgAXFxoAFxcaABcXGgAXFxoAFxcaABcXGgAXFxoAFxcaABcXGgAXFxoAFxcaABcXGgAXFxoAFxcaABcXGgAXFxoAFxcaABcXGgAXFxoAFxcaABcXGgAXFxoAFxcaABcXGgAXFxoAFxcaABcXGgAXFxoAFxcaABcXGgAXFxoAFxcaABcXGgAXFxoAFxcaABcXGgAXFxoAFxcaABcXGgAXFxoAFxcaABcXGgAXFxoAFxcaABcXGgAXFxoAFxcaABcXGgAXFxoAFxcaABcXGgAXFxoAFxcaABcXGgAXFxoAFxcaABcXGgAXFxoAFxcaABcXGgAXFxoAFxcaABcXGgAXFxoAFxcaABcXGgAXFxoAFxcaABcXGgAXFxoAFxcaABcXGgAXFxoAFxcaABcXGgAXFxoAFxcaABcXGgAXFxoAFxcaABcXGgAXFxoAFxcaABcXGgAXFxoAFxcaABcXGgAXFxoAFxcaABcXGgAXFxoAFxcaABcXGgAXFxoAFxcaABcXGgAXFxoAFxcaABcXGgAXFxoAFxcaABcXGgAXFxoAFxcaABcXGgAXFxoAFxcaABcXGgAXFxoAFxcaABcXGgAXFxoAFxcaABcXGgAXFxoAFxcaABcXGgAXFxoAFxcaABcXGgAXFxoAFxcaABcXGgAXFxoAFxcaABcXGgAXFxoQFxcajxcXGt8XFxr/Fxca/xcXGv8XFxr/Fxca/xcXGv8XFxr/Fxca/xcXGv8XFxrfFxcafxcXGgAXFxoAFxcaABcXGgAXFxoAFxcaABcXGgAXFxoAFxcaABcXGgAXFxqQFxca/xcXGv8XFxr/Fxca/xcXGv8XFxr/Fxca/xcXGv8XFxr/Fxca/xcXGv8XFxr/Fxca/xcXGpAXFxoAFxcaABcXGgAXFxoAFxcaABcXGgAXFxoAFxcaABcXGgAXFxrvFxca/xcXGv8XFxr/Fxca/xcXGv8XFxr/Fxca/xcXGv8XFxr/Fxca/xcXGv8XFxr/Fxca/xcXGt8XFxoAFxcaABcXGgAXFxoAFxcaABcXGgAXFxoAFxcaABcXGgAXFxrwFxca/xcXGv8XFxr/Fxca/xcXGv8XFxr/Fxca/xcXGv8XFxr/Fxca/xcXGv8XFxr/Fxca/xcXGuAXFxoAFxcaABcXGgAXFxoAFxcaABcXGgAXFxoAFxcaABcXGgAXFxqAFxca/xcXGv8XFxr/Fxca/xcXGv8XFxr/Fxca/xcXGv8XFxr/Fxca/xcXGv8XFxr/Fxca/xcXGoAXFxoAFxcaABcXGgAXFxoAFxcaABcXGgAXFxoAFxcaABcXGgAXFxoAFxcakBcXGuAXFxr/Fxca/xcXGv8XFxr/Fxca/xcXGv8XFxr/Fxca/xcXGv8XFxrgFxcagBcXGgAXFxoAFxcaABcXGgAXFxoAFxcaABcXGgAXFxoAFxcaABcXGgAXFxoAFxcaABcXGgAXFxoAFxcaABcXGgAXFxoAFxcaABcXGgAXFxoAFxcaABcXGgAXFxoAFxcaABcXGgAXFxoAFxcaABcXGgAXFxoAFxcaABcXGgAXFxoAFxcaABcXGgAXFxoAFxcaABcXGgAXFxoAFxcaABcXGgAXFxoAFxcaABcXGgAXFxoAFxcaABcXGgAXFxoAFxcaABcXGgAXFxoAFxcaABcXGgAXFxoAFxcaABcXGgAXFxoAFxcaABcXGgAXFxoAFxcaABcXGgAXFxoAFxcaABcXGgAXFxoAFxcaABcXGgAXFxoAFxcaABcXGgAXFxoAFxcaABcXGgAXFxoAFxcaABcXGgAXFxoAFxcaABcXGgAXFxoAFxcaABcXGgAXFxoAFxcaABcXGgAXFxoAFxcaABcXGgAXFxoAFxcaABcXGgAXFxoAFxcaABcXGgAXFxoAFxcaABcXGgAXFxoAFxcaABcXGgAXFxoAFxcaABcXGgAXFxoAFxcaABcXGgAXFxoAFxcaABcXGgAXFxoAFxcaABcXGgAXFxoAFxcaABcXGgAXFxoAFxcaABcXGgAXFxoAFxcaABcXGgAXFxoAFxcaABcXGgAXFxoAFxcaABcXGgAXFxoAFxcaABcXGgAXFxoAFxcaABcXGgAXFxoAFxcaABcXGgAXFxoAFxcaABcXGgAXFxoAFxcaABcXGgAXFxoAFxcaABcXGgAXFxoAFxcaABcXGgAXFxoAFxcaABcXGgAXFxoAFxca/xcXGv8XFxr/Fxca/xcXGv8XFxr/Fxca/xcXGv8XFxr/Fxca/xcXGv8XFxpAFxcaQBcXGkAXFxpAFxcaQBcXGkAXFxpAFxcaABcXGgAXFxoAFxcaABcXGgAXFxoAFxca/xcXGv8XFxr/Fxca/xcXGv8XFxr/Fxca/xcXGv8XFxr/Fxca/xcXGv8XFxpAFxcaQBcXGkAXFxpAFxcaQBcXGkAXFxpAFxcaABcXGgAXFxoAFxcaABcXGgAXFxoAFxca/xcXGv8XFxr/Fxca/xcXGv8XFxr/Fxca/xcXGv8XFxr/Fxca/xcXGv8XFxpAFxcaQBcXGkAXFxpAFxcaQBcXGkAXFxpAFxcaABcXGgAXFxoA"
+        },
+        "scope": "Exact RGBA passed to the owned native tray, exported through an offscreen canvas; 16/24px DPI seam, no Windows display change"
+      },
+      {
+        "file": "m11-native-modes-a-tray-progress-62-dark@1x.png",
+        "bytes": 197,
+        "sha256": "ac2d9951e280d734cc41aa04064d35e122e4cd9447c349272365cd0f50f696a3",
+        "icon": {
+          "revision": 34,
+          "presentation": {
+            "mode": "trayOnly",
+            "visible": true,
+            "badge": {
+              "kind": "progress",
+              "percent": 62
+            },
+            "running": 1,
+            "queued": 1,
+            "paused": 0,
+            "tooltip": "Nabbit \u2014 1 downloading \u00b7 62% \u00b7 1 queued"
+          },
+          "theme": "dark",
+          "width": 16,
+          "height": 16,
+          "rgbaSha256": "bc6787560dbcd85853c794d4482c98f877dd7a6153ab7520db44b6c3651875e3",
+          "checked": [
+            false,
+            true,
+            false
+          ],
+          "rect": {
+            "position": {
+              "Physical": {
+                "x": 1706,
+                "y": 1032
+              }
+            },
+            "size": {
+              "Physical": {
+                "width": 32,
+                "height": 48
+              }
+            }
+          },
+          "rgbaBase64": "////AP///wD///8A////AP///wD///8A////AP///wD///8A////AP///wD///8A////AP///wD///8A////AP///wD///8A////AP///wD///8A////AP///wD///8A////AP///wD///8A////AP///wD///8A////AP///wD///8A////AP///wD///8A////AP///wD///8A////AP///wD///8A////AP///wD///8A////AP///wD///8A////AP///wD///8A////AP///wD///8A////AP///wD///8A////AP///wD///8A////AP///wD///8A////AP///wD///8A////AP///wD///8A////AP///wD///8A////AP///wD///8A////AP///wD///8A////AP///wD///8A////AP///wD///8A////AP///wD///8A////AP///wD///8A////AP///wD///8A////AP///wD///8A////AP///wD///8A////QP///9/////////////////////////////////////f////QP///wD///8A////AP///wD///8A////AP///9///////////////////////////////////////////////9////8A////AP///wD///8A////AP///wD////w///////////////////////////////////////////////g////AP///wD///8A////AP///wD///8A////QP///+D////////////////////////////////////g////QP///wD///8A////AP///wD///8A////AP///wD///8A////AP///wD///8A////AP///wD///8A////AP///wD///8A////AP///wD///8A////AP///wD///8A////AP///wD///8A////AP///wD///8A////AP///wD///8A////AP///wD///8A////AP///wD///8A////AP///wD///8A////AP///wD///8A////AP///wD///8A////AP///wD///8A////AP///wD///8A////AP///wD///8A////AP///wD///8A////AP///wD///8A////AP///wD///8A////AP///wD///8A////AP////////////////////////////////////////9A////QP///0D///9A////QP///wD///8A////AP///wD/////////////////////////////////////////QP///0D///9A////QP///0D///8A////AA=="
+        },
+        "scope": "Exact RGBA passed to the owned native tray, exported through an offscreen canvas; 16/24px DPI seam, no Windows display change"
+      },
+      {
+        "file": "m11-native-modes-a-tray-progress-62-dark@1.5x.png",
+        "bytes": 243,
+        "sha256": "1d55a564dd6cacc0e5f4ca0fbb43b23c16e34e0af577420adc10ab90133766aa",
+        "icon": {
+          "revision": 35,
+          "presentation": {
+            "mode": "trayOnly",
+            "visible": true,
+            "badge": {
+              "kind": "progress",
+              "percent": 62
+            },
+            "running": 1,
+            "queued": 1,
+            "paused": 0,
+            "tooltip": "Nabbit \u2014 1 downloading \u00b7 62% \u00b7 1 queued"
+          },
+          "theme": "dark",
+          "width": 24,
+          "height": 24,
+          "rgbaSha256": "fe3cefb868d9023d2806ac97f3850bc6074ca0788dcb5c7c9badcfe237d2d861",
+          "checked": [
+            false,
+            true,
+            false
+          ],
+          "rect": {
+            "position": {
+              "Physical": {
+                "x": 1706,
+                "y": 1032
+              }
+            },
+            "size": {
+              "Physical": {
+                "width": 32,
+                "height": 48
+              }
+            }
+          },
+          "rgbaBase64": "////AP///wD///8A////AP///wD///8A////AP///wD///8A////AP///wD///8A////AP///wD///8A////AP///wD///8A////AP///wD///8A////AP///wD///8A////AP///wD///8A////AP///wD///8A////AP///wD///8A////AP///wD///8A////AP///wD///8A////AP///wD///8A////AP///wD///8A////AP///wD///8A////AP///wD///8A////AP///wD///8A////AP///wD///8A////AP///wD///8A////AP///wD///8A////AP///wD///8A////AP///wD///8A////AP///wD///8A////AP///wD///8A////AP///wD///8A////AP///wD///8A////AP///wD///8A////AP///wD///8A////AP///wD///8A////AP///wD///8A////AP///wD///8A////AP///wD///8A////AP///wD///8A////AP///wD///8A////AP///wD///8A////AP///wD///8A////AP///wD///8A////AP///wD///8A////AP///wD///8A////AP///wD///8A////AP///wD///8A////AP///wD///8A////AP///wD///8A////AP///wD///8A////AP///wD///8A////AP///wD///8A////AP///wD///8A////AP///wD///8A////AP///wD///8A////AP///wD///8A////AP///wD///8A////AP///wD///8A////AP///wD///8A////AP///wD///8A////AP///wD///8A////AP///wD///8A////AP///wD///8A////AP///wD///8A////AP///wD///8A////AP///wD///8A////AP///wD///8A////AP///wD///8A////AP///wD///8A////AP///wD///8A////AP///wD///8A////AP///wD///8A////AP///wD///8A////AP///wD///8A////AP///wD///8A////AP///wD///8A////AP///wD///8A////AP///wD///8A////AP///wD///8Q////j////9/////////////////////////////////////////////////////f////f////wD///8A////AP///wD///8A////AP///wD///8A////AP///wD///+Q/////////////////////////////////////////////////////////////////////////5D///8A////AP///wD///8A////AP///wD///8A////AP///wD////v/////////////////////////////////////////////////////////////////////////9////8A////AP///wD///8A////AP///wD///8A////AP///wD////w/////////////////////////////////////////////////////////////////////////+D///8A////AP///wD///8A////AP///wD///8A////AP///wD///+A/////////////////////////////////////////////////////////////////////////4D///8A////AP///wD///8A////AP///wD///8A////AP///wD///8A////kP///+D////////////////////////////////////////////////////g////gP///wD///8A////AP///wD///8A////AP///wD///8A////AP///wD///8A////AP///wD///8A////AP///wD///8A////AP///wD///8A////AP///wD///8A////AP///wD///8A////AP///wD///8A////AP///wD///8A////AP///wD///8A////AP///wD///8A////AP///wD///8A////AP///wD///8A////AP///wD///8A////AP///wD///8A////AP///wD///8A////AP///wD///8A////AP///wD///8A////AP///wD///8A////AP///wD///8A////AP///wD///8A////AP///wD///8A////AP///wD///8A////AP///wD///8A////AP///wD///8A////AP///wD///8A////AP///wD///8A////AP///wD///8A////AP///wD///8A////AP///wD///8A////AP///wD///8A////AP///wD///8A////AP///wD///8A////AP///wD///8A////AP///wD///8A////AP///wD///8A////AP///wD///8A////AP///wD///8A////AP///wD///8A////AP///wD///8A////AP///wD///8A////AP///wD///8A////AP///wD///8A////AP///wD///8A////AP///wD///8A////AP///wD///8A////AP///wD///8A////AP///wD///8A////AP///wD///8A//////////////////////////////////////////////////////////////9A////QP///0D///9A////QP///0D///9A////AP///wD///8A////AP///wD///8A//////////////////////////////////////////////////////////////9A////QP///0D///9A////QP///0D///9A////AP///wD///8A////AP///wD///8A//////////////////////////////////////////////////////////////9A////QP///0D///9A////QP///0D///9A////AP///wD///8A"
+        },
+        "scope": "Exact RGBA passed to the owned native tray, exported through an offscreen canvas; 16/24px DPI seam, no Windows display change"
+      }
+    ],
+    "pausedIcons": [
+      {
+        "file": "m11-native-modes-a-tray-paused-light@1x.png",
+        "bytes": 211,
+        "sha256": "eadbfbc2848f07faeb477db43686c2527027ab4806e912337e5890ed198ded1e",
+        "icon": {
+          "revision": 42,
+          "presentation": {
+            "mode": "trayOnly",
+            "visible": true,
+            "badge": {
+              "kind": "paused"
+            },
+            "running": 0,
+            "queued": 0,
+            "paused": 2,
+            "tooltip": "Nabbit \u2014 2 paused"
+          },
+          "theme": "light",
+          "width": 16,
+          "height": 16,
+          "rgbaSha256": "bd20c800b1c039fdd1f83727b4f3f51ea891ebb03d8de5e6d531b399d1660476",
+          "checked": [
+            false,
+            true,
+            false
+          ],
+          "rect": {
+            "position": {
+              "Physical": {
+                "x": 1706,
+                "y": 1032
+              }
+            },
+            "size": {
+              "Physical": {
+                "width": 32,
+                "height": 48
+              }
+            }
+          },
+          "rgbaBase64": "FxcaABcXGgAXFxoAFxcaABcXGgAXFxoAFxcaABcXGgAXFxoAFxcaABcXGgAXFxoAFxcaABcXGgAXFxoAFxcaABcXGgAXFxoAFxcaABcXGgAXFxoAFxcaABcXGgAXFxoAFxcaABcXGgAXFxoAFxcaABcXGgAXFxoAFxcaABcXGgAXFxoAFxcaABcXGgAXFxoAFxcaABcXGgAXFxoAFxcaABcXGgAXFxoAFxcaABcXGgAXFxoAFxcaABcXGgAXFxoAFxcaABcXGgAXFxoAFxcaABcXGgAXFxoAFxcaABcXGgAXFxoAFxcaABcXGgAXFxoAFxcaABcXGgAXFxoAFxcaABcXGgAXFxoAFxcaABcXGgAXFxoAFxcaABcXGgAXFxoAFxcaABcXGgAXFxoAFxcaABcXGgAXFxoAFxcaABcXGgAXFxoAFxcaABcXGgAXFxoAFxcaABcXGgAXFxoAFxcaABcXGgAXFxoAFxcaABcXGgAXFxoAFxcaABcXGgAXFxoAFxcaABcXGgAXFxoAFxcaQBcXGt8XFxr/Fxca/xcXGv8XFxr/Fxca/xcXGv8XFxrfFxcaQBcXGgAXFxoAFxcaABcXGgAXFxoAFxcaABcXGt8XFxr/Fxca/xcXGv8XFxr/Fxca/xcXGv8XFxr/Fxca/xcXGt8XFxoAFxcaABcXGgAXFxoAFxcaABcXGgAXFxrwFxca/xcXGv8XFxr/Fxca/xcXGv8XFxr/Fxca/xcXGv8XFxrgFxcaABcXGgAXFxoAFxcaABcXGgAXFxoAFxcaQBcXGuAXFxr/Fxca/xcXGv8XFxr/Fxca/xcXGv8XFxrgFxcaQBcXGgAXFxoAFxcaABcXGgAXFxoAFxcaABcXGgAXFxoAFxcaABcXGgAXFxoAFxcaABcXGgAXFxoAFxcaABcXGgAXFxoAFxcaABcXGgAXFxoAFxcaABcXGgAXFxoAFxcaABcXGgAXFxoAFxcaABcXGgAXFxoAFxcaABcXGgAXFxoAFxcaABcXGgAXFxoAFxcaABcXGgAXFxoAFxcaABcXGgAXFxoAFxcaABcXGgAXFxoAFxcaABcXGgAXFxoAFxcaABcXGgAXFxoAFxcaABcXGgAXFxoAFxcaABcXGgAXFxoAFxcaABcXGgAXFxoAFxcaABcXGgAXFxoAFxcaABcXGgAXFxoAFxcaABcXGgAXFxoAFxcaABcXGgAXFxoAFxcaABcXGgAXFxr/FxcaABcXGgAXFxr/FxcaABcXGgAXFxoAFxcaABcXGgAXFxoAFxcaABcXGgAXFxoAFxcaABcXGgAXFxoAFxca/xcXGgAXFxoAFxca/xcXGgAXFxoAFxcaABcXGgAXFxoAFxcaAA=="
+        },
+        "scope": "Exact RGBA passed to the owned native tray, exported through an offscreen canvas; 16/24px DPI seam, no Windows display change"
+      },
+      {
+        "file": "m11-native-modes-a-tray-paused-light@1.5x.png",
+        "bytes": 274,
+        "sha256": "debf0aece4e483ac9ec996f51d1f23766baf388a2bfa04dc7ba71a1bf036e8e1",
+        "icon": {
+          "revision": 43,
+          "presentation": {
+            "mode": "trayOnly",
+            "visible": true,
+            "badge": {
+              "kind": "paused"
+            },
+            "running": 0,
+            "queued": 0,
+            "paused": 2,
+            "tooltip": "Nabbit \u2014 2 paused"
+          },
+          "theme": "light",
+          "width": 24,
+          "height": 24,
+          "rgbaSha256": "a932fd4e6d51870912cab5339784b2d7fdf714955cc198210fa12c038b3d45ed",
+          "checked": [
+            false,
+            true,
+            false
+          ],
+          "rect": {
+            "position": {
+              "Physical": {
+                "x": 1706,
+                "y": 1032
+              }
+            },
+            "size": {
+              "Physical": {
+                "width": 32,
+                "height": 48
+              }
+            }
+          },
+          "rgbaBase64": "FxcaABcXGgAXFxoAFxcaABcXGgAXFxoAFxcaABcXGgAXFxoAFxcaABcXGgAXFxoAFxcaABcXGgAXFxoAFxcaABcXGgAXFxoAFxcaABcXGgAXFxoAFxcaABcXGgAXFxoAFxcaABcXGgAXFxoAFxcaABcXGgAXFxoAFxcaABcXGgAXFxoAFxcaABcXGgAXFxoAFxcaABcXGgAXFxoAFxcaABcXGgAXFxoAFxcaABcXGgAXFxoAFxcaABcXGgAXFxoAFxcaABcXGgAXFxoAFxcaABcXGgAXFxoAFxcaABcXGgAXFxoAFxcaABcXGgAXFxoAFxcaABcXGgAXFxoAFxcaABcXGgAXFxoAFxcaABcXGgAXFxoAFxcaABcXGgAXFxoAFxcaABcXGgAXFxoAFxcaABcXGgAXFxoAFxcaABcXGgAXFxoAFxcaABcXGgAXFxoAFxcaABcXGgAXFxoAFxcaABcXGgAXFxoAFxcaABcXGgAXFxoAFxcaABcXGgAXFxoAFxcaABcXGgAXFxoAFxcaABcXGgAXFxoAFxcaABcXGgAXFxoAFxcaABcXGgAXFxoAFxcaABcXGgAXFxoAFxcaABcXGgAXFxoAFxcaABcXGgAXFxoAFxcaABcXGgAXFxoAFxcaABcXGgAXFxoAFxcaABcXGgAXFxoAFxcaABcXGgAXFxoAFxcaABcXGgAXFxoAFxcaABcXGgAXFxoAFxcaABcXGgAXFxoAFxcaABcXGgAXFxoAFxcaABcXGgAXFxoAFxcaABcXGgAXFxoAFxcaABcXGgAXFxoAFxcaABcXGgAXFxoAFxcaABcXGgAXFxoAFxcaABcXGgAXFxoAFxcaABcXGgAXFxoAFxcaABcXGgAXFxoAFxcaABcXGgAXFxoAFxcaABcXGgAXFxoAFxcaABcXGgAXFxoAFxcaABcXGgAXFxoAFxcaABcXGgAXFxoAFxcaABcXGgAXFxoAFxcaABcXGgAXFxoAFxcaABcXGgAXFxoAFxcaABcXGgAXFxoAFxcaABcXGgAXFxoAFxcaABcXGgAXFxoAFxcaABcXGgAXFxoAFxcaABcXGgAXFxoAFxcaABcXGgAXFxoAFxcaABcXGgAXFxoAFxcaABcXGgAXFxoAFxcaABcXGgAXFxoAFxcaABcXGgAXFxoAFxcaABcXGgAXFxoQFxcajxcXGt8XFxr/Fxca/xcXGv8XFxr/Fxca/xcXGv8XFxr/Fxca/xcXGv8XFxrfFxcafxcXGgAXFxoAFxcaABcXGgAXFxoAFxcaABcXGgAXFxoAFxcaABcXGgAXFxqQFxca/xcXGv8XFxr/Fxca/xcXGv8XFxr/Fxca/xcXGv8XFxr/Fxca/xcXGv8XFxr/Fxca/xcXGpAXFxoAFxcaABcXGgAXFxoAFxcaABcXGgAXFxoAFxcaABcXGgAXFxrvFxca/xcXGv8XFxr/Fxca/xcXGv8XFxr/Fxca/xcXGv8XFxr/Fxca/xcXGv8XFxr/Fxca/xcXGt8XFxoAFxcaABcXGgAXFxoAFxcaABcXGgAXFxoAFxcaABcXGgAXFxrwFxca/xcXGv8XFxr/Fxca/xcXGv8XFxr/Fxca/xcXGv8XFxr/Fxca/xcXGv8XFxr/Fxca/xcXGuAXFxoAFxcaABcXGgAXFxoAFxcaABcXGgAXFxoAFxcaABcXGgAXFxqAFxca/xcXGv8XFxr/Fxca/xcXGv8XFxr/Fxca/xcXGv8XFxr/Fxca/xcXGv8XFxr/Fxca/xcXGoAXFxoAFxcaABcXGgAXFxoAFxcaABcXGgAXFxoAFxcaABcXGgAXFxoAFxcakBcXGuAXFxr/Fxca/xcXGv8XFxr/Fxca/xcXGv8XFxr/Fxca/xcXGv8XFxrgFxcagBcXGgAXFxoAFxcaABcXGgAXFxoAFxcaABcXGgAXFxoAFxcaABcXGgAXFxoAFxcaABcXGgAXFxoAFxcaABcXGgAXFxoAFxcaABcXGgAXFxoAFxcaABcXGgAXFxoAFxcaABcXGgAXFxoAFxcaABcXGgAXFxoAFxcaABcXGgAXFxoAFxcaABcXGgAXFxoAFxcaABcXGgAXFxoAFxcaABcXGgAXFxoAFxcaABcXGgAXFxoAFxcaABcXGgAXFxoAFxcaABcXGgAXFxoAFxcaABcXGgAXFxoAFxcaABcXGgAXFxoAFxcaABcXGgAXFxoAFxcaABcXGgAXFxoAFxcaABcXGgAXFxoAFxcaABcXGgAXFxoAFxcaABcXGgAXFxoAFxcaABcXGgAXFxoAFxcaABcXGgAXFxoAFxcaABcXGgAXFxoAFxcaABcXGgAXFxoAFxcaABcXGgAXFxoAFxcaABcXGgAXFxoAFxcaABcXGgAXFxoAFxcaABcXGgAXFxoAFxcaABcXGgAXFxoAFxcaABcXGgAXFxoAFxcaABcXGgAXFxoAFxcaABcXGgAXFxoAFxcaABcXGgAXFxoAFxcaABcXGgAXFxoAFxcaABcXGgAXFxoAFxcaABcXGgAXFxoAFxcaABcXGgAXFxoAFxcaABcXGgAXFxoAFxcaABcXGgAXFxoAFxcaABcXGgAXFxoAFxcaABcXGgAXFxoAFxcaABcXGgAXFxoAFxcaABcXGgAXFxoAFxcaABcXGgAXFxoAFxcaABcXGgAXFxoAFxcaABcXGgAXFxoAFxcaABcXGgAXFxoAFxcaABcXGgAXFxoAFxcaABcXGgAXFxoAFxcaABcXGv8XFxoAFxcaABcXGv8XFxoAFxcaABcXGgAXFxoAFxcaABcXGgAXFxoAFxcaABcXGgAXFxoAFxcaABcXGgAXFxoAFxcaABcXGgAXFxoAFxcaABcXGgAXFxoAFxcaABcXGv8XFxoAFxcaABcXGv8XFxoAFxcaABcXGgAXFxoAFxcaABcXGgAXFxoAFxcaABcXGgAXFxoAFxcaABcXGgAXFxoAFxcaABcXGgAXFxoAFxcaABcXGgAXFxoAFxcaABcXGv8XFxoAFxcaABcXGv8XFxoAFxcaABcXGgAXFxoAFxcaABcXGgAXFxoAFxcaABcXGgAXFxoA"
+        },
+        "scope": "Exact RGBA passed to the owned native tray, exported through an offscreen canvas; 16/24px DPI seam, no Windows display change"
+      },
+      {
+        "file": "m11-native-modes-a-tray-paused-dark@1x.png",
+        "bytes": 198,
+        "sha256": "9a4045c169c086e4d1ed97cbda4918008be916d6e38091fdc3219edd47331e2e",
+        "icon": {
+          "revision": 44,
+          "presentation": {
+            "mode": "trayOnly",
+            "visible": true,
+            "badge": {
+              "kind": "paused"
+            },
+            "running": 0,
+            "queued": 0,
+            "paused": 2,
+            "tooltip": "Nabbit \u2014 2 paused"
+          },
+          "theme": "dark",
+          "width": 16,
+          "height": 16,
+          "rgbaSha256": "65b1755a17d55e8f7c0ecfd1ba5725b1aad52ef0f34460fb5187486d6ef8afe9",
+          "checked": [
+            false,
+            true,
+            false
+          ],
+          "rect": {
+            "position": {
+              "Physical": {
+                "x": 1706,
+                "y": 1032
+              }
+            },
+            "size": {
+              "Physical": {
+                "width": 32,
+                "height": 48
+              }
+            }
+          },
+          "rgbaBase64": "////AP///wD///8A////AP///wD///8A////AP///wD///8A////AP///wD///8A////AP///wD///8A////AP///wD///8A////AP///wD///8A////AP///wD///8A////AP///wD///8A////AP///wD///8A////AP///wD///8A////AP///wD///8A////AP///wD///8A////AP///wD///8A////AP///wD///8A////AP///wD///8A////AP///wD///8A////AP///wD///8A////AP///wD///8A////AP///wD///8A////AP///wD///8A////AP///wD///8A////AP///wD///8A////AP///wD///8A////AP///wD///8A////AP///wD///8A////AP///wD///8A////AP///wD///8A////AP///wD///8A////AP///wD///8A////AP///wD///8A////AP///wD///8A////AP///wD///8A////QP///9/////////////////////////////////////f////QP///wD///8A////AP///wD///8A////AP///9///////////////////////////////////////////////9////8A////AP///wD///8A////AP///wD////w///////////////////////////////////////////////g////AP///wD///8A////AP///wD///8A////QP///+D////////////////////////////////////g////QP///wD///8A////AP///wD///8A////AP///wD///8A////AP///wD///8A////AP///wD///8A////AP///wD///8A////AP///wD///8A////AP///wD///8A////AP///wD///8A////AP///wD///8A////AP///wD///8A////AP///wD///8A////AP///wD///8A////AP///wD///8A////AP///wD///8A////AP///wD///8A////AP///wD///8A////AP///wD///8A////AP///wD///8A////AP///wD///8A////AP///wD///8A////AP///wD///8A////AP///wD///8A////AP///wD///8A////AP///wD/////////AP///wD/////////AP///wD///8A////AP///wD///8A////AP///wD///8A////AP///wD///8A/////////wD///8A/////////wD///8A////AP///wD///8A////AA=="
+        },
+        "scope": "Exact RGBA passed to the owned native tray, exported through an offscreen canvas; 16/24px DPI seam, no Windows display change"
+      },
+      {
+        "file": "m11-native-modes-a-tray-paused-dark@1.5x.png",
+        "bytes": 243,
+        "sha256": "5ce055b875b81cbbb73e916f2df4273e7776364dca5b15ceb404e37a963dd4f4",
+        "icon": {
+          "revision": 45,
+          "presentation": {
+            "mode": "trayOnly",
+            "visible": true,
+            "badge": {
+              "kind": "paused"
+            },
+            "running": 0,
+            "queued": 0,
+            "paused": 2,
+            "tooltip": "Nabbit \u2014 2 paused"
+          },
+          "theme": "dark",
+          "width": 24,
+          "height": 24,
+          "rgbaSha256": "c1e60aff7cfc3bbcce9c61a02f6902fbee7d0a83347bb6c9a51233d4a0c928fa",
+          "checked": [
+            false,
+            true,
+            false
+          ],
+          "rect": {
+            "position": {
+              "Physical": {
+                "x": 1706,
+                "y": 1032
+              }
+            },
+            "size": {
+              "Physical": {
+                "width": 32,
+                "height": 48
+              }
+            }
+          },
+          "rgbaBase64": "////AP///wD///8A////AP///wD///8A////AP///wD///8A////AP///wD///8A////AP///wD///8A////AP///wD///8A////AP///wD///8A////AP///wD///8A////AP///wD///8A////AP///wD///8A////AP///wD///8A////AP///wD///8A////AP///wD///8A////AP///wD///8A////AP///wD///8A////AP///wD///8A////AP///wD///8A////AP///wD///8A////AP///wD///8A////AP///wD///8A////AP///wD///8A////AP///wD///8A////AP///wD///8A////AP///wD///8A////AP///wD///8A////AP///wD///8A////AP///wD///8A////AP///wD///8A////AP///wD///8A////AP///wD///8A////AP///wD///8A////AP///wD///8A////AP///wD///8A////AP///wD///8A////AP///wD///8A////AP///wD///8A////AP///wD///8A////AP///wD///8A////AP///wD///8A////AP///wD///8A////AP///wD///8A////AP///wD///8A////AP///wD///8A////AP///wD///8A////AP///wD///8A////AP///wD///8A////AP///wD///8A////AP///wD///8A////AP///wD///8A////AP///wD///8A////AP///wD///8A////AP///wD///8A////AP///wD///8A////AP///wD///8A////AP///wD///8A////AP///wD///8A////AP///wD///8A////AP///wD///8A////AP///wD///8A////AP///wD///8A////AP///wD///8A////AP///wD///8A////AP///wD///8A////AP///wD///8A////AP///wD///8A////AP///wD///8A////AP///wD///8A////AP///wD///8A////AP///wD///8A////AP///wD///8A////AP///wD///8A////AP///wD///8A////AP///wD///8A////AP///wD///8Q////j////9/////////////////////////////////////////////////////f////f////wD///8A////AP///wD///8A////AP///wD///8A////AP///wD///+Q/////////////////////////////////////////////////////////////////////////5D///8A////AP///wD///8A////AP///wD///8A////AP///wD////v/////////////////////////////////////////////////////////////////////////9////8A////AP///wD///8A////AP///wD///8A////AP///wD////w/////////////////////////////////////////////////////////////////////////+D///8A////AP///wD///8A////AP///wD///8A////AP///wD///+A/////////////////////////////////////////////////////////////////////////4D///8A////AP///wD///8A////AP///wD///8A////AP///wD///8A////kP///+D////////////////////////////////////////////////////g////gP///wD///8A////AP///wD///8A////AP///wD///8A////AP///wD///8A////AP///wD///8A////AP///wD///8A////AP///wD///8A////AP///wD///8A////AP///wD///8A////AP///wD///8A////AP///wD///8A////AP///wD///8A////AP///wD///8A////AP///wD///8A////AP///wD///8A////AP///wD///8A////AP///wD///8A////AP///wD///8A////AP///wD///8A////AP///wD///8A////AP///wD///8A////AP///wD///8A////AP///wD///8A////AP///wD///8A////AP///wD///8A////AP///wD///8A////AP///wD///8A////AP///wD///8A////AP///wD///8A////AP///wD///8A////AP///wD///8A////AP///wD///8A////AP///wD///8A////AP///wD///8A////AP///wD///8A////AP///wD///8A////AP///wD///8A////AP///wD///8A////AP///wD///8A////AP///wD///8A////AP///wD///8A////AP///wD///8A////AP///wD///8A////AP///wD///8A////AP///wD///8A////AP///wD///8A////AP///wD///8A////AP///wD///8A////AP///wD///8A////AP///wD///8A////AP///wD///8A////AP///wD///8A////AP///wD///8A////AP////////8A////AP////////8A////AP///wD///8A////AP///wD///8A////AP///wD///8A////AP///wD///8A////AP///wD///8A////AP///wD///8A////AP////////8A////AP////////8A////AP///wD///8A////AP///wD///8A////AP///wD///8A////AP///wD///8A////AP///wD///8A////AP///wD///8A////AP////////8A////AP////////8A////AP///wD///8A////AP///wD///8A////AP///wD///8A"
+        },
+        "scope": "Exact RGBA passed to the owned native tray, exported through an offscreen canvas; 16/24px DPI seam, no Windows display change"
+      }
+    ],
+    "completed": {
+      "desired": {
+        "mode": "trayOnly",
+        "visible": true,
+        "badge": {
+          "kind": "none"
+        },
+        "running": 0,
+        "queued": 0,
+        "paused": 0,
+        "tooltip": "Nabbit"
+      },
+      "revision": 54,
+      "applied": {
+        "revision": 54,
+        "presentation": {
+          "mode": "trayOnly",
+          "visible": true,
+          "badge": {
+            "kind": "none"
+          },
+          "running": 0,
+          "queued": 0,
+          "paused": 0,
+          "tooltip": "Nabbit"
+        },
+        "theme": "dark",
+        "width": 24,
+        "height": 24,
+        "rgbaSha256": "a619a8b7be52e321de433c5ad4ffbb0939ccf43db52b91f7b6a0f4f51dfe5436",
+        "checked": [
+          false,
+          true,
+          false
+        ],
+        "rect": {
+          "position": {
+            "Physical": {
+              "x": 1706,
+              "y": 1032
+            }
+          },
+          "size": {
+            "Physical": {
+              "width": 32,
+              "height": 48
+            }
+          }
+        },
+        "rgbaBase64": "////AP///wD///8A////AP///wD///8A////AP///wD///8A////AP///wD///8A////AP///wD///8A////AP///wD///8A////AP///wD///8A////AP///wD///8A////AP///wD///8A////AP///wD///8A////AP///wD///8A////AP///wD///8A////AP///wD///8A////AP///wD///8A////AP///wD///8A////AP///wD///8A////AP///wD///8A////AP///wD///8A////AP///wD///8A////AP///wD///8A////AP///wD///8A////AP///wD///8A////AP///wD///8A////AP///wD///8A////AP///wD///8A////AP///wD///8A////AP///wD///8A////AP///wD///8A////AP///wD///8A////AP///wD///8A////AP///wD///8A////AP///wD///8A////AP///wD///8A////AP///wD///8A////AP///wD///8A////AP///wD///8A////AP///wD///8A////AP///wD///8A////AP///wD///8A////AP///wD///8A////AP///wD///8A////AP///wD///8A////AP///wD///8A////AP///wD///8A////AP///wD///8A////AP///wD///8A////AP///wD///8A////AP///wD///8A////AP///wD///8A////AP///wD///8A////AP///wD///8A////AP///wD///8A////AP///wD///8A////AP///wD///8A////AP///wD///8A////AP///wD///8A////AP///wD///8A////AP///wD///8A////AP///wD///8A////AP///wD///8A////AP///wD///8A////AP///wD///8A////AP///wD///8A////AP///wD///8A////AP///wD///8A////AP///wD///8A////AP///wD///8A////AP///wD///8A////AP///wD///8A////AP///wD///8A////AP///wD///8A////AP///wD///8A////AP///wD///8A////AP///wD///8Q////j////9/////////////////////////////////////////////////////f////f////wD///8A////AP///wD///8A////AP///wD///8A////AP///wD///+Q/////////////////////////////////////////////////////////////////////////5D///8A////AP///wD///8A////AP///wD///8A////AP///wD////v/////////////////////////////////////////////////////////////////////////9////8A////AP///wD///8A////AP///wD///8A////AP///wD////w/////////////////////////////////////////////////////////////////////////+D///8A////AP///wD///8A////AP///wD///8A////AP///wD///+A/////////////////////////////////////////////////////////////////////////4D///8A////AP///wD///8A////AP///wD///8A////AP///wD///8A////kP///+D////////////////////////////////////////////////////g////gP///wD///8A////AP///wD///8A////AP///wD///8A////AP///wD///8A////AP///wD///8A////AP///wD///8A////AP///wD///8A////AP///wD///8A////AP///wD///8A////AP///wD///8A////AP///wD///8A////AP///wD///8A////AP///wD///8A////AP///wD///8A////AP///wD///8A////AP///wD///8A////AP///wD///8A////AP///wD///8A////AP///wD///8A////AP///wD///8A////AP///wD///8A////AP///wD///8A////AP///wD///8A////AP///wD///8A////AP///wD///8A////AP///wD///8A////AP///wD///8A////AP///wD///8A////AP///wD///8A////AP///wD///8A////AP///wD///8A////AP///wD///8A////AP///wD///8A////AP///wD///8A////AP///wD///8A////AP///wD///8A////AP///wD///8A////AP///wD///8A////AP///wD///8A////AP///wD///8A////AP///wD///8A////AP///wD///8A////AP///wD///8A////AP///wD///8A////AP///wD///8A////AP///wD///8A////AP///wD///8A////AP///wD///8A////AP///wD///8A////AP///wD///8A////AP///wD///8A////AP///wD///8A////AP///wD///8A////AP///wD///8A////AP///wD///8A////AP///wD///8A////AP///wD///8A////AP///wD///8A////AP///wD///8A////AP///wD///8A////AP///wD///8A////AP///wD///8A////AP///wD///8A////AP///wD///8A////AP///wD///8A////AP///wD///8A////AP///wD///8A////AP///wD///8A////AP///wD///8A////AP///wD///8A////AP///wD///8A////AP///wD///8A////AP///wD///8A////AP///wD///8A"
+      },
+      "trayError": null,
+      "notificationError": null,
+      "notifications": [
+        {
+          "completion": {
+            "jobId": "704c884c-b786-42d2-9f2d-6e455924db3f",
+            "title": "Owned <download 1> & fixture"
+          },
+          "xml": "<toast activationType=\"protocol\" launch=\"nabbit://downloads\"><visual><binding template=\"ToastGeneric\"><text>Download complete</text><text>Owned &lt;download 1&gt; &amp; fixture</text><text>Open Nabbit to see your downloads.</text></binding></visual><audio silent=\"true\"/></toast>",
+          "adapter": "owned WinRT validation; Show suppressed",
+          "error": null
+        }
+      ]
+    },
+    "idleIcons": [
+      {
+        "file": "m11-native-modes-a-tray-idle-light@1x.png",
+        "bytes": 198,
+        "sha256": "edbea21d08411bbfc07d989370f6ac7d31ad09585061a0c7e8e25b655e38d55d",
+        "icon": {
+          "revision": 55,
+          "presentation": {
+            "mode": "trayOnly",
+            "visible": true,
+            "badge": {
+              "kind": "none"
+            },
+            "running": 0,
+            "queued": 0,
+            "paused": 0,
+            "tooltip": "Nabbit"
+          },
+          "theme": "light",
+          "width": 16,
+          "height": 16,
+          "rgbaSha256": "841896f5697c250d974895a2e4260737dc79b9029a30e86970a3e6126600dc85",
+          "checked": [
+            false,
+            true,
+            false
+          ],
+          "rect": {
+            "position": {
+              "Physical": {
+                "x": 1706,
+                "y": 1032
+              }
+            },
+            "size": {
+              "Physical": {
+                "width": 32,
+                "height": 48
+              }
+            }
+          },
+          "rgbaBase64": "FxcaABcXGgAXFxoAFxcaABcXGgAXFxoAFxcaABcXGgAXFxoAFxcaABcXGgAXFxoAFxcaABcXGgAXFxoAFxcaABcXGgAXFxoAFxcaABcXGgAXFxoAFxcaABcXGgAXFxoAFxcaABcXGgAXFxoAFxcaABcXGgAXFxoAFxcaABcXGgAXFxoAFxcaABcXGgAXFxoAFxcaABcXGgAXFxoAFxcaABcXGgAXFxoAFxcaABcXGgAXFxoAFxcaABcXGgAXFxoAFxcaABcXGgAXFxoAFxcaABcXGgAXFxoAFxcaABcXGgAXFxoAFxcaABcXGgAXFxoAFxcaABcXGgAXFxoAFxcaABcXGgAXFxoAFxcaABcXGgAXFxoAFxcaABcXGgAXFxoAFxcaABcXGgAXFxoAFxcaABcXGgAXFxoAFxcaABcXGgAXFxoAFxcaABcXGgAXFxoAFxcaABcXGgAXFxoAFxcaABcXGgAXFxoAFxcaABcXGgAXFxoAFxcaABcXGgAXFxoAFxcaABcXGgAXFxoAFxcaQBcXGt8XFxr/Fxca/xcXGv8XFxr/Fxca/xcXGv8XFxrfFxcaQBcXGgAXFxoAFxcaABcXGgAXFxoAFxcaABcXGt8XFxr/Fxca/xcXGv8XFxr/Fxca/xcXGv8XFxr/Fxca/xcXGt8XFxoAFxcaABcXGgAXFxoAFxcaABcXGgAXFxrwFxca/xcXGv8XFxr/Fxca/xcXGv8XFxr/Fxca/xcXGv8XFxrgFxcaABcXGgAXFxoAFxcaABcXGgAXFxoAFxcaQBcXGuAXFxr/Fxca/xcXGv8XFxr/Fxca/xcXGv8XFxrgFxcaQBcXGgAXFxoAFxcaABcXGgAXFxoAFxcaABcXGgAXFxoAFxcaABcXGgAXFxoAFxcaABcXGgAXFxoAFxcaABcXGgAXFxoAFxcaABcXGgAXFxoAFxcaABcXGgAXFxoAFxcaABcXGgAXFxoAFxcaABcXGgAXFxoAFxcaABcXGgAXFxoAFxcaABcXGgAXFxoAFxcaABcXGgAXFxoAFxcaABcXGgAXFxoAFxcaABcXGgAXFxoAFxcaABcXGgAXFxoAFxcaABcXGgAXFxoAFxcaABcXGgAXFxoAFxcaABcXGgAXFxoAFxcaABcXGgAXFxoAFxcaABcXGgAXFxoAFxcaABcXGgAXFxoAFxcaABcXGgAXFxoAFxcaABcXGgAXFxoAFxcaABcXGgAXFxoAFxcaABcXGgAXFxoAFxcaABcXGgAXFxoAFxcaABcXGgAXFxoAFxcaABcXGgAXFxoAFxcaABcXGgAXFxoAFxcaABcXGgAXFxoAFxcaABcXGgAXFxoAFxcaABcXGgAXFxoAFxcaAA=="
+        },
+        "scope": "Exact RGBA passed to the owned native tray, exported through an offscreen canvas; 16/24px DPI seam, no Windows display change"
+      },
+      {
+        "file": "m11-native-modes-a-tray-idle-light@1.5x.png",
+        "bytes": 257,
+        "sha256": "23fac6fa5a5583a9f7b981c44606d0808af0d99b7a74233db7b623fd46fdbf31",
+        "icon": {
+          "revision": 56,
+          "presentation": {
+            "mode": "trayOnly",
+            "visible": true,
+            "badge": {
+              "kind": "none"
+            },
+            "running": 0,
+            "queued": 0,
+            "paused": 0,
+            "tooltip": "Nabbit"
+          },
+          "theme": "light",
+          "width": 24,
+          "height": 24,
+          "rgbaSha256": "8537d504f5c51a5770ef274481066d102e97396085d4008da3da88fb8620e38a",
+          "checked": [
+            false,
+            true,
+            false
+          ],
+          "rect": {
+            "position": {
+              "Physical": {
+                "x": 1706,
+                "y": 1032
+              }
+            },
+            "size": {
+              "Physical": {
+                "width": 32,
+                "height": 48
+              }
+            }
+          },
+          "rgbaBase64": "FxcaABcXGgAXFxoAFxcaABcXGgAXFxoAFxcaABcXGgAXFxoAFxcaABcXGgAXFxoAFxcaABcXGgAXFxoAFxcaABcXGgAXFxoAFxcaABcXGgAXFxoAFxcaABcXGgAXFxoAFxcaABcXGgAXFxoAFxcaABcXGgAXFxoAFxcaABcXGgAXFxoAFxcaABcXGgAXFxoAFxcaABcXGgAXFxoAFxcaABcXGgAXFxoAFxcaABcXGgAXFxoAFxcaABcXGgAXFxoAFxcaABcXGgAXFxoAFxcaABcXGgAXFxoAFxcaABcXGgAXFxoAFxcaABcXGgAXFxoAFxcaABcXGgAXFxoAFxcaABcXGgAXFxoAFxcaABcXGgAXFxoAFxcaABcXGgAXFxoAFxcaABcXGgAXFxoAFxcaABcXGgAXFxoAFxcaABcXGgAXFxoAFxcaABcXGgAXFxoAFxcaABcXGgAXFxoAFxcaABcXGgAXFxoAFxcaABcXGgAXFxoAFxcaABcXGgAXFxoAFxcaABcXGgAXFxoAFxcaABcXGgAXFxoAFxcaABcXGgAXFxoAFxcaABcXGgAXFxoAFxcaABcXGgAXFxoAFxcaABcXGgAXFxoAFxcaABcXGgAXFxoAFxcaABcXGgAXFxoAFxcaABcXGgAXFxoAFxcaABcXGgAXFxoAFxcaABcXGgAXFxoAFxcaABcXGgAXFxoAFxcaABcXGgAXFxoAFxcaABcXGgAXFxoAFxcaABcXGgAXFxoAFxcaABcXGgAXFxoAFxcaABcXGgAXFxoAFxcaABcXGgAXFxoAFxcaABcXGgAXFxoAFxcaABcXGgAXFxoAFxcaABcXGgAXFxoAFxcaABcXGgAXFxoAFxcaABcXGgAXFxoAFxcaABcXGgAXFxoAFxcaABcXGgAXFxoAFxcaABcXGgAXFxoAFxcaABcXGgAXFxoAFxcaABcXGgAXFxoAFxcaABcXGgAXFxoAFxcaABcXGgAXFxoAFxcaABcXGgAXFxoAFxcaABcXGgAXFxoAFxcaABcXGgAXFxoAFxcaABcXGgAXFxoAFxcaABcXGgAXFxoAFxcaABcXGgAXFxoAFxcaABcXGgAXFxoAFxcaABcXGgAXFxoAFxcaABcXGgAXFxoAFxcaABcXGgAXFxoAFxcaABcXGgAXFxoAFxcaABcXGgAXFxoQFxcajxcXGt8XFxr/Fxca/xcXGv8XFxr/Fxca/xcXGv8XFxr/Fxca/xcXGv8XFxrfFxcafxcXGgAXFxoAFxcaABcXGgAXFxoAFxcaABcXGgAXFxoAFxcaABcXGgAXFxqQFxca/xcXGv8XFxr/Fxca/xcXGv8XFxr/Fxca/xcXGv8XFxr/Fxca/xcXGv8XFxr/Fxca/xcXGpAXFxoAFxcaABcXGgAXFxoAFxcaABcXGgAXFxoAFxcaABcXGgAXFxrvFxca/xcXGv8XFxr/Fxca/xcXGv8XFxr/Fxca/xcXGv8XFxr/Fxca/xcXGv8XFxr/Fxca/xcXGt8XFxoAFxcaABcXGgAXFxoAFxcaABcXGgAXFxoAFxcaABcXGgAXFxrwFxca/xcXGv8XFxr/Fxca/xcXGv8XFxr/Fxca/xcXGv8XFxr/Fxca/xcXGv8XFxr/Fxca/xcXGuAXFxoAFxcaABcXGgAXFxoAFxcaABcXGgAXFxoAFxcaABcXGgAXFxqAFxca/xcXGv8XFxr/Fxca/xcXGv8XFxr/Fxca/xcXGv8XFxr/Fxca/xcXGv8XFxr/Fxca/xcXGoAXFxoAFxcaABcXGgAXFxoAFxcaABcXGgAXFxoAFxcaABcXGgAXFxoAFxcakBcXGuAXFxr/Fxca/xcXGv8XFxr/Fxca/xcXGv8XFxr/Fxca/xcXGv8XFxrgFxcagBcXGgAXFxoAFxcaABcXGgAXFxoAFxcaABcXGgAXFxoAFxcaABcXGgAXFxoAFxcaABcXGgAXFxoAFxcaABcXGgAXFxoAFxcaABcXGgAXFxoAFxcaABcXGgAXFxoAFxcaABcXGgAXFxoAFxcaABcXGgAXFxoAFxcaABcXGgAXFxoAFxcaABcXGgAXFxoAFxcaABcXGgAXFxoAFxcaABcXGgAXFxoAFxcaABcXGgAXFxoAFxcaABcXGgAXFxoAFxcaABcXGgAXFxoAFxcaABcXGgAXFxoAFxcaABcXGgAXFxoAFxcaABcXGgAXFxoAFxcaABcXGgAXFxoAFxcaABcXGgAXFxoAFxcaABcXGgAXFxoAFxcaABcXGgAXFxoAFxcaABcXGgAXFxoAFxcaABcXGgAXFxoAFxcaABcXGgAXFxoAFxcaABcXGgAXFxoAFxcaABcXGgAXFxoAFxcaABcXGgAXFxoAFxcaABcXGgAXFxoAFxcaABcXGgAXFxoAFxcaABcXGgAXFxoAFxcaABcXGgAXFxoAFxcaABcXGgAXFxoAFxcaABcXGgAXFxoAFxcaABcXGgAXFxoAFxcaABcXGgAXFxoAFxcaABcXGgAXFxoAFxcaABcXGgAXFxoAFxcaABcXGgAXFxoAFxcaABcXGgAXFxoAFxcaABcXGgAXFxoAFxcaABcXGgAXFxoAFxcaABcXGgAXFxoAFxcaABcXGgAXFxoAFxcaABcXGgAXFxoAFxcaABcXGgAXFxoAFxcaABcXGgAXFxoAFxcaABcXGgAXFxoAFxcaABcXGgAXFxoAFxcaABcXGgAXFxoAFxcaABcXGgAXFxoAFxcaABcXGgAXFxoAFxcaABcXGgAXFxoAFxcaABcXGgAXFxoAFxcaABcXGgAXFxoAFxcaABcXGgAXFxoAFxcaABcXGgAXFxoAFxcaABcXGgAXFxoAFxcaABcXGgAXFxoAFxcaABcXGgAXFxoAFxcaABcXGgAXFxoAFxcaABcXGgAXFxoAFxcaABcXGgAXFxoAFxcaABcXGgAXFxoAFxcaABcXGgAXFxoAFxcaABcXGgAXFxoAFxcaABcXGgAXFxoAFxcaABcXGgAXFxoAFxcaABcXGgAXFxoAFxcaABcXGgAXFxoAFxcaABcXGgAXFxoAFxcaABcXGgAXFxoA"
+        },
+        "scope": "Exact RGBA passed to the owned native tray, exported through an offscreen canvas; 16/24px DPI seam, no Windows display change"
+      },
+      {
+        "file": "m11-native-modes-a-tray-idle-dark@1x.png",
+        "bytes": 186,
+        "sha256": "c51713c1254c3d9979a2d53e7c86ff31c7de25bda89b6f581080fcaf7e3fdd99",
+        "icon": {
+          "revision": 57,
+          "presentation": {
+            "mode": "trayOnly",
+            "visible": true,
+            "badge": {
+              "kind": "none"
+            },
+            "running": 0,
+            "queued": 0,
+            "paused": 0,
+            "tooltip": "Nabbit"
+          },
+          "theme": "dark",
+          "width": 16,
+          "height": 16,
+          "rgbaSha256": "39ff0931f2634eb4d8e21b49ebe455f2fb7ccdfd4bc27df882cd6aba3af99f3e",
+          "checked": [
+            false,
+            true,
+            false
+          ],
+          "rect": {
+            "position": {
+              "Physical": {
+                "x": 1706,
+                "y": 1032
+              }
+            },
+            "size": {
+              "Physical": {
+                "width": 32,
+                "height": 48
+              }
+            }
+          },
+          "rgbaBase64": "////AP///wD///8A////AP///wD///8A////AP///wD///8A////AP///wD///8A////AP///wD///8A////AP///wD///8A////AP///wD///8A////AP///wD///8A////AP///wD///8A////AP///wD///8A////AP///wD///8A////AP///wD///8A////AP///wD///8A////AP///wD///8A////AP///wD///8A////AP///wD///8A////AP///wD///8A////AP///wD///8A////AP///wD///8A////AP///wD///8A////AP///wD///8A////AP///wD///8A////AP///wD///8A////AP///wD///8A////AP///wD///8A////AP///wD///8A////AP///wD///8A////AP///wD///8A////AP///wD///8A////AP///wD///8A////AP///wD///8A////AP///wD///8A////AP///wD///8A////QP///9/////////////////////////////////////f////QP///wD///8A////AP///wD///8A////AP///9///////////////////////////////////////////////9////8A////AP///wD///8A////AP///wD////w///////////////////////////////////////////////g////AP///wD///8A////AP///wD///8A////QP///+D////////////////////////////////////g////QP///wD///8A////AP///wD///8A////AP///wD///8A////AP///wD///8A////AP///wD///8A////AP///wD///8A////AP///wD///8A////AP///wD///8A////AP///wD///8A////AP///wD///8A////AP///wD///8A////AP///wD///8A////AP///wD///8A////AP///wD///8A////AP///wD///8A////AP///wD///8A////AP///wD///8A////AP///wD///8A////AP///wD///8A////AP///wD///8A////AP///wD///8A////AP///wD///8A////AP///wD///8A////AP///wD///8A////AP///wD///8A////AP///wD///8A////AP///wD///8A////AP///wD///8A////AP///wD///8A////AP///wD///8A////AP///wD///8A////AP///wD///8A////AP///wD///8A////AA=="
+        },
+        "scope": "Exact RGBA passed to the owned native tray, exported through an offscreen canvas; 16/24px DPI seam, no Windows display change"
+      },
+      {
+        "file": "m11-native-modes-a-tray-idle-dark@1.5x.png",
+        "bytes": 227,
+        "sha256": "b8f887395089f04083e8412626724a7a5bc0812dc1a976305a9bff7b6e8f4c64",
+        "icon": {
+          "revision": 58,
+          "presentation": {
+            "mode": "trayOnly",
+            "visible": true,
+            "badge": {
+              "kind": "none"
+            },
+            "running": 0,
+            "queued": 0,
+            "paused": 0,
+            "tooltip": "Nabbit"
+          },
+          "theme": "dark",
+          "width": 24,
+          "height": 24,
+          "rgbaSha256": "a619a8b7be52e321de433c5ad4ffbb0939ccf43db52b91f7b6a0f4f51dfe5436",
+          "checked": [
+            false,
+            true,
+            false
+          ],
+          "rect": {
+            "position": {
+              "Physical": {
+                "x": 1706,
+                "y": 1032
+              }
+            },
+            "size": {
+              "Physical": {
+                "width": 32,
+                "height": 48
+              }
+            }
+          },
+          "rgbaBase64": "////AP///wD///8A////AP///wD///8A////AP///wD///8A////AP///wD///8A////AP///wD///8A////AP///wD///8A////AP///wD///8A////AP///wD///8A////AP///wD///8A////AP///wD///8A////AP///wD///8A////AP///wD///8A////AP///wD///8A////AP///wD///8A////AP///wD///8A////AP///wD///8A////AP///wD///8A////AP///wD///8A////AP///wD///8A////AP///wD///8A////AP///wD///8A////AP///wD///8A////AP///wD///8A////AP///wD///8A////AP///wD///8A////AP///wD///8A////AP///wD///8A////AP///wD///8A////AP///wD///8A////AP///wD///8A////AP///wD///8A////AP///wD///8A////AP///wD///8A////AP///wD///8A////AP///wD///8A////AP///wD///8A////AP///wD///8A////AP///wD///8A////AP///wD///8A////AP///wD///8A////AP///wD///8A////AP///wD///8A////AP///wD///8A////AP///wD///8A////AP///wD///8A////AP///wD///8A////AP///wD///8A////AP///wD///8A////AP///wD///8A////AP///wD///8A////AP///wD///8A////AP///wD///8A////AP///wD///8A////AP///wD///8A////AP///wD///8A////AP///wD///8A////AP///wD///8A////AP///wD///8A////AP///wD///8A////AP///wD///8A////AP///wD///8A////AP///wD///8A////AP///wD///8A////AP///wD///8A////AP///wD///8A////AP///wD///8A////AP///wD///8A////AP///wD///8A////AP///wD///8A////AP///wD///8A////AP///wD///8A////AP///wD///8A////AP///wD///8A////AP///wD///8Q////j////9/////////////////////////////////////////////////////f////f////wD///8A////AP///wD///8A////AP///wD///8A////AP///wD///+Q/////////////////////////////////////////////////////////////////////////5D///8A////AP///wD///8A////AP///wD///8A////AP///wD////v/////////////////////////////////////////////////////////////////////////9////8A////AP///wD///8A////AP///wD///8A////AP///wD////w/////////////////////////////////////////////////////////////////////////+D///8A////AP///wD///8A////AP///wD///8A////AP///wD///+A/////////////////////////////////////////////////////////////////////////4D///8A////AP///wD///8A////AP///wD///8A////AP///wD///8A////kP///+D////////////////////////////////////////////////////g////gP///wD///8A////AP///wD///8A////AP///wD///8A////AP///wD///8A////AP///wD///8A////AP///wD///8A////AP///wD///8A////AP///wD///8A////AP///wD///8A////AP///wD///8A////AP///wD///8A////AP///wD///8A////AP///wD///8A////AP///wD///8A////AP///wD///8A////AP///wD///8A////AP///wD///8A////AP///wD///8A////AP///wD///8A////AP///wD///8A////AP///wD///8A////AP///wD///8A////AP///wD///8A////AP///wD///8A////AP///wD///8A////AP///wD///8A////AP///wD///8A////AP///wD///8A////AP///wD///8A////AP///wD///8A////AP///wD///8A////AP///wD///8A////AP///wD///8A////AP///wD///8A////AP///wD///8A////AP///wD///8A////AP///wD///8A////AP///wD///8A////AP///wD///8A////AP///wD///8A////AP///wD///8A////AP///wD///8A////AP///wD///8A////AP///wD///8A////AP///wD///8A////AP///wD///8A////AP///wD///8A////AP///wD///8A////AP///wD///8A////AP///wD///8A////AP///wD///8A////AP///wD///8A////AP///wD///8A////AP///wD///8A////AP///wD///8A////AP///wD///8A////AP///wD///8A////AP///wD///8A////AP///wD///8A////AP///wD///8A////AP///wD///8A////AP///wD///8A////AP///wD///8A////AP///wD///8A////AP///wD///8A////AP///wD///8A////AP///wD///8A////AP///wD///8A////AP///wD///8A////AP///wD///8A////AP///wD///8A////AP///wD///8A////AP///wD///8A////AP///wD///8A"
+        },
+        "scope": "Exact RGBA passed to the owned native tray, exported through an offscreen canvas; 16/24px DPI seam, no Windows display change"
+      }
+    ],
+    "activation": {
+      "uri": "nabbit://downloads",
+      "jobsBefore": [
+        "704c884c-b786-42d2-9f2d-6e455924db3f",
+        "ea73106f-ea5c-4d98-97e6-78fd45555b9a"
+      ],
+      "jobsAfter": [
+        "704c884c-b786-42d2-9f2d-6e455924db3f",
+        "ea73106f-ea5c-4d98-97e6-78fd45555b9a"
+      ],
+      "capturedBefore": null,
+      "capturedAfter": null
+    },
+    "restart": {
+      "desired": {
+        "mode": "islandOnly",
+        "visible": false,
+        "badge": {
+          "kind": "none"
+        },
+        "running": 0,
+        "queued": 0,
+        "paused": 0,
+        "tooltip": "Nabbit"
+      },
+      "revision": 3,
+      "applied": {
+        "revision": 3,
+        "presentation": {
+          "mode": "islandOnly",
+          "visible": false,
+          "badge": {
+            "kind": "none"
+          },
+          "running": 0,
+          "queued": 0,
+          "paused": 0,
+          "tooltip": "Nabbit"
+        },
+        "theme": "dark",
+        "width": 16,
+        "height": 16,
+        "rgbaSha256": "39ff0931f2634eb4d8e21b49ebe455f2fb7ccdfd4bc27df882cd6aba3af99f3e",
+        "checked": [
+          false,
+          false,
+          true
+        ],
+        "rect": null,
+        "rgbaBase64": "////AP///wD///8A////AP///wD///8A////AP///wD///8A////AP///wD///8A////AP///wD///8A////AP///wD///8A////AP///wD///8A////AP///wD///8A////AP///wD///8A////AP///wD///8A////AP///wD///8A////AP///wD///8A////AP///wD///8A////AP///wD///8A////AP///wD///8A////AP///wD///8A////AP///wD///8A////AP///wD///8A////AP///wD///8A////AP///wD///8A////AP///wD///8A////AP///wD///8A////AP///wD///8A////AP///wD///8A////AP///wD///8A////AP///wD///8A////AP///wD///8A////AP///wD///8A////AP///wD///8A////AP///wD///8A////AP///wD///8A////AP///wD///8A////AP///wD///8A////QP///9/////////////////////////////////////f////QP///wD///8A////AP///wD///8A////AP///9///////////////////////////////////////////////9////8A////AP///wD///8A////AP///wD////w///////////////////////////////////////////////g////AP///wD///8A////AP///wD///8A////QP///+D////////////////////////////////////g////QP///wD///8A////AP///wD///8A////AP///wD///8A////AP///wD///8A////AP///wD///8A////AP///wD///8A////AP///wD///8A////AP///wD///8A////AP///wD///8A////AP///wD///8A////AP///wD///8A////AP///wD///8A////AP///wD///8A////AP///wD///8A////AP///wD///8A////AP///wD///8A////AP///wD///8A////AP///wD///8A////AP///wD///8A////AP///wD///8A////AP///wD///8A////AP///wD///8A////AP///wD///8A////AP///wD///8A////AP///wD///8A////AP///wD///8A////AP///wD///8A////AP///wD///8A////AP///wD///8A////AP///wD///8A////AP///wD///8A////AP///wD///8A////AP///wD///8A////AA=="
+      },
+      "trayError": null,
+      "notificationError": null,
+      "notifications": []
+    },
+    "restartTrayOnly": {
+      "desired": {
+        "mode": "trayOnly",
+        "visible": true,
+        "badge": {
+          "kind": "none"
+        },
+        "running": 0,
+        "queued": 0,
+        "paused": 0,
+        "tooltip": "Nabbit"
+      },
+      "revision": 3,
+      "applied": {
+        "revision": 3,
+        "presentation": {
+          "mode": "trayOnly",
+          "visible": true,
+          "badge": {
+            "kind": "none"
+          },
+          "running": 0,
+          "queued": 0,
+          "paused": 0,
+          "tooltip": "Nabbit"
+        },
+        "theme": "dark",
+        "width": 16,
+        "height": 16,
+        "rgbaSha256": "39ff0931f2634eb4d8e21b49ebe455f2fb7ccdfd4bc27df882cd6aba3af99f3e",
+        "checked": [
+          false,
+          true,
+          false
+        ],
+        "rect": {
+          "position": {
+            "Physical": {
+              "x": 1706,
+              "y": 1032
+            }
+          },
+          "size": {
+            "Physical": {
+              "width": 32,
+              "height": 48
+            }
+          }
+        },
+        "rgbaBase64": "////AP///wD///8A////AP///wD///8A////AP///wD///8A////AP///wD///8A////AP///wD///8A////AP///wD///8A////AP///wD///8A////AP///wD///8A////AP///wD///8A////AP///wD///8A////AP///wD///8A////AP///wD///8A////AP///wD///8A////AP///wD///8A////AP///wD///8A////AP///wD///8A////AP///wD///8A////AP///wD///8A////AP///wD///8A////AP///wD///8A////AP///wD///8A////AP///wD///8A////AP///wD///8A////AP///wD///8A////AP///wD///8A////AP///wD///8A////AP///wD///8A////AP///wD///8A////AP///wD///8A////AP///wD///8A////AP///wD///8A////AP///wD///8A////AP///wD///8A////QP///9/////////////////////////////////////f////QP///wD///8A////AP///wD///8A////AP///9///////////////////////////////////////////////9////8A////AP///wD///8A////AP///wD////w///////////////////////////////////////////////g////AP///wD///8A////AP///wD///8A////QP///+D////////////////////////////////////g////QP///wD///8A////AP///wD///8A////AP///wD///8A////AP///wD///8A////AP///wD///8A////AP///wD///8A////AP///wD///8A////AP///wD///8A////AP///wD///8A////AP///wD///8A////AP///wD///8A////AP///wD///8A////AP///wD///8A////AP///wD///8A////AP///wD///8A////AP///wD///8A////AP///wD///8A////AP///wD///8A////AP///wD///8A////AP///wD///8A////AP///wD///8A////AP///wD///8A////AP///wD///8A////AP///wD///8A////AP///wD///8A////AP///wD///8A////AP///wD///8A////AP///wD///8A////AP///wD///8A////AP///wD///8A////AP///wD///8A////AP///wD///8A////AP///wD///8A////AA=="
+      },
+      "trayError": null,
+      "notificationError": null,
+      "notifications": []
+    },
+    "restartTrayOnlyWindows": {
+      "processId": 44552,
+      "foregroundProcessId": 30244,
+      "windows": [
+        {
+          "hwnd": 37752838,
+          "title": "Nabbit",
+          "className": "Tauri Window",
+          "visible": false
+        },
+        {
+          "hwnd": 40047508,
+          "title": "",
+          "className": "global_hotkey_app",
+          "visible": false
+        },
+        {
+          "hwnd": 20908654,
+          "title": "",
+          "className": "tray_icon_app",
+          "visible": false
+        },
+        {
+          "hwnd": 59380334,
+          "title": "Nabbit Island Events",
+          "className": "NabbitIslandEvents",
+          "visible": false
+        },
+        {
+          "hwnd": 90510114,
+          "title": "",
+          "className": "Tao Thread Event Target",
+          "visible": true
+        },
+        {
+          "hwnd": 34544708,
+          "title": "Default IME",
+          "className": "IME",
+          "visible": false
+        }
+      ]
+    },
+    "islandOnlyShortcut": {
+      "windows": {
+        "processId": 44552,
+        "foregroundProcessId": 30244,
+        "windows": [
+          {
+            "hwnd": 45748154,
+            "title": "Nabbit island",
+            "className": "Tauri Window",
+            "visible": true
+          },
+          {
+            "hwnd": 54990002,
+            "title": "Nabbit island \ufffd island",
+            "className": "NabbitIslandHost",
+            "visible": true
+          },
+          {
+            "hwnd": 40047508,
+            "title": "",
+            "className": "global_hotkey_app",
+            "visible": false
+          },
+          {
+            "hwnd": 20908654,
+            "title": "",
+            "className": "tray_icon_app",
+            "visible": false
+          },
+          {
+            "hwnd": 59380334,
+            "title": "Nabbit Island Events",
+            "className": "NabbitIslandEvents",
+            "visible": false
+          },
+          {
+            "hwnd": 90510114,
+            "title": "",
+            "className": "Tao Thread Event Target",
+            "visible": true
+          },
+          {
+            "hwnd": 46797802,
+            "title": "Default IME",
+            "className": "IME",
+            "visible": false
+          }
+        ]
+      },
+      "label": "island"
+    },
+    "islandOnlyGear": {
+      "desired": {
+        "mode": "islandOnly",
+        "visible": false,
+        "badge": {
+          "kind": "none"
+        },
+        "running": 0,
+        "queued": 0,
+        "paused": 0,
+        "tooltip": "Nabbit"
+      },
+      "revision": 6,
+      "applied": {
+        "revision": 6,
+        "presentation": {
+          "mode": "islandOnly",
+          "visible": false,
+          "badge": {
+            "kind": "none"
+          },
+          "running": 0,
+          "queued": 0,
+          "paused": 0,
+          "tooltip": "Nabbit"
+        },
+        "theme": "dark",
+        "width": 16,
+        "height": 16,
+        "rgbaSha256": "39ff0931f2634eb4d8e21b49ebe455f2fb7ccdfd4bc27df882cd6aba3af99f3e",
+        "checked": [
+          false,
+          false,
+          true
+        ],
+        "rect": null,
+        "rgbaBase64": "////AP///wD///8A////AP///wD///8A////AP///wD///8A////AP///wD///8A////AP///wD///8A////AP///wD///8A////AP///wD///8A////AP///wD///8A////AP///wD///8A////AP///wD///8A////AP///wD///8A////AP///wD///8A////AP///wD///8A////AP///wD///8A////AP///wD///8A////AP///wD///8A////AP///wD///8A////AP///wD///8A////AP///wD///8A////AP///wD///8A////AP///wD///8A////AP///wD///8A////AP///wD///8A////AP///wD///8A////AP///wD///8A////AP///wD///8A////AP///wD///8A////AP///wD///8A////AP///wD///8A////AP///wD///8A////AP///wD///8A////AP///wD///8A////AP///wD///8A////QP///9/////////////////////////////////////f////QP///wD///8A////AP///wD///8A////AP///9///////////////////////////////////////////////9////8A////AP///wD///8A////AP///wD////w///////////////////////////////////////////////g////AP///wD///8A////AP///wD///8A////QP///+D////////////////////////////////////g////QP///wD///8A////AP///wD///8A////AP///wD///8A////AP///wD///8A////AP///wD///8A////AP///wD///8A////AP///wD///8A////AP///wD///8A////AP///wD///8A////AP///wD///8A////AP///wD///8A////AP///wD///8A////AP///wD///8A////AP///wD///8A////AP///wD///8A////AP///wD///8A////AP///wD///8A////AP///wD///8A////AP///wD///8A////AP///wD///8A////AP///wD///8A////AP///wD///8A////AP///wD///8A////AP///wD///8A////AP///wD///8A////AP///wD///8A////AP///wD///8A////AP///wD///8A////AP///wD///8A////AP///wD///8A////AP///wD///8A////AP///wD///8A////AP///wD///8A////AA=="
+      },
+      "trayError": null,
+      "notificationError": null,
+      "notifications": []
+    },
+    "reapply": {
+      "desired": {
+        "mode": "islandOnly",
+        "visible": false,
+        "badge": {
+          "kind": "none"
+        },
+        "running": 0,
+        "queued": 0,
+        "paused": 0,
+        "tooltip": "Nabbit"
+      },
+      "revision": 7,
+      "applied": {
+        "revision": 7,
+        "presentation": {
+          "mode": "islandOnly",
+          "visible": false,
+          "badge": {
+            "kind": "none"
+          },
+          "running": 0,
+          "queued": 0,
+          "paused": 0,
+          "tooltip": "Nabbit"
+        },
+        "theme": "dark",
+        "width": 16,
+        "height": 16,
+        "rgbaSha256": "39ff0931f2634eb4d8e21b49ebe455f2fb7ccdfd4bc27df882cd6aba3af99f3e",
+        "checked": [
+          false,
+          false,
+          true
+        ],
+        "rect": null,
+        "rgbaBase64": "////AP///wD///8A////AP///wD///8A////AP///wD///8A////AP///wD///8A////AP///wD///8A////AP///wD///8A////AP///wD///8A////AP///wD///8A////AP///wD///8A////AP///wD///8A////AP///wD///8A////AP///wD///8A////AP///wD///8A////AP///wD///8A////AP///wD///8A////AP///wD///8A////AP///wD///8A////AP///wD///8A////AP///wD///8A////AP///wD///8A////AP///wD///8A////AP///wD///8A////AP///wD///8A////AP///wD///8A////AP///wD///8A////AP///wD///8A////AP///wD///8A////AP///wD///8A////AP///wD///8A////AP///wD///8A////AP///wD///8A////AP///wD///8A////AP///wD///8A////QP///9/////////////////////////////////////f////QP///wD///8A////AP///wD///8A////AP///9///////////////////////////////////////////////9////8A////AP///wD///8A////AP///wD////w///////////////////////////////////////////////g////AP///wD///8A////AP///wD///8A////QP///+D////////////////////////////////////g////QP///wD///8A////AP///wD///8A////AP///wD///8A////AP///wD///8A////AP///wD///8A////AP///wD///8A////AP///wD///8A////AP///wD///8A////AP///wD///8A////AP///wD///8A////AP///wD///8A////AP///wD///8A////AP///wD///8A////AP///wD///8A////AP///wD///8A////AP///wD///8A////AP///wD///8A////AP///wD///8A////AP///wD///8A////AP///wD///8A////AP///wD///8A////AP///wD///8A////AP///wD///8A////AP///wD///8A////AP///wD///8A////AP///wD///8A////AP///wD///8A////AP///wD///8A////AP///wD///8A////AP///wD///8A////AP///wD///8A////AP///wD///8A////AP///wD///8A////AA=="
+      },
+      "trayError": null,
+      "notificationError": null,
+      "notifications": []
+    }
+  },
+  "executableSha256": "7902b6d0cf718360a53d5bd02d578948db82129b1130152a4ea7c736607752ef",
+  "buildManifestSha256": "35c8cf7110187c19e134b477ecb18d3872c198301948dc9ba197ba1733dd9992",
+  "renderingFlags": [
+    "--run-all-compositor-stages-before-draw",
+    "--disable-new-content-rendering-timeout",
+    "--disable-threaded-animation",
+    "--disable-threaded-scrolling",
+    "--disable-checker-imaging",
+    "--disable-image-animation-resync",
+    "--disable-partial-raster"
+  ],
+  "noUserProfile": true,
+  "noRealClipboardOrGlobalInput": true,
+  "noOsSettingChange": true,
+  "scope": "Exact RGBA passed to the owned native tray, exported through an offscreen canvas; 16/24px DPI seam, no Windows display change",
+  "noShellOrGlobalShortcutRegistration": true,
+  "sourceReport": "m11-native-modes-a-scene.json",
+  "scopeCorrection": "Legacy noNativeRegistration was too broad after V6.3 added owned HWND drop targets. This copy corrects only that field and explanatory scope. All captures, assertions, results and build hashes are unchanged; the original report is retained."
+}

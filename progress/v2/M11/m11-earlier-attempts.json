@@ -1,0 +1,53 @@
+{
+  "retained": [
+    {
+      "source": ".tools/m11-fetch-initial-a.log",
+      "log": "m11-fetch-initial-a-log.txt",
+      "canonicalSha256": "f43577bd9c68dce9e44f7ca956d7811d7e92a4ef3163f5a2098d747d6d1dd0ce",
+      "originalArchive": "m11-fetch-initial-a-log.txt.original.gz",
+      "originalSha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "originalBytes": 0
+    },
+    {
+      "source": ".tools/m11-format-site-a.log",
+      "log": "m11-format-site-a-log.txt",
+      "canonicalSha256": "6bc2f93fba809647036071ab07f1335f4d6a3bac045261c4fa8ec961ed6ff5ef",
+      "originalArchive": "m11-format-site-a-log.txt.original.gz",
+      "originalSha256": "10b518286396bde1b2da3365f22e62cd28e3be4e0e93fef3465eef9392d99741",
+      "originalBytes": 23
+    },
+    {
+      "source": ".tools/m11-integration-a.log",
+      "log": "m11-integration-a-log.txt",
+      "canonicalSha256": "9718394bd67191daa06ea288cfeb54d877c1457bedea016b0ab6246e06bc2e9f",
+      "originalArchive": "m11-integration-a-log.txt.original.gz",
+      "originalSha256": "1d6e1d392a509b13142a3e0a15af6d21b5f703ba7bf914946f3c49230096ebf8",
+      "originalBytes": 240
+    },
+    {
+      "source": ".tools/m11-native-modes-a.log",
+      "log": "m11-native-modes-a-log.txt",
+      "canonicalSha256": "f43577bd9c68dce9e44f7ca956d7811d7e92a4ef3163f5a2098d747d6d1dd0ce",
+      "originalArchive": "m11-native-modes-a-log.txt.original.gz",
+      "originalSha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "originalBytes": 0
+    },
+    {
+      "source": ".tools/m11-native-settings-a.log",
+      "log": "m11-native-settings-a-log.txt",
+      "canonicalSha256": "f43577bd9c68dce9e44f7ca956d7811d7e92a4ef3163f5a2098d747d6d1dd0ce",
+      "originalArchive": "m11-native-settings-a-log.txt.original.gz",
+      "originalSha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "originalBytes": 0
+    },
+    {
+      "source": ".tools/m11-native-tray-a.log",
+      "log": "m11-native-tray-a-log.txt",
+      "canonicalSha256": "f43577bd9c68dce9e44f7ca956d7811d7e92a4ef3163f5a2098d747d6d1dd0ce",
+      "originalArchive": "m11-native-tray-a-log.txt.original.gz",
+      "originalSha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "originalBytes": 0
+    }
+  ],
+  "resolution": "Preparation/fetch/format and native integration logs are retained. The first private integration aggregator assumed one repeat field name; settings/modes use repeatMatches while tray stores repeatSha256. Corrected to verify the actual per-script schema; all native product checks had already passed. Legacy native registration metadata is corrected in separate canonical reports with original reports retained. No product check or rule was weakened."
+}

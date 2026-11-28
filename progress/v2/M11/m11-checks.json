@@ -1,0 +1,178 @@
+{
+  "allRequiredChecksPassed": true,
+  "checks": [
+    {
+      "name": "npmVerify",
+      "exitCode": 0,
+      "source": ".tools/m11-npm-verify-a.log",
+      "log": "m11-npm-verify-a-log.txt",
+      "canonicalSha256": "c49311275b4bdecb603d08576687ac8f74b0632f9626f08e5d805a46e068fb0b",
+      "originalArchive": "m11-npm-verify-a-log.txt.original.gz",
+      "originalSha256": "2ef413beeb88ffe5653affaf54ddbd43f0466c15e2385f87b93797967f368c73",
+      "originalBytes": 18534
+    },
+    {
+      "name": "fmt",
+      "exitCode": 0,
+      "source": ".tools/m11-fmt-a.log",
+      "log": "m11-fmt-a-log.txt",
+      "canonicalSha256": "f43577bd9c68dce9e44f7ca956d7811d7e92a4ef3163f5a2098d747d6d1dd0ce",
+      "originalArchive": "m11-fmt-a-log.txt.original.gz",
+      "originalSha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "originalBytes": 0
+    },
+    {
+      "name": "clippy",
+      "exitCode": 0,
+      "source": ".tools/m11-clippy-a.log",
+      "log": "m11-clippy-a-log.txt",
+      "canonicalSha256": "8b44f7c4d465be4c4387021b106c180772fc21ef98a69e1bd4004c1bd6186bcc",
+      "originalArchive": "m11-clippy-a-log.txt.original.gz",
+      "originalSha256": "76cef5778bc4392d5bdced0965099f1f3ab158bb71fe3fd3a8916ec5876ccc02",
+      "originalBytes": 73
+    },
+    {
+      "name": "clippySpike",
+      "exitCode": 0,
+      "source": ".tools/m11-clippy-spike-a.log",
+      "log": "m11-clippy-spike-a-log.txt",
+      "canonicalSha256": "76e97f143583601bd273c62fef1339a1a5bfaafd3654ae6c9b81447f6a1560ae",
+      "originalArchive": "m11-clippy-spike-a-log.txt.original.gz",
+      "originalSha256": "e3a25c00b917c708e9cb62b8028be4d98aad824efe95e51502d8f212572c8a05",
+      "originalBytes": 73
+    },
+    {
+      "name": "rust",
+      "exitCode": 0,
+      "source": ".tools/m11-rust-a.log",
+      "log": "m11-rust-a-log.txt",
+      "canonicalSha256": "87c63c2af92460d4b3c69f0a2b58729330508fe2062ba41311f208c584bdd5de",
+      "originalArchive": "m11-rust-a-log.txt.original.gz",
+      "originalSha256": "2fe28472e1c6d47c3d43e854b92422f5fd81567c70efc8b3b826147f2242c61d",
+      "originalBytes": 40992
+    },
+    {
+      "name": "site",
+      "exitCode": 0,
+      "source": ".tools/m11-site-a.log",
+      "log": "m11-site-a-log.txt",
+      "canonicalSha256": "f10ab6f0743c3f767e6c4e81d2f3ba798b5bb2d17bdd345188fda6ef39ab194d",
+      "originalArchive": "m11-site-a-log.txt.original.gz",
+      "originalSha256": "301e7a495141eec76a9d2795c21319c056001f87baf3f7cf6d8c68ad756899c8",
+      "originalBytes": 533
+    },
+    {
+      "name": "sourceAssets",
+      "exitCode": 0,
+      "source": ".tools/m11-site-assets-a.log",
+      "log": "m11-site-assets-a-log.txt",
+      "canonicalSha256": "0aae8df3f5f53d2aee63feb4c8fed94466bff5aa3daa4f74166a702e92e2e91a",
+      "originalArchive": "m11-site-assets-a-log.txt.original.gz",
+      "originalSha256": "73a0d99ebbc2a2672dfbb9d89ffab44eabe19872db6ed1cb4de2d9ef16a62370",
+      "originalBytes": 127
+    },
+    {
+      "name": "http",
+      "exitCode": 0,
+      "source": ".tools/m11-site-http-a.log",
+      "log": "m11-site-http-a-log.txt",
+      "canonicalSha256": "fa44381769e7910853aac58991cd9774d2a0c62c7e7b7ba115591a0a5f922e4e",
+      "originalArchive": "m11-site-http-a-log.txt.original.gz",
+      "originalSha256": "4fc4ab5b978b29f8c6bef016873b241301efff66d5608f41532dabf51ef4c605",
+      "originalBytes": 87
+    },
+    {
+      "name": "status",
+      "exitCode": 0,
+      "source": ".tools/m11-status-a.log",
+      "log": "m11-status-a-log.txt",
+      "canonicalSha256": "2d9e83bdc2ce153b4b3cadcb4df304a1fda274e1ba58985b540f9293bafb6c6f",
+      "originalArchive": "m11-status-a-log.txt.original.gz",
+      "originalSha256": "5fc31feb7b7121e3d092d0a7b162202d27c4bdcaf82285aa88eac440e925d94a",
+      "originalBytes": 143
+    },
+    {
+      "name": "accessibility",
+      "exitCode": 0,
+      "source": ".tools/m11-accessibility-a.log",
+      "log": "m11-accessibility-a-log.txt",
+      "canonicalSha256": "7da11b7bc857599b38bf19d31fec2018546aa5a3daebf4b74aba3c45bd41e35c",
+      "originalArchive": "m11-accessibility-a-log.txt.original.gz",
+      "originalSha256": "781aa489dee5d6ffba3f8802bb82c6eceb045321b1c15b04a1ff557a77628fee",
+      "originalBytes": 710
+    },
+    {
+      "name": "taskAudit",
+      "exitCode": 0,
+      "source": ".tools/m11-task-audit-a.log",
+      "log": "m11-task-audit-a-log.txt",
+      "canonicalSha256": "78793a2aae58f3ffc5c7733f115ec6bd7c6594cf0b6a559be5cc0e1faac8ac97",
+      "originalArchive": "m11-task-audit-a-log.txt.original.gz",
+      "originalSha256": "38a72e1e651efcbacb7e8e612b3a29a715c91b5c9cf7a0791cd4cd883ef4ff3d",
+      "originalBytes": 229
+    },
+    {
+      "name": "prepublication",
+      "exitCode": 0,
+      "source": ".tools/m11-prepublication-a.log",
+      "log": "m11-prepublication-a-log.txt",
+      "canonicalSha256": "ffcdf4c8bf9f2535e7fc930e6a062e4c1f804f6a9262b9c959a99e6be469c974",
+      "originalArchive": "m11-prepublication-a-log.txt.original.gz",
+      "originalSha256": "ffb112eb5c8dd151bdb4406b0dbd84750dd8e90e8cc8f3438181b11fc243bd5a",
+      "originalBytes": 112
+    },
+    {
+      "name": "historySecrets",
+      "exitCode": 0,
+      "source": ".tools/m11-history-gitleaks-a.log",
+      "log": "m11-history-gitleaks-a-log.txt",
+      "canonicalSha256": "ef589f39e977378bf0cfaa2ae26d9da984c569b2d473d6c0de0de2563947266a",
+      "originalArchive": "m11-history-gitleaks-a-log.txt.original.gz",
+      "originalSha256": "a2282a202fa8cc515feef46cadeaa87ac255a476f13f8935d37a568465c5fdf6",
+      "originalBytes": 112
+    },
+    {
+      "name": "captureScopeLint",
+      "exitCode": 0,
+      "source": ".tools/m11-capture-scope-lint-a.log",
+      "log": "m11-capture-scope-lint-a-log.txt",
+      "canonicalSha256": "f43577bd9c68dce9e44f7ca956d7811d7e92a4ef3163f5a2098d747d6d1dd0ce",
+      "originalArchive": "m11-capture-scope-lint-a-log.txt.original.gz",
+      "originalSha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "originalBytes": 0
+    },
+    {
+      "name": "integration",
+      "exitCode": 0,
+      "source": ".tools/m11-integration-b.log",
+      "log": "m11-integration-b-log.txt",
+      "canonicalSha256": "5552e585af8418736fadb6e3d99ef8f9cefe562b083429ad2a5d25619f3ea052",
+      "originalArchive": "m11-integration-b-log.txt.original.gz",
+      "originalSha256": "d526629208dde9f5b3fd44b43c4b676593f53868d304ffbf7e5cbc69e284535e",
+      "originalBytes": 93
+    }
+  ],
+  "applicationCommit": "d0b1d71286a0082e7b2d5f5ccf8ecac24be0518e",
+  "buildManifestSha256": "35c8cf7110187c19e134b477ecb18d3872c198301948dc9ba197ba1733dd9992",
+  "nativeExecutableSha256": "7902b6d0cf718360a53d5bd02d578948db82129b1130152a4ea7c736607752ef",
+  "counts": {
+    "frontendTests": 585,
+    "frontendFiles": 56,
+    "rustPassed": 398,
+    "rustIgnored": 8,
+    "taskReceipts": 4,
+    "originalTaskPinsVerified": 8949,
+    "runtimePinsUnchanged": 817,
+    "statusCapturePairs": 8,
+    "accessibilityKeyboardContexts": 8,
+    "siteAxeScans": 24,
+    "siteFocusCaptures": 8,
+    "currentNativeFlows": 22,
+    "sameBuildShortcutViews": 8,
+    "allM11Pngs": 740
+  },
+  "siteTransferBytesExcludingFonts": 419647,
+  "siteBudgetExcludingFonts": 500000,
+  "axeBoundary": "All default rules, zero violations; gradient/indeterminate contrast nodes retain explicit conservative proofs in the full raw report. No rules are excluded or disabled.",
+  "newPerformanceOrPlatformClaim": false
+}

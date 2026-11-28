@@ -480,10 +480,10 @@ try {
         renderingFlags: deterministicRenderingFlags,
         noUserProfile: true,
         noRealClipboardOrGlobalInput: true,
-        noNativeRegistration: true,
+        noShellOrGlobalShortcutRegistration: true,
         noOsSettingChange: true,
         scope:
-          "Owned executable, app-data/WebView/control profiles and HWND queries; DOM-only input and per-WebView DPR emulation; no real clipboard/cursor/global keys, hosted Tack/account, Explorer registration, dialogs, Store, signing or installer execution.",
+          "Owned executable, app-data/WebView/control profiles and HWND queries; DOM-only input and per-WebView DPR emulation. Owned HWND drop targets may register/unregister; no real clipboard/cursor/global keys, hosted Tack/account, shell/autostart/global-shortcut/notification registration, dialogs, Store, signing or installer execution.",
       },
       null,
       2,
