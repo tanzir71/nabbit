@@ -12,21 +12,24 @@ pub fn get_settings(state: tauri::State<'_, AppState>) -> Result<AppSettings> {
 }
 
 #[tauri::command]
-pub fn save_island_preferences(
+pub async fn save_island_preferences(
     app: AppHandle,
     state: tauri::State<'_, AppState>,
     preferences: crate::island::model::Preferences,
 ) -> Result<AppSettings> {
-    patch_settings(app, state, serde_json::json!({"island": preferences}))
+    patch_settings(app, state, serde_json::json!({"island": preferences})).await
 }
 
 #[tauri::command]
-pub fn patch_settings(
+pub async fn patch_settings(
     app: AppHandle,
     state: tauri::State<'_, AppState>,
     change: serde_json::Value,
 ) -> Result<AppSettings> {
-    patch(&app, &state, change)
+    let state = state.inner().clone();
+    tauri::async_runtime::spawn_blocking(move || patch(&app, &state, change))
+        .await
+        .map_err(|error| crate::error::msg(error.to_string()))?
 }
 
 pub(crate) fn patch(
@@ -39,22 +42,28 @@ pub(crate) fn patch(
         .lock()
         .map_err(|_| crate::error::msg("Settings are busy"))?;
     let previous = state.db.get_settings()?;
+    let targets = crate::shortcuts::supplied(&change);
     let settings = crate::db::settings_schema::patch(&previous, change)?;
-    apply_settings(app, state, previous, settings)
+    apply_settings(app, state, previous, settings, targets)
 }
 
 #[tauri::command]
-pub fn save_settings(
+pub async fn save_settings(
     app: AppHandle,
     state: tauri::State<'_, AppState>,
     settings: AppSettings,
 ) -> Result<AppSettings> {
-    let _write = state
-        .settings_write
-        .lock()
-        .map_err(|_| crate::error::msg("Settings are busy"))?;
-    let previous = state.db.get_settings()?;
-    apply_settings(&app, &state, previous, settings)
+    let state = state.inner().clone();
+    tauri::async_runtime::spawn_blocking(move || {
+        let _write = state
+            .settings_write
+            .lock()
+            .map_err(|_| crate::error::msg("Settings are busy"))?;
+        let previous = state.db.get_settings()?;
+        apply_settings(&app, &state, previous, settings, vec![])
+    })
+    .await
+    .map_err(|error| crate::error::msg(error.to_string()))?
 }
 
 fn apply_settings(
@@ -62,6 +71,7 @@ fn apply_settings(
     state: &AppState,
     previous: AppSettings,
     mut settings: AppSettings,
+    mut targets: Vec<crate::shortcuts::Action>,
 ) -> Result<AppSettings> {
     if previous.display_mode != settings.display_mode {
         settings.island.enabled = settings.display_mode != crate::db::models::DisplayMode::TrayOnly;
@@ -72,60 +82,20 @@ fn apply_settings(
             crate::db::models::DisplayMode::TrayOnly
         };
     }
-    let island_key_changed = previous.island_shortcut.trim() != settings.island_shortcut.trim();
-    let legacy_keys_changed = previous.toggle_popover_shortcut != settings.toggle_popover_shortcut
-        || previous.quick_download_shortcut != settings.quick_download_shortcut
-        || previous.clipboard_search_shortcut != settings.clipboard_search_shortcut
-        || previous.selected_text_shortcut != settings.selected_text_shortcut;
-    if island_key_changed || legacy_keys_changed {
-        crate::island::keyboard::validate_shortcut(&settings).map_err(crate::error::msg)?;
-    }
-    let same_key = previous
-        .island_shortcut
-        .parse::<tauri_plugin_global_shortcut::Shortcut>()
-        .ok()
-        == settings
-            .island_shortcut
-            .trim()
-            .parse::<tauri_plugin_global_shortcut::Shortcut>()
-            .ok();
-    let prebind = island_key_changed
-        && !same_key
-        && !settings.island_shortcut.trim().is_empty()
-        && !crate::island::acceptance_session();
-    if prebind {
-        crate::register_island_shortcut(app, &settings.island_shortcut)
-            .map_err(crate::error::msg)?;
-    }
-    let saved = match state.db.save_settings(&settings) {
-        Ok(saved) => saved,
-        Err(error) => {
-            if prebind {
-                use tauri_plugin_global_shortcut::GlobalShortcutExt;
-                let _ = app
-                    .global_shortcut()
-                    .unregister(settings.island_shortcut.trim());
-            }
-            return Err(error);
+    for action in crate::shortcuts::ACTIONS {
+        if action.value(&previous).trim() != action.value(&settings).trim()
+            && !targets.contains(&action)
+        {
+            targets.push(action);
         }
+    }
+    let saved = if targets.is_empty() {
+        state.db.save_settings(&settings)?
+    } else {
+        crate::shortcuts::save(app, &settings, &targets, || {
+            state.db.save_settings(&settings)
+        })?
     };
-    if island_key_changed
-        && !same_key
-        && !crate::island::acceptance_session()
-        && crate::island::keyboard::validate_shortcut(&previous).is_ok()
-        && !previous.island_shortcut.trim().is_empty()
-    {
-        use tauri_plugin_global_shortcut::GlobalShortcutExt;
-        let _ = app
-            .global_shortcut()
-            .unregister(previous.island_shortcut.trim());
-    }
-    #[cfg(windows)]
-    if island_key_changed {
-        if let Some(manager) = app.try_state::<std::sync::Arc<crate::island::Manager>>() {
-            manager.shortcut_status(None);
-        }
-    }
     if previous.island_activity != saved.island_activity {
         crate::island::activity_bus::publish(
             app,
@@ -144,13 +114,7 @@ fn apply_settings(
             manager.configure(saved.island.clone());
         }
     }
-    if (previous.launch_at_login != saved.launch_at_login
-        || previous.toggle_popover_shortcut != saved.toggle_popover_shortcut
-        || previous.quick_download_shortcut != saved.quick_download_shortcut
-        || previous.clipboard_search_shortcut != saved.clipboard_search_shortcut
-        || previous.selected_text_shortcut != saved.selected_text_shortcut)
-        && !crate::island::acceptance_session()
-    {
+    if previous.launch_at_login != saved.launch_at_login && !crate::context::acceptance() {
         crate::apply_runtime_settings(app, state, &saved);
     }
     if previous.theme != saved.theme {
@@ -176,7 +140,7 @@ pub fn get_island_snapshot(app: AppHandle) -> serde_json::Value {
 }
 
 #[tauri::command]
-pub fn acknowledge_first_run(
+pub async fn acknowledge_first_run(
     app: AppHandle,
     state: tauri::State<'_, AppState>,
 ) -> Result<AppSettings> {
@@ -185,6 +149,7 @@ pub fn acknowledge_first_run(
         state,
         serde_json::json!({"firstRunAcknowledged": true}),
     )
+    .await
 }
 
 #[tauri::command]

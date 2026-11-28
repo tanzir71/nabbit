@@ -1,0 +1,69 @@
+{
+  "scope": "Whole-document default axe; no exclusions or disabled rules",
+  "scans": [
+    {
+      "variant": "conflict",
+      "theme": "light",
+      "scale": 1,
+      "violations": [
+        {
+          "id": "color-contrast",
+          "impact": "serious",
+          "tags": [
+            "cat.color",
+            "wcag2aa",
+            "wcag143",
+            "TTv5",
+            "TT13.c",
+            "EN-301-549",
+            "EN-9.1.4.3",
+            "ACT",
+            "RGAAv4",
+            "RGAA-3.2.1"
+          ],
+          "description": "Ensure the contrast between foreground and background colors meets WCAG 2 AA minimum contrast ratio thresholds",
+          "help": "Elements must meet minimum color contrast ratio thresholds",
+          "helpUrl": "https://dequeuniversity.com/rules/axe/4.14/color-contrast?application=axeAPI",
+          "nodes": [
+            {
+              "any": [
+                {
+                  "id": "color-contrast",
+                  "data": {
+                    "fgColor": "#a86200",
+                    "bgColor": "#fff4e0",
+                    "contrastRatio": 4.36,
+                    "fontSize": "8.3pt (11px)",
+                    "fontWeight": "normal",
+                    "messageKey": null,
+                    "expectedContrastRatio": "4.5:1"
+                  },
+                  "relatedNodes": [
+                    {
+                      "html": "<span class=\"n-badge n-badge--warning\">Conflict</span>",
+                      "target": [
+                        ".n-badge"
+                      ]
+                    }
+                  ],
+                  "impact": "serious",
+                  "message": "Element has insufficient color contrast of 4.36 (foreground color: #a86200, background color: #fff4e0, font size: 8.3pt (11px), font weight: normal). Expected contrast ratio of 4.5:1"
+                }
+              ],
+              "all": [],
+              "none": [],
+              "impact": "serious",
+              "html": "<span class=\"n-badge n-badge--warning\">Conflict</span>",
+              "target": [
+                ".n-badge"
+              ],
+              "failureSummary": "Fix any of the following:\n  Element has insufficient color contrast of 4.36 (foreground color: #a86200, background color: #fff4e0, font size: 8.3pt (11px), font weight: normal). Expected contrast ratio of 4.5:1"
+            }
+          ]
+        }
+      ],
+      "incomplete": [],
+      "passes": 35
+    }
+  ]
+}

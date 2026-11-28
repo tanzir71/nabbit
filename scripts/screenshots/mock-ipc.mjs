@@ -10,6 +10,8 @@ export function installMockIpc(seed) {
   let surfaceGeneration = seed.responses?.get_island_surface?.generation ?? 0;
   let surfaceState = seed.responses?.get_island_surface?.state ?? "idle";
   let keyboardId = seed.responses?.get_island_surface?.keyboard?.id ?? 0;
+  let shortcutRecording = null;
+  const recorderLabels = new Map();
   const clone = (value) => (value === undefined ? undefined : globalThis.structuredClone(value));
   const dispatch = (event, payload) => {
     for (const [id, entry] of [...listeners]) {
@@ -28,6 +30,11 @@ export function installMockIpc(seed) {
   };
   const invoke = async (command, args = {}) => {
     const loggedArgs = clone(args);
+    if (command === "shortcuts_recording" && typeof loggedArgs.token === "string") {
+      if (!recorderLabels.has(loggedArgs.token))
+        recorderLabels.set(loggedArgs.token, `recording-${recorderLabels.size + 1}`);
+      loggedArgs.token = recorderLabels.get(loggedArgs.token);
+    }
     if (["tack_login", "tack_confirm_recovery", "tack_copy_recovery"].includes(command)) {
       for (const key of ["password", "code"])
         if (Object.hasOwn(loggedArgs, key)) loggedArgs[key] = "[redacted]";
@@ -38,6 +45,33 @@ export function installMockIpc(seed) {
       throw typeof failure === "string" ? new Error(failure) : clone(failure);
     }
     switch (command) {
+      case "shortcuts_recording":
+        if (args.active) shortcutRecording = args.token;
+        else if (shortcutRecording === args.token) shortcutRecording = null;
+        return null;
+      case "shortcuts_snapshot":
+        return clone(
+          seed.responses?.shortcuts_snapshot ?? {
+            rows: [
+              ["island", "islandShortcut", "Alt+Space"],
+              ["quickNote", "quickNoteShortcut", "Ctrl+Alt+N"],
+              ["download", "quickDownloadShortcut", "Ctrl+Alt+D"],
+              ["clipboard", "clipboardSearchShortcut", "Ctrl+Alt+V"],
+              ["timer", "focusTimerShortcut", "Ctrl+Alt+T"],
+              ["hideIsland", "hideIslandShortcut", "Ctrl+Alt+H"],
+              ["selection", "selectedTextShortcut", "Ctrl+Alt+S"],
+              ["toggleTray", "togglePopoverShortcut", "Ctrl+Shift+V"],
+            ].map(([id, field, fallback]) => ({
+              id,
+              shortcut: state.settings[field] ?? fallback,
+              activeShortcut: (state.settings[field] ?? fallback) || null,
+              problem: null,
+            })),
+            recording: !!shortcutRecording,
+            cleanupError: null,
+            injected: true,
+          },
+        );
       case "tray_ready":
       case "tray_take_notice":
       case "settings_take_page":

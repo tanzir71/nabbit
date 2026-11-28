@@ -119,7 +119,7 @@ fn entries(settings: &AppSettings, pins: &[crate::files::PinView]) -> Vec<Entry>
     let prefs = &settings.island;
     vec![
         shortcut("open", "Open Nabbit", &settings.island_shortcut),
-        shortcut("new-note", "New note", crate::notes::capture::SHORTCUT),
+        shortcut("new-note", "New note", &settings.quick_note_shortcut),
         shortcut(
             "download-clipboard",
             "Download link on clipboard",

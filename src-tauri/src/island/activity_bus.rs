@@ -240,6 +240,11 @@ pub fn island_activity_action(
         Action::Configure { preferences } => settings.island_activity = preferences,
         Action::Dismiss { .. } => unreachable!(),
     }
-    crate::commands::settings::save_settings(app, state, settings).map_err(|e| e.to_string())?;
+    crate::commands::settings::patch(
+        &app,
+        &state,
+        serde_json::json!({"islandActivity":settings.island_activity}),
+    )
+    .map_err(|e| e.to_string())?;
     Ok(())
 }

@@ -1,0 +1,13 @@
+{
+  "task": "V6.4",
+  "flows": [
+    "Change -> recorder session token -> serialized native start -> DOM/native key -> draft -> explicit Save -> field-only settings patch.",
+    "Patch worker -> serialized settings write -> shared registration owner -> acquire candidate -> SQLite save -> release old key -> publish status/settings -> current keycaps.",
+    "Registration/duplicate/parse failure -> per-action Conflict -> old mapping/settings retained -> editable candidate/retry.",
+    "Window blur -> ordered pause -> focus -> reacquire -> enable/focus input; cancel/unmount -> token-matched cleanup.",
+    "Startup -> validate every action -> skip unavailable key only -> truthful per-action native status; restart restores custom and disabled fields."
+  ],
+  "browser": "v64-shortcuts-b-screenshots.json",
+  "native": "v64-native-b-scene.json",
+  "scope": "Owned browser/app/WebView/data fixtures and DOM input only. Production shortcut transaction, native settings commands, injected conflicts/recorder focus, route mapping, current asset embedding and restart. No real global key registration/input, clipboard/cursor, user files/accounts/profiles, shell/autostart/notification registration, installer/signing or OS settings. Actual other-app key ownership and other platforms/hardware are not claimed."
+}

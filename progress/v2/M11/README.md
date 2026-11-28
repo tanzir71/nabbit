@@ -78,3 +78,31 @@ Final proof: [checks](v63-checks.json), [requirements](v63-requirements.json), [
 Only owned app/WebView/control profiles and generated file fixtures were used. Native menu handles and original icon inputs are verified; Windows draws its normal menu background, arrows and checkmarks, and no physical OS-menu/Explorer pixels are claimed. Owned HWND drop targets are registered, but shell/autostart/global-hotkey registrations, real clipboard/global input/cursor, real drag-out into another app, hosted Tack/accounts, installer/signing and OS/display-setting changes are excluded. The explicit still-capture caret policy preserves focus rings. Earlier failures and available failed image pairs remain in the evidence.
 
 V6.4 owns shortcut recording/conflicts; V7 owns hardening, whole-surface accessibility, idle performance, packaging and wrap-up. Direct local main task commit with skip-ci, no PR/tag/task push; M11 publication remains after V6.4.
+
+## V6.4 — Shortcut recorder and conflicts
+
+Shortcuts now uses the Figma keycap rows and Change controls. All seven v2 actions and the preserved legacy tray binding can be recorded, typed, disabled and saved explicitly. Escape cancels. IME/repeated/modifier-only input is ignored; recorder lifecycle requests are serialized, pause on window blur and reacquire before accepting keys.
+
+A shared Rust registration owner acquires replacement keys before writing SQLite or releasing old keys. Syntax/alias/in-app conflicts and native registration failures are visible per action. A failed remap preserves the old binding and saved field; batch/persistence failures roll back candidates. Startup skips only unavailable bindings. Tray note captions use the configured key, and the one-hour hide shortcut patches the existing activity preference.
+
+| Evidence | Result |
+| --- | --- |
+| Frontend / Rust | 585 frontend; 398 Rust passed, 8 existing opt-in ignores |
+| Browser | 24 exact light/dark 1x/1.5x views; default axe 0 violations / 0 incomplete |
+| Native | 8 exact DPR2 views; real settings commands, injected conflicts/recorded key delivery, custom/disabled persistence and restart |
+| Original assets | 264 browser and 88 native geometry checks; reused unchanged SVGs |
+| Island initial JS | 104,161 / 120,000 gzip bytes |
+
+The light Conflict text is slightly darkened from the design's 4.36:1 pair to meet AA; global tokens and the badge fill/geometry are retained. The six Figma actions are followed by island reference keys, then selected-text and legacy tray controls.
+
+Proof: [requirements](v64-requirements.json), [flow](v64-flow.json), [design](v64-design.json), [checks](v64-checks.json), [assets](v64-asset-provenance.json), [browser](v64-shortcuts-b-screenshots.json), [axe](v64-shortcuts-b-axe.json), [native](v64-native-b-scene.json), [PNG audit](v64-png-audit.json), [logs](v64-logs.json), [earlier attempts](v64-earlier-attempts.json), [staged-blob receipt](v64-acceptance.json).
+
+| State | Light | Dark |
+| --- | --- | --- |
+| Startup conflict | [1x](v64-shortcuts-b-shortcuts-conflict-light@1x.png) | [1x](v64-shortcuts-b-shortcuts-conflict-dark@1x.png) |
+| Recording | [1x](v64-shortcuts-b-shortcuts-recording-light@1x.png) | [1x](v64-shortcuts-b-shortcuts-recording-dark@1x.png) |
+| Rejected remap | [1x](v64-shortcuts-b-shortcuts-error-light@1x.png) | [1x](v64-shortcuts-b-shortcuts-error-dark@1x.png) |
+
+Only owned app/WebView/data fixtures and DOM input were used. Native registration outcomes and focus for recorder delivery are injected through the production transaction/recorder paths. No actual global shortcut registration/input, real clipboard/cursor, external accounts/profiles, shell/autostart/notification registration, installers/signing or OS/display changes. No physical desktop-key ownership, other-platform/hardware or new idle-performance claim.
+
+Direct local main task commit with skip-ci, no PR/tag/task push. M11 publication is next; V7/M12 remain.

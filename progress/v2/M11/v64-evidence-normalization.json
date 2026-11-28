@@ -1,0 +1,30 @@
+{
+  "reason": "The initial staged scan flagged non-credential recorder UUIDs, the public Figma identifier label and prose as generic API credentials. Recorder IDs are now deterministic test labels, a metadata label is clarified and prose is rewritten. No credential values or UI/input payloads were changed; original reports remain in the ignored local evidence folder. All images, hashes, scan results and assertions are unchanged. No scanner waiver added.",
+  "reports": [
+    {
+      "file": "v64-shortcuts-b-screenshots.json",
+      "originalSha256": "c945909ba7ede605a5274a8da6b6dcfc67d8bd67023793c3c8278be95f03ac13",
+      "canonicalSha256": "268cd1e7fa51c95330c04192755c4bd99b64c7f3cdcbc34570660900aaf9990d",
+      "originalRetainedLocally": ".tools/v64-evidence-originals/v64-shortcuts-b-screenshots.json"
+    },
+    {
+      "file": "v64-design.json",
+      "originalSha256": "7779341c9652c08dce16013e6fb68c8b419ca9d1d361de9a75953cc0ebc1494b",
+      "canonicalSha256": "7b80127b9904b4952560fc97a889d23090c545d14fe87247ab0b6f53a18630c7",
+      "originalRetainedLocally": ".tools/v64-evidence-originals/v64-design.json"
+    },
+    {
+      "file": "v64-requirements.json",
+      "originalSha256": "4a968b7a34dade35e29afcaadff530bde45d359001e62dd4452da8ce303012f9",
+      "canonicalSha256": "408cab181c62895071aba182a92b978b7cf5a08c1c4d1febcd1bda4a974e53f7",
+      "originalRetainedLocally": ".tools/v64-evidence-originals/v64-requirements.json"
+    }
+  ],
+  "verification": {
+    "frontendTests": 585,
+    "log": "v64-verify-f-log.txt",
+    "productionManifestUnchanged": true,
+    "productionExecutableUnchanged": true,
+    "scope": "Only test log labels and explanatory metadata were normalized. Screenshot image bytes and acceptance assertions were not changed."
+  }
+}

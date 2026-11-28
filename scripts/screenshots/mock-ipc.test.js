@@ -16,6 +16,24 @@ const install = (extra = {}) =>
   installMockIpc({ theme: "dark", label: "settings", data: fixtureData("settings"), ...extra });
 
 describe("screenshot IPC through the actual Tauri JS client", () => {
+  it("logs stable recorder labels while retaining real session matching in the fixture", async () => {
+    install();
+    await invoke("shortcuts_recording", { token: "owned-first", active: true });
+    await invoke("shortcuts_recording", { token: "owned-second", active: true });
+    await invoke("shortcuts_recording", { token: "owned-first", active: false });
+    expect((await invoke("shortcuts_snapshot")).recording).toBe(true);
+    await invoke("shortcuts_recording", { token: "owned-second", active: false });
+    expect((await invoke("shortcuts_snapshot")).recording).toBe(false);
+    const calls = globalThis.__NABBIT_CAPTURE__
+      .snapshot()
+      .calls.filter(({ command }) => command === "shortcuts_recording");
+    expect(calls.map(({ args }) => args.token)).toEqual([
+      "recording-1",
+      "recording-2",
+      "recording-1",
+      "recording-2",
+    ]);
+  });
   it("clones backend responses and saves settings only in the isolated fixture", async () => {
     install();
     expect(isTauri()).toBe(true);

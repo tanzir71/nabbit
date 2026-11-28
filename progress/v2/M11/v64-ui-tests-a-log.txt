@@ -1,0 +1,17 @@
+RUN  v3.2.7 D:/claude-upgrade-26/nabbit
+
+ ✓ src/features/settings/ShortcutsSettings.test.tsx (7 tests) 1742ms
+   ✓ shows every configurable action, and records a chord without saving until explicitly confirmed  303ms
+   ✓ supports explicit disable and a typed combination for keys another app consumes  628ms
+   ✓ suppresses duplicate saves while the first request is in flight and retains the focused control  308ms
+ ✓ src/features/settings/SettingsPanel.test.tsx (7 tests) 3873ms
+   ✓ navigates all nine sections and returns keyboard focus to the page heading  840ms
+   ✓ edits a complete path before saving and preserves an unrelated concurrent preference  808ms
+   ✓ reorders and disables activities through independent nested patches  326ms
+   ✓ cancels a dirty field with Escape and keeps a failed edit available for retry  1243ms
+   ✓ requires an explicit confirmation before clearing clipboard history  312ms
+
+ Test Files  2 passed (2)
+      Tests  14 passed (14)
+   Start at  17:34:22
+   Duration  5.90s (transform 635ms, setup 168ms, collect 1.29s, tests 5.62s, environment 1.35s, prepare 193ms)

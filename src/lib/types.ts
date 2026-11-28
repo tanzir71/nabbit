@@ -110,6 +110,9 @@ export interface AppSettings {
   quickDownloadShortcut: string;
   clipboardSearchShortcut: string;
   selectedTextShortcut?: string;
+  quickNoteShortcut?: string;
+  focusTimerShortcut?: string;
+  hideIslandShortcut?: string;
   defaultQuality: Quality;
   outputDir: string;
   filenameTemplate: string;

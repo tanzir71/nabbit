@@ -1,0 +1,53 @@
+.shortcut-entry + .shortcut-entry {
+  border-top: 1px solid var(--border-subtle);
+}
+.shortcut-entry > .settings-row {
+  border-top: 0;
+}
+.shortcut-entry .settings-keycaps {
+  flex: none;
+  flex-wrap: wrap;
+  justify-content: flex-end;
+}
+.shortcut-entry .n-badge {
+  flex: none;
+}
+[data-theme="light"] .shortcut-entry .n-badge--warning {
+  color: color-mix(in srgb, var(--warning-base) 90%, var(--text-primary));
+}
+.shortcut-entry .settings-row-copy {
+  min-width: 0;
+}
+.shortcut-entry .settings-row-copy > span {
+  overflow-wrap: anywhere;
+}
+.shortcut-recorder {
+  padding: 0 16px 16px;
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+.shortcut-recorder .n-field {
+  display: flex;
+  flex-direction: column;
+  align-items: stretch;
+}
+.shortcut-recorder input {
+  font-family: var(--font-mono);
+}
+.shortcut-recorder-buttons {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 6px;
+}
+.shortcut-recorder .settings-help {
+  margin: 0;
+}
+@media (max-width: 819px) {
+  .shortcut-entry .settings-row {
+    flex-wrap: wrap;
+  }
+  .shortcut-entry .settings-row-copy {
+    min-width: 160px;
+  }
+}

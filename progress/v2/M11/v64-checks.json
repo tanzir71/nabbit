@@ -1,0 +1,34 @@
+{
+  "task": "V6.4",
+  "allRequiredChecksPassed": true,
+  "counts": {
+    "frontend": 585,
+    "rust": 398,
+    "rustIgnoredOptIn": 8,
+    "browserViews": 24,
+    "nativeSettingsViews": 8,
+    "browserAssetGeometryChecks": 264,
+    "nativeAssetGeometryChecks": 88,
+    "axeViolations": 0,
+    "axeIncomplete": 0,
+    "exactRepeatPairs": 32,
+    "reusedOriginalAssets": 11
+  },
+  "buildManifestSha256": "35c8cf7110187c19e134b477ecb18d3872c198301948dc9ba197ba1733dd9992",
+  "nativeExecutableSha256": "7902b6d0cf718360a53d5bd02d578948db82129b1130152a4ea7c736607752ef",
+  "initialIslandGzipBytes": 104161,
+  "browserEvidence": "v64-shortcuts-b-screenshots.json",
+  "axeEvidence": "v64-shortcuts-b-axe.json",
+  "nativeEvidence": "v64-native-b-scene.json",
+  "gates": {
+    "frontend": "v64-verify-f-log.txt",
+    "site": "v64-site-a-log.txt",
+    "format": "v64-fmt-a-log.txt",
+    "clippy": "v64-clippy-b-log.txt",
+    "clippySpike": "v64-clippy-spike-a-log.txt",
+    "rust": "v64-native-tests-a-log.txt",
+    "release": "v64-release-a-log.txt"
+  },
+  "scope": "Owned browser/app/WebView/data fixtures and DOM input only. Production shortcut transaction, native settings commands, injected conflicts/recorder focus, route mapping, current asset embedding and restart. No real global key registration/input, clipboard/cursor, user files/accounts/profiles, shell/autostart/notification registration, installer/signing or OS settings. Actual other-app key ownership and other platforms/hardware are not claimed.",
+  "metadataNormalization": "v64-evidence-normalization.json"
+}

@@ -211,6 +211,10 @@ impl Database {
         })
     }
     pub(crate) fn notes_shortcut_status(&self, failed: bool) -> Result<()> {
+        let message = format!(
+            "{} is unavailable. Open Notes to capture.",
+            self.get_settings()?.quick_note_shortcut
+        );
         let conn = self
             .conn
             .lock()
@@ -218,11 +222,7 @@ impl Database {
         sync_store::set_meta(
             &conn,
             "notes/shortcut_error",
-            if failed {
-                "Ctrl+Alt+N is unavailable. Open Notes to capture."
-            } else {
-                ""
-            },
+            if failed { &message } else { "" },
         )
     }
 }

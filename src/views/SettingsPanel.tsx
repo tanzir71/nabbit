@@ -16,10 +16,10 @@ import {
   FilesPreferences,
   NotesSettings,
   PrivacySettings,
-  ShortcutsSettings,
   WidgetsSettings,
 } from "../features/settings/OtherSettings";
 import "../features/settings/settings.css";
+import { ShortcutsSettings } from "../features/settings/ShortcutsSettings";
 
 const pages = [
   ["general", "General", "dafc4.svg", "57372.svg"],

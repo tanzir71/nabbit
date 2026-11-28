@@ -5,7 +5,6 @@ import privacyStatement from "../../../PRIVACY.md?raw";
 import { Button } from "../../components/Button";
 import { useAppStore } from "../../store/useAppStore";
 import { api } from "../../lib/ipc";
-import { IslandShortcutField } from "../../views/IslandShortcutField";
 import { EngineHealthCard } from "../../views/EngineHealthCard";
 import {
   SettingsChoices,
@@ -251,70 +250,6 @@ export function WidgetsSettings() {
       </SettingsSection>
       {error && <p role="alert">{error}</p>}
     </>
-  );
-}
-const staticShortcuts = [
-  ["Quick note", "Ctrl + Alt + N"],
-  ["Focus timer", "Ctrl + Alt + T"],
-];
-export function ShortcutsSettings() {
-  const { settings, patch } = useSettings();
-  return (
-    <>
-      <SettingsSection title="Global shortcuts">
-        <div className="settings-shortcut-island">
-          <IslandShortcutField
-            value={settings.islandShortcut ?? "Alt+Space"}
-            save={async (islandShortcut) => {
-              if (!(await patch({ islandShortcut })))
-                throw new Error("Shortcut could not be saved.");
-            }}
-          />
-        </div>
-        <SettingsField
-          label="Download clipboard link"
-          value={settings.quickDownloadShortcut}
-          change={(quickDownloadShortcut) => ({ quickDownloadShortcut })}
-        />
-        <SettingsField
-          label="Clipboard history"
-          value={settings.clipboardSearchShortcut}
-          change={(clipboardSearchShortcut) => ({ clipboardSearchShortcut })}
-        />
-        <SettingsField
-          label="Act on selected text"
-          value={settings.selectedTextShortcut ?? "Ctrl+Alt+S"}
-          change={(selectedTextShortcut) => ({ selectedTextShortcut })}
-        />
-        <SettingsField
-          label="Toggle tray (legacy)"
-          value={settings.togglePopoverShortcut}
-          help="Existing shortcuts are preserved. Leave empty to disable."
-          change={(togglePopoverShortcut) => ({ togglePopoverShortcut })}
-        />
-        {staticShortcuts.map(([title, keys]) => (
-          <ShortcutRow key={title} title={title} keys={keys} />
-        ))}
-      </SettingsSection>
-      <SettingsSection title="In the island">
-        <ShortcutRow title="Switch tabs" keys="Ctrl + 1–6" />
-        <ShortcutRow title="Open a pin" keys="Alt + 1–9" />
-        <ShortcutRow title="Collapse / dismiss" keys="Esc" />
-        <ShortcutRow title="Open selected item" keys="Enter" />
-        <ShortcutRow title="Save note" keys="Ctrl + Enter" />
-      </SettingsSection>
-    </>
-  );
-}
-function ShortcutRow({ title, keys }: { title: string; keys: string }) {
-  return (
-    <SettingsRow title={title}>
-      <span className="settings-keycaps" role="group" aria-label={keys}>
-        {keys.split(" + ").map((key) => (
-          <kbd key={key}>{key}</kbd>
-        ))}
-      </span>
-    </SettingsRow>
   );
 }
 export function PrivacySettings() {

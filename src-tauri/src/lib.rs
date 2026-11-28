@@ -17,6 +17,7 @@ mod retention;
 mod settings_window;
 pub mod shelf;
 mod shell;
+mod shortcuts;
 mod sticky;
 pub mod tack;
 #[cfg(windows)]
@@ -60,7 +61,6 @@ use tauri::{
 };
 use tauri_plugin_autostart::ManagerExt as AutoStartExt;
 use tauri_plugin_deep_link::DeepLinkExt;
-use tauri_plugin_global_shortcut::{GlobalShortcutExt, ShortcutState};
 
 #[derive(Clone)]
 pub struct AppState {
@@ -289,6 +289,9 @@ pub fn run() {
             commands::settings::save_island_preferences,
             commands::settings::save_settings,
             commands::settings::patch_settings,
+            shortcuts::shortcuts_snapshot,
+            shortcuts::shortcuts_recording,
+            shortcuts::shortcuts_fixture,
             modes::get_mode_snapshot,
             modes::mode_fixture,
             tray::tray_ready,
@@ -392,6 +395,7 @@ pub fn run() {
             };
             app.manage(state.clone());
             app.manage(settings_window::Service::default());
+            app.manage(shortcuts::Service::default());
             app.manage(modes::Service::start(
                 app.handle().clone(),
                 db.get_settings()?.display_mode,
@@ -431,6 +435,9 @@ pub fn run() {
                     true
                 }
             };
+            if configure_os_integration {
+                shortcuts::startup(app.handle(), &settings)?;
+            }
             if configure_os_integration
                 && !island::acceptance_session()
                 && !download::acceptance::enabled()
@@ -471,6 +478,18 @@ pub fn run() {
             Ok(())
         })
         .on_window_event(|window, event| {
+            if matches!(
+                event,
+                tauri::WindowEvent::Focused(false)
+                    | tauri::WindowEvent::Destroyed
+                    | tauri::WindowEvent::CloseRequested { .. }
+            ) {
+                let app = window.app_handle().clone();
+                let label = window.label().to_owned();
+                tauri::async_runtime::spawn_blocking(move || {
+                    shortcuts::close_recording(&app, &label)
+                });
+            }
             sticky::event(window, event);
             if let Some(sync) = window.app_handle().try_state::<tack::service::Service>() {
                 let closing = matches!(event, tauri::WindowEvent::Destroyed)
@@ -833,18 +852,25 @@ pub fn dispatch_island_shortcut(
     app: &AppHandle<Wry>,
     trigger: Option<&str>,
 ) -> std::result::Result<(), String> {
-    if trigger.is_some_and(|t| {
-        t.parse::<tauri_plugin_global_shortcut::Shortcut>().ok() == timer::SHORTCUT.parse().ok()
-    }) {
-        app.state::<Arc<timer::Service>>().hotkey();
-        return Ok(());
+    let settings = app
+        .state::<AppState>()
+        .db
+        .get_settings()
+        .map_err(|error| error.to_string())?;
+    if let Some(key) =
+        trigger.and_then(|key| key.parse::<tauri_plugin_global_shortcut::Shortcut>().ok())
+    {
+        if settings
+            .focus_timer_shortcut
+            .parse::<tauri_plugin_global_shortcut::Shortcut>()
+            .ok()
+            == Some(key)
+        {
+            app.state::<Arc<timer::Service>>().hotkey();
+            return Ok(());
+        }
     }
     if let Some(trigger) = trigger {
-        let settings = app
-            .state::<AppState>()
-            .db
-            .get_settings()
-            .map_err(|e| e.to_string())?;
         let requested = trigger
             .parse::<tauri_plugin_global_shortcut::Shortcut>()
             .map_err(|e| e.to_string())?;
@@ -866,123 +892,7 @@ pub fn dispatch_island_shortcut(
     }
     toggle_popover(app).map_err(|e| e.to_string())
 }
-pub fn register_island_shortcut(
-    app: &AppHandle<Wry>,
-    shortcut: &str,
-) -> std::result::Result<(), String> {
-    if shortcut.trim().is_empty() {
-        Ok(())
-    } else {
-        app.global_shortcut()
-            .on_shortcut(shortcut.trim(), |app, shortcut, event| {
-                if event.state != ShortcutState::Pressed {
-                    return;
-                }
-                if let Err(error) = dispatch_island_shortcut(app, Some(&shortcut.to_string())) {
-                    #[cfg(windows)]
-                    if let Some(manager) = app.try_state::<Arc<island::Manager>>() {
-                        manager.shortcut_status(Some(error));
-                    }
-                    #[cfg(not(windows))]
-                    let _ = error;
-                }
-            })
-            .map_err(|e| format!("Island shortcut is unavailable: {e}"))
-    }
-}
 pub fn apply_runtime_settings(app: &AppHandle<Wry>, state: &AppState, settings: &AppSettings) {
-    let _ = app.global_shortcut().unregister_all();
-    let timer_registration = app
-        .global_shortcut()
-        .on_shortcut(timer::SHORTCUT, |app, _, event| {
-            if event.state == ShortcutState::Pressed {
-                app.state::<Arc<timer::Service>>().hotkey();
-            }
-        });
-    app.state::<Arc<timer::Service>>()
-        .shortcut_status(timer_registration.err().map(|_| {
-            "Ctrl+Alt+T is unavailable. Choose the Timer tab to control your session.".into()
-        }));
-    let note_registration =
-        app.global_shortcut()
-            .on_shortcut(notes::capture::SHORTCUT, |app, _, event| {
-                if event.state == ShortcutState::Pressed {
-                    notes::capture::hotkey(app);
-                }
-            });
-    let _ = state.db.notes_shortcut_status(note_registration.is_err());
-    let selection_registration = if !settings.selected_text_shortcut.trim().is_empty() {
-        app.global_shortcut()
-            .on_shortcut(settings.selected_text_shortcut.as_str(), |app, _, event| {
-                if event.state == ShortcutState::Pressed {
-                    context::selection::hotkey(app);
-                }
-            })
-            .map_err(|_| ())
-    } else {
-        Ok(())
-    };
-    if let Ok(conn) = state.db.conn.lock() {
-        let _ = notes::sync_store::set_meta(
-            &conn,
-            "notes/selection_shortcut_error",
-            if selection_registration.is_err() {
-                "The selected-text shortcut is unavailable. Choose another shortcut in Settings."
-            } else {
-                ""
-            },
-        );
-    }
-    let island_registration = island::keyboard::validate_shortcut(settings)
-        .and_then(|()| register_island_shortcut(app, &settings.island_shortcut));
-    #[cfg(windows)]
-    if let Some(manager) = app.try_state::<Arc<island::Manager>>() {
-        manager.shortcut_status(island_registration.err());
-    }
-    #[cfg(not(windows))]
-    let _ = island_registration;
-
-    if !settings.toggle_popover_shortcut.trim().is_empty() {
-        let _ = app.global_shortcut().on_shortcut(
-            settings.toggle_popover_shortcut.as_str(),
-            |app, _shortcut, event| {
-                if event.state == ShortcutState::Pressed {
-                    let _ = toggle_popover(app);
-                }
-            },
-        );
-    }
-
-    if !settings.quick_download_shortcut.trim().is_empty() {
-        let _ = app.global_shortcut().on_shortcut(
-            settings.quick_download_shortcut.as_str(),
-            |app, _shortcut, event| {
-                if event.state == ShortcutState::Pressed {
-                    capture::hotkey(app);
-                }
-            },
-        );
-    }
-
-    if !settings.clipboard_search_shortcut.trim().is_empty() {
-        let _ = app.global_shortcut().on_shortcut(
-            settings.clipboard_search_shortcut.as_str(),
-            |app, _shortcut, event| {
-                if event.state == ShortcutState::Pressed {
-                    if let Some(state) = app.try_state::<AppState>() {
-                        let _ = commands::settings::patch(
-                            app,
-                            &state,
-                            serde_json::json!({"lastTab":"clipboard"}),
-                        );
-                    }
-                    let _ = show_popover(app);
-                    let _ = app.emit("shortcut:clipboard-search", ());
-                }
-            },
-        );
-    }
-
     let autolaunch = app.autolaunch();
     if settings.launch_at_login {
         let _ = autolaunch.enable();

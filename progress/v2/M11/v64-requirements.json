@@ -1,0 +1,125 @@
+{
+  "task": "V6.4",
+  "requirements": [
+    {
+      "requirement": "Recorder and Figma settings rows",
+      "result": "Six original global-action rows use keycaps, Change buttons and the Conflict badge. Selected text and the legacy tray binding remain configurable under Other global shortcuts. Original sidebar/artwork/components/tokens are reused.",
+      "evidence": [
+        "v64-shortcuts-b-screenshots.json",
+        "src/features/settings/ShortcutsSettings.tsx"
+      ],
+      "passed": true
+    },
+    {
+      "requirement": "All v2 actions are configurable",
+      "result": "Island, quick note, clipboard download/history, focus timer, one-hour hide and selected text, plus the legacy tray shortcut, share the same runtime registration owner and settings store.",
+      "evidence": [
+        "v64-native-b-scene.json",
+        "src-tauri/src/shortcuts.rs"
+      ],
+      "passed": true
+    },
+    {
+      "requirement": "Explicit capture and disable",
+      "result": "Keyboard capture supports punctuation, numpad and layout-specific input. Composition, repeated input and modifier-only events are ignored. Typed fallback, cancellation, disabling and explicit saving are tested. Recording alone does not save or dispatch an action.",
+      "evidence": [
+        "v64-native-b-scene.json",
+        "v64-shortcuts-b-screenshots.json",
+        "v64-verify-f-log.txt"
+      ],
+      "passed": true
+    },
+    {
+      "requirement": "Recorder lifecycle",
+      "result": "Start/stop IPC requests are serialized. A late or failed request cannot reorder a later session. Window blur pauses and focus reacquires recording before accepting more keys; session tokens protect cleanup.",
+      "evidence": [
+        "v64-verify-f-log.txt",
+        "src/features/settings/ShortcutsSettings.test.tsx"
+      ],
+      "passed": true
+    },
+    {
+      "requirement": "Startup conflicts",
+      "result": "Injected RegisterHotKey failure skips the unavailable one-hour hide binding while the other seven remain active. The actual native settings renderer shows Conflict and truthful recovery copy.",
+      "evidence": [
+        "v64-native-b-scene.json",
+        "v64-shortcuts-b-screenshots.json"
+      ],
+      "passed": true
+    },
+    {
+      "requirement": "Remap conflicts and old-key preservation",
+      "result": "A rejected replacement keeps the old shortcut active and leaves its app_settings field unchanged. The candidate/error remains available for retry, and a later valid replacement succeeds.",
+      "evidence": [
+        "v64-native-b-scene.json",
+        "v64-native-tests-a-log.txt"
+      ],
+      "passed": true
+    },
+    {
+      "requirement": "Transactional registration",
+      "result": "New registrations precede SQLite save and old-key release. Partial batch failures and failed persistence release candidates and retain old mappings. Release failures remain visible and stale callbacks cannot dispatch.",
+      "evidence": [
+        "v64-native-tests-a-log.txt",
+        "src-tauri/src/shortcuts/tests.rs"
+      ],
+      "passed": true
+    },
+    {
+      "requirement": "Alias and in-app conflicts",
+      "result": "Native parsed key identity detects equivalent modifier spellings and conflicts across all configurable actions. Disable/re-enable, aliases, multi-field swaps and unaffected bindings are tested.",
+      "evidence": [
+        "v64-native-b-scene.json",
+        "v64-native-tests-a-log.txt"
+      ],
+      "passed": true
+    },
+    {
+      "requirement": "Action routing and captions",
+      "result": "Current keys route to their current action, removed/disabled keys do not. Registered-key recorder delivery suppresses dispatch. Tray New note captions read the configured key. One-hour hide patches the shared activity preference.",
+      "evidence": [
+        "v64-native-b-scene.json",
+        "src-tauri/src/tray.rs",
+        "src-tauri/src/shortcuts.rs"
+      ],
+      "passed": true
+    },
+    {
+      "requirement": "Migration and restart",
+      "result": "New settings default to Ctrl+Alt+N/T/H, existing custom and empty legacy fields remain supported, unknown settings survive, and custom/disabled bindings persist and rebind after owned process restart.",
+      "evidence": [
+        "v64-native-b-scene.json",
+        "v64-native-tests-a-log.txt"
+      ],
+      "passed": true
+    },
+    {
+      "requirement": "Accessibility and artwork",
+      "result": "Default whole-document axe has no violations/incomplete results. Focus is preserved/restored; original SVG callsites/effective geometry are checked. Light Conflict text is slightly darkened to meet AA without changing global tokens.",
+      "evidence": [
+        "v64-shortcuts-b-axe.json",
+        "v64-shortcuts-b-screenshots.json",
+        "v64-asset-provenance.json"
+      ],
+      "passed": true
+    },
+    {
+      "requirement": "Full checks and scope",
+      "result": "Frontend/site, format, strict default/spike Clippy, serial Rust tests, release embedding, exact browser/native repeat captures and full M11 PNG audits pass. Failures/raw logs remain; real global keys and OS registration are excluded.",
+      "evidence": [
+        "v64-checks.json",
+        "v64-logs.json",
+        "v64-png-audit.json"
+      ],
+      "passed": true
+    }
+  ],
+  "notAutomated": [
+    "Physical global key input/ownership and real RegisterHotKey reservation against other apps are not executed. The real Tauri adapter propagates registration errors; production transaction/recorder paths are tested using injected outcomes.",
+    "No real clipboard/cursor/user profiles/accounts, shell/autostart/notification registration, installers/signing, OS setting changes or fresh idle-performance claim. Other platforms/hardware remain outside this Windows run."
+  ],
+  "remaining": [
+    "M11 milestone publication",
+    "V7.1–V7.5 and M12"
+  ]
+}

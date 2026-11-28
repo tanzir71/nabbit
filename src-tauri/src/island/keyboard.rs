@@ -1,69 +1,8 @@
 //! Explicit-input focus ownership. Activity and hover never create a request.
 use serde::{Deserialize, Serialize};
+#[cfg(test)]
 pub fn validate_shortcut(settings: &crate::db::models::AppSettings) -> Result<(), String> {
-    let timer = crate::timer::SHORTCUT
-        .parse::<tauri_plugin_global_shortcut::Shortcut>()
-        .map_err(|e| e.to_string())?;
-    for value in [
-        &settings.selected_text_shortcut,
-        &settings.island_shortcut,
-        &settings.toggle_popover_shortcut,
-        &settings.quick_download_shortcut,
-        &settings.clipboard_search_shortcut,
-    ] {
-        if value.parse::<tauri_plugin_global_shortcut::Shortcut>().ok() == Some(timer) {
-            return Err("Ctrl+Alt+T is reserved for the focus timer".into());
-        }
-    }
-    if !settings.selected_text_shortcut.trim().is_empty() {
-        let selected = settings
-            .selected_text_shortcut
-            .parse::<tauri_plugin_global_shortcut::Shortcut>()
-            .map_err(|_| "Enter a valid selected-text shortcut".to_string())?;
-        for other in [
-            crate::notes::capture::SHORTCUT,
-            &settings.island_shortcut,
-            &settings.toggle_popover_shortcut,
-            &settings.quick_download_shortcut,
-            &settings.clipboard_search_shortcut,
-        ] {
-            if other.parse::<tauri_plugin_global_shortcut::Shortcut>().ok() == Some(selected) {
-                return Err(
-                    "The selected-text shortcut conflicts with another Nabbit shortcut".into(),
-                );
-            }
-        }
-    }
-    let capture = crate::notes::capture::SHORTCUT
-        .parse::<tauri_plugin_global_shortcut::Shortcut>()
-        .map_err(|e| e.to_string())?;
-    for value in [
-        &settings.island_shortcut,
-        &settings.toggle_popover_shortcut,
-        &settings.quick_download_shortcut,
-        &settings.clipboard_search_shortcut,
-    ] {
-        if value.parse::<tauri_plugin_global_shortcut::Shortcut>().ok() == Some(capture) {
-            return Err("Ctrl+Alt+N is reserved for quick note capture".into());
-        }
-    }
-    let value = settings.island_shortcut.trim();
-    if value.is_empty() {
-        return Ok(());
-    }
-    let parsed = value
-        .parse::<tauri_plugin_global_shortcut::Shortcut>()
-        .map_err(|_| "Enter a valid island shortcut".to_string())?;
-    for other in [
-        &settings.toggle_popover_shortcut,
-        &settings.quick_download_shortcut,
-        &settings.clipboard_search_shortcut,
-    ] {
-        if other.parse::<tauri_plugin_global_shortcut::Shortcut>().ok() == Some(parsed) {
-            return Err("The island shortcut conflicts with another Nabbit shortcut".into());
-        }
-    }
-    Ok(())
+    crate::shortcuts::validate(settings)
 }
 #[derive(Clone, Copy, Debug, Default, PartialEq, Eq, Serialize)]
 #[serde(rename_all = "camelCase")]
