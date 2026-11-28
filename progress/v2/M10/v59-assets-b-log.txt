@@ -1,0 +1,5 @@
+Traceback (most recent call last):
+  File "D:\claude-upgrade-26\nabbit\.tools\v59-assets.py", line 8, in <module>
+    if existing:assert hashlib.sha256(target.read_bytes()).digest()==hashlib.sha256(raw).digest()
+                       ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+AssertionError

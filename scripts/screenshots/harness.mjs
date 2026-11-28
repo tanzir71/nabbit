@@ -30,8 +30,8 @@ export async function captureSuite(root, options, cases = scenarios) {
       "Unsupported caret capture policy",
     );
     assert(
-      !scenario.query || scenario.query === "?download-sheet",
-      "Only the local download sheet route is supported",
+      !scenario.query || ["?download-sheet", "?media-sheet"].includes(scenario.query),
+      "Only the local review sheet routes are supported",
     );
     assert(/^[a-z][a-z0-9-]{0,63}$/.test(scenario.name), "Invalid scenario name");
     assert(
@@ -215,6 +215,7 @@ export async function captureSuite(root, options, cases = scenarios) {
                     "tool_catalog",
                     "tool_jobs",
                     "tool_presets",
+                    "tool_suggest",
                     "get_island_drop",
                     "island_review_url",
                     "list_clipboard_entries",
@@ -308,7 +309,7 @@ export async function captureSuite(root, options, cases = scenarios) {
                       await captureSession.send("Page.captureScreenshot", {
                         format: "png",
                         fromSurface: true,
-                        captureBeyondViewport: true,
+                        captureBeyondViewport: scenario.captureBeyondViewport ?? true,
                         clip: { ...box, scale: 1 },
                       })
                     ).data,

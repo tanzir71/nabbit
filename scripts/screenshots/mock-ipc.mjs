@@ -121,6 +121,8 @@ export function installMockIpc(seed) {
       case "files_undo":
         dispatch("files:changed", null);
         return clone(seed.responses?.files_undo ?? {});
+      case "tool_suggest":
+        return clone(seed.responses?.tool_suggest ?? null);
       case "tool_catalog":
       case "tool_jobs":
       case "tool_presets":

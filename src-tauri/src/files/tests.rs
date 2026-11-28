@@ -607,6 +607,7 @@ fn completed_tool_output_locations_and_identities_follow_move_and_undo() {
             tool_id: "to-jpg".into(),
             input: f.file("input.png"),
             preset_id: "jpg".into(),
+            options: crate::tools::media::Options::default(),
         },
         preset: crate::tools::registry::presets()
             .into_iter()
@@ -625,6 +626,8 @@ fn completed_tool_output_locations_and_identities_follow_move_and_undo() {
         staging_path: None,
         attempt: 1,
         retry_of: None,
+        media_info: None,
+        media_report: None,
     };
     f.service.db.save_tool_job(&job).unwrap();
     let plan = f.plan(vec![path.clone()]);

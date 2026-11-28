@@ -29,6 +29,7 @@ impl Fixture {
             tool_id: "to-jpg".into(),
             input: path.to_string_lossy().into(),
             preset_id: "jpg".into(),
+            options: crate::tools::media::Options::default(),
         }
     }
 }
@@ -76,6 +77,18 @@ fn registry_and_presets_are_unique_and_match_supported_inputs() {
     for p in registry::presets() {
         registry::validate_preset(&p).unwrap();
     }
+}
+#[test]
+fn drop_suggestions_use_saved_cap_and_conversion_priority() {
+    let suggest = |name, bytes, cap| registry::suggestion(Path::new(name), bytes, cap);
+    assert_eq!(suggest("clip.MOV", 90_000_000, 20), Some("to-mp4"));
+    assert_eq!(suggest("clip.mkv", 10, 20), Some("to-mp4"));
+    assert_eq!(suggest("clip.mp4", 20_000_001, 20), Some("fit-size"));
+    assert_eq!(suggest("clip.mp4", 20_000_000, 20), None);
+    assert_eq!(suggest("clip.webm", 20_000_001, 25), None);
+    assert_eq!(suggest("audio.mp3", 90_000_000, 20), None);
+    assert_eq!(suggest("image.png", 10, 20), Some("to-jpg"));
+    assert_eq!(suggest("image.pdf", 10, 20), None);
 }
 #[test]
 fn output_naming_is_atomic_and_never_overwrites() {
@@ -298,23 +311,35 @@ fn owned_ffmpeg_cancellation_retry_and_typed_progress() {
     .unwrap();
     let request = Request {
         request_id: uuid::Uuid::new_v4().to_string(),
-        tool_id: "to-mp4".into(),
+        tool_id: "trim-video".into(),
         input: source.to_string_lossy().into(),
-        preset_id: "mp4".into(),
+        preset_id: "trim".into(),
+        options: media::Options {
+            trim: Some(media::Range {
+                start_ms: 0,
+                end_ms: 12000,
+            }),
+            ..media::Options::default()
+        },
     };
     let job = service.submit(request).unwrap();
     let start = Instant::now();
-    // The third running push comes from the attached ffmpeg process, after
-    // validation/staging pushes. Cancel an actual child, not just its request.
+    // The second Processing push is emitted after the child is attached.
     loop {
         let pushes = {
             let records = events.lock().unwrap();
             records
                 .iter()
-                .filter(|j| j.id == job.id && j.status == "running")
+                .filter(|j| {
+                    j.id == job.id
+                        && j.status == "running"
+                        && j.note
+                            .as_deref()
+                            .is_some_and(|s| s.contains("Processing media"))
+                })
                 .count()
         };
-        if pushes >= 3 {
+        if pushes >= 2 {
             break;
         }
         let current = service

@@ -1,7 +1,7 @@
 import { useEffect, useRef, useState } from "react";
 import { IslandAsset, type AssetGroup } from "../../surfaces/island/IslandAsset";
 import type { Payload, DropZone } from "../../lib/islandDrop";
-import { toolsApi, acceptsFile, type Tool } from "../tools/api";
+import { toolsApi, type Tool } from "../tools/api";
 import { filesApi, pinName, type Pin, type Modifiers } from "./api";
 import "./files.css";
 export default function FileDropContent({
@@ -15,10 +15,27 @@ export default function FileDropContent({
 }) {
   const [pins, setPins] = useState<Pin[]>([]),
     [tools, setTools] = useState<Tool[]>([]),
+    [suggestion, setSuggestion] = useState<string | null>(null),
     [hints, setHints] = useState<Record<string, string>>({}),
     [modifiers, setModifiers] = useState<Modifiers>({ shift: false, ctrl: false }),
     [error, setError] = useState("");
   const revision = useRef(0);
+  useEffect(() => {
+    let active = true;
+    setSuggestion(null);
+    if (payload.files?.length === 1)
+      void toolsApi
+        .suggest(payload.files)
+        .then((value) => {
+          if (active) setSuggestion(value);
+        })
+        .catch(() => {
+          if (active) setSuggestion(null);
+        });
+    return () => {
+      active = false;
+    };
+  }, [payload.files]);
   useEffect(() => {
     if (payload.modifiers)
       setModifiers((old) =>
@@ -69,8 +86,7 @@ export default function FileDropContent({
       window.removeEventListener("keyup", update);
     };
   }, [payload.files, modifiers]);
-  const tool =
-    payload.files?.length === 1 ? tools.find((tool) => acceptsFile(tool, payload.files![0])) : null;
+  const tool = tools.find((tool) => tool.id === suggestion);
   const primary: DropZone = tool ? `tool:${tool.id}` : "shelf";
   const selected = over ?? primary;
   const zones: { id: DropZone; title: string; hint: string; icon: string; group: AssetGroup }[] = [
@@ -78,10 +94,10 @@ export default function FileDropContent({
       ? [
           {
             id: primary,
-            title: tool.name,
+            title: tool.id === "fit-size" ? "Fit for Discord" : tool.name,
             hint: "Review before running",
-            icon: tool.id === "to-mp4" ? "iconFilm" : "iconImage",
-            group: tool.id === "to-mp4" ? ("34:897" as const) : ("drop" as const),
+            icon: tool.category === "media" ? "iconFilm" : "iconImage",
+            group: tool.category === "media" ? ("34:897" as const) : ("drop" as const),
           },
         ]
       : []),

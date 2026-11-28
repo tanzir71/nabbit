@@ -1,0 +1,334 @@
+{
+  "passed": true,
+  "checks": [
+    "Search opens a separate 440px native review with real ffmpeg inspection and Rust estimates; no job starts on open. MOV/MKV conversion and oversized-video drop suggestions use metadata and the saved cap. Current-id and caller guards reject stale resize and mismatched intents; a stale close cannot hide the next review.",
+    "An explicit native Run launches the existing durable runner and pushes a typed try/pass activity. The actual Files queue cancels the attached encode, retries as a new job, and produces an under-20MB libx264 output from the unchanged original.",
+    "Shelf accepts the native media registry and opens the existing trim handles/time fields for a local file. Editing does not start a job; the primary Trim video action persists the 1.2–3.3s range and creates a separate result.",
+    "Restart retains cancelled/completed/undone job options and attempt reports without re-execution. Undo uses the guarded owned-file quarantine provider, leaving source bytes unchanged. All embedded manifest entry/CSS hashes and the complete generated offline licence payload match this release."
+  ],
+  "captures": [
+    {
+      "role": "fit-review",
+      "file": "v59-native-d-fit-review@2x.png",
+      "sha256": "66dad155354afd208f8cc41713da6d07fb5a1e324c1ceae7a2cf4f1a8d71986e",
+      "bytes": 116551,
+      "width": 880,
+      "height": 1066,
+      "logicalBounds": {
+        "x": 0,
+        "y": 0,
+        "width": 440,
+        "height": 533
+      },
+      "contentBounds": {
+        "x": 0,
+        "y": 0,
+        "width": 440,
+        "height": 533
+      },
+      "scale": 2,
+      "repeatMatches": true
+    },
+    {
+      "role": "running-native",
+      "file": "v59-native-d-running-native@1x.png",
+      "width": 720,
+      "height": 460,
+      "bytes": 7003,
+      "sha256": "5c0700fe6e49bbd9eb3ab333ab61bfd1351314cf3d994ce0e78bfe300125dbdc",
+      "repeatMatches": null,
+      "reason": "Actual live native progress frame; data may advance between captures",
+      "activity": {
+        "revision": 7,
+        "views": [
+          {
+            "label": "island",
+            "gate": "visible",
+            "primary": {
+              "id": "tool:cab90dbf-082f-45ab-a6f6-ca1d59b690bd",
+              "category": "tool",
+              "event": {
+                "kind": "toolJob",
+                "jobId": "cab90dbf-082f-45ab-a6f6-ca1d59b690bd",
+                "toolId": "fit-size",
+                "label": "Fit for Discord · try 1 of 3 · pass 1 of 2",
+                "percent": 0,
+                "state": "running"
+              },
+              "alert": false,
+              "bubbleOnly": false
+            },
+            "bubble": null,
+            "queue": [],
+            "fullscreen": false,
+            "userHidden": false,
+            "focusMode": false
+          }
+        ],
+        "preferences": {
+          "order": [
+            "privacy",
+            "timerEnding",
+            "download",
+            "tool",
+            "link",
+            "result",
+            "media",
+            "timer",
+            "power"
+          ],
+          "disabled": [],
+          "showAlertsOverFullscreen": false,
+          "focusMode": false,
+          "hiddenUntilMs": null
+        },
+        "syncState": "localOnly"
+      }
+    },
+    {
+      "role": "queue",
+      "file": "v59-native-d-queue@2x.png",
+      "sha256": "ab6627396a4ca65f1ed4aa0779cc4206337f39ba0ccc71c1c1727dbd418f9b41",
+      "bytes": 94064,
+      "width": 1440,
+      "height": 920,
+      "logicalBounds": {
+        "x": 0,
+        "y": 0,
+        "width": 720,
+        "height": 460
+      },
+      "contentBounds": {
+        "x": 0,
+        "y": 0,
+        "width": 720,
+        "height": 460
+      },
+      "scale": 2,
+      "repeatMatches": true
+    },
+    {
+      "role": "local-trim",
+      "file": "v59-native-d-local-trim@2x.png",
+      "sha256": "65ca0bc7720b5038be8ee804853e2fd1b4dd241641dde2ecfeba719be24b7344",
+      "bytes": 45395,
+      "width": 880,
+      "height": 580,
+      "logicalBounds": {
+        "x": 0,
+        "y": 0,
+        "width": 440,
+        "height": 290
+      },
+      "contentBounds": {
+        "x": 0,
+        "y": 0,
+        "width": 440,
+        "height": 290
+      },
+      "scale": 2,
+      "repeatMatches": true
+    }
+  ],
+  "jobs": [
+    {
+      "id": "cab90dbf-082f-45ab-a6f6-ca1d59b690bd",
+      "request": {
+        "requestId": "cab90dbf-082f-45ab-a6f6-ca1d59b690bd",
+        "toolId": "fit-size",
+        "input": "D:\\claude-upgrade-26\\nabbit\\.tools\\v59-native-d-44ab83bb-53c8-4cdc-b817-6c421aa4b3bb\\profile\\media-fixture.mp4",
+        "presetId": "discord",
+        "options": {
+          "mode": "exact",
+          "maxMb": 20,
+          "keepAudio": true,
+          "downscale": true,
+          "audioKbps": null,
+          "maxHeight": 1080,
+          "trim": null,
+          "gifFps": 15,
+          "gifPixels": 720
+        }
+      },
+      "preset": {
+        "id": "discord",
+        "name": "Fit for Discord",
+        "maxMb": 20,
+        "quality": 85
+      },
+      "status": "running",
+      "percent": 0,
+      "createdAt": "2026-11-28T00:39:49.489983600+00:00",
+      "output": null,
+      "beforeBytes": 60513501,
+      "afterBytes": 0,
+      "note": "Fit for Discord · try 1 of 3 · pass 1 of 2",
+      "error": null,
+      "outputHash": null,
+      "outputIdentity": "833977120:393216:2032365",
+      "stagingPath": "D:\\claude-upgrade-26\\nabbit\\.tools\\v59-native-d-44ab83bb-53c8-4cdc-b817-6c421aa4b3bb\\profile\\.nabbit-cab90dbf-082f-45ab-a6f6-ca1d59b690bd.mp4",
+      "attempt": 1,
+      "retryOf": null,
+      "mediaInfo": {
+        "durationMs": 30000,
+        "width": 1920,
+        "height": 1080,
+        "fps": 15,
+        "video": true,
+        "audio": true,
+        "channels": 1,
+        "videoCodec": "mpeg4",
+        "audioCodec": "aac",
+        "bytes": 60513501
+      },
+      "mediaReport": {
+        "encoder": "libx264",
+        "remuxed": false,
+        "attempts": [],
+        "warning": null
+      }
+    },
+    {
+      "id": "fec7e32e-e539-4c49-a6f8-1dcac0599b9c",
+      "request": {
+        "requestId": "fec7e32e-e539-4c49-a6f8-1dcac0599b9c",
+        "toolId": "fit-size",
+        "input": "D:\\claude-upgrade-26\\nabbit\\.tools\\v59-native-d-44ab83bb-53c8-4cdc-b817-6c421aa4b3bb\\profile\\media-fixture.mp4",
+        "presetId": "discord",
+        "options": {
+          "mode": "exact",
+          "maxMb": 20,
+          "keepAudio": true,
+          "downscale": true,
+          "audioKbps": null,
+          "maxHeight": 1080,
+          "trim": null,
+          "gifFps": 15,
+          "gifPixels": 720
+        }
+      },
+      "preset": {
+        "id": "discord",
+        "name": "Fit for Discord",
+        "maxMb": 20,
+        "quality": 85
+      },
+      "status": "completed",
+      "percent": 100,
+      "createdAt": "2026-11-28T00:39:54.614266200+00:00",
+      "output": "D:\\claude-upgrade-26\\nabbit\\.tools\\v59-native-d-44ab83bb-53c8-4cdc-b817-6c421aa4b3bb\\profile\\media-fixture (Fit for Discord).mp4",
+      "beforeBytes": 60513501,
+      "afterBytes": 19252451,
+      "note": "Fits Discord",
+      "error": null,
+      "outputHash": "7996f7fa9603c954a679f9b5460882bdde91a50175ef4f906d44bc9d8a56c362",
+      "outputIdentity": "833977120:458752:2032365",
+      "stagingPath": "D:\\claude-upgrade-26\\nabbit\\.tools\\v59-native-d-44ab83bb-53c8-4cdc-b817-6c421aa4b3bb\\profile\\.nabbit-fec7e32e-e539-4c49-a6f8-1dcac0599b9c.mp4",
+      "attempt": 2,
+      "retryOf": "cab90dbf-082f-45ab-a6f6-ca1d59b690bd",
+      "mediaInfo": {
+        "durationMs": 30000,
+        "width": 1920,
+        "height": 1080,
+        "fps": 15,
+        "video": true,
+        "audio": true,
+        "channels": 1,
+        "videoCodec": "mpeg4",
+        "audioCodec": "aac",
+        "bytes": 60513501
+      },
+      "mediaReport": {
+        "encoder": "libx264",
+        "remuxed": false,
+        "attempts": [
+          {
+            "number": 1,
+            "encoder": "libx264",
+            "plan": {
+              "targetBytes": 20000000,
+              "seconds": 30,
+              "width": 1920,
+              "height": 1080,
+              "videoKbps": 5045,
+              "audioKbps": 128,
+              "mono": false,
+              "estimatedBytes": 19398750
+            },
+            "bytes": 19252451,
+            "sourceHash": "d8d8de5b37c9a5cf75f328810bc8f670a678eae6d91459c0a1405582d20d7804",
+            "fits": true
+          }
+        ],
+        "warning": null
+      }
+    },
+    {
+      "id": "74b25e72-6d2d-47b5-bdae-17f43e11088c",
+      "request": {
+        "requestId": "74b25e72-6d2d-47b5-bdae-17f43e11088c",
+        "toolId": "trim-video",
+        "input": "D:\\claude-upgrade-26\\nabbit\\.tools\\v59-native-d-44ab83bb-53c8-4cdc-b817-6c421aa4b3bb\\profile\\media-fixture.mp4",
+        "presetId": "trim",
+        "options": {
+          "mode": "exact",
+          "maxMb": null,
+          "keepAudio": true,
+          "downscale": true,
+          "audioKbps": null,
+          "maxHeight": 1080,
+          "trim": {
+            "startMs": 1200,
+            "endMs": 3300
+          },
+          "gifFps": 15,
+          "gifPixels": 720
+        }
+      },
+      "preset": {
+        "id": "trim",
+        "name": "Trimmed",
+        "maxMb": null,
+        "quality": 85
+      },
+      "status": "completed",
+      "percent": 100,
+      "createdAt": "2026-11-28T00:40:08.044450+00:00",
+      "output": "D:\\claude-upgrade-26\\nabbit\\.tools\\v59-native-d-44ab83bb-53c8-4cdc-b817-6c421aa4b3bb\\profile\\media-fixture (Trimmed).mp4",
+      "beforeBytes": 60513501,
+      "afterBytes": 1129146,
+      "note": "Trimmed",
+      "error": null,
+      "outputHash": "8eb3d4d3b1d8b1d7cba53c38c94d851406289e596d7145b37bea030d8fdc3d70",
+      "outputIdentity": "833977120:131072:2032375",
+      "stagingPath": "D:\\claude-upgrade-26\\nabbit\\.tools\\v59-native-d-44ab83bb-53c8-4cdc-b817-6c421aa4b3bb\\profile\\.nabbit-74b25e72-6d2d-47b5-bdae-17f43e11088c.mp4",
+      "attempt": 1,
+      "retryOf": null,
+      "mediaInfo": {
+        "durationMs": 30000,
+        "width": 1920,
+        "height": 1080,
+        "fps": 15,
+        "video": true,
+        "audio": true,
+        "channels": 1,
+        "videoCodec": "mpeg4",
+        "audioCodec": "aac",
+        "bytes": 60513501
+      },
+      "mediaReport": {
+        "encoder": "libx264",
+        "remuxed": false,
+        "attempts": [],
+        "warning": null
+      }
+    }
+  ],
+  "embeddedAssetCount": 68,
+  "executableSha256": "9c815af730861bf65b7af73775f5c7c78254b4394c75eb6822cc9f181cd547da",
+  "buildManifestSha256": "e2ac7d898c6a59cb1bee163774c60b2185fbd3077a8c2993983c3c6b9bba4bbc",
+  "noUserProfile": true,
+  "noRealRecycleBinOrExplorer": true,
+  "noOsSettingChange": true,
+  "scope": "Owned production release and isolated app-data/WebView/control profiles; DOM-only UI input, generated synthetic media, actual separately pinned ffmpeg and durable Tauri runner; no user files, clipboard, global input, real cursor, native dialog, install, signing or OS changes."
+}

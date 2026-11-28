@@ -1,0 +1,21 @@
+Compiling nabbit v0.1.0 (D:\claude-upgrade-26\nabbit\src-tauri)
+    Finished `test` profile [unoptimized + debuginfo] target(s) in 1m 53s
+     Running unittests src\lib.rs (src-tauri\target\debug\deps\nabbit_lib-0a6c78b5bd514df4.exe)
+
+running 1 test
+
+thread 'tools::media::tests::owned_media_jobs_and_size_targets' (44796) panicked at src\tools\media\tests.rs:196:17:
+assertion `left == right` failed: fit-size: Some("The media operation could not finish: Error opening file C:\\Users\\tanzir\\AppData\\Local\\Temp\\nabbit-v59-21f62c9e-3ee7-461e-b9a5-8433764b4c91\\.nabbit-8b0571c7-a3ae-4e29-a6ed-a6f01d14409a.media-work\\pass-1-1.log.\r\n[aost#0:1/aac @ 000001e8b53deb80] Error reading log file 'C:\\Users\\tanzir\\AppData\\Local\\Temp\\nabbit-v59-21f62c9e-3ee7-461e-b9a5-8433764b4c91\\.nabbit-8b0571c7-a3ae-4e29-a6ed-a6f01d14409a.media-work\\pass-1-1.log' for pass-2 encoding\r\nError opening output file C:\\Users\\tanzir\\AppData\\Local\\Temp\\nabbit-v59-21f62c9e-3ee7-461e-b9a5-8433764b4c91\\.nabbit-8b0571c7-a3ae-4e29-a6ed-a6f01d14409a.mp4.\r\nError opening output files: I/O error")
+  left: "failed"
+ right: "completed"
+note: run with `RUST_BACKTRACE=1` environment variable to display a backtrace
+test tools::media::tests::owned_media_jobs_and_size_targets ... FAILED
+
+failures:
+
+failures:
+    tools::media::tests::owned_media_jobs_and_size_targets
+
+test result: FAILED. 0 passed; 1 failed; 0 ignored; 0 measured; 338 filtered out; finished in 17.92s
+
+error: test failed, to rerun pass `--lib`

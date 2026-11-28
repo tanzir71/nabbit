@@ -63,6 +63,17 @@ using the previous options. Completed results persist across restarts. Undo
 moves the matching new file to the Windows Recycle Bin and refuses edited or
 replaced outputs.
 
+Media review reads the selected local file's stream descriptions with the
+verified ffmpeg. The queue also stores media options, stream information and
+size-attempt reports (encoder, bitrate/dimensions, sizes and original-content
+hash). Exact mode needs no GPU test. Selecting Fast can encode a one-second
+synthetic test clip locally; the probe cache records adapter identities and
+driver versions against the engine hash. It contains no uploaded media.
+Temporary pass logs and staging files are removed when their operation ends.
+Metadata removal clears container/stream tags and chapters; it does not change
+visible or audible information. Physical created/modified dates remain copied.
+Cloud recall/offline inputs are rejected from metadata before a content open.
+
 Search reads the registered tools, accessible active notes/bookmarks in the
 current Tack scope, stored pins, Shelf references and clipboard history. It
 does not scan the filesystem, browser profiles, current selection or current

@@ -9,7 +9,8 @@ use crate::{
 use rusqlite::{params, Connection};
 pub fn migrate(conn: &Connection) -> Result<()> {
     conn.execute_batch("CREATE TABLE IF NOT EXISTS tool_presets(id TEXT PRIMARY KEY, value TEXT NOT NULL);
-        CREATE TABLE IF NOT EXISTS tool_jobs(id TEXT PRIMARY KEY, value TEXT NOT NULL, created_at TEXT NOT NULL);")?;
+        CREATE TABLE IF NOT EXISTS tool_jobs(id TEXT PRIMARY KEY, value TEXT NOT NULL, created_at TEXT NOT NULL);
+        CREATE TABLE IF NOT EXISTS media_capabilities(key TEXT PRIMARY KEY, value TEXT NOT NULL);")?;
     Ok(())
 }
 impl Database {

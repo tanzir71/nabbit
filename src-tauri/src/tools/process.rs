@@ -1,5 +1,5 @@
 use crate::{
-    download::engine::{process::Tree, run_bounded},
+    download::engine::process::Tree,
     error::{msg, Result},
 };
 use std::{
@@ -12,92 +12,14 @@ use std::{
     },
     time::{Duration, Instant},
 };
-fn duration(ffmpeg: &Path, input: &Path) -> Result<f64> {
-    let result = run_bounded(
-        ffmpeg,
-        &[
-            "-hide_banner".into(),
-            "-nostdin".into(),
-            "-protocol_whitelist".into(),
-            "file,pipe".into(),
-            "-format_whitelist".into(),
-            "mov,matroska,webm,avi,m4v".into(),
-            "-i".into(),
-            input.to_string_lossy().into(),
-        ],
-        Duration::from_secs(20),
-    )?;
-    let expression = regex::Regex::new(r"Duration: (\d+):(\d+):(\d+(?:\.\d+)?)")
-        .expect("constant duration regex");
-    let captures = expression
-        .captures(&result.stderr)
-        .ok_or_else(|| msg("Could not read the video duration"))?;
-    let value = |n: usize| captures[n].parse::<f64>().unwrap_or(0.);
-    let seconds = value(1) * 3600. + value(2) * 60. + value(3);
-    if seconds <= 0. || !seconds.is_finite() {
-        return Err(msg("Video duration is unavailable"));
-    }
-    Ok(seconds)
-}
-pub fn mp4(
+pub fn run(
     ffmpeg: &Path,
-    input: &Path,
-    output: &Path,
+    args: &[String],
+    seconds: f64,
     cancel: &AtomicBool,
     progress: &dyn Fn(f64),
+    timeout: Duration,
 ) -> Result<()> {
-    if cancel.load(Ordering::Acquire) {
-        return Err(msg("Cancelled"));
-    }
-    let seconds = duration(ffmpeg, input)?;
-    if cancel.load(Ordering::Acquire) {
-        return Err(msg("Cancelled"));
-    }
-    let args = [
-        "-hide_banner",
-        "-nostdin",
-        "-v",
-        "error",
-        "-y",
-        "-protocol_whitelist",
-        "file,pipe",
-        "-format_whitelist",
-        "mov,matroska,webm,avi,m4v",
-        "-i",
-    ]
-    .into_iter()
-    .map(String::from)
-    .chain([input.to_string_lossy().into_owned()])
-    .chain(
-        [
-            "-map",
-            "0:v:0",
-            "-map",
-            "0:a:0?",
-            "-c:v",
-            "libx264",
-            "-preset",
-            "veryfast",
-            "-crf",
-            "23",
-            "-pix_fmt",
-            "yuv420p",
-            "-vf",
-            "pad=ceil(iw/2)*2:ceil(ih/2)*2",
-            "-c:a",
-            "aac",
-            "-movflags",
-            "+faststart",
-            "-progress",
-            "pipe:1",
-            "-stats_period",
-            "0.5",
-        ]
-        .into_iter()
-        .map(String::from),
-    )
-    .chain([output.to_string_lossy().into_owned()])
-    .collect::<Vec<_>>();
     let mut command = Command::new(ffmpeg);
     command
         .args(args)
@@ -168,7 +90,7 @@ pub fn mp4(
     let start = Instant::now();
     let mut last = Instant::now();
     let result = loop {
-        if cancel.load(Ordering::Acquire) || start.elapsed() > Duration::from_secs(86400) {
+        if cancel.load(Ordering::Acquire) || start.elapsed() > timeout {
             let _ = child.kill();
             let _ = child.wait();
             break Err(msg(if cancel.load(Ordering::Acquire) {
@@ -198,7 +120,10 @@ pub fn mp4(
     let _ = out.join();
     let error = err.join().unwrap_or_default();
     if !result? {
-        return Err(msg(format!("To MP4 could not finish: {}", error.trim())));
+        return Err(msg(format!(
+            "The media operation could not finish: {}",
+            error.trim()
+        )));
     }
     let observed = ticks.load(Ordering::Acquire);
     if observed > 0 {

@@ -1,0 +1,9 @@
+curl: (3) URL rejected: Malformed input to a URL function
+Traceback (most recent call last):
+  File "D:\claude-upgrade-26\nabbit\.tools\v59-assets.py", line 5, in <module>
+    path=folder/item['file'];subprocess.run(['curl.exe','--fail','--location','--silent','--show-error',item['url'],'--output',str(path)],check=True)
+                             ~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Python313\Lib\subprocess.py", line 578, in run
+    raise CalledProcessError(retcode, process.args,
+                             output=stdout, stderr=stderr)
+subprocess.CalledProcessError: Command '['curl.exe', '--fail', '--location', '--silent', '--show-error', 'https://www.figma.com/api/mcp/asset/1197ed9c-079f-4ee9-9fd4-5486a7246411/<asset file name>', '--output', '.tools\\v59-figma\\<asset file name>']' returned non-zero exit status 3.

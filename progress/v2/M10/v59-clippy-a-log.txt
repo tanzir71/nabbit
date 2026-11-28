@@ -1,0 +1,88 @@
+Compiling nabbit v0.1.0 (D:\claude-upgrade-26\nabbit\src-tauri)
+error: this expression creates a reference which is immediately dereferenced by the compiler
+   --> src\tools\media\encode.rs:309:45
+    |
+309 |             video_args(&mut pass, &encoder, &plan);
+    |                                             ^^^^^ help: change this to: `plan`
+    |
+    = help: for further information visit https://rust-lang.github.io/rust-clippy/rust-1.97.0/index.html#needless_borrow
+    = note: `-D clippy::needless-borrow` implied by `-D warnings`
+    = help: to override `-D warnings` add `#[allow(clippy::needless_borrow)]`
+
+error: this expression creates a reference which is immediately dereferenced by the compiler
+   --> src\tools\media\encode.rs:321:70
+    |
+321 |                 progress(p * 0.5, &format!("{label} · pass 1 of 2"), &report)
+    |                                                                      ^^^^^^^ help: change this to: `report`
+    |
+    = help: for further information visit https://rust-lang.github.io/rust-clippy/rust-1.97.0/index.html#needless_borrow
+
+error: this expression creates a reference which is immediately dereferenced by the compiler
+   --> src\tools\media\encode.rs:324:45
+    |
+324 |             video_args(&mut pass, &encoder, &plan);
+    |                                             ^^^^^ help: change this to: `plan`
+    |
+    = help: for further information visit https://rust-lang.github.io/rust-clippy/rust-1.97.0/index.html#needless_borrow
+
+error: this expression creates a reference which is immediately dereferenced by the compiler
+   --> src\tools\media\encode.rs:325:35
+    |
+325 |             audio_args(&mut pass, &plan);
+    |                                   ^^^^^ help: change this to: `plan`
+    |
+    = help: for further information visit https://rust-lang.github.io/rust-clippy/rust-1.97.0/index.html#needless_borrow
+
+error: this expression creates a reference which is immediately dereferenced by the compiler
+   --> src\tools\media\encode.rs:336:76
+    |
+336 |                 progress(50. + p * 0.5, &format!("{label} · pass 2 of 2"), &report)
+    |                                                                            ^^^^^^^ help: change this to: `report`
+    |
+    = help: for further information visit https://rust-lang.github.io/rust-clippy/rust-1.97.0/index.html#needless_borrow
+
+error: this expression creates a reference which is immediately dereferenced by the compiler
+   --> src\tools\media\encode.rs:341:49
+    |
+341 |                 video_args(&mut args, &encoder, &plan);
+    |                                                 ^^^^^ help: change this to: `plan`
+    |
+    = help: for further information visit https://rust-lang.github.io/rust-clippy/rust-1.97.0/index.html#needless_borrow
+
+error: this expression creates a reference which is immediately dereferenced by the compiler
+   --> src\tools\media\encode.rs:345:35
+    |
+345 |             audio_args(&mut args, &plan);
+    |                                   ^^^^^ help: change this to: `plan`
+    |
+    = help: for further information visit https://rust-lang.github.io/rust-clippy/rust-1.97.0/index.html#needless_borrow
+
+error: this expression creates a reference which is immediately dereferenced by the compiler
+   --> src\tools\media\encode.rs:349:29
+    |
+349 |                 progress(p, &label, &report)
+    |                             ^^^^^^ help: change this to: `label`
+    |
+    = help: for further information visit https://rust-lang.github.io/rust-clippy/rust-1.97.0/index.html#needless_borrow
+
+error: this expression creates a reference which is immediately dereferenced by the compiler
+   --> src\tools\media\encode.rs:349:37
+    |
+349 |                 progress(p, &label, &report)
+    |                                     ^^^^^^^ help: change this to: `report`
+    |
+    = help: for further information visit https://rust-lang.github.io/rust-clippy/rust-1.97.0/index.html#needless_borrow
+
+error: manual `!RangeInclusive::contains` implementation
+  --> src\tools\media\model.rs:71:12
+   |
+71 |         if milliseconds < 20 || milliseconds > 31 * 86400 * 1000 {
+   |            ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^ help: use: `!(20..=31 * 86400 * 1000).contains(&milliseconds)`
+   |
+   = help: for further information visit https://rust-lang.github.io/rust-clippy/rust-1.97.0/index.html#manual_range_contains
+   = note: `-D clippy::manual-range-contains` implied by `-D warnings`
+   = help: to override `-D warnings` add `#[allow(clippy::manual_range_contains)]`
+
+error: could not compile `nabbit` (lib) due to 10 previous errors
+warning: build failed, waiting for other jobs to finish...
+error: could not compile `nabbit` (lib test) due to 10 previous errors

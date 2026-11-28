@@ -38,6 +38,7 @@ export interface ToolJob {
 export const toolsApi = {
   pick: (toolId: string) => invoke<string | null>("tool_pick_input", { toolId }),
   catalog: () => invoke<Tool[]>("tool_catalog"),
+  suggest: (paths: string[]) => invoke<string | null>("tool_suggest", { paths }),
   presets: () => invoke<ToolPreset[]>("tool_presets"),
   savePreset: (preset: ToolPreset) => invoke<void>("tool_save_preset", { preset }),
   jobs: () => invoke<ToolJob[]>("tool_jobs"),

@@ -25,7 +25,8 @@ export function TrimSheet({
   setProblem,
   onKind,
   onDownload,
-}: SheetControls & { onDownload: (options: DownloadOptions) => void }) {
+  local = false,
+}: SheetControls & { onDownload: (options: DownloadOptions) => void; local?: boolean }) {
   const duration = Math.round((metadata.duration ?? 0) * 1000);
   const [start, setStart] = useState(""),
     [end, setEnd] = useState(""),
@@ -63,48 +64,56 @@ export function TrimSheet({
   return (
     <>
       <div className="sheet-body trim-body">
-        <div
-          className="sheet-preview"
-          style={thumb ? { backgroundImage: `url(${JSON.stringify(thumb)})` } : undefined}
-        >
-          <button
-            className="sheet-play"
-            aria-label="Preview on source site"
-            title="Preview on source site"
-            onClick={() =>
-              void api
-                .previewDownloadSource(metadata.normalizedUrl, current.startMs)
-                .catch((e) => setProblem(String(e)))
-            }
+        {!local && (
+          <div
+            className="sheet-preview"
+            style={thumb ? { backgroundImage: `url(${JSON.stringify(thumb)})` } : undefined}
           >
-            <SheetIcon name="play" />
-          </button>
-        </div>
-        <div className="sheet-filmstrip" role="group" aria-label="Trim range">
-          <div className="sheet-frames" aria-hidden="true">
-            {Array.from({ length: 8 }, (_, i) => {
-              const image = metadata.details?.thumbnails[i] ?? thumb;
-              return (
-                <span
-                  key={i}
-                  style={{
-                    opacity: ranges.some(
-                      (r) =>
-                        r.startMs <= (duration * (i + 0.5)) / 8 &&
-                        r.endMs >= (duration * (i + 0.5)) / 8,
-                    )
-                      ? 1
-                      : 0.35,
-                    ...(image
-                      ? { backgroundImage: `url(${JSON.stringify(image)})` }
-                      : {
-                          backgroundImage: `linear-gradient(140.3009265165257deg, rgb(${[41, 48, 56, 64, 71, 79, 87, 94][i]}, ${[56, 61, 66, 71, 77, 82, 87, 92][i]}, 77) 0%, rgb(107, ${140 - i * 5}, 128) 71.429%)`,
-                        }),
-                  }}
-                />
-              );
-            })}
+            <button
+              className="sheet-play"
+              aria-label="Preview on source site"
+              title="Preview on source site"
+              onClick={() =>
+                void api
+                  .previewDownloadSource(metadata.normalizedUrl, current.startMs)
+                  .catch((e) => setProblem(String(e)))
+              }
+            >
+              <SheetIcon name="play" />
+            </button>
           </div>
+        )}
+        <div
+          className={`sheet-filmstrip${local ? " sheet-filmstrip--local" : ""}`}
+          role="group"
+          aria-label="Trim range"
+        >
+          {!local && (
+            <div className="sheet-frames" aria-hidden="true">
+              {Array.from({ length: 8 }, (_, i) => {
+                const image = metadata.details?.thumbnails[i] ?? thumb;
+                return (
+                  <span
+                    key={i}
+                    style={{
+                      opacity: ranges.some(
+                        (r) =>
+                          r.startMs <= (duration * (i + 0.5)) / 8 &&
+                          r.endMs >= (duration * (i + 0.5)) / 8,
+                      )
+                        ? 1
+                        : 0.35,
+                      ...(image
+                        ? { backgroundImage: `url(${JSON.stringify(image)})` }
+                        : {
+                            backgroundImage: `linear-gradient(140.3009265165257deg, rgb(${[41, 48, 56, 64, 71, 79, 87, 94][i]}, ${[56, 61, 66, 71, 77, 82, 87, 92][i]}, 77) 0%, rgb(107, ${140 - i * 5}, 128) 71.429%)`,
+                          }),
+                    }}
+                  />
+                );
+              })}
+            </div>
+          )}
           {duration > 0 &&
             ranges.map((r, i) => (
               <span
@@ -181,52 +190,58 @@ export function TrimSheet({
         {!duration && (
           <p role="alert">Trim needs a known video duration. Reload a single video to continue.</p>
         )}
-        <section>
-          <h2>CHAPTERS</h2>
-          <div className="sheet-chips">
-            {chapters.length ? (
-              chapters.map((c, i) => (
-                <PresetChip
-                  key={i}
-                  selected={covers(options.sections, c)}
-                  meta={timecode(c.startMs).replace(/\.0$/, "").replace(/^0/, "")}
-                  disabled={busy}
-                  onClick={() => {
-                    setOptions({ ...options, sections: toggleChapter(options.sections, c) });
-                    setError("");
-                  }}
-                >
-                  {c.title}
-                </PresetChip>
-              ))
-            ) : (
-              <p className="sheet-caption">No chapters are available for this video.</p>
-            )}
-          </div>
-        </section>
+        {!local && (
+          <section>
+            <h2>CHAPTERS</h2>
+            <div className="sheet-chips">
+              {chapters.length ? (
+                chapters.map((c, i) => (
+                  <PresetChip
+                    key={i}
+                    selected={covers(options.sections, c)}
+                    meta={timecode(c.startMs).replace(/\.0$/, "").replace(/^0/, "")}
+                    disabled={busy}
+                    onClick={() => {
+                      setOptions({ ...options, sections: toggleChapter(options.sections, c) });
+                      setError("");
+                    }}
+                  >
+                    {c.title}
+                  </PresetChip>
+                ))
+              ) : (
+                <p className="sheet-caption">No chapters are available for this video.</p>
+              )}
+            </div>
+          </section>
+        )}
         <p className="sheet-caption">
-          Downloads only the selected section, so a short clip does not fetch the whole video.
+          {local
+            ? "Creates a new MP4 of the selected section with precise boundaries. Original kept."
+            : "Downloads only the selected section, so a short clip does not fetch the whole video."}
         </p>
-        <details className="sheet-advanced">
-          <summary>Advanced</summary>
-          <Button variant="ghost" onClick={() => onKind("options")}>
-            Download options
-          </Button>
-          <Toggle
-            label="Precise cuts"
-            description="Re-encodes at cut points for exact boundaries"
-            checked={options.preciseCuts}
-            onChange={(v) => {
-              const r = commit();
-              if (r)
-                setOptions({
-                  ...options,
-                  sections: union([r, ...options.sections.slice(1)]),
-                  preciseCuts: v,
-                });
-            }}
-          />
-        </details>
+        {!local && (
+          <details className="sheet-advanced">
+            <summary>Advanced</summary>
+            <Button variant="ghost" onClick={() => onKind("options")}>
+              Download options
+            </Button>
+            <Toggle
+              label="Precise cuts"
+              description="Re-encodes at cut points for exact boundaries"
+              checked={options.preciseCuts}
+              onChange={(v) => {
+                const r = commit();
+                if (r)
+                  setOptions({
+                    ...options,
+                    sections: union([r, ...options.sections.slice(1)]),
+                    preciseCuts: v,
+                  });
+              }}
+            />
+          </details>
+        )}
       </div>
       <footer className="sheet-footer">
         <Button
@@ -252,7 +267,7 @@ export function TrimSheet({
           }}
         >
           <SheetIcon name="trim" />
-          {busy ? "Adding…" : "Download section"}
+          {busy ? "Adding…" : local ? "Trim video" : "Download section"}
         </Button>
       </footer>
     </>

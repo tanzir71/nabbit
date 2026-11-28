@@ -116,6 +116,14 @@ pub fn run() {
         .plugin(tauri_plugin_updater::Builder::new().build())
         .invoke_handler(tauri::generate_handler![
             tools::commands::tool_catalog,
+            tools::commands::tool_suggest,
+            tools::media::sheet::tool_open_media_sheet,
+            tools::media::sheet::tool_media_sheet,
+            tools::media::sheet::tool_media_sheet_ready,
+            tools::media::sheet::tool_close_media_sheet,
+            tools::media::sheet::tool_media_inspect,
+            tools::media::sheet::tool_media_capabilities,
+            tools::media::sheet::tool_media_estimate,
             files::commands::files_pins,
             files::commands::files_drop_status,
             files::commands::files_fixture_drop,

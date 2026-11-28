@@ -1,0 +1,46 @@
+{
+  "dependencyOrSidecarPinsChanged": false,
+  "unchangedComparedWithParent": [
+    "src-tauri/Cargo.toml",
+    "src-tauri/Cargo.lock",
+    "package.json",
+    "package-lock.json",
+    "scripts/engine-pins.json",
+    "third-party/notices.json",
+    "src-tauri/tauri.conf.json"
+  ],
+  "files": [
+    {
+      "path": "src-tauri/Cargo.toml",
+      "worktreeSha256": "883e8490e960c16c4e072d71c460ad2146bf41cbf7588d56b84b4daba9584de1"
+    },
+    {
+      "path": "src-tauri/Cargo.lock",
+      "worktreeSha256": "7dec50fe63c86aa5718393a57d2e9cf3d6c1a1c41ff4a5d1998fa668768e178b"
+    },
+    {
+      "path": "package.json",
+      "worktreeSha256": "972db69a1dcb069bbc4ddc75dcbfedd34b1e627cffd93e72fbc01096f1151e1d"
+    },
+    {
+      "path": "package-lock.json",
+      "worktreeSha256": "f4e99931b485a40fe865eda8a274d49f821b3553b993272c66fcedf2eddc95a3"
+    },
+    {
+      "path": "scripts/engine-pins.json",
+      "worktreeSha256": "36fbe403f03195a17e828c60585180c9e2e2be74dd6c73a7c60aa20afaf4bf6b"
+    },
+    {
+      "path": "third-party/notices.json",
+      "worktreeSha256": "36db138a857f817585eff4fb43acf66327c641f7abbc7b73ea162bfdbf56191a"
+    },
+    {
+      "path": "src-tauri/tauri.conf.json",
+      "worktreeSha256": "5b6a7525a1e1c63d32f49bf8c1b72a9231ed5bb50252a1a42af64e8df3eff598"
+    }
+  ],
+  "runtimeEngine": "Existing separately pinned static GPL ffmpeg process only; no new shipped binary or linked libav library",
+  "verificationProbe": "v59-test-probe.json",
+  "cargoDeny": "0.22.2 core licenses/bans and four negative GPL/AGPL/LGPL/libav-wrapper fixtures pass in npm verify",
+  "generatedNotices": 1056
+}

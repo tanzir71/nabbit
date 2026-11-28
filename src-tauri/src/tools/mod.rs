@@ -1,5 +1,6 @@
 pub mod commands;
 pub(crate) mod files;
+pub mod media;
 mod process;
 pub mod registry;
 pub mod store;
@@ -29,6 +30,8 @@ pub struct Request {
     pub tool_id: String,
     pub input: String,
     pub preset_id: String,
+    #[serde(default)]
+    pub options: media::Options,
 }
 #[derive(Clone, Debug, Serialize, Deserialize)]
 #[serde(rename_all = "camelCase")]
@@ -52,6 +55,10 @@ pub struct Job {
     pub attempt: u32,
     #[serde(default)]
     pub retry_of: Option<String>,
+    #[serde(default)]
+    pub media_info: Option<media::Info>,
+    #[serde(default)]
+    pub media_report: Option<media::Report>,
 }
 struct State {
     jobs: HashMap<String, Job>,
@@ -69,6 +76,8 @@ pub struct Service {
     sender: mpsc::Sender<Option<String>>,
     worker: Mutex<Option<JoinHandle<()>>>,
     pub quit_confirmed: AtomicBool,
+    pub sheet: Mutex<Option<media::sheet::Intent>>,
+    pub sheet_open: Mutex<()>,
 }
 impl Service {
     pub fn start(db: Database, app: tauri::AppHandle, dir: PathBuf) -> Result<Arc<Self>> {
@@ -144,6 +153,8 @@ impl Service {
             sender,
             worker: Mutex::new(Some(worker)),
             quit_confirmed: AtomicBool::new(false),
+            sheet: Mutex::new(None),
+            sheet_open: Mutex::new(()),
         }))
     }
     pub fn jobs(&self) -> Result<Vec<Job>> {
@@ -214,13 +225,14 @@ impl Service {
             }
         }
         let tool = registry::get(&request.tool_id)?;
+        request.options.validate()?;
         if !tool.presets.contains(&request.preset_id.as_str())
             || !tool.accepts_path(Path::new(&request.input))
         {
             return Err(msg("Choose a supported file and preset"));
         }
         let _file = files::input(Path::new(&request.input))?;
-        let preset = if let Some(old) = retry {
+        let mut preset = if let Some(old) = retry {
             old.preset.clone()
         } else {
             self.inner
@@ -230,6 +242,11 @@ impl Service {
                 .find(|p| p.id == request.preset_id)
                 .ok_or_else(|| msg("Unknown preset"))?
         };
+        if matches!(tool.executor, registry::Executor::Media(media::Kind::Fit)) {
+            if let Some(max_mb) = request.options.max_mb {
+                preset.max_mb = Some(max_mb);
+            }
+        }
         let mut state = self
             .inner
             .state
@@ -270,6 +287,8 @@ impl Service {
             staging_path: None,
             attempt: retry.map_or(1, |old| old.attempt.saturating_add(1)),
             retry_of: retry.map(|old| old.id.clone()),
+            media_info: None,
+            media_report: None,
         };
         self.inner.db.save_tool_job(&job)?;
         state
@@ -436,7 +455,14 @@ impl Inner {
         job.before_bytes = file.metadata()?.len();
         let before = files::hash_with_cancel(source, Some(cancel))?;
         let executor = registry::get(&job.request.tool_id)?.executor;
-        let ext = executor.extension();
+        let ffmpeg = if let registry::Executor::Media(_) = executor {
+            let ffmpeg = crate::download::ffmpeg::verified(&self.dir)?;
+            job.media_info = Some(media::inspect(&ffmpeg, source, cancel)?);
+            Some(ffmpeg)
+        } else {
+            None
+        };
+        let ext = executor.extension(source, job.media_info.as_ref());
         let temp = source.with_file_name(format!(".nabbit-{}.{}", job.id, ext));
         let reserved = std::fs::OpenOptions::new()
             .write(true)
@@ -451,17 +477,50 @@ impl Inner {
                 return Err(msg("Cancelled"));
             }
             match executor {
-                registry::Executor::Mp4 => {
-                    let ffmpeg = crate::download::ffmpeg::verified(&self.dir)?;
-                    let last = std::cell::Cell::new(job.percent);
-                    let result = process::mp4(&ffmpeg, source, &temp, cancel, &|percent| {
-                        last.set(percent);
+                registry::Executor::Media(kind) => {
+                    let last = std::cell::RefCell::new((
+                        job.percent,
+                        job.note.clone(),
+                        job.media_report.clone(),
+                    ));
+                    let progress = |percent, stage: &str, report: &media::Report| {
+                        let label = if kind == media::Kind::Fit {
+                            format!("{} · {stage}", job.preset.name)
+                        } else {
+                            format!(
+                                "{} · {stage}",
+                                registry::get(&job.request.tool_id)
+                                    .map(|t| t.name)
+                                    .unwrap_or("Media tool")
+                            )
+                        };
+                        *last.borrow_mut() = (percent, Some(label.clone()), Some(report.clone()));
                         let mut update = job.clone();
                         update.percent = percent;
+                        update.note = Some(label);
+                        update.media_report = Some(report.clone());
                         let _ = self.save(&update);
-                    });
-                    job.percent = last.get();
-                    result?;
+                    };
+                    let result = media::execute(
+                        media::Context {
+                            ffmpeg: ffmpeg.as_ref().expect("media engine"),
+                            db: &self.db,
+                            input: source,
+                            output: &temp,
+                            info: job.media_info.as_ref().expect("media information"),
+                            options: &job.request.options,
+                            cancel,
+                            progress: &progress,
+                        },
+                        kind,
+                        job.preset.max_mb,
+                    );
+
+                    let (percent, note, report) = last.into_inner();
+                    job.percent = percent;
+                    job.note = note;
+                    job.media_report = report;
+                    job.media_report = Some(result?);
                 }
                 registry::Executor::Jpg => {
                     use image::ImageReader;
@@ -514,7 +573,7 @@ impl Inner {
                 return Err(msg("Cancelled"));
             }
             let preset_name = job.preset.name.clone();
-            let output = files::publish(&temp, source, &preset_name, ext, |path| {
+            let output = files::publish(&temp, source, &preset_name, &ext, |path| {
                 job.status = "publishing".into();
                 job.output = Some(path.to_string_lossy().into());
                 self.db.save_tool_job(job)
@@ -523,7 +582,16 @@ impl Inner {
             job.status = "completed".into();
             job.percent = 100.;
             job.note = Some(if copied {
-                job.preset.name.clone()
+                match &job.media_report {
+                    Some(report) if report.warning.is_some() => {
+                        report.warning.clone().unwrap_or_default()
+                    }
+                    Some(report) if report.remuxed => "Remuxed without re-encoding".into(),
+                    Some(report) if !report.attempts.is_empty() => {
+                        format!("Fits {}", job.preset.name.trim_start_matches("Fit for "))
+                    }
+                    _ => job.preset.name.clone(),
+                }
             } else {
                 format!("{} · file dates could not be kept", job.preset.name)
             });
@@ -616,7 +684,11 @@ fn activity_events(job: &Job) -> Vec<ActivityEvent> {
     let mut events = vec![ActivityEvent::ToolJob {
         job_id: job.id.clone(),
         tool_id: job.request.tool_id.clone(),
-        label: job.preset.name.clone(),
+        label: if job.status == "running" {
+            job.note.clone().unwrap_or_else(|| job.preset.name.clone())
+        } else {
+            job.preset.name.clone()
+        },
         percent: job.percent,
         state,
     }];

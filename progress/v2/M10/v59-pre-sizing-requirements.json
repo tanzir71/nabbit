@@ -1,0 +1,55 @@
+{
+  "task": "V5.9",
+  "requirements": [
+    {
+      "id": "9b.3 Fit",
+      "evidence": [
+        "v59-owned-media.json",
+        "v59-real-media-final-log.txt"
+      ],
+      "result": "Actual 1080p testsrc2+sine 10/60/180s at 20/25MB in Exact and available Fast NVENC; all within 1-2 of 3 attempts. Each attempt records the original hash. Audio-first budgets, resolution floors, three-attempt failure/cancel, driver/engine cache keys and unavailable-probe order also have pure seams."
+    },
+    {
+      "id": "9b.3 quick video and metadata",
+      "evidence": [
+        "v59-owned-media.json",
+        "v59-owned-edges.json"
+      ],
+      "result": "Actual durable jobs and verification-only ffprobe confirm MP4 copy, unsupported-stream remux fallback, 1.2-3.3s trim (duration tolerance0.1s), MP3/M4A, palette GIF limits, strip tags/chapters with positive controls, and animated WebP decoded independently with Pillow."
+    },
+    {
+      "id": "9b.2 outputs and runner",
+      "evidence": [
+        "v59-owned-edges.json",
+        "v59-native-c-scene.json"
+      ],
+      "result": "Never-replace numbered names retain existing clash bytes and source hashes, physical created/modified dates copied, cancel/retry/result/guarded Undo and restart persist actual options/reports. Metadata guards precede source opening/hash."
+    },
+    {
+      "id": "45:282 and 33:535",
+      "evidence": [
+        "v59-media-final4-screenshots.json",
+        "v59-entry-b-screenshots.json",
+        "v59-design.json"
+      ],
+      "result": "440px review, editable size presets, Exact default, lazy actual encoder Fast result or clear unavailable state, estimates/toggles/collapsed Advanced, shared precise local TrimSheet and typed 300x32 running pill. No job starts before explicit primary action."
+    }
+  ],
+  "evidence": {
+    "checks": "v59-checks.json",
+    "native": "v59-native-c-scene.json",
+    "visual": "v59-media-final4-screenshots.json",
+    "entries": "v59-entry-b-screenshots.json",
+    "figma": "v59-figma-assets.json",
+    "design": "v59-design.json",
+    "dependencies": "v59-dependencies.json",
+    "media": "v59-owned-media.json",
+    "edges": "v59-owned-edges.json",
+    "pngs": "v59-png-audit.json",
+    "earlier": "v59-earlier-attempts.json",
+    "negativeHarness": "v59-delivery-failure-check.json",
+    "bundles": "v59-entry-bundles.json"
+  },
+  "platformBoundary": "Actual Windows x64, CPU libx264/AAC and first-working NVENC on this machine. Other GPU encoders/failures/cache changes use injected seams, without changing drivers. No real media/profile/clipboard/global input/cursor, OS setting, native dialog, Explorer/Recycle Bin, hosted Tack, installer or signed build. No Windows10/ARM64/macOS/Linux/hardware-switch/performance claim. ffprobe and Pillow are verification-only.",
+  "later": "V5.10 image/HEIC/PDF/OCR/QR, V5.11 context/Send To and V5.12 aggregate tool suite remain unchecked."
+}

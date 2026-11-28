@@ -1,0 +1,30 @@
+file:///D:/claude-upgrade-26/nabbit/scripts/screenshots/harness.mjs:412
+            throw new Error(`${scenario.name} (${theme}@${scale}x): ${error.message}`, {
+                  ^
+
+Error: media-tools-fit (light@1x): Unstable capture: media-tools-fit/light/1
++ actual - expected
+
++ 'e2c68f1ea3bd3fd36841a2a3204fac59cbf8ce5e1386655e3e4bee02b1a2daec'
+- 'f41d6cec7dac268616de756ff1c2af821baf75d6baad96c1630f64d57fb3990c'
+
+    at captureSuite (file:///D:/claude-upgrade-26/nabbit/scripts/screenshots/harness.mjs:412:19)
+    at async file:///D:/claude-upgrade-26/nabbit/scripts/verify-media-tools-screenshots.mjs:26:16 {
+  [cause]: AssertionError [ERR_ASSERTION]: Unstable capture: media-tools-fit/light/1
+  + actual - expected
+
+  + 'e2c68f1ea3bd3fd36841a2a3204fac59cbf8ce5e1386655e3e4bee02b1a2daec'
+  - 'f41d6cec7dac268616de756ff1c2af821baf75d6baad96c1630f64d57fb3990c'
+
+      at captureSuite (file:///D:/claude-upgrade-26/nabbit/scripts/screenshots/harness.mjs:381:22)
+      at async file:///D:/claude-upgrade-26/nabbit/scripts/verify-media-tools-screenshots.mjs:26:16 {
+    generatedMessage: false,
+    code: 'ERR_ASSERTION',
+    actual: 'e2c68f1ea3bd3fd36841a2a3204fac59cbf8ce5e1386655e3e4bee02b1a2daec',
+    expected: 'f41d6cec7dac268616de756ff1c2af821baf75d6baad96c1630f64d57fb3990c',
+    operator: 'strictEqual',
+    diff: 'simple'
+  }
+}
+
+Node.js v24.22.2

@@ -1,0 +1,1017 @@
+> nabbit@0.1.0 verify
+> npm run verify:icons && npm run verify:fonts && npm run verify:tokens && npm run verify:licenses && npm run typecheck && npm run lint && npm test -- --run && npm run build
+
+
+> nabbit@0.1.0 verify:icons
+> node scripts/generate-brand-icons.mjs --check
+
+Verified desktop app icons, optical tray glyphs and site favicons.
+
+> nabbit@0.1.0 verify:fonts
+> node scripts/verify-font-assets.mjs
+
+Verified 5 pinned Geist 1.9.2 assets and OFL.
+
+> nabbit@0.1.0 verify:tokens
+> node scripts/generate-tokens.mjs --check
+
+Verified 36 light/dark tokens for app and site.
+
+> nabbit@0.1.0 verify:licenses
+> node scripts/verify-licenses.mjs
+
+bans ok, licenses ok
+{"cargoDeny":"cargo-deny 0.22.2","generatedNotices":true,"corePolicyPassed":true,"negativeFixtures":[{"name":"gpl-fixture","license":"GPL-3.0-only","rejected":true},{"name":"agpl-fixture","license":"AGPL-3.0-only","rejected":true},{"name":"lgpl-fixture","license":"LGPL-2.1-only","rejected":true},{"name":"ffmpeg-next","license":"MIT","rejected":true}]}
+
+> nabbit@0.1.0 typecheck
+> tsc -b
+
+
+> nabbit@0.1.0 lint
+> eslint .
+
+
+> nabbit@0.1.0 test
+> vitest --run
+
+
+ RUN  v3.2.7 D:/claude-upgrade-26/nabbit
+
+ ✓ src/features/notes/NoteEditor.test.tsx (12 tests) 2853ms
+   ✓ Notes editor > submits changed fields with stable checklist IDs and original scope/token  465ms
+   ✓ Notes editor > requires a decision before closing a dirty draft and preserves failed saves  623ms
+   ✓ Notes editor > shows attachment and conflict history text safely and supports task completion  309ms
+ ✓ src/features/notes/TackConnectionSheet.test.tsx (10 tests) 4462ms
+   ✓ Tack connection > requires HTTPS and workspace confirmation, clears the password before awaiting, and uploads only by choice  1746ms
+   ✓ Tack connection > requires saved recovery confirmation and keeps the code confined to the mounted dialog  631ms
+   ✓ Tack connection > ignores late workspace preferences and preserves comma-separated label input  547ms
+   ✓ Tack connection > sanitizes untrusted errors and disables repeated actions during Retry-After  415ms
+   ✓ Tack connection > keeps a pending login inside the dialog until it completes  426ms
+   ✓ Tack connection > clears a stale recovery code and returns to a password-free sign-in form  532ms
+ ✓ src/views/NotesView.test.tsx (12 tests) 2691ms
+   ✓ local Notes view > groups pinned cards and filters by priority, label and search across all card content  855ms
+   ✓ local Notes view > removing one checklist row does not reassign another row's ID or checked state  618ms
+   ✓ local Notes view > archives and trashes softly and restores through the view menu  652ms
+ ✓ src/features/notes/LinksPanel.test.tsx (7 tests) 1955ms
+   ✓ Links collection > combines domain search, folder label chips and Later while keeping bookmark addresses  633ms
+   ✓ Links collection > uses frozen card guards for bulk labels and clears selection only after acknowledgement  639ms
+   ✓ Links collection > keeps stale selections recoverable after a rejected write and permits read-only open/copy  306ms
+ ✓ src/features/downloads/downloadSheets.test.tsx (22 tests) 1315ms
+ ✓ src/features/clipboard/IslandClipboard.test.tsx (8 tests) 2050ms
+   ✓ Clipboard island > reuses fuzzy search and all six type/pin filters without requesting OS clipboard access  691ms
+   ✓ Clipboard island > Ctrl+F focuses search; numeric queries and IME/modifiers never pick an item  328ms
+   ✓ Clipboard island > arrows select within filtered results; Ctrl+C copies, Del removes and pinning updates Pinned  392ms
+ ✓ src/features/shelf/IslandShelf.test.tsx (8 tests) 1465ms
+   ✓ Shelf island > selects a subset, copies exactly its IDs, and removes only those references  312ms
+ ✓ src/features/notes/useStickyDraft.test.tsx (16 tests) 1497ms
+ ✓ src/features/notes/BookmarkImportSheet.test.tsx (6 tests) 1026ms
+   ✓ Bookmark import sheet > previews only selected sources, defaults to Later and exposes exactly the files read  415ms
+ ✓ src/features/timer/FocusTimer.test.tsx (7 tests) 1320ms
+   ✓ custom form preserves empty numeric input and a rejected draft  410ms
+ ✓ src/components/Components.test.tsx (8 tests) 1035ms
+ ✓ src/features/downloads/downloads.test.tsx (17 tests) 806ms
+ ✓ src/views/IslandSettings.test.tsx (3 tests) 810ms
+   ✓ persists independent shape, size, monitor and enabled changes without overwriting other settings  401ms
+ ❯ src/features/tools/MediaReview.test.tsx (8 tests | 1 failed) 730ms
+   × defaults to Exact without a GPU test and submits edited limits only after the explicit click 256ms
+     → Unable to find an accessible element with the role "button" and name "Custom…"
+
+Here are the accessible roles:
+
+  region:
+
+  Name "Fit under a size options":
+  [36m<section[39m
+    [33maria-label[39m=[32m"Fit under a size options"[39m
+    [33mclass[39m=[32m"media-review"[39m
+  [36m/>[39m
+
+  --------------------------------------------------
+  banner:
+
+  Name "":
+  [36m<header[39m
+    [33mclass[39m=[32m"media-header"[39m
+    [33mdata-tauri-drag-region[39m=[32m"true"[39m
+  [36m/>[39m
+
+  --------------------------------------------------
+  heading:
+
+  Name "Fit under 20 MB":
+  [36m<h1 />[39m
+
+  Name "TARGET":
+  [36m<h2 />[39m
+
+  Name "MODE":
+  [36m<h2 />[39m
+
+  --------------------------------------------------
+  paragraph:
+
+  Name "source.mp4 · 42.0 MB · 03:00.0 · 1920 × 1080":
+  [36m<p[39m
+    [33mtitle[39m=[32m"source.mp4 · 42.0 MB · 03:00.0 · 1920 × 1080"[39m
+  [36m/>[39m
+
+  Name "":
+  [36m<p[39m
+    [33mclass[39m=[32m"media-caption"[39m
+  [36m/>[39m
+
+  Name "":
+  [36m<p[39m
+    [33mclass[39m=[32m"media-caption"[39m
+  [36m/>[39m
+
+  --------------------------------------------------
+  button:
+
+  Name "Close media review":
+  [36m<button[39m
+    [33maria-label[39m=[32m"Close media review"[39m
+    [33mclass[39m=[32m"n-icon-button n-icon-button--ghost"[39m
+    [33mtitle[39m=[32m"Close media review"[39m
+    [33mtype[39m=[32m"button"[39m
+  [36m/>[39m
+
+  Name "Discord 20 MB":
+  [36m<button[39m
+    [33maria-pressed[39m=[32m"true"[39m
+    [33mclass[39m=[32m"n-preset n-preset--light is-selected"[39m
+    [33mtype[39m=[32m"button"[39m
+  [36m/>[39m
+
+  Name "Email 25 MB":
+  [36m<button[39m
+    [33maria-pressed[39m=[32m"false"[39m
+    [33mclass[39m=[32m"n-preset n-preset--light"[39m
+    [33mtype[39m=[32m"button"[39m
+  [36m/>[39m
+
+  Name "WhatsApp 100 MB":
+  [36m<button[39m
+    [33maria-pressed[39m=[32m"false"[39m
+    [33mclass[39m=[32m"n-preset n-preset--light"[39m
+    [33mtype[39m=[32m"button"[39m
+  [36m/>[39m
+
+  Name "Custom�":
+  [36m<button[39m
+    [33maria-pressed[39m=[32m"false"[39m
+    [33mclass[39m=[32m"n-preset n-preset--light"[39m
+    [33mtype[39m=[32m"button"[39m
+  [36m/>[39m
+
+  Name "Exact size · 2 passes":
+  [36m<button[39m
+    [33maria-pressed[39m=[32m"true"[39m
+    [33mclass[39m=[32m"n-preset n-preset--light is-selected"[39m
+    [33mtype[39m=[32m"button"[39m
+  [36m/>[39m
+
+  Name "Fast · GPU":
+  [36m<button[39m
+    [33maria-pressed[39m=[32m"false"[39m
+    [33mclass[39m=[32m"n-preset n-preset--light"[39m
+    [33mtype[39m=[32m"button"[39m
+  [36m/>[39m
+
+  Name "Use Outlook preset":
+  [36m<button[39m
+    [33mclass[39m=[32m"n-button n-button--secondary n-button--sm"[39m
+    [33mtype[39m=[32m"button"[39m
+  [36m/>[39m
+
+  Name "Fit under 20 MB":
+  [36m<button[39m
+    [33mclass[39m=[32m"n-button n-button--primary n-button--md"[39m
+    [33mtype[39m=[32m"button"[39m
+  [36m/>[39m
+
+  --------------------------------------------------
+  term:
+
+  Name "":
+  [36m<dt />[39m
+
+  Name "":
+  [36m<dt />[39m
+
+  Name "":
+  [36m<dt />[39m
+
+  --------------------------------------------------
+  definition:
+
+  Name "":
+  [36m<dd />[39m
+
+  Name "":
+  [36m<dd />[39m
+
+  Name "":
+  [36m<dd />[39m
+
+  --------------------------------------------------
+  switch:
+
+  Name "Downscale if needed":
+  [36m<button[39m
+    [33maria-checked[39m=[32m"true"[39m
+    [33maria-describedby[39m=[32m":r1:-help"[39m
+    [33maria-labelledby[39m=[32m":r1:"[39m
+    [33mclass[39m=[32m"n-switch"[39m
+    [33mrole[39m=[32m"switch"[39m
+    [33mtype[39m=[32m"button"[39m
+  [36m/>[39m
+
+  Name "Keep audio":
+  [36m<button[39m
+    [33maria-checked[39m=[32m"true"[39m
+    [33maria-labelledby[39m=[32m":r2:"[39m
+    [33mclass[39m=[32m"n-switch"[39m
+    [33mrole[39m=[32m"switch"[39m
+    [33mtype[39m=[32m"button"[39m
+  [36m/>[39m
+
+  Name "Use a section":
+  [36m<button[39m
+    [33maria-checked[39m=[32m"false"[39m
+    [33maria-labelledby[39m=[32m":r5:"[39m
+    [33mclass[39m=[32m"n-switch"[39m
+    [33mrole[39m=[32m"switch"[39m
+    [33mtype[39m=[32m"button"[39m
+  [36m/>[39m
+
+  --------------------------------------------------
+  presentation:
+
+  Name "":
+  [36m<img[39m
+    [33malt[39m=[32m""[39m
+    [33mdata-asset[39m=[32m"toggle-on.svg"[39m
+    [33mdraggable[39m=[32m"false"[39m
+    [33mheight[39m=[32m"20"[39m
+    [33msrc[39m=[32m"data:image/svg+xml,%3csvg%20preserveAspectRatio='none'%20overflow='visible'%20style='display:%20block;'%20width='34'%20height='20'%20viewBox='0%200%2034%2020'%20fill='none'%20xmlns='http://www.w3.org/2000/svg'%3e%3cg%20id='Toggle'%3e%3crect%20width='34'%20height='20'%20rx='10'%20fill='%2317171A'/%3e%3ccircle%20id='Knob'%20cx='24'%20cy='10'%20r='8'%20fill='white'/%3e%3c/g%3e%3c/svg%3e"[39m
+    [33mstyle[39m=[32m"--switch-filter: url(\"#:r1:-switch\");"[39m
+    [33mwidth[39m=[32m"34"[39m
+  [36m/>[39m
+
+  Name "":
+  [36m<img[39m
+    [33malt[39m=[32m""[39m
+    [33mdata-asset[39m=[32m"toggle-on.svg"[39m
+    [33mdraggable[39m=[32m"false"[39m
+    [33mheight[39m=[32m"20"[39m
+    [33msrc[39m=[32m"data:image/svg+xml,%3csvg%20preserveAspectRatio='none'%20overflow='visible'%20style='display:%20block;'%20width='34'%20height='20'%20viewBox='0%200%2034%2020'%20fill='none'%20xmlns='http://www.w3.org/2000/svg'%3e%3cg%20id='Toggle'%3e%3crect%20width='34'%20height='20'%20rx='10'%20fill='%2317171A'/%3e%3ccircle%20id='Knob'%20cx='24'%20cy='10'%20r='8'%20fill='white'/%3e%3c/g%3e%3c/svg%3e"[39m
+    [33mstyle[39m=[32m"--switch-filter: url(\"#:r2:-switch\");"[39m
+    [33mwidth[39m=[32m"34"[39m
+  [36m/>[39m
+
+  Name "":
+  [36m<img[39m
+    [33malt[39m=[32m""[39m
+    [33mdata-asset[39m=[32m"toggle-off.svg"[39m
+    [33mdraggable[39m=[32m"false"[39m
+    [33mheight[39m=[32m"20"[39m
+    [33msrc[39m=[32m"data:image/svg+xml,%3csvg%20preserveAspectRatio='none'%20overflow='visible'%20style='display:%20block;'%20width='34'%20height='20'%20viewBox='0%200%2034%2020'%20fill='none'%20xmlns='http://www.w3.org/2000/svg'%3e%3cg%20id='Toggle'%3e%3crect%20width='34'%20height='20'%20rx='10'%20fill='%23CFCEC9'/%3e%3ccircle%20id='Knob'%20cx='10'%20cy='10'%20r='8'%20fill='white'/%3e%3c/g%3e%3c/svg%3e"[39m
+    [33mstyle[39m=[32m"--switch-filter: url(\"#:r5:-switch\");"[39m
+    [33mwidth[39m=[32m"34"[39m
+  [36m/>[39m
+
+  --------------------------------------------------
+  group:
+
+  Name "":
+  [36m<details[39m
+    [33mclass[39m=[32m"media-advanced"[39m
+  [36m/>[39m
+
+  --------------------------------------------------
+  spinbutton:
+
+  Name "Maximum size (MB)":
+  [36m<input[39m
+    [33mclass[39m=[32m"n-input"[39m
+    [33mid[39m=[32m":r3:"[39m
+    [33mmax[39m=[32m"100000"[39m
+    [33mmin[39m=[32m"1"[39m
+    [33mtype[39m=[32m"number"[39m
+    [33mvalue[39m=[32m"20"[39m
+  [36m/>[39m
+
+  Name "Audio bitrate (kb/s)":
+  [36m<input[39m
+    [33maria-describedby[39m=[32m":r4:-help"[39m
+    [33mclass[39m=[32m"n-input"[39m
+    [33mid[39m=[32m":r4:"[39m
+    [33mmax[39m=[32m"320"[39m
+    [33mmin[39m=[32m"16"[39m
+    [33mtype[39m=[32m"number"[39m
+    [33mvalue[39m=[32m""[39m
+  [36m/>[39m
+
+  --------------------------------------------------
+  combobox:
+
+  Name "Maximum height":
+  [36m<select />[39m
+
+  --------------------------------------------------
+  option:
+
+  Name "1080p":
+  [36m<option[39m
+    [33mvalue[39m=[32m"1080"[39m
+  [36m/>[39m
+
+  Name "720p":
+  [36m<option[39m
+    [33mvalue[39m=[32m"720"[39m
+  [36m/>[39m
+
+  Name "480p":
+  [36m<option[39m
+    [33mvalue[39m=[32m"480"[39m
+  [36m/>[39m
+
+  --------------------------------------------------
+  contentinfo:
+
+  Name "":
+  [36m<footer[39m
+    [33mclass[39m=[32m"media-footer"[39m
+  [36m/>[39m
+
+  --------------------------------------------------
+
+Ignored nodes: comments, script, style
+[36m<body>[39m
+  [36m<div>[39m
+    [36m<section[39m
+      [33maria-label[39m=[32m"Fit under a size options"[39m
+      [33mclass[39m=[32m"media-review"[39m
+    [36m>[39m
+      [36m<header[39m
+        [33mclass[39m=[32m"media-header"[39m
+        [33mdata-tauri-drag-region[39m=[32m"true"[39m
+      [36m>[39m
+        [36m<div>[39m
+          [36m<h1>[39m
+            [0mFit under 20 MB[0m
+          [36m</h1>[39m
+          [36m<p[39m
+            [33mtitle[39m=[32m"source.mp4 · 42.0 MB · 03:00.0 · 1920 × 1080"[39m
+          [36m>[39m
+            [0msource.mp4 · 42.0 MB · 03:00.0 · 1920 × 1080[0m
+          [36m</p>[39m
+        [36m</div>[39m
+        [36m<button[39m
+          [33maria-label[39m=[32m"Close media review"[39m
+          [33mclass[39m=[32m"n-icon-button n-icon-button--ghost"[39m
+          [33mtitle[39m=[32m"Close media review"[39m
+          [33mtype[39m=[32m"button"[39m
+        [36m>[39m
+          [36m<span[39m
+            [33maria-hidden[39m=[32m"true"[39m
+            [33mclass[39m=[32m"n-asset"[39m
+            [33mstyle[39m=[32m"width: 18px; height: 18px; --asset: url(\"data:image/svg+xml,%3csvg%20preserveAspectRatio='none'%20overflow='visible'%20style='display:%20block;'%20width='18'%20height='18'%20viewBox='0%200%2018%2018'%20fill='none'%20xmlns='http://www.w3.org/2000/svg'%3e%3cg%20id='Icon'%3e%3cpath%20id='Vector'%20d='M13.5%204.5L4.5%2013.5'%20stroke-width='1.3125'%20stroke-linecap='round'%20stroke-linejoin='round'%20stroke='%2366666D'/%3e%3cpath%20id='Vector_2'%20d='M4.5%204.5L13.5%2013.5'%20stroke-width='1.3125'%20stroke-linecap='round'%20stroke-linejoin='round'%20stroke='%2366666D'/%3e%3c/g%3e%3c/svg%3e\");"[39m
+          [36m>[39m
+            [36m<img[39m
+              [33malt[39m=[32m""[39m
+              [33mdata-asset[39m=[32m"download-sheets/d2028.svg"[39m
+              [33mdraggable[39m=[32m"false"[39m
+              [33mheight[39m=[32m"18"[39m
+              [33msrc[39m=[32m"data:image/svg+xml,%3csvg%20preserveAspectRatio='none'%20overflow='visible'%20style='display:%20block;'%20width='18'%20height='18'%20viewBox='0%200%2018%2018'%20fill='none'%20xmlns='http://www.w3.org/2000/svg'%3e%3cg%20id='Icon'%3e%3cpath%20id='Vector'%20d='M13.5%204.5L4.5%2013.5'%20stroke-width='1.3125'%20stroke-linecap='round'%20stroke-linejoin='round'%20stroke='%2366666D'/%3e%3cpath%20id='Vector_2'%20d='M4.5%204.5L13.5%2013.5'%20stroke-width='1.3125'%20stroke-linecap='round'%20stroke-linejoin='round'%20stroke='%2366666D'/%3e%3c/g%3e%3c/svg%3e"[39m
+              [33mwidth[39m=[32m"18"[39m
+            [36m/>[39m
+          [36m</span>[39m
+        [36m</button>[39m
+      [36m</header>[39m
+      [36m<div[39m
+        [33mclass[39m=[32m"media-body"[39m
+      [36m>[39m
+        [36m<section>[39m
+          [36m<h2>[39m
+            [0mTARGET[0m
+          [36m</h2>[39m
+          [36m<div[39m
+            [33mclass[39m=[32m"media-chips"[39m
+          [36m>[39m
+            [36m<button[39m
+              [33maria-pressed[39m=[32m"true"[39m
+              [33mclass[39m=[32m"n-preset n-preset--light is-selected"[39m
+              [33mtype[39m=[32m"button"[39m
+            [36m>[39m
+              [36m<span>[39m
+                [0mDiscord[0m
+              [36m</span>[39m
+              [36m<span[39m
+                [33mclass[39m=[32m"n-preset-meta"[39m
+              [36m>[39m
+                [0m20 MB[0m
+              [36m</span>[39m
+            [36m</button>[39m
+            [36m<button[39m
+              [33maria-pressed[39m=[32m"false"[39m
+              [33mclass[39m=[32m"n-preset n-preset--light"[39m
+              [33mtype[39m=[32m"button"[39m
+            [36m>[39m
+              [36m<span>[39m
+                [0mEmail[0m
+              [36m</span>[39m
+              [36m<span[39m
+                [33mclass[39m=[32m"n-preset-meta"[39m
+              [36m>[39m
+                [0m25 MB[0m
+              [36m</span>[39m
+            [36m</button>[39m
+            [36m<button[39m
+              [33maria-pressed[39m=[32m"false"[39m
+              [33mclass[39m=[32m"n-preset n-preset--light"[39m
+              [33mtype[39m=[32m"button"[39m
+            [36m>[39m
+              [36m<span>[39m
+                [0mWhatsApp[0m
+              [36m</span>[39m
+              [36m<span[39m
+                [33mclass[39m=[32m"n-preset-meta"[39m
+              [36m>[39m
+                [0m100 MB[0m
+              [36m</span>[39m
+            [36m</button>[39m
+            [36m<button[39m
+              [33maria-pressed[39m=[32m"false"[39m
+              [33mclass[39m=[32m"n-preset n-preset--light"[39m
+              [33mtype[39m=[32m"button"[39m
+            [36m>[39m
+              [36m<span>[39m
+                [0mCustom�[0m
+              [36m</span>[39m
+            [36m</button>[39m
+          [36m</div>[39m
+          [36m<p[39m
+            [33mclass[39m=[32m"media-caption"[39m
+          [36m>[39m
+            [0mLimits change. Presets are editable in Settings → Tools.[0m
+          [36m</p>[39m
+        [36m</section>[39m
+        [36m<section>[39m
+          [36m<h2>[39m
+            [0mMODE[0m
+          [36m</h2>[39m
+          [36m<div[39m
+            [33mclass[39m=[32m"media-chips"[39m
+          [36m>[39m
+            [36m<button[39m
+              [33maria-pressed[39m=[32m"true"[39m
+              [33mclass[39m=[32m"n-preset n-preset--light is-selected"[39m
+              [33mtype[39m=[32m"button"[39m
+            [36m>[39m
+              [36m<span>[39m
+                [0mExact size · 2 passes[0m
+              [36m</span>[39m
+            [36m</button>[39m
+            [36m<button[39m
+              [33maria-pressed[39m=[32m"false"[39m
+              [33mclass[39m=[32m"n-preset n-preset--light"[39m
+              [33mtype[39m=[32m"button"[39m
+            [36m>[39m
+              [36m<span>[39m
+                [0mFast · GPU[0m
+              [36m</span>[39m
+            [36m</button>[39m
+          [36m</div>[39m
+        [36m</section>[39m
+        [36m<dl[39m
+          [33maria-label[39m=[32m"Estimated output"[39m
+          [33mclass[39m=[32m"media-estimate"[39m
+        [36m>[39m
+          [36m<div>[39m
+            [36m<dt>[39m
+              [0mVideo[0m
+            [36m</dt>[39m
+            [36m<dd>[39m
+              [0m852 × 480 · 766 kb/s[0m
+            [36m</dd>[39m
+          [36m</div>[39m
+          [36m<div>[39m
+            [36m<dt>[39m
+              [0mAudio[0m
+            [36m</dt>[39m
+            [36m<dd>[39m
+              [0mAAC · 96 kb/s · mono[0m
+            [36m</dd>[39m
+          [36m</div>[39m
+          [36m<div>[39m
+            [36m<dt>[39m
+              [0mResult[0m
+            [36m</dt>[39m
+            [36m<dd>[39m
+              [0m≈ ...
+   ✓ uses only the encoder returned by a successful lazy GPU probe 112ms
+   ✓ keeps Exact available when every GPU probe fails 86ms
+   ✓ invalid numeric and section drafts cannot submit an older valid configuration 85ms
+   ✓ reuses the trim handles and precise time fields for a local file 27ms
+   ✓ an unavailable animated WebP encoder cannot start a job 19ms
+   ✓ Search and Shelf open a single intent under StrictMode without starting a tool 63ms
+   ✓ allows a failed inspection to be retried without changing the path 80ms
+ ✓ src/views/ClipboardList.test.tsx (2 tests) 554ms
+   ✓ ClipboardList acceptance behavior > filters instantly, copies by click, and supports keyboard copy/delete/focus shortcuts  491ms
+ ✓ src/features/media/MediaPlayer.test.tsx (4 tests) 533ms
+   ✓ renders recorded metadata, timeline and supported controls and sends exact typed actions  330ms
+ ✓ src/features/files/Files.test.tsx (10 tests) 531ms
+ ✓ src/features/notes/capture.test.tsx (187 tests) 549ms
+ ✓ src/features/downloads/downloadErrors.test.tsx (25 tests) 386ms
+ ✓ src/surfaces/island/SearchContent.test.tsx (7 tests) 387ms
+ ✓ src/features/tools/ToolQueue.test.tsx (4 tests) 222ms
+ ✓ src/views/EngineHealthCard.test.tsx (6 tests) 269ms
+ ✓ src/features/notes/IslandNotesSync.test.tsx (2 tests) 172ms
+ ✓ src/surfaces/island/IslandApp.test.tsx (1 test) 225ms
+ ✓ src/views/IslandShortcutField.test.tsx (3 tests) 139ms
+ ✓ spikes/island/IslandSpike.test.tsx (4 tests) 178ms
+ ✓ src/lib/islandDrop.test.tsx (4 tests) 84ms
+ ✓ src/surfaces/island/PrivacyContent.test.tsx (3 tests) 100ms
+ ✓ src/features/media/input.test.ts (3 tests) 72ms
+ ✓ src/surfaces/island/PowerContent.test.tsx (3 tests) 59ms
+ ✓ src/lib/islandKeyboard.test.ts (4 tests) 26ms
+ ✓ scripts/screenshots/policy.test.js (2 tests) 16ms
+ ✓ src/lib/islandInput.test.ts (7 tests) 19ms
+ ✓ src/lib/islandVisibility.test.ts (5 tests) 17ms
+ ✓ src/lib/islandMotion.test.ts (2 tests) 18ms
+ ✓ scripts/island-frame-metrics.test.js (6 tests) 15ms
+ ✓ src/lib/islandActivity.test.ts (6 tests) 12ms
+ ✓ scripts/entry-bundles.test.js (4 tests) 16ms
+ ✓ scripts/screenshots/mock-ipc.test.js (5 tests) 11ms
+ ✓ src/lib/downloadPresets.test.ts (5 tests) 10ms
+ ✓ src/lib/theme.test.ts (4 tests) 7ms
+ ✓ src/lib/islandSurface.test.ts (2 tests) 8ms
+ ✓ src/store/islandStore.test.ts (16 tests) 8ms
+ ✓ src/store/settingsBootstrap.test.ts (2 tests) 6ms
+ ✓ src/features/shelf/api.test.ts (2 tests) 6ms
+ ✓ src/store/capture.test.ts (4 tests) 7ms
+ ✓ spikes/island/drop.test.ts (3 tests) 4ms
+ ✓ src/lib/search.test.ts (3 tests) 5ms
+ ✓ src/features/clipboard/model.test.ts (1 test) 2ms
+
+⎯⎯⎯⎯⎯⎯⎯ Failed Tests 1 ⎯⎯⎯⎯⎯⎯⎯
+
+ FAIL  src/features/tools/MediaReview.test.tsx > defaults to Exact without a GPU test and submits edited limits only after the explicit click
+TestingLibraryElementError: Unable to find an accessible element with the role "button" and name "Custom…"
+
+Here are the accessible roles:
+
+  region:
+
+  Name "Fit under a size options":
+  <section
+    aria-label="Fit under a size options"
+    class="media-review"
+  />
+
+  --------------------------------------------------
+  banner:
+
+  Name "":
+  <header
+    class="media-header"
+    data-tauri-drag-region="true"
+  />
+
+  --------------------------------------------------
+  heading:
+
+  Name "Fit under 20 MB":
+  <h1 />
+
+  Name "TARGET":
+  <h2 />
+
+  Name "MODE":
+  <h2 />
+
+  --------------------------------------------------
+  paragraph:
+
+  Name "source.mp4 · 42.0 MB · 03:00.0 · 1920 × 1080":
+  <p
+    title="source.mp4 · 42.0 MB · 03:00.0 · 1920 × 1080"
+  />
+
+  Name "":
+  <p
+    class="media-caption"
+  />
+
+  Name "":
+  <p
+    class="media-caption"
+  />
+
+  --------------------------------------------------
+  button:
+
+  Name "Close media review":
+  <button
+    aria-label="Close media review"
+    class="n-icon-button n-icon-button--ghost"
+    title="Close media review"
+    type="button"
+  />
+
+  Name "Discord 20 MB":
+  <button
+    aria-pressed="true"
+    class="n-preset n-preset--light is-selected"
+    type="button"
+  />
+
+  Name "Email 25 MB":
+  <button
+    aria-pressed="false"
+    class="n-preset n-preset--light"
+    type="button"
+  />
+
+  Name "WhatsApp 100 MB":
+  <button
+    aria-pressed="false"
+    class="n-preset n-preset--light"
+    type="button"
+  />
+
+  Name "Custom�":
+  <button
+    aria-pressed="false"
+    class="n-preset n-preset--light"
+    type="button"
+  />
+
+  Name "Exact size · 2 passes":
+  <button
+    aria-pressed="true"
+    class="n-preset n-preset--light is-selected"
+    type="button"
+  />
+
+  Name "Fast · GPU":
+  <button
+    aria-pressed="false"
+    class="n-preset n-preset--light"
+    type="button"
+  />
+
+  Name "Use Outlook preset":
+  <button
+    class="n-button n-button--secondary n-button--sm"
+    type="button"
+  />
+
+  Name "Fit under 20 MB":
+  <button
+    class="n-button n-button--primary n-button--md"
+    type="button"
+  />
+
+  --------------------------------------------------
+  term:
+
+  Name "":
+  <dt />
+
+  Name "":
+  <dt />
+
+  Name "":
+  <dt />
+
+  --------------------------------------------------
+  definition:
+
+  Name "":
+  <dd />
+
+  Name "":
+  <dd />
+
+  Name "":
+  <dd />
+
+  --------------------------------------------------
+  switch:
+
+  Name "Downscale if needed":
+  <button
+    aria-checked="true"
+    aria-describedby=":r1:-help"
+    aria-labelledby=":r1:"
+    class="n-switch"
+    role="switch"
+    type="button"
+  />
+
+  Name "Keep audio":
+  <button
+    aria-checked="true"
+    aria-labelledby=":r2:"
+    class="n-switch"
+    role="switch"
+    type="button"
+  />
+
+  Name "Use a section":
+  <button
+    aria-checked="false"
+    aria-labelledby=":r5:"
+    class="n-switch"
+    role="switch"
+    type="button"
+  />
+
+  --------------------------------------------------
+  presentation:
+
+  Name "":
+  <img
+    alt=""
+    data-asset="toggle-on.svg"
+    draggable="false"
+    height="20"
+    src="data:image/svg+xml,%3csvg%20preserveAspectRatio='none'%20overflow='visible'%20style='display:%20block;'%20width='34'%20height='20'%20viewBox='0%200%2034%2020'%20fill='none'%20xmlns='http://www.w3.org/2000/svg'%3e%3cg%20id='Toggle'%3e%3crect%20width='34'%20height='20'%20rx='10'%20fill='%2317171A'/%3e%3ccircle%20id='Knob'%20cx='24'%20cy='10'%20r='8'%20fill='white'/%3e%3c/g%3e%3c/svg%3e"
+    style="--switch-filter: url(\"#:r1:-switch\");"
+    width="34"
+  />
+
+  Name "":
+  <img
+    alt=""
+    data-asset="toggle-on.svg"
+    draggable="false"
+    height="20"
+    src="data:image/svg+xml,%3csvg%20preserveAspectRatio='none'%20overflow='visible'%20style='display:%20block;'%20width='34'%20height='20'%20viewBox='0%200%2034%2020'%20fill='none'%20xmlns='http://www.w3.org/2000/svg'%3e%3cg%20id='Toggle'%3e%3crect%20width='34'%20height='20'%20rx='10'%20fill='%2317171A'/%3e%3ccircle%20id='Knob'%20cx='24'%20cy='10'%20r='8'%20fill='white'/%3e%3c/g%3e%3c/svg%3e"
+    style="--switch-filter: url(\"#:r2:-switch\");"
+    width="34"
+  />
+
+  Name "":
+  <img
+    alt=""
+    data-asset="toggle-off.svg"
+    draggable="false"
+    height="20"
+    src="data:image/svg+xml,%3csvg%20preserveAspectRatio='none'%20overflow='visible'%20style='display:%20block;'%20width='34'%20height='20'%20viewBox='0%200%2034%2020'%20fill='none'%20xmlns='http://www.w3.org/2000/svg'%3e%3cg%20id='Toggle'%3e%3crect%20width='34'%20height='20'%20rx='10'%20fill='%23CFCEC9'/%3e%3ccircle%20id='Knob'%20cx='10'%20cy='10'%20r='8'%20fill='white'/%3e%3c/g%3e%3c/svg%3e"
+    style="--switch-filter: url(\"#:r5:-switch\");"
+    width="34"
+  />
+
+  --------------------------------------------------
+  group:
+
+  Name "":
+  <details
+    class="media-advanced"
+  />
+
+  --------------------------------------------------
+  spinbutton:
+
+  Name "Maximum size (MB)":
+  <input
+    class="n-input"
+    id=":r3:"
+    max="100000"
+    min="1"
+    type="number"
+    value="20"
+  />
+
+  Name "Audio bitrate (kb/s)":
+  <input
+    aria-describedby=":r4:-help"
+    class="n-input"
+    id=":r4:"
+    max="320"
+    min="16"
+    type="number"
+    value=""
+  />
+
+  --------------------------------------------------
+  combobox:
+
+  Name "Maximum height":
+  <select />
+
+  --------------------------------------------------
+  option:
+
+  Name "1080p":
+  <option
+    value="1080"
+  />
+
+  Name "720p":
+  <option
+    value="720"
+  />
+
+  Name "480p":
+  <option
+    value="480"
+  />
+
+  --------------------------------------------------
+  contentinfo:
+
+  Name "":
+  <footer
+    class="media-footer"
+  />
+
+  --------------------------------------------------
+
+Ignored nodes: comments, script, style
+<body>
+  <div>
+    <section
+      aria-label="Fit under a size options"
+      class="media-review"
+    >
+      <header
+        class="media-header"
+        data-tauri-drag-region="true"
+      >
+        <div>
+          <h1>
+            Fit under 20 MB
+          </h1>
+          <p
+            title="source.mp4 · 42.0 MB · 03:00.0 · 1920 × 1080"
+          >
+            source.mp4 · 42.0 MB · 03:00.0 · 1920 × 1080
+          </p>
+        </div>
+        <button
+          aria-label="Close media review"
+          class="n-icon-button n-icon-button--ghost"
+          title="Close media review"
+          type="button"
+        >
+          <span
+            aria-hidden="true"
+            class="n-asset"
+            style="width: 18px; height: 18px; --asset: url(\"data:image/svg+xml,%3csvg%20preserveAspectRatio='none'%20overflow='visible'%20style='display:%20block;'%20width='18'%20height='18'%20viewBox='0%200%2018%2018'%20fill='none'%20xmlns='http://www.w3.org/2000/svg'%3e%3cg%20id='Icon'%3e%3cpath%20id='Vector'%20d='M13.5%204.5L4.5%2013.5'%20stroke-width='1.3125'%20stroke-linecap='round'%20stroke-linejoin='round'%20stroke='%2366666D'/%3e%3cpath%20id='Vector_2'%20d='M4.5%204.5L13.5%2013.5'%20stroke-width='1.3125'%20stroke-linecap='round'%20stroke-linejoin='round'%20stroke='%2366666D'/%3e%3c/g%3e%3c/svg%3e\");"
+          >
+            <img
+              alt=""
+              data-asset="download-sheets/d2028.svg"
+              draggable="false"
+              height="18"
+              src="data:image/svg+xml,%3csvg%20preserveAspectRatio='none'%20overflow='visible'%20style='display:%20block;'%20width='18'%20height='18'%20viewBox='0%200%2018%2018'%20fill='none'%20xmlns='http://www.w3.org/2000/svg'%3e%3cg%20id='Icon'%3e%3cpath%20id='Vector'%20d='M13.5%204.5L4.5%2013.5'%20stroke-width='1.3125'%20stroke-linecap='round'%20stroke-linejoin='round'%20stroke='%2366666D'/%3e%3cpath%20id='Vector_2'%20d='M4.5%204.5L13.5%2013.5'%20stroke-width='1.3125'%20stroke-linecap='round'%20stroke-linejoin='round'%20stroke='%2366666D'/%3e%3c/g%3e%3c/svg%3e"
+              width="18"
+            />
+          </span>
+        </button>
+      </header>
+      <div
+        class="media-body"
+      >
+        <section>
+          <h2>
+            TARGET
+          </h2>
+          <div
+            class="media-chips"
+          >
+            <button
+              aria-pressed="true"
+              class="n-preset n-preset--light is-selected"
+              type="button"
+            >
+              <span>
+                Discord
+              </span>
+              <span
+                class="n-preset-meta"
+              >
+                20 MB
+              </span>
+            </button>
+            <button
+              aria-pressed="false"
+              class="n-preset n-preset--light"
+              type="button"
+            >
+              <span>
+                Email
+              </span>
+              <span
+                class="n-preset-meta"
+              >
+                25 MB
+              </span>
+            </button>
+            <button
+              aria-pressed="false"
+              class="n-preset n-preset--light"
+              type="button"
+            >
+              <span>
+                WhatsApp
+              </span>
+              <span
+                class="n-preset-meta"
+              >
+                100 MB
+              </span>
+            </button>
+            <button
+              aria-pressed="false"
+              class="n-preset n-preset--light"
+              type="button"
+            >
+              <span>
+                Custom�
+              </span>
+            </button>
+          </div>
+          <p
+            class="media-caption"
+          >
+            Limits change. Presets are editable in Settings → Tools.
+          </p>
+        </section>
+        <section>
+          <h2>
+            MODE
+          </h2>
+          <div
+            class="media-chips"
+          >
+            <button
+              aria-pressed="true"
+              class="n-preset n-preset--light is-selected"
+              type="button"
+            >
+              <span>
+                Exact size · 2 passes
+              </span>
+            </button>
+            <button
+              aria-pressed="false"
+              class="n-preset n-preset--light"
+              type="button"
+            >
+              <span>
+                Fast · GPU
+              </span>
+            </button>
+          </div>
+        </section>
+        <dl
+          aria-label="Estimated output"
+          class="media-estimate"
+        >
+          <div>
+            <dt>
+              Video
+            </dt>
+            <dd>
+              852 × 480 · 766 kb/s
+            </dd>
+          </div>
+          <div>
+            <dt>
+              Audio
+            </dt>
+            <dd>
+              AAC · 96 kb/s · mono
+            </dd>
+          </div>
+          <div>
+            <dt>
+              Result
+            </dt>
+            <dd>
+              ≈ ...
+ ❯ Object.getElementError node_modules/@testing-library/dom/dist/config.js:37:19
+ ❯ node_modules/@testing-library/dom/dist/query-helpers.js:76:38
+ ❯ node_modules/@testing-library/dom/dist/query-helpers.js:52:17
+ ❯ node_modules/@testing-library/dom/dist/query-helpers.js:95:19
+ ❯ src/features/tools/MediaReview.test.tsx:99:26
+     97|   expect(mediaApi.start).not.toHaveBeenCalled();
+     98|   expect(toolsApi.savePreset).not.toHaveBeenCalled();
+     99|   fireEvent.click(screen.getByRole("button", { name: "Custom…" }));
+       |                          ^
+    100|   fireEvent.change(screen.getByLabelText("Maximum size (MB)", { select…
+    101|     target: { value: "18" },
+
+⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯[1/1]⎯
+
+
+ Test Files  1 failed | 48 passed (49)
+      Tests  1 failed | 494 passed (495)
+   Start at  06:10:54
+   Duration  40.28s (transform 2.16s, setup 3.67s, collect 10.28s, tests 28.69s, environment 24.41s, prepare 4.26s)

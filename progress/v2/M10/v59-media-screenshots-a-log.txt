@@ -1,0 +1,122 @@
+file:///D:/claude-upgrade-26/nabbit/scripts/screenshots/harness.mjs:412
+            throw new Error(`${scenario.name} (${theme}@${scale}x): ${error.message}`, {
+                  ^
+
+Error: media-tools-fit (light@1x): Expected values to be strictly deep-equal:
++ actual - expected
+
+  {
+    incomplete: [],
++   violations: [
++     {
++       id: 'color-contrast',
++       nodes: [
++         {
++           summary: 'Fix any of the following:\n' +
++             '  Element has insufficient color contrast of 2.51 (foreground color: #9a9aa0, background color: #f3f3f1, font size: 9.0pt (12px), font weight: normal). Expected contrast ratio of 4.5:1',
++           target: [
++             'header > div > p'
++           ]
++         },
++         {
++           summary: 'Fix any of the following:\n' +
++             '  Element has insufficient color contrast of 2.51 (foreground color: #9a9aa0, background color: #f3f3f1, font size: 9.0pt (12px), font weight: normal). Expected contrast ratio of 4.5:1',
++           target: [
++             'section:nth-child(1) > .media-caption'
++           ]
++         },
++         {
++           summary: 'Fix any of the following:\n' +
++             '  Element has insufficient color contrast of 2.79 (foreground color: #9a9aa0, background color: #ffffff, font size: 9.0pt (12px), font weight: normal). Expected contrast ratio of 4.5:1',
++           target: [
++             'footer > span'
++           ]
++         }
++       ]
++     },
++     {
++       id: 'landmark-one-main',
++       nodes: [
++         {
++           summary: 'Fix all of the following:\n  Document does not have a main landmark',
++           target: [
++             'html'
++           ]
++         }
++       ]
++     }
++   ]
+-   violations: []
+  }
+
+    at captureSuite (file:///D:/claude-upgrade-26/nabbit/scripts/screenshots/harness.mjs:412:19)
+    at async file:///D:/claude-upgrade-26/nabbit/scripts/verify-media-tools-screenshots.mjs:26:16 {
+  [cause]: AssertionError [ERR_ASSERTION]: Expected values to be strictly deep-equal:
+  + actual - expected
+
+    {
+      incomplete: [],
+  +   violations: [
+  +     {
+  +       id: 'color-contrast',
+  +       nodes: [
+  +         {
+  +           summary: 'Fix any of the following:\n' +
+  +             '  Element has insufficient color contrast of 2.51 (foreground color: #9a9aa0, background color: #f3f3f1, font size: 9.0pt (12px), font weight: normal). Expected contrast ratio of 4.5:1',
+  +           target: [
+  +             'header > div > p'
+  +           ]
+  +         },
+  +         {
+  +           summary: 'Fix any of the following:\n' +
+  +             '  Element has insufficient color contrast of 2.51 (foreground color: #9a9aa0, background color: #f3f3f1, font size: 9.0pt (12px), font weight: normal). Expected contrast ratio of 4.5:1',
+  +           target: [
+  +             'section:nth-child(1) > .media-caption'
+  +           ]
+  +         },
+  +         {
+  +           summary: 'Fix any of the following:\n' +
+  +             '  Element has insufficient color contrast of 2.79 (foreground color: #9a9aa0, background color: #ffffff, font size: 9.0pt (12px), font weight: normal). Expected contrast ratio of 4.5:1',
+  +           target: [
+  +             'footer > span'
+  +           ]
+  +         }
+  +       ]
+  +     },
+  +     {
+  +       id: 'landmark-one-main',
+  +       nodes: [
+  +         {
+  +           summary: 'Fix all of the following:\n  Document does not have a main landmark',
+  +           target: [
+  +             'html'
+  +           ]
+  +         }
+  +       ]
+  +     }
+  +   ]
+  -   violations: []
+    }
+
+      at Object.ready (file:///D:/claude-upgrade-26/nabbit/scripts/verify-media-tools-screenshots.mjs:97:14)
+      at async captureSuite (file:///D:/claude-upgrade-26/nabbit/scripts/screenshots/harness.mjs:144:33)
+      at async file:///D:/claude-upgrade-26/nabbit/scripts/verify-media-tools-screenshots.mjs:26:16 {
+    generatedMessage: true,
+    code: 'ERR_ASSERTION',
+    actual: {
+      violations: [
+        {
+          id: 'color-contrast',
+          nodes: [ [Object], [Object], [Object] ]
+        },
+        { id: 'landmark-one-main', nodes: [ [Object] ] }
+      ],
+      incomplete: []
+    },
+    expected: { violations: [], incomplete: [] },
+    operator: 'deepStrictEqual',
+    diff: 'simple'
+  }
+}
+
+Node.js v24.22.2

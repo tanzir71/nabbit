@@ -1,0 +1,21 @@
+file:///D:/claude-upgrade-26/nabbit/scripts/screenshots/harness.mjs:412
+            throw new Error(`${scenario.name} (${theme}@${scale}x): ${error.message}`, {
+                  ^
+
+Error: media-tools-fit (light@1x): ENOENT: no such file or directory, open 'D:\claude-upgrade-26\nabbit\src\assets\toggle-on.svg'
+    at captureSuite (file:///D:/claude-upgrade-26/nabbit/scripts/screenshots/harness.mjs:412:19)
+    at async file:///D:/claude-upgrade-26/nabbit/scripts/verify-media-tools-screenshots.mjs:26:16 {
+  [cause]: Error: ENOENT: no such file or directory, open 'D:\claude-upgrade-26\nabbit\src\assets\toggle-on.svg'
+      at async open (node:internal/fs/promises:1345:25)
+      at async readFile (node:internal/fs/promises:2003:14)
+      at async Object.ready (file:///D:/claude-upgrade-26/nabbit/scripts/verify-media-tools-screenshots.mjs:112:21)
+      at async captureSuite (file:///D:/claude-upgrade-26/nabbit/scripts/screenshots/harness.mjs:144:33)
+      at async file:///D:/claude-upgrade-26/nabbit/scripts/verify-media-tools-screenshots.mjs:26:16 {
+    errno: -4058,
+    code: 'ENOENT',
+    syscall: 'open',
+    path: 'D:\\claude-upgrade-26\\nabbit\\src\\assets\\toggle-on.svg'
+  }
+}
+
+Node.js v24.22.2

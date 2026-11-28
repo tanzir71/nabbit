@@ -16,19 +16,32 @@ It lives in the system tray, starts hidden, and opens as a small popover on a sh
 
 ## Native file tools (v2 foundation)
 
-Search and Shelf actions use one native registry. To MP4 and To JPG currently
-use the shared durable job queue. Open a tool to choose a file, then run it
-explicitly. Files shows progress, Cancel, Retry, Reveal and Undo. Cancelled jobs
-stay in the queue; interrupted work waits for Retry. Quitting during a tool job
-shows a warning. Undo recycles the generated output only when its identity and
-content still match the recorded result.
+Search and Shelf actions use one native registry for Fit under a size, To MP4,
+precise local trim, MP3/M4A extraction, GIF, animated WebP, audio/video metadata
+removal, and To JPG. Media tools open a separate review window; choose a local
+file and run it explicitly. Files shows progress, Cancel, Retry, Reveal and Undo.
+Cancelled jobs stay in the queue; interrupted work waits for Retry. Quitting
+during a tool job shows a warning. Undo recycles the generated output only when
+its identity and content still match the recorded result.
+
+Fit reserves audio first and leaves 3% headroom. Exact uses libx264 two-pass;
+Fast tests available GPU encoders on a one-second synthetic clip and shows the
+first working encoder. Probe results are cached against the actual adapters,
+driver versions and pinned engine; unknown driver versions disable cache reuse.
+Oversized outputs get at most three attempts, always from the original. Video
+resolution steps down only when the bitrate budget needs it. Audio shares the
+same size presets. MP4 tries lossless remux before H.264/AAC conversion; GIF
+uses a palette graph with a 720-pixel/15-fps cap. Animated WebP is available
+when the bundled engine provides its encoder.
 
 Outputs are created beside the input as `<name> (<Preset>).<ext>`, then ` 2`,
 ` 3`, and so on for name clashes. Publication never replaces another file;
 modified and created dates are copied where supported. Settings → Files stores
 editable share limits: Discord 20 MB, email 25 MB, Outlook 10 MB and WhatsApp
-100 MB. The remaining media/image/PDF/context tools land in the following
-handoff tasks; they are not advertised as runnable registry entries yet.
+100 MB. Drop suggestions prefer To MP4 for MOV/MKV and Fit for Discord for
+other videos over the saved Discord cap. Cloud-only inputs are rejected before
+opening or hashing their contents. Remaining image/PDF/context tools belong to
+the following handoff tasks and are not advertised as runnable entries yet.
 
 Windows conversions use only the pinned BtbN static GPL `ffmpeg.exe` as a
 separate process. The setup script installs no ffprobe, ffplay or libav DLL.

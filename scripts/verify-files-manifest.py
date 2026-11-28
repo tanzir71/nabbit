@@ -12,7 +12,7 @@ import xml.etree.ElementTree as ET
 assert sys.platform == "win32"
 root = Path(__file__).resolve().parent.parent
 prefix = sys.argv[1] if len(sys.argv) > 1 else "v58-manifest"
-assert re.fullmatch(r"v58-[a-z0-9-]+", prefix)
+assert re.fullmatch(r"v[0-9]+-[a-z0-9-]+", prefix)
 exe = root / "src-tauri/target/release/nabbit.exe"
 folder = root / "progress/v2/M10"
 kernel = ctypes.WinDLL("kernel32", use_last_error=True)

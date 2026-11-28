@@ -18,14 +18,14 @@ pub struct Tool {
 }
 #[derive(Clone, Copy, Debug)]
 pub enum Executor {
-    Mp4,
+    Media(super::media::Kind),
     Jpg,
 }
 impl Executor {
-    pub fn extension(self) -> &'static str {
+    pub fn extension(self, input: &std::path::Path, info: Option<&super::media::Info>) -> String {
         match self {
-            Self::Mp4 => "mp4",
-            Self::Jpg => "jpg",
+            Self::Media(kind) => kind.extension(input, info),
+            Self::Jpg => "jpg".into(),
         }
     }
 }
@@ -59,8 +59,15 @@ pub fn presets() -> Vec<Preset> {
         ("email", "Fit for email", Some(25)),
         ("outlook", "Fit for Outlook", Some(10)),
         ("whatsapp", "Fit for WhatsApp", Some(100)),
+        ("custom-fit", "Fit under a size", Some(20)),
         ("jpg", "To JPG", None),
         ("mp4", "To MP4", None),
+        ("trim", "Trimmed", None),
+        ("mp3", "Extract audio", None),
+        ("m4a", "Extract audio", None),
+        ("gif", "To GIF", None),
+        ("animated-webp", "Animated WebP", None),
+        ("strip", "Metadata removed", None),
         ("smaller", "Make smaller", None),
         ("pdf", "Make PDF", None),
     ]
@@ -87,10 +94,26 @@ pub fn validate_preset(preset: &Preset) -> Result<()> {
     }
     Ok(())
 }
+/// Drop suggestions inspect metadata only; opening a review never starts a job.
+pub fn suggestion(path: &std::path::Path, bytes: u64, discord_mb: u32) -> Option<&'static str> {
+    let ext = path.extension()?.to_str()?.to_ascii_lowercase();
+    if matches!(ext.as_str(), "mov" | "mkv") {
+        Some("to-mp4")
+    } else if get("fit-size").ok()?.accepts_path(path)
+        && matches!(ext.as_str(), "mp4" | "webm" | "avi" | "m4v")
+        && bytes > u64::from(discord_mb) * 1_000_000
+    {
+        Some("fit-size")
+    } else if get("to-jpg").ok()?.accepts_path(path) {
+        Some("to-jpg")
+    } else {
+        None
+    }
+}
 pub fn catalog() -> Vec<Tool> {
     vec![
         Tool {
-            executor: Executor::Mp4,
+            executor: Executor::Media(super::media::Kind::Mp4),
             id: "to-mp4",
             name: "To MP4",
             category: "media",
@@ -105,6 +128,64 @@ pub fn catalog() -> Vec<Tool> {
             presets: &["mp4"],
             form: vec![],
         },
+        media_tool(
+            super::media::Kind::Fit,
+            "fit-size",
+            "Fit under a size",
+            &[
+                "compress", "shrink", "discord", "email", "whatsapp", "size", "mb",
+            ],
+            &["discord", "email", "outlook", "whatsapp", "custom-fit"],
+            true,
+        ),
+        media_tool(
+            super::media::Kind::Trim,
+            "trim-video",
+            "Trim video",
+            &["cut", "section", "clip"],
+            &["trim"],
+            false,
+        ),
+        media_tool(
+            super::media::Kind::Mp3,
+            "extract-mp3",
+            "Extract MP3",
+            &["audio", "sound", "music", "mp3"],
+            &["mp3"],
+            true,
+        ),
+        media_tool(
+            super::media::Kind::M4a,
+            "extract-m4a",
+            "Extract M4A",
+            &["audio", "sound", "aac", "m4a"],
+            &["m4a"],
+            true,
+        ),
+        media_tool(
+            super::media::Kind::Gif,
+            "to-gif",
+            "To GIF",
+            &["animation", "gif"],
+            &["gif"],
+            false,
+        ),
+        media_tool(
+            super::media::Kind::Webp,
+            "animated-webp",
+            "Animated WebP",
+            &["animation", "webp"],
+            &["animated-webp"],
+            false,
+        ),
+        media_tool(
+            super::media::Kind::Strip,
+            "strip-metadata",
+            "Remove location and camera data",
+            &["privacy", "gps", "metadata", "strip", "location", "camera"],
+            &["strip"],
+            true,
+        ),
         Tool {
             executor: Executor::Jpg,
             id: "to-jpg",
@@ -129,6 +210,38 @@ pub fn catalog() -> Vec<Tool> {
             }],
         },
     ]
+}
+fn media_tool(
+    kind: super::media::Kind,
+    id: &'static str,
+    name: &'static str,
+    keywords: &'static [&'static str],
+    presets: &'static [&'static str],
+    audio: bool,
+) -> Tool {
+    Tool {
+        executor: Executor::Media(kind),
+        id,
+        name,
+        category: "media",
+        icon: "iconFile",
+        keywords,
+        accepts: Accepts {
+            filetypes: if audio {
+                &[
+                    "mp4", "mov", "mkv", "webm", "avi", "m4v", "mp3", "m4a", "wav", "aac", "flac",
+                    "ogg", "opus", "wma",
+                ]
+            } else {
+                &["mp4", "mov", "mkv", "webm", "avi", "m4v"]
+            },
+            text: false,
+            link: false,
+            image: false,
+        },
+        presets,
+        form: vec![],
+    }
 }
 pub fn get(id: &str) -> Result<Tool> {
     catalog()

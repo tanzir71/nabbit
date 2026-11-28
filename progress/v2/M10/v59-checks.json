@@ -1,0 +1,222 @@
+{
+  "allRequiredChecksPassed": true,
+  "buildManifestSha256": "e2ac7d898c6a59cb1bee163774c60b2185fbd3077a8c2993983c3c6b9bba4bbc",
+  "nativeExecutableSha256": "9c815af730861bf65b7af73775f5c7c78254b4394c75eb6822cc9f181cd547da",
+  "checks": [
+    {
+      "name": "npmVerify",
+      "command": "npm run verify",
+      "exitCode": 0,
+      "authoritative": true,
+      "source": ".tools/v59-npm-sizing.log",
+      "log": "v59-npm-sizing-log.txt",
+      "canonicalSha256": "945379fdb0c9c92bbe646056de80a11b498a685cefd1a5ca7808ca5901f0c61a",
+      "originalArchive": "v59-npm-sizing-log.txt.original.gz",
+      "originalBytes": 12989,
+      "originalSha256": "92e5a20815883966919a260a895c2a769517160186135c4edbdf486271f4f0ec"
+    },
+    {
+      "name": "fmt",
+      "command": "cargo fmt --manifest-path src-tauri/Cargo.toml --check",
+      "exitCode": 0,
+      "authoritative": true,
+      "source": ".tools/v59-fmt-final.log",
+      "log": "v59-fmt-final-log.txt",
+      "canonicalSha256": "c31939a3efa62bdadf0e0a9e6d0d0a7457a201a438795334418df99f330650b3",
+      "originalArchive": "v59-fmt-final-log.txt.original.gz",
+      "originalBytes": 0,
+      "originalSha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "name": "clippyDefault",
+      "command": "cargo clippy --manifest-path src-tauri/Cargo.toml --all-targets -- -D warnings",
+      "exitCode": 0,
+      "authoritative": true,
+      "source": ".tools/v59-clippy-final.log",
+      "log": "v59-clippy-final-log.txt",
+      "canonicalSha256": "eb9caeb065bcd5c41779260cd6c803839abc597c12afdf5a36fba86b8c3525a9",
+      "originalArchive": "v59-clippy-final-log.txt.original.gz",
+      "originalBytes": 142,
+      "originalSha256": "7f1c989bd4a52706d47df6aae0396999d1052e4147548ce49ebbabd31081cc48"
+    },
+    {
+      "name": "clippySpike",
+      "command": "cargo clippy --manifest-path src-tauri/Cargo.toml --features island-spike --all-targets -- -D warnings",
+      "exitCode": 0,
+      "authoritative": true,
+      "source": ".tools/v59-clippy-spike-final.log",
+      "log": "v59-clippy-spike-final-log.txt",
+      "canonicalSha256": "6b47670a5a5fed7504b3583f997e728df24cfa89b35093a871b56063165af7ab",
+      "originalArchive": "v59-clippy-spike-final-log.txt.original.gz",
+      "originalBytes": 142,
+      "originalSha256": "abdec7f58a7f063616029a6f4c4442e3b222410e1f663926211844391c1650b9"
+    },
+    {
+      "name": "rustSerial",
+      "command": "cargo test --manifest-path src-tauri/Cargo.toml -- --test-threads=1",
+      "exitCode": 0,
+      "authoritative": true,
+      "source": ".tools/v59-rust-final.log",
+      "log": "v59-rust-final-log.txt",
+      "canonicalSha256": "105b048ce59803fc582220737ab26a47ba13ae02b98d79b5c9f62afd0508e74f",
+      "originalArchive": "v59-rust-final-log.txt.original.gz",
+      "originalBytes": 34200,
+      "originalSha256": "82a7514ea7620f8835ffc3fb22577ef64f43dbdae9efc520bc1903c8fe5c42bc"
+    },
+    {
+      "name": "ownedMedia",
+      "command": "cargo test --manifest-path src-tauri/Cargo.toml tools::media:: -- --ignored --nocapture --test-threads=1",
+      "exitCode": 0,
+      "authoritative": true,
+      "source": ".tools/v59-real-media-final.log",
+      "log": "v59-real-media-final-log.txt",
+      "canonicalSha256": "9e1bd9c0df1e9bb0adeb566255e4b78da266dfeafad9d03fa500ab6541bdddcc",
+      "originalArchive": "v59-real-media-final-log.txt.original.gz",
+      "originalBytes": 1572,
+      "originalSha256": "5e2921da58900e8f1f168724d0c368013f611fc30f1a53d1353c666e41f5ecae"
+    },
+    {
+      "name": "ownedCancel",
+      "command": "cargo test --manifest-path src-tauri/Cargo.toml owned_ffmpeg_cancellation_retry_and_typed_progress -- --ignored --nocapture --test-threads=1",
+      "exitCode": 0,
+      "authoritative": true,
+      "source": ".tools/v59-cancel-final.log",
+      "log": "v59-cancel-final-log.txt",
+      "canonicalSha256": "a9fd930e558a2f85788ecb869f3a1453a0dba42a3864744c64d82c2729ff2c45",
+      "originalArchive": "v59-cancel-final-log.txt.original.gz",
+      "originalBytes": 650,
+      "originalSha256": "810825813e1eb85b5624b864afb4b2b78f68854a10bd4ff9f96a1765850639b8"
+    },
+    {
+      "name": "release",
+      "command": "cargo build --manifest-path src-tauri/Cargo.toml --release --features custom-protocol",
+      "exitCode": 0,
+      "authoritative": true,
+      "source": ".tools/v59-release-c.log",
+      "log": "v59-release-c-log.txt",
+      "canonicalSha256": "fbb186fb507f03de007b58d060fe33215aa0f4b0f3aadcf8ad5672ba59b66d60",
+      "originalArchive": "v59-release-c-log.txt.original.gz",
+      "originalBytes": 132,
+      "originalSha256": "04ec5a62280cf0cc7e93574f8009cd3c6267dfb17c91a985f64b19c598f6e4d6"
+    },
+    {
+      "name": "visual",
+      "command": "node scripts/verify-media-tools-screenshots.mjs v59-media-final5",
+      "exitCode": 0,
+      "authoritative": true,
+      "source": ".tools/v59-media-screenshots-final5.log",
+      "log": "v59-media-screenshots-final5-log.txt",
+      "canonicalSha256": "cca0a06cf5ec332164c09b52fffbdc5e598948d7879718978f5f1254475d8ddc",
+      "originalArchive": "v59-media-screenshots-final5-log.txt.original.gz",
+      "originalBytes": 34,
+      "originalSha256": "1e9ab441ed6bd2d6645d8c0ad63a02e352e2dbb0e509d5d3b63415c87b4e2801"
+    },
+    {
+      "name": "entries",
+      "command": "node scripts/verify-media-entry-screenshots.mjs v59-entry-c",
+      "exitCode": 0,
+      "authoritative": true,
+      "source": ".tools/v59-entry-screenshots-c.log",
+      "log": "v59-entry-screenshots-c-log.txt",
+      "canonicalSha256": "c9a05733d4fcd2b0c702e73996a47c52c2ee790a41be8c9e83daae05aa63acb7",
+      "originalArchive": "v59-entry-screenshots-c-log.txt.original.gz",
+      "originalBytes": 34,
+      "originalSha256": "7af91dc07fe5e28cb455c00e3ac263e74513d879ec78f77a78bb573627c338d6"
+    },
+    {
+      "name": "native",
+      "command": "node scripts/capture-native-media-tools.mjs v59-native-d",
+      "exitCode": 0,
+      "authoritative": true,
+      "source": ".tools/v59-native-d.log",
+      "log": "v59-native-d-log.txt",
+      "canonicalSha256": "541b0c9f408b1ed32a0932b65054fc55064bee7601e68fd456afd96902390841",
+      "originalArchive": "v59-native-d-log.txt.original.gz",
+      "originalBytes": 93,
+      "originalSha256": "b39f1a93133770379c207af7078e94529ffe7ad988f2d397eef2b90fe0c8ebd5"
+    },
+    {
+      "name": "negativeHarness",
+      "command": "node scripts/screenshots/verify-failures.mjs --milestone M10 --prefix v59-delivery",
+      "exitCode": 0,
+      "authoritative": true,
+      "source": ".tools/v59-delivery-failure.log",
+      "log": "v59-delivery-failure-log.txt",
+      "canonicalSha256": "d4c73b693e0c0792965ee71de68d23b0d06d5114b11e6178dbf4dd4d48a21c6b",
+      "originalArchive": "v59-delivery-failure-log.txt.original.gz",
+      "originalBytes": 115,
+      "originalSha256": "744efdb66da95ddf2dcdc44aab2c28696f3cb004c2926241bd7e588d960294e8"
+    },
+    {
+      "name": "lintFinal",
+      "command": "npm run lint",
+      "exitCode": 0,
+      "authoritative": true,
+      "source": ".tools/v59-lint-delivery.log",
+      "log": "v59-lint-delivery-log.txt",
+      "canonicalSha256": "04b453cf9252a1c433c72c79f11cdf063fb3c5e515ee8073381b59398e7b0440",
+      "originalArchive": "v59-lint-delivery-log.txt.original.gz",
+      "originalSha256": "4fc9b2288bff368c1e29c5b6f4787bcff13fe66072e3eeb4acb8fc840f28a0b9",
+      "originalBytes": 37
+    },
+    {
+      "name": "manifest",
+      "command": "python -X utf8 scripts/verify-files-manifest.py v59-manifest-final",
+      "exitCode": 0,
+      "authoritative": true,
+      "source": ".tools/v59-manifest-final.log",
+      "log": "v59-manifest-final-log.txt",
+      "canonicalSha256": "890e871a337c328bb72caca4806d9550da9f933405279e6465da03b746dd842b",
+      "originalArchive": "v59-manifest-final-log.txt.original.gz",
+      "originalSha256": "d30dd6b4dc089d50390b100359238b68f25784fad9d995bae218098dced68e37",
+      "originalBytes": 679
+    },
+    {
+      "name": "entryBundles",
+      "command": "node scripts/verify-entry-bundles.mjs --report progress/v2/M10/v59-entry-bundles-final.json",
+      "exitCode": 0,
+      "authoritative": true,
+      "source": ".tools/v59-entry-bundles-complete.log",
+      "log": "v59-entry-bundles-complete-log.txt",
+      "canonicalSha256": "6f6abee20b3e40cf19ae6dfbeb46ccc0bb3e86c1159ff0cfadb25f61d837aee5",
+      "originalArchive": "v59-entry-bundles-complete-log.txt.original.gz",
+      "originalSha256": "5912f3a4a79c78fb2e11b775b9733286bf049cd2654d627def17f30361aa9489",
+      "originalBytes": 136
+    }
+  ],
+  "counts": {
+    "frontendTests": 498,
+    "frontendFiles": 50,
+    "rustPassed": 335,
+    "rustIgnored": 7,
+    "ownedMediaTestsPassed": 2,
+    "ownedCancelPassed": 1,
+    "sizeCases": 12,
+    "quickCases": 6,
+    "edgeCases": 5,
+    "nativeChecks": 4,
+    "nativeCaptures": 4,
+    "visualCaptures": 68,
+    "generatedNotices": 1056,
+    "retainedPngs": 1042
+  },
+  "initialIslandGzipBytes": 102783,
+  "separateMediaEvidence": [
+    {
+      "source": ".tools/v59-owned-media-final-summary.json",
+      "log": "v59-owned-media.json",
+      "canonicalSha256": "45cecdc639762a7f896be80c4662073cf862ed84e3ca40f874132b8c8b46f524",
+      "originalArchive": "v59-owned-media.json.original.gz",
+      "originalBytes": 122349,
+      "originalSha256": "cfdbd96e7b687b09962f9d6d6d3523e8194c57ed92073b3b28822cc679591c24"
+    },
+    {
+      "source": ".tools/v59-owned-edges-final-summary.json",
+      "log": "v59-owned-edges.json",
+      "canonicalSha256": "b35614c46b62659cb30460be8742fd0170fc160af056122a83722a0e35ec2881",
+      "originalArchive": "v59-owned-edges.json.original.gz",
+      "originalBytes": 30220,
+      "originalSha256": "c86275b33ad6840b229b6340b7d6e6906299f05f53256d894fa362c43860bc27"
+    }
+  ]
+}

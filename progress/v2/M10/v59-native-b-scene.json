@@ -1,0 +1,98 @@
+{
+  "passed": false,
+  "failure": {
+    "message": "locator.click: Target page, context or browser has been closed",
+    "stack": "locator.click: Target page, context or browser has been closed\n    at D:\\claude-upgrade-26\\nabbit\\scripts\\capture-native-media-tools.mjs:376:51"
+  },
+  "checks": [
+    "Search opens a separate 440px native review with real ffmpeg inspection and Rust estimates; no job starts on open. MOV/MKV conversion and oversized-video drop suggestions use metadata and the saved cap. Current-id and caller guards reject stale resize and mismatched intents; a stale close cannot hide the next review."
+  ],
+  "captures": [
+    {
+      "role": "fit-review",
+      "file": "v59-native-b-fit-review@2x.png",
+      "sha256": "66dad155354afd208f8cc41713da6d07fb5a1e324c1ceae7a2cf4f1a8d71986e",
+      "bytes": 116551,
+      "width": 880,
+      "height": 1066,
+      "logicalBounds": {
+        "x": 0,
+        "y": 0,
+        "width": 440,
+        "height": 533
+      },
+      "contentBounds": {
+        "x": 0,
+        "y": 0,
+        "width": 440,
+        "height": 533
+      },
+      "scale": 2,
+      "repeatMatches": true
+    },
+    {
+      "role": "running-native",
+      "file": "v59-native-b-running-native@1x.png",
+      "width": 720,
+      "height": 460,
+      "bytes": 7003,
+      "sha256": "5c0700fe6e49bbd9eb3ab333ab61bfd1351314cf3d994ce0e78bfe300125dbdc",
+      "repeatMatches": null,
+      "reason": "Actual live native progress frame; data may advance between captures",
+      "activity": {
+        "revision": 7,
+        "views": [
+          {
+            "label": "island",
+            "gate": "visible",
+            "primary": {
+              "id": "tool:85d2daa6-57e1-4a70-a325-8977b3e3f4cb",
+              "category": "tool",
+              "event": {
+                "kind": "toolJob",
+                "jobId": "85d2daa6-57e1-4a70-a325-8977b3e3f4cb",
+                "toolId": "fit-size",
+                "label": "Fit for Discord · try 1 of 3 · pass 1 of 2",
+                "percent": 0,
+                "state": "running"
+              },
+              "alert": false,
+              "bubbleOnly": false
+            },
+            "bubble": null,
+            "queue": [],
+            "fullscreen": false,
+            "userHidden": false,
+            "focusMode": false
+          }
+        ],
+        "preferences": {
+          "order": [
+            "privacy",
+            "timerEnding",
+            "download",
+            "tool",
+            "link",
+            "result",
+            "media",
+            "timer",
+            "power"
+          ],
+          "disabled": [],
+          "showAlertsOverFullscreen": false,
+          "focusMode": false,
+          "hiddenUntilMs": null
+        },
+        "syncState": "localOnly"
+      }
+    }
+  ],
+  "jobs": [],
+  "embeddedAssetCount": 0,
+  "executableSha256": "13e46fec8bf76e5e735b7b00cc5697d3346473a9ec6dde31b7167186a9b5aef5",
+  "buildManifestSha256": "79b206a4633e7955f6e72686dcd4ed7a6b811671ffe97593d560064d23eec688",
+  "noUserProfile": true,
+  "noRealRecycleBinOrExplorer": true,
+  "noOsSettingChange": true,
+  "scope": "Owned production release and isolated app-data/WebView/control profiles; DOM-only UI input, generated synthetic media, actual separately pinned ffmpeg and durable Tauri runner; no user files, clipboard, global input, real cursor, native dialog, install, signing or OS changes."
+}

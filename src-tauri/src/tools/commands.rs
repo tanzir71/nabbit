@@ -21,8 +21,8 @@ pub fn third_party_licenses(
         "../../../third-party/notices.json"
     ))?)
 }
-fn caller(app: &tauri::AppHandle, window: &tauri::WebviewWindow) -> Result<()> {
-    if matches!(window.label(), "main" | "settings") {
+pub(crate) fn caller(app: &tauri::AppHandle, window: &tauri::WebviewWindow) -> Result<()> {
+    if matches!(window.label(), "main" | "settings" | "media-sheet") {
         return Ok(());
     }
     #[cfg(windows)]
@@ -46,6 +46,30 @@ pub fn tool_catalog(
 ) -> Result<Vec<registry::Tool>> {
     caller(&app, &window)?;
     Ok(registry::catalog())
+}
+#[tauri::command]
+pub fn tool_suggest(
+    app: tauri::AppHandle,
+    window: tauri::WebviewWindow,
+    state: tauri::State<'_, crate::AppState>,
+    paths: Vec<String>,
+) -> Result<Option<String>> {
+    caller(&app, &window)?;
+    if paths.len() != 1 {
+        return Ok(None);
+    }
+    let facts = crate::files::paths::facts(&paths[0])?;
+    if facts.directory {
+        return Ok(None);
+    }
+    let limit = state
+        .db
+        .tool_presets()?
+        .into_iter()
+        .find(|p| p.id == "discord")
+        .and_then(|p| p.max_mb)
+        .unwrap_or(20);
+    Ok(registry::suggestion(Path::new(&facts.path), facts.bytes, limit).map(str::to_owned))
 }
 #[tauri::command]
 pub fn tool_presets(

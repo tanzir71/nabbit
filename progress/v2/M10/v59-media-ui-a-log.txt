@@ -1,0 +1,409 @@
+RUN  v3.2.7 D:/claude-upgrade-26/nabbit
+
+ ❯ src/features/tools/MediaReview.test.tsx (8 tests | 1 failed) 626ms
+   × defaults to Exact without a GPU test and submits edited limits only after the explicit click 193ms
+     → Found multiple elements with the text of: Maximum size (MB)
+
+Here are the matching elements:
+
+Ignored nodes: comments, script, style
+[36m<input[39m
+  [33mclass[39m=[32m"n-input"[39m
+  [33mid[39m=[32m":r6:"[39m
+  [33mmax[39m=[32m"100000"[39m
+  [33mmin[39m=[32m"1"[39m
+  [33mtype[39m=[32m"number"[39m
+  [33mvalue[39m=[32m"20"[39m
+[36m/>[39m
+
+Ignored nodes: comments, script, style
+[36m<input[39m
+  [33mclass[39m=[32m"n-input"[39m
+  [33mid[39m=[32m":r3:"[39m
+  [33mmax[39m=[32m"100000"[39m
+  [33mmin[39m=[32m"1"[39m
+  [33mtype[39m=[32m"number"[39m
+  [33mvalue[39m=[32m"20"[39m
+[36m/>[39m
+
+(If this is intentional, then use the `*AllBy*` variant of the query (like `queryAllByText`, `getAllByText`, or `findAllByText`)).
+
+Ignored nodes: comments, script, style
+[36m<body>[39m
+  [36m<div>[39m
+    [36m<section[39m
+      [33maria-label[39m=[32m"Fit under a size options"[39m
+      [33mclass[39m=[32m"media-review"[39m
+    [36m>[39m
+      [36m<header[39m
+        [33mclass[39m=[32m"media-header"[39m
+      [36m>[39m
+        [36m<div>[39m
+          [36m<h1>[39m
+            [0mFit under 20 MB[0m
+          [36m</h1>[39m
+          [36m<p[39m
+            [33mtitle[39m=[32m"source.mp4 · 42.0 MB · 03:00.0 · 1920 × 1080"[39m
+          [36m>[39m
+            [0msource.mp4 · 42.0 MB · 03:00.0 · 1920 × 1080[0m
+          [36m</p>[39m
+        [36m</div>[39m
+        [36m<button[39m
+          [33maria-label[39m=[32m"Close media review"[39m
+          [33mclass[39m=[32m"n-icon-button n-icon-button--ghost"[39m
+          [33mtitle[39m=[32m"Close media review"[39m
+          [33mtype[39m=[32m"button"[39m
+        [36m>[39m
+          [36m<span[39m
+            [33maria-hidden[39m=[32m"true"[39m
+            [33mclass[39m=[32m"n-asset"[39m
+            [33mstyle[39m=[32m"width: 18px; height: 18px; --asset: url(\"data:image/svg+xml,%3csvg%20preserveAspectRatio='none'%20overflow='visible'%20style='display:%20block;'%20width='18'%20height='18'%20viewBox='0%200%2018%2018'%20fill='none'%20xmlns='http://www.w3.org/2000/svg'%3e%3cg%20id='Icon'%3e%3cpath%20id='Vector'%20d='M13.5%204.5L4.5%2013.5'%20stroke-width='1.3125'%20stroke-linecap='round'%20stroke-linejoin='round'%20stroke='%2366666D'/%3e%3cpath%20id='Vector_2'%20d='M4.5%204.5L13.5%2013.5'%20stroke-width='1.3125'%20stroke-linecap='round'%20stroke-linejoin='round'%20stroke='%2366666D'/%3e%3c/g%3e%3c/svg%3e\");"[39m
+          [36m>[39m
+            [36m<img[39m
+              [33malt[39m=[32m""[39m
+              [33mdata-asset[39m=[32m"download-sheets/d2028.svg"[39m
+              [33mdraggable[39m=[32m"false"[39m
+              [33mheight[39m=[32m"18"[39m
+              [33msrc[39m=[32m"data:image/svg+xml,%3csvg%20preserveAspectRatio='none'%20overflow='visible'%20style='display:%20block;'%20width='18'%20height='18'%20viewBox='0%200%2018%2018'%20fill='none'%20xmlns='http://www.w3.org/2000/svg'%3e%3cg%20id='Icon'%3e%3cpath%20id='Vector'%20d='M13.5%204.5L4.5%2013.5'%20stroke-width='1.3125'%20stroke-linecap='round'%20stroke-linejoin='round'%20stroke='%2366666D'/%3e%3cpath%20id='Vector_2'%20d='M4.5%204.5L13.5%2013.5'%20stroke-width='1.3125'%20stroke-linecap='round'%20stroke-linejoin='round'%20stroke='%2366666D'/%3e%3c/g%3e%3c/svg%3e"[39m
+              [33mwidth[39m=[32m"18"[39m
+            [36m/>[39m
+          [36m</span>[39m
+        [36m</button>[39m
+      [36m</header>[39m
+      [36m<div[39m
+        [33mclass[39m=[32m"media-body"[39m
+      [36m>[39m
+        [36m<section>[39m
+          [36m<h2>[39m
+            [0mTarget size[0m
+          [36m</h2>[39m
+          [36m<div[39m
+            [33mclass[39m=[32m"media-chips"[39m
+          [36m>[39m
+            [36m<button[39m
+              [33maria-pressed[39m=[32m"false"[39m
+              [33mclass[39m=[32m"n-preset n-preset--light"[39m
+              [33mtype[39m=[32m"button"[39m
+            [36m>[39m
+              [36m<span>[39m
+                [0mDiscord · 20 MB[0m
+              [36m</span>[39m
+            [36m</button>[39m
+            [36m<button[39m
+              [33maria-pressed[39m=[32m"false"[39m
+              [33mclass[39m=[32m"n-preset n-preset--light"[39m
+              [33mtype[39m=[32m"button"[39m
+            [36m>[39m
+              [36m<span>[39m
+                [0mEmail · 25 MB[0m
+              [36m</span>[39m
+            [36m</button>[39m
+            [36m<button[39m
+              [33maria-pressed[39m=[32m"false"[39m
+              [33mclass[39m=[32m"n-preset n-preset--light"[39m
+              [33mtype[39m=[32m"button"[39m
+            [36m>[39m
+              [36m<span>[39m
+                [0mWhatsApp · 100 MB[0m
+              [36m</span>[39m
+            [36m</button>[39m
+            [36m<button[39m
+              [33maria-pressed[39m=[32m"true"[39m
+              [33mclass[39m=[32m"n-preset n-preset--light is-selected"[39m
+              [33mtype[39m=[32m"button"[39m
+            [36m>[39m
+              [36m<span>[39m
+                [0mCustom…[0m
+              [36m</span>[39m
+            [36m</button>[39m
+          [36m</div>[39m
+          [36m<p[39m
+            [33mclass[39m=[32m"media-caption"[39m
+          [36m>[39m
+            [0mLimits change. Presets are editable in Settings → Tools.[0m
+          [36m</p>[39m
+          [36m<div[39m
+            [33mclass[39m=[32m"n-field"[39m
+          [36m>[39m
+            [36m<div[39m
+              [33mclass[39m=[32m"n-field-label"[39m
+            [36m>[39m
+              [36m<label[39m
+                [33mfor[39m=[32m":r6:"[39m
+              [36m>[39m
+                [0mMaximum size (MB)[0m
+              [36m</label>[39m
+            [36m</div>[39m
+            [36m<div[39m
+              [33mclass[39m=[32m"contents"[39m
+            [36m>[39m
+              [36m<input[39m
+                [33mclass[39m=[32m"n-input"[39m
+                [33mid[39m=[32m":r6:"[39m
+                [33mmax[39m=[32m"100000"[39m
+                [33mmin[39m=[32m"1"[39m
+                [33mtype[39m=[32m"number"[39m
+                [33mvalue[39m=[32m"20"[39m
+              [36m/>[39m
+            [36m</div>[39m
+          [36m</div>[39m
+        [36m</section>[39m
+        [36m<section>[39m
+          [36m<h2>[39m
+            [0mMode[0m
+          [36m</h2>[39m
+          [36m<div[39m
+            [33mclass[39m=[32m"media-chips"[39m
+          [36m>[39m
+            [36m<button[39m
+              [33maria-pressed[39m=[32m"true"[39m
+              [33mclass[39m=[32m"n-preset n-preset--light is-selected"[39m
+              [33mtype[39m=[32m"button"[39m
+            [36m>[39m
+              [36m<span>[39m
+                [0mExact size · 2 passes[0m
+              [36m</span>[39m
+            [36m</button>[39m
+            [36m<button[39m
+              [33maria-pressed[39m=[32m"false"[39m
+              [33mclass[39m=[32m"n-preset n-preset--light"[39m
+              [33mtype[39m=[32m"button"[39m
+            [36m>[39m
+              [36m<span>[39m
+                [0mFast · GPU[0m
+              [36m</span>[39m
+            [36m</button>[39m
+          [36m</div>[39m
+        [36m</section>[39m
+        [36m<dl[39m
+          [33maria-label[39m=[32m"Estimated output"[39m
+          [33mclass[39m=[32m"media-estimate"[39m
+        [36m>[39m
+          [36m<div>[39m
+            [36m<dt>[39m
+              [0mVideo[0m
+            [36m</dt>[39m
+            [36m<dd>[39m
+              [0m852 × 480 · 766 kb/s[0m
+            [36m</dd>[39m
+          [36m</div>[39m
+          [36m<div>[39m
+        ...
+   ✓ uses only the encoder returned by a successful lazy GPU probe 107ms
+   ✓ keeps Exact available when every GPU probe fails 76ms
+   ✓ invalid numeric and section drafts cannot submit an older valid configuration 62ms
+   ✓ reuses the trim handles and precise time fields for a local file 25ms
+   ✓ an unavailable animated WebP encoder cannot start a job 14ms
+   ✓ Search and Shelf open a single intent under StrictMode without starting a tool 72ms
+   ✓ allows a failed inspection to be retried without changing the path 77ms
+
+⎯⎯⎯⎯⎯⎯⎯ Failed Tests 1 ⎯⎯⎯⎯⎯⎯⎯
+
+ FAIL  src/features/tools/MediaReview.test.tsx > defaults to Exact without a GPU test and submits edited limits only after the explicit click
+TestingLibraryElementError: Found multiple elements with the text of: Maximum size (MB)
+
+Here are the matching elements:
+
+Ignored nodes: comments, script, style
+<input
+  class="n-input"
+  id=":r6:"
+  max="100000"
+  min="1"
+  type="number"
+  value="20"
+/>
+
+Ignored nodes: comments, script, style
+<input
+  class="n-input"
+  id=":r3:"
+  max="100000"
+  min="1"
+  type="number"
+  value="20"
+/>
+
+(If this is intentional, then use the `*AllBy*` variant of the query (like `queryAllByText`, `getAllByText`, or `findAllByText`)).
+
+Ignored nodes: comments, script, style
+<body>
+  <div>
+    <section
+      aria-label="Fit under a size options"
+      class="media-review"
+    >
+      <header
+        class="media-header"
+      >
+        <div>
+          <h1>
+            Fit under 20 MB
+          </h1>
+          <p
+            title="source.mp4 · 42.0 MB · 03:00.0 · 1920 × 1080"
+          >
+            source.mp4 · 42.0 MB · 03:00.0 · 1920 × 1080
+          </p>
+        </div>
+        <button
+          aria-label="Close media review"
+          class="n-icon-button n-icon-button--ghost"
+          title="Close media review"
+          type="button"
+        >
+          <span
+            aria-hidden="true"
+            class="n-asset"
+            style="width: 18px; height: 18px; --asset: url(\"data:image/svg+xml,%3csvg%20preserveAspectRatio='none'%20overflow='visible'%20style='display:%20block;'%20width='18'%20height='18'%20viewBox='0%200%2018%2018'%20fill='none'%20xmlns='http://www.w3.org/2000/svg'%3e%3cg%20id='Icon'%3e%3cpath%20id='Vector'%20d='M13.5%204.5L4.5%2013.5'%20stroke-width='1.3125'%20stroke-linecap='round'%20stroke-linejoin='round'%20stroke='%2366666D'/%3e%3cpath%20id='Vector_2'%20d='M4.5%204.5L13.5%2013.5'%20stroke-width='1.3125'%20stroke-linecap='round'%20stroke-linejoin='round'%20stroke='%2366666D'/%3e%3c/g%3e%3c/svg%3e\");"
+          >
+            <img
+              alt=""
+              data-asset="download-sheets/d2028.svg"
+              draggable="false"
+              height="18"
+              src="data:image/svg+xml,%3csvg%20preserveAspectRatio='none'%20overflow='visible'%20style='display:%20block;'%20width='18'%20height='18'%20viewBox='0%200%2018%2018'%20fill='none'%20xmlns='http://www.w3.org/2000/svg'%3e%3cg%20id='Icon'%3e%3cpath%20id='Vector'%20d='M13.5%204.5L4.5%2013.5'%20stroke-width='1.3125'%20stroke-linecap='round'%20stroke-linejoin='round'%20stroke='%2366666D'/%3e%3cpath%20id='Vector_2'%20d='M4.5%204.5L13.5%2013.5'%20stroke-width='1.3125'%20stroke-linecap='round'%20stroke-linejoin='round'%20stroke='%2366666D'/%3e%3c/g%3e%3c/svg%3e"
+              width="18"
+            />
+          </span>
+        </button>
+      </header>
+      <div
+        class="media-body"
+      >
+        <section>
+          <h2>
+            Target size
+          </h2>
+          <div
+            class="media-chips"
+          >
+            <button
+              aria-pressed="false"
+              class="n-preset n-preset--light"
+              type="button"
+            >
+              <span>
+                Discord · 20 MB
+              </span>
+            </button>
+            <button
+              aria-pressed="false"
+              class="n-preset n-preset--light"
+              type="button"
+            >
+              <span>
+                Email · 25 MB
+              </span>
+            </button>
+            <button
+              aria-pressed="false"
+              class="n-preset n-preset--light"
+              type="button"
+            >
+              <span>
+                WhatsApp · 100 MB
+              </span>
+            </button>
+            <button
+              aria-pressed="true"
+              class="n-preset n-preset--light is-selected"
+              type="button"
+            >
+              <span>
+                Custom…
+              </span>
+            </button>
+          </div>
+          <p
+            class="media-caption"
+          >
+            Limits change. Presets are editable in Settings → Tools.
+          </p>
+          <div
+            class="n-field"
+          >
+            <div
+              class="n-field-label"
+            >
+              <label
+                for=":r6:"
+              >
+                Maximum size (MB)
+              </label>
+            </div>
+            <div
+              class="contents"
+            >
+              <input
+                class="n-input"
+                id=":r6:"
+                max="100000"
+                min="1"
+                type="number"
+                value="20"
+              />
+            </div>
+          </div>
+        </section>
+        <section>
+          <h2>
+            Mode
+          </h2>
+          <div
+            class="media-chips"
+          >
+            <button
+              aria-pressed="true"
+              class="n-preset n-preset--light is-selected"
+              type="button"
+            >
+              <span>
+                Exact size · 2 passes
+              </span>
+            </button>
+            <button
+              aria-pressed="false"
+              class="n-preset n-preset--light"
+              type="button"
+            >
+              <span>
+                Fast · GPU
+              </span>
+            </button>
+          </div>
+        </section>
+        <dl
+          aria-label="Estimated output"
+          class="media-estimate"
+        >
+          <div>
+            <dt>
+              Video
+            </dt>
+            <dd>
+              852 × 480 · 766 kb/s
+            </dd>
+          </div>
+          <div>
+        ...
+ ❯ Object.getElementError node_modules/@testing-library/dom/dist/config.js:37:19
+ ❯ getElementError node_modules/@testing-library/dom/dist/query-helpers.js:20:35
+ ❯ getMultipleElementsFoundError node_modules/@testing-library/dom/dist/query-helpers.js:23:10
+ ❯ node_modules/@testing-library/dom/dist/query-helpers.js:55:13
+ ❯ node_modules/@testing-library/dom/dist/query-helpers.js:95:19
+ ❯ src/features/tools/MediaReview.test.tsx:100:27
+     98|   expect(toolsApi.savePreset).not.toHaveBeenCalled();
+     99|   fireEvent.click(screen.getByRole("button", { name: "Custom…" }));
+    100|   fireEvent.change(screen.getByLabelText("Maximum size (MB)", { select…
+       |                           ^
+    101|     target: { value: "18" },
+    102|   });
+
+⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯[1/1]⎯
+
+
+ Test Files  1 failed (1)
+      Tests  1 failed | 7 passed (8)
+   Start at  05:54:27
+   Duration  2.71s (transform 529ms, setup 87ms, collect 1.08s, tests 626ms, environment 460ms, prepare 244ms)

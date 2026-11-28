@@ -31,6 +31,10 @@ pub fn input(path: &Path) -> Result<File> {
     if !path.is_absolute() || path.as_os_str().to_string_lossy().contains('\0') {
         return Err(msg("Choose an absolute file path"));
     }
+    // Reject recall/offline placeholders from metadata before any content handle
+    // is opened, including the runner's pre-inspection source hash.
+    let facts = crate::files::paths::facts(&path.to_string_lossy())?;
+    crate::files::paths::local_only(&facts, || Ok(()))?;
     let mut options = OpenOptions::new();
     options.read(true);
     #[cfg(windows)]

@@ -1,0 +1,42 @@
+{
+  "passed": false,
+  "failure": {
+    "message": "Command failed: python D:\\claude-upgrade-26\\nabbit\\scripts\\encode-island-surface.py D:\\claude-upgrade-26\\nabbit\\.tools\\v59-native-a-955c7634-0287-4d14-b1bd-614120f57eb7\\control\\media-running.bgra 720 460 D:\\claude-upgrade-26\\nabbit\\progress\\v2\\M10\\v59-native-a-running-native@1x.png\nTraceback (most recent call last):\r\n  File \"D:\\claude-upgrade-26\\nabbit\\scripts\\encode-island-surface.py\", line 13, in <module>\r\n    assert image.getextrema()[3][1]>0,'Visible surface is empty'\r\n           ^^^^^^^^^^^^^^^^^^^^^^^^^^\r\nAssertionError: Visible surface is empty\r\n",
+    "stack": "Error: Command failed: python D:\\claude-upgrade-26\\nabbit\\scripts\\encode-island-surface.py D:\\claude-upgrade-26\\nabbit\\.tools\\v59-native-a-955c7634-0287-4d14-b1bd-614120f57eb7\\control\\media-running.bgra 720 460 D:\\claude-upgrade-26\\nabbit\\progress\\v2\\M10\\v59-native-a-running-native@1x.png\nTraceback (most recent call last):\r\n  File \"D:\\claude-upgrade-26\\nabbit\\scripts\\encode-island-surface.py\", line 13, in <module>\r\n    assert image.getextrema()[3][1]>0,'Visible surface is empty'\r\n           ^^^^^^^^^^^^^^^^^^^^^^^^^^\r\nAssertionError: Visible surface is empty\r\n\n    at genericNodeError (node:internal/errors:986:15)\n    at wrappedFn (node:internal/errors:540:14)\n    at checkExecSyncError (node:child_process:943:11)\n    at execFileSync (node:child_process:979:15)\n    at file:///D:/claude-upgrade-26/nabbit/scripts/capture-native-media-tools.mjs:351:3"
+  },
+  "checks": [
+    "Search opens a separate 440px native review with real ffmpeg inspection and Rust estimates; no job starts on open. MOV/MKV conversion and oversized-video drop suggestions use metadata and the saved cap. Current-id and caller guards reject stale resize and mismatched intents; a stale close cannot hide the next review."
+  ],
+  "captures": [
+    {
+      "role": "fit-review",
+      "file": "v59-native-a-fit-review@2x.png",
+      "sha256": "92708dfa747d15b9a4f7f75a02f85999c10e3ccadbf1eea2f74c1095b4ba1f36",
+      "bytes": 138270,
+      "width": 880,
+      "height": 1278,
+      "logicalBounds": {
+        "x": 0,
+        "y": 0,
+        "width": 440,
+        "height": 639
+      },
+      "contentBounds": {
+        "x": 0,
+        "y": 0,
+        "width": 440,
+        "height": 639
+      },
+      "scale": 2,
+      "repeatMatches": true
+    }
+  ],
+  "jobs": [],
+  "embeddedAssetCount": 0,
+  "executableSha256": "13e46fec8bf76e5e735b7b00cc5697d3346473a9ec6dde31b7167186a9b5aef5",
+  "buildManifestSha256": "79b206a4633e7955f6e72686dcd4ed7a6b811671ffe97593d560064d23eec688",
+  "noUserProfile": true,
+  "noRealRecycleBinOrExplorer": true,
+  "noOsSettingChange": true,
+  "scope": "Owned production release and isolated app-data/WebView/control profiles; DOM-only UI input, generated synthetic media, actual separately pinned ffmpeg and durable Tauri runner; no user files, clipboard, global input, real cursor, native dialog, install, signing or OS changes."
+}

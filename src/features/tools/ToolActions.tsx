@@ -32,7 +32,7 @@ export function ToolActions({ paths }: { paths: string[] }) {
         />
       ) : (
         applicable.length > 0 && (
-          <div className="island-row" role="group" aria-label="File tools">
+          <div className="island-row tool-actions" role="group" aria-label="File tools">
             {applicable.map((tool) => (
               <MiniButton key={tool.id} onClick={() => choose(tool)}>
                 {tool.name}

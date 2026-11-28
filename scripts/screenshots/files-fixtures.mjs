@@ -79,6 +79,7 @@ export function filesFixture(mode) {
   );
   seed.responses.files_history = [];
   seed.responses.tool_catalog = toolCatalog;
+  seed.responses.tool_suggest = "to-jpg";
   seed.responses.tool_presets = toolPresets;
   seed.responses.tool_jobs = [];
   seed.responses.files_plan = {

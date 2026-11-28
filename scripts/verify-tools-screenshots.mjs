@@ -58,12 +58,14 @@ const report = await captureSuite(
     async ready(page) {
       if (mode.startsWith("search") || mode === "tool-sheet") {
         await page.getByRole("button", { name: "Search", exact: true }).click();
-        await page.getByRole("combobox").fill(mode === "search-pdf" ? "pdf" : "mp4");
+        await page
+          .getByRole("combobox")
+          .fill(mode === "search-pdf" ? "pdf" : mode === "tool-sheet" ? "jpg" : "mp4");
         await page.getByRole("option").first().waitFor();
         if (mode === "tool-sheet") {
-          await page.getByRole("option", { name: /To MP4/ }).click();
-          await page.getByLabel("File path").fill("C:\\Fixture\\clip.mov");
-          await page.getByRole("button", { name: "To MP4", exact: true }).waitFor();
+          await page.getByRole("option", { name: /To JPG/ }).click();
+          await page.getByLabel("File path").fill("C:\\Fixture\\photo.png");
+          await page.getByRole("button", { name: "To JPG", exact: true }).waitFor();
         }
       } else if (mode.startsWith("queue")) {
         await page
