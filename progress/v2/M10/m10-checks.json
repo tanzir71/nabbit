@@ -1,0 +1,156 @@
+{
+  "allRequiredChecksPassed": true,
+  "checks": [
+    {
+      "name": "npmVerify",
+      "exitCode": 0,
+      "source": ".tools/m10-npm-verify.log",
+      "log": "m10-npm-verify-log.txt",
+      "canonicalSha256": "7f20e8c5e0c88643e71bbec18e48e3eaf52ed5b1367c5c85bb745e0aaca43356",
+      "originalArchive": "m10-npm-verify-log.txt.original.gz",
+      "originalSha256": "c635eb82225ce8744f92cef191d1e5fed376480e6bedac2cb1c5b9ac0a681aa1",
+      "originalBytes": 15646
+    },
+    {
+      "name": "fmt",
+      "exitCode": 0,
+      "source": ".tools/m10-fmt.log",
+      "log": "m10-fmt-log.txt",
+      "canonicalSha256": "f43577bd9c68dce9e44f7ca956d7811d7e92a4ef3163f5a2098d747d6d1dd0ce",
+      "originalArchive": "m10-fmt-log.txt.original.gz",
+      "originalSha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "originalBytes": 0
+    },
+    {
+      "name": "clippy",
+      "exitCode": 0,
+      "source": ".tools/m10-clippy.log",
+      "log": "m10-clippy-log.txt",
+      "canonicalSha256": "8cb173b02aed7fb94b01da36f6dcf1cceadb7de377b87553ea8b495942f7fe12",
+      "originalArchive": "m10-clippy-log.txt.original.gz",
+      "originalSha256": "6a1a6d75fdb88831dd6d08cae04388f21fe711fd2189509932c979798d6c5dd6",
+      "originalBytes": 232
+    },
+    {
+      "name": "clippySpike",
+      "exitCode": 0,
+      "source": ".tools/m10-clippy-spike.log",
+      "log": "m10-clippy-spike-log.txt",
+      "canonicalSha256": "d4fffe11b731eb780dadd8c714aa66fec3bac4445fb602710dd1dca38f98db48",
+      "originalArchive": "m10-clippy-spike-log.txt.original.gz",
+      "originalSha256": "920e0d7037fbddea2c8a9758f6974798878a4cf4c28b23d163c693d3c705a7fb",
+      "originalBytes": 73
+    },
+    {
+      "name": "rust",
+      "exitCode": 0,
+      "source": ".tools/m10-rust.log",
+      "log": "m10-rust-log.txt",
+      "canonicalSha256": "bee93b0b8ea3409d544a51c7ddaafa4cd03b8cec394eaa3792dbfb7065b6ba26",
+      "originalArchive": "m10-rust-log.txt.original.gz",
+      "originalSha256": "2d475784efcb81dc39d7f414e3f6d9d60cfbf0934270dafe7dfe9c622f93704a",
+      "originalBytes": 38362
+    },
+    {
+      "name": "site",
+      "exitCode": 0,
+      "source": ".tools/m10-site.log",
+      "log": "m10-site-log.txt",
+      "canonicalSha256": "85bbf265dcdd69f56dc9059ca7057e94b4fea19411c4c01f9ab1a71ddd46e37b",
+      "originalArchive": "m10-site-log.txt.original.gz",
+      "originalSha256": "889a760e8f77deb38a2c6b9001084293edd9461b0c45fd1bf6108d3ebbccd4d6",
+      "originalBytes": 533
+    },
+    {
+      "name": "sourceAssets",
+      "exitCode": 0,
+      "source": ".tools/m10-site-assets.log",
+      "log": "m10-site-assets-log.txt",
+      "canonicalSha256": "c72efdc5431c7a724f181208c339cd5daa2533e770374706e76e584432a23e06",
+      "originalArchive": "m10-site-assets-log.txt.original.gz",
+      "originalSha256": "ecf50f8a1cac63b3e2f02ec218ebeff724f35900249e1fd3655de30ed871e843",
+      "originalBytes": 127
+    },
+    {
+      "name": "http",
+      "exitCode": 0,
+      "source": ".tools/m10-site-http-final.log",
+      "log": "m10-site-http-final-log.txt",
+      "canonicalSha256": "4d47213de800f183e0eda949f24229b98a8a3c369ba042b27730b88d31cc5e62",
+      "originalArchive": "m10-site-http-final-log.txt.original.gz",
+      "originalSha256": "f3cab95484601e5433ff01c500b68c764cf8f236de3d6d7997a26a21e6e4462c",
+      "originalBytes": 87
+    },
+    {
+      "name": "status",
+      "exitCode": 0,
+      "source": ".tools/m10-status.log",
+      "log": "m10-status-log.txt",
+      "canonicalSha256": "5894c50e338612867a5a9cdc14fa5350aed5941e2aaa69c1b15dfc0b089ec9e4",
+      "originalArchive": "m10-status-log.txt.original.gz",
+      "originalSha256": "d26b07e36aababea8aedf3741c873623fc2752d1271442d7f7d6a5f7733f8447",
+      "originalBytes": 143
+    },
+    {
+      "name": "accessibility",
+      "exitCode": 0,
+      "source": ".tools/m10-accessibility.log",
+      "log": "m10-accessibility-log.txt",
+      "canonicalSha256": "7da11b7bc857599b38bf19d31fec2018546aa5a3daebf4b74aba3c45bd41e35c",
+      "originalArchive": "m10-accessibility-log.txt.original.gz",
+      "originalSha256": "781aa489dee5d6ffba3f8802bb82c6eceb045321b1c15b04a1ff557a77628fee",
+      "originalBytes": 710
+    },
+    {
+      "name": "taskAudit",
+      "exitCode": 0,
+      "source": ".tools/m10-task-audit.log",
+      "log": "m10-task-audit-log.txt",
+      "canonicalSha256": "604c626d548149e6c26d67bde1c60645217a8b7202a63e6f4bf0077d2e199357",
+      "originalArchive": "m10-task-audit-log.txt.original.gz",
+      "originalSha256": "d64509b561f2bee151c48f5d91168e341883e1b7d6630cfbccab02f98be84c5d",
+      "originalBytes": 555
+    },
+    {
+      "name": "prepublication",
+      "exitCode": 0,
+      "source": ".tools/m10-prepublication.log",
+      "log": "m10-prepublication-log.txt",
+      "canonicalSha256": "2de86538b7201530f406cdd1b1a51cd60cdd009b594d4bb6a25edf9da95076c2",
+      "originalArchive": "m10-prepublication-log.txt.original.gz",
+      "originalSha256": "0b3bcf1b67d3ac429c5969259edbda3a6f552b35b28134bc06a1e69578b1abaa",
+      "originalBytes": 114
+    },
+    {
+      "name": "historySecrets",
+      "exitCode": 0,
+      "source": ".tools/m10-history-gitleaks.log",
+      "log": "m10-history-gitleaks-log.txt",
+      "canonicalSha256": "8166e1280945ecba6c7a1c8f0c7e2094e77a605ec136d178969faadb1711ba99",
+      "originalArchive": "m10-history-gitleaks-log.txt.original.gz",
+      "originalSha256": "a0f92789f34b0c6c593396dbf278215061c6448e6e7c69804d993cd557cb8f54",
+      "originalBytes": 118
+    }
+  ],
+  "applicationCommit": "c7cf668ec2aaf8c2c0ca084f0320e7b2460dbee4",
+  "buildManifestSha256": "42d9f64ca9c069aab172456551820a3a6c5a85c0b39a90f965152a5279348fa9",
+  "nativeExecutableSha256": "bd6e09e31f04a46073f12cbc4fd1f83bc2d197240b03536fabffe156f2d289ba",
+  "counts": {
+    "frontendTests": 563,
+    "frontendFiles": 54,
+    "rustPassed": 374,
+    "rustIgnored": 8,
+    "taskReceipts": 12,
+    "originalTaskPinsVerified": 29877,
+    "runtimePinsUnchanged": 734,
+    "statusCapturePairs": 8,
+    "accessibilityKeyboardContexts": 8,
+    "siteAxeScans": 24,
+    "siteFocusCaptures": 8,
+    "allM10Pngs": 1703
+  },
+  "siteTransferBytesExcludingFonts": 419508,
+  "siteBudgetExcludingFonts": 500000,
+  "axeBoundary": "All default rules, zero violations; gradient/indeterminate contrast nodes retain explicit conservative proofs in the full raw report. No rules are excluded or disabled.",
+  "newPerformanceOrPlatformClaim": false
+}

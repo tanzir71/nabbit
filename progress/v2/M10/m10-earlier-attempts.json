@@ -1,0 +1,37 @@
+{
+  "retained": [
+    {
+      "source": ".tools/m10-fetch-initial.log",
+      "log": "m10-fetch-initial-log.txt",
+      "canonicalSha256": "f43577bd9c68dce9e44f7ca956d7811d7e92a4ef3163f5a2098d747d6d1dd0ce",
+      "originalArchive": "m10-fetch-initial-log.txt.original.gz",
+      "originalSha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "originalBytes": 0
+    },
+    {
+      "source": ".tools/m10-format.log",
+      "log": "m10-format-log.txt",
+      "canonicalSha256": "ddc9898f2ecba4cc0d25a3ddf8d58aaec8fc4bb8c70938cf603509c5d0d89a81",
+      "originalArchive": "m10-format-log.txt.original.gz",
+      "originalSha256": "507cba9713a77dd3e8cd7556b5cdb83a18af9aab9f255254dbc01a6784f771cb",
+      "originalBytes": 43
+    },
+    {
+      "source": ".tools/m10-prepare-docs.log",
+      "log": "m10-prepare-docs-log.txt",
+      "canonicalSha256": "0a6786e597de30f8cba9c6c8338713332ba850bc15235a49e425edbc394cdb96",
+      "originalArchive": "m10-prepare-docs-log.txt.original.gz",
+      "originalSha256": "0e65a4967687c1b55340e8c28babbdd860335fd3661caee520bfe4b00f61baf7",
+      "originalBytes": 88
+    },
+    {
+      "source": ".tools/m10-site-http.log",
+      "log": "m10-site-http-log.txt",
+      "canonicalSha256": "9a70a592207446b6e864ae36d71ae003fd5057026c070239d14a15edd50a0298",
+      "originalArchive": "m10-site-http-log.txt.original.gz",
+      "originalSha256": "664dea4d0bbb3e969eb237b0baefb05b6fec4dcc6144cb2ce6b7e6365bcbafb8",
+      "originalBytes": 853
+    }
+  ],
+  "resolution": "The initial HTTP verification used unsupported milestone/prefix flags. The corrected --assets/--report invocation passed and is authoritative. No product check or rule was weakened. Other preparation/fetch/format logs are retained here."
+}

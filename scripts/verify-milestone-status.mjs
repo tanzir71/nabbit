@@ -164,6 +164,13 @@ try {
                 caret: "hide",
                 scale: "device",
               });
+              const repeat = await page.locator("#progress").screenshot({
+                type: "png",
+                animations: "disabled",
+                caret: "hide",
+                scale: "device",
+              });
+              assert.equal(sha(png), sha(repeat), "Milestone captures must repeat exactly");
               assert(png.length <= 300000);
               const box = await page.locator("#progress").boundingBox();
               const scroll = await page.evaluate(() => ({
@@ -201,6 +208,7 @@ try {
                 clipCss: box,
                 enclosedCssHeight,
                 sha256: sha(png),
+                repeatMatches: true,
                 font,
                 mono,
                 assets,
