@@ -1,0 +1,296 @@
+> nabbit@0.1.0 verify
+> npm run verify:icons && npm run verify:fonts && npm run verify:tokens && npm run verify:licenses && npm run typecheck && npm run lint && npm test -- --run && npm run build
+
+
+> nabbit@0.1.0 verify:icons
+> node scripts/generate-brand-icons.mjs --check
+
+Verified desktop app icons, optical tray glyphs and site favicons.
+
+> nabbit@0.1.0 verify:fonts
+> node scripts/verify-font-assets.mjs
+
+Verified 5 pinned Geist 1.9.2 assets and OFL.
+
+> nabbit@0.1.0 verify:tokens
+> node scripts/generate-tokens.mjs --check
+
+Verified 36 light/dark tokens for app and site.
+
+> nabbit@0.1.0 verify:licenses
+> node scripts/verify-licenses.mjs
+
+bans ok, licenses ok
+{"cargoDeny":"cargo-deny 0.22.2","generatedNotices":true,"corePolicyPassed":true,"negativeFixtures":[{"name":"gpl-fixture","license":"GPL-3.0-only","rejected":true},{"name":"agpl-fixture","license":"AGPL-3.0-only","rejected":true},{"name":"lgpl-fixture","license":"LGPL-2.1-only","rejected":true},{"name":"ffmpeg-next","license":"MIT","rejected":true}]}
+
+> nabbit@0.1.0 typecheck
+> tsc -b
+
+
+> nabbit@0.1.0 lint
+> eslint .
+
+
+> nabbit@0.1.0 test
+> vitest --run
+
+
+ RUN  v3.2.7 D:/claude-upgrade-26/nabbit
+
+ ✓ src/features/notes/NoteEditor.test.tsx (12 tests) 4394ms
+   ✓ Notes editor > opens a clean persisted note in a sticky and closes only after native success  493ms
+   ✓ Notes editor > saves editor changes before popping out and keeps the saved note when creation fails  495ms
+   ✓ Notes editor > leaves a failed editor save open without creating a stale sticky  398ms
+   ✓ Notes editor > submits changed fields with stable checklist IDs and original scope/token  815ms
+   ✓ Notes editor > requires a decision before closing a dirty draft and preserves failed saves  771ms
+   ✓ Notes editor > saves reminders with all unedited fields and optimistic tokens  370ms
+   ✓ Notes editor > shows attachment and conflict history text safely and supports task completion  446ms
+ ✓ src/features/notes/TackConnectionSheet.test.tsx (10 tests) 5585ms
+   ✓ Tack connection > requires HTTPS and workspace confirmation, clears the password before awaiting, and uploads only by choice  2535ms
+   ✓ Tack connection > requires saved recovery confirmation and keeps the code confined to the mounted dialog  670ms
+   ✓ Tack connection > ignores late workspace preferences and preserves comma-separated label input  642ms
+   ✓ Tack connection > sanitizes untrusted errors and disables repeated actions during Retry-After  399ms
+   ✓ Tack connection > keeps a pending login inside the dialog until it completes  499ms
+   ✓ Tack connection > clears a stale recovery code and returns to a password-free sign-in form  576ms
+ ✓ src/features/notes/LinksPanel.test.tsx (7 tests) 3678ms
+   ✓ Links collection > combines domain search, folder label chips and Later while keeping bookmark addresses  855ms
+   ✓ Links collection > uses frozen card guards for bulk labels and clears selection only after acknowledgement  902ms
+   ✓ Links collection > keeps stale selections recoverable after a rejected write and permits read-only open/copy  829ms
+   ✓ Copied link actions > saves with an idempotent scoped packet, cleans a copy and preserves the original URL  503ms
+ ✓ src/views/NotesView.test.tsx (12 tests) 5071ms
+   ✓ local Notes view > consumes a navigation draft without creating or reading a persisted card  584ms
+   ✓ local Notes view > groups pinned cards and filters by priority, label and search across all card content  1049ms
+   ✓ local Notes view > removing one checklist row does not reassign another row's ID or checked state  1567ms
+   ✓ local Notes view > archives and trashes softly and restores through the view menu  1424ms
+ ✓ src/features/clipboard/IslandClipboard.test.tsx (8 tests) 3169ms
+   ✓ Clipboard island > reuses fuzzy search and all six type/pin filters without requesting OS clipboard access  1363ms
+   ✓ Clipboard island > Ctrl+F focuses search; numeric queries and IME/modifiers never pick an item  394ms
+   ✓ Clipboard island > arrows select within filtered results; Ctrl+C copies, Del removes and pinning updates Pinned  497ms
+ ✓ src/features/downloads/downloadSheets.test.tsx (22 tests) 3435ms
+   ✓ download sheet workflows > wires every options control, remembered site choice and job-scoped browser into the explicit request  502ms
+ ✓ src/features/notes/useStickyDraft.test.tsx (16 tests) 1529ms
+ ✓ src/features/shelf/IslandShelf.test.tsx (8 tests) 2474ms
+   ✓ Shelf island > shows file names, real sizes, an unavailable row and a functional Remove without reading OS clipboard  430ms
+   ✓ Shelf island > selects a subset, copies exactly its IDs, and removes only those references  440ms
+   ✓ Shelf island > Ctrl+A/C/Delete route from the tab before global search and preserve IME/modifier editing  440ms
+   ✓ Shelf island > dragging a selected file builds the group, while another file drags alone  339ms
+ ✓ src/features/tools/RegistryAcceptance.test.tsx (44 tests) 2548ms
+   ✓ discovers every native registry entry in Search without starting work  1098ms
+ ✓ src/features/timer/FocusTimer.test.tsx (7 tests) 1562ms
+   ✓ renders actual remaining time and round/link data with functioning Pause/Stop and deferred logging  306ms
+   ✓ custom form preserves empty numeric input and a rejected draft  507ms
+ ✓ src/features/notes/BookmarkImportSheet.test.tsx (6 tests) 1816ms
+   ✓ Bookmark import sheet > previews only selected sources, defaults to Later and exposes exactly the files read  807ms
+   ✓ Bookmark import sheet > retries the frozen plan after a lost acknowledgement and keeps one undo group  454ms
+ ✓ src/features/clipboard/context.test.tsx (8 tests) 1123ms
+   ✓ clipboard context > does not act until clicked, offers keyboard case navigation and retries the same frozen request  490ms
+ ✓ src/components/Components.test.tsx (8 tests) 1207ms
+   ✓ foundation interaction contracts > buttons require an explicit submit type inside a form  379ms
+ ✓ src/features/tools/MediaReview.test.tsx (9 tests) 1303ms
+   ✓ defaults to Exact without a GPU test and submits edited limits only after the explicit click  358ms
+ ✓ src/features/downloads/downloadErrors.test.tsx (25 tests) 628ms
+ ✓ src/features/downloads/downloads.test.tsx (17 tests) 1108ms
+ ✓ src/views/IslandSettings.test.tsx (3 tests) 919ms
+   ✓ persists independent shape, size, monitor and enabled changes without overwriting other settings  478ms
+ ✓ src/views/ClipboardList.test.tsx (2 tests) 840ms
+   ✓ ClipboardList acceptance behavior > filters instantly, copies by click, and supports keyboard copy/delete/focus shortcuts  778ms
+ ✓ src/surfaces/island/SearchContent.test.tsx (7 tests) 791ms
+   ✓ searches current notes, saved links, pins, Shelf and clipboard with guarded actions  312ms
+ ✓ src/features/media/MediaPlayer.test.tsx (4 tests) 809ms
+   ✓ renders recorded metadata, timeline and supported controls and sends exact typed actions  432ms
+stderr | src/features/tools/ImageDocumentReview.test.tsx > offers Make PDF first for a batch of images without starting any work
+Error: Uncaught [TypeError: __vite_ssr_import_3__.toolsApi.dropCatalog is not a function]
+    at reportException (D:\claude-upgrade-26\nabbit\node_modules\jsdom\lib\jsdom\living\helpers\runtime-script-errors.js:66:24)
+    at innerInvokeEventListeners (D:\claude-upgrade-26\nabbit\node_modules\jsdom\lib\jsdom\living\events\EventTarget-impl.js:353:9)
+    at invokeEventListeners (D:\claude-upgrade-26\nabbit\node_modules\jsdom\lib\jsdom\living\events\EventTarget-impl.js:286:3)
+    at HTMLUnknownElementImpl._dispatch (D:\claude-upgrade-26\nabbit\node_modules\jsdom\lib\jsdom\living\events\EventTarget-impl.js:233:9)
+    at HTMLUnknownElementImpl.dispatchEvent (D:\claude-upgrade-26\nabbit\node_modules\jsdom\lib\jsdom\living\events\EventTarget-impl.js:104:17)
+    at HTMLUnknownElement.dispatchEvent (D:\claude-upgrade-26\nabbit\node_modules\jsdom\lib\jsdom\living\generated\EventTarget.js:241:34)
+    at Object.invokeGuardedCallbackDev (D:\claude-upgrade-26\nabbit\node_modules\react-dom\cjs\react-dom.development.js:4213:16)
+    at invokeGuardedCallback (D:\claude-upgrade-26\nabbit\node_modules\react-dom\cjs\react-dom.development.js:4277:31)
+    at reportUncaughtErrorInDEV (D:\claude-upgrade-26\nabbit\node_modules\react-dom\cjs\react-dom.development.js:22877:5)
+    at captureCommitPhaseError (D:\claude-upgrade-26\nabbit\node_modules\react-dom\cjs\react-dom.development.js:27165:5) TypeError: __vite_ssr_import_3__.toolsApi.dropCatalog is not a function
+    at D:\claude-upgrade-26\nabbit\src\features\files\FileDropContent.tsx:51:49
+    at commitHookEffectListMount (D:\claude-upgrade-26\nabbit\node_modules\react-dom\cjs\react-dom.development.js:23189:26)
+    at commitPassiveMountOnFiber (D:\claude-upgrade-26\nabbit\node_modules\react-dom\cjs\react-dom.development.js:24970:11)
+    at commitPassiveMountEffects_complete (D:\claude-upgrade-26\nabbit\node_modules\react-dom\cjs\react-dom.development.js:24930:9)
+    at commitPassiveMountEffects_begin (D:\claude-upgrade-26\nabbit\node_modules\react-dom\cjs\react-dom.development.js:24917:7)
+    at commitPassiveMountEffects (D:\claude-upgrade-26\nabbit\node_modules\react-dom\cjs\react-dom.development.js:24905:3)
+    at flushPassiveEffectsImpl (D:\claude-upgrade-26\nabbit\node_modules\react-dom\cjs\react-dom.development.js:27078:3)
+    at flushPassiveEffects (D:\claude-upgrade-26\nabbit\node_modules\react-dom\cjs\react-dom.development.js:27023:14)
+    at commitRootImpl (D:\claude-upgrade-26\nabbit\node_modules\react-dom\cjs\react-dom.development.js:26974:5)
+    at commitRoot (D:\claude-upgrade-26\nabbit\node_modules\react-dom\cjs\react-dom.development.js:26721:5)
+The above error occurred in the <FileDropContent> component:
+
+    at FileDropContent (D:\claude-upgrade-26\nabbit\src\features\files\FileDropContent.tsx:10:3)
+
+Consider adding an error boundary to your tree to customize error handling behavior.
+Visit https://reactjs.org/link/error-boundaries to learn more about error boundaries.
+
+ ❯ src/features/tools/ImageDocumentReview.test.tsx (8 tests | 1 failed) 1196ms
+   ✓ keeps defaults and reuses request IDs after partial batch submission fails  427ms
+   ✓ offers both codec pages and keeps Run disabled when HEIC cannot decode 138ms
+   ✓ preserves reordered PDF inputs and emits each selected page as its own PNG job 149ms
+   ✓ validates ranges and overlap before queueing any work 3ms
+   × offers Make PDF first for a batch of images without starting any work 24ms
+     → toolsApi.dropCatalog is not a function
+   ✓ uses saved preset quality and preserves an explicit quality edit 117ms
+   ✓ keeps an incoming Explorer format and waits for its saved quality before enabling Run 140ms
+   ✓ loads the requested size preset while preserving a limit edited before preferences arrive 196ms
+ ✓ src/views/EngineHealthCard.test.tsx (6 tests) 470ms
+ ✓ src/features/notes/capture.test.tsx (187 tests) 1237ms
+   ✓ Explicit quick capture > opens the full editor without reading or creating a card and blocks empty Ctrl+Enter  546ms
+ ✓ src/features/files/Files.test.tsx (10 tests) 976ms
+ ✓ src/features/clipboard/explorer.test.tsx (4 tests) 731ms
+   ✓ integration options are off by default and change the backend only after Save  513ms
+ ✓ src/features/tools/ToolQueue.test.tsx (5 tests) 401ms
+ ✓ spikes/island/IslandSpike.test.tsx (4 tests) 317ms
+ ✓ src/surfaces/island/IslandApp.test.tsx (1 test) 354ms
+   ✓ does not close an opening native Peek when the activity snapshot initializes first  351ms
+ ✓ src/views/IslandShortcutField.test.tsx (3 tests) 208ms
+ ✓ src/features/notes/IslandNotesSync.test.tsx (2 tests) 335ms
+   ✓ keeps a pushed state when the initial snapshot arrives late and cleans up on collapse  327ms
+stderr | src/lib/islandDrop.test.tsx > island drop payload contract > routes a synthetic Files drop using its visible zone order
+Error: Uncaught [TypeError: __vite_ssr_import_3__.toolsApi.dropCatalog is not a function]
+    at reportException (D:\claude-upgrade-26\nabbit\node_modules\jsdom\lib\jsdom\living\helpers\runtime-script-errors.js:66:24)
+    at innerInvokeEventListeners (D:\claude-upgrade-26\nabbit\node_modules\jsdom\lib\jsdom\living\events\EventTarget-impl.js:353:9)
+    at invokeEventListeners (D:\claude-upgrade-26\nabbit\node_modules\jsdom\lib\jsdom\living\events\EventTarget-impl.js:286:3)
+    at HTMLUnknownElementImpl._dispatch (D:\claude-upgrade-26\nabbit\node_modules\jsdom\lib\jsdom\living\events\EventTarget-impl.js:233:9)
+    at HTMLUnknownElementImpl.dispatchEvent (D:\claude-upgrade-26\nabbit\node_modules\jsdom\lib\jsdom\living\events\EventTarget-impl.js:104:17)
+    at HTMLUnknownElement.dispatchEvent (D:\claude-upgrade-26\nabbit\node_modules\jsdom\lib\jsdom\living\generated\EventTarget.js:241:34)
+    at Object.invokeGuardedCallbackDev (D:\claude-upgrade-26\nabbit\node_modules\react-dom\cjs\react-dom.development.js:4213:16)
+    at invokeGuardedCallback (D:\claude-upgrade-26\nabbit\node_modules\react-dom\cjs\react-dom.development.js:4277:31)
+    at reportUncaughtErrorInDEV (D:\claude-upgrade-26\nabbit\node_modules\react-dom\cjs\react-dom.development.js:22877:5)
+    at captureCommitPhaseError (D:\claude-upgrade-26\nabbit\node_modules\react-dom\cjs\react-dom.development.js:27165:5) TypeError: __vite_ssr_import_3__.toolsApi.dropCatalog is not a function
+    at D:\claude-upgrade-26\nabbit\src\features\files\FileDropContent.tsx:51:49
+    at commitHookEffectListMount (D:\claude-upgrade-26\nabbit\node_modules\react-dom\cjs\react-dom.development.js:23189:26)
+    at commitPassiveMountOnFiber (D:\claude-upgrade-26\nabbit\node_modules\react-dom\cjs\react-dom.development.js:24970:11)
+    at commitPassiveMountEffects_complete (D:\claude-upgrade-26\nabbit\node_modules\react-dom\cjs\react-dom.development.js:24930:9)
+    at commitPassiveMountEffects_begin (D:\claude-upgrade-26\nabbit\node_modules\react-dom\cjs\react-dom.development.js:24917:7)
+    at commitPassiveMountEffects (D:\claude-upgrade-26\nabbit\node_modules\react-dom\cjs\react-dom.development.js:24905:3)
+    at flushPassiveEffectsImpl (D:\claude-upgrade-26\nabbit\node_modules\react-dom\cjs\react-dom.development.js:27078:3)
+    at flushPassiveEffects (D:\claude-upgrade-26\nabbit\node_modules\react-dom\cjs\react-dom.development.js:27023:14)
+    at D:\claude-upgrade-26\nabbit\node_modules\react-dom\cjs\react-dom.development.js:26808:9
+    at workLoop (D:\claude-upgrade-26\nabbit\node_modules\scheduler\cjs\scheduler.development.js:266:34)
+The above error occurred in the <FileDropContent> component:
+
+    at FileDropContent (D:\claude-upgrade-26\nabbit\src\features\files\FileDropContent.tsx:10:3)
+    at Suspense
+    at DropContent (D:\claude-upgrade-26\nabbit\src\surfaces\island\DropContent.tsx:28:3)
+    at div
+    at Target (D:\claude-upgrade-26\nabbit\src\lib\islandDrop.test.tsx:33:49)
+
+Consider adding an error boundary to your tree to customize error handling behavior.
+Visit https://reactjs.org/link/error-boundaries to learn more about error boundaries.
+
+ ❯ src/lib/islandDrop.test.tsx (4 tests | 1 failed) 176ms
+   ✓ island drop payload contract > routes a synthetic text/uri-list drop using its visible zone order 89ms
+   × island drop payload contract > routes a synthetic Files drop using its visible zone order 53ms
+     → expected [] to deeply equal [ 'shelf', 'move' ]
+   ✓ island drop payload contract > routes a synthetic text/plain drop using its visible zone order 29ms
+   ✓ island drop payload contract > rejects non-web URI schemes and preserves image-only note intake 2ms
+ ✓ src/features/media/input.test.ts (3 tests) 94ms
+ ✓ src/surfaces/island/PrivacyContent.test.tsx (3 tests) 169ms
+ ✓ src/surfaces/island/PowerContent.test.tsx (3 tests) 154ms
+ ✓ src/lib/islandKeyboard.test.ts (4 tests) 36ms
+ ✓ src/lib/islandInput.test.ts (7 tests) 26ms
+ ✓ src/lib/islandMotion.test.ts (2 tests) 86ms
+ ✓ src/lib/islandVisibility.test.ts (5 tests) 26ms
+ ✓ src/features/tools/mediaLayout.test.ts (2 tests) 23ms
+ ✓ src/lib/downloadPresets.test.ts (5 tests) 19ms
+ ✓ scripts/entry-bundles.test.js (4 tests) 22ms
+ ✓ src/lib/islandActivity.test.ts (6 tests) 21ms
+ ✓ scripts/screenshots/mock-ipc.test.js (5 tests) 18ms
+ ✓ scripts/island-frame-metrics.test.js (6 tests) 21ms
+ ✓ scripts/screenshots/policy.test.js (2 tests) 23ms
+ ✓ src/lib/islandSurface.test.ts (2 tests) 15ms
+ ✓ src/store/islandStore.test.ts (16 tests) 15ms
+ ✓ src/store/capture.test.ts (4 tests) 10ms
+ ✓ src/features/shelf/api.test.ts (2 tests) 13ms
+ ✓ spikes/island/drop.test.ts (3 tests) 11ms
+ ✓ src/lib/theme.test.ts (4 tests) 14ms
+ ✓ src/lib/search.test.ts (3 tests) 9ms
+ ✓ src/store/settingsBootstrap.test.ts (2 tests) 10ms
+ ✓ src/features/clipboard/model.test.ts (1 test) 4ms
+
+⎯⎯⎯⎯⎯⎯⎯ Failed Tests 2 ⎯⎯⎯⎯⎯⎯⎯
+
+ FAIL  src/lib/islandDrop.test.tsx > island drop payload contract > routes a synthetic Files drop using its visible zone order
+AssertionError: expected [] to deeply equal [ 'shelf', 'move' ]
+
+- Expected
++ Received
+
+- [
+-   "shelf",
+-   "move",
+- ]
++ []
+
+ ❯ src/lib/islandDrop.test.tsx:47:58
+     45|       );
+     46|       const zones = [...view.container.querySelectorAll<HTMLElement>("…
+     47|       expect(zones.map((zone) => zone.dataset.dropZone)).toEqual(
+       |                                                          ^
+     48|         first === "shelf"
+     49|           ? ["shelf", "move"]
+
+⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯[1/2]⎯
+
+ FAIL  src/features/tools/ImageDocumentReview.test.tsx > offers Make PDF first for a batch of images without starting any work
+TypeError: toolsApi.dropCatalog is not a function
+ ❯ src/features/files/FileDropContent.tsx:51:49
+     49|     let active = true;
+     50|     setTools([]);
+     51|     void Promise.all([filesApi.pins(), toolsApi.dropCatalog(payload.fi…
+       |                                                 ^
+     52|       .then(([pins, tools]) => {
+     53|         if (active) {
+ ❯ commitHookEffectListMount node_modules/react-dom/cjs/react-dom.development.js:23189:26
+ ❯ commitPassiveMountOnFiber node_modules/react-dom/cjs/react-dom.development.js:24970:11
+ ❯ commitPassiveMountEffects_complete node_modules/react-dom/cjs/react-dom.development.js:24930:9
+ ❯ commitPassiveMountEffects_begin node_modules/react-dom/cjs/react-dom.development.js:24917:7
+ ❯ commitPassiveMountEffects node_modules/react-dom/cjs/react-dom.development.js:24905:3
+ ❯ flushPassiveEffectsImpl node_modules/react-dom/cjs/react-dom.development.js:27078:3
+ ❯ flushPassiveEffects node_modules/react-dom/cjs/react-dom.development.js:27023:14
+ ❯ commitRootImpl node_modules/react-dom/cjs/react-dom.development.js:26974:5
+ ❯ commitRoot node_modules/react-dom/cjs/react-dom.development.js:26721:5
+
+⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯[2/2]⎯
+
+⎯⎯⎯⎯⎯⎯ Unhandled Errors ⎯⎯⎯⎯⎯⎯
+
+Vitest caught 1 unhandled error during the test run.
+This might cause false positive tests. Resolve unhandled errors to make sure your tests are not affected.
+
+⎯⎯⎯⎯⎯ Uncaught Exception ⎯⎯⎯⎯⎯
+TypeError: toolsApi.dropCatalog is not a function
+ ❯ src/features/files/FileDropContent.tsx:51:49
+     49|     let active = true;
+     50|     setTools([]);
+     51|     void Promise.all([filesApi.pins(), toolsApi.dropCatalog(payload.fi…
+       |                                                 ^
+     52|       .then(([pins, tools]) => {
+     53|         if (active) {
+ ❯ commitHookEffectListMount node_modules/react-dom/cjs/react-dom.development.js:23189:26
+ ❯ commitPassiveMountOnFiber node_modules/react-dom/cjs/react-dom.development.js:24970:11
+ ❯ commitPassiveMountEffects_complete node_modules/react-dom/cjs/react-dom.development.js:24930:9
+ ❯ commitPassiveMountEffects_begin node_modules/react-dom/cjs/react-dom.development.js:24917:7
+ ❯ commitPassiveMountEffects node_modules/react-dom/cjs/react-dom.development.js:24905:3
+ ❯ flushPassiveEffectsImpl node_modules/react-dom/cjs/react-dom.development.js:27078:3
+ ❯ flushPassiveEffects node_modules/react-dom/cjs/react-dom.development.js:27023:14
+ ❯ node_modules/react-dom/cjs/react-dom.development.js:26808:9
+ ❯ workLoop node_modules/scheduler/cjs/scheduler.development.js:266:34
+
+This error originated in "src/lib/islandDrop.test.tsx" test file. It doesn't mean the error was thrown inside the file itself, but while it was running.
+The latest test that might've caused the error is "routes a synthetic Files drop using its visible zone order". It might mean one of the following:
+- The error was thrown, while Vitest was running this test.
+- If the error occurred after the test had been completed, this was the last documented test before it was thrown.
+⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯
+
+
+ Test Files  2 failed | 52 passed (54)
+      Tests  2 failed | 561 passed (563)
+     Errors  1 error
+   Start at  11:20:04
+   Duration  85.48s (transform 5.95s, setup 7.73s, collect 22.50s, tests 51.23s, environment 56.79s, prepare 9.03s)

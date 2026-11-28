@@ -67,6 +67,13 @@ fn registry_and_presets_are_unique_and_match_supported_inputs() {
     for tool in tools {
         assert_eq!(tool.accepts.text, tool.id == "encode-qr");
         assert_eq!(tool.accepts.link, tool.id == "encode-qr");
+        assert_eq!(
+            tool.accepts.image,
+            matches!(
+                tool.executor_for(Path::new("fixture.png")),
+                registry::Executor::Image(_)
+            ) || (tool.accepts_path(Path::new("fixture.png")) && tool.category == "documents")
+        );
         for preset in tool.presets {
             assert!(registry::presets().iter().any(|p| p.id == *preset));
         }
@@ -79,6 +86,26 @@ fn registry_and_presets_are_unique_and_match_supported_inputs() {
     for p in registry::presets() {
         registry::validate_preset(&p).unwrap();
     }
+}
+#[test]
+fn registry_contract_fixture_matches_native_metadata() {
+    let actual =
+        serde_json::json!({ "tools": registry::catalog(), "presets": registry::presets() });
+    if let Ok(path) = std::env::var("NABBIT_TOOL_CATALOG_REPORT_PATH") {
+        let file = fs::OpenOptions::new()
+            .write(true)
+            .create_new(true)
+            .open(path)
+            .unwrap();
+        serde_json::to_writer_pretty(file, &actual).unwrap();
+    }
+    let fixture =
+        Path::new(env!("CARGO_MANIFEST_DIR")).join("../src/features/tools/catalog.fixture.json");
+    let expected: serde_json::Value = serde_json::from_slice(&fs::read(fixture).unwrap()).unwrap();
+    assert_eq!(
+        actual, expected,
+        "Regenerate the complete frontend catalog fixture from native metadata"
+    );
 }
 #[test]
 fn drop_suggestions_use_saved_cap_and_conversion_priority() {

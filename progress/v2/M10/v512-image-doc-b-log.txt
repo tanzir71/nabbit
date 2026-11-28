@@ -1,0 +1,51 @@
+file:///D:/claude-upgrade-26/nabbit/scripts/screenshots/harness.mjs:414
+            throw new Error(`${scenario.name} (${theme}@${scale}x): ${error.message}`, {
+                  ^
+
+Error: file-tools-pdf (dark@1.5x): file-tools-pdf has runtime/network failures
++ actual - expected
+
++ [
++   'Console error: Failed to load resource: the server responded with a status of 404 (Not Found)',
++   'Console error: Failed to load resource: the server responded with a status of 404 (Not Found)',
++   'Console error: Failed to load resource: the server responded with a status of 404 (Not Found)',
++   'Console error: Failed to load resource: the server responded with a status of 404 (Not Found)',
++   'Console error: Failed to load resource: the server responded with a status of 404 (Not Found)',
++   'Console error: Failed to load resource: the server responded with a status of 404 (Not Found)'
++ ]
+- []
+
+    at captureSuite (file:///D:/claude-upgrade-26/nabbit/scripts/screenshots/harness.mjs:414:19)
+    at async file:///D:/claude-upgrade-26/nabbit/scripts/verify-image-document-screenshots.mjs:24:16 {
+  [cause]: AssertionError [ERR_ASSERTION]: file-tools-pdf has runtime/network failures
+  + actual - expected
+
+  + [
+  +   'Console error: Failed to load resource: the server responded with a status of 404 (Not Found)',
+  +   'Console error: Failed to load resource: the server responded with a status of 404 (Not Found)',
+  +   'Console error: Failed to load resource: the server responded with a status of 404 (Not Found)',
+  +   'Console error: Failed to load resource: the server responded with a status of 404 (Not Found)',
+  +   'Console error: Failed to load resource: the server responded with a status of 404 (Not Found)',
+  +   'Console error: Failed to load resource: the server responded with a status of 404 (Not Found)'
+  + ]
+  - []
+
+      at captureSuite (file:///D:/claude-upgrade-26/nabbit/scripts/screenshots/harness.mjs:389:20)
+      at async file:///D:/claude-upgrade-26/nabbit/scripts/verify-image-document-screenshots.mjs:24:16 {
+    generatedMessage: false,
+    code: 'ERR_ASSERTION',
+    actual: [
+      'Console error: Failed to load resource: the server responded with a status of 404 (Not Found)',
+      'Console error: Failed to load resource: the server responded with a status of 404 (Not Found)',
+      'Console error: Failed to load resource: the server responded with a status of 404 (Not Found)',
+      'Console error: Failed to load resource: the server responded with a status of 404 (Not Found)',
+      'Console error: Failed to load resource: the server responded with a status of 404 (Not Found)',
+      'Console error: Failed to load resource: the server responded with a status of 404 (Not Found)'
+    ],
+    expected: [],
+    operator: 'deepStrictEqual',
+    diff: 'simple'
+  }
+}
+
+Node.js v24.22.2

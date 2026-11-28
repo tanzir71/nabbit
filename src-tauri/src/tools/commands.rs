@@ -43,8 +43,21 @@ pub(crate) fn caller(app: &tauri::AppHandle, window: &tauri::WebviewWindow) -> R
 pub fn tool_catalog(
     app: tauri::AppHandle,
     window: tauri::WebviewWindow,
+    paths: Option<Vec<String>>,
 ) -> Result<Vec<registry::Tool>> {
     caller(&app, &window)?;
+    if let Some(paths) = paths {
+        if paths.len() > 256 {
+            return Err(msg("Choose at most 256 files"));
+        }
+        if paths.is_empty() || crate::context::silent(&app) {
+            return Ok(vec![]);
+        }
+        return Ok(registry::catalog()
+            .into_iter()
+            .filter(|tool| paths.iter().all(|path| tool.accepts_path(Path::new(path))))
+            .collect());
+    }
     Ok(registry::catalog())
 }
 #[tauri::command]

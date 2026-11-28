@@ -4,7 +4,10 @@ import { describe, expect, it, vi } from "vitest";
 vi.mock("../features/files/api", () => ({
   filesApi: { pins: async () => [], hints: async () => ({}) },
 }));
-vi.mock("../features/tools/api", () => ({ toolsApi: { catalog: async () => [] } }));
+vi.mock("../features/tools/api", async (original) => ({
+  ...(await original<object>()),
+  toolsApi: { catalog: async () => [], dropCatalog: async () => [] },
+}));
 import { DropContent } from "../surfaces/island/DropContent";
 import { classify, readDrag, routeDrop, type DropZone, type Receipt } from "./islandDrop";
 

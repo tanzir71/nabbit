@@ -18,7 +18,13 @@ vi.mock("./documentApi", async (original) => ({
 }));
 vi.mock("./api", async (original) => ({
   ...(await original<object>()),
-  toolsApi: { presets: vi.fn(), pick: vi.fn(), catalog: vi.fn(), suggest: vi.fn() },
+  toolsApi: {
+    presets: vi.fn(),
+    pick: vi.fn(),
+    catalog: vi.fn(),
+    dropCatalog: vi.fn(),
+    suggest: vi.fn(),
+  },
 }));
 vi.mock("../files/api", async (original) => ({
   ...(await original<object>()),
@@ -153,7 +159,7 @@ it("validates ranges and overlap before queueing any work", () => {
 it("offers Make PDF first for a batch of images without starting any work", async () => {
   vi.mocked(filesApi.pins).mockResolvedValue([]);
   vi.mocked(filesApi.hints).mockResolvedValue({});
-  vi.mocked(toolsApi.catalog).mockResolvedValue([
+  vi.mocked(toolsApi.dropCatalog).mockResolvedValue([
     { ...tool, id: "images-pdf", name: "Make PDF", category: "documents", presets: ["pdf"] },
   ]);
   vi.mocked(toolsApi.suggest).mockResolvedValue("images-pdf");

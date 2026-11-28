@@ -5,6 +5,9 @@ import process from "node:process";
 import { captureSuite } from "./screenshots/harness.mjs";
 import { filesFixture } from "./screenshots/files-fixtures.mjs";
 const root = fileURLToPath(new URL("../", import.meta.url));
+const registry = JSON.parse(
+  await readFile(new URL("../src/features/tools/catalog.fixture.json", import.meta.url), "utf8"),
+);
 const axe = await readFile(new URL("../node_modules/axe-core/axe.min.js", import.meta.url), "utf8");
 const slots = JSON.parse(
   await readFile(new URL("../src/assets/island/slots.json", import.meta.url), "utf8"),
@@ -21,6 +24,7 @@ const modes = [
   "move-confirm",
   "drop-pin",
   "drop-copy",
+  "drop-tools",
   "moved-compact",
   "moved-peek",
   "download-done",
@@ -69,7 +73,11 @@ const report = await captureSuite(
                 : mode === "pin-edit"
                   ? ".files-pin-editor h2"
                   : ".files-heading > span",
-    fixture: () => filesFixture(mode),
+    fixture: () => {
+      const fixture = filesFixture(mode);
+      if (mode.startsWith("drop")) fixture.responses.tool_catalog = registry.tools;
+      return fixture;
+    },
     async ready(page) {
       if (!mode.startsWith("moved") && mode !== "download-done") {
         await page.locator('[data-island-tab="files"]').click();
@@ -138,6 +146,26 @@ const report = await captureSuite(
             { target, ctrl: mode === "drop-copy" },
           );
           await page.locator('.island-drop-content [data-drop-zone="pin:pin-2"].is-over').waitFor();
+          if (mode === "drop-tools") {
+            const summary = await page.locator(".files-drop-tools summary").boundingBox();
+            await page.evaluate(
+              (target) =>
+                globalThis.__NABBIT_CAPTURE__.emit("nabbit://native-drop", {
+                  kind: "over",
+                  payload: { files: ["C:\\Fixture\\hero-mock@2x.png"] },
+                  x: (target.x + target.width / 2) * globalThis.devicePixelRatio,
+                  y: (target.y + target.height / 2) * globalThis.devicePixelRatio,
+                  shift: false,
+                  ctrl: false,
+                }),
+              summary,
+            );
+            await page.locator(".files-drop-tools[open]").waitFor();
+            const expected = registry.tools.filter((tool) =>
+              tool.accepts.filetypes.includes("png"),
+            );
+            assert.equal(await page.locator('[data-drop-zone^="tool:"]').count(), expected.length);
+          }
         }
       }
       if (mode === "pin-peek") await page.getByRole("button", { name: /invoice-118/ }).waitFor();
@@ -219,23 +247,21 @@ const report = await captureSuite(
           geometry.height,
           274,
           JSON.stringify(
-            await page
-              .locator(".files-pin-peek")
-              .evaluate((root) =>
-                [...root.children].map((node) => ({
-                  tag: node.tagName,
-                  class: node.className,
-                  rect: node.getBoundingClientRect().toJSON(),
-                  font: globalThis.getComputedStyle(node).font,
-                  gap: globalThis.getComputedStyle(node).gap,
-                  children: [...node.children].map((child) => ({
-                    tag: child.tagName,
-                    rect: child.getBoundingClientRect().toJSON(),
-                    font: globalThis.getComputedStyle(child).font,
-                    height: globalThis.getComputedStyle(child).height,
-                  })),
+            await page.locator(".files-pin-peek").evaluate((root) =>
+              [...root.children].map((node) => ({
+                tag: node.tagName,
+                class: node.className,
+                rect: node.getBoundingClientRect().toJSON(),
+                font: globalThis.getComputedStyle(node).font,
+                gap: globalThis.getComputedStyle(node).gap,
+                children: [...node.children].map((child) => ({
+                  tag: child.tagName,
+                  rect: child.getBoundingClientRect().toJSON(),
+                  font: globalThis.getComputedStyle(child).font,
+                  height: globalThis.getComputedStyle(child).height,
                 })),
-              ),
+              })),
+            ),
           ),
         );
       }

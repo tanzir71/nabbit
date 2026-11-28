@@ -1,0 +1,242 @@
+{
+  "passed": true,
+  "checks": [
+    "All 69 embedded manifest assets and 1148 offline notices match this build.",
+    "All three clipboard privacy flags and a default password-manager source suppress context before payload storage.",
+    "The native menu creates a new transformed history item, preserves its original, and a frozen request retries without another copy event.",
+    "Copied images use an owned full PNG and thumbnail; Save never overwrites, and Text opens exact-input review without running a job.",
+    "Copied files add only owned Shelf references; a copied path pins in the isolated database and Reveal uses a fake event without launching Explorer.",
+    "An owned hidden RichEdit supplies real UIA Bengali/emoji selection; a password edit control is rejected, with no global focus/input or clipboard access.",
+    "All three full-screen/exclusive/presentation notification states suppress rows, tool/drop suggestions, batch actions and folder peeks.",
+    "Integration options default off and save through the native acceptance provider; no HKCU/Send To/input changes occur.",
+    "Concurrent owned Send To arguments become one 300ms Shelf batch; both exact files and requested WebP preset reach review without automatic execution.",
+    "Restart retains original/result clipboard history, Shelf references and off preferences; every input hash is unchanged and no tool job exists."
+  ],
+  "captures": [
+    {
+      "role": "link",
+      "raster": {
+        "opaque": 123760,
+        "min": 5,
+        "max": 245
+      },
+      "file": "v512-native-context-a-link@2x.png",
+      "sha256": "ddcb0a5ae689cb3c29fe39f9202bb50c30619df5c0a0b9621c234527d7aa6ff9",
+      "bytes": 19915,
+      "width": 884,
+      "height": 140,
+      "logicalBounds": {
+        "x": 9,
+        "y": 180,
+        "width": 442,
+        "height": 70
+      },
+      "contentBounds": {
+        "x": 9,
+        "y": 180,
+        "width": 442,
+        "height": 70
+      },
+      "scale": 2,
+      "repeatMatches": true
+    },
+    {
+      "role": "text-menu",
+      "raster": {
+        "opaque": 389760,
+        "min": 12,
+        "max": 242
+      },
+      "file": "v512-native-context-a-text-menu@2x.png",
+      "sha256": "a543fe7ff59128f25abc4d2d3b2ba095d32a69e169170b95f8e6fbabd069ccd1",
+      "bytes": 43352,
+      "width": 560,
+      "height": 696,
+      "logicalBounds": {
+        "x": 9,
+        "y": 184,
+        "width": 280,
+        "height": 348
+      },
+      "contentBounds": {
+        "x": 9,
+        "y": 184,
+        "width": 280,
+        "height": 348
+      },
+      "scale": 2,
+      "repeatMatches": true
+    },
+    {
+      "role": "case",
+      "raster": {
+        "opaque": 152000,
+        "min": 12,
+        "max": 242
+      },
+      "file": "v512-native-context-a-case@2x.png",
+      "sha256": "54f170d582e169d26d20637d66c148fc471c1b1ca9ff1718889fa44d6a255579",
+      "bytes": 18400,
+      "width": 400,
+      "height": 380,
+      "logicalBounds": {
+        "x": 9,
+        "y": 184,
+        "width": 200,
+        "height": 190
+      },
+      "contentBounds": {
+        "x": 9,
+        "y": 184,
+        "width": 200,
+        "height": 190
+      },
+      "scale": 2,
+      "repeatMatches": true
+    },
+    {
+      "role": "image",
+      "raster": {
+        "opaque": 174216,
+        "min": 5,
+        "max": 245
+      },
+      "file": "v512-native-context-a-image@2x.png",
+      "sha256": "1197ccbc0fbeb7d51799e8bf8e31c3a17a2c452c18d89a0a8622eb456941f9ce",
+      "bytes": 28418,
+      "width": 854,
+      "height": 204,
+      "logicalBounds": {
+        "x": 9,
+        "y": 180,
+        "width": 427,
+        "height": 102
+      },
+      "contentBounds": {
+        "x": 9,
+        "y": 180,
+        "width": 427,
+        "height": 102
+      },
+      "scale": 2,
+      "repeatMatches": true
+    },
+    {
+      "role": "path",
+      "raster": {
+        "opaque": 228872,
+        "min": 5,
+        "max": 245
+      },
+      "file": "v512-native-context-a-path@2x.png",
+      "sha256": "7de38b606e232972e2b37cf5a5d5a72333cb606af164aa9f951bf29688c2a24a",
+      "bytes": 36393,
+      "width": 854,
+      "height": 268,
+      "logicalBounds": {
+        "x": 9,
+        "y": 180,
+        "width": 427,
+        "height": 134
+      },
+      "contentBounds": {
+        "x": 9,
+        "y": 180,
+        "width": 427,
+        "height": 134
+      },
+      "scale": 2,
+      "repeatMatches": true
+    },
+    {
+      "role": "selection",
+      "raster": {
+        "opaque": 662704,
+        "min": 11,
+        "max": 243
+      },
+      "file": "v512-native-context-a-selection@2x.png",
+      "sha256": "5705ff09d1ebf34ee487df57b221558b60cb2e7518a5621ad49ab1dcd33287e7",
+      "bytes": 54243,
+      "width": 854,
+      "height": 776,
+      "logicalBounds": {
+        "x": 9,
+        "y": 188,
+        "width": 427,
+        "height": 388
+      },
+      "contentBounds": {
+        "x": 9,
+        "y": 188,
+        "width": 427,
+        "height": 388
+      },
+      "scale": 2,
+      "repeatMatches": true
+    },
+    {
+      "role": "explorer-review",
+      "raster": {
+        "opaque": 788932,
+        "min": 0,
+        "max": 255
+      },
+      "file": "v512-native-context-a-explorer-review@2x.png",
+      "sha256": "53a380bcfa7ed5b4f1d3e378e8614a53789c0e92abf0da5b1f0909848e34adf5",
+      "bytes": 78814,
+      "width": 920,
+      "height": 858,
+      "logicalBounds": {
+        "x": 0,
+        "y": 0,
+        "width": 460,
+        "height": 429
+      },
+      "contentBounds": {
+        "x": 0,
+        "y": 0,
+        "width": 460,
+        "height": 429
+      },
+      "scale": 2,
+      "repeatMatches": true
+    }
+  ],
+  "results": {
+    "text": {
+      "originalId": "ce83e909-55c3-4900-9aa3-7f80171242ba",
+      "resultId": "f4d2e82a-12f5-498f-bf55-e8852f80e40b",
+      "originalPreserved": true,
+      "retryCopies": 1
+    },
+    "explorer": {
+      "id": "6dac888b-032d-43ba-a826-c44284d1da63",
+      "paths": [
+        "D:\\claude-upgrade-26\\nabbit\\.tools\\v512-native-context-a-734f51f6-1f6f-4744-a565-41a145fb515d\\profile\\Owned one.png",
+        "D:\\claude-upgrade-26\\nabbit\\.tools\\v512-native-context-a-734f51f6-1f6f-4744-a565-41a145fb515d\\profile\\Owned two.png"
+      ],
+      "reviews": [
+        {
+          "target": {
+            "kind": "tool",
+            "toolId": "to-jpg",
+            "presetId": "webp"
+          },
+          "paths": [
+            "D:\\claude-upgrade-26\\nabbit\\.tools\\v512-native-context-a-734f51f6-1f6f-4744-a565-41a145fb515d\\profile\\Owned one.png",
+            "D:\\claude-upgrade-26\\nabbit\\.tools\\v512-native-context-a-734f51f6-1f6f-4744-a565-41a145fb515d\\profile\\Owned two.png"
+          ]
+        }
+      ],
+      "elapsedMs": 365
+    }
+  },
+  "executableSha256": "bd6e09e31f04a46073f12cbc4fd1f83bc2d197240b03536fabffe156f2d289ba",
+  "buildManifestSha256": "42d9f64ca9c069aab172456551820a3a6c5a85c0b39a90f965152a5279348fa9",
+  "noUserProfile": true,
+  "noRealClipboardOrGlobalInput": true,
+  "noNativeRegistration": true,
+  "noOsSettingChange": true,
+  "scope": "Owned production executable and hidden UIA controls, isolated app-data/WebView/control profiles, generated PNG fixtures, native typed IPC and DOM-only input. No real clipboard, cursor, global input, installed integrations, dialogs, account, hosted Tack, Store, signing, installer execution or OS changes."
+}

@@ -54,7 +54,9 @@ export function imageDocumentFixture(mode) {
         ? ["C:\\Fixture\\Report.pdf", ...(mode === "merge" ? ["C:\\Fixture\\Appendix.pdf"] : [])]
         : mode === "encode"
           ? ["C:\\Fixture\\Link.txt"]
-          : images;
+          : ["ocr", "decode"].includes(mode)
+            ? images.slice(0, 1)
+            : images;
   return {
     data: fixtureData("tray"),
     responses: {

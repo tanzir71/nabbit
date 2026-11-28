@@ -291,6 +291,21 @@
   flex-direction: column;
   gap: 8px;
 }
+.files-drop-tools summary {
+  cursor: pointer;
+  color: var(--island-muted);
+  font: 400 12px/16px var(--font-sans);
+}
+.files-drop-tools .tool-actions {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 6px;
+  padding-top: 8px;
+}
+.files-drop-tools .is-over {
+  outline: 1.5px solid var(--signal-base);
+  outline-offset: 1px;
+}
 .files-drop-pins .files-pin-grid {
   gap: 8px;
 }

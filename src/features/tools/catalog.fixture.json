@@ -1,0 +1,468 @@
+{
+  "presets": [
+    {
+      "id": "discord",
+      "maxMb": 20,
+      "name": "Fit for Discord",
+      "quality": 85
+    },
+    {
+      "id": "email",
+      "maxMb": 25,
+      "name": "Fit for email",
+      "quality": 85
+    },
+    {
+      "id": "outlook",
+      "maxMb": 10,
+      "name": "Fit for Outlook",
+      "quality": 85
+    },
+    {
+      "id": "whatsapp",
+      "maxMb": 100,
+      "name": "Fit for WhatsApp",
+      "quality": 85
+    },
+    {
+      "id": "custom-fit",
+      "maxMb": 20,
+      "name": "Fit under a size",
+      "quality": 85
+    },
+    {
+      "id": "jpg",
+      "maxMb": null,
+      "name": "To JPG",
+      "quality": 85
+    },
+    {
+      "id": "png",
+      "maxMb": null,
+      "name": "To PNG",
+      "quality": 85
+    },
+    {
+      "id": "webp",
+      "maxMb": null,
+      "name": "To WebP",
+      "quality": 85
+    },
+    {
+      "id": "avif",
+      "maxMb": null,
+      "name": "To AVIF",
+      "quality": 85
+    },
+    {
+      "id": "mp4",
+      "maxMb": null,
+      "name": "To MP4",
+      "quality": 85
+    },
+    {
+      "id": "trim",
+      "maxMb": null,
+      "name": "Trimmed",
+      "quality": 85
+    },
+    {
+      "id": "mp3",
+      "maxMb": null,
+      "name": "Extract audio",
+      "quality": 85
+    },
+    {
+      "id": "m4a",
+      "maxMb": null,
+      "name": "Extract audio",
+      "quality": 85
+    },
+    {
+      "id": "gif",
+      "maxMb": null,
+      "name": "To GIF",
+      "quality": 85
+    },
+    {
+      "id": "animated-webp",
+      "maxMb": null,
+      "name": "Animated WebP",
+      "quality": 85
+    },
+    {
+      "id": "strip",
+      "maxMb": null,
+      "name": "Metadata removed",
+      "quality": 85
+    },
+    {
+      "id": "smaller",
+      "maxMb": null,
+      "name": "Make smaller",
+      "quality": 85
+    },
+    {
+      "id": "pdf",
+      "maxMb": null,
+      "name": "Make PDF",
+      "quality": 85
+    },
+    {
+      "id": "split",
+      "maxMb": null,
+      "name": "Split PDF",
+      "quality": 85
+    },
+    {
+      "id": "text",
+      "maxMb": null,
+      "name": "Text",
+      "quality": 85
+    },
+    {
+      "id": "qr",
+      "maxMb": null,
+      "name": "QR",
+      "quality": 85
+    }
+  ],
+  "tools": [
+    {
+      "accepts": {
+        "filetypes": ["pdf"],
+        "image": false,
+        "link": false,
+        "text": false
+      },
+      "category": "documents",
+      "form": [],
+      "icon": "iconFile",
+      "id": "merge-pdf",
+      "keywords": ["pdf", "merge", "combine", "pages"],
+      "name": "Merge PDFs",
+      "presets": ["pdf"]
+    },
+    {
+      "accepts": {
+        "filetypes": ["pdf"],
+        "image": false,
+        "link": false,
+        "text": false
+      },
+      "category": "documents",
+      "form": [],
+      "icon": "iconFile",
+      "id": "split-pdf",
+      "keywords": ["pdf", "split", "pages", "ranges"],
+      "name": "Split PDF",
+      "presets": ["split"]
+    },
+    {
+      "accepts": {
+        "filetypes": ["jpg", "jpeg", "png", "webp", "avif", "heic", "heif", "svg"],
+        "image": true,
+        "link": false,
+        "text": false
+      },
+      "category": "documents",
+      "form": [],
+      "icon": "iconFile",
+      "id": "images-pdf",
+      "keywords": ["image", "photo", "pdf", "combine"],
+      "name": "Make PDF",
+      "presets": ["pdf"]
+    },
+    {
+      "accepts": {
+        "filetypes": ["pdf"],
+        "image": false,
+        "link": false,
+        "text": false
+      },
+      "category": "documents",
+      "form": [],
+      "icon": "iconFile",
+      "id": "pdf-png",
+      "keywords": ["pdf", "png", "render", "pages"],
+      "name": "PDF to PNG",
+      "presets": ["png"]
+    },
+    {
+      "accepts": {
+        "filetypes": ["jpg", "jpeg", "png", "webp", "avif", "heic", "heif", "svg"],
+        "image": true,
+        "link": false,
+        "text": false
+      },
+      "category": "documents",
+      "form": [],
+      "icon": "iconFile",
+      "id": "image-text",
+      "keywords": ["ocr", "text", "image", "extract"],
+      "name": "Text from image",
+      "presets": ["text"]
+    },
+    {
+      "accepts": {
+        "filetypes": ["jpg", "jpeg", "png", "webp", "avif", "heic", "heif", "svg"],
+        "image": true,
+        "link": false,
+        "text": false
+      },
+      "category": "documents",
+      "form": [],
+      "icon": "iconFile",
+      "id": "decode-qr",
+      "keywords": ["qr", "code", "decode", "image"],
+      "name": "Read QR from image",
+      "presets": ["text"]
+    },
+    {
+      "accepts": {
+        "filetypes": ["txt"],
+        "image": false,
+        "link": true,
+        "text": true
+      },
+      "category": "documents",
+      "form": [],
+      "icon": "iconFile",
+      "id": "encode-qr",
+      "keywords": ["qr", "code", "encode", "text"],
+      "name": "Text file to QR",
+      "presets": ["qr"]
+    },
+    {
+      "accepts": {
+        "filetypes": ["jpg", "jpeg", "png", "webp", "avif", "heic", "heif", "svg"],
+        "image": true,
+        "link": false,
+        "text": false
+      },
+      "category": "images",
+      "form": [],
+      "icon": "iconImage",
+      "id": "smaller-image",
+      "keywords": ["image", "photo", "resize", "compress"],
+      "name": "Make smaller",
+      "presets": ["smaller"]
+    },
+    {
+      "accepts": {
+        "filetypes": ["mp4", "mov", "mkv", "webm", "avi", "m4v"],
+        "image": false,
+        "link": false,
+        "text": false
+      },
+      "category": "media",
+      "form": [],
+      "icon": "iconFile",
+      "id": "to-mp4",
+      "keywords": ["video", "convert", "mov", "mkv", "h264"],
+      "name": "To MP4",
+      "presets": ["mp4"]
+    },
+    {
+      "accepts": {
+        "filetypes": [
+          "mp4",
+          "mov",
+          "mkv",
+          "webm",
+          "avi",
+          "m4v",
+          "mp3",
+          "m4a",
+          "wav",
+          "aac",
+          "flac",
+          "ogg",
+          "opus",
+          "wma",
+          "jpg",
+          "jpeg",
+          "png",
+          "webp",
+          "avif",
+          "heic",
+          "heif",
+          "svg"
+        ],
+        "image": true,
+        "link": false,
+        "text": false
+      },
+      "category": "media",
+      "form": [],
+      "icon": "iconFile",
+      "id": "fit-size",
+      "keywords": ["compress", "shrink", "discord", "email", "whatsapp", "size", "mb"],
+      "name": "Fit under a size",
+      "presets": ["discord", "email", "outlook", "whatsapp", "custom-fit"]
+    },
+    {
+      "accepts": {
+        "filetypes": ["mp4", "mov", "mkv", "webm", "avi", "m4v"],
+        "image": false,
+        "link": false,
+        "text": false
+      },
+      "category": "media",
+      "form": [],
+      "icon": "iconFile",
+      "id": "trim-video",
+      "keywords": ["cut", "section", "clip"],
+      "name": "Trim video",
+      "presets": ["trim"]
+    },
+    {
+      "accepts": {
+        "filetypes": [
+          "mp4",
+          "mov",
+          "mkv",
+          "webm",
+          "avi",
+          "m4v",
+          "mp3",
+          "m4a",
+          "wav",
+          "aac",
+          "flac",
+          "ogg",
+          "opus",
+          "wma"
+        ],
+        "image": false,
+        "link": false,
+        "text": false
+      },
+      "category": "media",
+      "form": [],
+      "icon": "iconFile",
+      "id": "extract-mp3",
+      "keywords": ["audio", "sound", "music", "mp3"],
+      "name": "Extract MP3",
+      "presets": ["mp3"]
+    },
+    {
+      "accepts": {
+        "filetypes": [
+          "mp4",
+          "mov",
+          "mkv",
+          "webm",
+          "avi",
+          "m4v",
+          "mp3",
+          "m4a",
+          "wav",
+          "aac",
+          "flac",
+          "ogg",
+          "opus",
+          "wma"
+        ],
+        "image": false,
+        "link": false,
+        "text": false
+      },
+      "category": "media",
+      "form": [],
+      "icon": "iconFile",
+      "id": "extract-m4a",
+      "keywords": ["audio", "sound", "aac", "m4a"],
+      "name": "Extract M4A",
+      "presets": ["m4a"]
+    },
+    {
+      "accepts": {
+        "filetypes": ["mp4", "mov", "mkv", "webm", "avi", "m4v"],
+        "image": false,
+        "link": false,
+        "text": false
+      },
+      "category": "media",
+      "form": [],
+      "icon": "iconFile",
+      "id": "to-gif",
+      "keywords": ["animation", "gif"],
+      "name": "To GIF",
+      "presets": ["gif"]
+    },
+    {
+      "accepts": {
+        "filetypes": ["mp4", "mov", "mkv", "webm", "avi", "m4v"],
+        "image": false,
+        "link": false,
+        "text": false
+      },
+      "category": "media",
+      "form": [],
+      "icon": "iconFile",
+      "id": "animated-webp",
+      "keywords": ["animation", "webp"],
+      "name": "Animated WebP",
+      "presets": ["animated-webp"]
+    },
+    {
+      "accepts": {
+        "filetypes": [
+          "mp4",
+          "mov",
+          "mkv",
+          "webm",
+          "avi",
+          "m4v",
+          "mp3",
+          "m4a",
+          "wav",
+          "aac",
+          "flac",
+          "ogg",
+          "opus",
+          "wma",
+          "jpg",
+          "jpeg",
+          "png",
+          "webp"
+        ],
+        "image": true,
+        "link": false,
+        "text": false
+      },
+      "category": "media",
+      "form": [],
+      "icon": "iconFile",
+      "id": "strip-metadata",
+      "keywords": ["privacy", "gps", "metadata", "strip", "location", "camera"],
+      "name": "Remove location and camera data",
+      "presets": ["strip"]
+    },
+    {
+      "accepts": {
+        "filetypes": ["jpg", "jpeg", "png", "webp", "avif", "heic", "heif", "svg"],
+        "image": true,
+        "link": false,
+        "text": false
+      },
+      "category": "images",
+      "form": [
+        {
+          "advanced": true,
+          "default": 85,
+          "key": "quality",
+          "label": "Quality",
+          "max": 100,
+          "min": 1
+        }
+      ],
+      "icon": "iconImage",
+      "id": "to-jpg",
+      "keywords": ["image", "photo", "convert", "jpeg", "png", "webp"],
+      "name": "Convert images",
+      "presets": ["jpg", "png", "webp", "avif"]
+    }
+  ]
+}

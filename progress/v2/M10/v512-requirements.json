@@ -1,0 +1,111 @@
+{
+  "task": "V5.12",
+  "requirements": [
+    {
+      "id": "9b.7.1",
+      "name": "Registry and default presets",
+      "passed": true,
+      "evidence": [
+        "v512-checks.json",
+        "v512-registry-a-scene.json"
+      ]
+    },
+    {
+      "id": "9b.7.2",
+      "name": "Fit under N MB",
+      "passed": true,
+      "evidence": [
+        "v512-owned-media.json"
+      ]
+    },
+    {
+      "id": "9b.7.3",
+      "name": "Quick media codecs/durations/metadata",
+      "passed": true,
+      "evidence": [
+        "v512-owned-media.json",
+        "v512-owned-edges.json"
+      ]
+    },
+    {
+      "id": "9b.7.4",
+      "name": "Images, GPS and HEIC",
+      "passed": true,
+      "evidence": [
+        "v512-registry-a-scene.json",
+        "v512-heic-avif-a-log.txt"
+      ]
+    },
+    {
+      "id": "9b.7.5",
+      "name": "PDF basics and native rendering",
+      "passed": true,
+      "evidence": [
+        "v512-registry-a-scene.json",
+        "v512-rust-b-log.txt"
+      ]
+    },
+    {
+      "id": "9b.7.6",
+      "name": "Outputs, naming and dates",
+      "passed": true,
+      "evidence": [
+        "v512-registry-a-scene.json",
+        "v512-owned-edges.json"
+      ]
+    },
+    {
+      "id": "9b.7.7",
+      "name": "Owned pins and journalled moves",
+      "passed": true,
+      "evidence": [
+        "v512-shell-a-log.txt",
+        "v512-rust-b-log.txt"
+      ]
+    },
+    {
+      "id": "9b.7.8",
+      "name": "Clipboard privacy and synthetic restoration",
+      "passed": true,
+      "evidence": [
+        "v512-native-context-a-scene.json",
+        "v512-rust-b-log.txt"
+      ]
+    },
+    {
+      "id": "9b.7.9",
+      "name": "Owned UIA selection",
+      "passed": true,
+      "evidence": [
+        "v512-native-context-a-scene.json"
+      ]
+    },
+    {
+      "id": "9b.7.10",
+      "name": "HKCU ownership, uninstall and batching",
+      "passed": true,
+      "evidence": [
+        "v512-installers-a.json",
+        "v512-native-context-a-scene.json",
+        "v512-rust-b-log.txt"
+      ]
+    },
+    {
+      "id": "9b.7.11",
+      "name": "Full-screen silence",
+      "passed": true,
+      "evidence": [
+        "v512-native-context-a-scene.json",
+        "v512-registry-a-scene.json"
+      ]
+    }
+  ],
+  "evidence": {
+    "checks": "v512-checks.json",
+    "nativeRegistry": "v512-registry-a-scene.json",
+    "nativeContext": "v512-native-context-a-scene.json",
+    "pngs": "v512-png-audit.json",
+    "earlierAttempts": "v512-earlier-attempts.json"
+  },
+  "scope": "Actual Windows x64 CPU/libx264 and first-working GPU encode, WIC, Windows.Data.Pdf software rendering, user-language OCR and owned hidden UIA controls. Clipboard/global input and native registrations are provider-only; moves use owned temporary directories and a no-dialog shell operation. No user files/accounts/profiles, OS changes, Store launch, installer execution/signing or other-platform/performance claim."
+}

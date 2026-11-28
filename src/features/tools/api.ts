@@ -38,6 +38,7 @@ export interface ToolJob {
 export const toolsApi = {
   pick: (toolId: string) => invoke<string | null>("tool_pick_input", { toolId }),
   catalog: () => invoke<Tool[]>("tool_catalog"),
+  dropCatalog: (paths: string[]) => invoke<Tool[]>("tool_catalog", { paths }),
   suggest: (paths: string[]) => invoke<string | null>("tool_suggest", { paths }),
   presets: () => invoke<ToolPreset[]>("tool_presets"),
   savePreset: (preset: ToolPreset) => invoke<void>("tool_save_preset", { preset }),
@@ -57,4 +58,7 @@ export const toolsApi = {
 export function acceptsFile(tool: Tool, path: string) {
   const ext = path.split(/[\\/]/).pop()?.split(".").pop()?.toLowerCase();
   return !!ext && tool.accepts.filetypes.includes(ext);
+}
+export function acceptsFiles(tool: Tool, paths: readonly string[]) {
+  return paths.length > 0 && paths.every((path) => acceptsFile(tool, path));
 }

@@ -1,0 +1,38 @@
+{
+  "passed": true,
+  "compiledOnly": true,
+  "installedOrExecuted": false,
+  "nativeRegistrationWrites": false,
+  "nsis": {
+    "cleanupFailureAborts": true,
+    "updateGuard": true,
+    "hookSha256": "a44288fbb80faeb2736882e0d0ed4b3b53101c5d86a7c572174d0dc103264ff9",
+    "compiledSha256": "5ab3fe14a8e1add5d1ad393a5fe5eeb3a6f6ca901565f67556cdebb4a6a314ec"
+  },
+  "msi": {
+    "sequence": [
+      {
+        "c1": "NabbitRemoveUserContext",
+        "c2": "Installed AND REMOVE=\"ALL\" AND NOT UPGRADINGPRODUCTCODE",
+        "c3": "3499"
+      }
+    ],
+    "fragmentSha256": "c97154998174624118354cc629029f7c3924a34e1c07484ab73f367bad2e9c89",
+    "removeFilesSequence": [
+      {
+        "c1": "RemoveFiles",
+        "c2": "",
+        "c3": "3500"
+      }
+    ],
+    "actions": [
+      {
+        "c1": "NabbitRemoveUserContext",
+        "c2": "18",
+        "c3": "Path",
+        "c4": "--unregister-context"
+      }
+    ],
+    "compiledSha256": "8a315de0fb5b9687167053b48b7712bb176c3b6ce71a0c88712cc984c7bd9e97"
+  }
+}

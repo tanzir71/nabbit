@@ -1,0 +1,23 @@
+file:///D:/claude-upgrade-26/nabbit/scripts/screenshots/harness.mjs:414
+            throw new Error(`${scenario.name} (${theme}@${scale}x): ${error.message}`, {
+                  ^
+
+Error: file-tools-ocr (light@1x): locator.waitFor: Timeout 10000ms exceeded.
+Call log:
+  - waiting for locator('.media-header h1') to be visible
+
+    at captureSuite (file:///D:/claude-upgrade-26/nabbit/scripts/screenshots/harness.mjs:414:19)
+    at async file:///D:/claude-upgrade-26/nabbit/scripts/verify-image-document-screenshots.mjs:24:16 {
+  [cause]: locator.waitFor: Timeout 10000ms exceeded.
+  Call log:
+    - waiting for locator('.media-header h1') to be visible
+
+      at Object.ready (D:\claude-upgrade-26\nabbit\scripts\verify-image-document-screenshots.mjs:55:46)
+      at captureSuite (D:\claude-upgrade-26\nabbit\scripts\screenshots\harness.mjs:144:48)
+      at async file:///D:/claude-upgrade-26/nabbit/scripts/verify-image-document-screenshots.mjs:24:16 {
+    log: [ "  - waiting for locator('.media-header h1') to be visible" ],
+    name: 'TimeoutError'
+  }
+}
+
+Node.js v24.22.2

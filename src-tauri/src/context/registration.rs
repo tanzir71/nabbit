@@ -188,9 +188,24 @@ mod tests {
         for tool in registry::catalog() {
             for preset in tool.presets {
                 let suffix = format!("--tool {} --preset {} -- \"%1\"", tool.id, preset);
-                assert!(values
+                let command = values
                     .iter()
-                    .any(|v| v.name.is_empty() && v.value.ends_with(&suffix)));
+                    .find(|v| v.name.is_empty() && v.value.ends_with(&suffix))
+                    .expect("Each registry preset has an Explorer command");
+                let key = command.key.strip_suffix("\\command").unwrap();
+                let applies = values
+                    .iter()
+                    .find(|v| v.key == key && v.name == "AppliesTo")
+                    .unwrap();
+                assert_eq!(
+                    applies.value,
+                    tool.accepts
+                        .filetypes
+                        .iter()
+                        .map(|ext| format!("System.FileExtension:=\".{ext}\""))
+                        .collect::<Vec<_>>()
+                        .join(" OR ")
+                );
             }
         }
         assert!(values

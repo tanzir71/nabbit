@@ -1,7 +1,8 @@
 import { useEffect, useRef, useState } from "react";
 import { IslandAsset, type AssetGroup } from "../../surfaces/island/IslandAsset";
 import type { Payload, DropZone } from "../../lib/islandDrop";
-import { toolsApi, type Tool } from "../tools/api";
+import { toolsApi, acceptsFiles, type Tool } from "../tools/api";
+import { Button } from "../../components/Button";
 import { filesApi, pinName, type Pin, type Modifiers } from "./api";
 import "./files.css";
 export default function FileDropContent({
@@ -46,7 +47,8 @@ export default function FileDropContent({
   }, [payload.modifiers]);
   useEffect(() => {
     let active = true;
-    void Promise.all([filesApi.pins(), toolsApi.catalog()])
+    setTools([]);
+    void Promise.all([filesApi.pins(), toolsApi.dropCatalog(payload.files ?? [])])
       .then(([pins, tools]) => {
         if (active) {
           setPins(pins.filter((p) => p.kind === "folder" && p.available).slice(0, 4));
@@ -59,7 +61,7 @@ export default function FileDropContent({
     return () => {
       active = false;
     };
-  }, []);
+  }, [payload.files]);
   useEffect(() => {
     let active = true;
     const update = (event: KeyboardEvent) =>
@@ -86,7 +88,9 @@ export default function FileDropContent({
       window.removeEventListener("keyup", update);
     };
   }, [payload.files, modifiers]);
-  const tool = tools.find((tool) => tool.id === suggestion);
+  const applicable = tools.filter((tool) => acceptsFiles(tool, payload.files ?? []));
+  const tool = applicable.find((tool) => tool.id === suggestion);
+  const alternatives = applicable.filter((alternative) => alternative.id !== tool?.id);
   const primary: DropZone = tool ? `tool:${tool.id}` : "shelf";
   const selected = over ?? primary;
   const zones: { id: DropZone; title: string; hint: string; icon: string; group: AssetGroup }[] = [
@@ -94,8 +98,13 @@ export default function FileDropContent({
       ? [
           {
             id: primary,
-            title: tool.id === "fit-size" ? "Fit for Discord" : tool.name,
-            hint: "Review before running",
+            title:
+              tool.id === "fit-size"
+                ? "Fit for Discord"
+                : tool.id === "to-jpg"
+                  ? "To JPG"
+                  : tool.name,
+            hint: tool.id === "to-jpg" ? "Keeps location data" : "Review before running",
             icon: tool.category === "media" ? "iconFilm" : "iconImage",
             group: tool.category === "media" ? ("34:897" as const) : ("drop" as const),
           },
@@ -154,6 +163,37 @@ export default function FileDropContent({
           </div>
         ))}
       </div>
+      {alternatives.length > 0 && (
+        <details
+          className="files-drop-tools"
+          onDragEnter={(event) => {
+            event.currentTarget.open = true;
+          }}
+        >
+          <summary>More file tools</summary>
+          <div className="tool-actions" role="group" aria-label="More file tools">
+            {alternatives.map((alternative) => {
+              const zone: DropZone = `tool:${alternative.id}`;
+              return (
+                <Button
+                  variant="ghost"
+                  key={alternative.id}
+                  data-drop-zone={zone}
+                  className={`island-mini${over === zone ? " is-over" : ""}`}
+                  onClick={() => setOver(zone)}
+                  onDragEnter={() => setOver(zone)}
+                  onDragOver={(event) => {
+                    event.preventDefault();
+                    setOver(zone);
+                  }}
+                >
+                  {alternative.name}
+                </Button>
+              );
+            })}
+          </div>
+        </details>
+      )}
       {pins.length > 0 && (
         <section className="files-drop-pins" aria-label="Drop on a pin">
           <header className="files-heading">

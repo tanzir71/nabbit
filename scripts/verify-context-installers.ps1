@@ -1,6 +1,6 @@
 param([string]$Prefix = 'v511-installers-a')
 $ErrorActionPreference = 'Stop'
-if ($Prefix -notmatch '^v511-[a-z0-9-]+$') { throw 'Use a V5.11 evidence prefix' }
+if ($Prefix -notmatch '^v5(?:11|12)-[a-z0-9-]+$') { throw 'Use a V5.11 or V5.12 evidence prefix' }
 $workspace = (Resolve-Path -LiteralPath (Join-Path $PSScriptRoot '..')).Path
 $owned = Join-Path $workspace ".tools\$Prefix-$([guid]::NewGuid())"
 $reportPath = Join-Path $workspace "progress\v2\M10\$Prefix.json"

@@ -657,17 +657,17 @@ Context is collected in the background but only shown when the user opens the is
 
 ### 9b.7 Automated acceptance (§0.2 rules apply)
 
-- [ ] Registry: every tool appears in search, Shelf actions, drop suggestions, Send To and the clipboard menu according to `accepts`; ids unique; every preset runs with defaults.
-- [ ] Fit under N MB: `testsrc2` + `sine` fixtures of 10 s, 60 s and 3 min at 1080p land under 20 MB and 25 MB targets within 3 tries in both modes available on this machine; each retry starts from the original (assert the input hash); audio budget and resolution step-down follow the table in code.
-- [ ] Video jobs, GIF caps, audio extract, metadata strip: fixture assertions with ffprobe (codec, duration ±0.1 s, dimensions, no `location`/`creation_time` tags after strip).
-- [ ] Images: generated PNG/JPEG/WebP/AVIF round-trips; a JPEG with EXIF GPS keeps it by default and loses it with strip; WIC HEIC decode runs when a HEIC fixture and the codec are present, otherwise records `skipped: no HEIF codec` and asserts the Store prompt state.
-- [ ] PDF: merge/split page counts, images → PDF page sizes, PDF → PNG via `Windows.Data.Pdf`.
-- [ ] Outputs never overwrite inputs (input hashes unchanged, `(Preset)` names, clash numbering), and dates are copied where supported.
-- [ ] Pins and moves on temp directories: same-volume move, cross-volume copy (use a second temp volume if available, else a mocked volume id), Shift/Ctrl overrides, name conflict, undo from the journal after the operation, cloud-placeholder attribute fixture is never read, long path error.
-- [ ] Clipboard: classification table tests; the three exclusion formats and the password-manager list suppress the row; restore-every-format test for the opt-in fallback using synthetic formats.
-- [ ] Selection: UIA read against a test window with a selectable edit control (no real apps).
-- [ ] Send To / HKCU verbs: registration writes only under HKCU and is removed on uninstall; batching collects N invocations into one Shelf batch.
-- [ ] Full-screen silence: notification-state fixtures suppress clipboard rows, drop suggestions and peeks.
+- [x] Registry: every tool appears in search, Shelf actions, drop suggestions, Send To and the clipboard menu according to `accepts`; ids unique; every preset runs with defaults.
+- [x] Fit under N MB: `testsrc2` + `sine` fixtures of 10 s, 60 s and 3 min at 1080p land under 20 MB and 25 MB targets within 3 tries in both modes available on this machine; each retry starts from the original (assert the input hash); audio budget and resolution step-down follow the table in code.
+- [x] Video jobs, GIF caps, audio extract, metadata strip: fixture assertions with ffprobe (codec, duration ±0.1 s, dimensions, no `location`/`creation_time` tags after strip).
+- [x] Images: generated PNG/JPEG/WebP/AVIF round-trips; a JPEG with EXIF GPS keeps it by default and loses it with strip; WIC HEIC decode runs when a HEIC fixture and the codec are present, otherwise records `skipped: no HEIF codec` and asserts the Store prompt state.
+- [x] PDF: merge/split page counts, images → PDF page sizes, PDF → PNG via `Windows.Data.Pdf`.
+- [x] Outputs never overwrite inputs (input hashes unchanged, `(Preset)` names, clash numbering), and dates are copied where supported.
+- [x] Pins and moves on temp directories: same-volume move, cross-volume copy (use a second temp volume if available, else a mocked volume id), Shift/Ctrl overrides, name conflict, undo from the journal after the operation, cloud-placeholder attribute fixture is never read, long path error.
+- [x] Clipboard: classification table tests; the three exclusion formats and the password-manager list suppress the row; restore-every-format test for the opt-in fallback using synthetic formats.
+- [x] Selection: UIA read against a test window with a selectable edit control (no real apps).
+- [x] Send To / HKCU verbs: registration writes only under HKCU and is removed on uninstall; batching collects N invocations into one Shelf batch.
+- [x] Full-screen silence: notification-state fixtures suppress clipboard rows, drop suggestions and peeks.
 
 ### 9b.8 Not building (and why)
 
@@ -805,7 +805,7 @@ Commit after every task (§0.1). Lines marked **MILESTONE** are tasks of their o
 - [x] V5.9 Media tools: Fit under N MB (`45:282`) with encoder probe and retry loop, To MP4, trim, extract audio, To GIF, metadata strip; Tool running pill (`33:535`).
 - [x] V5.10 Image and document tools: HEIC → JPG via WIC with the Store prompt, convert / Make smaller (`36:410`), PDF basics, text and QR from image files; drop suggestions per file type.
 - [x] V5.11 Context: clipboard classifier and first row (`45:568`) with privacy formats, text tools menu (`36:505`, `36:539`), act on selected text (Ctrl+Alt+S), Send To + HKCU verbs with single-instance batching, full-screen silence.
-- [ ] V5.12 Native tools acceptance (§9b.7).
+- [x] V5.12 Native tools acceptance (§9b.7).
 - [ ] **MILESTONE M10 — Modules, file tools and pins.**
 
 ### Phase V6 — Modes, tray, settings

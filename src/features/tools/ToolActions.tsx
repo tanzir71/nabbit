@@ -1,5 +1,5 @@
 import { useEffect, useState } from "react";
-import { toolsApi, acceptsFile, type Tool } from "./api";
+import { toolsApi, acceptsFiles, type Tool } from "./api";
 import { ToolSheet } from "./ToolSheet";
 import { MiniButton } from "../../surfaces/island/CompactContent";
 export function ToolActions({ paths }: { paths: string[] }) {
@@ -20,13 +20,7 @@ export function ToolActions({ paths }: { paths: string[] }) {
       active = false;
     };
   }, []);
-  const applicable = paths.length
-    ? tools.filter(
-        (tool) =>
-          paths.every((p) => acceptsFile(tool, p)) &&
-          (paths.length === 1 || ["images", "documents"].includes(tool.category)),
-      )
-    : [];
+  const applicable = tools.filter((tool) => acceptsFiles(tool, paths));
   return (
     <>
       {chosen ? (

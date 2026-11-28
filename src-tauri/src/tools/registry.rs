@@ -373,7 +373,7 @@ fn media_tool(
             },
             text: false,
             link: false,
-            image: false,
+            image: matches!(kind, super::media::Kind::Fit | super::media::Kind::Strip),
         },
         presets,
         form: vec![],

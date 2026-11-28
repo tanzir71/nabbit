@@ -310,8 +310,13 @@ export function IslandApp({ suppliedStore }: { suppliedStore?: IslandStore }) {
       dropModifiers.current = modifiers;
       const x = event.x / devicePixelRatio,
         y = event.y / devicePixelRatio;
-      const zone = document.elementFromPoint(x, y)?.closest<HTMLElement>("[data-drop-zone]")
-        ?.dataset.dropZone as DropZone | undefined;
+      const target = document.elementFromPoint(x, y);
+      if (event.kind === "over") {
+        const tools = target?.closest<HTMLDetailsElement>("details.files-drop-tools");
+        if (tools) tools.open = true;
+      }
+      const zone = target?.closest<HTMLElement>("[data-drop-zone]")?.dataset.dropZone as
+        DropZone | undefined;
       if (
         host.current?.dataset.shelfOutgoing === "true" &&
         (event.kind !== "drop" || !zone?.startsWith("pin:"))
