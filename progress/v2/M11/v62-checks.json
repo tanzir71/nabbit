@@ -1,0 +1,35 @@
+{
+  "task": "V6.2",
+  "allRequiredChecksPassed": true,
+  "counts": {
+    "frontend": 571,
+    "rust": 386,
+    "rustIgnoredOptIn": 8,
+    "browserViews": 24,
+    "nativeSettingsViews": 6,
+    "nativeIconExports": 12,
+    "nativeAssetGeometryChecks": 84,
+    "axeViolations": 0,
+    "axeIncomplete": 0,
+    "exactSettingsRepeatPairs": 30,
+    "exactGalleryRepeatPairs": 1
+  },
+  "buildManifestSha256": "7e45d13f8ba898ba21cbba949c1b67e6ab98a06f1879868a78cf943d7a9b105b",
+  "nativeExecutableSha256": "e85b0eaa2203d98b84570f321011d0bdf575b40c2360f613d831c009bdc76cff",
+  "initialIslandGzipBytes": 103826,
+  "browserEvidence": "v62-modes-c-screenshots.json",
+  "axeEvidence": "v62-modes-c-axe.json",
+  "nativeEvidence": "v62-native-d-scene.json",
+  "galleryEvidence": "v62-native-d-badge-gallery.json",
+  "gates": {
+    "frontend": "v62-verify-b-log.txt",
+    "site": "v62-site-a-log.txt",
+    "format": "v62-fmt-b-log.txt",
+    "clippy": "v62-clippy-c-log.txt",
+    "clippySpike": "v62-clippy-spike-b-log.txt",
+    "rust": "v62-native-tests-b-log.txt",
+    "release": "v62-release-c-log.txt",
+    "captureScriptsLint": "v62-node-lint-f-log.txt"
+  },
+  "scope": "Owned app/data/control/WebView profiles, generated fake downloads and HWND queries only. Real WinRT notification construction; Show suppressed. No real clipboard/global input/cursor, user files/profiles/accounts, hosted Tack, shell/autostart/global-hotkey registration, Windows notification registration/display, Store, installer/signing or OS/display changes. No new idle or other-platform claim."
+}

@@ -83,6 +83,30 @@ it("navigates all nine sections and returns keyboard focus to the page heading",
   await user.click(screen.getByRole("button", { name: "Close settings" }));
   expect(close).toHaveBeenCalledOnce();
 });
+it("keeps keyboard focus on a mode choice while saving and ignores another activation until it completes", async () => {
+  const { user, save } = await setup();
+  const previous = useAppStore.getState().settings!;
+  let finish!: () => void;
+  save.mockImplementationOnce(async () => {
+    await new Promise<void>((resolve) => {
+      finish = resolve;
+    });
+    return { ...previous, displayMode: "trayOnly" };
+  });
+  const choice = screen.getByRole("button", { name: /^Tray only/ });
+  choice.focus();
+  await user.keyboard("[Space]");
+  await waitFor(() => expect(choice).toHaveAttribute("aria-disabled", "true"));
+  expect(choice).toHaveFocus();
+  await user.keyboard("[Space]");
+  expect(save).toHaveBeenCalledOnce();
+  await act(async () => {
+    finish();
+  });
+  await waitFor(() => expect(choice).toHaveAttribute("aria-pressed", "true"));
+  expect(choice).toHaveFocus();
+  expect(save).toHaveBeenCalledWith({ displayMode: "trayOnly" });
+});
 it("sends only changed fields and exposes a failed save before a successful retry", async () => {
   const { user, save } = await setup();
   save.mockRejectedValueOnce(new Error("Owned database busy"));

@@ -1,0 +1,9 @@
+{
+  "browserA": "Harness rejected camelCase scenario filenames; corrected to kebab case before capture.",
+  "nativeA": "The existing global webviews counter includes settings/main; the harness now checks island-specific views and native hosts.",
+  "nativeB": "One repeat PNG differed after a mode switch. Digest pair retained in failure text; the original pair was not saved. The harness now retains failed pairs, waits for finite animations and uses a fixed 100ms composition settle, never retries until matching.",
+  "nativeC": "Six exact mode captures, host teardown, blocked idle sampler and shortcut passed; real fake jobs exposed missing enqueue publication to the tray tracker. Queue events now publish under the queue lock before workers start.",
+  "releaseA": "Owned build explicitly interrupted before completion to include corrected dark radio recoloring.",
+  "nodeLintB": "Unused helper import removed; current full script lint passes.",
+  "menuAudit": "Muda 0.20 toggles native check items before callbacks. The mode handler reasserts radio state for a repeated selection; its acceptance seam performs the same native toggle before calling that handler."
+}

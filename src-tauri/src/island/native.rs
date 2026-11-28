@@ -1391,6 +1391,9 @@ unsafe extern "system" fn control_proc(hwnd: HWND, message: u32, w: WPARAM, l: L
         || (message != 0 && message == TASKBAR_CREATED.load(Ordering::Relaxed))
     {
         if let Some(manager) = current() {
+            if let Some(service) = manager.app.try_state::<Arc<crate::modes::Service>>() {
+                service.refresh();
+            }
             manager.refresh()
         }
     }

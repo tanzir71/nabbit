@@ -259,6 +259,17 @@ pub fn review(app: &AppHandle, input: &str) -> Result<DownloadMetadata> {
 }
 
 pub fn open_deep_link(app: &AppHandle, input: &str) -> Result<()> {
+    if is_downloads_link(input) {
+        let state = app.state::<crate::AppState>();
+        crate::commands::settings::patch(app, &state, serde_json::json!({"lastTab":"download"}))?;
+        #[cfg(windows)]
+        if let Some(manager) = app.try_state::<Arc<crate::island::Manager>>() {
+            if manager.open_capture_review().map_err(msg)? {
+                return Ok(());
+            }
+        }
+        return crate::show_popover(app);
+    }
     let url = deep_link(input)?;
     review(app, &url)?;
     #[cfg(windows)]
@@ -272,6 +283,19 @@ pub fn open_deep_link(app: &AppHandle, input: &str) -> Result<()> {
     let _ = app.emit("capture:review", ());
     crate::show_popover(app)?;
     Ok(())
+}
+
+pub(crate) fn is_downloads_link(input: &str) -> bool {
+    url::Url::parse(input).is_ok_and(|url| {
+        url.scheme() == "nabbit"
+            && url.host_str() == Some("downloads")
+            && matches!(url.path(), "" | "/")
+            && url.query().is_none()
+            && url.fragment().is_none()
+            && url.username().is_empty()
+            && url.password().is_none()
+            && url.port().is_none()
+    })
 }
 
 // Injectable read/enqueue seams keep acceptance away from the user's clipboard and real keys.
@@ -317,6 +341,23 @@ pub fn download_started(app: &AppHandle, url: &str) {
 #[cfg(test)]
 mod tests {
     use super::*;
+    #[test]
+    fn completion_link_opens_only_downloads_without_accepting_a_url_or_action_payload() {
+        for value in ["nabbit://downloads", "nabbit://downloads/"] {
+            assert!(is_downloads_link(value));
+        }
+        for value in [
+            "https://downloads",
+            "nabbit://downloads?url=https://example.com",
+            "nabbit://downloads#fragment",
+            "nabbit://user@downloads",
+            "nabbit://downloads:42",
+            "nabbit://downloads/run",
+            "nabbit://nab?url=https://example.com",
+        ] {
+            assert!(!is_downloads_link(value));
+        }
+    }
     use std::{sync::mpsc, time::Duration};
     fn database() -> Database {
         Database::open(

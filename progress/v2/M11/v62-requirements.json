@@ -1,0 +1,80 @@
+{
+  "task": "V6.2",
+  "requirements": [
+    {
+      "id": "general-mode-controls",
+      "requirement": "All three General choices save through the existing field-patch path and retain keyboard focus while busy.",
+      "evidence": "v62-verify-b-log.txt",
+      "passed": true
+    },
+    {
+      "id": "native-mode-menu",
+      "requirement": "All three native Mode submenu items persist the preference; reselecting the current item restores exactly one checked item after the native checkbox toggle.",
+      "evidence": "v62-native-e-scene.json",
+      "passed": true
+    },
+    {
+      "id": "tray-only-lifecycle",
+      "requirement": "Tray only destroys an expanded island WebView and its native host. Island-specific views/sessions are absent and its sampler blocks; it does not count the separate settings/main observers as island windows.",
+      "evidence": "v62-native-e-scene.json",
+      "passed": true
+    },
+    {
+      "id": "island-only-access",
+      "requirement": "Island only requests the hidden tray; injected Alt+Space opens the actual island without a tray WebView, its gear opens settings, and foreground focus remains outside the owned test app.",
+      "evidence": "v62-native-e-scene.json",
+      "passed": true
+    },
+    {
+      "id": "progress-events",
+      "requirement": "Queued events publish before workers can overtake them. Real fake downloads exercise queue, running progress, pause, cancel, resume and idle; a blocked Rust worker handles notifications and native tray updates are coalesced.",
+      "evidence": "v62-native-e-scene.json",
+      "passed": true
+    },
+    {
+      "id": "glyph-and-dpi",
+      "requirement": "The original optical glyph alpha is preserved, with a monochrome progress mark or paused indicator below it. Exact native RGBA is checked at owned 16/24px seams in both taskbar themes.",
+      "evidence": "v62-native-e-badge-gallery.json",
+      "passed": true
+    },
+    {
+      "id": "completion-routing",
+      "requirement": "Only a new active completion in tray-only routes to the Windows toast adapter. Duplicate/history events are silent; island modes keep their existing activity flow. Real Windows XML/ToastNotification construction is tested with Show suppressed.",
+      "evidence": "v62-native-e-scene.json",
+      "passed": true
+    },
+    {
+      "id": "activation-safety",
+      "requirement": "The fixed nabbit://downloads activation opens Downloads without changing the job list or staged capture. Payload-bearing/lookalike URIs are rejected by the narrow parser. The OS-registered protocol hop is outside automation.",
+      "evidence": "v62-native-e-scene.json",
+      "passed": true
+    },
+    {
+      "id": "restart-and-reapply",
+      "requirement": "Both island-only and tray-only survive process restarts with silent completed history; native reapplication keeps the mode/menu state.",
+      "evidence": "v62-native-e-scene.json",
+      "passed": true
+    },
+    {
+      "id": "visuals-and-accessibility",
+      "requirement": "24 exact browser views across three modes, two window sizes, light/dark and 1x/1.5x: default whole-document axe has zero violations/incomplete results. Six exact native DPR2 pairs retain all original asset dimensions.",
+      "evidence": "v62-modes-c-axe.json",
+      "passed": true
+    },
+    {
+      "id": "required-gates",
+      "requirement": "Frontend/site verify, format, strict default/spike Clippy, 386 serial Rust tests, final release embedding, script lint and complete M11 PNG decode/budget pass.",
+      "evidence": "v62-checks-final.json",
+      "passed": true
+    }
+  ],
+  "notAutomated": [
+    "Installed Windows notification display and notification-center protocol activation; installer execution and app/notification registration are excluded by handoff section0.2. The production notifier is compiled with the configured app identity, but tests construct the real WinRT notification and suppress Show.",
+    "Physical Windows taskbar pixels, other OS/hardware/DPI, actual global key presses and fresh idle performance are not claimed. Native icon pixels/API requests and owned window/query/provider seams are verified."
+  ],
+  "remainingTasks": [
+    "V6.3 tray menu/popover redesign",
+    "V6.4 recorder/conflicts",
+    "V7 hardening, accessibility, performance, packaging and wrap-up"
+  ]
+}

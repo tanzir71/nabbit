@@ -1,0 +1,28 @@
+{
+  "designUrl": "https://www.figma.com/design/tBm7NNhh1Y9aTQPJ3WxY5v/Nabbit?node-id=22-2",
+  "assets": "src/assets/settings/manifest.json",
+  "newStaticAssets": 0,
+  "originalAssetsUnchanged": 27,
+  "nativeEffectiveGeometryChecks": 84,
+  "decisions": [
+    "General uses the original mode card layout and radio assets; the selected radio is inverted in dark appearance so its full original ring remains visible.",
+    "The native tray preserves the original 16/24px optical capsule. Progress/queued/pause marks occupy transparent pixels below it; taskbar appearance is independent of app appearance.",
+    "Progress is the unweighted mean of currently running job percentages; tooltips also expose queued and paused counts. A paused mark takes precedence over a queued dot when no job is running.",
+    "Mode menu check items are reasserted as a radio group after the native Muda 0.20 checkbox toggle, including a repeated selection.",
+    "Capture uses the documented owned compositor scheduling flags, reduced motion, finite-animation completion and a fixed 100ms native composition settling interval. No retry-until-match, masking or relaxed threshold."
+  ],
+  "sources": [
+    {
+      "title": "Microsoft desktop toast identity requirements",
+      "url": "https://learn.microsoft.com/en-us/windows/win32/shell/enable-desktop-toast-with-appusermodelid"
+    },
+    {
+      "title": "Microsoft ToastNotificationManager",
+      "url": "https://learn.microsoft.com/en-us/uwp/api/windows.ui.notifications.toastnotificationmanager"
+    },
+    {
+      "title": "Tauri Start menu shortcut identity",
+      "url": "https://github.com/tauri-apps/tauri/blob/dev/crates/tauri-bundler/src/bundle/windows/nsis/includes/shortcuts.nsh"
+    }
+  ]
+}

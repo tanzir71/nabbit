@@ -1,0 +1,2715 @@
+{
+  "milestone": "M11",
+  "prefix": "v62-modes-c",
+  "suite": "surfaces",
+  "browser": "159.0.8154.6",
+  "playwright": "1.65.1",
+  "platform": "win32",
+  "node": "v24.22.2",
+  "captureTime": "2026-11-26T09:00:00.000Z",
+  "buildManifestSha256": "7e45d13f8ba898ba21cbba949c1b67e6ab98a06f1879868a78cf943d7a9b105b",
+  "screenshotScale": "device",
+  "renderingFlags": [
+    "--run-all-compositor-stages-before-draw",
+    "--disable-new-content-rendering-timeout",
+    "--disable-threaded-animation",
+    "--disable-threaded-scrolling",
+    "--disable-checker-imaging",
+    "--disable-image-animation-resync",
+    "--disable-partial-raster"
+  ],
+  "pngBudgetBytes": 307200,
+  "isolatedContexts": true,
+  "mockedIpc": true,
+  "osPreferencesChanged": false,
+  "captures": [
+    {
+      "file": "v62-modes-c-mode-island-and-tray-light@1x.png",
+      "scenario": "mode-island-and-tray",
+      "entry": "settings.html",
+      "figmaNode": null,
+      "theme": "light",
+      "resolvedTheme": "light",
+      "scale": 1,
+      "viewport": {
+        "width": 980,
+        "height": 720
+      },
+      "clip": {
+        "x": 0,
+        "y": 0,
+        "width": 980,
+        "height": 720
+      },
+      "width": 980,
+      "height": 720,
+      "bytes": 62498,
+      "sha256": "7fcc282b596d0e47699076ff606fc2c53a93a676304030d45c1bb168a60c0357",
+      "repeatMatches": true,
+      "caret": "hide",
+      "font": [
+        {
+          "familyName": "Geist",
+          "postScriptName": "Geist",
+          "isCustomFont": true,
+          "glyphCount": 7
+        }
+      ],
+      "fixtureSha256": "e20959f6505d8e2c0e0d9a2aefb75d10d7b1b31a69b77799b22e728e1d6619aa",
+      "assertions": {
+        "mode": "islandAndTray",
+        "minimum": false,
+        "keyboardActivation": true,
+        "axe": {
+          "version": "4.14.1",
+          "theme": "light",
+          "scale": 1,
+          "violations": [],
+          "incomplete": [],
+          "passes": 33
+        }
+      },
+      "ipc": [
+        {
+          "command": "plugin:event|listen",
+          "args": {
+            "event": "engine:health",
+            "target": {
+              "kind": "Any"
+            },
+            "handler": 1
+          }
+        },
+        {
+          "command": "plugin:event|listen",
+          "args": {
+            "event": "nabbit://settings-changed",
+            "target": {
+              "kind": "Any"
+            },
+            "handler": 3
+          }
+        },
+        {
+          "command": "plugin:event|listen",
+          "args": {
+            "event": "tauri://theme-changed",
+            "target": {
+              "kind": "Window",
+              "label": "settings"
+            },
+            "handler": 5
+          }
+        },
+        {
+          "command": "settings_window_ready",
+          "args": {}
+        },
+        {
+          "command": "get_settings",
+          "args": {}
+        },
+        {
+          "command": "get_engine_status",
+          "args": {}
+        },
+        {
+          "command": "get_storage_stats",
+          "args": {}
+        },
+        {
+          "command": "plugin:window|theme",
+          "args": {
+            "label": "settings"
+          }
+        },
+        {
+          "command": "patch_settings",
+          "args": {
+            "change": {
+              "displayMode": "islandAndTray"
+            }
+          }
+        }
+      ],
+      "unsupported": [],
+      "runtimeAndNetworkProblems": []
+    },
+    {
+      "file": "v62-modes-c-mode-tray-only-light@1x.png",
+      "scenario": "mode-tray-only",
+      "entry": "settings.html",
+      "figmaNode": null,
+      "theme": "light",
+      "resolvedTheme": "light",
+      "scale": 1,
+      "viewport": {
+        "width": 980,
+        "height": 720
+      },
+      "clip": {
+        "x": 0,
+        "y": 0,
+        "width": 980,
+        "height": 720
+      },
+      "width": 980,
+      "height": 720,
+      "bytes": 62487,
+      "sha256": "2f37ecfd109c49209b14c882ab2289ca209003d89f0466e2b4ac7d9f7abb1ab9",
+      "repeatMatches": true,
+      "caret": "hide",
+      "font": [
+        {
+          "familyName": "Geist",
+          "postScriptName": "Geist",
+          "isCustomFont": true,
+          "glyphCount": 7
+        }
+      ],
+      "fixtureSha256": "e20959f6505d8e2c0e0d9a2aefb75d10d7b1b31a69b77799b22e728e1d6619aa",
+      "assertions": {
+        "mode": "trayOnly",
+        "minimum": false,
+        "keyboardActivation": true,
+        "axe": {
+          "version": "4.14.1",
+          "theme": "light",
+          "scale": 1,
+          "violations": [],
+          "incomplete": [],
+          "passes": 33
+        }
+      },
+      "ipc": [
+        {
+          "command": "plugin:event|listen",
+          "args": {
+            "event": "engine:health",
+            "target": {
+              "kind": "Any"
+            },
+            "handler": 1
+          }
+        },
+        {
+          "command": "plugin:event|listen",
+          "args": {
+            "event": "nabbit://settings-changed",
+            "target": {
+              "kind": "Any"
+            },
+            "handler": 3
+          }
+        },
+        {
+          "command": "plugin:event|listen",
+          "args": {
+            "event": "tauri://theme-changed",
+            "target": {
+              "kind": "Window",
+              "label": "settings"
+            },
+            "handler": 5
+          }
+        },
+        {
+          "command": "settings_window_ready",
+          "args": {}
+        },
+        {
+          "command": "get_settings",
+          "args": {}
+        },
+        {
+          "command": "get_engine_status",
+          "args": {}
+        },
+        {
+          "command": "get_storage_stats",
+          "args": {}
+        },
+        {
+          "command": "plugin:window|theme",
+          "args": {
+            "label": "settings"
+          }
+        },
+        {
+          "command": "patch_settings",
+          "args": {
+            "change": {
+              "displayMode": "trayOnly"
+            }
+          }
+        }
+      ],
+      "unsupported": [],
+      "runtimeAndNetworkProblems": []
+    },
+    {
+      "file": "v62-modes-c-mode-island-only-light@1x.png",
+      "scenario": "mode-island-only",
+      "entry": "settings.html",
+      "figmaNode": null,
+      "theme": "light",
+      "resolvedTheme": "light",
+      "scale": 1,
+      "viewport": {
+        "width": 980,
+        "height": 720
+      },
+      "clip": {
+        "x": 0,
+        "y": 0,
+        "width": 980,
+        "height": 720
+      },
+      "width": 980,
+      "height": 720,
+      "bytes": 62478,
+      "sha256": "c620d6fa7ad13517a4c79e443db50a876681875d419eb240e5a4886cd71f1496",
+      "repeatMatches": true,
+      "caret": "hide",
+      "font": [
+        {
+          "familyName": "Geist",
+          "postScriptName": "Geist",
+          "isCustomFont": true,
+          "glyphCount": 7
+        }
+      ],
+      "fixtureSha256": "e20959f6505d8e2c0e0d9a2aefb75d10d7b1b31a69b77799b22e728e1d6619aa",
+      "assertions": {
+        "mode": "islandOnly",
+        "minimum": false,
+        "keyboardActivation": true,
+        "axe": {
+          "version": "4.14.1",
+          "theme": "light",
+          "scale": 1,
+          "violations": [],
+          "incomplete": [],
+          "passes": 33
+        }
+      },
+      "ipc": [
+        {
+          "command": "plugin:event|listen",
+          "args": {
+            "event": "engine:health",
+            "target": {
+              "kind": "Any"
+            },
+            "handler": 1
+          }
+        },
+        {
+          "command": "plugin:event|listen",
+          "args": {
+            "event": "nabbit://settings-changed",
+            "target": {
+              "kind": "Any"
+            },
+            "handler": 3
+          }
+        },
+        {
+          "command": "plugin:event|listen",
+          "args": {
+            "event": "tauri://theme-changed",
+            "target": {
+              "kind": "Window",
+              "label": "settings"
+            },
+            "handler": 5
+          }
+        },
+        {
+          "command": "settings_window_ready",
+          "args": {}
+        },
+        {
+          "command": "get_settings",
+          "args": {}
+        },
+        {
+          "command": "get_engine_status",
+          "args": {}
+        },
+        {
+          "command": "get_storage_stats",
+          "args": {}
+        },
+        {
+          "command": "plugin:window|theme",
+          "args": {
+            "label": "settings"
+          }
+        },
+        {
+          "command": "patch_settings",
+          "args": {
+            "change": {
+              "displayMode": "islandOnly"
+            }
+          }
+        }
+      ],
+      "unsupported": [],
+      "runtimeAndNetworkProblems": []
+    },
+    {
+      "file": "v62-modes-c-mode-island-and-tray-minimum-light@1x.png",
+      "scenario": "mode-island-and-tray-minimum",
+      "entry": "settings.html",
+      "figmaNode": null,
+      "theme": "light",
+      "resolvedTheme": "light",
+      "scale": 1,
+      "viewport": {
+        "width": 820,
+        "height": 600
+      },
+      "clip": {
+        "x": 0,
+        "y": 0,
+        "width": 820,
+        "height": 600
+      },
+      "width": 820,
+      "height": 600,
+      "bytes": 55812,
+      "sha256": "4f37ff40ab5e3253cedbfdb69299953b8ea42058787d61687b0ef89292c98cc8",
+      "repeatMatches": true,
+      "caret": "hide",
+      "font": [
+        {
+          "familyName": "Geist",
+          "postScriptName": "Geist",
+          "isCustomFont": true,
+          "glyphCount": 7
+        }
+      ],
+      "fixtureSha256": "e20959f6505d8e2c0e0d9a2aefb75d10d7b1b31a69b77799b22e728e1d6619aa",
+      "assertions": {
+        "mode": "islandAndTray",
+        "minimum": true,
+        "keyboardActivation": true,
+        "axe": {
+          "version": "4.14.1",
+          "theme": "light",
+          "scale": 1,
+          "violations": [],
+          "incomplete": [],
+          "passes": 34
+        }
+      },
+      "ipc": [
+        {
+          "command": "plugin:event|listen",
+          "args": {
+            "event": "engine:health",
+            "target": {
+              "kind": "Any"
+            },
+            "handler": 1
+          }
+        },
+        {
+          "command": "plugin:event|listen",
+          "args": {
+            "event": "nabbit://settings-changed",
+            "target": {
+              "kind": "Any"
+            },
+            "handler": 3
+          }
+        },
+        {
+          "command": "plugin:event|listen",
+          "args": {
+            "event": "tauri://theme-changed",
+            "target": {
+              "kind": "Window",
+              "label": "settings"
+            },
+            "handler": 5
+          }
+        },
+        {
+          "command": "settings_window_ready",
+          "args": {}
+        },
+        {
+          "command": "get_settings",
+          "args": {}
+        },
+        {
+          "command": "get_engine_status",
+          "args": {}
+        },
+        {
+          "command": "get_storage_stats",
+          "args": {}
+        },
+        {
+          "command": "plugin:window|theme",
+          "args": {
+            "label": "settings"
+          }
+        },
+        {
+          "command": "patch_settings",
+          "args": {
+            "change": {
+              "displayMode": "islandAndTray"
+            }
+          }
+        }
+      ],
+      "unsupported": [],
+      "runtimeAndNetworkProblems": []
+    },
+    {
+      "file": "v62-modes-c-mode-tray-only-minimum-light@1x.png",
+      "scenario": "mode-tray-only-minimum",
+      "entry": "settings.html",
+      "figmaNode": null,
+      "theme": "light",
+      "resolvedTheme": "light",
+      "scale": 1,
+      "viewport": {
+        "width": 820,
+        "height": 600
+      },
+      "clip": {
+        "x": 0,
+        "y": 0,
+        "width": 820,
+        "height": 600
+      },
+      "width": 820,
+      "height": 600,
+      "bytes": 55878,
+      "sha256": "6fde02aada74b963675cb67cb57ebd129a81ead8012aba35bd08ef05790559e9",
+      "repeatMatches": true,
+      "caret": "hide",
+      "font": [
+        {
+          "familyName": "Geist",
+          "postScriptName": "Geist",
+          "isCustomFont": true,
+          "glyphCount": 7
+        }
+      ],
+      "fixtureSha256": "e20959f6505d8e2c0e0d9a2aefb75d10d7b1b31a69b77799b22e728e1d6619aa",
+      "assertions": {
+        "mode": "trayOnly",
+        "minimum": true,
+        "keyboardActivation": true,
+        "axe": {
+          "version": "4.14.1",
+          "theme": "light",
+          "scale": 1,
+          "violations": [],
+          "incomplete": [],
+          "passes": 34
+        }
+      },
+      "ipc": [
+        {
+          "command": "plugin:event|listen",
+          "args": {
+            "event": "engine:health",
+            "target": {
+              "kind": "Any"
+            },
+            "handler": 1
+          }
+        },
+        {
+          "command": "plugin:event|listen",
+          "args": {
+            "event": "nabbit://settings-changed",
+            "target": {
+              "kind": "Any"
+            },
+            "handler": 3
+          }
+        },
+        {
+          "command": "plugin:event|listen",
+          "args": {
+            "event": "tauri://theme-changed",
+            "target": {
+              "kind": "Window",
+              "label": "settings"
+            },
+            "handler": 5
+          }
+        },
+        {
+          "command": "settings_window_ready",
+          "args": {}
+        },
+        {
+          "command": "get_settings",
+          "args": {}
+        },
+        {
+          "command": "get_engine_status",
+          "args": {}
+        },
+        {
+          "command": "get_storage_stats",
+          "args": {}
+        },
+        {
+          "command": "plugin:window|theme",
+          "args": {
+            "label": "settings"
+          }
+        },
+        {
+          "command": "patch_settings",
+          "args": {
+            "change": {
+              "displayMode": "trayOnly"
+            }
+          }
+        }
+      ],
+      "unsupported": [],
+      "runtimeAndNetworkProblems": []
+    },
+    {
+      "file": "v62-modes-c-mode-island-only-minimum-light@1x.png",
+      "scenario": "mode-island-only-minimum",
+      "entry": "settings.html",
+      "figmaNode": null,
+      "theme": "light",
+      "resolvedTheme": "light",
+      "scale": 1,
+      "viewport": {
+        "width": 820,
+        "height": 600
+      },
+      "clip": {
+        "x": 0,
+        "y": 0,
+        "width": 820,
+        "height": 600
+      },
+      "width": 820,
+      "height": 600,
+      "bytes": 55826,
+      "sha256": "19fa5f7a7af89fda645985660a9e0d0870d9c30a7e6c770d43c15801d0451542",
+      "repeatMatches": true,
+      "caret": "hide",
+      "font": [
+        {
+          "familyName": "Geist",
+          "postScriptName": "Geist",
+          "isCustomFont": true,
+          "glyphCount": 7
+        }
+      ],
+      "fixtureSha256": "e20959f6505d8e2c0e0d9a2aefb75d10d7b1b31a69b77799b22e728e1d6619aa",
+      "assertions": {
+        "mode": "islandOnly",
+        "minimum": true,
+        "keyboardActivation": true,
+        "axe": {
+          "version": "4.14.1",
+          "theme": "light",
+          "scale": 1,
+          "violations": [],
+          "incomplete": [],
+          "passes": 34
+        }
+      },
+      "ipc": [
+        {
+          "command": "plugin:event|listen",
+          "args": {
+            "event": "engine:health",
+            "target": {
+              "kind": "Any"
+            },
+            "handler": 1
+          }
+        },
+        {
+          "command": "plugin:event|listen",
+          "args": {
+            "event": "nabbit://settings-changed",
+            "target": {
+              "kind": "Any"
+            },
+            "handler": 3
+          }
+        },
+        {
+          "command": "plugin:event|listen",
+          "args": {
+            "event": "tauri://theme-changed",
+            "target": {
+              "kind": "Window",
+              "label": "settings"
+            },
+            "handler": 5
+          }
+        },
+        {
+          "command": "settings_window_ready",
+          "args": {}
+        },
+        {
+          "command": "get_settings",
+          "args": {}
+        },
+        {
+          "command": "get_engine_status",
+          "args": {}
+        },
+        {
+          "command": "get_storage_stats",
+          "args": {}
+        },
+        {
+          "command": "plugin:window|theme",
+          "args": {
+            "label": "settings"
+          }
+        },
+        {
+          "command": "patch_settings",
+          "args": {
+            "change": {
+              "displayMode": "islandOnly"
+            }
+          }
+        }
+      ],
+      "unsupported": [],
+      "runtimeAndNetworkProblems": []
+    },
+    {
+      "file": "v62-modes-c-mode-island-and-tray-light@1.5x.png",
+      "scenario": "mode-island-and-tray",
+      "entry": "settings.html",
+      "figmaNode": null,
+      "theme": "light",
+      "resolvedTheme": "light",
+      "scale": 1.5,
+      "viewport": {
+        "width": 980,
+        "height": 720
+      },
+      "clip": {
+        "x": 0,
+        "y": 0,
+        "width": 980,
+        "height": 720
+      },
+      "width": 1470,
+      "height": 1080,
+      "bytes": 108103,
+      "sha256": "d537bb48d4b46e7dadff38111d543ef6397f8b2b20a0fe796eef3f2822a98bfa",
+      "repeatMatches": true,
+      "caret": "hide",
+      "font": [
+        {
+          "familyName": "Geist",
+          "postScriptName": "Geist",
+          "isCustomFont": true,
+          "glyphCount": 7
+        }
+      ],
+      "fixtureSha256": "e20959f6505d8e2c0e0d9a2aefb75d10d7b1b31a69b77799b22e728e1d6619aa",
+      "assertions": {
+        "mode": "islandAndTray",
+        "minimum": false,
+        "keyboardActivation": true,
+        "axe": {
+          "version": "4.14.1",
+          "theme": "light",
+          "scale": 1.5,
+          "violations": [],
+          "incomplete": [],
+          "passes": 33
+        }
+      },
+      "ipc": [
+        {
+          "command": "plugin:event|listen",
+          "args": {
+            "event": "engine:health",
+            "target": {
+              "kind": "Any"
+            },
+            "handler": 1
+          }
+        },
+        {
+          "command": "plugin:event|listen",
+          "args": {
+            "event": "nabbit://settings-changed",
+            "target": {
+              "kind": "Any"
+            },
+            "handler": 3
+          }
+        },
+        {
+          "command": "plugin:event|listen",
+          "args": {
+            "event": "tauri://theme-changed",
+            "target": {
+              "kind": "Window",
+              "label": "settings"
+            },
+            "handler": 5
+          }
+        },
+        {
+          "command": "settings_window_ready",
+          "args": {}
+        },
+        {
+          "command": "get_settings",
+          "args": {}
+        },
+        {
+          "command": "get_engine_status",
+          "args": {}
+        },
+        {
+          "command": "get_storage_stats",
+          "args": {}
+        },
+        {
+          "command": "plugin:window|theme",
+          "args": {
+            "label": "settings"
+          }
+        },
+        {
+          "command": "patch_settings",
+          "args": {
+            "change": {
+              "displayMode": "islandAndTray"
+            }
+          }
+        }
+      ],
+      "unsupported": [],
+      "runtimeAndNetworkProblems": []
+    },
+    {
+      "file": "v62-modes-c-mode-tray-only-light@1.5x.png",
+      "scenario": "mode-tray-only",
+      "entry": "settings.html",
+      "figmaNode": null,
+      "theme": "light",
+      "resolvedTheme": "light",
+      "scale": 1.5,
+      "viewport": {
+        "width": 980,
+        "height": 720
+      },
+      "clip": {
+        "x": 0,
+        "y": 0,
+        "width": 980,
+        "height": 720
+      },
+      "width": 1470,
+      "height": 1080,
+      "bytes": 108219,
+      "sha256": "6cd232f96354e693eba2ba9bf947fd1c156eba00a3d8b167aa4a75a0d4f72528",
+      "repeatMatches": true,
+      "caret": "hide",
+      "font": [
+        {
+          "familyName": "Geist",
+          "postScriptName": "Geist",
+          "isCustomFont": true,
+          "glyphCount": 7
+        }
+      ],
+      "fixtureSha256": "e20959f6505d8e2c0e0d9a2aefb75d10d7b1b31a69b77799b22e728e1d6619aa",
+      "assertions": {
+        "mode": "trayOnly",
+        "minimum": false,
+        "keyboardActivation": true,
+        "axe": {
+          "version": "4.14.1",
+          "theme": "light",
+          "scale": 1.5,
+          "violations": [],
+          "incomplete": [],
+          "passes": 33
+        }
+      },
+      "ipc": [
+        {
+          "command": "plugin:event|listen",
+          "args": {
+            "event": "engine:health",
+            "target": {
+              "kind": "Any"
+            },
+            "handler": 1
+          }
+        },
+        {
+          "command": "plugin:event|listen",
+          "args": {
+            "event": "nabbit://settings-changed",
+            "target": {
+              "kind": "Any"
+            },
+            "handler": 3
+          }
+        },
+        {
+          "command": "plugin:event|listen",
+          "args": {
+            "event": "tauri://theme-changed",
+            "target": {
+              "kind": "Window",
+              "label": "settings"
+            },
+            "handler": 5
+          }
+        },
+        {
+          "command": "settings_window_ready",
+          "args": {}
+        },
+        {
+          "command": "get_settings",
+          "args": {}
+        },
+        {
+          "command": "get_engine_status",
+          "args": {}
+        },
+        {
+          "command": "get_storage_stats",
+          "args": {}
+        },
+        {
+          "command": "plugin:window|theme",
+          "args": {
+            "label": "settings"
+          }
+        },
+        {
+          "command": "patch_settings",
+          "args": {
+            "change": {
+              "displayMode": "trayOnly"
+            }
+          }
+        }
+      ],
+      "unsupported": [],
+      "runtimeAndNetworkProblems": []
+    },
+    {
+      "file": "v62-modes-c-mode-island-only-light@1.5x.png",
+      "scenario": "mode-island-only",
+      "entry": "settings.html",
+      "figmaNode": null,
+      "theme": "light",
+      "resolvedTheme": "light",
+      "scale": 1.5,
+      "viewport": {
+        "width": 980,
+        "height": 720
+      },
+      "clip": {
+        "x": 0,
+        "y": 0,
+        "width": 980,
+        "height": 720
+      },
+      "width": 1470,
+      "height": 1080,
+      "bytes": 108169,
+      "sha256": "cbb81f850e56dcf47a40c8e32d1c1f78c86cc9d1589a3203943c15da4f5be770",
+      "repeatMatches": true,
+      "caret": "hide",
+      "font": [
+        {
+          "familyName": "Geist",
+          "postScriptName": "Geist",
+          "isCustomFont": true,
+          "glyphCount": 7
+        }
+      ],
+      "fixtureSha256": "e20959f6505d8e2c0e0d9a2aefb75d10d7b1b31a69b77799b22e728e1d6619aa",
+      "assertions": {
+        "mode": "islandOnly",
+        "minimum": false,
+        "keyboardActivation": true,
+        "axe": {
+          "version": "4.14.1",
+          "theme": "light",
+          "scale": 1.5,
+          "violations": [],
+          "incomplete": [],
+          "passes": 33
+        }
+      },
+      "ipc": [
+        {
+          "command": "plugin:event|listen",
+          "args": {
+            "event": "engine:health",
+            "target": {
+              "kind": "Any"
+            },
+            "handler": 1
+          }
+        },
+        {
+          "command": "plugin:event|listen",
+          "args": {
+            "event": "nabbit://settings-changed",
+            "target": {
+              "kind": "Any"
+            },
+            "handler": 3
+          }
+        },
+        {
+          "command": "plugin:event|listen",
+          "args": {
+            "event": "tauri://theme-changed",
+            "target": {
+              "kind": "Window",
+              "label": "settings"
+            },
+            "handler": 5
+          }
+        },
+        {
+          "command": "settings_window_ready",
+          "args": {}
+        },
+        {
+          "command": "get_settings",
+          "args": {}
+        },
+        {
+          "command": "get_engine_status",
+          "args": {}
+        },
+        {
+          "command": "get_storage_stats",
+          "args": {}
+        },
+        {
+          "command": "plugin:window|theme",
+          "args": {
+            "label": "settings"
+          }
+        },
+        {
+          "command": "patch_settings",
+          "args": {
+            "change": {
+              "displayMode": "islandOnly"
+            }
+          }
+        }
+      ],
+      "unsupported": [],
+      "runtimeAndNetworkProblems": []
+    },
+    {
+      "file": "v62-modes-c-mode-island-and-tray-minimum-light@1.5x.png",
+      "scenario": "mode-island-and-tray-minimum",
+      "entry": "settings.html",
+      "figmaNode": null,
+      "theme": "light",
+      "resolvedTheme": "light",
+      "scale": 1.5,
+      "viewport": {
+        "width": 820,
+        "height": 600
+      },
+      "clip": {
+        "x": 0,
+        "y": 0,
+        "width": 820,
+        "height": 600
+      },
+      "width": 1230,
+      "height": 900,
+      "bytes": 95821,
+      "sha256": "60b29fdb0bfa90421a7765aaa1ac9586287e9939aea70b9bf322b7cc991b6a9a",
+      "repeatMatches": true,
+      "caret": "hide",
+      "font": [
+        {
+          "familyName": "Geist",
+          "postScriptName": "Geist",
+          "isCustomFont": true,
+          "glyphCount": 7
+        }
+      ],
+      "fixtureSha256": "e20959f6505d8e2c0e0d9a2aefb75d10d7b1b31a69b77799b22e728e1d6619aa",
+      "assertions": {
+        "mode": "islandAndTray",
+        "minimum": true,
+        "keyboardActivation": true,
+        "axe": {
+          "version": "4.14.1",
+          "theme": "light",
+          "scale": 1.5,
+          "violations": [],
+          "incomplete": [],
+          "passes": 34
+        }
+      },
+      "ipc": [
+        {
+          "command": "plugin:event|listen",
+          "args": {
+            "event": "engine:health",
+            "target": {
+              "kind": "Any"
+            },
+            "handler": 1
+          }
+        },
+        {
+          "command": "plugin:event|listen",
+          "args": {
+            "event": "nabbit://settings-changed",
+            "target": {
+              "kind": "Any"
+            },
+            "handler": 3
+          }
+        },
+        {
+          "command": "plugin:event|listen",
+          "args": {
+            "event": "tauri://theme-changed",
+            "target": {
+              "kind": "Window",
+              "label": "settings"
+            },
+            "handler": 5
+          }
+        },
+        {
+          "command": "settings_window_ready",
+          "args": {}
+        },
+        {
+          "command": "get_settings",
+          "args": {}
+        },
+        {
+          "command": "get_engine_status",
+          "args": {}
+        },
+        {
+          "command": "get_storage_stats",
+          "args": {}
+        },
+        {
+          "command": "plugin:window|theme",
+          "args": {
+            "label": "settings"
+          }
+        },
+        {
+          "command": "patch_settings",
+          "args": {
+            "change": {
+              "displayMode": "islandAndTray"
+            }
+          }
+        }
+      ],
+      "unsupported": [],
+      "runtimeAndNetworkProblems": []
+    },
+    {
+      "file": "v62-modes-c-mode-tray-only-minimum-light@1.5x.png",
+      "scenario": "mode-tray-only-minimum",
+      "entry": "settings.html",
+      "figmaNode": null,
+      "theme": "light",
+      "resolvedTheme": "light",
+      "scale": 1.5,
+      "viewport": {
+        "width": 820,
+        "height": 600
+      },
+      "clip": {
+        "x": 0,
+        "y": 0,
+        "width": 820,
+        "height": 600
+      },
+      "width": 1230,
+      "height": 900,
+      "bytes": 96715,
+      "sha256": "d8aaa9f0b54ec1f71b39ee06eb2dee61aeba16cc92c631a914d258c3c28af6d2",
+      "repeatMatches": true,
+      "caret": "hide",
+      "font": [
+        {
+          "familyName": "Geist",
+          "postScriptName": "Geist",
+          "isCustomFont": true,
+          "glyphCount": 7
+        }
+      ],
+      "fixtureSha256": "e20959f6505d8e2c0e0d9a2aefb75d10d7b1b31a69b77799b22e728e1d6619aa",
+      "assertions": {
+        "mode": "trayOnly",
+        "minimum": true,
+        "keyboardActivation": true,
+        "axe": {
+          "version": "4.14.1",
+          "theme": "light",
+          "scale": 1.5,
+          "violations": [],
+          "incomplete": [],
+          "passes": 34
+        }
+      },
+      "ipc": [
+        {
+          "command": "plugin:event|listen",
+          "args": {
+            "event": "engine:health",
+            "target": {
+              "kind": "Any"
+            },
+            "handler": 1
+          }
+        },
+        {
+          "command": "plugin:event|listen",
+          "args": {
+            "event": "nabbit://settings-changed",
+            "target": {
+              "kind": "Any"
+            },
+            "handler": 3
+          }
+        },
+        {
+          "command": "plugin:event|listen",
+          "args": {
+            "event": "tauri://theme-changed",
+            "target": {
+              "kind": "Window",
+              "label": "settings"
+            },
+            "handler": 5
+          }
+        },
+        {
+          "command": "settings_window_ready",
+          "args": {}
+        },
+        {
+          "command": "get_settings",
+          "args": {}
+        },
+        {
+          "command": "get_engine_status",
+          "args": {}
+        },
+        {
+          "command": "get_storage_stats",
+          "args": {}
+        },
+        {
+          "command": "plugin:window|theme",
+          "args": {
+            "label": "settings"
+          }
+        },
+        {
+          "command": "patch_settings",
+          "args": {
+            "change": {
+              "displayMode": "trayOnly"
+            }
+          }
+        }
+      ],
+      "unsupported": [],
+      "runtimeAndNetworkProblems": []
+    },
+    {
+      "file": "v62-modes-c-mode-island-only-minimum-light@1.5x.png",
+      "scenario": "mode-island-only-minimum",
+      "entry": "settings.html",
+      "figmaNode": null,
+      "theme": "light",
+      "resolvedTheme": "light",
+      "scale": 1.5,
+      "viewport": {
+        "width": 820,
+        "height": 600
+      },
+      "clip": {
+        "x": 0,
+        "y": 0,
+        "width": 820,
+        "height": 600
+      },
+      "width": 1230,
+      "height": 900,
+      "bytes": 96315,
+      "sha256": "e84c8413f42c0362c9e114b2fdd396a178038b0fb2dd1c61c9be6724c847d6ac",
+      "repeatMatches": true,
+      "caret": "hide",
+      "font": [
+        {
+          "familyName": "Geist",
+          "postScriptName": "Geist",
+          "isCustomFont": true,
+          "glyphCount": 7
+        }
+      ],
+      "fixtureSha256": "e20959f6505d8e2c0e0d9a2aefb75d10d7b1b31a69b77799b22e728e1d6619aa",
+      "assertions": {
+        "mode": "islandOnly",
+        "minimum": true,
+        "keyboardActivation": true,
+        "axe": {
+          "version": "4.14.1",
+          "theme": "light",
+          "scale": 1.5,
+          "violations": [],
+          "incomplete": [],
+          "passes": 34
+        }
+      },
+      "ipc": [
+        {
+          "command": "plugin:event|listen",
+          "args": {
+            "event": "engine:health",
+            "target": {
+              "kind": "Any"
+            },
+            "handler": 1
+          }
+        },
+        {
+          "command": "plugin:event|listen",
+          "args": {
+            "event": "nabbit://settings-changed",
+            "target": {
+              "kind": "Any"
+            },
+            "handler": 3
+          }
+        },
+        {
+          "command": "plugin:event|listen",
+          "args": {
+            "event": "tauri://theme-changed",
+            "target": {
+              "kind": "Window",
+              "label": "settings"
+            },
+            "handler": 5
+          }
+        },
+        {
+          "command": "settings_window_ready",
+          "args": {}
+        },
+        {
+          "command": "get_settings",
+          "args": {}
+        },
+        {
+          "command": "get_engine_status",
+          "args": {}
+        },
+        {
+          "command": "get_storage_stats",
+          "args": {}
+        },
+        {
+          "command": "plugin:window|theme",
+          "args": {
+            "label": "settings"
+          }
+        },
+        {
+          "command": "patch_settings",
+          "args": {
+            "change": {
+              "displayMode": "islandOnly"
+            }
+          }
+        }
+      ],
+      "unsupported": [],
+      "runtimeAndNetworkProblems": []
+    },
+    {
+      "file": "v62-modes-c-mode-island-and-tray-dark@1x.png",
+      "scenario": "mode-island-and-tray",
+      "entry": "settings.html",
+      "figmaNode": null,
+      "theme": "dark",
+      "resolvedTheme": "dark",
+      "scale": 1,
+      "viewport": {
+        "width": 980,
+        "height": 720
+      },
+      "clip": {
+        "x": 0,
+        "y": 0,
+        "width": 980,
+        "height": 720
+      },
+      "width": 980,
+      "height": 720,
+      "bytes": 63797,
+      "sha256": "459849bdea20272f89c08105147bd99eb11561cc6ed873c8ed08fabbc79b284c",
+      "repeatMatches": true,
+      "caret": "hide",
+      "font": [
+        {
+          "familyName": "Geist",
+          "postScriptName": "Geist",
+          "isCustomFont": true,
+          "glyphCount": 7
+        }
+      ],
+      "fixtureSha256": "4b1b60aa936c43c9b0b51be85f1d91152eb23c3ec27c6e7f2bd75e925851436c",
+      "assertions": {
+        "mode": "islandAndTray",
+        "minimum": false,
+        "keyboardActivation": true,
+        "axe": {
+          "version": "4.14.1",
+          "theme": "dark",
+          "scale": 1,
+          "violations": [],
+          "incomplete": [],
+          "passes": 33
+        }
+      },
+      "ipc": [
+        {
+          "command": "plugin:event|listen",
+          "args": {
+            "event": "engine:health",
+            "target": {
+              "kind": "Any"
+            },
+            "handler": 1
+          }
+        },
+        {
+          "command": "plugin:event|listen",
+          "args": {
+            "event": "nabbit://settings-changed",
+            "target": {
+              "kind": "Any"
+            },
+            "handler": 3
+          }
+        },
+        {
+          "command": "plugin:event|listen",
+          "args": {
+            "event": "tauri://theme-changed",
+            "target": {
+              "kind": "Window",
+              "label": "settings"
+            },
+            "handler": 5
+          }
+        },
+        {
+          "command": "settings_window_ready",
+          "args": {}
+        },
+        {
+          "command": "get_settings",
+          "args": {}
+        },
+        {
+          "command": "get_engine_status",
+          "args": {}
+        },
+        {
+          "command": "get_storage_stats",
+          "args": {}
+        },
+        {
+          "command": "plugin:window|theme",
+          "args": {
+            "label": "settings"
+          }
+        },
+        {
+          "command": "patch_settings",
+          "args": {
+            "change": {
+              "displayMode": "islandAndTray"
+            }
+          }
+        }
+      ],
+      "unsupported": [],
+      "runtimeAndNetworkProblems": []
+    },
+    {
+      "file": "v62-modes-c-mode-tray-only-dark@1x.png",
+      "scenario": "mode-tray-only",
+      "entry": "settings.html",
+      "figmaNode": null,
+      "theme": "dark",
+      "resolvedTheme": "dark",
+      "scale": 1,
+      "viewport": {
+        "width": 980,
+        "height": 720
+      },
+      "clip": {
+        "x": 0,
+        "y": 0,
+        "width": 980,
+        "height": 720
+      },
+      "width": 980,
+      "height": 720,
+      "bytes": 63769,
+      "sha256": "22a28979cf26dbf9b896e0b226bdd0a4c3cedf77d37d985bace9958e2fae5bb0",
+      "repeatMatches": true,
+      "caret": "hide",
+      "font": [
+        {
+          "familyName": "Geist",
+          "postScriptName": "Geist",
+          "isCustomFont": true,
+          "glyphCount": 7
+        }
+      ],
+      "fixtureSha256": "4b1b60aa936c43c9b0b51be85f1d91152eb23c3ec27c6e7f2bd75e925851436c",
+      "assertions": {
+        "mode": "trayOnly",
+        "minimum": false,
+        "keyboardActivation": true,
+        "axe": {
+          "version": "4.14.1",
+          "theme": "dark",
+          "scale": 1,
+          "violations": [],
+          "incomplete": [],
+          "passes": 33
+        }
+      },
+      "ipc": [
+        {
+          "command": "plugin:event|listen",
+          "args": {
+            "event": "engine:health",
+            "target": {
+              "kind": "Any"
+            },
+            "handler": 1
+          }
+        },
+        {
+          "command": "plugin:event|listen",
+          "args": {
+            "event": "nabbit://settings-changed",
+            "target": {
+              "kind": "Any"
+            },
+            "handler": 3
+          }
+        },
+        {
+          "command": "plugin:event|listen",
+          "args": {
+            "event": "tauri://theme-changed",
+            "target": {
+              "kind": "Window",
+              "label": "settings"
+            },
+            "handler": 5
+          }
+        },
+        {
+          "command": "settings_window_ready",
+          "args": {}
+        },
+        {
+          "command": "get_settings",
+          "args": {}
+        },
+        {
+          "command": "get_engine_status",
+          "args": {}
+        },
+        {
+          "command": "get_storage_stats",
+          "args": {}
+        },
+        {
+          "command": "plugin:window|theme",
+          "args": {
+            "label": "settings"
+          }
+        },
+        {
+          "command": "patch_settings",
+          "args": {
+            "change": {
+              "displayMode": "trayOnly"
+            }
+          }
+        }
+      ],
+      "unsupported": [],
+      "runtimeAndNetworkProblems": []
+    },
+    {
+      "file": "v62-modes-c-mode-island-only-dark@1x.png",
+      "scenario": "mode-island-only",
+      "entry": "settings.html",
+      "figmaNode": null,
+      "theme": "dark",
+      "resolvedTheme": "dark",
+      "scale": 1,
+      "viewport": {
+        "width": 980,
+        "height": 720
+      },
+      "clip": {
+        "x": 0,
+        "y": 0,
+        "width": 980,
+        "height": 720
+      },
+      "width": 980,
+      "height": 720,
+      "bytes": 63772,
+      "sha256": "dba4fc1af31430d15d97b3a64937dccaecb81b96b4f23f65e6da520a06fea4bd",
+      "repeatMatches": true,
+      "caret": "hide",
+      "font": [
+        {
+          "familyName": "Geist",
+          "postScriptName": "Geist",
+          "isCustomFont": true,
+          "glyphCount": 7
+        }
+      ],
+      "fixtureSha256": "4b1b60aa936c43c9b0b51be85f1d91152eb23c3ec27c6e7f2bd75e925851436c",
+      "assertions": {
+        "mode": "islandOnly",
+        "minimum": false,
+        "keyboardActivation": true,
+        "axe": {
+          "version": "4.14.1",
+          "theme": "dark",
+          "scale": 1,
+          "violations": [],
+          "incomplete": [],
+          "passes": 33
+        }
+      },
+      "ipc": [
+        {
+          "command": "plugin:event|listen",
+          "args": {
+            "event": "engine:health",
+            "target": {
+              "kind": "Any"
+            },
+            "handler": 1
+          }
+        },
+        {
+          "command": "plugin:event|listen",
+          "args": {
+            "event": "nabbit://settings-changed",
+            "target": {
+              "kind": "Any"
+            },
+            "handler": 3
+          }
+        },
+        {
+          "command": "plugin:event|listen",
+          "args": {
+            "event": "tauri://theme-changed",
+            "target": {
+              "kind": "Window",
+              "label": "settings"
+            },
+            "handler": 5
+          }
+        },
+        {
+          "command": "settings_window_ready",
+          "args": {}
+        },
+        {
+          "command": "get_settings",
+          "args": {}
+        },
+        {
+          "command": "get_engine_status",
+          "args": {}
+        },
+        {
+          "command": "get_storage_stats",
+          "args": {}
+        },
+        {
+          "command": "plugin:window|theme",
+          "args": {
+            "label": "settings"
+          }
+        },
+        {
+          "command": "patch_settings",
+          "args": {
+            "change": {
+              "displayMode": "islandOnly"
+            }
+          }
+        }
+      ],
+      "unsupported": [],
+      "runtimeAndNetworkProblems": []
+    },
+    {
+      "file": "v62-modes-c-mode-island-and-tray-minimum-dark@1x.png",
+      "scenario": "mode-island-and-tray-minimum",
+      "entry": "settings.html",
+      "figmaNode": null,
+      "theme": "dark",
+      "resolvedTheme": "dark",
+      "scale": 1,
+      "viewport": {
+        "width": 820,
+        "height": 600
+      },
+      "clip": {
+        "x": 0,
+        "y": 0,
+        "width": 820,
+        "height": 600
+      },
+      "width": 820,
+      "height": 600,
+      "bytes": 56961,
+      "sha256": "070f60e6a167f4ede8c8c18316256b4786db24b9efcef020486ac4e85b859fe8",
+      "repeatMatches": true,
+      "caret": "hide",
+      "font": [
+        {
+          "familyName": "Geist",
+          "postScriptName": "Geist",
+          "isCustomFont": true,
+          "glyphCount": 7
+        }
+      ],
+      "fixtureSha256": "4b1b60aa936c43c9b0b51be85f1d91152eb23c3ec27c6e7f2bd75e925851436c",
+      "assertions": {
+        "mode": "islandAndTray",
+        "minimum": true,
+        "keyboardActivation": true,
+        "axe": {
+          "version": "4.14.1",
+          "theme": "dark",
+          "scale": 1,
+          "violations": [],
+          "incomplete": [],
+          "passes": 34
+        }
+      },
+      "ipc": [
+        {
+          "command": "plugin:event|listen",
+          "args": {
+            "event": "engine:health",
+            "target": {
+              "kind": "Any"
+            },
+            "handler": 1
+          }
+        },
+        {
+          "command": "plugin:event|listen",
+          "args": {
+            "event": "nabbit://settings-changed",
+            "target": {
+              "kind": "Any"
+            },
+            "handler": 3
+          }
+        },
+        {
+          "command": "plugin:event|listen",
+          "args": {
+            "event": "tauri://theme-changed",
+            "target": {
+              "kind": "Window",
+              "label": "settings"
+            },
+            "handler": 5
+          }
+        },
+        {
+          "command": "settings_window_ready",
+          "args": {}
+        },
+        {
+          "command": "get_settings",
+          "args": {}
+        },
+        {
+          "command": "get_engine_status",
+          "args": {}
+        },
+        {
+          "command": "get_storage_stats",
+          "args": {}
+        },
+        {
+          "command": "plugin:window|theme",
+          "args": {
+            "label": "settings"
+          }
+        },
+        {
+          "command": "patch_settings",
+          "args": {
+            "change": {
+              "displayMode": "islandAndTray"
+            }
+          }
+        }
+      ],
+      "unsupported": [],
+      "runtimeAndNetworkProblems": []
+    },
+    {
+      "file": "v62-modes-c-mode-tray-only-minimum-dark@1x.png",
+      "scenario": "mode-tray-only-minimum",
+      "entry": "settings.html",
+      "figmaNode": null,
+      "theme": "dark",
+      "resolvedTheme": "dark",
+      "scale": 1,
+      "viewport": {
+        "width": 820,
+        "height": 600
+      },
+      "clip": {
+        "x": 0,
+        "y": 0,
+        "width": 820,
+        "height": 600
+      },
+      "width": 820,
+      "height": 600,
+      "bytes": 57029,
+      "sha256": "bc5ded57e3c8018171328b16978163b029c131b40985f2e779e663069018e31e",
+      "repeatMatches": true,
+      "caret": "hide",
+      "font": [
+        {
+          "familyName": "Geist",
+          "postScriptName": "Geist",
+          "isCustomFont": true,
+          "glyphCount": 7
+        }
+      ],
+      "fixtureSha256": "4b1b60aa936c43c9b0b51be85f1d91152eb23c3ec27c6e7f2bd75e925851436c",
+      "assertions": {
+        "mode": "trayOnly",
+        "minimum": true,
+        "keyboardActivation": true,
+        "axe": {
+          "version": "4.14.1",
+          "theme": "dark",
+          "scale": 1,
+          "violations": [],
+          "incomplete": [],
+          "passes": 34
+        }
+      },
+      "ipc": [
+        {
+          "command": "plugin:event|listen",
+          "args": {
+            "event": "engine:health",
+            "target": {
+              "kind": "Any"
+            },
+            "handler": 1
+          }
+        },
+        {
+          "command": "plugin:event|listen",
+          "args": {
+            "event": "nabbit://settings-changed",
+            "target": {
+              "kind": "Any"
+            },
+            "handler": 3
+          }
+        },
+        {
+          "command": "plugin:event|listen",
+          "args": {
+            "event": "tauri://theme-changed",
+            "target": {
+              "kind": "Window",
+              "label": "settings"
+            },
+            "handler": 5
+          }
+        },
+        {
+          "command": "settings_window_ready",
+          "args": {}
+        },
+        {
+          "command": "get_settings",
+          "args": {}
+        },
+        {
+          "command": "get_engine_status",
+          "args": {}
+        },
+        {
+          "command": "get_storage_stats",
+          "args": {}
+        },
+        {
+          "command": "plugin:window|theme",
+          "args": {
+            "label": "settings"
+          }
+        },
+        {
+          "command": "patch_settings",
+          "args": {
+            "change": {
+              "displayMode": "trayOnly"
+            }
+          }
+        }
+      ],
+      "unsupported": [],
+      "runtimeAndNetworkProblems": []
+    },
+    {
+      "file": "v62-modes-c-mode-island-only-minimum-dark@1x.png",
+      "scenario": "mode-island-only-minimum",
+      "entry": "settings.html",
+      "figmaNode": null,
+      "theme": "dark",
+      "resolvedTheme": "dark",
+      "scale": 1,
+      "viewport": {
+        "width": 820,
+        "height": 600
+      },
+      "clip": {
+        "x": 0,
+        "y": 0,
+        "width": 820,
+        "height": 600
+      },
+      "width": 820,
+      "height": 600,
+      "bytes": 56986,
+      "sha256": "c47e7d01643c990a68f3dc06a31be41ab04ba5b76ef046d8b4e61637ae6d25f5",
+      "repeatMatches": true,
+      "caret": "hide",
+      "font": [
+        {
+          "familyName": "Geist",
+          "postScriptName": "Geist",
+          "isCustomFont": true,
+          "glyphCount": 7
+        }
+      ],
+      "fixtureSha256": "4b1b60aa936c43c9b0b51be85f1d91152eb23c3ec27c6e7f2bd75e925851436c",
+      "assertions": {
+        "mode": "islandOnly",
+        "minimum": true,
+        "keyboardActivation": true,
+        "axe": {
+          "version": "4.14.1",
+          "theme": "dark",
+          "scale": 1,
+          "violations": [],
+          "incomplete": [],
+          "passes": 34
+        }
+      },
+      "ipc": [
+        {
+          "command": "plugin:event|listen",
+          "args": {
+            "event": "engine:health",
+            "target": {
+              "kind": "Any"
+            },
+            "handler": 1
+          }
+        },
+        {
+          "command": "plugin:event|listen",
+          "args": {
+            "event": "nabbit://settings-changed",
+            "target": {
+              "kind": "Any"
+            },
+            "handler": 3
+          }
+        },
+        {
+          "command": "plugin:event|listen",
+          "args": {
+            "event": "tauri://theme-changed",
+            "target": {
+              "kind": "Window",
+              "label": "settings"
+            },
+            "handler": 5
+          }
+        },
+        {
+          "command": "settings_window_ready",
+          "args": {}
+        },
+        {
+          "command": "get_settings",
+          "args": {}
+        },
+        {
+          "command": "get_engine_status",
+          "args": {}
+        },
+        {
+          "command": "get_storage_stats",
+          "args": {}
+        },
+        {
+          "command": "plugin:window|theme",
+          "args": {
+            "label": "settings"
+          }
+        },
+        {
+          "command": "patch_settings",
+          "args": {
+            "change": {
+              "displayMode": "islandOnly"
+            }
+          }
+        }
+      ],
+      "unsupported": [],
+      "runtimeAndNetworkProblems": []
+    },
+    {
+      "file": "v62-modes-c-mode-island-and-tray-dark@1.5x.png",
+      "scenario": "mode-island-and-tray",
+      "entry": "settings.html",
+      "figmaNode": null,
+      "theme": "dark",
+      "resolvedTheme": "dark",
+      "scale": 1.5,
+      "viewport": {
+        "width": 980,
+        "height": 720
+      },
+      "clip": {
+        "x": 0,
+        "y": 0,
+        "width": 980,
+        "height": 720
+      },
+      "width": 1470,
+      "height": 1080,
+      "bytes": 108699,
+      "sha256": "47582339a50a38ead6191bed589d0485de11be137ad18dd54655a4bb5e8ef0fb",
+      "repeatMatches": true,
+      "caret": "hide",
+      "font": [
+        {
+          "familyName": "Geist",
+          "postScriptName": "Geist",
+          "isCustomFont": true,
+          "glyphCount": 7
+        }
+      ],
+      "fixtureSha256": "4b1b60aa936c43c9b0b51be85f1d91152eb23c3ec27c6e7f2bd75e925851436c",
+      "assertions": {
+        "mode": "islandAndTray",
+        "minimum": false,
+        "keyboardActivation": true,
+        "axe": {
+          "version": "4.14.1",
+          "theme": "dark",
+          "scale": 1.5,
+          "violations": [],
+          "incomplete": [],
+          "passes": 33
+        }
+      },
+      "ipc": [
+        {
+          "command": "plugin:event|listen",
+          "args": {
+            "event": "engine:health",
+            "target": {
+              "kind": "Any"
+            },
+            "handler": 1
+          }
+        },
+        {
+          "command": "plugin:event|listen",
+          "args": {
+            "event": "nabbit://settings-changed",
+            "target": {
+              "kind": "Any"
+            },
+            "handler": 3
+          }
+        },
+        {
+          "command": "plugin:event|listen",
+          "args": {
+            "event": "tauri://theme-changed",
+            "target": {
+              "kind": "Window",
+              "label": "settings"
+            },
+            "handler": 5
+          }
+        },
+        {
+          "command": "settings_window_ready",
+          "args": {}
+        },
+        {
+          "command": "get_settings",
+          "args": {}
+        },
+        {
+          "command": "get_engine_status",
+          "args": {}
+        },
+        {
+          "command": "get_storage_stats",
+          "args": {}
+        },
+        {
+          "command": "plugin:window|theme",
+          "args": {
+            "label": "settings"
+          }
+        },
+        {
+          "command": "patch_settings",
+          "args": {
+            "change": {
+              "displayMode": "islandAndTray"
+            }
+          }
+        }
+      ],
+      "unsupported": [],
+      "runtimeAndNetworkProblems": []
+    },
+    {
+      "file": "v62-modes-c-mode-tray-only-dark@1.5x.png",
+      "scenario": "mode-tray-only",
+      "entry": "settings.html",
+      "figmaNode": null,
+      "theme": "dark",
+      "resolvedTheme": "dark",
+      "scale": 1.5,
+      "viewport": {
+        "width": 980,
+        "height": 720
+      },
+      "clip": {
+        "x": 0,
+        "y": 0,
+        "width": 980,
+        "height": 720
+      },
+      "width": 1470,
+      "height": 1080,
+      "bytes": 108921,
+      "sha256": "d5c3e5b7e68e20d651c7eec5f5d911990da974a72181163f7329cd6fe69a9858",
+      "repeatMatches": true,
+      "caret": "hide",
+      "font": [
+        {
+          "familyName": "Geist",
+          "postScriptName": "Geist",
+          "isCustomFont": true,
+          "glyphCount": 7
+        }
+      ],
+      "fixtureSha256": "4b1b60aa936c43c9b0b51be85f1d91152eb23c3ec27c6e7f2bd75e925851436c",
+      "assertions": {
+        "mode": "trayOnly",
+        "minimum": false,
+        "keyboardActivation": true,
+        "axe": {
+          "version": "4.14.1",
+          "theme": "dark",
+          "scale": 1.5,
+          "violations": [],
+          "incomplete": [],
+          "passes": 33
+        }
+      },
+      "ipc": [
+        {
+          "command": "plugin:event|listen",
+          "args": {
+            "event": "engine:health",
+            "target": {
+              "kind": "Any"
+            },
+            "handler": 1
+          }
+        },
+        {
+          "command": "plugin:event|listen",
+          "args": {
+            "event": "nabbit://settings-changed",
+            "target": {
+              "kind": "Any"
+            },
+            "handler": 3
+          }
+        },
+        {
+          "command": "plugin:event|listen",
+          "args": {
+            "event": "tauri://theme-changed",
+            "target": {
+              "kind": "Window",
+              "label": "settings"
+            },
+            "handler": 5
+          }
+        },
+        {
+          "command": "settings_window_ready",
+          "args": {}
+        },
+        {
+          "command": "get_settings",
+          "args": {}
+        },
+        {
+          "command": "get_engine_status",
+          "args": {}
+        },
+        {
+          "command": "get_storage_stats",
+          "args": {}
+        },
+        {
+          "command": "plugin:window|theme",
+          "args": {
+            "label": "settings"
+          }
+        },
+        {
+          "command": "patch_settings",
+          "args": {
+            "change": {
+              "displayMode": "trayOnly"
+            }
+          }
+        }
+      ],
+      "unsupported": [],
+      "runtimeAndNetworkProblems": []
+    },
+    {
+      "file": "v62-modes-c-mode-island-only-dark@1.5x.png",
+      "scenario": "mode-island-only",
+      "entry": "settings.html",
+      "figmaNode": null,
+      "theme": "dark",
+      "resolvedTheme": "dark",
+      "scale": 1.5,
+      "viewport": {
+        "width": 980,
+        "height": 720
+      },
+      "clip": {
+        "x": 0,
+        "y": 0,
+        "width": 980,
+        "height": 720
+      },
+      "width": 1470,
+      "height": 1080,
+      "bytes": 108799,
+      "sha256": "791b33562e15e90aabcea338f9b735186310a567b3ce8719380d1f3e2b269acd",
+      "repeatMatches": true,
+      "caret": "hide",
+      "font": [
+        {
+          "familyName": "Geist",
+          "postScriptName": "Geist",
+          "isCustomFont": true,
+          "glyphCount": 7
+        }
+      ],
+      "fixtureSha256": "4b1b60aa936c43c9b0b51be85f1d91152eb23c3ec27c6e7f2bd75e925851436c",
+      "assertions": {
+        "mode": "islandOnly",
+        "minimum": false,
+        "keyboardActivation": true,
+        "axe": {
+          "version": "4.14.1",
+          "theme": "dark",
+          "scale": 1.5,
+          "violations": [],
+          "incomplete": [],
+          "passes": 33
+        }
+      },
+      "ipc": [
+        {
+          "command": "plugin:event|listen",
+          "args": {
+            "event": "engine:health",
+            "target": {
+              "kind": "Any"
+            },
+            "handler": 1
+          }
+        },
+        {
+          "command": "plugin:event|listen",
+          "args": {
+            "event": "nabbit://settings-changed",
+            "target": {
+              "kind": "Any"
+            },
+            "handler": 3
+          }
+        },
+        {
+          "command": "plugin:event|listen",
+          "args": {
+            "event": "tauri://theme-changed",
+            "target": {
+              "kind": "Window",
+              "label": "settings"
+            },
+            "handler": 5
+          }
+        },
+        {
+          "command": "settings_window_ready",
+          "args": {}
+        },
+        {
+          "command": "get_settings",
+          "args": {}
+        },
+        {
+          "command": "get_engine_status",
+          "args": {}
+        },
+        {
+          "command": "get_storage_stats",
+          "args": {}
+        },
+        {
+          "command": "plugin:window|theme",
+          "args": {
+            "label": "settings"
+          }
+        },
+        {
+          "command": "patch_settings",
+          "args": {
+            "change": {
+              "displayMode": "islandOnly"
+            }
+          }
+        }
+      ],
+      "unsupported": [],
+      "runtimeAndNetworkProblems": []
+    },
+    {
+      "file": "v62-modes-c-mode-island-and-tray-minimum-dark@1.5x.png",
+      "scenario": "mode-island-and-tray-minimum",
+      "entry": "settings.html",
+      "figmaNode": null,
+      "theme": "dark",
+      "resolvedTheme": "dark",
+      "scale": 1.5,
+      "viewport": {
+        "width": 820,
+        "height": 600
+      },
+      "clip": {
+        "x": 0,
+        "y": 0,
+        "width": 820,
+        "height": 600
+      },
+      "width": 1230,
+      "height": 900,
+      "bytes": 96205,
+      "sha256": "574d8345e383af6bee5a036836cdce14472638eda7406c202de41078a100a5d1",
+      "repeatMatches": true,
+      "caret": "hide",
+      "font": [
+        {
+          "familyName": "Geist",
+          "postScriptName": "Geist",
+          "isCustomFont": true,
+          "glyphCount": 7
+        }
+      ],
+      "fixtureSha256": "4b1b60aa936c43c9b0b51be85f1d91152eb23c3ec27c6e7f2bd75e925851436c",
+      "assertions": {
+        "mode": "islandAndTray",
+        "minimum": true,
+        "keyboardActivation": true,
+        "axe": {
+          "version": "4.14.1",
+          "theme": "dark",
+          "scale": 1.5,
+          "violations": [],
+          "incomplete": [],
+          "passes": 34
+        }
+      },
+      "ipc": [
+        {
+          "command": "plugin:event|listen",
+          "args": {
+            "event": "engine:health",
+            "target": {
+              "kind": "Any"
+            },
+            "handler": 1
+          }
+        },
+        {
+          "command": "plugin:event|listen",
+          "args": {
+            "event": "nabbit://settings-changed",
+            "target": {
+              "kind": "Any"
+            },
+            "handler": 3
+          }
+        },
+        {
+          "command": "plugin:event|listen",
+          "args": {
+            "event": "tauri://theme-changed",
+            "target": {
+              "kind": "Window",
+              "label": "settings"
+            },
+            "handler": 5
+          }
+        },
+        {
+          "command": "settings_window_ready",
+          "args": {}
+        },
+        {
+          "command": "get_settings",
+          "args": {}
+        },
+        {
+          "command": "get_engine_status",
+          "args": {}
+        },
+        {
+          "command": "get_storage_stats",
+          "args": {}
+        },
+        {
+          "command": "plugin:window|theme",
+          "args": {
+            "label": "settings"
+          }
+        },
+        {
+          "command": "patch_settings",
+          "args": {
+            "change": {
+              "displayMode": "islandAndTray"
+            }
+          }
+        }
+      ],
+      "unsupported": [],
+      "runtimeAndNetworkProblems": []
+    },
+    {
+      "file": "v62-modes-c-mode-tray-only-minimum-dark@1.5x.png",
+      "scenario": "mode-tray-only-minimum",
+      "entry": "settings.html",
+      "figmaNode": null,
+      "theme": "dark",
+      "resolvedTheme": "dark",
+      "scale": 1.5,
+      "viewport": {
+        "width": 820,
+        "height": 600
+      },
+      "clip": {
+        "x": 0,
+        "y": 0,
+        "width": 820,
+        "height": 600
+      },
+      "width": 1230,
+      "height": 900,
+      "bytes": 97132,
+      "sha256": "349cc130ccae395122c767d8b79c8d24093737a3dc3658b68df7b5a3d49928ed",
+      "repeatMatches": true,
+      "caret": "hide",
+      "font": [
+        {
+          "familyName": "Geist",
+          "postScriptName": "Geist",
+          "isCustomFont": true,
+          "glyphCount": 7
+        }
+      ],
+      "fixtureSha256": "4b1b60aa936c43c9b0b51be85f1d91152eb23c3ec27c6e7f2bd75e925851436c",
+      "assertions": {
+        "mode": "trayOnly",
+        "minimum": true,
+        "keyboardActivation": true,
+        "axe": {
+          "version": "4.14.1",
+          "theme": "dark",
+          "scale": 1.5,
+          "violations": [],
+          "incomplete": [],
+          "passes": 34
+        }
+      },
+      "ipc": [
+        {
+          "command": "plugin:event|listen",
+          "args": {
+            "event": "engine:health",
+            "target": {
+              "kind": "Any"
+            },
+            "handler": 1
+          }
+        },
+        {
+          "command": "plugin:event|listen",
+          "args": {
+            "event": "nabbit://settings-changed",
+            "target": {
+              "kind": "Any"
+            },
+            "handler": 3
+          }
+        },
+        {
+          "command": "plugin:event|listen",
+          "args": {
+            "event": "tauri://theme-changed",
+            "target": {
+              "kind": "Window",
+              "label": "settings"
+            },
+            "handler": 5
+          }
+        },
+        {
+          "command": "settings_window_ready",
+          "args": {}
+        },
+        {
+          "command": "get_settings",
+          "args": {}
+        },
+        {
+          "command": "get_engine_status",
+          "args": {}
+        },
+        {
+          "command": "get_storage_stats",
+          "args": {}
+        },
+        {
+          "command": "plugin:window|theme",
+          "args": {
+            "label": "settings"
+          }
+        },
+        {
+          "command": "patch_settings",
+          "args": {
+            "change": {
+              "displayMode": "trayOnly"
+            }
+          }
+        }
+      ],
+      "unsupported": [],
+      "runtimeAndNetworkProblems": []
+    },
+    {
+      "file": "v62-modes-c-mode-island-only-minimum-dark@1.5x.png",
+      "scenario": "mode-island-only-minimum",
+      "entry": "settings.html",
+      "figmaNode": null,
+      "theme": "dark",
+      "resolvedTheme": "dark",
+      "scale": 1.5,
+      "viewport": {
+        "width": 820,
+        "height": 600
+      },
+      "clip": {
+        "x": 0,
+        "y": 0,
+        "width": 820,
+        "height": 600
+      },
+      "width": 1230,
+      "height": 900,
+      "bytes": 96755,
+      "sha256": "12261710b1e6c37ebac50d94497ddbf4d71793d5b8f42b87ea46621f393485da",
+      "repeatMatches": true,
+      "caret": "hide",
+      "font": [
+        {
+          "familyName": "Geist",
+          "postScriptName": "Geist",
+          "isCustomFont": true,
+          "glyphCount": 7
+        }
+      ],
+      "fixtureSha256": "4b1b60aa936c43c9b0b51be85f1d91152eb23c3ec27c6e7f2bd75e925851436c",
+      "assertions": {
+        "mode": "islandOnly",
+        "minimum": true,
+        "keyboardActivation": true,
+        "axe": {
+          "version": "4.14.1",
+          "theme": "dark",
+          "scale": 1.5,
+          "violations": [],
+          "incomplete": [],
+          "passes": 34
+        }
+      },
+      "ipc": [
+        {
+          "command": "plugin:event|listen",
+          "args": {
+            "event": "engine:health",
+            "target": {
+              "kind": "Any"
+            },
+            "handler": 1
+          }
+        },
+        {
+          "command": "plugin:event|listen",
+          "args": {
+            "event": "nabbit://settings-changed",
+            "target": {
+              "kind": "Any"
+            },
+            "handler": 3
+          }
+        },
+        {
+          "command": "plugin:event|listen",
+          "args": {
+            "event": "tauri://theme-changed",
+            "target": {
+              "kind": "Window",
+              "label": "settings"
+            },
+            "handler": 5
+          }
+        },
+        {
+          "command": "settings_window_ready",
+          "args": {}
+        },
+        {
+          "command": "get_settings",
+          "args": {}
+        },
+        {
+          "command": "get_engine_status",
+          "args": {}
+        },
+        {
+          "command": "get_storage_stats",
+          "args": {}
+        },
+        {
+          "command": "plugin:window|theme",
+          "args": {
+            "label": "settings"
+          }
+        },
+        {
+          "command": "patch_settings",
+          "args": {
+            "change": {
+              "displayMode": "islandOnly"
+            }
+          }
+        }
+      ],
+      "unsupported": [],
+      "runtimeAndNetworkProblems": []
+    }
+  ]
+}

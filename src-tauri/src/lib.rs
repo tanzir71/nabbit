@@ -8,6 +8,7 @@ mod error;
 mod files;
 mod island;
 pub mod media;
+mod modes;
 mod notes;
 mod pins;
 pub mod power;
@@ -54,7 +55,7 @@ use db::{models::AppSettings, Database};
 use download::manager::DownloadManager;
 use error::Result;
 use tauri::{
-    menu::{Menu, MenuItem},
+    menu::{CheckMenuItem, Menu, MenuItem, Submenu},
     tray::{MouseButton, MouseButtonState, TrayIconBuilder, TrayIconEvent},
     AppHandle, Emitter, Manager, PhysicalPosition, Wry,
 };
@@ -289,6 +290,8 @@ pub fn run() {
             commands::settings::save_island_preferences,
             commands::settings::save_settings,
             commands::settings::patch_settings,
+            modes::get_mode_snapshot,
+            modes::mode_fixture,
             settings_window::open_settings_window,
             settings_window::settings_window_ready,
             commands::settings::acknowledge_first_run,
@@ -385,6 +388,11 @@ pub fn run() {
             };
             app.manage(state.clone());
             app.manage(settings_window::Service::default());
+            app.manage(modes::Service::start(
+                app.handle().clone(),
+                db.get_settings()?.display_mode,
+                &db.list_downloads()?,
+            ));
             app.state::<tack::service::Service>()
                 .start(db.clone(), app.handle().clone())?;
 
@@ -404,10 +412,6 @@ pub fn run() {
             retention::spawn_retention_gc(app.handle().clone(), db.clone(), shutdown.clone());
             spawn_acceptance_automation(app.handle().clone(), state.clone());
             let settings = db.get_settings()?;
-            if let Some(tray) = app.tray_by_id("main-tray") {
-                let _ =
-                    tray.set_visible(settings.display_mode != db::models::DisplayMode::IslandOnly);
-            }
             #[cfg(windows)]
             if island::production_session() {
                 island::start(app.handle(), settings.island.clone())
@@ -562,6 +566,9 @@ pub fn run() {
                 }
                 if let Some(tools) = app.try_state::<Arc<tools::Service>>() {
                     tools.stop();
+                }
+                if let Some(modes) = app.try_state::<Arc<modes::Service>>() {
+                    modes.stop();
                 }
                 if let Some(files) = app.try_state::<Arc<files::Service>>() {
                     files.watches.stop();
@@ -768,7 +775,9 @@ pub fn show_popover(app: &AppHandle<Wry>) -> Result<()> {
 fn reveal_popover(window: &tauri::WebviewWindow) -> Result<()> {
     let _ = window.set_position(PhysicalPosition::new(100, 100));
     window.show()?;
-    window.set_focus()?;
+    if !island::acceptance_session() {
+        window.set_focus()?;
+    }
     if let Some(sync) = window.app_handle().try_state::<tack::service::Service>() {
         sync.visibility(true, true);
     }
@@ -790,6 +799,7 @@ fn ensure_popover(app: &AppHandle<Wry>) -> Result<tauri::WebviewWindow> {
     // Only reveal_popover requests focus after the user opens the tray.
     Ok(tauri::WebviewWindowBuilder::from_config(app, config)?
         .focused(false)
+        .focusable(!island::acceptance_session())
         .build()?)
 }
 
@@ -980,6 +990,39 @@ pub fn apply_runtime_settings(app: &AppHandle<Wry>, state: &AppState, settings: 
 }
 
 fn setup_tray(app: &AppHandle<Wry>) -> Result<()> {
+    let mode = app.state::<AppState>().db.get_settings()?.display_mode;
+    let mode_items = [
+        CheckMenuItem::with_id(
+            app,
+            modes::MENU_IDS[0],
+            "Island + tray",
+            true,
+            mode == modes::MODES[0],
+            None::<&str>,
+        )?,
+        CheckMenuItem::with_id(
+            app,
+            modes::MENU_IDS[1],
+            "Tray only",
+            true,
+            mode == modes::MODES[1],
+            None::<&str>,
+        )?,
+        CheckMenuItem::with_id(
+            app,
+            modes::MENU_IDS[2],
+            "Island only",
+            true,
+            mode == modes::MODES[2],
+            None::<&str>,
+        )?,
+    ];
+    let mode_menu = Submenu::with_items(
+        app,
+        "Mode",
+        true,
+        &[&mode_items[0], &mode_items[1], &mode_items[2]],
+    )?;
     let open = MenuItem::with_id(app, "open", "Open Nabbit", true, None::<&str>)?;
     let paste_last = MenuItem::with_id(app, "paste_last", "Paste last item", true, None::<&str>)?;
     let clear = MenuItem::with_id(
@@ -1000,10 +1043,18 @@ fn setup_tray(app: &AppHandle<Wry>) -> Result<()> {
     let quit = MenuItem::with_id(app, "quit", "Quit", true, None::<&str>)?;
     let menu = Menu::with_items(
         app,
-        &[&open, &paste_last, &clear, &downloads, &pause, &quit],
+        &[
+            &open,
+            &mode_menu,
+            &paste_last,
+            &clear,
+            &downloads,
+            &pause,
+            &quit,
+        ],
     )?;
 
-    TrayIconBuilder::with_id("main-tray")
+    let tray = TrayIconBuilder::with_id("main-tray")
         .tooltip("Nabbit")
         .icon(tray_icon::image(
             tray_icon::initial_theme(),
@@ -1025,6 +1076,15 @@ fn setup_tray(app: &AppHandle<Wry>) -> Result<()> {
         })
         .on_menu_event(|app, event| {
             let id = event.id().as_ref();
+            match modes::menu_action(app, id) {
+                Ok(true) => return,
+                Err(error) => {
+                    eprintln!("Mode could not be changed: {error}");
+                    app.state::<Arc<modes::Service>>().refresh();
+                    return;
+                }
+                Ok(false) => {}
+            }
             match id {
                 "open" => {
                     let _ = show_popover(app);
@@ -1077,22 +1137,18 @@ fn setup_tray(app: &AppHandle<Wry>) -> Result<()> {
             }
         })
         .build(app)?;
+    tray.set_visible(mode != db::models::DisplayMode::IslandOnly)?;
+    app.state::<Arc<modes::Service>>()
+        .menu(modes::ModeMenu(mode_items));
     #[cfg(windows)]
     {
         let handle = app.clone();
         match taskbar_theme::Watcher::start(move |theme| {
-            let app = handle.clone();
-            // Never wait for the UI from the worker: shutdown joins this thread.
-            let _ = handle.run_on_main_thread(move || {
-                if let Some(tray) = app.tray_by_id("main-tray") {
-                    match tray_icon::image(theme, tray_icon::physical_size())
-                        .and_then(|image| tray.set_icon(Some(image)))
-                    {
-                        Ok(()) => {}
-                        Err(error) => eprintln!("Could not update taskbar glyph: {error}"),
-                    }
-                }
-            });
+            // Re-render the current progress badge in the new taskbar theme.
+            // Never wait for the UI from this worker: shutdown joins it.
+            if let Some(service) = handle.try_state::<Arc<modes::Service>>() {
+                service.theme(theme);
+            }
         }) {
             Ok(watcher) => {
                 app.manage(watcher);

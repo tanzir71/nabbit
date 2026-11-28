@@ -68,6 +68,9 @@ impl DownloadManager {
         job.failure = super::errors::for_job(&job);
         let _ = self.app.emit("download:updated", job.clone());
         crate::island::activity_bus::download(&self.app, &job);
+        if let Some(service) = self.app.try_state::<Arc<crate::modes::Service>>() {
+            service.download(&job);
+        }
     }
     pub fn new(db: Database, app: AppHandle, app_data_dir: PathBuf) -> Self {
         Self {
@@ -148,6 +151,8 @@ impl DownloadManager {
                 inner.browsers.insert(job.id.clone(), browser);
             }
             inner.queue.push_back(job.id.clone());
+            // Publish before a worker can overtake the initial queued state.
+            self.emit_updated(&job);
         }
         self.pump();
         Ok(job)
@@ -186,6 +191,7 @@ impl DownloadManager {
                 inner.browsers.insert(job.id.clone(), browser);
             }
             inner.queue.push_back(job.id.clone());
+            self.emit_updated(job);
         }
         drop(inner);
         self.pump();

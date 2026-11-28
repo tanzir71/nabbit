@@ -1,0 +1,21 @@
+node:internal/modules/run_main:107
+    triggerUncaughtException(
+    ^
+
+AssertionError [ERR_ASSERTION]: Native repeat: island-only-dark
++ actual - expected
+
++ 'e99c06c2076274c704a8cf9a07dc87e0e8767d588446c36b5d22e7bc0813e903'
+- '74d49b3b1d8d207efa68e5509f5fd0bf0046e7995871fdbcaf2db982575a76ec'
+
+    at capture (file:///D:/claude-upgrade-26/nabbit/scripts/capture-native-modes.mjs:228:10)
+    at async file:///D:/claude-upgrade-26/nabbit/scripts/capture-native-modes.mjs:445:7 {
+  generatedMessage: false,
+  code: 'ERR_ASSERTION',
+  actual: 'e99c06c2076274c704a8cf9a07dc87e0e8767d588446c36b5d22e7bc0813e903',
+  expected: '74d49b3b1d8d207efa68e5509f5fd0bf0046e7995871fdbcaf2db982575a76ec',
+  operator: 'strictEqual',
+  diff: 'simple'
+}
+
+Node.js v24.22.2

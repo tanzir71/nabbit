@@ -445,6 +445,9 @@
 [data-theme="dark"] .settings-row .n-button img {
   filter: brightness(0) invert(0.8);
 }
+[data-theme="dark"] .settings-mode[aria-pressed="true"] .settings-mode-title img {
+  filter: invert(1);
+}
 @media (max-width: 819px) {
   .settings-sidebar {
     width: 184px;

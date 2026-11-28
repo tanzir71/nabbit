@@ -158,10 +158,8 @@ fn apply_settings(
         crate::settings_window::apply_theme(app, saved.theme);
     }
     if previous.display_mode != saved.display_mode {
-        if let Some(tray) = app.tray_by_id("main-tray") {
-            let _ =
-                tray.set_visible(saved.display_mode != crate::db::models::DisplayMode::IslandOnly);
-        }
+        app.state::<std::sync::Arc<crate::modes::Service>>()
+            .configure(saved.display_mode);
     }
     let _ = app.emit("nabbit://settings-changed", &saved);
     Ok(saved)

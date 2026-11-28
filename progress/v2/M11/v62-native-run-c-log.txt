@@ -1,0 +1,16 @@
+node:internal/modules/run_main:107
+    triggerUncaughtException(
+    ^
+
+AssertionError [ERR_ASSERTION]: Timed out: real fake-runner progress and queue badge
+    at wait (file:///D:/claude-upgrade-26/nabbit/scripts/capture-native-modes.mjs:86:5)
+    at async file:///D:/claude-upgrade-26/nabbit/scripts/capture-native-modes.mjs:524:3 {
+  generatedMessage: false,
+  code: 'ERR_ASSERTION',
+  actual: false,
+  expected: true,
+  operator: '==',
+  diff: 'simple'
+}
+
+Node.js v24.22.2

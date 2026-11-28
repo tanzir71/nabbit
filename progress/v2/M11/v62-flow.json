@@ -1,0 +1,63 @@
+{
+  "story": "General/tray mode choice → serialized settings patch → existing SQLite row → native island lifecycle and tray presentation; download events → native badge and completion adapter → safe Downloads activation.",
+  "boundaries": [
+    {
+      "boundary": "general-mode-controls",
+      "status": "verified within owned automation scope",
+      "evidence": "v62-verify-b-log.txt"
+    },
+    {
+      "boundary": "native-mode-menu",
+      "status": "verified within owned automation scope",
+      "evidence": "v62-native-e-scene.json"
+    },
+    {
+      "boundary": "tray-only-lifecycle",
+      "status": "verified within owned automation scope",
+      "evidence": "v62-native-e-scene.json"
+    },
+    {
+      "boundary": "island-only-access",
+      "status": "verified within owned automation scope",
+      "evidence": "v62-native-e-scene.json"
+    },
+    {
+      "boundary": "progress-events",
+      "status": "verified within owned automation scope",
+      "evidence": "v62-native-e-scene.json"
+    },
+    {
+      "boundary": "glyph-and-dpi",
+      "status": "verified within owned automation scope",
+      "evidence": "v62-native-e-badge-gallery.json"
+    },
+    {
+      "boundary": "completion-routing",
+      "status": "verified within owned automation scope",
+      "evidence": "v62-native-e-scene.json"
+    },
+    {
+      "boundary": "activation-safety",
+      "status": "verified within owned automation scope",
+      "evidence": "v62-native-e-scene.json"
+    },
+    {
+      "boundary": "restart-and-reapply",
+      "status": "verified within owned automation scope",
+      "evidence": "v62-native-e-scene.json"
+    },
+    {
+      "boundary": "visuals-and-accessibility",
+      "status": "verified within owned automation scope",
+      "evidence": "v62-modes-c-axe.json"
+    },
+    {
+      "boundary": "required-gates",
+      "status": "verified within owned automation scope",
+      "evidence": "v62-checks-final.json"
+    }
+  ],
+  "systemToastDelivery": "Not executed: real WinRT construction is verified; Show and registered OS activation are suppressed/excluded by section0.2.",
+  "trayVisibilityProof": "Saved mode and successful native tray API requests; icon pixels are the actual RGBA sent to the owned tray. Shell rectangle coordinates are not interpreted as a visibility signal. No Explorer/desktop capture.",
+  "scope": "Owned app/data/control/WebView profiles, generated fake downloads and HWND queries only. Real WinRT notification construction; Show suppressed. No real clipboard/global input/cursor, user files/profiles/accounts, hosted Tack, shell/autostart/global-hotkey registration, Windows notification registration/display, Store, installer/signing or OS/display changes. No new idle or other-platform claim."
+}

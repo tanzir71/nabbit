@@ -25,12 +25,12 @@ const modes: Array<{
   {
     value: "trayOnly",
     title: "Tray only",
-    help: "Quiet icon in the taskbar. Open Nabbit when you need it.",
+    help: "No overlay. Progress shows on the tray icon and in toasts.",
   },
   {
     value: "islandOnly",
     title: "Island only",
-    help: "Everything at the top. Settings stay in the island.",
+    help: "Hide the tray icon. Open settings from the island.",
   },
 ];
 export function UpdateSettings() {
@@ -82,8 +82,10 @@ export function GeneralSettings() {
               key={item.value}
               className="settings-mode"
               aria-pressed={mode === item.value}
-              disabled={busy}
-              onClick={() => void patch({ displayMode: item.value })}
+              aria-disabled={busy}
+              onClick={() => {
+                if (!busy) void patch({ displayMode: item.value });
+              }}
             >
               <span className="settings-mode-preview" aria-hidden="true">
                 {item.value !== "trayOnly" && <span className="settings-mode-pill" />}

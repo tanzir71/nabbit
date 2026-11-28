@@ -1,0 +1,17 @@
+node:internal/modules/run_main:107
+    triggerUncaughtException(
+    ^
+
+AssertionError [ERR_ASSERTION]: Timed out: mode island lifecycle
+    at wait (file:///D:/claude-upgrade-26/nabbit/scripts/capture-native-modes.mjs:86:5)
+    at async choose (file:///D:/claude-upgrade-26/nabbit/scripts/capture-native-modes.mjs:335:3)
+    at async file:///D:/claude-upgrade-26/nabbit/scripts/capture-native-modes.mjs:435:24 {
+  generatedMessage: false,
+  code: 'ERR_ASSERTION',
+  actual: false,
+  expected: true,
+  operator: '==',
+  diff: 'simple'
+}
+
+Node.js v24.22.2
